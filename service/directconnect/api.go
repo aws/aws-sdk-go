@@ -125,9 +125,15 @@ const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 //
 // Deprecated: AllocateConnectionOnInterconnect has been deprecated
 func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateConnectionOnInterconnectInput) (req *request.Request, output *Connection) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, AllocateConnectionOnInterconnect, has been deprecated")
+	msg := "This operation, AllocateConnectionOnInterconnect, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opAllocateConnectionOnInterconnect,
 		HTTPMethod: "POST",
@@ -2885,9 +2891,15 @@ const opDescribeConnectionLoa = "DescribeConnectionLoa"
 //
 // Deprecated: DescribeConnectionLoa has been deprecated
 func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLoaInput) (req *request.Request, output *DescribeConnectionLoaOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeConnectionLoa, has been deprecated")
+	msg := "This operation, DescribeConnectionLoa, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDescribeConnectionLoa,
 		HTTPMethod: "POST",
@@ -3066,9 +3078,15 @@ const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 //
 // Deprecated: DescribeConnectionsOnInterconnect has been deprecated
 func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *DescribeConnectionsOnInterconnectInput) (req *request.Request, output *Connections) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeConnectionsOnInterconnect, has been deprecated")
+	msg := "This operation, DescribeConnectionsOnInterconnect, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDescribeConnectionsOnInterconnect,
 		HTTPMethod: "POST",
@@ -3589,9 +3607,15 @@ const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 //
 // Deprecated: DescribeInterconnectLoa has been deprecated
 func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconnectLoaInput) (req *request.Request, output *DescribeInterconnectLoaOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeInterconnectLoa, has been deprecated")
+	msg := "This operation, DescribeInterconnectLoa, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDescribeInterconnectLoa,
 		HTTPMethod: "POST",

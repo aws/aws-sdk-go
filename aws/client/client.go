@@ -1,7 +1,7 @@
 package client
 
 import (
-	"fmt"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
@@ -59,8 +59,7 @@ func New(cfg aws.Config, info metadata.ClientInfo, handlers request.Handlers, op
 	case ok:
 		svc.Retryer = retryer
 	case cfg.Retryer != nil && cfg.Logger != nil:
-		s := fmt.Sprintf("WARNING: %T does not implement request.Retryer; using DefaultRetryer instead", cfg.Retryer)
-		cfg.Logger.Log(s)
+		awslog.Warnf(aws.BackgroundContext(), &cfg, "%T does not implement request.Retryer; using DefaultRetryer instead", cfg.Retryer)
 		fallthrough
 	default:
 		maxRetries := aws.IntValue(cfg.MaxRetries)

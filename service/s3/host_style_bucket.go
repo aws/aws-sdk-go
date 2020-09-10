@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 // an operationBlacklist is a list of operation names that should a
@@ -39,9 +40,7 @@ func updateEndpointForS3Config(r *request.Request, bucketName string) {
 
 	if accelerate && accelerateOpBlacklist.Continue(r) {
 		if forceHostStyle {
-			if r.Config.Logger != nil {
-				r.Config.Logger.Log("ERROR: aws.Config.S3UseAccelerate is not compatible with aws.Config.S3ForcePathStyle, ignoring S3ForcePathStyle.")
-			}
+			awslog.Error(r.Context(), &r.Config, "aws.Config.S3UseAccelerate is not compatible with aws.Config.S3ForcePathStyle, ignoring S3ForcePathStyle.")
 		}
 		updateEndpointForAccelerate(r, bucketName)
 	} else if !forceHostStyle && r.Operation.Name != opGetBucketLocation {

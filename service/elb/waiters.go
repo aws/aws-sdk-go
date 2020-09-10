@@ -37,7 +37,8 @@ func (c *ELB) WaitUntilAnyInstanceInServiceWithContext(ctx aws.Context, input *D
 				Expected: "InService",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstanceHealthInput
 			if input != nil {
@@ -88,7 +89,8 @@ func (c *ELB) WaitUntilInstanceDeregisteredWithContext(ctx aws.Context, input *D
 				Expected: "InvalidInstance",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstanceHealthInput
 			if input != nil {
@@ -139,7 +141,8 @@ func (c *ELB) WaitUntilInstanceInServiceWithContext(ctx aws.Context, input *Desc
 				Expected: "InvalidInstance",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstanceHealthInput
 			if input != nil {

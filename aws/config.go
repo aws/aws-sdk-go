@@ -84,7 +84,12 @@ type Config struct {
 
 	// The logger writer interface to write logging messages to. Defaults to
 	// standard out.
+	// This field is ignored if ContextLogger is non-nil.
+	// Deprecated: Use ContextLogger instead.
 	Logger Logger
+
+	// The logger interface to write logging messages with.
+	ContextLogger ContextLogger
 
 	// The maximum number of times that a request will be retried for failures.
 	// Defaults to -1, which defers the max retry setting to the service
@@ -362,8 +367,16 @@ func (c *Config) WithLogLevel(level LogLevelType) *Config {
 
 // WithLogger sets a config Logger value returning a Config pointer for
 // chaining.
+// Deprecated: Use WithContextLogger instead.
 func (c *Config) WithLogger(logger Logger) *Config {
 	c.Logger = logger
+	return c
+}
+
+// WithContextLogger sets a config ContextLogger value returning a Config pointer for
+// chaining.
+func (c *Config) WithContextLogger(logger ContextLogger) *Config {
+	c.ContextLogger = logger
 	return c
 }
 
@@ -498,6 +511,10 @@ func mergeInConfig(dst *Config, other *Config) {
 
 	if other.Logger != nil {
 		dst.Logger = other.Logger
+	}
+
+	if other.ContextLogger != nil {
+		dst.ContextLogger = other.ContextLogger
 	}
 
 	if other.MaxRetries != nil {

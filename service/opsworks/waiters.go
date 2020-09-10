@@ -42,7 +42,8 @@ func (c *OpsWorks) WaitUntilAppExistsWithContext(ctx aws.Context, input *Describ
 				Expected: 400,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAppsInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *OpsWorks) WaitUntilDeploymentSuccessfulWithContext(ctx aws.Context, inp
 				Expected: "failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDeploymentsInput
 			if input != nil {
@@ -179,7 +181,8 @@ func (c *OpsWorks) WaitUntilInstanceOnlineWithContext(ctx aws.Context, input *De
 				Expected: "stop_failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -260,7 +263,8 @@ func (c *OpsWorks) WaitUntilInstanceRegisteredWithContext(ctx aws.Context, input
 				Expected: "stop_failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -346,7 +350,8 @@ func (c *OpsWorks) WaitUntilInstanceStoppedWithContext(ctx aws.Context, input *D
 				Expected: "stop_failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -437,7 +442,8 @@ func (c *OpsWorks) WaitUntilInstanceTerminatedWithContext(ctx aws.Context, input
 				Expected: "start_failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {

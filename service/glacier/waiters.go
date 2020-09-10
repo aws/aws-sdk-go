@@ -42,7 +42,8 @@ func (c *Glacier) WaitUntilVaultExistsWithContext(ctx aws.Context, input *Descri
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVaultInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *Glacier) WaitUntilVaultNotExistsWithContext(ctx aws.Context, input *Des
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVaultInput
 			if input != nil {

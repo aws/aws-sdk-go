@@ -13,6 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3iface"
 )
@@ -437,9 +438,9 @@ func (d *downloader) downloadChunk(chunk dlchunk) error {
 		}
 
 		chunk.cur = 0
-		logMessage(d.cfg.S3, aws.LogDebugWithRequestRetries,
-			fmt.Sprintf("DEBUG: object part body download interrupted %s, err, %v, retrying attempt %d",
-				aws.StringValue(in.Key), err, retry))
+		logMessage(d.ctx, d.cfg.S3, aws.LogDebugWithRequestRetries, awslog.Debugf,
+			"object part body download interrupted %s, err, %v, retrying attempt %d",
+			aws.StringValue(in.Key), err, retry)
 	}
 
 	d.incrWritten(n)
@@ -469,18 +470,16 @@ func (d *downloader) tryDownloadChunk(in *s3.GetObjectInput, w io.Writer) (int64
 	return n, nil
 }
 
-func logMessage(svc s3iface.S3API, level aws.LogLevelType, msg string) {
+type logfFunc func(ctx aws.Context, c *aws.Config, format string, v ...interface{})
+
+func logMessage(ctx aws.Context, svc s3iface.S3API, level aws.LogLevelType, logfFunc logfFunc, format string, v ...interface{}) {
 	s, ok := svc.(*s3.S3)
 	if !ok {
 		return
 	}
 
-	if s.Config.Logger == nil {
-		return
-	}
-
 	if s.Config.LogLevel.Matches(level) {
-		s.Config.Logger.Log(msg)
+		logfFunc(ctx, &s.Config, format, v...)
 	}
 }
 

@@ -47,7 +47,8 @@ func (c *Signer) WaitUntilSuccessfulSigningJobWithContext(ctx aws.Context, input
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeSigningJobInput
 			if input != nil {

@@ -42,7 +42,8 @@ func (c *EC2) WaitUntilBundleTaskCompleteWithContext(ctx aws.Context, input *Des
 				Expected: "failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeBundleTasksInput
 			if input != nil {
@@ -88,7 +89,8 @@ func (c *EC2) WaitUntilConversionTaskCancelledWithContext(ctx aws.Context, input
 				Expected: "cancelled",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeConversionTasksInput
 			if input != nil {
@@ -144,7 +146,8 @@ func (c *EC2) WaitUntilConversionTaskCompletedWithContext(ctx aws.Context, input
 				Expected: "cancelling",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeConversionTasksInput
 			if input != nil {
@@ -190,7 +193,8 @@ func (c *EC2) WaitUntilConversionTaskDeletedWithContext(ctx aws.Context, input *
 				Expected: "deleted",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeConversionTasksInput
 			if input != nil {
@@ -246,7 +250,8 @@ func (c *EC2) WaitUntilCustomerGatewayAvailableWithContext(ctx aws.Context, inpu
 				Expected: "deleting",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeCustomerGatewaysInput
 			if input != nil {
@@ -292,7 +297,8 @@ func (c *EC2) WaitUntilExportTaskCancelledWithContext(ctx aws.Context, input *De
 				Expected: "cancelled",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeExportTasksInput
 			if input != nil {
@@ -338,7 +344,8 @@ func (c *EC2) WaitUntilExportTaskCompletedWithContext(ctx aws.Context, input *De
 				Expected: "completed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeExportTasksInput
 			if input != nil {
@@ -389,7 +396,8 @@ func (c *EC2) WaitUntilImageAvailableWithContext(ctx aws.Context, input *Describ
 				Expected: "failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeImagesInput
 			if input != nil {
@@ -440,7 +448,8 @@ func (c *EC2) WaitUntilImageExistsWithContext(ctx aws.Context, input *DescribeIm
 				Expected: "InvalidAMIID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeImagesInput
 			if input != nil {
@@ -491,7 +500,8 @@ func (c *EC2) WaitUntilInstanceExistsWithContext(ctx aws.Context, input *Describ
 				Expected: "InvalidInstanceID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -557,7 +567,8 @@ func (c *EC2) WaitUntilInstanceRunningWithContext(ctx aws.Context, input *Descri
 				Expected: "InvalidInstanceID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -608,7 +619,8 @@ func (c *EC2) WaitUntilInstanceStatusOkWithContext(ctx aws.Context, input *Descr
 				Expected: "InvalidInstanceID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstanceStatusInput
 			if input != nil {
@@ -664,7 +676,8 @@ func (c *EC2) WaitUntilInstanceStoppedWithContext(ctx aws.Context, input *Descri
 				Expected: "terminated",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -720,7 +733,8 @@ func (c *EC2) WaitUntilInstanceTerminatedWithContext(ctx aws.Context, input *Des
 				Expected: "stopping",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstancesInput
 			if input != nil {
@@ -771,7 +785,8 @@ func (c *EC2) WaitUntilKeyPairExistsWithContext(ctx aws.Context, input *Describe
 				Expected: "InvalidKeyPair.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeKeyPairsInput
 			if input != nil {
@@ -837,7 +852,8 @@ func (c *EC2) WaitUntilNatGatewayAvailableWithContext(ctx aws.Context, input *De
 				Expected: "NatGatewayNotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNatGatewaysInput
 			if input != nil {
@@ -888,7 +904,8 @@ func (c *EC2) WaitUntilNetworkInterfaceAvailableWithContext(ctx aws.Context, inp
 				Expected: "InvalidNetworkInterfaceID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNetworkInterfacesInput
 			if input != nil {
@@ -934,7 +951,8 @@ func (c *EC2) WaitUntilPasswordDataAvailableWithContext(ctx aws.Context, input *
 				Expected: true,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetPasswordDataInput
 			if input != nil {
@@ -985,7 +1003,8 @@ func (c *EC2) WaitUntilSecurityGroupExistsWithContext(ctx aws.Context, input *De
 				Expected: "InvalidGroupNotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeSecurityGroupsInput
 			if input != nil {
@@ -1031,7 +1050,8 @@ func (c *EC2) WaitUntilSnapshotCompletedWithContext(ctx aws.Context, input *Desc
 				Expected: "completed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeSnapshotsInput
 			if input != nil {
@@ -1107,7 +1127,8 @@ func (c *EC2) WaitUntilSpotInstanceRequestFulfilledWithContext(ctx aws.Context, 
 				Expected: "InvalidSpotInstanceRequestID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeSpotInstanceRequestsInput
 			if input != nil {
@@ -1153,7 +1174,8 @@ func (c *EC2) WaitUntilSubnetAvailableWithContext(ctx aws.Context, input *Descri
 				Expected: "available",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeSubnetsInput
 			if input != nil {
@@ -1199,7 +1221,8 @@ func (c *EC2) WaitUntilSystemStatusOkWithContext(ctx aws.Context, input *Describ
 				Expected: "ok",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInstanceStatusInput
 			if input != nil {
@@ -1250,7 +1273,8 @@ func (c *EC2) WaitUntilVolumeAvailableWithContext(ctx aws.Context, input *Descri
 				Expected: "deleted",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVolumesInput
 			if input != nil {
@@ -1301,7 +1325,8 @@ func (c *EC2) WaitUntilVolumeDeletedWithContext(ctx aws.Context, input *Describe
 				Expected: "InvalidVolume.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVolumesInput
 			if input != nil {
@@ -1352,7 +1377,8 @@ func (c *EC2) WaitUntilVolumeInUseWithContext(ctx aws.Context, input *DescribeVo
 				Expected: "deleted",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVolumesInput
 			if input != nil {
@@ -1398,7 +1424,8 @@ func (c *EC2) WaitUntilVpcAvailableWithContext(ctx aws.Context, input *DescribeV
 				Expected: "available",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVpcsInput
 			if input != nil {
@@ -1449,7 +1476,8 @@ func (c *EC2) WaitUntilVpcExistsWithContext(ctx aws.Context, input *DescribeVpcs
 				Expected: "InvalidVpcID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVpcsInput
 			if input != nil {
@@ -1500,7 +1528,8 @@ func (c *EC2) WaitUntilVpcPeeringConnectionDeletedWithContext(ctx aws.Context, i
 				Expected: "InvalidVpcPeeringConnectionID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVpcPeeringConnectionsInput
 			if input != nil {
@@ -1551,7 +1580,8 @@ func (c *EC2) WaitUntilVpcPeeringConnectionExistsWithContext(ctx aws.Context, in
 				Expected: "InvalidVpcPeeringConnectionID.NotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVpcPeeringConnectionsInput
 			if input != nil {
@@ -1607,7 +1637,8 @@ func (c *EC2) WaitUntilVpnConnectionAvailableWithContext(ctx aws.Context, input 
 				Expected: "deleted",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVpnConnectionsInput
 			if input != nil {
@@ -1658,7 +1689,8 @@ func (c *EC2) WaitUntilVpnConnectionDeletedWithContext(ctx aws.Context, input *D
 				Expected: "pending",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeVpnConnectionsInput
 			if input != nil {

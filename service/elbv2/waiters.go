@@ -47,7 +47,8 @@ func (c *ELBV2) WaitUntilLoadBalancerAvailableWithContext(ctx aws.Context, input
 				Expected: "LoadBalancerNotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeLoadBalancersInput
 			if input != nil {
@@ -98,7 +99,8 @@ func (c *ELBV2) WaitUntilLoadBalancerExistsWithContext(ctx aws.Context, input *D
 				Expected: "LoadBalancerNotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeLoadBalancersInput
 			if input != nil {
@@ -149,7 +151,8 @@ func (c *ELBV2) WaitUntilLoadBalancersDeletedWithContext(ctx aws.Context, input 
 				Expected: "LoadBalancerNotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeLoadBalancersInput
 			if input != nil {
@@ -200,7 +203,8 @@ func (c *ELBV2) WaitUntilTargetDeregisteredWithContext(ctx aws.Context, input *D
 				Expected: "unused",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTargetHealthInput
 			if input != nil {
@@ -251,7 +255,8 @@ func (c *ELBV2) WaitUntilTargetInServiceWithContext(ctx aws.Context, input *Desc
 				Expected: "InvalidInstance",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTargetHealthInput
 			if input != nil {

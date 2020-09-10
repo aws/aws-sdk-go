@@ -37,7 +37,8 @@ func (c *Kinesis) WaitUntilStreamExistsWithContext(ctx aws.Context, input *Descr
 				Expected: "ACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStreamInput
 			if input != nil {
@@ -83,7 +84,8 @@ func (c *Kinesis) WaitUntilStreamNotExistsWithContext(ctx aws.Context, input *De
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStreamInput
 			if input != nil {

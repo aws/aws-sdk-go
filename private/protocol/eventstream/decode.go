@@ -15,8 +15,9 @@ import (
 
 // Decoder provides decoding of an Event Stream messages.
 type Decoder struct {
-	r      io.Reader
-	logger aws.Logger
+	r             io.Reader
+	logger        aws.Logger
+	contextLogger aws.ContextLogger
 }
 
 // NewDecoder initializes and returns a Decoder for decoding event
@@ -35,9 +36,18 @@ func NewDecoder(r io.Reader, opts ...func(*Decoder)) *Decoder {
 
 // DecodeWithLogger adds a logger to be used by the decoder when decoding
 // stream events.
+// Deprecated: Use DecodeWithContextLogger instead.
 func DecodeWithLogger(logger aws.Logger) func(*Decoder) {
 	return func(d *Decoder) {
 		d.logger = logger
+	}
+}
+
+// DecodeWithContextLogger adds a logger to be used by the decoder when decoding
+// stream events.
+func DecodeWithContextLogger(logger aws.ContextLogger) func(*Decoder) {
+	return func(d *Decoder) {
+		d.contextLogger = logger
 	}
 }
 
@@ -50,7 +60,7 @@ func (d *Decoder) Decode(payloadBuf []byte) (m Message, err error) {
 		debugMsgBuf := bytes.NewBuffer(nil)
 		reader = io.TeeReader(reader, debugMsgBuf)
 		defer func() {
-			logMessageDecode(d.logger, debugMsgBuf, m, err)
+			logMessageDecode(d, debugMsgBuf, m, err)
 		}()
 	}
 
@@ -95,9 +105,17 @@ func Decode(reader io.Reader, payloadBuf []byte) (m Message, err error) {
 	return m, nil
 }
 
-func logMessageDecode(logger aws.Logger, msgBuf *bytes.Buffer, msg Message, decodeErr error) {
+func logMessageDecode(d *Decoder, msgBuf *bytes.Buffer, msg Message, decodeErr error) {
 	w := bytes.NewBuffer(nil)
-	defer func() { logger.Log(w.String()) }()
+	defer func() {
+		if d.contextLogger != nil {
+			d.contextLogger.Info(aws.BackgroundContext(), w.String())
+		} else if d.logger != nil {
+			d.logger.Log(w.String())
+		} else {
+			// no-op
+		}
+	}()
 
 	fmt.Fprintf(w, "Raw message:\n%s\n",
 		hex.Dump(msgBuf.Bytes()))

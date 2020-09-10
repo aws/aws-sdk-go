@@ -52,7 +52,8 @@ func (c *MediaLive) WaitUntilChannelCreatedWithContext(ctx aws.Context, input *D
 				Expected: "CREATE_FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeChannelInput
 			if input != nil {
@@ -108,7 +109,8 @@ func (c *MediaLive) WaitUntilChannelDeletedWithContext(ctx aws.Context, input *D
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeChannelInput
 			if input != nil {
@@ -164,7 +166,8 @@ func (c *MediaLive) WaitUntilChannelRunningWithContext(ctx aws.Context, input *D
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeChannelInput
 			if input != nil {
@@ -220,7 +223,8 @@ func (c *MediaLive) WaitUntilChannelStoppedWithContext(ctx aws.Context, input *D
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeChannelInput
 			if input != nil {
@@ -276,7 +280,8 @@ func (c *MediaLive) WaitUntilInputAttachedWithContext(ctx aws.Context, input *De
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInputInput
 			if input != nil {
@@ -332,7 +337,8 @@ func (c *MediaLive) WaitUntilInputDeletedWithContext(ctx aws.Context, input *Des
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInputInput
 			if input != nil {
@@ -393,7 +399,8 @@ func (c *MediaLive) WaitUntilInputDetachedWithContext(ctx aws.Context, input *De
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeInputInput
 			if input != nil {
@@ -454,7 +461,8 @@ func (c *MediaLive) WaitUntilMultiplexCreatedWithContext(ctx aws.Context, input 
 				Expected: "CREATE_FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeMultiplexInput
 			if input != nil {
@@ -510,7 +518,8 @@ func (c *MediaLive) WaitUntilMultiplexDeletedWithContext(ctx aws.Context, input 
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeMultiplexInput
 			if input != nil {
@@ -566,7 +575,8 @@ func (c *MediaLive) WaitUntilMultiplexRunningWithContext(ctx aws.Context, input 
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeMultiplexInput
 			if input != nil {
@@ -622,7 +632,8 @@ func (c *MediaLive) WaitUntilMultiplexStoppedWithContext(ctx aws.Context, input 
 				Expected: 500,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeMultiplexInput
 			if input != nil {

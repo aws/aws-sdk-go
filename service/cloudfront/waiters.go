@@ -37,7 +37,8 @@ func (c *CloudFront) WaitUntilDistributionDeployedWithContext(ctx aws.Context, i
 				Expected: "Deployed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetDistributionInput
 			if input != nil {
@@ -83,7 +84,8 @@ func (c *CloudFront) WaitUntilInvalidationCompletedWithContext(ctx aws.Context, 
 				Expected: "Completed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetInvalidationInput
 			if input != nil {
@@ -129,7 +131,8 @@ func (c *CloudFront) WaitUntilStreamingDistributionDeployedWithContext(ctx aws.C
 				Expected: "Deployed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetStreamingDistributionInput
 			if input != nil {

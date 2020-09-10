@@ -42,7 +42,8 @@ func (c *ElasticBeanstalk) WaitUntilEnvironmentExistsWithContext(ctx aws.Context
 				Expected: "Launching",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEnvironmentsInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *ElasticBeanstalk) WaitUntilEnvironmentTerminatedWithContext(ctx aws.Con
 				Expected: "Terminating",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEnvironmentsInput
 			if input != nil {
@@ -144,7 +146,8 @@ func (c *ElasticBeanstalk) WaitUntilEnvironmentUpdatedWithContext(ctx aws.Contex
 				Expected: "Updating",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEnvironmentsInput
 			if input != nil {

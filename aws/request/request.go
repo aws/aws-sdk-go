@@ -13,6 +13,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/client/metadata"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 	"github.com/aws/aws-sdk-go/internal/sdkio"
 )
 
@@ -381,8 +382,8 @@ func debugLogReqError(r *Request, stage, retryStr string, err error) {
 		return
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf("DEBUG: %s %s/%s failed, %s, error %v",
-		stage, r.ClientInfo.ServiceName, r.Operation.Name, retryStr, err))
+	awslog.Debugf(r.Context(), &r.Config, "%s %s/%s failed, %s, error %v",
+		stage, r.ClientInfo.ServiceName, r.Operation.Name, retryStr, err)
 }
 
 // Build will build the request's object so it can be signed and sent
@@ -547,8 +548,8 @@ func (r *Request) Send() error {
 
 func (r *Request) prepareRetry() error {
 	if r.Config.LogLevel.Matches(aws.LogDebugWithRequestRetries) {
-		r.Config.Logger.Log(fmt.Sprintf("DEBUG: Retrying Request %s/%s, attempt %d",
-			r.ClientInfo.ServiceName, r.Operation.Name, r.RetryCount))
+		awslog.Debugf(r.Context(), &r.Config, "Retrying Request %s/%s, attempt %d",
+			r.ClientInfo.ServiceName, r.Operation.Name, r.RetryCount)
 	}
 
 	// The previous http.Request will have a reference to the r.Body

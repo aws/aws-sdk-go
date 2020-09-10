@@ -57,7 +57,8 @@ func (c *ElastiCache) WaitUntilCacheClusterAvailableWithContext(ctx aws.Context,
 				Expected: "restore-failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeCacheClustersInput
 			if input != nil {
@@ -138,7 +139,8 @@ func (c *ElastiCache) WaitUntilCacheClusterDeletedWithContext(ctx aws.Context, i
 				Expected: "snapshotting",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeCacheClustersInput
 			if input != nil {
@@ -189,7 +191,8 @@ func (c *ElastiCache) WaitUntilReplicationGroupAvailableWithContext(ctx aws.Cont
 				Expected: "deleted",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationGroupsInput
 			if input != nil {
@@ -245,7 +248,8 @@ func (c *ElastiCache) WaitUntilReplicationGroupDeletedWithContext(ctx aws.Contex
 				Expected: "ReplicationGroupNotFoundFault",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationGroupsInput
 			if input != nil {

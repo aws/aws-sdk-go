@@ -730,9 +730,15 @@ const opDescribeJobFlows = "DescribeJobFlows"
 //
 // Deprecated: DescribeJobFlows has been deprecated
 func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *request.Request, output *DescribeJobFlowsOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeJobFlows, has been deprecated")
+	msg := "This operation, DescribeJobFlows, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDescribeJobFlows,
 		HTTPMethod: "POST",

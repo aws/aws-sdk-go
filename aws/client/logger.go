@@ -9,14 +9,15 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
-const logReqMsg = `DEBUG: Request %s/%s Details:
+const logReqMsg = `Request %s/%s Details:
 ---[ REQUEST POST-SIGN ]-----------------------------
 %s
 -----------------------------------------------------`
 
-const logReqErrMsg = `DEBUG ERROR: Request %s/%s:
+const logReqErrMsg = `Request %s/%s:
 ---[ REQUEST DUMP ERROR ]-----------------------------
 %s
 ------------------------------------------------------`
@@ -58,8 +59,8 @@ func logRequest(r *request.Request) {
 
 	b, err := httputil.DumpRequestOut(r.HTTPRequest, logBody)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg,
-			r.ClientInfo.ServiceName, r.Operation.Name, err))
+		awslog.DebugErrorf(r.Context(), &r.Config, logReqErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, err)
 		return
 	}
 
@@ -71,14 +72,14 @@ func logRequest(r *request.Request) {
 		// r.HTTPRequest's Body as a NoOpCloser and will not be reset after
 		// read by the HTTP client reader.
 		if err := r.Error; err != nil {
-			r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg,
-				r.ClientInfo.ServiceName, r.Operation.Name, err))
+			awslog.DebugErrorf(r.Context(), &r.Config, logReqErrMsg,
+				r.ClientInfo.ServiceName, r.Operation.Name, err)
 			return
 		}
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf(logReqMsg,
-		r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
+	awslog.Debugf(r.Context(), &r.Config, logReqMsg,
+		r.ClientInfo.ServiceName, r.Operation.Name, string(b))
 }
 
 // LogHTTPRequestHeaderHandler is a SDK request handler to log the HTTP request sent
@@ -92,21 +93,21 @@ var LogHTTPRequestHeaderHandler = request.NamedHandler{
 func logRequestHeader(r *request.Request) {
 	b, err := httputil.DumpRequestOut(r.HTTPRequest, false)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf(logReqErrMsg,
-			r.ClientInfo.ServiceName, r.Operation.Name, err))
+		awslog.DebugErrorf(r.Context(), &r.Config, logReqErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, err)
 		return
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf(logReqMsg,
-		r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
+	awslog.Debugf(r.Context(), &r.Config, logReqMsg,
+		r.ClientInfo.ServiceName, r.Operation.Name, string(b))
 }
 
-const logRespMsg = `DEBUG: Response %s/%s Details:
+const logRespMsg = `Response %s/%s Details:
 ---[ RESPONSE ]--------------------------------------
 %s
 -----------------------------------------------------`
 
-const logRespErrMsg = `DEBUG ERROR: Response %s/%s:
+const logRespErrMsg = `Response %s/%s:
 ---[ RESPONSE DUMP ERROR ]-----------------------------
 %s
 -----------------------------------------------------`
@@ -123,8 +124,8 @@ func logResponse(r *request.Request) {
 	lw := &logWriter{r.Config.Logger, bytes.NewBuffer(nil)}
 
 	if r.HTTPResponse == nil {
-		lw.Logger.Log(fmt.Sprintf(logRespErrMsg,
-			r.ClientInfo.ServiceName, r.Operation.Name, "request's HTTPResponse is nil"))
+		awslog.DebugErrorf(r.Context(), &r.Config, logRespErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, "request's HTTPResponse is nil")
 		return
 	}
 
@@ -139,24 +140,25 @@ func logResponse(r *request.Request) {
 	handlerFn := func(req *request.Request) {
 		b, err := httputil.DumpResponse(req.HTTPResponse, false)
 		if err != nil {
-			lw.Logger.Log(fmt.Sprintf(logRespErrMsg,
-				req.ClientInfo.ServiceName, req.Operation.Name, err))
+			awslog.DebugErrorf(req.Context(), &req.Config, logRespErrMsg,
+				req.ClientInfo.ServiceName, req.Operation.Name, err)
 			return
 		}
 
-		lw.Logger.Log(fmt.Sprintf(logRespMsg,
-			req.ClientInfo.ServiceName, req.Operation.Name, string(b)))
+		dump := fmt.Sprintf(logRespMsg,
+			req.ClientInfo.ServiceName, req.Operation.Name, string(b))
 
 		if logBody {
-			b, err := ioutil.ReadAll(lw.buf)
+			body, err := ioutil.ReadAll(lw.buf)
 			if err != nil {
-				lw.Logger.Log(fmt.Sprintf(logRespErrMsg,
-					req.ClientInfo.ServiceName, req.Operation.Name, err))
-				return
+				awslog.DebugErrorf(req.Context(), &req.Config, logRespErrMsg,
+					req.ClientInfo.ServiceName, req.Operation.Name, err)
+			} else {
+				dump += "\n" + string(body)
 			}
-
-			lw.Logger.Log(string(b))
 		}
+
+		awslog.Debug(req.Context(), &req.Config, dump)
 	}
 
 	const handlerName = "awsdk.client.LogResponse.ResponseBody"
@@ -184,11 +186,11 @@ func logResponseHeader(r *request.Request) {
 
 	b, err := httputil.DumpResponse(r.HTTPResponse, false)
 	if err != nil {
-		r.Config.Logger.Log(fmt.Sprintf(logRespErrMsg,
-			r.ClientInfo.ServiceName, r.Operation.Name, err))
+		awslog.DebugErrorf(r.Context(), &r.Config, logRespErrMsg,
+			r.ClientInfo.ServiceName, r.Operation.Name, err)
 		return
 	}
 
-	r.Config.Logger.Log(fmt.Sprintf(logRespMsg,
-		r.ClientInfo.ServiceName, r.Operation.Name, string(b)))
+	awslog.Debugf(r.Context(), &r.Config, logRespMsg,
+		r.ClientInfo.ServiceName, r.Operation.Name, string(b))
 }

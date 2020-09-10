@@ -182,10 +182,18 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 {{ end -}}
 func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	`input {{ .InputRef.GoType }}) (req *request.Request, output {{ .OutputRef.GoType }}) {
-	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) }}if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, {{ .ExportedName }}, has been deprecated")
+	{{ if (or .Deprecated (or .InputRef.Deprecated .OutputRef.Deprecated)) -}}
+	msg := "This operation, {{ .ExportedName }}, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
-	op := &request.Operation{ {{ else }} op := &request.Operation{ {{ end }}
+
+	{{ end -}}
+	op := &request.Operation{
 		Name:       op{{ .ExportedName }},
 		{{ if ne .HTTP.Method "" }}HTTPMethod: "{{ .HTTP.Method }}",
 		{{ end }}HTTPPath: {{ if ne .HTTP.RequestURI "" }}"{{ .HTTP.RequestURI }}"{{ else }}"/"{{ end }},

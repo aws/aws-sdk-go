@@ -3,11 +3,11 @@ package checksum
 import (
 	"crypto/md5"
 	"encoding/base64"
-	"fmt"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 const contentMD5Header = "Content-Md5"
@@ -32,11 +32,9 @@ func AddBodyContentMD5Handler(r *request.Request) {
 
 	// if body is not seekable, return
 	if !aws.IsReaderSeekable(r.Body) {
-		if r.Config.Logger != nil {
-			r.Config.Logger.Log(fmt.Sprintf(
-				"Unable to compute Content-MD5 for unseekable body, S3.%s",
-				r.Operation.Name))
-		}
+		awslog.Errorf(r.Context(), &r.Config,
+			"Unable to compute Content-MD5 for unseekable body, S3.%s",
+			r.Operation.Name)
 		return
 	}
 

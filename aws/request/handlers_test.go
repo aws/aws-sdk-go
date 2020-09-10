@@ -158,7 +158,7 @@ func TestLoggedHandlers(t *testing.T) {
 	loggedHandlers := []string{}
 	l.AfterEachFn = request.HandlerListLogItem
 	cfg := aws.Config{Logger: aws.LoggerFunc(func(args ...interface{}) {
-		loggedHandlers = append(loggedHandlers, args[2].(string))
+		loggedHandlers = append(loggedHandlers, args[3].(string))
 	})}
 
 	named1 := request.NamedHandler{Name: "name1", Fn: func(r *request.Request) {}}

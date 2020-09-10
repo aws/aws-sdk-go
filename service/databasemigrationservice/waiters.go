@@ -47,7 +47,8 @@ func (c *DatabaseMigrationService) WaitUntilEndpointDeletedWithContext(ctx aws.C
 				Expected: "creating",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEndpointsInput
 			if input != nil {
@@ -113,7 +114,8 @@ func (c *DatabaseMigrationService) WaitUntilReplicationInstanceAvailableWithCont
 				Expected: "inaccessible-encryption-credentials",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationInstancesInput
 			if input != nil {
@@ -164,7 +166,8 @@ func (c *DatabaseMigrationService) WaitUntilReplicationInstanceDeletedWithContex
 				Expected: "ResourceNotFoundFault",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationInstancesInput
 			if input != nil {
@@ -235,7 +238,8 @@ func (c *DatabaseMigrationService) WaitUntilReplicationTaskDeletedWithContext(ct
 				Expected: "ResourceNotFoundFault",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationTasksInput
 			if input != nil {
@@ -321,7 +325,8 @@ func (c *DatabaseMigrationService) WaitUntilReplicationTaskReadyWithContext(ctx 
 				Expected: "deleting",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationTasksInput
 			if input != nil {
@@ -407,7 +412,8 @@ func (c *DatabaseMigrationService) WaitUntilReplicationTaskRunningWithContext(ct
 				Expected: "deleting",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationTasksInput
 			if input != nil {
@@ -493,7 +499,8 @@ func (c *DatabaseMigrationService) WaitUntilReplicationTaskStoppedWithContext(ct
 				Expected: "deleting",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeReplicationTasksInput
 			if input != nil {
@@ -544,7 +551,8 @@ func (c *DatabaseMigrationService) WaitUntilTestConnectionSucceedsWithContext(ct
 				Expected: "failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeConnectionsInput
 			if input != nil {

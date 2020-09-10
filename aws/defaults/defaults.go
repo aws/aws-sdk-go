@@ -24,6 +24,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/ec2metadata"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 	"github.com/aws/aws-sdk-go/internal/shareddefaults"
 )
 
@@ -172,9 +173,7 @@ func localHTTPCredProvider(cfg aws.Config, handlers request.Handlers, u string) 
 	}
 
 	if len(errMsg) > 0 {
-		if cfg.Logger != nil {
-			cfg.Logger.Log("Ignoring, HTTP credential provider", errMsg, err)
-		}
+		awslog.Error(aws.BackgroundContext(), &cfg, "Ignoring, HTTP credential provider", errMsg, err)
 		return credentials.ErrorProvider{
 			Err:          awserr.New("CredentialsEndpointError", errMsg, err),
 			ProviderName: endpointcreds.ProviderName,

@@ -47,7 +47,8 @@ func (c *Redshift) WaitUntilClusterAvailableWithContext(ctx aws.Context, input *
 				Expected: "ClusterNotFound",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClustersInput
 			if input != nil {
@@ -103,7 +104,8 @@ func (c *Redshift) WaitUntilClusterDeletedWithContext(ctx aws.Context, input *De
 				Expected: "modifying",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClustersInput
 			if input != nil {
@@ -154,7 +156,8 @@ func (c *Redshift) WaitUntilClusterRestoredWithContext(ctx aws.Context, input *D
 				Expected: "deleting",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClustersInput
 			if input != nil {
@@ -210,7 +213,8 @@ func (c *Redshift) WaitUntilSnapshotAvailableWithContext(ctx aws.Context, input 
 				Expected: "deleted",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClusterSnapshotsInput
 			if input != nil {

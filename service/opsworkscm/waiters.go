@@ -42,7 +42,8 @@ func (c *OpsWorksCM) WaitUntilNodeAssociatedWithContext(ctx aws.Context, input *
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNodeAssociationStatusInput
 			if input != nil {

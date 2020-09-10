@@ -37,7 +37,8 @@ func (c *CloudWatch) WaitUntilAlarmExistsWithContext(ctx aws.Context, input *Des
 				Expected: true,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAlarmsInput
 			if input != nil {
@@ -83,7 +84,8 @@ func (c *CloudWatch) WaitUntilCompositeAlarmExistsWithContext(ctx aws.Context, i
 				Expected: true,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAlarmsInput
 			if input != nil {

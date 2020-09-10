@@ -57,7 +57,8 @@ func (c *EMR) WaitUntilClusterRunningWithContext(ctx aws.Context, input *Describ
 				Expected: "TERMINATED_WITH_ERRORS",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClusterInput
 			if input != nil {
@@ -108,7 +109,8 @@ func (c *EMR) WaitUntilClusterTerminatedWithContext(ctx aws.Context, input *Desc
 				Expected: "TERMINATED_WITH_ERRORS",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClusterInput
 			if input != nil {
@@ -164,7 +166,8 @@ func (c *EMR) WaitUntilStepCompleteWithContext(ctx aws.Context, input *DescribeS
 				Expected: "CANCELLED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStepInput
 			if input != nil {

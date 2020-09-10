@@ -168,9 +168,14 @@ type Signer struct {
 	// By default nothing will be logged.
 	Debug aws.LogLevelType
 
-	// The logger loging information will be written to. If there the logger
-	// is nil, nothing will be logged.
+	// The logger logging information will be written to.
+	// This field is ignored if ContextLogger is non-nil.
+	// Deprecated: Use ContextLogger
 	Logger aws.Logger
+
+	// The logger logging information will be written to.
+	// If both Logger and ContextLogger are nil, nothing will be logged.
+	ContextLogger aws.ContextLogger
 
 	// Disables the Signer's moving HTTP header key/value pairs from the HTTP
 	// request header to the request's query string. This is most commonly used
@@ -461,6 +466,7 @@ func SignSDKRequestWithCurrentTime(req *request.Request, curTimeFn func() time.T
 	v4 := NewSigner(req.Config.Credentials, func(v4 *Signer) {
 		v4.Debug = req.Config.LogLevel.Value()
 		v4.Logger = req.Config.Logger
+		v4.ContextLogger = req.Config.ContextLogger
 		v4.DisableHeaderHoisting = req.NotHoist
 		v4.currentTimeFn = curTimeFn
 		if name == "s3" {
@@ -491,7 +497,7 @@ func SignSDKRequestWithCurrentTime(req *request.Request, curTimeFn func() time.T
 	req.LastSignedAt = curTime
 }
 
-const logSignInfoMsg = `DEBUG: Request Signature:
+const logSignInfoMsg = `Request Signature:
 ---[ CANONICAL STRING  ]-----------------------------
 %s
 ---[ STRING TO SIGN ]--------------------------------
@@ -506,8 +512,15 @@ func (v4 *Signer) logSigningInfo(ctx *signingCtx) {
 	if ctx.isPresign {
 		signedURLMsg = fmt.Sprintf(logSignedURLMsg, ctx.Request.URL.String())
 	}
+
 	msg := fmt.Sprintf(logSignInfoMsg, ctx.canonicalString, ctx.stringToSign, signedURLMsg)
-	v4.Logger.Log(msg)
+	if v4.ContextLogger != nil {
+		v4.ContextLogger.Debug(requestContext(ctx.Request), msg)
+	} else if v4.Logger != nil {
+		v4.Logger.Log("DEBUG: " + msg)
+	} else {
+		// no-op
+	}
 }
 
 func (ctx *signingCtx) build(disableHeaderHoisting bool) error {

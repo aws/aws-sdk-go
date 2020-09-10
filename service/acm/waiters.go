@@ -52,7 +52,8 @@ func (c *ACM) WaitUntilCertificateValidatedWithContext(ctx aws.Context, input *D
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeCertificateInput
 			if input != nil {

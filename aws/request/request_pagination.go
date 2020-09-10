@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 // A Pagination provides paginating of SDK API operations which are paginatable.
@@ -188,12 +189,12 @@ func (r *Request) nextPageTokens() []interface{} {
 }
 
 // Ensure a deprecated item is only logged once instead of each time its used.
-func logDeprecatedf(logger aws.Logger, flag *int32, msg string) {
-	if logger == nil {
+func logDeprecated(r *Request, flag *int32, msg string) {
+	if r.Config.Logger == nil && r.Config.ContextLogger == nil {
 		return
 	}
 	if atomic.CompareAndSwapInt32(flag, 0, 1) {
-		logger.Log(msg)
+		awslog.Warn(r.Context(), &r.Config, msg)
 	}
 }
 
@@ -207,7 +208,7 @@ var (
 //
 // Deprecated Use Pagination type for configurable pagination of API operations
 func (r *Request) HasNextPage() bool {
-	logDeprecatedf(r.Config.Logger, &logDeprecatedHasNextPage,
+	logDeprecated(r, &logDeprecatedHasNextPage,
 		"Request.HasNextPage deprecated. Use Pagination type for configurable pagination of API operations")
 
 	return len(r.nextPageTokens()) > 0
@@ -218,7 +219,7 @@ func (r *Request) HasNextPage() bool {
 //
 // Deprecated Use Pagination type for configurable pagination of API operations
 func (r *Request) NextPage() *Request {
-	logDeprecatedf(r.Config.Logger, &logDeprecatedNextPage,
+	logDeprecated(r, &logDeprecatedNextPage,
 		"Request.NextPage deprecated. Use Pagination type for configurable pagination of API operations")
 
 	tokens := r.nextPageTokens()
@@ -250,7 +251,7 @@ func (r *Request) NextPage() *Request {
 //
 // Deprecated Use Pagination type for configurable pagination of API operations
 func (r *Request) EachPage(fn func(data interface{}, isLastPage bool) (shouldContinue bool)) error {
-	logDeprecatedf(r.Config.Logger, &logDeprecatedEachPage,
+	logDeprecated(r, &logDeprecatedEachPage,
 		"Request.EachPage deprecated. Use Pagination type for configurable pagination of API operations")
 
 	for page := r; page != nil; page = page.NextPage() {

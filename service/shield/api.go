@@ -792,9 +792,15 @@ const opDeleteSubscription = "DeleteSubscription"
 //
 // Deprecated: DeleteSubscription has been deprecated
 func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req *request.Request, output *DeleteSubscriptionOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DeleteSubscription, has been deprecated")
+	msg := "This operation, DeleteSubscription, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDeleteSubscription,
 		HTTPMethod: "POST",

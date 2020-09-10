@@ -19,6 +19,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 const (
@@ -108,11 +109,9 @@ func New(cfgs ...*aws.Config) *Session {
 	}
 
 	if csmCfg, err := loadCSMConfig(envCfg, []string{}); err != nil {
-		if l := s.Config.Logger; l != nil {
-			l.Log(fmt.Sprintf("ERROR: failed to load CSM configuration, %v", err))
-		}
+		awslog.Errorf(aws.BackgroundContext(), s.Config, "failed to load CSM configuration, %v", err)
 	} else if csmCfg.Enabled {
-		err := enableCSM(&s.Handlers, csmCfg, s.Config.Logger)
+		err := enableCSM(&s.Handlers, csmCfg, s.Config)
 		if err != nil {
 			msg := "failed to enable CSM"
 			s.logDeprecatedNewSessionError(msg, err, cfgs)
@@ -400,10 +399,8 @@ func deprecatedNewSession(envCfg envConfig, cfgs ...*aws.Config) *Session {
 	return s
 }
 
-func enableCSM(handlers *request.Handlers, cfg csmConfig, logger aws.Logger) error {
-	if logger != nil {
-		logger.Log("Enabling CSM")
-	}
+func enableCSM(handlers *request.Handlers, cfg csmConfig, config *aws.Config) error {
+	awslog.Info(aws.BackgroundContext(), config, "Enabling CSM")
 
 	r, err := csm.Start(cfg.ClientID, csm.AddressWithDefaults(cfg.Host, cfg.Port))
 	if err != nil {
@@ -469,11 +466,9 @@ func newSession(opts Options, envCfg envConfig, cfgs ...*aws.Config) (*Session, 
 	initHandlers(s)
 
 	if csmCfg, err := loadCSMConfig(envCfg, cfgFiles); err != nil {
-		if l := s.Config.Logger; l != nil {
-			l.Log(fmt.Sprintf("ERROR: failed to load CSM configuration, %v", err))
-		}
+		awslog.Errorf(aws.BackgroundContext(), s.Config, "failed to load CSM configuration, %v", err)
 	} else if csmCfg.Enabled {
-		err = enableCSM(&s.Handlers, csmCfg, s.Config.Logger)
+		err = enableCSM(&s.Handlers, csmCfg, s.Config)
 		if err != nil {
 			return nil, err
 		}
@@ -784,7 +779,7 @@ func (s *Session) logDeprecatedNewSessionError(msg string, err error, cfgs []*aw
 	// Session creation failed, need to report the error and prevent
 	// any requests from succeeding.
 	s.Config.MergeIn(cfgs...)
-	s.Config.Logger.Log("ERROR:", msg, "Error:", err)
+	awslog.Error(aws.BackgroundContext(), s.Config, msg, "Error:", err)
 	s.Handlers.Validate.PushBack(func(r *request.Request) {
 		r.Error = err
 	})

@@ -2531,9 +2531,15 @@ const opInvokeAsync = "InvokeAsync"
 //
 // Deprecated: InvokeAsync has been deprecated
 func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Request, output *InvokeAsyncOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, InvokeAsync, has been deprecated")
+	msg := "This operation, InvokeAsync, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opInvokeAsync,
 		HTTPMethod: "POST",

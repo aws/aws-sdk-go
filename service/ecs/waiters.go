@@ -42,7 +42,8 @@ func (c *ECS) WaitUntilServicesInactiveWithContext(ctx aws.Context, input *Descr
 				Expected: "INACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeServicesInput
 			if input != nil {
@@ -103,7 +104,8 @@ func (c *ECS) WaitUntilServicesStableWithContext(ctx aws.Context, input *Describ
 				Expected: true,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeServicesInput
 			if input != nil {
@@ -159,7 +161,8 @@ func (c *ECS) WaitUntilTasksRunningWithContext(ctx aws.Context, input *DescribeT
 				Expected: "RUNNING",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTasksInput
 			if input != nil {
@@ -205,7 +208,8 @@ func (c *ECS) WaitUntilTasksStoppedWithContext(ctx aws.Context, input *DescribeT
 				Expected: "STOPPED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTasksInput
 			if input != nil {

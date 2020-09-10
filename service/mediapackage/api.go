@@ -1257,9 +1257,15 @@ const opRotateChannelCredentials = "RotateChannelCredentials"
 //
 // Deprecated: This API is deprecated. Please use RotateIngestEndpointCredentials instead
 func (c *MediaPackage) RotateChannelCredentialsRequest(input *RotateChannelCredentialsInput) (req *request.Request, output *RotateChannelCredentialsOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, RotateChannelCredentials, has been deprecated")
+	msg := "This operation, RotateChannelCredentials, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opRotateChannelCredentials,
 		HTTPMethod: "PUT",

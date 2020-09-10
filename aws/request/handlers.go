@@ -3,6 +3,8 @@ package request
 import (
 	"fmt"
 	"strings"
+
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 // A Handlers provides a collection of request handlers for various
@@ -281,7 +283,7 @@ func HandlerListLogItem(item HandlerListRunItem) bool {
 	if item.Request.Config.Logger == nil {
 		return true
 	}
-	item.Request.Config.Logger.Log("DEBUG: RequestHandler",
+	awslog.Debug(item.Request.Context(), &item.Request.Config, "RequestHandler",
 		item.Index, item.Handler.Name, item.Request.Error)
 
 	return true

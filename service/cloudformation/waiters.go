@@ -47,7 +47,8 @@ func (c *CloudFormation) WaitUntilChangeSetCreateCompleteWithContext(ctx aws.Con
 				Expected: "ValidationError",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeChangeSetInput
 			if input != nil {
@@ -123,7 +124,8 @@ func (c *CloudFormation) WaitUntilStackCreateCompleteWithContext(ctx aws.Context
 				Expected: "ValidationError",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStacksInput
 			if input != nil {
@@ -204,7 +206,8 @@ func (c *CloudFormation) WaitUntilStackDeleteCompleteWithContext(ctx aws.Context
 				Expected: "UPDATE_ROLLBACK_COMPLETE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStacksInput
 			if input != nil {
@@ -255,7 +258,8 @@ func (c *CloudFormation) WaitUntilStackExistsWithContext(ctx aws.Context, input 
 				Expected: "ValidationError",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStacksInput
 			if input != nil {
@@ -331,7 +335,8 @@ func (c *CloudFormation) WaitUntilStackImportCompleteWithContext(ctx aws.Context
 				Expected: "ValidationError",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStacksInput
 			if input != nil {
@@ -397,7 +402,8 @@ func (c *CloudFormation) WaitUntilStackRollbackCompleteWithContext(ctx aws.Conte
 				Expected: "ValidationError",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStacksInput
 			if input != nil {
@@ -463,7 +469,8 @@ func (c *CloudFormation) WaitUntilStackUpdateCompleteWithContext(ctx aws.Context
 				Expected: "ValidationError",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeStacksInput
 			if input != nil {
@@ -514,7 +521,8 @@ func (c *CloudFormation) WaitUntilTypeRegistrationCompleteWithContext(ctx aws.Co
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTypeRegistrationInput
 			if input != nil {

@@ -47,7 +47,8 @@ func (c *AppStream) WaitUntilFleetStartedWithContext(ctx aws.Context, input *Des
 				Expected: "INACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeFleetsInput
 			if input != nil {
@@ -103,7 +104,8 @@ func (c *AppStream) WaitUntilFleetStoppedWithContext(ctx aws.Context, input *Des
 				Expected: "ACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeFleetsInput
 			if input != nil {

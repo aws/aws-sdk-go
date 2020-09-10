@@ -42,7 +42,8 @@ func (c *ACMPCA) WaitUntilAuditReportCreatedWithContext(ctx aws.Context, input *
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeCertificateAuthorityAuditReportInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *ACMPCA) WaitUntilCertificateAuthorityCSRCreatedWithContext(ctx aws.Cont
 				Expected: "RequestInProgressException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetCertificateAuthorityCsrInput
 			if input != nil {
@@ -144,7 +146,8 @@ func (c *ACMPCA) WaitUntilCertificateIssuedWithContext(ctx aws.Context, input *G
 				Expected: "RequestInProgressException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetCertificateInput
 			if input != nil {

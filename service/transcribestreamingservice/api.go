@@ -266,7 +266,10 @@ func (es *StartStreamTranscriptionEventStream) Send(ctx aws.Context, event Audio
 
 func (es *StartStreamTranscriptionEventStream) runInputStream(r *request.Request) {
 	var opts []func(*eventstream.Encoder)
-	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+	if r.Config.ContextLogger != nil {
+		opts = append(opts, eventstream.EncodeWithContextLogger(r.Config.ContextLogger))
+	}
+	if r.Config.Logger != nil {
 		opts = append(opts, eventstream.EncodeWithLogger(r.Config.Logger))
 	}
 	var encoder eventstreamapi.Encoder = eventstream.NewEncoder(es.inputWriter, opts...)
@@ -311,8 +314,13 @@ func (es *StartStreamTranscriptionEventStream) Events() <-chan TranscriptResultS
 
 func (es *StartStreamTranscriptionEventStream) runOutputStream(r *request.Request) {
 	var opts []func(*eventstream.Decoder)
-	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
-		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	if r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		if r.Config.ContextLogger != nil {
+			opts = append(opts, eventstream.DecodeWithContextLogger(r.Config.ContextLogger))
+		}
+		if r.Config.Logger != nil {
+			opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+		}
 	}
 
 	unmarshalerForEvent := unmarshalerForTranscriptResultStreamEvent{
