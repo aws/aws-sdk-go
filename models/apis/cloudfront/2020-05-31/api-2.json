@@ -4286,6 +4286,7 @@
       ],
       "members":{
         "EnableAcceptEncodingGzip":{"shape":"boolean"},
+        "EnableAcceptEncodingBrotli":{"shape":"boolean"},
         "HeadersConfig":{"shape":"CachePolicyHeadersConfig"},
         "CookiesConfig":{"shape":"CachePolicyCookiesConfig"},
         "QueryStringsConfig":{"shape":"CachePolicyQueryStringsConfig"}

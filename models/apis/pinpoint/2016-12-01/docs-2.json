@@ -2209,7 +2209,7 @@
         "SMSChannelResponse$ShortCode" : "<p>The registered short code to use when you send messages through the SMS channel.</p>",
         "SMSMessage$Body" : "<p>The body of the SMS message.</p>",
         "SMSMessage$Keyword" : "<p>The SMS program name that you provided to AWS Support when you requested your dedicated number.</p>",
-        "SMSMessage$MediaUrl" : "<p>The URL of an image or video to display in the SMS message.</p>",
+        "SMSMessage$MediaUrl" : "<p>The URL of an image or video to display in the SMS message. This field is reserved for future use.</p>",
         "SMSMessage$OriginationNumber" : "<p>The number to send the SMS message from. This value should be one of the dedicated long or short codes that's assigned to your AWS account. If you don't specify a long or short code, Amazon Pinpoint assigns a random long code to the SMS message and sends the message from that code.</p>",
         "SMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region.</p>",
         "SMSMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",
