@@ -1,3 +1,10 @@
+Release v1.34.22 (2020-09-11)
+===
+
+### Service Client Updates
+* `service/workspaces`: Updates service API and documentation
+  * Adds API support for WorkSpaces Cross-Region Redirection feature.
+
 Release v1.34.21 (2020-09-10)
 ===
 

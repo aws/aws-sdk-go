@@ -2,12 +2,15 @@
   "version": "2.0",
   "service": "<fullname>Amazon WorkSpaces Service</fullname> <p>Amazon WorkSpaces enables you to provision virtual, cloud-based Microsoft Windows and Amazon Linux desktops for your users.</p>",
   "operations": {
+    "AssociateConnectionAlias": "<p>Associates the specified connection alias with the specified directory to enable cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "AssociateIpGroups": "<p>Associates the specified IP access control group with the specified directory.</p>",
     "AuthorizeIpRules": "<p>Adds one or more rules to the specified IP access control group.</p> <p>This action gives users permission to access their WorkSpaces from the CIDR address ranges specified in the rules.</p>",
     "CopyWorkspaceImage": "<p>Copies the specified image from the specified Region to the current Region.</p>",
+    "CreateConnectionAlias": "<p>Creates the specified connection alias for use with cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "CreateIpGroup": "<p>Creates an IP access control group.</p> <p>An IP access control group provides you with the ability to control the IP addresses from which users are allowed to access their WorkSpaces. To specify the CIDR address ranges, add rules to your IP access control group and then associate the group with your directory. You can add rules when you create the group or at any time using <a>AuthorizeIpRules</a>.</p> <p>There is a default IP access control group associated with your directory. If you don't associate an IP access control group with your directory, the default group is used. The default group includes a default rule that allows users to access their WorkSpaces from anywhere. You cannot modify the default IP access control group for your directory.</p>",
     "CreateTags": "<p>Creates the specified tags for the specified WorkSpaces resource.</p>",
     "CreateWorkspaces": "<p>Creates one or more WorkSpaces.</p> <p>This operation is asynchronous and returns before the WorkSpaces are created.</p>",
+    "DeleteConnectionAlias": "<p>Deletes the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <important> <p> <b>If you will no longer be using a fully qualified domain name (FQDN) as the registration code for your WorkSpaces users, you must take certain precautions to prevent potential security issues.</b> For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html#cross-region-redirection-security-considerations\"> Security Considerations if You Stop Using Cross-Region Redirection</a>.</p> </important> <note> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </note>",
     "DeleteIpGroup": "<p>Deletes the specified IP access control group.</p> <p>You cannot delete an IP access control group that is associated with a directory.</p>",
     "DeleteTags": "<p>Deletes the specified tags from the specified WorkSpaces resource.</p>",
     "DeleteWorkspaceImage": "<p>Deletes the specified image from your account. To delete an image, you must first delete any bundles that are associated with the image and unshare the image if it is shared with other accounts. </p>",
@@ -15,6 +18,8 @@
     "DescribeAccount": "<p>Retrieves a list that describes the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
     "DescribeAccountModifications": "<p>Retrieves a list that describes modifications to the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
     "DescribeClientProperties": "<p>Retrieves a list that describes one or more specified Amazon WorkSpaces clients.</p>",
+    "DescribeConnectionAliasPermissions": "<p>Describes the permissions that the owner of a connection alias has granted to another AWS account for the specified connection alias. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
+    "DescribeConnectionAliases": "<p>Retrieves a list that describes the connection aliases used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
     "DescribeIpGroups": "<p>Describes one or more of your IP access control groups.</p>",
     "DescribeTags": "<p>Describes the specified tags for the specified WorkSpaces resource.</p>",
     "DescribeWorkspaceBundles": "<p>Retrieves a list that describes the available WorkSpace bundles.</p> <p>You can filter the results using either bundle ID or owner, but not both.</p>",
@@ -24,8 +29,9 @@
     "DescribeWorkspaceSnapshots": "<p>Describes the snapshots for the specified WorkSpace.</p>",
     "DescribeWorkspaces": "<p>Describes the specified WorkSpaces.</p> <p>You can filter the results by using the bundle identifier, directory identifier, or owner, but you can specify only one filter at a time.</p>",
     "DescribeWorkspacesConnectionStatus": "<p>Describes the connection status of the specified WorkSpaces.</p>",
+    "DisassociateConnectionAlias": "<p>Disassociates a connection alias from a directory. Disassociating a connection alias disables cross-Region redirection between two directories in different AWS Regions. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </note>",
     "DisassociateIpGroups": "<p>Disassociates the specified IP access control group from the specified directory.</p>",
-    "ImportWorkspaceImage": "<p>Imports the specified Windows 10 Bring Your Own License (BYOL) image into Amazon WorkSpaces. The image must be an already licensed EC2 image that is in your AWS account, and you must own the image. For more information about creating BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p>",
+    "ImportWorkspaceImage": "<p>Imports the specified Windows 10 Bring Your Own License (BYOL) image into Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image that is in your AWS account, and you must own the image. For more information about creating BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p>",
     "ListAvailableManagementCidrRanges": "<p>Retrieves a list of IP address ranges, specified as IPv4 CIDR blocks, that you can use for the network management interface when you enable Bring Your Own License (BYOL). </p> <p>The management network interface is connected to a secure Amazon WorkSpaces management network. It is used for interactive streaming of the WorkSpace desktop to Amazon WorkSpaces clients, and to allow Amazon WorkSpaces to manage the WorkSpace.</p>",
     "MigrateWorkspace": "<p>Migrates a WorkSpace from one operating system or bundle type to another, while retaining the data on the user volume.</p> <p>The migration process recreates the WorkSpace by using a new root volume from the target bundle image and the user volume from the last available snapshot of the original WorkSpace. During migration, the original <code>D:\\Users\\%USERNAME%</code> user profile folder is renamed to <code>D:\\Users\\%USERNAME%MMddyyTHHmmss%.NotMigrated</code>. A new <code>D:\\Users\\%USERNAME%\\</code> folder is generated by the new OS. Certain files in the old user profile are moved to the new user profile.</p> <p>For available migration scenarios, details about what happens during migration, and best practices, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/migrate-workspaces.html\">Migrate a WorkSpace</a>.</p>",
     "ModifyAccount": "<p>Modifies the configuration of Bring Your Own License (BYOL) for the specified account.</p>",
@@ -43,6 +49,7 @@
     "StartWorkspaces": "<p>Starts the specified WorkSpaces.</p> <p>You cannot start a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>STOPPED</code>.</p>",
     "StopWorkspaces": "<p> Stops the specified WorkSpaces.</p> <p>You cannot stop a WorkSpace unless it has a running mode of <code>AutoStop</code> and a state of <code>AVAILABLE</code>, <code>IMPAIRED</code>, <code>UNHEALTHY</code>, or <code>ERROR</code>.</p>",
     "TerminateWorkspaces": "<p>Terminates the specified WorkSpaces.</p> <p>Terminating a WorkSpace is a permanent action and cannot be undone. The user's data is destroyed. If you need to archive any user data, contact Amazon Web Services before terminating the WorkSpace.</p> <p>You can terminate a WorkSpace that is in any state except <code>SUSPENDED</code>.</p> <p>This operation is asynchronous and returns before the WorkSpaces have been completely terminated.</p>",
+    "UpdateConnectionAliasPermission": "<p>Shares or unshares a connection alias with one account by specifying whether that account has permission to associate the connection alias with a directory. If the association permission is granted, the connection alias is shared with that account. If the association permission is revoked, the connection alias is unshared with the account. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p> <note> <ul> <li> <p>Before performing this operation, call <a href=\"https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html\"> DescribeConnectionAliases</a> to make sure that the current state of the connection alias is <code>CREATED</code>.</p> </li> <li> <p>To delete a connection alias that has been shared, the shared account must first disassociate the connection alias from any directories it has been associated with. Then you must unshare the connection alias from the account it has been shared with. You can delete a connection alias only after it is no longer shared with any accounts or associated with any directories.</p> </li> </ul> </note>",
     "UpdateRulesOfIpGroup": "<p>Replaces the current rules of the specified IP access control group with the specified rules.</p>",
     "UpdateWorkspaceImagePermission": "<p>Shares or unshares an image with one account by specifying whether that account has permission to copy the image. If the copy image permission is granted, the image is shared with that account. If the copy image permission is revoked, the image is unshared with the account.</p> <note> <ul> <li> <p>To delete an image that has been shared, you must unshare the image before you delete it.</p> </li> <li> <p>Sharing Bring Your Own License (BYOL) images across AWS accounts isn't supported at this time in the AWS GovCloud (US-West) Region. To share BYOL images across accounts in the AWS GovCloud (US-West) Region, contact AWS Support.</p> </li> </ul> </note>"
   },
@@ -100,6 +107,16 @@
         "ImportWorkspaceImageRequest$Applications": "<p>If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 BYOL images. For more information about subscribing to Office for BYOL images, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html\"> Bring Your Own Windows Desktop Licenses</a>.</p> <note> <p>Although this parameter is an array, only one item is allowed at this time.</p> </note>"
       }
     },
+    "AssociateConnectionAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateConnectionAliasResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociateIpGroupsRequest": {
       "base": null,
       "refs": {
@@ -108,6 +125,12 @@
     "AssociateIpGroupsResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "AssociationStatus": {
+      "base": null,
+      "refs": {
+        "ConnectionAliasAssociation$AssociationStatus": "<p>The association status of the connection alias.</p>"
       }
     },
     "AuthorizeIpRulesRequest": {
@@ -123,6 +146,9 @@
     "AwsAccount": {
       "base": null,
       "refs": {
+        "ConnectionAlias$OwnerAccountId": "<p>The identifier of the AWS account that owns the connection alias.</p>",
+        "ConnectionAliasAssociation$AssociatedAccountId": "<p>The identifier of the AWS account that associated the connection alias with a directory.</p>",
+        "ConnectionAliasPermission$SharedAccountId": "<p>The identifier of the AWS account that the connection alias is shared with.</p>",
         "ImagePermission$SharedAccountId": "<p>The identifier of the AWS account that an image has been shared with.</p>",
         "UpdateWorkspaceImagePermissionRequest$SharedAccountId": "<p>The identifier of the AWS account to share or unshare the image with.</p>",
         "WorkspaceImage$OwnerAccountId": "<p>The identifier of the AWS account that owns the image.</p>"
@@ -131,6 +157,7 @@
     "BooleanObject": {
       "base": null,
       "refs": {
+        "ConnectionAliasPermission$AllowAssociation": "<p>Indicates whether the specified AWS account is allowed to associate the connection alias with a directory.</p>",
         "DefaultWorkspaceCreationProperties$EnableWorkDocs": "<p>Specifies whether the directory is enabled for Amazon WorkDocs.</p>",
         "DefaultWorkspaceCreationProperties$EnableInternetAccess": "<p>Specifies whether to automatically assign an Elastic public IP address to WorkSpaces in this directory by default. If enabled, the Elastic public IP address allows outbound internet access from your WorkSpaces when you’re using an internet gateway in the Amazon VPC in which your WorkSpaces are located. If you're using a Network Address Translation (NAT) gateway for outbound internet access from your VPC, or if your WorkSpaces are in public subnets and you manually assign them Elastic IP addresses, you should disable this setting. This setting applies to new WorkSpaces that you launch or to existing WorkSpaces that you rebuild. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/amazon-workspaces-vpc.html\"> Configure a VPC for Amazon WorkSpaces</a>.</p>",
         "DefaultWorkspaceCreationProperties$UserEnabledAsLocalAdministrator": "<p>Specifies whether WorkSpace users are local administrators on their WorkSpaces.</p>",
@@ -216,10 +243,87 @@
         "Workspace$ComputerName": "<p>The name of the WorkSpace, as seen by the operating system. The format of this name varies. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html\"> Launch a WorkSpace</a>. </p>"
       }
     },
+    "ConnectionAlias": {
+      "base": "<p>Describes a connection alias. Connection aliases are used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
+      "refs": {
+        "ConnectionAliasList$member": null
+      }
+    },
+    "ConnectionAliasAssociation": {
+      "base": "<p>Describes a connection alias association that is used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
+      "refs": {
+        "ConnectionAliasAssociationList$member": null
+      }
+    },
+    "ConnectionAliasAssociationList": {
+      "base": null,
+      "refs": {
+        "ConnectionAlias$Associations": "<p>The association status of the connection alias.</p>"
+      }
+    },
+    "ConnectionAliasId": {
+      "base": null,
+      "refs": {
+        "AssociateConnectionAliasRequest$AliasId": "<p>The identifier of the connection alias.</p>",
+        "ConnectionAlias$AliasId": "<p>The identifier of the connection alias.</p>",
+        "ConnectionAliasIdList$member": null,
+        "CreateConnectionAliasResult$AliasId": "<p>The identifier of the connection alias.</p>",
+        "DeleteConnectionAliasRequest$AliasId": "<p>The identifier of the connection alias to delete.</p>",
+        "DescribeConnectionAliasPermissionsRequest$AliasId": "<p>The identifier of the connection alias.</p>",
+        "DescribeConnectionAliasPermissionsResult$AliasId": "<p>The identifier of the connection alias.</p>",
+        "DisassociateConnectionAliasRequest$AliasId": "<p>The identifier of the connection alias to disassociate.</p>",
+        "UpdateConnectionAliasPermissionRequest$AliasId": "<p>The identifier of the connection alias that you want to update permissions for.</p>"
+      }
+    },
+    "ConnectionAliasIdList": {
+      "base": null,
+      "refs": {
+        "DescribeConnectionAliasesRequest$AliasIds": "<p>The identifiers of the connection aliases to describe.</p>"
+      }
+    },
+    "ConnectionAliasList": {
+      "base": null,
+      "refs": {
+        "DescribeConnectionAliasesResult$ConnectionAliases": "<p>Information about the specified connection aliases.</p>"
+      }
+    },
+    "ConnectionAliasPermission": {
+      "base": "<p>Describes the permissions for a connection alias. Connection aliases are used for cross-Region redirection. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html\"> Cross-Region Redirection for Amazon WorkSpaces</a>.</p>",
+      "refs": {
+        "ConnectionAliasPermissions$member": null,
+        "UpdateConnectionAliasPermissionRequest$ConnectionAliasPermission": "<p>Indicates whether to share or unshare the connection alias with the specified AWS account.</p>"
+      }
+    },
+    "ConnectionAliasPermissions": {
+      "base": null,
+      "refs": {
+        "DescribeConnectionAliasPermissionsResult$ConnectionAliasPermissions": "<p>The permissions associated with a connection alias.</p>"
+      }
+    },
+    "ConnectionAliasState": {
+      "base": null,
+      "refs": {
+        "ConnectionAlias$State": "<p>The current state of the connection alias.</p>"
+      }
+    },
+    "ConnectionIdentifier": {
+      "base": null,
+      "refs": {
+        "AssociateConnectionAliasResult$ConnectionIdentifier": "<p>The identifier of the connection alias association. You use the connection identifier in the DNS TXT record when you're configuring your DNS routing policies. </p>",
+        "ConnectionAliasAssociation$ConnectionIdentifier": "<p>The identifier of the connection alias association. You use the connection identifier in the DNS TXT record when you're configuring your DNS routing policies.</p>"
+      }
+    },
     "ConnectionState": {
       "base": null,
       "refs": {
         "WorkspaceConnectionStatus$ConnectionState": "<p>The connection state of the WorkSpace. The connection state is unknown if the WorkSpace is stopped.</p>"
+      }
+    },
+    "ConnectionString": {
+      "base": null,
+      "refs": {
+        "ConnectionAlias$ConnectionString": "<p>The connection string specified for the connection alias. The connection string must be in the form of a fully qualified domain name (FQDN), such as <code>www.example.com</code>.</p>",
+        "CreateConnectionAliasRequest$ConnectionString": "<p>A connection string in the form of a fully qualified domain name (FQDN), such as <code>www.example.com</code>.</p> <important> <p>After you create a connection string, it is always associated to your AWS account. You cannot recreate the same connection string with a different account, even if you delete all instances of it from the original account. The connection string is globally reserved for your account.</p> </important>"
       }
     },
     "CopyWorkspaceImageRequest": {
@@ -228,6 +332,16 @@
       }
     },
     "CopyWorkspaceImageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectionAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateConnectionAliasResult": {
       "base": null,
       "refs": {
       }
@@ -300,13 +414,23 @@
       "base": null,
       "refs": {
         "DefaultWorkspaceCreationProperties$DefaultOu": "<p>The organizational unit (OU) in the directory for the WorkSpace machine accounts.</p>",
-        "WorkspaceCreationProperties$DefaultOu": "<p>The default organizational unit (OU) for your WorkSpace directories.</p>"
+        "WorkspaceCreationProperties$DefaultOu": "<p>The default organizational unit (OU) for your WorkSpaces directories. This string must be the full Lightweight Directory Access Protocol (LDAP) distinguished name for the target domain and OU. It must be in the form <code>\"OU=<i>value</i>,DC=<i>value</i>,DC=<i>value</i>\"</code>, where <i>value</i> is any string of characters, and the number of domain components (DCs) is two or more. For example, <code>OU=WorkSpaces_machines,DC=machines,DC=example,DC=com</code>. </p> <important> <ul> <li> <p>To avoid errors, certain characters in the distinguished name must be escaped. For more information, see <a href=\"https://docs.microsoft.com/previous-versions/windows/desktop/ldap/distinguished-names\"> Distinguished Names</a> in the Microsoft documentation.</p> </li> <li> <p>The API doesn't validate whether the OU exists.</p> </li> </ul> </important>"
       }
     },
     "DefaultWorkspaceCreationProperties": {
       "base": "<p>Describes the default values that are used to create WorkSpaces. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/update-directory-details.html\">Update Directory Details for Your WorkSpaces</a>.</p>",
       "refs": {
         "WorkspaceDirectory$WorkspaceCreationProperties": "<p>The default creation properties for all WorkSpaces in the directory.</p>"
+      }
+    },
+    "DeleteConnectionAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteConnectionAliasResult": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteIpGroupRequest": {
@@ -375,6 +499,26 @@
       }
     },
     "DescribeClientPropertiesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectionAliasPermissionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectionAliasPermissionsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectionAliasesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeConnectionAliasesResult": {
       "base": null,
       "refs": {
       }
@@ -513,6 +657,16 @@
       "base": null,
       "refs": {
         "WorkspaceDirectory$DirectoryName": "<p>The name of the directory.</p>"
+      }
+    },
+    "DisassociateConnectionAliasRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateConnectionAliasResult": {
+      "base": null,
+      "refs": {
       }
     },
     "DisassociateIpGroupsRequest": {
@@ -732,6 +886,8 @@
     "Limit": {
       "base": null,
       "refs": {
+        "DescribeConnectionAliasPermissionsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
+        "DescribeConnectionAliasesRequest$Limit": "<p>The maximum number of connection aliases to return.</p>",
         "DescribeIpGroupsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
         "DescribeWorkspaceDirectoriesRequest$Limit": "<p>The maximum number of directories to return.</p>",
         "DescribeWorkspaceImagePermissionsRequest$MaxResults": "<p>The maximum number of items to return.</p>",
@@ -868,10 +1024,13 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "AssociateConnectionAliasRequest$ResourceId": "<p>The identifier of the directory to associate the connection alias with.</p>",
         "ClientPropertiesResult$ResourceId": "<p>The resource identifier, in the form of a directory ID.</p>",
-        "CreateTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, and IP access control groups.</p>",
-        "DeleteTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, and IP access control groups.</p>",
-        "DescribeTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, and IP access control groups.</p>",
+        "ConnectionAliasAssociation$ResourceId": "<p>The identifier of the directory associated with a connection alias.</p>",
+        "CreateTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
+        "DeleteTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
+        "DescribeConnectionAliasesRequest$ResourceId": "<p>The identifier of the directory associated with the connection alias.</p>",
+        "DescribeTagsRequest$ResourceId": "<p>The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.</p>",
         "ModifyClientPropertiesRequest$ResourceId": "<p>The resource identifiers, in the form of directory IDs.</p>",
         "ResourceIdList$member": null,
         "ResourceNotFoundException$ResourceId": "<p>The ID of the resource that could not be found.</p>",
@@ -909,6 +1068,10 @@
       "refs": {
         "DescribeAccountModificationsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeAccountModificationsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeConnectionAliasPermissionsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
+        "DescribeConnectionAliasPermissionsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
+        "DescribeConnectionAliasesRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results. </p>",
+        "DescribeConnectionAliasesResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
         "DescribeIpGroupsRequest$NextToken": "<p>If you received a <code>NextToken</code> from a previous call that was paginated, provide this token to receive the next set of results.</p>",
         "DescribeIpGroupsResult$NextToken": "<p>The token to use to retrieve the next set of results, or null if no more results are available.</p>",
         "DescribeWorkspaceBundlesRequest$NextToken": "<p>The token for the next set of results. (You received this token from a previous call.)</p>",
@@ -1192,6 +1355,7 @@
       "base": null,
       "refs": {
         "CopyWorkspaceImageRequest$Tags": "<p>The tags for the image.</p>",
+        "CreateConnectionAliasRequest$Tags": "<p>The tags to associate with the connection alias.</p>",
         "CreateIpGroupRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags.</p>",
         "CreateTagsRequest$Tags": "<p>The tags. Each WorkSpaces resource can have a maximum of 50 tags. If you want to add new tags to a set of existing tags, you must submit all of the existing tags along with the new ones.</p>",
         "DescribeTagsResult$TagList": "<p>The tags.</p>",
@@ -1259,6 +1423,16 @@
     },
     "UnsupportedWorkspaceConfigurationException": {
       "base": "<p>The configuration of this WorkSpace is not supported for this operation. For more information, see <a href=\"https://docs.aws.amazon.com/workspaces/latest/adminguide/required-service-components.html\">Required Configuration and Service Components for WorkSpaces </a>.</p>",
+      "refs": {
+      }
+    },
+    "UpdateConnectionAliasPermissionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateConnectionAliasPermissionResult": {
+      "base": null,
       "refs": {
       }
     },

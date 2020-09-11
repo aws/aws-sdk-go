@@ -12,6 +12,23 @@
     "uid":"workspaces-2015-04-08"
   },
   "operations":{
+    "AssociateConnectionAlias":{
+      "name":"AssociateConnectionAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateConnectionAliasRequest"},
+      "output":{"shape":"AssociateConnectionAliasResult"},
+      "errors":[
+        {"shape":"ResourceAssociatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "AssociateIpGroups":{
       "name":"AssociateIpGroups",
       "http":{
@@ -63,6 +80,23 @@
         {"shape":"InvalidParameterValuesException"}
       ]
     },
+    "CreateConnectionAlias":{
+      "name":"CreateConnectionAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateConnectionAliasRequest"},
+      "output":{"shape":"CreateConnectionAliasResult"},
+      "errors":[
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "CreateIpGroup":{
       "name":"CreateIpGroup",
       "http":{
@@ -104,6 +138,23 @@
       "errors":[
         {"shape":"ResourceLimitExceededException"},
         {"shape":"InvalidParameterValuesException"}
+      ]
+    },
+    "DeleteConnectionAlias":{
+      "name":"DeleteConnectionAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteConnectionAliasRequest"},
+      "output":{"shape":"DeleteConnectionAliasResult"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAssociatedException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "DeleteIpGroup":{
@@ -200,6 +251,35 @@
         {"shape":"InvalidParameterValuesException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeConnectionAliasPermissions":{
+      "name":"DescribeConnectionAliasPermissions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConnectionAliasPermissionsRequest"},
+      "output":{"shape":"DescribeConnectionAliasPermissionsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
+    "DescribeConnectionAliases":{
+      "name":"DescribeConnectionAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeConnectionAliasesRequest"},
+      "output":{"shape":"DescribeConnectionAliasesResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "DescribeIpGroups":{
@@ -314,6 +394,22 @@
       "output":{"shape":"DescribeWorkspacesConnectionStatusResult"},
       "errors":[
         {"shape":"InvalidParameterValuesException"}
+      ]
+    },
+    "DisassociateConnectionAlias":{
+      "name":"DisassociateConnectionAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateConnectionAliasRequest"},
+      "output":{"shape":"DisassociateConnectionAliasResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"OperationNotSupportedException"}
       ]
     },
     "DisassociateIpGroups":{
@@ -575,6 +671,24 @@
       "input":{"shape":"TerminateWorkspacesRequest"},
       "output":{"shape":"TerminateWorkspacesResult"}
     },
+    "UpdateConnectionAliasPermission":{
+      "name":"UpdateConnectionAliasPermission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateConnectionAliasPermissionRequest"},
+      "output":{"shape":"UpdateConnectionAliasPermissionResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAssociatedException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"OperationNotSupportedException"}
+      ]
+    },
     "UpdateRulesOfIpGroup":{
       "name":"UpdateRulesOfIpGroup",
       "http":{
@@ -656,6 +770,23 @@
       "max":5,
       "min":1
     },
+    "AssociateConnectionAliasRequest":{
+      "type":"structure",
+      "required":[
+        "AliasId",
+        "ResourceId"
+      ],
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"},
+        "ResourceId":{"shape":"NonEmptyString"}
+      }
+    },
+    "AssociateConnectionAliasResult":{
+      "type":"structure",
+      "members":{
+        "ConnectionIdentifier":{"shape":"ConnectionIdentifier"}
+      }
+    },
     "AssociateIpGroupsRequest":{
       "type":"structure",
       "required":[
@@ -671,6 +802,16 @@
       "type":"structure",
       "members":{
       }
+    },
+    "AssociationStatus":{
+      "type":"string",
+      "enum":[
+        "NOT_ASSOCIATED",
+        "ASSOCIATED_WITH_OWNER_ACCOUNT",
+        "ASSOCIATED_WITH_SHARED_ACCOUNT",
+        "PENDING_ASSOCIATION",
+        "PENDING_DISASSOCIATION"
+      ]
     },
     "AuthorizeIpRulesRequest":{
       "type":"structure",
@@ -744,6 +885,80 @@
       }
     },
     "ComputerName":{"type":"string"},
+    "ConnectionAlias":{
+      "type":"structure",
+      "members":{
+        "ConnectionString":{"shape":"ConnectionString"},
+        "AliasId":{"shape":"ConnectionAliasId"},
+        "State":{"shape":"ConnectionAliasState"},
+        "OwnerAccountId":{"shape":"AwsAccount"},
+        "Associations":{"shape":"ConnectionAliasAssociationList"}
+      }
+    },
+    "ConnectionAliasAssociation":{
+      "type":"structure",
+      "members":{
+        "AssociationStatus":{"shape":"AssociationStatus"},
+        "AssociatedAccountId":{"shape":"AwsAccount"},
+        "ResourceId":{"shape":"NonEmptyString"},
+        "ConnectionIdentifier":{"shape":"ConnectionIdentifier"}
+      }
+    },
+    "ConnectionAliasAssociationList":{
+      "type":"list",
+      "member":{"shape":"ConnectionAliasAssociation"},
+      "max":25,
+      "min":1
+    },
+    "ConnectionAliasId":{
+      "type":"string",
+      "max":68,
+      "min":13,
+      "pattern":"^wsca-[0-9a-z]{8,63}$"
+    },
+    "ConnectionAliasIdList":{
+      "type":"list",
+      "member":{"shape":"ConnectionAliasId"},
+      "max":25,
+      "min":1
+    },
+    "ConnectionAliasList":{
+      "type":"list",
+      "member":{"shape":"ConnectionAlias"},
+      "max":25,
+      "min":1
+    },
+    "ConnectionAliasPermission":{
+      "type":"structure",
+      "required":[
+        "SharedAccountId",
+        "AllowAssociation"
+      ],
+      "members":{
+        "SharedAccountId":{"shape":"AwsAccount"},
+        "AllowAssociation":{"shape":"BooleanObject"}
+      }
+    },
+    "ConnectionAliasPermissions":{
+      "type":"list",
+      "member":{"shape":"ConnectionAliasPermission"},
+      "max":25,
+      "min":1
+    },
+    "ConnectionAliasState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "DELETING"
+      ]
+    },
+    "ConnectionIdentifier":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]+$"
+    },
     "ConnectionState":{
       "type":"string",
       "enum":[
@@ -751,6 +966,12 @@
         "DISCONNECTED",
         "UNKNOWN"
       ]
+    },
+    "ConnectionString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[.0-9a-zA-Z\\-]{1,255}$"
     },
     "CopyWorkspaceImageRequest":{
       "type":"structure",
@@ -771,6 +992,20 @@
       "type":"structure",
       "members":{
         "ImageId":{"shape":"WorkspaceImageId"}
+      }
+    },
+    "CreateConnectionAliasRequest":{
+      "type":"structure",
+      "required":["ConnectionString"],
+      "members":{
+        "ConnectionString":{"shape":"ConnectionString"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateConnectionAliasResult":{
+      "type":"structure",
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"}
       }
     },
     "CreateIpGroupRequest":{
@@ -856,6 +1091,18 @@
         "CustomSecurityGroupId":{"shape":"SecurityGroupId"},
         "UserEnabledAsLocalAdministrator":{"shape":"BooleanObject"},
         "EnableMaintenanceMode":{"shape":"BooleanObject"}
+      }
+    },
+    "DeleteConnectionAliasRequest":{
+      "type":"structure",
+      "required":["AliasId"],
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"}
+      }
+    },
+    "DeleteConnectionAliasResult":{
+      "type":"structure",
+      "members":{
       }
     },
     "DeleteIpGroupRequest":{
@@ -946,6 +1193,39 @@
       "type":"structure",
       "members":{
         "ClientPropertiesList":{"shape":"ClientPropertiesList"}
+      }
+    },
+    "DescribeConnectionAliasPermissionsRequest":{
+      "type":"structure",
+      "required":["AliasId"],
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"},
+        "NextToken":{"shape":"PaginationToken"},
+        "MaxResults":{"shape":"Limit"}
+      }
+    },
+    "DescribeConnectionAliasPermissionsResult":{
+      "type":"structure",
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"},
+        "ConnectionAliasPermissions":{"shape":"ConnectionAliasPermissions"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeConnectionAliasesRequest":{
+      "type":"structure",
+      "members":{
+        "AliasIds":{"shape":"ConnectionAliasIdList"},
+        "ResourceId":{"shape":"NonEmptyString"},
+        "Limit":{"shape":"Limit"},
+        "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "DescribeConnectionAliasesResult":{
+      "type":"structure",
+      "members":{
+        "ConnectionAliases":{"shape":"ConnectionAliasList"},
+        "NextToken":{"shape":"PaginationToken"}
       }
     },
     "DescribeIpGroupsRequest":{
@@ -1103,6 +1383,18 @@
       "member":{"shape":"WorkspaceDirectory"}
     },
     "DirectoryName":{"type":"string"},
+    "DisassociateConnectionAliasRequest":{
+      "type":"structure",
+      "required":["AliasId"],
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"}
+      }
+    },
+    "DisassociateConnectionAliasResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DisassociateIpGroupsRequest":{
       "type":"structure",
       "required":[
@@ -1466,7 +1758,7 @@
     },
     "PaginationToken":{
       "type":"string",
-      "max":63,
+      "max":2048,
       "min":1
     },
     "RebootRequest":{
@@ -1818,6 +2110,22 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "UpdateConnectionAliasPermissionRequest":{
+      "type":"structure",
+      "required":[
+        "AliasId",
+        "ConnectionAliasPermission"
+      ],
+      "members":{
+        "AliasId":{"shape":"ConnectionAliasId"},
+        "ConnectionAliasPermission":{"shape":"ConnectionAliasPermission"}
+      }
+    },
+    "UpdateConnectionAliasPermissionResult":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateRulesOfIpGroupRequest":{
       "type":"structure",
