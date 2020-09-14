@@ -12,7 +12,7 @@
     "GetNetwork": "<p>Returns detailed information about a network.</p>",
     "GetNode": "<p>Returns detailed information about a peer node.</p>",
     "GetProposal": "<p>Returns detailed information about a proposal.</p>",
-    "ListInvitations": "<p>Returns a listing of all invitations made on the specified network.</p>",
+    "ListInvitations": "<p>Returns a listing of all invitations for the current AWS account.</p>",
     "ListMembers": "<p>Returns a listing of the members in a network and properties of their configurations.</p>",
     "ListNetworks": "<p>Returns information about the networks in which the current AWS account has members.</p>",
     "ListNodes": "<p>Returns information about the nodes within a network.</p>",
@@ -383,7 +383,7 @@
       "base": "<p>Configuration properties for logging events associated with a member of a Managed Blockchain network.</p>",
       "refs": {
         "Member$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a member.</p>",
-        "MemberConfiguration$LogPublishingConfiguration": "<p/>",
+        "MemberConfiguration$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a member of a Managed Blockchain network.</p>",
         "UpdateMemberInput$LogPublishingConfiguration": "<p>Configuration properties for publishing to Amazon CloudWatch Logs.</p>"
       }
     },
@@ -522,8 +522,8 @@
     "NodeLogPublishingConfiguration": {
       "base": "<p>Configuration properties for logging events associated with a peer node owned by a member in a Managed Blockchain network.</p>",
       "refs": {
-        "Node$LogPublishingConfiguration": "<p/>",
-        "NodeConfiguration$LogPublishingConfiguration": "<p/>",
+        "Node$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a peer node owned by a member in a Managed Blockchain network.</p>",
+        "NodeConfiguration$LogPublishingConfiguration": "<p>Configuration properties for logging events associated with a peer node owned by a member in a Managed Blockchain network. </p>",
         "UpdateNodeInput$LogPublishingConfiguration": "<p>Configuration properties for publishing to Amazon CloudWatch Logs.</p>"
       }
     },
@@ -729,6 +729,13 @@
     "ResourceNotReadyException": {
       "base": "<p>The requested resource exists but is not in a status that can complete the operation.</p>",
       "refs": {
+      }
+    },
+    "StateDBType": {
+      "base": null,
+      "refs": {
+        "Node$StateDB": "<p>The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>.</p>",
+        "NodeConfiguration$StateDB": "<p>The state database that the node uses. Values are <code>LevelDB</code> or <code>CouchDB</code>. When using an Amazon Managed Blockchain network with Hyperledger Fabric version 1.4 or later, the default is <code>CouchDB</code>.</p>"
       }
     },
     "String": {

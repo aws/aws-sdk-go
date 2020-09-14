@@ -41,6 +41,7 @@
         {"shape":"InvalidDefinition"},
         {"shape":"InvalidName"},
         {"shape":"InvalidLoggingConfiguration"},
+        {"shape":"InvalidTracingConfiguration"},
         {"shape":"StateMachineAlreadyExists"},
         {"shape":"StateMachineDeleting"},
         {"shape":"StateMachineLimitExceeded"},
@@ -319,6 +320,7 @@
         {"shape":"InvalidArn"},
         {"shape":"InvalidDefinition"},
         {"shape":"InvalidLoggingConfiguration"},
+        {"shape":"InvalidTracingConfiguration"},
         {"shape":"MissingRequiredParameter"},
         {"shape":"StateMachineDeleting"},
         {"shape":"StateMachineDoesNotExist"}
@@ -471,7 +473,8 @@
         "roleArn":{"shape":"Arn"},
         "type":{"shape":"StateMachineType"},
         "loggingConfiguration":{"shape":"LoggingConfiguration"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "tracingConfiguration":{"shape":"TracingConfiguration"}
       }
     },
     "CreateStateMachineOutput":{
@@ -560,7 +563,8 @@
         "input":{"shape":"SensitiveData"},
         "inputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"},
         "output":{"shape":"SensitiveData"},
-        "outputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"}
+        "outputDetails":{"shape":"CloudWatchEventsExecutionDataDetails"},
+        "traceHeader":{"shape":"TraceHeader"}
       }
     },
     "DescribeStateMachineForExecutionInput":{
@@ -585,7 +589,8 @@
         "definition":{"shape":"Definition"},
         "roleArn":{"shape":"Arn"},
         "updateDate":{"shape":"Timestamp"},
-        "loggingConfiguration":{"shape":"LoggingConfiguration"}
+        "loggingConfiguration":{"shape":"LoggingConfiguration"},
+        "tracingConfiguration":{"shape":"TracingConfiguration"}
       }
     },
     "DescribeStateMachineInput":{
@@ -613,9 +618,11 @@
         "roleArn":{"shape":"Arn"},
         "type":{"shape":"StateMachineType"},
         "creationDate":{"shape":"Timestamp"},
-        "loggingConfiguration":{"shape":"LoggingConfiguration"}
+        "loggingConfiguration":{"shape":"LoggingConfiguration"},
+        "tracingConfiguration":{"shape":"TracingConfiguration"}
       }
     },
+    "Enabled":{"type":"boolean"},
     "ErrorMessage":{"type":"string"},
     "EventId":{"type":"long"},
     "ExecutionAbortedEventDetails":{
@@ -915,6 +922,13 @@
       },
       "exception":true
     },
+    "InvalidTracingConfiguration":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "LambdaFunctionFailedEventDetails":{
       "type":"structure",
       "members":{
@@ -1170,7 +1184,8 @@
       "members":{
         "stateMachineArn":{"shape":"Arn"},
         "name":{"shape":"Name"},
-        "input":{"shape":"SensitiveData"}
+        "input":{"shape":"SensitiveData"},
+        "traceHeader":{"shape":"TraceHeader"}
       }
     },
     "StartExecutionOutput":{
@@ -1468,6 +1483,18 @@
       },
       "exception":true
     },
+    "TraceHeader":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"\\p{ASCII}*"
+    },
+    "TracingConfiguration":{
+      "type":"structure",
+      "members":{
+        "enabled":{"shape":"Enabled"}
+      }
+    },
     "UnsignedInteger":{
       "type":"integer",
       "min":0
@@ -1495,7 +1522,8 @@
         "stateMachineArn":{"shape":"Arn"},
         "definition":{"shape":"Definition"},
         "roleArn":{"shape":"Arn"},
-        "loggingConfiguration":{"shape":"LoggingConfiguration"}
+        "loggingConfiguration":{"shape":"LoggingConfiguration"},
+        "tracingConfiguration":{"shape":"TracingConfiguration"}
       }
     },
     "UpdateStateMachineOutput":{
