@@ -29355,7 +29355,8 @@
       "enum":[
         "t2",
         "t3",
-        "t3a"
+        "t3a",
+        "t4g"
       ]
     },
     "UnmonitorInstancesRequest":{

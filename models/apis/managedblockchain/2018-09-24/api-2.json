@@ -1138,6 +1138,7 @@
         "AvailabilityZone":{"shape":"AvailabilityZoneString"},
         "FrameworkAttributes":{"shape":"NodeFrameworkAttributes"},
         "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"},
+        "StateDB":{"shape":"StateDBType"},
         "Status":{"shape":"NodeStatus"},
         "CreationDate":{"shape":"Timestamp"}
       }
@@ -1151,7 +1152,8 @@
       "members":{
         "InstanceType":{"shape":"InstanceTypeString"},
         "AvailabilityZone":{"shape":"AvailabilityZoneString"},
-        "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"}
+        "LogPublishingConfiguration":{"shape":"NodeLogPublishingConfiguration"},
+        "StateDB":{"shape":"StateDBType"}
       }
     },
     "NodeFabricAttributes":{
@@ -1353,6 +1355,13 @@
       },
       "error":{"httpStatusCode":409},
       "exception":true
+    },
+    "StateDBType":{
+      "type":"string",
+      "enum":[
+        "LevelDB",
+        "CouchDB"
+      ]
     },
     "String":{"type":"string"},
     "ThresholdComparator":{

@@ -1,3 +1,15 @@
+Release v1.34.23 (2020-09-14)
+===
+
+### Service Client Updates
+* `service/docdb`: Updates service API, documentation, and paginators
+  * Updated API documentation and added paginators for DescribeCertificates, DescribeDBClusterParameterGroups, DescribeDBClusterParameters, DescribeDBClusterSnapshots and DescribePendingMaintenanceActions
+* `service/ec2`: Updates service API
+  * This release adds support for the T4G instance family to the EC2 ModifyDefaultCreditSpecification and GetDefaultCreditSpecification APIs.
+* `service/managedblockchain`: Updates service API and documentation
+* `service/states`: Updates service API and documentation
+  * This release of the AWS Step Functions SDK introduces support for AWS X-Ray.
+
 Release v1.34.22 (2020-09-11)
 ===
 

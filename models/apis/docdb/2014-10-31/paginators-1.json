@@ -1,5 +1,29 @@
 {
   "pagination": {
+    "DescribeCertificates": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "Certificates"
+    },
+    "DescribeDBClusterParameterGroups": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterParameterGroups"
+    },
+    "DescribeDBClusterParameters": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "Parameters"
+    },
+    "DescribeDBClusterSnapshots": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterSnapshots"
+    },
     "DescribeDBClusters": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",
@@ -35,6 +59,12 @@
       "limit_key": "MaxRecords",
       "output_token": "Marker",
       "result_key": "OrderableDBInstanceOptions"
+    },
+    "DescribePendingMaintenanceActions": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "PendingMaintenanceActions"
     },
     "ListTagsForResource": {
       "result_key": "TagList"

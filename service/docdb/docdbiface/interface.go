@@ -120,13 +120,22 @@ type DocDBAPI interface {
 	DescribeCertificatesWithContext(aws.Context, *docdb.DescribeCertificatesInput, ...request.Option) (*docdb.DescribeCertificatesOutput, error)
 	DescribeCertificatesRequest(*docdb.DescribeCertificatesInput) (*request.Request, *docdb.DescribeCertificatesOutput)
 
+	DescribeCertificatesPages(*docdb.DescribeCertificatesInput, func(*docdb.DescribeCertificatesOutput, bool) bool) error
+	DescribeCertificatesPagesWithContext(aws.Context, *docdb.DescribeCertificatesInput, func(*docdb.DescribeCertificatesOutput, bool) bool, ...request.Option) error
+
 	DescribeDBClusterParameterGroups(*docdb.DescribeDBClusterParameterGroupsInput) (*docdb.DescribeDBClusterParameterGroupsOutput, error)
 	DescribeDBClusterParameterGroupsWithContext(aws.Context, *docdb.DescribeDBClusterParameterGroupsInput, ...request.Option) (*docdb.DescribeDBClusterParameterGroupsOutput, error)
 	DescribeDBClusterParameterGroupsRequest(*docdb.DescribeDBClusterParameterGroupsInput) (*request.Request, *docdb.DescribeDBClusterParameterGroupsOutput)
 
+	DescribeDBClusterParameterGroupsPages(*docdb.DescribeDBClusterParameterGroupsInput, func(*docdb.DescribeDBClusterParameterGroupsOutput, bool) bool) error
+	DescribeDBClusterParameterGroupsPagesWithContext(aws.Context, *docdb.DescribeDBClusterParameterGroupsInput, func(*docdb.DescribeDBClusterParameterGroupsOutput, bool) bool, ...request.Option) error
+
 	DescribeDBClusterParameters(*docdb.DescribeDBClusterParametersInput) (*docdb.DescribeDBClusterParametersOutput, error)
 	DescribeDBClusterParametersWithContext(aws.Context, *docdb.DescribeDBClusterParametersInput, ...request.Option) (*docdb.DescribeDBClusterParametersOutput, error)
 	DescribeDBClusterParametersRequest(*docdb.DescribeDBClusterParametersInput) (*request.Request, *docdb.DescribeDBClusterParametersOutput)
+
+	DescribeDBClusterParametersPages(*docdb.DescribeDBClusterParametersInput, func(*docdb.DescribeDBClusterParametersOutput, bool) bool) error
+	DescribeDBClusterParametersPagesWithContext(aws.Context, *docdb.DescribeDBClusterParametersInput, func(*docdb.DescribeDBClusterParametersOutput, bool) bool, ...request.Option) error
 
 	DescribeDBClusterSnapshotAttributes(*docdb.DescribeDBClusterSnapshotAttributesInput) (*docdb.DescribeDBClusterSnapshotAttributesOutput, error)
 	DescribeDBClusterSnapshotAttributesWithContext(aws.Context, *docdb.DescribeDBClusterSnapshotAttributesInput, ...request.Option) (*docdb.DescribeDBClusterSnapshotAttributesOutput, error)
@@ -135,6 +144,9 @@ type DocDBAPI interface {
 	DescribeDBClusterSnapshots(*docdb.DescribeDBClusterSnapshotsInput) (*docdb.DescribeDBClusterSnapshotsOutput, error)
 	DescribeDBClusterSnapshotsWithContext(aws.Context, *docdb.DescribeDBClusterSnapshotsInput, ...request.Option) (*docdb.DescribeDBClusterSnapshotsOutput, error)
 	DescribeDBClusterSnapshotsRequest(*docdb.DescribeDBClusterSnapshotsInput) (*request.Request, *docdb.DescribeDBClusterSnapshotsOutput)
+
+	DescribeDBClusterSnapshotsPages(*docdb.DescribeDBClusterSnapshotsInput, func(*docdb.DescribeDBClusterSnapshotsOutput, bool) bool) error
+	DescribeDBClusterSnapshotsPagesWithContext(aws.Context, *docdb.DescribeDBClusterSnapshotsInput, func(*docdb.DescribeDBClusterSnapshotsOutput, bool) bool, ...request.Option) error
 
 	DescribeDBClusters(*docdb.DescribeDBClustersInput) (*docdb.DescribeDBClustersOutput, error)
 	DescribeDBClustersWithContext(aws.Context, *docdb.DescribeDBClustersInput, ...request.Option) (*docdb.DescribeDBClustersOutput, error)
@@ -189,6 +201,9 @@ type DocDBAPI interface {
 	DescribePendingMaintenanceActions(*docdb.DescribePendingMaintenanceActionsInput) (*docdb.DescribePendingMaintenanceActionsOutput, error)
 	DescribePendingMaintenanceActionsWithContext(aws.Context, *docdb.DescribePendingMaintenanceActionsInput, ...request.Option) (*docdb.DescribePendingMaintenanceActionsOutput, error)
 	DescribePendingMaintenanceActionsRequest(*docdb.DescribePendingMaintenanceActionsInput) (*request.Request, *docdb.DescribePendingMaintenanceActionsOutput)
+
+	DescribePendingMaintenanceActionsPages(*docdb.DescribePendingMaintenanceActionsInput, func(*docdb.DescribePendingMaintenanceActionsOutput, bool) bool) error
+	DescribePendingMaintenanceActionsPagesWithContext(aws.Context, *docdb.DescribePendingMaintenanceActionsInput, func(*docdb.DescribePendingMaintenanceActionsOutput, bool) bool, ...request.Option) error
 
 	FailoverDBCluster(*docdb.FailoverDBClusterInput) (*docdb.FailoverDBClusterOutput, error)
 	FailoverDBClusterWithContext(aws.Context, *docdb.FailoverDBClusterInput, ...request.Option) (*docdb.FailoverDBClusterOutput, error)
