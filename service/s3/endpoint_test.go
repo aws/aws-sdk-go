@@ -118,7 +118,7 @@ func TestEndpoint(t *testing.T) {
 						case "fips-us-gov-west-1":
 							return endpoints.ResolvedEndpoint{
 								URL:           "s3-fips.us-gov-west-1.amazonaws.com",
-								PartitionID:   endpoints.AwsUsGovPartition().ID(),
+								PartitionID:   "aws-us-gov",
 								SigningRegion: "us-gov-west-1",
 								SigningName:   service,
 								SigningMethod: "s3v4",
@@ -141,7 +141,7 @@ func TestEndpoint(t *testing.T) {
 						case "fips-us-gov-west-1":
 							return endpoints.ResolvedEndpoint{
 								URL:           "s3-fips.us-gov-west-1.amazonaws.com",
-								PartitionID:   endpoints.AwsUsGovPartition().ID(),
+								PartitionID:   "aws-us-gov",
 								SigningRegion: "us-gov-west-1",
 								SigningName:   service,
 								SigningMethod: "s3v4",
