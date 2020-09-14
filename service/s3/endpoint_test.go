@@ -112,18 +112,46 @@ func TestEndpoint(t *testing.T) {
 			bucket: "arn:aws-us-gov:s3:us-gov-west-1:123456789012:accesspoint:myendpoint",
 			config: &aws.Config{
 				Region: aws.String("fips-us-gov-west-1"),
+				EndpointResolver: endpoints.ResolverFunc(
+					func(service, region string, opts ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+						switch region {
+						case "fips-us-gov-west-1":
+							return endpoints.ResolvedEndpoint{
+								URL:           "s3-fips.us-gov-west-1.amazonaws.com",
+								PartitionID:   "aws-us-gov",
+								SigningRegion: "us-gov-west-1",
+								SigningName:   service,
+								SigningMethod: "s3v4",
+							}, nil
+						}
+						return endpoints.ResolvedEndpoint{}, nil
+					}),
 			},
-			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint-fips-us-gov-west-1.amazonaws.com",
+			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint-fips.us-gov-west-1.amazonaws.com",
 			expectedSigningName:   "s3",
 			expectedSigningRegion: "us-gov-west-1",
 		},
 		"AccessPoint FIPS same region with cross region enabled": {
 			bucket: "arn:aws-us-gov:s3:us-gov-west-1:123456789012:accesspoint:myendpoint",
 			config: &aws.Config{
-				Region:         aws.String("fips-us-gov-west-1"),
+				Region: aws.String("fips-us-gov-west-1"),
+				EndpointResolver: endpoints.ResolverFunc(
+					func(service, region string, opts ...func(*endpoints.Options)) (endpoints.ResolvedEndpoint, error) {
+						switch region {
+						case "fips-us-gov-west-1":
+							return endpoints.ResolvedEndpoint{
+								URL:           "s3-fips.us-gov-west-1.amazonaws.com",
+								PartitionID:   "aws-us-gov",
+								SigningRegion: "us-gov-west-1",
+								SigningName:   service,
+								SigningMethod: "s3v4",
+							}, nil
+						}
+						return endpoints.ResolvedEndpoint{}, nil
+					}),
 				S3UseARNRegion: aws.Bool(true),
 			},
-			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint-fips-us-gov-west-1.amazonaws.com",
+			expectedEndpoint:      "https://myendpoint-123456789012.s3-accesspoint-fips.us-gov-west-1.amazonaws.com",
 			expectedSigningName:   "s3",
 			expectedSigningRegion: "us-gov-west-1",
 		},
