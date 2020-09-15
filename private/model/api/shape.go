@@ -63,6 +63,12 @@ type ShapeRef struct {
 
 	// Flags whether the member reference is a endpoint ARN
 	EndpointARN bool
+
+	// Flags whether the member reference is a Outpost ID
+	OutpostIDMember bool
+
+	// Flag whether the member reference is a Account ID when endpoint shape ARN is present
+	AccountIDMemberWithARN bool
 }
 
 // A Shape defines the definition of a shape type
@@ -124,6 +130,12 @@ type Shape struct {
 
 	// Flags that a member of the shape is an EndpointARN
 	HasEndpointARNMember bool
+
+	// Flags that a member of the shape is an OutpostIDMember
+	HasOutpostIDMember bool
+
+	// Flags that the shape has an account id member along with EndpointARN member
+	HasAccountIdMemberWithARN bool
 
 	// Indicates the Shape is used as an operation input
 	UsedAsInput bool
@@ -675,6 +687,18 @@ var structShapeTmpl = func() *template.Template {
 			endpointARNShapeTmpl.Tree),
 	)
 
+	template.Must(
+		shapeTmpl.AddParseTree(
+			"outpostIDShapeTmpl",
+			outpostIDShapeTmpl.Tree),
+	)
+
+	template.Must(
+		shapeTmpl.AddParseTree(
+			"accountIDWithARNShapeTmpl",
+			accountIDWithARNShapeTmpl.Tree),
+	)
+
 	return shapeTmpl
 }()
 
@@ -801,6 +825,15 @@ type {{ $.ShapeName }} struct {
 {{- if $.HasEndpointARNMember }}
 	{{ template "endpointARNShapeTmpl" $ }}
 {{- end }}
+
+{{- if $.HasOutpostIDMember }}
+	{{ template "outpostIDShapeTmpl" $ }}
+{{- end }}
+
+{{- if $.HasAccountIdMemberWithARN }}
+	{{ template "accountIDWithARNShapeTmpl" $ }}
+{{- end }}
+
 `
 
 var exceptionShapeMethodTmpl = template.Must(

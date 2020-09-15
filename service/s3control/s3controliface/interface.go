@@ -64,6 +64,10 @@ type S3ControlAPI interface {
 	CreateAccessPointWithContext(aws.Context, *s3control.CreateAccessPointInput, ...request.Option) (*s3control.CreateAccessPointOutput, error)
 	CreateAccessPointRequest(*s3control.CreateAccessPointInput) (*request.Request, *s3control.CreateAccessPointOutput)
 
+	CreateBucket(*s3control.CreateBucketInput) (*s3control.CreateBucketOutput, error)
+	CreateBucketWithContext(aws.Context, *s3control.CreateBucketInput, ...request.Option) (*s3control.CreateBucketOutput, error)
+	CreateBucketRequest(*s3control.CreateBucketInput) (*request.Request, *s3control.CreateBucketOutput)
+
 	CreateJob(*s3control.CreateJobInput) (*s3control.CreateJobOutput, error)
 	CreateJobWithContext(aws.Context, *s3control.CreateJobInput, ...request.Option) (*s3control.CreateJobOutput, error)
 	CreateJobRequest(*s3control.CreateJobInput) (*request.Request, *s3control.CreateJobOutput)
@@ -75,6 +79,22 @@ type S3ControlAPI interface {
 	DeleteAccessPointPolicy(*s3control.DeleteAccessPointPolicyInput) (*s3control.DeleteAccessPointPolicyOutput, error)
 	DeleteAccessPointPolicyWithContext(aws.Context, *s3control.DeleteAccessPointPolicyInput, ...request.Option) (*s3control.DeleteAccessPointPolicyOutput, error)
 	DeleteAccessPointPolicyRequest(*s3control.DeleteAccessPointPolicyInput) (*request.Request, *s3control.DeleteAccessPointPolicyOutput)
+
+	DeleteBucket(*s3control.DeleteBucketInput) (*s3control.DeleteBucketOutput, error)
+	DeleteBucketWithContext(aws.Context, *s3control.DeleteBucketInput, ...request.Option) (*s3control.DeleteBucketOutput, error)
+	DeleteBucketRequest(*s3control.DeleteBucketInput) (*request.Request, *s3control.DeleteBucketOutput)
+
+	DeleteBucketLifecycleConfiguration(*s3control.DeleteBucketLifecycleConfigurationInput) (*s3control.DeleteBucketLifecycleConfigurationOutput, error)
+	DeleteBucketLifecycleConfigurationWithContext(aws.Context, *s3control.DeleteBucketLifecycleConfigurationInput, ...request.Option) (*s3control.DeleteBucketLifecycleConfigurationOutput, error)
+	DeleteBucketLifecycleConfigurationRequest(*s3control.DeleteBucketLifecycleConfigurationInput) (*request.Request, *s3control.DeleteBucketLifecycleConfigurationOutput)
+
+	DeleteBucketPolicy(*s3control.DeleteBucketPolicyInput) (*s3control.DeleteBucketPolicyOutput, error)
+	DeleteBucketPolicyWithContext(aws.Context, *s3control.DeleteBucketPolicyInput, ...request.Option) (*s3control.DeleteBucketPolicyOutput, error)
+	DeleteBucketPolicyRequest(*s3control.DeleteBucketPolicyInput) (*request.Request, *s3control.DeleteBucketPolicyOutput)
+
+	DeleteBucketTagging(*s3control.DeleteBucketTaggingInput) (*s3control.DeleteBucketTaggingOutput, error)
+	DeleteBucketTaggingWithContext(aws.Context, *s3control.DeleteBucketTaggingInput, ...request.Option) (*s3control.DeleteBucketTaggingOutput, error)
+	DeleteBucketTaggingRequest(*s3control.DeleteBucketTaggingInput) (*request.Request, *s3control.DeleteBucketTaggingOutput)
 
 	DeleteJobTagging(*s3control.DeleteJobTaggingInput) (*s3control.DeleteJobTaggingOutput, error)
 	DeleteJobTaggingWithContext(aws.Context, *s3control.DeleteJobTaggingInput, ...request.Option) (*s3control.DeleteJobTaggingOutput, error)
@@ -100,6 +120,22 @@ type S3ControlAPI interface {
 	GetAccessPointPolicyStatusWithContext(aws.Context, *s3control.GetAccessPointPolicyStatusInput, ...request.Option) (*s3control.GetAccessPointPolicyStatusOutput, error)
 	GetAccessPointPolicyStatusRequest(*s3control.GetAccessPointPolicyStatusInput) (*request.Request, *s3control.GetAccessPointPolicyStatusOutput)
 
+	GetBucket(*s3control.GetBucketInput) (*s3control.GetBucketOutput, error)
+	GetBucketWithContext(aws.Context, *s3control.GetBucketInput, ...request.Option) (*s3control.GetBucketOutput, error)
+	GetBucketRequest(*s3control.GetBucketInput) (*request.Request, *s3control.GetBucketOutput)
+
+	GetBucketLifecycleConfiguration(*s3control.GetBucketLifecycleConfigurationInput) (*s3control.GetBucketLifecycleConfigurationOutput, error)
+	GetBucketLifecycleConfigurationWithContext(aws.Context, *s3control.GetBucketLifecycleConfigurationInput, ...request.Option) (*s3control.GetBucketLifecycleConfigurationOutput, error)
+	GetBucketLifecycleConfigurationRequest(*s3control.GetBucketLifecycleConfigurationInput) (*request.Request, *s3control.GetBucketLifecycleConfigurationOutput)
+
+	GetBucketPolicy(*s3control.GetBucketPolicyInput) (*s3control.GetBucketPolicyOutput, error)
+	GetBucketPolicyWithContext(aws.Context, *s3control.GetBucketPolicyInput, ...request.Option) (*s3control.GetBucketPolicyOutput, error)
+	GetBucketPolicyRequest(*s3control.GetBucketPolicyInput) (*request.Request, *s3control.GetBucketPolicyOutput)
+
+	GetBucketTagging(*s3control.GetBucketTaggingInput) (*s3control.GetBucketTaggingOutput, error)
+	GetBucketTaggingWithContext(aws.Context, *s3control.GetBucketTaggingInput, ...request.Option) (*s3control.GetBucketTaggingOutput, error)
+	GetBucketTaggingRequest(*s3control.GetBucketTaggingInput) (*request.Request, *s3control.GetBucketTaggingOutput)
+
 	GetJobTagging(*s3control.GetJobTaggingInput) (*s3control.GetJobTaggingOutput, error)
 	GetJobTaggingWithContext(aws.Context, *s3control.GetJobTaggingInput, ...request.Option) (*s3control.GetJobTaggingOutput, error)
 	GetJobTaggingRequest(*s3control.GetJobTaggingInput) (*request.Request, *s3control.GetJobTaggingOutput)
@@ -122,9 +158,28 @@ type S3ControlAPI interface {
 	ListJobsPages(*s3control.ListJobsInput, func(*s3control.ListJobsOutput, bool) bool) error
 	ListJobsPagesWithContext(aws.Context, *s3control.ListJobsInput, func(*s3control.ListJobsOutput, bool) bool, ...request.Option) error
 
+	ListRegionalBuckets(*s3control.ListRegionalBucketsInput) (*s3control.ListRegionalBucketsOutput, error)
+	ListRegionalBucketsWithContext(aws.Context, *s3control.ListRegionalBucketsInput, ...request.Option) (*s3control.ListRegionalBucketsOutput, error)
+	ListRegionalBucketsRequest(*s3control.ListRegionalBucketsInput) (*request.Request, *s3control.ListRegionalBucketsOutput)
+
+	ListRegionalBucketsPages(*s3control.ListRegionalBucketsInput, func(*s3control.ListRegionalBucketsOutput, bool) bool) error
+	ListRegionalBucketsPagesWithContext(aws.Context, *s3control.ListRegionalBucketsInput, func(*s3control.ListRegionalBucketsOutput, bool) bool, ...request.Option) error
+
 	PutAccessPointPolicy(*s3control.PutAccessPointPolicyInput) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyWithContext(aws.Context, *s3control.PutAccessPointPolicyInput, ...request.Option) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyRequest(*s3control.PutAccessPointPolicyInput) (*request.Request, *s3control.PutAccessPointPolicyOutput)
+
+	PutBucketLifecycleConfiguration(*s3control.PutBucketLifecycleConfigurationInput) (*s3control.PutBucketLifecycleConfigurationOutput, error)
+	PutBucketLifecycleConfigurationWithContext(aws.Context, *s3control.PutBucketLifecycleConfigurationInput, ...request.Option) (*s3control.PutBucketLifecycleConfigurationOutput, error)
+	PutBucketLifecycleConfigurationRequest(*s3control.PutBucketLifecycleConfigurationInput) (*request.Request, *s3control.PutBucketLifecycleConfigurationOutput)
+
+	PutBucketPolicy(*s3control.PutBucketPolicyInput) (*s3control.PutBucketPolicyOutput, error)
+	PutBucketPolicyWithContext(aws.Context, *s3control.PutBucketPolicyInput, ...request.Option) (*s3control.PutBucketPolicyOutput, error)
+	PutBucketPolicyRequest(*s3control.PutBucketPolicyInput) (*request.Request, *s3control.PutBucketPolicyOutput)
+
+	PutBucketTagging(*s3control.PutBucketTaggingInput) (*s3control.PutBucketTaggingOutput, error)
+	PutBucketTaggingWithContext(aws.Context, *s3control.PutBucketTaggingInput, ...request.Option) (*s3control.PutBucketTaggingOutput, error)
+	PutBucketTaggingRequest(*s3control.PutBucketTaggingInput) (*request.Request, *s3control.PutBucketTaggingOutput)
 
 	PutJobTagging(*s3control.PutJobTaggingInput) (*s3control.PutJobTaggingOutput, error)
 	PutJobTaggingWithContext(aws.Context, *s3control.PutJobTaggingInput, ...request.Option) (*s3control.PutJobTaggingOutput, error)

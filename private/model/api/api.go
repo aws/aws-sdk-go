@@ -65,6 +65,10 @@ type API struct {
 
 	HasEndpointARN bool `json:"-"`
 
+	HasOutpostID bool `json:"-"`
+
+	HasAccountIdWithARN bool `json:"-"`
+
 	WithGeneratedTypedErrors bool
 }
 
@@ -332,7 +336,11 @@ func (a *API) APIGoCode() string {
 
 	if a.HasEndpointARN {
 		a.AddImport("fmt")
-		a.AddSDKImport("service", a.PackageName(), "internal", "arn")
+		if a.PackageName() == "s3" || a.PackageName() == "s3control" {
+			a.AddSDKImport("internal/s3shared/arn")
+		} else {
+			a.AddSDKImport("service", a.PackageName(), "internal", "arn")
+		}
 	}
 
 	var buf bytes.Buffer
