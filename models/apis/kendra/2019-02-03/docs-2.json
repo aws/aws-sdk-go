@@ -18,7 +18,7 @@
     "ListFaqs": "<p>Gets a list of FAQ lists associated with an index.</p>",
     "ListIndices": "<p>Lists the Amazon Kendra indexes that you have created.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with a specified resource. Indexes, FAQs, and data sources can have tags associated with them.</p>",
-    "Query": "<p>Searches an active index. Use this API to search your documents using query. The <code>Query</code> operation enables to do faceted search and to filter results based on document attributes.</p> <p>It also enables you to provide user context that Amazon Kendra uses to enforce document access control in the search results. </p> <p>Amazon Kendra searches your index for text content and question and answer (FAQ) content. By default the response contains three types of results.</p> <ul> <li> <p>Relevant passages</p> </li> <li> <p>Matching FAQs</p> </li> <li> <p>Relevant documents</p> </li> </ul> <p>You can specify that the query return only one type of result using the <code>QueryResultTypeConfig</code> parameter.</p>",
+    "Query": "<p>Searches an active index. Use this API to search your documents using query. The <code>Query</code> operation enables to do faceted search and to filter results based on document attributes.</p> <p>It also enables you to provide user context that Amazon Kendra uses to enforce document access control in the search results. </p> <p>Amazon Kendra searches your index for text content and question and answer (FAQ) content. By default the response contains three types of results.</p> <ul> <li> <p>Relevant passages</p> </li> <li> <p>Matching FAQs</p> </li> <li> <p>Relevant documents</p> </li> </ul> <p>You can specify that the query return only one type of result using the <code>QueryResultTypeConfig</code> parameter.</p> <p>Each query returns the 100 most relevant results. </p>",
     "StartDataSourceSyncJob": "<p>Starts a synchronization job for a data source. If a synchronization job is already in progress, Amazon Kendra returns a <code>ResourceInUseException</code> exception.</p>",
     "StopDataSourceSyncJob": "<p>Stops a running synchronization job. You can't stop a scheduled synchronization job.</p>",
     "SubmitFeedback": "<p>Enables you to provide feedback to Amazon Kendra to improve the performance of the service. </p>",
@@ -588,7 +588,8 @@
     "DocumentAttributeValueType": {
       "base": null,
       "refs": {
-        "DocumentMetadataConfiguration$Type": "<p>The data type of the index field. </p>"
+        "DocumentMetadataConfiguration$Type": "<p>The data type of the index field. </p>",
+        "FacetResult$DocumentAttributeValueType": "<p>The data type of the facet value. This is the same as the type defined for the index field when it was created.</p>"
       }
     },
     "DocumentId": {
@@ -780,7 +781,7 @@
     "IndexEdition": {
       "base": null,
       "refs": {
-        "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for your production databases. Once you set the edition for an index, it can't be changed. </p>",
+        "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for your production databases. Once you set the edition for an index, it can't be changed. </p> <p>The <code>Edition</code> parameter is optional. If you don't supply a value, the default is <code>ENTERPRISE_EDITION</code>.</p>",
         "DescribeIndexResponse$Edition": "<p>The Amazon Kendra edition used for the index. You decide the edition when you create the index.</p>",
         "IndexConfigurationSummary$Edition": "<p>Indicates whether the index is a enterprise edition index or a developer edition index. </p>"
       }
@@ -868,7 +869,7 @@
         "Highlight$EndOffset": "<p>The zero-based location in the response string where the highlight ends.</p>",
         "QueryRequest$PageNumber": "<p>Query results are returned in pages the size of the <code>PageSize</code> parameter. By default, Amazon Kendra returns the first page of results. Use this parameter to get result pages after the first one.</p>",
         "QueryRequest$PageSize": "<p>Sets the number of results that are returned in each page of results. The default page size is 10. The maximum number of results returned is 100. If you ask for more than 100 results, only 100 are returned.</p>",
-        "QueryResult$TotalNumberOfResults": "<p>The number of items returned by the search. Use this to determine when you have requested the last set of results.</p>"
+        "QueryResult$TotalNumberOfResults": "<p>The total number of items found by the search; however, you can only retrieve up to 100 items. For example, if the search found 192 items, you can only retrieve the first 100 of the items.</p>"
       }
     },
     "InternalServerException": {
@@ -1296,7 +1297,7 @@
     "ScoreAttributes": {
       "base": "<p>Provides a relative ranking that indicates how confident Amazon Kendra is that the response matches the query.</p>",
       "refs": {
-        "QueryResultItem$ScoreAttributes": "<p>Indicates the confidence that Amazon Kendra has that a result matches the query that you provided. Each result is placed into a bin that indicates the confidence, <code>VERY_HIGH</code>, <code>HIGH</code>, and <code>MEDIUM</code>. You can use the score to determine if a response meets the confidence needed for your application.</p> <p>Confidence scores are only returned for results with the <code>Type</code> field set to <code>QUESTION_ANSWER</code> or <code>ANSWER</code>. This field is not returned if the <code>Type</code> field is set to <code>DOCUMENT</code>.</p>"
+        "QueryResultItem$ScoreAttributes": "<p>Indicates the confidence that Amazon Kendra has that a result matches the query that you provided. Each result is placed into a bin that indicates the confidence, <code>VERY_HIGH</code>, <code>HIGH</code>, <code>MEDIUM</code> and <code>LOW</code>. You can use the score to determine if a response meets the confidence needed for your application.</p> <p>The field is only set to <code>LOW</code> when the <code>Type</code> field is set to <code>DOCUMENT</code> and Amazon Kendra is not confident that the result matches the query.</p>"
       }
     },
     "ScoreConfidence": {

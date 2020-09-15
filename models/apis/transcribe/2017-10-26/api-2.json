@@ -677,6 +677,7 @@
         "DownloadUri":{"shape":"Uri"}
       }
     },
+    "IdentifiedLanguageScore":{"type":"float"},
     "InputDataConfig":{
       "type":"structure",
       "required":[
@@ -764,6 +765,11 @@
         "FailureReason":{"shape":"FailureReason"},
         "InputDataConfig":{"shape":"InputDataConfig"}
       }
+    },
+    "LanguageOptions":{
+      "type":"list",
+      "member":{"shape":"LanguageCode"},
+      "min":2
     },
     "LimitExceededException":{
       "type":"structure",
@@ -1080,7 +1086,6 @@
       "type":"structure",
       "required":[
         "TranscriptionJobName",
-        "LanguageCode",
         "Media"
       ],
       "members":{
@@ -1094,7 +1099,9 @@
         "Settings":{"shape":"Settings"},
         "ModelSettings":{"shape":"ModelSettings"},
         "JobExecutionSettings":{"shape":"JobExecutionSettings"},
-        "ContentRedaction":{"shape":"ContentRedaction"}
+        "ContentRedaction":{"shape":"ContentRedaction"},
+        "IdentifyLanguage":{"shape":"Boolean"},
+        "LanguageOptions":{"shape":"LanguageOptions"}
       }
     },
     "StartTranscriptionJobResponse":{
@@ -1128,7 +1135,10 @@
         "Settings":{"shape":"Settings"},
         "ModelSettings":{"shape":"ModelSettings"},
         "JobExecutionSettings":{"shape":"JobExecutionSettings"},
-        "ContentRedaction":{"shape":"ContentRedaction"}
+        "ContentRedaction":{"shape":"ContentRedaction"},
+        "IdentifyLanguage":{"shape":"Boolean"},
+        "LanguageOptions":{"shape":"LanguageOptions"},
+        "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"}
       }
     },
     "TranscriptionJobName":{
@@ -1162,7 +1172,9 @@
         "FailureReason":{"shape":"FailureReason"},
         "OutputLocationType":{"shape":"OutputLocationType"},
         "ContentRedaction":{"shape":"ContentRedaction"},
-        "ModelSettings":{"shape":"ModelSettings"}
+        "ModelSettings":{"shape":"ModelSettings"},
+        "IdentifyLanguage":{"shape":"Boolean"},
+        "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"}
       }
     },
     "Type":{

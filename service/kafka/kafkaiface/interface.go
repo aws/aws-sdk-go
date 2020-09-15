@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Managed Streaming for Kafka.
 //    func myFunc(svc kafkaiface.KafkaAPI) bool {
-//        // Make svc.CreateCluster request
+//        // Make svc.BatchAssociateScramSecret request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockKafkaClient struct {
 //        kafkaiface.KafkaAPI
 //    }
-//    func (m *mockKafkaClient) CreateCluster(input *kafka.CreateClusterInput) (*kafka.CreateClusterOutput, error) {
+//    func (m *mockKafkaClient) BatchAssociateScramSecret(input *kafka.BatchAssociateScramSecretInput) (*kafka.BatchAssociateScramSecretOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,14 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type KafkaAPI interface {
+	BatchAssociateScramSecret(*kafka.BatchAssociateScramSecretInput) (*kafka.BatchAssociateScramSecretOutput, error)
+	BatchAssociateScramSecretWithContext(aws.Context, *kafka.BatchAssociateScramSecretInput, ...request.Option) (*kafka.BatchAssociateScramSecretOutput, error)
+	BatchAssociateScramSecretRequest(*kafka.BatchAssociateScramSecretInput) (*request.Request, *kafka.BatchAssociateScramSecretOutput)
+
+	BatchDisassociateScramSecret(*kafka.BatchDisassociateScramSecretInput) (*kafka.BatchDisassociateScramSecretOutput, error)
+	BatchDisassociateScramSecretWithContext(aws.Context, *kafka.BatchDisassociateScramSecretInput, ...request.Option) (*kafka.BatchDisassociateScramSecretOutput, error)
+	BatchDisassociateScramSecretRequest(*kafka.BatchDisassociateScramSecretInput) (*request.Request, *kafka.BatchDisassociateScramSecretOutput)
+
 	CreateCluster(*kafka.CreateClusterInput) (*kafka.CreateClusterOutput, error)
 	CreateClusterWithContext(aws.Context, *kafka.CreateClusterInput, ...request.Option) (*kafka.CreateClusterOutput, error)
 	CreateClusterRequest(*kafka.CreateClusterInput) (*request.Request, *kafka.CreateClusterOutput)
@@ -141,6 +149,13 @@ type KafkaAPI interface {
 
 	ListNodesPages(*kafka.ListNodesInput, func(*kafka.ListNodesOutput, bool) bool) error
 	ListNodesPagesWithContext(aws.Context, *kafka.ListNodesInput, func(*kafka.ListNodesOutput, bool) bool, ...request.Option) error
+
+	ListScramSecrets(*kafka.ListScramSecretsInput) (*kafka.ListScramSecretsOutput, error)
+	ListScramSecretsWithContext(aws.Context, *kafka.ListScramSecretsInput, ...request.Option) (*kafka.ListScramSecretsOutput, error)
+	ListScramSecretsRequest(*kafka.ListScramSecretsInput) (*request.Request, *kafka.ListScramSecretsOutput)
+
+	ListScramSecretsPages(*kafka.ListScramSecretsInput, func(*kafka.ListScramSecretsOutput, bool) bool) error
+	ListScramSecretsPagesWithContext(aws.Context, *kafka.ListScramSecretsInput, func(*kafka.ListScramSecretsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*kafka.ListTagsForResourceInput) (*kafka.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *kafka.ListTagsForResourceInput, ...request.Option) (*kafka.ListTagsForResourceOutput, error)

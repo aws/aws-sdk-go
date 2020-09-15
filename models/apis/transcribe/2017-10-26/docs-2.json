@@ -54,7 +54,10 @@
         "MedicalTranscriptionSetting$ShowAlternatives": "<p>Determines whether alternative transcripts are generated along with the transcript that has the highest confidence. If you set <code>ShowAlternatives</code> field to true, you must also set the maximum number of alternatives to return in the <code>MaxAlternatives</code> field.</p>",
         "Settings$ShowSpeakerLabels": "<p>Determines whether the transcription job uses speaker recognition to identify different speakers in the input audio. Speaker recognition labels individual speakers in the audio file. If you set the <code>ShowSpeakerLabels</code> field to true, you must also set the maximum number of speaker labels <code>MaxSpeakerLabels</code> field.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
         "Settings$ChannelIdentification": "<p>Instructs Amazon Transcribe to process each audio channel separately and then merge the transcription output of each channel into a single transcription. </p> <p>Amazon Transcribe also produces a transcription of each item detected on an audio channel, including the start time and end time of the item and alternative transcriptions of the item including the confidence that Amazon Transcribe has in the transcription.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
-        "Settings$ShowAlternatives": "<p>Determines whether the transcription contains alternative transcriptions. If you set the <code>ShowAlternatives</code> field to true, you must also set the maximum number of alternatives to return in the <code>MaxAlternatives</code> field.</p>"
+        "Settings$ShowAlternatives": "<p>Determines whether the transcription contains alternative transcriptions. If you set the <code>ShowAlternatives</code> field to true, you must also set the maximum number of alternatives to return in the <code>MaxAlternatives</code> field.</p>",
+        "StartTranscriptionJobRequest$IdentifyLanguage": "<p>Set this field to <code>true</code> to enable automatic language identification. Automatic language identification is disabled by default. You receive a <code>BadRequestException</code> error if you enter a value for a <code>LanguageCode</code>.</p>",
+        "TranscriptionJob$IdentifyLanguage": "<p>A value that shows if automatic language identification was enabled for a transcription job.</p>",
+        "TranscriptionJobSummary$IdentifyLanguage": "<p>Whether automatic language identification was enabled for a transcription job.</p>"
       }
     },
     "CLMLanguageCode": {
@@ -260,6 +263,13 @@
       "refs": {
       }
     },
+    "IdentifiedLanguageScore": {
+      "base": null,
+      "refs": {
+        "TranscriptionJob$IdentifiedLanguageScore": "<p>The score that Amazon Transcribe gives for the predominant language that it identified in your collection of source audio files. This score reflects the confidence that the language that Amazon Transcribe identified is the correct language.</p>",
+        "TranscriptionJobSummary$IdentifiedLanguageScore": "<p>A value between zero and one that Amazon Transcribe assigned to the language it identified in the source audio. A higher score indicates that Amazon Transcribe is more confident in the language it identified.</p>"
+      }
+    },
     "InputDataConfig": {
       "base": "<p>The object that contains the Amazon S3 object location and access role required to train and tune your custom language model.</p>",
       "refs": {
@@ -299,6 +309,7 @@
         "GetMedicalVocabularyResponse$LanguageCode": "<p>The valid language code for your vocabulary entries.</p>",
         "GetVocabularyFilterResponse$LanguageCode": "<p>The language code of the words in the vocabulary filter.</p>",
         "GetVocabularyResponse$LanguageCode": "<p>The language code of the vocabulary entries.</p>",
+        "LanguageOptions$member": null,
         "MedicalTranscriptionJob$LanguageCode": "<p>The language code for the language spoken in the source audio file. US English (en-US) is the only supported language for medical transcriptions. Any other value you enter for language code results in a <code>BadRequestException</code> error.</p>",
         "MedicalTranscriptionJobSummary$LanguageCode": "<p>The language of the transcript in the source audio file.</p>",
         "StartMedicalTranscriptionJobRequest$LanguageCode": "<p>The language code for the language spoken in the input media file. US English (en-US) is the valid value for medical transcription jobs. Any other value you enter for language code results in a <code>BadRequestException</code> error.</p>",
@@ -319,6 +330,13 @@
       "refs": {
         "DescribeLanguageModelResponse$LanguageModel": "<p>The name of the custom language model you requested more information about.</p>",
         "Models$member": null
+      }
+    },
+    "LanguageOptions": {
+      "base": null,
+      "refs": {
+        "StartTranscriptionJobRequest$LanguageOptions": "<p>An object containing a list of languages that might be present in your collection of audio files. Automatic language identification chooses a language that best matches the source audio from that list.</p>",
+        "TranscriptionJob$LanguageOptions": "<p>An object that shows the optional array of languages inputted for transcription jobs with automatic language identification enabled.</p>"
       }
     },
     "LimitExceededException": {

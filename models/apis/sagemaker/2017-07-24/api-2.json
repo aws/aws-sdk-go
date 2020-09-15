@@ -5497,7 +5497,8 @@
     "LabelingJobDataSource":{
       "type":"structure",
       "members":{
-        "S3DataSource":{"shape":"LabelingJobS3DataSource"}
+        "S3DataSource":{"shape":"LabelingJobS3DataSource"},
+        "SnsDataSource":{"shape":"LabelingJobSnsDataSource"}
       }
     },
     "LabelingJobForWorkteamSummary":{
@@ -5547,7 +5548,8 @@
       "required":["S3OutputPath"],
       "members":{
         "S3OutputPath":{"shape":"S3Uri"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "SnsTopicArn":{"shape":"SnsTopicArn"}
       }
     },
     "LabelingJobResourceConfig":{
@@ -5561,6 +5563,13 @@
       "required":["ManifestS3Uri"],
       "members":{
         "ManifestS3Uri":{"shape":"S3Uri"}
+      }
+    },
+    "LabelingJobSnsDataSource":{
+      "type":"structure",
+      "required":["SnsTopicArn"],
+      "members":{
+        "SnsTopicArn":{"shape":"SnsTopicArn"}
       }
     },
     "LabelingJobStatus":{
@@ -8097,6 +8106,11 @@
     "SingleSignOnUserIdentifier":{
       "type":"string",
       "pattern":"UserName"
+    },
+    "SnsTopicArn":{
+      "type":"string",
+      "max":2048,
+      "pattern":"arn:aws[a-z\\-]*:sns:[a-z0-9\\-]*:[0-9]{12}:[a-zA-Z0-9_.-]*"
     },
     "SortBy":{
       "type":"string",

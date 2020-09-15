@@ -1080,6 +1080,8 @@ func ExampleOrganizations_InviteAccountToOrganization_shared00() {
 				fmt.Println(organizations.ErrCodeHandshakeConstraintViolationException, aerr.Error())
 			case organizations.ErrCodeDuplicateHandshakeException:
 				fmt.Println(organizations.ErrCodeDuplicateHandshakeException, aerr.Error())
+			case organizations.ErrCodeConstraintViolationException:
+				fmt.Println(organizations.ErrCodeConstraintViolationException, aerr.Error())
 			case organizations.ErrCodeInvalidInputException:
 				fmt.Println(organizations.ErrCodeInvalidInputException, aerr.Error())
 			case organizations.ErrCodeFinalizingOrganizationException:

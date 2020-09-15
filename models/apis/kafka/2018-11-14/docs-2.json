@@ -2,6 +2,7 @@
   "version" : "2.0",
   "service" : "<p>The operations for managing an Amazon MSK cluster.</p>",
   "operations" : {
+    "BatchAssociateScramSecret" : "<p>Associates one or more Scram Secrets with an Amazon MSK cluster.</p>",
     "CreateCluster" : "<p>Creates a new MSK cluster.</p>",
     "CreateConfiguration" : "<p>Creates a new MSK configuration.</p>",
     "DeleteCluster" : "<p>Deletes the MSK cluster specified by the Amazon Resource Name (ARN) in the request.</p>",
@@ -10,6 +11,7 @@
     "DescribeClusterOperation" : "<p>Returns a description of the cluster operation specified by the ARN.</p>",
     "DescribeConfiguration" : "<p>Returns a description of this MSK configuration.</p>",
     "DescribeConfigurationRevision" : "<p>Returns a description of this revision of the configuration.</p>",
+    "BatchDisassociateScramSecret" : "<p>Disassociates one or more Scram Secrets from an Amazon MSK cluster.</p>",
     "GetBootstrapBrokers" : "<p>A list of brokers that a client application can use to bootstrap.</p>",
     "GetCompatibleKafkaVersions" : "<p>Gets the Apache Kafka versions to which you can update the MSK cluster.</p>",
     "ListClusterOperations" : "<p>Returns a list of all the operations that have been performed on the specified MSK cluster.</p>",
@@ -18,6 +20,7 @@
     "ListConfigurations" : "<p>Returns a list of all the MSK configurations in this Region.</p>",
     "ListKafkaVersions" : "<p>Returns a list of Kafka versions.</p>",
     "ListNodes" : "<p>Returns a list of the broker nodes in the cluster.</p>",
+    "ListScramSecrets" : "<p>Returns a list of the Scram Secrets associated with an Amazon MSK cluster.</p>",
     "ListTagsForResource" : "<p>Returns a list of the tags associated with the specified resource.</p>",
     "RebootBroker" : "<p>Executes a reboot on a broker.</p>",
     "TagResource" : "<p>Adds tags to the specified MSK resource.</p>",
@@ -30,6 +33,14 @@
     "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>"
   },
   "shapes" : {
+    "BatchAssociateScramSecretRequest" : {
+      "base" : "<p>Request body for BatchAssociateScramSecret.</p>",
+      "refs" : { }
+    },
+    "BatchAssociateScramSecretResponse" : {
+      "base" : "<p>Response body for BatchAssociateScramSecret.</p>",
+      "refs" : { }
+    },
     "BadRequestException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
@@ -211,6 +222,14 @@
       "base" : "<p>Response body for DescribeConfigurationRevision.</p>",
       "refs" : { }
     },
+    "BatchDisassociateScramSecretRequest" : {
+      "base" : "<p>Request body for BatchDisassociateScramSecret.</p>",
+      "refs" : { }
+    },
+    "BatchDisassociateScramSecretResponse" : {
+      "base" : "<p>Response body for BatchDisassociateScramSecret.</p>",
+      "refs" : { }
+    },
     "EBSStorageInfo" : {
       "base" : "<p>Contains information about the EBS storage volumes attached to Kafka broker nodes.</p>",
       "refs" : {
@@ -323,6 +342,10 @@
     },
     "ListNodesResponse" : {
       "base" : "<p>Information about nodes in the cluster.</p>",
+      "refs" : { }
+    },
+    "ListScramSecretsResponse" : {
+      "base" : "<p>Information about scram secrets associated to the cluster.</p>",
       "refs" : { }
     },
     "ListTagsForResourceResponse" : {
@@ -598,15 +621,25 @@
         "ListNodesResponse$NodeInfoList" : "<p>List containing a NodeInfo object.</p>"
       }
     },
+    "__listOfUnprocessedScramSecret" : {
+      "base" : null,
+      "refs" : {
+        "BatchAssociateScramSecretResponse$UnprocessedScramSecrets" : "<p>List of errors when associating secrets to cluster.</p>",
+        "BatchDisassociateScramSecretResponse$UnprocessedScramSecrets" : "<p>List of errors when disassociating secrets to cluster.</p>"
+      }
+    },
     "__listOf__string" : {
       "base" : null,
       "refs" : {
+        "BatchAssociateScramSecretRequest$SecretArnList" : "<p>List of AWS Secrets Manager secret ARNs.</p>",
         "BrokerNodeGroupInfo$ClientSubnets" : "<p>The list of subnets to connect to in the client virtual private cloud (VPC). AWS creates elastic network interfaces inside these subnets. Client applications use elastic network interfaces to produce and consume data. Client subnets can't be in Availability Zone us-east-1e.</p>",
         "BrokerNodeGroupInfo$SecurityGroups" : "<p>The AWS security groups to associate with the elastic network interfaces in order to specify who can connect to and communicate with the Amazon MSK cluster. If you don't specify a security group, Amazon MSK uses the default security group associated with the VPC. If you specify security groups that were shared with you, you must ensure that you have permissions to them. Specifically, you need the ec2:DescribeSecurityGroups permission.</p>",
         "BrokerNodeInfo$Endpoints" : "<p>Endpoints for accessing the broker.</p>",
         "Configuration$KafkaVersions" : "<p>An array of the versions of Apache Kafka with which you can use this MSK configuration. You can use this configuration for an MSK cluster only if the Apache Kafka version specified for the cluster appears in this array.</p>",
         "CreateConfigurationRequest$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
         "DescribeConfigurationResponse$KafkaVersions" : "<p>The versions of Apache Kafka with which you can use this MSK configuration.</p>",
+        "BatchDisassociateScramSecretRequest$SecretArnList" : "<p>List of AWS Secrets Manager secret ARNs.</p>",
+        "ListScramSecretsResponse$SecretArnList" : "<p>The list of scram secrets associated with the cluster.</p>",
         "RebootBrokerRequest$BrokerIds" : "<p>The list of broker ids to be rebooted.</p>",
         "Tls$CertificateAuthorityArnList" : "<p>List of ACM Certificate Authority ARNs.</p>",
         "ZookeeperNodeInfo$Endpoints" : "<p>Endpoints for accessing the ZooKeeper.</p>"
@@ -633,6 +666,7 @@
     "__string" : {
       "base" : null,
       "refs" : {
+        "BatchAssociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "BrokerEBSVolumeInfo$KafkaBrokerNodeId" : "<p>The ID of the broker to update.</p>",
         "BrokerNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "BrokerNodeInfo$ClientSubnet" : "<p>The client subnet to which this broker node belongs.</p>",
@@ -671,6 +705,7 @@
         "DescribeConfigurationResponse$Name" : "<p>The name of the configuration. Configuration names are strings that match the regex \"^[0-9A-Za-z-]+$\".</p>",
         "DescribeConfigurationRevisionResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the configuration.</p>",
         "DescribeConfigurationRevisionResponse$Description" : "<p>The description of the configuration.</p>",
+        "BatchDisassociateScramSecretResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "EncryptionAtRest$DataVolumeKMSKeyId" : "<p>The ARN of the AWS KMS key for encrypting data at rest. If you don't specify a KMS key, MSK creates one for you and uses it.</p>",
         "Error$InvalidParameter" : "<p>The parameter that caused the error.</p>",
         "Error$Message" : "<p>The description of the error.</p>",
@@ -679,6 +714,7 @@
         "Firehose$DeliveryStream" : "<p>The Kinesis Data Firehose delivery stream that is the destination for broker logs.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerString" : "<p>A string containing one or more hostname:port pairs.</p>",
         "GetBootstrapBrokersResponse$BootstrapBrokerStringTls" : "<p>A string containing one or more DNS names (or IP) and TLS port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringTls\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9094\"\n}</programlisting>",
+        "GetBootstrapBrokersResponse$BootstrapBrokerStringSaslScram" : "<p>A string containing one or more DNS names (or IP) and SASL SCRAM port pairs. The following is an example.</p> <programlisting>{\n    \"BootstrapBrokerStringSaslScram\": \"b-3.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-1.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096,b-2.exampleClusterName.abcde.c2.kafka.us-east-1.amazonaws.com:9096\"\n}</programlisting>",
         "KafkaVersion$Version" : "<p>The Kafka version.</p>",
         "ListClusterOperationsResponse$NextToken" : "<p>If the response of ListClusterOperations is truncated, it returns a NextToken in the response. This Nexttoken should be sent in the subsequent request to ListClusterOperations.</p>",
         "ListClustersResponse$NextToken" : "<p>The paginated results marker. When the result of a ListClusters operation is truncated, the call returns NextToken in the response. To get another batch of clusters, provide this token in your next request.</p>",
@@ -686,6 +722,7 @@
         "ListConfigurationsResponse$NextToken" : "<p>The paginated results marker. When the result of a ListConfigurations operation is truncated, the call returns NextToken in the response. To get another batch of configurations, provide this token in your next request.</p>",
         "ListKafkaVersionsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "ListNodesResponse$NextToken" : "<p>The paginated results marker. When the result of a ListNodes operation is truncated, the call returns NextToken in the response. To get another batch of nodes, provide this token in your next request.</p>",
+        "ListScramSecretsResponse$NextToken" : "<p>Paginated results marker.</p>",
         "NodeInfo$AddedToClusterTime" : "<p>The start time.</p>",
         "NodeInfo$InstanceType" : "<p>The instance type.</p>",
         "NodeInfo$NodeARN" : "<p>The Amazon Resource Name (ARN) of the node.</p>",

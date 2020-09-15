@@ -43,7 +43,7 @@
       }
     },
     "Budget": {
-      "base": "<p>Represents the output of the <code>CreateBudget</code> operation. The content consists of the detailed metadata and data file information, and the current status of the <code>budget</code> object.</p> <p>This is the ARN pattern for a budget: </p> <p> <code>arn:aws:budgetservice::AccountId:budget/budgetName</code> </p>",
+      "base": "<p>Represents the output of the <code>CreateBudget</code> operation. The content consists of the detailed metadata and data file information, and the current status of the <code>budget</code> object.</p> <p>This is the ARN pattern for a budget: </p> <p> <code>arn:aws:budgets::AccountId:budget/budgetName</code> </p>",
       "refs": {
         "Budgets$member": null,
         "CreateBudgetRequest$Budget": "<p>The budget object that you want to create.</p>",
@@ -76,7 +76,7 @@
       }
     },
     "BudgetType": {
-      "base": "<p> The type of a budget. It must be one of the following types: </p> <p> <code>COST</code>, <code>USAGE</code>, <code>RI_UTILIZATION</code>, or <code>RI_COVERAGE</code>.</p>",
+      "base": "<p> The type of a budget. It must be one of the following types: </p> <p> <code>COST</code>, <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, or <code>SAVINGS_PLANS_COVERAGE</code>.</p>",
       "refs": {
         "Budget$BudgetType": "<p>Whether this budget tracks costs, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage.</p>",
         "BudgetPerformanceHistory$BudgetType": null
@@ -101,7 +101,7 @@
       }
     },
     "CalculatedSpend": {
-      "base": "<p>The spend objects that are associated with this budget. The <code>actualSpend</code> tracks how much you've used, cost, usage, or RI units, and the <code>forecastedSpend</code> tracks how much you are predicted to spend if your current usage remains steady.</p> <p>For example, if it is the 20th of the month and you have spent <code>50</code> dollars on Amazon EC2, your <code>actualSpend</code> is <code>50 USD</code>, and your <code>forecastedSpend</code> is <code>75 USD</code>.</p>",
+      "base": "<p>The spend objects that are associated with this budget. The <code>actualSpend</code> tracks how much you've used, cost, usage, RI units, or Savings Plans units and the <code>forecastedSpend</code> tracks how much you are predicted to spend based on your historical usage profile.</p> <p>For example, if it is the 20th of the month and you have spent <code>50</code> dollars on Amazon EC2, your <code>actualSpend</code> is <code>50 USD</code>, and your <code>forecastedSpend</code> is <code>75 USD</code>.</p>",
       "refs": {
         "Budget$CalculatedSpend": "<p>The actual and forecasted cost or usage that the budget tracks.</p>"
       }
@@ -120,9 +120,9 @@
       }
     },
     "CostTypes": {
-      "base": "<p>The types of cost that are included in a <code>COST</code> budget, such as tax and subscriptions.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, and <code>RI_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
+      "base": "<p>The types of cost that are included in a <code>COST</code> budget, such as tax and subscriptions.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, and <code>SAVINGS_PLANS_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
       "refs": {
-        "Budget$CostTypes": "<p>The types of costs that are included in this <code>COST</code> budget.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>Savings_Plans_Utilization</code>, and <code>Savings_Plans_Coverage</code> budgets do not have <code>CostTypes</code>.</p>",
+        "Budget$CostTypes": "<p>The types of costs that are included in this <code>COST</code> budget.</p> <p> <code>USAGE</code>, <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>SAVINGS_PLANS_UTILIZATION</code>, and <code>SAVINGS_PLANS_COVERAGE</code> budgets do not have <code>CostTypes</code>.</p>",
         "BudgetPerformanceHistory$CostTypes": "<p>The history of the cost types for a budget during the specified time period.</p>"
       }
     },
@@ -311,7 +311,7 @@
       }
     },
     "Notification": {
-      "base": "<p>A notification that is associated with a budget. A budget can have up to five notifications. </p> <p>Each notification must have at least one subscriber. A notification can have one SNS subscriber and up to 10 email subscribers, for a total of 11 subscribers.</p> <p>For example, if you have a budget for 200 dollars and you want to be notified when you go over 160 dollars, create a notification with the following parameters:</p> <ul> <li> <p>A notificationType of <code>ACTUAL</code> </p> </li> <li> <p>A <code>thresholdType</code> of <code>PERCENTAGE</code> </p> </li> <li> <p>A <code>comparisonOperator</code> of <code>GREATER_THAN</code> </p> </li> <li> <p>A notification <code>threshold</code> of <code>80</code> </p> </li> </ul>",
+      "base": "<p>A notification that is associated with a budget. A budget can have up to ten notifications. </p> <p>Each notification must have at least one subscriber. A notification can have one SNS subscriber and up to 10 email subscribers, for a total of 11 subscribers.</p> <p>For example, if you have a budget for 200 dollars and you want to be notified when you go over 160 dollars, create a notification with the following parameters:</p> <ul> <li> <p>A notificationType of <code>ACTUAL</code> </p> </li> <li> <p>A <code>thresholdType</code> of <code>PERCENTAGE</code> </p> </li> <li> <p>A <code>comparisonOperator</code> of <code>GREATER_THAN</code> </p> </li> <li> <p>A notification <code>threshold</code> of <code>80</code> </p> </li> </ul>",
       "refs": {
         "CreateNotificationRequest$Notification": "<p>The notification that you want to create.</p>",
         "CreateSubscriberRequest$Notification": "<p>The notification that you want to create a subscriber for.</p>",
@@ -334,7 +334,7 @@
     "NotificationThreshold": {
       "base": "<p> The threshold of a notification. It must be a number between 0 and 1,000,000,000.</p>",
       "refs": {
-        "Notification$Threshold": "<p>The threshold that is associated with a notification. Thresholds are always a percentage.</p>"
+        "Notification$Threshold": "<p>The threshold that is associated with a notification. Thresholds are always a percentage, and many customers find value being alerted between 50% - 200% of the budgeted amount. The maximum limit for your threshold is 1,000,000% above the budgeted amount.</p>"
       }
     },
     "NotificationType": {
@@ -395,8 +395,8 @@
         "Budget$BudgetLimit": "<p>The total amount of cost, usage, RI utilization, RI coverage, Savings Plans utilization, or Savings Plans coverage that you want to track with your budget.</p> <p> <code>BudgetLimit</code> is required for cost or usage budgets, but optional for RI or Savings Plans utilization or coverage budgets. RI and Savings Plans utilization or coverage budgets default to <code>100</code>, which is the only valid value for RI or Savings Plans utilization or coverage budgets. You can't use <code>BudgetLimit</code> with <code>PlannedBudgetLimits</code> for <code>CreateBudget</code> and <code>UpdateBudget</code> actions. </p>",
         "BudgetedAndActualAmounts$BudgetedAmount": "<p>The amount of cost or usage that you created the budget for.</p>",
         "BudgetedAndActualAmounts$ActualAmount": "<p>Your actual costs or usage for a budget period.</p>",
-        "CalculatedSpend$ActualSpend": "<p>The amount of cost, usage, or RI units that you have used.</p>",
-        "CalculatedSpend$ForecastedSpend": "<p>The amount of cost, usage, or RI units that you are forecasted to use.</p>",
+        "CalculatedSpend$ActualSpend": "<p>The amount of cost, usage, RI units, or Savings Plans units that you have used.</p>",
+        "CalculatedSpend$ForecastedSpend": "<p>The amount of cost, usage, RI units, or Savings Plans units that you are forecasted to use.</p>",
         "PlannedBudgetLimits$value": null
       }
     },
@@ -447,7 +447,7 @@
     "TimeUnit": {
       "base": "<p> The time unit of the budget, such as MONTHLY or QUARTERLY.</p>",
       "refs": {
-        "Budget$TimeUnit": "<p>The length of time until a budget resets the actual and forecasted spend. <code>DAILY</code> is available only for <code>RI_UTILIZATION</code>, <code>RI_COVERAGE</code>, <code>Savings_Plans_Utilization</code>, and <code>Savings_Plans_Coverage</code> budgets.</p>",
+        "Budget$TimeUnit": "<p>The length of time until a budget resets the actual and forecasted spend.</p>",
         "BudgetPerformanceHistory$TimeUnit": null
       }
     },
