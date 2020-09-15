@@ -528,6 +528,7 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"HandshakeConstraintViolationException"},
         {"shape":"DuplicateHandshakeException"},
+        {"shape":"ConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"FinalizingOrganizationException"},
         {"shape":"ServiceException"},
@@ -1223,7 +1224,8 @@
         "Email":{"shape":"Email"},
         "AccountName":{"shape":"AccountName"},
         "RoleName":{"shape":"RoleName"},
-        "IamUserAccessToBilling":{"shape":"IAMUserAccessToBilling"}
+        "IamUserAccessToBilling":{"shape":"IAMUserAccessToBilling"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateAccountRequestId":{
@@ -1283,7 +1285,8 @@
         "Email":{"shape":"Email"},
         "AccountName":{"shape":"AccountName"},
         "RoleName":{"shape":"RoleName"},
-        "IamUserAccessToBilling":{"shape":"IAMUserAccessToBilling"}
+        "IamUserAccessToBilling":{"shape":"IAMUserAccessToBilling"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateGovCloudAccountResponse":{
@@ -1312,7 +1315,8 @@
       ],
       "members":{
         "ParentId":{"shape":"ParentId"},
-        "Name":{"shape":"OrganizationalUnitName"}
+        "Name":{"shape":"OrganizationalUnitName"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreateOrganizationalUnitResponse":{
@@ -1333,7 +1337,8 @@
         "Content":{"shape":"PolicyContent"},
         "Description":{"shape":"PolicyDescription"},
         "Name":{"shape":"PolicyName"},
-        "Type":{"shape":"PolicyType"}
+        "Type":{"shape":"PolicyType"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "CreatePolicyResponse":{
@@ -1850,6 +1855,7 @@
         "UNRECOGNIZED_SERVICE_PRINCIPAL",
         "INVALID_ROLE_NAME",
         "INVALID_SYSTEM_TAGS_PARAMETER",
+        "DUPLICATE_TAG_KEY",
         "TARGET_NOT_SUPPORTED"
       ]
     },
@@ -1858,7 +1864,8 @@
       "required":["Target"],
       "members":{
         "Target":{"shape":"HandshakeParty"},
-        "Notes":{"shape":"HandshakeNotes"}
+        "Notes":{"shape":"HandshakeNotes"},
+        "Tags":{"shape":"Tags"}
       }
     },
     "InviteAccountToOrganizationResponse":{
@@ -2523,8 +2530,8 @@
     },
     "TaggableResourceId":{
       "type":"string",
-      "max":12,
-      "pattern":"^\\d{12}$"
+      "max":130,
+      "pattern":"^(r-[0-9a-z]{4,32})|(\\d{12})|(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32})|(^p-[0-9a-zA-Z_]{8,128})$"
     },
     "Tags":{
       "type":"list",

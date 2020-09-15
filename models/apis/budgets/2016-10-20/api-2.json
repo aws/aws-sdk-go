@@ -651,7 +651,7 @@
     },
     "NotificationThreshold":{
       "type":"double",
-      "max":1000000000,
+      "max":40000000000,
       "min":0
     },
     "NotificationType":{
@@ -675,7 +675,7 @@
     "NotificationWithSubscribersList":{
       "type":"list",
       "member":{"shape":"NotificationWithSubscribers"},
-      "max":5
+      "max":10
     },
     "Notifications":{
       "type":"list",

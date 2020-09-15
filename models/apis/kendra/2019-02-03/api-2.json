@@ -1195,6 +1195,7 @@
       "type":"structure",
       "members":{
         "DocumentAttributeKey":{"shape":"DocumentAttributeKey"},
+        "DocumentAttributeValueType":{"shape":"DocumentAttributeValueType"},
         "DocumentAttributeValueCountPairs":{"shape":"DocumentAttributeValueCountPairList"}
       }
     },
@@ -1887,7 +1888,8 @@
       "enum":[
         "VERY_HIGH",
         "HIGH",
-        "MEDIUM"
+        "MEDIUM",
+        "LOW"
       ]
     },
     "Search":{

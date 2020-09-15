@@ -92,17 +92,29 @@ type BudgetsAPI interface {
 	DescribeBudgetPerformanceHistoryWithContext(aws.Context, *budgets.DescribeBudgetPerformanceHistoryInput, ...request.Option) (*budgets.DescribeBudgetPerformanceHistoryOutput, error)
 	DescribeBudgetPerformanceHistoryRequest(*budgets.DescribeBudgetPerformanceHistoryInput) (*request.Request, *budgets.DescribeBudgetPerformanceHistoryOutput)
 
+	DescribeBudgetPerformanceHistoryPages(*budgets.DescribeBudgetPerformanceHistoryInput, func(*budgets.DescribeBudgetPerformanceHistoryOutput, bool) bool) error
+	DescribeBudgetPerformanceHistoryPagesWithContext(aws.Context, *budgets.DescribeBudgetPerformanceHistoryInput, func(*budgets.DescribeBudgetPerformanceHistoryOutput, bool) bool, ...request.Option) error
+
 	DescribeBudgets(*budgets.DescribeBudgetsInput) (*budgets.DescribeBudgetsOutput, error)
 	DescribeBudgetsWithContext(aws.Context, *budgets.DescribeBudgetsInput, ...request.Option) (*budgets.DescribeBudgetsOutput, error)
 	DescribeBudgetsRequest(*budgets.DescribeBudgetsInput) (*request.Request, *budgets.DescribeBudgetsOutput)
+
+	DescribeBudgetsPages(*budgets.DescribeBudgetsInput, func(*budgets.DescribeBudgetsOutput, bool) bool) error
+	DescribeBudgetsPagesWithContext(aws.Context, *budgets.DescribeBudgetsInput, func(*budgets.DescribeBudgetsOutput, bool) bool, ...request.Option) error
 
 	DescribeNotificationsForBudget(*budgets.DescribeNotificationsForBudgetInput) (*budgets.DescribeNotificationsForBudgetOutput, error)
 	DescribeNotificationsForBudgetWithContext(aws.Context, *budgets.DescribeNotificationsForBudgetInput, ...request.Option) (*budgets.DescribeNotificationsForBudgetOutput, error)
 	DescribeNotificationsForBudgetRequest(*budgets.DescribeNotificationsForBudgetInput) (*request.Request, *budgets.DescribeNotificationsForBudgetOutput)
 
+	DescribeNotificationsForBudgetPages(*budgets.DescribeNotificationsForBudgetInput, func(*budgets.DescribeNotificationsForBudgetOutput, bool) bool) error
+	DescribeNotificationsForBudgetPagesWithContext(aws.Context, *budgets.DescribeNotificationsForBudgetInput, func(*budgets.DescribeNotificationsForBudgetOutput, bool) bool, ...request.Option) error
+
 	DescribeSubscribersForNotification(*budgets.DescribeSubscribersForNotificationInput) (*budgets.DescribeSubscribersForNotificationOutput, error)
 	DescribeSubscribersForNotificationWithContext(aws.Context, *budgets.DescribeSubscribersForNotificationInput, ...request.Option) (*budgets.DescribeSubscribersForNotificationOutput, error)
 	DescribeSubscribersForNotificationRequest(*budgets.DescribeSubscribersForNotificationInput) (*request.Request, *budgets.DescribeSubscribersForNotificationOutput)
+
+	DescribeSubscribersForNotificationPages(*budgets.DescribeSubscribersForNotificationInput, func(*budgets.DescribeSubscribersForNotificationOutput, bool) bool) error
+	DescribeSubscribersForNotificationPagesWithContext(aws.Context, *budgets.DescribeSubscribersForNotificationInput, func(*budgets.DescribeSubscribersForNotificationOutput, bool) bool, ...request.Option) error
 
 	UpdateBudget(*budgets.UpdateBudgetInput) (*budgets.UpdateBudgetOutput, error)
 	UpdateBudgetWithContext(aws.Context, *budgets.UpdateBudgetInput, ...request.Option) (*budgets.UpdateBudgetOutput, error)

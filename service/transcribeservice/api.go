@@ -6496,6 +6496,11 @@ type StartTranscriptionJobInput struct {
 	// An object that contains the request parameters for content redaction.
 	ContentRedaction *ContentRedaction `type:"structure"`
 
+	// Set this field to true to enable automatic language identification. Automatic
+	// language identification is disabled by default. You receive a BadRequestException
+	// error if you enter a value for a LanguageCode.
+	IdentifyLanguage *bool `type:"boolean"`
+
 	// Provides information about how a transcription job is executed. Use this
 	// field to indicate that the job can be queued for deferred execution if the
 	// concurrency limit is reached and there are no slots available to immediately
@@ -6503,9 +6508,12 @@ type StartTranscriptionJobInput struct {
 	JobExecutionSettings *JobExecutionSettings `type:"structure"`
 
 	// The language code for the language used in the input media file.
-	//
-	// LanguageCode is a required field
-	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// An object containing a list of languages that might be present in your collection
+	// of audio files. Automatic language identification chooses a language that
+	// best matches the source audio from that list.
+	LanguageOptions []*string `min:"2" type:"list"`
 
 	// An object that describes the input media for a transcription job.
 	//
@@ -6601,8 +6609,8 @@ func (s StartTranscriptionJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartTranscriptionJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartTranscriptionJobInput"}
-	if s.LanguageCode == nil {
-		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	if s.LanguageOptions != nil && len(s.LanguageOptions) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 2))
 	}
 	if s.Media == nil {
 		invalidParams.Add(request.NewErrParamRequired("Media"))
@@ -6657,6 +6665,12 @@ func (s *StartTranscriptionJobInput) SetContentRedaction(v *ContentRedaction) *S
 	return s
 }
 
+// SetIdentifyLanguage sets the IdentifyLanguage field's value.
+func (s *StartTranscriptionJobInput) SetIdentifyLanguage(v bool) *StartTranscriptionJobInput {
+	s.IdentifyLanguage = &v
+	return s
+}
+
 // SetJobExecutionSettings sets the JobExecutionSettings field's value.
 func (s *StartTranscriptionJobInput) SetJobExecutionSettings(v *JobExecutionSettings) *StartTranscriptionJobInput {
 	s.JobExecutionSettings = v
@@ -6666,6 +6680,12 @@ func (s *StartTranscriptionJobInput) SetJobExecutionSettings(v *JobExecutionSett
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartTranscriptionJobInput) SetLanguageCode(v string) *StartTranscriptionJobInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageOptions sets the LanguageOptions field's value.
+func (s *StartTranscriptionJobInput) SetLanguageOptions(v []*string) *StartTranscriptionJobInput {
+	s.LanguageOptions = v
 	return s
 }
 
@@ -6832,11 +6852,25 @@ type TranscriptionJob struct {
 	//    in the Amazon Web Services General Reference.
 	FailureReason *string `type:"string"`
 
+	// The score that Amazon Transcribe gives for the predominant language that
+	// it identified in your collection of source audio files. This score reflects
+	// the confidence that the language that Amazon Transcribe identified is the
+	// correct language.
+	IdentifiedLanguageScore *float64 `type:"float"`
+
+	// A value that shows if automatic language identification was enabled for a
+	// transcription job.
+	IdentifyLanguage *bool `type:"boolean"`
+
 	// Provides information about how a transcription job is executed.
 	JobExecutionSettings *JobExecutionSettings `type:"structure"`
 
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// An object that shows the optional array of languages inputted for transcription
+	// jobs with automatic language identification enabled.
+	LanguageOptions []*string `min:"2" type:"list"`
 
 	// An object that describes the input media for the transcription job.
 	Media *Media `type:"structure"`
@@ -6903,6 +6937,18 @@ func (s *TranscriptionJob) SetFailureReason(v string) *TranscriptionJob {
 	return s
 }
 
+// SetIdentifiedLanguageScore sets the IdentifiedLanguageScore field's value.
+func (s *TranscriptionJob) SetIdentifiedLanguageScore(v float64) *TranscriptionJob {
+	s.IdentifiedLanguageScore = &v
+	return s
+}
+
+// SetIdentifyLanguage sets the IdentifyLanguage field's value.
+func (s *TranscriptionJob) SetIdentifyLanguage(v bool) *TranscriptionJob {
+	s.IdentifyLanguage = &v
+	return s
+}
+
 // SetJobExecutionSettings sets the JobExecutionSettings field's value.
 func (s *TranscriptionJob) SetJobExecutionSettings(v *JobExecutionSettings) *TranscriptionJob {
 	s.JobExecutionSettings = v
@@ -6912,6 +6958,12 @@ func (s *TranscriptionJob) SetJobExecutionSettings(v *JobExecutionSettings) *Tra
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *TranscriptionJob) SetLanguageCode(v string) *TranscriptionJob {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetLanguageOptions sets the LanguageOptions field's value.
+func (s *TranscriptionJob) SetLanguageOptions(v []*string) *TranscriptionJob {
+	s.LanguageOptions = v
 	return s
 }
 
@@ -6985,6 +7037,15 @@ type TranscriptionJobSummary struct {
 	// If the TranscriptionJobStatus field is FAILED, a description of the error.
 	FailureReason *string `type:"string"`
 
+	// A value between zero and one that Amazon Transcribe assigned to the language
+	// it identified in the source audio. A higher score indicates that Amazon Transcribe
+	// is more confident in the language it identified.
+	IdentifiedLanguageScore *float64 `type:"float"`
+
+	// Whether automatic language identification was enabled for a transcription
+	// job.
+	IdentifyLanguage *bool `type:"boolean"`
+
 	// The language code for the input speech.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
@@ -7045,6 +7106,18 @@ func (s *TranscriptionJobSummary) SetCreationTime(v time.Time) *TranscriptionJob
 // SetFailureReason sets the FailureReason field's value.
 func (s *TranscriptionJobSummary) SetFailureReason(v string) *TranscriptionJobSummary {
 	s.FailureReason = &v
+	return s
+}
+
+// SetIdentifiedLanguageScore sets the IdentifiedLanguageScore field's value.
+func (s *TranscriptionJobSummary) SetIdentifiedLanguageScore(v float64) *TranscriptionJobSummary {
+	s.IdentifiedLanguageScore = &v
+	return s
+}
+
+// SetIdentifyLanguage sets the IdentifyLanguage field's value.
+func (s *TranscriptionJobSummary) SetIdentifyLanguage(v bool) *TranscriptionJobSummary {
+	s.IdentifyLanguage = &v
 	return s
 }
 

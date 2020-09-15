@@ -1692,6 +1692,8 @@ func (c *Kendra) QueryRequest(input *QueryInput) (req *request.Request, output *
 // You can specify that the query return only one type of result using the QueryResultTypeConfig
 // parameter.
 //
+// Each query returns the 100 most relevant results.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3799,6 +3801,9 @@ type CreateIndexInput struct {
 	// for indexes intended for development, testing, or proof of concept. Use ENTERPRISE_EDITION
 	// for your production databases. Once you set the edition for an index, it
 	// can't be changed.
+	//
+	// The Edition parameter is optional. If you don't supply a value, the default
+	// is ENTERPRISE_EDITION.
 	Edition *string `type:"string" enum:"IndexEdition"`
 
 	// The name for the new index.
@@ -5786,6 +5791,10 @@ type FacetResult struct {
 	// An array of key/value pairs, where the key is the value of the attribute
 	// and the count is the number of documents that share the key value.
 	DocumentAttributeValueCountPairs []*DocumentAttributeValueCountPair `type:"list"`
+
+	// The data type of the facet value. This is the same as the type defined for
+	// the index field when it was created.
+	DocumentAttributeValueType *string `type:"string" enum:"DocumentAttributeValueType"`
 }
 
 // String returns the string representation
@@ -5807,6 +5816,12 @@ func (s *FacetResult) SetDocumentAttributeKey(v string) *FacetResult {
 // SetDocumentAttributeValueCountPairs sets the DocumentAttributeValueCountPairs field's value.
 func (s *FacetResult) SetDocumentAttributeValueCountPairs(v []*DocumentAttributeValueCountPair) *FacetResult {
 	s.DocumentAttributeValueCountPairs = v
+	return s
+}
+
+// SetDocumentAttributeValueType sets the DocumentAttributeValueType field's value.
+func (s *FacetResult) SetDocumentAttributeValueType(v string) *FacetResult {
+	s.DocumentAttributeValueType = &v
 	return s
 }
 
@@ -7045,8 +7060,9 @@ type QueryOutput struct {
 	// The results of the search.
 	ResultItems []*QueryResultItem `type:"list"`
 
-	// The number of items returned by the search. Use this to determine when you
-	// have requested the last set of results.
+	// The total number of items found by the search; however, you can only retrieve
+	// up to 100 items. For example, if the search found 192 items, you can only
+	// retrieve the first 100 of the items.
 	TotalNumberOfResults *int64 `type:"integer"`
 }
 
@@ -7120,12 +7136,11 @@ type QueryResultItem struct {
 
 	// Indicates the confidence that Amazon Kendra has that a result matches the
 	// query that you provided. Each result is placed into a bin that indicates
-	// the confidence, VERY_HIGH, HIGH, and MEDIUM. You can use the score to determine
-	// if a response meets the confidence needed for your application.
+	// the confidence, VERY_HIGH, HIGH, MEDIUM and LOW. You can use the score to
+	// determine if a response meets the confidence needed for your application.
 	//
-	// Confidence scores are only returned for results with the Type field set to
-	// QUESTION_ANSWER or ANSWER. This field is not returned if the Type field is
-	// set to DOCUMENT.
+	// The field is only set to LOW when the Type field is set to DOCUMENT and Amazon
+	// Kendra is not confident that the result matches the query.
 	ScoreAttributes *ScoreAttributes `type:"structure"`
 
 	// The type of document.
@@ -10687,6 +10702,9 @@ const (
 
 	// ScoreConfidenceMedium is a ScoreConfidence enum value
 	ScoreConfidenceMedium = "MEDIUM"
+
+	// ScoreConfidenceLow is a ScoreConfidence enum value
+	ScoreConfidenceLow = "LOW"
 )
 
 // ScoreConfidence_Values returns all elements of the ScoreConfidence enum
@@ -10695,6 +10713,7 @@ func ScoreConfidence_Values() []string {
 		ScoreConfidenceVeryHigh,
 		ScoreConfidenceHigh,
 		ScoreConfidenceMedium,
+		ScoreConfidenceLow,
 	}
 }
 

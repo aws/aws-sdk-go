@@ -1989,11 +1989,13 @@
     },
     "AribDestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "AribSourceSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "AudioChannelMapping": {
       "type": "structure",
@@ -2945,7 +2947,8 @@
     },
     "ColorSpacePassthroughSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "ConflictException": {
       "type": "structure",
@@ -3491,7 +3494,8 @@
     },
     "DeleteInputResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DeleteInputSecurityGroupRequest": {
       "type": "structure",
@@ -3508,7 +3512,8 @@
     },
     "DeleteInputSecurityGroupResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DeleteMultiplexProgramRequest": {
       "type": "structure",
@@ -3713,7 +3718,8 @@
     },
     "DeleteScheduleResponse": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "DeleteTagsRequest": {
       "type": "structure",
@@ -4766,11 +4772,13 @@
     },
     "EmbeddedDestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "EmbeddedPlusScte20DestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "EmbeddedScte20Detection": {
       "type": "string",
@@ -4802,7 +4810,8 @@
     },
     "Empty": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "EncoderSettings": {
       "type": "structure",
@@ -6306,7 +6315,8 @@
     },
     "ImmediateModeScheduleActionStartSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Input": {
       "type": "structure",
@@ -7085,7 +7095,8 @@
         "URL_PULL",
         "MP4_FILE",
         "MEDIACONNECT",
-        "INPUT_DEVICE"
+        "INPUT_DEVICE",
+        "AWS_CDI"
       ]
     },
     "InputVpcRequest": {
@@ -8113,7 +8124,8 @@
     },
     "MediaPackageOutputSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Mp2CodingMode": {
       "type": "string",
@@ -8303,7 +8315,8 @@
     },
     "MultiplexGroupSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "MultiplexMediaConnectOutputDestinationSettings": {
       "type": "structure",
@@ -8885,7 +8898,8 @@
     },
     "PassThroughSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "PauseStateScheduleActionSettings": {
       "type": "structure",
@@ -9024,11 +9038,13 @@
     },
     "Rec601Settings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Rec709Settings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "RemixSettings": {
       "type": "structure",
@@ -9133,7 +9149,8 @@
         "MPEG2",
         "AVC",
         "HEVC",
-        "AUDIO"
+        "AUDIO",
+        "LINK"
       ]
     },
     "ReservationMaximumBitrate": {
@@ -9265,7 +9282,8 @@
     },
     "RtmpCaptionInfoDestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "RtmpGroupSettings": {
       "type": "structure",
@@ -9413,7 +9431,8 @@
     },
     "ScheduleDeleteResultModel": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "ScheduleDescribeResultModel": {
       "type": "structure",
@@ -9440,7 +9459,8 @@
     },
     "Scte20PlusEmbeddedDestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Scte20SourceSettings": {
       "type": "structure",
@@ -9457,7 +9477,8 @@
     },
     "Scte27DestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "Scte27SourceSettings": {
       "type": "structure",
@@ -9778,7 +9799,8 @@
     },
     "SmpteTtDestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "StandardHlsSettings": {
       "type": "structure",
@@ -10187,7 +10209,8 @@
     },
     "TeletextDestinationSettings": {
       "type": "structure",
-      "members": {}
+      "members": {
+      }
     },
     "TeletextSourceSettings": {
       "type": "structure",
@@ -11011,23 +11034,8 @@
     },
     "WebvttDestinationSettings": {
       "type": "structure",
-      "members": {}
-    },
-    "AcceptHeader": {
-      "type": "string",
-      "enum": [
-        "image/jpeg"
-      ]
-    },
-    "ContentType": {
-      "type": "string",
-      "enum": [
-        "image/jpeg"
-      ]
-    },
-    "InputDeviceThumbnail": {
-      "type": "blob",
-      "streaming": true
+      "members": {
+      }
     },
     "__boolean": {
       "type": "boolean"
@@ -11615,6 +11623,22 @@
     "__timestampUnix": {
       "type": "timestamp",
       "timestampFormat": "unixTimestamp"
+    },
+    "InputDeviceThumbnail": {
+      "type": "blob",
+      "streaming": true
+    },
+    "AcceptHeader": {
+      "type": "string",
+      "enum": [
+        "image/jpeg"
+      ]
+    },
+    "ContentType": {
+      "type": "string",
+      "enum": [
+        "image/jpeg"
+      ]
     },
     "__timestamp": {
       "type": "timestamp"

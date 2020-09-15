@@ -1043,7 +1043,7 @@
       "base": null,
       "refs": {
         "AutoMLContainerDefinition$Image": "<p>The ECR path of the container. Refer to ContainerDefinition for more details.</p>",
-        "ContainerDefinition$Image": "<p>The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored. If you are using your own custom algorithm instead of an algorithm provided by Amazon SageMaker, the inference code must meet Amazon SageMaker requirements. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a> </p>",
+        "ContainerDefinition$Image": "<p>The path where inference code is stored. This can be either in Amazon EC2 Container Registry or in a Docker registry that is accessible from the same VPC that you configure for your endpoint. If you are using your own custom algorithm instead of an algorithm provided by Amazon SageMaker, the inference code must meet Amazon SageMaker requirements. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a> </p>",
         "DeployedImage$SpecifiedImage": "<p>The image path you specified when you created the model.</p>",
         "DeployedImage$ResolvedImage": "<p>The specific digest path of the image hosted in this <code>ProductionVariant</code>.</p>",
         "ModelPackageContainerDefinition$Image": "<p>The Amazon EC2 Container Registry (Amazon ECR) path where inference code is stored.</p> <p>If you are using your own custom algorithm instead of an algorithm provided by Amazon SageMaker, the inference code must meet Amazon SageMaker requirements. Amazon SageMaker supports both <code>registry/repository[:tag]</code> and <code>registry/repository[@digest]</code> image path formats. For more information, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms.html\">Using Your Own Algorithms with Amazon SageMaker</a>.</p>",
@@ -2547,7 +2547,7 @@
     "FlowDefinitionTaskAvailabilityLifetimeInSeconds": {
       "base": null,
       "refs": {
-        "HumanLoopConfig$TaskAvailabilityLifetimeInSeconds": "<p>The length of time that a task remains available for labeling by human workers.</p>"
+        "HumanLoopConfig$TaskAvailabilityLifetimeInSeconds": "<p>The length of time that a task remains available for review by human workers.</p>"
       }
     },
     "FlowDefinitionTaskCount": {
@@ -2577,7 +2577,7 @@
     "FlowDefinitionTaskTimeLimitInSeconds": {
       "base": null,
       "refs": {
-        "HumanLoopConfig$TaskTimeLimitInSeconds": "<p>The amount of time that a worker has to complete a task.</p>"
+        "HumanLoopConfig$TaskTimeLimitInSeconds": "<p>The amount of time that a worker has to complete a task. The default value is 3,600 seconds (1 hour)</p>"
       }
     },
     "FlowDefinitionTaskTitle": {
@@ -2902,9 +2902,9 @@
       }
     },
     "ImageConfig": {
-      "base": "<p>Specifies whether the model container is in Amazon ECR or a private Docker registry in your Amazon Virtual Private Cloud (VPC).</p>",
+      "base": "<p>Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC).</p>",
       "refs": {
-        "ContainerDefinition$ImageConfig": "<p>Specifies whether the model container is in Amazon ECR or a private Docker registry in your Amazon Virtual Private Cloud (VPC). For information about storing containers in a private Docker registry, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-containers-inference-private.html\">Use a Private Docker Registry for Real-Time Inference Containers</a> </p>"
+        "ContainerDefinition$ImageConfig": "<p>Specifies whether the model container is in Amazon ECR or a private Docker registry accessible from your Amazon Virtual Private Cloud (VPC). For information about storing containers in a private Docker registry, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/your-algorithms-containers-inference-private.html\">Use a Private Docker Registry for Real-Time Inference Containers</a> </p>"
       }
     },
     "ImageDigest": {
@@ -3134,7 +3134,7 @@
       }
     },
     "LabelingJobDataSource": {
-      "base": "<p>Provides information about the location of input data.</p>",
+      "base": "<p>Provides information about the location of input data.</p> <p>You must specify at least one of the following: <code>S3DataSource</code> or <code>SnsDataSource</code>.</p> <p>Use <code>SnsDataSource</code> to specify an SNS input topic for a streaming labeling job. If you do not specify and SNS input topic ARN, Ground Truth will create a one-time labeling job.</p> <p>Use <code>S3DataSource</code> to specify an input manifest file for both streaming and one-time labeling jobs. Adding an <code>S3DataSource</code> is optional if you use <code>SnsDataSource</code> to create a streaming labeling job.</p>",
       "refs": {
         "LabelingJobInputConfig$DataSource": "<p>The location of the input data.</p>"
       }
@@ -3194,6 +3194,12 @@
       "base": "<p>The Amazon S3 location of the input data objects.</p>",
       "refs": {
         "LabelingJobDataSource$S3DataSource": "<p>The Amazon S3 location of the input data objects.</p>"
+      }
+    },
+    "LabelingJobSnsDataSource": {
+      "base": "<p>An Amazon SNS data source used for streaming labeling jobs.</p>",
+      "refs": {
+        "LabelingJobDataSource$SnsDataSource": "<p>An Amazon SNS data source used for streaming labeling jobs.</p>"
       }
     },
     "LabelingJobStatus": {
@@ -3794,7 +3800,7 @@
       "refs": {
         "CreateModelOutput$ModelArn": "<p>The ARN of the model created in Amazon SageMaker.</p>",
         "DescribeModelOutput$ModelArn": "<p>The Amazon Resource Name (ARN) of the model.</p>",
-        "LabelingJobAlgorithmsConfig$InitialActiveLearningModelArn": "<p>At the end of an auto-label job Amazon SageMaker Ground Truth sends the Amazon Resource Nam (ARN) of the final model used for auto-labeling. You can use this model as the starting point for subsequent similar jobs by providing the ARN of the model here. </p>",
+        "LabelingJobAlgorithmsConfig$InitialActiveLearningModelArn": "<p>At the end of an auto-label job Ground Truth sends the Amazon Resource Name (ARN) of the final model used for auto-labeling. You can use this model as the starting point for subsequent similar jobs by providing the ARN of the model here. </p>",
         "LabelingJobOutput$FinalActiveLearningModelArn": "<p>The Amazon Resource Name (ARN) for the most recent Amazon SageMaker model trained as part of automated data labeling. </p>",
         "ModelSummary$ModelArn": "<p>The Amazon Resource Name (ARN) of the model.</p>"
       }
@@ -4965,7 +4971,7 @@
     "RepositoryAccessMode": {
       "base": null,
       "refs": {
-        "ImageConfig$RepositoryAccessMode": "<p>Set this to one of the following values:</p> <ul> <li> <p> <code>Platform</code> - The model image is hosted in Amazon ECR.</p> </li> <li> <p> <code>VPC</code> - The model image is hosted in a private Docker registry in your VPC.</p> </li> </ul>"
+        "ImageConfig$RepositoryAccessMode": "<p>Set this to one of the following values:</p> <ul> <li> <p> <code>Platform</code> - The model image is hosted in Amazon ECR.</p> </li> <li> <p> <code>Vpc</code> - The model image is hosted in a private Docker registry in your VPC.</p> </li> </ul>"
       }
     },
     "ResolvedAttributes": {
@@ -5319,6 +5325,13 @@
       "refs": {
         "CreateUserProfileRequest$SingleSignOnUserIdentifier": "<p>A specifier for the type of value specified in SingleSignOnUserValue. Currently, the only supported value is \"UserName\". If the Domain's AuthMode is SSO, this field is required. If the Domain's AuthMode is not SSO, this field cannot be specified. </p>",
         "DescribeUserProfileResponse$SingleSignOnUserIdentifier": "<p>The SSO user identifier.</p>"
+      }
+    },
+    "SnsTopicArn": {
+      "base": null,
+      "refs": {
+        "LabelingJobOutputConfig$SnsTopicArn": "<p>An Amazon Simple Notification Service (Amazon SNS) output topic ARN.</p> <p>When workers complete labeling tasks, Ground Truth will send labeling task output data to the SNS output topic you specify here.</p> <p>You must provide a value for this parameter if you provide an Amazon SNS input topic in <code>SnsDataSource</code> in <code>InputConfig</code>.</p>",
+        "LabelingJobSnsDataSource$SnsTopicArn": "<p>The Amazon SNS input topic Amazon Resource Name (ARN). Specify the ARN of the input topic you will use to send new data objects to a streaming labeling job.</p> <p>If you specify an input topic for <code>SnsTopicArn</code> in <code>InputConfig</code>, you must specify a value for <code>SnsTopicArn</code> in <code>OutputConfig</code>.</p>"
       }
     },
     "SortBy": {

@@ -12,6 +12,35 @@
     "signatureVersion": "v4"
   },
   "operations": {
+    "BatchAssociateScramSecret" : {
+      "name" : "BatchAssociateScramSecret",
+      "http" : {
+        "method" : "POST",
+        "requestUri" : "/v1/clusters/{clusterArn}/scram-secrets",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "BatchAssociateScramSecretRequest"
+      },
+      "output" : {
+        "shape" : "BatchAssociateScramSecretResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "CreateCluster": {
       "name": "CreateCluster",
       "http": {
@@ -272,6 +301,35 @@
         }
       ]
     },
+    "BatchDisassociateScramSecret" : {
+      "name" : "BatchDisassociateScramSecret",
+      "http" : {
+        "method" : "PATCH",
+        "requestUri" : "/v1/clusters/{clusterArn}/scram-secrets",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "BatchDisassociateScramSecretRequest"
+      },
+      "output" : {
+        "shape" : "BatchDisassociateScramSecretResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
+    },
     "GetBootstrapBrokers": {
       "name": "GetBootstrapBrokers",
       "http": {
@@ -516,6 +574,35 @@
           "shape": "ForbiddenException"
         }
       ]
+    },
+    "ListScramSecrets" : {
+      "name" : "ListScramSecrets",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/v1/clusters/{clusterArn}/scram-secrets",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "ListScramSecretsRequest"
+      },
+      "output" : {
+        "shape" : "ListScramSecretsResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "UnauthorizedException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      }, {
+        "shape" : "ForbiddenException"
+      }, {
+        "shape" : "NotFoundException"
+      }, {
+        "shape" : "ServiceUnavailableException"
+      }, {
+        "shape" : "TooManyRequestsException"
+      } ]
     },
     "ListTagsForResource": {
       "name": "ListTagsForResource",
@@ -814,6 +901,34 @@
     }
   },
   "shapes": {
+    "BatchAssociateScramSecretRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "SecretArnList" : {
+          "shape" : "__listOf__string",
+          "locationName" : "secretArnList"
+        }
+      },
+      "required" : [ "ClusterArn", "SecretArnList" ]
+    },
+    "BatchAssociateScramSecretResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterArn"
+        },
+        "UnprocessedScramSecrets" : {
+          "shape" : "__listOfUnprocessedScramSecret",
+          "locationName" : "unprocessedScramSecrets"
+        }
+      }
+    },
     "BadRequestException": {
       "type": "structure",
       "members": {
@@ -946,12 +1061,16 @@
         }
       }
     },
-    "ClientAuthentication": {
-      "type": "structure",
-      "members": {
-        "Tls": {
-          "shape": "Tls",
-          "locationName": "tls"
+    "ClientAuthentication" : {
+      "type" : "structure",
+      "members" : {
+        "Sasl" : {
+          "shape" : "Sasl",
+          "locationName" : "sasl"
+        },
+        "Tls" : {
+          "shape" : "Tls",
+          "locationName" : "tls"
         }
       }
     },
@@ -1558,6 +1677,34 @@
         }
       }
     },
+    "BatchDisassociateScramSecretRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "SecretArnList" : {
+          "shape" : "__listOf__string",
+          "locationName" : "secretArnList"
+        }
+      },
+      "required" : [ "ClusterArn", "SecretArnList" ]
+    },
+    "BatchDisassociateScramSecretResponse" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "locationName" : "clusterArn"
+        },
+        "UnprocessedScramSecrets" : {
+          "shape" : "__listOfUnprocessedScramSecret",
+          "locationName" : "unprocessedScramSecrets"
+        }
+      }
+    },
     "EBSStorageInfo": {
       "type": "structure",
       "members": {
@@ -1693,6 +1840,10 @@
         "BootstrapBrokerStringTls": {
           "shape": "__string",
           "locationName": "bootstrapBrokerStringTls"
+        },
+        "BootstrapBrokerStringSaslScram": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringSaslScram"
         }
       }
     },
@@ -1949,6 +2100,40 @@
         }
       }
     },
+    "ListScramSecretsRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ClusterArn" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "clusterArn"
+        },
+        "MaxResults" : {
+          "shape" : "MaxResults",
+          "location" : "querystring",
+          "locationName" : "maxResults"
+        },
+        "NextToken" : {
+          "shape" : "__string",
+          "location" : "querystring",
+          "locationName" : "nextToken"
+        }
+      },
+      "required" : [ "ClusterArn" ]
+    },
+    "ListScramSecretsResponse" : {
+      "type" : "structure",
+      "members" : {
+        "NextToken" : {
+          "shape" : "__string",
+          "locationName" : "nextToken"
+        },
+        "SecretArnList" : {
+          "shape" : "__listOf__string",
+          "locationName" : "secretArnList"
+        }
+      }
+    },
     "ListTagsForResourceRequest": {
       "type": "structure",
       "members": {
@@ -2071,6 +2256,24 @@
         "httpStatusCode": 404
       }
     },
+    "Sasl" : {
+      "type" : "structure",
+      "members" : {
+        "Scram" : {
+          "shape" : "Scram",
+          "locationName" : "scram"
+        }
+      }
+    },
+    "Scram" : {
+      "type" : "structure",
+      "members" : {
+        "Enabled" : {
+          "shape" : "__boolean",
+          "locationName" : "enabled"
+        }
+      }
+    },
     "ServiceUnavailableException": {
       "type": "structure",
       "members": {
@@ -2169,6 +2372,23 @@
       "exception": true,
       "error": {
         "httpStatusCode": 401
+      }
+    },
+    "UnprocessedScramSecret" : {
+      "type" : "structure",
+      "members" : {
+        "ErrorCode" : {
+          "shape" : "__string",
+          "locationName" : "errorCode"
+        },
+        "ErrorMessage" : {
+          "shape" : "__string",
+          "locationName" : "errorMessage"
+        },
+        "SecretArn" : {
+          "shape" : "__string",
+          "locationName" : "secretArn"
+        }
       }
     },
     "UntagResourceRequest": {
@@ -2640,6 +2860,12 @@
       "type": "list",
       "member": {
         "shape": "NodeInfo"
+      }
+    },
+    "__listOfUnprocessedScramSecret" : {
+      "type" : "list",
+      "member" : {
+        "shape" : "UnprocessedScramSecret"
       }
     },
     "__listOf__string": {
