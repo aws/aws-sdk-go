@@ -461,7 +461,8 @@
       "input":{"shape":"DescribeProvisionedProductInput"},
       "output":{"shape":"DescribeProvisionedProductOutput"},
       "errors":[
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
       ]
     },
     "DescribeProvisionedProductPlan":{
@@ -1852,10 +1853,10 @@
     },
     "DescribeProvisionedProductInput":{
       "type":"structure",
-      "required":["Id"],
       "members":{
         "AcceptLanguage":{"shape":"AcceptLanguage"},
-        "Id":{"shape":"Id"}
+        "Id":{"shape":"Id"},
+        "Name":{"shape":"ProvisionedProductName"}
       }
     },
     "DescribeProvisionedProductOutput":{

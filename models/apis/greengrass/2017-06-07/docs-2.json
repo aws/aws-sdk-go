@@ -56,6 +56,7 @@
     "GetServiceRoleForAccount" : "Retrieves the service role that is attached to your account.",
     "GetSubscriptionDefinition" : "Retrieves information about a subscription definition.",
     "GetSubscriptionDefinitionVersion" : "Retrieves information about a subscription definition version.",
+    "GetThingRuntimeConfiguration" : "Get the runtime configuration of a thing.",
     "ListBulkDeploymentDetailedReports" : "Gets a paginated list of the deployments that have been started in a bulk deployment operation, and their current deployment status.",
     "ListBulkDeployments" : "Returns a list of bulk deployments.",
     "ListConnectorDefinitionVersions" : "Lists the versions of a connector definition, which are containers for connectors. Connectors run on the Greengrass core and contain built-in integration with local infrastructure, device protocols, AWS, and other cloud services.",
@@ -91,7 +92,8 @@
     "UpdateGroupCertificateConfiguration" : "Updates the Certificate expiry time for a group.",
     "UpdateLoggerDefinition" : "Updates a logger definition.",
     "UpdateResourceDefinition" : "Updates a resource definition.",
-    "UpdateSubscriptionDefinition" : "Updates a subscription definition."
+    "UpdateSubscriptionDefinition" : "Updates a subscription definition.",
+    "UpdateThingRuntimeConfiguration" : "Updates the runtime configuration of a thing."
   },
   "shapes" : {
     "AssociateRoleToGroupRequest" : {
@@ -148,6 +150,12 @@
       "base" : null,
       "refs" : {
         "ListBulkDeploymentsResponse$BulkDeployments" : "A list of bulk deployments."
+      }
+    },
+    "ConfigurationSyncStatus" : {
+      "base" : null,
+      "refs" : {
+        "TelemetryConfiguration$ConfigurationSyncStatus" : "Synchronization status of the device reported configuration with the desired configuration."
       }
     },
     "ConnectivityInfo" : {
@@ -386,6 +394,10 @@
       "base" : "Information about a subscription definition version.",
       "refs" : { }
     },
+    "GetThingRuntimeConfigurationResponse" : {
+      "base" : "The runtime configuration for a thing.",
+      "refs" : { }
+    },
     "GroupCertificateAuthorityProperties" : {
       "base" : "Information about a certificate authority for a group.",
       "refs" : {
@@ -535,6 +547,16 @@
         "SageMakerMachineLearningModelResourceData$OwnerSetting" : null
       }
     },
+    "RuntimeConfiguration" : {
+      "base" : "Runtime configuration for a thing.",
+      "refs" : {
+        "GetThingRuntimeConfigurationResponse$RuntimeConfiguration" : "Runtime configuration for a thing."
+      }
+    },
+    "RuntimeConfigurationUpdate" : {
+      "base" : "Runtime configuration for a thing.",
+      "refs" : { }
+    },
     "S3MachineLearningModelResourceData" : {
       "base" : "Attributes that define an Amazon S3 machine learning resource.",
       "refs" : {
@@ -591,6 +613,25 @@
         "DefinitionInformation$Tags" : "Tag(s) attached to the resource arn.",
         "GetBulkDeploymentStatusResponse$Tags" : "Tag(s) attached to the resource arn.",
         "StartBulkDeploymentRequest$Tags" : "Tag(s) to add to the new resource."
+      }
+    },
+    "Telemetry" : {
+      "base" : null,
+      "refs" : {
+        "TelemetryConfiguration$Telemetry" : "Configure telemetry to be on or off.",
+        "TelemetryConfigurationUpdate$Telemetry" : "Configure telemetry to be on or off."
+      }
+    },
+    "TelemetryConfiguration" : {
+      "base" : "Configuration settings for running telemetry.",
+      "refs" : {
+        "RuntimeConfiguration$TelemetryConfiguration" : "Configuration for telemetry service."
+      }
+    },
+    "TelemetryConfigurationUpdate" : {
+      "base" : "Configuration settings for running telemetry.",
+      "refs" : {
+        "RuntimeConfigurationUpdate$TelemetryConfiguration" : "Configuration for telemetry service."
       }
     },
     "UpdateAgentLogLevel" : {

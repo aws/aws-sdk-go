@@ -3431,6 +3431,7 @@ var awsPartition = partition{
 				"ca-central-1":   endpoint{},
 				"eu-central-1":   endpoint{},
 				"eu-north-1":     endpoint{},
+				"eu-south-1":     endpoint{},
 				"eu-west-1":      endpoint{},
 				"eu-west-2":      endpoint{},
 				"eu-west-3":      endpoint{},
@@ -4192,6 +4193,24 @@ var awsPartition = partition{
 		"oidc": service{
 
 			Endpoints: endpoints{
+				"ap-northeast-1": endpoint{
+					Hostname: "oidc.ap-northeast-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-northeast-1",
+					},
+				},
+				"ap-northeast-2": endpoint{
+					Hostname: "oidc.ap-northeast-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-northeast-2",
+					},
+				},
+				"ap-south-1": endpoint{
+					Hostname: "oidc.ap-south-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "ap-south-1",
+					},
+				},
 				"ap-southeast-1": endpoint{
 					Hostname: "oidc.ap-southeast-1.amazonaws.com",
 					CredentialScope: credentialScope{
@@ -7865,6 +7884,13 @@ var awsusgovPartition = partition{
 						Region: "us-gov-west-1",
 					},
 				},
+			},
+		},
+		"ebs": service{
+
+			Endpoints: endpoints{
+				"us-gov-east-1": endpoint{},
+				"us-gov-west-1": endpoint{},
 			},
 		},
 		"ec2": service{
