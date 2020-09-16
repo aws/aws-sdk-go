@@ -276,6 +276,10 @@ type GreengrassAPI interface {
 	GetSubscriptionDefinitionVersionWithContext(aws.Context, *greengrass.GetSubscriptionDefinitionVersionInput, ...request.Option) (*greengrass.GetSubscriptionDefinitionVersionOutput, error)
 	GetSubscriptionDefinitionVersionRequest(*greengrass.GetSubscriptionDefinitionVersionInput) (*request.Request, *greengrass.GetSubscriptionDefinitionVersionOutput)
 
+	GetThingRuntimeConfiguration(*greengrass.GetThingRuntimeConfigurationInput) (*greengrass.GetThingRuntimeConfigurationOutput, error)
+	GetThingRuntimeConfigurationWithContext(aws.Context, *greengrass.GetThingRuntimeConfigurationInput, ...request.Option) (*greengrass.GetThingRuntimeConfigurationOutput, error)
+	GetThingRuntimeConfigurationRequest(*greengrass.GetThingRuntimeConfigurationInput) (*request.Request, *greengrass.GetThingRuntimeConfigurationOutput)
+
 	ListBulkDeploymentDetailedReports(*greengrass.ListBulkDeploymentDetailedReportsInput) (*greengrass.ListBulkDeploymentDetailedReportsOutput, error)
 	ListBulkDeploymentDetailedReportsWithContext(aws.Context, *greengrass.ListBulkDeploymentDetailedReportsInput, ...request.Option) (*greengrass.ListBulkDeploymentDetailedReportsOutput, error)
 	ListBulkDeploymentDetailedReportsRequest(*greengrass.ListBulkDeploymentDetailedReportsInput) (*request.Request, *greengrass.ListBulkDeploymentDetailedReportsOutput)
@@ -419,6 +423,10 @@ type GreengrassAPI interface {
 	UpdateSubscriptionDefinition(*greengrass.UpdateSubscriptionDefinitionInput) (*greengrass.UpdateSubscriptionDefinitionOutput, error)
 	UpdateSubscriptionDefinitionWithContext(aws.Context, *greengrass.UpdateSubscriptionDefinitionInput, ...request.Option) (*greengrass.UpdateSubscriptionDefinitionOutput, error)
 	UpdateSubscriptionDefinitionRequest(*greengrass.UpdateSubscriptionDefinitionInput) (*request.Request, *greengrass.UpdateSubscriptionDefinitionOutput)
+
+	UpdateThingRuntimeConfiguration(*greengrass.UpdateThingRuntimeConfigurationInput) (*greengrass.UpdateThingRuntimeConfigurationOutput, error)
+	UpdateThingRuntimeConfigurationWithContext(aws.Context, *greengrass.UpdateThingRuntimeConfigurationInput, ...request.Option) (*greengrass.UpdateThingRuntimeConfigurationOutput, error)
+	UpdateThingRuntimeConfigurationRequest(*greengrass.UpdateThingRuntimeConfigurationInput) (*request.Request, *greengrass.UpdateThingRuntimeConfigurationOutput)
 }
 
 var _ GreengrassAPI = (*greengrass.Greengrass)(nil)

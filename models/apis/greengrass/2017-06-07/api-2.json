@@ -947,6 +947,25 @@
         "shape" : "BadRequestException"
       } ]
     },
+    "GetThingRuntimeConfiguration" : {
+      "name" : "GetThingRuntimeConfiguration",
+      "http" : {
+        "method" : "GET",
+        "requestUri" : "/greengrass/things/{ThingName}/runtimeconfig",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "GetThingRuntimeConfigurationRequest"
+      },
+      "output" : {
+        "shape" : "GetThingRuntimeConfigurationResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      } ]
+    },
     "ListBulkDeploymentDetailedReports" : {
       "name" : "ListBulkDeploymentDetailedReports",
       "http" : {
@@ -1542,6 +1561,25 @@
       "errors" : [ {
         "shape" : "BadRequestException"
       } ]
+    },
+    "UpdateThingRuntimeConfiguration" : {
+      "name" : "UpdateThingRuntimeConfiguration",
+      "http" : {
+        "method" : "PUT",
+        "requestUri" : "/greengrass/things/{ThingName}/runtimeconfig",
+        "responseCode" : 200
+      },
+      "input" : {
+        "shape" : "UpdateThingRuntimeConfigurationRequest"
+      },
+      "output" : {
+        "shape" : "UpdateThingRuntimeConfigurationResponse"
+      },
+      "errors" : [ {
+        "shape" : "BadRequestException"
+      }, {
+        "shape" : "InternalServerErrorException"
+      } ]
     }
   },
   "shapes" : {
@@ -1671,6 +1709,10 @@
       "member" : {
         "shape" : "BulkDeployment"
       }
+    },
+    "ConfigurationSyncStatus" : {
+      "type" : "string",
+      "enum" : [ "InSync", "OutOfSync" ]
     },
     "ConnectivityInfo" : {
       "type" : "structure",
@@ -3730,6 +3772,25 @@
         }
       }
     },
+    "GetThingRuntimeConfigurationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "ThingName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ThingName"
+        }
+      },
+      "required" : [ "ThingName" ]
+    },
+    "GetThingRuntimeConfigurationResponse" : {
+      "type" : "structure",
+      "members" : {
+        "RuntimeConfiguration" : {
+          "shape" : "RuntimeConfiguration"
+        }
+      }
+    },
     "GroupCertificateAuthorityProperties" : {
       "type" : "structure",
       "members" : {
@@ -4614,6 +4675,22 @@
       },
       "required" : [ "GroupOwner", "GroupPermission" ]
     },
+    "RuntimeConfiguration" : {
+      "type" : "structure",
+      "members" : {
+        "TelemetryConfiguration" : {
+          "shape" : "TelemetryConfiguration"
+        }
+      }
+    },
+    "RuntimeConfigurationUpdate" : {
+      "type" : "structure",
+      "members" : {
+        "TelemetryConfiguration" : {
+          "shape" : "TelemetryConfigurationUpdate"
+        }
+      }
+    },
     "S3MachineLearningModelResourceData" : {
       "type" : "structure",
       "members" : {
@@ -4754,6 +4831,31 @@
       "value" : {
         "shape" : "__string"
       }
+    },
+    "Telemetry" : {
+      "type" : "string",
+      "enum" : [ "On", "Off" ]
+    },
+    "TelemetryConfiguration" : {
+      "type" : "structure",
+      "members" : {
+        "ConfigurationSyncStatus" : {
+          "shape" : "ConfigurationSyncStatus"
+        },
+        "Telemetry" : {
+          "shape" : "Telemetry"
+        }
+      },
+      "required" : [ "Telemetry" ]
+    },
+    "TelemetryConfigurationUpdate" : {
+      "type" : "structure",
+      "members" : {
+        "Telemetry" : {
+          "shape" : "Telemetry"
+        }
+      },
+      "required" : [ "Telemetry" ]
     },
     "UntagResourceRequest" : {
       "type" : "structure",
@@ -4986,6 +5088,24 @@
     "UpdateTargetsOperatingSystem" : {
       "type" : "string",
       "enum" : [ "ubuntu", "raspbian", "amazon_linux", "openwrt" ]
+    },
+    "UpdateThingRuntimeConfigurationRequest" : {
+      "type" : "structure",
+      "members" : {
+        "TelemetryConfiguration" : {
+          "shape" : "TelemetryConfigurationUpdate"
+        },
+        "ThingName" : {
+          "shape" : "__string",
+          "location" : "uri",
+          "locationName" : "ThingName"
+        }
+      },
+      "required" : [ "ThingName" ]
+    },
+    "UpdateThingRuntimeConfigurationResponse" : {
+      "type" : "structure",
+      "members" : { }
     },
     "VersionInformation" : {
       "type" : "structure",

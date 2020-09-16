@@ -28,11 +28,23 @@
       "output_token": "NextToken",
       "result_key": "PhoneNumberSummaryList"
     },
+    "ListPrompts": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "PromptSummaryList"
+    },
     "ListQueues": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken",
       "result_key": "QueueSummaryList"
+    },
+    "ListRoutingProfileQueues": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "RoutingProfileQueueConfigSummaryList"
     },
     "ListRoutingProfiles": {
       "input_token": "NextToken",

@@ -1,3 +1,16 @@
+Release v1.34.25 (2020-09-16)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/dlm`: Updates service API and documentation
+* `service/greengrass`: Updates service API and documentation
+  * This release includes the ability to set run-time configuration for a Greengrass core. The Telemetry feature, also included in this release, can be configured via run-time configuration per core.
+* `service/servicecatalog`: Updates service API and documentation
+  * Enhance DescribeProvisionedProduct API to allow useProvisionedProduct Name as Input, so customer can provide ProvisionedProduct Name instead of ProvisionedProduct Id to describe a ProvisionedProduct.
+* `service/ssm`: Updates service documentation
+  * The ComplianceItemEntry Status description was updated to address Windows patches that aren't applicable.
+
 Release v1.34.24 (2020-09-15)
 ===
 

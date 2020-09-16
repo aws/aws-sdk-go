@@ -340,7 +340,7 @@
     "ScheduleList": {
       "base": null,
       "refs": {
-        "PolicyDetails$Schedules": "<p>The schedule of policy-defined actions.</p>"
+        "PolicyDetails$Schedules": "<p>The schedules of policy-defined actions. A policy can have up to four schedules - one mandatory schedule and up to three optional schedules.</p>"
       }
     },
     "ScheduleName": {

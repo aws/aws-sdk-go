@@ -13,6 +13,295 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAssociateRoutingProfileQueues = "AssociateRoutingProfileQueues"
+
+// AssociateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateRoutingProfileQueues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateRoutingProfileQueues for more information on using the AssociateRoutingProfileQueues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateRoutingProfileQueuesRequest method.
+//    req, resp := client.AssociateRoutingProfileQueuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateRoutingProfileQueues
+func (c *Connect) AssociateRoutingProfileQueuesRequest(input *AssociateRoutingProfileQueuesInput) (req *request.Request, output *AssociateRoutingProfileQueuesOutput) {
+	op := &request.Operation{
+		Name:       opAssociateRoutingProfileQueues,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/associate-queues",
+	}
+
+	if input == nil {
+		input = &AssociateRoutingProfileQueuesInput{}
+	}
+
+	output = &AssociateRoutingProfileQueuesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateRoutingProfileQueues API operation for Amazon Connect Service.
+//
+// Associates a set of queues with a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation AssociateRoutingProfileQueues for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/AssociateRoutingProfileQueues
+func (c *Connect) AssociateRoutingProfileQueues(input *AssociateRoutingProfileQueuesInput) (*AssociateRoutingProfileQueuesOutput, error) {
+	req, out := c.AssociateRoutingProfileQueuesRequest(input)
+	return out, req.Send()
+}
+
+// AssociateRoutingProfileQueuesWithContext is the same as AssociateRoutingProfileQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateRoutingProfileQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) AssociateRoutingProfileQueuesWithContext(ctx aws.Context, input *AssociateRoutingProfileQueuesInput, opts ...request.Option) (*AssociateRoutingProfileQueuesOutput, error) {
+	req, out := c.AssociateRoutingProfileQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateContactFlow = "CreateContactFlow"
+
+// CreateContactFlowRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContactFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContactFlow for more information on using the CreateContactFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContactFlowRequest method.
+//    req, resp := client.CreateContactFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlow
+func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *request.Request, output *CreateContactFlowOutput) {
+	op := &request.Operation{
+		Name:       opCreateContactFlow,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/contact-flows/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateContactFlowInput{}
+	}
+
+	output = &CreateContactFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContactFlow API operation for Amazon Connect Service.
+//
+// Creates a contact flow for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateContactFlow for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidContactFlowException
+//   The contact flow is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateContactFlow
+func (c *Connect) CreateContactFlow(input *CreateContactFlowInput) (*CreateContactFlowOutput, error) {
+	req, out := c.CreateContactFlowRequest(input)
+	return out, req.Send()
+}
+
+// CreateContactFlowWithContext is the same as CreateContactFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContactFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateContactFlowWithContext(ctx aws.Context, input *CreateContactFlowInput, opts ...request.Option) (*CreateContactFlowOutput, error) {
+	req, out := c.CreateContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRoutingProfile = "CreateRoutingProfile"
+
+// CreateRoutingProfileRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRoutingProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRoutingProfile for more information on using the CreateRoutingProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRoutingProfileRequest method.
+//    req, resp := client.CreateRoutingProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRoutingProfile
+func (c *Connect) CreateRoutingProfileRequest(input *CreateRoutingProfileInput) (req *request.Request, output *CreateRoutingProfileOutput) {
+	op := &request.Operation{
+		Name:       opCreateRoutingProfile,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/routing-profiles/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateRoutingProfileInput{}
+	}
+
+	output = &CreateRoutingProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRoutingProfile API operation for Amazon Connect Service.
+//
+// Creates a new routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateRoutingProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateRoutingProfile
+func (c *Connect) CreateRoutingProfile(input *CreateRoutingProfileInput) (*CreateRoutingProfileOutput, error) {
+	req, out := c.CreateRoutingProfileRequest(input)
+	return out, req.Send()
+}
+
+// CreateRoutingProfileWithContext is the same as CreateRoutingProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRoutingProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateRoutingProfileWithContext(ctx aws.Context, input *CreateRoutingProfileInput, opts ...request.Option) (*CreateRoutingProfileOutput, error) {
+	req, out := c.CreateRoutingProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateUser = "CreateUser"
 
 // CreateUserRequest generates a "aws/request.Request" representing the
@@ -58,6 +347,10 @@ func (c *Connect) CreateUserRequest(input *CreateUserInput) (req *request.Reques
 // CreateUser API operation for Amazon Connect Service.
 //
 // Creates a user account for the specified Amazon Connect instance.
+//
+// For information about how to create user accounts using the Amazon Connect
+// console, see Add Users (https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -157,6 +450,10 @@ func (c *Connect) DeleteUserRequest(input *DeleteUserInput) (req *request.Reques
 //
 // Deletes a user account from the specified Amazon Connect instance.
 //
+// For information about what happens to a user's data when their account is
+// deleted, see Delete Users from Your Amazon Connect Instance (https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -197,6 +494,191 @@ func (c *Connect) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) 
 // for more information on using Contexts.
 func (c *Connect) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput, opts ...request.Option) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeContactFlow = "DescribeContactFlow"
+
+// DescribeContactFlowRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeContactFlow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeContactFlow for more information on using the DescribeContactFlow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeContactFlowRequest method.
+//    req, resp := client.DescribeContactFlowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlow
+func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (req *request.Request, output *DescribeContactFlowOutput) {
+	op := &request.Operation{
+		Name:       opDescribeContactFlow,
+		HTTPMethod: "GET",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}",
+	}
+
+	if input == nil {
+		input = &DescribeContactFlowInput{}
+	}
+
+	output = &DescribeContactFlowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeContactFlow API operation for Amazon Connect Service.
+//
+// Describes the specified contact flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeContactFlow for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ContactFlowNotPublishedException
+//   The contact flow has not been published.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeContactFlow
+func (c *Connect) DescribeContactFlow(input *DescribeContactFlowInput) (*DescribeContactFlowOutput, error) {
+	req, out := c.DescribeContactFlowRequest(input)
+	return out, req.Send()
+}
+
+// DescribeContactFlowWithContext is the same as DescribeContactFlow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeContactFlow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeContactFlowWithContext(ctx aws.Context, input *DescribeContactFlowInput, opts ...request.Option) (*DescribeContactFlowOutput, error) {
+	req, out := c.DescribeContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRoutingProfile = "DescribeRoutingProfile"
+
+// DescribeRoutingProfileRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRoutingProfile operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRoutingProfile for more information on using the DescribeRoutingProfile
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRoutingProfileRequest method.
+//    req, resp := client.DescribeRoutingProfileRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRoutingProfile
+func (c *Connect) DescribeRoutingProfileRequest(input *DescribeRoutingProfileInput) (req *request.Request, output *DescribeRoutingProfileOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRoutingProfile,
+		HTTPMethod: "GET",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}",
+	}
+
+	if input == nil {
+		input = &DescribeRoutingProfileInput{}
+	}
+
+	output = &DescribeRoutingProfileOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRoutingProfile API operation for Amazon Connect Service.
+//
+// Describes the specified routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeRoutingProfile for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeRoutingProfile
+func (c *Connect) DescribeRoutingProfile(input *DescribeRoutingProfileInput) (*DescribeRoutingProfileOutput, error) {
+	req, out := c.DescribeRoutingProfileRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRoutingProfileWithContext is the same as DescribeRoutingProfile with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRoutingProfile for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeRoutingProfileWithContext(ctx aws.Context, input *DescribeRoutingProfileInput, opts ...request.Option) (*DescribeRoutingProfileOutput, error) {
+	req, out := c.DescribeRoutingProfileRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -477,6 +959,98 @@ func (c *Connect) DescribeUserHierarchyStructureWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDisassociateRoutingProfileQueues = "DisassociateRoutingProfileQueues"
+
+// DisassociateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateRoutingProfileQueues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateRoutingProfileQueues for more information on using the DisassociateRoutingProfileQueues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateRoutingProfileQueuesRequest method.
+//    req, resp := client.DisassociateRoutingProfileQueuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateRoutingProfileQueues
+func (c *Connect) DisassociateRoutingProfileQueuesRequest(input *DisassociateRoutingProfileQueuesInput) (req *request.Request, output *DisassociateRoutingProfileQueuesOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateRoutingProfileQueues,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/disassociate-queues",
+	}
+
+	if input == nil {
+		input = &DisassociateRoutingProfileQueuesInput{}
+	}
+
+	output = &DisassociateRoutingProfileQueuesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DisassociateRoutingProfileQueues API operation for Amazon Connect Service.
+//
+// Disassociates a set of queues from a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DisassociateRoutingProfileQueues for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DisassociateRoutingProfileQueues
+func (c *Connect) DisassociateRoutingProfileQueues(input *DisassociateRoutingProfileQueuesInput) (*DisassociateRoutingProfileQueuesOutput, error) {
+	req, out := c.DisassociateRoutingProfileQueuesRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateRoutingProfileQueuesWithContext is the same as DisassociateRoutingProfileQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateRoutingProfileQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DisassociateRoutingProfileQueuesWithContext(ctx aws.Context, input *DisassociateRoutingProfileQueuesInput, opts ...request.Option) (*DisassociateRoutingProfileQueuesOutput, error) {
+	req, out := c.DisassociateRoutingProfileQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetContactAttributes = "GetContactAttributes"
 
 // GetContactAttributesRequest generates a "aws/request.Request" representing the
@@ -614,7 +1188,7 @@ func (c *Connect) GetCurrentMetricDataRequest(input *GetCurrentMetricDataInput) 
 //
 // Gets the real-time metric data from the specified Amazon Connect instance.
 //
-// For more information, see Real-time Metrics Reports (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-reports.html)
+// For a description of each metric, see Real-time Metrics Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -860,7 +1434,8 @@ func (c *Connect) GetMetricDataRequest(input *GetMetricDataInput) (req *request.
 //
 // Gets historical metric data from the specified Amazon Connect instance.
 //
-// For more information, see Historical Metrics Reports (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics.html)
+// For a description of each historical metric, see Historical Metrics Definitions
+// (https://docs.aws.amazon.com/connect/latest/adminguide/historical-metrics-definitions.html)
 // in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1013,6 +1588,9 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 // Provides information about the contact flows for the specified Amazon Connect
 // instance.
 //
+// For more information about contact flows, see Contact Flows (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1162,6 +1740,10 @@ func (c *Connect) ListHoursOfOperationsRequest(input *ListHoursOfOperationsInput
 //
 // Provides information about the hours of operation for the specified Amazon
 // Connect instance.
+//
+// For more information about hours of operation, see Set the Hours of Operation
+// for a Queue (https://docs.aws.amazon.com/connect/latest/adminguide/set-hours-operation.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1313,6 +1895,10 @@ func (c *Connect) ListPhoneNumbersRequest(input *ListPhoneNumbersInput) (req *re
 // Provides information about the phone numbers for the specified Amazon Connect
 // instance.
 //
+// For more information about phone numbers, see Set Up Phone Numbers for Your
+// Contact Center (https://docs.aws.amazon.com/connect/latest/adminguide/contact-center-phone-number.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1410,6 +1996,155 @@ func (c *Connect) ListPhoneNumbersPagesWithContext(ctx aws.Context, input *ListP
 	return p.Err()
 }
 
+const opListPrompts = "ListPrompts"
+
+// ListPromptsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPrompts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPrompts for more information on using the ListPrompts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPromptsRequest method.
+//    req, resp := client.ListPromptsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPrompts
+func (c *Connect) ListPromptsRequest(input *ListPromptsInput) (req *request.Request, output *ListPromptsOutput) {
+	op := &request.Operation{
+		Name:       opListPrompts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prompts-summary/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListPromptsInput{}
+	}
+
+	output = &ListPromptsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPrompts API operation for Amazon Connect Service.
+//
+// Provides information about the prompts for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListPrompts for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListPrompts
+func (c *Connect) ListPrompts(input *ListPromptsInput) (*ListPromptsOutput, error) {
+	req, out := c.ListPromptsRequest(input)
+	return out, req.Send()
+}
+
+// ListPromptsWithContext is the same as ListPrompts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPrompts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListPromptsWithContext(ctx aws.Context, input *ListPromptsInput, opts ...request.Option) (*ListPromptsOutput, error) {
+	req, out := c.ListPromptsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListPromptsPages iterates over the pages of a ListPrompts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListPrompts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListPrompts operation.
+//    pageNum := 0
+//    err := client.ListPromptsPages(params,
+//        func(page *connect.ListPromptsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListPromptsPages(input *ListPromptsInput, fn func(*ListPromptsOutput, bool) bool) error {
+	return c.ListPromptsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListPromptsPagesWithContext same as ListPromptsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListPromptsPagesWithContext(ctx aws.Context, input *ListPromptsInput, fn func(*ListPromptsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListPromptsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListPromptsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListPromptsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListQueues = "ListQueues"
 
 // ListQueuesRequest generates a "aws/request.Request" representing the
@@ -1461,6 +2196,9 @@ func (c *Connect) ListQueuesRequest(input *ListQueuesInput) (req *request.Reques
 // ListQueues API operation for Amazon Connect Service.
 //
 // Provides information about the queues for the specified Amazon Connect instance.
+//
+// For more information about queues, see Queues: Standard and Agent (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-queues-standard-and-agent.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1559,6 +2297,155 @@ func (c *Connect) ListQueuesPagesWithContext(ctx aws.Context, input *ListQueuesI
 	return p.Err()
 }
 
+const opListRoutingProfileQueues = "ListRoutingProfileQueues"
+
+// ListRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRoutingProfileQueues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRoutingProfileQueues for more information on using the ListRoutingProfileQueues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRoutingProfileQueuesRequest method.
+//    req, resp := client.ListRoutingProfileQueuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfileQueues
+func (c *Connect) ListRoutingProfileQueuesRequest(input *ListRoutingProfileQueuesInput) (req *request.Request, output *ListRoutingProfileQueuesOutput) {
+	op := &request.Operation{
+		Name:       opListRoutingProfileQueues,
+		HTTPMethod: "GET",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRoutingProfileQueuesInput{}
+	}
+
+	output = &ListRoutingProfileQueuesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRoutingProfileQueues API operation for Amazon Connect Service.
+//
+// List the queues associated with a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListRoutingProfileQueues for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListRoutingProfileQueues
+func (c *Connect) ListRoutingProfileQueues(input *ListRoutingProfileQueuesInput) (*ListRoutingProfileQueuesOutput, error) {
+	req, out := c.ListRoutingProfileQueuesRequest(input)
+	return out, req.Send()
+}
+
+// ListRoutingProfileQueuesWithContext is the same as ListRoutingProfileQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRoutingProfileQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListRoutingProfileQueuesWithContext(ctx aws.Context, input *ListRoutingProfileQueuesInput, opts ...request.Option) (*ListRoutingProfileQueuesOutput, error) {
+	req, out := c.ListRoutingProfileQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRoutingProfileQueuesPages iterates over the pages of a ListRoutingProfileQueues operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRoutingProfileQueues method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRoutingProfileQueues operation.
+//    pageNum := 0
+//    err := client.ListRoutingProfileQueuesPages(params,
+//        func(page *connect.ListRoutingProfileQueuesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListRoutingProfileQueuesPages(input *ListRoutingProfileQueuesInput, fn func(*ListRoutingProfileQueuesOutput, bool) bool) error {
+	return c.ListRoutingProfileQueuesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRoutingProfileQueuesPagesWithContext same as ListRoutingProfileQueuesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListRoutingProfileQueuesPagesWithContext(ctx aws.Context, input *ListRoutingProfileQueuesInput, fn func(*ListRoutingProfileQueuesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRoutingProfileQueuesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRoutingProfileQueuesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRoutingProfileQueuesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRoutingProfiles = "ListRoutingProfiles"
 
 // ListRoutingProfilesRequest generates a "aws/request.Request" representing the
@@ -1611,6 +2498,10 @@ func (c *Connect) ListRoutingProfilesRequest(input *ListRoutingProfilesInput) (r
 //
 // Provides summary information about the routing profiles for the specified
 // Amazon Connect instance.
+//
+// For more information about routing profiles, see Routing Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing.html)
+// and Create a Routing Profile (https://docs.aws.amazon.com/connect/latest/adminguide/routing-profiles.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1762,6 +2653,9 @@ func (c *Connect) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) 
 // Provides summary information about the security profiles for the specified
 // Amazon Connect instance.
 //
+// For more information about security profiles, see Security Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/connect-security-profiles.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1905,6 +2799,10 @@ func (c *Connect) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //
 // Lists the tags for the specified resource.
 //
+// For sample policies that use tags, see Amazon Connect Identity-Based Policy
+// Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2002,6 +2900,10 @@ func (c *Connect) ListUserHierarchyGroupsRequest(input *ListUserHierarchyGroupsI
 //
 // Provides summary information about the hierarchy groups for the specified
 // Amazon Connect instance.
+//
+// For more information about agent hierarchies, see Set Up Agent Hierarchies
+// (https://docs.aws.amazon.com/connect/latest/adminguide/agent-hierarchy.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2393,6 +3295,17 @@ func (c *Connect) StartChatContactRequest(input *StartChatContactInput) (req *re
 // This is achieved by invoking CreateParticipantConnection (https://docs.aws.amazon.com/connect-participant/latest/APIReference/API_CreateParticipantConnection.html)
 // with WEBSOCKET and CONNECTION_CREDENTIALS.
 //
+// A 429 error occurs in two situations:
+//
+//    * API rate limit is exceeded. API TPS throttling returns a TooManyRequests
+//    exception from the API Gateway.
+//
+//    * The quota for concurrent active chats (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+//    is exceeded. Active chat throttling returns a LimitExceededException.
+//
+// For more information about how chat works, see Chat (https://docs.aws.amazon.com/connect/latest/adminguide/chat.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2592,6 +3505,11 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 //
 // There is a 60 second dialing timeout for this operation. If the call is not
 // connected after 60 seconds, it fails.
+//
+// UK numbers with a 447 prefix are not allowed by default. Before you can dial
+// these UK mobile numbers, you must submit a service quota increase request.
+// For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2972,6 +3890,10 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //
 // The supported resource type is users.
 //
+// For sample policies that use tags, see Amazon Connect Identity-Based Policy
+// Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
+// in the Amazon Connect Administrator Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3218,6 +4140,569 @@ func (c *Connect) UpdateContactAttributesWithContext(ctx aws.Context, input *Upd
 	return out, req.Send()
 }
 
+const opUpdateContactFlowContent = "UpdateContactFlowContent"
+
+// UpdateContactFlowContentRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowContent operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowContent for more information on using the UpdateContactFlowContent
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowContentRequest method.
+//    req, resp := client.UpdateContactFlowContentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowContent
+func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowContentInput) (req *request.Request, output *UpdateContactFlowContentOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowContent,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}/content",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowContentInput{}
+	}
+
+	output = &UpdateContactFlowContentOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowContent API operation for Amazon Connect Service.
+//
+// Updates the specified contact flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowContent for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidContactFlowException
+//   The contact flow is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowContent
+func (c *Connect) UpdateContactFlowContent(input *UpdateContactFlowContentInput) (*UpdateContactFlowContentOutput, error) {
+	req, out := c.UpdateContactFlowContentRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowContentWithContext is the same as UpdateContactFlowContent with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowContent for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowContentWithContext(ctx aws.Context, input *UpdateContactFlowContentInput, opts ...request.Option) (*UpdateContactFlowContentOutput, error) {
+	req, out := c.UpdateContactFlowContentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactFlowName = "UpdateContactFlowName"
+
+// UpdateContactFlowNameRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactFlowName operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactFlowName for more information on using the UpdateContactFlowName
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactFlowNameRequest method.
+//    req, resp := client.UpdateContactFlowNameRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowName
+func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput) (req *request.Request, output *UpdateContactFlowNameOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactFlowName,
+		HTTPMethod: "POST",
+		HTTPPath:   "/contact-flows/{InstanceId}/{ContactFlowId}/name",
+	}
+
+	if input == nil {
+		input = &UpdateContactFlowNameInput{}
+	}
+
+	output = &UpdateContactFlowNameOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactFlowName API operation for Amazon Connect Service.
+//
+// The name of the contact flow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateContactFlowName for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateContactFlowName
+func (c *Connect) UpdateContactFlowName(input *UpdateContactFlowNameInput) (*UpdateContactFlowNameOutput, error) {
+	req, out := c.UpdateContactFlowNameRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactFlowNameWithContext is the same as UpdateContactFlowName with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactFlowName for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateContactFlowNameWithContext(ctx aws.Context, input *UpdateContactFlowNameInput, opts ...request.Option) (*UpdateContactFlowNameOutput, error) {
+	req, out := c.UpdateContactFlowNameRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRoutingProfileConcurrency = "UpdateRoutingProfileConcurrency"
+
+// UpdateRoutingProfileConcurrencyRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoutingProfileConcurrency operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoutingProfileConcurrency for more information on using the UpdateRoutingProfileConcurrency
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRoutingProfileConcurrencyRequest method.
+//    req, resp := client.UpdateRoutingProfileConcurrencyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileConcurrency
+func (c *Connect) UpdateRoutingProfileConcurrencyRequest(input *UpdateRoutingProfileConcurrencyInput) (req *request.Request, output *UpdateRoutingProfileConcurrencyOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoutingProfileConcurrency,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/concurrency",
+	}
+
+	if input == nil {
+		input = &UpdateRoutingProfileConcurrencyInput{}
+	}
+
+	output = &UpdateRoutingProfileConcurrencyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateRoutingProfileConcurrency API operation for Amazon Connect Service.
+//
+// Updates the channels that agents can handle in the Contact Control Panel
+// (CCP) for a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateRoutingProfileConcurrency for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileConcurrency
+func (c *Connect) UpdateRoutingProfileConcurrency(input *UpdateRoutingProfileConcurrencyInput) (*UpdateRoutingProfileConcurrencyOutput, error) {
+	req, out := c.UpdateRoutingProfileConcurrencyRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoutingProfileConcurrencyWithContext is the same as UpdateRoutingProfileConcurrency with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoutingProfileConcurrency for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateRoutingProfileConcurrencyWithContext(ctx aws.Context, input *UpdateRoutingProfileConcurrencyInput, opts ...request.Option) (*UpdateRoutingProfileConcurrencyOutput, error) {
+	req, out := c.UpdateRoutingProfileConcurrencyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRoutingProfileDefaultOutboundQueue = "UpdateRoutingProfileDefaultOutboundQueue"
+
+// UpdateRoutingProfileDefaultOutboundQueueRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoutingProfileDefaultOutboundQueue operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoutingProfileDefaultOutboundQueue for more information on using the UpdateRoutingProfileDefaultOutboundQueue
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRoutingProfileDefaultOutboundQueueRequest method.
+//    req, resp := client.UpdateRoutingProfileDefaultOutboundQueueRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileDefaultOutboundQueue
+func (c *Connect) UpdateRoutingProfileDefaultOutboundQueueRequest(input *UpdateRoutingProfileDefaultOutboundQueueInput) (req *request.Request, output *UpdateRoutingProfileDefaultOutboundQueueOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoutingProfileDefaultOutboundQueue,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/default-outbound-queue",
+	}
+
+	if input == nil {
+		input = &UpdateRoutingProfileDefaultOutboundQueueInput{}
+	}
+
+	output = &UpdateRoutingProfileDefaultOutboundQueueOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateRoutingProfileDefaultOutboundQueue API operation for Amazon Connect Service.
+//
+// Updates the default outbound queue of a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateRoutingProfileDefaultOutboundQueue for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileDefaultOutboundQueue
+func (c *Connect) UpdateRoutingProfileDefaultOutboundQueue(input *UpdateRoutingProfileDefaultOutboundQueueInput) (*UpdateRoutingProfileDefaultOutboundQueueOutput, error) {
+	req, out := c.UpdateRoutingProfileDefaultOutboundQueueRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoutingProfileDefaultOutboundQueueWithContext is the same as UpdateRoutingProfileDefaultOutboundQueue with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoutingProfileDefaultOutboundQueue for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateRoutingProfileDefaultOutboundQueueWithContext(ctx aws.Context, input *UpdateRoutingProfileDefaultOutboundQueueInput, opts ...request.Option) (*UpdateRoutingProfileDefaultOutboundQueueOutput, error) {
+	req, out := c.UpdateRoutingProfileDefaultOutboundQueueRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRoutingProfileName = "UpdateRoutingProfileName"
+
+// UpdateRoutingProfileNameRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoutingProfileName operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoutingProfileName for more information on using the UpdateRoutingProfileName
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRoutingProfileNameRequest method.
+//    req, resp := client.UpdateRoutingProfileNameRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileName
+func (c *Connect) UpdateRoutingProfileNameRequest(input *UpdateRoutingProfileNameInput) (req *request.Request, output *UpdateRoutingProfileNameOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoutingProfileName,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/name",
+	}
+
+	if input == nil {
+		input = &UpdateRoutingProfileNameInput{}
+	}
+
+	output = &UpdateRoutingProfileNameOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateRoutingProfileName API operation for Amazon Connect Service.
+//
+// Updates the name and description of a routing profile. The request accepts
+// the following data in JSON format. At least Name or Description must be provided.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateRoutingProfileName for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileName
+func (c *Connect) UpdateRoutingProfileName(input *UpdateRoutingProfileNameInput) (*UpdateRoutingProfileNameOutput, error) {
+	req, out := c.UpdateRoutingProfileNameRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoutingProfileNameWithContext is the same as UpdateRoutingProfileName with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoutingProfileName for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateRoutingProfileNameWithContext(ctx aws.Context, input *UpdateRoutingProfileNameInput, opts ...request.Option) (*UpdateRoutingProfileNameOutput, error) {
+	req, out := c.UpdateRoutingProfileNameRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateRoutingProfileQueues = "UpdateRoutingProfileQueues"
+
+// UpdateRoutingProfileQueuesRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateRoutingProfileQueues operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateRoutingProfileQueues for more information on using the UpdateRoutingProfileQueues
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateRoutingProfileQueuesRequest method.
+//    req, resp := client.UpdateRoutingProfileQueuesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileQueues
+func (c *Connect) UpdateRoutingProfileQueuesRequest(input *UpdateRoutingProfileQueuesInput) (req *request.Request, output *UpdateRoutingProfileQueuesOutput) {
+	op := &request.Operation{
+		Name:       opUpdateRoutingProfileQueues,
+		HTTPMethod: "POST",
+		HTTPPath:   "/routing-profiles/{InstanceId}/{RoutingProfileId}/queues",
+	}
+
+	if input == nil {
+		input = &UpdateRoutingProfileQueuesInput{}
+	}
+
+	output = &UpdateRoutingProfileQueuesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateRoutingProfileQueues API operation for Amazon Connect Service.
+//
+// Updates the properties associated with a set of queues for a routing profile.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateRoutingProfileQueues for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateRoutingProfileQueues
+func (c *Connect) UpdateRoutingProfileQueues(input *UpdateRoutingProfileQueuesInput) (*UpdateRoutingProfileQueuesOutput, error) {
+	req, out := c.UpdateRoutingProfileQueuesRequest(input)
+	return out, req.Send()
+}
+
+// UpdateRoutingProfileQueuesWithContext is the same as UpdateRoutingProfileQueues with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateRoutingProfileQueues for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateRoutingProfileQueuesWithContext(ctx aws.Context, input *UpdateRoutingProfileQueuesInput, opts ...request.Option) (*UpdateRoutingProfileQueuesOutput, error) {
+	req, out := c.UpdateRoutingProfileQueuesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUserHierarchy = "UpdateUserHierarchy"
 
 // UpdateUserHierarchyRequest generates a "aws/request.Request" representing the
@@ -3356,6 +4841,14 @@ func (c *Connect) UpdateUserIdentityInfoRequest(input *UpdateUserIdentityInfoInp
 // UpdateUserIdentityInfo API operation for Amazon Connect Service.
 //
 // Updates the identity information for the specified user.
+//
+// Someone with the ability to invoke UpdateUserIndentityInfo can change the
+// login credentials of other users by changing their email address. This poses
+// a security risk to your organization. They can change the email address of
+// a user to the attacker's email address, and then reset the password through
+// email. We strongly recommend limiting who has the ability to invoke UpdateUserIndentityInfo.
+// For more information, see Best Practices for Security Profiles (https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html)
+// in the Amazon Connect Administrator Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3678,6 +5171,105 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+type AssociateRoutingProfileQueuesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The queues to associate with this routing profile.
+	//
+	// QueueConfigs is a required field
+	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateRoutingProfileQueuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateRoutingProfileQueuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateRoutingProfileQueuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateRoutingProfileQueuesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueConfigs == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueConfigs"))
+	}
+	if s.QueueConfigs != nil && len(s.QueueConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueConfigs", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+	if s.QueueConfigs != nil {
+		for i, v := range s.QueueConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "QueueConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AssociateRoutingProfileQueuesInput) SetInstanceId(v string) *AssociateRoutingProfileQueuesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueConfigs sets the QueueConfigs field's value.
+func (s *AssociateRoutingProfileQueuesInput) SetQueueConfigs(v []*RoutingProfileQueueConfig) *AssociateRoutingProfileQueuesInput {
+	s.QueueConfigs = v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *AssociateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *AssociateRoutingProfileQueuesInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type AssociateRoutingProfileQueuesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateRoutingProfileQueuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateRoutingProfileQueuesOutput) GoString() string {
+	return s.String()
+}
+
 // A chat message.
 type ChatMessage struct {
 	_ struct{} `type:"structure"`
@@ -3737,6 +5329,142 @@ func (s *ChatMessage) SetContentType(v string) *ChatMessage {
 	return s
 }
 
+// Contains information about a contact flow.
+type ContactFlow struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact flow.
+	Arn *string `type:"string"`
+
+	// The content of the contact flow.
+	Content *string `type:"string"`
+
+	// The description of the contact flow.
+	Description *string `type:"string"`
+
+	// The identifier of the contact flow.
+	Id *string `type:"string"`
+
+	// The name of the contact flow.
+	Name *string `min:"1" type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The type of the contact flow. For descriptions of the available types, see
+	// Choose a Contact Flow Type (https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types)
+	// in the Amazon Connect Administrator Guide.
+	Type *string `type:"string" enum:"ContactFlowType"`
+}
+
+// String returns the string representation
+func (s ContactFlow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContactFlow) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContactFlow) SetArn(v string) *ContactFlow {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *ContactFlow) SetContent(v string) *ContactFlow {
+	s.Content = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ContactFlow) SetDescription(v string) *ContactFlow {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ContactFlow) SetId(v string) *ContactFlow {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContactFlow) SetName(v string) *ContactFlow {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContactFlow) SetTags(v map[string]*string) *ContactFlow {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ContactFlow) SetType(v string) *ContactFlow {
+	s.Type = &v
+	return s
+}
+
+// The contact flow has not been published.
+type ContactFlowNotPublishedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s ContactFlowNotPublishedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContactFlowNotPublishedException) GoString() string {
+	return s.String()
+}
+
+func newErrorContactFlowNotPublishedException(v protocol.ResponseMetadata) error {
+	return &ContactFlowNotPublishedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ContactFlowNotPublishedException) Code() string {
+	return "ContactFlowNotPublishedException"
+}
+
+// Message returns the exception's message.
+func (s *ContactFlowNotPublishedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ContactFlowNotPublishedException) OrigErr() error {
+	return nil
+}
+
+func (s *ContactFlowNotPublishedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ContactFlowNotPublishedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ContactFlowNotPublishedException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Contains summary information about a contact flow.
 type ContactFlowSummary struct {
 	_ struct{} `type:"structure"`
@@ -3751,7 +5479,7 @@ type ContactFlowSummary struct {
 	Id *string `type:"string"`
 
 	// The name of the contact flow.
-	Name *string `type:"string"`
+	Name *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -3843,6 +5571,328 @@ func (s *ContactNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ContactNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type CreateContactFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the contact flow.
+	//
+	// Content is a required field
+	Content *string `type:"string" required:"true"`
+
+	// The description of the contact flow.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact flow.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The type of the contact flow. For descriptions of the available types, see
+	// Choose a Contact Flow Type (https://docs.aws.amazon.com/connect/latest/adminguide/create-contact-flow.html#contact-flow-types)
+	// in the Amazon Connect Administrator Guide.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ContactFlowType"`
+}
+
+// String returns the string representation
+func (s CreateContactFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContactFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContactFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContactFlowInput"}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *CreateContactFlowInput) SetContent(v string) *CreateContactFlowInput {
+	s.Content = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateContactFlowInput) SetDescription(v string) *CreateContactFlowInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateContactFlowInput) SetInstanceId(v string) *CreateContactFlowInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateContactFlowInput) SetName(v string) *CreateContactFlowInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContactFlowInput) SetTags(v map[string]*string) *CreateContactFlowInput {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *CreateContactFlowInput) SetType(v string) *CreateContactFlowInput {
+	s.Type = &v
+	return s
+}
+
+type CreateContactFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the contact flow.
+	ContactFlowArn *string `type:"string"`
+
+	// The identifier of the contact flow.
+	ContactFlowId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateContactFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContactFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactFlowArn sets the ContactFlowArn field's value.
+func (s *CreateContactFlowOutput) SetContactFlowArn(v string) *CreateContactFlowOutput {
+	s.ContactFlowArn = &v
+	return s
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *CreateContactFlowOutput) SetContactFlowId(v string) *CreateContactFlowOutput {
+	s.ContactFlowId = &v
+	return s
+}
+
+type CreateRoutingProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The default outbound queue for the routing profile.
+	//
+	// DefaultOutboundQueueId is a required field
+	DefaultOutboundQueueId *string `type:"string" required:"true"`
+
+	// Description of the routing profile. Must not be more than 250 characters.
+	//
+	// Description is a required field
+	Description *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The channels agents can handle in the Contact Control Panel (CCP) for this
+	// routing profile.
+	//
+	// MediaConcurrencies is a required field
+	MediaConcurrencies []*MediaConcurrency `type:"list" required:"true"`
+
+	// The name of the routing profile. Must not be more than 127 characters.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The inbound queues associated with the routing profile. If no queue is added,
+	// the agent can only make outbound calls.
+	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateRoutingProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoutingProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRoutingProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRoutingProfileInput"}
+	if s.DefaultOutboundQueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultOutboundQueueId"))
+	}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MediaConcurrencies == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaConcurrencies"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.QueueConfigs != nil && len(s.QueueConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueConfigs", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.MediaConcurrencies != nil {
+		for i, v := range s.MediaConcurrencies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaConcurrencies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.QueueConfigs != nil {
+		for i, v := range s.QueueConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "QueueConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultOutboundQueueId sets the DefaultOutboundQueueId field's value.
+func (s *CreateRoutingProfileInput) SetDefaultOutboundQueueId(v string) *CreateRoutingProfileInput {
+	s.DefaultOutboundQueueId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateRoutingProfileInput) SetDescription(v string) *CreateRoutingProfileInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateRoutingProfileInput) SetInstanceId(v string) *CreateRoutingProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMediaConcurrencies sets the MediaConcurrencies field's value.
+func (s *CreateRoutingProfileInput) SetMediaConcurrencies(v []*MediaConcurrency) *CreateRoutingProfileInput {
+	s.MediaConcurrencies = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRoutingProfileInput) SetName(v string) *CreateRoutingProfileInput {
+	s.Name = &v
+	return s
+}
+
+// SetQueueConfigs sets the QueueConfigs field's value.
+func (s *CreateRoutingProfileInput) SetQueueConfigs(v []*RoutingProfileQueueConfig) *CreateRoutingProfileInput {
+	s.QueueConfigs = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRoutingProfileInput) SetTags(v map[string]*string) *CreateRoutingProfileInput {
+	s.Tags = v
+	return s
+}
+
+type CreateRoutingProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the routing profile.
+	RoutingProfileArn *string `type:"string"`
+
+	// The identifier of the routing profile.
+	RoutingProfileId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateRoutingProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateRoutingProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoutingProfileArn sets the RoutingProfileArn field's value.
+func (s *CreateRoutingProfileOutput) SetRoutingProfileArn(v string) *CreateRoutingProfileOutput {
+	s.RoutingProfileArn = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutingProfileOutput {
+	s.RoutingProfileId = &v
+	return s
 }
 
 type CreateUserInput struct {
@@ -4277,6 +6327,168 @@ func (s DeleteUserOutput) GoString() string {
 	return s.String()
 }
 
+type DescribeContactFlowInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeContactFlowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeContactFlowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeContactFlowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeContactFlowInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *DescribeContactFlowInput) SetContactFlowId(v string) *DescribeContactFlowInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeContactFlowInput) SetInstanceId(v string) *DescribeContactFlowInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeContactFlowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the contact flow.
+	ContactFlow *ContactFlow `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeContactFlowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeContactFlowOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactFlow sets the ContactFlow field's value.
+func (s *DescribeContactFlowOutput) SetContactFlow(v *ContactFlow) *DescribeContactFlowOutput {
+	s.ContactFlow = v
+	return s
+}
+
+type DescribeRoutingProfileInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeRoutingProfileInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRoutingProfileInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRoutingProfileInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRoutingProfileInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeRoutingProfileInput) SetInstanceId(v string) *DescribeRoutingProfileInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *DescribeRoutingProfileInput) SetRoutingProfileId(v string) *DescribeRoutingProfileInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type DescribeRoutingProfileOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The routing profile.
+	RoutingProfile *RoutingProfile `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeRoutingProfileOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRoutingProfileOutput) GoString() string {
+	return s.String()
+}
+
+// SetRoutingProfile sets the RoutingProfile field's value.
+func (s *DescribeRoutingProfileOutput) SetRoutingProfile(v *RoutingProfile) *DescribeRoutingProfileOutput {
+	s.RoutingProfile = v
+	return s
+}
+
 type DescribeUserHierarchyGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4593,6 +6805,102 @@ func (s *Dimensions) SetQueue(v *QueueReference) *Dimensions {
 	return s
 }
 
+type DisassociateRoutingProfileQueuesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The queues to disassociate from this routing profile.
+	//
+	// QueueReferences is a required field
+	QueueReferences []*RoutingProfileQueueReference `type:"list" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DisassociateRoutingProfileQueuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateRoutingProfileQueuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateRoutingProfileQueuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateRoutingProfileQueuesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueReferences == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueReferences"))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+	if s.QueueReferences != nil {
+		for i, v := range s.QueueReferences {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "QueueReferences", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DisassociateRoutingProfileQueuesInput) SetInstanceId(v string) *DisassociateRoutingProfileQueuesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueReferences sets the QueueReferences field's value.
+func (s *DisassociateRoutingProfileQueuesInput) SetQueueReferences(v []*RoutingProfileQueueReference) *DisassociateRoutingProfileQueuesInput {
+	s.QueueReferences = v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *DisassociateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *DisassociateRoutingProfileQueuesInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type DisassociateRoutingProfileQueuesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DisassociateRoutingProfileQueuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateRoutingProfileQueuesOutput) GoString() string {
+	return s.String()
+}
+
 // A resource with the specified name already exists.
 type DuplicateResourceException struct {
 	_            struct{}                  `type:"structure"`
@@ -4781,61 +7089,95 @@ type GetCurrentMetricDataInput struct {
 	_ struct{} `type:"structure"`
 
 	// The metrics to retrieve. Specify the name and unit for each metric. The following
-	// metrics are available. For a description of each metric, see Real-time Metrics
-	// Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html)
+	// metrics are available. For a description of all the metrics, see Real-time
+	// Metrics Definitions (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html)
 	// in the Amazon Connect Administrator Guide.
 	//
 	// AGENTS_AFTER_CONTACT_WORK
 	//
 	// Unit: COUNT
 	//
+	// Name in real-time metrics report: ACW (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#aftercallwork-real-time)
+	//
 	// AGENTS_AVAILABLE
 	//
 	// Unit: COUNT
+	//
+	// Name in real-time metrics report: Available (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#available-real-time)
 	//
 	// AGENTS_ERROR
 	//
 	// Unit: COUNT
 	//
+	// Name in real-time metrics report: Error (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#error-real-time)
+	//
 	// AGENTS_NON_PRODUCTIVE
 	//
 	// Unit: COUNT
+	//
+	// Name in real-time metrics report: NPT (Non-Productive Time) (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#non-productive-time-real-time)
 	//
 	// AGENTS_ON_CALL
 	//
 	// Unit: COUNT
 	//
+	// Name in real-time metrics report: On contact (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time)
+	//
 	// AGENTS_ON_CONTACT
 	//
 	// Unit: COUNT
+	//
+	// Name in real-time metrics report: On contact (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#on-call-real-time)
 	//
 	// AGENTS_ONLINE
 	//
 	// Unit: COUNT
 	//
+	// Name in real-time metrics report: Online (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#online-real-time)
+	//
 	// AGENTS_STAFFED
 	//
 	// Unit: COUNT
+	//
+	// Name in real-time metrics report: Staffed (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#staffed-real-time)
 	//
 	// CONTACTS_IN_QUEUE
 	//
 	// Unit: COUNT
 	//
+	// Name in real-time metrics report: In queue (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#in-queue-real-time)
+	//
 	// CONTACTS_SCHEDULED
 	//
 	// Unit: COUNT
+	//
+	// Name in real-time metrics report: Scheduled (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#scheduled-real-time)
 	//
 	// OLDEST_CONTACT_AGE
 	//
 	// Unit: SECONDS
 	//
+	// When you use groupings, Unit says SECONDS but the Value is returned in MILLISECONDS.
+	// For example, if you get a response like this:
+	//
+	// { "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value":
+	// 24113.0 }
+	//
+	// The actual OLDEST_CONTACT_AGE is 24 seconds.
+	//
+	// Name in real-time metrics report: Oldest (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#oldest-real-time)
+	//
 	// SLOTS_ACTIVE
 	//
 	// Unit: COUNT
 	//
+	// Name in real-time metrics report: Active (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#active-real-time)
+	//
 	// SLOTS_AVAILABLE
 	//
 	// Unit: COUNT
+	//
+	// Name in real-time metrics report: Availability (https://docs.aws.amazon.com/connect/latest/adminguide/real-time-metrics-definitions.html#availability-real-time)
 	//
 	// CurrentMetrics is a required field
 	CurrentMetrics []*CurrentMetric `type:"list" required:"true"`
@@ -4843,7 +7185,7 @@ type GetCurrentMetricDataInput struct {
 	// The queues, up to 100, or channels, to use to filter the metrics returned.
 	// Metric data is retrieved only for the resources associated with the queues
 	// or channels included in the filter. You can include both queue IDs and queue
-	// ARNs in the same request. The only supported channel is VOICE.
+	// ARNs in the same request. Both VOICE and CHAT channels are supported.
 	//
 	// Filters is a required field
 	Filters *Filters `type:"structure" required:"true"`
@@ -4851,7 +7193,7 @@ type GetCurrentMetricDataInput struct {
 	// The grouping applied to the metrics returned. For example, when grouped by
 	// QUEUE, the metrics returned apply to each queue rather than aggregated for
 	// all queues. If you group by CHANNEL, you should include a Channels filter.
-	// The only supported channel is VOICE.
+	// Both VOICE and CHAT channels are supported.
 	//
 	// If no Grouping is included in the request, a summary of metrics is returned.
 	Groupings []*string `type:"list"`
@@ -5074,7 +7416,7 @@ type GetMetricDataInput struct {
 	// The queues, up to 100, or channels, to use to filter the metrics returned.
 	// Metric data is retrieved only for the resources associated with the queues
 	// or channels included in the filter. You can include both queue IDs and queue
-	// ARNs in the same request. The only supported channel is VOICE.
+	// ARNs in the same request. Both VOICE and CHAT channels are supported.
 	//
 	// Filters is a required field
 	Filters *Filters `type:"structure" required:"true"`
@@ -5887,6 +8229,65 @@ func (s *InternalServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The contact flow is not valid.
+type InvalidContactFlowException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+
+	// The problems with the contact flow. Please fix before trying again.
+	Problems []*ProblemDetail `locationName:"problems" min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s InvalidContactFlowException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvalidContactFlowException) GoString() string {
+	return s.String()
+}
+
+func newErrorInvalidContactFlowException(v protocol.ResponseMetadata) error {
+	return &InvalidContactFlowException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *InvalidContactFlowException) Code() string {
+	return "InvalidContactFlowException"
+}
+
+// Message returns the exception's message.
+func (s *InvalidContactFlowException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *InvalidContactFlowException) OrigErr() error {
+	return nil
+}
+
+func (s *InvalidContactFlowException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *InvalidContactFlowException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *InvalidContactFlowException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // One or more of the specified parameters are not valid.
 type InvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
@@ -6370,6 +8771,101 @@ func (s *ListPhoneNumbersOutput) SetPhoneNumberSummaryList(v []*PhoneNumberSumma
 	return s
 }
 
+type ListPromptsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListPromptsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPromptsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPromptsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPromptsInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListPromptsInput) SetInstanceId(v string) *ListPromptsInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPromptsInput) SetMaxResults(v int64) *ListPromptsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPromptsInput) SetNextToken(v string) *ListPromptsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPromptsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Information about the prompts.
+	PromptSummaryList []*PromptSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListPromptsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPromptsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPromptsOutput) SetNextToken(v string) *ListPromptsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPromptSummaryList sets the PromptSummaryList field's value.
+func (s *ListPromptsOutput) SetPromptSummaryList(v []*PromptSummary) *ListPromptsOutput {
+	s.PromptSummaryList = v
+	return s
+}
+
 type ListQueuesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6471,6 +8967,118 @@ func (s *ListQueuesOutput) SetNextToken(v string) *ListQueuesOutput {
 // SetQueueSummaryList sets the QueueSummaryList field's value.
 func (s *ListQueuesOutput) SetQueueSummaryList(v []*QueueSummary) *ListQueuesOutput {
 	s.QueueSummaryList = v
+	return s
+}
+
+type ListRoutingProfileQueuesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximimum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListRoutingProfileQueuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRoutingProfileQueuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRoutingProfileQueuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRoutingProfileQueuesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListRoutingProfileQueuesInput) SetInstanceId(v string) *ListRoutingProfileQueuesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRoutingProfileQueuesInput) SetMaxResults(v int64) *ListRoutingProfileQueuesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoutingProfileQueuesInput) SetNextToken(v string) *ListRoutingProfileQueuesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *ListRoutingProfileQueuesInput) SetRoutingProfileId(v string) *ListRoutingProfileQueuesInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type ListRoutingProfileQueuesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+
+	// Information about the routing profiles.
+	RoutingProfileQueueConfigSummaryList []*RoutingProfileQueueConfigSummary `type:"list"`
+}
+
+// String returns the string representation
+func (s ListRoutingProfileQueuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRoutingProfileQueuesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRoutingProfileQueuesOutput) SetNextToken(v string) *ListRoutingProfileQueuesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRoutingProfileQueueConfigSummaryList sets the RoutingProfileQueueConfigSummaryList field's value.
+func (s *ListRoutingProfileQueuesOutput) SetRoutingProfileQueueConfigSummaryList(v []*RoutingProfileQueueConfigSummary) *ListRoutingProfileQueuesOutput {
+	s.RoutingProfileQueueConfigSummaryList = v
 	return s
 }
 
@@ -6918,6 +9526,63 @@ func (s *ListUsersOutput) SetUserSummaryList(v []*UserSummary) *ListUsersOutput 
 	return s
 }
 
+// Contains information about which channels are supported, and how many contacts
+// an agent can have on a channel simultaneously.
+type MediaConcurrency struct {
+	_ struct{} `type:"structure"`
+
+	// The channels that agents can handle in the Contact Control Panel (CCP).
+	//
+	// Channel is a required field
+	Channel *string `type:"string" required:"true" enum:"Channel"`
+
+	// The number of contacts an agent can have on a channel simultaneously.
+	//
+	// Concurrency is a required field
+	Concurrency *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s MediaConcurrency) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaConcurrency) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MediaConcurrency) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MediaConcurrency"}
+	if s.Channel == nil {
+		invalidParams.Add(request.NewErrParamRequired("Channel"))
+	}
+	if s.Concurrency == nil {
+		invalidParams.Add(request.NewErrParamRequired("Concurrency"))
+	}
+	if s.Concurrency != nil && *s.Concurrency < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Concurrency", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannel sets the Channel field's value.
+func (s *MediaConcurrency) SetChannel(v string) *MediaConcurrency {
+	s.Channel = &v
+	return s
+}
+
+// SetConcurrency sets the Concurrency field's value.
+func (s *MediaConcurrency) SetConcurrency(v int64) *MediaConcurrency {
+	s.Concurrency = &v
+	return s
+}
+
 // The contact is not permitted.
 type OutboundContactNotPermittedException struct {
 	_            struct{}                  `type:"structure"`
@@ -7074,6 +9739,72 @@ func (s *PhoneNumberSummary) SetPhoneNumberCountryCode(v string) *PhoneNumberSum
 // SetPhoneNumberType sets the PhoneNumberType field's value.
 func (s *PhoneNumberSummary) SetPhoneNumberType(v string) *PhoneNumberSummary {
 	s.PhoneNumberType = &v
+	return s
+}
+
+// Information about a problem detail.
+type ProblemDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The problem detail's message.
+	Message *string `locationName:"message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ProblemDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProblemDetail) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ProblemDetail) SetMessage(v string) *ProblemDetail {
+	s.Message = &v
+	return s
+}
+
+// Contains information about the prompt.
+type PromptSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the prompt.
+	Arn *string `type:"string"`
+
+	// The identifier of the prompt.
+	Id *string `min:"1" type:"string"`
+
+	// The name of the prompt.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PromptSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PromptSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PromptSummary) SetArn(v string) *PromptSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *PromptSummary) SetId(v string) *PromptSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PromptSummary) SetName(v string) *PromptSummary {
+	s.Name = &v
 	return s
 }
 
@@ -7308,6 +10039,313 @@ func (s ResumeContactRecordingOutput) GoString() string {
 	return s.String()
 }
 
+// Contains information about a routing profile.
+type RoutingProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the default outbound queue for this routing profile.
+	DefaultOutboundQueueId *string `type:"string"`
+
+	// The description of the routing profile.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	InstanceId *string `min:"1" type:"string"`
+
+	// The channels agents can handle in the Contact Control Panel (CCP) for this
+	// routing profile.
+	MediaConcurrencies []*MediaConcurrency `type:"list"`
+
+	// The name of the routing profile.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the routing profile.
+	RoutingProfileArn *string `type:"string"`
+
+	// The identifier of the routing profile.
+	RoutingProfileId *string `type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s RoutingProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoutingProfile) GoString() string {
+	return s.String()
+}
+
+// SetDefaultOutboundQueueId sets the DefaultOutboundQueueId field's value.
+func (s *RoutingProfile) SetDefaultOutboundQueueId(v string) *RoutingProfile {
+	s.DefaultOutboundQueueId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *RoutingProfile) SetDescription(v string) *RoutingProfile {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *RoutingProfile) SetInstanceId(v string) *RoutingProfile {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMediaConcurrencies sets the MediaConcurrencies field's value.
+func (s *RoutingProfile) SetMediaConcurrencies(v []*MediaConcurrency) *RoutingProfile {
+	s.MediaConcurrencies = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RoutingProfile) SetName(v string) *RoutingProfile {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingProfileArn sets the RoutingProfileArn field's value.
+func (s *RoutingProfile) SetRoutingProfileArn(v string) *RoutingProfile {
+	s.RoutingProfileArn = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *RoutingProfile) SetRoutingProfileId(v string) *RoutingProfile {
+	s.RoutingProfileId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RoutingProfile) SetTags(v map[string]*string) *RoutingProfile {
+	s.Tags = v
+	return s
+}
+
+// Contains information about the queue and channel for which priority and delay
+// can be set.
+type RoutingProfileQueueConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The delay, in seconds, a contact should be in the queue before they are routed
+	// to an available agent. For more information, see Queues: priority and delay
+	// (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html)
+	// in the Amazon Connect Administrator Guide.
+	//
+	// Delay is a required field
+	Delay *int64 `type:"integer" required:"true"`
+
+	// The order in which contacts are to be handled for the queue. For more information,
+	// see Queues: priority and delay (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html).
+	//
+	// Priority is a required field
+	Priority *int64 `min:"1" type:"integer" required:"true"`
+
+	// Contains information about a queue resource.
+	//
+	// QueueReference is a required field
+	QueueReference *RoutingProfileQueueReference `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s RoutingProfileQueueConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoutingProfileQueueConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RoutingProfileQueueConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RoutingProfileQueueConfig"}
+	if s.Delay == nil {
+		invalidParams.Add(request.NewErrParamRequired("Delay"))
+	}
+	if s.Priority == nil {
+		invalidParams.Add(request.NewErrParamRequired("Priority"))
+	}
+	if s.Priority != nil && *s.Priority < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Priority", 1))
+	}
+	if s.QueueReference == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueReference"))
+	}
+	if s.QueueReference != nil {
+		if err := s.QueueReference.Validate(); err != nil {
+			invalidParams.AddNested("QueueReference", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDelay sets the Delay field's value.
+func (s *RoutingProfileQueueConfig) SetDelay(v int64) *RoutingProfileQueueConfig {
+	s.Delay = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *RoutingProfileQueueConfig) SetPriority(v int64) *RoutingProfileQueueConfig {
+	s.Priority = &v
+	return s
+}
+
+// SetQueueReference sets the QueueReference field's value.
+func (s *RoutingProfileQueueConfig) SetQueueReference(v *RoutingProfileQueueReference) *RoutingProfileQueueConfig {
+	s.QueueReference = v
+	return s
+}
+
+// Contains summary information about a routing profile queue.
+type RoutingProfileQueueConfigSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The channels this queue supports.
+	//
+	// Channel is a required field
+	Channel *string `type:"string" required:"true" enum:"Channel"`
+
+	// The delay, in seconds, that a contact should be in the queue before they
+	// are routed to an available agent. For more information, see Queues: priority
+	// and delay (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html)
+	// in the Amazon Connect Administrator Guide.
+	//
+	// Delay is a required field
+	Delay *int64 `type:"integer" required:"true"`
+
+	// The order in which contacts are to be handled for the queue. For more information,
+	// see Queues: priority and delay (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html).
+	//
+	// Priority is a required field
+	Priority *int64 `min:"1" type:"integer" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the queue.
+	//
+	// QueueArn is a required field
+	QueueArn *string `type:"string" required:"true"`
+
+	// The identifier of the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `type:"string" required:"true"`
+
+	// The name of the queue.
+	//
+	// QueueName is a required field
+	QueueName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RoutingProfileQueueConfigSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoutingProfileQueueConfigSummary) GoString() string {
+	return s.String()
+}
+
+// SetChannel sets the Channel field's value.
+func (s *RoutingProfileQueueConfigSummary) SetChannel(v string) *RoutingProfileQueueConfigSummary {
+	s.Channel = &v
+	return s
+}
+
+// SetDelay sets the Delay field's value.
+func (s *RoutingProfileQueueConfigSummary) SetDelay(v int64) *RoutingProfileQueueConfigSummary {
+	s.Delay = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *RoutingProfileQueueConfigSummary) SetPriority(v int64) *RoutingProfileQueueConfigSummary {
+	s.Priority = &v
+	return s
+}
+
+// SetQueueArn sets the QueueArn field's value.
+func (s *RoutingProfileQueueConfigSummary) SetQueueArn(v string) *RoutingProfileQueueConfigSummary {
+	s.QueueArn = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *RoutingProfileQueueConfigSummary) SetQueueId(v string) *RoutingProfileQueueConfigSummary {
+	s.QueueId = &v
+	return s
+}
+
+// SetQueueName sets the QueueName field's value.
+func (s *RoutingProfileQueueConfigSummary) SetQueueName(v string) *RoutingProfileQueueConfigSummary {
+	s.QueueName = &v
+	return s
+}
+
+// Contains the channel and queue identifier for a routing profile.
+type RoutingProfileQueueReference struct {
+	_ struct{} `type:"structure"`
+
+	// The channels agents can handle in the Contact Control Panel (CCP) for this
+	// routing profile.
+	//
+	// Channel is a required field
+	Channel *string `type:"string" required:"true" enum:"Channel"`
+
+	// The identifier of the queue.
+	//
+	// QueueId is a required field
+	QueueId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RoutingProfileQueueReference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RoutingProfileQueueReference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RoutingProfileQueueReference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RoutingProfileQueueReference"}
+	if s.Channel == nil {
+		invalidParams.Add(request.NewErrParamRequired("Channel"))
+	}
+	if s.QueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetChannel sets the Channel field's value.
+func (s *RoutingProfileQueueReference) SetChannel(v string) *RoutingProfileQueueReference {
+	s.Channel = &v
+	return s
+}
+
+// SetQueueId sets the QueueId field's value.
+func (s *RoutingProfileQueueReference) SetQueueId(v string) *RoutingProfileQueueReference {
+	s.QueueId = &v
+	return s
+}
+
 // Contains summary information about a routing profile.
 type RoutingProfileSummary struct {
 	_ struct{} `type:"structure"`
@@ -7407,7 +10445,13 @@ type StartChatContactInput struct {
 	// of the request.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for the chat.
+	// The identifier of the contact flow for initiating the chat. To see the ContactFlowId
+	// in the Amazon Connect console user interface, on the navigation menu go to
+	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
+	// under the name of the contact flow, choose Show additional flow information.
+	// The ContactFlowId is the last part of the ARN, shown here in bold:
+	//
+	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -7669,7 +10713,13 @@ type StartOutboundVoiceContactInput struct {
 	// a new contact is started.
 	ClientToken *string `type:"string" idempotencyToken:"true"`
 
-	// The identifier of the contact flow for the outbound call.
+	// The identifier of the contact flow for the outbound call. To see the ContactFlowId
+	// in the Amazon Connect console user interface, on the navigation menu go to
+	// Routing, Contact Flows. Choose the contact flow. On the contact flow page,
+	// under the name of the contact flow, choose Show additional flow information.
+	// The ContactFlowId is the last part of the ARN, shown here in bold:
+	//
+	// arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
 	//
 	// ContactFlowId is a required field
 	ContactFlowId *string `type:"string" required:"true"`
@@ -8366,6 +11416,562 @@ func (s UpdateContactAttributesOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateContactAttributesOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowContentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The content of the contact flow.
+	//
+	// Content is a required field
+	Content *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateContactFlowContentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactFlowContentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowContentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowContentInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UpdateContactFlowContentInput) SetContactFlowId(v string) *UpdateContactFlowContentInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *UpdateContactFlowContentInput) SetContent(v string) *UpdateContactFlowContentInput {
+	s.Content = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowContentInput) SetInstanceId(v string) *UpdateContactFlowContentInput {
+	s.InstanceId = &v
+	return s
+}
+
+type UpdateContactFlowContentOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContactFlowContentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactFlowContentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactFlowNameInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the contact flow.
+	//
+	// ContactFlowId is a required field
+	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
+
+	// The description of the contact flow.
+	Description *string `type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the contact flow.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateContactFlowNameInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactFlowNameInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactFlowNameInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactFlowNameInput"}
+	if s.ContactFlowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
+	}
+	if s.ContactFlowId != nil && len(*s.ContactFlowId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactFlowId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactFlowId sets the ContactFlowId field's value.
+func (s *UpdateContactFlowNameInput) SetContactFlowId(v string) *UpdateContactFlowNameInput {
+	s.ContactFlowId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactFlowNameInput) SetDescription(v string) *UpdateContactFlowNameInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateContactFlowNameInput) SetInstanceId(v string) *UpdateContactFlowNameInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateContactFlowNameInput) SetName(v string) *UpdateContactFlowNameInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateContactFlowNameOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContactFlowNameOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactFlowNameOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateRoutingProfileConcurrencyInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The channels agents can handle in the Contact Control Panel (CCP).
+	//
+	// MediaConcurrencies is a required field
+	MediaConcurrencies []*MediaConcurrency `type:"list" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileConcurrencyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileConcurrencyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoutingProfileConcurrencyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoutingProfileConcurrencyInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MediaConcurrencies == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaConcurrencies"))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+	if s.MediaConcurrencies != nil {
+		for i, v := range s.MediaConcurrencies {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MediaConcurrencies", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateRoutingProfileConcurrencyInput) SetInstanceId(v string) *UpdateRoutingProfileConcurrencyInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMediaConcurrencies sets the MediaConcurrencies field's value.
+func (s *UpdateRoutingProfileConcurrencyInput) SetMediaConcurrencies(v []*MediaConcurrency) *UpdateRoutingProfileConcurrencyInput {
+	s.MediaConcurrencies = v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *UpdateRoutingProfileConcurrencyInput) SetRoutingProfileId(v string) *UpdateRoutingProfileConcurrencyInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type UpdateRoutingProfileConcurrencyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileConcurrencyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileConcurrencyOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateRoutingProfileDefaultOutboundQueueInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the default outbound queue.
+	//
+	// DefaultOutboundQueueId is a required field
+	DefaultOutboundQueueId *string `type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileDefaultOutboundQueueInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileDefaultOutboundQueueInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoutingProfileDefaultOutboundQueueInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoutingProfileDefaultOutboundQueueInput"}
+	if s.DefaultOutboundQueueId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultOutboundQueueId"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultOutboundQueueId sets the DefaultOutboundQueueId field's value.
+func (s *UpdateRoutingProfileDefaultOutboundQueueInput) SetDefaultOutboundQueueId(v string) *UpdateRoutingProfileDefaultOutboundQueueInput {
+	s.DefaultOutboundQueueId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateRoutingProfileDefaultOutboundQueueInput) SetInstanceId(v string) *UpdateRoutingProfileDefaultOutboundQueueInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *UpdateRoutingProfileDefaultOutboundQueueInput) SetRoutingProfileId(v string) *UpdateRoutingProfileDefaultOutboundQueueInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type UpdateRoutingProfileDefaultOutboundQueueOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileDefaultOutboundQueueOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileDefaultOutboundQueueOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateRoutingProfileNameInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the routing profile. Must not be more than 250 characters.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the routing profile. Must not be more than 127 characters.
+	Name *string `min:"1" type:"string"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileNameInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileNameInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoutingProfileNameInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoutingProfileNameInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateRoutingProfileNameInput) SetDescription(v string) *UpdateRoutingProfileNameInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateRoutingProfileNameInput) SetInstanceId(v string) *UpdateRoutingProfileNameInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateRoutingProfileNameInput) SetName(v string) *UpdateRoutingProfileNameInput {
+	s.Name = &v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *UpdateRoutingProfileNameInput) SetRoutingProfileId(v string) *UpdateRoutingProfileNameInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type UpdateRoutingProfileNameOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileNameOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileNameOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateRoutingProfileQueuesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The queues to be updated for this routing profile.
+	//
+	// QueueConfigs is a required field
+	QueueConfigs []*RoutingProfileQueueConfig `min:"1" type:"list" required:"true"`
+
+	// The identifier of the routing profile.
+	//
+	// RoutingProfileId is a required field
+	RoutingProfileId *string `location:"uri" locationName:"RoutingProfileId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileQueuesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileQueuesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateRoutingProfileQueuesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateRoutingProfileQueuesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.QueueConfigs == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueueConfigs"))
+	}
+	if s.QueueConfigs != nil && len(s.QueueConfigs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueueConfigs", 1))
+	}
+	if s.RoutingProfileId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoutingProfileId"))
+	}
+	if s.RoutingProfileId != nil && len(*s.RoutingProfileId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoutingProfileId", 1))
+	}
+	if s.QueueConfigs != nil {
+		for i, v := range s.QueueConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "QueueConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateRoutingProfileQueuesInput) SetInstanceId(v string) *UpdateRoutingProfileQueuesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetQueueConfigs sets the QueueConfigs field's value.
+func (s *UpdateRoutingProfileQueuesInput) SetQueueConfigs(v []*RoutingProfileQueueConfig) *UpdateRoutingProfileQueuesInput {
+	s.QueueConfigs = v
+	return s
+}
+
+// SetRoutingProfileId sets the RoutingProfileId field's value.
+func (s *UpdateRoutingProfileQueuesInput) SetRoutingProfileId(v string) *UpdateRoutingProfileQueuesInput {
+	s.RoutingProfileId = &v
+	return s
+}
+
+type UpdateRoutingProfileQueuesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateRoutingProfileQueuesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
 
