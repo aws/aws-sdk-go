@@ -959,6 +959,13 @@ type Result struct {
 	// contains one item that contains the result of the transcription.
 	Alternatives []*Alternative `type:"list"`
 
+	// When channel identification is enabled, Amazon Transcribe transcribes the
+	// speech from each audio channel separately.
+	//
+	// You can use ChannelId to retrieve the transcription results for a single
+	// channel in your audio stream.
+	ChannelId *string `type:"string"`
+
 	// The offset in seconds from the beginning of the audio stream to the end of
 	// the result.
 	EndTime *float64 `type:"double"`
@@ -992,6 +999,12 @@ func (s Result) GoString() string {
 // SetAlternatives sets the Alternatives field's value.
 func (s *Result) SetAlternatives(v []*Alternative) *Result {
 	s.Alternatives = v
+	return s
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *Result) SetChannelId(v string) *Result {
+	s.ChannelId = &v
 	return s
 }
 
@@ -1107,6 +1120,16 @@ func (s *ServiceUnavailableException) RequestID() string {
 type StartStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
+	// When true, instructs Amazon Transcribe to process each audio channel separately
+	// and then merge the transcription output of each channel into a single transcription.
+	//
+	// Amazon Transcribe also produces a transcription of each item. An item includes
+	// the start time, end time, and any alternative transcriptions.
+	//
+	// You can't set both ShowSpeakerLabel and EnableChannelIdentification in the
+	// same request. If you set both, your request returns a BadRequestException.
+	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
+
 	// Indicates the source language used in the input audio stream.
 	//
 	// LanguageCode is a required field
@@ -1123,10 +1146,13 @@ type StartStreamTranscriptionInput struct {
 	// MediaSampleRateHertz is a required field
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer" required:"true"`
 
+	// The number of channels that are in your audio stream.
+	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
+
 	// A identifier for the transcription session. Use this parameter when you want
 	// to retry a session. If you don't provide a session ID, Amazon Transcribe
 	// will generate one for you and return it in the response.
-	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" type:"string"`
+	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
 
 	// When true, enables speaker identification in your real-time stream.
 	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
@@ -1171,6 +1197,12 @@ func (s *StartStreamTranscriptionInput) Validate() error {
 	if s.MediaSampleRateHertz != nil && *s.MediaSampleRateHertz < 8000 {
 		invalidParams.Add(request.NewErrParamMinValue("MediaSampleRateHertz", 8000))
 	}
+	if s.NumberOfChannels != nil && *s.NumberOfChannels < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("NumberOfChannels", 2))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 36))
+	}
 	if s.VocabularyFilterName != nil && len(*s.VocabularyFilterName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterName", 1))
 	}
@@ -1182,6 +1214,12 @@ func (s *StartStreamTranscriptionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
+func (s *StartStreamTranscriptionInput) SetEnableChannelIdentification(v bool) *StartStreamTranscriptionInput {
+	s.EnableChannelIdentification = &v
+	return s
 }
 
 // SetLanguageCode sets the LanguageCode field's value.
@@ -1199,6 +1237,12 @@ func (s *StartStreamTranscriptionInput) SetMediaEncoding(v string) *StartStreamT
 // SetMediaSampleRateHertz sets the MediaSampleRateHertz field's value.
 func (s *StartStreamTranscriptionInput) SetMediaSampleRateHertz(v int64) *StartStreamTranscriptionInput {
 	s.MediaSampleRateHertz = &v
+	return s
+}
+
+// SetNumberOfChannels sets the NumberOfChannels field's value.
+func (s *StartStreamTranscriptionInput) SetNumberOfChannels(v int64) *StartStreamTranscriptionInput {
+	s.NumberOfChannels = &v
 	return s
 }
 
@@ -1237,6 +1281,9 @@ type StartStreamTranscriptionOutput struct {
 
 	eventStream *StartStreamTranscriptionEventStream
 
+	// Shows whether channel identification has been enabled in the stream.
+	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
+
 	// The language code for the input audio stream.
 	LanguageCode *string `location:"header" locationName:"x-amzn-transcribe-language-code" type:"string" enum:"LanguageCode"`
 
@@ -1247,11 +1294,14 @@ type StartStreamTranscriptionOutput struct {
 	// and 16000 Hz for high quality audio.
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer"`
 
+	// The number of channels identified in the stream.
+	NumberOfChannels *int64 `location:"header" locationName:"x-amzn-transcribe-number-of-channels" min:"2" type:"integer"`
+
 	// An identifier for the streaming transcription.
 	RequestId *string `location:"header" locationName:"x-amzn-request-id" type:"string"`
 
 	// An identifier for a specific transcription session.
-	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" type:"string"`
+	SessionId *string `location:"header" locationName:"x-amzn-transcribe-session-id" min:"36" type:"string"`
 
 	// Shows whether speaker identification was enabled in the stream.
 	ShowSpeakerLabel *bool `location:"header" locationName:"x-amzn-transcribe-show-speaker-label" type:"boolean"`
@@ -1276,6 +1326,12 @@ func (s StartStreamTranscriptionOutput) GoString() string {
 	return s.String()
 }
 
+// SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
+func (s *StartStreamTranscriptionOutput) SetEnableChannelIdentification(v bool) *StartStreamTranscriptionOutput {
+	s.EnableChannelIdentification = &v
+	return s
+}
+
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *StartStreamTranscriptionOutput) SetLanguageCode(v string) *StartStreamTranscriptionOutput {
 	s.LanguageCode = &v
@@ -1291,6 +1347,12 @@ func (s *StartStreamTranscriptionOutput) SetMediaEncoding(v string) *StartStream
 // SetMediaSampleRateHertz sets the MediaSampleRateHertz field's value.
 func (s *StartStreamTranscriptionOutput) SetMediaSampleRateHertz(v int64) *StartStreamTranscriptionOutput {
 	s.MediaSampleRateHertz = &v
+	return s
+}
+
+// SetNumberOfChannels sets the NumberOfChannels field's value.
+func (s *StartStreamTranscriptionOutput) SetNumberOfChannels(v int64) *StartStreamTranscriptionOutput {
+	s.NumberOfChannels = &v
 	return s
 }
 

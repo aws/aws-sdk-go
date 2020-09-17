@@ -1845,6 +1845,95 @@ func (c *Comprehend) DescribeKeyPhrasesDetectionJobWithContext(ctx aws.Context, 
 	return out, req.Send()
 }
 
+const opDescribePiiEntitiesDetectionJob = "DescribePiiEntitiesDetectionJob"
+
+// DescribePiiEntitiesDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePiiEntitiesDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePiiEntitiesDetectionJob for more information on using the DescribePiiEntitiesDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribePiiEntitiesDetectionJobRequest method.
+//    req, resp := client.DescribePiiEntitiesDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribePiiEntitiesDetectionJob
+func (c *Comprehend) DescribePiiEntitiesDetectionJobRequest(input *DescribePiiEntitiesDetectionJobInput) (req *request.Request, output *DescribePiiEntitiesDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribePiiEntitiesDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribePiiEntitiesDetectionJobInput{}
+	}
+
+	output = &DescribePiiEntitiesDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePiiEntitiesDetectionJob API operation for Amazon Comprehend.
+//
+// Gets the properties associated with a PII entities detection job. For example,
+// you can use this operation to get the job status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DescribePiiEntitiesDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * JobNotFoundException
+//   The specified job was not found. Check the job ID and try again.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DescribePiiEntitiesDetectionJob
+func (c *Comprehend) DescribePiiEntitiesDetectionJob(input *DescribePiiEntitiesDetectionJobInput) (*DescribePiiEntitiesDetectionJobOutput, error) {
+	req, out := c.DescribePiiEntitiesDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribePiiEntitiesDetectionJobWithContext is the same as DescribePiiEntitiesDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePiiEntitiesDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DescribePiiEntitiesDetectionJobWithContext(ctx aws.Context, input *DescribePiiEntitiesDetectionJobInput, opts ...request.Option) (*DescribePiiEntitiesDetectionJobOutput, error) {
+	req, out := c.DescribePiiEntitiesDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSentimentDetectionJob = "DescribeSentimentDetectionJob"
 
 // DescribeSentimentDetectionJobRequest generates a "aws/request.Request" representing the
@@ -2294,6 +2383,99 @@ func (c *Comprehend) DetectKeyPhrases(input *DetectKeyPhrasesInput) (*DetectKeyP
 // for more information on using Contexts.
 func (c *Comprehend) DetectKeyPhrasesWithContext(ctx aws.Context, input *DetectKeyPhrasesInput, opts ...request.Option) (*DetectKeyPhrasesOutput, error) {
 	req, out := c.DetectKeyPhrasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDetectPiiEntities = "DetectPiiEntities"
+
+// DetectPiiEntitiesRequest generates a "aws/request.Request" representing the
+// client's request for the DetectPiiEntities operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectPiiEntities for more information on using the DetectPiiEntities
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DetectPiiEntitiesRequest method.
+//    req, resp := client.DetectPiiEntitiesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectPiiEntities
+func (c *Comprehend) DetectPiiEntitiesRequest(input *DetectPiiEntitiesInput) (req *request.Request, output *DetectPiiEntitiesOutput) {
+	op := &request.Operation{
+		Name:       opDetectPiiEntities,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectPiiEntitiesInput{}
+	}
+
+	output = &DetectPiiEntitiesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectPiiEntities API operation for Amazon Comprehend.
+//
+// Inspects the input text for entities that contain personally identifiable
+// information (PII) and returns information about them.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation DetectPiiEntities for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TextSizeLimitExceededException
+//   The size of the input text exceeds the limit. Use a smaller document.
+//
+//   * UnsupportedLanguageException
+//   Amazon Comprehend can't process the language of the input text. For all custom
+//   entity recognition APIs (such as CreateEntityRecognizer), only English, Spanish,
+//   French, Italian, German, or Portuguese are accepted. For most other APIs,
+//   such as those for Custom Classification, Amazon Comprehend accepts text in
+//   all supported languages. For a list of supported languages, see supported-languages.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/DetectPiiEntities
+func (c *Comprehend) DetectPiiEntities(input *DetectPiiEntitiesInput) (*DetectPiiEntitiesOutput, error) {
+	req, out := c.DetectPiiEntitiesRequest(input)
+	return out, req.Send()
+}
+
+// DetectPiiEntitiesWithContext is the same as DetectPiiEntities with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectPiiEntities for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) DetectPiiEntitiesWithContext(ctx aws.Context, input *DetectPiiEntitiesInput, opts ...request.Option) (*DetectPiiEntitiesOutput, error) {
+	req, out := c.DetectPiiEntitiesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3453,6 +3635,94 @@ func (c *Comprehend) ListKeyPhrasesDetectionJobsPagesWithContext(ctx aws.Context
 	return p.Err()
 }
 
+const opListPiiEntitiesDetectionJobs = "ListPiiEntitiesDetectionJobs"
+
+// ListPiiEntitiesDetectionJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListPiiEntitiesDetectionJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListPiiEntitiesDetectionJobs for more information on using the ListPiiEntitiesDetectionJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListPiiEntitiesDetectionJobsRequest method.
+//    req, resp := client.ListPiiEntitiesDetectionJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListPiiEntitiesDetectionJobs
+func (c *Comprehend) ListPiiEntitiesDetectionJobsRequest(input *ListPiiEntitiesDetectionJobsInput) (req *request.Request, output *ListPiiEntitiesDetectionJobsOutput) {
+	op := &request.Operation{
+		Name:       opListPiiEntitiesDetectionJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListPiiEntitiesDetectionJobsInput{}
+	}
+
+	output = &ListPiiEntitiesDetectionJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListPiiEntitiesDetectionJobs API operation for Amazon Comprehend.
+//
+// Gets a list of the PII entity detection jobs that you have submitted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListPiiEntitiesDetectionJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InvalidFilterException
+//   The filter specified for the operation is invalid. Specify a different filter.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListPiiEntitiesDetectionJobs
+func (c *Comprehend) ListPiiEntitiesDetectionJobs(input *ListPiiEntitiesDetectionJobsInput) (*ListPiiEntitiesDetectionJobsOutput, error) {
+	req, out := c.ListPiiEntitiesDetectionJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListPiiEntitiesDetectionJobsWithContext is the same as ListPiiEntitiesDetectionJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListPiiEntitiesDetectionJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListPiiEntitiesDetectionJobsWithContext(ctx aws.Context, input *ListPiiEntitiesDetectionJobsInput, opts ...request.Option) (*ListPiiEntitiesDetectionJobsOutput, error) {
+	req, out := c.ListPiiEntitiesDetectionJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListSentimentDetectionJobs = "ListSentimentDetectionJobs"
 
 // ListSentimentDetectionJobsRequest generates a "aws/request.Request" representing the
@@ -4212,6 +4482,95 @@ func (c *Comprehend) StartKeyPhrasesDetectionJobWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opStartPiiEntitiesDetectionJob = "StartPiiEntitiesDetectionJob"
+
+// StartPiiEntitiesDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartPiiEntitiesDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartPiiEntitiesDetectionJob for more information on using the StartPiiEntitiesDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartPiiEntitiesDetectionJobRequest method.
+//    req, resp := client.StartPiiEntitiesDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartPiiEntitiesDetectionJob
+func (c *Comprehend) StartPiiEntitiesDetectionJobRequest(input *StartPiiEntitiesDetectionJobInput) (req *request.Request, output *StartPiiEntitiesDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opStartPiiEntitiesDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartPiiEntitiesDetectionJobInput{}
+	}
+
+	output = &StartPiiEntitiesDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartPiiEntitiesDetectionJob API operation for Amazon Comprehend.
+//
+// Starts an asynchronous PII entity detection job for a collection of documents.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StartPiiEntitiesDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * KmsKeyValidationException
+//   The KMS customer managed key (CMK) entered cannot be validated. Verify the
+//   key and re-enter it.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StartPiiEntitiesDetectionJob
+func (c *Comprehend) StartPiiEntitiesDetectionJob(input *StartPiiEntitiesDetectionJobInput) (*StartPiiEntitiesDetectionJobOutput, error) {
+	req, out := c.StartPiiEntitiesDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// StartPiiEntitiesDetectionJobWithContext is the same as StartPiiEntitiesDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartPiiEntitiesDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StartPiiEntitiesDetectionJobWithContext(ctx aws.Context, input *StartPiiEntitiesDetectionJobInput, opts ...request.Option) (*StartPiiEntitiesDetectionJobOutput, error) {
+	req, out := c.StartPiiEntitiesDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartSentimentDetectionJob = "StartSentimentDetectionJob"
 
 // StartSentimentDetectionJobRequest generates a "aws/request.Request" representing the
@@ -4675,6 +5034,91 @@ func (c *Comprehend) StopKeyPhrasesDetectionJob(input *StopKeyPhrasesDetectionJo
 // for more information on using Contexts.
 func (c *Comprehend) StopKeyPhrasesDetectionJobWithContext(ctx aws.Context, input *StopKeyPhrasesDetectionJobInput, opts ...request.Option) (*StopKeyPhrasesDetectionJobOutput, error) {
 	req, out := c.StopKeyPhrasesDetectionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopPiiEntitiesDetectionJob = "StopPiiEntitiesDetectionJob"
+
+// StopPiiEntitiesDetectionJobRequest generates a "aws/request.Request" representing the
+// client's request for the StopPiiEntitiesDetectionJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopPiiEntitiesDetectionJob for more information on using the StopPiiEntitiesDetectionJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopPiiEntitiesDetectionJobRequest method.
+//    req, resp := client.StopPiiEntitiesDetectionJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopPiiEntitiesDetectionJob
+func (c *Comprehend) StopPiiEntitiesDetectionJobRequest(input *StopPiiEntitiesDetectionJobInput) (req *request.Request, output *StopPiiEntitiesDetectionJobOutput) {
+	op := &request.Operation{
+		Name:       opStopPiiEntitiesDetectionJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StopPiiEntitiesDetectionJobInput{}
+	}
+
+	output = &StopPiiEntitiesDetectionJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StopPiiEntitiesDetectionJob API operation for Amazon Comprehend.
+//
+// Stops a PII entities detection job in progress.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation StopPiiEntitiesDetectionJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * JobNotFoundException
+//   The specified job was not found. Check the job ID and try again.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/StopPiiEntitiesDetectionJob
+func (c *Comprehend) StopPiiEntitiesDetectionJob(input *StopPiiEntitiesDetectionJobInput) (*StopPiiEntitiesDetectionJobOutput, error) {
+	req, out := c.StopPiiEntitiesDetectionJobRequest(input)
+	return out, req.Send()
+}
+
+// StopPiiEntitiesDetectionJobWithContext is the same as StopPiiEntitiesDetectionJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopPiiEntitiesDetectionJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) StopPiiEntitiesDetectionJobWithContext(ctx aws.Context, input *StopPiiEntitiesDetectionJobInput, opts ...request.Option) (*StopPiiEntitiesDetectionJobOutput, error) {
+	req, out := c.StopPiiEntitiesDetectionJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7458,6 +7902,71 @@ func (s *DescribeKeyPhrasesDetectionJobOutput) SetKeyPhrasesDetectionJobProperti
 	return s
 }
 
+type DescribePiiEntitiesDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier that Amazon Comprehend generated for the job. The operation
+	// returns this identifier in its response.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribePiiEntitiesDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePiiEntitiesDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePiiEntitiesDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePiiEntitiesDetectionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *DescribePiiEntitiesDetectionJobInput) SetJobId(v string) *DescribePiiEntitiesDetectionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type DescribePiiEntitiesDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Provides information about a PII entities detection job.
+	PiiEntitiesDetectionJobProperties *PiiEntitiesDetectionJobProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribePiiEntitiesDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePiiEntitiesDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetPiiEntitiesDetectionJobProperties sets the PiiEntitiesDetectionJobProperties field's value.
+func (s *DescribePiiEntitiesDetectionJobOutput) SetPiiEntitiesDetectionJobProperties(v *PiiEntitiesDetectionJobProperties) *DescribePiiEntitiesDetectionJobOutput {
+	s.PiiEntitiesDetectionJobProperties = v
+	return s
+}
+
 type DescribeSentimentDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7838,6 +8347,87 @@ func (s DetectKeyPhrasesOutput) GoString() string {
 // SetKeyPhrases sets the KeyPhrases field's value.
 func (s *DetectKeyPhrasesOutput) SetKeyPhrases(v []*KeyPhrase) *DetectKeyPhrasesOutput {
 	s.KeyPhrases = v
+	return s
+}
+
+type DetectPiiEntitiesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language of the input documents.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8
+	// encoded characters.
+	//
+	// Text is a required field
+	Text *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DetectPiiEntitiesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectPiiEntitiesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectPiiEntitiesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectPiiEntitiesInput"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+	if s.Text != nil && len(*s.Text) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Text", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DetectPiiEntitiesInput) SetLanguageCode(v string) *DetectPiiEntitiesInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *DetectPiiEntitiesInput) SetText(v string) *DetectPiiEntitiesInput {
+	s.Text = &v
+	return s
+}
+
+type DetectPiiEntitiesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of PII entities identified in the input text. For each entity,
+	// the response provides the entity type, where the entity text begins and ends,
+	// and the level of confidence that Amazon Comprehend has in the detection.
+	Entities []*PiiEntity `type:"list"`
+}
+
+// String returns the string representation
+func (s DetectPiiEntitiesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectPiiEntitiesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntities sets the Entities field's value.
+func (s *DetectPiiEntitiesOutput) SetEntities(v []*PiiEntity) *DetectPiiEntitiesOutput {
+	s.Entities = v
 	return s
 }
 
@@ -11197,6 +11787,102 @@ func (s *ListKeyPhrasesDetectionJobsOutput) SetNextToken(v string) *ListKeyPhras
 	return s
 }
 
+type ListPiiEntitiesDetectionJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters the jobs that are returned. You can filter jobs on their name, status,
+	// or the date and time that they were submitted. You can only set one filter
+	// at a time.
+	Filter *PiiEntitiesDetectionJobFilter `type:"structure"`
+
+	// The maximum number of results to return in each page.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListPiiEntitiesDetectionJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPiiEntitiesDetectionJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListPiiEntitiesDetectionJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListPiiEntitiesDetectionJobsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListPiiEntitiesDetectionJobsInput) SetFilter(v *PiiEntitiesDetectionJobFilter) *ListPiiEntitiesDetectionJobsInput {
+	s.Filter = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListPiiEntitiesDetectionJobsInput) SetMaxResults(v int64) *ListPiiEntitiesDetectionJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPiiEntitiesDetectionJobsInput) SetNextToken(v string) *ListPiiEntitiesDetectionJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListPiiEntitiesDetectionJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+
+	// A list containing the properties of each job that is returned.
+	PiiEntitiesDetectionJobPropertiesList []*PiiEntitiesDetectionJobProperties `type:"list"`
+}
+
+// String returns the string representation
+func (s ListPiiEntitiesDetectionJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListPiiEntitiesDetectionJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListPiiEntitiesDetectionJobsOutput) SetNextToken(v string) *ListPiiEntitiesDetectionJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPiiEntitiesDetectionJobPropertiesList sets the PiiEntitiesDetectionJobPropertiesList field's value.
+func (s *ListPiiEntitiesDetectionJobsOutput) SetPiiEntitiesDetectionJobPropertiesList(v []*PiiEntitiesDetectionJobProperties) *ListPiiEntitiesDetectionJobsOutput {
+	s.PiiEntitiesDetectionJobPropertiesList = v
+	return s
+}
+
 type ListSentimentDetectionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11565,6 +12251,360 @@ func (s *PartOfSpeechTag) SetScore(v float64) *PartOfSpeechTag {
 // SetTag sets the Tag field's value.
 func (s *PartOfSpeechTag) SetTag(v string) *PartOfSpeechTag {
 	s.Tag = &v
+	return s
+}
+
+// Provides information for filtering a list of PII entity detection jobs.
+type PiiEntitiesDetectionJobFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Filters on the name of the job.
+	JobName *string `min:"1" type:"string"`
+
+	// Filters the list of jobs based on job status. Returns only jobs with the
+	// specified status.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// Filters the list of jobs based on the time that the job was submitted for
+	// processing. Returns only jobs submitted after the specified time. Jobs are
+	// returned in descending order, newest to oldest.
+	SubmitTimeAfter *time.Time `type:"timestamp"`
+
+	// Filters the list of jobs based on the time that the job was submitted for
+	// processing. Returns only jobs submitted before the specified time. Jobs are
+	// returned in ascending order, oldest to newest.
+	SubmitTimeBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s PiiEntitiesDetectionJobFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PiiEntitiesDetectionJobFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PiiEntitiesDetectionJobFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PiiEntitiesDetectionJobFilter"}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobName sets the JobName field's value.
+func (s *PiiEntitiesDetectionJobFilter) SetJobName(v string) *PiiEntitiesDetectionJobFilter {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *PiiEntitiesDetectionJobFilter) SetJobStatus(v string) *PiiEntitiesDetectionJobFilter {
+	s.JobStatus = &v
+	return s
+}
+
+// SetSubmitTimeAfter sets the SubmitTimeAfter field's value.
+func (s *PiiEntitiesDetectionJobFilter) SetSubmitTimeAfter(v time.Time) *PiiEntitiesDetectionJobFilter {
+	s.SubmitTimeAfter = &v
+	return s
+}
+
+// SetSubmitTimeBefore sets the SubmitTimeBefore field's value.
+func (s *PiiEntitiesDetectionJobFilter) SetSubmitTimeBefore(v time.Time) *PiiEntitiesDetectionJobFilter {
+	s.SubmitTimeBefore = &v
+	return s
+}
+
+// Provides information about a PII entities detection job.
+type PiiEntitiesDetectionJobProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to
+	// your input data.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// The time that the PII entities detection job completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The input properties for a PII entities detection job.
+	InputDataConfig *InputDataConfig `type:"structure"`
+
+	// The identifier assigned to the PII entities detection job.
+	JobId *string `min:"1" type:"string"`
+
+	// The name that you assigned the PII entities detection job.
+	JobName *string `min:"1" type:"string"`
+
+	// The current status of the PII entities detection job. If the status is FAILED,
+	// the Message field shows the reason for the failure.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// The language code of the input documents
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// A description of the status of a job.
+	Message *string `type:"string"`
+
+	// Specifies whether the output provides the locations (offsets) of PII entities
+	// or a file in which PII entities are redacted.
+	Mode *string `type:"string" enum:"PiiEntitiesDetectionMode"`
+
+	// The output data configuration that you supplied when you created the PII
+	// entities detection job.
+	OutputDataConfig *PiiOutputDataConfig `type:"structure"`
+
+	// Provides configuration parameters for PII entity redaction.
+	//
+	// This parameter is required if you set the Mode parameter to ONLY_REDACTION.
+	// In that case, you must provide a RedactionConfig definition that includes
+	// the PiiEntityTypes parameter.
+	RedactionConfig *RedactionConfig `type:"structure"`
+
+	// The time that the PII entities detection job was submitted for processing.
+	SubmitTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s PiiEntitiesDetectionJobProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PiiEntitiesDetectionJobProperties) GoString() string {
+	return s.String()
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetDataAccessRoleArn(v string) *PiiEntitiesDetectionJobProperties {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetEndTime(v time.Time) *PiiEntitiesDetectionJobProperties {
+	s.EndTime = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *PiiEntitiesDetectionJobProperties {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobId sets the JobId field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetJobId(v string) *PiiEntitiesDetectionJobProperties {
+	s.JobId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetJobName(v string) *PiiEntitiesDetectionJobProperties {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetJobStatus(v string) *PiiEntitiesDetectionJobProperties {
+	s.JobStatus = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetLanguageCode(v string) *PiiEntitiesDetectionJobProperties {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetMessage(v string) *PiiEntitiesDetectionJobProperties {
+	s.Message = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetMode(v string) *PiiEntitiesDetectionJobProperties {
+	s.Mode = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetOutputDataConfig(v *PiiOutputDataConfig) *PiiEntitiesDetectionJobProperties {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetRedactionConfig sets the RedactionConfig field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetRedactionConfig(v *RedactionConfig) *PiiEntitiesDetectionJobProperties {
+	s.RedactionConfig = v
+	return s
+}
+
+// SetSubmitTime sets the SubmitTime field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetSubmitTime(v time.Time) *PiiEntitiesDetectionJobProperties {
+	s.SubmitTime = &v
+	return s
+}
+
+// Provides information about a PII entity.
+type PiiEntity struct {
+	_ struct{} `type:"structure"`
+
+	// A character offset in the input text that shows where the PII entity begins
+	// (the first character is at position 0). The offset returns the position of
+	// each UTF-8 code point in the string. A code point is the abstract character
+	// from a particular graphical representation. For example, a multi-byte UTF-8
+	// character maps to a single code point.
+	BeginOffset *int64 `type:"integer"`
+
+	// A character offset in the input text that shows where the PII entity ends.
+	// The offset returns the position of each UTF-8 code point in the string. A
+	// code point is the abstract character from a particular graphical representation.
+	// For example, a multi-byte UTF-8 character maps to a single code point.
+	EndOffset *int64 `type:"integer"`
+
+	// The level of confidence that Amazon Comprehend has in the accuracy of the
+	// detection.
+	Score *float64 `type:"float"`
+
+	// The entity's type.
+	Type *string `type:"string" enum:"PiiEntityType"`
+}
+
+// String returns the string representation
+func (s PiiEntity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PiiEntity) GoString() string {
+	return s.String()
+}
+
+// SetBeginOffset sets the BeginOffset field's value.
+func (s *PiiEntity) SetBeginOffset(v int64) *PiiEntity {
+	s.BeginOffset = &v
+	return s
+}
+
+// SetEndOffset sets the EndOffset field's value.
+func (s *PiiEntity) SetEndOffset(v int64) *PiiEntity {
+	s.EndOffset = &v
+	return s
+}
+
+// SetScore sets the Score field's value.
+func (s *PiiEntity) SetScore(v float64) *PiiEntity {
+	s.Score = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *PiiEntity) SetType(v string) *PiiEntity {
+	s.Type = &v
+	return s
+}
+
+// Provides configuration parameters for the output of PII entity detection
+// jobs.
+type PiiOutputDataConfig struct {
+	_ struct{} `type:"structure"`
+
+	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
+	// to encrypt the output results from an analysis job.
+	KmsKeyId *string `type:"string"`
+
+	// When you use the PiiOutputDataConfig object with asynchronous operations,
+	// you specify the Amazon S3 location where you want to write the output data.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PiiOutputDataConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PiiOutputDataConfig) GoString() string {
+	return s.String()
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *PiiOutputDataConfig) SetKmsKeyId(v string) *PiiOutputDataConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *PiiOutputDataConfig) SetS3Uri(v string) *PiiOutputDataConfig {
+	s.S3Uri = &v
+	return s
+}
+
+// Provides configuration parameters for PII entity redaction.
+type RedactionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A character that replaces each character in the redacted PII entity.
+	MaskCharacter *string `min:"1" type:"string"`
+
+	// Specifies whether the PII entity is redacted with the mask character or the
+	// entity type.
+	MaskMode *string `type:"string" enum:"PiiEntitiesDetectionMaskMode"`
+
+	// An array of the types of PII entities that Amazon Comprehend detects in the
+	// input text for your request.
+	PiiEntityTypes []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s RedactionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedactionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedactionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedactionConfig"}
+	if s.MaskCharacter != nil && len(*s.MaskCharacter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MaskCharacter", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaskCharacter sets the MaskCharacter field's value.
+func (s *RedactionConfig) SetMaskCharacter(v string) *RedactionConfig {
+	s.MaskCharacter = &v
+	return s
+}
+
+// SetMaskMode sets the MaskMode field's value.
+func (s *RedactionConfig) SetMaskMode(v string) *RedactionConfig {
+	s.MaskMode = &v
+	return s
+}
+
+// SetPiiEntityTypes sets the PiiEntityTypes field's value.
+func (s *RedactionConfig) SetPiiEntityTypes(v []*string) *RedactionConfig {
+	s.PiiEntityTypes = v
 	return s
 }
 
@@ -12844,6 +13884,191 @@ func (s *StartKeyPhrasesDetectionJobOutput) SetJobStatus(v string) *StartKeyPhra
 	return s
 }
 
+type StartPiiEntitiesDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the request. If you don't set the client request
+	// token, Amazon Comprehend generates one.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
+	// (IAM) role that grants Amazon Comprehend read access to your input data.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// The input properties for a PII entities detection job.
+	//
+	// InputDataConfig is a required field
+	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
+
+	// The identifier of the job.
+	JobName *string `min:"1" type:"string"`
+
+	// The language of the input documents.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
+
+	// Specifies whether the output provides the locations (offsets) of PII entities
+	// or a file in which PII entities are redacted.
+	//
+	// Mode is a required field
+	Mode *string `type:"string" required:"true" enum:"PiiEntitiesDetectionMode"`
+
+	// Provides conﬁguration parameters for the output of PII entity detection
+	// jobs.
+	//
+	// OutputDataConfig is a required field
+	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Provides configuration parameters for PII entity redaction.
+	//
+	// This parameter is required if you set the Mode parameter to ONLY_REDACTION.
+	// In that case, you must provide a RedactionConfig definition that includes
+	// the PiiEntityTypes parameter.
+	RedactionConfig *RedactionConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartPiiEntitiesDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartPiiEntitiesDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartPiiEntitiesDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartPiiEntitiesDetectionJobInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.InputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Mode == nil {
+		invalidParams.Add(request.NewErrParamRequired("Mode"))
+	}
+	if s.OutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.InputDataConfig != nil {
+		if err := s.InputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RedactionConfig != nil {
+		if err := s.RedactionConfig.Validate(); err != nil {
+			invalidParams.AddNested("RedactionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetClientRequestToken(v string) *StartPiiEntitiesDetectionJobInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetDataAccessRoleArn(v string) *StartPiiEntitiesDetectionJobInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetInputDataConfig sets the InputDataConfig field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetInputDataConfig(v *InputDataConfig) *StartPiiEntitiesDetectionJobInput {
+	s.InputDataConfig = v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetJobName(v string) *StartPiiEntitiesDetectionJobInput {
+	s.JobName = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetLanguageCode(v string) *StartPiiEntitiesDetectionJobInput {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetMode(v string) *StartPiiEntitiesDetectionJobInput {
+	s.Mode = &v
+	return s
+}
+
+// SetOutputDataConfig sets the OutputDataConfig field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) *StartPiiEntitiesDetectionJobInput {
+	s.OutputDataConfig = v
+	return s
+}
+
+// SetRedactionConfig sets the RedactionConfig field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetRedactionConfig(v *RedactionConfig) *StartPiiEntitiesDetectionJobInput {
+	s.RedactionConfig = v
+	return s
+}
+
+type StartPiiEntitiesDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier generated for the job.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s StartPiiEntitiesDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartPiiEntitiesDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StartPiiEntitiesDetectionJobOutput) SetJobId(v string) *StartPiiEntitiesDetectionJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StartPiiEntitiesDetectionJobOutput) SetJobStatus(v string) *StartPiiEntitiesDetectionJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
 type StartSentimentDetectionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13452,6 +14677,79 @@ func (s *StopKeyPhrasesDetectionJobOutput) SetJobId(v string) *StopKeyPhrasesDet
 
 // SetJobStatus sets the JobStatus field's value.
 func (s *StopKeyPhrasesDetectionJobOutput) SetJobStatus(v string) *StopKeyPhrasesDetectionJobOutput {
+	s.JobStatus = &v
+	return s
+}
+
+type StopPiiEntitiesDetectionJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the PII entities detection job to stop.
+	//
+	// JobId is a required field
+	JobId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopPiiEntitiesDetectionJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopPiiEntitiesDetectionJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopPiiEntitiesDetectionJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopPiiEntitiesDetectionJobInput"}
+	if s.JobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobId"))
+	}
+	if s.JobId != nil && len(*s.JobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopPiiEntitiesDetectionJobInput) SetJobId(v string) *StopPiiEntitiesDetectionJobInput {
+	s.JobId = &v
+	return s
+}
+
+type StopPiiEntitiesDetectionJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the PII entities detection job to stop.
+	JobId *string `min:"1" type:"string"`
+
+	// The status of the PII entities detection job.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+}
+
+// String returns the string representation
+func (s StopPiiEntitiesDetectionJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopPiiEntitiesDetectionJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetJobId sets the JobId field's value.
+func (s *StopPiiEntitiesDetectionJobOutput) SetJobId(v string) *StopPiiEntitiesDetectionJobOutput {
+	s.JobId = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *StopPiiEntitiesDetectionJobOutput) SetJobStatus(v string) *StopPiiEntitiesDetectionJobOutput {
 	s.JobStatus = &v
 	return s
 }
@@ -14848,6 +16146,138 @@ func PartOfSpeechTagType_Values() []string {
 		PartOfSpeechTagTypeSconj,
 		PartOfSpeechTagTypeSym,
 		PartOfSpeechTagTypeVerb,
+	}
+}
+
+const (
+	// PiiEntitiesDetectionMaskModeMask is a PiiEntitiesDetectionMaskMode enum value
+	PiiEntitiesDetectionMaskModeMask = "MASK"
+
+	// PiiEntitiesDetectionMaskModeReplaceWithPiiEntityType is a PiiEntitiesDetectionMaskMode enum value
+	PiiEntitiesDetectionMaskModeReplaceWithPiiEntityType = "REPLACE_WITH_PII_ENTITY_TYPE"
+)
+
+// PiiEntitiesDetectionMaskMode_Values returns all elements of the PiiEntitiesDetectionMaskMode enum
+func PiiEntitiesDetectionMaskMode_Values() []string {
+	return []string{
+		PiiEntitiesDetectionMaskModeMask,
+		PiiEntitiesDetectionMaskModeReplaceWithPiiEntityType,
+	}
+}
+
+const (
+	// PiiEntitiesDetectionModeOnlyRedaction is a PiiEntitiesDetectionMode enum value
+	PiiEntitiesDetectionModeOnlyRedaction = "ONLY_REDACTION"
+
+	// PiiEntitiesDetectionModeOnlyOffsets is a PiiEntitiesDetectionMode enum value
+	PiiEntitiesDetectionModeOnlyOffsets = "ONLY_OFFSETS"
+)
+
+// PiiEntitiesDetectionMode_Values returns all elements of the PiiEntitiesDetectionMode enum
+func PiiEntitiesDetectionMode_Values() []string {
+	return []string{
+		PiiEntitiesDetectionModeOnlyRedaction,
+		PiiEntitiesDetectionModeOnlyOffsets,
+	}
+}
+
+const (
+	// PiiEntityTypeBankAccountNumber is a PiiEntityType enum value
+	PiiEntityTypeBankAccountNumber = "BANK_ACCOUNT_NUMBER"
+
+	// PiiEntityTypeBankRouting is a PiiEntityType enum value
+	PiiEntityTypeBankRouting = "BANK_ROUTING"
+
+	// PiiEntityTypeCreditDebitNumber is a PiiEntityType enum value
+	PiiEntityTypeCreditDebitNumber = "CREDIT_DEBIT_NUMBER"
+
+	// PiiEntityTypeCreditDebitCvv is a PiiEntityType enum value
+	PiiEntityTypeCreditDebitCvv = "CREDIT_DEBIT_CVV"
+
+	// PiiEntityTypeCreditDebitExpiry is a PiiEntityType enum value
+	PiiEntityTypeCreditDebitExpiry = "CREDIT_DEBIT_EXPIRY"
+
+	// PiiEntityTypePin is a PiiEntityType enum value
+	PiiEntityTypePin = "PIN"
+
+	// PiiEntityTypeEmail is a PiiEntityType enum value
+	PiiEntityTypeEmail = "EMAIL"
+
+	// PiiEntityTypeAddress is a PiiEntityType enum value
+	PiiEntityTypeAddress = "ADDRESS"
+
+	// PiiEntityTypeName is a PiiEntityType enum value
+	PiiEntityTypeName = "NAME"
+
+	// PiiEntityTypePhone is a PiiEntityType enum value
+	PiiEntityTypePhone = "PHONE"
+
+	// PiiEntityTypeSsn is a PiiEntityType enum value
+	PiiEntityTypeSsn = "SSN"
+
+	// PiiEntityTypeDateTime is a PiiEntityType enum value
+	PiiEntityTypeDateTime = "DATE_TIME"
+
+	// PiiEntityTypePassportNumber is a PiiEntityType enum value
+	PiiEntityTypePassportNumber = "PASSPORT_NUMBER"
+
+	// PiiEntityTypeDriverId is a PiiEntityType enum value
+	PiiEntityTypeDriverId = "DRIVER_ID"
+
+	// PiiEntityTypeUrl is a PiiEntityType enum value
+	PiiEntityTypeUrl = "URL"
+
+	// PiiEntityTypeAge is a PiiEntityType enum value
+	PiiEntityTypeAge = "AGE"
+
+	// PiiEntityTypeUsername is a PiiEntityType enum value
+	PiiEntityTypeUsername = "USERNAME"
+
+	// PiiEntityTypePassword is a PiiEntityType enum value
+	PiiEntityTypePassword = "PASSWORD"
+
+	// PiiEntityTypeAwsAccessKey is a PiiEntityType enum value
+	PiiEntityTypeAwsAccessKey = "AWS_ACCESS_KEY"
+
+	// PiiEntityTypeAwsSecretKey is a PiiEntityType enum value
+	PiiEntityTypeAwsSecretKey = "AWS_SECRET_KEY"
+
+	// PiiEntityTypeIpAddress is a PiiEntityType enum value
+	PiiEntityTypeIpAddress = "IP_ADDRESS"
+
+	// PiiEntityTypeMacAddress is a PiiEntityType enum value
+	PiiEntityTypeMacAddress = "MAC_ADDRESS"
+
+	// PiiEntityTypeAll is a PiiEntityType enum value
+	PiiEntityTypeAll = "ALL"
+)
+
+// PiiEntityType_Values returns all elements of the PiiEntityType enum
+func PiiEntityType_Values() []string {
+	return []string{
+		PiiEntityTypeBankAccountNumber,
+		PiiEntityTypeBankRouting,
+		PiiEntityTypeCreditDebitNumber,
+		PiiEntityTypeCreditDebitCvv,
+		PiiEntityTypeCreditDebitExpiry,
+		PiiEntityTypePin,
+		PiiEntityTypeEmail,
+		PiiEntityTypeAddress,
+		PiiEntityTypeName,
+		PiiEntityTypePhone,
+		PiiEntityTypeSsn,
+		PiiEntityTypeDateTime,
+		PiiEntityTypePassportNumber,
+		PiiEntityTypeDriverId,
+		PiiEntityTypeUrl,
+		PiiEntityTypeAge,
+		PiiEntityTypeUsername,
+		PiiEntityTypePassword,
+		PiiEntityTypeAwsAccessKey,
+		PiiEntityTypeAwsSecretKey,
+		PiiEntityTypeIpAddress,
+		PiiEntityTypeMacAddress,
+		PiiEntityTypeAll,
 	}
 }
 

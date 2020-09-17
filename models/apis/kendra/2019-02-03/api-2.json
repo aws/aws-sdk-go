@@ -680,7 +680,8 @@
         "Description":{"shape":"Description"},
         "S3Path":{"shape":"S3Path"},
         "RoleArn":{"shape":"RoleArn"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "FileFormat":{"shape":"FaqFileFormat"}
       }
     },
     "CreateFaqResponse":{
@@ -1002,7 +1003,8 @@
         "S3Path":{"shape":"S3Path"},
         "Status":{"shape":"FaqStatus"},
         "RoleArn":{"shape":"RoleArn"},
-        "ErrorMessage":{"shape":"ErrorMessage"}
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "FileFormat":{"shape":"FaqFileFormat"}
       }
     },
     "DescribeIndexRequest":{
@@ -1203,6 +1205,14 @@
       "type":"list",
       "member":{"shape":"FacetResult"}
     },
+    "FaqFileFormat":{
+      "type":"string",
+      "enum":[
+        "CSV",
+        "CSV_WITH_HEADER",
+        "JSON"
+      ]
+    },
     "FaqId":{
       "type":"string",
       "max":100,
@@ -1239,7 +1249,8 @@
         "Name":{"shape":"FaqName"},
         "Status":{"shape":"FaqStatus"},
         "CreatedAt":{"shape":"Timestamp"},
-        "UpdatedAt":{"shape":"Timestamp"}
+        "UpdatedAt":{"shape":"Timestamp"},
+        "FileFormat":{"shape":"FaqFileFormat"}
       }
     },
     "FaqSummaryItems":{

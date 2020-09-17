@@ -1,3 +1,20 @@
+Release v1.34.26 (2020-09-17)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Adds support for mutual TLS authentication for public regional REST Apis
+* `service/apigatewayv2`: Updates service API and documentation
+  * Adds support for mutual TLS authentication and disableAPIExecuteEndpoint for public regional HTTP Apis
+* `service/cloudfront`: Updates service documentation
+  * Documentation updates for CloudFront
+* `service/comprehend`: Updates service API and documentation
+* `service/es`: Updates service API and documentation
+  * Adds support for data plane audit logging in Amazon Elasticsearch Service.
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports additional file formats and metadata for FAQs.
+* `service/transcribe-streaming`: Updates service API and documentation
+
 Release v1.34.25 (2020-09-16)
 ===
 

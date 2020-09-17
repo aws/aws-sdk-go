@@ -47,7 +47,9 @@
         "Item$VocabularyFilterMatch": "<p>Indicates whether a word in the item matches a word in the vocabulary filter you've chosen for your real-time stream. If <code>true</code> then a word in the item matches your vocabulary filter.</p>",
         "Result$IsPartial": "<p>Amazon Transcribe divides the incoming audio stream into segments at natural points in the audio. Transcription results are returned based on these segments. </p> <p>The <code>IsPartial</code> field is <code>true</code> to indicate that Amazon Transcribe has additional transcription data to send, <code>false</code> to indicate that this is the last transcription result for the segment.</p>",
         "StartStreamTranscriptionRequest$ShowSpeakerLabel": "<p>When <code>true</code>, enables speaker identification in your real-time stream.</p>",
-        "StartStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>"
+        "StartStreamTranscriptionRequest$EnableChannelIdentification": "<p>When <code>true</code>, instructs Amazon Transcribe to process each audio channel separately and then merge the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe also produces a transcription of each item. An item includes the start time, end time, and any alternative transcriptions.</p> <p>You can't set both <code>ShowSpeakerLabel</code> and <code>EnableChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
+        "StartStreamTranscriptionResponse$ShowSpeakerLabel": "<p>Shows whether speaker identification was enabled in the stream.</p>",
+        "StartStreamTranscriptionResponse$EnableChannelIdentification": "<p>Shows whether channel identification has been enabled in the stream.</p>"
       }
     },
     "ConflictException": {
@@ -116,6 +118,13 @@
         "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate for the input audio stream. Use 8000 Hz for low quality audio and 16000 Hz for high quality audio.</p>"
       }
     },
+    "NumberOfChannels": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$NumberOfChannels": "<p>The number of channels that are in your audio stream.</p>",
+        "StartStreamTranscriptionResponse$NumberOfChannels": "<p>The number of channels identified in the stream.</p>"
+      }
+    },
     "RequestId": {
       "base": null,
       "refs": {
@@ -168,6 +177,7 @@
         "Item$Speaker": "<p>If speaker identification is enabled, shows the speakers identified in the real-time stream.</p>",
         "LimitExceededException$Message": null,
         "Result$ResultId": "<p>A unique identifier for the result. </p>",
+        "Result$ChannelId": "<p>When channel identification is enabled, Amazon Transcribe transcribes the speech from each audio channel separately.</p> <p>You can use <code>ChannelId</code> to retrieve the transcription results for a single channel in your audio stream.</p>",
         "ServiceUnavailableException$Message": null
       }
     },
