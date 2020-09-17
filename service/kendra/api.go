@@ -252,12 +252,9 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 //
 // Creates a data source that you use to with an Amazon Kendra index.
 //
-// You specify a name, connector type and description for your data source.
-// You can choose between an S3 connector, a SharePoint Online connector, and
-// a database connector.
-//
-// You also specify configuration information such as document metadata (author,
-// source URI, and so on) and user context information.
+// You specify a name, data source connector type and description for your data
+// source. You also specify configuration information such as document metadata
+// (author, source URI, and so on) and user context information.
 //
 // CreateDataSource is a synchronous operation. The operation returns 200 if
 // the data source was successfully created. Otherwise, an exception is raised.
@@ -3459,7 +3456,8 @@ func (s *ConnectionConfiguration) SetTableName(v string) *ConnectionConfiguratio
 type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The connector configuration information that is required to access the repository.
+	// The data source connector configuration information that is required to access
+	// the repository.
 	//
 	// Configuration is a required field
 	Configuration *DataSourceConfiguration `type:"structure" required:"true"`
@@ -3641,6 +3639,16 @@ type CreateFaqInput struct {
 	// A description of the FAQ.
 	Description *string `min:"1" type:"string"`
 
+	// The format of the input file. You can choose between a basic CSV format,
+	// a CSV format that includes customs attributes in a header, and a JSON format
+	// that includes custom attributes.
+	//
+	// The format must match the format of the file stored in the S3 bucket identified
+	// in the S3Path parameter.
+	//
+	// For more information, see Adding questions and answers (https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html).
+	FileFormat *string `type:"string" enum:"FaqFileFormat"`
+
 	// The identifier of the index that contains the FAQ.
 	//
 	// IndexId is a required field
@@ -3730,6 +3738,12 @@ func (s *CreateFaqInput) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *CreateFaqInput) SetDescription(v string) *CreateFaqInput {
 	s.Description = &v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *CreateFaqInput) SetFileFormat(v string) *CreateFaqInput {
+	s.FileFormat = &v
 	return s
 }
 
@@ -3950,14 +3964,14 @@ func (s *CreateIndexOutput) SetId(v string) *CreateIndexOutput {
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Provides information necessary to create a connector for a database.
+	// Provides information necessary to create a data source connector for a database.
 	DatabaseConfiguration *DatabaseConfiguration `type:"structure"`
 
 	// Provided configuration for data sources that connect to Microsoft OneDrive.
 	OneDriveConfiguration *OneDriveConfiguration `type:"structure"`
 
-	// Provides information to create a connector for a document repository in an
-	// Amazon S3 bucket.
+	// Provides information to create a data source connector for a document repository
+	// in an Amazon S3 bucket.
 	S3Configuration *S3DataSourceConfiguration `type:"structure"`
 
 	// Provides configuration information for data sources that connect to a Salesforce
@@ -3967,8 +3981,8 @@ type DataSourceConfiguration struct {
 	// Provides configuration for data sources that connect to ServiceNow instances.
 	ServiceNowConfiguration *ServiceNowConfiguration `type:"structure"`
 
-	// Provides information necessary to create a connector for a Microsoft SharePoint
-	// site.
+	// Provides information necessary to create a data source connector for a Microsoft
+	// SharePoint site.
 	SharePointConfiguration *SharePointConfiguration `type:"structure"`
 }
 
@@ -4152,7 +4166,7 @@ type DataSourceSyncJob struct {
 
 	// Maps a batch delete document request to a specific data source sync job.
 	// This is optional and should only be supplied when documents are deleted by
-	// a connector.
+	// a data source connector.
 	Metrics *DataSourceSyncJobMetrics `type:"structure"`
 
 	// The UNIX datetime that the synchronization job was started.
@@ -4284,7 +4298,7 @@ func (s *DataSourceSyncJobMetricTarget) SetDataSourceSyncJobId(v string) *DataSo
 
 // Maps a batch delete document request to a specific data source sync job.
 // This is optional and should only be supplied when documents are deleted by
-// a connector.
+// a data source connector.
 type DataSourceSyncJobMetrics struct {
 	_ struct{} `type:"structure"`
 
@@ -5056,6 +5070,9 @@ type DescribeFaqOutput struct {
 	// why the FAQ failed.
 	ErrorMessage *string `min:"1" type:"string"`
 
+	// The file format used by the input files for the FAQ.
+	FileFormat *string `type:"string" enum:"FaqFileFormat"`
+
 	// The identifier of the FAQ.
 	Id *string `min:"1" type:"string"`
 
@@ -5104,6 +5121,12 @@ func (s *DescribeFaqOutput) SetDescription(v string) *DescribeFaqOutput {
 // SetErrorMessage sets the ErrorMessage field's value.
 func (s *DescribeFaqOutput) SetErrorMessage(v string) *DescribeFaqOutput {
 	s.ErrorMessage = &v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *DescribeFaqOutput) SetFileFormat(v string) *DescribeFaqOutput {
+	s.FileFormat = &v
 	return s
 }
 
@@ -5860,6 +5883,9 @@ type FaqSummary struct {
 	// The UNIX datetime that the FAQ was added to the index.
 	CreatedAt *time.Time `type:"timestamp"`
 
+	// The file type used to create the FAQ.
+	FileFormat *string `type:"string" enum:"FaqFileFormat"`
+
 	// The unique identifier of the FAQ.
 	Id *string `min:"1" type:"string"`
 
@@ -5887,6 +5913,12 @@ func (s FaqSummary) GoString() string {
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *FaqSummary) SetCreatedAt(v time.Time) *FaqSummary {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetFileFormat sets the FileFormat field's value.
+func (s *FaqSummary) SetFileFormat(v string) *FaqSummary {
+	s.FileFormat = &v
 	return s
 }
 
@@ -10401,6 +10433,26 @@ func ErrorCode_Values() []string {
 	return []string{
 		ErrorCodeInternalError,
 		ErrorCodeInvalidRequest,
+	}
+}
+
+const (
+	// FaqFileFormatCsv is a FaqFileFormat enum value
+	FaqFileFormatCsv = "CSV"
+
+	// FaqFileFormatCsvWithHeader is a FaqFileFormat enum value
+	FaqFileFormatCsvWithHeader = "CSV_WITH_HEADER"
+
+	// FaqFileFormatJson is a FaqFileFormat enum value
+	FaqFileFormatJson = "JSON"
+)
+
+// FaqFileFormat_Values returns all elements of the FaqFileFormat enum
+func FaqFileFormat_Values() []string {
+	return []string{
+		FaqFileFormatCsv,
+		FaqFileFormatCsvWithHeader,
+		FaqFileFormatJson,
 	}
 }
 

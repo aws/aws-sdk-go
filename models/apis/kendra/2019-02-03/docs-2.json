@@ -4,7 +4,7 @@
   "operations": {
     "BatchDeleteDocument": "<p>Removes one or more documents from an index. The documents must have been added with the <a>BatchPutDocument</a> operation.</p> <p>The documents are deleted asynchronously. You can see the progress of the deletion by using AWS CloudWatch. Any error messages releated to the processing of the batch are sent to you CloudWatch log.</p>",
     "BatchPutDocument": "<p>Adds one or more documents to an index.</p> <p>The <code>BatchPutDocument</code> operation enables you to ingest inline documents or a set of documents stored in an Amazon S3 bucket. Use this operation to ingest your text and unstructured text into an index, add custom attributes to the documents, and to attach an access control list to the documents added to the index.</p> <p>The documents are indexed asynchronously. You can see the progress of the batch using AWS CloudWatch. Any error messages related to processing the batch are sent to your AWS CloudWatch log.</p>",
-    "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, connector type and description for your data source. You can choose between an S3 connector, a SharePoint Online connector, and a database connector.</p> <p>You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
+    "CreateDataSource": "<p>Creates a data source that you use to with an Amazon Kendra index. </p> <p>You specify a name, data source connector type and description for your data source. You also specify configuration information such as document metadata (author, source URI, and so on) and user context information.</p> <p> <code>CreateDataSource</code> is a synchronous operation. The operation returns 200 if the data source was successfully created. Otherwise, an exception is raised.</p>",
     "CreateFaq": "<p>Creates an new set of frequently asked question (FAQ) questions and answers.</p>",
     "CreateIndex": "<p>Creates a new Amazon Kendra index. Index creation is an asynchronous operation. To determine if index creation has completed, check the <code>Status</code> field returned from a call to . The <code>Status</code> field is set to <code>ACTIVE</code> when the index is ready to use.</p> <p>Once the index is active you can index your documents using the operation or using one of the supported data sources. </p>",
     "DeleteDataSource": "<p>Deletes an Amazon Kendra data source. An exception is not thrown if the data source is already being deleted. While the data source is being deleted, the <code>Status</code> field returned by a call to the operation is set to <code>DELETING</code>. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/delete-data-source.html\">Deleting Data Sources</a>.</p>",
@@ -254,7 +254,7 @@
     "DataSourceConfiguration": {
       "base": "<p>Configuration information for a Amazon Kendra data source.</p>",
       "refs": {
-        "CreateDataSourceRequest$Configuration": "<p>The connector configuration information that is required to access the repository.</p>",
+        "CreateDataSourceRequest$Configuration": "<p>The data source connector configuration information that is required to access the repository.</p>",
         "DescribeDataSourceResponse$Configuration": "<p>Information that describes where the data source is located and how the data source is configured. The specific information in the description depends on the data source provider.</p>",
         "UpdateDataSourceRequest$Configuration": null
       }
@@ -376,9 +376,9 @@
       }
     },
     "DataSourceSyncJobMetrics": {
-      "base": "<p>Maps a batch delete document request to a specific data source sync job. This is optional and should only be supplied when documents are deleted by a connector.</p>",
+      "base": "<p>Maps a batch delete document request to a specific data source sync job. This is optional and should only be supplied when documents are deleted by a data source connector.</p>",
       "refs": {
-        "DataSourceSyncJob$Metrics": "<p>Maps a batch delete document request to a specific data source sync job. This is optional and should only be supplied when documents are deleted by a connector.</p>"
+        "DataSourceSyncJob$Metrics": "<p>Maps a batch delete document request to a specific data source sync job. This is optional and should only be supplied when documents are deleted by a data source connector.</p>"
       }
     },
     "DataSourceSyncJobStatus": {
@@ -427,7 +427,7 @@
     "DatabaseConfiguration": {
       "base": "<p>Provides the information necessary to connect a database to an index. </p>",
       "refs": {
-        "DataSourceConfiguration$DatabaseConfiguration": "<p>Provides information necessary to create a connector for a database.</p>"
+        "DataSourceConfiguration$DatabaseConfiguration": "<p>Provides information necessary to create a data source connector for a database.</p>"
       }
     },
     "DatabaseEngineType": {
@@ -702,6 +702,14 @@
       "base": null,
       "refs": {
         "QueryResult$FacetResults": "<p>Contains the facet results. A <code>FacetResult</code> contains the counts for each attribute key that was specified in the <code>Facets</code> input parameter.</p>"
+      }
+    },
+    "FaqFileFormat": {
+      "base": null,
+      "refs": {
+        "CreateFaqRequest$FileFormat": "<p>The format of the input file. You can choose between a basic CSV format, a CSV format that includes customs attributes in a header, and a JSON format that includes custom attributes.</p> <p>The format must match the format of the file stored in the S3 bucket identified in the <code>S3Path</code> parameter.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/in-creating-faq.html\">Adding questions and answers</a>.</p>",
+        "DescribeFaqResponse$FileFormat": "<p>The file format used by the input files for the FAQ.</p>",
+        "FaqSummary$FileFormat": "<p>The file type used to create the FAQ. </p>"
       }
     },
     "FaqId": {
@@ -1176,7 +1184,7 @@
     "S3DataSourceConfiguration": {
       "base": "<p>Provides configuration information for a data source to index documents in an Amazon S3 bucket.</p>",
       "refs": {
-        "DataSourceConfiguration$S3Configuration": "<p>Provides information to create a connector for a document repository in an Amazon S3 bucket.</p>"
+        "DataSourceConfiguration$S3Configuration": "<p>Provides information to create a data source connector for a document repository in an Amazon S3 bucket.</p>"
       }
     },
     "S3ObjectKey": {
@@ -1373,7 +1381,7 @@
     "SharePointConfiguration": {
       "base": "<p>Provides configuration information for connecting to a Microsoft SharePoint data source.</p>",
       "refs": {
-        "DataSourceConfiguration$SharePointConfiguration": "<p>Provides information necessary to create a connector for a Microsoft SharePoint site.</p>"
+        "DataSourceConfiguration$SharePointConfiguration": "<p>Provides information necessary to create a data source connector for a Microsoft SharePoint site.</p>"
       }
     },
     "SharePointUrlList": {

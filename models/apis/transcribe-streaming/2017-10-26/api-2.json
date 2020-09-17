@@ -136,6 +136,10 @@
       "max":48000,
       "min":8000
     },
+    "NumberOfChannels":{
+      "type":"integer",
+      "min":2
+    },
     "RequestId":{"type":"string"},
     "Result":{
       "type":"structure",
@@ -144,7 +148,8 @@
         "StartTime":{"shape":"Double"},
         "EndTime":{"shape":"Double"},
         "IsPartial":{"shape":"Boolean"},
-        "Alternatives":{"shape":"AlternativeList"}
+        "Alternatives":{"shape":"AlternativeList"},
+        "ChannelId":{"shape":"String"}
       }
     },
     "ResultList":{
@@ -161,6 +166,8 @@
     },
     "SessionId":{
       "type":"string",
+      "max":36,
+      "min":36,
       "pattern":"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
     },
     "StartStreamTranscriptionRequest":{
@@ -212,6 +219,16 @@
           "shape":"Boolean",
           "location":"header",
           "locationName":"x-amzn-transcribe-show-speaker-label"
+        },
+        "EnableChannelIdentification":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-enable-channel-identification"
+        },
+        "NumberOfChannels":{
+          "shape":"NumberOfChannels",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-number-of-channels"
         }
       },
       "payload":"AudioStream"
@@ -264,6 +281,16 @@
           "shape":"Boolean",
           "location":"header",
           "locationName":"x-amzn-transcribe-show-speaker-label"
+        },
+        "EnableChannelIdentification":{
+          "shape":"Boolean",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-enable-channel-identification"
+        },
+        "NumberOfChannels":{
+          "shape":"NumberOfChannels",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-number-of-channels"
         }
       },
       "payload":"TranscriptResultStream"

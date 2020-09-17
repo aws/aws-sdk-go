@@ -443,6 +443,19 @@
       "base" : "<p>Represents a collection of data models. See <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/models-mappings.html\">Create Models and Mapping Templates for Request and Response Mappings</a>.</p>",
       "refs" : { }
     },
+    "MutualTlsAuthentication" : {
+      "base" : "<p>If specified, API Gateway performs two-way authentication between the client and the server. Clients must present a trusted certificate to access your API.</p>",
+      "refs" : {
+        "DomainName$MutualTlsAuthentication" : "<p>The mutual TLS authentication configuration for a custom domain name.</p>"
+      }
+    },
+    "MutualTlsAuthenticationInput" : {
+      "base" : "<p>If specified, API Gateway performs two-way authentication between the client and the server. Clients must present a trusted certificate to access your API.</p>",
+      "refs" : {
+        "CreateDomainNameInput$MutualTlsAuthentication" : "<p>The mutual TLS authentication configuration for a custom domain name.</p>",
+        "UpdateDomainNameInput$MutualTlsAuthentication" : "<p>The mutual TLS authentication configuration for a custom domain name.</p>"
+      }
+    },
     "NextToken" : {
       "base" : "<p>The next page of elements from this collection. Not valid for the last element of the collection.</p>",
       "refs" : {
@@ -743,6 +756,8 @@
         "CreateRouteInput$OperationName" : "<p>The operation name for the route.</p>",
         "Integration$IntegrationMethod" : "<p>Specifies the integration's HTTP method type.</p>",
         "Integration$PayloadFormatVersion" : "<p>Specifies the format of the payload sent to an integration. Required for HTTP APIs.</p>",
+        "MutualTlsAuthentication$TruststoreVersion" : "<p>The version of the S3 object that contains your truststore. To specify a version, you must have versioning enabled for the S3 bucket.</p>",
+        "MutualTlsAuthenticationInput$TruststoreVersion" : "<p>The version of the S3 object that contains your truststore. To specify a version, you must have versioning enabled for the S3 bucket.</p>",
         "Route$OperationName" : "<p>The operation name for the route.</p>",
         "UpdateApiInput$Version" : "<p>A version identifier for the API.</p>",
         "UpdateAuthorizerInput$AuthorizerPayloadFormatVersion" : "<p>Specifies the format of the payload sent to an HTTP API Lambda authorizer. Required for HTTP API Lambda authorizers. Supported values are 1.0 and 2.0. To learn more, see <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html\">Working with AWS Lambda authorizers for HTTP APIs</a>.</p>",
@@ -865,6 +880,8 @@
         "CreateIntegrationInput$IntegrationUri" : "<p>For a Lambda integration, specify the URI of a Lambda function.</p> <p>For an HTTP integration, specify a fully-qualified URL.</p> <p>For an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service. If you specify the ARN of an AWS Cloud Map service, API Gateway uses DiscoverInstances to identify resources. You can use query parameters to target specific resources. To learn more, see <a href=\"https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html\">DiscoverInstances</a>. For private integrations, all resources must be owned by the same AWS account.</p>",
         "Integration$IntegrationUri" : "<p>For a Lambda integration, specify the URI of a Lambda function.</p> <p>For an HTTP integration, specify a fully-qualified URL.</p> <p>For an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service. If you specify the ARN of an AWS Cloud Map service, API Gateway uses DiscoverInstances to identify resources. You can use query parameters to target specific resources. To learn more, see <a href=\"https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html\">DiscoverInstances</a>. For private integrations, all resources must be owned by the same AWS account.</p>",
         "JWTConfiguration$Issuer" : "<p>The base domain of the identity provider that issues JSON Web Tokens. For example, an Amazon Cognito user pool has the following format: https://cognito-idp.<replaceable>{region}</replaceable>.amazonaws.com/<replaceable>{userPoolId}</replaceable>\n               . Required for the JWT authorizer type. Supported only for HTTP APIs.</p>",
+        "MutualTlsAuthentication$TruststoreUri" : "<p>An Amazon S3 URL that specifies the truststore for mutual TLS authentication, for example, s3://<replaceable>bucket-name</replaceable>/<replaceable>key-name</replaceable>. The truststore can contain certificates from public or private certificate authorities. To update the truststore, upload a new version to S3, and then update your custom domain name to use the new version. To update the truststore, you must have permissions to access the S3 object.</p>",
+        "MutualTlsAuthenticationInput$TruststoreUri" : "<p>An Amazon S3 URL that specifies the truststore for mutual TLS authentication, for example, s3://<replaceable>bucket-name</replaceable>/<replaceable>key-name</replaceable>. The truststore can contain certificates from public or private certificate authorities. To update the truststore, upload a new version to S3, and then update your custom domain name to use the new version. To update the truststore, you must have permissions to access the S3 object.</p>",
         "UpdateApiInput$Target" : "<p>This property is part of quick create. For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN. The type of the integration will be HTTP_PROXY or AWS_PROXY, respectively. The value provided updates the integration URI and integration type. You can update a quick-created target, but you can't remove it from an API. Supported only for HTTP APIs.</p>",
         "UpdateAuthorizerInput$AuthorizerUri" : "<p>The authorizer's Uniform Resource Identifier (URI). For REQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:<replaceable>{account_id}</replaceable>:function:<replaceable>{lambda_function_name}</replaceable>/invocations. In general, the URI has this form: arn:aws:apigateway:<replaceable>{region}</replaceable>:lambda:path/<replaceable>{service_api}</replaceable>\n               , where <replaceable></replaceable>{region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial /. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations. Supported only for REQUEST authorizers.</p>",
         "UpdateIntegrationInput$IntegrationUri" : "<p>For a Lambda integration, specify the URI of a Lambda function.</p> <p>For an HTTP integration, specify a fully-qualified URL.</p> <p>For an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service. If you specify the ARN of an AWS Cloud Map service, API Gateway uses DiscoverInstances to identify resources. You can use query parameters to target specific resources. To learn more, see <a href=\"https://docs.aws.amazon.com/cloud-map/latest/api/API_DiscoverInstances.html\">DiscoverInstances</a>. For private integrations, all resources must be owned by the same AWS account.</p>"
@@ -898,6 +915,7 @@
         "Api$ApiGatewayManaged" : "<p>Specifies whether an API is managed by API Gateway. You can't update or delete a managed API by using API Gateway. A managed API can be deleted only through the tooling or service that created it.</p>",
         "Api$DisableSchemaValidation" : "<p>Avoid validating models when creating a deployment. Supported only for WebSocket APIs.</p>",
         "Authorizer$EnableSimpleResponses" : "<p>Specifies whether a Lambda authorizer returns a response in a simple format. If enabled, the Lambda authorizer can return a boolean value instead of an IAM policy. Supported only for HTTP APIs. To learn more, see <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html\">Working with AWS Lambda authorizers for HTTP APIs</a></p>",
+        "Api$DisableExecuteApiEndpoint" : "<p>Specifies whether clients can invoke your API by using the default execute-api endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.</p>",
         "Cors$AllowCredentials" : "<p>Specifies whether credentials are included in the CORS request. Supported only for HTTP APIs.</p>",
         "CreateApiInput$DisableSchemaValidation" : "<p>Avoid validating models when creating a deployment. Supported only for WebSocket APIs.</p>",
         "CreateAuthorizerInput$EnableSimpleResponses" : "<p>Specifies whether a Lambda authorizer returns a response in a simple format. By default, a Lambda authorizer must return an IAM policy. If enabled, the Lambda authorizer can return a boolean value instead of an IAM policy. Supported only for HTTP APIs. To learn more, see <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-lambda-authorizer.html\">Working with AWS Lambda authorizers for HTTP APIs</a></p>",
@@ -1007,7 +1025,8 @@
       "refs" : {
         "Api$ImportInfo" : "<p>The validation information during API import. This may include particular properties of your OpenAPI definition which are ignored during import. Supported only for HTTP APIs.</p>",
         "Api$Warnings" : "<p>The warning messages reported when failonwarnings is turned on during API import.</p>",
-        "JWTConfiguration$Audience" : "<p>A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list. See <a href=\"https://tools.ietf.org/html/rfc7519#section-4.1.3\">RFC 7519</a>. Supported only for HTTP APIs.</p>"
+        "JWTConfiguration$Audience" : "<p>A list of the intended recipients of the JWT. A valid JWT must provide an aud that matches at least one entry in this list. See <a href=\"https://tools.ietf.org/html/rfc7519#section-4.1.3\">RFC 7519</a>. Supported only for HTTP APIs.</p>",
+        "MutualTlsAuthentication$TruststoreWarnings" : "<p>A list of warnings that API Gateway returns while processing your truststore. Invalid certificates produce warnings. Mutual TLS is still enabled, but some clients might not be able to access your API. To resolve warnings, upload a new truststore to S3, and then update you domain name to use the new version.</p>"
       }
     },
     "__string" : {

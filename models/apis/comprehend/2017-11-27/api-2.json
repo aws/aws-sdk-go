@@ -319,6 +319,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribePiiEntitiesDetectionJob":{
+      "name":"DescribePiiEntitiesDetectionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePiiEntitiesDetectionJobRequest"},
+      "output":{"shape":"DescribePiiEntitiesDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"JobNotFoundException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeSentimentDetectionJob":{
       "name":"DescribeSentimentDetectionJob",
       "http":{
@@ -387,6 +402,21 @@
       },
       "input":{"shape":"DetectKeyPhrasesRequest"},
       "output":{"shape":"DetectKeyPhrasesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TextSizeLimitExceededException"},
+        {"shape":"UnsupportedLanguageException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DetectPiiEntities":{
+      "name":"DetectPiiEntities",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DetectPiiEntitiesRequest"},
+      "output":{"shape":"DetectPiiEntitiesResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"TextSizeLimitExceededException"},
@@ -528,6 +558,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListPiiEntitiesDetectionJobs":{
+      "name":"ListPiiEntitiesDetectionJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListPiiEntitiesDetectionJobsRequest"},
+      "output":{"shape":"ListPiiEntitiesDetectionJobsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListSentimentDetectionJobs":{
       "name":"ListSentimentDetectionJobs",
       "http":{
@@ -636,6 +681,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "StartPiiEntitiesDetectionJob":{
+      "name":"StartPiiEntitiesDetectionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartPiiEntitiesDetectionJobRequest"},
+      "output":{"shape":"StartPiiEntitiesDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"KmsKeyValidationException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "StartSentimentDetectionJob":{
       "name":"StartSentimentDetectionJob",
       "http":{
@@ -702,6 +762,20 @@
       },
       "input":{"shape":"StopKeyPhrasesDetectionJobRequest"},
       "output":{"shape":"StopKeyPhrasesDetectionJobResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"JobNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StopPiiEntitiesDetectionJob":{
+      "name":"StopPiiEntitiesDetectionJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StopPiiEntitiesDetectionJobRequest"},
+      "output":{"shape":"StopPiiEntitiesDetectionJobResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"JobNotFoundException"},
@@ -1270,6 +1344,19 @@
         "KeyPhrasesDetectionJobProperties":{"shape":"KeyPhrasesDetectionJobProperties"}
       }
     },
+    "DescribePiiEntitiesDetectionJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribePiiEntitiesDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "PiiEntitiesDetectionJobProperties":{"shape":"PiiEntitiesDetectionJobProperties"}
+      }
+    },
     "DescribeSentimentDetectionJobRequest":{
       "type":"structure",
       "required":["JobId"],
@@ -1343,6 +1430,23 @@
         "KeyPhrases":{"shape":"ListOfKeyPhrases"}
       },
       "sensitive":true
+    },
+    "DetectPiiEntitiesRequest":{
+      "type":"structure",
+      "required":[
+        "Text",
+        "LanguageCode"
+      ],
+      "members":{
+        "Text":{"shape":"String"},
+        "LanguageCode":{"shape":"LanguageCode"}
+      }
+    },
+    "DetectPiiEntitiesResponse":{
+      "type":"structure",
+      "members":{
+        "Entities":{"shape":"ListOfPiiEntities"}
+      }
     },
     "DetectSentimentRequest":{
       "type":"structure",
@@ -2042,9 +2146,32 @@
       "type":"list",
       "member":{"shape":"DocumentLabel"}
     },
+    "ListOfPiiEntities":{
+      "type":"list",
+      "member":{"shape":"PiiEntity"}
+    },
+    "ListOfPiiEntityTypes":{
+      "type":"list",
+      "member":{"shape":"PiiEntityType"}
+    },
     "ListOfSyntaxTokens":{
       "type":"list",
       "member":{"shape":"SyntaxToken"}
+    },
+    "ListPiiEntitiesDetectionJobsRequest":{
+      "type":"structure",
+      "members":{
+        "Filter":{"shape":"PiiEntitiesDetectionJobFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListPiiEntitiesDetectionJobsResponse":{
+      "type":"structure",
+      "members":{
+        "PiiEntitiesDetectionJobPropertiesList":{"shape":"PiiEntitiesDetectionJobPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
     },
     "ListSentimentDetectionJobsRequest":{
       "type":"structure",
@@ -2089,6 +2216,12 @@
         "TopicsDetectionJobPropertiesList":{"shape":"TopicsDetectionJobPropertiesList"},
         "NextToken":{"shape":"String"}
       }
+    },
+    "MaskCharacter":{
+      "type":"string",
+      "max":1,
+      "min":1,
+      "pattern":"[!@#$%&*]"
     },
     "MaxResultsInteger":{
       "type":"integer",
@@ -2149,6 +2282,103 @@
         "SYM",
         "VERB"
       ]
+    },
+    "PiiEntitiesDetectionJobFilter":{
+      "type":"structure",
+      "members":{
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "SubmitTimeBefore":{"shape":"Timestamp"},
+        "SubmitTimeAfter":{"shape":"Timestamp"}
+      }
+    },
+    "PiiEntitiesDetectionJobProperties":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "Message":{"shape":"AnyLengthString"},
+        "SubmitTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"PiiOutputDataConfig"},
+        "RedactionConfig":{"shape":"RedactionConfig"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "Mode":{"shape":"PiiEntitiesDetectionMode"}
+      }
+    },
+    "PiiEntitiesDetectionJobPropertiesList":{
+      "type":"list",
+      "member":{"shape":"PiiEntitiesDetectionJobProperties"}
+    },
+    "PiiEntitiesDetectionMaskMode":{
+      "type":"string",
+      "enum":[
+        "MASK",
+        "REPLACE_WITH_PII_ENTITY_TYPE"
+      ]
+    },
+    "PiiEntitiesDetectionMode":{
+      "type":"string",
+      "enum":[
+        "ONLY_REDACTION",
+        "ONLY_OFFSETS"
+      ]
+    },
+    "PiiEntity":{
+      "type":"structure",
+      "members":{
+        "Score":{"shape":"Float"},
+        "Type":{"shape":"PiiEntityType"},
+        "BeginOffset":{"shape":"Integer"},
+        "EndOffset":{"shape":"Integer"}
+      }
+    },
+    "PiiEntityType":{
+      "type":"string",
+      "enum":[
+        "BANK_ACCOUNT_NUMBER",
+        "BANK_ROUTING",
+        "CREDIT_DEBIT_NUMBER",
+        "CREDIT_DEBIT_CVV",
+        "CREDIT_DEBIT_EXPIRY",
+        "PIN",
+        "EMAIL",
+        "ADDRESS",
+        "NAME",
+        "PHONE",
+        "SSN",
+        "DATE_TIME",
+        "PASSPORT_NUMBER",
+        "DRIVER_ID",
+        "URL",
+        "AGE",
+        "USERNAME",
+        "PASSWORD",
+        "AWS_ACCESS_KEY",
+        "AWS_SECRET_KEY",
+        "IP_ADDRESS",
+        "MAC_ADDRESS",
+        "ALL"
+      ]
+    },
+    "PiiOutputDataConfig":{
+      "type":"structure",
+      "required":["S3Uri"],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
+      }
+    },
+    "RedactionConfig":{
+      "type":"structure",
+      "members":{
+        "PiiEntityTypes":{"shape":"ListOfPiiEntityTypes"},
+        "MaskMode":{"shape":"PiiEntitiesDetectionMaskMode"},
+        "MaskCharacter":{"shape":"MaskCharacter"}
+      }
     },
     "ResourceInUseException":{
       "type":"structure",
@@ -2358,6 +2588,36 @@
         "JobStatus":{"shape":"JobStatus"}
       }
     },
+    "StartPiiEntitiesDetectionJobRequest":{
+      "type":"structure",
+      "required":[
+        "InputDataConfig",
+        "OutputDataConfig",
+        "Mode",
+        "DataAccessRoleArn",
+        "LanguageCode"
+      ],
+      "members":{
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "OutputDataConfig":{"shape":"OutputDataConfig"},
+        "Mode":{"shape":"PiiEntitiesDetectionMode"},
+        "RedactionConfig":{"shape":"RedactionConfig"},
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "JobName":{"shape":"JobName"},
+        "LanguageCode":{"shape":"LanguageCode"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestTokenString",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartPiiEntitiesDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobStatus":{"shape":"JobStatus"}
+      }
+    },
     "StartSentimentDetectionJobRequest":{
       "type":"structure",
       "required":[
@@ -2451,6 +2711,20 @@
       }
     },
     "StopKeyPhrasesDetectionJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "JobStatus":{"shape":"JobStatus"}
+      }
+    },
+    "StopPiiEntitiesDetectionJobRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "StopPiiEntitiesDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
