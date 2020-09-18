@@ -12,6 +12,126 @@
     "jsonVersion": "1.1"
   },
   "operations": {
+    "BatchDelete": {
+      "name": "BatchDelete",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/batch/delete",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "BatchDeleteRequest"
+      },
+      "output": {
+        "shape": "BatchDeleteResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "BatchStart": {
+      "name": "BatchStart",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/batch/start",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "BatchStartRequest"
+      },
+      "output": {
+        "shape": "BatchStartResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "BatchStop": {
+      "name": "BatchStop",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/batch/stop",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "BatchStopRequest"
+      },
+      "output": {
+        "shape": "BatchStopResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "BatchUpdateSchedule": {
       "name": "BatchUpdateSchedule",
       "http": {
@@ -2361,6 +2481,95 @@
         "httpStatusCode": 400
       }
     },
+    "BatchDelete": {
+      "type": "structure",
+      "members": {
+        "ChannelIds": {
+          "shape": "__listOf__string",
+          "locationName": "channelIds"
+        },
+        "InputIds": {
+          "shape": "__listOf__string",
+          "locationName": "inputIds"
+        },
+        "InputSecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "inputSecurityGroupIds"
+        },
+        "MultiplexIds": {
+          "shape": "__listOf__string",
+          "locationName": "multiplexIds"
+        }
+      }
+    },
+    "BatchDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelIds": {
+          "shape": "__listOf__string",
+          "locationName": "channelIds"
+        },
+        "InputIds": {
+          "shape": "__listOf__string",
+          "locationName": "inputIds"
+        },
+        "InputSecurityGroupIds": {
+          "shape": "__listOf__string",
+          "locationName": "inputSecurityGroupIds"
+        },
+        "MultiplexIds": {
+          "shape": "__listOf__string",
+          "locationName": "multiplexIds"
+        }
+      }
+    },
+    "BatchDeleteResponse": {
+      "type": "structure",
+      "members": {
+        "Failed": {
+          "shape": "__listOfBatchFailedResultModel",
+          "locationName": "failed"
+        },
+        "Successful": {
+          "shape": "__listOfBatchSuccessfulResultModel",
+          "locationName": "successful"
+        }
+      }
+    },
+    "BatchDeleteResultModel": {
+      "type": "structure",
+      "members": {
+        "Failed": {
+          "shape": "__listOfBatchFailedResultModel",
+          "locationName": "failed"
+        },
+        "Successful": {
+          "shape": "__listOfBatchSuccessfulResultModel",
+          "locationName": "successful"
+        }
+      }
+    },
+    "BatchFailedResultModel": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "Code": {
+          "shape": "__string",
+          "locationName": "code"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      }
+    },
     "BatchScheduleActionCreateRequest": {
       "type": "structure",
       "members": {
@@ -2408,6 +2617,127 @@
       "required": [
         "ScheduleActions"
       ]
+    },
+    "BatchStart": {
+      "type": "structure",
+      "members": {
+        "ChannelIds": {
+          "shape": "__listOf__string",
+          "locationName": "channelIds"
+        },
+        "MultiplexIds": {
+          "shape": "__listOf__string",
+          "locationName": "multiplexIds"
+        }
+      }
+    },
+    "BatchStartRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelIds": {
+          "shape": "__listOf__string",
+          "locationName": "channelIds"
+        },
+        "MultiplexIds": {
+          "shape": "__listOf__string",
+          "locationName": "multiplexIds"
+        }
+      }
+    },
+    "BatchStartResponse": {
+      "type": "structure",
+      "members": {
+        "Failed": {
+          "shape": "__listOfBatchFailedResultModel",
+          "locationName": "failed"
+        },
+        "Successful": {
+          "shape": "__listOfBatchSuccessfulResultModel",
+          "locationName": "successful"
+        }
+      }
+    },
+    "BatchStartResultModel": {
+      "type": "structure",
+      "members": {
+        "Failed": {
+          "shape": "__listOfBatchFailedResultModel",
+          "locationName": "failed"
+        },
+        "Successful": {
+          "shape": "__listOfBatchSuccessfulResultModel",
+          "locationName": "successful"
+        }
+      }
+    },
+    "BatchStop": {
+      "type": "structure",
+      "members": {
+        "ChannelIds": {
+          "shape": "__listOf__string",
+          "locationName": "channelIds"
+        },
+        "MultiplexIds": {
+          "shape": "__listOf__string",
+          "locationName": "multiplexIds"
+        }
+      }
+    },
+    "BatchStopRequest": {
+      "type": "structure",
+      "members": {
+        "ChannelIds": {
+          "shape": "__listOf__string",
+          "locationName": "channelIds"
+        },
+        "MultiplexIds": {
+          "shape": "__listOf__string",
+          "locationName": "multiplexIds"
+        }
+      }
+    },
+    "BatchStopResponse": {
+      "type": "structure",
+      "members": {
+        "Failed": {
+          "shape": "__listOfBatchFailedResultModel",
+          "locationName": "failed"
+        },
+        "Successful": {
+          "shape": "__listOfBatchSuccessfulResultModel",
+          "locationName": "successful"
+        }
+      }
+    },
+    "BatchStopResultModel": {
+      "type": "structure",
+      "members": {
+        "Failed": {
+          "shape": "__listOfBatchFailedResultModel",
+          "locationName": "failed"
+        },
+        "Successful": {
+          "shape": "__listOfBatchSuccessfulResultModel",
+          "locationName": "successful"
+        }
+      }
+    },
+    "BatchSuccessfulResultModel": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "State": {
+          "shape": "__string",
+          "locationName": "state"
+        }
+      }
     },
     "BatchUpdateScheduleRequest": {
       "type": "structure",
@@ -11280,6 +11610,11 @@
       "min": -1000,
       "max": 1000
     },
+    "__integerMinNegative5Max5": {
+      "type": "integer",
+      "min": -5,
+      "max": 5
+    },
     "__integerMinNegative60Max6": {
       "type": "integer",
       "min": -60,
@@ -11312,6 +11647,18 @@
       "type": "list",
       "member": {
         "shape": "AudioTrack"
+      }
+    },
+    "__listOfBatchFailedResultModel": {
+      "type": "list",
+      "member": {
+        "shape": "BatchFailedResultModel"
+      }
+    },
+    "__listOfBatchSuccessfulResultModel": {
+      "type": "list",
+      "member": {
+        "shape": "BatchSuccessfulResultModel"
       }
     },
     "__listOfCaptionDescription": {

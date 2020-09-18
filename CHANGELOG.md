@@ -1,3 +1,12 @@
+Release v1.34.27 (2020-09-18)
+===
+
+### Service Client Updates
+* `service/codestar-connections`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * AWS Elemental MediaLive now supports batch operations, which allow users to start, stop, and delete multiple MediaLive resources with a single request.
+* `service/sso-admin`: Updates service documentation
+
 Release v1.34.26 (2020-09-17)
 ===
 

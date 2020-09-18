@@ -380,6 +380,7 @@
       "type":"string",
       "enum":[
         "Bitbucket",
+        "GitHub",
         "GitHubEnterpriseServer"
       ]
     },
