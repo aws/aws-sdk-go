@@ -2,6 +2,9 @@
   "version": "2.0",
   "service": "API for AWS Elemental MediaLive",
   "operations": {
+    "BatchDelete": "Starts delete of resources.",
+    "BatchStart": "Starts existing resources",
+    "BatchStop": "Stops running resources",
     "BatchUpdateSchedule": "Update a channel schedule",
     "CreateChannel": "Creates a new channel",
     "CreateInput": "Create an input",
@@ -135,13 +138,10 @@
         "AudioCodecSettings$Ac3Settings": null
       }
     },
-    "AcceptHeader": {
-      "base": "Accept Header",
-      "refs": {}
-    },
     "AccessDenied": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "AfdSignaling": {
       "base": "Afd Signaling",
@@ -332,11 +332,29 @@
     },
     "BadGatewayException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "BadRequestException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
+    },
+    "BatchDelete": {
+      "base": "Batch delete resource request",
+      "refs": {
+      }
+    },
+    "BatchDeleteResultModel": {
+      "base": "Batch delete resource results",
+      "refs": {
+      }
+    },
+    "BatchFailedResultModel": {
+      "base": "Details from a failed operation",
+      "refs": {
+        "__listOfBatchFailedResultModel$member": null
+      }
     },
     "BatchScheduleActionCreateRequest": {
       "base": "A list of schedule actions to create (in a request) or that have been created (in a response).",
@@ -362,13 +380,41 @@
         "BatchUpdateScheduleResult$Deletes": "Schedule actions deleted from the schedule."
       }
     },
+    "BatchStart": {
+      "base": "Batch start resource request",
+      "refs": {
+      }
+    },
+    "BatchStartResultModel": {
+      "base": "Batch start resource results",
+      "refs": {
+      }
+    },
+    "BatchStop": {
+      "base": "Batch stop resource request",
+      "refs": {
+      }
+    },
+    "BatchStopResultModel": {
+      "base": "Batch stop resource results",
+      "refs": {
+      }
+    },
+    "BatchSuccessfulResultModel": {
+      "base": "Details from a successful operation",
+      "refs": {
+        "__listOfBatchSuccessfulResultModel$member": null
+      }
+    },
     "BatchUpdateScheduleRequest": {
       "base": "A request to create actions (add actions to the schedule), delete actions (remove actions from the schedule), or both create and delete actions.",
-      "refs": {}
+      "refs": {
+      }
     },
     "BatchUpdateScheduleResult": {
       "base": "Results of a batch schedule update.",
-      "refs": {}
+      "refs": {
+      }
     },
     "BlackoutSlate": {
       "base": "Blackout Slate",
@@ -479,7 +525,8 @@
     },
     "ChannelConfigurationValidationError": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ChannelEgressEndpoint": {
       "base": null,
@@ -509,43 +556,53 @@
     },
     "ConflictException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateChannel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateChannelResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateInput": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateInputResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateInputSecurityGroupResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateMultiplex": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateMultiplexProgram": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateMultiplexProgramResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "CreateMultiplexResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "DeviceSettingsSyncState": {
       "base": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration.",
@@ -766,7 +823,8 @@
     },
     "Empty": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "EncoderSettings": {
       "base": "Encoder Settings",
@@ -845,7 +903,8 @@
     },
     "ForbiddenException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "FrameCaptureGroupSettings": {
       "base": "Frame Capture Group Settings",
@@ -873,7 +932,8 @@
     },
     "GatewayTimeoutException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "GlobalConfiguration": {
       "base": "Global Configuration",
@@ -1438,7 +1498,8 @@
     },
     "InputDevice": {
       "base": "An input device.",
-      "refs": {}
+      "refs": {
+      }
     },
     "InputDeviceActiveInput": {
       "base": "The source at the input device that is currently active.",
@@ -1454,7 +1515,8 @@
     },
     "InputDeviceConfigurationValidationError": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "InputDeviceConfiguredInput": {
       "base": "The source to activate (use) from the input device.",
@@ -1623,7 +1685,8 @@
     },
     "InputSecurityGroupWhitelistRequest": {
       "base": "Request of IPv4 CIDR addresses to whitelist in a security group.",
-      "refs": {}
+      "refs": {
+      }
     },
     "InputSettings": {
       "base": "Live Event input parameters. There can be multiple inputs in a single Live Event.",
@@ -1709,15 +1772,18 @@
     },
     "InternalServerErrorException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "InternalServiceError": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "InvalidRequest": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "KeyProviderSettings": {
       "base": "Key Provider Settings",
@@ -1733,39 +1799,48 @@
     },
     "LimitExceeded": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ListChannelsResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ListInputDevicesResultModel": {
       "base": "The list of input devices owned by the AWS account.",
-      "refs": {}
+      "refs": {
+      }
     },
     "ListInputSecurityGroupsResultModel": {
       "base": "Result of input security group list request",
-      "refs": {}
+      "refs": {
+      }
     },
     "ListInputsResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ListMultiplexProgramsResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ListMultiplexesResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ListOfferingsResultModel": {
       "base": "ListOfferings response",
-      "refs": {}
+      "refs": {
+      }
     },
     "ListReservationsResultModel": {
       "base": "ListReservations response",
-      "refs": {}
+      "refs": {
+      }
     },
     "LogLevel": {
       "base": "The log level the user wants for their channel.",
@@ -1815,7 +1890,7 @@
     "M2tsBufferModel": {
       "base": "M2ts Buffer Model",
       "refs": {
-        "M2tsSettings$BufferModel": "If set to multiplex, use multiplex buffer model for accurate interleaving.  Setting to bufferModel to none can lead to lower latency, but low-memory devices may not be able to play back the stream without interruptions."
+        "M2tsSettings$BufferModel": "Controls the timing accuracy for output network traffic. Leave as MULTIPLEX to ensure accurate network packet timing. Or set to NONE, which might result in lower latency but will result in more variability in output network packet timing. This variability might cause interruptions, jitter, or bursty behavior in your playback or receiving devices."
       }
     },
     "M2tsCcDescriptor": {
@@ -1996,7 +2071,8 @@
     },
     "MultiplexConfigurationValidationError": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "MultiplexGroupSettings": {
       "base": "Multiplex Group Settings",
@@ -2126,7 +2202,8 @@
     },
     "NotFoundException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "Offering": {
       "base": "Reserved resources available for purchase",
@@ -2182,7 +2259,7 @@
       "base": "Reference to an OutputDestination ID defined in the channel",
       "refs": {
         "ArchiveGroupSettings$Destination": "A directory and base filename where archive files should be written.",
-        "FrameCaptureGroupSettings$Destination": "The destination for the frame capture files. Either the URI for an Amazon S3 bucket and object, plus a file name prefix (for example, s3ssl://sportsDelivery/highlights/20180820/curling_) or the URI for a MediaStore container, plus a file name prefix (for example, mediastoressl://sportsDelivery/20180820/curling_). The final file names consist of the prefix from the destination field (for example, \"curling_\") + name modifier + the counter (5 digits, starting from 00001) + extension (which is always .jpg).  For example, curlingLow.00001.jpg",
+        "FrameCaptureGroupSettings$Destination": "The destination for the frame capture files. Either the URI for an Amazon S3 bucket and object, plus a file name prefix (for example, s3ssl://sportsDelivery/highlights/20180820/curling-) or the URI for a MediaStore container, plus a file name prefix (for example, mediastoressl://sportsDelivery/20180820/curling-). The final file names consist of the prefix from the destination field (for example, \"curling-\") + name modifier + the counter (5 digits, starting from 00001) + extension (which is always .jpg).  For example, curling-low.00001.jpg",
         "HlsGroupSettings$Destination": "A directory or HTTP destination for the HLS segments, manifest files, and encryption keys (if enabled).",
         "MediaPackageGroupSettings$Destination": "MediaPackage channel destination.",
         "MsSmoothGroupSettings$Destination": "Smooth Streaming publish point on an IIS server. Elemental Live acts as a \"Push\" encoder to IIS.",
@@ -2235,11 +2312,13 @@
     },
     "PurchaseOffering": {
       "base": "PurchaseOffering request",
-      "refs": {}
+      "refs": {
+      }
     },
     "PurchaseOfferingResultModel": {
       "base": "PurchaseOffering response",
-      "refs": {}
+      "refs": {
+      }
     },
     "Rec601Settings": {
       "base": "Rec601 Settings",
@@ -2326,11 +2405,13 @@
     },
     "ResourceConflict": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "ResourceNotFound": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "RtmpCacheFullBehavior": {
       "base": "Rtmp Cache Full Behavior",
@@ -2388,11 +2469,13 @@
     },
     "ScheduleDeleteResultModel": {
       "base": "Result of a schedule deletion.",
-      "refs": {}
+      "refs": {
+      }
     },
     "ScheduleDescribeResultModel": {
       "base": "Results of a schedule describe.",
-      "refs": {}
+      "refs": {
+      }
     },
     "Scte20Convert608To708": {
       "base": "Scte20 Convert608 To708",
@@ -2648,7 +2731,8 @@
     },
     "TagsModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "TeletextDestinationSettings": {
       "base": "Teletext Destination Settings",
@@ -2695,7 +2779,8 @@
     },
     "TooManyRequestsException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "TtmlDestinationSettings": {
       "base": "Ttml Destination Settings",
@@ -2735,59 +2820,73 @@
     },
     "UnprocessableEntityException": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateChannel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateChannelClass": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateChannelResultModel": {
       "base": "The updated channel's description.",
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateInput": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateInputDevice": {
       "base": "Updates an input device.",
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateInputResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateInputSecurityGroupResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateMultiplex": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateMultiplexProgram": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateMultiplexProgramResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateMultiplexResultModel": {
       "base": null,
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateReservation": {
       "base": "UpdateReservation request",
-      "refs": {}
+      "refs": {
+      }
     },
     "UpdateReservationResultModel": {
       "base": "UpdateReservation response",
-      "refs": {}
+      "refs": {
+      }
     },
     "ValidationError": {
       "base": null,
@@ -2810,7 +2909,7 @@
     "VideoDescriptionRespondToAfd": {
       "base": "Video Description Respond To Afd",
       "refs": {
-        "VideoDescription$RespondToAfd": "Indicates how to respond to the AFD values in the input stream. RESPOND causes input video to be clipped, depending on the AFD value, input display aspect ratio, and output display aspect ratio, and (except for FRAME_CAPTURE codec) includes the values in the output. PASSTHROUGH (does not apply to FRAME_CAPTURE codec) ignores the AFD values and includes the values in the output, so input video is not clipped. NONE ignores the AFD values and does not include the values through to the output, so input video is not clipped."
+        "VideoDescription$RespondToAfd": "Indicates how MediaLive will respond to the AFD values that might be in the input video. If you do not know what AFD signaling is, or if your downstream system has not given you guidance, choose PASSTHROUGH.\nRESPOND: MediaLive clips the input video using a formula that uses the AFD values (configured in afdSignaling ), the input display aspect ratio, and the output display aspect ratio. MediaLive also includes the AFD values in the output, unless the codec for this encode is FRAME_CAPTURE.\nPASSTHROUGH: MediaLive ignores the AFD values and does not clip the video. But MediaLive does include the values in the output.\nNONE: MediaLive does not clip the input video and does not include the AFD values in the output"
       }
     },
     "VideoDescriptionScalingBehavior": {
@@ -2859,6 +2958,11 @@
       "base": "Webvtt Destination Settings",
       "refs": {
         "CaptionDestinationSettings$WebvttDestinationSettings": null
+      }
+    },
+    "__boolean": {
+      "base": null,
+      "refs": {
       }
     },
     "__double": {
@@ -3140,7 +3244,7 @@
         "H265Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
         "H265Settings$ParDenominator": "Pixel Aspect Ratio denominator.",
         "H265Settings$ParNumerator": "Pixel Aspect Ratio numerator.",
-        "HlsGroupSettings$KeepSegments": "Applies only if Mode field is LIVE. Specifies the number of media segments (.ts files) to retain in the destination directory.",
+        "HlsGroupSettings$KeepSegments": "Applies only if Mode field is LIVE.\n\nSpecifies the number of media segments to retain in the destination directory. This number should be bigger than indexNSegments (Num segments). We recommend (value = (2 x indexNsegments) + 1).\n\nIf this \"keep segments\" number is too low, the following might happen: the player is still reading a media manifest file that lists this segment, but that segment has been removed from the destination directory (as directed by indexNSegments). This situation would result in a 404 HTTP error on the player.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be subdirectoryPerStream for this setting to have an effect.",
         "MsSmoothGroupSettings$FragmentLength": "Length of mp4 fragments to generate (in seconds). Fragment length must be compatible with GOP size and framerate.",
@@ -3291,7 +3395,7 @@
     "__integerMin3": {
       "base": null,
       "refs": {
-        "HlsGroupSettings$IndexNSegments": "Applies only if Mode field is LIVE. Specifies the maximum number of segments in the media manifest file. After this maximum, older segments are removed from the media manifest. This number must be less than or equal to the Keep Segments field."
+        "HlsGroupSettings$IndexNSegments": "Applies only if Mode field is LIVE.\n\nSpecifies the maximum number of segments in the media manifest file. After this maximum, older segments are removed from the media manifest. This number must be smaller than the number in the Keep Segments field."
       }
     },
     "__integerMin30": {
@@ -3318,6 +3422,11 @@
       "refs": {
         "Scte35SpliceInsert$AdAvailOffset": "When specified, this offset (in milliseconds) is added to the input Ad Avail PTS time. This only applies to embedded SCTE 104/35 messages and does not apply to OOB messages.",
         "Scte35TimeSignalApos$AdAvailOffset": "When specified, this offset (in milliseconds) is added to the input Ad Avail PTS time. This only applies to embedded SCTE 104/35 messages and does not apply to OOB messages."
+      }
+    },
+    "__integerMinNegative5Max5": {
+      "base": null,
+      "refs": {
       }
     },
     "__integerMinNegative60Max6": {
@@ -3353,7 +3462,23 @@
     "__listOfAudioTrack": {
       "base": null,
       "refs": {
-        "AudioTrackSelection$Tracks": "Selects one or more unique audio tracks from within an mp4 source."
+        "AudioTrackSelection$Tracks": "Selects one or more unique audio tracks from within a source."
+      }
+    },
+    "__listOfBatchFailedResultModel": {
+      "base": null,
+      "refs": {
+        "BatchDeleteResultModel$Failed": "List of failed operations",
+        "BatchStartResultModel$Failed": "List of failed operations",
+        "BatchStopResultModel$Failed": "List of failed operations"
+      }
+    },
+    "__listOfBatchSuccessfulResultModel": {
+      "base": null,
+      "refs": {
+        "BatchDeleteResultModel$Successful": "List of successful operations",
+        "BatchStartResultModel$Successful": "List of successful operations",
+        "BatchStopResultModel$Successful": "List of successful operations"
       }
     },
     "__listOfCaptionDescription": {
@@ -3607,7 +3732,15 @@
     "__listOf__string": {
       "base": null,
       "refs": {
+        "BatchDelete$ChannelIds": "List of channel IDs",
+        "BatchDelete$InputIds": "List of input IDs",
+        "BatchDelete$InputSecurityGroupIds": "List of input security group IDs",
+        "BatchDelete$MultiplexIds": "List of multiplex IDs",
         "BatchScheduleActionDeleteRequest$ActionNames": "A list of schedule actions to delete.",
+        "BatchStart$ChannelIds": "List of channel IDs",
+        "BatchStart$MultiplexIds": "List of multiplex IDs",
+        "BatchStop$ChannelIds": "List of channel IDs",
+        "BatchStop$MultiplexIds": "List of multiplex IDs",
         "CreateInput$InputSecurityGroups": "A list of security groups referenced by IDs to attach to the input.",
         "CreateMultiplex$AvailabilityZones": "A list of availability zones for the multiplex. You must specify exactly two.",
         "Input$AttachedChannels": "A list of channel IDs that that input is attached to (currently an input can only be attached to one channel).",
@@ -3658,6 +3791,13 @@
         "AudioOnlyHlsSettings$AudioGroupId": "Specifies the group to which the audio Rendition belongs.",
         "AutomaticInputFailoverSettings$SecondaryInputId": "The input ID of the secondary input in the automatic input failover pair.",
         "BadGatewayException$Message": null,
+        "BatchFailedResultModel$Arn": "ARN of the resource",
+        "BatchFailedResultModel$Code": "Error code for the failed operation",
+        "BatchFailedResultModel$Id": "ID of the resource",
+        "BatchFailedResultModel$Message": "Error message for the failed operation",
+        "BatchSuccessfulResultModel$Arn": "ARN of the resource",
+        "BatchSuccessfulResultModel$Id": "ID of the resource",
+        "BatchSuccessfulResultModel$State": "Current state of the resource",
         "BurnInDestinationSettings$FontSize": "When set to 'auto' fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
         "CaptionDescription$CaptionSelectorName": "Specifies which input caption selector to use as a caption source when generating output captions. This field should match a captionSelector name.",
         "CaptionDescription$LanguageCode": "ISO 639-2 three-digit code: http://www.loc.gov/standards/iso639-2/",
@@ -3686,7 +3826,7 @@
         "CreateMultiplexProgram$ProgramName": "Name of multiplex program.",
         "CreateMultiplexProgram$RequestId": "Unique request ID. This prevents retries from creating multiple\nresources.\n",
         "DvbSubDestinationSettings$FontSize": "When set to auto fontSize will scale depending on the size of the output.  Giving a positive integer will specify the exact font size in points.  All burn-in and DVB-Sub font settings must match.",
-        "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as “Arial”), or a generic font family (such as “serif”), or “default” (to let the downstream player choose the font).\n- Leave blank to set the family to “monospace”.",
+        "EbuTtDDestinationSettings$FontFamily": "Specifies the font family to include in the font data attached to the EBU-TT captions. Valid only if styleControl is set to include. If you leave this field empty, the font family is set to \"monospaced\". (If styleControl is set to exclude, the font family is always set to \"monospaced\".)\n\nYou specify only the font family. All other style information (color, bold, position and so on) is copied from the input captions. The size is always set to 100% to allow the downstream player to choose the size.\n\n- Enter a list of font families, as a comma-separated list of font names, in order of preference. The name can be a font family (such as \u201cArial\u201d), or a generic font family (such as \u201cserif\u201d), or \u201cdefault\u201d (to let the downstream player choose the font).\n- Leave blank to set the family to \u201cmonospace\u201d.",
         "FixedModeScheduleActionStartSettings$Time": "Start time for the action to start in the channel. (Not the time for the action to be added to the schedule: actions are always added to the schedule immediately.) UTC format: yyyy-mm-ddThh:mm:ss.nnnZ. All the letters are digits (for example, mm might be 01) except for the two constants \"T\" for time and \"Z\" for \"UTC format\".",
         "Fmp4HlsSettings$AudioRenditionSets": "List all the audio groups that are used with the video output stream. Input all the audio GROUP-IDs that are associated to the video, separate by ','.",
         "FollowModeScheduleActionStartSettings$ReferenceActionName": "The action name of another action that this one refers to.",
@@ -3778,7 +3918,6 @@
         "M3u8Settings$Scte35Pid": "Packet Identifier (PID) of the SCTE-35 stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
         "M3u8Settings$TimedMetadataPid": "Packet Identifier (PID) of the timed metadata stream in the transport stream. Can be entered as a decimal or hexadecimal value.  Valid values are 32 (or 0x20)..8182 (or 0x1ff6).",
         "M3u8Settings$VideoPid": "Packet Identifier (PID) of the elementary video stream in the transport stream. Can be entered as a decimal or hexadecimal value.",
-        "InputDeviceThumbnail$Body": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
         "MediaConnectFlow$FlowArn": "The unique ARN of the MediaConnect Flow being used as a source.",
         "MediaConnectFlowRequest$FlowArn": "The ARN of the MediaConnect Flow that you want to use as a source.",
         "MsSmoothGroupSettings$AcquisitionPointId": "The ID to include in each message in the sparse track. Ignored if sparseTrackType is NONE.",

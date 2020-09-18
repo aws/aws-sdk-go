@@ -2424,6 +2424,9 @@ const (
 	// ProviderTypeBitbucket is a ProviderType enum value
 	ProviderTypeBitbucket = "Bitbucket"
 
+	// ProviderTypeGitHub is a ProviderType enum value
+	ProviderTypeGitHub = "GitHub"
+
 	// ProviderTypeGitHubEnterpriseServer is a ProviderType enum value
 	ProviderTypeGitHubEnterpriseServer = "GitHubEnterpriseServer"
 )
@@ -2432,6 +2435,7 @@ const (
 func ProviderType_Values() []string {
 	return []string{
 		ProviderTypeBitbucket,
+		ProviderTypeGitHub,
 		ProviderTypeGitHubEnterpriseServer,
 	}
 }

@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Elemental MediaLive.
 //    func myFunc(svc medialiveiface.MediaLiveAPI) bool {
-//        // Make svc.BatchUpdateSchedule request
+//        // Make svc.BatchDelete request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockMediaLiveClient struct {
 //        medialiveiface.MediaLiveAPI
 //    }
-//    func (m *mockMediaLiveClient) BatchUpdateSchedule(input *medialive.BatchUpdateScheduleInput) (*medialive.BatchUpdateScheduleOutput, error) {
+//    func (m *mockMediaLiveClient) BatchDelete(input *medialive.BatchDeleteInput) (*medialive.BatchDeleteOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,18 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaLiveAPI interface {
+	BatchDelete(*medialive.BatchDeleteInput) (*medialive.BatchDeleteOutput, error)
+	BatchDeleteWithContext(aws.Context, *medialive.BatchDeleteInput, ...request.Option) (*medialive.BatchDeleteOutput, error)
+	BatchDeleteRequest(*medialive.BatchDeleteInput) (*request.Request, *medialive.BatchDeleteOutput)
+
+	BatchStart(*medialive.BatchStartInput) (*medialive.BatchStartOutput, error)
+	BatchStartWithContext(aws.Context, *medialive.BatchStartInput, ...request.Option) (*medialive.BatchStartOutput, error)
+	BatchStartRequest(*medialive.BatchStartInput) (*request.Request, *medialive.BatchStartOutput)
+
+	BatchStop(*medialive.BatchStopInput) (*medialive.BatchStopOutput, error)
+	BatchStopWithContext(aws.Context, *medialive.BatchStopInput, ...request.Option) (*medialive.BatchStopOutput, error)
+	BatchStopRequest(*medialive.BatchStopInput) (*request.Request, *medialive.BatchStopOutput)
+
 	BatchUpdateSchedule(*medialive.BatchUpdateScheduleInput) (*medialive.BatchUpdateScheduleOutput, error)
 	BatchUpdateScheduleWithContext(aws.Context, *medialive.BatchUpdateScheduleInput, ...request.Option) (*medialive.BatchUpdateScheduleOutput, error)
 	BatchUpdateScheduleRequest(*medialive.BatchUpdateScheduleInput) (*request.Request, *medialive.BatchUpdateScheduleOutput)

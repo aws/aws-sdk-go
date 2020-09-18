@@ -4512,6 +4512,12 @@
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "rekognition-fips.ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "rekognition-fips.ca-central-1.amazonaws.com"
+          },
           "rekognition-fips.us-east-1" : {
             "credentialScope" : {
               "region" : "us-east-1"
@@ -7807,7 +7813,12 @@
       },
       "health" : {
         "endpoints" : {
-          "us-gov-west-1" : { }
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "health-fips.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "iam" : {
