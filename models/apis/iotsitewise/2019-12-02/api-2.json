@@ -195,6 +195,22 @@
       ],
       "endpoint":{"hostPrefix":"monitor."}
     },
+    "CreatePresignedPortalUrl":{
+      "name":"CreatePresignedPortalUrl",
+      "http":{
+        "method":"GET",
+        "requestUri":"/portals/{portalId}/presigned-url",
+        "responseCode":200
+      },
+      "input":{"shape":"CreatePresignedPortalUrlRequest"},
+      "output":{"shape":"CreatePresignedPortalUrlResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"monitor."}
+    },
     "CreateProject":{
       "name":"CreateProject",
       "http":{
@@ -1297,6 +1313,13 @@
         "defaultValue":{"shape":"DefaultValue"}
       }
     },
+    "AuthMode":{
+      "type":"string",
+      "enum":[
+        "IAM",
+        "SSO"
+      ]
+    },
     "BatchAssociateProjectAssetsErrors":{
       "type":"list",
       "member":{"shape":"AssetErrorDetails"}
@@ -1611,7 +1634,8 @@
         },
         "portalLogoImageFile":{"shape":"ImageFile"},
         "roleArn":{"shape":"ARN"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "portalAuthMode":{"shape":"AuthMode"}
       }
     },
     "CreatePortalResponse":{
@@ -1629,6 +1653,29 @@
         "portalStartUrl":{"shape":"Url"},
         "portalStatus":{"shape":"PortalStatus"},
         "ssoApplicationId":{"shape":"SSOApplicationId"}
+      }
+    },
+    "CreatePresignedPortalUrlRequest":{
+      "type":"structure",
+      "required":["portalId"],
+      "members":{
+        "portalId":{
+          "shape":"ID",
+          "location":"uri",
+          "locationName":"portalId"
+        },
+        "sessionDurationSeconds":{
+          "shape":"SessionDurationSeconds",
+          "location":"querystring",
+          "locationName":"sessionDurationSeconds"
+        }
+      }
+    },
+    "CreatePresignedPortalUrlResponse":{
+      "type":"structure",
+      "required":["presignedPortalUrl"],
+      "members":{
+        "presignedPortalUrl":{"shape":"Url"}
       }
     },
     "CreateProjectRequest":{
@@ -2122,7 +2169,8 @@
         "portalCreationDate":{"shape":"Timestamp"},
         "portalLastUpdateDate":{"shape":"Timestamp"},
         "portalLogoImageLocation":{"shape":"ImageLocation"},
-        "roleArn":{"shape":"ARN"}
+        "roleArn":{"shape":"ARN"},
+        "portalAuthMode":{"shape":"AuthMode"}
       }
     },
     "DescribeProjectRequest":{
@@ -2450,6 +2498,13 @@
         "id":{"shape":"IdentityId"}
       }
     },
+    "IAMUserIdentity":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"ARN"}
+      }
+    },
     "ID":{
       "type":"string",
       "max":36,
@@ -2466,7 +2521,8 @@
       "type":"structure",
       "members":{
         "user":{"shape":"UserIdentity"},
-        "group":{"shape":"GroupIdentity"}
+        "group":{"shape":"GroupIdentity"},
+        "iamUser":{"shape":"IAMUserIdentity"}
       }
     },
     "IdentityId":{
@@ -2479,7 +2535,8 @@
       "type":"string",
       "enum":[
         "USER",
-        "GROUP"
+        "GROUP",
+        "IAM"
       ]
     },
     "Image":{
@@ -2576,6 +2633,11 @@
           "shape":"ID",
           "location":"querystring",
           "locationName":"resourceId"
+        },
+        "iamArn":{
+          "shape":"ARN",
+          "location":"querystring",
+          "locationName":"iamArn"
         },
         "nextToken":{
           "shape":"NextToken",
@@ -3196,6 +3258,11 @@
       "error":{"httpStatusCode":503},
       "exception":true,
       "fault":true
+    },
+    "SessionDurationSeconds":{
+      "type":"integer",
+      "max":43200,
+      "min":900
     },
     "TagKey":{
       "type":"string",

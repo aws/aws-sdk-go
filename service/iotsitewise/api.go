@@ -509,9 +509,9 @@ func (c *IoTSiteWise) CreateAccessPolicyRequest(input *CreateAccessPolicyInput) 
 
 // CreateAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Creates an access policy that grants the specified AWS Single Sign-On user
-// or group access to the specified AWS IoT SiteWise Monitor portal or project
-// resource.
+// Creates an access policy that grants the specified identity (AWS SSO user,
+// AWS SSO group, or IAM user) access to the specified AWS IoT SiteWise Monitor
+// portal or project resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1055,15 +1055,13 @@ func (c *IoTSiteWise) CreatePortalRequest(input *CreatePortalInput) (req *reques
 
 // CreatePortal API operation for AWS IoT SiteWise.
 //
-// Creates a portal, which can contain projects and dashboards. Before you can
-// create a portal, you must enable AWS Single Sign-On. AWS IoT SiteWise Monitor
-// uses AWS SSO to manage user permissions. For more information, see Enabling
-// AWS SSO (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
-// in the AWS IoT SiteWise User Guide.
+// Creates a portal, which can contain projects and dashboards. AWS IoT SiteWise
+// Monitor uses AWS SSO or IAM to authenticate portal users and manage user
+// permissions.
 //
-// Before you can sign in to a new portal, you must add at least one AWS SSO
-// user or group to that portal. For more information, see Adding or removing
-// portal administrators (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins)
+// Before you can sign in to a new portal, you must add at least one identity
+// to that portal. For more information, see Adding or removing portal administrators
+// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins)
 // in the AWS IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1117,6 +1115,103 @@ func (c *IoTSiteWise) CreatePortal(input *CreatePortalInput) (*CreatePortalOutpu
 // for more information on using Contexts.
 func (c *IoTSiteWise) CreatePortalWithContext(ctx aws.Context, input *CreatePortalInput, opts ...request.Option) (*CreatePortalOutput, error) {
 	req, out := c.CreatePortalRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreatePresignedPortalUrl = "CreatePresignedPortalUrl"
+
+// CreatePresignedPortalUrlRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePresignedPortalUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePresignedPortalUrl for more information on using the CreatePresignedPortalUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePresignedPortalUrlRequest method.
+//    req, resp := client.CreatePresignedPortalUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreatePresignedPortalUrl
+func (c *IoTSiteWise) CreatePresignedPortalUrlRequest(input *CreatePresignedPortalUrlInput) (req *request.Request, output *CreatePresignedPortalUrlOutput) {
+	op := &request.Operation{
+		Name:       opCreatePresignedPortalUrl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/portals/{portalId}/presigned-url",
+	}
+
+	if input == nil {
+		input = &CreatePresignedPortalUrlInput{}
+	}
+
+	output = &CreatePresignedPortalUrlOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("monitor.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreatePresignedPortalUrl API operation for AWS IoT SiteWise.
+//
+// Creates a pre-signed URL to a portal. Use this operation to create URLs to
+// portals that use AWS Identity and Access Management (IAM) to authenticate
+// users. An IAM user with access to a portal can call this API to get a URL
+// to that portal. The URL contains a session token that lets the IAM user access
+// the portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation CreatePresignedPortalUrl for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   AWS IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of AWS IoT SiteWise assets that can be created per second, the
+//   allowed number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the AWS IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreatePresignedPortalUrl
+func (c *IoTSiteWise) CreatePresignedPortalUrl(input *CreatePresignedPortalUrlInput) (*CreatePresignedPortalUrlOutput, error) {
+	req, out := c.CreatePresignedPortalUrlRequest(input)
+	return out, req.Send()
+}
+
+// CreatePresignedPortalUrlWithContext is the same as CreatePresignedPortalUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePresignedPortalUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) CreatePresignedPortalUrlWithContext(ctx aws.Context, input *CreatePresignedPortalUrlInput, opts ...request.Option) (*CreatePresignedPortalUrlOutput, error) {
+	req, out := c.CreatePresignedPortalUrlRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1273,9 +1368,9 @@ func (c *IoTSiteWise) DeleteAccessPolicyRequest(input *DeleteAccessPolicyInput) 
 
 // DeleteAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Deletes an access policy that grants the specified AWS Single Sign-On identity
-// access to the specified AWS IoT SiteWise Monitor resource. You can use this
-// operation to revoke access to an AWS IoT SiteWise Monitor resource.
+// Deletes an access policy that grants the specified identity access to the
+// specified AWS IoT SiteWise Monitor resource. You can use this operation to
+// revoke access to an AWS IoT SiteWise Monitor resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1680,9 +1775,7 @@ func (c *IoTSiteWise) DeleteGatewayRequest(input *DeleteGatewayInput) (req *requ
 // DeleteGateway API operation for AWS IoT SiteWise.
 //
 // Deletes a gateway from AWS IoT SiteWise. When you delete a gateway, some
-// of the gateway's files remain in your gateway's file system. For more information,
-// see Data retention (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/data-retention.html)
-// in the AWS IoT SiteWise User Guide.
+// of the gateway's files remain in your gateway's file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1975,8 +2068,8 @@ func (c *IoTSiteWise) DescribeAccessPolicyRequest(input *DescribeAccessPolicyInp
 
 // DescribeAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Describes an access policy, which specifies an AWS SSO user or group's access
-// to an AWS IoT SiteWise Monitor portal or project.
+// Describes an access policy, which specifies an identity's access to an AWS
+// IoT SiteWise Monitor portal or project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3497,8 +3590,9 @@ func (c *IoTSiteWise) ListAccessPoliciesRequest(input *ListAccessPoliciesInput) 
 
 // ListAccessPolicies API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of access policies for an AWS SSO identity (a
-// user or group) or an AWS IoT SiteWise Monitor resource (a portal or project).
+// Retrieves a paginated list of access policies for an identity (an AWS SSO
+// user, an AWS SSO group, or an IAM user) or an AWS IoT SiteWise Monitor resource
+// (a portal or project).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5269,8 +5363,8 @@ func (c *IoTSiteWise) UpdateAccessPolicyRequest(input *UpdateAccessPolicyInput) 
 
 // UpdateAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Updates an existing access policy that specifies an AWS SSO user or group's
-// access to an AWS IoT SiteWise Monitor portal or project resource.
+// Updates an existing access policy that specifies an identity's access to
+// an AWS IoT SiteWise Monitor portal or project resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5482,11 +5576,10 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 // their IDs and definitions in the updated asset model payload. For more information,
 // see DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html).
 //
-// If you remove a property from an asset model or update a property's formula
-// expression, AWS IoT SiteWise deletes all previous data for that property.
-// If you remove a hierarchy definition from an asset model, AWS IoT SiteWise
-// disassociates every asset associated with that hierarchy. You can't change
-// the type or data type of an existing property.
+// If you remove a property from an asset model, AWS IoT SiteWise deletes all
+// previous data for that property. If you remove a hierarchy definition from
+// an asset model, AWS IoT SiteWise disassociates every asset associated with
+// that hierarchy. You can't change the type or data type of an existing property.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6165,8 +6258,8 @@ func (c *IoTSiteWise) UpdateProjectWithContext(ctx aws.Context, input *UpdatePro
 	return out, req.Send()
 }
 
-// Contains an access policy that defines an AWS SSO identity's access to an
-// AWS IoT SiteWise Monitor resource.
+// Contains an access policy that defines an identity's access to an AWS IoT
+// SiteWise Monitor resource.
 type AccessPolicySummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6178,7 +6271,7 @@ type AccessPolicySummary struct {
 	// Id is a required field
 	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 
-	// The AWS SSO identity (a user or group).
+	// The identity (an AWS SSO user, an AWS SSO group, or an IAM user).
 	//
 	// Identity is a required field
 	Identity *Identity `locationName:"identity" type:"structure" required:"true"`
@@ -6417,7 +6510,7 @@ type AssetHierarchy struct {
 
 	// The hierarchy name provided in the CreateAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModel.html)
 	// or UpdateAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetModel.html)
-	// API.
+	// API operation.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -6462,7 +6555,7 @@ type AssetModelHierarchy struct {
 	// The name of the asset model hierarchy that you specify by using the CreateAssetModel
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModel.html)
 	// or UpdateAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetModel.html)
-	// API.
+	// API operation.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -6532,9 +6625,10 @@ type AssetModelHierarchyDefinition struct {
 	// ChildAssetModelId is a required field
 	ChildAssetModelId *string `locationName:"childAssetModelId" min:"36" type:"string" required:"true"`
 
-	// The name of the asset model hierarchy definition (as specified in CreateAssetModel
+	// The name of the asset model hierarchy definition (as specified in the CreateAssetModel
 	// (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_CreateAssetModel.html)
-	// or UpdateAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetModel.html)).
+	// or UpdateAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetModel.html)
+	// API operation).
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -7878,8 +7972,8 @@ func (s *ConflictingOperationException) RequestID() string {
 type CreateAccessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity for this access policy. Choose either a user or a group but
-	// not both.
+	// The identity for this access policy. Choose an AWS SSO user, an AWS SSO group,
+	// or an IAM user.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -7891,7 +7985,7 @@ type CreateAccessPolicyInput struct {
 	AccessPolicyPermission *string `locationName:"accessPolicyPermission" type:"string" required:"true" enum:"Permission"`
 
 	// The AWS IoT SiteWise Monitor resource for this access policy. Choose either
-	// portal or project but not both.
+	// a portal or a project.
 	//
 	// AccessPolicyResource is a required field
 	AccessPolicyResource *Resource `locationName:"accessPolicyResource" type:"structure" required:"true"`
@@ -8618,6 +8712,26 @@ type CreatePortalInput struct {
 	// is required.
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
+	// The service to use to authenticate users to the portal. Choose from the following
+	// options:
+	//
+	//    * SSO – The portal uses AWS Single Sign-On to authenticate users and
+	//    manage user permissions. Before you can create a portal that uses AWS
+	//    SSO, you must enable AWS SSO. For more information, see Enabling AWS SSO
+	//    (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
+	//    in the AWS IoT SiteWise User Guide. This option is only available in AWS
+	//    Regions other than the China Regions.
+	//
+	//    * IAM – The portal uses AWS Identity and Access Management (IAM) to
+	//    authenticate users and manage user permissions. IAM users must have the
+	//    iotsitewise:CreatePresignedPortalUrl permission to sign in to the portal.
+	//    This option is only available in the China Regions.
+	//
+	// You can't change this value after you create a portal.
+	//
+	// Default: SSO
+	PortalAuthMode *string `locationName:"portalAuthMode" type:"string" enum:"AuthMode"`
+
 	// The AWS administrator's contact email address.
 	//
 	// PortalContactEmail is a required field
@@ -8708,6 +8822,12 @@ func (s *CreatePortalInput) SetClientToken(v string) *CreatePortalInput {
 	return s
 }
 
+// SetPortalAuthMode sets the PortalAuthMode field's value.
+func (s *CreatePortalInput) SetPortalAuthMode(v string) *CreatePortalInput {
+	s.PortalAuthMode = &v
+	return s
+}
+
 // SetPortalContactEmail sets the PortalContactEmail field's value.
 func (s *CreatePortalInput) SetPortalContactEmail(v string) *CreatePortalInput {
 	s.PortalContactEmail = &v
@@ -8760,7 +8880,11 @@ type CreatePortalOutput struct {
 	// PortalId is a required field
 	PortalId *string `locationName:"portalId" min:"36" type:"string" required:"true"`
 
-	// The public URL for the AWS IoT SiteWise Monitor portal.
+	// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
+	// access portals that use AWS SSO for authentication. For portals that use
+	// IAM for authentication, you must use the CreatePresignedPortalUrl (https://docs.aws.amazon.com/AWS
+	// IoT SiteWise API ReferenceAPI_CreatePresignedPortalUrl.html) operation to
+	// create a URL that you can use to access the portal.
 	//
 	// PortalStartUrl is a required field
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
@@ -8771,7 +8895,7 @@ type CreatePortalOutput struct {
 	// PortalStatus is a required field
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
 
-	// The associated AWS SSO application Id.
+	// The associated AWS SSO application ID, if the portal uses AWS SSO.
 	//
 	// SsoApplicationId is a required field
 	SsoApplicationId *string `locationName:"ssoApplicationId" min:"1" type:"string" required:"true"`
@@ -8814,6 +8938,89 @@ func (s *CreatePortalOutput) SetPortalStatus(v *PortalStatus) *CreatePortalOutpu
 // SetSsoApplicationId sets the SsoApplicationId field's value.
 func (s *CreatePortalOutput) SetSsoApplicationId(v string) *CreatePortalOutput {
 	s.SsoApplicationId = &v
+	return s
+}
+
+type CreatePresignedPortalUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the portal to access.
+	//
+	// PortalId is a required field
+	PortalId *string `location:"uri" locationName:"portalId" min:"36" type:"string" required:"true"`
+
+	// The duration (in seconds) for which the session at the URL is valid.
+	//
+	// Default: 900 seconds (15 minutes)
+	SessionDurationSeconds *int64 `location:"querystring" locationName:"sessionDurationSeconds" min:"900" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreatePresignedPortalUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePresignedPortalUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePresignedPortalUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePresignedPortalUrlInput"}
+	if s.PortalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortalId"))
+	}
+	if s.PortalId != nil && len(*s.PortalId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PortalId", 36))
+	}
+	if s.SessionDurationSeconds != nil && *s.SessionDurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("SessionDurationSeconds", 900))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPortalId sets the PortalId field's value.
+func (s *CreatePresignedPortalUrlInput) SetPortalId(v string) *CreatePresignedPortalUrlInput {
+	s.PortalId = &v
+	return s
+}
+
+// SetSessionDurationSeconds sets the SessionDurationSeconds field's value.
+func (s *CreatePresignedPortalUrlInput) SetSessionDurationSeconds(v int64) *CreatePresignedPortalUrlInput {
+	s.SessionDurationSeconds = &v
+	return s
+}
+
+type CreatePresignedPortalUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pre-signed URL to the portal. The URL contains the portal ID and a session
+	// token that lets you access the portal. The URL has the following format.
+	//
+	// https://<portal-id>.app.iotsitewise.aws/auth?token=<encrypted-token>
+	//
+	// PresignedPortalUrl is a required field
+	PresignedPortalUrl *string `locationName:"presignedPortalUrl" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreatePresignedPortalUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePresignedPortalUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetPresignedPortalUrl sets the PresignedPortalUrl field's value.
+func (s *CreatePresignedPortalUrlOutput) SetPresignedPortalUrl(v string) *CreatePresignedPortalUrlOutput {
+	s.PresignedPortalUrl = &v
 	return s
 }
 
@@ -9585,7 +9792,8 @@ type DescribeAccessPolicyOutput struct {
 	// AccessPolicyId is a required field
 	AccessPolicyId *string `locationName:"accessPolicyId" min:"36" type:"string" required:"true"`
 
-	// The AWS SSO identity (user or group) to which this access policy applies.
+	// The identity (AWS SSO user, AWS SSO group, or IAM user) to which this access
+	// policy applies.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -10595,7 +10803,12 @@ type DescribePortalOutput struct {
 	// PortalArn is a required field
 	PortalArn *string `locationName:"portalArn" min:"1" type:"string" required:"true"`
 
-	// The AWS SSO application generated client ID (used with AWS SSO APIs).
+	// The service to use to authenticate users to the portal.
+	PortalAuthMode *string `locationName:"portalAuthMode" type:"string" enum:"AuthMode"`
+
+	// The AWS SSO application generated client ID (used with AWS SSO APIs). AWS
+	// IoT SiteWise includes portalClientId for only portals that use AWS SSO to
+	// authenticate users.
 	//
 	// PortalClientId is a required field
 	PortalClientId *string `locationName:"portalClientId" min:"1" type:"string" required:"true"`
@@ -10631,8 +10844,11 @@ type DescribePortalOutput struct {
 	// PortalName is a required field
 	PortalName *string `locationName:"portalName" min:"1" type:"string" required:"true"`
 
-	// The public root URL for the AWS IoT AWS IoT SiteWise Monitor application
-	// portal.
+	// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
+	// access portals that use AWS SSO for authentication. For portals that use
+	// IAM for authentication, you must use the CreatePresignedPortalUrl (https://docs.aws.amazon.com/AWS
+	// IoT SiteWise API ReferenceAPI_CreatePresignedPortalUrl.html) operation to
+	// create a URL that you can use to access the portal.
 	//
 	// PortalStartUrl is a required field
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
@@ -10663,6 +10879,12 @@ func (s DescribePortalOutput) GoString() string {
 // SetPortalArn sets the PortalArn field's value.
 func (s *DescribePortalOutput) SetPortalArn(v string) *DescribePortalOutput {
 	s.PortalArn = &v
+	return s
+}
+
+// SetPortalAuthMode sets the PortalAuthMode field's value.
+func (s *DescribePortalOutput) SetPortalAuthMode(v string) *DescribePortalOutput {
+	s.PortalAuthMode = &v
 	return s
 }
 
@@ -11792,7 +12014,55 @@ func (s *GroupIdentity) SetId(v string) *GroupIdentity {
 	return s
 }
 
-// Contains an AWS SSO identity ID for a user or group.
+// Contains information about an AWS Identity and Access Management (IAM) user.
+type IAMUserIdentity struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the IAM user. IAM users must have the iotsitewise:CreatePresignedPortalUrl
+	// permission to sign in to the portal. For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
+	// in the IAM User Guide.
+	//
+	// If you delete the IAM user, access policies that contain this identity include
+	// an empty arn. You can delete the access policy for the IAM user that no longer
+	// exists.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s IAMUserIdentity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IAMUserIdentity) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *IAMUserIdentity) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "IAMUserIdentity"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *IAMUserIdentity) SetArn(v string) *IAMUserIdentity {
+	s.Arn = &v
+	return s
+}
+
+// Contains an identity that can access an AWS IoT SiteWise Monitor resource.
 //
 // Currently, you can't use AWS APIs to retrieve AWS SSO identity IDs. You can
 // find the AWS SSO identity IDs in the URL of user and group pages in the AWS
@@ -11800,10 +12070,13 @@ func (s *GroupIdentity) SetId(v string) *GroupIdentity {
 type Identity struct {
 	_ struct{} `type:"structure"`
 
-	// A group identity.
+	// An AWS SSO group identity.
 	Group *GroupIdentity `locationName:"group" type:"structure"`
 
-	// A user identity.
+	// An IAM user identity.
+	IamUser *IAMUserIdentity `locationName:"iamUser" type:"structure"`
+
+	// An AWS SSO user identity.
 	User *UserIdentity `locationName:"user" type:"structure"`
 }
 
@@ -11825,6 +12098,11 @@ func (s *Identity) Validate() error {
 			invalidParams.AddNested("Group", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.IamUser != nil {
+		if err := s.IamUser.Validate(); err != nil {
+			invalidParams.AddNested("IamUser", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.User != nil {
 		if err := s.User.Validate(); err != nil {
 			invalidParams.AddNested("User", err.(request.ErrInvalidParams))
@@ -11840,6 +12118,12 @@ func (s *Identity) Validate() error {
 // SetGroup sets the Group field's value.
 func (s *Identity) SetGroup(v *GroupIdentity) *Identity {
 	s.Group = v
+	return s
+}
+
+// SetIamUser sets the IamUser field's value.
+func (s *Identity) SetIamUser(v *IAMUserIdentity) *Identity {
+	s.IamUser = v
 	return s
 }
 
@@ -12180,11 +12464,17 @@ func (s *LimitExceededException) RequestID() string {
 type ListAccessPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the identity. This parameter is required if you specify identityType.
+	// The ARN of the IAM user. For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
+	// in the IAM User Guide. This parameter is required if you specify IAM for
+	// identityType.
+	IamArn *string `location:"querystring" locationName:"iamArn" min:"1" type:"string"`
+
+	// The ID of the identity. This parameter is required if you specify USER or
+	// GROUP for identityType.
 	IdentityId *string `location:"querystring" locationName:"identityId" min:"1" type:"string"`
 
-	// The type of identity (user or group). This parameter is required if you specify
-	// identityId.
+	// The type of identity (AWS SSO user, AWS SSO group, or IAM user). This parameter
+	// is required if you specify identityId.
 	IdentityType *string `location:"querystring" locationName:"identityType" type:"string" enum:"IdentityType"`
 
 	// The maximum number of results to be returned per paginated request.
@@ -12216,6 +12506,9 @@ func (s ListAccessPoliciesInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListAccessPoliciesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListAccessPoliciesInput"}
+	if s.IamArn != nil && len(*s.IamArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IamArn", 1))
+	}
 	if s.IdentityId != nil && len(*s.IdentityId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("IdentityId", 1))
 	}
@@ -12233,6 +12526,12 @@ func (s *ListAccessPoliciesInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetIamArn sets the IamArn field's value.
+func (s *ListAccessPoliciesInput) SetIamArn(v string) *ListAccessPoliciesInput {
+	s.IamArn = &v
+	return s
 }
 
 // SetIdentityId sets the IdentityId field's value.
@@ -13523,8 +13822,11 @@ type PortalSummary struct {
 	// in the AWS IoT SiteWise User Guide.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
-	// The public root URL for the AWS IoT AWS IoT SiteWise Monitor application
-	// portal.
+	// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
+	// access portals that use AWS SSO for authentication. For portals that use
+	// IAM for authentication, you must use the CreatePresignedPortalUrl (https://docs.aws.amazon.com/AWS
+	// IoT SiteWise API ReferenceAPI_CreatePresignedPortalUrl.html) operation to
+	// create a URL that you can use to access the portal.
 	//
 	// StartUrl is a required field
 	StartUrl *string `locationName:"startUrl" min:"1" type:"string" required:"true"`
@@ -13918,7 +14220,7 @@ func (s *PropertyType) SetTransform(v *Transform) *PropertyType {
 
 // Contains a list of value updates for an asset property in the list of asset
 // entries consumed by the BatchPutAssetPropertyValue (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_BatchPutAssetPropertyValue.html)
-// API.
+// API operation.
 type PutAssetPropertyValueEntry struct {
 	_ struct{} `type:"structure"`
 
@@ -14772,8 +15074,8 @@ type UpdateAccessPolicyInput struct {
 	// AccessPolicyId is a required field
 	AccessPolicyId *string `location:"uri" locationName:"accessPolicyId" min:"36" type:"string" required:"true"`
 
-	// The identity for this access policy. Choose either a user or a group but
-	// not both.
+	// The identity for this access policy. Choose an AWS SSO user, an AWS SSO group,
+	// or an IAM user.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -14785,7 +15087,7 @@ type UpdateAccessPolicyInput struct {
 	AccessPolicyPermission *string `locationName:"accessPolicyPermission" type:"string" required:"true" enum:"Permission"`
 
 	// The AWS IoT SiteWise Monitor resource for this access policy. Choose either
-	// portal or project but not both.
+	// a portal or a project.
 	//
 	// AccessPolicyResource is a required field
 	AccessPolicyResource *Resource `locationName:"accessPolicyResource" type:"structure" required:"true"`
@@ -16116,6 +16418,22 @@ func AssetState_Values() []string {
 }
 
 const (
+	// AuthModeIam is a AuthMode enum value
+	AuthModeIam = "IAM"
+
+	// AuthModeSso is a AuthMode enum value
+	AuthModeSso = "SSO"
+)
+
+// AuthMode_Values returns all elements of the AuthMode enum
+func AuthMode_Values() []string {
+	return []string{
+		AuthModeIam,
+		AuthModeSso,
+	}
+}
+
+const (
 	// BatchPutAssetPropertyValueErrorCodeResourceNotFoundException is a BatchPutAssetPropertyValueErrorCode enum value
 	BatchPutAssetPropertyValueErrorCodeResourceNotFoundException = "ResourceNotFoundException"
 
@@ -16201,6 +16519,9 @@ const (
 
 	// IdentityTypeGroup is a IdentityType enum value
 	IdentityTypeGroup = "GROUP"
+
+	// IdentityTypeIam is a IdentityType enum value
+	IdentityTypeIam = "IAM"
 )
 
 // IdentityType_Values returns all elements of the IdentityType enum
@@ -16208,6 +16529,7 @@ func IdentityType_Values() []string {
 	return []string{
 		IdentityTypeUser,
 		IdentityTypeGroup,
+		IdentityTypeIam,
 	}
 }
 

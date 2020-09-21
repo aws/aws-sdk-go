@@ -188,6 +188,22 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "BatchUpdatePartition":{
+      "name":"BatchUpdatePartition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchUpdatePartitionRequest"},
+      "output":{"shape":"BatchUpdatePartitionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"GlueEncryptionException"}
+      ]
+    },
     "CancelMLTaskRun":{
       "name":"CancelMLTaskRun",
       "http":{
@@ -2351,6 +2367,54 @@
     "BatchStopJobRunSuccessfulSubmissionList":{
       "type":"list",
       "member":{"shape":"BatchStopJobRunSuccessfulSubmission"}
+    },
+    "BatchUpdatePartitionFailureEntry":{
+      "type":"structure",
+      "members":{
+        "PartitionValueList":{"shape":"BoundedPartitionValueList"},
+        "ErrorDetail":{"shape":"ErrorDetail"}
+      }
+    },
+    "BatchUpdatePartitionFailureList":{
+      "type":"list",
+      "member":{"shape":"BatchUpdatePartitionFailureEntry"}
+    },
+    "BatchUpdatePartitionRequest":{
+      "type":"structure",
+      "required":[
+        "DatabaseName",
+        "TableName",
+        "Entries"
+      ],
+      "members":{
+        "CatalogId":{"shape":"CatalogIdString"},
+        "DatabaseName":{"shape":"NameString"},
+        "TableName":{"shape":"NameString"},
+        "Entries":{"shape":"BatchUpdatePartitionRequestEntryList"}
+      }
+    },
+    "BatchUpdatePartitionRequestEntry":{
+      "type":"structure",
+      "required":[
+        "PartitionValueList",
+        "PartitionInput"
+      ],
+      "members":{
+        "PartitionValueList":{"shape":"BoundedPartitionValueList"},
+        "PartitionInput":{"shape":"PartitionInput"}
+      }
+    },
+    "BatchUpdatePartitionRequestEntryList":{
+      "type":"list",
+      "member":{"shape":"BatchUpdatePartitionRequestEntry"},
+      "max":100,
+      "min":1
+    },
+    "BatchUpdatePartitionResponse":{
+      "type":"structure",
+      "members":{
+        "Errors":{"shape":"BatchUpdatePartitionFailureList"}
+      }
     },
     "BinaryColumnStatisticsData":{
       "type":"structure",

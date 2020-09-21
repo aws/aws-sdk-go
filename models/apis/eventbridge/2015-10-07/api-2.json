@@ -563,6 +563,18 @@
         "EventSourceArn":{"shape":"String"}
       }
     },
+    "Database":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"([a-zA-Z0-9]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+    },
+    "DbUser":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"([a-zA-Z0-9]+)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+    },
     "DeactivateEventSourceRequest":{
       "type":"structure",
       "required":["Name"],
@@ -1218,6 +1230,27 @@
       "max":512,
       "pattern":"[^\\x00-\\x09\\x0B\\x0C\\x0E-\\x1F\\x7F]+"
     },
+    "RedshiftDataParameters":{
+      "type":"structure",
+      "required":[
+        "Database",
+        "Sql"
+      ],
+      "members":{
+        "SecretManagerArn":{"shape":"RedshiftSecretManagerArn"},
+        "Database":{"shape":"Database"},
+        "DbUser":{"shape":"DbUser"},
+        "Sql":{"shape":"Sql"},
+        "StatementName":{"shape":"StatementName"},
+        "WithEvent":{"shape":"Boolean"}
+      }
+    },
+    "RedshiftSecretManagerArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"(^arn:aws([a-z]|\\-)*:secretsmanager:[a-z0-9-.]+:.*)|(\\$(\\.[\\w_-]+(\\[(\\d+|\\*)\\])*)*)"
+    },
     "RemovePermissionRequest":{
       "type":"structure",
       "required":["StatementId"],
@@ -1364,6 +1397,11 @@
       "type":"string",
       "max":256
     },
+    "Sql":{
+      "type":"string",
+      "max":100000,
+      "min":1
+    },
     "SqsParameters":{
       "type":"structure",
       "members":{
@@ -1375,6 +1413,11 @@
       "max":64,
       "min":1,
       "pattern":"[a-zA-Z0-9-_]+"
+    },
+    "StatementName":{
+      "type":"string",
+      "max":500,
+      "min":1
     },
     "String":{"type":"string"},
     "StringList":{
@@ -1444,7 +1487,8 @@
         "EcsParameters":{"shape":"EcsParameters"},
         "BatchParameters":{"shape":"BatchParameters"},
         "SqsParameters":{"shape":"SqsParameters"},
-        "HttpParameters":{"shape":"HttpParameters"}
+        "HttpParameters":{"shape":"HttpParameters"},
+        "RedshiftDataParameters":{"shape":"RedshiftDataParameters"}
       }
     },
     "TargetArn":{
