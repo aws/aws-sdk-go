@@ -3,17 +3,20 @@
     "ListGroupResources": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults"
+      "limit_key": "MaxResults",
+      "result_key": "ResourceIdentifiers"
     },
     "ListGroups": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults"
+      "limit_key": "MaxResults",
+      "result_key": "GroupIdentifiers"
     },
     "SearchResources": {
       "input_token": "NextToken",
       "output_token": "NextToken",
-      "limit_key": "MaxResults"
+      "limit_key": "MaxResults",
+      "result_key": "ResourceIdentifiers"
     }
   }
 }

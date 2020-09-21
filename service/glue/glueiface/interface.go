@@ -108,6 +108,10 @@ type GlueAPI interface {
 	BatchStopJobRunWithContext(aws.Context, *glue.BatchStopJobRunInput, ...request.Option) (*glue.BatchStopJobRunOutput, error)
 	BatchStopJobRunRequest(*glue.BatchStopJobRunInput) (*request.Request, *glue.BatchStopJobRunOutput)
 
+	BatchUpdatePartition(*glue.BatchUpdatePartitionInput) (*glue.BatchUpdatePartitionOutput, error)
+	BatchUpdatePartitionWithContext(aws.Context, *glue.BatchUpdatePartitionInput, ...request.Option) (*glue.BatchUpdatePartitionOutput, error)
+	BatchUpdatePartitionRequest(*glue.BatchUpdatePartitionInput) (*request.Request, *glue.BatchUpdatePartitionOutput)
+
 	CancelMLTaskRun(*glue.CancelMLTaskRunInput) (*glue.CancelMLTaskRunOutput, error)
 	CancelMLTaskRunWithContext(aws.Context, *glue.CancelMLTaskRunInput, ...request.Option) (*glue.CancelMLTaskRunOutput, error)
 	CancelMLTaskRunRequest(*glue.CancelMLTaskRunInput) (*request.Request, *glue.CancelMLTaskRunOutput)

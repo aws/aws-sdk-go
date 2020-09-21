@@ -1,3 +1,19 @@
+Release v1.34.28 (2020-09-21)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Add support for Redshift Data API Targets
+* `service/glue`: Updates service API and documentation
+  * Adding support to update multiple partitions of a table in a single request
+* `service/iotsitewise`: Updates service API and documentation
+* `service/rds`: Updates service documentation
+  * Documentation updates for the RDS DescribeExportTasks API
+* `service/resource-groups`: Updates service documentation and paginators
+* `service/resourcegroupstaggingapi`: Updates service documentation
+  * Documentation updates for the Resource Groups Tagging API.
+
 Release v1.34.27 (2020-09-18)
 ===
 
