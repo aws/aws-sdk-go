@@ -76,6 +76,25 @@
         "TopicsDetectionJobProperties$Message": "<p>A description for the status of a job.</p>"
       }
     },
+    "AttributeNamesList": {
+      "base": null,
+      "refs": {
+        "AugmentedManifestsListItem$AttributeNames": "<p>The JSON attribute that contains the annotations for your training documents. The number of attribute names that you specify depends on whether your augmented manifest file is the output of a single labeling job or a chained labeling job.</p> <p>If your file is the output of a single labeling job, specify the LabelAttributeName key that was used when the job was created in Ground Truth.</p> <p>If your file is the output of a chained labeling job, specify the LabelAttributeName key for one or more jobs in the chain. Each LabelAttributeName key provides the annotations from an individual job.</p>"
+      }
+    },
+    "AttributeNamesListItem": {
+      "base": null,
+      "refs": {
+        "AttributeNamesList$member": null
+      }
+    },
+    "AugmentedManifestsListItem": {
+      "base": "<p>An augmented manifest file that provides training data for your custom model. An augmented manifest file is a labeled dataset that is produced by Amazon SageMaker Ground Truth.</p>",
+      "refs": {
+        "DocumentClassifierAugmentedManifestsList$member": null,
+        "EntityRecognizerAugmentedManifestsList$member": null
+      }
+    },
     "BatchDetectDominantLanguageItemResult": {
       "base": "<p>The result of calling the operation. The operation returns one object for each document that is successfully processed by the operation.</p>",
       "refs": {
@@ -538,6 +557,18 @@
         "StopTrainingDocumentClassifierRequest$DocumentClassifierArn": "<p>The Amazon Resource Name (ARN) that identifies the document classifier currently being trained.</p>"
       }
     },
+    "DocumentClassifierAugmentedManifestsList": {
+      "base": null,
+      "refs": {
+        "DocumentClassifierInputDataConfig$AugmentedManifests": "<p>A list of augmented manifest files that provide training data for your custom model. An augmented manifest file is a labeled dataset that is produced by Amazon SageMaker Ground Truth.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>AUGMENTED_MANIFEST</code>.</p>"
+      }
+    },
+    "DocumentClassifierDataFormat": {
+      "base": null,
+      "refs": {
+        "DocumentClassifierInputDataConfig$DataFormat": "<p>The format of your training data:</p> <ul> <li> <p> <code>COMPREHEND_CSV</code>: A two-column CSV file, where labels are provided in the first column, and documents are provided in the second. If you use this value, you must provide the <code>S3Uri</code> parameter in your request.</p> </li> <li> <p> <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by Amazon SageMaker Ground Truth. This file is in JSON lines format. Each line is a complete JSON object that contains a training document and its associated labels. </p> <p>If you use this value, you must provide the <code>AugmentedManifests</code> parameter in your request.</p> </li> </ul> <p>If you don't specify a value, Amazon Comprehend uses <code>COMPREHEND_CSV</code> as the default.</p>"
+      }
+    },
     "DocumentClassifierEndpointArn": {
       "base": null,
       "refs": {
@@ -688,7 +719,7 @@
     "EntityRecognizerAnnotations": {
       "base": "<p>Describes the annotations associated with a entity recognizer.</p>",
       "refs": {
-        "EntityRecognizerInputDataConfig$Annotations": "<p>S3 location of the annotations file for an entity recognizer.</p>"
+        "EntityRecognizerInputDataConfig$Annotations": "<p>The S3 location of the CSV file that annotates your training documents.</p>"
       }
     },
     "EntityRecognizerArn": {
@@ -703,10 +734,22 @@
         "StopTrainingEntityRecognizerRequest$EntityRecognizerArn": "<p>The Amazon Resource Name (ARN) that identifies the entity recognizer currently being trained.</p>"
       }
     },
+    "EntityRecognizerAugmentedManifestsList": {
+      "base": null,
+      "refs": {
+        "EntityRecognizerInputDataConfig$AugmentedManifests": "<p>A list of augmented manifest files that provide training data for your custom model. An augmented manifest file is a labeled dataset that is produced by Amazon SageMaker Ground Truth.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>AUGMENTED_MANIFEST</code>.</p>"
+      }
+    },
+    "EntityRecognizerDataFormat": {
+      "base": null,
+      "refs": {
+        "EntityRecognizerInputDataConfig$DataFormat": "<p>The format of your training data:</p> <ul> <li> <p> <code>COMPREHEND_CSV</code>: A CSV file that supplements your training documents. The CSV file contains information about the custom entities that your trained model will detect. The required format of the file depends on whether you are providing annotations or an entity list.</p> <p>If you use this value, you must provide your CSV file by using either the <code>Annotations</code> or <code>EntityList</code> parameters. You must provide your training documents by using the <code>Documents</code> parameter.</p> </li> <li> <p> <code>AUGMENTED_MANIFEST</code>: A labeled dataset that is produced by Amazon SageMaker Ground Truth. This file is in JSON lines format. Each line is a complete JSON object that contains a training document and its labels. Each label annotates a named entity in the training document. </p> <p>If you use this value, you must provide the <code>AugmentedManifests</code> parameter in your request.</p> </li> </ul> <p>If you don't specify a value, Amazon Comprehend uses <code>COMPREHEND_CSV</code> as the default.</p>"
+      }
+    },
     "EntityRecognizerDocuments": {
       "base": "<p>Describes the training documents submitted with an entity recognizer.</p>",
       "refs": {
-        "EntityRecognizerInputDataConfig$Documents": "<p>S3 location of the documents folder for an entity recognizer</p>"
+        "EntityRecognizerInputDataConfig$Documents": "<p>The S3 location of the folder that contains the training documents for your custom entity recognizer.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.</p>"
       }
     },
     "EntityRecognizerEndpointArn": {
@@ -718,7 +761,7 @@
     "EntityRecognizerEntityList": {
       "base": "<p>Describes the entity recognizer submitted with an entity recognizer.</p>",
       "refs": {
-        "EntityRecognizerInputDataConfig$EntityList": "<p>S3 location of the entity list for an entity recognizer.</p>"
+        "EntityRecognizerInputDataConfig$EntityList": "<p>The S3 location of the CSV file that has the entity list for your custom entity recognizer.</p>"
       }
     },
     "EntityRecognizerEvaluationMetrics": {
@@ -780,7 +823,7 @@
     "EntityTypeName": {
       "base": null,
       "refs": {
-        "EntityTypesListItem$Type": "<p>Entity type of an item on an entity type list.</p>"
+        "EntityTypesListItem$Type": "<p>An entity type within a labeled training dataset that Amazon Comprehend uses to train a custom entity recognizer.</p> <p>Entity types must not contain the following invalid characters: \\n (line break), \\\\n (escaped line break, \\r (carriage return), \\\\r (escaped carriage return), \\t (tab), \\\\t (escaped tab), space, and , (comma).</p>"
       }
     },
     "EntityTypesEvaluationMetrics": {
@@ -792,11 +835,11 @@
     "EntityTypesList": {
       "base": null,
       "refs": {
-        "EntityRecognizerInputDataConfig$EntityTypes": "<p>The entity types in the input data for an entity recognizer. A maximum of 25 entity types can be used at one time to train an entity recognizer.</p>"
+        "EntityRecognizerInputDataConfig$EntityTypes": "<p>The entity types in the labeled training data that Amazon Comprehend uses to train the custom entity recognizer. Any entity types that you don't specify are ignored.</p> <p>A maximum of 25 entity types can be used at one time to train an entity recognizer. Entity types must not contain the following invalid characters: \\n (line break), \\\\n (escaped line break), \\r (carriage return), \\\\r (escaped carriage return), \\t (tab), \\\\t (escaped tab), space, and , (comma). </p>"
       }
     },
     "EntityTypesListItem": {
-      "base": "<p>Information about an individual item on a list of entity types.</p>",
+      "base": "<p>An entity type within a labeled training dataset that Amazon Comprehend uses to train a custom entity recognizer.</p>",
       "refs": {
         "EntityTypesList$member": null
       }
@@ -1314,7 +1357,7 @@
     "ModelStatus": {
       "base": null,
       "refs": {
-        "DocumentClassifierFilter$Status": "<p>Filters the list of classifiers based on status. </p>",
+        "DocumentClassifierFilter$Status": "<p>Filters the list of classifiers based on status.</p>",
         "DocumentClassifierProperties$Status": "<p>The status of the document classifier. If the status is <code>TRAINED</code> the classifier is ready to use. If the status is <code>FAILED</code> you can see additional information about why the classifier wasn't trained in the <code>Message</code> field.</p>",
         "EntityRecognizerFilter$Status": "<p>The status of an entity recognizer.</p>",
         "EntityRecognizerProperties$Status": "<p>Provides the status of the entity recognizer.</p>"
@@ -1437,7 +1480,8 @@
     "S3Uri": {
       "base": null,
       "refs": {
-        "DocumentClassifierInputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The S3 bucket must be in the same region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files.</p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p>",
+        "AugmentedManifestsListItem$S3Uri": "<p>The Amazon S3 location of the augmented manifest file.</p>",
+        "DocumentClassifierInputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The S3 bucket must be in the same region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files.</p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.</p>",
         "DocumentClassifierOutputDataConfig$S3Uri": "<p>When you use the <code>OutputDataConfig</code> object while creating a custom classifier, you specify the Amazon S3 location where you want to write the confusion matrix. The URI must be in the same region as the API endpoint that you are calling. The location is used as the prefix for the actual location of this output file.</p> <p>When the custom classifier job is finished, the service creates the output file in a directory specific to the job. The <code>S3Uri</code> field contains the location of the output file, called <code>output.tar.gz</code>. It is a compressed archive that contains the confusion matrix.</p>",
         "EntityRecognizerAnnotations$S3Uri": "<p> Specifies the Amazon S3 location where the annotations for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",
         "EntityRecognizerDocuments$S3Uri": "<p> Specifies the Amazon S3 location where the training documents for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",

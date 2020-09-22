@@ -879,6 +879,27 @@
   },
   "shapes":{
     "AnyLengthString":{"type":"string"},
+    "AttributeNamesList":{
+      "type":"list",
+      "member":{"shape":"AttributeNamesListItem"}
+    },
+    "AttributeNamesListItem":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "AugmentedManifestsListItem":{
+      "type":"structure",
+      "required":[
+        "S3Uri",
+        "AttributeNames"
+      ],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "AttributeNames":{"shape":"AttributeNamesList"}
+      }
+    },
     "BatchDetectDominantLanguageItemResult":{
       "type":"structure",
       "members":{
@@ -1527,6 +1548,17 @@
       "max":256,
       "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
+    "DocumentClassifierAugmentedManifestsList":{
+      "type":"list",
+      "member":{"shape":"AugmentedManifestsListItem"}
+    },
+    "DocumentClassifierDataFormat":{
+      "type":"string",
+      "enum":[
+        "COMPREHEND_CSV",
+        "AUGMENTED_MANIFEST"
+      ]
+    },
     "DocumentClassifierEndpointArn":{
       "type":"string",
       "max":256,
@@ -1542,10 +1574,11 @@
     },
     "DocumentClassifierInputDataConfig":{
       "type":"structure",
-      "required":["S3Uri"],
       "members":{
+        "DataFormat":{"shape":"DocumentClassifierDataFormat"},
         "S3Uri":{"shape":"S3Uri"},
-        "LabelDelimiter":{"shape":"LabelDelimiter"}
+        "LabelDelimiter":{"shape":"LabelDelimiter"},
+        "AugmentedManifests":{"shape":"DocumentClassifierAugmentedManifestsList"}
       }
     },
     "DocumentClassifierMode":{
@@ -1719,6 +1752,17 @@
       "max":256,
       "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
+    "EntityRecognizerAugmentedManifestsList":{
+      "type":"list",
+      "member":{"shape":"AugmentedManifestsListItem"}
+    },
+    "EntityRecognizerDataFormat":{
+      "type":"string",
+      "enum":[
+        "COMPREHEND_CSV",
+        "AUGMENTED_MANIFEST"
+      ]
+    },
     "EntityRecognizerDocuments":{
       "type":"structure",
       "required":["S3Uri"],
@@ -1756,15 +1800,14 @@
     },
     "EntityRecognizerInputDataConfig":{
       "type":"structure",
-      "required":[
-        "EntityTypes",
-        "Documents"
-      ],
+      "required":["EntityTypes"],
       "members":{
+        "DataFormat":{"shape":"EntityRecognizerDataFormat"},
         "EntityTypes":{"shape":"EntityTypesList"},
         "Documents":{"shape":"EntityRecognizerDocuments"},
         "Annotations":{"shape":"EntityRecognizerAnnotations"},
-        "EntityList":{"shape":"EntityRecognizerEntityList"}
+        "EntityList":{"shape":"EntityRecognizerEntityList"},
+        "AugmentedManifests":{"shape":"EntityRecognizerAugmentedManifestsList"}
       }
     },
     "EntityRecognizerMetadata":{
@@ -1828,7 +1871,7 @@
     "EntityTypeName":{
       "type":"string",
       "max":64,
-      "pattern":"[_A-Z0-9]+"
+      "pattern":"^(?:(?!\\\\n+|\\\\t+|\\\\r+|[\\r\\t\\n\\s,]).)+$"
     },
     "EntityTypesEvaluationMetrics":{
       "type":"structure",
