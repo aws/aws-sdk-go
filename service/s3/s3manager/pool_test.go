@@ -90,6 +90,33 @@ func TestMaxSlicePool(t *testing.T) {
 	pool.Close()
 }
 
+func TestPoolShouldPreferAllocatedSlicesOverNewAllocations(t *testing.T) {
+	pool := newMaxSlicePool(0)
+	defer pool.Close()
+
+	// Prepare pool: make it so that pool contains 1 allocated slice and 1 allocation permit
+	pool.ModifyCapacity(2)
+	initialSlice, err := pool.Get(context.Background())
+	if err != nil {
+		t.Errorf("failed to get slice from pool: %v", err)
+	}
+	pool.Put(initialSlice)
+
+	for i := 0; i < 100; i++ {
+		newSlice, err := pool.Get(context.Background())
+		if err != nil {
+			t.Errorf("failed to get slice from pool: %v", err)
+			return
+		}
+
+		if newSlice != initialSlice {
+			t.Errorf("pool allocated a new slice despite it having pre-allocated one")
+			return
+		}
+		pool.Put(newSlice)
+	}
+}
+
 type recordedPartPool struct {
 	recordedAllocs      uint64
 	recordedGets        uint64
