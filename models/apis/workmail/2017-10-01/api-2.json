@@ -49,6 +49,22 @@
       ],
       "idempotent":true
     },
+    "CancelMailboxExportJob":{
+      "name":"CancelMailboxExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelMailboxExportJobRequest"},
+      "output":{"shape":"CancelMailboxExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "CreateAlias":{
       "name":"CreateAlias",
       "http":{
@@ -279,6 +295,22 @@
       ],
       "idempotent":true
     },
+    "DescribeMailboxExportJob":{
+      "name":"DescribeMailboxExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeMailboxExportJobRequest"},
+      "output":{"shape":"DescribeMailboxExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"}
+      ],
+      "idempotent":true
+    },
     "DescribeOrganization":{
       "name":"DescribeOrganization",
       "http":{
@@ -471,6 +503,21 @@
       ],
       "idempotent":true
     },
+    "ListMailboxExportJobs":{
+      "name":"ListMailboxExportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListMailboxExportJobsRequest"},
+      "output":{"shape":"ListMailboxExportJobsResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
     "ListMailboxPermissions":{
       "name":"ListMailboxPermissions",
       "http":{
@@ -649,6 +696,23 @@
         {"shape":"OrganizationNotFoundException"},
         {"shape":"OrganizationStateException"},
         {"shape":"UnsupportedOperationException"}
+      ],
+      "idempotent":true
+    },
+    "StartMailboxExportJob":{
+      "name":"StartMailboxExportJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartMailboxExportJobRequest"},
+      "output":{"shape":"StartMailboxExportJobResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"LimitExceededException"}
       ],
       "idempotent":true
     },
@@ -856,6 +920,27 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "CancelMailboxExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "ClientToken",
+        "JobId",
+        "OrganizationId"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyClientToken",
+          "idempotencyToken":true
+        },
+        "JobId":{"shape":"MailboxExportJobId"},
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "CancelMailboxExportJobResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "CreateAliasRequest":{
       "type":"structure",
       "required":[
@@ -1096,6 +1181,34 @@
         "DisabledDate":{"shape":"Timestamp"}
       }
     },
+    "DescribeMailboxExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "JobId",
+        "OrganizationId"
+      ],
+      "members":{
+        "JobId":{"shape":"MailboxExportJobId"},
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "DescribeMailboxExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "EntityId":{"shape":"WorkMailIdentifier"},
+        "Description":{"shape":"Description"},
+        "RoleArn":{"shape":"RoleArn"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "S3BucketName":{"shape":"S3BucketName"},
+        "S3Prefix":{"shape":"S3ObjectKey"},
+        "S3Path":{"shape":"S3ObjectKey"},
+        "EstimatedProgress":{"shape":"Percentage"},
+        "State":{"shape":"MailboxExportJobState"},
+        "ErrorInfo":{"shape":"MailboxExportErrorInfo"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"}
+      }
+    },
     "DescribeOrganizationRequest":{
       "type":"structure",
       "required":["OrganizationId"],
@@ -1164,6 +1277,12 @@
         "EnabledDate":{"shape":"Timestamp"},
         "DisabledDate":{"shape":"Timestamp"}
       }
+    },
+    "Description":{
+      "type":"string",
+      "max":1023,
+      "min":0,
+      "pattern":"[\\S\\s]*"
     },
     "DirectoryServiceAuthenticationFailedException":{
       "type":"structure",
@@ -1360,6 +1479,12 @@
       "type":"list",
       "member":{"shape":"Group"}
     },
+    "IdempotencyClientToken":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\x21-\\x7e]+"
+    },
     "InvalidConfigurationException":{
       "type":"structure",
       "members":{
@@ -1398,6 +1523,16 @@
       "member":{"shape":"IpRange"},
       "max":10,
       "min":0
+    },
+    "Jobs":{
+      "type":"list",
+      "member":{"shape":"MailboxExportJob"}
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws:kms:[a-z0-9-]*:[a-z0-9-]+:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}"
     },
     "LimitExceededException":{
       "type":"structure",
@@ -1472,6 +1607,22 @@
       "type":"structure",
       "members":{
         "Groups":{"shape":"Groups"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListMailboxExportJobsRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResults"}
+      }
+    },
+    "ListMailboxExportJobsResponse":{
+      "type":"structure",
+      "members":{
+        "Jobs":{"shape":"Jobs"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -1588,6 +1739,41 @@
       },
       "exception":true
     },
+    "MailboxExportErrorInfo":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[\\S\\s]*"
+    },
+    "MailboxExportJob":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"MailboxExportJobId"},
+        "EntityId":{"shape":"WorkMailIdentifier"},
+        "Description":{"shape":"Description"},
+        "S3BucketName":{"shape":"S3BucketName"},
+        "S3Path":{"shape":"S3ObjectKey"},
+        "EstimatedProgress":{"shape":"Percentage"},
+        "State":{"shape":"MailboxExportJobState"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"}
+      }
+    },
+    "MailboxExportJobId":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[A-Za-z0-9-]+"
+    },
+    "MailboxExportJobState":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "COMPLETED",
+        "FAILED",
+        "CANCELLED"
+      ]
+    },
     "MailboxQuota":{
       "type":"integer",
       "box":true,
@@ -1680,6 +1866,11 @@
       "pattern":"[\\u0020-\\u00FF]+",
       "sensitive":true
     },
+    "Percentage":{
+      "type":"integer",
+      "max":100,
+      "min":0
+    },
     "Permission":{
       "type":"structure",
       "required":[
@@ -1712,7 +1903,8 @@
     "PolicyDescription":{
       "type":"string",
       "max":256,
-      "pattern":"[\\w\\d\\s\\S\\-!?=,.;:'_]+"
+      "pattern":"[\\w\\d\\s\\S\\-!?=,.;:'_]+",
+      "sensitive":true
     },
     "PutAccessControlRuleRequest":{
       "type":"structure",
@@ -1881,11 +2073,59 @@
       "max":730,
       "min":1
     },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20
+    },
+    "S3BucketName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"[A-Za-z0-9.-]+"
+    },
+    "S3ObjectKey":{
+      "type":"string",
+      "max":1023,
+      "min":1,
+      "pattern":"[A-Za-z0-9!_.*'()/-]+"
+    },
     "ShortString":{
       "type":"string",
       "max":64,
       "min":1,
       "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "StartMailboxExportJobRequest":{
+      "type":"structure",
+      "required":[
+        "ClientToken",
+        "OrganizationId",
+        "EntityId",
+        "RoleArn",
+        "KmsKeyArn",
+        "S3BucketName",
+        "S3Prefix"
+      ],
+      "members":{
+        "ClientToken":{
+          "shape":"IdempotencyClientToken",
+          "idempotencyToken":true
+        },
+        "OrganizationId":{"shape":"OrganizationId"},
+        "EntityId":{"shape":"WorkMailIdentifier"},
+        "Description":{"shape":"Description"},
+        "RoleArn":{"shape":"RoleArn"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "S3BucketName":{"shape":"S3BucketName"},
+        "S3Prefix":{"shape":"S3ObjectKey"}
+      }
+    },
+    "StartMailboxExportJobResponse":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"MailboxExportJobId"}
+      }
     },
     "String":{
       "type":"string",

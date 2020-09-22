@@ -1,3 +1,13 @@
+Release v1.34.29 (2020-09-22)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/lex-models`: Updates service API and documentation
+* `service/streams.dynamodb`: Updates service API and documentation
+* `service/workmail`: Updates service API, documentation, and paginators
+  * Adding support for Mailbox Export APIs
+
 Release v1.34.28 (2020-09-21)
 ===
 

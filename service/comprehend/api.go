@@ -5708,6 +5708,71 @@ func (c *Comprehend) UpdateEndpointWithContext(ctx aws.Context, input *UpdateEnd
 	return out, req.Send()
 }
 
+// An augmented manifest file that provides training data for your custom model.
+// An augmented manifest file is a labeled dataset that is produced by Amazon
+// SageMaker Ground Truth.
+type AugmentedManifestsListItem struct {
+	_ struct{} `type:"structure"`
+
+	// The JSON attribute that contains the annotations for your training documents.
+	// The number of attribute names that you specify depends on whether your augmented
+	// manifest file is the output of a single labeling job or a chained labeling
+	// job.
+	//
+	// If your file is the output of a single labeling job, specify the LabelAttributeName
+	// key that was used when the job was created in Ground Truth.
+	//
+	// If your file is the output of a chained labeling job, specify the LabelAttributeName
+	// key for one or more jobs in the chain. Each LabelAttributeName key provides
+	// the annotations from an individual job.
+	//
+	// AttributeNames is a required field
+	AttributeNames []*string `type:"list" required:"true"`
+
+	// The Amazon S3 location of the augmented manifest file.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AugmentedManifestsListItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AugmentedManifestsListItem) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AugmentedManifestsListItem) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AugmentedManifestsListItem"}
+	if s.AttributeNames == nil {
+		invalidParams.Add(request.NewErrParamRequired("AttributeNames"))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributeNames sets the AttributeNames field's value.
+func (s *AugmentedManifestsListItem) SetAttributeNames(v []*string) *AugmentedManifestsListItem {
+	s.AttributeNames = v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *AugmentedManifestsListItem) SetS3Uri(v string) *AugmentedManifestsListItem {
+	s.S3Uri = &v
+	return s
+}
+
 type BatchDetectDominantLanguageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8899,6 +8964,29 @@ func (s *DocumentClassifierFilter) SetSubmitTimeBefore(v time.Time) *DocumentCla
 type DocumentClassifierInputDataConfig struct {
 	_ struct{} `type:"structure"`
 
+	// A list of augmented manifest files that provide training data for your custom
+	// model. An augmented manifest file is a labeled dataset that is produced by
+	// Amazon SageMaker Ground Truth.
+	//
+	// This parameter is required if you set DataFormat to AUGMENTED_MANIFEST.
+	AugmentedManifests []*AugmentedManifestsListItem `type:"list"`
+
+	// The format of your training data:
+	//
+	//    * COMPREHEND_CSV: A two-column CSV file, where labels are provided in
+	//    the first column, and documents are provided in the second. If you use
+	//    this value, you must provide the S3Uri parameter in your request.
+	//
+	//    * AUGMENTED_MANIFEST: A labeled dataset that is produced by Amazon SageMaker
+	//    Ground Truth. This file is in JSON lines format. Each line is a complete
+	//    JSON object that contains a training document and its associated labels.
+	//    If you use this value, you must provide the AugmentedManifests parameter
+	//    in your request.
+	//
+	// If you don't specify a value, Amazon Comprehend uses COMPREHEND_CSV as the
+	// default.
+	DataFormat *string `type:"string" enum:"DocumentClassifierDataFormat"`
+
 	// Indicates the delimiter used to separate each label for training a multi-label
 	// classifier. The default delimiter between labels is a pipe (|). You can use
 	// a different character as a delimiter (if it's an allowed character) by specifying
@@ -8915,8 +9003,8 @@ type DocumentClassifierInputDataConfig struct {
 	// a single file, Amazon Comprehend uses that file as input. If more than one
 	// file begins with the prefix, Amazon Comprehend uses all of them as input.
 	//
-	// S3Uri is a required field
-	S3Uri *string `type:"string" required:"true"`
+	// This parameter is required if you set DataFormat to COMPREHEND_CSV.
+	S3Uri *string `type:"string"`
 }
 
 // String returns the string representation
@@ -8935,14 +9023,33 @@ func (s *DocumentClassifierInputDataConfig) Validate() error {
 	if s.LabelDelimiter != nil && len(*s.LabelDelimiter) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LabelDelimiter", 1))
 	}
-	if s.S3Uri == nil {
-		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	if s.AugmentedManifests != nil {
+		for i, v := range s.AugmentedManifests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AugmentedManifests", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAugmentedManifests sets the AugmentedManifests field's value.
+func (s *DocumentClassifierInputDataConfig) SetAugmentedManifests(v []*AugmentedManifestsListItem) *DocumentClassifierInputDataConfig {
+	s.AugmentedManifests = v
+	return s
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *DocumentClassifierInputDataConfig) SetDataFormat(v string) *DocumentClassifierInputDataConfig {
+	s.DataFormat = &v
+	return s
 }
 
 // SetLabelDelimiter sets the LabelDelimiter field's value.
@@ -10098,19 +10205,54 @@ func (s *EntityRecognizerFilter) SetSubmitTimeBefore(v time.Time) *EntityRecogni
 type EntityRecognizerInputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// S3 location of the annotations file for an entity recognizer.
+	// The S3 location of the CSV file that annotates your training documents.
 	Annotations *EntityRecognizerAnnotations `type:"structure"`
 
-	// S3 location of the documents folder for an entity recognizer
+	// A list of augmented manifest files that provide training data for your custom
+	// model. An augmented manifest file is a labeled dataset that is produced by
+	// Amazon SageMaker Ground Truth.
 	//
-	// Documents is a required field
-	Documents *EntityRecognizerDocuments `type:"structure" required:"true"`
+	// This parameter is required if you set DataFormat to AUGMENTED_MANIFEST.
+	AugmentedManifests []*AugmentedManifestsListItem `type:"list"`
 
-	// S3 location of the entity list for an entity recognizer.
+	// The format of your training data:
+	//
+	//    * COMPREHEND_CSV: A CSV file that supplements your training documents.
+	//    The CSV file contains information about the custom entities that your
+	//    trained model will detect. The required format of the file depends on
+	//    whether you are providing annotations or an entity list. If you use this
+	//    value, you must provide your CSV file by using either the Annotations
+	//    or EntityList parameters. You must provide your training documents by
+	//    using the Documents parameter.
+	//
+	//    * AUGMENTED_MANIFEST: A labeled dataset that is produced by Amazon SageMaker
+	//    Ground Truth. This file is in JSON lines format. Each line is a complete
+	//    JSON object that contains a training document and its labels. Each label
+	//    annotates a named entity in the training document. If you use this value,
+	//    you must provide the AugmentedManifests parameter in your request.
+	//
+	// If you don't specify a value, Amazon Comprehend uses COMPREHEND_CSV as the
+	// default.
+	DataFormat *string `type:"string" enum:"EntityRecognizerDataFormat"`
+
+	// The S3 location of the folder that contains the training documents for your
+	// custom entity recognizer.
+	//
+	// This parameter is required if you set DataFormat to COMPREHEND_CSV.
+	Documents *EntityRecognizerDocuments `type:"structure"`
+
+	// The S3 location of the CSV file that has the entity list for your custom
+	// entity recognizer.
 	EntityList *EntityRecognizerEntityList `type:"structure"`
 
-	// The entity types in the input data for an entity recognizer. A maximum of
-	// 25 entity types can be used at one time to train an entity recognizer.
+	// The entity types in the labeled training data that Amazon Comprehend uses
+	// to train the custom entity recognizer. Any entity types that you don't specify
+	// are ignored.
+	//
+	// A maximum of 25 entity types can be used at one time to train an entity recognizer.
+	// Entity types must not contain the following invalid characters: \n (line
+	// break), \\n (escaped line break), \r (carriage return), \\r (escaped carriage
+	// return), \t (tab), \\t (escaped tab), space, and , (comma).
 	//
 	// EntityTypes is a required field
 	EntityTypes []*EntityTypesListItem `type:"list" required:"true"`
@@ -10129,15 +10271,22 @@ func (s EntityRecognizerInputDataConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EntityRecognizerInputDataConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EntityRecognizerInputDataConfig"}
-	if s.Documents == nil {
-		invalidParams.Add(request.NewErrParamRequired("Documents"))
-	}
 	if s.EntityTypes == nil {
 		invalidParams.Add(request.NewErrParamRequired("EntityTypes"))
 	}
 	if s.Annotations != nil {
 		if err := s.Annotations.Validate(); err != nil {
 			invalidParams.AddNested("Annotations", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AugmentedManifests != nil {
+		for i, v := range s.AugmentedManifests {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AugmentedManifests", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 	if s.Documents != nil {
@@ -10170,6 +10319,18 @@ func (s *EntityRecognizerInputDataConfig) Validate() error {
 // SetAnnotations sets the Annotations field's value.
 func (s *EntityRecognizerInputDataConfig) SetAnnotations(v *EntityRecognizerAnnotations) *EntityRecognizerInputDataConfig {
 	s.Annotations = v
+	return s
+}
+
+// SetAugmentedManifests sets the AugmentedManifests field's value.
+func (s *EntityRecognizerInputDataConfig) SetAugmentedManifests(v []*AugmentedManifestsListItem) *EntityRecognizerInputDataConfig {
+	s.AugmentedManifests = v
+	return s
+}
+
+// SetDataFormat sets the DataFormat field's value.
+func (s *EntityRecognizerInputDataConfig) SetDataFormat(v string) *EntityRecognizerInputDataConfig {
+	s.DataFormat = &v
 	return s
 }
 
@@ -10483,11 +10644,17 @@ func (s *EntityTypesEvaluationMetrics) SetRecall(v float64) *EntityTypesEvaluati
 	return s
 }
 
-// Information about an individual item on a list of entity types.
+// An entity type within a labeled training dataset that Amazon Comprehend uses
+// to train a custom entity recognizer.
 type EntityTypesListItem struct {
 	_ struct{} `type:"structure"`
 
-	// Entity type of an item on an entity type list.
+	// An entity type within a labeled training dataset that Amazon Comprehend uses
+	// to train a custom entity recognizer.
+	//
+	// Entity types must not contain the following invalid characters: \n (line
+	// break), \\n (escaped line break, \r (carriage return), \\r (escaped carriage
+	// return), \t (tab), \\t (escaped tab), space, and , (comma).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true"`
@@ -15842,6 +16009,22 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 }
 
 const (
+	// DocumentClassifierDataFormatComprehendCsv is a DocumentClassifierDataFormat enum value
+	DocumentClassifierDataFormatComprehendCsv = "COMPREHEND_CSV"
+
+	// DocumentClassifierDataFormatAugmentedManifest is a DocumentClassifierDataFormat enum value
+	DocumentClassifierDataFormatAugmentedManifest = "AUGMENTED_MANIFEST"
+)
+
+// DocumentClassifierDataFormat_Values returns all elements of the DocumentClassifierDataFormat enum
+func DocumentClassifierDataFormat_Values() []string {
+	return []string{
+		DocumentClassifierDataFormatComprehendCsv,
+		DocumentClassifierDataFormatAugmentedManifest,
+	}
+}
+
+const (
 	// DocumentClassifierModeMultiClass is a DocumentClassifierMode enum value
 	DocumentClassifierModeMultiClass = "MULTI_CLASS"
 
@@ -15882,6 +16065,22 @@ func EndpointStatus_Values() []string {
 		EndpointStatusFailed,
 		EndpointStatusInService,
 		EndpointStatusUpdating,
+	}
+}
+
+const (
+	// EntityRecognizerDataFormatComprehendCsv is a EntityRecognizerDataFormat enum value
+	EntityRecognizerDataFormatComprehendCsv = "COMPREHEND_CSV"
+
+	// EntityRecognizerDataFormatAugmentedManifest is a EntityRecognizerDataFormat enum value
+	EntityRecognizerDataFormatAugmentedManifest = "AUGMENTED_MANIFEST"
+)
+
+// EntityRecognizerDataFormat_Values returns all elements of the EntityRecognizerDataFormat enum
+func EntityRecognizerDataFormat_Values() []string {
+	return []string{
+		EntityRecognizerDataFormatComprehendCsv,
+		EntityRecognizerDataFormatAugmentedManifest,
 	}
 }
 
