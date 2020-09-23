@@ -1824,7 +1824,8 @@
         "DataSetArns":{"shape":"DataSetArnsList"},
         "ThemeArn":{"shape":"Arn"},
         "CreatedTime":{"shape":"Timestamp"},
-        "LastUpdatedTime":{"shape":"Timestamp"}
+        "LastUpdatedTime":{"shape":"Timestamp"},
+        "Sheets":{"shape":"SheetList"}
       }
     },
     "AnalysisError":{
@@ -2879,7 +2880,8 @@
         "SourceEntityArn":{"shape":"Arn"},
         "DataSetArns":{"shape":"DataSetArnsList"},
         "Description":{"shape":"VersionDescription"},
-        "ThemeArn":{"shape":"Arn"}
+        "ThemeArn":{"shape":"Arn"},
+        "Sheets":{"shape":"SheetList"}
       }
     },
     "DashboardVersionSummary":{
@@ -6364,11 +6366,23 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "Sheet":{
+      "type":"structure",
+      "members":{
+        "SheetId":{"shape":"RestrictiveResourceId"},
+        "Name":{"shape":"NonEmptyString"}
+      }
+    },
     "SheetControlsOption":{
       "type":"structure",
       "members":{
         "VisibilityState":{"shape":"DashboardUIState"}
       }
+    },
+    "SheetList":{
+      "type":"list",
+      "member":{"shape":"Sheet"},
+      "max":20
     },
     "SheetStyle":{
       "type":"structure",
@@ -6623,7 +6637,8 @@
         "DataSetConfigurations":{"shape":"DataSetConfigurationList"},
         "Description":{"shape":"VersionDescription"},
         "SourceEntityArn":{"shape":"Arn"},
-        "ThemeArn":{"shape":"Arn"}
+        "ThemeArn":{"shape":"Arn"},
+        "Sheets":{"shape":"SheetList"}
       }
     },
     "TemplateVersionSummary":{
