@@ -77,6 +77,10 @@ func (c *Translate) DeleteTerminologyRequest(input *DeleteTerminologyInput) (req
 //   You have made too many requests within a short period of time. Wait for a
 //   short time and then try your request again.
 //
+//   * InvalidParameterValueException
+//   The value of the parameter is invalid. Review the value of the parameter
+//   you are using to correct it, and then retry your operation.
+//
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
@@ -1488,8 +1492,30 @@ func (s *ImportTerminologyOutput) SetTerminologyProperties(v *TerminologyPropert
 type InputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The multipurpose internet mail extension (MIME) type of the input files.
-	// Valid values are text/plain for plaintext files and text/html for HTML files.
+	// Describes the format of the data that you submit to Amazon Translate as input.
+	// You can specify one of the following multipurpose internet mail extension
+	// (MIME) types:
+	//
+	//    * text/html: The input data consists of one or more HTML files. Amazon
+	//    Translate translates only the text that resides in the html element in
+	//    each file.
+	//
+	//    * text/plain: The input data consists of one or more unformatted text
+	//    files. Amazon Translate translates every character in this type of input.
+	//
+	//    * application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+	//    The input data consists of one or more Word documents (.docx).
+	//
+	//    * application/vnd.openxmlformats-officedocument.presentationml.presentation:
+	//    The input data consists of one or more PowerPoint Presentation files (.pptx).
+	//
+	//    * application/vnd.openxmlformats-officedocument.spreadsheetml.sheet: The
+	//    input data consists of one or more Excel Workbook files (.xlsx).
+	//
+	// If you structure your input data as HTML, ensure that you set this parameter
+	// to text/html. By doing so, you cut costs by limiting the translation to the
+	// contents of the html element in each file. Otherwise, if you set this parameter
+	// to text/plain, your costs will cover the translation of every character.
 	//
 	// ContentType is a required field
 	ContentType *string `type:"string" required:"true"`
@@ -2198,12 +2224,8 @@ func (s *ServiceUnavailableException) RequestID() string {
 type StartTextTranslationJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The client token of the EC2 instance calling the request. This token is auto-generated
-	// when using the Amazon Translate SDK. Otherwise, use the DescribeInstances
-	// (docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances.html)
-	// EC2 operation to retreive an instance's client token. For more information,
-	// see Client Tokens (docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html#client-tokens)
-	// in the EC2 User Guide.
+	// A unique identifier for the request. This token is auto-generated when using
+	// the Amazon Translate SDK.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of an AWS Identity Access and Management (IAM)
@@ -2369,7 +2391,7 @@ type StartTextTranslationJobOutput struct {
 	//
 	//    * COMPLETED - The job was successfully completed and the output is available.
 	//
-	//    * COMPLETED_WITH_ERRORS - The job was completed with errors. The errors
+	//    * COMPLETED_WITH_ERROR - The job was completed with errors. The errors
 	//    can be analyzed in the job's output.
 	//
 	//    * FAILED - The job did not complete. To get details, use the DescribeTextTranslationJob
@@ -2610,7 +2632,7 @@ type TerminologyProperties struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the custom terminology.
-	Arn *string `type:"string"`
+	Arn *string `min:"1" type:"string"`
 
 	// The time at which the custom terminology was created, based on the timestamp.
 	CreatedAt *time.Time `type:"timestamp"`

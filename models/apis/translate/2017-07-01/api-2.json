@@ -23,6 +23,7 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"InvalidParameterValueException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -515,7 +516,8 @@
     },
     "TerminologyArn":{
       "type":"string",
-      "pattern":"^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:translate:[a-zA-Z0-9-]+:[0-9]{12}:terminology/.+?/.+?$"
+      "max":512,
+      "min":1
     },
     "TerminologyData":{
       "type":"structure",

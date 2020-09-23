@@ -49,8 +49,20 @@ const (
 	// "ServiceQuotaExceededException".
 	//
 	// You've reached the limit on the number of resources you can create, or exceeded
-	// the size of an individual resources.
+	// the size of an individual resource.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
+	// ErrCodeUnknownMonitorException for service response error code
+	// "UnknownMonitorException".
+	//
+	// The cost anomaly monitor does not exist for the account.
+	ErrCodeUnknownMonitorException = "UnknownMonitorException"
+
+	// ErrCodeUnknownSubscriptionException for service response error code
+	// "UnknownSubscriptionException".
+	//
+	// The cost anomaly subscription does not exist for the account.
+	ErrCodeUnknownSubscriptionException = "UnknownSubscriptionException"
 
 	// ErrCodeUnresolvableUsageUnitException for service response error code
 	// "UnresolvableUsageUnitException".
@@ -68,5 +80,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"RequestChangedException":        newErrorRequestChangedException,
 	"ResourceNotFoundException":      newErrorResourceNotFoundException,
 	"ServiceQuotaExceededException":  newErrorServiceQuotaExceededException,
+	"UnknownMonitorException":        newErrorUnknownMonitorException,
+	"UnknownSubscriptionException":   newErrorUnknownSubscriptionException,
 	"UnresolvableUsageUnitException": newErrorUnresolvableUsageUnitException,
 }

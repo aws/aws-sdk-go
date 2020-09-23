@@ -1,3 +1,16 @@
+Release v1.34.30 (2020-09-23)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/ce`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Added Sheet information to DescribeDashboard, DescribeTemplate and DescribeAnalysis API response.
+* `service/translate`: Updates service API and documentation
+
+### SDK Enhancements
+* `service/s3/s3manager`:  Prefer using allocated slices from pool over allocating new ones. ([#3534](https://github.com/aws/aws-sdk-go/pull/3534))
+
 Release v1.34.29 (2020-09-22)
 ===
 

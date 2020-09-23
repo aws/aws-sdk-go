@@ -57,8 +57,9 @@ func (c *Backup) CreateBackupPlanRequest(input *CreateBackupPlanInput) (req *req
 
 // CreateBackupPlan API operation for AWS Backup.
 //
-// Backup plans are documents that contain information that AWS Backup uses
-// to schedule tasks that create recovery points of resources.
+// Creates a backup plan using a backup plan name and backup rules. A backup
+// plan is a document that contains information that AWS Backup uses to schedule
+// tasks that create recovery points for resources.
 //
 // If you call CreateBackupPlan with a plan that already exists, an AlreadyExistsException
 // is returned.
@@ -168,11 +169,11 @@ func (c *Backup) CreateBackupSelectionRequest(input *CreateBackupSelectionInput)
 //
 // Using these patterns would back up all Amazon Elastic Block Store (Amazon
 // EBS) volumes that are tagged as "department=finance", "importance=critical",
-// in addition to an EBS volume with the specified volume Id.
+// in addition to an EBS volume with the specified volume ID.
 //
 // Resources and conditions are additive in that all resources that match the
 // pattern are selected. This shouldn't be confused with a logical AND, where
-// all conditions must match. The matching patterns are logically 'put together
+// all conditions must match. The matching patterns are logically put together
 // using the OR operator. In other words, all patterns that match are selected
 // for backup.
 //
@@ -921,7 +922,7 @@ func (c *Backup) DescribeBackupJobRequest(input *DescribeBackupJobInput) (req *r
 
 // DescribeBackupJob API operation for AWS Backup.
 //
-// Returns metadata associated with creating a backup of a resource.
+// Returns backup job details for the specified BackupJobId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1374,9 +1375,9 @@ func (c *Backup) DescribeRegionSettingsRequest(input *DescribeRegionSettingsInpu
 // DescribeRegionSettings API operation for AWS Backup.
 //
 // Returns the current service opt-in settings for the Region. If the service
-// has a value set to true, AWS Backup attempts to protect that service's resources
+// has a value set to true, AWS Backup tries to protect that service's resources
 // in this Region, when included in an on-demand backup or scheduled backup
-// plan. If the value is set to false for a service, AWS Backup does not attempt
+// plan. If the value is set to false for a service, AWS Backup does not try
 // to protect that service's resources in this Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1639,7 +1640,8 @@ func (c *Backup) GetBackupPlanRequest(input *GetBackupPlanInput) (req *request.R
 
 // GetBackupPlan API operation for AWS Backup.
 //
-// Returns the body of a backup plan in JSON format, in addition to plan metadata.
+// Returns BackupPlan details for the specified BackupPlanId. Returns the body
+// of a backup plan in JSON format, in addition to plan metadata.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2354,7 +2356,7 @@ func (c *Backup) ListBackupJobsRequest(input *ListBackupJobsInput) (req *request
 
 // ListBackupJobs API operation for AWS Backup.
 //
-// Returns metadata about your backup jobs.
+// Returns a list of existing backup jobs for an authenticated account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2792,9 +2794,11 @@ func (c *Backup) ListBackupPlansRequest(input *ListBackupPlansInput) (req *reque
 
 // ListBackupPlans API operation for AWS Backup.
 //
-// Returns metadata of your saved backup plans, including Amazon Resource Names
-// (ARNs), plan IDs, creation and deletion dates, version IDs, plan names, and
-// creator request IDs.
+// Returns a list of existing backup plans for an authenticated account. The
+// list is populated only if the advanced option is set for the backup plan.
+// The list contains information such as Amazon Resource Names (ARNs), plan
+// IDs, creation and deletion dates, version IDs, plan names, and creator request
+// IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4291,7 +4295,7 @@ func (c *Backup) StartBackupJobRequest(input *StartBackupJobInput) (req *request
 
 // StartBackupJob API operation for AWS Backup.
 //
-// Starts a job to create a one-time backup of the specified resource.
+// Starts an on-demand backup job for the specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4850,9 +4854,8 @@ func (c *Backup) UpdateBackupPlanRequest(input *UpdateBackupPlanInput) (req *req
 
 // UpdateBackupPlan API operation for AWS Backup.
 //
-// Replaces the body of a saved backup plan identified by its backupPlanId with
-// the input document in JSON format. The new version is uniquely identified
-// by a VersionId.
+// Updates an existing backup plan identified by its backupPlanId with the input
+// document in JSON format. The new version is uniquely identified by a VersionId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5042,9 +5045,9 @@ func (c *Backup) UpdateRegionSettingsRequest(input *UpdateRegionSettingsInput) (
 // UpdateRegionSettings API operation for AWS Backup.
 //
 // Updates the current service opt-in settings for the Region. If the service
-// has a value set to true, AWS Backup attempts to protect that service's resources
+// has a value set to true, AWS Backup tries to protect that service's resources
 // in this Region, when included in an on-demand backup or scheduled backup
-// plan. If the value is set to false for a service, AWS Backup does not attempt
+// plan. If the value is set to false for a service, AWS Backup does not try
 // to protect that service's resources in this Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5085,6 +5088,52 @@ func (c *Backup) UpdateRegionSettingsWithContext(ctx aws.Context, input *UpdateR
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// A list of backup options for each resource type.
+type AdvancedBackupSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the backup option for a selected resource. This option is only
+	// available for Windows VSS backup jobs.
+	//
+	// Valid value: "WindowsVSS”:“enabled". If enabled, creates a VSS Windows
+	// backup; otherwise, creates a regular backup.
+	//
+	// If you specify an invalid option, you get an InvalidParameterValueException
+	// exception.
+	//
+	// For more information about Windows VSS backups, see Creating a VSS-Enabled
+	// Windows Backup (https://docs.aws.amazon.com/aws-backup/latest/devguide/windows-backups.html).
+	BackupOptions map[string]*string `type:"map"`
+
+	// The type of AWS resource to be backed up. For VSS Windows backups, the only
+	// supported resource type is Amazon EC2.
+	//
+	// Valid values: EC2.
+	ResourceType *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AdvancedBackupSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdvancedBackupSetting) GoString() string {
+	return s.String()
+}
+
+// SetBackupOptions sets the BackupOptions field's value.
+func (s *AdvancedBackupSetting) SetBackupOptions(v map[string]*string) *AdvancedBackupSetting {
+	s.BackupOptions = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *AdvancedBackupSetting) SetResourceType(v string) *AdvancedBackupSetting {
+	s.ResourceType = &v
+	return s
 }
 
 // The required resource already exists.
@@ -5505,7 +5554,7 @@ type CreateBackupPlanInput struct {
 	BackupPlanTags map[string]*string `type:"map" sensitive:"true"`
 
 	// Identifies the request and allows failed requests to be retried without the
-	// risk of executing the operation twice. If the request includes a CreatorRequestId
+	// risk of running the operation twice. If the request includes a CreatorRequestId
 	// that matches an existing backup plan, that plan is returned. This parameter
 	// is optional.
 	CreatorRequestId *string `type:"string"`
@@ -5560,6 +5609,10 @@ func (s *CreateBackupPlanInput) SetCreatorRequestId(v string) *CreateBackupPlanI
 type CreateBackupPlanOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of BackupOptions settings for a resource type. This option is only
+	// available for Windows VSS backup jobs.
+	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
+
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for
 	// example, arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50.
 	BackupPlanArn *string `type:"string"`
@@ -5586,6 +5639,12 @@ func (s CreateBackupPlanOutput) String() string {
 // GoString returns the string representation
 func (s CreateBackupPlanOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *CreateBackupPlanOutput) SetAdvancedBackupSettings(v []*AdvancedBackupSetting) *CreateBackupPlanOutput {
+	s.AdvancedBackupSettings = v
+	return s
 }
 
 // SetBackupPlanArn sets the BackupPlanArn field's value.
@@ -5628,7 +5687,7 @@ type CreateBackupSelectionInput struct {
 	BackupSelection *Selection `type:"structure" required:"true"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 }
 
@@ -5745,7 +5804,7 @@ type CreateBackupVaultInput struct {
 	BackupVaultTags map[string]*string `type:"map" sensitive:"true"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// The server-side encryption key that is used to protect your backups; for
@@ -5909,7 +5968,7 @@ type DeleteBackupPlanOutput struct {
 	DeletionDate *time.Time `type:"timestamp"`
 
 	// Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most
-	// 1,024 bytes long. Version Ids cannot be edited.
+	// 1,024 bytes long. Version IDs cannot be edited.
 	VersionId *string `type:"string"`
 }
 
@@ -6383,8 +6442,17 @@ type DescribeBackupJobOutput struct {
 	// Uniquely identifies a request to AWS Backup to back up a resource.
 	BackupJobId *string `type:"string"`
 
+	// Represents the options specified as part of backup plan or on-demand backup
+	// job.
+	BackupOptions map[string]*string `type:"map"`
+
 	// The size, in bytes, of a backup.
 	BackupSizeInBytes *int64 `type:"long"`
+
+	// Represents the actual backup type selected for a backup job. For example,
+	// if a successful WindowsVSS backup was taken, BackupType returns “WindowsVSS”.
+	// If BackupType is empty, then it is a regular backup.
+	BackupType *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for
 	// example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault.
@@ -6481,9 +6549,21 @@ func (s *DescribeBackupJobOutput) SetBackupJobId(v string) *DescribeBackupJobOut
 	return s
 }
 
+// SetBackupOptions sets the BackupOptions field's value.
+func (s *DescribeBackupJobOutput) SetBackupOptions(v map[string]*string) *DescribeBackupJobOutput {
+	s.BackupOptions = v
+	return s
+}
+
 // SetBackupSizeInBytes sets the BackupSizeInBytes field's value.
 func (s *DescribeBackupJobOutput) SetBackupSizeInBytes(v int64) *DescribeBackupJobOutput {
 	s.BackupSizeInBytes = &v
+	return s
+}
+
+// SetBackupType sets the BackupType field's value.
+func (s *DescribeBackupJobOutput) SetBackupType(v string) *DescribeBackupJobOutput {
+	s.BackupType = &v
 	return s
 }
 
@@ -6641,7 +6721,7 @@ type DescribeBackupVaultOutput struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// The server-side encryption key that is used to protect your backups; for
@@ -7129,7 +7209,7 @@ func (s DescribeRegionSettingsInput) GoString() string {
 type DescribeRegionSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns a list of all services along with the opt-in preferences in the region.
+	// Returns a list of all services along with the opt-in preferences in the Region.
 	ResourceTypeOptInPreference map[string]*bool `type:"map"`
 }
 
@@ -7581,6 +7661,10 @@ func (s *GetBackupPlanInput) SetVersionId(v string) *GetBackupPlanInput {
 type GetBackupPlanOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains a list of BackupOptions for each resource type. The list is populated
+	// only if the advanced option is set for the backup plan.
+	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
+
 	// Specifies the body of a backup plan. Includes a BackupPlanName and one or
 	// more sets of Rules.
 	BackupPlan *Plan `type:"structure"`
@@ -7599,7 +7683,7 @@ type GetBackupPlanOutput struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// The date and time that a backup plan is deleted, in Unix format and Coordinated
@@ -7608,10 +7692,10 @@ type GetBackupPlanOutput struct {
 	// 12:11:30.087 AM.
 	DeletionDate *time.Time `type:"timestamp"`
 
-	// The last time a job to back up resources was executed with this backup plan.
-	// A date and time, in Unix format and Coordinated Universal Time (UTC). The
-	// value of LastExecutionDate is accurate to milliseconds. For example, the
-	// value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+	// The last time a job to back up resources was run with this backup plan. A
+	// date and time, in Unix format and Coordinated Universal Time (UTC). The value
+	// of LastExecutionDate is accurate to milliseconds. For example, the value
+	// 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
 	LastExecutionDate *time.Time `type:"timestamp"`
 
 	// Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most
@@ -7627,6 +7711,12 @@ func (s GetBackupPlanOutput) String() string {
 // GoString returns the string representation
 func (s GetBackupPlanOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *GetBackupPlanOutput) SetAdvancedBackupSettings(v []*AdvancedBackupSetting) *GetBackupPlanOutput {
+	s.AdvancedBackupSettings = v
+	return s
 }
 
 // SetBackupPlan sets the BackupPlan field's value.
@@ -7753,7 +7843,7 @@ type GetBackupSelectionOutput struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// Uniquely identifies the body of a request to assign a set of resources to
@@ -8061,7 +8151,7 @@ type GetRecoveryPointRestoreMetadataOutput struct {
 	// An ARN that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.
 	RecoveryPointArn *string `type:"string"`
 
-	// The set of metadata key-value pairs that describes the original configuration
+	// The set of metadata key-value pairs that describe the original configuration
 	// of the backed-up resource. These values vary depending on the service that
 	// is being restored.
 	RestoreMetadata map[string]*string `type:"map" sensitive:"true"`
@@ -8280,8 +8370,19 @@ type Job struct {
 	// Uniquely identifies a request to AWS Backup to back up a resource.
 	BackupJobId *string `type:"string"`
 
+	// Specifies the backup option for a selected resource. This option is only
+	// available for Windows VSS backup jobs.
+	//
+	// Valid value: "WindowsVSS”:“enabled". If enabled, creates a VSS Windows
+	// backup; otherwise, creates a regular backup. If you specify an invalid option,
+	// you get an InvalidParameterValueException exception.
+	BackupOptions map[string]*string `type:"map"`
+
 	// The size, in bytes, of a backup.
 	BackupSizeInBytes *int64 `type:"long"`
+
+	// Represents the type of backup for a backup job.
+	BackupType *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for
 	// example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault.
@@ -8337,7 +8438,8 @@ type Job struct {
 
 	// The type of AWS resource to be backed up; for example, an Amazon Elastic
 	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
-	// (Amazon RDS) database.
+	// (Amazon RDS) database. For VSS Windows backups, the only supported resource
+	// type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
 	// Specifies the time in Unix format and Coordinated Universal Time (UTC) when
@@ -8378,9 +8480,21 @@ func (s *Job) SetBackupJobId(v string) *Job {
 	return s
 }
 
+// SetBackupOptions sets the BackupOptions field's value.
+func (s *Job) SetBackupOptions(v map[string]*string) *Job {
+	s.BackupOptions = v
+	return s
+}
+
 // SetBackupSizeInBytes sets the BackupSizeInBytes field's value.
 func (s *Job) SetBackupSizeInBytes(v int64) *Job {
 	s.BackupSizeInBytes = &v
+	return s
+}
+
+// SetBackupType sets the BackupType field's value.
+func (s *Job) SetBackupType(v string) *Job {
+	s.BackupType = &v
 	return s
 }
 
@@ -9999,6 +10113,9 @@ func (s *MissingParameterValueException) RequestID() string {
 type Plan struct {
 	_ struct{} `type:"structure"`
 
+	// Contains a list of BackupOptions for each resource type.
+	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
+
 	// The display name of a backup plan.
 	//
 	// BackupPlanName is a required field
@@ -10021,6 +10138,12 @@ func (s Plan) GoString() string {
 	return s.String()
 }
 
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *Plan) SetAdvancedBackupSettings(v []*AdvancedBackupSetting) *Plan {
+	s.AdvancedBackupSettings = v
+	return s
+}
+
 // SetBackupPlanName sets the BackupPlanName field's value.
 func (s *Plan) SetBackupPlanName(v string) *Plan {
 	s.BackupPlanName = &v
@@ -10039,6 +10162,10 @@ func (s *Plan) SetRules(v []*Rule) *Plan {
 // resources.
 type PlanInput struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies a list of BackupOptions for each resource type. These settings
+	// are only available for Windows VSS backup jobs.
+	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
 
 	// The optional display name of a backup plan.
 	//
@@ -10086,6 +10213,12 @@ func (s *PlanInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *PlanInput) SetAdvancedBackupSettings(v []*AdvancedBackupSetting) *PlanInput {
+	s.AdvancedBackupSettings = v
+	return s
 }
 
 // SetBackupPlanName sets the BackupPlanName field's value.
@@ -10137,6 +10270,9 @@ func (s *PlanTemplatesListMember) SetBackupPlanTemplateName(v string) *PlanTempl
 type PlansListMember struct {
 	_ struct{} `type:"structure"`
 
+	// Contains a list of BackupOptions for a resource type.
+	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
+
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for
 	// example, arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50.
 	BackupPlanArn *string `type:"string"`
@@ -10154,7 +10290,7 @@ type PlansListMember struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// The date and time a backup plan is deleted, in Unix format and Coordinated
@@ -10163,10 +10299,10 @@ type PlansListMember struct {
 	// 12:11:30.087 AM.
 	DeletionDate *time.Time `type:"timestamp"`
 
-	// The last time a job to back up resources was executed with this rule. A date
-	// and time, in Unix format and Coordinated Universal Time (UTC). The value
-	// of LastExecutionDate is accurate to milliseconds. For example, the value
-	// 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+	// The last time a job to back up resources was run with this rule. A date and
+	// time, in Unix format and Coordinated Universal Time (UTC). The value of LastExecutionDate
+	// is accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
 	LastExecutionDate *time.Time `type:"timestamp"`
 
 	// Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most
@@ -10182,6 +10318,12 @@ func (s PlansListMember) String() string {
 // GoString returns the string representation
 func (s PlansListMember) GoString() string {
 	return s.String()
+}
+
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *PlansListMember) SetAdvancedBackupSettings(v []*AdvancedBackupSetting) *PlansListMember {
+	s.AdvancedBackupSettings = v
+	return s
 }
 
 // SetBackupPlanArn sets the BackupPlanArn field's value.
@@ -10248,6 +10390,7 @@ type ProtectedResource struct {
 
 	// The type of AWS resource; for example, an Amazon Elastic Block Store (Amazon
 	// EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.
+	// For VSS Windows backups, the only supported resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 }
 
@@ -10511,7 +10654,8 @@ type RecoveryPointByBackupVault struct {
 
 	// The type of AWS resource saved as a recovery point; for example, an Amazon
 	// Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
-	// Service (Amazon RDS) database.
+	// Service (Amazon RDS) database. For VSS Windows backups, the only supported
+	// resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
 	// A status code specifying the state of the recovery point.
@@ -10861,7 +11005,8 @@ type RestoreJobsListMember struct {
 
 	// The resource type of the listed restore jobs; for example, an Amazon Elastic
 	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
-	// (Amazon RDS) database.
+	// (Amazon RDS) database. For VSS Windows backups, the only supported resource
+	// type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
 	// Uniquely identifies the job that restores a recovery point.
@@ -11309,7 +11454,7 @@ type SelectionsListMember struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// Specifies the IAM role Amazon Resource Name (ARN) to create the target recovery
@@ -11434,6 +11579,13 @@ func (s *ServiceUnavailableException) RequestID() string {
 type StartBackupJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the backup option for a selected resource. This option is only
+	// available for Windows VSS backup jobs.
+	//
+	// Valid value: "WindowsVSS”:“enabled". If enabled, creates a VSS Windows
+	// backup; otherwise, creates a regular backup.
+	BackupOptions map[string]*string `type:"map"`
+
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
 	// the AWS Region where they are created. They consist of lowercase letters,
@@ -11509,6 +11661,12 @@ func (s *StartBackupJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBackupOptions sets the BackupOptions field's value.
+func (s *StartBackupJobInput) SetBackupOptions(v map[string]*string) *StartBackupJobInput {
+	s.BackupOptions = v
+	return s
 }
 
 // SetBackupVaultName sets the BackupVaultName field's value.
@@ -11775,8 +11933,8 @@ type StartRestoreJobInput struct {
 	// You need to specify specific metadata to restore an Amazon Elastic File System
 	// (Amazon EFS) instance:
 	//
-	//    * file-system-id: ID of the Amazon EFS file system that is backed up by
-	//    AWS Backup. Returned in GetRecoveryPointRestoreMetadata.
+	//    * file-system-id: The ID of the Amazon EFS file system that is backed
+	//    up by AWS Backup. Returned in GetRecoveryPointRestoreMetadata.
 	//
 	//    * Encrypted: A Boolean value that, if true, specifies that the file system
 	//    is encrypted. If KmsKeyId is specified, Encrypted must be set to true.
@@ -12158,6 +12316,9 @@ func (s *UpdateBackupPlanInput) SetBackupPlanId(v string) *UpdateBackupPlanInput
 type UpdateBackupPlanOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Contains a list of BackupOptions for each resource type.
+	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
+
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for
 	// example, arn:aws:backup:us-east-1:123456789012:plan:8F81F553-3A74-4A3F-B93D-B3360DC80C50.
 	BackupPlanArn *string `type:"string"`
@@ -12184,6 +12345,12 @@ func (s UpdateBackupPlanOutput) String() string {
 // GoString returns the string representation
 func (s UpdateBackupPlanOutput) GoString() string {
 	return s.String()
+}
+
+// SetAdvancedBackupSettings sets the AdvancedBackupSettings field's value.
+func (s *UpdateBackupPlanOutput) SetAdvancedBackupSettings(v []*AdvancedBackupSetting) *UpdateBackupPlanOutput {
+	s.AdvancedBackupSettings = v
+	return s
 }
 
 // SetBackupPlanArn sets the BackupPlanArn field's value.
@@ -12352,7 +12519,7 @@ func (s *UpdateRecoveryPointLifecycleOutput) SetRecoveryPointArn(v string) *Upda
 type UpdateRegionSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Updates the list of services along with the opt-in preferences for the region.
+	// Updates the list of services along with the opt-in preferences for the Region.
 	ResourceTypeOptInPreference map[string]*bool `type:"map"`
 }
 
@@ -12407,7 +12574,7 @@ type VaultListMember struct {
 	CreationDate *time.Time `type:"timestamp"`
 
 	// A unique string that identifies the request and allows failed requests to
-	// be retried without the risk of executing the operation twice.
+	// be retried without the risk of running the operation twice.
 	CreatorRequestId *string `type:"string"`
 
 	// The server-side encryption key that is used to protect your backups; for

@@ -166,10 +166,13 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 // always override customizations that apply to an AWS account. To find out
 // which customizations apply, use the DescribeAccountCustomization API operation.
 //
-// Before you add a theme as the namespace default, make sure that you first
-// share the theme with the namespace. If you don't share it with the namespace,
-// the theme won't be visible to your users even if you use this API operation
-// to make it the default theme.
+// Before you use the CreateAccountCustomization API operation to add a theme
+// as the namespace default, make sure that you first share the theme with the
+// namespace. If you don't share it with the namespace, the theme isn't visible
+// to your users even if you make it the default theme. To check if the theme
+// is shared, view the current permissions by using the DescribeThemePermissions
+// API operation. To share the theme, grant permissions by using the UpdateThemePermissions
+// API operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1670,7 +1673,7 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 // DeleteAccountCustomization API operation for Amazon QuickSight.
 //
 // Deletes all Amazon QuickSight customizations in this AWS Region for the specified
-// AWS Account and QuickSight namespace.
+// AWS account and QuickSight namespace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3190,7 +3193,7 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //    * AWS Account - The AWS account exists at the top of the hierarchy. It
 //    has the potential to use all of the AWS Regions and AWS Services. When
 //    you subscribe to QuickSight, you choose one AWS Region to use as your
-//    home region. That's where your free SPICE capacity is located. You can
+//    home Region. That's where your free SPICE capacity is located. You can
 //    use QuickSight in any supported AWS Region.
 //
 //    * AWS Region - In each AWS Region where you sign in to QuickSight at least
@@ -3198,7 +3201,7 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //    have a user directory, it resides in us-east-1, which is the US East (N.
 //    Virginia). Generally speaking, these users have access to QuickSight in
 //    any AWS Region, unless they are constrained to a namespace. To run the
-//    command in a different AWS Region, you change your region settings. If
+//    command in a different AWS Region, you change your Region settings. If
 //    you're using the AWS CLI, you can use one of the following options: Use
 //    command line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
 //    Use named profiles (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
@@ -3215,7 +3218,7 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 //
 //    * Applied customizations - Within an AWS Region, a set of QuickSight customizations
 //    can apply to an AWS account or to a namespace. Settings that you apply
-//    to a namespace override settings that you apply to an AWS Account. All
+//    to a namespace override settings that you apply to an AWS account. All
 //    settings are isolated to a single AWS Region. To apply them in other AWS
 //    Regions, run the CreateAccountCustomization command in each AWS Region
 //    where you want to apply the same customizations.
@@ -3317,7 +3320,7 @@ func (c *QuickSight) DescribeAccountSettingsRequest(input *DescribeAccountSettin
 // DescribeAccountSettings API operation for Amazon QuickSight.
 //
 // Describes the settings that were used when your QuickSight subscription was
-// first created in this AWS Account.
+// first created in this AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8947,7 +8950,7 @@ func (c *QuickSight) UpdateAccountSettingsRequest(input *UpdateAccountSettingsIn
 
 // UpdateAccountSettings API operation for Amazon QuickSight.
 //
-// Updates the Amazon QuickSight settings in your AWS Account.
+// Updates the Amazon QuickSight settings in your AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11086,6 +11089,10 @@ type Analysis struct {
 	// The descriptive name of the analysis.
 	Name *string `min:"1" type:"string"`
 
+	// A list of the associated sheets with the unique identifier and name of each
+	// sheet.
+	Sheets []*Sheet `type:"list"`
+
 	// Status associated with the analysis.
 	Status *string `type:"string" enum:"ResourceStatus"`
 
@@ -11142,6 +11149,12 @@ func (s *Analysis) SetLastUpdatedTime(v time.Time) *Analysis {
 // SetName sets the Name field's value.
 func (s *Analysis) SetName(v string) *Analysis {
 	s.Name = &v
+	return s
+}
+
+// SetSheets sets the Sheets field's value.
+func (s *Analysis) SetSheets(v []*Sheet) *Analysis {
+	s.Sheets = v
 	return s
 }
 
@@ -12223,10 +12236,10 @@ type CreateAccountCustomizationInput struct {
 	// The QuickSight customizations you're adding in the current AWS Region. You
 	// can add these to an AWS account and a QuickSight namespace.
 	//
-	// For example, you could add a default theme by setting AccountCustomization
+	// For example, you can add a default theme by setting AccountCustomization
 	// to the midnight theme: "AccountCustomization": { "DefaultTheme": "arn:aws:quicksight::aws:theme/MIDNIGHT"
-	// }. . Or, you could add a custom theme by specifying "AccountCustomization":
-	// { "DefaultTheme": "arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639"
+	// }. Or, you can add a custom theme by specifying "AccountCustomization": {
+	// "DefaultTheme": "arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639"
 	// }.
 	//
 	// AccountCustomization is a required field
@@ -15603,6 +15616,10 @@ type DashboardVersion struct {
 	// Errors associated with this dashboard version.
 	Errors []*DashboardError `min:"1" type:"list"`
 
+	// A list of the associated sheets with the unique identifier and name of each
+	// sheet.
+	Sheets []*Sheet `type:"list"`
+
 	// Source entity ARN.
 	SourceEntityArn *string `type:"string"`
 
@@ -15653,6 +15670,12 @@ func (s *DashboardVersion) SetDescription(v string) *DashboardVersion {
 // SetErrors sets the Errors field's value.
 func (s *DashboardVersion) SetErrors(v []*DashboardError) *DashboardVersion {
 	s.Errors = v
+	return s
+}
+
+// SetSheets sets the Sheets field's value.
+func (s *DashboardVersion) SetSheets(v []*Sheet) *DashboardVersion {
+	s.Sheets = v
 	return s
 }
 
@@ -18657,7 +18680,7 @@ type DescribeAccountSettingsOutput struct {
 
 	// The QuickSight settings for this AWS account. This information includes the
 	// edition of Amazon QuickSight that you subscribed to (Standard or Enterprise)
-	// and the notification email for the QuickSight subscription. The QuickSight
+	// and the notification email for the QuickSight subscription. In the QuickSight
 	// console, the QuickSight subscription is sometimes referred to as a QuickSight
 	// "account" even though it's technically not an account by itself. Instead,
 	// it's a subscription to the QuickSight service for your AWS account. The edition
@@ -27269,6 +27292,44 @@ func (s *SessionLifetimeInMinutesInvalidException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A sheet is an object that contains a set of visuals that are viewed together
+// on one page in the Amazon QuickSight console. Every analysis and dashboard
+// contains at least one sheet. Each sheet contains at least one visualization
+// widget, for example a chart, pivot table, or narrative insight. Sheets can
+// be associated with other components, such as controls, filters, and so on.
+type Sheet struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a sheet. This is displayed on the sheet's tab in the QuickSight
+	// console.
+	Name *string `type:"string"`
+
+	// The unique identifier associated with a sheet.
+	SheetId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Sheet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Sheet) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *Sheet) SetName(v string) *Sheet {
+	s.Name = &v
+	return s
+}
+
+// SetSheetId sets the SheetId field's value.
+func (s *Sheet) SetSheetId(v string) *Sheet {
+	s.SheetId = &v
+	return s
+}
+
 // Sheet controls option.
 type SheetControlsOption struct {
 	_ struct{} `type:"structure"`
@@ -28232,6 +28293,10 @@ type TemplateVersion struct {
 	// Errors associated with this template version.
 	Errors []*TemplateError `min:"1" type:"list"`
 
+	// A list of the associated sheets with the unique identifier and name of each
+	// sheet.
+	Sheets []*Sheet `type:"list"`
+
 	// The Amazon Resource Name (ARN) of an analysis or template that was used to
 	// create this template.
 	SourceEntityArn *string `type:"string"`
@@ -28277,6 +28342,12 @@ func (s *TemplateVersion) SetDescription(v string) *TemplateVersion {
 // SetErrors sets the Errors field's value.
 func (s *TemplateVersion) SetErrors(v []*TemplateError) *TemplateVersion {
 	s.Errors = v
+	return s
+}
+
+// SetSheets sets the Sheets field's value.
+func (s *TemplateVersion) SetSheets(v []*Sheet) *TemplateVersion {
+	s.Sheets = v
 	return s
 }
 
@@ -29612,9 +29683,10 @@ type UpdateAccountSettingsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The default namespace for this AWS Account. Currently, the default is default.
-	// IAM users who register for the first time with QuickSight provide an email
-	// that becomes associated with the default namespace.
+	// The default namespace for this AWS account. Currently, the default is default.
+	// AWS Identity and Access Management (IAM) users that register for the first
+	// time with QuickSight provide an email that becomes associated with the default
+	// namespace.
 	//
 	// DefaultNamespace is a required field
 	DefaultNamespace *string `type:"string" required:"true"`

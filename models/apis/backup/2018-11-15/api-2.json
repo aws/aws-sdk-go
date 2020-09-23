@@ -762,6 +762,17 @@
       "type":"string",
       "pattern":"^[0-9]{12}$"
     },
+    "AdvancedBackupSetting":{
+      "type":"structure",
+      "members":{
+        "ResourceType":{"shape":"ResourceType"},
+        "BackupOptions":{"shape":"BackupOptions"}
+      }
+    },
+    "AdvancedBackupSettings":{
+      "type":"list",
+      "member":{"shape":"AdvancedBackupSetting"}
+    },
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -794,7 +805,9 @@
         "ExpectedCompletionDate":{"shape":"timestamp"},
         "StartBy":{"shape":"timestamp"},
         "ResourceType":{"shape":"ResourceType"},
-        "BytesTransferred":{"shape":"Long"}
+        "BytesTransferred":{"shape":"Long"},
+        "BackupOptions":{"shape":"BackupOptions"},
+        "BackupType":{"shape":"string"}
       }
     },
     "BackupJobState":{
@@ -814,6 +827,19 @@
       "type":"list",
       "member":{"shape":"BackupJob"}
     },
+    "BackupOptionKey":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9\\-\\_\\.]{1,50}$"
+    },
+    "BackupOptionValue":{
+      "type":"string",
+      "pattern":"^[a-zA-Z0-9\\-\\_\\.]{1,50}$"
+    },
+    "BackupOptions":{
+      "type":"map",
+      "key":{"shape":"BackupOptionKey"},
+      "value":{"shape":"BackupOptionValue"}
+    },
     "BackupPlan":{
       "type":"structure",
       "required":[
@@ -822,7 +848,8 @@
       ],
       "members":{
         "BackupPlanName":{"shape":"BackupPlanName"},
-        "Rules":{"shape":"BackupRules"}
+        "Rules":{"shape":"BackupRules"},
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
     "BackupPlanInput":{
@@ -833,7 +860,8 @@
       ],
       "members":{
         "BackupPlanName":{"shape":"BackupPlanName"},
-        "Rules":{"shape":"BackupRulesInput"}
+        "Rules":{"shape":"BackupRulesInput"},
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
     "BackupPlanName":{"type":"string"},
@@ -866,7 +894,8 @@
         "VersionId":{"shape":"string"},
         "BackupPlanName":{"shape":"BackupPlanName"},
         "CreatorRequestId":{"shape":"string"},
-        "LastExecutionDate":{"shape":"timestamp"}
+        "LastExecutionDate":{"shape":"timestamp"},
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
     "BackupRule":{
@@ -989,7 +1018,7 @@
     },
     "BackupVaultName":{
       "type":"string",
-      "pattern":"^[a-zA-Z0-9\\-\\_\\.]{1,50}$"
+      "pattern":"^[a-zA-Z0-9\\-\\_]{2,50}$"
     },
     "Boolean":{"type":"boolean"},
     "CalculatedLifecycle":{
@@ -1078,7 +1107,8 @@
         "BackupPlanId":{"shape":"string"},
         "BackupPlanArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
-        "VersionId":{"shape":"string"}
+        "VersionId":{"shape":"string"},
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
     "CreateBackupSelectionInput":{
@@ -1261,7 +1291,9 @@
         "ResourceType":{"shape":"ResourceType"},
         "BytesTransferred":{"shape":"Long"},
         "ExpectedCompletionDate":{"shape":"timestamp"},
-        "StartBy":{"shape":"timestamp"}
+        "StartBy":{"shape":"timestamp"},
+        "BackupOptions":{"shape":"BackupOptions"},
+        "BackupType":{"shape":"string"}
       }
     },
     "DescribeBackupVaultInput":{
@@ -1476,7 +1508,8 @@
         "CreatorRequestId":{"shape":"string"},
         "CreationDate":{"shape":"timestamp"},
         "DeletionDate":{"shape":"timestamp"},
-        "LastExecutionDate":{"shape":"timestamp"}
+        "LastExecutionDate":{"shape":"timestamp"},
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
     "GetBackupSelectionInput":{
@@ -2247,7 +2280,8 @@
         "StartWindowMinutes":{"shape":"WindowMinutes"},
         "CompleteWindowMinutes":{"shape":"WindowMinutes"},
         "Lifecycle":{"shape":"Lifecycle"},
-        "RecoveryPointTags":{"shape":"Tags"}
+        "RecoveryPointTags":{"shape":"Tags"},
+        "BackupOptions":{"shape":"BackupOptions"}
       }
     },
     "StartBackupJobOutput":{
@@ -2386,7 +2420,8 @@
         "BackupPlanId":{"shape":"string"},
         "BackupPlanArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
-        "VersionId":{"shape":"string"}
+        "VersionId":{"shape":"string"},
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
       }
     },
     "UpdateRecoveryPointLifecycleInput":{

@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Cost Explorer Service.
 //    func myFunc(svc costexploreriface.CostExplorerAPI) bool {
-//        // Make svc.CreateCostCategoryDefinition request
+//        // Make svc.CreateAnomalyMonitor request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockCostExplorerClient struct {
 //        costexploreriface.CostExplorerAPI
 //    }
-//    func (m *mockCostExplorerClient) CreateCostCategoryDefinition(input *costexplorer.CreateCostCategoryDefinitionInput) (*costexplorer.CreateCostCategoryDefinitionOutput, error) {
+//    func (m *mockCostExplorerClient) CreateAnomalyMonitor(input *costexplorer.CreateAnomalyMonitorInput) (*costexplorer.CreateAnomalyMonitorOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,9 +60,25 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type CostExplorerAPI interface {
+	CreateAnomalyMonitor(*costexplorer.CreateAnomalyMonitorInput) (*costexplorer.CreateAnomalyMonitorOutput, error)
+	CreateAnomalyMonitorWithContext(aws.Context, *costexplorer.CreateAnomalyMonitorInput, ...request.Option) (*costexplorer.CreateAnomalyMonitorOutput, error)
+	CreateAnomalyMonitorRequest(*costexplorer.CreateAnomalyMonitorInput) (*request.Request, *costexplorer.CreateAnomalyMonitorOutput)
+
+	CreateAnomalySubscription(*costexplorer.CreateAnomalySubscriptionInput) (*costexplorer.CreateAnomalySubscriptionOutput, error)
+	CreateAnomalySubscriptionWithContext(aws.Context, *costexplorer.CreateAnomalySubscriptionInput, ...request.Option) (*costexplorer.CreateAnomalySubscriptionOutput, error)
+	CreateAnomalySubscriptionRequest(*costexplorer.CreateAnomalySubscriptionInput) (*request.Request, *costexplorer.CreateAnomalySubscriptionOutput)
+
 	CreateCostCategoryDefinition(*costexplorer.CreateCostCategoryDefinitionInput) (*costexplorer.CreateCostCategoryDefinitionOutput, error)
 	CreateCostCategoryDefinitionWithContext(aws.Context, *costexplorer.CreateCostCategoryDefinitionInput, ...request.Option) (*costexplorer.CreateCostCategoryDefinitionOutput, error)
 	CreateCostCategoryDefinitionRequest(*costexplorer.CreateCostCategoryDefinitionInput) (*request.Request, *costexplorer.CreateCostCategoryDefinitionOutput)
+
+	DeleteAnomalyMonitor(*costexplorer.DeleteAnomalyMonitorInput) (*costexplorer.DeleteAnomalyMonitorOutput, error)
+	DeleteAnomalyMonitorWithContext(aws.Context, *costexplorer.DeleteAnomalyMonitorInput, ...request.Option) (*costexplorer.DeleteAnomalyMonitorOutput, error)
+	DeleteAnomalyMonitorRequest(*costexplorer.DeleteAnomalyMonitorInput) (*request.Request, *costexplorer.DeleteAnomalyMonitorOutput)
+
+	DeleteAnomalySubscription(*costexplorer.DeleteAnomalySubscriptionInput) (*costexplorer.DeleteAnomalySubscriptionOutput, error)
+	DeleteAnomalySubscriptionWithContext(aws.Context, *costexplorer.DeleteAnomalySubscriptionInput, ...request.Option) (*costexplorer.DeleteAnomalySubscriptionOutput, error)
+	DeleteAnomalySubscriptionRequest(*costexplorer.DeleteAnomalySubscriptionInput) (*request.Request, *costexplorer.DeleteAnomalySubscriptionOutput)
 
 	DeleteCostCategoryDefinition(*costexplorer.DeleteCostCategoryDefinitionInput) (*costexplorer.DeleteCostCategoryDefinitionOutput, error)
 	DeleteCostCategoryDefinitionWithContext(aws.Context, *costexplorer.DeleteCostCategoryDefinitionInput, ...request.Option) (*costexplorer.DeleteCostCategoryDefinitionOutput, error)
@@ -71,6 +87,18 @@ type CostExplorerAPI interface {
 	DescribeCostCategoryDefinition(*costexplorer.DescribeCostCategoryDefinitionInput) (*costexplorer.DescribeCostCategoryDefinitionOutput, error)
 	DescribeCostCategoryDefinitionWithContext(aws.Context, *costexplorer.DescribeCostCategoryDefinitionInput, ...request.Option) (*costexplorer.DescribeCostCategoryDefinitionOutput, error)
 	DescribeCostCategoryDefinitionRequest(*costexplorer.DescribeCostCategoryDefinitionInput) (*request.Request, *costexplorer.DescribeCostCategoryDefinitionOutput)
+
+	GetAnomalies(*costexplorer.GetAnomaliesInput) (*costexplorer.GetAnomaliesOutput, error)
+	GetAnomaliesWithContext(aws.Context, *costexplorer.GetAnomaliesInput, ...request.Option) (*costexplorer.GetAnomaliesOutput, error)
+	GetAnomaliesRequest(*costexplorer.GetAnomaliesInput) (*request.Request, *costexplorer.GetAnomaliesOutput)
+
+	GetAnomalyMonitors(*costexplorer.GetAnomalyMonitorsInput) (*costexplorer.GetAnomalyMonitorsOutput, error)
+	GetAnomalyMonitorsWithContext(aws.Context, *costexplorer.GetAnomalyMonitorsInput, ...request.Option) (*costexplorer.GetAnomalyMonitorsOutput, error)
+	GetAnomalyMonitorsRequest(*costexplorer.GetAnomalyMonitorsInput) (*request.Request, *costexplorer.GetAnomalyMonitorsOutput)
+
+	GetAnomalySubscriptions(*costexplorer.GetAnomalySubscriptionsInput) (*costexplorer.GetAnomalySubscriptionsOutput, error)
+	GetAnomalySubscriptionsWithContext(aws.Context, *costexplorer.GetAnomalySubscriptionsInput, ...request.Option) (*costexplorer.GetAnomalySubscriptionsOutput, error)
+	GetAnomalySubscriptionsRequest(*costexplorer.GetAnomalySubscriptionsInput) (*request.Request, *costexplorer.GetAnomalySubscriptionsOutput)
 
 	GetCostAndUsage(*costexplorer.GetCostAndUsageInput) (*costexplorer.GetCostAndUsageOutput, error)
 	GetCostAndUsageWithContext(aws.Context, *costexplorer.GetCostAndUsageInput, ...request.Option) (*costexplorer.GetCostAndUsageOutput, error)
@@ -140,6 +168,18 @@ type CostExplorerAPI interface {
 
 	ListCostCategoryDefinitionsPages(*costexplorer.ListCostCategoryDefinitionsInput, func(*costexplorer.ListCostCategoryDefinitionsOutput, bool) bool) error
 	ListCostCategoryDefinitionsPagesWithContext(aws.Context, *costexplorer.ListCostCategoryDefinitionsInput, func(*costexplorer.ListCostCategoryDefinitionsOutput, bool) bool, ...request.Option) error
+
+	ProvideAnomalyFeedback(*costexplorer.ProvideAnomalyFeedbackInput) (*costexplorer.ProvideAnomalyFeedbackOutput, error)
+	ProvideAnomalyFeedbackWithContext(aws.Context, *costexplorer.ProvideAnomalyFeedbackInput, ...request.Option) (*costexplorer.ProvideAnomalyFeedbackOutput, error)
+	ProvideAnomalyFeedbackRequest(*costexplorer.ProvideAnomalyFeedbackInput) (*request.Request, *costexplorer.ProvideAnomalyFeedbackOutput)
+
+	UpdateAnomalyMonitor(*costexplorer.UpdateAnomalyMonitorInput) (*costexplorer.UpdateAnomalyMonitorOutput, error)
+	UpdateAnomalyMonitorWithContext(aws.Context, *costexplorer.UpdateAnomalyMonitorInput, ...request.Option) (*costexplorer.UpdateAnomalyMonitorOutput, error)
+	UpdateAnomalyMonitorRequest(*costexplorer.UpdateAnomalyMonitorInput) (*request.Request, *costexplorer.UpdateAnomalyMonitorOutput)
+
+	UpdateAnomalySubscription(*costexplorer.UpdateAnomalySubscriptionInput) (*costexplorer.UpdateAnomalySubscriptionOutput, error)
+	UpdateAnomalySubscriptionWithContext(aws.Context, *costexplorer.UpdateAnomalySubscriptionInput, ...request.Option) (*costexplorer.UpdateAnomalySubscriptionOutput, error)
+	UpdateAnomalySubscriptionRequest(*costexplorer.UpdateAnomalySubscriptionInput) (*request.Request, *costexplorer.UpdateAnomalySubscriptionOutput)
 
 	UpdateCostCategoryDefinition(*costexplorer.UpdateCostCategoryDefinitionInput) (*costexplorer.UpdateCostCategoryDefinitionOutput, error)
 	UpdateCostCategoryDefinitionWithContext(aws.Context, *costexplorer.UpdateCostCategoryDefinitionInput, ...request.Option) (*costexplorer.UpdateCostCategoryDefinitionOutput, error)
