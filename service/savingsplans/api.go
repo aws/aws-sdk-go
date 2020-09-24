@@ -4,6 +4,7 @@ package savingsplans
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -95,6 +96,95 @@ func (c *SavingsPlans) CreateSavingsPlan(input *CreateSavingsPlanInput) (*Create
 // for more information on using Contexts.
 func (c *SavingsPlans) CreateSavingsPlanWithContext(ctx aws.Context, input *CreateSavingsPlanInput, opts ...request.Option) (*CreateSavingsPlanOutput, error) {
 	req, out := c.CreateSavingsPlanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteQueuedSavingsPlan = "DeleteQueuedSavingsPlan"
+
+// DeleteQueuedSavingsPlanRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteQueuedSavingsPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteQueuedSavingsPlan for more information on using the DeleteQueuedSavingsPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteQueuedSavingsPlanRequest method.
+//    req, resp := client.DeleteQueuedSavingsPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DeleteQueuedSavingsPlan
+func (c *SavingsPlans) DeleteQueuedSavingsPlanRequest(input *DeleteQueuedSavingsPlanInput) (req *request.Request, output *DeleteQueuedSavingsPlanOutput) {
+	op := &request.Operation{
+		Name:       opDeleteQueuedSavingsPlan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/DeleteQueuedSavingsPlan",
+	}
+
+	if input == nil {
+		input = &DeleteQueuedSavingsPlanInput{}
+	}
+
+	output = &DeleteQueuedSavingsPlanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteQueuedSavingsPlan API operation for AWS Savings Plans.
+//
+// Deletes the queued purchase for the specified Savings Plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Savings Plans's
+// API operation DeleteQueuedSavingsPlan for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   One of the input parameters is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServerException
+//   An unexpected error occurred.
+//
+//   * ServiceQuotaExceededException
+//   A service quota has been exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/savingsplans-2019-06-28/DeleteQueuedSavingsPlan
+func (c *SavingsPlans) DeleteQueuedSavingsPlan(input *DeleteQueuedSavingsPlanInput) (*DeleteQueuedSavingsPlanOutput, error) {
+	req, out := c.DeleteQueuedSavingsPlanRequest(input)
+	return out, req.Send()
+}
+
+// DeleteQueuedSavingsPlanWithContext is the same as DeleteQueuedSavingsPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteQueuedSavingsPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SavingsPlans) DeleteQueuedSavingsPlanWithContext(ctx aws.Context, input *DeleteQueuedSavingsPlanInput, opts ...request.Option) (*DeleteQueuedSavingsPlanOutput, error) {
+	req, out := c.DeleteQueuedSavingsPlanRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -701,6 +791,9 @@ type CreateSavingsPlanInput struct {
 	// Commitment is a required field
 	Commitment *string `locationName:"commitment" type:"string" required:"true"`
 
+	// The time at which to purchase the Savings Plan, in UTC format (YYYY-MM-DDTHH:MM:SSZ).
+	PurchaseTime *time.Time `locationName:"purchaseTime" type:"timestamp"`
+
 	// The ID of the offering.
 	//
 	// SavingsPlanOfferingId is a required field
@@ -753,6 +846,12 @@ func (s *CreateSavingsPlanInput) SetCommitment(v string) *CreateSavingsPlanInput
 	return s
 }
 
+// SetPurchaseTime sets the PurchaseTime field's value.
+func (s *CreateSavingsPlanInput) SetPurchaseTime(v time.Time) *CreateSavingsPlanInput {
+	s.PurchaseTime = &v
+	return s
+}
+
 // SetSavingsPlanOfferingId sets the SavingsPlanOfferingId field's value.
 func (s *CreateSavingsPlanInput) SetSavingsPlanOfferingId(v string) *CreateSavingsPlanInput {
 	s.SavingsPlanOfferingId = &v
@@ -792,6 +891,58 @@ func (s CreateSavingsPlanOutput) GoString() string {
 func (s *CreateSavingsPlanOutput) SetSavingsPlanId(v string) *CreateSavingsPlanOutput {
 	s.SavingsPlanId = &v
 	return s
+}
+
+type DeleteQueuedSavingsPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the Savings Plan.
+	//
+	// SavingsPlanId is a required field
+	SavingsPlanId *string `locationName:"savingsPlanId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteQueuedSavingsPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQueuedSavingsPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteQueuedSavingsPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteQueuedSavingsPlanInput"}
+	if s.SavingsPlanId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SavingsPlanId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSavingsPlanId sets the SavingsPlanId field's value.
+func (s *DeleteQueuedSavingsPlanInput) SetSavingsPlanId(v string) *DeleteQueuedSavingsPlanInput {
+	s.SavingsPlanId = &v
+	return s
+}
+
+type DeleteQueuedSavingsPlanOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteQueuedSavingsPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteQueuedSavingsPlanOutput) GoString() string {
+	return s.String()
 }
 
 type DescribeSavingsPlanRatesInput struct {
@@ -2701,9 +2852,6 @@ const (
 	// SavingsPlanRateServiceCodeAmazonEcs is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAmazonEcs = "AmazonECS"
 
-	// SavingsPlanRateServiceCodeAmazonEks is a SavingsPlanRateServiceCode enum value
-	SavingsPlanRateServiceCodeAmazonEks = "AmazonEKS"
-
 	// SavingsPlanRateServiceCodeAwslambda is a SavingsPlanRateServiceCode enum value
 	SavingsPlanRateServiceCodeAwslambda = "AWSLambda"
 )
@@ -2713,7 +2861,6 @@ func SavingsPlanRateServiceCode_Values() []string {
 	return []string{
 		SavingsPlanRateServiceCodeAmazonEc2,
 		SavingsPlanRateServiceCodeAmazonEcs,
-		SavingsPlanRateServiceCodeAmazonEks,
 		SavingsPlanRateServiceCodeAwslambda,
 	}
 }
@@ -2750,6 +2897,12 @@ const (
 
 	// SavingsPlanStateRetired is a SavingsPlanState enum value
 	SavingsPlanStateRetired = "retired"
+
+	// SavingsPlanStateQueued is a SavingsPlanState enum value
+	SavingsPlanStateQueued = "queued"
+
+	// SavingsPlanStateQueuedDeleted is a SavingsPlanState enum value
+	SavingsPlanStateQueuedDeleted = "queued-deleted"
 )
 
 // SavingsPlanState_Values returns all elements of the SavingsPlanState enum
@@ -2759,6 +2912,8 @@ func SavingsPlanState_Values() []string {
 		SavingsPlanStatePaymentFailed,
 		SavingsPlanStateActive,
 		SavingsPlanStateRetired,
+		SavingsPlanStateQueued,
+		SavingsPlanStateQueuedDeleted,
 	}
 }
 

@@ -1,3 +1,14 @@
+Release v1.34.31 (2020-09-24)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/eks`: Updates service API and documentation
+* `service/savingsplans`: Updates service API and documentation
+* `service/synthetics`: Updates service API and documentation
+* `service/textract`: Updates service API and documentation
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.34.30 (2020-09-23)
 ===
 

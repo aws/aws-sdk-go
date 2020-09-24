@@ -3,6 +3,7 @@
   "service": "<p>Savings Plans are a pricing model that offer significant savings on AWS usage (for example, on Amazon EC2 instances). You commit to a consistent amount of usage, in USD per hour, for a term of 1 or 3 years, and receive a lower price for that usage. For more information, see the <a href=\"https://docs.aws.amazon.com/savingsplans/latest/userguide/\">AWS Savings Plans User Guide</a>.</p>",
   "operations": {
     "CreateSavingsPlan": "<p>Creates a Savings Plan.</p>",
+    "DeleteQueuedSavingsPlan": "<p>Deletes the queued purchase for the specified Savings Plan.</p>",
     "DescribeSavingsPlanRates": "<p>Describes the specified Savings Plans rates.</p>",
     "DescribeSavingsPlans": "<p>Describes the specified Savings Plans.</p>",
     "DescribeSavingsPlansOfferingRates": "<p>Describes the specified Savings Plans offering rates.</p>",
@@ -53,6 +54,22 @@
       "base": null,
       "refs": {
         "DescribeSavingsPlansOfferingsRequest$currencies": "<p>The currencies.</p>"
+      }
+    },
+    "DateTime": {
+      "base": null,
+      "refs": {
+        "CreateSavingsPlanRequest$purchaseTime": "<p>The time at which to purchase the Savings Plan, in UTC format (YYYY-MM-DDTHH:MM:SSZ).</p>"
+      }
+    },
+    "DeleteQueuedSavingsPlanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteQueuedSavingsPlanResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DescribeSavingsPlanRatesRequest": {
@@ -242,6 +259,7 @@
       "base": null,
       "refs": {
         "CreateSavingsPlanResponse$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
+        "DeleteQueuedSavingsPlanRequest$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "DescribeSavingsPlanRatesRequest$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "DescribeSavingsPlanRatesResponse$savingsPlanId": "<p>The ID of the Savings Plan.</p>",
         "SavingsPlan$savingsPlanId": "<p>The ID of the Savings Plan.</p>",

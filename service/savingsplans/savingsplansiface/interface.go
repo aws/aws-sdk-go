@@ -64,6 +64,10 @@ type SavingsPlansAPI interface {
 	CreateSavingsPlanWithContext(aws.Context, *savingsplans.CreateSavingsPlanInput, ...request.Option) (*savingsplans.CreateSavingsPlanOutput, error)
 	CreateSavingsPlanRequest(*savingsplans.CreateSavingsPlanInput) (*request.Request, *savingsplans.CreateSavingsPlanOutput)
 
+	DeleteQueuedSavingsPlan(*savingsplans.DeleteQueuedSavingsPlanInput) (*savingsplans.DeleteQueuedSavingsPlanOutput, error)
+	DeleteQueuedSavingsPlanWithContext(aws.Context, *savingsplans.DeleteQueuedSavingsPlanInput, ...request.Option) (*savingsplans.DeleteQueuedSavingsPlanOutput, error)
+	DeleteQueuedSavingsPlanRequest(*savingsplans.DeleteQueuedSavingsPlanInput) (*request.Request, *savingsplans.DeleteQueuedSavingsPlanOutput)
+
 	DescribeSavingsPlanRates(*savingsplans.DescribeSavingsPlanRatesInput) (*savingsplans.DescribeSavingsPlanRatesOutput, error)
 	DescribeSavingsPlanRatesWithContext(aws.Context, *savingsplans.DescribeSavingsPlanRatesInput, ...request.Option) (*savingsplans.DescribeSavingsPlanRatesOutput, error)
 	DescribeSavingsPlanRatesRequest(*savingsplans.DescribeSavingsPlanRatesInput) (*request.Request, *savingsplans.DescribeSavingsPlanRatesOutput)

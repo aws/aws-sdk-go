@@ -17,18 +17,6 @@
     "UpdateCanary": "<p>Use this operation to change the settings of a canary that has already been created.</p> <p>You can't use this operation to update the tags of an existing canary. To change the tags of an existing canary, use <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_TagResource.html\">TagResource</a>.</p>"
   },
   "shapes": {
-    "Arn": {
-      "base": null,
-      "refs": {
-        "Canary$ExecutionRoleArn": "<p>The ARN of the IAM role used to run the canary. This role must include <code>lambda.amazonaws.com</code> as a principal in the trust policy.</p>",
-        "Canary$EngineArn": "<p>The ARN of the Lambda function that is used as your canary's engine. For more information about Lambda ARN format, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-api-permissions-ref.html\">Resources and Conditions for Lambda Actions</a>.</p>",
-        "CreateCanaryRequest$ExecutionRoleArn": "<p>The ARN of the IAM role to be used to run the canary. This role must already exist, and must include <code>lambda.amazonaws.com</code> as a principal in the trust policy. The role must also have the following permissions:</p> <ul> <li> <p> <code>s3:PutObject</code> </p> </li> <li> <p> <code>s3:GetBucketLocation</code> </p> </li> <li> <p> <code>s3:ListAllMyBuckets</code> </p> </li> <li> <p> <code>cloudwatch:PutMetricData</code> </p> </li> <li> <p> <code>logs:CreateLogGroup</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> </ul>",
-        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the canary that you want to view tags for.</p> <p>The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i> </code>.</p>",
-        "TagResourceRequest$ResourceArn": "<p>The ARN of the canary that you're adding tags to.</p> <p>The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i> </code>.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The ARN of the canary that you're removing tags from.</p> <p>The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i> </code>.</p>",
-        "UpdateCanaryRequest$ExecutionRoleArn": "<p>The ARN of the IAM role to be used to run the canary. This role must already exist, and must include <code>lambda.amazonaws.com</code> as a principal in the trust policy. The role must also have the following permissions:</p> <ul> <li> <p> <code>s3:PutObject</code> </p> </li> <li> <p> <code>s3:GetBucketLocation</code> </p> </li> <li> <p> <code>s3:ListAllMyBuckets</code> </p> </li> <li> <p> <code>cloudwatch:PutMetricData</code> </p> </li> <li> <p> <code>logs:CreateLogGroup</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> </ul>"
-      }
-    },
     "Blob": {
       "base": null,
       "refs": {
@@ -53,6 +41,14 @@
         "Canaries$member": null,
         "CreateCanaryResponse$Canary": "<p>The full details about the canary you have created.</p>",
         "GetCanaryResponse$Canary": "<p>A strucure that contains the full information about the canary.</p>"
+      }
+    },
+    "CanaryArn": {
+      "base": null,
+      "refs": {
+        "ListTagsForResourceRequest$ResourceArn": "<p>The ARN of the canary that you want to view tags for.</p> <p>The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i> </code>.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The ARN of the canary that you're adding tags to.</p> <p>The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i> </code>.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>The ARN of the canary that you're removing tags from.</p> <p>The ARN format of a canary is <code>arn:aws:synthetics:<i>Region</i>:<i>account-id</i>:canary:<i>canary-name</i> </code>.</p>"
       }
     },
     "CanaryCodeInput": {
@@ -104,7 +100,7 @@
       }
     },
     "CanaryRunConfigOutput": {
-      "base": "<p>A structure that contains information for a canary run.</p>",
+      "base": "<p>A structure that contains information about a canary run.</p>",
       "refs": {
         "Canary$RunConfig": null
       }
@@ -240,6 +236,12 @@
         "ValidationException$Message": null
       }
     },
+    "FunctionArn": {
+      "base": null,
+      "refs": {
+        "Canary$EngineArn": "<p>The ARN of the Lambda function that is used as your canary's engine. For more information about Lambda ARN format, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-api-permissions-ref.html\">Resources and Conditions for Lambda Actions</a>.</p>"
+      }
+    },
     "GetCanaryRequest": {
       "base": null,
       "refs": {
@@ -284,7 +286,7 @@
     "MaxFifteenMinutesInSeconds": {
       "base": null,
       "refs": {
-        "CanaryRunConfigInput$TimeoutInSeconds": "<p>How long the canary is allowed to run before it must stop. If you omit this field, the frequency of the canary is used as this value, up to a maximum of 14 minutes.</p>",
+        "CanaryRunConfigInput$TimeoutInSeconds": "<p>How long the canary is allowed to run before it must stop. You can't set this time to be longer than the frequency of the runs of this canary.</p> <p>If you omit this field, the frequency of the canary is used as this value, up to a maximum of 14 minutes.</p>",
         "CanaryRunConfigOutput$TimeoutInSeconds": "<p>How long the canary is allowed to run before it must stop.</p>"
       }
     },
@@ -317,13 +319,28 @@
     "MaxSize3008": {
       "base": null,
       "refs": {
-        "CanaryRunConfigInput$MemoryInMB": "<p>The maximum amount of memory available to the canary while it is running, in MB. The value you specify must be a multiple of 64.</p>",
-        "CanaryRunConfigOutput$MemoryInMB": "<p>The maximum amount of memory available to the canary while it is running, in MB. The value you must be a multiple of 64.</p>"
+        "CanaryRunConfigInput$MemoryInMB": "<p>The maximum amount of memory available to the canary while it is running, in MB. This value must be a multiple of 64.</p>",
+        "CanaryRunConfigOutput$MemoryInMB": "<p>The maximum amount of memory available to the canary while it is running, in MB. This value must be a multiple of 64.</p>"
+      }
+    },
+    "NullableBoolean": {
+      "base": null,
+      "refs": {
+        "CanaryRunConfigInput$ActiveTracing": "<p>Specifies whether this canary is to use active AWS X-Ray tracing when it runs. Active tracing enables this canary run to be displayed in the ServiceLens and X-Ray service maps even if the canary does not hit an endpoint that has X-ray tracing enabled. Using X-Ray tracing incurs charges. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_tracing.html\"> Canaries and X-Ray tracing</a>.</p> <p>You can enable active tracing only for canaries that use version <code>syn-nodejs-2.0</code> or later for their canary runtime.</p>",
+        "CanaryRunConfigOutput$ActiveTracing": "<p>Displays whether this canary run used active AWS X-Ray tracing. </p>"
       }
     },
     "ResourceNotFoundException": {
       "base": "<p>One of the specified resources was not found.</p>",
       "refs": {
+      }
+    },
+    "RoleArn": {
+      "base": null,
+      "refs": {
+        "Canary$ExecutionRoleArn": "<p>The ARN of the IAM role used to run the canary. This role must include <code>lambda.amazonaws.com</code> as a principal in the trust policy.</p>",
+        "CreateCanaryRequest$ExecutionRoleArn": "<p>The ARN of the IAM role to be used to run the canary. This role must already exist, and must include <code>lambda.amazonaws.com</code> as a principal in the trust policy. The role must also have the following permissions:</p> <ul> <li> <p> <code>s3:PutObject</code> </p> </li> <li> <p> <code>s3:GetBucketLocation</code> </p> </li> <li> <p> <code>s3:ListAllMyBuckets</code> </p> </li> <li> <p> <code>cloudwatch:PutMetricData</code> </p> </li> <li> <p> <code>logs:CreateLogGroup</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> <li> <p> <code>logs:PutLogEvents</code> </p> </li> </ul>",
+        "UpdateCanaryRequest$ExecutionRoleArn": "<p>The ARN of the IAM role to be used to run the canary. This role must already exist, and must include <code>lambda.amazonaws.com</code> as a principal in the trust policy. The role must also have the following permissions:</p> <ul> <li> <p> <code>s3:PutObject</code> </p> </li> <li> <p> <code>s3:GetBucketLocation</code> </p> </li> <li> <p> <code>s3:ListAllMyBuckets</code> </p> </li> <li> <p> <code>cloudwatch:PutMetricData</code> </p> </li> <li> <p> <code>logs:CreateLogGroup</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> <li> <p> <code>logs:CreateLogStream</code> </p> </li> </ul>"
       }
     },
     "RuntimeVersion": {
@@ -375,7 +392,7 @@
       "base": null,
       "refs": {
         "Canary$ArtifactS3Location": "<p>The location in Amazon S3 where Synthetics stores artifacts from the runs of this canary. Artifacts include the log file, screenshots, and HAR files.</p>",
-        "Canary$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid value is <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
+        "Canary$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
         "CanaryCodeInput$S3Bucket": "<p>If your canary script is located in S3, specify the full bucket name here. The bucket must already exist. Specify the full bucket name, including <code>s3://</code> as the start of the bucket name.</p>",
         "CanaryCodeInput$S3Key": "<p>The S3 key of your script. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingObjects.html\">Working with Amazon S3 Objects</a>.</p>",
         "CanaryCodeInput$S3Version": "<p>The S3 version ID of your script.</p>",
@@ -388,10 +405,10 @@
         "CanaryScheduleOutput$Expression": "<p>A rate expression that defines how often the canary is to run. The syntax is <code>rate(<i>number unit</i>)</code>. <i>unit</i> can be <code>minute</code>, <code>minutes</code>, or <code>hour</code>. </p> <p>For example, <code>rate(1 minute)</code> runs the canary once a minute, <code>rate(10 minutes)</code> runs it once every 10 minutes, and <code>rate(1 hour)</code> runs it once every hour.</p> <p>Specifying <code>rate(0 minute)</code> or <code>rate(0 hour)</code> is a special value that causes the canary to run only once when it is started.</p>",
         "CanaryStatus$StateReason": "<p>If the canary has insufficient permissions to run, this field provides more details.</p>",
         "CreateCanaryRequest$ArtifactS3Location": "<p>The location in Amazon S3 where Synthetics stores artifacts from the test runs of this canary. Artifacts include the log file, screenshots, and HAR files.</p>",
-        "CreateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid value is <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
-        "RuntimeVersion$VersionName": "<p>The name of the runtime version. Currently, the only valid value is <code>syn-1.0</code>. </p> <p>Specifies the runtime version to use for the canary. Currently, the only valid value is <code>syn-1.0</code>.</p>",
+        "CreateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
+        "RuntimeVersion$VersionName": "<p>The name of the runtime version. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>.</p>",
         "RuntimeVersion$Description": "<p>A description of the runtime version, created by Amazon.</p>",
-        "UpdateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid value is <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>"
+        "UpdateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>"
       }
     },
     "SubnetId": {
@@ -474,7 +491,8 @@
     "UUID": {
       "base": null,
       "refs": {
-        "Canary$Id": "<p>The unique ID of this canary.</p>"
+        "Canary$Id": "<p>The unique ID of this canary.</p>",
+        "CanaryRun$Id": "<p>A unique ID that identifies this canary run.</p>"
       }
     },
     "UntagResourceRequest": {
