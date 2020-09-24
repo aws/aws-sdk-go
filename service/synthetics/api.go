@@ -1444,11 +1444,11 @@ type Canary struct {
 	// The ARN of the Lambda function that is used as your canary's engine. For
 	// more information about Lambda ARN format, see Resources and Conditions for
 	// Lambda Actions (https://docs.aws.amazon.com/lambda/latest/dg/lambda-api-permissions-ref.html).
-	EngineArn *string `type:"string"`
+	EngineArn *string `min:"1" type:"string"`
 
 	// The ARN of the IAM role used to run the canary. This role must include lambda.amazonaws.com
 	// as a principal in the trust policy.
-	ExecutionRoleArn *string `type:"string"`
+	ExecutionRoleArn *string `min:"1" type:"string"`
 
 	// The number of days to retain data about failed runs of this canary.
 	FailureRetentionPeriodInDays *int64 `min:"1" type:"integer"`
@@ -1459,12 +1459,12 @@ type Canary struct {
 	// The name of the canary.
 	Name *string `min:"1" type:"string"`
 
-	// A structure that contains information for a canary run.
+	// A structure that contains information about a canary run.
 	RunConfig *CanaryRunConfigOutput `type:"structure"`
 
 	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid value is syn-1.0. For more information about runtime versions, see
-	// Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
+	// valid values are syn-nodejs-2.0, syn-nodejs-2.0-beta, and syn-1.0. For more
+	// information about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	RuntimeVersion *string `min:"1" type:"string"`
 
 	// A structure that contains information about how often the canary is to run,
@@ -1768,6 +1768,9 @@ type CanaryRun struct {
 	// the log file, screenshots, and HAR files.
 	ArtifactS3Location *string `min:"1" type:"string"`
 
+	// A unique ID that identifies this canary run.
+	Id *string `type:"string"`
+
 	// The name of the canary.
 	Name *string `min:"1" type:"string"`
 
@@ -1794,6 +1797,12 @@ func (s *CanaryRun) SetArtifactS3Location(v string) *CanaryRun {
 	return s
 }
 
+// SetId sets the Id field's value.
+func (s *CanaryRun) SetId(v string) *CanaryRun {
+	s.Id = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CanaryRun) SetName(v string) *CanaryRun {
 	s.Name = &v
@@ -1816,16 +1825,26 @@ func (s *CanaryRun) SetTimeline(v *CanaryRunTimeline) *CanaryRun {
 type CanaryRunConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether this canary is to use active AWS X-Ray tracing when it
+	// runs. Active tracing enables this canary run to be displayed in the ServiceLens
+	// and X-Ray service maps even if the canary does not hit an endpoint that has
+	// X-ray tracing enabled. Using X-Ray tracing incurs charges. For more information,
+	// see Canaries and X-Ray tracing (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_tracing.html).
+	//
+	// You can enable active tracing only for canaries that use version syn-nodejs-2.0
+	// or later for their canary runtime.
+	ActiveTracing *bool `type:"boolean"`
+
 	// The maximum amount of memory available to the canary while it is running,
-	// in MB. The value you specify must be a multiple of 64.
+	// in MB. This value must be a multiple of 64.
 	MemoryInMB *int64 `min:"960" type:"integer"`
 
-	// How long the canary is allowed to run before it must stop. If you omit this
-	// field, the frequency of the canary is used as this value, up to a maximum
-	// of 14 minutes.
+	// How long the canary is allowed to run before it must stop. You can't set
+	// this time to be longer than the frequency of the runs of this canary.
 	//
-	// TimeoutInSeconds is a required field
-	TimeoutInSeconds *int64 `min:"60" type:"integer" required:"true"`
+	// If you omit this field, the frequency of the canary is used as this value,
+	// up to a maximum of 14 minutes.
+	TimeoutInSeconds *int64 `min:"3" type:"integer"`
 }
 
 // String returns the string representation
@@ -1844,17 +1863,20 @@ func (s *CanaryRunConfigInput) Validate() error {
 	if s.MemoryInMB != nil && *s.MemoryInMB < 960 {
 		invalidParams.Add(request.NewErrParamMinValue("MemoryInMB", 960))
 	}
-	if s.TimeoutInSeconds == nil {
-		invalidParams.Add(request.NewErrParamRequired("TimeoutInSeconds"))
-	}
-	if s.TimeoutInSeconds != nil && *s.TimeoutInSeconds < 60 {
-		invalidParams.Add(request.NewErrParamMinValue("TimeoutInSeconds", 60))
+	if s.TimeoutInSeconds != nil && *s.TimeoutInSeconds < 3 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutInSeconds", 3))
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActiveTracing sets the ActiveTracing field's value.
+func (s *CanaryRunConfigInput) SetActiveTracing(v bool) *CanaryRunConfigInput {
+	s.ActiveTracing = &v
+	return s
 }
 
 // SetMemoryInMB sets the MemoryInMB field's value.
@@ -1869,16 +1891,19 @@ func (s *CanaryRunConfigInput) SetTimeoutInSeconds(v int64) *CanaryRunConfigInpu
 	return s
 }
 
-// A structure that contains information for a canary run.
+// A structure that contains information about a canary run.
 type CanaryRunConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Displays whether this canary run used active AWS X-Ray tracing.
+	ActiveTracing *bool `type:"boolean"`
+
 	// The maximum amount of memory available to the canary while it is running,
-	// in MB. The value you must be a multiple of 64.
+	// in MB. This value must be a multiple of 64.
 	MemoryInMB *int64 `min:"960" type:"integer"`
 
 	// How long the canary is allowed to run before it must stop.
-	TimeoutInSeconds *int64 `min:"60" type:"integer"`
+	TimeoutInSeconds *int64 `min:"3" type:"integer"`
 }
 
 // String returns the string representation
@@ -1889,6 +1914,12 @@ func (s CanaryRunConfigOutput) String() string {
 // GoString returns the string representation
 func (s CanaryRunConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveTracing sets the ActiveTracing field's value.
+func (s *CanaryRunConfigOutput) SetActiveTracing(v bool) *CanaryRunConfigOutput {
+	s.ActiveTracing = &v
+	return s
 }
 
 // SetMemoryInMB sets the MemoryInMB field's value.
@@ -2269,10 +2300,10 @@ type CreateCanaryInput struct {
 	//
 	//    * logs:CreateLogStream
 	//
-	//    * logs:CreateLogStream
+	//    * logs:PutLogEvents
 	//
 	// ExecutionRoleArn is a required field
-	ExecutionRoleArn *string `type:"string" required:"true"`
+	ExecutionRoleArn *string `min:"1" type:"string" required:"true"`
 
 	// The number of days to retain data about failed runs of this canary. If you
 	// omit this field, the default of 31 days is used. The valid range is 1 to
@@ -2295,8 +2326,8 @@ type CreateCanaryInput struct {
 	RunConfig *CanaryRunConfigInput `type:"structure"`
 
 	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid value is syn-1.0. For more information about runtime versions, see
-	// Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
+	// valid values are syn-nodejs-2.0, syn-nodejs-2.0-beta, and syn-1.0. For more
+	// information about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	//
 	// RuntimeVersion is a required field
 	RuntimeVersion *string `min:"1" type:"string" required:"true"`
@@ -2350,6 +2381,9 @@ func (s *CreateCanaryInput) Validate() error {
 	}
 	if s.ExecutionRoleArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ExecutionRoleArn"))
+	}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 1))
 	}
 	if s.FailureRetentionPeriodInDays != nil && *s.FailureRetentionPeriodInDays < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("FailureRetentionPeriodInDays", 1))
@@ -2552,7 +2586,7 @@ type DescribeCanariesInput struct {
 
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent operation to retrieve the next set of results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -2570,6 +2604,9 @@ func (s *DescribeCanariesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeCanariesInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2601,7 +2638,7 @@ type DescribeCanariesLastRunInput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent DescribeCanaries operation to retrieve the next set
 	// of results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -2619,6 +2656,9 @@ func (s *DescribeCanariesLastRunInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeCanariesLastRunInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2648,7 +2688,7 @@ type DescribeCanariesLastRunOutput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent DescribeCanariesLastRun operation to retrieve the next
 	// set of results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -2683,7 +2723,7 @@ type DescribeCanariesOutput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent DescribeCanaries operation to retrieve the next set
 	// of results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -2719,7 +2759,7 @@ type DescribeRuntimeVersionsInput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent DescribeRuntimeVersions operation to retrieve the next
 	// set of results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -2737,6 +2777,9 @@ func (s *DescribeRuntimeVersionsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DescribeRuntimeVersionsInput"}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2763,7 +2806,7 @@ type DescribeRuntimeVersionsOutput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent DescribeRuntimeVersions operation to retrieve the next
 	// set of results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 
 	// An array of objects that display the details about each Synthetics canary
 	// runtime version.
@@ -2872,7 +2915,7 @@ type GetCanaryRunsInput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent GetCanaryRuns operation to retrieve the next set of
 	// results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -2896,6 +2939,9 @@ func (s *GetCanaryRunsInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2932,7 +2978,7 @@ type GetCanaryRunsOutput struct {
 	// A token that indicates that there is more data available. You can use this
 	// token in a subsequent GetCanaryRuns operation to retrieve the next set of
 	// results.
-	NextToken *string `type:"string"`
+	NextToken *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -3021,7 +3067,7 @@ type ListTagsForResourceInput struct {
 	// The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name .
 	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3149,10 +3195,8 @@ type RuntimeVersion struct {
 	// The date that the runtime version was released.
 	ReleaseDate *time.Time `type:"timestamp"`
 
-	// The name of the runtime version. Currently, the only valid value is syn-1.0.
-	//
-	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid value is syn-1.0.
+	// The name of the runtime version. Currently, the only valid values are syn-nodejs-2.0,
+	// syn-nodejs-2.0-beta, and syn-1.0.
 	VersionName *string `min:"1" type:"string"`
 }
 
@@ -3310,7 +3354,7 @@ type TagResourceInput struct {
 	// The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name .
 	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The list of key-value pairs to associate with the canary.
 	//
@@ -3384,7 +3428,7 @@ type UntagResourceInput struct {
 	// The ARN format of a canary is arn:aws:synthetics:Region:account-id:canary:canary-name .
 	//
 	// ResourceArn is a required field
-	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+	ResourceArn *string `location:"uri" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// The list of tag keys to remove from the resource.
 	//
@@ -3475,7 +3519,7 @@ type UpdateCanaryInput struct {
 	//    * logs:CreateLogStream
 	//
 	//    * logs:CreateLogStream
-	ExecutionRoleArn *string `type:"string"`
+	ExecutionRoleArn *string `min:"1" type:"string"`
 
 	// The number of days to retain data about failed runs of this canary.
 	FailureRetentionPeriodInDays *int64 `min:"1" type:"integer"`
@@ -3493,8 +3537,8 @@ type UpdateCanaryInput struct {
 	RunConfig *CanaryRunConfigInput `type:"structure"`
 
 	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid value is syn-1.0. For more information about runtime versions, see
-	// Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
+	// valid values are syn-nodejs-2.0, syn-nodejs-2.0-beta, and syn-1.0. For more
+	// information about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	RuntimeVersion *string `min:"1" type:"string"`
 
 	// A structure that contains information about how often the canary is to run,
@@ -3523,6 +3567,9 @@ func (s UpdateCanaryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateCanaryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateCanaryInput"}
+	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 1))
+	}
 	if s.FailureRetentionPeriodInDays != nil && *s.FailureRetentionPeriodInDays < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("FailureRetentionPeriodInDays", 1))
 	}

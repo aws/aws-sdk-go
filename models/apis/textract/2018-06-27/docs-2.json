@@ -11,7 +11,7 @@
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p>You aren't authorized to perform the action.</p>",
+      "base": "<p>You aren't authorized to perform the action. Use the Amazon Resource Name (ARN) of an authorized user or IAM role to perform the operation.</p>",
       "refs": {
       }
     },
@@ -26,7 +26,7 @@
       }
     },
     "BadDocumentException": {
-      "base": "<p>Amazon Textract isn't able to read the document.</p>",
+      "base": "<p>Amazon Textract isn't able to read the document. For more information on the document limits in Amazon Textract, see <a>limits</a>.</p>",
       "refs": {
       }
     },
@@ -274,7 +274,7 @@
       }
     },
     "InvalidS3ObjectException": {
-      "base": "<p>Amazon Textract is unable to access the S3 object that's specified in the request.</p>",
+      "base": "<p>Amazon Textract is unable to access the S3 object that's specified in the request. for more information, <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html\">Configure Access to Amazon S3</a> For troubleshooting information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/troubleshooting.html\">Troubleshooting Amazon S3</a> </p>",
       "refs": {
       }
     },
@@ -325,6 +325,13 @@
       "refs": {
         "StartDocumentAnalysisRequest$NotificationChannel": "<p>The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to. </p>",
         "StartDocumentTextDetectionRequest$NotificationChannel": "<p>The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to. </p>"
+      }
+    },
+    "OutputConfig": {
+      "base": "<p>Sets whether or not your output will go to a user created bucket. Used to set the name of the bucket, and the prefix on the output file.</p>",
+      "refs": {
+        "StartDocumentAnalysisRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the GetDocumentAnalysis operation.</p>",
+        "StartDocumentTextDetectionRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default Amazon Textract will save the results internally to be accessed with the GetDocumentTextDetection operation.</p>"
       }
     },
     "Pages": {
@@ -380,7 +387,7 @@
     "RelationshipType": {
       "base": null,
       "refs": {
-        "Relationship$Type": "<p>The type of relationship that the blocks in the IDs array have with the current block. The relationship can be <code>VALUE</code> or <code>CHILD</code>. A relationship of type VALUE is a list that contains the ID of the VALUE block that's associated with the KEY of a key-value pair. A relationship of type CHILD is a list of IDs that identify WORD blocks.</p>"
+        "Relationship$Type": "<p>The type of relationship that the blocks in the IDs array have with the current block. The relationship can be <code>VALUE</code> or <code>CHILD</code>. A relationship of type VALUE is a list that contains the ID of the VALUE block that's associated with the KEY of a key-value pair. A relationship of type CHILD is a list of IDs that identify WORD blocks in the case of lines Cell blocks in the case of Tables, and WORD blocks in the case of Selection Elements.</p>"
       }
     },
     "RoleArn": {
@@ -392,6 +399,7 @@
     "S3Bucket": {
       "base": null,
       "refs": {
+        "OutputConfig$S3Bucket": "<p>The name of the bucket your output will go to.</p>",
         "S3Object$Bucket": "<p>The name of the S3 bucket.</p>"
       }
     },
@@ -405,6 +413,7 @@
     "S3ObjectName": {
       "base": null,
       "refs": {
+        "OutputConfig$S3Prefix": "<p>The prefix of the object key that the output will be saved to. When not enabled, the prefix will be “textract_output\".</p>",
         "S3Object$Name": "<p>The file name of the input document. Synchronous operations can use image files that are in JPEG or PNG format. Asynchronous operations also support PDF format files.</p>"
       }
     },
@@ -449,8 +458,8 @@
     "StatusMessage": {
       "base": null,
       "refs": {
-        "GetDocumentAnalysisResponse$StatusMessage": "<p>The current status of an asynchronous document-analysis operation.</p>",
-        "GetDocumentTextDetectionResponse$StatusMessage": "<p>The current status of an asynchronous text-detection operation for the document. </p>"
+        "GetDocumentAnalysisResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured.</p>",
+        "GetDocumentTextDetectionResponse$StatusMessage": "<p>Returns if the detection job could not be completed. Contains explanation for what error occured. </p>"
       }
     },
     "String": {
@@ -461,9 +470,9 @@
         "DetectDocumentTextResponse$DetectDocumentTextModelVersion": "<p/>",
         "GetDocumentAnalysisResponse$AnalyzeDocumentModelVersion": "<p/>",
         "GetDocumentTextDetectionResponse$DetectDocumentTextModelVersion": "<p/>",
-        "HumanLoopQuotaExceededException$ResourceType": null,
-        "HumanLoopQuotaExceededException$QuotaCode": null,
-        "HumanLoopQuotaExceededException$ServiceCode": null
+        "HumanLoopQuotaExceededException$ResourceType": "<p>The resource type.</p>",
+        "HumanLoopQuotaExceededException$QuotaCode": "<p>The quota code.</p>",
+        "HumanLoopQuotaExceededException$ServiceCode": "<p>The service code.</p>"
       }
     },
     "ThrottlingException": {

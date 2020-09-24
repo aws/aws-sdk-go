@@ -28,7 +28,7 @@
     "AMITypes": {
       "base": null,
       "refs": {
-        "CreateNodegroupRequest$amiType": "<p>The AMI type for your node group. GPU instance types should use the <code>AL2_x86_64_GPU</code> AMI type, which uses the Amazon EKS-optimized Linux AMI with GPU support. Non-GPU instances should use the <code>AL2_x86_64</code> AMI type, which uses the Amazon EKS-optimized Linux AMI. If you specify <code>launchTemplate</code>, and your launch template uses a custom AMI, then don't specify <code>amiType</code>, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the Amazon EKS User Guide.</p>",
+        "CreateNodegroupRequest$amiType": "<p>The AMI type for your node group. GPU instance types should use the <code>AL2_x86_64_GPU</code> AMI type. Non-GPU instances should use the <code>AL2_x86_64</code> AMI type. Arm instances should use the <code>AL2_ARM_64</code> AMI type. All types use the Amazon EKS-optimized Amazon Linux 2 AMI. If you specify <code>launchTemplate</code>, and your launch template uses a custom AMI, then don't specify <code>amiType</code>, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the Amazon EKS User Guide.</p>",
         "Nodegroup$amiType": "<p>If the node group was deployed using a launch template with a custom AMI, then this is <code>CUSTOM</code>. For node groups that weren't deployed using a launch template, this is the AMI type that was specified in the node group configuration.</p>"
       }
     },
@@ -69,7 +69,7 @@
       "base": null,
       "refs": {
         "CreateNodegroupRequest$diskSize": "<p>The root device disk size (in GiB) for your node group instances. The default disk size is 20 GiB. If you specify <code>launchTemplate</code>, then don't specify <code>diskSize</code>, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the Amazon EKS User Guide.</p>",
-        "Nodegroup$diskSize": "<p>If the node group wasn't deployed with a launch template, then this is the disk size in the node group configuration. If the node group was deployed with a launch template, then <code>diskSize</code> is <code>null</code>.</p>"
+        "Nodegroup$diskSize": "<p>If the node group wasn't deployed with a launch template, then this is the disk size in the node group configuration. If the node group was deployed with a launch template, then this is <code>null</code>.</p>"
       }
     },
     "Capacity": {
@@ -309,10 +309,22 @@
         "NodegroupHealth$issues": "<p>Any issues that are associated with the node group. </p>"
       }
     },
+    "KubernetesNetworkConfigRequest": {
+      "base": "<p>The Kubernetes network configuration for the cluster.</p>",
+      "refs": {
+        "CreateClusterRequest$kubernetesNetworkConfig": "<p>The Kubernetes network configuration for the cluster.</p>"
+      }
+    },
+    "KubernetesNetworkConfigResponse": {
+      "base": "<p>The Kubernetes network configuration for the cluster.</p>",
+      "refs": {
+        "Cluster$kubernetesNetworkConfig": "<p>Network configuration settings for your cluster.</p>"
+      }
+    },
     "LaunchTemplateSpecification": {
       "base": "<p>An object representing a node group launch template specification. The launch template cannot include <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateNetworkInterface.html\"> <code>SubnetId</code> </a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html\"> <code>IamInstanceProfile</code> </a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html\"> <code>RequestSpotInstances</code> </a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_HibernationOptionsRequest.html\"> <code>HibernationOptions</code> </a>, or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_TerminateInstances.html\"> <code>TerminateInstances</code> </a>, or the node group deployment or update will fail. For more information about launch templates, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateLaunchTemplate.html\"> <code>CreateLaunchTemplate</code> </a> in the Amazon EC2 API Reference. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the Amazon EKS User Guide.</p> <p>Specify either <code>name</code> or <code>id</code>, but not both.</p>",
       "refs": {
-        "CreateNodegroupRequest$launchTemplate": "<p>An object representing a node group's launch template specification. If specified, then do not specify <code>instanceTypes</code>, <code>diskSize</code>, or <code>remoteAccess</code>. If specified, make sure that the launch template meets the requirements in <code>launchTemplateSpecification</code>.</p>",
+        "CreateNodegroupRequest$launchTemplate": "<p>An object representing a node group's launch template specification. If specified, then do not specify <code>instanceTypes</code>, <code>diskSize</code>, or <code>remoteAccess</code> and make sure that the launch template meets the requirements in <code>launchTemplateSpecification</code>.</p>",
         "Nodegroup$launchTemplate": "<p>If a launch template was used to create the node group, then this is the launch template that was used.</p>",
         "UpdateNodegroupVersionRequest$launchTemplate": "<p>An object representing a node group's launch template specification. You can only update a node group using a launch template if the node group was originally deployed with a launch template.</p>"
       }
@@ -478,7 +490,7 @@
       "base": "<p>An object representing the remote access configuration for the managed node group.</p>",
       "refs": {
         "CreateNodegroupRequest$remoteAccess": "<p>The remote access (SSH) configuration to use with your node group. If you specify <code>launchTemplate</code>, then don't specify <code>remoteAccess</code>, or the node group deployment will fail. For more information about using launch templates with Amazon EKS, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html\">Launch template support</a> in the Amazon EKS User Guide.</p>",
-        "Nodegroup$remoteAccess": "<p>If the node group wasn't deployed with a launch template, then this is the remote access configuration that is associated with the node group. If the node group was deployed with a launch template, then <code>remoteAccess</code> is <code>null</code>.</p>"
+        "Nodegroup$remoteAccess": "<p>If the node group wasn't deployed with a launch template, then this is the remote access configuration that is associated with the node group. If the node group was deployed with a launch template, then this is <code>null</code>.</p>"
       }
     },
     "ResourceInUseException": {
@@ -564,6 +576,8 @@
         "InvalidRequestException$nodegroupName": "<p>The Amazon EKS managed node group associated with the exception.</p>",
         "InvalidRequestException$message": null,
         "Issue$message": "<p>The error message associated with the issue.</p>",
+        "KubernetesNetworkConfigRequest$serviceIpv4Cidr": "<p>The CIDR block to assign Kubernetes service IP addresses from. If you don't specify a block, Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. We recommend that you specify a block that does not overlap with resources in other networks that are peered or connected to your VPC. The block must meet the following requirements:</p> <ul> <li> <p>Within one of the following private IP address blocks: 10.0.0.0/8, 172.16.0.0.0/12, or 192.168.0.0/16.</p> </li> <li> <p>Doesn't overlap with any CIDR block assigned to the VPC that you selected for VPC.</p> </li> <li> <p>Between /24 and /12.</p> </li> </ul> <important> <p>You can only specify a custom CIDR block when you create a cluster and can't change this value once the cluster is created.</p> </important>",
+        "KubernetesNetworkConfigResponse$serviceIpv4Cidr": "<p>The CIDR block that Kubernetes service IP addresses are assigned from. If you didn't specify a CIDR block, then Kubernetes assigns addresses from either the 10.100.0.0/16 or 172.20.0.0/16 CIDR blocks. If this was specified, then it was specified when the cluster was created and it cannot be changed.</p>",
         "LaunchTemplateSpecification$name": "<p>The name of the launch template.</p>",
         "LaunchTemplateSpecification$version": "<p>The version of the launch template to use. If no version is specified, then the template's default version is used.</p>",
         "LaunchTemplateSpecification$id": "<p>The ID of the launch template.</p>",
@@ -645,7 +659,7 @@
         "ListFargateProfilesResponse$fargateProfileNames": "<p>A list of all of the Fargate profiles associated with the specified cluster.</p>",
         "ListNodegroupsResponse$nodegroups": "<p>A list of all of the node groups associated with the specified cluster.</p>",
         "ListUpdatesResponse$updateIds": "<p>A list of all the updates for the specified cluster and Region.</p>",
-        "Nodegroup$instanceTypes": "<p>If the node group wasn't deployed with a launch template, then this is the instance type that is associated with the node group. If the node group was deployed with a launch template, then <code>instanceTypes</code> is <code>null</code>.</p>",
+        "Nodegroup$instanceTypes": "<p>If the node group wasn't deployed with a launch template, then this is the instance type that is associated with the node group. If the node group was deployed with a launch template, then this is <code>null</code>.</p>",
         "Nodegroup$subnets": "<p>The subnets that were specified for the Auto Scaling group that is associated with your node group.</p>",
         "RemoteAccessConfig$sourceSecurityGroups": "<p>The security groups that are allowed SSH access (port 22) to the worker nodes. If you specify an Amazon EC2 SSH key but do not specify a source security group when you create a managed node group, then port 22 on the worker nodes is opened to the internet (0.0.0.0/0). For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html\">Security Groups for Your VPC</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
         "UnsupportedAvailabilityZoneException$validZones": "<p>The supported Availability Zones for your account. Choose subnets in these Availability Zones for your cluster.</p>",

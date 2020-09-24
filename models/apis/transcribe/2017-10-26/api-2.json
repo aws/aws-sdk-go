@@ -904,7 +904,10 @@
         "mp3",
         "mp4",
         "wav",
-        "flac"
+        "flac",
+        "ogg",
+        "amr",
+        "webm"
       ]
     },
     "MediaSampleRateHertz":{
@@ -1008,6 +1011,12 @@
       "max":64,
       "pattern":"[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]"
     },
+    "OutputKey":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_.!*'()/]{1,1024}$"
+    },
     "OutputLocationType":{
       "type":"string",
       "enum":[
@@ -1070,6 +1079,7 @@
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
         "OutputBucketName":{"shape":"OutputBucketName"},
+        "OutputKey":{"shape":"OutputKey"},
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
         "Settings":{"shape":"MedicalTranscriptionSetting"},
         "Specialty":{"shape":"Specialty"},
@@ -1095,6 +1105,7 @@
         "MediaFormat":{"shape":"MediaFormat"},
         "Media":{"shape":"Media"},
         "OutputBucketName":{"shape":"OutputBucketName"},
+        "OutputKey":{"shape":"OutputKey"},
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
         "Settings":{"shape":"Settings"},
         "ModelSettings":{"shape":"ModelSettings"},

@@ -2873,6 +2873,7 @@
       },
       "groundstation" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-southeast-2" : { },
           "eu-north-1" : { },
           "eu-west-1" : { },

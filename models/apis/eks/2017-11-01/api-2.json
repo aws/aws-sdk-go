@@ -411,6 +411,7 @@
         "endpoint":{"shape":"String"},
         "roleArn":{"shape":"String"},
         "resourcesVpcConfig":{"shape":"VpcConfigResponse"},
+        "kubernetesNetworkConfig":{"shape":"KubernetesNetworkConfigResponse"},
         "logging":{"shape":"Logging"},
         "identity":{"shape":"Identity"},
         "status":{"shape":"ClusterStatus"},
@@ -449,6 +450,7 @@
         "version":{"shape":"String"},
         "roleArn":{"shape":"String"},
         "resourcesVpcConfig":{"shape":"VpcConfigRequest"},
+        "kubernetesNetworkConfig":{"shape":"KubernetesNetworkConfigRequest"},
         "logging":{"shape":"Logging"},
         "clientRequestToken":{
           "shape":"String",
@@ -821,6 +823,18 @@
     "IssueList":{
       "type":"list",
       "member":{"shape":"Issue"}
+    },
+    "KubernetesNetworkConfigRequest":{
+      "type":"structure",
+      "members":{
+        "serviceIpv4Cidr":{"shape":"String"}
+      }
+    },
+    "KubernetesNetworkConfigResponse":{
+      "type":"structure",
+      "members":{
+        "serviceIpv4Cidr":{"shape":"String"}
+      }
     },
     "LaunchTemplateSpecification":{
       "type":"structure",

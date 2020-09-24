@@ -6334,6 +6334,24 @@ type StartMedicalTranscriptionJobInput struct {
 	// output location in the OutputBucketName parameter.
 	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
+	// You can specify a location in an Amazon S3 bucket to store the output of
+	// your medical transcription job.
+	//
+	// If you don't specify an output key, Amazon Transcribe Medical stores the
+	// output of your transcription job in the Amazon S3 bucket you specified. By
+	// default, the object key is "your-transcription-job-name.json".
+	//
+	// You can use output keys to specify the Amazon S3 prefix and file name of
+	// the transcription output. For example, specifying the Amazon S3 prefix, "folder1/folder2/",
+	// as an output key would lead to the output being stored as "folder1/folder2/your-transcription-job-name.json".
+	// If you specify "my-other-job-name.json" as the output key, the object key
+	// is changed to "my-other-job-name.json". You can use an output key to change
+	// both the prefix and the file name, for example "folder/my-other-job-name.json".
+	//
+	// If you specify an output key, you must also specify an S3 bucket in the OutputBucketName
+	// parameter.
+	OutputKey *string `min:"1" type:"string"`
+
 	// Optional settings for the medical transcription job.
 	Settings *MedicalTranscriptionSetting `type:"structure"`
 
@@ -6383,6 +6401,9 @@ func (s *StartMedicalTranscriptionJobInput) Validate() error {
 	}
 	if s.OutputEncryptionKMSKeyId != nil && len(*s.OutputEncryptionKMSKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputEncryptionKMSKeyId", 1))
+	}
+	if s.OutputKey != nil && len(*s.OutputKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputKey", 1))
 	}
 	if s.Specialty == nil {
 		invalidParams.Add(request.NewErrParamRequired("Specialty"))
@@ -6446,6 +6467,12 @@ func (s *StartMedicalTranscriptionJobInput) SetOutputBucketName(v string) *Start
 // SetOutputEncryptionKMSKeyId sets the OutputEncryptionKMSKeyId field's value.
 func (s *StartMedicalTranscriptionJobInput) SetOutputEncryptionKMSKeyId(v string) *StartMedicalTranscriptionJobInput {
 	s.OutputEncryptionKMSKeyId = &v
+	return s
+}
+
+// SetOutputKey sets the OutputKey field's value.
+func (s *StartMedicalTranscriptionJobInput) SetOutputKey(v string) *StartMedicalTranscriptionJobInput {
+	s.OutputKey = &v
 	return s
 }
 
@@ -6584,6 +6611,24 @@ type StartTranscriptionJobInput struct {
 	// output location in the OutputBucketName parameter.
 	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
 
+	// You can specify a location in an Amazon S3 bucket to store the output of
+	// your transcription job.
+	//
+	// If you don't specify an output key, Amazon Transcribe stores the output of
+	// your transcription job in the Amazon S3 bucket you specified. By default,
+	// the object key is "your-transcription-job-name.json".
+	//
+	// You can use output keys to specify the Amazon S3 prefix and file name of
+	// the transcription output. For example, specifying the Amazon S3 prefix, "folder1/folder2/",
+	// as an output key would lead to the output being stored as "folder1/folder2/your-transcription-job-name.json".
+	// If you specify "my-other-job-name.json" as the output key, the object key
+	// is changed to "my-other-job-name.json". You can use an output key to change
+	// both the prefix and the file name, for example "folder/my-other-job-name.json".
+	//
+	// If you specify an output key, you must also specify an S3 bucket in the OutputBucketName
+	// parameter.
+	OutputKey *string `min:"1" type:"string"`
+
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
 
@@ -6620,6 +6665,9 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	}
 	if s.OutputEncryptionKMSKeyId != nil && len(*s.OutputEncryptionKMSKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputEncryptionKMSKeyId", 1))
+	}
+	if s.OutputKey != nil && len(*s.OutputKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputKey", 1))
 	}
 	if s.TranscriptionJobName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TranscriptionJobName"))
@@ -6722,6 +6770,12 @@ func (s *StartTranscriptionJobInput) SetOutputBucketName(v string) *StartTranscr
 // SetOutputEncryptionKMSKeyId sets the OutputEncryptionKMSKeyId field's value.
 func (s *StartTranscriptionJobInput) SetOutputEncryptionKMSKeyId(v string) *StartTranscriptionJobInput {
 	s.OutputEncryptionKMSKeyId = &v
+	return s
+}
+
+// SetOutputKey sets the OutputKey field's value.
+func (s *StartTranscriptionJobInput) SetOutputKey(v string) *StartTranscriptionJobInput {
+	s.OutputKey = &v
 	return s
 }
 
@@ -6852,10 +6906,9 @@ type TranscriptionJob struct {
 	//    in the Amazon Web Services General Reference.
 	FailureReason *string `type:"string"`
 
-	// The score that Amazon Transcribe gives for the predominant language that
-	// it identified in your collection of source audio files. This score reflects
-	// the confidence that the language that Amazon Transcribe identified is the
-	// correct language.
+	// A value between zero and one that Amazon Transcribe assigned to the language
+	// that it identified in the source audio. Larger values indicate that Amazon
+	// Transcribe has higher confidence in the language it identified.
 	IdentifiedLanguageScore *float64 `type:"float"`
 
 	// A value that shows if automatic language identification was enabled for a
@@ -7841,6 +7894,15 @@ const (
 
 	// MediaFormatFlac is a MediaFormat enum value
 	MediaFormatFlac = "flac"
+
+	// MediaFormatOgg is a MediaFormat enum value
+	MediaFormatOgg = "ogg"
+
+	// MediaFormatAmr is a MediaFormat enum value
+	MediaFormatAmr = "amr"
+
+	// MediaFormatWebm is a MediaFormat enum value
+	MediaFormatWebm = "webm"
 )
 
 // MediaFormat_Values returns all elements of the MediaFormat enum
@@ -7850,6 +7912,9 @@ func MediaFormat_Values() []string {
 		MediaFormatMp4,
 		MediaFormatWav,
 		MediaFormatFlac,
+		MediaFormatOgg,
+		MediaFormatAmr,
+		MediaFormatWebm,
 	}
 }
 

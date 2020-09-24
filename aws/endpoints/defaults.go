@@ -3019,6 +3019,7 @@ var awsPartition = partition{
 		"groundstation": service{
 
 			Endpoints: endpoints{
+				"af-south-1":     endpoint{},
 				"ap-southeast-2": endpoint{},
 				"eu-north-1":     endpoint{},
 				"eu-west-1":      endpoint{},

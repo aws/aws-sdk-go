@@ -67,7 +67,8 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InvalidJobIdException"},
         {"shape":"InternalServerError"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidS3ObjectException"}
       ]
     },
     "GetDocumentTextDetection":{
@@ -84,7 +85,8 @@
         {"shape":"ProvisionedThroughputExceededException"},
         {"shape":"InvalidJobIdException"},
         {"shape":"InternalServerError"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidS3ObjectException"}
       ]
     },
     "StartDocumentAnalysis":{
@@ -488,6 +490,14 @@
         "RoleArn":{"shape":"RoleArn"}
       }
     },
+    "OutputConfig":{
+      "type":"structure",
+      "required":["S3Bucket"],
+      "members":{
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3Prefix":{"shape":"S3ObjectName"}
+      }
+    },
     "Pages":{
       "type":"list",
       "member":{"shape":"UInteger"}
@@ -535,7 +545,8 @@
       "type":"string",
       "enum":[
         "VALUE",
-        "CHILD"
+        "CHILD",
+        "COMPLEX_FEATURES"
       ]
     },
     "RoleArn":{
@@ -594,7 +605,8 @@
         "FeatureTypes":{"shape":"FeatureTypes"},
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "JobTag":{"shape":"JobTag"},
-        "NotificationChannel":{"shape":"NotificationChannel"}
+        "NotificationChannel":{"shape":"NotificationChannel"},
+        "OutputConfig":{"shape":"OutputConfig"}
       }
     },
     "StartDocumentAnalysisResponse":{
@@ -610,7 +622,8 @@
         "DocumentLocation":{"shape":"DocumentLocation"},
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "JobTag":{"shape":"JobTag"},
-        "NotificationChannel":{"shape":"NotificationChannel"}
+        "NotificationChannel":{"shape":"NotificationChannel"},
+        "OutputConfig":{"shape":"OutputConfig"}
       }
     },
     "StartDocumentTextDetectionResponse":{

@@ -196,10 +196,6 @@
     }
   },
   "shapes":{
-    "Arn":{
-      "type":"string",
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso-{0,1}[a-z]{0,1}):[A-Za-z0-9][A-Za-z0-9_/.-]{0,62}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,1023}$"
-    },
     "Blob":{
       "type":"blob",
       "max":10000000,
@@ -219,7 +215,7 @@
         "Id":{"shape":"UUID"},
         "Name":{"shape":"CanaryName"},
         "Code":{"shape":"CanaryCodeOutput"},
-        "ExecutionRoleArn":{"shape":"Arn"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
         "Schedule":{"shape":"CanaryScheduleOutput"},
         "RunConfig":{"shape":"CanaryRunConfigOutput"},
         "SuccessRetentionPeriodInDays":{"shape":"MaxSize1024"},
@@ -227,11 +223,17 @@
         "Status":{"shape":"CanaryStatus"},
         "Timeline":{"shape":"CanaryTimeline"},
         "ArtifactS3Location":{"shape":"String"},
-        "EngineArn":{"shape":"Arn"},
+        "EngineArn":{"shape":"FunctionArn"},
         "RuntimeVersion":{"shape":"String"},
         "VpcConfig":{"shape":"VpcConfigOutput"},
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "CanaryArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:synthetics:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:canary:[0-9a-z_\\-]{1,21}"
     },
     "CanaryCodeInput":{
       "type":"structure",
@@ -267,6 +269,7 @@
     "CanaryRun":{
       "type":"structure",
       "members":{
+        "Id":{"shape":"UUID"},
         "Name":{"shape":"CanaryName"},
         "Status":{"shape":"CanaryRunStatus"},
         "Timeline":{"shape":"CanaryRunTimeline"},
@@ -275,17 +278,18 @@
     },
     "CanaryRunConfigInput":{
       "type":"structure",
-      "required":["TimeoutInSeconds"],
       "members":{
         "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"},
-        "MemoryInMB":{"shape":"MaxSize3008"}
+        "MemoryInMB":{"shape":"MaxSize3008"},
+        "ActiveTracing":{"shape":"NullableBoolean"}
       }
     },
     "CanaryRunConfigOutput":{
       "type":"structure",
       "members":{
         "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"},
-        "MemoryInMB":{"shape":"MaxSize3008"}
+        "MemoryInMB":{"shape":"MaxSize3008"},
+        "ActiveTracing":{"shape":"NullableBoolean"}
       }
     },
     "CanaryRunState":{
@@ -394,7 +398,7 @@
         "Name":{"shape":"CanaryName"},
         "Code":{"shape":"CanaryCodeInput"},
         "ArtifactS3Location":{"shape":"String"},
-        "ExecutionRoleArn":{"shape":"Arn"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
         "Schedule":{"shape":"CanaryScheduleInput"},
         "RunConfig":{"shape":"CanaryRunConfigInput"},
         "SuccessRetentionPeriodInDays":{"shape":"MaxSize1024"},
@@ -469,6 +473,12 @@
       }
     },
     "ErrorMessage":{"type":"string"},
+    "FunctionArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+    },
     "GetCanaryRequest":{
       "type":"structure",
       "required":["Name"],
@@ -519,7 +529,7 @@
       "required":["ResourceArn"],
       "members":{
         "ResourceArn":{
-          "shape":"Arn",
+          "shape":"CanaryArn",
           "location":"uri",
           "locationName":"resourceArn"
         }
@@ -538,8 +548,8 @@
     },
     "MaxFifteenMinutesInSeconds":{
       "type":"integer",
-      "max":900,
-      "min":60
+      "max":840,
+      "min":3
     },
     "MaxOneYearInSeconds":{
       "type":"long",
@@ -561,6 +571,7 @@
       "max":3008,
       "min":960
     },
+    "NullableBoolean":{"type":"boolean"},
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -568,6 +579,12 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:iam::\\d{12}:role/?[a-zA-Z_0-9+=,.@\\-_/]+"
     },
     "RuntimeVersion":{
       "type":"structure",
@@ -660,7 +677,7 @@
       ],
       "members":{
         "ResourceArn":{
-          "shape":"Arn",
+          "shape":"CanaryArn",
           "location":"uri",
           "locationName":"resourceArn"
         },
@@ -679,7 +696,8 @@
     "Timestamp":{"type":"timestamp"},
     "Token":{
       "type":"string",
-      "pattern":"^[a-zA-Z0-9=/+_.-]{4,252}$"
+      "max":252,
+      "min":4
     },
     "UUID":{
       "type":"string",
@@ -693,7 +711,7 @@
       ],
       "members":{
         "ResourceArn":{
-          "shape":"Arn",
+          "shape":"CanaryArn",
           "location":"uri",
           "locationName":"resourceArn"
         },
@@ -719,7 +737,7 @@
           "locationName":"name"
         },
         "Code":{"shape":"CanaryCodeInput"},
-        "ExecutionRoleArn":{"shape":"Arn"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
         "RuntimeVersion":{"shape":"String"},
         "Schedule":{"shape":"CanaryScheduleInput"},
         "RunConfig":{"shape":"CanaryRunConfigInput"},

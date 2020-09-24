@@ -1888,7 +1888,7 @@
     },
     "OauthToken":{
       "type":"string",
-      "max":100,
+      "max":1000,
       "sensitive":true
     },
     "Platform":{
