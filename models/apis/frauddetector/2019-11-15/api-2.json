@@ -1398,9 +1398,9 @@
     },
     "KmsEncryptionKeyArn":{
       "type":"string",
-      "max":80,
+      "max":90,
       "min":7,
-      "pattern":"^\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}$|DEFAULT|arn:[a-zA-Z0-9-]+:kms:[a-zA-Z0-9-]+:\\d{12}:key:[a-zA-Z0-9-_]+|[a-zA-Z0-9-_]\\S+"
+      "pattern":"^\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}|DEFAULT|arn:[a-zA-Z0-9-]+:kms:[a-zA-Z0-9-]+:\\d{12}:key\\/\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}$"
     },
     "Label":{
       "type":"structure",
@@ -2266,7 +2266,7 @@
     },
     "variableValue":{
       "type":"string",
-      "max":256,
+      "max":1024,
       "min":1,
       "sensitive":true
     },

@@ -27,7 +27,8 @@
       "errors":[
         {"shape":"MalformedPolicyDocumentException"},
         {"shape":"PackedPolicyTooLargeException"},
-        {"shape":"RegionDisabledException"}
+        {"shape":"RegionDisabledException"},
+        {"shape":"ExpiredTokenException"}
       ]
     },
     "AssumeRoleWithSAML":{
@@ -445,8 +446,7 @@
     "SAMLAssertionType":{
       "type":"string",
       "max":100000,
-      "min":4,
-      "sensitive":true
+      "min":4
     },
     "Subject":{"type":"string"},
     "SubjectType":{"type":"string"},
@@ -484,8 +484,7 @@
     "clientTokenType":{
       "type":"string",
       "max":2048,
-      "min":4,
-      "sensitive":true
+      "min":4
     },
     "dateType":{"type":"timestamp"},
     "decodedMessageType":{"type":"string"},

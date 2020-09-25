@@ -10314,12 +10314,10 @@ type ConformancePackDetail struct {
 
 	// Conformance pack template that is used to create a pack. The delivery bucket
 	// name should start with awsconfigconforms. For example: "Resource": "arn:aws:s3:::your_bucket_name/*".
-	//
-	// DeliveryS3Bucket is a required field
-	DeliveryS3Bucket *string `min:"3" type:"string" required:"true"`
+	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
-	DeliveryS3KeyPrefix *string `min:"1" type:"string"`
+	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// Last time when conformation pack update was requested.
 	LastUpdateRequestedTime *time.Time `type:"timestamp"`
@@ -18839,12 +18837,10 @@ type OrganizationConformancePack struct {
 
 	// Location of an Amazon S3 bucket where AWS Config can deliver evaluation results
 	// and conformance pack template that is used to create a pack.
-	//
-	// DeliveryS3Bucket is a required field
-	DeliveryS3Bucket *string `min:"3" type:"string" required:"true"`
+	DeliveryS3Bucket *string `type:"string"`
 
 	// Any folder structure you want to add to an Amazon S3 bucket.
-	DeliveryS3KeyPrefix *string `min:"1" type:"string"`
+	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A comma-separated list of accounts excluded from organization conformance
 	// pack.
@@ -19995,12 +19991,10 @@ type PutConformancePackInput struct {
 	ConformancePackName *string `min:"1" type:"string" required:"true"`
 
 	// AWS Config stores intermediate files while processing conformance pack template.
-	//
-	// DeliveryS3Bucket is a required field
-	DeliveryS3Bucket *string `min:"3" type:"string" required:"true"`
+	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
-	DeliveryS3KeyPrefix *string `min:"1" type:"string"`
+	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A string containing full conformance pack template body. Structure containing
 	// the template body with a minimum length of 1 byte and a maximum length of
@@ -20036,15 +20030,6 @@ func (s *PutConformancePackInput) Validate() error {
 	}
 	if s.ConformancePackName != nil && len(*s.ConformancePackName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConformancePackName", 1))
-	}
-	if s.DeliveryS3Bucket == nil {
-		invalidParams.Add(request.NewErrParamRequired("DeliveryS3Bucket"))
-	}
-	if s.DeliveryS3Bucket != nil && len(*s.DeliveryS3Bucket) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DeliveryS3Bucket", 3))
-	}
-	if s.DeliveryS3KeyPrefix != nil && len(*s.DeliveryS3KeyPrefix) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DeliveryS3KeyPrefix", 1))
 	}
 	if s.TemplateBody != nil && len(*s.TemplateBody) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("TemplateBody", 1))
@@ -20399,12 +20384,10 @@ type PutOrganizationConformancePackInput struct {
 	// The delivery bucket name should start with awsconfigconforms. For example:
 	// "Resource": "arn:aws:s3:::your_bucket_name/*". For more information, see
 	// Permissions for cross account bucket access (https://docs.aws.amazon.com/config/latest/developerguide/conformance-pack-organization-apis.html).
-	//
-	// DeliveryS3Bucket is a required field
-	DeliveryS3Bucket *string `min:"3" type:"string" required:"true"`
+	DeliveryS3Bucket *string `type:"string"`
 
 	// The prefix for the Amazon S3 bucket.
-	DeliveryS3KeyPrefix *string `min:"1" type:"string"`
+	DeliveryS3KeyPrefix *string `type:"string"`
 
 	// A list of AWS accounts to be excluded from an organization conformance pack
 	// while deploying a conformance pack.
@@ -20440,15 +20423,6 @@ func (s PutOrganizationConformancePackInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutOrganizationConformancePackInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutOrganizationConformancePackInput"}
-	if s.DeliveryS3Bucket == nil {
-		invalidParams.Add(request.NewErrParamRequired("DeliveryS3Bucket"))
-	}
-	if s.DeliveryS3Bucket != nil && len(*s.DeliveryS3Bucket) < 3 {
-		invalidParams.Add(request.NewErrParamMinLen("DeliveryS3Bucket", 3))
-	}
-	if s.DeliveryS3KeyPrefix != nil && len(*s.DeliveryS3KeyPrefix) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("DeliveryS3KeyPrefix", 1))
-	}
 	if s.OrganizationConformancePackName == nil {
 		invalidParams.Add(request.NewErrParamRequired("OrganizationConformancePackName"))
 	}
