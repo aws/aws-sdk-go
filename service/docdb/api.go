@@ -5201,7 +5201,10 @@ type CreateDBClusterInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The version number of the database engine to use.
+	// The version number of the database engine to use. The --engine-version will
+	// default to the latest major engine version. For production workloads, we
+	// recommend explicitly declaring this parameter with the intended major engine
+	// version.
 	EngineVersion *string `type:"string"`
 
 	// The AWS KMS key identifier for an encrypted cluster.

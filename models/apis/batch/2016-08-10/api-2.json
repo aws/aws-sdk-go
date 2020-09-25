@@ -427,6 +427,7 @@
         "memory":{"shape":"Integer"},
         "command":{"shape":"StringList"},
         "jobRoleArn":{"shape":"String"},
+        "executionRoleArn":{"shape":"String"},
         "volumes":{"shape":"Volumes"},
         "environment":{"shape":"EnvironmentVariables"},
         "mountPoints":{"shape":"MountPoints"},
@@ -442,7 +443,9 @@
         "instanceType":{"shape":"String"},
         "networkInterfaces":{"shape":"NetworkInterfaceList"},
         "resourceRequirements":{"shape":"ResourceRequirements"},
-        "linuxParameters":{"shape":"LinuxParameters"}
+        "linuxParameters":{"shape":"LinuxParameters"},
+        "logConfiguration":{"shape":"LogConfiguration"},
+        "secrets":{"shape":"SecretList"}
       }
     },
     "ContainerOverrides":{
@@ -464,6 +467,7 @@
         "memory":{"shape":"Integer"},
         "command":{"shape":"StringList"},
         "jobRoleArn":{"shape":"String"},
+        "executionRoleArn":{"shape":"String"},
         "volumes":{"shape":"Volumes"},
         "environment":{"shape":"EnvironmentVariables"},
         "mountPoints":{"shape":"MountPoints"},
@@ -473,7 +477,9 @@
         "user":{"shape":"String"},
         "instanceType":{"shape":"String"},
         "resourceRequirements":{"shape":"ResourceRequirements"},
-        "linuxParameters":{"shape":"LinuxParameters"}
+        "linuxParameters":{"shape":"LinuxParameters"},
+        "logConfiguration":{"shape":"LogConfiguration"},
+        "secrets":{"shape":"SecretList"}
       }
     },
     "ContainerSummary":{
@@ -840,7 +846,12 @@
     "LinuxParameters":{
       "type":"structure",
       "members":{
-        "devices":{"shape":"DevicesList"}
+        "devices":{"shape":"DevicesList"},
+        "initProcessEnabled":{"shape":"Boolean"},
+        "sharedMemorySize":{"shape":"Integer"},
+        "tmpfs":{"shape":"TmpfsList"},
+        "maxSwap":{"shape":"Integer"},
+        "swappiness":{"shape":"Integer"}
       }
     },
     "ListJobsRequest":{
@@ -861,6 +872,32 @@
         "jobSummaryList":{"shape":"JobSummaryList"},
         "nextToken":{"shape":"String"}
       }
+    },
+    "LogConfiguration":{
+      "type":"structure",
+      "required":["logDriver"],
+      "members":{
+        "logDriver":{"shape":"LogDriver"},
+        "options":{"shape":"LogConfigurationOptionsMap"},
+        "secretOptions":{"shape":"SecretList"}
+      }
+    },
+    "LogConfigurationOptionsMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "LogDriver":{
+      "type":"string",
+      "enum":[
+        "json-file",
+        "syslog",
+        "journald",
+        "gelf",
+        "fluentd",
+        "awslogs",
+        "splunk"
+      ]
     },
     "Long":{"type":"long"},
     "MountPoint":{
@@ -1005,6 +1042,21 @@
         "attempts":{"shape":"Integer"}
       }
     },
+    "Secret":{
+      "type":"structure",
+      "required":[
+        "name",
+        "valueFrom"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "valueFrom":{"shape":"String"}
+      }
+    },
+    "SecretList":{
+      "type":"list",
+      "member":{"shape":"Secret"}
+    },
     "ServerException":{
       "type":"structure",
       "members":{
@@ -1070,6 +1122,22 @@
       "type":"structure",
       "members":{
       }
+    },
+    "Tmpfs":{
+      "type":"structure",
+      "required":[
+        "containerPath",
+        "size"
+      ],
+      "members":{
+        "containerPath":{"shape":"String"},
+        "size":{"shape":"Integer"},
+        "mountOptions":{"shape":"StringList"}
+      }
+    },
+    "TmpfsList":{
+      "type":"list",
+      "member":{"shape":"Tmpfs"}
     },
     "Ulimit":{
       "type":"structure",

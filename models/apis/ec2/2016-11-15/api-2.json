@@ -20349,6 +20349,14 @@
         "LocalGatewayRouteTableId":{
           "shape":"LocalGatewayRoutetableId",
           "locationName":"localGatewayRouteTableId"
+        },
+        "LocalGatewayRouteTableArn":{
+          "shape":"ResourceArn",
+          "locationName":"localGatewayRouteTableArn"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         }
       }
     },
@@ -20376,6 +20384,10 @@
           "shape":"String",
           "locationName":"localGatewayRouteTableId"
         },
+        "LocalGatewayRouteTableArn":{
+          "shape":"ResourceArn",
+          "locationName":"localGatewayRouteTableArn"
+        },
         "LocalGatewayId":{
           "shape":"LocalGatewayId",
           "locationName":"localGatewayId"
@@ -20383,6 +20395,10 @@
         "OutpostArn":{
           "shape":"String",
           "locationName":"outpostArn"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         },
         "State":{
           "shape":"String",
@@ -20427,6 +20443,14 @@
           "shape":"LocalGatewayId",
           "locationName":"localGatewayRouteTableId"
         },
+        "LocalGatewayRouteTableArn":{
+          "shape":"ResourceArn",
+          "locationName":"localGatewayRouteTableArn"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
         "State":{
           "shape":"String",
           "locationName":"state"
@@ -20463,6 +20487,10 @@
           "shape":"String",
           "locationName":"localGatewayRouteTableId"
         },
+        "LocalGatewayRouteTableArn":{
+          "shape":"ResourceArn",
+          "locationName":"localGatewayRouteTableArn"
+        },
         "LocalGatewayId":{
           "shape":"String",
           "locationName":"localGatewayId"
@@ -20470,6 +20498,10 @@
         "VpcId":{
           "shape":"String",
           "locationName":"vpcId"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         },
         "State":{
           "shape":"String",

@@ -1,3 +1,18 @@
+Release v1.34.32 (2020-09-25)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Support custom logging, executionRole, secrets, and linuxParameters (initProcessEnabled, maxSwap, swappiness, sharedMemorySize, and tmpfs). Also, add new context keys for awslogs.
+* `service/config`: Updates service API
+* `service/docdb`: Updates service documentation
+  * Documentation updates for docdb
+* `service/ec2`: Updates service API and documentation
+  * This release supports returning additional information about local gateway resources, such as the local gateway route table.
+* `service/frauddetector`: Updates service API and documentation
+* `service/sts`: Updates service API and documentation
+  * Documentation update for AssumeRole error
+
 Release v1.34.31 (2020-09-24)
 ===
 

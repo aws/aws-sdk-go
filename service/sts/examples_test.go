@@ -65,6 +65,8 @@ func ExampleSTS_AssumeRole_shared00() {
 				fmt.Println(sts.ErrCodePackedPolicyTooLargeException, aerr.Error())
 			case sts.ErrCodeRegionDisabledException:
 				fmt.Println(sts.ErrCodeRegionDisabledException, aerr.Error())
+			case sts.ErrCodeExpiredTokenException:
+				fmt.Println(sts.ErrCodeExpiredTokenException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
