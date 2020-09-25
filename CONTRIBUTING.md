@@ -10,8 +10,8 @@ effectively respond to your bug report or contribution.
 
 Jump To:
 
-* [Bug Reports](_#Bug-Reports_)
-* [Code Contributions](_#Code-Contributions_)
+* [Bug Reports](#Bug-Reports)
+* [Code Contributions](#Code-Contributions)
 
 ## How to contribute
 
