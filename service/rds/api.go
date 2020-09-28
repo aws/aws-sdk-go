@@ -11925,6 +11925,11 @@ func (c *RDS) RegisterDBProxyTargetsRequest(input *RegisterDBProxyTargetsInput) 
 //   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
 //   The requested operation can't be performed while the proxy is in this state.
 //
+//   * ErrCodeInsufficientAvailableIPsInSubnetFault "InsufficientAvailableIPsInSubnetFault"
+//   The requested operation can't be performed because there aren't enough available
+//   IP addresses in the proxy's subnets. Add more CIDR blocks to the VPC or remove
+//   IP address that aren't required from the subnets.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/RegisterDBProxyTargets
 func (c *RDS) RegisterDBProxyTargets(input *RegisterDBProxyTargetsInput) (*RegisterDBProxyTargetsOutput, error) {
 	req, out := c.RegisterDBProxyTargetsRequest(input)
@@ -35919,9 +35924,12 @@ type PendingMaintenanceAction struct {
 	// A description providing more detail about the maintenance action.
 	Description *string `type:"string"`
 
-	// The date when the maintenance action is automatically applied. The maintenance
-	// action is applied to the resource on this date regardless of the maintenance
-	// window for the resource.
+	// The date when the maintenance action is automatically applied.
+	//
+	// On this date, the maintenance action is applied to the resource as soon as
+	// possible, regardless of the maintenance window for the resource. There might
+	// be a delay of one or more days from this date before the maintenance action
+	// is applied.
 	ForcedApplyDate *time.Time `type:"timestamp"`
 
 	// Indicates the type of opt-in request that has been received for the resource.
