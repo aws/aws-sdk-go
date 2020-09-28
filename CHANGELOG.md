@@ -1,3 +1,11 @@
+Release v1.34.33 (2020-09-28)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * This release adds the InsufficientAvailableIPsInSubnetFault error for RDS Proxy.
+
 Release v1.34.32 (2020-09-25)
 ===
 

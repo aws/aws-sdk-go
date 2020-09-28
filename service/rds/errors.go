@@ -404,6 +404,14 @@ const (
 	// The request would result in the user exceeding the allowed number of DB instances.
 	ErrCodeInstanceQuotaExceededFault = "InstanceQuotaExceeded"
 
+	// ErrCodeInsufficientAvailableIPsInSubnetFault for service response error code
+	// "InsufficientAvailableIPsInSubnetFault".
+	//
+	// The requested operation can't be performed because there aren't enough available
+	// IP addresses in the proxy's subnets. Add more CIDR blocks to the VPC or remove
+	// IP address that aren't required from the subnets.
+	ErrCodeInsufficientAvailableIPsInSubnetFault = "InsufficientAvailableIPsInSubnetFault"
+
 	// ErrCodeInsufficientDBClusterCapacityFault for service response error code
 	// "InsufficientDBClusterCapacityFault".
 	//

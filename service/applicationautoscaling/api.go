@@ -1245,8 +1245,9 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // of resource ID, scalable dimension, and namespace.
 //
 // When you register a new scalable target, you must specify values for minimum
-// and maximum capacity. Application Auto Scaling scaling policies will not
-// scale capacity to values that are outside of this range.
+// and maximum capacity. Current capacity will be adjusted within the specified
+// range when scaling starts. Application Auto Scaling scaling policies will
+// not scale capacity to values that are outside of this range.
 //
 // After you register a scalable target, you do not need to register it again
 // to use other Application Auto Scaling operations. To see which resources
@@ -1561,6 +1562,9 @@ type DeleteScalingPolicyInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -1611,6 +1615,9 @@ type DeleteScalingPolicyInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -1745,6 +1752,9 @@ type DeleteScheduledActionInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -1795,6 +1805,9 @@ type DeleteScheduledActionInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -1934,6 +1947,9 @@ type DeregisterScalableTargetInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -1984,6 +2000,9 @@ type DeregisterScalableTargetInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -2119,6 +2138,9 @@ type DescribeScalableTargetsInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -2168,6 +2190,9 @@ type DescribeScalableTargetsInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -2323,6 +2348,9 @@ type DescribeScalingActivitiesInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -2372,6 +2400,9 @@ type DescribeScalingActivitiesInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -2533,6 +2564,9 @@ type DescribeScalingPoliciesInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -2582,6 +2616,9 @@ type DescribeScalingPoliciesInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -2746,6 +2783,9 @@ type DescribeScheduledActionsInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -2795,6 +2835,9 @@ type DescribeScheduledActionsInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -3275,9 +3318,9 @@ type PredefinedMetricSpecification struct {
 	// a resource label unless the metric type is ALBRequestCountPerTarget and there
 	// is a target group attached to the Spot Fleet request or ECS service.
 	//
-	// Elastic Load Balancing sends data about your load balancers to Amazon CloudWatch.
-	// CloudWatch collects the data and specifies the format to use to access the
-	// data. The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
+	// You create the resource label by appending the final portion of the load
+	// balancer ARN and the final portion of the target group ARN into a single
+	// value, separated by a forward slash (/). The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
 	// where:
 	//
 	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
@@ -3285,6 +3328,8 @@ type PredefinedMetricSpecification struct {
 	//
 	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
 	//    of the target group ARN.
+	//
+	// This is an example: app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
 	//
 	// To find the ARN for an Application Load Balancer, use the DescribeLoadBalancers
 	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
@@ -3390,6 +3435,9 @@ type PutScalingPolicyInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -3440,6 +3488,9 @@ type PutScalingPolicyInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -3638,6 +3689,9 @@ type PutScheduledActionInput struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -3688,6 +3742,9 @@ type PutScheduledActionInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -3855,6 +3912,14 @@ type RegisterScalableTargetInput struct {
 	// maximum capacity limit in response to changing demand.
 	//
 	// This parameter is required if you are registering a scalable target.
+	//
+	// Although you can specify a large maximum capacity, note that service quotas
+	// may impose lower limits. Each service has its own default quotas for the
+	// maximum capacity of the resource. If you want to specify a higher limit,
+	// you can request an increase. For more information, consult the documentation
+	// for that service. For information about the default quotas for each service,
+	// see Service Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
+	// in the Amazon Web Services General Reference.
 	MaxCapacity *int64 `type:"integer"`
 
 	// The minimum value that you plan to scale in to. When a scaling policy is
@@ -3902,6 +3967,9 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
+	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
 	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
@@ -3962,6 +4030,9 @@ type RegisterScalableTargetInput struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -4147,6 +4218,9 @@ type ScalableTarget struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -4203,6 +4277,9 @@ type ScalableTarget struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -4289,12 +4366,22 @@ type ScalableTargetAction struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum capacity.
+	//
+	// Although you can specify a large maximum capacity, note that service quotas
+	// may impose lower limits. Each service has its own default quotas for the
+	// maximum capacity of the resource. If you want to specify a higher limit,
+	// you can request an increase. For more information, consult the documentation
+	// for that service. For information about the default quotas for each service,
+	// see Service Endpoints and Quotas (https://docs.aws.amazon.com/general/latest/gr/aws-service-information.html)
+	// in the Amazon Web Services General Reference.
 	MaxCapacity *int64 `type:"integer"`
 
 	// The minimum capacity.
 	//
-	// For Lambda provisioned concurrency, the minimum value allowed is 0. For all
-	// other resources, the minimum value allowed is 1.
+	// For certain resources, the minimum value allowed is 0. This includes Lambda
+	// provisioned concurrency, Spot Fleet, ECS services, Aurora DB clusters, EMR
+	// clusters, and custom resources. For all other resources, the minimum value
+	// allowed is 1.
 	MinCapacity *int64 `type:"integer"`
 }
 
@@ -4380,6 +4467,9 @@ type ScalingActivity struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -4430,6 +4520,9 @@ type ScalingActivity struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -4600,6 +4693,9 @@ type ScalingPolicy struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -4650,6 +4746,9 @@ type ScalingPolicy struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -4792,6 +4891,9 @@ type ScheduledAction struct {
 	//    * Amazon Comprehend document classification endpoint - The resource type
 	//    and unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:document-classifier-endpoint/EXAMPLE.
 	//
+	//    * Amazon Comprehend entity recognizer endpoint - The resource type and
+	//    unique identifier are specified using the endpoint ARN. Example: arn:aws:comprehend:us-west-2:123456789012:entity-recognizer-endpoint/EXAMPLE.
+	//
 	//    * Lambda provisioned concurrency - The resource type is function and the
 	//    unique identifier is the function name with a function version or alias
 	//    name suffix that is not $LATEST. Example: function:my-function:prod or
@@ -4842,6 +4944,9 @@ type ScheduledAction struct {
 	//    * comprehend:document-classifier-endpoint:DesiredInferenceUnits - The
 	//    number of inference units for an Amazon Comprehend document classification
 	//    endpoint.
+	//
+	//    * comprehend:entity-recognizer-endpoint:DesiredInferenceUnits - The number
+	//    of inference units for an Amazon Comprehend entity recognizer endpoint.
 	//
 	//    * lambda:function:ProvisionedConcurrency - The provisioned concurrency
 	//    for a Lambda function.
@@ -5022,7 +5127,7 @@ type StepAdjustment struct {
 
 	// The amount by which to scale, based on the specified adjustment type. A positive
 	// value adds to the current capacity while a negative number removes from the
-	// current capacity.
+	// current capacity. For exact capacity, you must specify a positive value.
 	//
 	// ScalingAdjustment is a required field
 	ScalingAdjustment *int64 `type:"integer" required:"true"`
@@ -5074,8 +5179,9 @@ func (s *StepAdjustment) SetScalingAdjustment(v int64) *StepAdjustment {
 type StepScalingPolicyConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the ScalingAdjustment value in a StepAdjustment (https://docs.aws.amazon.com/autoscaling/application/APIReference/API_StepAdjustment.html)
-	// is an absolute number or a percentage of the current capacity.
+	// Specifies how the ScalingAdjustment value in a StepAdjustment (https://docs.aws.amazon.com/autoscaling/application/APIReference/API_StepAdjustment.html)
+	// is interpreted (for example, an absolute number or a percentage). The valid
+	// values are ChangeInCapacity, ExactCapacity, and PercentChangeInCapacity.
 	//
 	// AdjustmentType is required if you are adding a new step scaling policy configuration.
 	AdjustmentType *string `type:"string" enum:"AdjustmentType"`
@@ -5125,7 +5231,7 @@ type StepScalingPolicyConfiguration struct {
 	//
 	//    * DynamoDB global secondary indexes
 	//
-	//    * Amazon Comprehend document classification endpoints
+	//    * Amazon Comprehend document classification and entity recognizer endpoints
 	//
 	//    * Lambda provisioned concurrency
 	//
@@ -5137,14 +5243,12 @@ type StepScalingPolicyConfiguration struct {
 	// as Average.
 	MetricAggregationType *string `type:"string" enum:"MetricAggregationType"`
 
-	// The minimum value to scale by when scaling by percentages. For example, suppose
-	// that you create a step scaling policy to scale out an Amazon ECS service
-	// by 25 percent and you specify a MinAdjustmentMagnitude of 2. If the service
-	// has 4 tasks and the scaling policy is performed, 25 percent of 4 is 1. However,
-	// because you specified a MinAdjustmentMagnitude of 2, Application Auto Scaling
-	// scales out the service by 2 tasks.
-	//
-	// Valid only if the adjustment type is PercentChangeInCapacity.
+	// The minimum value to scale by when the adjustment type is PercentChangeInCapacity.
+	// For example, suppose that you create a step scaling policy to scale out an
+	// Amazon ECS service by 25 percent and you specify a MinAdjustmentMagnitude
+	// of 2. If the service has 4 tasks and the scaling policy is performed, 25
+	// percent of 4 is 1. However, because you specified a MinAdjustmentMagnitude
+	// of 2, Application Auto Scaling scales out the service by 2 tasks.
 	MinAdjustmentMagnitude *int64 `type:"integer"`
 
 	// A set of adjustments that enable you to scale based on the size of the alarm
@@ -5317,7 +5421,7 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	//
 	//    * DynamoDB global secondary indexes
 	//
-	//    * Amazon Comprehend document classification endpoints
+	//    * Amazon Comprehend document classification and entity recognizer endpoints
 	//
 	//    * Lambda provisioned concurrency
 	//
@@ -5357,7 +5461,7 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	//
 	//    * DynamoDB global secondary indexes
 	//
-	//    * Amazon Comprehend document classification endpoints
+	//    * Amazon Comprehend document classification and entity recognizer endpoints
 	//
 	//    * Lambda provisioned concurrency
 	//
@@ -5690,6 +5794,9 @@ const (
 	// ScalableDimensionComprehendDocumentClassifierEndpointDesiredInferenceUnits is a ScalableDimension enum value
 	ScalableDimensionComprehendDocumentClassifierEndpointDesiredInferenceUnits = "comprehend:document-classifier-endpoint:DesiredInferenceUnits"
 
+	// ScalableDimensionComprehendEntityRecognizerEndpointDesiredInferenceUnits is a ScalableDimension enum value
+	ScalableDimensionComprehendEntityRecognizerEndpointDesiredInferenceUnits = "comprehend:entity-recognizer-endpoint:DesiredInferenceUnits"
+
 	// ScalableDimensionLambdaFunctionProvisionedConcurrency is a ScalableDimension enum value
 	ScalableDimensionLambdaFunctionProvisionedConcurrency = "lambda:function:ProvisionedConcurrency"
 
@@ -5715,6 +5822,7 @@ func ScalableDimension_Values() []string {
 		ScalableDimensionSagemakerVariantDesiredInstanceCount,
 		ScalableDimensionCustomResourceResourceTypeProperty,
 		ScalableDimensionComprehendDocumentClassifierEndpointDesiredInferenceUnits,
+		ScalableDimensionComprehendEntityRecognizerEndpointDesiredInferenceUnits,
 		ScalableDimensionLambdaFunctionProvisionedConcurrency,
 		ScalableDimensionCassandraTableReadCapacityUnits,
 		ScalableDimensionCassandraTableWriteCapacityUnits,

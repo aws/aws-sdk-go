@@ -1815,7 +1815,8 @@
         {"shape":"DBProxyTargetAlreadyRegisteredFault"},
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"InvalidDBClusterStateFault"},
-        {"shape":"InvalidDBProxyStateFault"}
+        {"shape":"InvalidDBProxyStateFault"},
+        {"shape":"InsufficientAvailableIPsInSubnetFault"}
       ]
     },
     "RemoveFromGlobalCluster":{
@@ -5516,6 +5517,17 @@
       },
       "error":{
         "code":"InstanceQuotaExceeded",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "InsufficientAvailableIPsInSubnetFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InsufficientAvailableIPsInSubnetFault",
         "httpStatusCode":400,
         "senderFault":true
       },
