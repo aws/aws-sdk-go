@@ -1199,8 +1199,8 @@
     "ComplianceStatus": {
       "base": null,
       "refs": {
-        "ComplianceItem$Status": "<p>The status of the compliance item. An item is either COMPLIANT or NON_COMPLIANT.</p>",
-        "ComplianceItemEntry$Status": "<p>The status of the compliance item. An item is either COMPLIANT, NON_COMPLIANT, or an empty string (for Windows patches that aren't applicable).</p>",
+        "ComplianceItem$Status": "<p>The status of the compliance item. An item is either COMPLIANT, NON_COMPLIANT, or an empty string (for Windows patches that aren't applicable).</p>",
+        "ComplianceItemEntry$Status": "<p>The status of the compliance item. An item is either COMPLIANT or NON_COMPLIANT.</p>",
         "ResourceComplianceSummaryItem$Status": "<p>The compliance status for the resource.</p>"
       }
     },
@@ -5641,7 +5641,7 @@
     "PingStatus": {
       "base": null,
       "refs": {
-        "InstanceInformation$PingStatus": "<p>Connection status of SSM Agent. </p>"
+        "InstanceInformation$PingStatus": "<p>Connection status of SSM Agent. </p> <note> <p>The status <code>Inactive</code> has been deprecated and is no longer in use.</p> </note>"
       }
     },
     "PlatformType": {
@@ -6834,7 +6834,7 @@
       }
     },
     "TargetNotConnected": {
-      "base": "<p>The specified target instance for the session is not fully configured for use with Session Manager. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html\">Getting started with Session Manager</a> in the <i>AWS Systems Manager User Guide</i>.</p>",
+      "base": "<p>The specified target instance for the session is not fully configured for use with Session Manager. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html\">Getting started with Session Manager</a> in the <i>AWS Systems Manager User Guide</i>. This error is also returned if you attempt to start a session on an instance that is located in a different account or Region</p>",
       "refs": {
       }
     },

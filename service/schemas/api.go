@@ -1072,6 +1072,96 @@ func (c *Schemas) DescribeSchemaWithContext(ctx aws.Context, input *DescribeSche
 	return out, req.Send()
 }
 
+const opExportSchema = "ExportSchema"
+
+// ExportSchemaRequest generates a "aws/request.Request" representing the
+// client's request for the ExportSchema operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ExportSchema for more information on using the ExportSchema
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ExportSchemaRequest method.
+//    req, resp := client.ExportSchemaRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ExportSchema
+func (c *Schemas) ExportSchemaRequest(input *ExportSchemaInput) (req *request.Request, output *ExportSchemaOutput) {
+	op := &request.Operation{
+		Name:       opExportSchema,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/registries/name/{registryName}/schemas/name/{schemaName}/export",
+	}
+
+	if input == nil {
+		input = &ExportSchemaInput{}
+	}
+
+	output = &ExportSchemaOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ExportSchema API operation for Schemas.
+//
+// Exports a schema to a different specification.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Schemas's
+// API operation ExportSchema for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnauthorizedException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * ServiceUnavailableException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/schemas-2019-12-02/ExportSchema
+func (c *Schemas) ExportSchema(input *ExportSchemaInput) (*ExportSchemaOutput, error) {
+	req, out := c.ExportSchemaRequest(input)
+	return out, req.Send()
+}
+
+// ExportSchemaWithContext is the same as ExportSchema with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ExportSchema for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Schemas) ExportSchemaWithContext(ctx aws.Context, input *ExportSchemaInput, opts ...request.Option) (*ExportSchemaOutput, error) {
+	req, out := c.ExportSchemaRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCodeBindingSource = "GetCodeBindingSource"
 
 // GetCodeBindingSourceRequest generates a "aws/request.Request" representing the
@@ -4255,6 +4345,134 @@ func (s *DiscovererSummary) SetTags(v map[string]*string) *DiscovererSummary {
 	return s
 }
 
+type ExportSchemaInput struct {
+	_ struct{} `type:"structure"`
+
+	// RegistryName is a required field
+	RegistryName *string `location:"uri" locationName:"registryName" type:"string" required:"true"`
+
+	// SchemaName is a required field
+	SchemaName *string `location:"uri" locationName:"schemaName" type:"string" required:"true"`
+
+	SchemaVersion *string `location:"querystring" locationName:"schemaVersion" type:"string"`
+
+	// Type is a required field
+	Type *string `location:"querystring" locationName:"type" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ExportSchemaInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportSchemaInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ExportSchemaInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ExportSchemaInput"}
+	if s.RegistryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegistryName"))
+	}
+	if s.RegistryName != nil && len(*s.RegistryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegistryName", 1))
+	}
+	if s.SchemaName == nil {
+		invalidParams.Add(request.NewErrParamRequired("SchemaName"))
+	}
+	if s.SchemaName != nil && len(*s.SchemaName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SchemaName", 1))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRegistryName sets the RegistryName field's value.
+func (s *ExportSchemaInput) SetRegistryName(v string) *ExportSchemaInput {
+	s.RegistryName = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *ExportSchemaInput) SetSchemaName(v string) *ExportSchemaInput {
+	s.SchemaName = &v
+	return s
+}
+
+// SetSchemaVersion sets the SchemaVersion field's value.
+func (s *ExportSchemaInput) SetSchemaVersion(v string) *ExportSchemaInput {
+	s.SchemaVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ExportSchemaInput) SetType(v string) *ExportSchemaInput {
+	s.Type = &v
+	return s
+}
+
+type ExportSchemaOutput struct {
+	_ struct{} `type:"structure"`
+
+	Content *string `type:"string"`
+
+	SchemaArn *string `type:"string"`
+
+	SchemaName *string `type:"string"`
+
+	SchemaVersion *string `type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ExportSchemaOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExportSchemaOutput) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *ExportSchemaOutput) SetContent(v string) *ExportSchemaOutput {
+	s.Content = &v
+	return s
+}
+
+// SetSchemaArn sets the SchemaArn field's value.
+func (s *ExportSchemaOutput) SetSchemaArn(v string) *ExportSchemaOutput {
+	s.SchemaArn = &v
+	return s
+}
+
+// SetSchemaName sets the SchemaName field's value.
+func (s *ExportSchemaOutput) SetSchemaName(v string) *ExportSchemaOutput {
+	s.SchemaName = &v
+	return s
+}
+
+// SetSchemaVersion sets the SchemaVersion field's value.
+func (s *ExportSchemaOutput) SetSchemaVersion(v string) *ExportSchemaOutput {
+	s.SchemaVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ExportSchemaOutput) SetType(v string) *ExportSchemaOutput {
+	s.Type = &v
+	return s
+}
+
 type ForbiddenException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5488,6 +5706,8 @@ type SchemaVersionSummary struct {
 
 	// The version number of the schema.
 	SchemaVersion *string `type:"string"`
+
+	Type *string `type:"string"`
 }
 
 // String returns the string representation
@@ -5515,6 +5735,12 @@ func (s *SchemaVersionSummary) SetSchemaName(v string) *SchemaVersionSummary {
 // SetSchemaVersion sets the SchemaVersion field's value.
 func (s *SchemaVersionSummary) SetSchemaVersion(v string) *SchemaVersionSummary {
 	s.SchemaVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SchemaVersionSummary) SetType(v string) *SchemaVersionSummary {
+	s.Type = &v
 	return s
 }
 
@@ -5576,6 +5802,8 @@ type SearchSchemaVersionSummary struct {
 
 	// The version number of the schema
 	SchemaVersion *string `type:"string"`
+
+	Type *string `type:"string"`
 }
 
 // String returns the string representation
@@ -5597,6 +5825,12 @@ func (s *SearchSchemaVersionSummary) SetCreatedDate(v time.Time) *SearchSchemaVe
 // SetSchemaVersion sets the SchemaVersion field's value.
 func (s *SearchSchemaVersionSummary) SetSchemaVersion(v string) *SearchSchemaVersionSummary {
 	s.SchemaVersion = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *SearchSchemaVersionSummary) SetType(v string) *SearchSchemaVersionSummary {
+	s.Type = &v
 	return s
 }
 

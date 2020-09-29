@@ -1,3 +1,16 @@
+Release v1.34.34 (2020-09-29)
+===
+
+### Service Client Updates
+* `service/connect`: Updates service documentation
+* `service/ec2`: Updates service documentation
+  * This release adds support for Client to Client routing for AWS Client VPN.
+* `service/schemas`: Updates service API and documentation
+* `service/ssm`: Updates service documentation
+  * Simple update to description of ComplianceItemStatus.
+* `service/timestream-query`: Adds new service
+* `service/timestream-write`: Adds new service
+
 Release v1.34.33 (2020-09-28)
 ===
 

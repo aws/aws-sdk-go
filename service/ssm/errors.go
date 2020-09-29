@@ -701,7 +701,9 @@ const (
 	// The specified target instance for the session is not fully configured for
 	// use with Session Manager. For more information, see Getting started with
 	// Session Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html)
-	// in the AWS Systems Manager User Guide.
+	// in the AWS Systems Manager User Guide. This error is also returned if you
+	// attempt to start a session on an instance that is located in a different
+	// account or Region
 	ErrCodeTargetNotConnected = "TargetNotConnected"
 
 	// ErrCodeTooManyTagsError for service response error code

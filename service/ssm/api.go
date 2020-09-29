@@ -12633,7 +12633,9 @@ func (c *SSM) StartSessionRequest(input *StartSessionInput) (req *request.Reques
 //   The specified target instance for the session is not fully configured for
 //   use with Session Manager. For more information, see Getting started with
 //   Session Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html)
-//   in the AWS Systems Manager User Guide.
+//   in the AWS Systems Manager User Guide. This error is also returned if you
+//   attempt to start a session on an instance that is located in a different
+//   account or Region
 //
 //   * InternalServerError
 //   An error occurred on the server side.
@@ -17769,7 +17771,8 @@ type ComplianceItem struct {
 	// Critical, High, Medium, Low, Informational, Unspecified.
 	Severity *string `type:"string" enum:"ComplianceSeverity"`
 
-	// The status of the compliance item. An item is either COMPLIANT or NON_COMPLIANT.
+	// The status of the compliance item. An item is either COMPLIANT, NON_COMPLIANT,
+	// or an empty string (for Windows patches that aren't applicable).
 	Status *string `type:"string" enum:"ComplianceStatus"`
 
 	// A title for the compliance item. For example, if the compliance item is a
@@ -17859,8 +17862,7 @@ type ComplianceItemEntry struct {
 	// Severity is a required field
 	Severity *string `type:"string" required:"true" enum:"ComplianceSeverity"`
 
-	// The status of the compliance item. An item is either COMPLIANT, NON_COMPLIANT,
-	// or an empty string (for Windows patches that aren't applicable).
+	// The status of the compliance item. An item is either COMPLIANT or NON_COMPLIANT.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"ComplianceStatus"`
@@ -29603,6 +29605,8 @@ type InstanceInformation struct {
 	Name *string `type:"string"`
 
 	// Connection status of SSM Agent.
+	//
+	// The status Inactive has been deprecated and is no longer in use.
 	PingStatus *string `type:"string" enum:"PingStatus"`
 
 	// The name of the operating system platform running on your instance.
@@ -44356,7 +44360,9 @@ func (s *TargetLocation) SetTargetLocationMaxErrors(v string) *TargetLocation {
 // The specified target instance for the session is not fully configured for
 // use with Session Manager. For more information, see Getting started with
 // Session Manager (https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-getting-started.html)
-// in the AWS Systems Manager User Guide.
+// in the AWS Systems Manager User Guide. This error is also returned if you
+// attempt to start a session on an instance that is located in a different
+// account or Region
 type TargetNotConnected struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

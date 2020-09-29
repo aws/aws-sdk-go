@@ -151,6 +151,9 @@ func (c *Connect) CreateContactFlowRequest(input *CreateContactFlowInput) (req *
 //
 // Creates a contact flow for the specified Amazon Connect instance.
 //
+// You can also create and update contact flows using the Amazon Connect Flow
+// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -544,6 +547,9 @@ func (c *Connect) DescribeContactFlowRequest(input *DescribeContactFlowInput) (r
 // DescribeContactFlow API operation for Amazon Connect Service.
 //
 // Describes the specified contact flow.
+//
+// You can also create and update contact flows using the Amazon Connect Flow
+// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1587,6 +1593,9 @@ func (c *Connect) ListContactFlowsRequest(input *ListContactFlowsInput) (req *re
 //
 // Provides information about the contact flows for the specified Amazon Connect
 // instance.
+//
+// You can also create and update contact flows using the Amazon Connect Flow
+// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // For more information about contact flows, see Contact Flows (https://docs.aws.amazon.com/connect/latest/adminguide/concepts-contact-flows.html)
 // in the Amazon Connect Administrator Guide.
@@ -3888,7 +3897,7 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //
 // Adds the specified tags to the specified resource.
 //
-// The supported resource type is users.
+// The supported resource types are users, routing profiles, and contact flows.
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
 // Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
@@ -4090,6 +4099,9 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 // Contact attributes are available in Amazon Connect for 24 months, and are
 // then deleted.
 //
+// This operation is also available in the Amazon Connect Flow language. See
+// UpdateContactAttributes (https://docs.aws.amazon.com/connect/latest/adminguide/contact-actions-updatecontactattributes.html).
+//
 // Important: You cannot use the operation to update attributes for contacts
 // that occurred prior to the release of the API, September 12, 2018. You can
 // update attributes only for contacts that started after the release of the
@@ -4186,6 +4198,9 @@ func (c *Connect) UpdateContactFlowContentRequest(input *UpdateContactFlowConten
 // UpdateContactFlowContent API operation for Amazon Connect Service.
 //
 // Updates the specified contact flow.
+//
+// You can also create and update contact flows using the Amazon Connect Flow
+// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5466,6 +5481,9 @@ func (s *ContactFlowNotPublishedException) RequestID() string {
 }
 
 // Contains summary information about a contact flow.
+//
+// You can also create and update contact flows using the Amazon Connect Flow
+// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 type ContactFlowSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -11427,7 +11445,9 @@ type UpdateContactFlowContentInput struct {
 	// ContactFlowId is a required field
 	ContactFlowId *string `location:"uri" locationName:"ContactFlowId" type:"string" required:"true"`
 
-	// The content of the contact flow.
+	// The JSON string that represents contact flow’s content. For an example,
+	// see Example contact flow in Amazon Connect Flow language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language-example.html)
+	// in the Amazon Connect Administrator Guide.
 	//
 	// Content is a required field
 	Content *string `type:"string" required:"true"`
