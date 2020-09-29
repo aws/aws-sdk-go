@@ -108,6 +108,10 @@ type SchemasAPI interface {
 	DescribeSchemaWithContext(aws.Context, *schemas.DescribeSchemaInput, ...request.Option) (*schemas.DescribeSchemaOutput, error)
 	DescribeSchemaRequest(*schemas.DescribeSchemaInput) (*request.Request, *schemas.DescribeSchemaOutput)
 
+	ExportSchema(*schemas.ExportSchemaInput) (*schemas.ExportSchemaOutput, error)
+	ExportSchemaWithContext(aws.Context, *schemas.ExportSchemaInput, ...request.Option) (*schemas.ExportSchemaOutput, error)
+	ExportSchemaRequest(*schemas.ExportSchemaInput) (*request.Request, *schemas.ExportSchemaOutput)
+
 	GetCodeBindingSource(*schemas.GetCodeBindingSourceInput) (*schemas.GetCodeBindingSourceOutput, error)
 	GetCodeBindingSourceWithContext(aws.Context, *schemas.GetCodeBindingSourceInput, ...request.Option) (*schemas.GetCodeBindingSourceOutput, error)
 	GetCodeBindingSourceRequest(*schemas.GetCodeBindingSourceInput) (*request.Request, *schemas.GetCodeBindingSourceOutput)

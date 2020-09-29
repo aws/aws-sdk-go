@@ -31,7 +31,8 @@
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateDiscoverer": "<p>Updates the discoverer</p>",
     "UpdateRegistry": "<p>Updates a registry.</p>",
-    "UpdateSchema": "<p>Updates the schema definition</p> <note><p>Inactive schemas will be deleted after two years.</p></note>"
+    "UpdateSchema": "<p>Updates the schema definition</p> <note><p>Inactive schemas will be deleted after two years.</p></note>",
+    "ExportSchema": "<p>Exports a schema to a different specification.</p>"
   },
   "shapes": {
     "BadRequestException": {
@@ -91,6 +92,10 @@
       }
     },
     "ErrorOutput": {
+      "base": null,
+      "refs": {}
+    },
+    "ExportSchemaOutput": {
       "base": null,
       "refs": {}
     },
@@ -352,6 +357,11 @@
         "DiscovererSummary$SourceArn": "<p>The ARN of the event bus.</p>",
         "ErrorOutput$Code": "<p>The error code.</p>",
         "ErrorOutput$Message": "<p>The message string of the error output.</p>",
+        "ExportSchemaOutput$Content": "<p>The content of the schema.</p>",
+        "ExportSchemaOutput$SchemaArn": "<p>The ARN of the schema to export.</p>",
+        "ExportSchemaOutput$SchemaName": "<p>The name of the schema to export.</p>",
+        "ExportSchemaOutput$SchemaVersion": "<p>The version of the schema to export.</p>",
+        "ExportSchemaOutput$Type": "<p>The type of schema to export.</p>",
         "GetDiscoveredSchemaOutput$Content": "<p>The source of the schema definition.</p>",
         "GetResourcePolicyOutput$Policy": "<p>The resource-based policy.</p>",
         "GetResourcePolicyOutput$RevisionId": "<p>The revision ID.</p>",
