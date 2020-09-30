@@ -198,15 +198,72 @@ func s3CustRemoveHeadObjectModeledErrors(a *API) {
 // S3 service operations with an AccountId need accessors to be generated for
 // them so the fields can be dynamically accessed without reflection.
 func s3ControlCustomizations(a *API) error {
-	for opName, op := range a.Operations {
-		// Add moving AccountId into the hostname instead of header.
-		if ref, ok := op.InputRef.Shape.MemberRefs["AccountId"]; ok {
-			if op.Endpoint != nil {
-				fmt.Fprintf(os.Stderr, "S3 Control, %s, model already defining endpoint trait, remove this customization.\n", opName)
+	for _, s := range a.Shapes {
+		// Generate a endpointARN method for the BucketName shape if this is used as an operation input
+		if s.UsedAsInput {
+			if s.ShapeName == "CreateBucketInput" || s.ShapeName == "ListRegionalBucketsInput" {
+				// For operations CreateBucketInput and ListRegionalBuckets the OutpostID shape
+				// needs to be decorated
+				var outpostIDMemberShape *ShapeRef
+				for memberName, ref := range s.MemberRefs {
+					if memberName != "OutpostId" || ref.Shape.Type != "string" {
+						continue
+					}
+					if outpostIDMemberShape != nil {
+						return fmt.Errorf("more then one OutpostID shape present on shape")
+					}
+					ref.OutpostIDMember = true
+					outpostIDMemberShape = ref
+				}
+				if outpostIDMemberShape != nil {
+					s.HasOutpostIDMember = true
+					a.HasOutpostID = true
+				}
+				continue
 			}
 
-			op.Endpoint = &EndpointTrait{HostPrefix: "{AccountId}."}
-			ref.HostLabel = true
+			// List of input shapes that use accesspoint names as arnable fields
+			accessPointNameArnables := map[string]struct{}{
+				"GetAccessPointInput":     {},
+				"DeleteAccessPointInput":  {},
+				"PutAccessPointPolicy":    {},
+				"GetAccessPointPolicy":    {},
+				"DeleteAccessPointPolicy": {},
+			}
+
+			var endpointARNShape *ShapeRef
+			for _, ref := range s.MemberRefs {
+				// Operations that have AccessPointName field that takes in an ARN as input
+				if _, ok := accessPointNameArnables[s.ShapeName]; ok {
+					if ref.OrigShapeName != "AccessPointName" || ref.Shape.Type != "string" {
+						continue
+					}
+				} else if ref.OrigShapeName != "BucketName" || ref.Shape.Type != "string" {
+					// All other operations currently allow BucketName field to take in ARN.
+					// Exceptions for these are CreateBucket and ListRegionalBucket which use
+					// Outpost id and are handled above separately.
+					continue
+				}
+
+				if endpointARNShape != nil {
+					return fmt.Errorf("more then one member present on shape takes arn as input")
+				}
+				ref.EndpointARN = true
+				endpointARNShape = ref
+			}
+			if endpointARNShape != nil {
+				s.HasEndpointARNMember = true
+				a.HasEndpointARN = true
+
+				for _, ref := range s.MemberRefs {
+					// check for account id customization
+					if ref.OrigShapeName == "AccountId" && ref.Shape.Type == "string" {
+						ref.AccountIDMemberWithARN = true
+						s.HasAccountIdMemberWithARN = true
+						a.HasAccountIdWithARN = true
+					}
+				}
+			}
 		}
 	}
 

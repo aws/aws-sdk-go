@@ -9,6 +9,8 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/s3shared/arn"
+	"github.com/aws/aws-sdk-go/private/checksum"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 )
@@ -52,7 +54,9 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 
 	output = &CreateAccessPointOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -60,7 +64,41 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 
 // CreateAccessPoint API operation for AWS S3 Control.
 //
-// Creates an access point and associates it with the specified bucket.
+// Creates an access point and associates it with the specified bucket. For
+// more information, see Managing Data Access with Amazon S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Using this action with Amazon S3 on Outposts
+//
+// This action:
+//
+//    * Requires a virtual private cloud (VPC) configuration as S3 on Outposts
+//    only supports VPC style access points.
+//
+//    * Does not support ACL on S3 on Outposts buckets.
+//
+//    * Does not support Public Access on S3 on Outposts buckets.
+//
+//    * Does not support object lock for S3 on Outposts buckets.
+//
+// For more information, see Using Amazon S3 on Outposts (AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide .
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples)
+// section below.
+//
+// The following actions are related to CreateAccessPoint:
+//
+//    * GetAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html)
+//
+//    * DeleteAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteAccessPoint.html)
+//
+//    * ListAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_ListAccessPoints.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -85,6 +123,132 @@ func (c *S3Control) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAcc
 // for more information on using Contexts.
 func (c *S3Control) CreateAccessPointWithContext(ctx aws.Context, input *CreateAccessPointInput, opts ...request.Option) (*CreateAccessPointOutput, error) {
 	req, out := c.CreateAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateBucket = "CreateBucket"
+
+// CreateBucketRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBucket operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBucket for more information on using the CreateBucket
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateBucketRequest method.
+//    req, resp := client.CreateBucketRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateBucket
+func (c *S3Control) CreateBucketRequest(input *CreateBucketInput) (req *request.Request, output *CreateBucketOutput) {
+	op := &request.Operation{
+		Name:       opCreateBucket,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/bucket/{name}",
+	}
+
+	if input == nil {
+		input = &CreateBucketInput{}
+	}
+
+	output = &CreateBucketOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// CreateBucket API operation for AWS S3 Control.
+//
+//
+// This API operation creates an Amazon S3 on Outposts bucket. To create an
+// S3 bucket, see Create Bucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html)
+// in the Amazon Simple Storage Service API.
+//
+// Creates a new Outposts bucket. By creating the bucket, you become the bucket
+// owner. To create an Outposts bucket, you must have S3 on Outposts. For more
+// information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in Amazon Simple Storage Service Developer Guide.
+//
+// Not every string is an acceptable bucket name. For information on bucket
+// naming restrictions, see Working with Amazon S3 Buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html#bucketnamingrules).
+//
+// S3 on Outposts buckets do not support
+//
+//    * ACLs. Instead, configure access point policies to manage access to buckets.
+//
+//    * Public access.
+//
+//    * Object Lock
+//
+//    * Bucket Location constraint
+//
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and outpost-id in your API request,
+// see the Example (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateBucket.html#API_control_CreateBucket_Examples)
+// section below.
+//
+// The following actions are related to CreateBucket for Amazon S3 on Outposts:
+//
+//    * PutObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
+//
+//    * GetBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucket.html)
+//
+//    * DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucket.html)
+//
+//    * CreateAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateAccessPoint.html)
+//
+//    * PutAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutAccessPointPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateBucket for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeBucketAlreadyExists "BucketAlreadyExists"
+//   The requested Outposts bucket name is not available. The bucket namespace
+//   is shared by all users of the AWS Outposts in this Region. Select a different
+//   name and try again.
+//
+//   * ErrCodeBucketAlreadyOwnedByYou "BucketAlreadyOwnedByYou"
+//   The Outposts bucket you tried to create already exists, and you own it.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateBucket
+func (c *S3Control) CreateBucket(input *CreateBucketInput) (*CreateBucketOutput, error) {
+	req, out := c.CreateBucketRequest(input)
+	return out, req.Send()
+}
+
+// CreateBucketWithContext is the same as CreateBucket with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBucket for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateBucketWithContext(ctx aws.Context, input *CreateBucketInput, opts ...request.Option) (*CreateBucketOutput, error) {
+	req, out := c.CreateBucketRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -136,21 +300,23 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 
 // CreateJob API operation for AWS S3 Control.
 //
-// You can use Amazon S3 Batch Operations to perform large-scale Batch Operations
-// on Amazon S3 objects. Amazon S3 Batch Operations can execute a single operation
-// or action on lists of Amazon S3 objects that you specify. For more information,
-// see Amazon S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
-// in the Amazon Simple Storage Service Developer Guide.
+// S3 Batch Operations performs large-scale Batch Operations on Amazon S3 objects.
+// Batch Operations can run a single operation or action on lists of Amazon
+// S3 objects that you specify. For more information, see S3 Batch Operations
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html) in
+// the Amazon Simple Storage Service Developer Guide.
+//
+// This operation creates a S3 Batch Operations job.
 //
 // Related actions include:
 //
-//    * DescribeJob
+//    * DescribeJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html)
 //
-//    * ListJobs
+//    * ListJobs (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html)
 //
-//    * UpdateJobPriority
+//    * UpdateJobPriority (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html)
 //
-//    * UpdateJobStatus
+//    * UpdateJobStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -229,6 +395,9 @@ func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req
 
 	output = &DeleteAccessPointOutput{}
 	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -238,6 +407,22 @@ func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req
 // DeleteAccessPoint API operation for AWS S3 Control.
 //
 // Deletes the specified access point.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the ARN,
+// see the Example (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples)
+// section below.
+//
+// The following actions are related to DeleteAccessPoint:
+//
+//    * CreateAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html)
+//
+//    * GetAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html)
+//
+//    * ListAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -316,6 +501,20 @@ func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolic
 //
 // Deletes the access point policy for the specified access point.
 //
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples)
+// section below.
+//
+// The following actions are related to DeleteAccessPointPolicy:
+//
+//    * PutAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html)
+//
+//    * GetAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html)
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -339,6 +538,447 @@ func (c *S3Control) DeleteAccessPointPolicy(input *DeleteAccessPointPolicyInput)
 // for more information on using Contexts.
 func (c *S3Control) DeleteAccessPointPolicyWithContext(ctx aws.Context, input *DeleteAccessPointPolicyInput, opts ...request.Option) (*DeleteAccessPointPolicyOutput, error) {
 	req, out := c.DeleteAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBucket = "DeleteBucket"
+
+// DeleteBucketRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBucket operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBucket for more information on using the DeleteBucket
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBucketRequest method.
+//    req, resp := client.DeleteBucketRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucket
+func (c *S3Control) DeleteBucketRequest(input *DeleteBucketInput) (req *request.Request, output *DeleteBucketOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBucket,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/bucket/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteBucketInput{}
+	}
+
+	output = &DeleteBucketOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteBucket API operation for AWS S3 Control.
+//
+//
+// This API operation deletes an Amazon S3 on Outposts bucket. To delete an
+// S3 bucket, see DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html)
+// in the Amazon Simple Storage Service API.
+//
+// Deletes the Amazon S3 on Outposts bucket. All objects (including all object
+// versions and delete markers) in the bucket must be deleted before the bucket
+// itself can be deleted. For more information, see Using Amazon S3 on Outposts
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html) in Amazon
+// Simple Storage Service Developer Guide.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucket.html#API_control_DeleteBucket_Examples)
+// section below.
+//
+// Related Resources
+//
+//    * CreateBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html)
+//
+//    * GetBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucket.html)
+//
+//    * DeleteObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteBucket for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucket
+func (c *S3Control) DeleteBucket(input *DeleteBucketInput) (*DeleteBucketOutput, error) {
+	req, out := c.DeleteBucketRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBucketWithContext is the same as DeleteBucket with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBucket for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteBucketWithContext(ctx aws.Context, input *DeleteBucketInput, opts ...request.Option) (*DeleteBucketOutput, error) {
+	req, out := c.DeleteBucketRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBucketLifecycleConfiguration = "DeleteBucketLifecycleConfiguration"
+
+// DeleteBucketLifecycleConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBucketLifecycleConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBucketLifecycleConfiguration for more information on using the DeleteBucketLifecycleConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBucketLifecycleConfigurationRequest method.
+//    req, resp := client.DeleteBucketLifecycleConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketLifecycleConfiguration
+func (c *S3Control) DeleteBucketLifecycleConfigurationRequest(input *DeleteBucketLifecycleConfigurationInput) (req *request.Request, output *DeleteBucketLifecycleConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBucketLifecycleConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/bucket/{name}/lifecycleconfiguration",
+	}
+
+	if input == nil {
+		input = &DeleteBucketLifecycleConfigurationInput{}
+	}
+
+	output = &DeleteBucketLifecycleConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteBucketLifecycleConfiguration API operation for AWS S3 Control.
+//
+//
+// This API action deletes an Amazon S3 on Outposts bucket's lifecycle configuration.
+// To delete an S3 bucket's lifecycle configuration, see DeleteBucketLifecycle
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html)
+// in the Amazon Simple Storage Service API.
+//
+// Deletes the lifecycle configuration from the specified Outposts bucket. Amazon
+// S3 on Outposts removes all the lifecycle configuration rules in the lifecycle
+// subresource associated with the bucket. Your objects never expire, and Amazon
+// S3 on Outposts no longer automatically deletes any objects on the basis of
+// rules contained in the deleted lifecycle configuration. For more information,
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in Amazon Simple Storage Service Developer Guide.
+//
+// To use this operation, you must have permission to perform the s3outposts:DeleteLifecycleConfiguration
+// action. By default, the bucket owner has this permission and the Outposts
+// bucket owner can grant this permission to others.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples)
+// section below.
+//
+// For more information about object expiration, see Elements to Describe Lifecycle
+// Actions (https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#intro-lifecycle-rules-actions).
+//
+// Related actions include:
+//
+//    * PutBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html)
+//
+//    * GetBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteBucketLifecycleConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketLifecycleConfiguration
+func (c *S3Control) DeleteBucketLifecycleConfiguration(input *DeleteBucketLifecycleConfigurationInput) (*DeleteBucketLifecycleConfigurationOutput, error) {
+	req, out := c.DeleteBucketLifecycleConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBucketLifecycleConfigurationWithContext is the same as DeleteBucketLifecycleConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBucketLifecycleConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteBucketLifecycleConfigurationWithContext(ctx aws.Context, input *DeleteBucketLifecycleConfigurationInput, opts ...request.Option) (*DeleteBucketLifecycleConfigurationOutput, error) {
+	req, out := c.DeleteBucketLifecycleConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBucketPolicy = "DeleteBucketPolicy"
+
+// DeleteBucketPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBucketPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBucketPolicy for more information on using the DeleteBucketPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBucketPolicyRequest method.
+//    req, resp := client.DeleteBucketPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketPolicy
+func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (req *request.Request, output *DeleteBucketPolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBucketPolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/bucket/{name}/policy",
+	}
+
+	if input == nil {
+		input = &DeleteBucketPolicyInput{}
+	}
+
+	output = &DeleteBucketPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteBucketPolicy API operation for AWS S3 Control.
+//
+//
+// This API operation deletes an Amazon S3 on Outposts bucket policy. To delete
+// an S3 bucket policy, see DeleteBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html)
+// in the Amazon Simple Storage Service API.
+//
+// This implementation of the DELETE operation uses the policy subresource to
+// delete the policy of a specified Amazon S3 on Outposts bucket. If you are
+// using an identity other than the root user of the AWS account that owns the
+// bucket, the calling identity must have the s3outposts:DeleteBucketPolicy
+// permissions on the specified Outposts bucket and belong to the bucket owner's
+// account to use this operation. For more information, see Using Amazon S3
+// on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in Amazon Simple Storage Service Developer Guide.
+//
+// If you don't have DeleteBucketPolicy permissions, Amazon S3 returns a 403
+// Access Denied error. If you have the correct permissions, but you're not
+// using an identity that belongs to the bucket owner's account, Amazon S3 returns
+// a 405 Method Not Allowed error.
+//
+// As a security precaution, the root user of the AWS account that owns a bucket
+// can always use this operation, even if the policy explicitly denies the root
+// user the ability to perform this action.
+//
+// For more information about bucket policies, see Using Bucket Policies and
+// User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples)
+// section below.
+//
+// The following actions are related to DeleteBucketPolicy:
+//
+//    * GetBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html)
+//
+//    * PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteBucketPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketPolicy
+func (c *S3Control) DeleteBucketPolicy(input *DeleteBucketPolicyInput) (*DeleteBucketPolicyOutput, error) {
+	req, out := c.DeleteBucketPolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBucketPolicyWithContext is the same as DeleteBucketPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBucketPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteBucketPolicyWithContext(ctx aws.Context, input *DeleteBucketPolicyInput, opts ...request.Option) (*DeleteBucketPolicyOutput, error) {
+	req, out := c.DeleteBucketPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBucketTagging = "DeleteBucketTagging"
+
+// DeleteBucketTaggingRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBucketTagging operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBucketTagging for more information on using the DeleteBucketTagging
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBucketTaggingRequest method.
+//    req, resp := client.DeleteBucketTaggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketTagging
+func (c *S3Control) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) (req *request.Request, output *DeleteBucketTaggingOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBucketTagging,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/bucket/{name}/tagging",
+	}
+
+	if input == nil {
+		input = &DeleteBucketTaggingInput{}
+	}
+
+	output = &DeleteBucketTaggingOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteBucketTagging API operation for AWS S3 Control.
+//
+//
+// This API operation deletes an Amazon S3 on Outposts bucket's tags. To delete
+// an S3 bucket tags, see DeleteBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html)
+// in the Amazon Simple Storage Service API.
+//
+// Deletes the tags from the Outposts bucket. For more information, see Using
+// Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in Amazon Simple Storage Service Developer Guide.
+//
+// To use this operation, you must have permission to perform the PutBucketTagging
+// action. By default, the bucket owner has this permission and can grant this
+// permission to others.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples)
+// section below.
+//
+// The following actions are related to DeleteBucketTagging:
+//
+//    * GetBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html)
+//
+//    * PutBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteBucketTagging for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteBucketTagging
+func (c *S3Control) DeleteBucketTagging(input *DeleteBucketTaggingInput) (*DeleteBucketTaggingOutput, error) {
+	req, out := c.DeleteBucketTaggingRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBucketTaggingWithContext is the same as DeleteBucketTagging with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBucketTagging for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteBucketTaggingWithContext(ctx aws.Context, input *DeleteBucketTaggingInput, opts ...request.Option) (*DeleteBucketTaggingOutput, error) {
+	req, out := c.DeleteBucketTaggingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -391,18 +1031,19 @@ func (c *S3Control) DeleteJobTaggingRequest(input *DeleteJobTaggingInput) (req *
 
 // DeleteJobTagging API operation for AWS S3 Control.
 //
-// Removes the entire tag set from the specified Amazon S3 Batch Operations
-// job. To use this operation, you must have permission to perform the s3:DeleteJobTagging
-// action. For more information, see Using Job Tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
+// Removes the entire tag set from the specified S3 Batch Operations job. To
+// use this operation, you must have permission to perform the s3:DeleteJobTagging
+// action. For more information, see Controlling access and labeling jobs using
+// tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * GetJobTagging
+//    * GetJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html)
 //
-//    * PutJobTagging
+//    * PutJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutJobTagging.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -487,7 +1128,14 @@ func (c *S3Control) DeletePublicAccessBlockRequest(input *DeletePublicAccessBloc
 
 // DeletePublicAccessBlock API operation for AWS S3 Control.
 //
-// Removes the PublicAccessBlock configuration for an Amazon Web Services account.
+// Removes the PublicAccessBlock configuration for an AWS account. For more
+// information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+//
+// Related actions include:
+//
+//    * GetPublicAccessBlock (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html)
+//
+//    * PutPublicAccessBlock (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -564,18 +1212,18 @@ func (c *S3Control) DescribeJobRequest(input *DescribeJobInput) (req *request.Re
 // DescribeJob API operation for AWS S3 Control.
 //
 // Retrieves the configuration parameters and status for a Batch Operations
-// job. For more information, see Amazon S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// job. For more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * ListJobs
+//    * ListJobs (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html)
 //
-//    * UpdateJobPriority
+//    * UpdateJobPriority (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html)
 //
-//    * UpdateJobStatus
+//    * UpdateJobStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -654,6 +1302,9 @@ func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *requ
 
 	output = &GetAccessPointOutput{}
 	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -662,6 +1313,22 @@ func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *requ
 // GetAccessPoint API operation for AWS S3 Control.
 //
 // Returns configuration information about the specified access point.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
+// section below.
+//
+// The following actions are related to GetAccessPoint:
+//
+//    * CreateAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html)
+//
+//    * DeleteAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html)
+//
+//    * ListAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -738,6 +1405,12 @@ func (c *S3Control) GetAccessPointPolicyRequest(input *GetAccessPointPolicyInput
 // GetAccessPointPolicy API operation for AWS S3 Control.
 //
 // Returns the access point policy associated with the specified access point.
+//
+// The following actions are related to GetAccessPointPolicy:
+//
+//    * PutAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html)
+//
+//    * DeleteAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -846,6 +1519,438 @@ func (c *S3Control) GetAccessPointPolicyStatusWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetBucket = "GetBucket"
+
+// GetBucketRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucket operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucket for more information on using the GetBucket
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBucketRequest method.
+//    req, resp := client.GetBucketRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucket
+func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Request, output *GetBucketOutput) {
+	op := &request.Operation{
+		Name:       opGetBucket,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket/{name}",
+	}
+
+	if input == nil {
+		input = &GetBucketInput{}
+	}
+
+	output = &GetBucketOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetBucket API operation for AWS S3 Control.
+//
+// Gets an Amazon S3 on Outposts bucket. For more information, see Using Amazon
+// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// The following actions are related to GetBucket for Amazon S3 on Outposts:
+//
+//    * PutObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
+//
+//    * CreateBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateBucket.html)
+//
+//    * DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucket.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetBucket for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucket
+func (c *S3Control) GetBucket(input *GetBucketInput) (*GetBucketOutput, error) {
+	req, out := c.GetBucketRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketWithContext is the same as GetBucket with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucket for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetBucketWithContext(ctx aws.Context, input *GetBucketInput, opts ...request.Option) (*GetBucketOutput, error) {
+	req, out := c.GetBucketRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBucketLifecycleConfiguration = "GetBucketLifecycleConfiguration"
+
+// GetBucketLifecycleConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketLifecycleConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketLifecycleConfiguration for more information on using the GetBucketLifecycleConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBucketLifecycleConfigurationRequest method.
+//    req, resp := client.GetBucketLifecycleConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketLifecycleConfiguration
+func (c *S3Control) GetBucketLifecycleConfigurationRequest(input *GetBucketLifecycleConfigurationInput) (req *request.Request, output *GetBucketLifecycleConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketLifecycleConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket/{name}/lifecycleconfiguration",
+	}
+
+	if input == nil {
+		input = &GetBucketLifecycleConfigurationInput{}
+	}
+
+	output = &GetBucketLifecycleConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetBucketLifecycleConfiguration API operation for AWS S3 Control.
+//
+//
+// This API operation gets an Amazon S3 on Outposts bucket's lifecycle configuration.
+// To get an S3 bucket's lifecycle configuration, see GetBucketLifecycleConfiguration
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html)
+// in the Amazon Simple Storage Service API.
+//
+// Returns the lifecycle configuration information set on the Outposts bucket.
+// For more information, see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// and for information about lifecycle configuration, see Object Lifecycle Management
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html)
+// in Amazon Simple Storage Service Developer Guide.
+//
+// To use this operation, you must have permission to perform the s3outposts:GetLifecycleConfiguration
+// action. The Outposts bucket owner has this permission, by default. The bucket
+// owner can grant this permission to others. For more information about permissions,
+// see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
+// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html).
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
+// section below.
+//
+// GetBucketLifecycleConfiguration has the following special error:
+//
+//    * Error code: NoSuchLifecycleConfiguration Description: The lifecycle
+//    configuration does not exist. HTTP Status Code: 404 Not Found SOAP Fault
+//    Code Prefix: Client
+//
+// The following actions are related to GetBucketLifecycleConfiguration:
+//
+//    * PutBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html)
+//
+//    * DeleteBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetBucketLifecycleConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketLifecycleConfiguration
+func (c *S3Control) GetBucketLifecycleConfiguration(input *GetBucketLifecycleConfigurationInput) (*GetBucketLifecycleConfigurationOutput, error) {
+	req, out := c.GetBucketLifecycleConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketLifecycleConfigurationWithContext is the same as GetBucketLifecycleConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketLifecycleConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetBucketLifecycleConfigurationWithContext(ctx aws.Context, input *GetBucketLifecycleConfigurationInput, opts ...request.Option) (*GetBucketLifecycleConfigurationOutput, error) {
+	req, out := c.GetBucketLifecycleConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBucketPolicy = "GetBucketPolicy"
+
+// GetBucketPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketPolicy for more information on using the GetBucketPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBucketPolicyRequest method.
+//    req, resp := client.GetBucketPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketPolicy
+func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *request.Request, output *GetBucketPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket/{name}/policy",
+	}
+
+	if input == nil {
+		input = &GetBucketPolicyInput{}
+	}
+
+	output = &GetBucketPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetBucketPolicy API operation for AWS S3 Control.
+//
+//
+// This API action gets a bucket policy for an Amazon S3 on Outposts bucket.
+// To get a policy for an S3 bucket, see GetBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html)
+// in the Amazon Simple Storage Service API.
+//
+// Returns the policy of a specified Outposts bucket. For more information,
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// If you are using an identity other than the root user of the AWS account
+// that owns the bucket, the calling identity must have the GetBucketPolicy
+// permissions on the specified bucket and belong to the bucket owner's account
+// in order to use this operation.
+//
+// If you don't have s3outposts:GetBucketPolicy permissions, Amazon S3 returns
+// a 403 Access Denied error. If you have the correct permissions, but you're
+// not using an identity that belongs to the bucket owner's account, Amazon
+// S3 returns a 405 Method Not Allowed error.
+//
+// As a security precaution, the root user of the AWS account that owns a bucket
+// can always use this operation, even if the policy explicitly denies the root
+// user the ability to perform this action.
+//
+// For more information about bucket policies, see Using Bucket Policies and
+// User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples)
+// section below.
+//
+// The following actions are related to GetBucketPolicy:
+//
+//    * GetObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html)
+//
+//    * PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html)
+//
+//    * DeleteBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetBucketPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketPolicy
+func (c *S3Control) GetBucketPolicy(input *GetBucketPolicyInput) (*GetBucketPolicyOutput, error) {
+	req, out := c.GetBucketPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketPolicyWithContext is the same as GetBucketPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetBucketPolicyWithContext(ctx aws.Context, input *GetBucketPolicyInput, opts ...request.Option) (*GetBucketPolicyOutput, error) {
+	req, out := c.GetBucketPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBucketTagging = "GetBucketTagging"
+
+// GetBucketTaggingRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketTagging operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketTagging for more information on using the GetBucketTagging
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBucketTaggingRequest method.
+//    req, resp := client.GetBucketTaggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketTagging
+func (c *S3Control) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *request.Request, output *GetBucketTaggingOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketTagging,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket/{name}/tagging",
+	}
+
+	if input == nil {
+		input = &GetBucketTaggingInput{}
+	}
+
+	output = &GetBucketTaggingOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetBucketTagging API operation for AWS S3 Control.
+//
+//
+// This API operation gets an Amazon S3 on Outposts bucket's tags. To get an
+// S3 bucket tags, see GetBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html)
+// in the Amazon Simple Storage Service API.
+//
+// Returns the tag set associated with the Outposts bucket. For more information,
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this operation, you must have permission to perform the GetBucketTagging
+// action. By default, the bucket owner has this permission and can grant this
+// permission to others.
+//
+// GetBucketTagging has the following special error:
+//
+//    * Error code: NoSuchTagSetError Description: There is no tag set associated
+//    with the bucket.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucketTagging.html#API_control_GetBucketTagging_Examples)
+// section below.
+//
+// The following actions are related to GetBucketTagging:
+//
+//    * PutBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html)
+//
+//    * DeleteBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetBucketTagging for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetBucketTagging
+func (c *S3Control) GetBucketTagging(input *GetBucketTaggingInput) (*GetBucketTaggingOutput, error) {
+	req, out := c.GetBucketTaggingRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketTaggingWithContext is the same as GetBucketTagging with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketTagging for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetBucketTaggingWithContext(ctx aws.Context, input *GetBucketTaggingInput, opts ...request.Option) (*GetBucketTaggingOutput, error) {
+	req, out := c.GetBucketTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetJobTagging = "GetJobTagging"
 
 // GetJobTaggingRequest generates a "aws/request.Request" representing the
@@ -892,18 +1997,18 @@ func (c *S3Control) GetJobTaggingRequest(input *GetJobTaggingInput) (req *reques
 
 // GetJobTagging API operation for AWS S3 Control.
 //
-// Returns the tags on an Amazon S3 Batch Operations job. To use this operation,
-// you must have permission to perform the s3:GetJobTagging action. For more
-// information, see Using Job Tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
+// Returns the tags on an S3 Batch Operations job. To use this operation, you
+// must have permission to perform the s3:GetJobTagging action. For more information,
+// see Controlling access and labeling jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * PutJobTagging
+//    * PutJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutJobTagging.html)
 //
-//    * DeleteJobTagging
+//    * DeleteJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -987,8 +2092,14 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 
 // GetPublicAccessBlock API operation for AWS S3 Control.
 //
-// Retrieves the PublicAccessBlock configuration for an Amazon Web Services
-// account.
+// Retrieves the PublicAccessBlock configuration for an AWS account. For more
+// information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+//
+// Related actions include:
+//
+//    * DeletePublicAccessBlock (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html)
+//
+//    * PutPublicAccessBlock (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutPublicAccessBlock.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1069,6 +2180,9 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 
 	output = &ListAccessPointsOutput{}
 	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -1081,6 +2195,22 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 // bucket has more than 1,000 access points (or the number specified in maxResults,
 // whichever is less), the response will include a continuation token that you
 // can use to list the additional access points.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
+// section below.
+//
+// The following actions are related to ListAccessPoints:
+//
+//    * CreateAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html)
+//
+//    * DeleteAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html)
+//
+//    * GetAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1214,20 +2344,20 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 
 // ListJobs API operation for AWS S3 Control.
 //
-// Lists current Amazon S3 Batch Operations jobs and jobs that have ended within
-// the last 30 days for the AWS account making the request. For more information,
-// see Amazon S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// Lists current S3 Batch Operations jobs and jobs that have ended within the
+// last 30 days for the AWS account making the request. For more information,
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * DescribeJob
+//    * DescribeJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html)
 //
-//    * UpdateJobPriority
+//    * UpdateJobPriority (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobPriority.html)
 //
-//    * UpdateJobStatus
+//    * UpdateJobStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1317,6 +2447,148 @@ func (c *S3Control) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInp
 	return p.Err()
 }
 
+const opListRegionalBuckets = "ListRegionalBuckets"
+
+// ListRegionalBucketsRequest generates a "aws/request.Request" representing the
+// client's request for the ListRegionalBuckets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRegionalBuckets for more information on using the ListRegionalBuckets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRegionalBucketsRequest method.
+//    req, resp := client.ListRegionalBucketsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListRegionalBuckets
+func (c *S3Control) ListRegionalBucketsRequest(input *ListRegionalBucketsInput) (req *request.Request, output *ListRegionalBucketsOutput) {
+	op := &request.Operation{
+		Name:       opListRegionalBuckets,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/bucket",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRegionalBucketsInput{}
+	}
+
+	output = &ListRegionalBucketsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListRegionalBuckets API operation for AWS S3 Control.
+//
+// Returns a list of all Outposts buckets in an Outposts that are owned by the
+// authenticated sender of the request. For more information, see Using Amazon
+// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// For an example of the request syntax for Amazon S3 on Outposts that uses
+// the S3 on Outposts endpoint hostname prefix and outpost-id in your API request,
+// see the Example (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples)
+// section below.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListRegionalBuckets for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListRegionalBuckets
+func (c *S3Control) ListRegionalBuckets(input *ListRegionalBucketsInput) (*ListRegionalBucketsOutput, error) {
+	req, out := c.ListRegionalBucketsRequest(input)
+	return out, req.Send()
+}
+
+// ListRegionalBucketsWithContext is the same as ListRegionalBuckets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRegionalBuckets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListRegionalBucketsWithContext(ctx aws.Context, input *ListRegionalBucketsInput, opts ...request.Option) (*ListRegionalBucketsOutput, error) {
+	req, out := c.ListRegionalBucketsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRegionalBucketsPages iterates over the pages of a ListRegionalBuckets operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRegionalBuckets method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRegionalBuckets operation.
+//    pageNum := 0
+//    err := client.ListRegionalBucketsPages(params,
+//        func(page *s3control.ListRegionalBucketsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Control) ListRegionalBucketsPages(input *ListRegionalBucketsInput, fn func(*ListRegionalBucketsOutput, bool) bool) error {
+	return c.ListRegionalBucketsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRegionalBucketsPagesWithContext same as ListRegionalBucketsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListRegionalBucketsPagesWithContext(ctx aws.Context, input *ListRegionalBucketsInput, fn func(*ListRegionalBucketsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRegionalBucketsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRegionalBucketsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRegionalBucketsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opPutAccessPointPolicy = "PutAccessPointPolicy"
 
 // PutAccessPointPolicyRequest generates a "aws/request.Request" representing the
@@ -1368,6 +2640,20 @@ func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput
 // point can have only one policy, so a request made to this API replaces any
 // existing policy associated with the specified access point.
 //
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples)
+// section below.
+//
+// The following actions are related to PutAccessPointPolicy:
+//
+//    * GetAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPointPolicy.html)
+//
+//    * DeleteAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html)
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1391,6 +2677,375 @@ func (c *S3Control) PutAccessPointPolicy(input *PutAccessPointPolicyInput) (*Put
 // for more information on using Contexts.
 func (c *S3Control) PutAccessPointPolicyWithContext(ctx aws.Context, input *PutAccessPointPolicyInput, opts ...request.Option) (*PutAccessPointPolicyOutput, error) {
 	req, out := c.PutAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutBucketLifecycleConfiguration = "PutBucketLifecycleConfiguration"
+
+// PutBucketLifecycleConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutBucketLifecycleConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBucketLifecycleConfiguration for more information on using the PutBucketLifecycleConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutBucketLifecycleConfigurationRequest method.
+//    req, resp := client.PutBucketLifecycleConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketLifecycleConfiguration
+func (c *S3Control) PutBucketLifecycleConfigurationRequest(input *PutBucketLifecycleConfigurationInput) (req *request.Request, output *PutBucketLifecycleConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketLifecycleConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/bucket/{name}/lifecycleconfiguration",
+	}
+
+	if input == nil {
+		input = &PutBucketLifecycleConfigurationInput{}
+	}
+
+	output = &PutBucketLifecycleConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutBucketLifecycleConfiguration API operation for AWS S3 Control.
+//
+//
+// This API action puts a lifecycle configuration to an Amazon S3 on Outposts
+// bucket. To put a lifecycle configuration to an S3 bucket, see PutBucketLifecycleConfiguration
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
+// in the Amazon Simple Storage Service API.
+//
+// Creates a new lifecycle configuration for the Outposts bucket or replaces
+// an existing lifecycle configuration. Outposts buckets can only support a
+// lifecycle that deletes objects after a certain period of time. For more information,
+// see Managing Lifecycle Permissions for Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html).
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples)
+// section below.
+//
+// The following actions are related to PutBucketLifecycleConfiguration:
+//
+//    * GetBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html)
+//
+//    * DeleteBucketLifecycleConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutBucketLifecycleConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketLifecycleConfiguration
+func (c *S3Control) PutBucketLifecycleConfiguration(input *PutBucketLifecycleConfigurationInput) (*PutBucketLifecycleConfigurationOutput, error) {
+	req, out := c.PutBucketLifecycleConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutBucketLifecycleConfigurationWithContext is the same as PutBucketLifecycleConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBucketLifecycleConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutBucketLifecycleConfigurationWithContext(ctx aws.Context, input *PutBucketLifecycleConfigurationInput, opts ...request.Option) (*PutBucketLifecycleConfigurationOutput, error) {
+	req, out := c.PutBucketLifecycleConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutBucketPolicy = "PutBucketPolicy"
+
+// PutBucketPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutBucketPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBucketPolicy for more information on using the PutBucketPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutBucketPolicyRequest method.
+//    req, resp := client.PutBucketPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketPolicy
+func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *request.Request, output *PutBucketPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/bucket/{name}/policy",
+	}
+
+	if input == nil {
+		input = &PutBucketPolicyInput{}
+	}
+
+	output = &PutBucketPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutBucketPolicy API operation for AWS S3 Control.
+//
+//
+// This API action puts a bucket policy to an Amazon S3 on Outposts bucket.
+// To put a policy on an S3 bucket, see PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html)
+// in the Amazon Simple Storage Service API.
+//
+// Applies an Amazon S3 bucket policy to an Outposts bucket. For more information,
+// see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// If you are using an identity other than the root user of the AWS account
+// that owns the Outposts bucket, the calling identity must have the PutBucketPolicy
+// permissions on the specified Outposts bucket and belong to the bucket owner's
+// account in order to use this operation.
+//
+// If you don't have PutBucketPolicy permissions, Amazon S3 returns a 403 Access
+// Denied error. If you have the correct permissions, but you're not using an
+// identity that belongs to the bucket owner's account, Amazon S3 returns a
+// 405 Method Not Allowed error.
+//
+// As a security precaution, the root user of the AWS account that owns a bucket
+// can always use this operation, even if the policy explicitly denies the root
+// user the ability to perform this action.
+//
+// For more information about bucket policies, see Using Bucket Policies and
+// User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples)
+// section below.
+//
+// The following actions are related to PutBucketPolicy:
+//
+//    * GetBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html)
+//
+//    * DeleteBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutBucketPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketPolicy
+func (c *S3Control) PutBucketPolicy(input *PutBucketPolicyInput) (*PutBucketPolicyOutput, error) {
+	req, out := c.PutBucketPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutBucketPolicyWithContext is the same as PutBucketPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBucketPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutBucketPolicyWithContext(ctx aws.Context, input *PutBucketPolicyInput, opts ...request.Option) (*PutBucketPolicyOutput, error) {
+	req, out := c.PutBucketPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutBucketTagging = "PutBucketTagging"
+
+// PutBucketTaggingRequest generates a "aws/request.Request" representing the
+// client's request for the PutBucketTagging operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBucketTagging for more information on using the PutBucketTagging
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutBucketTaggingRequest method.
+//    req, resp := client.PutBucketTaggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketTagging
+func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *request.Request, output *PutBucketTaggingOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketTagging,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/bucket/{name}/tagging",
+	}
+
+	if input == nil {
+		input = &PutBucketTaggingInput{}
+	}
+
+	output = &PutBucketTaggingOutput{}
+	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutBucketTagging API operation for AWS S3 Control.
+//
+//
+// This API action puts tags on an Amazon S3 on Outposts bucket. To put tags
+// on an S3 bucket, see PutBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
+// in the Amazon Simple Storage Service API.
+//
+// Sets the tags for an Outposts bucket. For more information, see Using Amazon
+// S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Use tags to organize your AWS bill to reflect your own cost structure. To
+// do this, sign up to get your AWS account bill with tag key values included.
+// Then, to see the cost of combined resources, organize your billing information
+// according to resources with the same tag key values. For example, you can
+// tag several resources with a specific application name, and then organize
+// your billing information to see the total cost of that application across
+// several services. For more information, see Cost Allocation and Tagging (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
+//
+// Within a bucket, if you add a tag that has the same key as an existing tag,
+// the new value overwrites the old value. For more information, see Using Cost
+// Allocation in Amazon S3 Bucket Tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/CostAllocTagging.html).
+//
+// To use this operation, you must have permissions to perform the s3outposts:PutBucketTagging
+// action. The Outposts bucket owner has this permission by default and can
+// grant this permission to others. For more information about permissions,
+// see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
+// and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html).
+//
+// PutBucketTagging has the following special errors:
+//
+//    * Error code: InvalidTagError Description: The tag provided was not a
+//    valid tag. This error can occur if the tag did not pass input validation.
+//    For information about tag restrictions, see User-Defined Tag Restrictions
+//    (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
+//    and AWS-Generated Cost Allocation Tag Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tag-restrictions.html).
+//
+//    * Error code: MalformedXMLError Description: The XML provided does not
+//    match the schema.
+//
+//    * Error code: OperationAbortedError Description: A conflicting conditional
+//    operation is currently in progress against this resource. Try again.
+//
+//    * Error code: InternalError Description: The service was unable to apply
+//    the provided tag to the bucket.
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of outpost-id to be passed with the request and an S3 on Outposts
+// endpoint hostname prefix instead of s3-control. For an example of the request
+// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
+// prefix and the outpost-id derived using the access point ARN, see the Example
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketTagging.html#API_control_PutBucketTagging_Examples)
+// section below.
+//
+// The following actions are related to PutBucketTagging:
+//
+//    * GetBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html)
+//
+//    * DeleteBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutBucketTagging for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutBucketTagging
+func (c *S3Control) PutBucketTagging(input *PutBucketTaggingInput) (*PutBucketTaggingOutput, error) {
+	req, out := c.PutBucketTaggingRequest(input)
+	return out, req.Send()
+}
+
+// PutBucketTaggingWithContext is the same as PutBucketTagging with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBucketTagging for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutBucketTaggingWithContext(ctx aws.Context, input *PutBucketTaggingInput, opts ...request.Option) (*PutBucketTaggingOutput, error) {
+	req, out := c.PutBucketTaggingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1443,23 +3098,25 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 
 // PutJobTagging API operation for AWS S3 Control.
 //
-// Set the supplied tag-set on an Amazon S3 Batch Operations job.
+// Sets the supplied tag-set on an S3 Batch Operations job.
 //
-// A tag is a key-value pair. You can associate Amazon S3 Batch Operations tags
-// with any job by sending a PUT request against the tagging subresource that
-// is associated with the job. To modify the existing tag set, you can either
-// replace the existing tag set entirely, or make changes within the existing
-// tag set by retrieving the existing tag set using GetJobTagging, modify that
-// tag set, and use this API action to replace the tag set with the one you
-// have modified.. For more information, see Using Job Tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
+// A tag is a key-value pair. You can associate S3 Batch Operations tags with
+// any job by sending a PUT request against the tagging subresource that is
+// associated with the job. To modify the existing tag set, you can either replace
+// the existing tag set entirely, or make changes within the existing tag set
+// by retrieving the existing tag set using GetJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html),
+// modify that tag set, and use this API action to replace the tag set with
+// the one you modified. For more information, see Controlling access and labeling
+// jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 //    * If you send this request with an empty tag set, Amazon S3 deletes the
 //    existing tag set on the Batch Operations job. If you use this method,
-//    you will be charged for a Tier 1 Request (PUT). For more information,
-//    see Amazon S3 pricing (http://aws.amazon.com/s3/pricing/).
+//    you are charged for a Tier 1 Request (PUT). For more information, see
+//    Amazon S3 pricing (http://aws.amazon.com/s3/pricing/).
 //
-//    * For deleting existing tags for your batch operations job, DeleteJobTagging
+//    * For deleting existing tags for your Batch Operations job, a DeleteJobTagging
+//    (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html)
 //    request is preferred because it achieves the same result without incurring
 //    charges.
 //
@@ -1469,18 +3126,19 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 //    Unicode characters in length, and tag values can be up to 256 Unicode
 //    characters in length. The key and values are case sensitive. For tagging-related
 //    restrictions related to characters and encodings, see User-Defined Tag
-//    Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html).
+//    Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
+//    in the AWS Billing and Cost Management User Guide.
 //
 // To use this operation, you must have permission to perform the s3:PutJobTagging
 // action.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreatJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * GetJobTagging
+//    * GetJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html)
 //
-//    * DeleteJobTagging
+//    * DeleteJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteJobTagging.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1497,6 +3155,7 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 //   * ErrCodeNotFoundException "NotFoundException"
 //
 //   * ErrCodeTooManyTagsException "TooManyTagsException"
+//   Amazon S3 throws this exception if you have too many tags in your tag set.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutJobTagging
 func (c *S3Control) PutJobTagging(input *PutJobTaggingInput) (*PutJobTaggingOutput, error) {
@@ -1567,8 +3226,14 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
-// Creates or modifies the PublicAccessBlock configuration for an Amazon Web
-// Services account.
+// Creates or modifies the PublicAccessBlock configuration for an AWS account.
+// For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+//
+// Related actions include:
+//
+//    * GetPublicAccessBlock (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetPublicAccessBlock.html)
+//
+//    * DeletePublicAccessBlock (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeletePublicAccessBlock.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1644,19 +3309,19 @@ func (c *S3Control) UpdateJobPriorityRequest(input *UpdateJobPriorityInput) (req
 
 // UpdateJobPriority API operation for AWS S3 Control.
 //
-// Updates an existing Amazon S3 Batch Operations job's priority. For more information,
-// see Amazon S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// Updates an existing S3 Batch Operations job's priority. For more information,
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * ListJobs
+//    * ListJobs (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html)
 //
-//    * DescribeJob
+//    * DescribeJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html)
 //
-//    * UpdateJobStatus
+//    * UpdateJobStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1744,18 +3409,18 @@ func (c *S3Control) UpdateJobStatusRequest(input *UpdateJobStatusInput) (req *re
 //
 // Updates the status for the specified job. Use this operation to confirm that
 // you want to run a job or to cancel an existing job. For more information,
-// see Amazon S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // Related actions include:
 //
-//    * CreateJob
+//    * CreateJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateJob.html)
 //
-//    * ListJobs
+//    * ListJobs (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListJobs.html)
 //
-//    * DescribeJob
+//    * DescribeJob (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeJob.html)
 //
-//    * UpdateJobStatus
+//    * UpdateJobStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_UpdateJobStatus.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1797,9 +3462,37 @@ func (c *S3Control) UpdateJobStatusWithContext(ctx aws.Context, input *UpdateJob
 	return out, req.Send()
 }
 
+// The container for abort incomplete multipart upload
+type AbortIncompleteMultipartUpload struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days after which Amazon S3 aborts an incomplete multipart
+	// upload to the Outposts bucket.
+	DaysAfterInitiation *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AbortIncompleteMultipartUpload) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AbortIncompleteMultipartUpload) GoString() string {
+	return s.String()
+}
+
+// SetDaysAfterInitiation sets the DaysAfterInitiation field's value.
+func (s *AbortIncompleteMultipartUpload) SetDaysAfterInitiation(v int64) *AbortIncompleteMultipartUpload {
+	s.DaysAfterInitiation = &v
+	return s
+}
+
 // An access point used to access a bucket.
 type AccessPoint struct {
 	_ struct{} `type:"structure"`
+
+	// The ARN for the access point.
+	AccessPointArn *string `min:"4" type:"string"`
 
 	// The name of the bucket associated with this access point.
 	//
@@ -1833,6 +3526,12 @@ func (s AccessPoint) String() string {
 // GoString returns the string representation
 func (s AccessPoint) GoString() string {
 	return s.String()
+}
+
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *AccessPoint) SetAccessPointArn(v string) *AccessPoint {
+	s.AccessPointArn = &v
+	return s
 }
 
 // SetBucket sets the Bucket field's value.
@@ -1870,6 +3569,12 @@ type CreateAccessPointInput struct {
 
 	// The name of the bucket that you want to associate this access point with.
 	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
 	// Bucket is a required field
 	Bucket *string `min:"3" type:"string" required:"true"`
 
@@ -1883,10 +3588,14 @@ type CreateAccessPointInput struct {
 	// more information about when Amazon S3 considers a bucket or object public,
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// This is not supported for Amazon S3 on Outposts.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 
 	// If you include this field, Amazon S3 restricts access to this access point
 	// to requests from the specified virtual private cloud (VPC).
+	//
+	// This is required for creating an access point for Amazon S3 on Outposts buckets.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -1969,8 +3678,45 @@ func (s *CreateAccessPointInput) hostLabels() map[string]string {
 	}
 }
 
+func (s *CreateAccessPointInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *CreateAccessPointInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CreateAccessPointInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *CreateAccessPointInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
 type CreateAccessPointOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The ARN of the access point.
+	AccessPointArn *string `min:"4" type:"string"`
 }
 
 // String returns the string representation
@@ -1983,9 +3729,243 @@ func (s CreateAccessPointOutput) GoString() string {
 	return s.String()
 }
 
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *CreateAccessPointOutput) SetAccessPointArn(v string) *CreateAccessPointOutput {
+	s.AccessPointArn = &v
+	return s
+}
+
+// The container for the bucket configuration.
+//
+// This is not supported by Amazon S3 on Outposts buckets.
+type CreateBucketConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Region where the bucket will be created. If you are creating
+	// a bucket on the US East (N. Virginia) Region (us-east-1), you do not need
+	// to specify the location.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	LocationConstraint *string `type:"string" enum:"BucketLocationConstraint"`
+}
+
+// String returns the string representation
+func (s CreateBucketConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBucketConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetLocationConstraint sets the LocationConstraint field's value.
+func (s *CreateBucketConfiguration) SetLocationConstraint(v string) *CreateBucketConfiguration {
+	s.LocationConstraint = &v
+	return s
+}
+
+type CreateBucketInput struct {
+	_ struct{} `locationName:"CreateBucketRequest" type:"structure" payload:"CreateBucketConfiguration"`
+
+	// The canned ACL to apply to the bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"BucketCannedACL"`
+
+	// The name of the bucket.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// The configuration information for the bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	CreateBucketConfiguration *CreateBucketConfiguration `locationName:"CreateBucketConfiguration" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// Allows grantee the read, write, read ACP, and write ACP permissions on the
+	// bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
+
+	// Allows grantee to list the objects in the bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
+
+	// Allows grantee to read the bucket ACL.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
+
+	// Allows grantee to create, overwrite, and delete any object in the bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	GrantWrite *string `location:"header" locationName:"x-amz-grant-write" type:"string"`
+
+	// Allows grantee to write the ACL for the applicable bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
+
+	// Specifies whether you want S3 Object Lock to be enabled for the new bucket.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	ObjectLockEnabledForBucket *bool `location:"header" locationName:"x-amz-bucket-object-lock-enabled" type:"boolean"`
+
+	// The ID of the Outposts where the bucket is being created.
+	//
+	// This is required by Amazon S3 on Outposts buckets.
+	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateBucketInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBucketInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBucketInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBucketInput"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.OutpostId != nil && len(*s.OutpostId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetACL sets the ACL field's value.
+func (s *CreateBucketInput) SetACL(v string) *CreateBucketInput {
+	s.ACL = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *CreateBucketInput) SetBucket(v string) *CreateBucketInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetCreateBucketConfiguration sets the CreateBucketConfiguration field's value.
+func (s *CreateBucketInput) SetCreateBucketConfiguration(v *CreateBucketConfiguration) *CreateBucketInput {
+	s.CreateBucketConfiguration = v
+	return s
+}
+
+// SetGrantFullControl sets the GrantFullControl field's value.
+func (s *CreateBucketInput) SetGrantFullControl(v string) *CreateBucketInput {
+	s.GrantFullControl = &v
+	return s
+}
+
+// SetGrantRead sets the GrantRead field's value.
+func (s *CreateBucketInput) SetGrantRead(v string) *CreateBucketInput {
+	s.GrantRead = &v
+	return s
+}
+
+// SetGrantReadACP sets the GrantReadACP field's value.
+func (s *CreateBucketInput) SetGrantReadACP(v string) *CreateBucketInput {
+	s.GrantReadACP = &v
+	return s
+}
+
+// SetGrantWrite sets the GrantWrite field's value.
+func (s *CreateBucketInput) SetGrantWrite(v string) *CreateBucketInput {
+	s.GrantWrite = &v
+	return s
+}
+
+// SetGrantWriteACP sets the GrantWriteACP field's value.
+func (s *CreateBucketInput) SetGrantWriteACP(v string) *CreateBucketInput {
+	s.GrantWriteACP = &v
+	return s
+}
+
+// SetObjectLockEnabledForBucket sets the ObjectLockEnabledForBucket field's value.
+func (s *CreateBucketInput) SetObjectLockEnabledForBucket(v bool) *CreateBucketInput {
+	s.ObjectLockEnabledForBucket = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *CreateBucketInput) SetOutpostId(v string) *CreateBucketInput {
+	s.OutpostId = &v
+	return s
+}
+
+func (s *CreateBucketInput) getOutpostID() (string, error) {
+	if s.OutpostId == nil {
+		return "", fmt.Errorf("member OutpostId is nil")
+	}
+	return *s.OutpostId, nil
+}
+
+func (s *CreateBucketInput) hasOutpostID() bool {
+	if s.OutpostId == nil {
+		return false
+	}
+	return true
+}
+
+type CreateBucketOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	BucketArn *string `min:"4" type:"string"`
+
+	// The location of the bucket.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateBucketOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBucketOutput) GoString() string {
+	return s.String()
+}
+
+// SetBucketArn sets the BucketArn field's value.
+func (s *CreateBucketOutput) SetBucketArn(v string) *CreateBucketOutput {
+	s.BucketArn = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateBucketOutput) SetLocation(v string) *CreateBucketOutput {
+	s.Location = &v
+	return s
+}
+
 type CreateJobInput struct {
 	_ struct{} `locationName:"CreateJobRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
+	// The AWS account ID that creates the job.
+	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
@@ -2007,8 +3987,8 @@ type CreateJobInput struct {
 	Manifest *JobManifest `type:"structure" required:"true"`
 
 	// The operation that you want this job to perform on each object listed in
-	// the manifest. For more information about the available operations, see Available
-	// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html)
+	// the manifest. For more information about the available operations, see Operations
+	// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Operation is a required field
@@ -2025,14 +4005,14 @@ type CreateJobInput struct {
 	Report *JobReport `type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) for the AWS Identity and Access Management
-	// (IAM) role that Batch Operations will use to execute this job's operation
-	// on each object in the manifest.
+	// (IAM) role that Batch Operations will use to run this job's operation on
+	// each object in the manifest.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
 
-	// A set of tags to associate with the Amazon S3 Batch Operations job. This
-	// is an optional parameter.
+	// A set of tags to associate with the S3 Batch Operations job. This is an optional
+	// parameter.
 	Tags []*S3Tag `type:"list"`
 }
 
@@ -2211,6 +4191,13 @@ type DeleteAccessPointInput struct {
 
 	// The name of the access point you want to delete.
 	//
+	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
+	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For example, to access the access point reports-ap through outpost my-outpost
+	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
+	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
+	// The value must be URL encoded.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -2265,6 +4252,40 @@ func (s *DeleteAccessPointInput) hostLabels() map[string]string {
 	}
 }
 
+func (s *DeleteAccessPointInput) getEndpointARN() (arn.Resource, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	return parseEndpointARN(*s.Name)
+}
+
+func (s *DeleteAccessPointInput) hasEndpointARN() bool {
+	if s.Name == nil {
+		return false
+	}
+	return arn.IsARN(*s.Name)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteAccessPointInput) updateArnableField(v string) error {
+	if s.Name == nil {
+		return fmt.Errorf("member Name is nil")
+	}
+	s.Name = aws.String(v)
+	return nil
+}
+
+func (s *DeleteAccessPointInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
 type DeleteAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -2288,6 +4309,13 @@ type DeleteAccessPointPolicyInput struct {
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The name of the access point whose policy you want to delete.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
+	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For example, to access the access point reports-ap through outpost my-outpost
+	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
+	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
+	// The value must be URL encoded.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
@@ -2357,15 +4385,487 @@ func (s DeleteAccessPointPolicyOutput) GoString() string {
 	return s.String()
 }
 
-type DeleteJobTaggingInput struct {
-	_ struct{} `locationName:"DeleteJobTaggingRequest" type:"structure"`
+type DeleteBucketInput struct {
+	_ struct{} `locationName:"DeleteBucketRequest" type:"structure"`
 
-	// The AWS account ID associated with the Amazon S3 Batch Operations job.
+	// The account ID that owns the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ID for the Amazon S3 Batch Operations job whose tags you want to delete.
+	// Specifies the bucket being deleted.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteBucketInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBucketInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteBucketInput) SetAccountId(v string) *DeleteBucketInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *DeleteBucketInput) SetBucket(v string) *DeleteBucketInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *DeleteBucketInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *DeleteBucketInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *DeleteBucketInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type DeleteBucketLifecycleConfigurationInput struct {
+	_ struct{} `locationName:"DeleteBucketLifecycleConfigurationRequest" type:"structure"`
+
+	// The account ID of the lifecycle configuration to delete.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The bucket ARN of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteBucketLifecycleConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketLifecycleConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBucketLifecycleConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketLifecycleConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteBucketLifecycleConfigurationInput) SetAccountId(v string) *DeleteBucketLifecycleConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *DeleteBucketLifecycleConfigurationInput) SetBucket(v string) *DeleteBucketLifecycleConfigurationInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *DeleteBucketLifecycleConfigurationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *DeleteBucketLifecycleConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketLifecycleConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *DeleteBucketLifecycleConfigurationInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type DeleteBucketLifecycleConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBucketLifecycleConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketLifecycleConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteBucketOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBucketOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteBucketPolicyInput struct {
+	_ struct{} `locationName:"DeleteBucketPolicyRequest" type:"structure"`
+
+	// The account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ARN of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteBucketPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBucketPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteBucketPolicyInput) SetAccountId(v string) *DeleteBucketPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *DeleteBucketPolicyInput) SetBucket(v string) *DeleteBucketPolicyInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *DeleteBucketPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *DeleteBucketPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketPolicyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *DeleteBucketPolicyInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type DeleteBucketPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBucketPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketPolicyOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteBucketTaggingInput struct {
+	_ struct{} `locationName:"DeleteBucketTaggingRequest" type:"structure"`
+
+	// The AWS account ID of the Outposts bucket tag set to be removed.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The bucket ARN that has the tag set to be removed.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteBucketTaggingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketTaggingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBucketTaggingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketTaggingInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteBucketTaggingInput) SetAccountId(v string) *DeleteBucketTaggingInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *DeleteBucketTaggingInput) SetBucket(v string) *DeleteBucketTaggingInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *DeleteBucketTaggingInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *DeleteBucketTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *DeleteBucketTaggingInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type DeleteBucketTaggingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBucketTaggingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketTaggingOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteJobTaggingInput struct {
+	_ struct{} `locationName:"DeleteJobTaggingRequest" type:"structure"`
+
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID for the S3 Batch Operations job whose tags you want to delete.
 	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"id" min:"5" type:"string" required:"true"`
@@ -2438,8 +4938,8 @@ func (s DeleteJobTaggingOutput) GoString() string {
 type DeletePublicAccessBlockInput struct {
 	_ struct{} `locationName:"DeletePublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the Amazon Web Services account whose PublicAccessBlock
-	// configuration you want to remove.
+	// The account ID for the AWS account whose PublicAccessBlock configuration
+	// you want to remove.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -2594,6 +5094,13 @@ type GetAccessPointInput struct {
 	// The name of the access point whose configuration information you want to
 	// retrieve.
 	//
+	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
+	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For example, to access the access point reports-ap through outpost my-outpost
+	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
+	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
+	// The value must be URL encoded.
+	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 }
@@ -2648,6 +5155,40 @@ func (s *GetAccessPointInput) hostLabels() map[string]string {
 	}
 }
 
+func (s *GetAccessPointInput) getEndpointARN() (arn.Resource, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	return parseEndpointARN(*s.Name)
+}
+
+func (s *GetAccessPointInput) hasEndpointARN() bool {
+	if s.Name == nil {
+		return false
+	}
+	return arn.IsARN(*s.Name)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetAccessPointInput) updateArnableField(v string) error {
+	if s.Name == nil {
+		return fmt.Errorf("member Name is nil")
+	}
+	s.Name = aws.String(v)
+	return nil
+}
+
+func (s *GetAccessPointInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
 type GetAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -2665,6 +5206,8 @@ type GetAccessPointOutput struct {
 	// is VPC, and the access point doesn't allow access from the public internet.
 	// Otherwise, NetworkOrigin is Internet, and the access point allows access
 	// from the public internet, subject to the access point and bucket access policies.
+	//
+	// This will always be true for an Amazon S3 on Outposts access point
 	NetworkOrigin *string `type:"string" enum:"NetworkOrigin"`
 
 	// The PublicAccessBlock configuration that you want to apply to this Amazon
@@ -2672,6 +5215,8 @@ type GetAccessPointOutput struct {
 	// more information about when Amazon S3 considers a bucket or object public,
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// This is not supported for Amazon S3 on Outposts.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 
 	// Contains the virtual private cloud (VPC) configuration for the specified
@@ -2734,6 +5279,13 @@ type GetAccessPointPolicyInput struct {
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The name of the access point whose policy you want to retrieve.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
+	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For example, to access the access point reports-ap through outpost my-outpost
+	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
+	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
+	// The value must be URL encoded.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
@@ -2899,15 +5451,542 @@ func (s *GetAccessPointPolicyStatusOutput) SetPolicyStatus(v *PolicyStatus) *Get
 	return s
 }
 
-type GetJobTaggingInput struct {
-	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
+type GetBucketInput struct {
+	_ struct{} `locationName:"GetBucketRequest" type:"structure"`
 
-	// The AWS account ID associated with the Amazon S3 Batch Operations job.
+	// The AWS account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ID for the Amazon S3 Batch Operations job whose tags you want to retrieve.
+	// The ARN of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBucketInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetBucketInput) SetAccountId(v string) *GetBucketInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketInput) SetBucket(v string) *GetBucketInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *GetBucketInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *GetBucketInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type GetBucketLifecycleConfigurationInput struct {
+	_ struct{} `locationName:"GetBucketLifecycleConfigurationRequest" type:"structure"`
+
+	// The AWS account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBucketLifecycleConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketLifecycleConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketLifecycleConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketLifecycleConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetBucketLifecycleConfigurationInput) SetAccountId(v string) *GetBucketLifecycleConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketLifecycleConfigurationInput) SetBucket(v string) *GetBucketLifecycleConfigurationInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketLifecycleConfigurationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *GetBucketLifecycleConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketLifecycleConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *GetBucketLifecycleConfigurationInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type GetBucketLifecycleConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Container for the lifecycle rule of the Outposts bucket.
+	Rules []*LifecycleRule `locationNameList:"Rule" type:"list"`
+}
+
+// String returns the string representation
+func (s GetBucketLifecycleConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketLifecycleConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetRules sets the Rules field's value.
+func (s *GetBucketLifecycleConfigurationOutput) SetRules(v []*LifecycleRule) *GetBucketLifecycleConfigurationOutput {
+	s.Rules = v
+	return s
+}
+
+type GetBucketOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Outposts bucket requested.
+	Bucket *string `min:"3" type:"string"`
+
+	// The creation date of the Outposts bucket.
+	CreationDate *time.Time `type:"timestamp"`
+
+	PublicAccessBlockEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s GetBucketOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketOutput) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketOutput) SetBucket(v string) *GetBucketOutput {
+	s.Bucket = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *GetBucketOutput) SetCreationDate(v time.Time) *GetBucketOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetPublicAccessBlockEnabled sets the PublicAccessBlockEnabled field's value.
+func (s *GetBucketOutput) SetPublicAccessBlockEnabled(v bool) *GetBucketOutput {
+	s.PublicAccessBlockEnabled = &v
+	return s
+}
+
+type GetBucketPolicyInput struct {
+	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
+
+	// The AWS account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ARN of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBucketPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetBucketPolicyInput) SetAccountId(v string) *GetBucketPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketPolicyInput) SetBucket(v string) *GetBucketPolicyInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *GetBucketPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketPolicyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *GetBucketPolicyInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type GetBucketPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy of the Outposts bucket.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetBucketPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetBucketPolicyOutput) SetPolicy(v string) *GetBucketPolicyOutput {
+	s.Policy = &v
+	return s
+}
+
+type GetBucketTaggingInput struct {
+	_ struct{} `locationName:"GetBucketTaggingRequest" type:"structure"`
+
+	// The AWS account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ARN of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBucketTaggingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketTaggingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketTaggingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketTaggingInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetBucketTaggingInput) SetAccountId(v string) *GetBucketTaggingInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketTaggingInput) SetBucket(v string) *GetBucketTaggingInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketTaggingInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *GetBucketTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *GetBucketTaggingInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type GetBucketTaggingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags set of the Outposts bucket.
+	//
+	// TagSet is a required field
+	TagSet []*S3Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBucketTaggingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketTaggingOutput) GoString() string {
+	return s.String()
+}
+
+// SetTagSet sets the TagSet field's value.
+func (s *GetBucketTaggingOutput) SetTagSet(v []*S3Tag) *GetBucketTaggingOutput {
+	s.TagSet = v
+	return s
+}
+
+type GetJobTaggingInput struct {
+	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
+
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID for the S3 Batch Operations job whose tags you want to retrieve.
 	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"id" min:"5" type:"string" required:"true"`
@@ -2966,7 +6045,7 @@ func (s *GetJobTaggingInput) hostLabels() map[string]string {
 type GetJobTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The set of tags associated with the Amazon S3 Batch Operations job.
+	// The set of tags associated with the S3 Batch Operations job.
 	Tags []*S3Tag `type:"list"`
 }
 
@@ -2989,8 +6068,8 @@ func (s *GetJobTaggingOutput) SetTags(v []*S3Tag) *GetJobTaggingOutput {
 type GetPublicAccessBlockInput struct {
 	_ struct{} `locationName:"GetPublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the Amazon Web Services account whose PublicAccessBlock
-	// configuration you want to retrieve.
+	// The account ID for the AWS account whose PublicAccessBlock configuration
+	// you want to retrieve.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -3037,8 +6116,7 @@ func (s *GetPublicAccessBlockInput) hostLabels() map[string]string {
 type GetPublicAccessBlockOutput struct {
 	_ struct{} `type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The PublicAccessBlock configuration currently in effect for this Amazon Web
-	// Services account.
+	// The PublicAccessBlock configuration currently in effect for this AWS account.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 }
 
@@ -3088,15 +6166,15 @@ type JobDescriptor struct {
 	// The configuration information for the specified job's manifest object.
 	Manifest *JobManifest `type:"structure"`
 
-	// The operation that the specified job is configured to execute on the objects
+	// The operation that the specified job is configured to run on the objects
 	// listed in the manifest.
 	Operation *JobOperation `type:"structure"`
 
 	// The priority of the specified job.
 	Priority *int64 `type:"integer"`
 
-	// Describes the total number of tasks that the specified job has executed,
-	// the number of tasks that succeeded, and the number of tasks that failed.
+	// Describes the total number of tasks that the specified job has run, the number
+	// of tasks that succeeded, and the number of tasks that failed.
 	ProgressSummary *JobProgressSummary `type:"structure"`
 
 	// Contains the configuration information for the job-completion report if you
@@ -3104,12 +6182,13 @@ type JobDescriptor struct {
 	Report *JobReport `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the AWS Identity and Access Management
-	// (IAM) role assigned to execute the tasks for this job.
+	// (IAM) role assigned to run the tasks for this job.
 	RoleArn *string `min:"1" type:"string"`
 
 	// The current status of the specified job.
 	Status *string `type:"string" enum:"JobStatus"`
 
+	// The reason for updating the job.
 	StatusUpdateReason *string `min:"1" type:"string"`
 
 	// The reason why the specified job was suspended. A job is only suspended if
@@ -3293,8 +6372,8 @@ type JobListDescriptor struct {
 	// The current priority for the specified job.
 	Priority *int64 `type:"integer"`
 
-	// Describes the total number of tasks that the specified job has executed,
-	// the number of tasks that succeeded, and the number of tasks that failed.
+	// Describes the total number of tasks that the specified job has run, the number
+	// of tasks that succeeded, and the number of tasks that failed.
 	ProgressSummary *JobProgressSummary `type:"structure"`
 
 	// The specified job's current status.
@@ -3549,8 +6628,8 @@ func (s *JobManifestSpec) SetFormat(v string) *JobManifestSpec {
 }
 
 // The operation that you want this job to perform on each object listed in
-// the manifest. For more information about the available operations, see Available
-// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html)
+// the manifest. For more information about the available operations, see Operations
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-operations.html)
 // in the Amazon Simple Storage Service Developer Guide.
 type JobOperation struct {
 	_ struct{} `type:"structure"`
@@ -3559,31 +6638,33 @@ type JobOperation struct {
 	// in the manifest.
 	LambdaInvoke *LambdaInvokeOperation `type:"structure"`
 
-	// Directs the specified job to execute an Initiate Glacier Restore call on
-	// each object in the manifest.
+	// Directs the specified job to run an Initiate Glacier Restore call on each
+	// object in the manifest.
 	S3InitiateRestoreObject *S3InitiateRestoreObjectOperation `type:"structure"`
 
-	// Directs the specified job to execute a PUT Object acl call on each object
-	// in the manifest.
+	// Directs the specified job to run a PUT Object acl call on each object in
+	// the manifest.
 	S3PutObjectAcl *S3SetObjectAclOperation `type:"structure"`
 
-	// Directs the specified job to execute a PUT Copy object call on each object
-	// in the manifest.
+	// Directs the specified job to run a PUT Copy object call on each object in
+	// the manifest.
 	S3PutObjectCopy *S3CopyObjectOperation `type:"structure"`
 
-	// Contains the configuration parameters for a Set Object Legal Hold operation.
-	// Amazon S3 Batch Operations passes each value through to the underlying PUT
-	// Object Legal Hold API. For more information about the parameters for this
-	// operation, see PUT Object Legal Hold (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.htmll#object-lock-legal-holds).
+	// Contains the configuration for an S3 Object Lock legal hold operation that
+	// an S3 Batch Operations job passes each object through to the underlying PutObjectLegalHold
+	// API. For more information, see Using S3 Object Lock legal hold with S3 Batch
+	// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
+	// in the Amazon Simple Storage Service Developer Guide.
 	S3PutObjectLegalHold *S3SetObjectLegalHoldOperation `type:"structure"`
 
-	// Contains the configuration parameters for a Set Object Retention operation.
-	// Amazon S3 Batch Operations passes each value through to the underlying PUT
-	// Object Retention API. For more information about the parameters for this
-	// operation, see PUT Object Retention (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-retention-modes).
+	// Contains the configuration parameters for the Object Lock retention action
+	// for an S3 Batch Operations job. Batch Operations passes each value through
+	// to the underlying PutObjectRetention API. For more information, see Using
+	// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+	// in the Amazon Simple Storage Service Developer Guide.
 	S3PutObjectRetention *S3SetObjectRetentionOperation `type:"structure"`
 
-	// Directs the specified job to execute a PUT Object tagging call on each object
+	// Directs the specified job to run a PUT Object tagging call on each object
 	// in the manifest.
 	S3PutObjectTagging *S3SetObjectTaggingOperation `type:"structure"`
 }
@@ -3680,8 +6761,8 @@ func (s *JobOperation) SetS3PutObjectTagging(v *S3SetObjectTaggingOperation) *Jo
 	return s
 }
 
-// Describes the total number of tasks that the specified job has executed,
-// the number of tasks that succeeded, and the number of tasks that failed.
+// Describes the total number of tasks that the specified job has started, the
+// number of tasks that succeeded, and the number of tasks that failed.
 type JobProgressSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3737,8 +6818,7 @@ type JobReport struct {
 	Format *string `type:"string" enum:"JobReportFormat"`
 
 	// An optional prefix to describe where in the specified bucket the job-completion
-	// report will be stored. Amazon S3 will store the job-completion report at
-	// <prefix>/job-<job-id>/report.json.
+	// report will be stored. Amazon S3 stores the job-completion report at <prefix>/job-<job-id>/report.json.
 	Prefix *string `min:"1" type:"string"`
 
 	// Indicates whether the job-completion report will include details of all tasks
@@ -3843,6 +6923,335 @@ func (s *LambdaInvokeOperation) SetFunctionArn(v string) *LambdaInvokeOperation 
 	return s
 }
 
+// The container for the Outposts bucket lifecycle configuration.
+type LifecycleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A lifecycle rule for individual objects in an Outposts bucket.
+	Rules []*LifecycleRule `locationNameList:"Rule" type:"list"`
+}
+
+// String returns the string representation
+func (s LifecycleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LifecycleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LifecycleConfiguration"}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRules sets the Rules field's value.
+func (s *LifecycleConfiguration) SetRules(v []*LifecycleRule) *LifecycleConfiguration {
+	s.Rules = v
+	return s
+}
+
+// The container of the Outposts bucket lifecycle expiration.
+type LifecycleExpiration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates at what date the object is to be deleted. Should be in GMT ISO
+	// 8601 format.
+	Date *time.Time `type:"timestamp"`
+
+	// Indicates the lifetime, in days, of the objects that are subject to the rule.
+	// The value must be a non-zero positive integer.
+	Days *int64 `type:"integer"`
+
+	// Indicates whether Amazon S3 will remove a delete marker with no noncurrent
+	// versions. If set to true, the delete marker will be expired. If set to false,
+	// the policy takes no action. This cannot be specified with Days or Date in
+	// a Lifecycle Expiration Policy.
+	ExpiredObjectDeleteMarker *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s LifecycleExpiration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleExpiration) GoString() string {
+	return s.String()
+}
+
+// SetDate sets the Date field's value.
+func (s *LifecycleExpiration) SetDate(v time.Time) *LifecycleExpiration {
+	s.Date = &v
+	return s
+}
+
+// SetDays sets the Days field's value.
+func (s *LifecycleExpiration) SetDays(v int64) *LifecycleExpiration {
+	s.Days = &v
+	return s
+}
+
+// SetExpiredObjectDeleteMarker sets the ExpiredObjectDeleteMarker field's value.
+func (s *LifecycleExpiration) SetExpiredObjectDeleteMarker(v bool) *LifecycleExpiration {
+	s.ExpiredObjectDeleteMarker = &v
+	return s
+}
+
+// The container for the Outposts bucket lifecycle rule.
+type LifecycleRule struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the days since the initiation of an incomplete multipart upload
+	// that Amazon S3 waits before permanently removing all parts of the upload.
+	// For more information, see Aborting Incomplete Multipart Uploads Using a Bucket
+	// Lifecycle Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/mpuoverview.html#mpu-abort-incomplete-mpu-lifecycle-config)
+	// in the Amazon Simple Storage Service Developer Guide.
+	AbortIncompleteMultipartUpload *AbortIncompleteMultipartUpload `type:"structure"`
+
+	// Specifies the expiration for the lifecycle of the object in the form of date,
+	// days and, whether the object has a delete marker.
+	Expiration *LifecycleExpiration `type:"structure"`
+
+	// The container for the filter of lifecycle rule.
+	Filter *LifecycleRuleFilter `type:"structure"`
+
+	// Unique identifier for the rule. The value cannot be longer than 255 characters.
+	ID *string `type:"string"`
+
+	// The noncurrent version expiration of the lifecycle rule.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	NoncurrentVersionExpiration *NoncurrentVersionExpiration `type:"structure"`
+
+	// Specifies the transition rule for the lifecycle rule that describes when
+	// noncurrent objects transition to a specific storage class. If your bucket
+	// is versioning-enabled (or versioning is suspended), you can set this action
+	// to request that Amazon S3 transition noncurrent object versions to a specific
+	// storage class at a set period in the object's lifetime.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	NoncurrentVersionTransitions []*NoncurrentVersionTransition `locationNameList:"NoncurrentVersionTransition" type:"list"`
+
+	// If 'Enabled', the rule is currently being applied. If 'Disabled', the rule
+	// is not currently being applied.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ExpirationStatus"`
+
+	// Specifies when an Amazon S3 object transitions to a specified storage class.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	Transitions []*Transition `locationNameList:"Transition" type:"list"`
+}
+
+// String returns the string representation
+func (s LifecycleRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LifecycleRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LifecycleRule"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.Filter != nil {
+		if err := s.Filter.Validate(); err != nil {
+			invalidParams.AddNested("Filter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAbortIncompleteMultipartUpload sets the AbortIncompleteMultipartUpload field's value.
+func (s *LifecycleRule) SetAbortIncompleteMultipartUpload(v *AbortIncompleteMultipartUpload) *LifecycleRule {
+	s.AbortIncompleteMultipartUpload = v
+	return s
+}
+
+// SetExpiration sets the Expiration field's value.
+func (s *LifecycleRule) SetExpiration(v *LifecycleExpiration) *LifecycleRule {
+	s.Expiration = v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *LifecycleRule) SetFilter(v *LifecycleRuleFilter) *LifecycleRule {
+	s.Filter = v
+	return s
+}
+
+// SetID sets the ID field's value.
+func (s *LifecycleRule) SetID(v string) *LifecycleRule {
+	s.ID = &v
+	return s
+}
+
+// SetNoncurrentVersionExpiration sets the NoncurrentVersionExpiration field's value.
+func (s *LifecycleRule) SetNoncurrentVersionExpiration(v *NoncurrentVersionExpiration) *LifecycleRule {
+	s.NoncurrentVersionExpiration = v
+	return s
+}
+
+// SetNoncurrentVersionTransitions sets the NoncurrentVersionTransitions field's value.
+func (s *LifecycleRule) SetNoncurrentVersionTransitions(v []*NoncurrentVersionTransition) *LifecycleRule {
+	s.NoncurrentVersionTransitions = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LifecycleRule) SetStatus(v string) *LifecycleRule {
+	s.Status = &v
+	return s
+}
+
+// SetTransitions sets the Transitions field's value.
+func (s *LifecycleRule) SetTransitions(v []*Transition) *LifecycleRule {
+	s.Transitions = v
+	return s
+}
+
+// The container for the Outposts bucket lifecycle rule and operator.
+type LifecycleRuleAndOperator struct {
+	_ struct{} `type:"structure"`
+
+	// Prefix identifying one or more objects to which the rule applies.
+	Prefix *string `type:"string"`
+
+	// All of these tags must exist in the object's tag set in order for the rule
+	// to apply.
+	Tags []*S3Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s LifecycleRuleAndOperator) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleRuleAndOperator) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LifecycleRuleAndOperator) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LifecycleRuleAndOperator"}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *LifecycleRuleAndOperator) SetPrefix(v string) *LifecycleRuleAndOperator {
+	s.Prefix = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *LifecycleRuleAndOperator) SetTags(v []*S3Tag) *LifecycleRuleAndOperator {
+	s.Tags = v
+	return s
+}
+
+// The container for the filter of the lifecycle rule.
+type LifecycleRuleFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The container for the AND condition for the lifecycle rule.
+	And *LifecycleRuleAndOperator `type:"structure"`
+
+	// Prefix identifying one or more objects to which the rule applies.
+	Prefix *string `type:"string"`
+
+	Tag *S3Tag `type:"structure"`
+}
+
+// String returns the string representation
+func (s LifecycleRuleFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleRuleFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LifecycleRuleFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LifecycleRuleFilter"}
+	if s.And != nil {
+		if err := s.And.Validate(); err != nil {
+			invalidParams.AddNested("And", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tag != nil {
+		if err := s.Tag.Validate(); err != nil {
+			invalidParams.AddNested("Tag", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnd sets the And field's value.
+func (s *LifecycleRuleFilter) SetAnd(v *LifecycleRuleAndOperator) *LifecycleRuleFilter {
+	s.And = v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *LifecycleRuleFilter) SetPrefix(v string) *LifecycleRuleFilter {
+	s.Prefix = &v
+	return s
+}
+
+// SetTag sets the Tag field's value.
+func (s *LifecycleRuleFilter) SetTag(v *S3Tag) *LifecycleRuleFilter {
+	s.Tag = v
+	return s
+}
+
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
@@ -3853,13 +7262,19 @@ type ListAccessPointsInput struct {
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The name of the bucket whose associated access points you want to list.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
 	Bucket *string `location:"querystring" locationName:"bucket" min:"3" type:"string"`
 
 	// The maximum number of access points that you want to include in the list.
 	// If the specified bucket has more than this number of access points, then
 	// the response will include a continuation token in the NextToken field that
 	// you can use to retrieve the next page of access points.
-	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
 	// A continuation token. If a previous call to ListAccessPoints returned a continuation
 	// token in the NextToken field, then providing that value here causes Amazon
@@ -3888,9 +7303,6 @@ func (s *ListAccessPointsInput) Validate() error {
 	}
 	if s.Bucket != nil && len(*s.Bucket) < 3 {
 		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
-	}
-	if s.MaxResults != nil && *s.MaxResults < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
@@ -3932,6 +7344,40 @@ func (s *ListAccessPointsInput) hostLabels() map[string]string {
 	}
 }
 
+func (s *ListAccessPointsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *ListAccessPointsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListAccessPointsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *ListAccessPointsInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
 type ListAccessPointsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3940,9 +7386,8 @@ type ListAccessPointsOutput struct {
 	AccessPointList []*AccessPoint `locationNameList:"AccessPoint" type:"list"`
 
 	// If the specified bucket has more access points than can be returned in one
-	// call to this API, then this field contains a continuation token that you
-	// can provide in subsequent calls to this API to retrieve additional access
-	// points.
+	// call to this API, this field contains a continuation token that you can provide
+	// in subsequent calls to this API to retrieve additional access points.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -3981,7 +7426,7 @@ type ListJobsInput struct {
 	// The maximum number of jobs that Amazon S3 will include in the List Jobs response.
 	// If there are more jobs than this number, the response will include a pagination
 	// token in the NextToken field to enable you to retrieve the next page of results.
-	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
 
 	// A pagination token to request the next page of results. Use the token that
 	// Amazon S3 returned in the NextToken element of the ListJobsResult from the
@@ -4007,9 +7452,6 @@ func (s *ListJobsInput) Validate() error {
 	}
 	if s.AccountId != nil && len(*s.AccountId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
-	}
-	if s.MaxResults != nil && *s.MaxResults < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
@@ -4085,6 +7527,198 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type ListRegionalBucketsInput struct {
+	_ struct{} `locationName:"ListRegionalBucketsRequest" type:"structure"`
+
+	// The AWS account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+
+	// The ID of the AWS Outposts.
+	//
+	// This is required by Amazon S3 on Outposts buckets.
+	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRegionalBucketsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRegionalBucketsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRegionalBucketsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRegionalBucketsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OutpostId != nil && len(*s.OutpostId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListRegionalBucketsInput) SetAccountId(v string) *ListRegionalBucketsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRegionalBucketsInput) SetMaxResults(v int64) *ListRegionalBucketsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRegionalBucketsInput) SetNextToken(v string) *ListRegionalBucketsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *ListRegionalBucketsInput) SetOutpostId(v string) *ListRegionalBucketsInput {
+	s.OutpostId = &v
+	return s
+}
+
+func (s *ListRegionalBucketsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *ListRegionalBucketsInput) getOutpostID() (string, error) {
+	if s.OutpostId == nil {
+		return "", fmt.Errorf("member OutpostId is nil")
+	}
+	return *s.OutpostId, nil
+}
+
+func (s *ListRegionalBucketsInput) hasOutpostID() bool {
+	if s.OutpostId == nil {
+		return false
+	}
+	return true
+}
+
+type ListRegionalBucketsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// NextToken is sent when isTruncated is true, which means there are more buckets
+	// that can be listed. The next list requests to Amazon S3 can be continued
+	// with this NextToken. NextToken is obfuscated and is not a real key.
+	NextToken *string `min:"1" type:"string"`
+
+	RegionalBucketList []*RegionalBucket `locationNameList:"RegionalBucket" type:"list"`
+}
+
+// String returns the string representation
+func (s ListRegionalBucketsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRegionalBucketsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRegionalBucketsOutput) SetNextToken(v string) *ListRegionalBucketsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegionalBucketList sets the RegionalBucketList field's value.
+func (s *ListRegionalBucketsOutput) SetRegionalBucketList(v []*RegionalBucket) *ListRegionalBucketsOutput {
+	s.RegionalBucketList = v
+	return s
+}
+
+// The container of the noncurrent version expiration.
+type NoncurrentVersionExpiration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days an object is noncurrent before Amazon S3 can
+	// perform the associated action. For information about the noncurrent days
+	// calculations, see How Amazon S3 Calculates When an Object Became Noncurrent
+	// (https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations)
+	// in the Amazon Simple Storage Service Developer Guide.
+	NoncurrentDays *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s NoncurrentVersionExpiration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NoncurrentVersionExpiration) GoString() string {
+	return s.String()
+}
+
+// SetNoncurrentDays sets the NoncurrentDays field's value.
+func (s *NoncurrentVersionExpiration) SetNoncurrentDays(v int64) *NoncurrentVersionExpiration {
+	s.NoncurrentDays = &v
+	return s
+}
+
+// The container for the noncurrent version transition.
+type NoncurrentVersionTransition struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days an object is noncurrent before Amazon S3 can
+	// perform the associated action. For information about the noncurrent days
+	// calculations, see How Amazon S3 Calculates How Long an Object Has Been Noncurrent
+	// (https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#non-current-days-calculations)
+	// in the Amazon Simple Storage Service Developer Guide.
+	NoncurrentDays *int64 `type:"integer"`
+
+	// The class of storage used to store the object.
+	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
+}
+
+// String returns the string representation
+func (s NoncurrentVersionTransition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NoncurrentVersionTransition) GoString() string {
+	return s.String()
+}
+
+// SetNoncurrentDays sets the NoncurrentDays field's value.
+func (s *NoncurrentVersionTransition) SetNoncurrentDays(v int64) *NoncurrentVersionTransition {
+	s.NoncurrentDays = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *NoncurrentVersionTransition) SetStorageClass(v string) *NoncurrentVersionTransition {
+	s.StorageClass = &v
+	return s
+}
+
 // Indicates whether this access point policy is public. For more information
 // about how Amazon S3 evaluates policies to determine whether they are public,
 // see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
@@ -4116,6 +7750,8 @@ func (s *PolicyStatus) SetIsPublic(v bool) *PolicyStatus {
 // more information about when Amazon S3 considers a bucket or object public,
 // see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 // in the Amazon Simple Storage Service Developer Guide.
+//
+// This is not supported for Amazon S3 on Outposts.
 type PublicAccessBlockConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4131,6 +7767,8 @@ type PublicAccessBlockConfiguration struct {
 	//    * PUT Bucket calls fail if the request includes a public ACL.
 	//
 	// Enabling this setting doesn't affect existing policies or ACLs.
+	//
+	// This is not supported for Amazon S3 on Outposts.
 	BlockPublicAcls *bool `locationName:"BlockPublicAcls" type:"boolean"`
 
 	// Specifies whether Amazon S3 should block public bucket policies for buckets
@@ -4138,6 +7776,8 @@ type PublicAccessBlockConfiguration struct {
 	// calls to PUT Bucket policy if the specified bucket policy allows public access.
 	//
 	// Enabling this setting doesn't affect existing bucket policies.
+	//
+	// This is not supported for Amazon S3 on Outposts.
 	BlockPublicPolicy *bool `locationName:"BlockPublicPolicy" type:"boolean"`
 
 	// Specifies whether Amazon S3 should ignore public ACLs for buckets in this
@@ -4146,6 +7786,8 @@ type PublicAccessBlockConfiguration struct {
 	//
 	// Enabling this setting doesn't affect the persistence of any existing ACLs
 	// and doesn't prevent new public ACLs from being set.
+	//
+	// This is not supported for Amazon S3 on Outposts.
 	IgnorePublicAcls *bool `locationName:"IgnorePublicAcls" type:"boolean"`
 
 	// Specifies whether Amazon S3 should restrict public bucket policies for buckets
@@ -4156,6 +7798,8 @@ type PublicAccessBlockConfiguration struct {
 	// Enabling this setting doesn't affect previously stored bucket policies, except
 	// that public and cross-account access within any public bucket policy, including
 	// non-public delegation to specific accounts, is blocked.
+	//
+	// This is not supported for Amazon S3 on Outposts.
 	RestrictPublicBuckets *bool `locationName:"RestrictPublicBuckets" type:"boolean"`
 }
 
@@ -4204,6 +7848,13 @@ type PutAccessPointPolicyInput struct {
 
 	// The name of the access point that you want to associate with the specified
 	// policy.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
+	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For example, to access the access point reports-ap through outpost my-outpost
+	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
+	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
+	// The value must be URL encoded.
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
@@ -4290,20 +7941,425 @@ func (s PutAccessPointPolicyOutput) GoString() string {
 	return s.String()
 }
 
-type PutJobTaggingInput struct {
-	_ struct{} `locationName:"PutJobTaggingRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+type PutBucketLifecycleConfigurationInput struct {
+	_ struct{} `locationName:"PutBucketLifecycleConfigurationRequest" type:"structure" payload:"LifecycleConfiguration"`
 
-	// The AWS account ID associated with the Amazon S3 Batch Operations job.
+	// The AWS account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ID for the Amazon S3 Batch Operations job whose tags you want to replace.
+	// The name of the bucket for which to set the configuration.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// Container for lifecycle rules. You can add as many as 1,000 rules.
+	LifecycleConfiguration *LifecycleConfiguration `locationName:"LifecycleConfiguration" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+}
+
+// String returns the string representation
+func (s PutBucketLifecycleConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketLifecycleConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBucketLifecycleConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBucketLifecycleConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.LifecycleConfiguration != nil {
+		if err := s.LifecycleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("LifecycleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutBucketLifecycleConfigurationInput) SetAccountId(v string) *PutBucketLifecycleConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PutBucketLifecycleConfigurationInput) SetBucket(v string) *PutBucketLifecycleConfigurationInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetLifecycleConfiguration sets the LifecycleConfiguration field's value.
+func (s *PutBucketLifecycleConfigurationInput) SetLifecycleConfiguration(v *LifecycleConfiguration) *PutBucketLifecycleConfigurationInput {
+	s.LifecycleConfiguration = v
+	return s
+}
+
+func (s *PutBucketLifecycleConfigurationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *PutBucketLifecycleConfigurationInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketLifecycleConfigurationInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *PutBucketLifecycleConfigurationInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type PutBucketLifecycleConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutBucketLifecycleConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketLifecycleConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type PutBucketPolicyInput struct {
+	_ struct{} `locationName:"PutBucketPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The AWS account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ARN of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// Set this parameter to true to confirm that you want to remove your permissions
+	// to change this bucket policy in the future.
+	//
+	// This is not supported by Amazon S3 on Outposts buckets.
+	ConfirmRemoveSelfBucketAccess *bool `location:"header" locationName:"x-amz-confirm-remove-self-bucket-access" type:"boolean"`
+
+	// The bucket policy as a JSON document.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutBucketPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBucketPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBucketPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutBucketPolicyInput) SetAccountId(v string) *PutBucketPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PutBucketPolicyInput) SetBucket(v string) *PutBucketPolicyInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetConfirmRemoveSelfBucketAccess sets the ConfirmRemoveSelfBucketAccess field's value.
+func (s *PutBucketPolicyInput) SetConfirmRemoveSelfBucketAccess(v bool) *PutBucketPolicyInput {
+	s.ConfirmRemoveSelfBucketAccess = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutBucketPolicyInput) SetPolicy(v string) *PutBucketPolicyInput {
+	s.Policy = &v
+	return s
+}
+
+func (s *PutBucketPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *PutBucketPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketPolicyInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *PutBucketPolicyInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type PutBucketPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutBucketPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketPolicyOutput) GoString() string {
+	return s.String()
+}
+
+type PutBucketTaggingInput struct {
+	_ struct{} `locationName:"PutBucketTaggingRequest" type:"structure" payload:"Tagging"`
+
+	// The AWS account ID of the Outposts bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the bucket.
+	//
+	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For example, to access the bucket reports through outpost my-outpost owned
+	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
+	// The value must be URL encoded.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
+
+	// Tagging is a required field
+	Tagging *Tagging `locationName:"Tagging" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+}
+
+// String returns the string representation
+func (s PutBucketTaggingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketTaggingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBucketTaggingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBucketTaggingInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+	if s.Tagging == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tagging"))
+	}
+	if s.Tagging != nil {
+		if err := s.Tagging.Validate(); err != nil {
+			invalidParams.AddNested("Tagging", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutBucketTaggingInput) SetAccountId(v string) *PutBucketTaggingInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PutBucketTaggingInput) SetBucket(v string) *PutBucketTaggingInput {
+	s.Bucket = &v
+	return s
+}
+
+// SetTagging sets the Tagging field's value.
+func (s *PutBucketTaggingInput) SetTagging(v *Tagging) *PutBucketTaggingInput {
+	s.Tagging = v
+	return s
+}
+
+func (s *PutBucketTaggingInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+func (s *PutBucketTaggingInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketTaggingInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+func (s *PutBucketTaggingInput) updateAccountID(accountId string) error {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+	} else if *s.AccountId != accountId {
+		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil
+}
+
+type PutBucketTaggingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutBucketTaggingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketTaggingOutput) GoString() string {
+	return s.String()
+}
+
+type PutJobTaggingInput struct {
+	_ struct{} `locationName:"PutJobTaggingRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The AWS account ID associated with the S3 Batch Operations job.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID for the S3 Batch Operations job whose tags you want to replace.
 	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"id" min:"5" type:"string" required:"true"`
 
-	// The set of tags to associate with the Amazon S3 Batch Operations job.
+	// The set of tags to associate with the S3 Batch Operations job.
 	//
 	// Tags is a required field
 	Tags []*S3Tag `type:"list" required:"true"`
@@ -4395,14 +8451,14 @@ func (s PutJobTaggingOutput) GoString() string {
 type PutPublicAccessBlockInput struct {
 	_ struct{} `locationName:"PutPublicAccessBlockRequest" type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The account ID for the Amazon Web Services account whose PublicAccessBlock
-	// configuration you want to set.
+	// The account ID for the AWS account whose PublicAccessBlock configuration
+	// you want to set.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The PublicAccessBlock configuration that you want to apply to the specified
-	// Amazon Web Services account.
+	// AWS account.
 	//
 	// PublicAccessBlockConfiguration is a required field
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `locationName:"PublicAccessBlockConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
@@ -4467,6 +8523,68 @@ func (s PutPublicAccessBlockOutput) String() string {
 // GoString returns the string representation
 func (s PutPublicAccessBlockOutput) GoString() string {
 	return s.String()
+}
+
+// The container for the regional bucket.
+type RegionalBucket struct {
+	_ struct{} `type:"structure"`
+
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the regional bucket.
+	BucketArn *string `min:"4" type:"string"`
+
+	// The creation date of the regional bucket
+	//
+	// CreationDate is a required field
+	CreationDate *time.Time `type:"timestamp" required:"true"`
+
+	// The AWS Outposts ID of the regional bucket.
+	OutpostId *string `min:"1" type:"string"`
+
+	// PublicAccessBlockEnabled is a required field
+	PublicAccessBlockEnabled *bool `type:"boolean" required:"true"`
+}
+
+// String returns the string representation
+func (s RegionalBucket) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegionalBucket) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *RegionalBucket) SetBucket(v string) *RegionalBucket {
+	s.Bucket = &v
+	return s
+}
+
+// SetBucketArn sets the BucketArn field's value.
+func (s *RegionalBucket) SetBucketArn(v string) *RegionalBucket {
+	s.BucketArn = &v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *RegionalBucket) SetCreationDate(v time.Time) *RegionalBucket {
+	s.CreationDate = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *RegionalBucket) SetOutpostId(v string) *RegionalBucket {
+	s.OutpostId = &v
+	return s
+}
+
+// SetPublicAccessBlockEnabled sets the PublicAccessBlockEnabled field's value.
+func (s *RegionalBucket) SetPublicAccessBlockEnabled(v bool) *RegionalBucket {
+	s.PublicAccessBlockEnabled = &v
+	return s
 }
 
 type S3AccessControlList struct {
@@ -4573,10 +8691,10 @@ func (s *S3AccessControlPolicy) SetCannedAccessControlList(v string) *S3AccessCo
 	return s
 }
 
-// Contains the configuration parameters for a PUT Copy object operation. Amazon
-// S3 Batch Operations passes each value through to the underlying PUT Copy
-// object API. For more information about the parameters for this operation,
-// see PUT Object - Copy (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html).
+// Contains the configuration parameters for a PUT Copy object operation. S3
+// Batch Operations passes each value through to the underlying PUT Copy object
+// API. For more information about the parameters for this operation, see PUT
+// Object - Copy (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectCOPY.html).
 type S3CopyObjectOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -4592,15 +8710,15 @@ type S3CopyObjectOperation struct {
 
 	NewObjectTagging []*S3Tag `type:"list"`
 
-	// The Legal Hold status to be applied to all objects in the Batch Operations
+	// The legal hold status to be applied to all objects in the Batch Operations
 	// job.
 	ObjectLockLegalHoldStatus *string `type:"string" enum:"S3ObjectLockLegalHoldStatus"`
 
-	// The Retention mode to be applied to all objects in the Batch Operations job.
+	// The retention mode to be applied to all objects in the Batch Operations job.
 	ObjectLockMode *string `type:"string" enum:"S3ObjectLockMode"`
 
-	// The date when the applied Object Retention configuration will expire on all
-	// objects in the Batch Operations job.
+	// The date when the applied object retention configuration expires on all objects
+	// in the Batch Operations job.
 	ObjectLockRetainUntilDate *time.Time `type:"timestamp"`
 
 	RedirectLocation *string `min:"1" type:"string"`
@@ -4871,9 +8989,9 @@ func (s *S3Grantee) SetTypeIdentifier(v string) *S3Grantee {
 }
 
 // Contains the configuration parameters for an Initiate Glacier Restore job.
-// Amazon S3 Batch Operations passes each value through to the underlying POST
-// Object restore API. For more information about the parameters for this operation,
-// see Restoring Archives (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html#RESTObjectPOSTrestore-restore-request).
+// S3 Batch Operations passes each value through to the underlying POST Object
+// restore API. For more information about the parameters for this operation,
+// see RestoreObject (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPOSTrestore.html#RESTObjectPOSTrestore-restore-request).
 type S3InitiateRestoreObjectOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -4904,11 +9022,13 @@ func (s *S3InitiateRestoreObjectOperation) SetGlacierJobTier(v string) *S3Initia
 	return s
 }
 
+// Whether S3 Object Lock legal hold will be applied to objects in an S3 Batch
+// Operations job.
 type S3ObjectLockLegalHold struct {
 	_ struct{} `type:"structure"`
 
-	// The Legal Hold status to be applied to all objects in the Batch Operations
-	// job.
+	// The Object Lock legal hold status to be applied to all objects in the Batch
+	// Operations job.
 	//
 	// Status is a required field
 	Status *string `type:"string" required:"true" enum:"S3ObjectLockLegalHoldStatus"`
@@ -5119,14 +9239,21 @@ func (s *S3ObjectOwner) SetID(v string) *S3ObjectOwner {
 	return s
 }
 
+// Contains the S3 Object Lock retention mode to be applied to all objects in
+// the S3 Batch Operations job. If you don't provide Mode and RetainUntilDate
+// data types in your operation, you will remove the retention from your objects.
+// For more information, see Using S3 Object Lock retention with S3 Batch Operations
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+// in the Amazon Simple Storage Service Developer Guide.
 type S3Retention struct {
 	_ struct{} `type:"structure"`
 
-	// The Retention mode to be applied to all objects in the Batch Operations job.
+	// The Object Lock retention mode to be applied to all objects in the Batch
+	// Operations job.
 	Mode *string `type:"string" enum:"S3ObjectLockRetentionMode"`
 
-	// The date when the applied Object Retention will expire on all objects in
-	// the Batch Operations job.
+	// The date when the applied Object Lock retention will expire on all objects
+	// set by the Batch Operations job.
 	RetainUntilDate *time.Time `type:"timestamp"`
 }
 
@@ -5152,10 +9279,10 @@ func (s *S3Retention) SetRetainUntilDate(v time.Time) *S3Retention {
 	return s
 }
 
-// Contains the configuration parameters for a Set Object ACL operation. Amazon
-// S3 Batch Operations passes each value through to the underlying PUT Object
-// acl API. For more information about the parameters for this operation, see
-// PUT Object acl (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
+// Contains the configuration parameters for a Set Object ACL operation. S3
+// Batch Operations passes each value through to the underlying PUT Object acl
+// API. For more information about the parameters for this operation, see PUT
+// Object acl (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTacl.html).
 type S3SetObjectAclOperation struct {
 	_ struct{} `type:"structure"`
 
@@ -5193,15 +9320,16 @@ func (s *S3SetObjectAclOperation) SetAccessControlPolicy(v *S3AccessControlPolic
 	return s
 }
 
-// Contains the configuration parameters for a Set Object Legal Hold operation.
-// Amazon S3 Batch Operations passes each value through to the underlying PUT
-// Object Legal Hold API. For more information about the parameters for this
-// operation, see PUT Object Legal Hold (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.htmll#object-lock-legal-holds).
+// Contains the configuration for an S3 Object Lock legal hold operation that
+// an S3 Batch Operations job passes each object through to the underlying PutObjectLegalHold
+// API. For more information, see Using S3 Object Lock legal hold with S3 Batch
+// Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-legal-hold.html)
+// in the Amazon Simple Storage Service Developer Guide.
 type S3SetObjectLegalHoldOperation struct {
 	_ struct{} `type:"structure"`
 
-	// The Legal Hold contains the status to be applied to all objects in the Batch
-	// Operations job.
+	// Contains the Object Lock legal hold status to be applied to all objects in
+	// the Batch Operations job.
 	//
 	// LegalHold is a required field
 	LegalHold *S3ObjectLockLegalHold `type:"structure" required:"true"`
@@ -5241,19 +9369,22 @@ func (s *S3SetObjectLegalHoldOperation) SetLegalHold(v *S3ObjectLockLegalHold) *
 	return s
 }
 
-// Contains the configuration parameters for a Set Object Retention operation.
-// Amazon S3 Batch Operations passes each value through to the underlying PUT
-// Object Retention API. For more information about the parameters for this
-// operation, see PUT Object Retention (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock-overview.html#object-lock-retention-modes).
+// Contains the configuration parameters for the Object Lock retention action
+// for an S3 Batch Operations job. Batch Operations passes each value through
+// to the underlying PutObjectRetention API. For more information, see Using
+// S3 Object Lock retention with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+// in the Amazon Simple Storage Service Developer Guide.
 type S3SetObjectRetentionOperation struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates if the operation should be applied to objects in the Batch Operations
-	// job even if they have Governance-type Object Lock in place.
+	// Indicates if the action should be applied to objects in the Batch Operations
+	// job even if they have Object Lock GOVERNANCE type in place.
 	BypassGovernanceRetention *bool `type:"boolean"`
 
-	// Amazon S3 object lock Retention contains the retention mode to be applied
-	// to all objects in the Batch Operations job.
+	// Contains the Object Lock retention mode to be applied to all objects in the
+	// Batch Operations job. For more information, see Using S3 Object Lock retention
+	// with S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-retention-date.html)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Retention is a required field
 	Retention *S3Retention `type:"structure" required:"true"`
@@ -5295,8 +9426,8 @@ func (s *S3SetObjectRetentionOperation) SetRetention(v *S3Retention) *S3SetObjec
 }
 
 // Contains the configuration parameters for a Set Object Tagging operation.
-// Amazon S3 Batch Operations passes each value through to the underlying PUT
-// Object tagging API. For more information about the parameters for this operation,
+// S3 Batch Operations passes each value through to the underlying PUT Object
+// tagging API. For more information about the parameters for this operation,
 // see PUT Object tagging (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTObjectPUTtagging.html).
 type S3SetObjectTaggingOperation struct {
 	_ struct{} `type:"structure"`
@@ -5388,6 +9519,101 @@ func (s *S3Tag) SetKey(v string) *S3Tag {
 // SetValue sets the Value field's value.
 func (s *S3Tag) SetValue(v string) *S3Tag {
 	s.Value = &v
+	return s
+}
+
+type Tagging struct {
+	_ struct{} `type:"structure"`
+
+	// A collection for a set of tags.
+	//
+	// TagSet is a required field
+	TagSet []*S3Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s Tagging) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tagging) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tagging) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tagging"}
+	if s.TagSet == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagSet"))
+	}
+	if s.TagSet != nil {
+		for i, v := range s.TagSet {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TagSet", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTagSet sets the TagSet field's value.
+func (s *Tagging) SetTagSet(v []*S3Tag) *Tagging {
+	s.TagSet = v
+	return s
+}
+
+// Specifies when an object transitions to a specified storage class. For more
+// information about Amazon S3 Lifecycle configuration rules, see Transitioning
+// Objects Using Amazon S3 Lifecycle (https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html)
+// in the Amazon Simple Storage Service Developer Guide.
+type Transition struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates when objects are transitioned to the specified storage class. The
+	// date value must be in ISO 8601 format. The time is always midnight UTC.
+	Date *time.Time `type:"timestamp"`
+
+	// Indicates the number of days after creation when objects are transitioned
+	// to the specified storage class. The value must be a positive integer.
+	Days *int64 `type:"integer"`
+
+	// The storage class to which you want the object to transition.
+	StorageClass *string `type:"string" enum:"TransitionStorageClass"`
+}
+
+// String returns the string representation
+func (s Transition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Transition) GoString() string {
+	return s.String()
+}
+
+// SetDate sets the Date field's value.
+func (s *Transition) SetDate(v time.Time) *Transition {
+	s.Date = &v
+	return s
+}
+
+// SetDays sets the Days field's value.
+func (s *Transition) SetDays(v int64) *Transition {
+	s.Days = &v
+	return s
+}
+
+// SetStorageClass sets the StorageClass field's value.
+func (s *Transition) SetStorageClass(v string) *Transition {
+	s.StorageClass = &v
 	return s
 }
 
@@ -5674,6 +9900,98 @@ func (s *VpcConfiguration) Validate() error {
 func (s *VpcConfiguration) SetVpcId(v string) *VpcConfiguration {
 	s.VpcId = &v
 	return s
+}
+
+const (
+	// BucketCannedACLPrivate is a BucketCannedACL enum value
+	BucketCannedACLPrivate = "private"
+
+	// BucketCannedACLPublicRead is a BucketCannedACL enum value
+	BucketCannedACLPublicRead = "public-read"
+
+	// BucketCannedACLPublicReadWrite is a BucketCannedACL enum value
+	BucketCannedACLPublicReadWrite = "public-read-write"
+
+	// BucketCannedACLAuthenticatedRead is a BucketCannedACL enum value
+	BucketCannedACLAuthenticatedRead = "authenticated-read"
+)
+
+// BucketCannedACL_Values returns all elements of the BucketCannedACL enum
+func BucketCannedACL_Values() []string {
+	return []string{
+		BucketCannedACLPrivate,
+		BucketCannedACLPublicRead,
+		BucketCannedACLPublicReadWrite,
+		BucketCannedACLAuthenticatedRead,
+	}
+}
+
+const (
+	// BucketLocationConstraintEu is a BucketLocationConstraint enum value
+	BucketLocationConstraintEu = "EU"
+
+	// BucketLocationConstraintEuWest1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintEuWest1 = "eu-west-1"
+
+	// BucketLocationConstraintUsWest1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintUsWest1 = "us-west-1"
+
+	// BucketLocationConstraintUsWest2 is a BucketLocationConstraint enum value
+	BucketLocationConstraintUsWest2 = "us-west-2"
+
+	// BucketLocationConstraintApSouth1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintApSouth1 = "ap-south-1"
+
+	// BucketLocationConstraintApSoutheast1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintApSoutheast1 = "ap-southeast-1"
+
+	// BucketLocationConstraintApSoutheast2 is a BucketLocationConstraint enum value
+	BucketLocationConstraintApSoutheast2 = "ap-southeast-2"
+
+	// BucketLocationConstraintApNortheast1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintApNortheast1 = "ap-northeast-1"
+
+	// BucketLocationConstraintSaEast1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintSaEast1 = "sa-east-1"
+
+	// BucketLocationConstraintCnNorth1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintCnNorth1 = "cn-north-1"
+
+	// BucketLocationConstraintEuCentral1 is a BucketLocationConstraint enum value
+	BucketLocationConstraintEuCentral1 = "eu-central-1"
+)
+
+// BucketLocationConstraint_Values returns all elements of the BucketLocationConstraint enum
+func BucketLocationConstraint_Values() []string {
+	return []string{
+		BucketLocationConstraintEu,
+		BucketLocationConstraintEuWest1,
+		BucketLocationConstraintUsWest1,
+		BucketLocationConstraintUsWest2,
+		BucketLocationConstraintApSouth1,
+		BucketLocationConstraintApSoutheast1,
+		BucketLocationConstraintApSoutheast2,
+		BucketLocationConstraintApNortheast1,
+		BucketLocationConstraintSaEast1,
+		BucketLocationConstraintCnNorth1,
+		BucketLocationConstraintEuCentral1,
+	}
+}
+
+const (
+	// ExpirationStatusEnabled is a ExpirationStatus enum value
+	ExpirationStatusEnabled = "Enabled"
+
+	// ExpirationStatusDisabled is a ExpirationStatus enum value
+	ExpirationStatusDisabled = "Disabled"
+)
+
+// ExpirationStatus_Values returns all elements of the ExpirationStatus enum
+func ExpirationStatus_Values() []string {
+	return []string{
+		ExpirationStatusEnabled,
+		ExpirationStatusDisabled,
+	}
 }
 
 const (
@@ -6081,5 +10399,33 @@ func S3StorageClass_Values() []string {
 		S3StorageClassGlacier,
 		S3StorageClassIntelligentTiering,
 		S3StorageClassDeepArchive,
+	}
+}
+
+const (
+	// TransitionStorageClassGlacier is a TransitionStorageClass enum value
+	TransitionStorageClassGlacier = "GLACIER"
+
+	// TransitionStorageClassStandardIa is a TransitionStorageClass enum value
+	TransitionStorageClassStandardIa = "STANDARD_IA"
+
+	// TransitionStorageClassOnezoneIa is a TransitionStorageClass enum value
+	TransitionStorageClassOnezoneIa = "ONEZONE_IA"
+
+	// TransitionStorageClassIntelligentTiering is a TransitionStorageClass enum value
+	TransitionStorageClassIntelligentTiering = "INTELLIGENT_TIERING"
+
+	// TransitionStorageClassDeepArchive is a TransitionStorageClass enum value
+	TransitionStorageClassDeepArchive = "DEEP_ARCHIVE"
+)
+
+// TransitionStorageClass_Values returns all elements of the TransitionStorageClass enum
+func TransitionStorageClass_Values() []string {
+	return []string{
+		TransitionStorageClassGlacier,
+		TransitionStorageClassStandardIa,
+		TransitionStorageClassOnezoneIa,
+		TransitionStorageClassIntelligentTiering,
+		TransitionStorageClassDeepArchive,
 	}
 }

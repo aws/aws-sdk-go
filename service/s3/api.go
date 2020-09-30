@@ -14,13 +14,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/s3shared/arn"
 	"github.com/aws/aws-sdk-go/private/checksum"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
-	"github.com/aws/aws-sdk-go/service/s3/internal/arn"
 )
 
 const opAbortMultipartUpload = "AbortMultipartUpload"
@@ -10266,6 +10266,17 @@ func (s *AbortMultipartUploadInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *AbortMultipartUploadInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type AbortMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11392,6 +11403,17 @@ func (s *CompleteMultipartUploadInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CompleteMultipartUploadInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type CompleteMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12135,6 +12157,17 @@ func (s *CopyObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CopyObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type CopyObjectOutput struct {
 	_ struct{} `type:"structure" payload:"CopyObjectResult"`
 
@@ -12833,6 +12866,17 @@ func (s *CreateMultipartUploadInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CreateMultipartUploadInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type CreateMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13170,6 +13214,17 @@ func (s *DeleteBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketAnalyticsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13255,6 +13310,17 @@ func (s *DeleteBucketCorsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketCorsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketCorsOutput struct {
@@ -13345,6 +13411,17 @@ func (s *DeleteBucketEncryptionInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketEncryptionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketEncryptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13430,6 +13507,17 @@ func (s *DeleteBucketInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketInventoryConfigurationInput struct {
@@ -13519,6 +13607,17 @@ func (s *DeleteBucketInventoryConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketInventoryConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13604,6 +13703,17 @@ func (s *DeleteBucketLifecycleInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketLifecycleInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketLifecycleOutput struct {
@@ -13707,6 +13817,17 @@ func (s *DeleteBucketMetricsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketMetricsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13808,6 +13929,17 @@ func (s *DeleteBucketPolicyInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13893,6 +14025,17 @@ func (s *DeleteBucketReplicationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketReplicationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketReplicationOutput struct {
@@ -13982,6 +14125,17 @@ func (s *DeleteBucketTaggingInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14067,6 +14221,17 @@ func (s *DeleteBucketWebsiteInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketWebsiteInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketWebsiteOutput struct {
@@ -14322,6 +14487,17 @@ func (s *DeleteObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteObjectOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14470,6 +14646,17 @@ func (s *DeleteObjectTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteObjectTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteObjectTaggingOutput struct {
@@ -14630,6 +14817,17 @@ func (s *DeleteObjectsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteObjectsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteObjectsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14745,6 +14943,17 @@ func (s *DeletePublicAccessBlockInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeletePublicAccessBlockInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeletePublicAccessBlockOutput struct {
@@ -15680,6 +15889,17 @@ func (s *GetBucketAccelerateConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketAccelerateConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketAccelerateConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -15774,6 +15994,17 @@ func (s *GetBucketAclInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketAclOutput struct {
@@ -15895,6 +16126,17 @@ func (s *GetBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketAnalyticsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"AnalyticsConfiguration"`
 
@@ -15989,6 +16231,17 @@ func (s *GetBucketCorsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketCorsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketCorsOutput struct {
@@ -16087,6 +16340,17 @@ func (s *GetBucketEncryptionInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketEncryptionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketEncryptionOutput struct {
@@ -16199,6 +16463,17 @@ func (s *GetBucketInventoryConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketInventoryConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"InventoryConfiguration"`
 
@@ -16293,6 +16568,17 @@ func (s *GetBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketLifecycleConfigurationOutput struct {
@@ -16391,6 +16677,17 @@ func (s *GetBucketLifecycleInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLifecycleInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketLifecycleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16485,6 +16782,17 @@ func (s *GetBucketLocationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLocationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketLocationOutput struct {
@@ -16583,6 +16891,17 @@ func (s *GetBucketLoggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLoggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketLoggingOutput struct {
@@ -16698,6 +17017,17 @@ func (s *GetBucketMetricsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketMetricsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"MetricsConfiguration"`
 
@@ -16794,6 +17124,17 @@ func (s *GetBucketNotificationConfigurationRequest) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketNotificationConfigurationRequest) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketPolicyInput struct {
 	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
 
@@ -16865,6 +17206,17 @@ func (s *GetBucketPolicyInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketPolicyOutput struct {
@@ -16963,6 +17315,17 @@ func (s *GetBucketPolicyStatusInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketPolicyStatusInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketPolicyStatusOutput struct {
 	_ struct{} `type:"structure" payload:"PolicyStatus"`
 
@@ -17057,6 +17420,17 @@ func (s *GetBucketReplicationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketReplicationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketReplicationOutput struct {
@@ -17156,6 +17530,17 @@ func (s *GetBucketRequestPaymentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketRequestPaymentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17250,6 +17635,17 @@ func (s *GetBucketTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketTaggingOutput struct {
@@ -17348,6 +17744,17 @@ func (s *GetBucketVersioningInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketVersioningInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketVersioningOutput struct {
@@ -17455,6 +17862,17 @@ func (s *GetBucketWebsiteInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketWebsiteInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketWebsiteOutput struct {
@@ -17625,6 +18043,17 @@ func (s *GetObjectAclInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetObjectAclOutput struct {
@@ -17947,6 +18376,17 @@ func (s *GetObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectLegalHoldInput struct {
 	_ struct{} `locationName:"GetObjectLegalHoldRequest" type:"structure"`
 
@@ -18067,6 +18507,17 @@ func (s *GetObjectLegalHoldInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectLegalHoldInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectLegalHoldOutput struct {
 	_ struct{} `type:"structure" payload:"LegalHold"`
 
@@ -18161,6 +18612,17 @@ func (s *GetObjectLockConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectLockConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetObjectLockConfigurationOutput struct {
@@ -18627,6 +19089,17 @@ func (s *GetObjectRetentionInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectRetentionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectRetentionOutput struct {
 	_ struct{} `type:"structure" payload:"Retention"`
 
@@ -18754,6 +19227,17 @@ func (s *GetObjectTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetObjectTaggingOutput struct {
@@ -18894,6 +19378,17 @@ func (s *GetObjectTorrentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectTorrentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectTorrentOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -18999,6 +19494,17 @@ func (s *GetPublicAccessBlockInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetPublicAccessBlockInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetPublicAccessBlockOutput struct {
@@ -19283,6 +19789,17 @@ func (s *HeadBucketInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *HeadBucketInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type HeadBucketOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19512,6 +20029,17 @@ func (s *HeadObjectInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *HeadObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type HeadObjectOutput struct {
@@ -20974,6 +21502,17 @@ func (s *ListBucketAnalyticsConfigurationsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListBucketAnalyticsConfigurationsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListBucketAnalyticsConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21114,6 +21653,17 @@ func (s *ListBucketInventoryConfigurationsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListBucketInventoryConfigurationsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListBucketInventoryConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21252,6 +21802,17 @@ func (s *ListBucketMetricsConfigurationsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListBucketMetricsConfigurationsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type ListBucketMetricsConfigurationsOutput struct {
@@ -21517,6 +22078,17 @@ func (s *ListMultipartUploadsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListMultipartUploadsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type ListMultipartUploadsOutput struct {
@@ -21817,6 +22389,17 @@ func (s *ListObjectVersionsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListObjectVersionsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListObjectVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -22103,6 +22686,17 @@ func (s *ListObjectsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListObjectsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type ListObjectsOutput struct {
@@ -22394,6 +22988,17 @@ func (s *ListObjectsV2Input) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListObjectsV2Input) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type ListObjectsV2Output struct {
@@ -22699,6 +23304,17 @@ func (s *ListPartsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListPartsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type ListPartsOutput struct {
@@ -24454,6 +25070,17 @@ func (s *PutBucketAccelerateConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketAccelerateConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketAccelerateConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -24610,6 +25237,17 @@ func (s *PutBucketAclInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketAclOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -24730,6 +25368,17 @@ func (s *PutBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketAnalyticsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -24837,6 +25486,17 @@ func (s *PutBucketCorsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketCorsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketCorsOutput struct {
@@ -24947,6 +25607,17 @@ func (s *PutBucketEncryptionInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketEncryptionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketEncryptionOutput struct {
@@ -25069,6 +25740,17 @@ func (s *PutBucketInventoryConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketInventoryConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25170,6 +25852,17 @@ func (s *PutBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25267,6 +25960,17 @@ func (s *PutBucketLifecycleInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLifecycleInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketLifecycleOutput struct {
@@ -25373,6 +26077,17 @@ func (s *PutBucketLoggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLoggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketLoggingOutput struct {
@@ -25495,6 +26210,17 @@ func (s *PutBucketMetricsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketMetricsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25602,6 +26328,17 @@ func (s *PutBucketNotificationConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketNotificationConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketNotificationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25701,6 +26438,17 @@ func (s *PutBucketNotificationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketNotificationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketNotificationOutput struct {
@@ -25812,6 +26560,17 @@ func (s *PutBucketPolicyInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketPolicyOutput struct {
@@ -25929,6 +26688,17 @@ func (s *PutBucketReplicationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketReplicationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketReplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26035,6 +26805,17 @@ func (s *PutBucketRequestPaymentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketRequestPaymentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26139,6 +26920,17 @@ func (s *PutBucketTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketTaggingOutput struct {
@@ -26252,6 +27044,17 @@ func (s *PutBucketVersioningInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketVersioningInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketVersioningOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26356,6 +27159,17 @@ func (s *PutBucketWebsiteInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketWebsiteInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketWebsiteOutput struct {
@@ -26560,6 +27374,17 @@ func (s *PutObjectAclInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutObjectAclOutput struct {
@@ -27001,6 +27826,17 @@ func (s *PutObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectLegalHoldInput struct {
 	_ struct{} `locationName:"PutObjectLegalHoldRequest" type:"structure" payload:"LegalHold"`
 
@@ -27131,6 +27967,17 @@ func (s *PutObjectLegalHoldInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectLegalHoldInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectLegalHoldOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27257,6 +28104,17 @@ func (s *PutObjectLockConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectLockConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutObjectLockConfigurationOutput struct {
@@ -27535,6 +28393,17 @@ func (s *PutObjectRetentionInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectRetentionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectRetentionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27684,6 +28553,17 @@ func (s *PutObjectTaggingInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27797,6 +28677,17 @@ func (s *PutPublicAccessBlockInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutPublicAccessBlockInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutPublicAccessBlockOutput struct {
@@ -28773,6 +29664,17 @@ func (s *RestoreObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *RestoreObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type RestoreObjectOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -29584,6 +30486,17 @@ func (s *SelectObjectContentInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *SelectObjectContentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type SelectObjectContentOutput struct {
@@ -30786,6 +31699,17 @@ func (s *UploadPartCopyInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *UploadPartCopyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type UploadPartCopyOutput struct {
 	_ struct{} `type:"structure" payload:"CopyPartResult"`
 
@@ -31074,6 +31998,17 @@ func (s *UploadPartInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *UploadPartInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type UploadPartOutput struct {
