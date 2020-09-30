@@ -25,6 +25,106 @@ func TestEndpoint(t *testing.T) {
 		expectedSigningRegion string
 		expectedErr           string
 	}{
+		"Outpost AccessPoint with no S3UseARNRegion flag set": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedEndpoint:      "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.us-west-2.amazonaws.com",
+			expectedSigningName:   "s3-outposts",
+			expectedSigningRegion: "us-west-2",
+		},
+		"Outpost AccessPoint Cross-Region Enabled": {
+			bucket: "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.us-east-1.amazonaws.com",
+			expectedSigningName:   "s3-outposts",
+			expectedSigningRegion: "us-east-1",
+		},
+		"Outpost AccessPoint Cross-Region Disabled": {
+			bucket: "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region: aws.String("us-west-2"),
+			},
+			expectedErr: "client region does not match provided ARN region",
+		},
+		"Outpost AccessPoint other partition": {
+			bucket: "arn:aws-cn:s3-outposts:cn-north-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:         aws.String("us-west-2"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedErr: "ConfigurationError: client partition does not match provided ARN partition",
+		},
+		"Outpost AccessPoint cn partition": {
+			bucket: "arn:aws-cn:s3-outposts:cn-north-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region: aws.String("cn-north-1"),
+			},
+			expectedEndpoint:      "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.cn-north-1.amazonaws.com.cn",
+			expectedSigningName:   "s3-outposts",
+			expectedSigningRegion: "cn-north-1",
+		},
+		"Outpost AccessPoint us-gov region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:         aws.String("us-gov-east-1"),
+				S3UseARNRegion: aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.us-gov-east-1.amazonaws.com",
+			expectedSigningName:   "s3-outposts",
+			expectedSigningRegion: "us-gov-east-1",
+		},
+		"Outpost AccessPoint Fips region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("fips-us-gov-east-1"),
+			},
+			expectedErr: "ConfigurationError: client region does not match provided ARN region",
+		},
+		"Outpost AccessPoint Fips region in Arn": {
+			bucket: "arn:aws-us-gov:s3-outposts:fips-us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				EndpointResolver:        endpoints.AwsUsGovPartition(),
+				EnforceShouldRetryCheck: nil,
+				Region:                  aws.String("fips-us-gov-east-1"),
+				DisableSSL:              nil,
+				HTTPClient:              nil,
+				S3UseARNRegion:          aws.Bool(true),
+			},
+			expectedErr: "InvalidARNError: resource ARN not supported for FIPS region",
+		},
+		"Outpost AccessPoint Fips region with valid ARN region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("fips-us-gov-east-1"),
+				S3UseARNRegion:   aws.Bool(true),
+			},
+			expectedEndpoint:      "https://myaccesspoint-123456789012.op-01234567890123456.s3-outposts.us-gov-east-1.amazonaws.com",
+			expectedSigningName:   "s3-outposts",
+			expectedSigningRegion: "us-gov-east-1",
+		},
+		"Outpost AccessPoint with DualStack": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:       aws.String("us-west-2"),
+				UseDualStack: aws.Bool(true),
+			},
+			expectedErr: "ConfigurationError: client configured for S3 Dual-stack but is not supported with resource ARN",
+		},
+		"Outpost AccessPoint with Accelerate": {
+			bucket: "arn:aws:s3-outposts:us-west-2:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				Region:          aws.String("us-west-2"),
+				S3UseAccelerate: aws.Bool(true),
+			},
+			expectedErr: "ConfigurationError: client configured for S3 Accelerate but is not supported with resource ARN",
+		},
 		"AccessPoint": {
 			bucket: "arn:aws:s3:us-west-2:123456789012:accesspoint:myendpoint",
 			config: &aws.Config{
@@ -284,6 +384,10 @@ func TestEndpoint(t *testing.T) {
 
 	for name, c := range cases {
 		t.Run(name, func(t *testing.T) {
+			if strings.EqualFold("az", name) {
+				fmt.Print()
+			}
+
 			sess := unit.Session.Copy(c.config)
 
 			svc := New(sess)

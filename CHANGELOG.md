@@ -1,3 +1,28 @@
+Release v1.35.0 (2020-09-30)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/datasync`: Updates service API and documentation
+* `service/directconnect`: Updates service documentation
+  * Documentation updates for AWS Direct Connect.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now use EC2 placement group to influence the placement of master nodes in a high-availability (HA) cluster across distinct underlying hardware to improve cluster availability.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * AWS IoT Rules Engine adds Timestream action. The Timestream rule action lets you stream time-series data from IoT sensors and applications to Amazon Timestream databases for time series analysis.
+* `service/mediaconnect`: Updates service API, documentation, and paginators
+* `service/pinpoint`: Updates service API and documentation
+  * Amazon Pinpoint - Features - Customers can start a journey based on an event being triggered by an endpoint or user.
+* `service/s3`: Updates service API, documentation, and examples
+  * Amazon S3 on Outposts expands object storage to on-premises AWS Outposts environments, enabling you to store and retrieve objects using S3 APIs and features.
+* `service/s3outposts`: Adds new service
+* `service/securityhub`: Updates service API and documentation
+
+### SDK Features
+* `service/s3`: Adds support for outposts access point ARNs.
+* `service/s3control`: Adds support for S3 on outposts access point and S3 on outposts bucket ARNs.
+
 Release v1.34.34 (2020-09-29)
 ===
 

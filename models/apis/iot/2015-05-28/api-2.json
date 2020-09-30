@@ -2886,7 +2886,8 @@
         {"shape":"InternalException"},
         {"shape":"NotConfiguredException"},
         {"shape":"InvalidRequestException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "SetV2LoggingOptions":{
@@ -3495,6 +3496,7 @@
         "iotEvents":{"shape":"IotEventsAction"},
         "iotSiteWise":{"shape":"IotSiteWiseAction"},
         "stepFunctions":{"shape":"StepFunctionsAction"},
+        "timestream":{"shape":"TimestreamAction"},
         "http":{"shape":"HttpAction"}
       }
     },
@@ -3618,7 +3620,6 @@
     "AssetId":{"type":"string"},
     "AssetPropertyAlias":{
       "type":"string",
-      "max":2048,
       "min":1
     },
     "AssetPropertyBooleanValue":{"type":"string"},
@@ -10962,6 +10963,56 @@
       }
     },
     "Timestamp":{"type":"timestamp"},
+    "TimestreamAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "databaseName",
+        "tableName",
+        "dimensions"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "databaseName":{"shape":"TimestreamDatabaseName"},
+        "tableName":{"shape":"TimestreamTableName"},
+        "dimensions":{"shape":"TimestreamDimensionList"},
+        "timestamp":{"shape":"TimestreamTimestamp"}
+      }
+    },
+    "TimestreamDatabaseName":{"type":"string"},
+    "TimestreamDimension":{
+      "type":"structure",
+      "required":[
+        "name",
+        "value"
+      ],
+      "members":{
+        "name":{"shape":"TimestreamDimensionName"},
+        "value":{"shape":"TimestreamDimensionValue"}
+      }
+    },
+    "TimestreamDimensionList":{
+      "type":"list",
+      "member":{"shape":"TimestreamDimension"},
+      "max":128,
+      "min":1
+    },
+    "TimestreamDimensionName":{"type":"string"},
+    "TimestreamDimensionValue":{"type":"string"},
+    "TimestreamTableName":{"type":"string"},
+    "TimestreamTimestamp":{
+      "type":"structure",
+      "required":[
+        "value",
+        "unit"
+      ],
+      "members":{
+        "value":{"shape":"TimestreamTimestampValue"},
+        "unit":{"shape":"TimestreamTimestampUnit"}
+      }
+    },
+    "TimestreamTimestampUnit":{"type":"string"},
+    "TimestreamTimestampValue":{"type":"string"},
     "TlsContext":{
       "type":"structure",
       "members":{

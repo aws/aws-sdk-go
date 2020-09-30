@@ -595,6 +595,7 @@
         "S3BucketArn":{"shape":"S3BucketArn"},
         "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
+        "AgentArns":{"shape":"AgentArnList"},
         "Tags":{"shape":"InputTagList"}
       }
     },
@@ -792,6 +793,7 @@
         "LocationUri":{"shape":"LocationUri"},
         "S3StorageClass":{"shape":"S3StorageClass"},
         "S3Config":{"shape":"S3Config"},
+        "AgentArns":{"shape":"AgentArnList"},
         "CreationTime":{"shape":"Time"}
       }
     },
@@ -1318,8 +1320,8 @@
     },
     "S3BucketArn":{
       "type":"string",
-      "max":76,
-      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):s3:::([^/]*)$"
+      "max":156,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):(s3|s3-outposts):[a-z\\-0-9]*:[0-9]*:.*$"
     },
     "S3Config":{
       "type":"structure",
@@ -1336,7 +1338,8 @@
         "ONEZONE_IA",
         "INTELLIGENT_TIERING",
         "GLACIER",
-        "DEEP_ARCHIVE"
+        "DEEP_ARCHIVE",
+        "OUTPOSTS"
       ]
     },
     "S3Subdirectory":{

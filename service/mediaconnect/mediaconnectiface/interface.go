@@ -84,6 +84,14 @@ type MediaConnectAPI interface {
 	DescribeFlowWithContext(aws.Context, *mediaconnect.DescribeFlowInput, ...request.Option) (*mediaconnect.DescribeFlowOutput, error)
 	DescribeFlowRequest(*mediaconnect.DescribeFlowInput) (*request.Request, *mediaconnect.DescribeFlowOutput)
 
+	DescribeOffering(*mediaconnect.DescribeOfferingInput) (*mediaconnect.DescribeOfferingOutput, error)
+	DescribeOfferingWithContext(aws.Context, *mediaconnect.DescribeOfferingInput, ...request.Option) (*mediaconnect.DescribeOfferingOutput, error)
+	DescribeOfferingRequest(*mediaconnect.DescribeOfferingInput) (*request.Request, *mediaconnect.DescribeOfferingOutput)
+
+	DescribeReservation(*mediaconnect.DescribeReservationInput) (*mediaconnect.DescribeReservationOutput, error)
+	DescribeReservationWithContext(aws.Context, *mediaconnect.DescribeReservationInput, ...request.Option) (*mediaconnect.DescribeReservationOutput, error)
+	DescribeReservationRequest(*mediaconnect.DescribeReservationInput) (*request.Request, *mediaconnect.DescribeReservationOutput)
+
 	GrantFlowEntitlements(*mediaconnect.GrantFlowEntitlementsInput) (*mediaconnect.GrantFlowEntitlementsOutput, error)
 	GrantFlowEntitlementsWithContext(aws.Context, *mediaconnect.GrantFlowEntitlementsInput, ...request.Option) (*mediaconnect.GrantFlowEntitlementsOutput, error)
 	GrantFlowEntitlementsRequest(*mediaconnect.GrantFlowEntitlementsInput) (*request.Request, *mediaconnect.GrantFlowEntitlementsOutput)
@@ -102,9 +110,27 @@ type MediaConnectAPI interface {
 	ListFlowsPages(*mediaconnect.ListFlowsInput, func(*mediaconnect.ListFlowsOutput, bool) bool) error
 	ListFlowsPagesWithContext(aws.Context, *mediaconnect.ListFlowsInput, func(*mediaconnect.ListFlowsOutput, bool) bool, ...request.Option) error
 
+	ListOfferings(*mediaconnect.ListOfferingsInput) (*mediaconnect.ListOfferingsOutput, error)
+	ListOfferingsWithContext(aws.Context, *mediaconnect.ListOfferingsInput, ...request.Option) (*mediaconnect.ListOfferingsOutput, error)
+	ListOfferingsRequest(*mediaconnect.ListOfferingsInput) (*request.Request, *mediaconnect.ListOfferingsOutput)
+
+	ListOfferingsPages(*mediaconnect.ListOfferingsInput, func(*mediaconnect.ListOfferingsOutput, bool) bool) error
+	ListOfferingsPagesWithContext(aws.Context, *mediaconnect.ListOfferingsInput, func(*mediaconnect.ListOfferingsOutput, bool) bool, ...request.Option) error
+
+	ListReservations(*mediaconnect.ListReservationsInput) (*mediaconnect.ListReservationsOutput, error)
+	ListReservationsWithContext(aws.Context, *mediaconnect.ListReservationsInput, ...request.Option) (*mediaconnect.ListReservationsOutput, error)
+	ListReservationsRequest(*mediaconnect.ListReservationsInput) (*request.Request, *mediaconnect.ListReservationsOutput)
+
+	ListReservationsPages(*mediaconnect.ListReservationsInput, func(*mediaconnect.ListReservationsOutput, bool) bool) error
+	ListReservationsPagesWithContext(aws.Context, *mediaconnect.ListReservationsInput, func(*mediaconnect.ListReservationsOutput, bool) bool, ...request.Option) error
+
 	ListTagsForResource(*mediaconnect.ListTagsForResourceInput) (*mediaconnect.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *mediaconnect.ListTagsForResourceInput, ...request.Option) (*mediaconnect.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*mediaconnect.ListTagsForResourceInput) (*request.Request, *mediaconnect.ListTagsForResourceOutput)
+
+	PurchaseOffering(*mediaconnect.PurchaseOfferingInput) (*mediaconnect.PurchaseOfferingOutput, error)
+	PurchaseOfferingWithContext(aws.Context, *mediaconnect.PurchaseOfferingInput, ...request.Option) (*mediaconnect.PurchaseOfferingOutput, error)
+	PurchaseOfferingRequest(*mediaconnect.PurchaseOfferingInput) (*request.Request, *mediaconnect.PurchaseOfferingOutput)
 
 	RemoveFlowOutput(*mediaconnect.RemoveFlowOutputInput) (*mediaconnect.RemoveFlowOutputOutput, error)
 	RemoveFlowOutputWithContext(aws.Context, *mediaconnect.RemoveFlowOutputInput, ...request.Option) (*mediaconnect.RemoveFlowOutputOutput, error)

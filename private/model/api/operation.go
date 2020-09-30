@@ -143,6 +143,11 @@ func (o *Operation) GetSigner() string {
 	return buf.String()
 }
 
+// HasAccountIDMemberWithARN returns true if an account id member exists for an input shape that may take in an ARN.
+func (o *Operation) HasAccountIDMemberWithARN() bool {
+	return o.InputRef.Shape.HasAccountIdMemberWithARN
+}
+
 // operationTmpl defines a template for rendering an API Operation
 var operationTmpl = template.Must(template.New("operation").Funcs(template.FuncMap{
 	"EnableStopOnSameToken": enableStopOnSameToken,
@@ -206,6 +211,12 @@ func (c *{{ .API.StructName }}) {{ .ExportedName }}Request(` +
 	req = c.newRequest(op, input, output)
 	{{- if ne .AuthType "" }}
 		{{ .GetSigner }}
+	{{- end }}
+
+	{{- if .HasAccountIDMemberWithARN }}
+		// update account id or check if provided input for account id member matches 
+		// the account id present in ARN
+		req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	{{- end }}
 
 	{{- if .ShouldDiscardResponse -}}

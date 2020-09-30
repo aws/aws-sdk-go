@@ -8,10 +8,15 @@
     "CreateFlow": "Creates a new flow. The request must include one source. The request optionally can include outputs (up to 50) and entitlements (up to 50).",
     "DeleteFlow": "Deletes a flow. Before you can delete a flow, you must stop the flow.",
     "DescribeFlow": "Displays the details of a flow. The response includes the flow ARN, name, and Availability Zone, as well as details about the source, outputs, and entitlements.",
+    "DescribeOffering": "Displays the details of an offering. The response includes the offering description, duration, outbound bandwidth, price, and Amazon Resource Name (ARN).",
+    "DescribeReservation": "Displays the details of a reservation. The response includes the reservation name, state, start date and time, and the details of the offering that make up the rest of the reservation (such as price, duration, and outbound bandwidth).",
     "GrantFlowEntitlements": "Grants entitlements to an existing flow.",
     "ListEntitlements": "Displays a list of all entitlements that have been granted to this account. This request returns 20 results per page.",
     "ListFlows": "Displays a list of flows that are associated with this account. This request returns a paginated result.",
+    "ListOfferings": "Displays a list of all offerings that are available to this account in the current AWS Region. If you have an active reservation (which means you've purchased an offering that has already started and hasn't expired yet), your account isn't eligible for other offerings.",
+    "ListReservations": "Displays a list of all reservations that have been purchased by this account in the current AWS Region. This list includes all reservations in all states (such as active and expired).",
     "ListTagsForResource": "List all tags on an AWS Elemental MediaConnect resource",
+    "PurchaseOffering": "Submits a request to purchase an offering. If you already have an active reservation, you can't purchase another offering.",
     "RemoveFlowOutput": "Removes an output from an existing flow. This request can be made only on an output that does not have an entitlement associated with it. If the output has an entitlement, you must revoke the entitlement instead. When an entitlement is revoked from a flow, the service automatically removes the associated output.",
     "RemoveFlowSource": "Removes a source from an existing flow. This request can be made only if there is more than one source on the flow.",
     "RemoveFlowVpcInterface": "Removes a VPC Interface from an existing flow. This request can be made only on a VPC interface that does not have a Source or Output associated with it. If the VPC interface is referenced by a Source or Output, you must first delete or update the Source or Output to no longer reference the VPC interface.",
@@ -91,6 +96,21 @@
       "base": "The result of a successful DescribeFlow request.",
       "refs": {}
     },
+    "DescribeOfferingResponse": {
+      "base": "The result of a successful DescribeOffering request.",
+      "refs": {}
+    },
+    "DescribeReservationResponse": {
+      "base": "The result of a successful DescribeReservation request.",
+      "refs": {}
+    },
+    "DurationUnits": {
+      "base": null,
+      "refs": {
+        "Offering$DurationUnits": "The unit of measurement for the duration of the offering.",
+        "Reservation$DurationUnits": "The unit of measurement for the duration of the reservation. MediaConnect defines this value in the offering."
+      }
+    },
     "Encryption": {
       "base": "Information about the encryption of the flow.",
       "refs": {
@@ -105,7 +125,7 @@
     "Entitlement": {
       "base": "The settings for a flow entitlement.",
       "refs": {
-        "UpdateFlowEntitlementResponse$Entitlement": null,
+        "UpdateFlowEntitlementResponse$Entitlement": "The new configuration of the entitlement that you updated.",
         "__listOfEntitlement$member": null
       }
     },
@@ -173,6 +193,14 @@
       "base": "The result of a successful ListFlows request. The response includes flow summaries and the NextToken to use in a subsequent ListFlows request.",
       "refs": {}
     },
+    "ListOfferingsResponse": {
+      "base": "The result of a successful ListOfferings request. The response includes the details of each offering that your account is eligible for. The response includes the following information for each offering: description, duration, outbound bandwidth, price, Amazon Resource Name (ARN), and the NextToken to use in a subsequent ListOfferings request.",
+      "refs": {}
+    },
+    "ListReservationsResponse": {
+      "base": "The result of a successful ListReservations request. The response includes the details of each offering that your account is eligible for. The response includes the following information for each offering: description, duration, outbound bandwidth, price, Amazon Resource Name (ARN), and the NextToken to use in a subsequent ListOfferings request.",
+      "refs": {}
+    },
     "ListTagsForResourceResponse": {
       "base": "The tags for the resource.",
       "refs": {}
@@ -199,11 +227,25 @@
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
       "refs": {}
     },
+    "Offering": {
+      "base": "A savings plan that reserves a certain amount of outbound bandwidth usage at a discounted rate each month over a period of time.",
+      "refs": {
+        "DescribeOfferingResponse$Offering": null,
+        "__listOfOffering$member": null
+      }
+    },
     "Output": {
       "base": "The settings for an output.",
       "refs": {
-        "UpdateFlowOutputResponse$Output": null,
+        "UpdateFlowOutputResponse$Output": "The new settings of the output that you updated.",
         "__listOfOutput$member": null
+      }
+    },
+    "PriceUnits": {
+      "base": null,
+      "refs": {
+        "Offering$PriceUnits": "The unit of measurement that is used for billing. This value, in combination with pricePerUnit, makes up the rate.",
+        "Reservation$PriceUnits": "The unit of measurement that is used for billing. This value, in combination with pricePerUnit, makes up the rate. MediaConnect defines this value in the offering."
       }
     },
     "Protocol": {
@@ -216,6 +258,14 @@
         "UpdateFlowSourceRequest$Protocol": "The protocol that is used by the source."
       }
     },
+    "PurchaseOfferingRequest": {
+      "base": "Submits a request to purchase an offering, which creates a reservation in your AWS account. If you already have an active reservation, you can't purchase another offering.",
+      "refs": {}
+    },
+    "PurchaseOfferingResponse": {
+      "base": "The result of a successful PurchaseOffering request.",
+      "refs": {}
+    },
     "RemoveFlowOutputResponse": {
       "base": "The result of a successful RemoveFlowOutput request including the flow ARN and the output ARN that was removed.",
       "refs": {}
@@ -227,6 +277,33 @@
     "RemoveFlowVpcInterfaceResponse": {
       "base": "The result of a successful RemoveFlowVpcInterface request including the flow ARN and the VPC interface name that was removed.",
       "refs": {}
+    },
+    "Reservation": {
+      "base": "A pricing agreement for a discounted rate for a specific outbound bandwidth that your MediaConnect account will use each month over a specific time period. The discounted rate in the reservation applies to outbound bandwidth for all flows from your account until your account reaches the amount of bandwidth in your reservation. If you use more outbound bandwidth than the agreed upon amount in a single month, the overage is charged at the on-demand rate.",
+      "refs": {
+        "DescribeReservationResponse$Reservation": null,
+        "PurchaseOfferingResponse$Reservation": null,
+        "__listOfReservation$member": null
+      }
+    },
+    "ReservationState": {
+      "base": null,
+      "refs": {
+        "Reservation$ReservationState": "The status of your reservation."
+      }
+    },
+    "ResourceSpecification": {
+      "base": "A definition of what is being billed for, including the type and amount.",
+      "refs": {
+        "Offering$ResourceSpecification": "A definition of the amount of outbound bandwidth that you would be reserving if you purchase the offering.",
+        "Reservation$ResourceSpecification": "A definition of the amount of outbound bandwidth that you would be reserving if you purchase the offering. MediaConnect defines the values that make up the resourceSpecification in the offering."
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ResourceSpecification$ResourceType": "The type of resource and the unit that is being billed for."
+      }
     },
     "ResponseError": {
       "base": "Exception raised by AWS Elemental MediaConnect. See the error message and documentation for the operation for more information on the cause of this exception.",
@@ -375,8 +452,11 @@
         "FailoverConfig$RecoveryWindow": "Search window time to look for dash-7 packets",
         "GrantEntitlementRequest$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "ListedEntitlement$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
+        "Offering$Duration": "The length of time that your reservation would be active.",
         "Output$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "Output$Port": "The port to use when content is distributed to this output.",
+        "Reservation$Duration": "The length of time that this reservation is active. MediaConnect defines this value in the offering.",
+        "ResourceSpecification$ReservedBitrate": "The amount of outbound bandwidth that is discounted in the offering.",
         "SetSourceRequest$IngestPort": "The port that the flow will be listening on for incoming content.",
         "Source$DataTransferSubscriberFeePercent": "Percentage from 0-100 of the data transfer cost to be billed to the subscriber.",
         "Source$IngestPort": "The port that the flow will be listening on for incoming content.",
@@ -429,11 +509,23 @@
         "ListFlowsResponse$Flows": "A list of flow summaries."
       }
     },
+    "__listOfOffering": {
+      "base": null,
+      "refs": {
+        "ListOfferingsResponse$Offerings": "A list of offerings that are available to this account in the current AWS Region."
+      }
+    },
     "__listOfOutput": {
       "base": null,
       "refs": {
         "AddFlowOutputsResponse$Outputs": "The details of the newly added outputs.",
         "Flow$Outputs": "The outputs in this flow."
+      }
+    },
+    "__listOfReservation": {
+      "base": null,
+      "refs": {
+        "ListReservationsResponse$Reservations": "A list of all reservations that have been purchased by this account in the current AWS Region."
       }
     },
     "__listOfSetSourceRequest": {
@@ -463,6 +555,10 @@
         "AddFlowVpcInterfacesRequest$VpcInterfaces": "A list of VPC interfaces that you want to add.",
         "CreateFlowRequest$VpcInterfaces": "The VPC interfaces you want on the flow."
       }
+    },
+    "__listOf__integer": {
+      "base": null,
+      "refs": {}
     },
     "__listOf__string": {
       "base": null,
@@ -521,24 +617,40 @@
         "GrantFlowEntitlementsResponse$FlowArn": "The ARN of the flow that these entitlements were granted to.",
         "ListEntitlementsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListEntitlements request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListEntitlements request a second time and specify the NextToken value.",
         "ListFlowsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListFlows request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListFlows request a second time and specify the NextToken value.",
+        "ListOfferingsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListOfferings request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListOfferings request a second time and specify the NextToken value.",
+        "ListReservationsResponse$NextToken": "The token that identifies which batch of results that you want to see. For example, you submit a ListReservations request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListReservations request a second time and specify the NextToken value.",
         "ListedEntitlement$EntitlementArn": "The ARN of the entitlement.",
         "ListedEntitlement$EntitlementName": "The name of the entitlement.",
         "ListedFlow$AvailabilityZone": "The Availability Zone that the flow was created in.",
         "ListedFlow$Description": "A description of the flow.",
         "ListedFlow$FlowArn": "The ARN of the flow.",
         "ListedFlow$Name": "The name of the flow.",
+        "Offering$CurrencyCode": "The type of currency that is used for billing. The currencyCode used for all reservations is US dollars.",
+        "Offering$OfferingArn": "The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.",
+        "Offering$OfferingDescription": "A description of the offering.",
+        "Offering$PricePerUnit": "The cost of a single unit. This value, in combination with priceUnits, makes up the rate.",
         "Output$Description": "A description of the output.",
         "Output$Destination": "The address where you want to send the output.",
         "Output$EntitlementArn": "The ARN of the entitlement on the originator''s flow. This value is relevant only on entitled flows.",
         "Output$MediaLiveInputArn": "The input ARN of the AWS Elemental MediaLive channel. This parameter is relevant only for outputs that were added by creating a MediaLive input.",
         "Output$Name": "The name of the output. This value must be unique within the current flow.",
         "Output$OutputArn": "The ARN of the output.",
+        "PurchaseOfferingRequest$ReservationName": "The name that you want to use for the reservation.",
+        "PurchaseOfferingRequest$Start": "The date and time that you want the reservation to begin, in Coordinated Universal Time (UTC). You can specify any date and time between 12:00am on the first day of the current month to the current time on today's date, inclusive. Specify the start in a 24-hour notation. Use the following format: YYYY-MM-DDTHH:mm:SSZ, where T and Z are literal characters. For example, to specify 11:30pm on March 5, 2020, enter 2020-03-05T23:30:00Z.",
         "RemoveFlowOutputResponse$FlowArn": "The ARN of the flow that is associated with the output you removed.",
         "RemoveFlowOutputResponse$OutputArn": "The ARN of the output that was removed.",
         "RemoveFlowSourceResponse$FlowArn": "The ARN of the flow that is associated with the source you removed.",
         "RemoveFlowSourceResponse$SourceArn": "The ARN of the source that was removed.",
         "RemoveFlowVpcInterfaceResponse$FlowArn": "The ARN of the flow that is associated with the VPC interface you removed.",
         "RemoveFlowVpcInterfaceResponse$VpcInterfaceName": "The name of the VPC interface that was removed.",
+        "Reservation$CurrencyCode": "The type of currency that is used for billing. The currencyCode used for your reservation is US dollars.",
+        "Reservation$End": "The day and time that this reservation expires. This value is calculated based on the start date and time that you set and the offering's duration.",
+        "Reservation$OfferingArn": "The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.",
+        "Reservation$OfferingDescription": "A description of the offering. MediaConnect defines this value in the offering.",
+        "Reservation$PricePerUnit": "The cost of a single unit. This value, in combination with priceUnits, makes up the rate. MediaConnect defines this value in the offering.",
+        "Reservation$ReservationArn": "The Amazon Resource Name (ARN) that MediaConnect assigns to the reservation when you purchase an offering.",
+        "Reservation$ReservationName": "The name that you assigned to the reservation when you purchased the offering.",
+        "Reservation$Start": "The day and time that the reservation becomes active. You set this value when you purchase the offering.",
         "ResponseError$Message": "The error message returned by AWS Elemental MediaConnect.",
         "RevokeFlowEntitlementResponse$EntitlementArn": "The ARN of the entitlement that was revoked.",
         "RevokeFlowEntitlementResponse$FlowArn": "The ARN of the flow that the entitlement was revoked from.",

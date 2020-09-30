@@ -14,13 +14,13 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/client"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/s3shared/arn"
 	"github.com/aws/aws-sdk-go/private/checksum"
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream"
 	"github.com/aws/aws-sdk-go/private/protocol/eventstream/eventstreamapi"
 	"github.com/aws/aws-sdk-go/private/protocol/rest"
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
-	"github.com/aws/aws-sdk-go/service/s3/internal/arn"
 )
 
 const opAbortMultipartUpload = "AbortMultipartUpload"
@@ -530,13 +530,16 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 
 // CreateBucket API operation for Amazon Simple Storage Service.
 //
-// Creates a new bucket. To create a bucket, you must register with Amazon S3
-// and have a valid AWS Access Key ID to authenticate requests. Anonymous requests
-// are never allowed to create buckets. By creating the bucket, you become the
-// bucket owner.
+// Creates a new S3 bucket. To create a bucket, you must register with Amazon
+// S3 and have a valid AWS Access Key ID to authenticate requests. Anonymous
+// requests are never allowed to create buckets. By creating the bucket, you
+// become the bucket owner.
 //
-// Not every string is an acceptable bucket name. For information on bucket
+// Not every string is an acceptable bucket name. For information about bucket
 // naming restrictions, see Working with Amazon S3 Buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html).
+//
+// If you want to create an Amazon S3 on Outposts bucket, see Create Bucket
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html).
 //
 // By default, the bucket is created in the US East (N. Virginia) Region. You
 // can optionally specify a Region in the request body. You might choose a Region
@@ -900,7 +903,7 @@ func (c *S3) DeleteBucketRequest(input *DeleteBucketInput) (req *request.Request
 
 // DeleteBucket API operation for Amazon Simple Storage Service.
 //
-// Deletes the bucket. All objects (including all object versions and delete
+// Deletes the S3 bucket. All objects (including all object versions and delete
 // markers) in the bucket must be deleted before the bucket itself can be deleted.
 //
 // Related Resources
@@ -2960,8 +2963,8 @@ func (c *S3) GetBucketLifecycleConfigurationRequest(input *GetBucketLifecycleCon
 // an object key name prefix, one or more object tags, or a combination of both.
 // Accordingly, this section describes the latest API. The response describes
 // the new filter element that you can use to specify a filter to select a subset
-// of objects to which the rule applies. If you are still using previous version
-// of the lifecycle configuration, it works. For the earlier API description,
+// of objects to which the rule applies. If you are using a previous version
+// of the lifecycle configuration, it still works. For the earlier API description,
 // see GetBucketLifecycle (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycle.html).
 //
 // Returns the lifecycle configuration information set on the bucket. For information
@@ -4324,6 +4327,8 @@ func (c *S3) GetObjectAclRequest(input *GetObjectAclInput) (req *request.Request
 // Returns the access control list (ACL) of an object. To use this operation,
 // you must have READ_ACP access to the object.
 //
+// This action is not supported by Amazon S3 on Outposts.
+//
 // Versioning
 //
 // By default, GET returns ACL information about the current version of an object.
@@ -4416,6 +4421,8 @@ func (c *S3) GetObjectLegalHoldRequest(input *GetObjectLegalHoldInput) (req *req
 //
 // Gets an object's current Legal Hold status. For more information, see Locking
 // Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html).
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4568,6 +4575,8 @@ func (c *S3) GetObjectRetentionRequest(input *GetObjectRetentionInput) (req *req
 //
 // Retrieves an object's retention settings. For more information, see Locking
 // Objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lock.html).
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4733,15 +4742,17 @@ func (c *S3) GetObjectTorrentRequest(input *GetObjectTorrentInput) (req *request
 
 // GetObjectTorrent API operation for Amazon Simple Storage Service.
 //
-// Return torrent files from a bucket. BitTorrent can save you bandwidth when
+// Returns torrent files from a bucket. BitTorrent can save you bandwidth when
 // you're distributing large files. For more information about BitTorrent, see
-// Amazon S3 Torrent (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html).
+// Using BitTorrent with Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3Torrent.html).
 //
-// You can get torrent only for objects that are less than 5 GB in size and
-// that are not encrypted using server-side encryption with customer-provided
+// You can get torrent only for objects that are less than 5 GB in size, and
+// that are not encrypted using server-side encryption with a customer-provided
 // encryption key.
 //
 // To use GET, you must have READ access to the object.
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // The following operation is related to GetObjectTorrent:
 //
@@ -5687,14 +5698,16 @@ func (c *S3) ListObjectVersionsRequest(input *ListObjectVersionsInput) (req *req
 
 // ListObjectVersions API operation for Amazon Simple Storage Service.
 //
-// Returns metadata about all of the versions of objects in a bucket. You can
-// also use request parameters as selection criteria to return metadata about
-// a subset of all the object versions.
+// Returns metadata about all versions of the objects in a bucket. You can also
+// use request parameters as selection criteria to return metadata about a subset
+// of all the object versions.
 //
 // A 200 OK response can contain valid or invalid XML. Make sure to design your
 // application to parse the contents of the response and handle it appropriately.
 //
 // To use this operation, you must have READ access to the bucket.
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // The following operations are related to ListObjectVersions:
 //
@@ -8609,10 +8622,12 @@ func (c *S3) PutObjectAclRequest(input *PutObjectAclInput) (req *request.Request
 // PutObjectAcl API operation for Amazon Simple Storage Service.
 //
 // Uses the acl subresource to set the access control list (ACL) permissions
-// for an object that already exists in an S3 bucket. You must have WRITE_ACP
-// permission to set the ACL of an object. For more information, see What permissions
-// can I grant? (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)
+// for a new or existing object in an S3 bucket. You must have WRITE_ACP permission
+// to set the ACL of an object. For more information, see What permissions can
+// I grant? (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#permissions)
 // in the Amazon Simple Storage Service Developer Guide.
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // Depending on your application needs, you can choose to set the ACL on an
 // object using either the request body or the headers. For example, if you
@@ -8775,6 +8790,8 @@ func (c *S3) PutObjectLegalHoldRequest(input *PutObjectLegalHoldInput) (req *req
 // PutObjectLegalHold API operation for Amazon Simple Storage Service.
 //
 // Applies a Legal Hold configuration to the specified object.
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // Related Resources
 //
@@ -8944,6 +8961,8 @@ func (c *S3) PutObjectRetentionRequest(input *PutObjectRetentionInput) (req *req
 // PutObjectRetention API operation for Amazon Simple Storage Service.
 //
 // Places an Object Retention configuration on an object.
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // Related Resources
 //
@@ -9240,7 +9259,9 @@ func (c *S3) RestoreObjectRequest(input *RestoreObjectInput) (req *request.Reque
 //
 // Restores an archived copy of an object back into Amazon S3
 //
-// This operation performs the following types of requests:
+// This action is not supported by Amazon S3 on Outposts.
+//
+// This action performs the following types of requests:
 //
 //    * select - Perform a select query on an archived object
 //
@@ -9519,6 +9540,8 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 // object data into records, and returns only records that match the specified
 // SQL expression. You must also specify the data serialization format for the
 // response.
+//
+// This action is not supported by Amazon S3 on Outposts.
 //
 // For more information about Amazon S3 Select, see Selecting Content from Objects
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/selecting-content-from-objects.html)
@@ -10154,6 +10177,14 @@ type AbortMultipartUploadInput struct {
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -10264,6 +10295,17 @@ func (s *AbortMultipartUploadInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *AbortMultipartUploadInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type AbortMultipartUploadOutput struct {
@@ -11392,10 +11434,36 @@ func (s *CompleteMultipartUploadInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CompleteMultipartUploadInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type CompleteMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the bucket that contains the newly created object.
+	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
 	Bucket *string `type:"string"`
 
 	// Entity tag that identifies the newly created object's data. Objects with
@@ -11652,6 +11720,21 @@ type CopyObjectInput struct {
 
 	// The name of the destination bucket.
 	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -11690,7 +11773,12 @@ type CopyObjectInput struct {
 	//    the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf.
 	//    The value must be URL encoded. Amazon S3 supports copy operations using
 	//    access points only when the source and destination buckets are in the
-	//    same AWS Region.
+	//    same AWS Region. Alternatively, for objects accessed through Amazon S3
+	//    on Outposts, specify the ARN of the object as accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/object/<key>.
+	//    For example, to copy the object reports/january.pdf through outpost my-outpost
+	//    owned by account 123456789012 in Region us-west-2, use the URL encoding
+	//    of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf.
+	//    The value must be URL encoded.
 	//
 	// To copy a specific version of an object, append ?versionId=<version-id> to
 	// the value (for example, awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893).
@@ -12135,6 +12223,17 @@ func (s *CopyObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CopyObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type CopyObjectOutput struct {
 	_ struct{} `type:"structure" payload:"CopyObjectResult"`
 
@@ -12496,6 +12595,21 @@ type CreateMultipartUploadInput struct {
 
 	// The name of the bucket to which to initiate the upload
 	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -12833,6 +12947,17 @@ func (s *CreateMultipartUploadInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *CreateMultipartUploadInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type CreateMultipartUploadOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12852,13 +12977,21 @@ type CreateMultipartUploadOutput struct {
 	// incomplete multipart uploads.
 	AbortRuleId *string `location:"header" locationName:"x-amz-abort-rule-id" type:"string"`
 
-	// Name of the bucket to which the multipart upload was initiated.
+	// The name of the bucket to which the multipart upload was initiated.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	Bucket *string `locationName:"Bucket" type:"string"`
 
@@ -13170,6 +13303,17 @@ func (s *DeleteBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketAnalyticsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13255,6 +13399,17 @@ func (s *DeleteBucketCorsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketCorsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketCorsOutput struct {
@@ -13345,6 +13500,17 @@ func (s *DeleteBucketEncryptionInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketEncryptionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketEncryptionOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13430,6 +13596,17 @@ func (s *DeleteBucketInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketInventoryConfigurationInput struct {
@@ -13519,6 +13696,17 @@ func (s *DeleteBucketInventoryConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketInventoryConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13604,6 +13792,17 @@ func (s *DeleteBucketLifecycleInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketLifecycleInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketLifecycleOutput struct {
@@ -13707,6 +13906,17 @@ func (s *DeleteBucketMetricsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketMetricsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13808,6 +14018,17 @@ func (s *DeleteBucketPolicyInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -13893,6 +14114,17 @@ func (s *DeleteBucketReplicationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketReplicationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketReplicationOutput struct {
@@ -13982,6 +14214,17 @@ func (s *DeleteBucketTaggingInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteBucketTaggingOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14067,6 +14310,17 @@ func (s *DeleteBucketWebsiteInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketWebsiteInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeleteBucketWebsiteOutput struct {
@@ -14191,6 +14445,14 @@ type DeleteObjectInput struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -14322,6 +14584,17 @@ func (s *DeleteObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteObjectOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14376,6 +14649,14 @@ type DeleteObjectTaggingInput struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -14472,6 +14753,17 @@ func (s *DeleteObjectTaggingInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteObjectTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14505,6 +14797,14 @@ type DeleteObjectsInput struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -14630,6 +14930,17 @@ func (s *DeleteObjectsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteObjectsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type DeleteObjectsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14745,6 +15056,17 @@ func (s *DeletePublicAccessBlockInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeletePublicAccessBlockInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type DeletePublicAccessBlockOutput struct {
@@ -15610,7 +15932,7 @@ func (s *FilterRule) SetValue(v string) *FilterRule {
 type GetBucketAccelerateConfigurationInput struct {
 	_ struct{} `locationName:"GetBucketAccelerateConfigurationRequest" type:"structure"`
 
-	// Name of the bucket for which the accelerate configuration is retrieved.
+	// The name of the bucket for which the accelerate configuration is retrieved.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -15678,6 +16000,17 @@ func (s *GetBucketAccelerateConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketAccelerateConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketAccelerateConfigurationOutput struct {
@@ -15774,6 +16107,17 @@ func (s *GetBucketAclInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketAclOutput struct {
@@ -15895,6 +16239,17 @@ func (s *GetBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketAnalyticsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"AnalyticsConfiguration"`
 
@@ -15989,6 +16344,17 @@ func (s *GetBucketCorsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketCorsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketCorsOutput struct {
@@ -16087,6 +16453,17 @@ func (s *GetBucketEncryptionInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketEncryptionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketEncryptionOutput struct {
@@ -16199,6 +16576,17 @@ func (s *GetBucketInventoryConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketInventoryConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"InventoryConfiguration"`
 
@@ -16293,6 +16681,17 @@ func (s *GetBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketLifecycleConfigurationOutput struct {
@@ -16391,6 +16790,17 @@ func (s *GetBucketLifecycleInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLifecycleInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketLifecycleOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -16485,6 +16895,17 @@ func (s *GetBucketLocationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLocationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketLocationOutput struct {
@@ -16583,6 +17004,17 @@ func (s *GetBucketLoggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketLoggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketLoggingOutput struct {
@@ -16698,6 +17130,17 @@ func (s *GetBucketMetricsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketMetricsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure" payload:"MetricsConfiguration"`
 
@@ -16724,7 +17167,7 @@ func (s *GetBucketMetricsConfigurationOutput) SetMetricsConfiguration(v *Metrics
 type GetBucketNotificationConfigurationRequest struct {
 	_ struct{} `locationName:"GetBucketNotificationConfigurationRequest" type:"structure"`
 
-	// Name of the bucket for which to get the notification configuration.
+	// The name of the bucket for which to get the notification configuration.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -16792,6 +17235,17 @@ func (s *GetBucketNotificationConfigurationRequest) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketNotificationConfigurationRequest) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketPolicyInput struct {
@@ -16865,6 +17319,17 @@ func (s *GetBucketPolicyInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketPolicyOutput struct {
@@ -16963,6 +17428,17 @@ func (s *GetBucketPolicyStatusInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketPolicyStatusInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketPolicyStatusOutput struct {
 	_ struct{} `type:"structure" payload:"PolicyStatus"`
 
@@ -17057,6 +17533,17 @@ func (s *GetBucketReplicationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketReplicationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketReplicationOutput struct {
@@ -17156,6 +17643,17 @@ func (s *GetBucketRequestPaymentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketRequestPaymentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17250,6 +17748,17 @@ func (s *GetBucketTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketTaggingOutput struct {
@@ -17348,6 +17857,17 @@ func (s *GetBucketVersioningInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketVersioningInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketVersioningOutput struct {
@@ -17455,6 +17975,17 @@ func (s *GetBucketWebsiteInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketWebsiteInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetBucketWebsiteOutput struct {
@@ -17627,6 +18158,17 @@ func (s *GetObjectAclInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectAclOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -17679,6 +18221,14 @@ type GetObjectInput struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -17947,6 +18497,17 @@ func (s *GetObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectLegalHoldInput struct {
 	_ struct{} `locationName:"GetObjectLegalHoldRequest" type:"structure"`
 
@@ -18067,6 +18628,17 @@ func (s *GetObjectLegalHoldInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectLegalHoldInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectLegalHoldOutput struct {
 	_ struct{} `type:"structure" payload:"LegalHold"`
 
@@ -18094,6 +18666,13 @@ type GetObjectLockConfigurationInput struct {
 	_ struct{} `locationName:"GetObjectLockConfigurationRequest" type:"structure"`
 
 	// The bucket whose Object Lock configuration you want to retrieve.
+	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -18161,6 +18740,17 @@ func (s *GetObjectLockConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectLockConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetObjectLockConfigurationOutput struct {
@@ -18627,6 +19217,17 @@ func (s *GetObjectRetentionInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectRetentionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectRetentionOutput struct {
 	_ struct{} `type:"structure" payload:"Retention"`
 
@@ -18660,6 +19261,14 @@ type GetObjectTaggingInput struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -18754,6 +19363,17 @@ func (s *GetObjectTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetObjectTaggingOutput struct {
@@ -18894,6 +19514,17 @@ func (s *GetObjectTorrentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetObjectTorrentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type GetObjectTorrentOutput struct {
 	_ struct{} `type:"structure" payload:"Body"`
 
@@ -18999,6 +19630,17 @@ func (s *GetPublicAccessBlockInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetPublicAccessBlockInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type GetPublicAccessBlockOutput struct {
@@ -19215,6 +19857,21 @@ type HeadBucketInput struct {
 
 	// The bucket name.
 	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -19283,6 +19940,17 @@ func (s *HeadBucketInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *HeadBucketInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type HeadBucketOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -19301,6 +19969,21 @@ type HeadObjectInput struct {
 	_ struct{} `locationName:"HeadObjectRequest" type:"structure"`
 
 	// The name of the bucket containing the object.
+	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -19512,6 +20195,17 @@ func (s *HeadObjectInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *HeadObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type HeadObjectOutput struct {
@@ -20974,6 +21668,17 @@ func (s *ListBucketAnalyticsConfigurationsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListBucketAnalyticsConfigurationsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListBucketAnalyticsConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21112,6 +21817,17 @@ func (s *ListBucketInventoryConfigurationsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListBucketInventoryConfigurationsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type ListBucketInventoryConfigurationsOutput struct {
@@ -21254,6 +21970,17 @@ func (s *ListBucketMetricsConfigurationsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListBucketMetricsConfigurationsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListBucketMetricsConfigurationsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21359,13 +22086,21 @@ func (s *ListBucketsOutput) SetOwner(v *Owner) *ListBucketsOutput {
 type ListMultipartUploadsInput struct {
 	_ struct{} `locationName:"ListMultipartUploadsRequest" type:"structure"`
 
-	// Name of the bucket to which the multipart upload was initiated.
+	// The name of the bucket to which the multipart upload was initiated.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -21519,10 +22254,21 @@ func (s *ListMultipartUploadsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListMultipartUploadsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListMultipartUploadsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Name of the bucket to which the multipart upload was initiated.
+	// The name of the bucket to which the multipart upload was initiated.
 	Bucket *string `type:"string"`
 
 	// If you specify a delimiter in the request, then the result returns each distinct
@@ -21670,13 +22416,6 @@ type ListObjectVersionsInput struct {
 
 	// The bucket name that contains the objects.
 	//
-	// When using this API with an access point, you must direct requests to the
-	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
-	// provide the access point ARN in place of the bucket name. For more information
-	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
-	// in the Amazon Simple Storage Service Developer Guide.
-	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -21817,6 +22556,17 @@ func (s *ListObjectVersionsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListObjectVersionsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListObjectVersionsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -21857,7 +22607,7 @@ type ListObjectVersionsOutput struct {
 	// Specifies the maximum number of objects to return.
 	MaxKeys *int64 `type:"integer"`
 
-	// Bucket name.
+	// The bucket name.
 	Name *string `type:"string"`
 
 	// When the number of responses exceeds the value of MaxKeys, NextKeyMarker
@@ -21973,6 +22723,21 @@ type ListObjectsInput struct {
 	_ struct{} `locationName:"ListObjectsRequest" type:"structure"`
 
 	// The name of the bucket containing the objects.
+	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -22105,6 +22870,17 @@ func (s *ListObjectsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListObjectsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListObjectsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -22149,7 +22925,7 @@ type ListObjectsOutput struct {
 	// The maximum number of keys returned in the response body.
 	MaxKeys *int64 `type:"integer"`
 
-	// Bucket name.
+	// The bucket name.
 	Name *string `type:"string"`
 
 	// When response is truncated (the IsTruncated element value in the response
@@ -22245,6 +23021,14 @@ type ListObjectsV2Input struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -22396,6 +23180,17 @@ func (s *ListObjectsV2Input) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListObjectsV2Input) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListObjectsV2Output struct {
 	_ struct{} `type:"structure"`
 
@@ -22453,13 +23248,21 @@ type ListObjectsV2Output struct {
 	// but will never contain more.
 	MaxKeys *int64 `type:"integer"`
 
-	// Bucket name.
+	// The bucket name.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	Name *string `type:"string"`
 
@@ -22561,13 +23364,21 @@ func (s *ListObjectsV2Output) SetStartAfter(v string) *ListObjectsV2Output {
 type ListPartsInput struct {
 	_ struct{} `locationName:"ListPartsRequest" type:"structure"`
 
-	// Name of the bucket to which the parts are being uploaded.
+	// The name of the bucket to which the parts are being uploaded.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -22701,6 +23512,17 @@ func (s *ListPartsInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *ListPartsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type ListPartsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -22720,7 +23542,7 @@ type ListPartsOutput struct {
 	// incomplete multipart uploads.
 	AbortRuleId *string `location:"header" locationName:"x-amz-abort-rule-id" type:"string"`
 
-	// Name of the bucket to which the multipart upload was initiated.
+	// The name of the bucket to which the multipart upload was initiated.
 	Bucket *string `type:"string"`
 
 	// Container element that identifies who initiated the multipart upload. If
@@ -24375,7 +25197,7 @@ type PutBucketAccelerateConfigurationInput struct {
 	// AccelerateConfiguration is a required field
 	AccelerateConfiguration *AccelerateConfiguration `locationName:"AccelerateConfiguration" type:"structure" required:"true" xmlURI:"http://s3.amazonaws.com/doc/2006-03-01/"`
 
-	// Name of the bucket for which the accelerate configuration is set.
+	// The name of the bucket for which the accelerate configuration is set.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -24452,6 +25274,17 @@ func (s *PutBucketAccelerateConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketAccelerateConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketAccelerateConfigurationOutput struct {
@@ -24610,6 +25443,17 @@ func (s *PutBucketAclInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketAclOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -24730,6 +25574,17 @@ func (s *PutBucketAnalyticsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketAnalyticsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketAnalyticsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -24837,6 +25692,17 @@ func (s *PutBucketCorsInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketCorsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketCorsOutput struct {
@@ -24947,6 +25813,17 @@ func (s *PutBucketEncryptionInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketEncryptionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketEncryptionOutput struct {
@@ -25069,6 +25946,17 @@ func (s *PutBucketInventoryConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketInventoryConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketInventoryConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25170,6 +26058,17 @@ func (s *PutBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25267,6 +26166,17 @@ func (s *PutBucketLifecycleInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLifecycleInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketLifecycleOutput struct {
@@ -25373,6 +26283,17 @@ func (s *PutBucketLoggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketLoggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketLoggingOutput struct {
@@ -25495,6 +26416,17 @@ func (s *PutBucketMetricsConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketMetricsConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketMetricsConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25602,6 +26534,17 @@ func (s *PutBucketNotificationConfigurationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketNotificationConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketNotificationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -25701,6 +26644,17 @@ func (s *PutBucketNotificationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketNotificationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketNotificationOutput struct {
@@ -25812,6 +26766,17 @@ func (s *PutBucketPolicyInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketPolicyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketPolicyOutput struct {
@@ -25929,6 +26894,17 @@ func (s *PutBucketReplicationInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketReplicationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketReplicationOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26035,6 +27011,17 @@ func (s *PutBucketRequestPaymentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketRequestPaymentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketRequestPaymentOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26139,6 +27126,17 @@ func (s *PutBucketTaggingInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutBucketTaggingOutput struct {
@@ -26252,6 +27250,17 @@ func (s *PutBucketVersioningInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketVersioningInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketVersioningOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26358,6 +27367,17 @@ func (s *PutBucketWebsiteInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketWebsiteInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutBucketWebsiteOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -26417,6 +27437,21 @@ type PutObjectAclInput struct {
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	// Key for which the PUT operation was initiated.
+	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Key is a required field
 	Key *string `location:"uri" locationName:"Key" min:"1" type:"string" required:"true"`
@@ -26562,6 +27597,17 @@ func (s *PutObjectAclInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectAclInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectAclOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -26596,13 +27642,21 @@ type PutObjectInput struct {
 	// Object data.
 	Body io.ReadSeeker `type:"blob"`
 
-	// Bucket name to which the PUT operation was initiated.
+	// The bucket name to which the PUT operation was initiated.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -27001,6 +28055,17 @@ func (s *PutObjectInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectLegalHoldInput struct {
 	_ struct{} `locationName:"PutObjectLegalHoldRequest" type:"structure" payload:"LegalHold"`
 
@@ -27131,6 +28196,17 @@ func (s *PutObjectLegalHoldInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectLegalHoldInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectLegalHoldOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27257,6 +28333,17 @@ func (s *PutObjectLockConfigurationInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectLockConfigurationInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutObjectLockConfigurationOutput struct {
@@ -27535,6 +28622,17 @@ func (s *PutObjectRetentionInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectRetentionInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectRetentionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27569,6 +28667,14 @@ type PutObjectTaggingInput struct {
 	// When using this operation using an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -27684,6 +28790,17 @@ func (s *PutObjectTaggingInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutObjectTaggingInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type PutObjectTaggingOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27797,6 +28914,17 @@ func (s *PutPublicAccessBlockInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutPublicAccessBlockInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type PutPublicAccessBlockOutput struct {
@@ -28652,6 +29780,14 @@ type RestoreObjectInput struct {
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -28771,6 +29907,17 @@ func (s *RestoreObjectInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *RestoreObjectInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type RestoreObjectOutput struct {
@@ -29586,6 +30733,17 @@ func (s *SelectObjectContentInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *SelectObjectContentInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type SelectObjectContentOutput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
@@ -30250,7 +31408,7 @@ type TargetGrant struct {
 	// Container for the person being granted permissions.
 	Grantee *Grantee `type:"structure" xmlPrefix:"xsi" xmlURI:"http://www.w3.org/2001/XMLSchema-instance"`
 
-	// Logging permissions assigned to the Grantee for the bucket.
+	// Logging permissions assigned to the grantee for the bucket.
 	Permission *string `type:"string" enum:"BucketLogsPermission"`
 }
 
@@ -30481,6 +31639,21 @@ type UploadPartCopyInput struct {
 
 	// The bucket name.
 	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
 
@@ -30496,12 +31669,17 @@ type UploadPartCopyInput struct {
 	//    * For objects accessed through access points, specify the Amazon Resource
 	//    Name (ARN) of the object as accessed through the access point, in the
 	//    format arn:aws:s3:<Region>:<account-id>:accesspoint/<access-point-name>/object/<key>.
-	//    For example, to copy the object reports/january.pdf through the access
-	//    point my-access-point owned by account 123456789012 in Region us-west-2,
-	//    use the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf.
+	//    For example, to copy the object reports/january.pdf through access point
+	//    my-access-point owned by account 123456789012 in Region us-west-2, use
+	//    the URL encoding of arn:aws:s3:us-west-2:123456789012:accesspoint/my-access-point/object/reports/january.pdf.
 	//    The value must be URL encoded. Amazon S3 supports copy operations using
 	//    access points only when the source and destination buckets are in the
-	//    same AWS Region.
+	//    same AWS Region. Alternatively, for objects accessed through Amazon S3
+	//    on Outposts, specify the ARN of the object as accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/object/<key>.
+	//    For example, to copy the object reports/january.pdf through outpost my-outpost
+	//    owned by account 123456789012 in Region us-west-2, use the URL encoding
+	//    of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/object/reports/january.pdf.
+	//    The value must be URL encoded.
 	//
 	// To copy a specific version of an object, append ?versionId=<version-id> to
 	// the value (for example, awsexamplebucket/reports/january.pdf?versionId=QUpfdndhfd8438MNFDN93jdnJFkdmqnh893).
@@ -30786,6 +31964,17 @@ func (s *UploadPartCopyInput) hasEndpointARN() bool {
 	return arn.IsARN(*s.Bucket)
 }
 
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *UploadPartCopyInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
 type UploadPartCopyOutput struct {
 	_ struct{} `type:"structure" payload:"CopyPartResult"`
 
@@ -30878,7 +32067,22 @@ type UploadPartInput struct {
 	// Object data.
 	Body io.ReadSeeker `type:"blob"`
 
-	// Name of the bucket to which the multipart upload was initiated.
+	// The name of the bucket to which the multipart upload was initiated.
+	//
+	// When using this API with an access point, you must direct requests to the
+	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
+	// When using this operation using an access point through the AWS SDKs, you
+	// provide the access point ARN in place of the bucket name. For more information
+	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
+	// in the Amazon Simple Storage Service Developer Guide.
+	//
+	// When using this API with Amazon S3 on Outposts, you must direct requests
+	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
+	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
+	// using this operation using S3 on Outposts through the AWS SDKs, you provide
+	// the Outposts bucket ARN in place of the bucket name. For more information
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
 	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
@@ -31074,6 +32278,17 @@ func (s *UploadPartInput) hasEndpointARN() bool {
 		return false
 	}
 	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *UploadPartInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
 }
 
 type UploadPartOutput struct {
@@ -31984,6 +33199,9 @@ const (
 
 	// ObjectStorageClassDeepArchive is a ObjectStorageClass enum value
 	ObjectStorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// ObjectStorageClassOutposts is a ObjectStorageClass enum value
+	ObjectStorageClassOutposts = "OUTPOSTS"
 )
 
 // ObjectStorageClass_Values returns all elements of the ObjectStorageClass enum
@@ -31996,6 +33214,7 @@ func ObjectStorageClass_Values() []string {
 		ObjectStorageClassOnezoneIa,
 		ObjectStorageClassIntelligentTiering,
 		ObjectStorageClassDeepArchive,
+		ObjectStorageClassOutposts,
 	}
 }
 
@@ -32251,6 +33470,9 @@ const (
 
 	// StorageClassDeepArchive is a StorageClass enum value
 	StorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// StorageClassOutposts is a StorageClass enum value
+	StorageClassOutposts = "OUTPOSTS"
 )
 
 // StorageClass_Values returns all elements of the StorageClass enum
@@ -32263,6 +33485,7 @@ func StorageClass_Values() []string {
 		StorageClassIntelligentTiering,
 		StorageClassGlacier,
 		StorageClassDeepArchive,
+		StorageClassOutposts,
 	}
 }
 

@@ -858,7 +858,8 @@
       "base": null,
       "refs": {
         "InstanceGroupConfig$InstanceRole": "<p>The role of the instance group in the cluster.</p>",
-        "InstanceGroupDetail$InstanceRole": "<p>Instance group role in the cluster</p>"
+        "InstanceGroupDetail$InstanceRole": "<p>Instance group role in the cluster</p>",
+        "PlacementGroupConfig$InstanceRole": null
       }
     },
     "InstanceState": {
@@ -1266,6 +1267,25 @@
       "refs": {
         "Cluster$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>",
         "ClusterSummary$OutpostArn": "<p> The Amazon Resource Name (ARN) of the Outpost where the cluster is launched. </p>"
+      }
+    },
+    "PlacementGroupConfig": {
+      "base": null,
+      "refs": {
+        "PlacementGroupConfigList$member": null
+      }
+    },
+    "PlacementGroupConfigList": {
+      "base": null,
+      "refs": {
+        "Cluster$PlacementGroups": null,
+        "RunJobFlowInput$PlacementGroupConfigs": null
+      }
+    },
+    "PlacementGroupStrategy": {
+      "base": null,
+      "refs": {
+        "PlacementGroupConfig$PlacementStrategy": null
       }
     },
     "PlacementType": {

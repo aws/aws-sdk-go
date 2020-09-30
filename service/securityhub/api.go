@@ -467,8 +467,8 @@ func (c *SecurityHub) BatchUpdateFindingsRequest(input *BatchUpdateFindingsInput
 // Updates from BatchUpdateFindings do not affect the value of UpdatedAt for
 // a finding.
 //
-// Master accounts can use BatchUpdateFindings to update the following finding
-// fields and objects.
+// Master and member accounts can use BatchUpdateFindings to update the following
+// finding fields and objects.
 //
 //    * Confidence
 //
@@ -488,7 +488,11 @@ func (c *SecurityHub) BatchUpdateFindingsRequest(input *BatchUpdateFindingsInput
 //
 //    * Workflow
 //
-// Member accounts can only use BatchUpdateFindings to update the Note object.
+// You can configure IAM policies to restrict access to fields and field values.
+// For example, you might not want member accounts to be able to suppress findings
+// or change the finding severity. See Configuring access to BatchUpdateFindings
+// (https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access)
+// in the AWS Security Hub User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4916,6 +4920,886 @@ func (s *AvailabilityZone) SetZoneName(v string) *AvailabilityZone {
 	return s
 }
 
+// Contains information about settings for logging access for the stage.
+type AwsApiGatewayAccessLogSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CloudWatch Logs log group that receives the access logs.
+	DestinationArn *string `type:"string"`
+
+	// A single-line format of the access logs of data, as specified by selected
+	// $context variables. The format must include at least $context.requestId.
+	Format *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayAccessLogSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayAccessLogSettings) GoString() string {
+	return s.String()
+}
+
+// SetDestinationArn sets the DestinationArn field's value.
+func (s *AwsApiGatewayAccessLogSettings) SetDestinationArn(v string) *AwsApiGatewayAccessLogSettings {
+	s.DestinationArn = &v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *AwsApiGatewayAccessLogSettings) SetFormat(v string) *AwsApiGatewayAccessLogSettings {
+	s.Format = &v
+	return s
+}
+
+// Contains information about settings for canary deployment in the stage.
+type AwsApiGatewayCanarySettings struct {
+	_ struct{} `type:"structure"`
+
+	// The deployment identifier for the canary deployment.
+	DeploymentId *string `type:"string"`
+
+	// The percentage of traffic that is diverted to a canary deployment.
+	PercentTraffic *float64 `type:"double"`
+
+	// Stage variables that are overridden in the canary release deployment. The
+	// variables include new stage variables that are introduced in the canary.
+	//
+	// Each variable is represented as a string-to-string map between the stage
+	// variable name and the variable value.
+	StageVariableOverrides map[string]*string `type:"map"`
+
+	// Indicates whether the canary deployment uses the stage cache.
+	UseStageCache *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayCanarySettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayCanarySettings) GoString() string {
+	return s.String()
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *AwsApiGatewayCanarySettings) SetDeploymentId(v string) *AwsApiGatewayCanarySettings {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetPercentTraffic sets the PercentTraffic field's value.
+func (s *AwsApiGatewayCanarySettings) SetPercentTraffic(v float64) *AwsApiGatewayCanarySettings {
+	s.PercentTraffic = &v
+	return s
+}
+
+// SetStageVariableOverrides sets the StageVariableOverrides field's value.
+func (s *AwsApiGatewayCanarySettings) SetStageVariableOverrides(v map[string]*string) *AwsApiGatewayCanarySettings {
+	s.StageVariableOverrides = v
+	return s
+}
+
+// SetUseStageCache sets the UseStageCache field's value.
+func (s *AwsApiGatewayCanarySettings) SetUseStageCache(v bool) *AwsApiGatewayCanarySettings {
+	s.UseStageCache = &v
+	return s
+}
+
+// Contains information about the endpoints for the API.
+type AwsApiGatewayEndpointConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of endpoint types for the REST API.
+	//
+	// For an edge-optimized API, the endpoint type is EDGE. For a Regional API,
+	// the endpoint type is REGIONAL. For a private API, the endpoint type is PRIVATE.
+	Types []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayEndpointConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayEndpointConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetTypes sets the Types field's value.
+func (s *AwsApiGatewayEndpointConfiguration) SetTypes(v []*string) *AwsApiGatewayEndpointConfiguration {
+	s.Types = v
+	return s
+}
+
+// Defines settings for a method for the stage.
+type AwsApiGatewayMethodSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the cached responses are encrypted.
+	CacheDataEncrypted *bool `type:"boolean"`
+
+	// Specifies the time to live (TTL), in seconds, for cached responses. The higher
+	// the TTL, the longer the response is cached.
+	CacheTtlInSeconds *int64 `type:"integer"`
+
+	// Indicates whether responses are cached and returned for requests. For responses
+	// to be cached, a cache cluster must be enabled on the stage.
+	CachingEnabled *bool `type:"boolean"`
+
+	// Indicates whether data trace logging is enabled for the method. Data trace
+	// logging affects the log entries that are pushed to CloudWatch Logs.
+	DataTraceEnabled *bool `type:"boolean"`
+
+	// The HTTP method. You can use an asterisk (*) as a wildcard to apply method
+	// settings to multiple methods.
+	HttpMethod *string `type:"string"`
+
+	// The logging level for this method. The logging level affects the log entries
+	// that are pushed to CloudWatch Logs.
+	//
+	// If the logging level is ERROR, then the logs only include error-level entries.
+	//
+	// If the logging level is INFO, then the logs include both ERROR events and
+	// extra informational events.
+	//
+	// Valid values: OFF | ERROR | INFO
+	LoggingLevel *string `type:"string"`
+
+	// Indicates whether CloudWatch metrics are enabled for the method.
+	MetricsEnabled *bool `type:"boolean"`
+
+	// Indicates whether authorization is required for a cache invalidation request.
+	RequireAuthorizationForCacheControl *bool `type:"boolean"`
+
+	// The resource path for this method. Forward slashes (/) are encoded as ~1
+	// . The initial slash must include a forward slash.
+	//
+	// For example, the path value /resource/subresource must be encoded as /~1resource~1subresource.
+	//
+	// To specify the root path, use only a slash (/). You can use an asterisk (*)
+	// as a wildcard to apply method settings to multiple methods.
+	ResourcePath *string `type:"string"`
+
+	// The throttling burst limit for the method.
+	ThrottlingBurstLimit *int64 `type:"integer"`
+
+	// The throttling rate limit for the method.
+	ThrottlingRateLimit *float64 `type:"double"`
+
+	// Indicates how to handle unauthorized requests for cache invalidation.
+	//
+	// Valid values: FAIL_WITH_403 | SUCCEED_WITH_RESPONSE_HEADER | SUCCEED_WITHOUT_RESPONSE_HEADER
+	UnauthorizedCacheControlHeaderStrategy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayMethodSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayMethodSettings) GoString() string {
+	return s.String()
+}
+
+// SetCacheDataEncrypted sets the CacheDataEncrypted field's value.
+func (s *AwsApiGatewayMethodSettings) SetCacheDataEncrypted(v bool) *AwsApiGatewayMethodSettings {
+	s.CacheDataEncrypted = &v
+	return s
+}
+
+// SetCacheTtlInSeconds sets the CacheTtlInSeconds field's value.
+func (s *AwsApiGatewayMethodSettings) SetCacheTtlInSeconds(v int64) *AwsApiGatewayMethodSettings {
+	s.CacheTtlInSeconds = &v
+	return s
+}
+
+// SetCachingEnabled sets the CachingEnabled field's value.
+func (s *AwsApiGatewayMethodSettings) SetCachingEnabled(v bool) *AwsApiGatewayMethodSettings {
+	s.CachingEnabled = &v
+	return s
+}
+
+// SetDataTraceEnabled sets the DataTraceEnabled field's value.
+func (s *AwsApiGatewayMethodSettings) SetDataTraceEnabled(v bool) *AwsApiGatewayMethodSettings {
+	s.DataTraceEnabled = &v
+	return s
+}
+
+// SetHttpMethod sets the HttpMethod field's value.
+func (s *AwsApiGatewayMethodSettings) SetHttpMethod(v string) *AwsApiGatewayMethodSettings {
+	s.HttpMethod = &v
+	return s
+}
+
+// SetLoggingLevel sets the LoggingLevel field's value.
+func (s *AwsApiGatewayMethodSettings) SetLoggingLevel(v string) *AwsApiGatewayMethodSettings {
+	s.LoggingLevel = &v
+	return s
+}
+
+// SetMetricsEnabled sets the MetricsEnabled field's value.
+func (s *AwsApiGatewayMethodSettings) SetMetricsEnabled(v bool) *AwsApiGatewayMethodSettings {
+	s.MetricsEnabled = &v
+	return s
+}
+
+// SetRequireAuthorizationForCacheControl sets the RequireAuthorizationForCacheControl field's value.
+func (s *AwsApiGatewayMethodSettings) SetRequireAuthorizationForCacheControl(v bool) *AwsApiGatewayMethodSettings {
+	s.RequireAuthorizationForCacheControl = &v
+	return s
+}
+
+// SetResourcePath sets the ResourcePath field's value.
+func (s *AwsApiGatewayMethodSettings) SetResourcePath(v string) *AwsApiGatewayMethodSettings {
+	s.ResourcePath = &v
+	return s
+}
+
+// SetThrottlingBurstLimit sets the ThrottlingBurstLimit field's value.
+func (s *AwsApiGatewayMethodSettings) SetThrottlingBurstLimit(v int64) *AwsApiGatewayMethodSettings {
+	s.ThrottlingBurstLimit = &v
+	return s
+}
+
+// SetThrottlingRateLimit sets the ThrottlingRateLimit field's value.
+func (s *AwsApiGatewayMethodSettings) SetThrottlingRateLimit(v float64) *AwsApiGatewayMethodSettings {
+	s.ThrottlingRateLimit = &v
+	return s
+}
+
+// SetUnauthorizedCacheControlHeaderStrategy sets the UnauthorizedCacheControlHeaderStrategy field's value.
+func (s *AwsApiGatewayMethodSettings) SetUnauthorizedCacheControlHeaderStrategy(v string) *AwsApiGatewayMethodSettings {
+	s.UnauthorizedCacheControlHeaderStrategy = &v
+	return s
+}
+
+// contains information about a REST API in version 1 of Amazon API Gateway.
+type AwsApiGatewayRestApiDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The source of the API key for metering requests according to a usage plan.
+	//
+	// HEADER indicates whether to read the API key from the X-API-Key header of
+	// a request.
+	//
+	// AUTHORIZER indicates whether to read the API key from the UsageIdentifierKey
+	// from a custom authorizer.
+	ApiKeySource *string `type:"string"`
+
+	// The list of binary media types supported by the REST API.
+	BinaryMediaTypes []*string `type:"list"`
+
+	// Indicates when the API was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedDate *string `type:"string"`
+
+	// A description of the REST API.
+	Description *string `type:"string"`
+
+	// The endpoint configuration of the REST API.
+	EndpointConfiguration *AwsApiGatewayEndpointConfiguration `type:"structure"`
+
+	// The identifier of the REST API.
+	Id *string `type:"string"`
+
+	// The minimum size in bytes of a payload before compression is enabled.
+	//
+	// If null, then compression is disabled.
+	//
+	// If 0, then all payloads are compressed.
+	MinimumCompressionSize *int64 `type:"integer"`
+
+	// The name of the REST API.
+	Name *string `type:"string"`
+
+	// The version identifier for the REST API.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayRestApiDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayRestApiDetails) GoString() string {
+	return s.String()
+}
+
+// SetApiKeySource sets the ApiKeySource field's value.
+func (s *AwsApiGatewayRestApiDetails) SetApiKeySource(v string) *AwsApiGatewayRestApiDetails {
+	s.ApiKeySource = &v
+	return s
+}
+
+// SetBinaryMediaTypes sets the BinaryMediaTypes field's value.
+func (s *AwsApiGatewayRestApiDetails) SetBinaryMediaTypes(v []*string) *AwsApiGatewayRestApiDetails {
+	s.BinaryMediaTypes = v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *AwsApiGatewayRestApiDetails) SetCreatedDate(v string) *AwsApiGatewayRestApiDetails {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsApiGatewayRestApiDetails) SetDescription(v string) *AwsApiGatewayRestApiDetails {
+	s.Description = &v
+	return s
+}
+
+// SetEndpointConfiguration sets the EndpointConfiguration field's value.
+func (s *AwsApiGatewayRestApiDetails) SetEndpointConfiguration(v *AwsApiGatewayEndpointConfiguration) *AwsApiGatewayRestApiDetails {
+	s.EndpointConfiguration = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsApiGatewayRestApiDetails) SetId(v string) *AwsApiGatewayRestApiDetails {
+	s.Id = &v
+	return s
+}
+
+// SetMinimumCompressionSize sets the MinimumCompressionSize field's value.
+func (s *AwsApiGatewayRestApiDetails) SetMinimumCompressionSize(v int64) *AwsApiGatewayRestApiDetails {
+	s.MinimumCompressionSize = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsApiGatewayRestApiDetails) SetName(v string) *AwsApiGatewayRestApiDetails {
+	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsApiGatewayRestApiDetails) SetVersion(v string) *AwsApiGatewayRestApiDetails {
+	s.Version = &v
+	return s
+}
+
+// Provides information about a version 1 Amazon API Gateway stage.
+type AwsApiGatewayStageDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Settings for logging access for the stage.
+	AccessLogSettings *AwsApiGatewayAccessLogSettings `type:"structure"`
+
+	// Indicates whether a cache cluster is enabled for the stage.
+	CacheClusterEnabled *bool `type:"boolean"`
+
+	// If a cache cluster is enabled, the size of the cache cluster.
+	CacheClusterSize *string `type:"string"`
+
+	// If a cache cluster is enabled, the status of the cache cluster.
+	CacheClusterStatus *string `type:"string"`
+
+	// Information about settings for canary deployment in the stage.
+	CanarySettings *AwsApiGatewayCanarySettings `type:"structure"`
+
+	// The identifier of the client certificate for the stage.
+	ClientCertificateId *string `type:"string"`
+
+	// Indicates when the stage was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedDate *string `type:"string"`
+
+	// The identifier of the deployment that the stage points to.
+	DeploymentId *string `type:"string"`
+
+	// A description of the stage.
+	Description *string `type:"string"`
+
+	// The version of the API documentation that is associated with the stage.
+	DocumentationVersion *string `type:"string"`
+
+	// Indicates when the stage was most recently updated.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	LastUpdatedDate *string `type:"string"`
+
+	// Defines the method settings for the stage.
+	MethodSettings []*AwsApiGatewayMethodSettings `type:"list"`
+
+	// The name of the stage.
+	StageName *string `type:"string"`
+
+	// Indicates whether active tracing with AWS X-Ray is enabled for the stage.
+	TracingEnabled *bool `type:"boolean"`
+
+	// A map that defines the stage variables for the stage.
+	//
+	// Variable names can have alphanumeric and underscore characters.
+	//
+	// Variable values can contain the following characters:
+	//
+	//    * Uppercase and lowercase letters
+	//
+	//    * Numbers
+	//
+	//    * Special characters -._~:/?#&=,
+	Variables map[string]*string `type:"map"`
+
+	// The ARN of the web ACL associated with the stage.
+	WebAclArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayStageDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayStageDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessLogSettings sets the AccessLogSettings field's value.
+func (s *AwsApiGatewayStageDetails) SetAccessLogSettings(v *AwsApiGatewayAccessLogSettings) *AwsApiGatewayStageDetails {
+	s.AccessLogSettings = v
+	return s
+}
+
+// SetCacheClusterEnabled sets the CacheClusterEnabled field's value.
+func (s *AwsApiGatewayStageDetails) SetCacheClusterEnabled(v bool) *AwsApiGatewayStageDetails {
+	s.CacheClusterEnabled = &v
+	return s
+}
+
+// SetCacheClusterSize sets the CacheClusterSize field's value.
+func (s *AwsApiGatewayStageDetails) SetCacheClusterSize(v string) *AwsApiGatewayStageDetails {
+	s.CacheClusterSize = &v
+	return s
+}
+
+// SetCacheClusterStatus sets the CacheClusterStatus field's value.
+func (s *AwsApiGatewayStageDetails) SetCacheClusterStatus(v string) *AwsApiGatewayStageDetails {
+	s.CacheClusterStatus = &v
+	return s
+}
+
+// SetCanarySettings sets the CanarySettings field's value.
+func (s *AwsApiGatewayStageDetails) SetCanarySettings(v *AwsApiGatewayCanarySettings) *AwsApiGatewayStageDetails {
+	s.CanarySettings = v
+	return s
+}
+
+// SetClientCertificateId sets the ClientCertificateId field's value.
+func (s *AwsApiGatewayStageDetails) SetClientCertificateId(v string) *AwsApiGatewayStageDetails {
+	s.ClientCertificateId = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *AwsApiGatewayStageDetails) SetCreatedDate(v string) *AwsApiGatewayStageDetails {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *AwsApiGatewayStageDetails) SetDeploymentId(v string) *AwsApiGatewayStageDetails {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsApiGatewayStageDetails) SetDescription(v string) *AwsApiGatewayStageDetails {
+	s.Description = &v
+	return s
+}
+
+// SetDocumentationVersion sets the DocumentationVersion field's value.
+func (s *AwsApiGatewayStageDetails) SetDocumentationVersion(v string) *AwsApiGatewayStageDetails {
+	s.DocumentationVersion = &v
+	return s
+}
+
+// SetLastUpdatedDate sets the LastUpdatedDate field's value.
+func (s *AwsApiGatewayStageDetails) SetLastUpdatedDate(v string) *AwsApiGatewayStageDetails {
+	s.LastUpdatedDate = &v
+	return s
+}
+
+// SetMethodSettings sets the MethodSettings field's value.
+func (s *AwsApiGatewayStageDetails) SetMethodSettings(v []*AwsApiGatewayMethodSettings) *AwsApiGatewayStageDetails {
+	s.MethodSettings = v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *AwsApiGatewayStageDetails) SetStageName(v string) *AwsApiGatewayStageDetails {
+	s.StageName = &v
+	return s
+}
+
+// SetTracingEnabled sets the TracingEnabled field's value.
+func (s *AwsApiGatewayStageDetails) SetTracingEnabled(v bool) *AwsApiGatewayStageDetails {
+	s.TracingEnabled = &v
+	return s
+}
+
+// SetVariables sets the Variables field's value.
+func (s *AwsApiGatewayStageDetails) SetVariables(v map[string]*string) *AwsApiGatewayStageDetails {
+	s.Variables = v
+	return s
+}
+
+// SetWebAclArn sets the WebAclArn field's value.
+func (s *AwsApiGatewayStageDetails) SetWebAclArn(v string) *AwsApiGatewayStageDetails {
+	s.WebAclArn = &v
+	return s
+}
+
+// Contains information about a version 2 API in Amazon API Gateway.
+type AwsApiGatewayV2ApiDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The URI of the API.
+	//
+	// Uses the format <api-id>.execute-api.<region>.amazonaws.com
+	//
+	// The stage name is typically appended to the URI to form a complete path to
+	// a deployed API stage.
+	ApiEndpoint *string `type:"string"`
+
+	// The identifier of the API.
+	ApiId *string `type:"string"`
+
+	// An API key selection expression. Supported only for WebSocket APIs.
+	ApiKeySelectionExpression *string `type:"string"`
+
+	// A cross-origin resource sharing (CORS) configuration. Supported only for
+	// HTTP APIs.
+	CorsConfiguration *AwsCorsConfiguration `type:"structure"`
+
+	// Indicates when the API was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedDate *string `type:"string"`
+
+	// A description of the API.
+	Description *string `type:"string"`
+
+	// The name of the API.
+	Name *string `type:"string"`
+
+	// The API protocol for the API.
+	//
+	// Valid values: WEBSOCKET | HTTP
+	ProtocolType *string `type:"string"`
+
+	// The route selection expression for the API.
+	//
+	// For HTTP APIs, must be ${request.method} ${request.path}. This is the default
+	// value for HTTP APIs.
+	//
+	// For WebSocket APIs, there is no default value.
+	RouteSelectionExpression *string `type:"string"`
+
+	// The version identifier for the API.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayV2ApiDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayV2ApiDetails) GoString() string {
+	return s.String()
+}
+
+// SetApiEndpoint sets the ApiEndpoint field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetApiEndpoint(v string) *AwsApiGatewayV2ApiDetails {
+	s.ApiEndpoint = &v
+	return s
+}
+
+// SetApiId sets the ApiId field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetApiId(v string) *AwsApiGatewayV2ApiDetails {
+	s.ApiId = &v
+	return s
+}
+
+// SetApiKeySelectionExpression sets the ApiKeySelectionExpression field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetApiKeySelectionExpression(v string) *AwsApiGatewayV2ApiDetails {
+	s.ApiKeySelectionExpression = &v
+	return s
+}
+
+// SetCorsConfiguration sets the CorsConfiguration field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetCorsConfiguration(v *AwsCorsConfiguration) *AwsApiGatewayV2ApiDetails {
+	s.CorsConfiguration = v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetCreatedDate(v string) *AwsApiGatewayV2ApiDetails {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetDescription(v string) *AwsApiGatewayV2ApiDetails {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetName(v string) *AwsApiGatewayV2ApiDetails {
+	s.Name = &v
+	return s
+}
+
+// SetProtocolType sets the ProtocolType field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetProtocolType(v string) *AwsApiGatewayV2ApiDetails {
+	s.ProtocolType = &v
+	return s
+}
+
+// SetRouteSelectionExpression sets the RouteSelectionExpression field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetRouteSelectionExpression(v string) *AwsApiGatewayV2ApiDetails {
+	s.RouteSelectionExpression = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsApiGatewayV2ApiDetails) SetVersion(v string) *AwsApiGatewayV2ApiDetails {
+	s.Version = &v
+	return s
+}
+
+// Contains route settings for a stage.
+type AwsApiGatewayV2RouteSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether data trace logging is enabled. Data trace logging affects
+	// the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket
+	// APIs.
+	DataTraceEnabled *bool `type:"boolean"`
+
+	// Indicates whether detailed metrics are enabled.
+	DetailedMetricsEnabled *bool `type:"boolean"`
+
+	// The logging level. The logging level affects the log entries that are pushed
+	// to CloudWatch Logs. Supported only for WebSocket APIs.
+	//
+	// If the logging level is ERROR, then the logs only include error-level entries.
+	//
+	// If the logging level is INFO, then the logs include both ERROR events and
+	// extra informational events.
+	//
+	// Valid values: OFF | ERROR | INFO
+	LoggingLevel *string `type:"string"`
+
+	// The throttling burst limit.
+	ThrottlingBurstLimit *int64 `type:"integer"`
+
+	// The throttling rate limit.
+	ThrottlingRateLimit *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayV2RouteSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayV2RouteSettings) GoString() string {
+	return s.String()
+}
+
+// SetDataTraceEnabled sets the DataTraceEnabled field's value.
+func (s *AwsApiGatewayV2RouteSettings) SetDataTraceEnabled(v bool) *AwsApiGatewayV2RouteSettings {
+	s.DataTraceEnabled = &v
+	return s
+}
+
+// SetDetailedMetricsEnabled sets the DetailedMetricsEnabled field's value.
+func (s *AwsApiGatewayV2RouteSettings) SetDetailedMetricsEnabled(v bool) *AwsApiGatewayV2RouteSettings {
+	s.DetailedMetricsEnabled = &v
+	return s
+}
+
+// SetLoggingLevel sets the LoggingLevel field's value.
+func (s *AwsApiGatewayV2RouteSettings) SetLoggingLevel(v string) *AwsApiGatewayV2RouteSettings {
+	s.LoggingLevel = &v
+	return s
+}
+
+// SetThrottlingBurstLimit sets the ThrottlingBurstLimit field's value.
+func (s *AwsApiGatewayV2RouteSettings) SetThrottlingBurstLimit(v int64) *AwsApiGatewayV2RouteSettings {
+	s.ThrottlingBurstLimit = &v
+	return s
+}
+
+// SetThrottlingRateLimit sets the ThrottlingRateLimit field's value.
+func (s *AwsApiGatewayV2RouteSettings) SetThrottlingRateLimit(v float64) *AwsApiGatewayV2RouteSettings {
+	s.ThrottlingRateLimit = &v
+	return s
+}
+
+// Contains information about a version 2 stage for Amazon API Gateway.
+type AwsApiGatewayV2StageDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about settings for logging access for the stage.
+	AccessLogSettings *AwsApiGatewayAccessLogSettings `type:"structure"`
+
+	// Indicates whether the stage is managed by API Gateway.
+	ApiGatewayManaged *bool `type:"boolean"`
+
+	// Indicates whether updates to an API automatically trigger a new deployment.
+	AutoDeploy *bool `type:"boolean"`
+
+	// Indicates when the stage was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedDate *string `type:"string"`
+
+	// Default route settings for the stage.
+	DefaultRouteSettings *AwsApiGatewayV2RouteSettings `type:"structure"`
+
+	// The identifier of the deployment that the stage is associated with.
+	DeploymentId *string `type:"string"`
+
+	// The description of the stage.
+	Description *string `type:"string"`
+
+	// The status of the last deployment of a stage. Supported only if the stage
+	// has automatic deployment enabled.
+	LastDeploymentStatusMessage *string `type:"string"`
+
+	// Indicates when the stage was most recently updated.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	LastUpdatedDate *string `type:"string"`
+
+	// The route settings for the stage.
+	RouteSettings *AwsApiGatewayV2RouteSettings `type:"structure"`
+
+	// The name of the stage.
+	StageName *string `type:"string"`
+
+	// A map that defines the stage variables for the stage.
+	//
+	// Variable names can have alphanumeric and underscore characters.
+	//
+	// Variable values can contain the following characters:
+	//
+	//    * Uppercase and lowercase letters
+	//
+	//    * Numbers
+	//
+	//    * Special characters -._~:/?#&=,
+	StageVariables map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s AwsApiGatewayV2StageDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsApiGatewayV2StageDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessLogSettings sets the AccessLogSettings field's value.
+func (s *AwsApiGatewayV2StageDetails) SetAccessLogSettings(v *AwsApiGatewayAccessLogSettings) *AwsApiGatewayV2StageDetails {
+	s.AccessLogSettings = v
+	return s
+}
+
+// SetApiGatewayManaged sets the ApiGatewayManaged field's value.
+func (s *AwsApiGatewayV2StageDetails) SetApiGatewayManaged(v bool) *AwsApiGatewayV2StageDetails {
+	s.ApiGatewayManaged = &v
+	return s
+}
+
+// SetAutoDeploy sets the AutoDeploy field's value.
+func (s *AwsApiGatewayV2StageDetails) SetAutoDeploy(v bool) *AwsApiGatewayV2StageDetails {
+	s.AutoDeploy = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *AwsApiGatewayV2StageDetails) SetCreatedDate(v string) *AwsApiGatewayV2StageDetails {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetDefaultRouteSettings sets the DefaultRouteSettings field's value.
+func (s *AwsApiGatewayV2StageDetails) SetDefaultRouteSettings(v *AwsApiGatewayV2RouteSettings) *AwsApiGatewayV2StageDetails {
+	s.DefaultRouteSettings = v
+	return s
+}
+
+// SetDeploymentId sets the DeploymentId field's value.
+func (s *AwsApiGatewayV2StageDetails) SetDeploymentId(v string) *AwsApiGatewayV2StageDetails {
+	s.DeploymentId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsApiGatewayV2StageDetails) SetDescription(v string) *AwsApiGatewayV2StageDetails {
+	s.Description = &v
+	return s
+}
+
+// SetLastDeploymentStatusMessage sets the LastDeploymentStatusMessage field's value.
+func (s *AwsApiGatewayV2StageDetails) SetLastDeploymentStatusMessage(v string) *AwsApiGatewayV2StageDetails {
+	s.LastDeploymentStatusMessage = &v
+	return s
+}
+
+// SetLastUpdatedDate sets the LastUpdatedDate field's value.
+func (s *AwsApiGatewayV2StageDetails) SetLastUpdatedDate(v string) *AwsApiGatewayV2StageDetails {
+	s.LastUpdatedDate = &v
+	return s
+}
+
+// SetRouteSettings sets the RouteSettings field's value.
+func (s *AwsApiGatewayV2StageDetails) SetRouteSettings(v *AwsApiGatewayV2RouteSettings) *AwsApiGatewayV2StageDetails {
+	s.RouteSettings = v
+	return s
+}
+
+// SetStageName sets the StageName field's value.
+func (s *AwsApiGatewayV2StageDetails) SetStageName(v string) *AwsApiGatewayV2StageDetails {
+	s.StageName = &v
+	return s
+}
+
+// SetStageVariables sets the StageVariables field's value.
+func (s *AwsApiGatewayV2StageDetails) SetStageVariables(v map[string]*string) *AwsApiGatewayV2StageDetails {
+	s.StageVariables = v
+	return s
+}
+
 // Provides details about an auto scaling group.
 type AwsAutoScalingAutoScalingGroupDetails struct {
 	_ struct{} `type:"structure"`
@@ -4981,9 +5865,662 @@ func (s *AwsAutoScalingAutoScalingGroupDetails) SetLoadBalancerNames(v []*string
 	return s
 }
 
+// Provides details about an AWS Certificate Manager certificate.
+type AwsCertificateManagerCertificateDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the private certificate authority (CA) that will be used to issue
+	// the certificate.
+	CertificateAuthorityArn *string `type:"string"`
+
+	// Indicates when the certificate was requested.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedAt *string `type:"string"`
+
+	// The fully qualified domain name (FQDN), such as www.example.com, that is
+	// secured by the certificate.
+	DomainName *string `type:"string"`
+
+	// Contains information about the initial validation of each domain name that
+	// occurs as a result of the RequestCertificate request.
+	//
+	// Only provided if the certificate type is AMAZON_ISSUED.
+	DomainValidationOptions []*AwsCertificateManagerCertificateDomainValidationOption `type:"list"`
+
+	// Contains a list of Extended Key Usage X.509 v3 extension objects. Each object
+	// specifies a purpose for which the certificate public key can be used and
+	// consists of a name and an object identifier (OID).
+	ExtendedKeyUsages []*AwsCertificateManagerCertificateExtendedKeyUsage `type:"list"`
+
+	// For a failed certificate request, the reason for the failure.
+	//
+	// Valid values: NO_AVAILABLE_CONTACTS | ADDITIONAL_VERIFICATION_REQUIRED |
+	// DOMAIN_NOT_ALLOWED | INVALID_PUBLIC_DOMAIN | DOMAIN_VALIDATION_DENIED | CAA_ERROR
+	// | PCA_LIMIT_EXCEEDED | PCA_INVALID_ARN | PCA_INVALID_STATE | PCA_REQUEST_FAILED
+	// | PCA_NAME_CONSTRAINTS_VALIDATION | PCA_RESOURCE_NOT_FOUND | PCA_INVALID_ARGS
+	// | PCA_INVALID_DURATION | PCA_ACCESS_DENIED | SLR_NOT_FOUND | OTHER
+	FailureReason *string `type:"string"`
+
+	// Indicates when the certificate was imported. Provided if the certificate
+	// type is IMPORTED.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	ImportedAt *string `type:"string"`
+
+	// The list of ARNs for the AWS resources that use the certificate.
+	InUseBy []*string `type:"list"`
+
+	// Indicates when the certificate was issued. Provided if the certificate type
+	// is AMAZON_ISSUED.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	IssuedAt *string `type:"string"`
+
+	// The name of the certificate authority that issued and signed the certificate.
+	Issuer *string `type:"string"`
+
+	// The algorithm that was used to generate the public-private key pair.
+	//
+	// Valid values: RSA_2048 | RSA_1024 |RSA_4096 | EC_prime256v1 | EC_secp384r1
+	// | EC_secp521r1
+	KeyAlgorithm *string `type:"string"`
+
+	// A list of key usage X.509 v3 extension objects.
+	KeyUsages []*AwsCertificateManagerCertificateKeyUsage `type:"list"`
+
+	// The time after which the certificate becomes invalid.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	NotAfter *string `type:"string"`
+
+	// The time before which the certificate is not valid.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	NotBefore *string `type:"string"`
+
+	// Provides a value that specifies whether to add the certificate to a transparency
+	// log.
+	Options *AwsCertificateManagerCertificateOptions `type:"structure"`
+
+	// Whether the certificate is eligible for renewal.
+	//
+	// Valid values: ELIGIBLE | INELIGIBLE
+	RenewalEligibility *string `type:"string"`
+
+	// Information about the status of the AWS Certificate Manager managed renewal
+	// for the certificate. Provided only when the certificate type is AMAZON_ISSUED.
+	RenewalSummary *AwsCertificateManagerCertificateRenewalSummary `type:"structure"`
+
+	// The serial number of the certificate.
+	Serial *string `type:"string"`
+
+	// The algorithm that was used to sign the certificate.
+	SignatureAlgorithm *string `type:"string"`
+
+	// The status of the certificate.
+	//
+	// Valid values: PENDING_VALIDATION | ISSUED | INACTIVE | EXPIRED | VALIDATION_TIMED_OUT
+	// | REVOKED | FAILED
+	Status *string `type:"string"`
+
+	// The name of the entity that is associated with the public key contained in
+	// the certificate.
+	Subject *string `type:"string"`
+
+	// One or more domain names (subject alternative names) included in the certificate.
+	// This list contains the domain names that are bound to the public key that
+	// is contained in the certificate.
+	//
+	// The subject alternative names include the canonical domain name (CN) of the
+	// certificate and additional domain names that can be used to connect to the
+	// website.
+	SubjectAlternativeNames []*string `type:"list"`
+
+	// The source of the certificate. For certificates that AWS Certificate Manager
+	// provides, Type is AMAZON_ISSUED. For certificates that are imported with
+	// ImportCertificate, Type is IMPORTED.
+	//
+	// Valid values: IMPORTED | AMAZON_ISSUED | PRIVATE
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateDetails) GoString() string {
+	return s.String()
+}
+
+// SetCertificateAuthorityArn sets the CertificateAuthorityArn field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetCertificateAuthorityArn(v string) *AwsCertificateManagerCertificateDetails {
+	s.CertificateAuthorityArn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetCreatedAt(v string) *AwsCertificateManagerCertificateDetails {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetDomainName(v string) *AwsCertificateManagerCertificateDetails {
+	s.DomainName = &v
+	return s
+}
+
+// SetDomainValidationOptions sets the DomainValidationOptions field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetDomainValidationOptions(v []*AwsCertificateManagerCertificateDomainValidationOption) *AwsCertificateManagerCertificateDetails {
+	s.DomainValidationOptions = v
+	return s
+}
+
+// SetExtendedKeyUsages sets the ExtendedKeyUsages field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetExtendedKeyUsages(v []*AwsCertificateManagerCertificateExtendedKeyUsage) *AwsCertificateManagerCertificateDetails {
+	s.ExtendedKeyUsages = v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetFailureReason(v string) *AwsCertificateManagerCertificateDetails {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImportedAt sets the ImportedAt field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetImportedAt(v string) *AwsCertificateManagerCertificateDetails {
+	s.ImportedAt = &v
+	return s
+}
+
+// SetInUseBy sets the InUseBy field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetInUseBy(v []*string) *AwsCertificateManagerCertificateDetails {
+	s.InUseBy = v
+	return s
+}
+
+// SetIssuedAt sets the IssuedAt field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetIssuedAt(v string) *AwsCertificateManagerCertificateDetails {
+	s.IssuedAt = &v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetIssuer(v string) *AwsCertificateManagerCertificateDetails {
+	s.Issuer = &v
+	return s
+}
+
+// SetKeyAlgorithm sets the KeyAlgorithm field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetKeyAlgorithm(v string) *AwsCertificateManagerCertificateDetails {
+	s.KeyAlgorithm = &v
+	return s
+}
+
+// SetKeyUsages sets the KeyUsages field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetKeyUsages(v []*AwsCertificateManagerCertificateKeyUsage) *AwsCertificateManagerCertificateDetails {
+	s.KeyUsages = v
+	return s
+}
+
+// SetNotAfter sets the NotAfter field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetNotAfter(v string) *AwsCertificateManagerCertificateDetails {
+	s.NotAfter = &v
+	return s
+}
+
+// SetNotBefore sets the NotBefore field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetNotBefore(v string) *AwsCertificateManagerCertificateDetails {
+	s.NotBefore = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetOptions(v *AwsCertificateManagerCertificateOptions) *AwsCertificateManagerCertificateDetails {
+	s.Options = v
+	return s
+}
+
+// SetRenewalEligibility sets the RenewalEligibility field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetRenewalEligibility(v string) *AwsCertificateManagerCertificateDetails {
+	s.RenewalEligibility = &v
+	return s
+}
+
+// SetRenewalSummary sets the RenewalSummary field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetRenewalSummary(v *AwsCertificateManagerCertificateRenewalSummary) *AwsCertificateManagerCertificateDetails {
+	s.RenewalSummary = v
+	return s
+}
+
+// SetSerial sets the Serial field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetSerial(v string) *AwsCertificateManagerCertificateDetails {
+	s.Serial = &v
+	return s
+}
+
+// SetSignatureAlgorithm sets the SignatureAlgorithm field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetSignatureAlgorithm(v string) *AwsCertificateManagerCertificateDetails {
+	s.SignatureAlgorithm = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetStatus(v string) *AwsCertificateManagerCertificateDetails {
+	s.Status = &v
+	return s
+}
+
+// SetSubject sets the Subject field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetSubject(v string) *AwsCertificateManagerCertificateDetails {
+	s.Subject = &v
+	return s
+}
+
+// SetSubjectAlternativeNames sets the SubjectAlternativeNames field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetSubjectAlternativeNames(v []*string) *AwsCertificateManagerCertificateDetails {
+	s.SubjectAlternativeNames = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsCertificateManagerCertificateDetails) SetType(v string) *AwsCertificateManagerCertificateDetails {
+	s.Type = &v
+	return s
+}
+
+// Contains information about one of the following:
+//
+//    * The initial validation of each domain name that occurs as a result of
+//    the RequestCertificate request
+//
+//    * The validation of each domain name in the certificate, as it pertains
+//    to AWS Certificate Manager managed renewal
+type AwsCertificateManagerCertificateDomainValidationOption struct {
+	_ struct{} `type:"structure"`
+
+	// A fully qualified domain name (FQDN) in the certificate.
+	DomainName *string `type:"string"`
+
+	// The CNAME record that is added to the DNS database for domain validation.
+	ResourceRecord *AwsCertificateManagerCertificateResourceRecord `type:"structure"`
+
+	// The domain name that AWS Certificate Manager uses to send domain validation
+	// emails.
+	ValidationDomain *string `type:"string"`
+
+	// A list of email addresses that AWS Certificate Manager uses to send domain
+	// validation emails.
+	ValidationEmails []*string `type:"list"`
+
+	// The method used to validate the domain name.
+	ValidationMethod *string `type:"string"`
+
+	// The validation status of the domain name.
+	ValidationStatus *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateDomainValidationOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateDomainValidationOption) GoString() string {
+	return s.String()
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *AwsCertificateManagerCertificateDomainValidationOption) SetDomainName(v string) *AwsCertificateManagerCertificateDomainValidationOption {
+	s.DomainName = &v
+	return s
+}
+
+// SetResourceRecord sets the ResourceRecord field's value.
+func (s *AwsCertificateManagerCertificateDomainValidationOption) SetResourceRecord(v *AwsCertificateManagerCertificateResourceRecord) *AwsCertificateManagerCertificateDomainValidationOption {
+	s.ResourceRecord = v
+	return s
+}
+
+// SetValidationDomain sets the ValidationDomain field's value.
+func (s *AwsCertificateManagerCertificateDomainValidationOption) SetValidationDomain(v string) *AwsCertificateManagerCertificateDomainValidationOption {
+	s.ValidationDomain = &v
+	return s
+}
+
+// SetValidationEmails sets the ValidationEmails field's value.
+func (s *AwsCertificateManagerCertificateDomainValidationOption) SetValidationEmails(v []*string) *AwsCertificateManagerCertificateDomainValidationOption {
+	s.ValidationEmails = v
+	return s
+}
+
+// SetValidationMethod sets the ValidationMethod field's value.
+func (s *AwsCertificateManagerCertificateDomainValidationOption) SetValidationMethod(v string) *AwsCertificateManagerCertificateDomainValidationOption {
+	s.ValidationMethod = &v
+	return s
+}
+
+// SetValidationStatus sets the ValidationStatus field's value.
+func (s *AwsCertificateManagerCertificateDomainValidationOption) SetValidationStatus(v string) *AwsCertificateManagerCertificateDomainValidationOption {
+	s.ValidationStatus = &v
+	return s
+}
+
+// Contains information about an extended key usage X.509 v3 extension object.
+type AwsCertificateManagerCertificateExtendedKeyUsage struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an extension value. Indicates the purpose for which the certificate
+	// public key can be used.
+	Name *string `type:"string"`
+
+	// An object identifier (OID) for the extension value.
+	//
+	// The format is numbers separated by periods.
+	OId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateExtendedKeyUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateExtendedKeyUsage) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCertificateManagerCertificateExtendedKeyUsage) SetName(v string) *AwsCertificateManagerCertificateExtendedKeyUsage {
+	s.Name = &v
+	return s
+}
+
+// SetOId sets the OId field's value.
+func (s *AwsCertificateManagerCertificateExtendedKeyUsage) SetOId(v string) *AwsCertificateManagerCertificateExtendedKeyUsage {
+	s.OId = &v
+	return s
+}
+
+// Contains information about a key usage X.509 v3 extension object.
+type AwsCertificateManagerCertificateKeyUsage struct {
+	_ struct{} `type:"structure"`
+
+	// The key usage extension name.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateKeyUsage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateKeyUsage) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCertificateManagerCertificateKeyUsage) SetName(v string) *AwsCertificateManagerCertificateKeyUsage {
+	s.Name = &v
+	return s
+}
+
+// Contains other options for the certificate.
+type AwsCertificateManagerCertificateOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to add the certificate to a transparency log.
+	//
+	// Valid values: DISABLED | ENABLED
+	CertificateTransparencyLoggingPreference *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateOptions) GoString() string {
+	return s.String()
+}
+
+// SetCertificateTransparencyLoggingPreference sets the CertificateTransparencyLoggingPreference field's value.
+func (s *AwsCertificateManagerCertificateOptions) SetCertificateTransparencyLoggingPreference(v string) *AwsCertificateManagerCertificateOptions {
+	s.CertificateTransparencyLoggingPreference = &v
+	return s
+}
+
+// Contains information about the AWS Certificate Manager managed renewal for
+// an AMAZON_ISSUED certificate.
+type AwsCertificateManagerCertificateRenewalSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the validation of each domain name in the certificate,
+	// as it pertains to AWS Certificate Manager managed renewal. Provided only
+	// when the certificate type is AMAZON_ISSUED.
+	DomainValidationOptions []*AwsCertificateManagerCertificateDomainValidationOption `type:"list"`
+
+	// The status of the AWS Certificate Manager managed renewal of the certificate.
+	//
+	// Valid values: PENDING_AUTO_RENEWAL | PENDING_VALIDATION | SUCCESS | FAILED
+	RenewalStatus *string `type:"string"`
+
+	// The reason that a renewal request was unsuccessful.
+	//
+	// Valid values: NO_AVAILABLE_CONTACTS | ADDITIONAL_VERIFICATION_REQUIRED |
+	// DOMAIN_NOT_ALLOWED | INVALID_PUBLIC_DOMAIN | DOMAIN_VALIDATION_DENIED | CAA_ERROR
+	// | PCA_LIMIT_EXCEEDED | PCA_INVALID_ARN | PCA_INVALID_STATE | PCA_REQUEST_FAILED
+	// | PCA_NAME_CONSTRAINTS_VALIDATION | PCA_RESOURCE_NOT_FOUND | PCA_INVALID_ARGS
+	// | PCA_INVALID_DURATION | PCA_ACCESS_DENIED | SLR_NOT_FOUND | OTHER
+	RenewalStatusReason *string `type:"string"`
+
+	// Indicates when the renewal summary was last updated.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	UpdatedAt *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateRenewalSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateRenewalSummary) GoString() string {
+	return s.String()
+}
+
+// SetDomainValidationOptions sets the DomainValidationOptions field's value.
+func (s *AwsCertificateManagerCertificateRenewalSummary) SetDomainValidationOptions(v []*AwsCertificateManagerCertificateDomainValidationOption) *AwsCertificateManagerCertificateRenewalSummary {
+	s.DomainValidationOptions = v
+	return s
+}
+
+// SetRenewalStatus sets the RenewalStatus field's value.
+func (s *AwsCertificateManagerCertificateRenewalSummary) SetRenewalStatus(v string) *AwsCertificateManagerCertificateRenewalSummary {
+	s.RenewalStatus = &v
+	return s
+}
+
+// SetRenewalStatusReason sets the RenewalStatusReason field's value.
+func (s *AwsCertificateManagerCertificateRenewalSummary) SetRenewalStatusReason(v string) *AwsCertificateManagerCertificateRenewalSummary {
+	s.RenewalStatusReason = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *AwsCertificateManagerCertificateRenewalSummary) SetUpdatedAt(v string) *AwsCertificateManagerCertificateRenewalSummary {
+	s.UpdatedAt = &v
+	return s
+}
+
+// Provides details about the CNAME record that is added to the DNS database
+// for domain validation.
+type AwsCertificateManagerCertificateResourceRecord struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the resource.
+	Name *string `type:"string"`
+
+	// The type of resource.
+	Type *string `type:"string"`
+
+	// The value of the resource.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCertificateManagerCertificateResourceRecord) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCertificateManagerCertificateResourceRecord) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCertificateManagerCertificateResourceRecord) SetName(v string) *AwsCertificateManagerCertificateResourceRecord {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsCertificateManagerCertificateResourceRecord) SetType(v string) *AwsCertificateManagerCertificateResourceRecord {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsCertificateManagerCertificateResourceRecord) SetValue(v string) *AwsCertificateManagerCertificateResourceRecord {
+	s.Value = &v
+	return s
+}
+
+// Information about a cache behavior for the distribution.
+type AwsCloudFrontDistributionCacheBehavior struct {
+	_ struct{} `type:"structure"`
+
+	// The protocol that viewers can use to access the files in an origin. You can
+	// specify the following options:
+	//
+	//    * allow-all - Viewers can use HTTP or HTTPS.
+	//
+	//    * redirect-to-https - CloudFront responds to HTTP requests with an HTTP
+	//    status code of 301 (Moved Permanently) and the HTTPS URL. The viewer then
+	//    uses the new URL to resubmit.
+	//
+	//    * https-only - CloudFront responds to HTTP request with an HTTP status
+	//    code of 403 (Forbidden).
+	ViewerProtocolPolicy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionCacheBehavior) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionCacheBehavior) GoString() string {
+	return s.String()
+}
+
+// SetViewerProtocolPolicy sets the ViewerProtocolPolicy field's value.
+func (s *AwsCloudFrontDistributionCacheBehavior) SetViewerProtocolPolicy(v string) *AwsCloudFrontDistributionCacheBehavior {
+	s.ViewerProtocolPolicy = &v
+	return s
+}
+
+// Provides information about caching for the distribution.
+type AwsCloudFrontDistributionCacheBehaviors struct {
+	_ struct{} `type:"structure"`
+
+	// The cache behaviors for the distribution.
+	Items []*AwsCloudFrontDistributionCacheBehavior `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionCacheBehaviors) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionCacheBehaviors) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *AwsCloudFrontDistributionCacheBehaviors) SetItems(v []*AwsCloudFrontDistributionCacheBehavior) *AwsCloudFrontDistributionCacheBehaviors {
+	s.Items = v
+	return s
+}
+
+// Contains information about the default cache configuration for the distribution.
+type AwsCloudFrontDistributionDefaultCacheBehavior struct {
+	_ struct{} `type:"structure"`
+
+	// The protocol that viewers can use to access the files in an origin. You can
+	// specify the following options:
+	//
+	//    * allow-all - Viewers can use HTTP or HTTPS.
+	//
+	//    * redirect-to-https - CloudFront responds to HTTP requests with an HTTP
+	//    status code of 301 (Moved Permanently) and the HTTPS URL. The viewer then
+	//    uses the new URL to resubmit.
+	//
+	//    * https-only - CloudFront responds to HTTP request with an HTTP status
+	//    code of 403 (Forbidden).
+	ViewerProtocolPolicy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionDefaultCacheBehavior) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionDefaultCacheBehavior) GoString() string {
+	return s.String()
+}
+
+// SetViewerProtocolPolicy sets the ViewerProtocolPolicy field's value.
+func (s *AwsCloudFrontDistributionDefaultCacheBehavior) SetViewerProtocolPolicy(v string) *AwsCloudFrontDistributionDefaultCacheBehavior {
+	s.ViewerProtocolPolicy = &v
+	return s
+}
+
 // A distribution configuration.
 type AwsCloudFrontDistributionDetails struct {
 	_ struct{} `type:"structure"`
+
+	// Provides information about the cache configuration for the distribution.
+	CacheBehaviors *AwsCloudFrontDistributionCacheBehaviors `type:"structure"`
+
+	// The default cache behavior for the configuration.
+	DefaultCacheBehavior *AwsCloudFrontDistributionDefaultCacheBehavior `type:"structure"`
+
+	// The object that CloudFront sends in response to requests from the origin
+	// (for example, index.html) when a viewer requests the root URL for the distribution
+	// (http://www.example.com) instead of an object in your distribution (http://www.example.com/product-description.html).
+	DefaultRootObject *string `type:"string"`
 
 	// The domain name corresponding to the distribution.
 	DomainName *string `type:"string"`
@@ -5000,6 +6537,9 @@ type AwsCloudFrontDistributionDetails struct {
 
 	// A complex type that controls whether access logs are written for the distribution.
 	Logging *AwsCloudFrontDistributionLogging `type:"structure"`
+
+	// Provides information about the origin groups in the distribution.
+	OriginGroups *AwsCloudFrontDistributionOriginGroups `type:"structure"`
 
 	// A complex type that contains information about origins for this distribution.
 	Origins *AwsCloudFrontDistributionOrigins `type:"structure"`
@@ -5020,6 +6560,24 @@ func (s AwsCloudFrontDistributionDetails) String() string {
 // GoString returns the string representation
 func (s AwsCloudFrontDistributionDetails) GoString() string {
 	return s.String()
+}
+
+// SetCacheBehaviors sets the CacheBehaviors field's value.
+func (s *AwsCloudFrontDistributionDetails) SetCacheBehaviors(v *AwsCloudFrontDistributionCacheBehaviors) *AwsCloudFrontDistributionDetails {
+	s.CacheBehaviors = v
+	return s
+}
+
+// SetDefaultCacheBehavior sets the DefaultCacheBehavior field's value.
+func (s *AwsCloudFrontDistributionDetails) SetDefaultCacheBehavior(v *AwsCloudFrontDistributionDefaultCacheBehavior) *AwsCloudFrontDistributionDetails {
+	s.DefaultCacheBehavior = v
+	return s
+}
+
+// SetDefaultRootObject sets the DefaultRootObject field's value.
+func (s *AwsCloudFrontDistributionDetails) SetDefaultRootObject(v string) *AwsCloudFrontDistributionDetails {
+	s.DefaultRootObject = &v
+	return s
 }
 
 // SetDomainName sets the DomainName field's value.
@@ -5043,6 +6601,12 @@ func (s *AwsCloudFrontDistributionDetails) SetLastModifiedTime(v string) *AwsClo
 // SetLogging sets the Logging field's value.
 func (s *AwsCloudFrontDistributionDetails) SetLogging(v *AwsCloudFrontDistributionLogging) *AwsCloudFrontDistributionDetails {
 	s.Logging = v
+	return s
+}
+
+// SetOriginGroups sets the OriginGroups field's value.
+func (s *AwsCloudFrontDistributionDetails) SetOriginGroups(v *AwsCloudFrontDistributionOriginGroups) *AwsCloudFrontDistributionDetails {
+	s.OriginGroups = v
 	return s
 }
 
@@ -5116,6 +6680,111 @@ func (s *AwsCloudFrontDistributionLogging) SetPrefix(v string) *AwsCloudFrontDis
 	return s
 }
 
+// Information about an origin group for the distribution.
+type AwsCloudFrontDistributionOriginGroup struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the criteria for an origin group to fail over.
+	FailoverCriteria *AwsCloudFrontDistributionOriginGroupFailover `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionOriginGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionOriginGroup) GoString() string {
+	return s.String()
+}
+
+// SetFailoverCriteria sets the FailoverCriteria field's value.
+func (s *AwsCloudFrontDistributionOriginGroup) SetFailoverCriteria(v *AwsCloudFrontDistributionOriginGroupFailover) *AwsCloudFrontDistributionOriginGroup {
+	s.FailoverCriteria = v
+	return s
+}
+
+// Provides information about when an origin group fails over.
+type AwsCloudFrontDistributionOriginGroupFailover struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the status codes that cause an origin group to fail over.
+	StatusCodes *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionOriginGroupFailover) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionOriginGroupFailover) GoString() string {
+	return s.String()
+}
+
+// SetStatusCodes sets the StatusCodes field's value.
+func (s *AwsCloudFrontDistributionOriginGroupFailover) SetStatusCodes(v *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes) *AwsCloudFrontDistributionOriginGroupFailover {
+	s.StatusCodes = v
+	return s
+}
+
+// The status codes that cause an origin group to fail over.
+type AwsCloudFrontDistributionOriginGroupFailoverStatusCodes struct {
+	_ struct{} `type:"structure"`
+
+	// The list of status code values that can cause a failover to the next origin.
+	Items []*int64 `type:"list"`
+
+	// The number of status codes that can cause a failover.
+	Quantity *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionOriginGroupFailoverStatusCodes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionOriginGroupFailoverStatusCodes) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes) SetItems(v []*int64) *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes) SetQuantity(v int64) *AwsCloudFrontDistributionOriginGroupFailoverStatusCodes {
+	s.Quantity = &v
+	return s
+}
+
+// Provides information about origin groups that are associated with the distribution.
+type AwsCloudFrontDistributionOriginGroups struct {
+	_ struct{} `type:"structure"`
+
+	// The list of origin groups.
+	Items []*AwsCloudFrontDistributionOriginGroup `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionOriginGroups) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionOriginGroups) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *AwsCloudFrontDistributionOriginGroups) SetItems(v []*AwsCloudFrontDistributionOriginGroup) *AwsCloudFrontDistributionOriginGroups {
+	s.Items = v
+	return s
+}
+
 // A complex type that describes the Amazon S3 bucket, HTTP server (for example,
 // a web server), Amazon Elemental MediaStore, or other server from which CloudFront
 // gets your files.
@@ -5132,6 +6801,10 @@ type AwsCloudFrontDistributionOriginItem struct {
 	// An optional element that causes CloudFront to request your content from a
 	// directory in your Amazon S3 bucket or your custom origin.
 	OriginPath *string `type:"string"`
+
+	// An origin that is an S3 bucket that is not configured with static website
+	// hosting.
+	S3OriginConfig *AwsCloudFrontDistributionOriginS3OriginConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -5162,6 +6835,37 @@ func (s *AwsCloudFrontDistributionOriginItem) SetOriginPath(v string) *AwsCloudF
 	return s
 }
 
+// SetS3OriginConfig sets the S3OriginConfig field's value.
+func (s *AwsCloudFrontDistributionOriginItem) SetS3OriginConfig(v *AwsCloudFrontDistributionOriginS3OriginConfig) *AwsCloudFrontDistributionOriginItem {
+	s.S3OriginConfig = v
+	return s
+}
+
+// Information about an origin that is an S3 bucket that is not configured with
+// static website hosting.
+type AwsCloudFrontDistributionOriginS3OriginConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The CloudFront origin access identity to associate with the origin.
+	OriginAccessIdentity *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCloudFrontDistributionOriginS3OriginConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudFrontDistributionOriginS3OriginConfig) GoString() string {
+	return s.String()
+}
+
+// SetOriginAccessIdentity sets the OriginAccessIdentity field's value.
+func (s *AwsCloudFrontDistributionOriginS3OriginConfig) SetOriginAccessIdentity(v string) *AwsCloudFrontDistributionOriginS3OriginConfig {
+	s.OriginAccessIdentity = &v
+	return s
+}
+
 // A complex type that contains information about origins and origin groups
 // for this distribution.
 type AwsCloudFrontDistributionOrigins struct {
@@ -5184,6 +6888,161 @@ func (s AwsCloudFrontDistributionOrigins) GoString() string {
 // SetItems sets the Items field's value.
 func (s *AwsCloudFrontDistributionOrigins) SetItems(v []*AwsCloudFrontDistributionOriginItem) *AwsCloudFrontDistributionOrigins {
 	s.Items = v
+	return s
+}
+
+// Provides details about a CloudTrail trail.
+type AwsCloudTrailTrailDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the log group that CloudTrail logs are delivered to.
+	CloudWatchLogsLogGroupArn *string `type:"string"`
+
+	// The ARN of the role that the CloudWatch Logs endpoint assumes when it writes
+	// to the log group.
+	CloudWatchLogsRoleArn *string `type:"string"`
+
+	// Indicates whether the trail has custom event selectors.
+	HasCustomEventSelectors *bool `type:"boolean"`
+
+	// The Region where the trail was created.
+	HomeRegion *string `type:"string"`
+
+	// Indicates whether the trail publishes events from global services such as
+	// IAM to the log files.
+	IncludeGlobalServiceEvents *bool `type:"boolean"`
+
+	// Indicates whether the trail applies only to the current Region or to all
+	// Regions.
+	IsMultiRegionTrail *bool `type:"boolean"`
+
+	// Whether the trail is created for all accounts in an organization in AWS Organizations,
+	// or only for the current AWS account.
+	IsOrganizationTrail *bool `type:"boolean"`
+
+	// The AWS KMS key ID to use to encrypt the logs.
+	KmsKeyId *string `type:"string"`
+
+	// Indicates whether CloudTrail log file validation is enabled.
+	LogFileValidationEnabled *bool `type:"boolean"`
+
+	// The name of the trail.
+	Name *string `type:"string"`
+
+	// The name of the S3 bucket where the log files are published.
+	S3BucketName *string `type:"string"`
+
+	// The S3 key prefix. The key prefix is added after the name of the S3 bucket
+	// where the log files are published.
+	S3KeyPrefix *string `type:"string"`
+
+	// The ARN of the SNS topic that is used for notifications of log file delivery.
+	SnsTopicArn *string `type:"string"`
+
+	// The name of the SNS topic that is used for notifications of log file delivery.
+	SnsTopicName *string `type:"string"`
+
+	// The ARN of the trail.
+	TrailArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsCloudTrailTrailDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCloudTrailTrailDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *AwsCloudTrailTrailDetails) SetCloudWatchLogsLogGroupArn(v string) *AwsCloudTrailTrailDetails {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetCloudWatchLogsRoleArn sets the CloudWatchLogsRoleArn field's value.
+func (s *AwsCloudTrailTrailDetails) SetCloudWatchLogsRoleArn(v string) *AwsCloudTrailTrailDetails {
+	s.CloudWatchLogsRoleArn = &v
+	return s
+}
+
+// SetHasCustomEventSelectors sets the HasCustomEventSelectors field's value.
+func (s *AwsCloudTrailTrailDetails) SetHasCustomEventSelectors(v bool) *AwsCloudTrailTrailDetails {
+	s.HasCustomEventSelectors = &v
+	return s
+}
+
+// SetHomeRegion sets the HomeRegion field's value.
+func (s *AwsCloudTrailTrailDetails) SetHomeRegion(v string) *AwsCloudTrailTrailDetails {
+	s.HomeRegion = &v
+	return s
+}
+
+// SetIncludeGlobalServiceEvents sets the IncludeGlobalServiceEvents field's value.
+func (s *AwsCloudTrailTrailDetails) SetIncludeGlobalServiceEvents(v bool) *AwsCloudTrailTrailDetails {
+	s.IncludeGlobalServiceEvents = &v
+	return s
+}
+
+// SetIsMultiRegionTrail sets the IsMultiRegionTrail field's value.
+func (s *AwsCloudTrailTrailDetails) SetIsMultiRegionTrail(v bool) *AwsCloudTrailTrailDetails {
+	s.IsMultiRegionTrail = &v
+	return s
+}
+
+// SetIsOrganizationTrail sets the IsOrganizationTrail field's value.
+func (s *AwsCloudTrailTrailDetails) SetIsOrganizationTrail(v bool) *AwsCloudTrailTrailDetails {
+	s.IsOrganizationTrail = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsCloudTrailTrailDetails) SetKmsKeyId(v string) *AwsCloudTrailTrailDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetLogFileValidationEnabled sets the LogFileValidationEnabled field's value.
+func (s *AwsCloudTrailTrailDetails) SetLogFileValidationEnabled(v bool) *AwsCloudTrailTrailDetails {
+	s.LogFileValidationEnabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCloudTrailTrailDetails) SetName(v string) *AwsCloudTrailTrailDetails {
+	s.Name = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *AwsCloudTrailTrailDetails) SetS3BucketName(v string) *AwsCloudTrailTrailDetails {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *AwsCloudTrailTrailDetails) SetS3KeyPrefix(v string) *AwsCloudTrailTrailDetails {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *AwsCloudTrailTrailDetails) SetSnsTopicArn(v string) *AwsCloudTrailTrailDetails {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetSnsTopicName sets the SnsTopicName field's value.
+func (s *AwsCloudTrailTrailDetails) SetSnsTopicName(v string) *AwsCloudTrailTrailDetails {
+	s.SnsTopicName = &v
+	return s
+}
+
+// SetTrailArn sets the TrailArn field's value.
+func (s *AwsCloudTrailTrailDetails) SetTrailArn(v string) *AwsCloudTrailTrailDetails {
+	s.TrailArn = &v
 	return s
 }
 
@@ -5511,6 +7370,76 @@ func (s *AwsCodeBuildProjectVpcConfig) SetSubnets(v []*string) *AwsCodeBuildProj
 // SetVpcId sets the VpcId field's value.
 func (s *AwsCodeBuildProjectVpcConfig) SetVpcId(v string) *AwsCodeBuildProjectVpcConfig {
 	s.VpcId = &v
+	return s
+}
+
+// Contains the cross-origin resource sharing (CORS) configuration for the API.
+// CORS is only supported for HTTP APIs.
+type AwsCorsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the CORS request includes credentials.
+	AllowCredentials *bool `type:"boolean"`
+
+	// The allowed headers for CORS requests.
+	AllowHeaders []*string `type:"list"`
+
+	// The allowed methods for CORS requests.
+	AllowMethods []*string `type:"list"`
+
+	// The allowed origins for CORS requests.
+	AllowOrigins []*string `type:"list"`
+
+	// The exposed headers for CORS requests.
+	ExposeHeaders []*string `type:"list"`
+
+	// The number of seconds for which the browser caches preflight request results.
+	MaxAge *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsCorsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsCorsConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAllowCredentials sets the AllowCredentials field's value.
+func (s *AwsCorsConfiguration) SetAllowCredentials(v bool) *AwsCorsConfiguration {
+	s.AllowCredentials = &v
+	return s
+}
+
+// SetAllowHeaders sets the AllowHeaders field's value.
+func (s *AwsCorsConfiguration) SetAllowHeaders(v []*string) *AwsCorsConfiguration {
+	s.AllowHeaders = v
+	return s
+}
+
+// SetAllowMethods sets the AllowMethods field's value.
+func (s *AwsCorsConfiguration) SetAllowMethods(v []*string) *AwsCorsConfiguration {
+	s.AllowMethods = v
+	return s
+}
+
+// SetAllowOrigins sets the AllowOrigins field's value.
+func (s *AwsCorsConfiguration) SetAllowOrigins(v []*string) *AwsCorsConfiguration {
+	s.AllowOrigins = v
+	return s
+}
+
+// SetExposeHeaders sets the ExposeHeaders field's value.
+func (s *AwsCorsConfiguration) SetExposeHeaders(v []*string) *AwsCorsConfiguration {
+	s.ExposeHeaders = v
+	return s
+}
+
+// SetMaxAge sets the MaxAge field's value.
+func (s *AwsCorsConfiguration) SetMaxAge(v int64) *AwsCorsConfiguration {
+	s.MaxAge = &v
 	return s
 }
 
@@ -7490,6 +9419,771 @@ func (s *AwsElasticsearchDomainVPCOptions) SetVPCId(v string) *AwsElasticsearchD
 	return s
 }
 
+// Contains information about a stickiness policy that was created using CreateAppCookieStickinessPolicy.
+type AwsElbAppCookieStickinessPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application cookie used for stickiness.
+	CookieName *string `type:"string"`
+
+	// The mnemonic name for the policy being created. The name must be unique within
+	// the set of policies for the load balancer.
+	PolicyName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbAppCookieStickinessPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbAppCookieStickinessPolicy) GoString() string {
+	return s.String()
+}
+
+// SetCookieName sets the CookieName field's value.
+func (s *AwsElbAppCookieStickinessPolicy) SetCookieName(v string) *AwsElbAppCookieStickinessPolicy {
+	s.CookieName = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *AwsElbAppCookieStickinessPolicy) SetPolicyName(v string) *AwsElbAppCookieStickinessPolicy {
+	s.PolicyName = &v
+	return s
+}
+
+// Contains information about a stickiness policy that was created using CreateLBCookieStickinessPolicy.
+type AwsElbLbCookieStickinessPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time, in seconds, after which the cookie is considered stale.
+	// If an expiration period is not specified, the stickiness session lasts for
+	// the duration of the browser session.
+	CookieExpirationPeriod *int64 `type:"long"`
+
+	// The name of the policy. The name must be unique within the set of policies
+	// for the load balancer.
+	PolicyName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbLbCookieStickinessPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLbCookieStickinessPolicy) GoString() string {
+	return s.String()
+}
+
+// SetCookieExpirationPeriod sets the CookieExpirationPeriod field's value.
+func (s *AwsElbLbCookieStickinessPolicy) SetCookieExpirationPeriod(v int64) *AwsElbLbCookieStickinessPolicy {
+	s.CookieExpirationPeriod = &v
+	return s
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *AwsElbLbCookieStickinessPolicy) SetPolicyName(v string) *AwsElbLbCookieStickinessPolicy {
+	s.PolicyName = &v
+	return s
+}
+
+// Contains information about the access log configuration for the load balancer.
+type AwsElbLoadBalancerAccessLog struct {
+	_ struct{} `type:"structure"`
+
+	// The interval in minutes for publishing the access logs.
+	//
+	// You can publish access logs either every 5 minutes or every 60 minutes.
+	EmitInterval *int64 `type:"integer"`
+
+	// Indicates whether access logs are enabled for the load balancer.
+	Enabled *bool `type:"boolean"`
+
+	// The name of the S3 bucket where the access logs are stored.
+	S3BucketName *string `type:"string"`
+
+	// The logical hierarchy that was created for the S3 bucket.
+	//
+	// If a prefix is not provided, the log is placed at the root level of the bucket.
+	S3BucketPrefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerAccessLog) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerAccessLog) GoString() string {
+	return s.String()
+}
+
+// SetEmitInterval sets the EmitInterval field's value.
+func (s *AwsElbLoadBalancerAccessLog) SetEmitInterval(v int64) *AwsElbLoadBalancerAccessLog {
+	s.EmitInterval = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsElbLoadBalancerAccessLog) SetEnabled(v bool) *AwsElbLoadBalancerAccessLog {
+	s.Enabled = &v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *AwsElbLoadBalancerAccessLog) SetS3BucketName(v string) *AwsElbLoadBalancerAccessLog {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3BucketPrefix sets the S3BucketPrefix field's value.
+func (s *AwsElbLoadBalancerAccessLog) SetS3BucketPrefix(v string) *AwsElbLoadBalancerAccessLog {
+	s.S3BucketPrefix = &v
+	return s
+}
+
+// Contains attributes for the load balancer.
+type AwsElbLoadBalancerAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the access log configuration for the load balancer.
+	//
+	// If the access log is enabled, the load balancer captures detailed information
+	// about all requests. It delivers the information to a specified S3 bucket.
+	AccessLog *AwsElbLoadBalancerAccessLog `type:"structure"`
+
+	// Information about the connection draining configuration for the load balancer.
+	//
+	// If connection draining is enabled, the load balancer allows existing requests
+	// to complete before it shifts traffic away from a deregistered or unhealthy
+	// instance.
+	ConnectionDraining *AwsElbLoadBalancerConnectionDraining `type:"structure"`
+
+	// Connection settings for the load balancer.
+	//
+	// If an idle timeout is configured, the load balancer allows connections to
+	// remain idle for the specified duration. When a connection is idle, no data
+	// is sent over the connection.
+	ConnectionSettings *AwsElbLoadBalancerConnectionSettings `type:"structure"`
+
+	// Cross-zone load balancing settings for the load balancer.
+	//
+	// If cross-zone load balancing is enabled, the load balancer routes the request
+	// traffic evenly across all instances regardless of the Availability Zones.
+	CrossZoneLoadBalancing *AwsElbLoadBalancerCrossZoneLoadBalancing `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerAttributes) GoString() string {
+	return s.String()
+}
+
+// SetAccessLog sets the AccessLog field's value.
+func (s *AwsElbLoadBalancerAttributes) SetAccessLog(v *AwsElbLoadBalancerAccessLog) *AwsElbLoadBalancerAttributes {
+	s.AccessLog = v
+	return s
+}
+
+// SetConnectionDraining sets the ConnectionDraining field's value.
+func (s *AwsElbLoadBalancerAttributes) SetConnectionDraining(v *AwsElbLoadBalancerConnectionDraining) *AwsElbLoadBalancerAttributes {
+	s.ConnectionDraining = v
+	return s
+}
+
+// SetConnectionSettings sets the ConnectionSettings field's value.
+func (s *AwsElbLoadBalancerAttributes) SetConnectionSettings(v *AwsElbLoadBalancerConnectionSettings) *AwsElbLoadBalancerAttributes {
+	s.ConnectionSettings = v
+	return s
+}
+
+// SetCrossZoneLoadBalancing sets the CrossZoneLoadBalancing field's value.
+func (s *AwsElbLoadBalancerAttributes) SetCrossZoneLoadBalancing(v *AwsElbLoadBalancerCrossZoneLoadBalancing) *AwsElbLoadBalancerAttributes {
+	s.CrossZoneLoadBalancing = v
+	return s
+}
+
+// Provides information about the configuration of an EC2 instance for the load
+// balancer.
+type AwsElbLoadBalancerBackendServerDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The port on which the EC2 instance is listening.
+	InstancePort *int64 `type:"integer"`
+
+	// The names of the policies that are enabled for the EC2 instance.
+	PolicyNames []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerBackendServerDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerBackendServerDescription) GoString() string {
+	return s.String()
+}
+
+// SetInstancePort sets the InstancePort field's value.
+func (s *AwsElbLoadBalancerBackendServerDescription) SetInstancePort(v int64) *AwsElbLoadBalancerBackendServerDescription {
+	s.InstancePort = &v
+	return s
+}
+
+// SetPolicyNames sets the PolicyNames field's value.
+func (s *AwsElbLoadBalancerBackendServerDescription) SetPolicyNames(v []*string) *AwsElbLoadBalancerBackendServerDescription {
+	s.PolicyNames = v
+	return s
+}
+
+// Contains information about the connection draining configuration for the
+// load balancer.
+type AwsElbLoadBalancerConnectionDraining struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether connection draining is enabled for the load balancer.
+	Enabled *bool `type:"boolean"`
+
+	// The maximum time, in seconds, to keep the existing connections open before
+	// deregistering the instances.
+	Timeout *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerConnectionDraining) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerConnectionDraining) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsElbLoadBalancerConnectionDraining) SetEnabled(v bool) *AwsElbLoadBalancerConnectionDraining {
+	s.Enabled = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *AwsElbLoadBalancerConnectionDraining) SetTimeout(v int64) *AwsElbLoadBalancerConnectionDraining {
+	s.Timeout = &v
+	return s
+}
+
+// Contains connection settings for the load balancer.
+type AwsElbLoadBalancerConnectionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The time, in seconds, that the connection can be idle (no data is sent over
+	// the connection) before it is closed by the load balancer.
+	IdleTimeout *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerConnectionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerConnectionSettings) GoString() string {
+	return s.String()
+}
+
+// SetIdleTimeout sets the IdleTimeout field's value.
+func (s *AwsElbLoadBalancerConnectionSettings) SetIdleTimeout(v int64) *AwsElbLoadBalancerConnectionSettings {
+	s.IdleTimeout = &v
+	return s
+}
+
+// Contains cross-zone load balancing settings for the load balancer.
+type AwsElbLoadBalancerCrossZoneLoadBalancing struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether cross-zone load balancing is enabled for the load balancer.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerCrossZoneLoadBalancing) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerCrossZoneLoadBalancing) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsElbLoadBalancerCrossZoneLoadBalancing) SetEnabled(v bool) *AwsElbLoadBalancerCrossZoneLoadBalancing {
+	s.Enabled = &v
+	return s
+}
+
+// Contains details about a Classic Load Balancer.
+type AwsElbLoadBalancerDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Availability Zones for the load balancer.
+	AvailabilityZones []*string `type:"list"`
+
+	// Information about the configuration of the EC2 instances.
+	BackendServerDescriptions []*AwsElbLoadBalancerBackendServerDescription `type:"list"`
+
+	// The name of the Amazon Route 53 hosted zone for the load balancer.
+	CanonicalHostedZoneName *string `type:"string"`
+
+	// The ID of the Amazon Route 53 hosted zone for the load balancer.
+	CanonicalHostedZoneNameID *string `type:"string"`
+
+	// Indicates when the load balancer was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedTime *string `type:"string"`
+
+	// The DNS name of the load balancer.
+	DnsName *string `type:"string"`
+
+	// Information about the health checks that are conducted on the load balancer.
+	HealthCheck *AwsElbLoadBalancerHealthCheck `type:"structure"`
+
+	// List of EC2 instances for the load balancer.
+	Instances []*AwsElbLoadBalancerInstance `type:"list"`
+
+	// The policies that are enabled for the load balancer listeners.
+	ListenerDescriptions []*AwsElbLoadBalancerListenerDescription `type:"list"`
+
+	// The attributes for a load balancer.
+	LoadBalancerAttributes *AwsElbLoadBalancerAttributes `type:"structure"`
+
+	// The name of the load balancer.
+	LoadBalancerName *string `type:"string"`
+
+	// The policies for a load balancer.
+	Policies *AwsElbLoadBalancerPolicies `type:"structure"`
+
+	// The type of load balancer. Only provided if the load balancer is in a VPC.
+	//
+	// If Scheme is internet-facing, the load balancer has a public DNS name that
+	// resolves to a public IP address.
+	//
+	// If Scheme is internal, the load balancer has a public DNS name that resolves
+	// to a private IP address.
+	Scheme *string `type:"string"`
+
+	// The security groups for the load balancer. Only provided if the load balancer
+	// is in a VPC.
+	SecurityGroups []*string `type:"list"`
+
+	// Information about the security group for the load balancer. This is the security
+	// group that is used for inbound rules.
+	SourceSecurityGroup *AwsElbLoadBalancerSourceSecurityGroup `type:"structure"`
+
+	// The list of subnet identifiers for the load balancer.
+	Subnets []*string `type:"list"`
+
+	// The identifier of the VPC for the load balancer.
+	VpcId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerDetails) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *AwsElbLoadBalancerDetails) SetAvailabilityZones(v []*string) *AwsElbLoadBalancerDetails {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetBackendServerDescriptions sets the BackendServerDescriptions field's value.
+func (s *AwsElbLoadBalancerDetails) SetBackendServerDescriptions(v []*AwsElbLoadBalancerBackendServerDescription) *AwsElbLoadBalancerDetails {
+	s.BackendServerDescriptions = v
+	return s
+}
+
+// SetCanonicalHostedZoneName sets the CanonicalHostedZoneName field's value.
+func (s *AwsElbLoadBalancerDetails) SetCanonicalHostedZoneName(v string) *AwsElbLoadBalancerDetails {
+	s.CanonicalHostedZoneName = &v
+	return s
+}
+
+// SetCanonicalHostedZoneNameID sets the CanonicalHostedZoneNameID field's value.
+func (s *AwsElbLoadBalancerDetails) SetCanonicalHostedZoneNameID(v string) *AwsElbLoadBalancerDetails {
+	s.CanonicalHostedZoneNameID = &v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *AwsElbLoadBalancerDetails) SetCreatedTime(v string) *AwsElbLoadBalancerDetails {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetDnsName sets the DnsName field's value.
+func (s *AwsElbLoadBalancerDetails) SetDnsName(v string) *AwsElbLoadBalancerDetails {
+	s.DnsName = &v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *AwsElbLoadBalancerDetails) SetHealthCheck(v *AwsElbLoadBalancerHealthCheck) *AwsElbLoadBalancerDetails {
+	s.HealthCheck = v
+	return s
+}
+
+// SetInstances sets the Instances field's value.
+func (s *AwsElbLoadBalancerDetails) SetInstances(v []*AwsElbLoadBalancerInstance) *AwsElbLoadBalancerDetails {
+	s.Instances = v
+	return s
+}
+
+// SetListenerDescriptions sets the ListenerDescriptions field's value.
+func (s *AwsElbLoadBalancerDetails) SetListenerDescriptions(v []*AwsElbLoadBalancerListenerDescription) *AwsElbLoadBalancerDetails {
+	s.ListenerDescriptions = v
+	return s
+}
+
+// SetLoadBalancerAttributes sets the LoadBalancerAttributes field's value.
+func (s *AwsElbLoadBalancerDetails) SetLoadBalancerAttributes(v *AwsElbLoadBalancerAttributes) *AwsElbLoadBalancerDetails {
+	s.LoadBalancerAttributes = v
+	return s
+}
+
+// SetLoadBalancerName sets the LoadBalancerName field's value.
+func (s *AwsElbLoadBalancerDetails) SetLoadBalancerName(v string) *AwsElbLoadBalancerDetails {
+	s.LoadBalancerName = &v
+	return s
+}
+
+// SetPolicies sets the Policies field's value.
+func (s *AwsElbLoadBalancerDetails) SetPolicies(v *AwsElbLoadBalancerPolicies) *AwsElbLoadBalancerDetails {
+	s.Policies = v
+	return s
+}
+
+// SetScheme sets the Scheme field's value.
+func (s *AwsElbLoadBalancerDetails) SetScheme(v string) *AwsElbLoadBalancerDetails {
+	s.Scheme = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *AwsElbLoadBalancerDetails) SetSecurityGroups(v []*string) *AwsElbLoadBalancerDetails {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSourceSecurityGroup sets the SourceSecurityGroup field's value.
+func (s *AwsElbLoadBalancerDetails) SetSourceSecurityGroup(v *AwsElbLoadBalancerSourceSecurityGroup) *AwsElbLoadBalancerDetails {
+	s.SourceSecurityGroup = v
+	return s
+}
+
+// SetSubnets sets the Subnets field's value.
+func (s *AwsElbLoadBalancerDetails) SetSubnets(v []*string) *AwsElbLoadBalancerDetails {
+	s.Subnets = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsElbLoadBalancerDetails) SetVpcId(v string) *AwsElbLoadBalancerDetails {
+	s.VpcId = &v
+	return s
+}
+
+// Contains information about the health checks that are conducted on the load
+// balancer.
+type AwsElbLoadBalancerHealthCheck struct {
+	_ struct{} `type:"structure"`
+
+	// The number of consecutive health check successes required before the instance
+	// is moved to the Healthy state.
+	HealthyThreshold *int64 `type:"integer"`
+
+	// The approximate interval, in seconds, between health checks of an individual
+	// instance.
+	Interval *int64 `type:"integer"`
+
+	// The instance that is being checked. The target specifies the protocol and
+	// port. The available protocols are TCP, SSL, HTTP, and HTTPS. The range of
+	// valid ports is 1 through 65535.
+	//
+	// For the HTTP and HTTPS protocols, the target also specifies the ping path.
+	//
+	// For the TCP protocol, the target is specified as TCP: <port> .
+	//
+	// For the SSL protocol, the target is specified as SSL.<port> .
+	//
+	// For the HTTP and HTTPS protocols, the target is specified as <protocol>:<port>/<path
+	// to ping> .
+	Target *string `type:"string"`
+
+	// The amount of time, in seconds, during which no response means a failed health
+	// check.
+	Timeout *int64 `type:"integer"`
+
+	// The number of consecutive health check failures that must occur before the
+	// instance is moved to the Unhealthy state.
+	UnhealthyThreshold *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerHealthCheck) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerHealthCheck) GoString() string {
+	return s.String()
+}
+
+// SetHealthyThreshold sets the HealthyThreshold field's value.
+func (s *AwsElbLoadBalancerHealthCheck) SetHealthyThreshold(v int64) *AwsElbLoadBalancerHealthCheck {
+	s.HealthyThreshold = &v
+	return s
+}
+
+// SetInterval sets the Interval field's value.
+func (s *AwsElbLoadBalancerHealthCheck) SetInterval(v int64) *AwsElbLoadBalancerHealthCheck {
+	s.Interval = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *AwsElbLoadBalancerHealthCheck) SetTarget(v string) *AwsElbLoadBalancerHealthCheck {
+	s.Target = &v
+	return s
+}
+
+// SetTimeout sets the Timeout field's value.
+func (s *AwsElbLoadBalancerHealthCheck) SetTimeout(v int64) *AwsElbLoadBalancerHealthCheck {
+	s.Timeout = &v
+	return s
+}
+
+// SetUnhealthyThreshold sets the UnhealthyThreshold field's value.
+func (s *AwsElbLoadBalancerHealthCheck) SetUnhealthyThreshold(v int64) *AwsElbLoadBalancerHealthCheck {
+	s.UnhealthyThreshold = &v
+	return s
+}
+
+// Provides information about an EC2 instance for a load balancer.
+type AwsElbLoadBalancerInstance struct {
+	_ struct{} `type:"structure"`
+
+	// The instance identifier.
+	InstanceId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerInstance) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerInstance) GoString() string {
+	return s.String()
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *AwsElbLoadBalancerInstance) SetInstanceId(v string) *AwsElbLoadBalancerInstance {
+	s.InstanceId = &v
+	return s
+}
+
+// Information about a load balancer listener.
+type AwsElbLoadBalancerListener struct {
+	_ struct{} `type:"structure"`
+
+	// The port on which the instance is listening.
+	InstancePort *int64 `type:"integer"`
+
+	// The protocol to use to route traffic to instances.
+	//
+	// Valid values: HTTP | HTTPS | TCP | SSL
+	InstanceProtocol *string `type:"string"`
+
+	// The port on which the load balancer is listening.
+	//
+	// On EC2-VPC, you can specify any port from the range 1-65535.
+	//
+	// On EC2-Classic, you can specify any port from the following list: 25, 80,
+	// 443, 465, 587, 1024-65535.
+	LoadBalancerPort *int64 `type:"integer"`
+
+	// The load balancer transport protocol to use for routing.
+	//
+	// Valid values: HTTP | HTTPS | TCP | SSL
+	Protocol *string `type:"string"`
+
+	// The ARN of the server certificate.
+	SslCertificateId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerListener) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerListener) GoString() string {
+	return s.String()
+}
+
+// SetInstancePort sets the InstancePort field's value.
+func (s *AwsElbLoadBalancerListener) SetInstancePort(v int64) *AwsElbLoadBalancerListener {
+	s.InstancePort = &v
+	return s
+}
+
+// SetInstanceProtocol sets the InstanceProtocol field's value.
+func (s *AwsElbLoadBalancerListener) SetInstanceProtocol(v string) *AwsElbLoadBalancerListener {
+	s.InstanceProtocol = &v
+	return s
+}
+
+// SetLoadBalancerPort sets the LoadBalancerPort field's value.
+func (s *AwsElbLoadBalancerListener) SetLoadBalancerPort(v int64) *AwsElbLoadBalancerListener {
+	s.LoadBalancerPort = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *AwsElbLoadBalancerListener) SetProtocol(v string) *AwsElbLoadBalancerListener {
+	s.Protocol = &v
+	return s
+}
+
+// SetSslCertificateId sets the SslCertificateId field's value.
+func (s *AwsElbLoadBalancerListener) SetSslCertificateId(v string) *AwsElbLoadBalancerListener {
+	s.SslCertificateId = &v
+	return s
+}
+
+// Lists the policies that are enabled for a load balancer listener.
+type AwsElbLoadBalancerListenerDescription struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the listener.
+	Listener *AwsElbLoadBalancerListener `type:"structure"`
+
+	// The policies enabled for the listener.
+	PolicyNames []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerListenerDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerListenerDescription) GoString() string {
+	return s.String()
+}
+
+// SetListener sets the Listener field's value.
+func (s *AwsElbLoadBalancerListenerDescription) SetListener(v *AwsElbLoadBalancerListener) *AwsElbLoadBalancerListenerDescription {
+	s.Listener = v
+	return s
+}
+
+// SetPolicyNames sets the PolicyNames field's value.
+func (s *AwsElbLoadBalancerListenerDescription) SetPolicyNames(v []*string) *AwsElbLoadBalancerListenerDescription {
+	s.PolicyNames = v
+	return s
+}
+
+// Contains information about the policies for a load balancer.
+type AwsElbLoadBalancerPolicies struct {
+	_ struct{} `type:"structure"`
+
+	// The stickiness policies that are created using CreateAppCookieStickinessPolicy.
+	AppCookieStickinessPolicies []*AwsElbAppCookieStickinessPolicy `type:"list"`
+
+	// The stickiness policies that are created using CreateLBCookieStickinessPolicy.
+	LbCookieStickinessPolicies []*AwsElbLbCookieStickinessPolicy `type:"list"`
+
+	// The policies other than the stickiness policies.
+	OtherPolicies []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerPolicies) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerPolicies) GoString() string {
+	return s.String()
+}
+
+// SetAppCookieStickinessPolicies sets the AppCookieStickinessPolicies field's value.
+func (s *AwsElbLoadBalancerPolicies) SetAppCookieStickinessPolicies(v []*AwsElbAppCookieStickinessPolicy) *AwsElbLoadBalancerPolicies {
+	s.AppCookieStickinessPolicies = v
+	return s
+}
+
+// SetLbCookieStickinessPolicies sets the LbCookieStickinessPolicies field's value.
+func (s *AwsElbLoadBalancerPolicies) SetLbCookieStickinessPolicies(v []*AwsElbLbCookieStickinessPolicy) *AwsElbLoadBalancerPolicies {
+	s.LbCookieStickinessPolicies = v
+	return s
+}
+
+// SetOtherPolicies sets the OtherPolicies field's value.
+func (s *AwsElbLoadBalancerPolicies) SetOtherPolicies(v []*string) *AwsElbLoadBalancerPolicies {
+	s.OtherPolicies = v
+	return s
+}
+
+// Contains information about the security group for the load balancer.
+type AwsElbLoadBalancerSourceSecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the security group.
+	GroupName *string `type:"string"`
+
+	// The owner of the security group.
+	OwnerAlias *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsElbLoadBalancerSourceSecurityGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsElbLoadBalancerSourceSecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AwsElbLoadBalancerSourceSecurityGroup) SetGroupName(v string) *AwsElbLoadBalancerSourceSecurityGroup {
+	s.GroupName = &v
+	return s
+}
+
+// SetOwnerAlias sets the OwnerAlias field's value.
+func (s *AwsElbLoadBalancerSourceSecurityGroup) SetOwnerAlias(v string) *AwsElbLoadBalancerSourceSecurityGroup {
+	s.OwnerAlias = &v
+	return s
+}
+
 // Information about a load balancer.
 type AwsElbv2LoadBalancerDetails struct {
 	_ struct{} `type:"structure"`
@@ -7605,6 +10299,12 @@ func (s *AwsElbv2LoadBalancerDetails) SetVpcId(v string) *AwsElbv2LoadBalancerDe
 type AwsIamAccessKeyDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The identifier of the access key.
+	AccessKeyId *string `type:"string"`
+
+	// The AWS account ID of the account for the key.
+	AccountId *string `type:"string"`
+
 	// Indicates when the IAM access key was created.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
@@ -7620,6 +10320,9 @@ type AwsIamAccessKeyDetails struct {
 
 	// The type of principal associated with an access key.
 	PrincipalType *string `type:"string"`
+
+	// Information about the session that the key was used for.
+	SessionContext *AwsIamAccessKeySessionContext `type:"structure"`
 
 	// The status of the IAM access key related to a finding.
 	Status *string `type:"string" enum:"AwsIamAccessKeyStatus"`
@@ -7641,6 +10344,18 @@ func (s AwsIamAccessKeyDetails) String() string {
 // GoString returns the string representation
 func (s AwsIamAccessKeyDetails) GoString() string {
 	return s.String()
+}
+
+// SetAccessKeyId sets the AccessKeyId field's value.
+func (s *AwsIamAccessKeyDetails) SetAccessKeyId(v string) *AwsIamAccessKeyDetails {
+	s.AccessKeyId = &v
+	return s
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AwsIamAccessKeyDetails) SetAccountId(v string) *AwsIamAccessKeyDetails {
+	s.AccountId = &v
+	return s
 }
 
 // SetCreatedAt sets the CreatedAt field's value.
@@ -7667,6 +10382,12 @@ func (s *AwsIamAccessKeyDetails) SetPrincipalType(v string) *AwsIamAccessKeyDeta
 	return s
 }
 
+// SetSessionContext sets the SessionContext field's value.
+func (s *AwsIamAccessKeyDetails) SetSessionContext(v *AwsIamAccessKeySessionContext) *AwsIamAccessKeyDetails {
+	s.SessionContext = v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *AwsIamAccessKeyDetails) SetStatus(v string) *AwsIamAccessKeyDetails {
 	s.Status = &v
@@ -7679,7 +10400,138 @@ func (s *AwsIamAccessKeyDetails) SetUserName(v string) *AwsIamAccessKeyDetails {
 	return s
 }
 
-// A managed policy that is attached to an IAM user.
+// Provides information about the session that the key was used for.
+type AwsIamAccessKeySessionContext struct {
+	_ struct{} `type:"structure"`
+
+	// Attributes of the session that the key was used for.
+	Attributes *AwsIamAccessKeySessionContextAttributes `type:"structure"`
+
+	// Information about the entity that created the session.
+	SessionIssuer *AwsIamAccessKeySessionContextSessionIssuer `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsIamAccessKeySessionContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamAccessKeySessionContext) GoString() string {
+	return s.String()
+}
+
+// SetAttributes sets the Attributes field's value.
+func (s *AwsIamAccessKeySessionContext) SetAttributes(v *AwsIamAccessKeySessionContextAttributes) *AwsIamAccessKeySessionContext {
+	s.Attributes = v
+	return s
+}
+
+// SetSessionIssuer sets the SessionIssuer field's value.
+func (s *AwsIamAccessKeySessionContext) SetSessionIssuer(v *AwsIamAccessKeySessionContextSessionIssuer) *AwsIamAccessKeySessionContext {
+	s.SessionIssuer = v
+	return s
+}
+
+// Attributes of the session that the key was used for.
+type AwsIamAccessKeySessionContextAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates when the session was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreationDate *string `type:"string"`
+
+	// Indicates whether the session used multi-factor authentication (MFA).
+	MfaAuthenticated *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsIamAccessKeySessionContextAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamAccessKeySessionContextAttributes) GoString() string {
+	return s.String()
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *AwsIamAccessKeySessionContextAttributes) SetCreationDate(v string) *AwsIamAccessKeySessionContextAttributes {
+	s.CreationDate = &v
+	return s
+}
+
+// SetMfaAuthenticated sets the MfaAuthenticated field's value.
+func (s *AwsIamAccessKeySessionContextAttributes) SetMfaAuthenticated(v bool) *AwsIamAccessKeySessionContextAttributes {
+	s.MfaAuthenticated = &v
+	return s
+}
+
+// Information about the entity that created the session.
+type AwsIamAccessKeySessionContextSessionIssuer struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the AWS account that created the session.
+	AccountId *string `type:"string"`
+
+	// The ARN of the session.
+	Arn *string `type:"string"`
+
+	// The principal ID of the principal (user, role, or group) that created the
+	// session.
+	PrincipalId *string `type:"string"`
+
+	// The type of principal (user, role, or group) that created the session.
+	Type *string `type:"string"`
+
+	// The name of the principal that created the session.
+	UserName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsIamAccessKeySessionContextSessionIssuer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamAccessKeySessionContextSessionIssuer) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AwsIamAccessKeySessionContextSessionIssuer) SetAccountId(v string) *AwsIamAccessKeySessionContextSessionIssuer {
+	s.AccountId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsIamAccessKeySessionContextSessionIssuer) SetArn(v string) *AwsIamAccessKeySessionContextSessionIssuer {
+	s.Arn = &v
+	return s
+}
+
+// SetPrincipalId sets the PrincipalId field's value.
+func (s *AwsIamAccessKeySessionContextSessionIssuer) SetPrincipalId(v string) *AwsIamAccessKeySessionContextSessionIssuer {
+	s.PrincipalId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsIamAccessKeySessionContextSessionIssuer) SetType(v string) *AwsIamAccessKeySessionContextSessionIssuer {
+	s.Type = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *AwsIamAccessKeySessionContextSessionIssuer) SetUserName(v string) *AwsIamAccessKeySessionContextSessionIssuer {
+	s.UserName = &v
+	return s
+}
+
+// A managed policy that is attached to an IAM principal.
 type AwsIamAttachedManagedPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -7712,12 +10564,288 @@ func (s *AwsIamAttachedManagedPolicy) SetPolicyName(v string) *AwsIamAttachedMan
 	return s
 }
 
+// Contains details about an IAM group.
+type AwsIamGroupDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the managed policies that are attached to the IAM group.
+	AttachedManagedPolicies []*AwsIamAttachedManagedPolicy `type:"list"`
+
+	// Indicates when the IAM group was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreateDate *string `type:"string"`
+
+	// The identifier of the IAM group.
+	GroupId *string `type:"string"`
+
+	// The name of the IAM group.
+	GroupName *string `type:"string"`
+
+	// The list of inline policies that are embedded in the group.
+	GroupPolicyList []*AwsIamGroupPolicy `type:"list"`
+
+	// The path to the group.
+	Path *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsIamGroupDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamGroupDetails) GoString() string {
+	return s.String()
+}
+
+// SetAttachedManagedPolicies sets the AttachedManagedPolicies field's value.
+func (s *AwsIamGroupDetails) SetAttachedManagedPolicies(v []*AwsIamAttachedManagedPolicy) *AwsIamGroupDetails {
+	s.AttachedManagedPolicies = v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *AwsIamGroupDetails) SetCreateDate(v string) *AwsIamGroupDetails {
+	s.CreateDate = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *AwsIamGroupDetails) SetGroupId(v string) *AwsIamGroupDetails {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AwsIamGroupDetails) SetGroupName(v string) *AwsIamGroupDetails {
+	s.GroupName = &v
+	return s
+}
+
+// SetGroupPolicyList sets the GroupPolicyList field's value.
+func (s *AwsIamGroupDetails) SetGroupPolicyList(v []*AwsIamGroupPolicy) *AwsIamGroupDetails {
+	s.GroupPolicyList = v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *AwsIamGroupDetails) SetPath(v string) *AwsIamGroupDetails {
+	s.Path = &v
+	return s
+}
+
+// A managed policy that is attached to the IAM group.
+type AwsIamGroupPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the policy.
+	PolicyName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsIamGroupPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamGroupPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *AwsIamGroupPolicy) SetPolicyName(v string) *AwsIamGroupPolicy {
+	s.PolicyName = &v
+	return s
+}
+
+// Information about an instance profile.
+type AwsIamInstanceProfile struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the instance profile.
+	Arn *string `type:"string"`
+
+	// Indicates when the instance profile was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreateDate *string `type:"string"`
+
+	// The identifier of the instance profile.
+	InstanceProfileId *string `type:"string"`
+
+	// The name of the instance profile.
+	InstanceProfileName *string `type:"string"`
+
+	// The path to the instance profile.
+	Path *string `type:"string"`
+
+	// The roles associated with the instance profile.
+	Roles []*AwsIamInstanceProfileRole `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsIamInstanceProfile) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamInstanceProfile) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AwsIamInstanceProfile) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AwsIamInstanceProfile"}
+	if s.Roles != nil {
+		for i, v := range s.Roles {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Roles", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsIamInstanceProfile) SetArn(v string) *AwsIamInstanceProfile {
+	s.Arn = &v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *AwsIamInstanceProfile) SetCreateDate(v string) *AwsIamInstanceProfile {
+	s.CreateDate = &v
+	return s
+}
+
+// SetInstanceProfileId sets the InstanceProfileId field's value.
+func (s *AwsIamInstanceProfile) SetInstanceProfileId(v string) *AwsIamInstanceProfile {
+	s.InstanceProfileId = &v
+	return s
+}
+
+// SetInstanceProfileName sets the InstanceProfileName field's value.
+func (s *AwsIamInstanceProfile) SetInstanceProfileName(v string) *AwsIamInstanceProfile {
+	s.InstanceProfileName = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *AwsIamInstanceProfile) SetPath(v string) *AwsIamInstanceProfile {
+	s.Path = &v
+	return s
+}
+
+// SetRoles sets the Roles field's value.
+func (s *AwsIamInstanceProfile) SetRoles(v []*AwsIamInstanceProfileRole) *AwsIamInstanceProfile {
+	s.Roles = v
+	return s
+}
+
+// Information about a role associated with an instance profile.
+type AwsIamInstanceProfileRole struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the role.
+	Arn *string `type:"string"`
+
+	// The policy that grants an entity permission to assume the role.
+	AssumeRolePolicyDocument *string `min:"1" type:"string"`
+
+	// Indicates when the role was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreateDate *string `type:"string"`
+
+	// The path to the role.
+	Path *string `type:"string"`
+
+	// The identifier of the role.
+	RoleId *string `type:"string"`
+
+	// The name of the role.
+	RoleName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsIamInstanceProfileRole) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamInstanceProfileRole) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AwsIamInstanceProfileRole) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AwsIamInstanceProfileRole"}
+	if s.AssumeRolePolicyDocument != nil && len(*s.AssumeRolePolicyDocument) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AssumeRolePolicyDocument", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsIamInstanceProfileRole) SetArn(v string) *AwsIamInstanceProfileRole {
+	s.Arn = &v
+	return s
+}
+
+// SetAssumeRolePolicyDocument sets the AssumeRolePolicyDocument field's value.
+func (s *AwsIamInstanceProfileRole) SetAssumeRolePolicyDocument(v string) *AwsIamInstanceProfileRole {
+	s.AssumeRolePolicyDocument = &v
+	return s
+}
+
+// SetCreateDate sets the CreateDate field's value.
+func (s *AwsIamInstanceProfileRole) SetCreateDate(v string) *AwsIamInstanceProfileRole {
+	s.CreateDate = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *AwsIamInstanceProfileRole) SetPath(v string) *AwsIamInstanceProfileRole {
+	s.Path = &v
+	return s
+}
+
+// SetRoleId sets the RoleId field's value.
+func (s *AwsIamInstanceProfileRole) SetRoleId(v string) *AwsIamInstanceProfileRole {
+	s.RoleId = &v
+	return s
+}
+
+// SetRoleName sets the RoleName field's value.
+func (s *AwsIamInstanceProfileRole) SetRoleName(v string) *AwsIamInstanceProfileRole {
+	s.RoleName = &v
+	return s
+}
+
 // Information about the policy used to set the permissions boundary for an
-// IAM user.
+// IAM principal.
 type AwsIamPermissionsBoundary struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the policy used to set the permissions boundary for the user.
+	// The ARN of the policy used to set the permissions boundary.
 	PermissionsBoundaryArn *string `type:"string"`
 
 	// The usage type for the permissions boundary.
@@ -7922,12 +11050,18 @@ type AwsIamRoleDetails struct {
 	// The trust policy that grants permission to assume the role.
 	AssumeRolePolicyDocument *string `min:"1" type:"string"`
 
+	// The list of the managed policies that are attached to the role.
+	AttachedManagedPolicies []*AwsIamAttachedManagedPolicy `type:"list"`
+
 	// Indicates when the role was created.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
 	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	CreateDate *string `type:"string"`
+
+	// The list of instance profiles that contain this role.
+	InstanceProfileList []*AwsIamInstanceProfile `type:"list"`
 
 	// The maximum session duration (in seconds) that you want to set for the specified
 	// role.
@@ -7936,11 +11070,18 @@ type AwsIamRoleDetails struct {
 	// The path to the role.
 	Path *string `type:"string"`
 
+	// Information about the policy used to set the permissions boundary for an
+	// IAM principal.
+	PermissionsBoundary *AwsIamPermissionsBoundary `type:"structure"`
+
 	// The stable and unique string identifying the role.
 	RoleId *string `type:"string"`
 
 	// The friendly name that identifies the role.
 	RoleName *string `type:"string"`
+
+	// The list of inline policies that are embedded in the role.
+	RolePolicyList []*AwsIamRolePolicy `type:"list"`
 }
 
 // String returns the string representation
@@ -7959,6 +11100,16 @@ func (s *AwsIamRoleDetails) Validate() error {
 	if s.AssumeRolePolicyDocument != nil && len(*s.AssumeRolePolicyDocument) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("AssumeRolePolicyDocument", 1))
 	}
+	if s.InstanceProfileList != nil {
+		for i, v := range s.InstanceProfileList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "InstanceProfileList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7972,9 +11123,21 @@ func (s *AwsIamRoleDetails) SetAssumeRolePolicyDocument(v string) *AwsIamRoleDet
 	return s
 }
 
+// SetAttachedManagedPolicies sets the AttachedManagedPolicies field's value.
+func (s *AwsIamRoleDetails) SetAttachedManagedPolicies(v []*AwsIamAttachedManagedPolicy) *AwsIamRoleDetails {
+	s.AttachedManagedPolicies = v
+	return s
+}
+
 // SetCreateDate sets the CreateDate field's value.
 func (s *AwsIamRoleDetails) SetCreateDate(v string) *AwsIamRoleDetails {
 	s.CreateDate = &v
+	return s
+}
+
+// SetInstanceProfileList sets the InstanceProfileList field's value.
+func (s *AwsIamRoleDetails) SetInstanceProfileList(v []*AwsIamInstanceProfile) *AwsIamRoleDetails {
+	s.InstanceProfileList = v
 	return s
 }
 
@@ -7990,6 +11153,12 @@ func (s *AwsIamRoleDetails) SetPath(v string) *AwsIamRoleDetails {
 	return s
 }
 
+// SetPermissionsBoundary sets the PermissionsBoundary field's value.
+func (s *AwsIamRoleDetails) SetPermissionsBoundary(v *AwsIamPermissionsBoundary) *AwsIamRoleDetails {
+	s.PermissionsBoundary = v
+	return s
+}
+
 // SetRoleId sets the RoleId field's value.
 func (s *AwsIamRoleDetails) SetRoleId(v string) *AwsIamRoleDetails {
 	s.RoleId = &v
@@ -7999,6 +11168,36 @@ func (s *AwsIamRoleDetails) SetRoleId(v string) *AwsIamRoleDetails {
 // SetRoleName sets the RoleName field's value.
 func (s *AwsIamRoleDetails) SetRoleName(v string) *AwsIamRoleDetails {
 	s.RoleName = &v
+	return s
+}
+
+// SetRolePolicyList sets the RolePolicyList field's value.
+func (s *AwsIamRoleDetails) SetRolePolicyList(v []*AwsIamRolePolicy) *AwsIamRoleDetails {
+	s.RolePolicyList = v
+	return s
+}
+
+// An inline policy that is embedded in the role.
+type AwsIamRolePolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the policy.
+	PolicyName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsIamRolePolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsIamRolePolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicyName sets the PolicyName field's value.
+func (s *AwsIamRolePolicy) SetPolicyName(v string) *AwsIamRolePolicy {
+	s.PolicyName = &v
 	return s
 }
 
@@ -10811,6 +14010,1169 @@ func (s *AwsRdsPendingCloudWatchLogsExports) SetLogTypesToEnable(v []*string) *A
 	return s
 }
 
+// A node in an Amazon Redshift cluster.
+type AwsRedshiftClusterClusterNode struct {
+	_ struct{} `type:"structure"`
+
+	// The role of the node. A node might be a leader node or a compute node.
+	NodeRole *string `type:"string"`
+
+	// The private IP address of the node.
+	PrivateIpAddress *string `type:"string"`
+
+	// The public IP address of the node.
+	PublicIpAddress *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterClusterNode) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterClusterNode) GoString() string {
+	return s.String()
+}
+
+// SetNodeRole sets the NodeRole field's value.
+func (s *AwsRedshiftClusterClusterNode) SetNodeRole(v string) *AwsRedshiftClusterClusterNode {
+	s.NodeRole = &v
+	return s
+}
+
+// SetPrivateIpAddress sets the PrivateIpAddress field's value.
+func (s *AwsRedshiftClusterClusterNode) SetPrivateIpAddress(v string) *AwsRedshiftClusterClusterNode {
+	s.PrivateIpAddress = &v
+	return s
+}
+
+// SetPublicIpAddress sets the PublicIpAddress field's value.
+func (s *AwsRedshiftClusterClusterNode) SetPublicIpAddress(v string) *AwsRedshiftClusterClusterNode {
+	s.PublicIpAddress = &v
+	return s
+}
+
+// A cluster parameter group that is associated with an Amazon Redshift cluster.
+type AwsRedshiftClusterClusterParameterGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The list of parameter statuses.
+	ClusterParameterStatusList []*AwsRedshiftClusterClusterParameterStatus `type:"list"`
+
+	// The status of updates to the parameters.
+	ParameterApplyStatus *string `type:"string"`
+
+	// The name of the parameter group.
+	ParameterGroupName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterClusterParameterGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterClusterParameterGroup) GoString() string {
+	return s.String()
+}
+
+// SetClusterParameterStatusList sets the ClusterParameterStatusList field's value.
+func (s *AwsRedshiftClusterClusterParameterGroup) SetClusterParameterStatusList(v []*AwsRedshiftClusterClusterParameterStatus) *AwsRedshiftClusterClusterParameterGroup {
+	s.ClusterParameterStatusList = v
+	return s
+}
+
+// SetParameterApplyStatus sets the ParameterApplyStatus field's value.
+func (s *AwsRedshiftClusterClusterParameterGroup) SetParameterApplyStatus(v string) *AwsRedshiftClusterClusterParameterGroup {
+	s.ParameterApplyStatus = &v
+	return s
+}
+
+// SetParameterGroupName sets the ParameterGroupName field's value.
+func (s *AwsRedshiftClusterClusterParameterGroup) SetParameterGroupName(v string) *AwsRedshiftClusterClusterParameterGroup {
+	s.ParameterGroupName = &v
+	return s
+}
+
+// The status of a parameter in a cluster parameter group for an Amazon Redshift
+// cluster.
+type AwsRedshiftClusterClusterParameterStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The error that prevented the parameter from being applied to the database.
+	ParameterApplyErrorDescription *string `type:"string"`
+
+	// The status of the parameter. Indicates whether the parameter is in sync with
+	// the database, waiting for a cluster reboot, or encountered an error when
+	// it was applied.
+	//
+	// Valid values: in-sync | pending-reboot | applying | invalid-parameter | apply-deferred
+	// | apply-error | unknown-error
+	ParameterApplyStatus *string `type:"string"`
+
+	// The name of the parameter.
+	ParameterName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterClusterParameterStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterClusterParameterStatus) GoString() string {
+	return s.String()
+}
+
+// SetParameterApplyErrorDescription sets the ParameterApplyErrorDescription field's value.
+func (s *AwsRedshiftClusterClusterParameterStatus) SetParameterApplyErrorDescription(v string) *AwsRedshiftClusterClusterParameterStatus {
+	s.ParameterApplyErrorDescription = &v
+	return s
+}
+
+// SetParameterApplyStatus sets the ParameterApplyStatus field's value.
+func (s *AwsRedshiftClusterClusterParameterStatus) SetParameterApplyStatus(v string) *AwsRedshiftClusterClusterParameterStatus {
+	s.ParameterApplyStatus = &v
+	return s
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *AwsRedshiftClusterClusterParameterStatus) SetParameterName(v string) *AwsRedshiftClusterClusterParameterStatus {
+	s.ParameterName = &v
+	return s
+}
+
+// A security group that is associated with the cluster.
+type AwsRedshiftClusterClusterSecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the cluster security group.
+	ClusterSecurityGroupName *string `type:"string"`
+
+	// The status of the cluster security group.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterClusterSecurityGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterClusterSecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetClusterSecurityGroupName sets the ClusterSecurityGroupName field's value.
+func (s *AwsRedshiftClusterClusterSecurityGroup) SetClusterSecurityGroupName(v string) *AwsRedshiftClusterClusterSecurityGroup {
+	s.ClusterSecurityGroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRedshiftClusterClusterSecurityGroup) SetStatus(v string) *AwsRedshiftClusterClusterSecurityGroup {
+	s.Status = &v
+	return s
+}
+
+// Information about a cross-Region snapshot copy.
+type AwsRedshiftClusterClusterSnapshotCopyStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The destination Region that snapshots are automatically copied to when cross-Region
+	// snapshot copy is enabled.
+	DestinationRegion *string `type:"string"`
+
+	// The number of days that manual snapshots are retained in the destination
+	// region after they are copied from a source region.
+	//
+	// If the value is -1, then the manual snapshot is retained indefinitely.
+	//
+	// Valid values: Either -1 or an integer between 1 and 3,653
+	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
+
+	// The number of days to retain automated snapshots in the destination Region
+	// after they are copied from a source Region.
+	RetentionPeriod *int64 `type:"integer"`
+
+	// The name of the snapshot copy grant.
+	SnapshotCopyGrantName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterClusterSnapshotCopyStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterClusterSnapshotCopyStatus) GoString() string {
+	return s.String()
+}
+
+// SetDestinationRegion sets the DestinationRegion field's value.
+func (s *AwsRedshiftClusterClusterSnapshotCopyStatus) SetDestinationRegion(v string) *AwsRedshiftClusterClusterSnapshotCopyStatus {
+	s.DestinationRegion = &v
+	return s
+}
+
+// SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
+func (s *AwsRedshiftClusterClusterSnapshotCopyStatus) SetManualSnapshotRetentionPeriod(v int64) *AwsRedshiftClusterClusterSnapshotCopyStatus {
+	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetRetentionPeriod sets the RetentionPeriod field's value.
+func (s *AwsRedshiftClusterClusterSnapshotCopyStatus) SetRetentionPeriod(v int64) *AwsRedshiftClusterClusterSnapshotCopyStatus {
+	s.RetentionPeriod = &v
+	return s
+}
+
+// SetSnapshotCopyGrantName sets the SnapshotCopyGrantName field's value.
+func (s *AwsRedshiftClusterClusterSnapshotCopyStatus) SetSnapshotCopyGrantName(v string) *AwsRedshiftClusterClusterSnapshotCopyStatus {
+	s.SnapshotCopyGrantName = &v
+	return s
+}
+
+// A time windows during which maintenance was deferred for an Amazon Redshift
+// cluster.
+type AwsRedshiftClusterDeferredMaintenanceWindow struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time window for which maintenance was deferred.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	DeferMaintenanceEndTime *string `type:"string"`
+
+	// The identifier of the maintenance window.
+	DeferMaintenanceIdentifier *string `type:"string"`
+
+	// The start of the time window for which maintenance was deferred.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	DeferMaintenanceStartTime *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterDeferredMaintenanceWindow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterDeferredMaintenanceWindow) GoString() string {
+	return s.String()
+}
+
+// SetDeferMaintenanceEndTime sets the DeferMaintenanceEndTime field's value.
+func (s *AwsRedshiftClusterDeferredMaintenanceWindow) SetDeferMaintenanceEndTime(v string) *AwsRedshiftClusterDeferredMaintenanceWindow {
+	s.DeferMaintenanceEndTime = &v
+	return s
+}
+
+// SetDeferMaintenanceIdentifier sets the DeferMaintenanceIdentifier field's value.
+func (s *AwsRedshiftClusterDeferredMaintenanceWindow) SetDeferMaintenanceIdentifier(v string) *AwsRedshiftClusterDeferredMaintenanceWindow {
+	s.DeferMaintenanceIdentifier = &v
+	return s
+}
+
+// SetDeferMaintenanceStartTime sets the DeferMaintenanceStartTime field's value.
+func (s *AwsRedshiftClusterDeferredMaintenanceWindow) SetDeferMaintenanceStartTime(v string) *AwsRedshiftClusterDeferredMaintenanceWindow {
+	s.DeferMaintenanceStartTime = &v
+	return s
+}
+
+// Details about an Amazon Redshift cluster.
+type AwsRedshiftClusterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether major version upgrades are applied automatically to the
+	// cluster during the maintenance window.
+	AllowVersionUpgrade *bool `type:"boolean"`
+
+	// The number of days that automatic cluster snapshots are retained.
+	AutomatedSnapshotRetentionPeriod *int64 `type:"integer"`
+
+	// The name of the Availability Zone in which the cluster is located.
+	AvailabilityZone *string `type:"string"`
+
+	// The availability status of the cluster for queries. Possible values are the
+	// following:
+	//
+	//    * Available - The cluster is available for queries.
+	//
+	//    * Unavailable - The cluster is not available for queries.
+	//
+	//    * Maintenance - The cluster is intermittently available for queries due
+	//    to maintenance activities.
+	//
+	//    * Modifying -The cluster is intermittently available for queries due to
+	//    changes that modify the cluster.
+	//
+	//    * Failed - The cluster failed and is not available for queries.
+	ClusterAvailabilityStatus *string `type:"string"`
+
+	// Indicates when the cluster was created.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	ClusterCreateTime *string `type:"string"`
+
+	// The unique identifier of the cluster.
+	ClusterIdentifier *string `type:"string"`
+
+	// The nodes in the cluster.
+	ClusterNodes []*AwsRedshiftClusterClusterNode `type:"list"`
+
+	// The list of cluster parameter groups that are associated with this cluster.
+	ClusterParameterGroups []*AwsRedshiftClusterClusterParameterGroup `type:"list"`
+
+	// The public key for the cluster.
+	ClusterPublicKey *string `type:"string"`
+
+	// The specific revision number of the database in the cluster.
+	ClusterRevisionNumber *string `type:"string"`
+
+	// A list of cluster security groups that are associated with the cluster.
+	ClusterSecurityGroups []*AwsRedshiftClusterClusterSecurityGroup `type:"list"`
+
+	// Information about the destination Region and retention period for the cross-Region
+	// snapshot copy.
+	ClusterSnapshotCopyStatus *AwsRedshiftClusterClusterSnapshotCopyStatus `type:"structure"`
+
+	// The current status of the cluster.
+	//
+	// Valid values: available | available, prep-for-resize | available, resize-cleanup
+	// |cancelling-resize | creating | deleting | final-snapshot | hardware-failure
+	// | incompatible-hsm |incompatible-network | incompatible-parameters | incompatible-restore
+	// | modifying | paused | rebooting | renaming | resizing | rotating-keys |
+	// storage-full | updating-hsm
+	ClusterStatus *string `type:"string"`
+
+	// The name of the subnet group that is associated with the cluster. This parameter
+	// is valid only when the cluster is in a VPC.
+	ClusterSubnetGroupName *string `type:"string"`
+
+	// The version ID of the Amazon Redshift engine that runs on the cluster.
+	ClusterVersion *string `type:"string"`
+
+	// The name of the initial database that was created when the cluster was created.
+	//
+	// The same name is returned for the life of the cluster.
+	//
+	// If an initial database is not specified, a database named devdev is created
+	// by default.
+	DBName *string `type:"string"`
+
+	// List of time windows during which maintenance was deferred.
+	DeferredMaintenanceWindows []*AwsRedshiftClusterDeferredMaintenanceWindow `type:"list"`
+
+	// Information about the status of the Elastic IP (EIP) address.
+	ElasticIpStatus *AwsRedshiftClusterElasticIpStatus `type:"structure"`
+
+	// The number of nodes that you can use the elastic resize method to resize
+	// the cluster to.
+	ElasticResizeNumberOfNodeOptions *string `type:"string"`
+
+	// Indicates whether the data in the cluster is encrypted at rest.
+	Encrypted *bool `type:"boolean"`
+
+	// The connection endpoint.
+	Endpoint *AwsRedshiftClusterEndpoint `type:"structure"`
+
+	// Indicates whether to create the cluster with enhanced VPC routing enabled.
+	EnhancedVpcRouting *bool `type:"boolean"`
+
+	// Indicates when the next snapshot is expected to be taken. The cluster must
+	// have a valid snapshot schedule and have backups enabled.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	ExpectedNextSnapshotScheduleTime *string `type:"string"`
+
+	// The status of the next expected snapshot.
+	//
+	// Valid values: OnTrack | Pending
+	ExpectedNextSnapshotScheduleTimeStatus *string `type:"string"`
+
+	// Information about whether the Amazon Redshift cluster finished applying any
+	// changes to hardware security module (HSM) settings that were specified in
+	// a modify cluster command.
+	HsmStatus *AwsRedshiftClusterHsmStatus `type:"structure"`
+
+	// A list of IAM roles that the cluster can use to access other AWS services.
+	IamRoles []*AwsRedshiftClusterIamRole `type:"list"`
+
+	// The identifier of the AWS KMS encryption key that is used to encrypt data
+	// in the cluster.
+	KmsKeyId *string `type:"string"`
+
+	// The name of the maintenance track for the cluster.
+	MaintenanceTrackName *string `type:"string"`
+
+	// The default number of days to retain a manual snapshot.
+	//
+	// If the value is -1, the snapshot is retained indefinitely.
+	//
+	// This setting doesn't change the retention period of existing snapshots.
+	//
+	// Valid values: Either -1 or an integer between 1 and 3,653
+	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
+
+	// The master user name for the cluster. This name is used to connect to the
+	// database that is specified in as the value of DBName.
+	MasterUsername *string `type:"string"`
+
+	// Indicates the start of the next maintenance window.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	NextMaintenanceWindowStartTime *string `type:"string"`
+
+	// The node type for the nodes in the cluster.
+	NodeType *string `type:"string"`
+
+	// The number of compute nodes in the cluster.
+	NumberOfNodes *int64 `type:"integer"`
+
+	// A list of cluster operations that are waiting to start.
+	PendingActions []*string `type:"list"`
+
+	// A list of changes to the cluster that are currently pending.
+	PendingModifiedValues *AwsRedshiftClusterPendingModifiedValues `type:"structure"`
+
+	// The weekly time range, in Universal Coordinated Time (UTC), during which
+	// system maintenance can occur.
+	//
+	// Format: <day>:HH:MM-<day>:HH:MM
+	//
+	// For the day values, use mon | tue | wed | thu | fri | sat | sun
+	//
+	// For example, sun:09:32-sun:10:02
+	PreferredMaintenanceWindow *string `type:"string"`
+
+	// Whether the cluster can be accessed from a public network.
+	PubliclyAccessible *bool `type:"boolean"`
+
+	// Information about the resize operation for the cluster.
+	ResizeInfo *AwsRedshiftClusterResizeInfo `type:"structure"`
+
+	// Information about the status of a cluster restore action. Only applies to
+	// a cluster that was created by restoring a snapshot.
+	RestoreStatus *AwsRedshiftClusterRestoreStatus `type:"structure"`
+
+	// A unique identifier for the cluster snapshot schedule.
+	SnapshotScheduleIdentifier *string `type:"string"`
+
+	// The current state of the cluster snapshot schedule.
+	//
+	// Valid values: MODIFYING | ACTIVE | FAILED
+	SnapshotScheduleState *string `type:"string"`
+
+	// The identifier of the VPC that the cluster is in, if the cluster is in a
+	// VPC.
+	VpcId *string `type:"string"`
+
+	// The list of VPC security groups that the cluster belongs to, if the cluster
+	// is in a VPC.
+	VpcSecurityGroups []*AwsRedshiftClusterVpcSecurityGroup `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterDetails) GoString() string {
+	return s.String()
+}
+
+// SetAllowVersionUpgrade sets the AllowVersionUpgrade field's value.
+func (s *AwsRedshiftClusterDetails) SetAllowVersionUpgrade(v bool) *AwsRedshiftClusterDetails {
+	s.AllowVersionUpgrade = &v
+	return s
+}
+
+// SetAutomatedSnapshotRetentionPeriod sets the AutomatedSnapshotRetentionPeriod field's value.
+func (s *AwsRedshiftClusterDetails) SetAutomatedSnapshotRetentionPeriod(v int64) *AwsRedshiftClusterDetails {
+	s.AutomatedSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *AwsRedshiftClusterDetails) SetAvailabilityZone(v string) *AwsRedshiftClusterDetails {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetClusterAvailabilityStatus sets the ClusterAvailabilityStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterAvailabilityStatus(v string) *AwsRedshiftClusterDetails {
+	s.ClusterAvailabilityStatus = &v
+	return s
+}
+
+// SetClusterCreateTime sets the ClusterCreateTime field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterCreateTime(v string) *AwsRedshiftClusterDetails {
+	s.ClusterCreateTime = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterIdentifier(v string) *AwsRedshiftClusterDetails {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetClusterNodes sets the ClusterNodes field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterNodes(v []*AwsRedshiftClusterClusterNode) *AwsRedshiftClusterDetails {
+	s.ClusterNodes = v
+	return s
+}
+
+// SetClusterParameterGroups sets the ClusterParameterGroups field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterParameterGroups(v []*AwsRedshiftClusterClusterParameterGroup) *AwsRedshiftClusterDetails {
+	s.ClusterParameterGroups = v
+	return s
+}
+
+// SetClusterPublicKey sets the ClusterPublicKey field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterPublicKey(v string) *AwsRedshiftClusterDetails {
+	s.ClusterPublicKey = &v
+	return s
+}
+
+// SetClusterRevisionNumber sets the ClusterRevisionNumber field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterRevisionNumber(v string) *AwsRedshiftClusterDetails {
+	s.ClusterRevisionNumber = &v
+	return s
+}
+
+// SetClusterSecurityGroups sets the ClusterSecurityGroups field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterSecurityGroups(v []*AwsRedshiftClusterClusterSecurityGroup) *AwsRedshiftClusterDetails {
+	s.ClusterSecurityGroups = v
+	return s
+}
+
+// SetClusterSnapshotCopyStatus sets the ClusterSnapshotCopyStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterSnapshotCopyStatus(v *AwsRedshiftClusterClusterSnapshotCopyStatus) *AwsRedshiftClusterDetails {
+	s.ClusterSnapshotCopyStatus = v
+	return s
+}
+
+// SetClusterStatus sets the ClusterStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterStatus(v string) *AwsRedshiftClusterDetails {
+	s.ClusterStatus = &v
+	return s
+}
+
+// SetClusterSubnetGroupName sets the ClusterSubnetGroupName field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterSubnetGroupName(v string) *AwsRedshiftClusterDetails {
+	s.ClusterSubnetGroupName = &v
+	return s
+}
+
+// SetClusterVersion sets the ClusterVersion field's value.
+func (s *AwsRedshiftClusterDetails) SetClusterVersion(v string) *AwsRedshiftClusterDetails {
+	s.ClusterVersion = &v
+	return s
+}
+
+// SetDBName sets the DBName field's value.
+func (s *AwsRedshiftClusterDetails) SetDBName(v string) *AwsRedshiftClusterDetails {
+	s.DBName = &v
+	return s
+}
+
+// SetDeferredMaintenanceWindows sets the DeferredMaintenanceWindows field's value.
+func (s *AwsRedshiftClusterDetails) SetDeferredMaintenanceWindows(v []*AwsRedshiftClusterDeferredMaintenanceWindow) *AwsRedshiftClusterDetails {
+	s.DeferredMaintenanceWindows = v
+	return s
+}
+
+// SetElasticIpStatus sets the ElasticIpStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetElasticIpStatus(v *AwsRedshiftClusterElasticIpStatus) *AwsRedshiftClusterDetails {
+	s.ElasticIpStatus = v
+	return s
+}
+
+// SetElasticResizeNumberOfNodeOptions sets the ElasticResizeNumberOfNodeOptions field's value.
+func (s *AwsRedshiftClusterDetails) SetElasticResizeNumberOfNodeOptions(v string) *AwsRedshiftClusterDetails {
+	s.ElasticResizeNumberOfNodeOptions = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *AwsRedshiftClusterDetails) SetEncrypted(v bool) *AwsRedshiftClusterDetails {
+	s.Encrypted = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *AwsRedshiftClusterDetails) SetEndpoint(v *AwsRedshiftClusterEndpoint) *AwsRedshiftClusterDetails {
+	s.Endpoint = v
+	return s
+}
+
+// SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
+func (s *AwsRedshiftClusterDetails) SetEnhancedVpcRouting(v bool) *AwsRedshiftClusterDetails {
+	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetExpectedNextSnapshotScheduleTime sets the ExpectedNextSnapshotScheduleTime field's value.
+func (s *AwsRedshiftClusterDetails) SetExpectedNextSnapshotScheduleTime(v string) *AwsRedshiftClusterDetails {
+	s.ExpectedNextSnapshotScheduleTime = &v
+	return s
+}
+
+// SetExpectedNextSnapshotScheduleTimeStatus sets the ExpectedNextSnapshotScheduleTimeStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetExpectedNextSnapshotScheduleTimeStatus(v string) *AwsRedshiftClusterDetails {
+	s.ExpectedNextSnapshotScheduleTimeStatus = &v
+	return s
+}
+
+// SetHsmStatus sets the HsmStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetHsmStatus(v *AwsRedshiftClusterHsmStatus) *AwsRedshiftClusterDetails {
+	s.HsmStatus = v
+	return s
+}
+
+// SetIamRoles sets the IamRoles field's value.
+func (s *AwsRedshiftClusterDetails) SetIamRoles(v []*AwsRedshiftClusterIamRole) *AwsRedshiftClusterDetails {
+	s.IamRoles = v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsRedshiftClusterDetails) SetKmsKeyId(v string) *AwsRedshiftClusterDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *AwsRedshiftClusterDetails) SetMaintenanceTrackName(v string) *AwsRedshiftClusterDetails {
+	s.MaintenanceTrackName = &v
+	return s
+}
+
+// SetManualSnapshotRetentionPeriod sets the ManualSnapshotRetentionPeriod field's value.
+func (s *AwsRedshiftClusterDetails) SetManualSnapshotRetentionPeriod(v int64) *AwsRedshiftClusterDetails {
+	s.ManualSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetMasterUsername sets the MasterUsername field's value.
+func (s *AwsRedshiftClusterDetails) SetMasterUsername(v string) *AwsRedshiftClusterDetails {
+	s.MasterUsername = &v
+	return s
+}
+
+// SetNextMaintenanceWindowStartTime sets the NextMaintenanceWindowStartTime field's value.
+func (s *AwsRedshiftClusterDetails) SetNextMaintenanceWindowStartTime(v string) *AwsRedshiftClusterDetails {
+	s.NextMaintenanceWindowStartTime = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *AwsRedshiftClusterDetails) SetNodeType(v string) *AwsRedshiftClusterDetails {
+	s.NodeType = &v
+	return s
+}
+
+// SetNumberOfNodes sets the NumberOfNodes field's value.
+func (s *AwsRedshiftClusterDetails) SetNumberOfNodes(v int64) *AwsRedshiftClusterDetails {
+	s.NumberOfNodes = &v
+	return s
+}
+
+// SetPendingActions sets the PendingActions field's value.
+func (s *AwsRedshiftClusterDetails) SetPendingActions(v []*string) *AwsRedshiftClusterDetails {
+	s.PendingActions = v
+	return s
+}
+
+// SetPendingModifiedValues sets the PendingModifiedValues field's value.
+func (s *AwsRedshiftClusterDetails) SetPendingModifiedValues(v *AwsRedshiftClusterPendingModifiedValues) *AwsRedshiftClusterDetails {
+	s.PendingModifiedValues = v
+	return s
+}
+
+// SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
+func (s *AwsRedshiftClusterDetails) SetPreferredMaintenanceWindow(v string) *AwsRedshiftClusterDetails {
+	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *AwsRedshiftClusterDetails) SetPubliclyAccessible(v bool) *AwsRedshiftClusterDetails {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// SetResizeInfo sets the ResizeInfo field's value.
+func (s *AwsRedshiftClusterDetails) SetResizeInfo(v *AwsRedshiftClusterResizeInfo) *AwsRedshiftClusterDetails {
+	s.ResizeInfo = v
+	return s
+}
+
+// SetRestoreStatus sets the RestoreStatus field's value.
+func (s *AwsRedshiftClusterDetails) SetRestoreStatus(v *AwsRedshiftClusterRestoreStatus) *AwsRedshiftClusterDetails {
+	s.RestoreStatus = v
+	return s
+}
+
+// SetSnapshotScheduleIdentifier sets the SnapshotScheduleIdentifier field's value.
+func (s *AwsRedshiftClusterDetails) SetSnapshotScheduleIdentifier(v string) *AwsRedshiftClusterDetails {
+	s.SnapshotScheduleIdentifier = &v
+	return s
+}
+
+// SetSnapshotScheduleState sets the SnapshotScheduleState field's value.
+func (s *AwsRedshiftClusterDetails) SetSnapshotScheduleState(v string) *AwsRedshiftClusterDetails {
+	s.SnapshotScheduleState = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *AwsRedshiftClusterDetails) SetVpcId(v string) *AwsRedshiftClusterDetails {
+	s.VpcId = &v
+	return s
+}
+
+// SetVpcSecurityGroups sets the VpcSecurityGroups field's value.
+func (s *AwsRedshiftClusterDetails) SetVpcSecurityGroups(v []*AwsRedshiftClusterVpcSecurityGroup) *AwsRedshiftClusterDetails {
+	s.VpcSecurityGroups = v
+	return s
+}
+
+// The status of the elastic IP (EIP) address for an Amazon Redshift cluster.
+type AwsRedshiftClusterElasticIpStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The elastic IP address for the cluster.
+	ElasticIp *string `type:"string"`
+
+	// The status of the elastic IP address.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterElasticIpStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterElasticIpStatus) GoString() string {
+	return s.String()
+}
+
+// SetElasticIp sets the ElasticIp field's value.
+func (s *AwsRedshiftClusterElasticIpStatus) SetElasticIp(v string) *AwsRedshiftClusterElasticIpStatus {
+	s.ElasticIp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRedshiftClusterElasticIpStatus) SetStatus(v string) *AwsRedshiftClusterElasticIpStatus {
+	s.Status = &v
+	return s
+}
+
+// The connection endpoint for an Amazon Redshift cluster.
+type AwsRedshiftClusterEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The DNS address of the cluster.
+	Address *string `type:"string"`
+
+	// The port that the database engine listens on.
+	Port *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetAddress sets the Address field's value.
+func (s *AwsRedshiftClusterEndpoint) SetAddress(v string) *AwsRedshiftClusterEndpoint {
+	s.Address = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *AwsRedshiftClusterEndpoint) SetPort(v int64) *AwsRedshiftClusterEndpoint {
+	s.Port = &v
+	return s
+}
+
+// Information about whether an Amazon Redshift cluster finished applying any
+// hardware changes to security module (HSM) settings that were specified in
+// a modify cluster command.
+type AwsRedshiftClusterHsmStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the HSM client certificate that the Amazon Redshift cluster uses
+	// to retrieve the data encryption keys that are stored in an HSM.
+	HsmClientCertificateIdentifier *string `type:"string"`
+
+	// The name of the HSM configuration that contains the information that the
+	// Amazon Redshift cluster can use to retrieve and store keys in an HSM.
+	HsmConfigurationIdentifier *string `type:"string"`
+
+	// Indicates whether the Amazon Redshift cluster has finished applying any HSM
+	// settings changes specified in a modify cluster command.
+	//
+	// Type: String
+	//
+	// Valid values: active | applying
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterHsmStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterHsmStatus) GoString() string {
+	return s.String()
+}
+
+// SetHsmClientCertificateIdentifier sets the HsmClientCertificateIdentifier field's value.
+func (s *AwsRedshiftClusterHsmStatus) SetHsmClientCertificateIdentifier(v string) *AwsRedshiftClusterHsmStatus {
+	s.HsmClientCertificateIdentifier = &v
+	return s
+}
+
+// SetHsmConfigurationIdentifier sets the HsmConfigurationIdentifier field's value.
+func (s *AwsRedshiftClusterHsmStatus) SetHsmConfigurationIdentifier(v string) *AwsRedshiftClusterHsmStatus {
+	s.HsmConfigurationIdentifier = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRedshiftClusterHsmStatus) SetStatus(v string) *AwsRedshiftClusterHsmStatus {
+	s.Status = &v
+	return s
+}
+
+// An IAM role that the cluster can use to access other AWS services.
+type AwsRedshiftClusterIamRole struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the IAM role's association with the cluster.
+	//
+	// Valid values: in-sync | adding | removing
+	ApplyStatus *string `type:"string"`
+
+	// The ARN of the IAM role.
+	IamRoleArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterIamRole) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterIamRole) GoString() string {
+	return s.String()
+}
+
+// SetApplyStatus sets the ApplyStatus field's value.
+func (s *AwsRedshiftClusterIamRole) SetApplyStatus(v string) *AwsRedshiftClusterIamRole {
+	s.ApplyStatus = &v
+	return s
+}
+
+// SetIamRoleArn sets the IamRoleArn field's value.
+func (s *AwsRedshiftClusterIamRole) SetIamRoleArn(v string) *AwsRedshiftClusterIamRole {
+	s.IamRoleArn = &v
+	return s
+}
+
+// Changes to the Amazon Redshift cluster that are currently pending.
+type AwsRedshiftClusterPendingModifiedValues struct {
+	_ struct{} `type:"structure"`
+
+	// The pending or in-progress change to the automated snapshot retention period.
+	AutomatedSnapshotRetentionPeriod *int64 `type:"integer"`
+
+	// The pending or in-progress change to the identifier for the cluster.
+	ClusterIdentifier *string `type:"string"`
+
+	// The pending or in-progress change to the cluster type.
+	ClusterType *string `type:"string"`
+
+	// The pending or in-progress change to the service version.
+	ClusterVersion *string `type:"string"`
+
+	// The encryption type for a cluster.
+	EncryptionType *string `type:"string"`
+
+	// Indicates whether to create the cluster with enhanced VPC routing enabled.
+	EnhancedVpcRouting *bool `type:"boolean"`
+
+	// The name of the maintenance track that the cluster changes to during the
+	// next maintenance window.
+	MaintenanceTrackName *string `type:"string"`
+
+	// The pending or in-progress change to the master user password for the cluster.
+	MasterUserPassword *string `type:"string"`
+
+	// The pending or in-progress change to the cluster's node type.
+	NodeType *string `type:"string"`
+
+	// The pending or in-progress change to the number of nodes in the cluster.
+	NumberOfNodes *int64 `type:"integer"`
+
+	// The pending or in-progress change to whether the cluster can be connected
+	// to from the public network.
+	PubliclyAccessible *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterPendingModifiedValues) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterPendingModifiedValues) GoString() string {
+	return s.String()
+}
+
+// SetAutomatedSnapshotRetentionPeriod sets the AutomatedSnapshotRetentionPeriod field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetAutomatedSnapshotRetentionPeriod(v int64) *AwsRedshiftClusterPendingModifiedValues {
+	s.AutomatedSnapshotRetentionPeriod = &v
+	return s
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetClusterIdentifier(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetClusterType sets the ClusterType field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetClusterType(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.ClusterType = &v
+	return s
+}
+
+// SetClusterVersion sets the ClusterVersion field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetClusterVersion(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.ClusterVersion = &v
+	return s
+}
+
+// SetEncryptionType sets the EncryptionType field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetEncryptionType(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.EncryptionType = &v
+	return s
+}
+
+// SetEnhancedVpcRouting sets the EnhancedVpcRouting field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetEnhancedVpcRouting(v bool) *AwsRedshiftClusterPendingModifiedValues {
+	s.EnhancedVpcRouting = &v
+	return s
+}
+
+// SetMaintenanceTrackName sets the MaintenanceTrackName field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetMaintenanceTrackName(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.MaintenanceTrackName = &v
+	return s
+}
+
+// SetMasterUserPassword sets the MasterUserPassword field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetMasterUserPassword(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.MasterUserPassword = &v
+	return s
+}
+
+// SetNodeType sets the NodeType field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetNodeType(v string) *AwsRedshiftClusterPendingModifiedValues {
+	s.NodeType = &v
+	return s
+}
+
+// SetNumberOfNodes sets the NumberOfNodes field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetNumberOfNodes(v int64) *AwsRedshiftClusterPendingModifiedValues {
+	s.NumberOfNodes = &v
+	return s
+}
+
+// SetPubliclyAccessible sets the PubliclyAccessible field's value.
+func (s *AwsRedshiftClusterPendingModifiedValues) SetPubliclyAccessible(v bool) *AwsRedshiftClusterPendingModifiedValues {
+	s.PubliclyAccessible = &v
+	return s
+}
+
+// Information about the resize operation for the cluster.
+type AwsRedshiftClusterResizeInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the resize operation can be canceled.
+	AllowCancelResize *bool `type:"boolean"`
+
+	// The type of resize operation.
+	//
+	// Valid values: ClassicResize
+	ResizeType *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterResizeInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterResizeInfo) GoString() string {
+	return s.String()
+}
+
+// SetAllowCancelResize sets the AllowCancelResize field's value.
+func (s *AwsRedshiftClusterResizeInfo) SetAllowCancelResize(v bool) *AwsRedshiftClusterResizeInfo {
+	s.AllowCancelResize = &v
+	return s
+}
+
+// SetResizeType sets the ResizeType field's value.
+func (s *AwsRedshiftClusterResizeInfo) SetResizeType(v string) *AwsRedshiftClusterResizeInfo {
+	s.ResizeType = &v
+	return s
+}
+
+// Information about the status of a cluster restore action. It only applies
+// if the cluster was created by restoring a snapshot.
+type AwsRedshiftClusterRestoreStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The number of megabytes per second being transferred from the backup storage.
+	// Returns the average rate for a completed backup.
+	//
+	// This field is only updated when you restore to DC2 and DS2 node types.
+	CurrentRestoreRateInMegaBytesPerSecond *float64 `type:"double"`
+
+	// The amount of time an in-progress restore has been running, or the amount
+	// of time it took a completed restore to finish.
+	//
+	// This field is only updated when you restore to DC2 and DS2 node types.
+	ElapsedTimeInSeconds *int64 `type:"long"`
+
+	// The estimate of the time remaining before the restore is complete. Returns
+	// 0 for a completed restore.
+	//
+	// This field is only updated when you restore to DC2 and DS2 node types.
+	EstimatedTimeToCompletionInSeconds *int64 `type:"long"`
+
+	// The number of megabytes that were transferred from snapshot storage.
+	//
+	// This field is only updated when you restore to DC2 and DS2 node types.
+	ProgressInMegaBytes *int64 `type:"long"`
+
+	// The size of the set of snapshot data that was used to restore the cluster.
+	//
+	// This field is only updated when you restore to DC2 and DS2 node types.
+	SnapshotSizeInMegaBytes *int64 `type:"long"`
+
+	// The status of the restore action.
+	//
+	// Valid values: starting | restoring | completed | failed
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterRestoreStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterRestoreStatus) GoString() string {
+	return s.String()
+}
+
+// SetCurrentRestoreRateInMegaBytesPerSecond sets the CurrentRestoreRateInMegaBytesPerSecond field's value.
+func (s *AwsRedshiftClusterRestoreStatus) SetCurrentRestoreRateInMegaBytesPerSecond(v float64) *AwsRedshiftClusterRestoreStatus {
+	s.CurrentRestoreRateInMegaBytesPerSecond = &v
+	return s
+}
+
+// SetElapsedTimeInSeconds sets the ElapsedTimeInSeconds field's value.
+func (s *AwsRedshiftClusterRestoreStatus) SetElapsedTimeInSeconds(v int64) *AwsRedshiftClusterRestoreStatus {
+	s.ElapsedTimeInSeconds = &v
+	return s
+}
+
+// SetEstimatedTimeToCompletionInSeconds sets the EstimatedTimeToCompletionInSeconds field's value.
+func (s *AwsRedshiftClusterRestoreStatus) SetEstimatedTimeToCompletionInSeconds(v int64) *AwsRedshiftClusterRestoreStatus {
+	s.EstimatedTimeToCompletionInSeconds = &v
+	return s
+}
+
+// SetProgressInMegaBytes sets the ProgressInMegaBytes field's value.
+func (s *AwsRedshiftClusterRestoreStatus) SetProgressInMegaBytes(v int64) *AwsRedshiftClusterRestoreStatus {
+	s.ProgressInMegaBytes = &v
+	return s
+}
+
+// SetSnapshotSizeInMegaBytes sets the SnapshotSizeInMegaBytes field's value.
+func (s *AwsRedshiftClusterRestoreStatus) SetSnapshotSizeInMegaBytes(v int64) *AwsRedshiftClusterRestoreStatus {
+	s.SnapshotSizeInMegaBytes = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRedshiftClusterRestoreStatus) SetStatus(v string) *AwsRedshiftClusterRestoreStatus {
+	s.Status = &v
+	return s
+}
+
+// A VPC security group that the cluster belongs to, if the cluster is in a
+// VPC.
+type AwsRedshiftClusterVpcSecurityGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The status of the VPC security group.
+	Status *string `type:"string"`
+
+	// The identifier of the VPC security group.
+	VpcSecurityGroupId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsRedshiftClusterVpcSecurityGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsRedshiftClusterVpcSecurityGroup) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsRedshiftClusterVpcSecurityGroup) SetStatus(v string) *AwsRedshiftClusterVpcSecurityGroup {
+	s.Status = &v
+	return s
+}
+
+// SetVpcSecurityGroupId sets the VpcSecurityGroupId field's value.
+func (s *AwsRedshiftClusterVpcSecurityGroup) SetVpcSecurityGroupId(v string) *AwsRedshiftClusterVpcSecurityGroup {
+	s.VpcSecurityGroupId = &v
+	return s
+}
+
 // The details of an Amazon S3 bucket.
 type AwsS3BucketDetails struct {
 	_ struct{} `type:"structure"`
@@ -11639,6 +16001,9 @@ func (s *AwsSecurityFinding) SetWorkflowState(v string) *AwsSecurityFinding {
 // A collection of attributes that are applied to all active Security Hub-aggregated
 // findings and that result in a subset of findings that are included in this
 // insight.
+//
+// You can filter by up to 10 finding attributes. For each attribute, you can
+// provide up to 20 filter values.
 type AwsSecurityFindingFilters struct {
 	_ struct{} `type:"structure"`
 
@@ -14918,6 +19283,9 @@ type GetFindingsInput struct {
 	// The finding attributes used to define a condition to filter the returned
 	// findings.
 	//
+	// You can filter by up to 10 finding attributes. For each attribute, you can
+	// provide up to 20 filter values.
+	//
 	// Note that in the available filter fields, WorkflowState is deprecated. To
 	// search for a finding based on its workflow status, use WorkflowStatus.
 	Filters *AwsSecurityFindingFilters `type:"structure"`
@@ -16461,6 +20829,24 @@ type Member struct {
 
 	// The status of the relationship between the member account and its master
 	// account.
+	//
+	// The status can have one of the following values:
+	//
+	//    * CREATED - Indicates that the master account added the member account,
+	//    but has not yet invited the member account.
+	//
+	//    * INVITED - Indicates that the master account invited the member account.
+	//    The member account has not yet responded to the invitation.
+	//
+	//    * ASSOCIATED - Indicates that the member account accepted the invitation.
+	//
+	//    * REMOVED - Indicates that the master account disassociated the member
+	//    account.
+	//
+	//    * RESIGNED - Indicates that the member account disassociated themselves
+	//    from the master account.
+	//
+	//    * DELETED - Indicates that the master account deleted the member account.
 	MemberStatus *string `type:"string"`
 
 	// The timestamp for the date and time when the member account was updated.
@@ -16955,8 +21341,8 @@ type PatchSummary struct {
 	// The number of installed patches that are not part of the compliance standard.
 	InstalledOtherCount *int64 `type:"integer"`
 
-	// The number of patches that were installed since the last time the instance
-	// was rebooted.
+	// The number of patches that were applied, but that require the instance to
+	// be rebooted in order to be marked as installed.
 	InstalledPendingReboot *int64 `type:"integer"`
 
 	// The number of patches that are installed but are also on a list of patches
@@ -17424,6 +21810,8 @@ type Resource struct {
 	// The canonical AWS external Region name where this resource is located.
 	Region *string `type:"string"`
 
+	ResourceRole *string `type:"string"`
+
 	// A list of AWS tags associated with a resource at the time the finding was
 	// processed.
 	Tags map[string]*string `type:"map"`
@@ -17491,6 +21879,12 @@ func (s *Resource) SetPartition(v string) *Resource {
 // SetRegion sets the Region field's value.
 func (s *Resource) SetRegion(v string) *Resource {
 	s.Region = &v
+	return s
+}
+
+// SetResourceRole sets the ResourceRole field's value.
+func (s *Resource) SetResourceRole(v string) *Resource {
+	s.ResourceRole = &v
 	return s
 }
 
@@ -17578,11 +21972,29 @@ func (s *ResourceConflictException) RequestID() string {
 type ResourceDetails struct {
 	_ struct{} `type:"structure"`
 
+	// contains information about a REST API in version 1 of Amazon API Gateway.
+	AwsApiGatewayRestApi *AwsApiGatewayRestApiDetails `type:"structure"`
+
+	// Provides information about a version 1 Amazon API Gateway stage.
+	AwsApiGatewayStage *AwsApiGatewayStageDetails `type:"structure"`
+
+	// Contains information about a version 2 API in Amazon API Gateway.
+	AwsApiGatewayV2Api *AwsApiGatewayV2ApiDetails `type:"structure"`
+
+	// Contains information about a version 2 stage for Amazon API Gateway.
+	AwsApiGatewayV2Stage *AwsApiGatewayV2StageDetails `type:"structure"`
+
 	// Details for an autoscaling group.
 	AwsAutoScalingAutoScalingGroup *AwsAutoScalingAutoScalingGroupDetails `type:"structure"`
 
+	// Provides details about an AWS Certificate Manager certificate.
+	AwsCertificateManagerCertificate *AwsCertificateManagerCertificateDetails `type:"structure"`
+
 	// Details about a CloudFront distribution.
 	AwsCloudFrontDistribution *AwsCloudFrontDistributionDetails `type:"structure"`
+
+	// Provides details about a CloudTrail trail.
+	AwsCloudTrailTrail *AwsCloudTrailTrailDetails `type:"structure"`
 
 	// Details for an AWS CodeBuild project.
 	AwsCodeBuildProject *AwsCodeBuildProjectDetails `type:"structure"`
@@ -17611,11 +22023,17 @@ type ResourceDetails struct {
 	// Details for an Elasticsearch domain.
 	AwsElasticsearchDomain *AwsElasticsearchDomainDetails `type:"structure"`
 
+	// Contains details about a Classic Load Balancer.
+	AwsElbLoadBalancer *AwsElbLoadBalancerDetails `type:"structure"`
+
 	// Details about a load balancer.
 	AwsElbv2LoadBalancer *AwsElbv2LoadBalancerDetails `type:"structure"`
 
 	// Details about an IAM access key related to a finding.
 	AwsIamAccessKey *AwsIamAccessKeyDetails `type:"structure"`
+
+	// Contains details about an IAM group.
+	AwsIamGroup *AwsIamGroupDetails `type:"structure"`
 
 	// Details about an IAM permissions policy.
 	AwsIamPolicy *AwsIamPolicyDetails `type:"structure"`
@@ -17646,6 +22064,9 @@ type ResourceDetails struct {
 
 	// Details about an Amazon RDS database snapshot.
 	AwsRdsDbSnapshot *AwsRdsDbSnapshotDetails `type:"structure"`
+
+	// Details about an Amazon Redshift cluster.
+	AwsRedshiftCluster *AwsRedshiftClusterDetails `type:"structure"`
 
 	// Details about an Amazon S3 bucket related to a finding.
 	AwsS3Bucket *AwsS3BucketDetails `type:"structure"`
@@ -17706,15 +22127,51 @@ func (s *ResourceDetails) Validate() error {
 	return nil
 }
 
+// SetAwsApiGatewayRestApi sets the AwsApiGatewayRestApi field's value.
+func (s *ResourceDetails) SetAwsApiGatewayRestApi(v *AwsApiGatewayRestApiDetails) *ResourceDetails {
+	s.AwsApiGatewayRestApi = v
+	return s
+}
+
+// SetAwsApiGatewayStage sets the AwsApiGatewayStage field's value.
+func (s *ResourceDetails) SetAwsApiGatewayStage(v *AwsApiGatewayStageDetails) *ResourceDetails {
+	s.AwsApiGatewayStage = v
+	return s
+}
+
+// SetAwsApiGatewayV2Api sets the AwsApiGatewayV2Api field's value.
+func (s *ResourceDetails) SetAwsApiGatewayV2Api(v *AwsApiGatewayV2ApiDetails) *ResourceDetails {
+	s.AwsApiGatewayV2Api = v
+	return s
+}
+
+// SetAwsApiGatewayV2Stage sets the AwsApiGatewayV2Stage field's value.
+func (s *ResourceDetails) SetAwsApiGatewayV2Stage(v *AwsApiGatewayV2StageDetails) *ResourceDetails {
+	s.AwsApiGatewayV2Stage = v
+	return s
+}
+
 // SetAwsAutoScalingAutoScalingGroup sets the AwsAutoScalingAutoScalingGroup field's value.
 func (s *ResourceDetails) SetAwsAutoScalingAutoScalingGroup(v *AwsAutoScalingAutoScalingGroupDetails) *ResourceDetails {
 	s.AwsAutoScalingAutoScalingGroup = v
 	return s
 }
 
+// SetAwsCertificateManagerCertificate sets the AwsCertificateManagerCertificate field's value.
+func (s *ResourceDetails) SetAwsCertificateManagerCertificate(v *AwsCertificateManagerCertificateDetails) *ResourceDetails {
+	s.AwsCertificateManagerCertificate = v
+	return s
+}
+
 // SetAwsCloudFrontDistribution sets the AwsCloudFrontDistribution field's value.
 func (s *ResourceDetails) SetAwsCloudFrontDistribution(v *AwsCloudFrontDistributionDetails) *ResourceDetails {
 	s.AwsCloudFrontDistribution = v
+	return s
+}
+
+// SetAwsCloudTrailTrail sets the AwsCloudTrailTrail field's value.
+func (s *ResourceDetails) SetAwsCloudTrailTrail(v *AwsCloudTrailTrailDetails) *ResourceDetails {
+	s.AwsCloudTrailTrail = v
 	return s
 }
 
@@ -17772,6 +22229,12 @@ func (s *ResourceDetails) SetAwsElasticsearchDomain(v *AwsElasticsearchDomainDet
 	return s
 }
 
+// SetAwsElbLoadBalancer sets the AwsElbLoadBalancer field's value.
+func (s *ResourceDetails) SetAwsElbLoadBalancer(v *AwsElbLoadBalancerDetails) *ResourceDetails {
+	s.AwsElbLoadBalancer = v
+	return s
+}
+
 // SetAwsElbv2LoadBalancer sets the AwsElbv2LoadBalancer field's value.
 func (s *ResourceDetails) SetAwsElbv2LoadBalancer(v *AwsElbv2LoadBalancerDetails) *ResourceDetails {
 	s.AwsElbv2LoadBalancer = v
@@ -17781,6 +22244,12 @@ func (s *ResourceDetails) SetAwsElbv2LoadBalancer(v *AwsElbv2LoadBalancerDetails
 // SetAwsIamAccessKey sets the AwsIamAccessKey field's value.
 func (s *ResourceDetails) SetAwsIamAccessKey(v *AwsIamAccessKeyDetails) *ResourceDetails {
 	s.AwsIamAccessKey = v
+	return s
+}
+
+// SetAwsIamGroup sets the AwsIamGroup field's value.
+func (s *ResourceDetails) SetAwsIamGroup(v *AwsIamGroupDetails) *ResourceDetails {
+	s.AwsIamGroup = v
 	return s
 }
 
@@ -17841,6 +22310,12 @@ func (s *ResourceDetails) SetAwsRdsDbInstance(v *AwsRdsDbInstanceDetails) *Resou
 // SetAwsRdsDbSnapshot sets the AwsRdsDbSnapshot field's value.
 func (s *ResourceDetails) SetAwsRdsDbSnapshot(v *AwsRdsDbSnapshotDetails) *ResourceDetails {
 	s.AwsRdsDbSnapshot = v
+	return s
+}
+
+// SetAwsRedshiftCluster sets the AwsRedshiftCluster field's value.
+func (s *ResourceDetails) SetAwsRedshiftCluster(v *AwsRedshiftClusterDetails) *ResourceDetails {
+	s.AwsRedshiftCluster = v
 	return s
 }
 

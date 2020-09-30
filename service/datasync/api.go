@@ -158,7 +158,7 @@ func (c *DataSync) CreateAgentRequest(input *CreateAgentInput) (req *request.Req
 //
 // You can activate the agent in a VPC (virtual private cloud) or provide the
 // agent access to a VPC endpoint so you can run tasks without going over the
-// public Internet.
+// public internet.
 //
 // You can use an agent for more than one location. If a task uses multiple
 // agents, all of them need to have status AVAILABLE for the task to run. If
@@ -495,7 +495,8 @@ func (c *DataSync) CreateLocationObjectStorageRequest(input *CreateLocationObjec
 
 // CreateLocationObjectStorage API operation for AWS DataSync.
 //
-// Creates an endpoint for a self-managed object storage bucket.
+// Creates an endpoint for a self-managed object storage bucket. For more information
+// about self-managed object storage locations, see create-object-location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -579,13 +580,7 @@ func (c *DataSync) CreateLocationS3Request(input *CreateLocationS3Input) (req *r
 //
 // Creates an endpoint for an Amazon S3 bucket.
 //
-// For AWS DataSync to access a destination S3 bucket, it needs an AWS Identity
-// and Access Management (IAM) role that has the required permissions. You can
-// set up the required permissions by creating an IAM policy that grants the
-// required permissions and attaching the policy to the role. An example of
-// such a policy is shown in the examples section.
-//
-// For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html#create-s3-location
+// For more information, see https://docs.aws.amazon.com/datasync/latest/userguide/create-locations-cli.html#create-location-s3-cli
 // in the AWS DataSync User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -767,7 +762,7 @@ func (c *DataSync) CreateTaskRequest(input *CreateTaskInput) (req *request.Reque
 // remains in the CREATING status for more than a few minutes, it means that
 // your agent might be having trouble mounting the source NFS file system. Check
 // the task's ErrorCode and ErrorDetail. Mount issues are often caused by either
-// a misconfigured firewall or a mistyped NFS server host name.
+// a misconfigured firewall or a mistyped NFS server hostname.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1433,7 +1428,8 @@ func (c *DataSync) DescribeLocationObjectStorageRequest(input *DescribeLocationO
 
 // DescribeLocationObjectStorage API operation for AWS DataSync.
 //
-// Returns metadata about a self-managed object storage server location.
+// Returns metadata about a self-managed object storage server location. For
+// more information about self-managed object storage locations, see create-object-location.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3645,7 +3641,9 @@ type CreateLocationObjectStorageInput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional. The access key is used if credentials are required to access the
-	// self-managed object storage server.
+	// self-managed object storage server. If your object storage requires a user
+	// name and password to authenticate, use AccessKey and SecretKey to provide
+	// the user name and password, respectively.
 	AccessKey *string `min:"8" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
@@ -3661,7 +3659,9 @@ type CreateLocationObjectStorageInput struct {
 	BucketName *string `min:"3" type:"string" required:"true"`
 
 	// Optional. The secret key is used if credentials are required to access the
-	// self-managed object storage server.
+	// self-managed object storage server. If your object storage requires a user
+	// name and password to authenticate, use AccessKey and SecretKey to provide
+	// the user name and password, respectively.
 	SecretKey *string `min:"8" type:"string" sensitive:"true"`
 
 	// The name of the self-managed object storage server. This value is the IP
@@ -3827,7 +3827,13 @@ func (s *CreateLocationObjectStorageOutput) SetLocationArn(v string) *CreateLoca
 type CreateLocationS3Input struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon S3 bucket.
+	// If you are using DataSync on an AWS Outpost, specify the Amazon Resource
+	// Names (ARNs) of the DataSync agents deployed on your AWS Outpost. For more
+	// information about launching a DataSync agent on an Amazon Outpost, see outposts-agent.
+	AgentArns []*string `min:"1" type:"list"`
+
+	// The Amazon Resource Name (ARN) of the Amazon S3 bucket. If the bucket is
+	// on an AWS Outpost, this must be an access point ARN.
 	//
 	// S3BucketArn is a required field
 	S3BucketArn *string `type:"string" required:"true"`
@@ -3842,11 +3848,14 @@ type CreateLocationS3Input struct {
 	S3Config *S3Config `type:"structure" required:"true"`
 
 	// The Amazon S3 storage class that you want to store your files in when this
-	// location is used as a task destination. For more information about S3 storage
-	// classes, see Amazon S3 Storage Classes (https://aws.amazon.com/s3/storage-classes/)
-	// in the Amazon Simple Storage Service Developer Guide. Some storage classes
-	// have behaviors that can affect your S3 storage cost. For detailed information,
-	// see using-storage-classes.
+	// location is used as a task destination. For buckets in AWS Regions, the storage
+	// class defaults to Standard. For buckets on AWS Outposts, the storage class
+	// defaults to AWS S3 Outposts.
+	//
+	// For more information about S3 storage classes, see Amazon S3 Storage Classes
+	// (https://aws.amazon.com/s3/storage-classes/) in the Amazon Simple Storage
+	// Service Developer Guide. Some storage classes have behaviors that can affect
+	// your S3 storage cost. For detailed information, see using-storage-classes.
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 
 	// A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is
@@ -3871,6 +3880,9 @@ func (s CreateLocationS3Input) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateLocationS3Input) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateLocationS3Input"}
+	if s.AgentArns != nil && len(s.AgentArns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentArns", 1))
+	}
 	if s.S3BucketArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3BucketArn"))
 	}
@@ -3897,6 +3909,12 @@ func (s *CreateLocationS3Input) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *CreateLocationS3Input) SetAgentArns(v []*string) *CreateLocationS3Input {
+	s.AgentArns = v
+	return s
 }
 
 // SetS3BucketArn sets the S3BucketArn field's value.
@@ -4935,7 +4953,9 @@ type DescribeLocationObjectStorageOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Optional. The access key is used if credentials are required to access the
-	// self-managed object storage server.
+	// self-managed object storage server. If your object storage requires a user
+	// name and password to authenticate, use AccessKey and SecretKey to provide
+	// the user name and password, respectively.
 	AccessKey *string `min:"8" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the agents associated with the self-managed
@@ -5058,10 +5078,15 @@ func (s *DescribeLocationS3Input) SetLocationArn(v string) *DescribeLocationS3In
 type DescribeLocationS3Output struct {
 	_ struct{} `type:"structure"`
 
+	// If you are using DataSync on an Amazon Outpost, the Amazon Resource Name
+	// (ARNs) of the EC2 agents deployed on your AWS Outpost. For more information
+	// about launching a DataSync agent on an Amazon Outpost, see outposts-agent.
+	AgentArns []*string `min:"1" type:"list"`
+
 	// The time that the Amazon S3 bucket location was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the Amazon S3 bucket location.
+	// The Amazon Resource Name (ARN) of the Amazon S3 bucket or access point.
 	LocationArn *string `type:"string"`
 
 	// The URL of the Amazon S3 location that was described.
@@ -5091,6 +5116,12 @@ func (s DescribeLocationS3Output) String() string {
 // GoString returns the string representation
 func (s DescribeLocationS3Output) GoString() string {
 	return s.String()
+}
+
+// SetAgentArns sets the AgentArns field's value.
+func (s *DescribeLocationS3Output) SetAgentArns(v []*string) *DescribeLocationS3Output {
+	s.AgentArns = v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -5936,6 +5967,9 @@ func (s *ListAgentsOutput) SetNextToken(v string) *ListAgentsOutput {
 type ListLocationsInput struct {
 	_ struct{} `type:"structure"`
 
+	// You can use API filters to narrow down the list of resources returned by
+	// ListLocations. For example, to retrieve all tasks on a specific source location,
+	// you can use ListLocations with filter name LocationType S3 and Operator Equals.
 	Filters []*LocationFilter `type:"list"`
 
 	// The maximum number of locations to return.
@@ -6201,6 +6235,10 @@ func (s *ListTaskExecutionsOutput) SetTaskExecutions(v []*TaskExecutionListEntry
 type ListTasksInput struct {
 	_ struct{} `type:"structure"`
 
+	// You can use API filters to narrow down the list of resources returned by
+	// ListTasks. For example, to retrieve all tasks on a specific source location,
+	// you can use ListTasks with filter name LocationId and Operator Equals with
+	// the ARN for the location.
 	Filters []*TaskFilter `type:"list"`
 
 	// The maximum number of tasks to return.
@@ -6293,15 +6331,27 @@ func (s *ListTasksOutput) SetTasks(v []*TaskListEntry) *ListTasksOutput {
 	return s
 }
 
+// You can use API filters to narrow down the list of resources returned by
+// ListLocations. For example, to retrieve all your Amazon S3 locations, you
+// can use ListLocations with filter name LocationType S3 and Operator Equals.
 type LocationFilter struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the filter being used. Each API call supports a list of filters
+	// that are available for it (for example, LocationType for ListLocations).
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"LocationFilterName"`
 
+	// The operator that is used to compare filter values (for example, Equals or
+	// Contains). For more about API filtering operators, see query-resources.
+	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"Operator"`
 
+	// The values that you want to filter for. For example, you might want to display
+	// only Amazon S3 locations.
+	//
 	// Values is a required field
 	Values []*string `type:"list" required:"true"`
 }
@@ -6451,7 +6501,7 @@ func (s *NfsMountOptions) SetVersion(v string) *NfsMountOptions {
 type OnPremConfig struct {
 	_ struct{} `type:"structure"`
 
-	// ARNs)of the agents to use for an NFS location.
+	// ARNs of the agents to use for an NFS location.
 	//
 	// AgentArns is a required field
 	AgentArns []*string `min:"1" type:"list" required:"true"`
@@ -6612,10 +6662,16 @@ type Options struct {
 	// to run in series. For more information, see queue-task-execution.
 	TaskQueueing *string `type:"string" enum:"TaskQueueing"`
 
-	// TransferMode has two values: CHANGED and ALL. CHANGED performs an "incremental"
-	// or "delta sync", it compares file modification time between source and destination
-	// to determine which files need to be transferred. ALL skips destination inventory
-	// and transfers all files discovered on the source.
+	// A value that determines whether DataSync transfers only the data and metadata
+	// that differ between the source and the destination location, or whether DataSync
+	// transfers all the content from the source, without comparing to the destination
+	// location.
+	//
+	// CHANGED: DataSync copies only data or metadata that is new or different content
+	// from the source location to the destination location.
+	//
+	// ALL: DataSync copies all source location content to the destination, without
+	// comparing to existing content on the destination.
 	TransferMode *string `type:"string" enum:"TransferMode"`
 
 	// The user ID (UID) of the file's owner.
@@ -7247,15 +7303,28 @@ func (s *TaskExecutionResultDetail) SetVerifyStatus(v string) *TaskExecutionResu
 	return s
 }
 
+// You can use API filters to narrow down the list of resources returned by
+// ListTasks. For example, to retrieve all tasks on a source location, you can
+// use ListTasks with filter name LocationId and Operator Equals with the ARN
+// for the location.
 type TaskFilter struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the filter being used. Each API call supports a list of filters
+	// that are available for it. For example, LocationId for ListTasks.
+	//
 	// Name is a required field
 	Name *string `type:"string" required:"true" enum:"TaskFilterName"`
 
+	// The operator that is used to compare filter values (for example, Equals or
+	// Contains). For more about API filtering operators, see query-resources.
+	//
 	// Operator is a required field
 	Operator *string `type:"string" required:"true" enum:"Operator"`
 
+	// The values that you want to filter for. For example, you might want to display
+	// only tasks for a specific destination location.
+	//
 	// Values is a required field
 	Values []*string `type:"list" required:"true"`
 }
@@ -7988,6 +8057,9 @@ const (
 
 	// S3StorageClassDeepArchive is a S3StorageClass enum value
 	S3StorageClassDeepArchive = "DEEP_ARCHIVE"
+
+	// S3StorageClassOutposts is a S3StorageClass enum value
+	S3StorageClassOutposts = "OUTPOSTS"
 )
 
 // S3StorageClass_Values returns all elements of the S3StorageClass enum
@@ -7999,6 +8071,7 @@ func S3StorageClass_Values() []string {
 		S3StorageClassIntelligentTiering,
 		S3StorageClassGlacier,
 		S3StorageClassDeepArchive,
+		S3StorageClassOutposts,
 	}
 }
 

@@ -14,6 +14,12 @@ const (
 	// Provides information about an API request or response.
 	ErrCodeBadRequestException = "BadRequestException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Provides information about an API request or response.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeForbiddenException for service response error code
 	// "ForbiddenException".
 	//
@@ -53,6 +59,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"BadRequestException":          newErrorBadRequestException,
+	"ConflictException":            newErrorConflictException,
 	"ForbiddenException":           newErrorForbiddenException,
 	"InternalServerErrorException": newErrorInternalServerErrorException,
 	"MethodNotAllowedException":    newErrorMethodNotAllowedException,

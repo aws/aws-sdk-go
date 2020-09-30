@@ -9966,6 +9966,9 @@ func (c *Pinpoint) UpdateJourneyRequest(input *UpdateJourneyInput) (req *request
 //   * TooManyRequestsException
 //   Provides information about an API request or response.
 //
+//   * ConflictException
+//   Provides information about an API request or response.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateJourney
 func (c *Pinpoint) UpdateJourney(input *UpdateJourneyInput) (*UpdateJourneyOutput, error) {
 	req, out := c.UpdateJourneyRequest(input)
@@ -13218,12 +13221,12 @@ type ApplicationSettingsResource struct {
 	// last modified.
 	LastModifiedDate *string `type:"string"`
 
-	// The default sending limits for campaigns and journeys in the application.
+	// The default sending limits for campaigns in the application.
 	Limits *CampaignLimits `type:"structure"`
 
-	// The default quiet time for campaigns and journeys in the application. Quiet
-	// time is a specific time range when messages aren't sent to endpoints, if
-	// all the following conditions are met:
+	// The default quiet time for campaigns in the application. Quiet time is a
+	// specific time range when messages aren't sent to endpoints, if all the following
+	// conditions are met:
 	//
 	//    * The EndpointDemographic.Timezone property of the endpoint is set to
 	//    a valid value.
@@ -14157,7 +14160,7 @@ func (s *CampaignHook) SetWebUrl(v string) *CampaignHook {
 
 // For a campaign, specifies limits on the messages that the campaign can send.
 // For an application, specifies the default limits for messages that campaigns
-// and journeys in the application can send.
+// in the application can send.
 type CampaignLimits struct {
 	_ struct{} `type:"structure"`
 
@@ -14174,8 +14177,8 @@ type CampaignLimits struct {
 
 	// The maximum number of messages that a campaign can send each second. For
 	// an application, this value specifies the default limit for the number of
-	// messages that campaigns and journeys can send each second. The minimum value
-	// is 50. The maximum value is 20,000.
+	// messages that campaigns can send each second. The minimum value is 50. The
+	// maximum value is 20,000.
 	MessagesPerSecond *int64 `type:"integer"`
 
 	// The maximum number of messages that a campaign can send to a single endpoint
@@ -14773,6 +14776,12 @@ func (s *Condition) SetOperator(v string) *Condition {
 // Specifies the settings for a yes/no split activity in a journey. This type
 // of activity sends participants down one of two paths in a journey, based
 // on conditions that you specify.
+//
+// To create yes/no split activities that send participants down different paths
+// based on push notification events (such as Open or Received events), your
+// mobile app has to specify the User ID and Endpoint ID values. For more information,
+// see Integrating Amazon Pinpoint with your application (https://docs.aws.amazon.com/pinpoint/latest/developerguide/integrate.html)
+// in the Amazon Pinpoint Developer Guide.
 type ConditionalSplitActivity struct {
 	_ struct{} `type:"structure"`
 
@@ -14840,6 +14849,64 @@ func (s *ConditionalSplitActivity) SetFalseActivity(v string) *ConditionalSplitA
 func (s *ConditionalSplitActivity) SetTrueActivity(v string) *ConditionalSplitActivity {
 	s.TrueActivity = &v
 	return s
+}
+
+// Provides information about an API request or response.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	RequestID_ *string `locationName:"RequestID" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type CreateAppInput struct {
@@ -16064,11 +16131,11 @@ func (s *CustomDeliveryConfiguration) SetEndpointTypes(v []*string) *CustomDeliv
 type CustomMessageActivity struct {
 	_ struct{} `type:"structure"`
 
-	// The destination to send the custom message to. This value can be one of the
-	// following:
+	// The destination to send the campaign or treatment to. This value can be one
+	// of the following:
 	//
 	//    * The name or Amazon Resource Name (ARN) of an AWS Lambda function to
-	//    invoke to handle delivery of the custom message.
+	//    invoke to handle delivery of the campaign or treatment.
 	//
 	//    * The URL for a web application or service that supports HTTPS and can
 	//    receive the message. The URL has to be a full URL, including the HTTPS
@@ -19738,9 +19805,7 @@ type EventCondition struct {
 	_ struct{} `type:"structure"`
 
 	// The dimensions for the event filter to use for the activity.
-	//
-	// Dimensions is a required field
-	Dimensions *EventDimensions `type:"structure" required:"true"`
+	Dimensions *EventDimensions `type:"structure"`
 
 	// The message identifier (message_id) for the message to use when determining
 	// whether message events meet the condition.
@@ -19760,9 +19825,6 @@ func (s EventCondition) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *EventCondition) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "EventCondition"}
-	if s.Dimensions == nil {
-		invalidParams.Add(request.NewErrParamRequired("Dimensions"))
-	}
 	if s.Dimensions != nil {
 		if err := s.Dimensions.Validate(); err != nil {
 			invalidParams.AddNested("Dimensions", err.(request.ErrInvalidParams))
@@ -19874,6 +19936,69 @@ func (s *EventDimensions) SetMetrics(v map[string]*MetricDimension) *EventDimens
 	return s
 }
 
+// Specifies the settings for an event that causes a campaign to be sent or
+// a journey activity to be performed.
+type EventFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The dimensions for the event filter to use for the campaign or the journey
+	// activity.
+	//
+	// Dimensions is a required field
+	Dimensions *EventDimensions `type:"structure" required:"true"`
+
+	// The type of event that causes the campaign to be sent or the journey activity
+	// to be performed. Valid values are: SYSTEM, sends the campaign or performs
+	// the activity when a system event occurs; and, ENDPOINT, sends the campaign
+	// or performs the activity when an endpoint event (Events resource) occurs.
+	//
+	// FilterType is a required field
+	FilterType *string `type:"string" required:"true" enum:"FilterType"`
+}
+
+// String returns the string representation
+func (s EventFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventFilter"}
+	if s.Dimensions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Dimensions"))
+	}
+	if s.FilterType == nil {
+		invalidParams.Add(request.NewErrParamRequired("FilterType"))
+	}
+	if s.Dimensions != nil {
+		if err := s.Dimensions.Validate(); err != nil {
+			invalidParams.AddNested("Dimensions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *EventFilter) SetDimensions(v *EventDimensions) *EventFilter {
+	s.Dimensions = v
+	return s
+}
+
+// SetFilterType sets the FilterType field's value.
+func (s *EventFilter) SetFilterType(v string) *EventFilter {
+	s.FilterType = &v
+	return s
+}
+
 // Provides the status code and message that result from processing an event.
 type EventItemResponse struct {
 	_ struct{} `type:"structure"`
@@ -19907,6 +20032,54 @@ func (s *EventItemResponse) SetMessage(v string) *EventItemResponse {
 // SetStatusCode sets the StatusCode field's value.
 func (s *EventItemResponse) SetStatusCode(v int64) *EventItemResponse {
 	s.StatusCode = &v
+	return s
+}
+
+// Specifies the settings for an event that causes a journey activity to start.
+type EventStartCondition struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the settings for an event that causes a campaign to be sent or
+	// a journey activity to be performed.
+	EventFilter *EventFilter `type:"structure"`
+
+	SegmentId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EventStartCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventStartCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventStartCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventStartCondition"}
+	if s.EventFilter != nil {
+		if err := s.EventFilter.Validate(); err != nil {
+			invalidParams.AddNested("EventFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventFilter sets the EventFilter field's value.
+func (s *EventStartCondition) SetEventFilter(v *EventFilter) *EventStartCondition {
+	s.EventFilter = v
+	return s
+}
+
+// SetSegmentId sets the SegmentId field's value.
+func (s *EventStartCondition) SetSegmentId(v string) *EventStartCondition {
+	s.SegmentId = &v
 	return s
 }
 
@@ -25423,7 +25596,7 @@ type JourneyExecutionMetricsResponse struct {
 
 	// A JSON object that contains the results of the query. For information about
 	// the structure and contents of the results, see the Amazon Pinpoint Developer
-	// Guide (https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html).
+	// Guide (https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html).
 	//
 	// Metrics is a required field
 	Metrics map[string]*string `type:"map" required:"true"`
@@ -25753,7 +25926,7 @@ type JourneySMSMessage struct {
 
 	// The sender ID to display as the sender of the message on a recipient's device.
 	// Support for sender IDs varies by country or region. For more information,
-	// see Supported Countries and Regions (https://docs.aws.amazon.com.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html)
+	// see Supported Countries and Regions (https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html)
 	// in the Amazon Pinpoint User Guide.
 	SenderId *string `type:"string"`
 }
@@ -26534,8 +26707,9 @@ type MessageRequest struct {
 	_ struct{} `type:"structure"`
 
 	// A map of key-value pairs, where each key is an address and each value is
-	// an AddressConfiguration object. An address can be a push notification token,
-	// a phone number, or an email address. You can use an AddressConfiguration
+	// an AddressConfiguration (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-addressconfiguration)
+	// object. An address can be a push notification token, a phone number, or an
+	// email address. You can use an AddressConfiguration (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-addressconfiguration)
 	// object to tailor the message for an address by specifying settings such as
 	// content overrides and message variables.
 	Addresses map[string]*AddressConfiguration `type:"map"`
@@ -26546,7 +26720,8 @@ type MessageRequest struct {
 	Context map[string]*string `type:"map"`
 
 	// A map of key-value pairs, where each key is an endpoint ID and each value
-	// is an EndpointSendConfiguration object. You can use an EndpointSendConfiguration
+	// is an EndpointSendConfiguration (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration)
+	// object. You can use an EndpointSendConfiguration (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration)
 	// object to tailor the message for an endpoint by specifying settings such
 	// as content overrides and message variables.
 	Endpoints map[string]*EndpointSendConfiguration `type:"map"`
@@ -26939,6 +27114,12 @@ func (s *MultiConditionalBranch) SetNextActivity(v string) *MultiConditionalBran
 // Specifies the settings for a multivariate split activity in a journey. This
 // type of activity sends participants down one of as many as five paths (including
 // a default Else path) in a journey, based on conditions that you specify.
+//
+// To create multivariate split activities that send participants down different
+// paths based on push notification events (such as Open or Received events),
+// your mobile app has to specify the User ID and Endpoint ID values. For more
+// information, see Integrating Amazon Pinpoint with your application (https://docs.aws.amazon.com/pinpoint/latest/developerguide/integrate.html)
+// in the Amazon Pinpoint Developer Guide.
 type MultiConditionalSplitActivity struct {
 	_ struct{} `type:"structure"`
 
@@ -28780,8 +28961,7 @@ type SMSMessage struct {
 	// your dedicated number.
 	Keyword *string `type:"string"`
 
-	// The URL of an image or video to display in the SMS message. This field is
-	// reserved for future use.
+	// This field is reserved for future use.
 	MediaUrl *string `type:"string"`
 
 	// The SMS message type. Valid values are TRANSACTIONAL (for messages that are
@@ -30197,9 +30377,10 @@ type SendUsersMessageRequest struct {
 	// to message recipients.
 	TraceId *string `type:"string"`
 
-	// A map that associates user IDs with EndpointSendConfiguration objects. You
-	// can use an EndpointSendConfiguration object to tailor the message for a user
-	// by specifying settings such as content overrides and message variables.
+	// A map that associates user IDs with EndpointSendConfiguration (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration)
+	// objects. You can use an EndpointSendConfiguration (https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration)
+	// object to tailor the message for a user by specifying settings such as content
+	// overrides and message variables.
 	//
 	// Users is a required field
 	Users map[string]*EndpointSendConfiguration `type:"map" required:"true"`
@@ -30671,6 +30852,9 @@ type StartCondition struct {
 	// The custom description of the condition.
 	Description *string `type:"string"`
 
+	// Specifies the settings for an event that causes a journey activity to start.
+	EventStartCondition *EventStartCondition `type:"structure"`
+
 	// The segment that's associated with the first activity in the journey. This
 	// segment determines which users are participants in the journey.
 	SegmentStartCondition *SegmentCondition `type:"structure"`
@@ -30689,6 +30873,11 @@ func (s StartCondition) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartCondition) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartCondition"}
+	if s.EventStartCondition != nil {
+		if err := s.EventStartCondition.Validate(); err != nil {
+			invalidParams.AddNested("EventStartCondition", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.SegmentStartCondition != nil {
 		if err := s.SegmentStartCondition.Validate(); err != nil {
 			invalidParams.AddNested("SegmentStartCondition", err.(request.ErrInvalidParams))
@@ -30704,6 +30893,12 @@ func (s *StartCondition) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *StartCondition) SetDescription(v string) *StartCondition {
 	s.Description = &v
+	return s
+}
+
+// SetEventStartCondition sets the EventStartCondition field's value.
+func (s *StartCondition) SetEventStartCondition(v *EventStartCondition) *StartCondition {
+	s.EventStartCondition = v
 	return s
 }
 
@@ -34252,14 +34447,14 @@ type WriteApplicationSettingsRequest struct {
 	// Specifies whether to enable application-related alarms in Amazon CloudWatch.
 	CloudWatchMetricsEnabled *bool `type:"boolean"`
 
-	// The default sending limits for campaigns and journeys in the application.
-	// To override these limits and define custom limits for a specific campaign
-	// or journey, use the Campaign resource or the Journey resource, respectively.
+	// The default sending limits for campaigns in the application. To override
+	// these limits and define custom limits for a specific campaign or journey,
+	// use the Campaign resource or the Journey resource, respectively.
 	Limits *CampaignLimits `type:"structure"`
 
-	// The default quiet time for campaigns and journeys in the application. Quiet
-	// time is a specific time range when messages aren't sent to endpoints, if
-	// all the following conditions are met:
+	// The default quiet time for campaigns in the application. Quiet time is a
+	// specific time range when messages aren't sent to endpoints, if all the following
+	// conditions are met:
 	//
 	//    * The EndpointDemographic.Timezone property of the endpoint is set to
 	//    a valid value.
@@ -35004,6 +35199,9 @@ const (
 
 	// CampaignStatusDeleted is a CampaignStatus enum value
 	CampaignStatusDeleted = "DELETED"
+
+	// CampaignStatusInvalid is a CampaignStatus enum value
+	CampaignStatusInvalid = "INVALID"
 )
 
 // CampaignStatus_Values returns all elements of the CampaignStatus enum
@@ -35015,6 +35213,7 @@ func CampaignStatus_Values() []string {
 		CampaignStatusCompleted,
 		CampaignStatusPaused,
 		CampaignStatusDeleted,
+		CampaignStatusInvalid,
 	}
 }
 
