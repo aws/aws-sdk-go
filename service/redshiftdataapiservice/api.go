@@ -20,7 +20,7 @@ const opCancelStatement = "CancelStatement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelStatement for more information on using the CancelStatement
 // API call, and error handling.
@@ -102,7 +102,7 @@ const opDescribeStatement = "DescribeStatement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStatement for more information on using the DescribeStatement
 // API call, and error handling.
@@ -190,7 +190,7 @@ const opDescribeTable = "DescribeTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTable for more information on using the DescribeTable
 // API call, and error handling.
@@ -340,7 +340,7 @@ const opExecuteStatement = "ExecuteStatement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExecuteStatement for more information on using the ExecuteStatement
 // API call, and error handling.
@@ -432,7 +432,7 @@ const opGetStatementResult = "GetStatementResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStatementResult for more information on using the GetStatementResult
 // API call, and error handling.
@@ -576,7 +576,7 @@ const opListDatabases = "ListDatabases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatabases for more information on using the ListDatabases
 // API call, and error handling.
@@ -725,7 +725,7 @@ const opListSchemas = "ListSchemas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSchemas for more information on using the ListSchemas
 // API call, and error handling.
@@ -874,7 +874,7 @@ const opListStatements = "ListStatements"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStatements for more information on using the ListStatements
 // API call, and error handling.
@@ -1015,7 +1015,7 @@ const opListTables = "ListTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTables for more information on using the ListTables
 // API call, and error handling.

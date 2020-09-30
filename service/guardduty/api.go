@@ -21,7 +21,7 @@ const opAcceptInvitation = "AcceptInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptInvitation for more information on using the AcceptInvitation
 // API call, and error handling.
@@ -104,7 +104,7 @@ const opArchiveFindings = "ArchiveFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ArchiveFindings for more information on using the ArchiveFindings
 // API call, and error handling.
@@ -190,7 +190,7 @@ const opCreateDetector = "CreateDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDetector for more information on using the CreateDetector
 // API call, and error handling.
@@ -276,7 +276,7 @@ const opCreateFilter = "CreateFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFilter for more information on using the CreateFilter
 // API call, and error handling.
@@ -358,7 +358,7 @@ const opCreateIPSet = "CreateIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIPSet for more information on using the CreateIPSet
 // API call, and error handling.
@@ -444,7 +444,7 @@ const opCreateMembers = "CreateMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMembers for more information on using the CreateMembers
 // API call, and error handling.
@@ -537,7 +537,7 @@ const opCreatePublishingDestination = "CreatePublishingDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePublishingDestination for more information on using the CreatePublishingDestination
 // API call, and error handling.
@@ -620,7 +620,7 @@ const opCreateSampleFindings = "CreateSampleFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSampleFindings for more information on using the CreateSampleFindings
 // API call, and error handling.
@@ -705,7 +705,7 @@ const opCreateThreatIntelSet = "CreateThreatIntelSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateThreatIntelSet for more information on using the CreateThreatIntelSet
 // API call, and error handling.
@@ -789,7 +789,7 @@ const opDeclineInvitations = "DeclineInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeclineInvitations for more information on using the DeclineInvitations
 // API call, and error handling.
@@ -872,7 +872,7 @@ const opDeleteDetector = "DeleteDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDetector for more information on using the DeleteDetector
 // API call, and error handling.
@@ -955,7 +955,7 @@ const opDeleteFilter = "DeleteFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFilter for more information on using the DeleteFilter
 // API call, and error handling.
@@ -1038,7 +1038,7 @@ const opDeleteIPSet = "DeleteIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIPSet for more information on using the DeleteIPSet
 // API call, and error handling.
@@ -1122,7 +1122,7 @@ const opDeleteInvitations = "DeleteInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInvitations for more information on using the DeleteInvitations
 // API call, and error handling.
@@ -1205,7 +1205,7 @@ const opDeleteMembers = "DeleteMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMembers for more information on using the DeleteMembers
 // API call, and error handling.
@@ -1288,7 +1288,7 @@ const opDeletePublishingDestination = "DeletePublishingDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePublishingDestination for more information on using the DeletePublishingDestination
 // API call, and error handling.
@@ -1371,7 +1371,7 @@ const opDeleteThreatIntelSet = "DeleteThreatIntelSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteThreatIntelSet for more information on using the DeleteThreatIntelSet
 // API call, and error handling.
@@ -1454,7 +1454,7 @@ const opDescribeOrganizationConfiguration = "DescribeOrganizationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationConfiguration for more information on using the DescribeOrganizationConfiguration
 // API call, and error handling.
@@ -1537,7 +1537,7 @@ const opDescribePublishingDestination = "DescribePublishingDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePublishingDestination for more information on using the DescribePublishingDestination
 // API call, and error handling.
@@ -1620,7 +1620,7 @@ const opDisableOrganizationAdminAccount = "DisableOrganizationAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableOrganizationAdminAccount for more information on using the DisableOrganizationAdminAccount
 // API call, and error handling.
@@ -1704,7 +1704,7 @@ const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateFromMasterAccount for more information on using the DisassociateFromMasterAccount
 // API call, and error handling.
@@ -1787,7 +1787,7 @@ const opDisassociateMembers = "DisassociateMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateMembers for more information on using the DisassociateMembers
 // API call, and error handling.
@@ -1870,7 +1870,7 @@ const opEnableOrganizationAdminAccount = "EnableOrganizationAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableOrganizationAdminAccount for more information on using the EnableOrganizationAdminAccount
 // API call, and error handling.
@@ -1954,7 +1954,7 @@ const opGetDetector = "GetDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDetector for more information on using the GetDetector
 // API call, and error handling.
@@ -2036,7 +2036,7 @@ const opGetFilter = "GetFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFilter for more information on using the GetFilter
 // API call, and error handling.
@@ -2118,7 +2118,7 @@ const opGetFindings = "GetFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFindings for more information on using the GetFindings
 // API call, and error handling.
@@ -2200,7 +2200,7 @@ const opGetFindingsStatistics = "GetFindingsStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFindingsStatistics for more information on using the GetFindingsStatistics
 // API call, and error handling.
@@ -2282,7 +2282,7 @@ const opGetIPSet = "GetIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIPSet for more information on using the GetIPSet
 // API call, and error handling.
@@ -2364,7 +2364,7 @@ const opGetInvitationsCount = "GetInvitationsCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInvitationsCount for more information on using the GetInvitationsCount
 // API call, and error handling.
@@ -2447,7 +2447,7 @@ const opGetMasterAccount = "GetMasterAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMasterAccount for more information on using the GetMasterAccount
 // API call, and error handling.
@@ -2530,7 +2530,7 @@ const opGetMemberDetectors = "GetMemberDetectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMemberDetectors for more information on using the GetMemberDetectors
 // API call, and error handling.
@@ -2612,7 +2612,7 @@ const opGetMembers = "GetMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMembers for more information on using the GetMembers
 // API call, and error handling.
@@ -2695,7 +2695,7 @@ const opGetThreatIntelSet = "GetThreatIntelSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetThreatIntelSet for more information on using the GetThreatIntelSet
 // API call, and error handling.
@@ -2777,7 +2777,7 @@ const opGetUsageStatistics = "GetUsageStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUsageStatistics for more information on using the GetUsageStatistics
 // API call, and error handling.
@@ -2922,7 +2922,7 @@ const opInviteMembers = "InviteMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InviteMembers for more information on using the InviteMembers
 // API call, and error handling.
@@ -3007,7 +3007,7 @@ const opListDetectors = "ListDetectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDetectors for more information on using the ListDetectors
 // API call, and error handling.
@@ -3147,7 +3147,7 @@ const opListFilters = "ListFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFilters for more information on using the ListFilters
 // API call, and error handling.
@@ -3287,7 +3287,7 @@ const opListFindings = "ListFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFindings for more information on using the ListFindings
 // API call, and error handling.
@@ -3427,7 +3427,7 @@ const opListIPSets = "ListIPSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIPSets for more information on using the ListIPSets
 // API call, and error handling.
@@ -3569,7 +3569,7 @@ const opListInvitations = "ListInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInvitations for more information on using the ListInvitations
 // API call, and error handling.
@@ -3710,7 +3710,7 @@ const opListMembers = "ListMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMembers for more information on using the ListMembers
 // API call, and error handling.
@@ -3851,7 +3851,7 @@ const opListOrganizationAdminAccounts = "ListOrganizationAdminAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOrganizationAdminAccounts for more information on using the ListOrganizationAdminAccounts
 // API call, and error handling.
@@ -3991,7 +3991,7 @@ const opListPublishingDestinations = "ListPublishingDestinations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPublishingDestinations for more information on using the ListPublishingDestinations
 // API call, and error handling.
@@ -4131,7 +4131,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4216,7 +4216,7 @@ const opListThreatIntelSets = "ListThreatIntelSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListThreatIntelSets for more information on using the ListThreatIntelSets
 // API call, and error handling.
@@ -4358,7 +4358,7 @@ const opStartMonitoringMembers = "StartMonitoringMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMonitoringMembers for more information on using the StartMonitoringMembers
 // API call, and error handling.
@@ -4442,7 +4442,7 @@ const opStopMonitoringMembers = "StopMonitoringMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopMonitoringMembers for more information on using the StopMonitoringMembers
 // API call, and error handling.
@@ -4525,7 +4525,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4608,7 +4608,7 @@ const opUnarchiveFindings = "UnarchiveFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnarchiveFindings for more information on using the UnarchiveFindings
 // API call, and error handling.
@@ -4691,7 +4691,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4774,7 +4774,7 @@ const opUpdateDetector = "UpdateDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDetector for more information on using the UpdateDetector
 // API call, and error handling.
@@ -4857,7 +4857,7 @@ const opUpdateFilter = "UpdateFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFilter for more information on using the UpdateFilter
 // API call, and error handling.
@@ -4939,7 +4939,7 @@ const opUpdateFindingsFeedback = "UpdateFindingsFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFindingsFeedback for more information on using the UpdateFindingsFeedback
 // API call, and error handling.
@@ -5022,7 +5022,7 @@ const opUpdateIPSet = "UpdateIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIPSet for more information on using the UpdateIPSet
 // API call, and error handling.
@@ -5105,7 +5105,7 @@ const opUpdateMemberDetectors = "UpdateMemberDetectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMemberDetectors for more information on using the UpdateMemberDetectors
 // API call, and error handling.
@@ -5187,7 +5187,7 @@ const opUpdateOrganizationConfiguration = "UpdateOrganizationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOrganizationConfiguration for more information on using the UpdateOrganizationConfiguration
 // API call, and error handling.
@@ -5270,7 +5270,7 @@ const opUpdatePublishingDestination = "UpdatePublishingDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePublishingDestination for more information on using the UpdatePublishingDestination
 // API call, and error handling.
@@ -5353,7 +5353,7 @@ const opUpdateThreatIntelSet = "UpdateThreatIntelSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateThreatIntelSet for more information on using the UpdateThreatIntelSet
 // API call, and error handling.

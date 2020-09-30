@@ -21,7 +21,7 @@ const opCreateCachePolicy = "CreateCachePolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCachePolicy for more information on using the CreateCachePolicy
 // API call, and error handling.
@@ -152,7 +152,7 @@ const opCreateCloudFrontOriginAccessIdentity = "CreateCloudFrontOriginAccessIden
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCloudFrontOriginAccessIdentity for more information on using the CreateCloudFrontOriginAccessIdentity
 // API call, and error handling.
@@ -253,7 +253,7 @@ const opCreateDistribution = "CreateDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDistribution for more information on using the CreateDistribution
 // API call, and error handling.
@@ -513,7 +513,7 @@ const opCreateDistributionWithTags = "CreateDistributionWithTags2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDistributionWithTags for more information on using the CreateDistributionWithTags
 // API call, and error handling.
@@ -764,7 +764,7 @@ const opCreateFieldLevelEncryptionConfig = "CreateFieldLevelEncryptionConfig2020
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFieldLevelEncryptionConfig for more information on using the CreateFieldLevelEncryptionConfig
 // API call, and error handling.
@@ -867,7 +867,7 @@ const opCreateFieldLevelEncryptionProfile = "CreateFieldLevelEncryptionProfile20
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFieldLevelEncryptionProfile for more information on using the CreateFieldLevelEncryptionProfile
 // API call, and error handling.
@@ -969,7 +969,7 @@ const opCreateInvalidation = "CreateInvalidation2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInvalidation for more information on using the CreateInvalidation
 // API call, and error handling.
@@ -1068,7 +1068,7 @@ const opCreateMonitoringSubscription = "CreateMonitoringSubscription2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMonitoringSubscription for more information on using the CreateMonitoringSubscription
 // API call, and error handling.
@@ -1155,7 +1155,7 @@ const opCreateOriginRequestPolicy = "CreateOriginRequestPolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOriginRequestPolicy for more information on using the CreateOriginRequestPolicy
 // API call, and error handling.
@@ -1289,7 +1289,7 @@ const opCreatePublicKey = "CreatePublicKey2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePublicKey for more information on using the CreatePublicKey
 // API call, and error handling.
@@ -1376,7 +1376,7 @@ const opCreateRealtimeLogConfig = "CreateRealtimeLogConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRealtimeLogConfig for more information on using the CreateRealtimeLogConfig
 // API call, and error handling.
@@ -1472,7 +1472,7 @@ const opCreateStreamingDistribution = "CreateStreamingDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStreamingDistribution for more information on using the CreateStreamingDistribution
 // API call, and error handling.
@@ -1615,7 +1615,7 @@ const opCreateStreamingDistributionWithTags = "CreateStreamingDistributionWithTa
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStreamingDistributionWithTags for more information on using the CreateStreamingDistributionWithTags
 // API call, and error handling.
@@ -1734,7 +1734,7 @@ const opDeleteCachePolicy = "DeleteCachePolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCachePolicy for more information on using the DeleteCachePolicy
 // API call, and error handling.
@@ -1838,7 +1838,7 @@ const opDeleteCloudFrontOriginAccessIdentity = "DeleteCloudFrontOriginAccessIden
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCloudFrontOriginAccessIdentity for more information on using the DeleteCloudFrontOriginAccessIdentity
 // API call, and error handling.
@@ -1931,7 +1931,7 @@ const opDeleteDistribution = "DeleteDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDistribution for more information on using the DeleteDistribution
 // API call, and error handling.
@@ -2025,7 +2025,7 @@ const opDeleteFieldLevelEncryptionConfig = "DeleteFieldLevelEncryptionConfig2020
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFieldLevelEncryptionConfig for more information on using the DeleteFieldLevelEncryptionConfig
 // API call, and error handling.
@@ -2118,7 +2118,7 @@ const opDeleteFieldLevelEncryptionProfile = "DeleteFieldLevelEncryptionProfile20
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFieldLevelEncryptionProfile for more information on using the DeleteFieldLevelEncryptionProfile
 // API call, and error handling.
@@ -2211,7 +2211,7 @@ const opDeleteMonitoringSubscription = "DeleteMonitoringSubscription2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMonitoringSubscription for more information on using the DeleteMonitoringSubscription
 // API call, and error handling.
@@ -2294,7 +2294,7 @@ const opDeleteOriginRequestPolicy = "DeleteOriginRequestPolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOriginRequestPolicy for more information on using the DeleteOriginRequestPolicy
 // API call, and error handling.
@@ -2399,7 +2399,7 @@ const opDeletePublicKey = "DeletePublicKey2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePublicKey for more information on using the DeletePublicKey
 // API call, and error handling.
@@ -2492,7 +2492,7 @@ const opDeleteRealtimeLogConfig = "DeleteRealtimeLogConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRealtimeLogConfig for more information on using the DeleteRealtimeLogConfig
 // API call, and error handling.
@@ -2588,7 +2588,7 @@ const opDeleteStreamingDistribution = "DeleteStreamingDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStreamingDistribution for more information on using the DeleteStreamingDistribution
 // API call, and error handling.
@@ -2717,7 +2717,7 @@ const opGetCachePolicy = "GetCachePolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCachePolicy for more information on using the GetCachePolicy
 // API call, and error handling.
@@ -2809,7 +2809,7 @@ const opGetCachePolicyConfig = "GetCachePolicyConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCachePolicyConfig for more information on using the GetCachePolicyConfig
 // API call, and error handling.
@@ -2897,7 +2897,7 @@ const opGetCloudFrontOriginAccessIdentity = "GetCloudFrontOriginAccessIdentity20
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCloudFrontOriginAccessIdentity for more information on using the GetCloudFrontOriginAccessIdentity
 // API call, and error handling.
@@ -2979,7 +2979,7 @@ const opGetCloudFrontOriginAccessIdentityConfig = "GetCloudFrontOriginAccessIden
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCloudFrontOriginAccessIdentityConfig for more information on using the GetCloudFrontOriginAccessIdentityConfig
 // API call, and error handling.
@@ -3061,7 +3061,7 @@ const opGetDistribution = "GetDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistribution for more information on using the GetDistribution
 // API call, and error handling.
@@ -3143,7 +3143,7 @@ const opGetDistributionConfig = "GetDistributionConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistributionConfig for more information on using the GetDistributionConfig
 // API call, and error handling.
@@ -3225,7 +3225,7 @@ const opGetFieldLevelEncryption = "GetFieldLevelEncryption2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFieldLevelEncryption for more information on using the GetFieldLevelEncryption
 // API call, and error handling.
@@ -3307,7 +3307,7 @@ const opGetFieldLevelEncryptionConfig = "GetFieldLevelEncryptionConfig2020_05_31
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFieldLevelEncryptionConfig for more information on using the GetFieldLevelEncryptionConfig
 // API call, and error handling.
@@ -3389,7 +3389,7 @@ const opGetFieldLevelEncryptionProfile = "GetFieldLevelEncryptionProfile2020_05_
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFieldLevelEncryptionProfile for more information on using the GetFieldLevelEncryptionProfile
 // API call, and error handling.
@@ -3471,7 +3471,7 @@ const opGetFieldLevelEncryptionProfileConfig = "GetFieldLevelEncryptionProfileCo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFieldLevelEncryptionProfileConfig for more information on using the GetFieldLevelEncryptionProfileConfig
 // API call, and error handling.
@@ -3553,7 +3553,7 @@ const opGetInvalidation = "GetInvalidation2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInvalidation for more information on using the GetInvalidation
 // API call, and error handling.
@@ -3638,7 +3638,7 @@ const opGetMonitoringSubscription = "GetMonitoringSubscription2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMonitoringSubscription for more information on using the GetMonitoringSubscription
 // API call, and error handling.
@@ -3721,7 +3721,7 @@ const opGetOriginRequestPolicy = "GetOriginRequestPolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOriginRequestPolicy for more information on using the GetOriginRequestPolicy
 // API call, and error handling.
@@ -3813,7 +3813,7 @@ const opGetOriginRequestPolicyConfig = "GetOriginRequestPolicyConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOriginRequestPolicyConfig for more information on using the GetOriginRequestPolicyConfig
 // API call, and error handling.
@@ -3901,7 +3901,7 @@ const opGetPublicKey = "GetPublicKey2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPublicKey for more information on using the GetPublicKey
 // API call, and error handling.
@@ -3983,7 +3983,7 @@ const opGetPublicKeyConfig = "GetPublicKeyConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPublicKeyConfig for more information on using the GetPublicKeyConfig
 // API call, and error handling.
@@ -4065,7 +4065,7 @@ const opGetRealtimeLogConfig = "GetRealtimeLogConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRealtimeLogConfig for more information on using the GetRealtimeLogConfig
 // API call, and error handling.
@@ -4152,7 +4152,7 @@ const opGetStreamingDistribution = "GetStreamingDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStreamingDistribution for more information on using the GetStreamingDistribution
 // API call, and error handling.
@@ -4235,7 +4235,7 @@ const opGetStreamingDistributionConfig = "GetStreamingDistributionConfig2020_05_
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStreamingDistributionConfig for more information on using the GetStreamingDistributionConfig
 // API call, and error handling.
@@ -4317,7 +4317,7 @@ const opListCachePolicies = "ListCachePolicies2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCachePolicies for more information on using the ListCachePolicies
 // API call, and error handling.
@@ -4411,7 +4411,7 @@ const opListCloudFrontOriginAccessIdentities = "ListCloudFrontOriginAccessIdenti
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCloudFrontOriginAccessIdentities for more information on using the ListCloudFrontOriginAccessIdentities
 // API call, and error handling.
@@ -4548,7 +4548,7 @@ const opListDistributions = "ListDistributions2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDistributions for more information on using the ListDistributions
 // API call, and error handling.
@@ -4685,7 +4685,7 @@ const opListDistributionsByCachePolicyId = "ListDistributionsByCachePolicyId2020
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDistributionsByCachePolicyId for more information on using the ListDistributionsByCachePolicyId
 // API call, and error handling.
@@ -4777,7 +4777,7 @@ const opListDistributionsByOriginRequestPolicyId = "ListDistributionsByOriginReq
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDistributionsByOriginRequestPolicyId for more information on using the ListDistributionsByOriginRequestPolicyId
 // API call, and error handling.
@@ -4869,7 +4869,7 @@ const opListDistributionsByRealtimeLogConfig = "ListDistributionsByRealtimeLogCo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDistributionsByRealtimeLogConfig for more information on using the ListDistributionsByRealtimeLogConfig
 // API call, and error handling.
@@ -4960,7 +4960,7 @@ const opListDistributionsByWebACLId = "ListDistributionsByWebACLId2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDistributionsByWebACLId for more information on using the ListDistributionsByWebACLId
 // API call, and error handling.
@@ -5045,7 +5045,7 @@ const opListFieldLevelEncryptionConfigs = "ListFieldLevelEncryptionConfigs2020_0
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFieldLevelEncryptionConfigs for more information on using the ListFieldLevelEncryptionConfigs
 // API call, and error handling.
@@ -5125,7 +5125,7 @@ const opListFieldLevelEncryptionProfiles = "ListFieldLevelEncryptionProfiles2020
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFieldLevelEncryptionProfiles for more information on using the ListFieldLevelEncryptionProfiles
 // API call, and error handling.
@@ -5205,7 +5205,7 @@ const opListInvalidations = "ListInvalidations2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInvalidations for more information on using the ListInvalidations
 // API call, and error handling.
@@ -5348,7 +5348,7 @@ const opListOriginRequestPolicies = "ListOriginRequestPolicies2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOriginRequestPolicies for more information on using the ListOriginRequestPolicies
 // API call, and error handling.
@@ -5442,7 +5442,7 @@ const opListPublicKeys = "ListPublicKeys2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPublicKeys for more information on using the ListPublicKeys
 // API call, and error handling.
@@ -5521,7 +5521,7 @@ const opListRealtimeLogConfigs = "ListRealtimeLogConfigs2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRealtimeLogConfigs for more information on using the ListRealtimeLogConfigs
 // API call, and error handling.
@@ -5601,7 +5601,7 @@ const opListStreamingDistributions = "ListStreamingDistributions2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreamingDistributions for more information on using the ListStreamingDistributions
 // API call, and error handling.
@@ -5738,7 +5738,7 @@ const opListTagsForResource = "ListTagsForResource2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -5826,7 +5826,7 @@ const opTagResource = "TagResource2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5915,7 +5915,7 @@ const opUntagResource = "UntagResource2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -6004,7 +6004,7 @@ const opUpdateCachePolicy = "UpdateCachePolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCachePolicy for more information on using the UpdateCachePolicy
 // API call, and error handling.
@@ -6133,7 +6133,7 @@ const opUpdateCloudFrontOriginAccessIdentity = "UpdateCloudFrontOriginAccessIden
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCloudFrontOriginAccessIdentity for more information on using the UpdateCloudFrontOriginAccessIdentity
 // API call, and error handling.
@@ -6235,7 +6235,7 @@ const opUpdateDistribution = "UpdateDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDistribution for more information on using the UpdateDistribution
 // API call, and error handling.
@@ -6543,7 +6543,7 @@ const opUpdateFieldLevelEncryptionConfig = "UpdateFieldLevelEncryptionConfig2020
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFieldLevelEncryptionConfig for more information on using the UpdateFieldLevelEncryptionConfig
 // API call, and error handling.
@@ -6655,7 +6655,7 @@ const opUpdateFieldLevelEncryptionProfile = "UpdateFieldLevelEncryptionProfile20
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFieldLevelEncryptionProfile for more information on using the UpdateFieldLevelEncryptionProfile
 // API call, and error handling.
@@ -6770,7 +6770,7 @@ const opUpdateOriginRequestPolicy = "UpdateOriginRequestPolicy2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOriginRequestPolicy for more information on using the UpdateOriginRequestPolicy
 // API call, and error handling.
@@ -6900,7 +6900,7 @@ const opUpdatePublicKey = "UpdatePublicKey2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePublicKey for more information on using the UpdatePublicKey
 // API call, and error handling.
@@ -6999,7 +6999,7 @@ const opUpdateRealtimeLogConfig = "UpdateRealtimeLogConfig2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRealtimeLogConfig for more information on using the UpdateRealtimeLogConfig
 // API call, and error handling.
@@ -7096,7 +7096,7 @@ const opUpdateStreamingDistribution = "UpdateStreamingDistribution2020_05_31"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateStreamingDistribution for more information on using the UpdateStreamingDistribution
 // API call, and error handling.

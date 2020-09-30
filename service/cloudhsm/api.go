@@ -19,7 +19,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateHapg = "CreateHapg"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHapg for more information on using the CreateHapg
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opCreateHsm = "CreateHsm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHsm for more information on using the CreateHsm
 // API call, and error handling.
@@ -314,7 +314,7 @@ const opCreateLunaClient = "CreateLunaClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLunaClient for more information on using the CreateLunaClient
 // API call, and error handling.
@@ -408,7 +408,7 @@ const opDeleteHapg = "DeleteHapg"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHapg for more information on using the DeleteHapg
 // API call, and error handling.
@@ -502,7 +502,7 @@ const opDeleteHsm = "DeleteHsm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHsm for more information on using the DeleteHsm
 // API call, and error handling.
@@ -597,7 +597,7 @@ const opDeleteLunaClient = "DeleteLunaClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLunaClient for more information on using the DeleteLunaClient
 // API call, and error handling.
@@ -691,7 +691,7 @@ const opDescribeHapg = "DescribeHapg"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHapg for more information on using the DescribeHapg
 // API call, and error handling.
@@ -785,7 +785,7 @@ const opDescribeHsm = "DescribeHsm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHsm for more information on using the DescribeHsm
 // API call, and error handling.
@@ -880,7 +880,7 @@ const opDescribeLunaClient = "DescribeLunaClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLunaClient for more information on using the DescribeLunaClient
 // API call, and error handling.
@@ -974,7 +974,7 @@ const opGetConfig = "GetConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConfig for more information on using the GetConfig
 // API call, and error handling.
@@ -1069,7 +1069,7 @@ const opListAvailableZones = "ListAvailableZones"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAvailableZones for more information on using the ListAvailableZones
 // API call, and error handling.
@@ -1163,7 +1163,7 @@ const opListHapgs = "ListHapgs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHapgs for more information on using the ListHapgs
 // API call, and error handling.
@@ -1262,7 +1262,7 @@ const opListHsms = "ListHsms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHsms for more information on using the ListHsms
 // API call, and error handling.
@@ -1362,7 +1362,7 @@ const opListLunaClients = "ListLunaClients"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLunaClients for more information on using the ListLunaClients
 // API call, and error handling.
@@ -1461,7 +1461,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1555,7 +1555,7 @@ const opModifyHapg = "ModifyHapg"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyHapg for more information on using the ModifyHapg
 // API call, and error handling.
@@ -1649,7 +1649,7 @@ const opModifyHsm = "ModifyHsm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyHsm for more information on using the ModifyHsm
 // API call, and error handling.
@@ -1749,7 +1749,7 @@ const opModifyLunaClient = "ModifyLunaClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyLunaClient for more information on using the ModifyLunaClient
 // API call, and error handling.
@@ -1840,7 +1840,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.

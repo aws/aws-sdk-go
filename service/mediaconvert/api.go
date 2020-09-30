@@ -21,7 +21,7 @@ const opAssociateCertificate = "AssociateCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateCertificate for more information on using the AssociateCertificate
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opCancelJob = "CancelJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelJob for more information on using the CancelJob
 // API call, and error handling.
@@ -201,7 +201,7 @@ const opCreateJob = "CreateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJob for more information on using the CreateJob
 // API call, and error handling.
@@ -290,7 +290,7 @@ const opCreateJobTemplate = "CreateJobTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJobTemplate for more information on using the CreateJobTemplate
 // API call, and error handling.
@@ -379,7 +379,7 @@ const opCreatePreset = "CreatePreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePreset for more information on using the CreatePreset
 // API call, and error handling.
@@ -468,7 +468,7 @@ const opCreateQueue = "CreateQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateQueue for more information on using the CreateQueue
 // API call, and error handling.
@@ -557,7 +557,7 @@ const opDeleteJobTemplate = "DeleteJobTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteJobTemplate for more information on using the DeleteJobTemplate
 // API call, and error handling.
@@ -646,7 +646,7 @@ const opDeletePreset = "DeletePreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePreset for more information on using the DeletePreset
 // API call, and error handling.
@@ -735,7 +735,7 @@ const opDeleteQueue = "DeleteQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteQueue for more information on using the DeleteQueue
 // API call, and error handling.
@@ -824,7 +824,7 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoints for more information on using the DescribeEndpoints
 // API call, and error handling.
@@ -971,7 +971,7 @@ const opDisassociateCertificate = "DisassociateCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateCertificate for more information on using the DisassociateCertificate
 // API call, and error handling.
@@ -1061,7 +1061,7 @@ const opGetJob = "GetJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJob for more information on using the GetJob
 // API call, and error handling.
@@ -1149,7 +1149,7 @@ const opGetJobTemplate = "GetJobTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobTemplate for more information on using the GetJobTemplate
 // API call, and error handling.
@@ -1237,7 +1237,7 @@ const opGetPreset = "GetPreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPreset for more information on using the GetPreset
 // API call, and error handling.
@@ -1325,7 +1325,7 @@ const opGetQueue = "GetQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueue for more information on using the GetQueue
 // API call, and error handling.
@@ -1413,7 +1413,7 @@ const opListJobTemplates = "ListJobTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobTemplates for more information on using the ListJobTemplates
 // API call, and error handling.
@@ -1561,7 +1561,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -1710,7 +1710,7 @@ const opListPresets = "ListPresets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPresets for more information on using the ListPresets
 // API call, and error handling.
@@ -1858,7 +1858,7 @@ const opListQueues = "ListQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQueues for more information on using the ListQueues
 // API call, and error handling.
@@ -2006,7 +2006,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2094,7 +2094,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2184,7 +2184,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2274,7 +2274,7 @@ const opUpdateJobTemplate = "UpdateJobTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJobTemplate for more information on using the UpdateJobTemplate
 // API call, and error handling.
@@ -2362,7 +2362,7 @@ const opUpdatePreset = "UpdatePreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePreset for more information on using the UpdatePreset
 // API call, and error handling.
@@ -2450,7 +2450,7 @@ const opUpdateQueue = "UpdateQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateQueue for more information on using the UpdateQueue
 // API call, and error handling.

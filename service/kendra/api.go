@@ -21,7 +21,7 @@ const opBatchDeleteDocument = "BatchDeleteDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteDocument for more information on using the BatchDeleteDocument
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opBatchPutDocument = "BatchPutDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchPutDocument for more information on using the BatchPutDocument
 // API call, and error handling.
@@ -214,7 +214,7 @@ const opCreateDataSource = "CreateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSource for more information on using the CreateDataSource
 // API call, and error handling.
@@ -313,7 +313,7 @@ const opCreateFaq = "CreateFaq"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFaq for more information on using the CreateFaq
 // API call, and error handling.
@@ -403,7 +403,7 @@ const opCreateIndex = "CreateIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIndex for more information on using the CreateIndex
 // API call, and error handling.
@@ -499,7 +499,7 @@ const opDeleteDataSource = "DeleteDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataSource for more information on using the DeleteDataSource
 // API call, and error handling.
@@ -591,7 +591,7 @@ const opDeleteFaq = "DeleteFaq"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFaq for more information on using the DeleteFaq
 // API call, and error handling.
@@ -680,7 +680,7 @@ const opDeleteIndex = "DeleteIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIndex for more information on using the DeleteIndex
 // API call, and error handling.
@@ -771,7 +771,7 @@ const opDescribeDataSource = "DescribeDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataSource for more information on using the DescribeDataSource
 // API call, and error handling.
@@ -857,7 +857,7 @@ const opDescribeFaq = "DescribeFaq"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFaq for more information on using the DescribeFaq
 // API call, and error handling.
@@ -943,7 +943,7 @@ const opDescribeIndex = "DescribeIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIndex for more information on using the DescribeIndex
 // API call, and error handling.
@@ -1029,7 +1029,7 @@ const opListDataSourceSyncJobs = "ListDataSourceSyncJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSourceSyncJobs for more information on using the ListDataSourceSyncJobs
 // API call, and error handling.
@@ -1175,7 +1175,7 @@ const opListDataSources = "ListDataSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSources for more information on using the ListDataSources
 // API call, and error handling.
@@ -1319,7 +1319,7 @@ const opListFaqs = "ListFaqs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFaqs for more information on using the ListFaqs
 // API call, and error handling.
@@ -1405,7 +1405,7 @@ const opListIndices = "ListIndices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIndices for more information on using the ListIndices
 // API call, and error handling.
@@ -1547,7 +1547,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1634,7 +1634,7 @@ const opQuery = "Query"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Query for more information on using the Query
 // API call, and error handling.
@@ -1743,7 +1743,7 @@ const opStartDataSourceSyncJob = "StartDataSourceSyncJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDataSourceSyncJob for more information on using the StartDataSourceSyncJob
 // API call, and error handling.
@@ -1834,7 +1834,7 @@ const opStopDataSourceSyncJob = "StopDataSourceSyncJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDataSourceSyncJob for more information on using the StopDataSourceSyncJob
 // API call, and error handling.
@@ -1922,7 +1922,7 @@ const opSubmitFeedback = "SubmitFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubmitFeedback for more information on using the SubmitFeedback
 // API call, and error handling.
@@ -2012,7 +2012,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2100,7 +2100,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2187,7 +2187,7 @@ const opUpdateDataSource = "UpdateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSource for more information on using the UpdateDataSource
 // API call, and error handling.
@@ -2276,7 +2276,7 @@ const opUpdateIndex = "UpdateIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIndex for more information on using the UpdateIndex
 // API call, and error handling.

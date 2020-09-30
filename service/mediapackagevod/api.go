@@ -20,7 +20,7 @@ const opCreateAsset = "CreateAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAsset for more information on using the CreateAsset
 // API call, and error handling.
@@ -108,7 +108,7 @@ const opCreatePackagingConfiguration = "CreatePackagingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePackagingConfiguration for more information on using the CreatePackagingConfiguration
 // API call, and error handling.
@@ -196,7 +196,7 @@ const opCreatePackagingGroup = "CreatePackagingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePackagingGroup for more information on using the CreatePackagingGroup
 // API call, and error handling.
@@ -284,7 +284,7 @@ const opDeleteAsset = "DeleteAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAsset for more information on using the DeleteAsset
 // API call, and error handling.
@@ -373,7 +373,7 @@ const opDeletePackagingConfiguration = "DeletePackagingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePackagingConfiguration for more information on using the DeletePackagingConfiguration
 // API call, and error handling.
@@ -462,7 +462,7 @@ const opDeletePackagingGroup = "DeletePackagingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePackagingGroup for more information on using the DeletePackagingGroup
 // API call, and error handling.
@@ -551,7 +551,7 @@ const opDescribeAsset = "DescribeAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAsset for more information on using the DescribeAsset
 // API call, and error handling.
@@ -639,7 +639,7 @@ const opDescribePackagingConfiguration = "DescribePackagingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePackagingConfiguration for more information on using the DescribePackagingConfiguration
 // API call, and error handling.
@@ -727,7 +727,7 @@ const opDescribePackagingGroup = "DescribePackagingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePackagingGroup for more information on using the DescribePackagingGroup
 // API call, and error handling.
@@ -815,7 +815,7 @@ const opListAssets = "ListAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssets for more information on using the ListAssets
 // API call, and error handling.
@@ -961,7 +961,7 @@ const opListPackagingConfigurations = "ListPackagingConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackagingConfigurations for more information on using the ListPackagingConfigurations
 // API call, and error handling.
@@ -1107,7 +1107,7 @@ const opListPackagingGroups = "ListPackagingGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackagingGroups for more information on using the ListPackagingGroups
 // API call, and error handling.
@@ -1253,7 +1253,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1327,7 +1327,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1403,7 +1403,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1479,7 +1479,7 @@ const opUpdatePackagingGroup = "UpdatePackagingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePackagingGroup for more information on using the UpdatePackagingGroup
 // API call, and error handling.

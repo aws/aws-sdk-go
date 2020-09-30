@@ -21,7 +21,7 @@ const opAbortEnvironmentUpdate = "AbortEnvironmentUpdate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AbortEnvironmentUpdate for more information on using the AbortEnvironmentUpdate
 // API call, and error handling.
@@ -103,7 +103,7 @@ const opApplyEnvironmentManagedAction = "ApplyEnvironmentManagedAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApplyEnvironmentManagedAction for more information on using the ApplyEnvironmentManagedAction
 // API call, and error handling.
@@ -187,7 +187,7 @@ const opAssociateEnvironmentOperationsRole = "AssociateEnvironmentOperationsRole
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateEnvironmentOperationsRole for more information on using the AssociateEnvironmentOperationsRole
 // API call, and error handling.
@@ -272,7 +272,7 @@ const opCheckDNSAvailability = "CheckDNSAvailability"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CheckDNSAvailability for more information on using the CheckDNSAvailability
 // API call, and error handling.
@@ -346,7 +346,7 @@ const opComposeEnvironments = "ComposeEnvironments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ComposeEnvironments for more information on using the ComposeEnvironments
 // API call, and error handling.
@@ -435,7 +435,7 @@ const opCreateApplication = "CreateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplication for more information on using the CreateApplication
 // API call, and error handling.
@@ -515,7 +515,7 @@ const opCreateApplicationVersion = "CreateApplicationVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplicationVersion for more information on using the CreateApplicationVersion
 // API call, and error handling.
@@ -630,7 +630,7 @@ const opCreateConfigurationTemplate = "CreateConfigurationTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationTemplate for more information on using the CreateConfigurationTemplate
 // API call, and error handling.
@@ -731,7 +731,7 @@ const opCreateEnvironment = "CreateEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEnvironment for more information on using the CreateEnvironment
 // API call, and error handling.
@@ -815,7 +815,7 @@ const opCreatePlatformVersion = "CreatePlatformVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePlatformVersion for more information on using the CreatePlatformVersion
 // API call, and error handling.
@@ -902,7 +902,7 @@ const opCreateStorageLocation = "CreateStorageLocation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStorageLocation for more information on using the CreateStorageLocation
 // API call, and error handling.
@@ -992,7 +992,7 @@ const opDeleteApplication = "DeleteApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplication for more information on using the DeleteApplication
 // API call, and error handling.
@@ -1077,7 +1077,7 @@ const opDeleteApplicationVersion = "DeleteApplicationVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplicationVersion for more information on using the DeleteApplicationVersion
 // API call, and error handling.
@@ -1179,7 +1179,7 @@ const opDeleteConfigurationTemplate = "DeleteConfigurationTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationTemplate for more information on using the DeleteConfigurationTemplate
 // API call, and error handling.
@@ -1264,7 +1264,7 @@ const opDeleteEnvironmentConfiguration = "DeleteEnvironmentConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEnvironmentConfiguration for more information on using the DeleteEnvironmentConfiguration
 // API call, and error handling.
@@ -1346,7 +1346,7 @@ const opDeletePlatformVersion = "DeletePlatformVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePlatformVersion for more information on using the DeletePlatformVersion
 // API call, and error handling.
@@ -1437,7 +1437,7 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountAttributes for more information on using the DescribeAccountAttributes
 // API call, and error handling.
@@ -1520,7 +1520,7 @@ const opDescribeApplicationVersions = "DescribeApplicationVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApplicationVersions for more information on using the DescribeApplicationVersions
 // API call, and error handling.
@@ -1594,7 +1594,7 @@ const opDescribeApplications = "DescribeApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApplications for more information on using the DescribeApplications
 // API call, and error handling.
@@ -1668,7 +1668,7 @@ const opDescribeConfigurationOptions = "DescribeConfigurationOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationOptions for more information on using the DescribeConfigurationOptions
 // API call, and error handling.
@@ -1751,7 +1751,7 @@ const opDescribeConfigurationSettings = "DescribeConfigurationSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationSettings for more information on using the DescribeConfigurationSettings
 // API call, and error handling.
@@ -1842,7 +1842,7 @@ const opDescribeEnvironmentHealth = "DescribeEnvironmentHealth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironmentHealth for more information on using the DescribeEnvironmentHealth
 // API call, and error handling.
@@ -1927,7 +1927,7 @@ const opDescribeEnvironmentManagedActionHistory = "DescribeEnvironmentManagedAct
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironmentManagedActionHistory for more information on using the DescribeEnvironmentManagedActionHistory
 // API call, and error handling.
@@ -2064,7 +2064,7 @@ const opDescribeEnvironmentManagedActions = "DescribeEnvironmentManagedActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironmentManagedActions for more information on using the DescribeEnvironmentManagedActions
 // API call, and error handling.
@@ -2143,7 +2143,7 @@ const opDescribeEnvironmentResources = "DescribeEnvironmentResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironmentResources for more information on using the DescribeEnvironmentResources
 // API call, and error handling.
@@ -2223,7 +2223,7 @@ const opDescribeEnvironments = "DescribeEnvironments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironments for more information on using the DescribeEnvironments
 // API call, and error handling.
@@ -2297,7 +2297,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -2431,7 +2431,7 @@ const opDescribeInstancesHealth = "DescribeInstancesHealth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstancesHealth for more information on using the DescribeInstancesHealth
 // API call, and error handling.
@@ -2515,7 +2515,7 @@ const opDescribePlatformVersion = "DescribePlatformVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePlatformVersion for more information on using the DescribePlatformVersion
 // API call, and error handling.
@@ -2602,7 +2602,7 @@ const opDisassociateEnvironmentOperationsRole = "DisassociateEnvironmentOperatio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateEnvironmentOperationsRole for more information on using the DisassociateEnvironmentOperationsRole
 // API call, and error handling.
@@ -2687,7 +2687,7 @@ const opListAvailableSolutionStacks = "ListAvailableSolutionStacks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAvailableSolutionStacks for more information on using the ListAvailableSolutionStacks
 // API call, and error handling.
@@ -2762,7 +2762,7 @@ const opListPlatformBranches = "ListPlatformBranches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPlatformBranches for more information on using the ListPlatformBranches
 // API call, and error handling.
@@ -2898,7 +2898,7 @@ const opListPlatformVersions = "ListPlatformVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPlatformVersions for more information on using the ListPlatformVersions
 // API call, and error handling.
@@ -3044,7 +3044,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3135,7 +3135,7 @@ const opRebuildEnvironment = "RebuildEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebuildEnvironment for more information on using the RebuildEnvironment
 // API call, and error handling.
@@ -3217,7 +3217,7 @@ const opRequestEnvironmentInfo = "RequestEnvironmentInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RequestEnvironmentInfo for more information on using the RequestEnvironmentInfo
 // API call, and error handling.
@@ -3306,7 +3306,7 @@ const opRestartAppServer = "RestartAppServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestartAppServer for more information on using the RestartAppServer
 // API call, and error handling.
@@ -3382,7 +3382,7 @@ const opRetrieveEnvironmentInfo = "RetrieveEnvironmentInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetrieveEnvironmentInfo for more information on using the RetrieveEnvironmentInfo
 // API call, and error handling.
@@ -3460,7 +3460,7 @@ const opSwapEnvironmentCNAMEs = "SwapEnvironmentCNAMEs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SwapEnvironmentCNAMEs for more information on using the SwapEnvironmentCNAMEs
 // API call, and error handling.
@@ -3535,7 +3535,7 @@ const opTerminateEnvironment = "TerminateEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateEnvironment for more information on using the TerminateEnvironment
 // API call, and error handling.
@@ -3615,7 +3615,7 @@ const opUpdateApplication = "UpdateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplication for more information on using the UpdateApplication
 // API call, and error handling.
@@ -3692,7 +3692,7 @@ const opUpdateApplicationResourceLifecycle = "UpdateApplicationResourceLifecycle
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplicationResourceLifecycle for more information on using the UpdateApplicationResourceLifecycle
 // API call, and error handling.
@@ -3772,7 +3772,7 @@ const opUpdateApplicationVersion = "UpdateApplicationVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplicationVersion for more information on using the UpdateApplicationVersion
 // API call, and error handling.
@@ -3849,7 +3849,7 @@ const opUpdateConfigurationTemplate = "UpdateConfigurationTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationTemplate for more information on using the UpdateConfigurationTemplate
 // API call, and error handling.
@@ -3940,7 +3940,7 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEnvironment for more information on using the UpdateEnvironment
 // API call, and error handling.
@@ -4033,7 +4033,7 @@ const opUpdateTagsForResource = "UpdateTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTagsForResource for more information on using the UpdateTagsForResource
 // API call, and error handling.
@@ -4153,7 +4153,7 @@ const opValidateConfigurationSettings = "ValidateConfigurationSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ValidateConfigurationSettings for more information on using the ValidateConfigurationSettings
 // API call, and error handling.

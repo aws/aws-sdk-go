@@ -21,7 +21,7 @@ const opBatchPutMessage = "BatchPutMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchPutMessage for more information on using the BatchPutMessage
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opCancelPipelineReprocessing = "CancelPipelineReprocessing"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelPipelineReprocessing for more information on using the CancelPipelineReprocessing
 // API call, and error handling.
@@ -204,7 +204,7 @@ const opCreateChannel = "CreateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateChannel for more information on using the CreateChannel
 // API call, and error handling.
@@ -299,7 +299,7 @@ const opCreateDataset = "CreateDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataset for more information on using the CreateDataset
 // API call, and error handling.
@@ -397,7 +397,7 @@ const opCreateDatasetContent = "CreateDatasetContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatasetContent for more information on using the CreateDatasetContent
 // API call, and error handling.
@@ -489,7 +489,7 @@ const opCreateDatastore = "CreateDatastore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatastore for more information on using the CreateDatastore
 // API call, and error handling.
@@ -583,7 +583,7 @@ const opCreatePipeline = "CreatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePipeline for more information on using the CreatePipeline
 // API call, and error handling.
@@ -680,7 +680,7 @@ const opDeleteChannel = "DeleteChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteChannel for more information on using the DeleteChannel
 // API call, and error handling.
@@ -772,7 +772,7 @@ const opDeleteDataset = "DeleteDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataset for more information on using the DeleteDataset
 // API call, and error handling.
@@ -867,7 +867,7 @@ const opDeleteDatasetContent = "DeleteDatasetContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatasetContent for more information on using the DeleteDatasetContent
 // API call, and error handling.
@@ -959,7 +959,7 @@ const opDeleteDatastore = "DeleteDatastore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatastore for more information on using the DeleteDatastore
 // API call, and error handling.
@@ -1051,7 +1051,7 @@ const opDeletePipeline = "DeletePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePipeline for more information on using the DeletePipeline
 // API call, and error handling.
@@ -1143,7 +1143,7 @@ const opDescribeChannel = "DescribeChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeChannel for more information on using the DescribeChannel
 // API call, and error handling.
@@ -1234,7 +1234,7 @@ const opDescribeDataset = "DescribeDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataset for more information on using the DescribeDataset
 // API call, and error handling.
@@ -1325,7 +1325,7 @@ const opDescribeDatastore = "DescribeDatastore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDatastore for more information on using the DescribeDatastore
 // API call, and error handling.
@@ -1416,7 +1416,7 @@ const opDescribeLoggingOptions = "DescribeLoggingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoggingOptions for more information on using the DescribeLoggingOptions
 // API call, and error handling.
@@ -1507,7 +1507,7 @@ const opDescribePipeline = "DescribePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePipeline for more information on using the DescribePipeline
 // API call, and error handling.
@@ -1598,7 +1598,7 @@ const opGetDatasetContent = "GetDatasetContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDatasetContent for more information on using the GetDatasetContent
 // API call, and error handling.
@@ -1689,7 +1689,7 @@ const opListChannels = "ListChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChannels for more information on using the ListChannels
 // API call, and error handling.
@@ -1835,7 +1835,7 @@ const opListDatasetContents = "ListDatasetContents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasetContents for more information on using the ListDatasetContents
 // API call, and error handling.
@@ -1984,7 +1984,7 @@ const opListDatasets = "ListDatasets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasets for more information on using the ListDatasets
 // API call, and error handling.
@@ -2130,7 +2130,7 @@ const opListDatastores = "ListDatastores"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatastores for more information on using the ListDatastores
 // API call, and error handling.
@@ -2276,7 +2276,7 @@ const opListPipelines = "ListPipelines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPipelines for more information on using the ListPipelines
 // API call, and error handling.
@@ -2422,7 +2422,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2516,7 +2516,7 @@ const opPutLoggingOptions = "PutLoggingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLoggingOptions for more information on using the PutLoggingOptions
 // API call, and error handling.
@@ -2611,7 +2611,7 @@ const opRunPipelineActivity = "RunPipelineActivity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RunPipelineActivity for more information on using the RunPipelineActivity
 // API call, and error handling.
@@ -2699,7 +2699,7 @@ const opSampleChannelData = "SampleChannelData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SampleChannelData for more information on using the SampleChannelData
 // API call, and error handling.
@@ -2791,7 +2791,7 @@ const opStartPipelineReprocessing = "StartPipelineReprocessing"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartPipelineReprocessing for more information on using the StartPipelineReprocessing
 // API call, and error handling.
@@ -2885,7 +2885,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2981,7 +2981,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3076,7 +3076,7 @@ const opUpdateChannel = "UpdateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateChannel for more information on using the UpdateChannel
 // API call, and error handling.
@@ -3168,7 +3168,7 @@ const opUpdateDataset = "UpdateDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataset for more information on using the UpdateDataset
 // API call, and error handling.
@@ -3260,7 +3260,7 @@ const opUpdateDatastore = "UpdateDatastore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDatastore for more information on using the UpdateDatastore
 // API call, and error handling.
@@ -3352,7 +3352,7 @@ const opUpdatePipeline = "UpdatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePipeline for more information on using the UpdatePipeline
 // API call, and error handling.

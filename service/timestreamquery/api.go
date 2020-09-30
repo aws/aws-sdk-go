@@ -23,7 +23,7 @@ const opCancelQuery = "CancelQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelQuery for more information on using the CancelQuery
 // API call, and error handling.
@@ -142,7 +142,7 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoints for more information on using the DescribeEndpoints
 // API call, and error handling.
@@ -313,7 +313,7 @@ const opQuery = "Query"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Query for more information on using the Query
 // API call, and error handling.

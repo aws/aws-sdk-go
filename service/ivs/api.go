@@ -21,7 +21,7 @@ const opBatchGetChannel = "BatchGetChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetChannel for more information on using the BatchGetChannel
 // API call, and error handling.
@@ -95,7 +95,7 @@ const opBatchGetStreamKey = "BatchGetStreamKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetStreamKey for more information on using the BatchGetStreamKey
 // API call, and error handling.
@@ -169,7 +169,7 @@ const opCreateChannel = "CreateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateChannel for more information on using the CreateChannel
 // API call, and error handling.
@@ -253,7 +253,7 @@ const opCreateStreamKey = "CreateStreamKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStreamKey for more information on using the CreateStreamKey
 // API call, and error handling.
@@ -345,7 +345,7 @@ const opDeleteChannel = "DeleteChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteChannel for more information on using the DeleteChannel
 // API call, and error handling.
@@ -432,7 +432,7 @@ const opDeletePlaybackKeyPair = "DeletePlaybackKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePlaybackKeyPair for more information on using the DeletePlaybackKeyPair
 // API call, and error handling.
@@ -518,7 +518,7 @@ const opDeleteStreamKey = "DeleteStreamKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStreamKey for more information on using the DeleteStreamKey
 // API call, and error handling.
@@ -604,7 +604,7 @@ const opGetChannel = "GetChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetChannel for more information on using the GetChannel
 // API call, and error handling.
@@ -686,7 +686,7 @@ const opGetPlaybackKeyPair = "GetPlaybackKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPlaybackKeyPair for more information on using the GetPlaybackKeyPair
 // API call, and error handling.
@@ -770,7 +770,7 @@ const opGetStream = "GetStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStream for more information on using the GetStream
 // API call, and error handling.
@@ -854,7 +854,7 @@ const opGetStreamKey = "GetStreamKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStreamKey for more information on using the GetStreamKey
 // API call, and error handling.
@@ -936,7 +936,7 @@ const opImportPlaybackKeyPair = "ImportPlaybackKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportPlaybackKeyPair for more information on using the ImportPlaybackKeyPair
 // API call, and error handling.
@@ -1024,7 +1024,7 @@ const opListChannels = "ListChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChannels for more information on using the ListChannels
 // API call, and error handling.
@@ -1164,7 +1164,7 @@ const opListPlaybackKeyPairs = "ListPlaybackKeyPairs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPlaybackKeyPairs for more information on using the ListPlaybackKeyPairs
 // API call, and error handling.
@@ -1302,7 +1302,7 @@ const opListStreamKeys = "ListStreamKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreamKeys for more information on using the ListStreamKeys
 // API call, and error handling.
@@ -1442,7 +1442,7 @@ const opListStreams = "ListStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreams for more information on using the ListStreams
 // API call, and error handling.
@@ -1579,7 +1579,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1719,7 +1719,7 @@ const opPutMetadata = "PutMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutMetadata for more information on using the PutMetadata
 // API call, and error handling.
@@ -1808,7 +1808,7 @@ const opStopStream = "StopStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopStream for more information on using the StopStream
 // API call, and error handling.
@@ -1900,7 +1900,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1983,7 +1983,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2066,7 +2066,7 @@ const opUpdateChannel = "UpdateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateChannel for more information on using the UpdateChannel
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opAssociateVPCWithHostedZone = "AssociateVPCWithHostedZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateVPCWithHostedZone for more information on using the AssociateVPCWithHostedZone
 // API call, and error handling.
@@ -160,7 +160,7 @@ const opChangeResourceRecordSets = "ChangeResourceRecordSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ChangeResourceRecordSets for more information on using the ChangeResourceRecordSets
 // API call, and error handling.
@@ -337,7 +337,7 @@ const opChangeTagsForResource = "ChangeTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ChangeTagsForResource for more information on using the ChangeTagsForResource
 // API call, and error handling.
@@ -437,7 +437,7 @@ const opCreateHealthCheck = "CreateHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHealthCheck for more information on using the CreateHealthCheck
 // API call, and error handling.
@@ -575,7 +575,7 @@ const opCreateHostedZone = "CreateHostedZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHostedZone for more information on using the CreateHostedZone
 // API call, and error handling.
@@ -752,7 +752,7 @@ const opCreateQueryLoggingConfig = "CreateQueryLoggingConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateQueryLoggingConfig for more information on using the CreateQueryLoggingConfig
 // API call, and error handling.
@@ -960,7 +960,7 @@ const opCreateReusableDelegationSet = "CreateReusableDelegationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReusableDelegationSet for more information on using the CreateReusableDelegationSet
 // API call, and error handling.
@@ -1116,7 +1116,7 @@ const opCreateTrafficPolicy = "CreateTrafficPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrafficPolicy for more information on using the CreateTrafficPolicy
 // API call, and error handling.
@@ -1216,7 +1216,7 @@ const opCreateTrafficPolicyInstance = "CreateTrafficPolicyInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrafficPolicyInstance for more information on using the CreateTrafficPolicyInstance
 // API call, and error handling.
@@ -1322,7 +1322,7 @@ const opCreateTrafficPolicyVersion = "CreateTrafficPolicyVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrafficPolicyVersion for more information on using the CreateTrafficPolicyVersion
 // API call, and error handling.
@@ -1429,7 +1429,7 @@ const opCreateVPCAssociationAuthorization = "CreateVPCAssociationAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVPCAssociationAuthorization for more information on using the CreateVPCAssociationAuthorization
 // API call, and error handling.
@@ -1535,7 +1535,7 @@ const opDeleteHealthCheck = "DeleteHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHealthCheck for more information on using the DeleteHealthCheck
 // API call, and error handling.
@@ -1635,7 +1635,7 @@ const opDeleteHostedZone = "DeleteHostedZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHostedZone for more information on using the DeleteHostedZone
 // API call, and error handling.
@@ -1775,7 +1775,7 @@ const opDeleteQueryLoggingConfig = "DeleteQueryLoggingConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteQueryLoggingConfig for more information on using the DeleteQueryLoggingConfig
 // API call, and error handling.
@@ -1866,7 +1866,7 @@ const opDeleteReusableDelegationSet = "DeleteReusableDelegationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReusableDelegationSet for more information on using the DeleteReusableDelegationSet
 // API call, and error handling.
@@ -1964,7 +1964,7 @@ const opDeleteTrafficPolicy = "DeleteTrafficPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrafficPolicy for more information on using the DeleteTrafficPolicy
 // API call, and error handling.
@@ -2068,7 +2068,7 @@ const opDeleteTrafficPolicyInstance = "DeleteTrafficPolicyInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrafficPolicyInstance for more information on using the DeleteTrafficPolicyInstance
 // API call, and error handling.
@@ -2161,7 +2161,7 @@ const opDeleteVPCAssociationAuthorization = "DeleteVPCAssociationAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVPCAssociationAuthorization for more information on using the DeleteVPCAssociationAuthorization
 // API call, and error handling.
@@ -2265,7 +2265,7 @@ const opDisassociateVPCFromHostedZone = "DisassociateVPCFromHostedZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateVPCFromHostedZone for more information on using the DisassociateVPCFromHostedZone
 // API call, and error handling.
@@ -2377,7 +2377,7 @@ const opGetAccountLimit = "GetAccountLimit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountLimit for more information on using the GetAccountLimit
 // API call, and error handling.
@@ -2466,7 +2466,7 @@ const opGetChange = "GetChange"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetChange for more information on using the GetChange
 // API call, and error handling.
@@ -2556,7 +2556,7 @@ const opGetCheckerIpRanges = "GetCheckerIpRanges"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCheckerIpRanges for more information on using the GetCheckerIpRanges
 // API call, and error handling.
@@ -2634,7 +2634,7 @@ const opGetGeoLocation = "GetGeoLocation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGeoLocation for more information on using the GetGeoLocation
 // API call, and error handling.
@@ -2735,7 +2735,7 @@ const opGetHealthCheck = "GetHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHealthCheck for more information on using the GetHealthCheck
 // API call, and error handling.
@@ -2821,7 +2821,7 @@ const opGetHealthCheckCount = "GetHealthCheckCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHealthCheckCount for more information on using the GetHealthCheckCount
 // API call, and error handling.
@@ -2896,7 +2896,7 @@ const opGetHealthCheckLastFailureReason = "GetHealthCheckLastFailureReason"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHealthCheckLastFailureReason for more information on using the GetHealthCheckLastFailureReason
 // API call, and error handling.
@@ -2978,7 +2978,7 @@ const opGetHealthCheckStatus = "GetHealthCheckStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHealthCheckStatus for more information on using the GetHealthCheckStatus
 // API call, and error handling.
@@ -3060,7 +3060,7 @@ const opGetHostedZone = "GetHostedZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHostedZone for more information on using the GetHostedZone
 // API call, and error handling.
@@ -3143,7 +3143,7 @@ const opGetHostedZoneCount = "GetHostedZoneCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHostedZoneCount for more information on using the GetHostedZoneCount
 // API call, and error handling.
@@ -3223,7 +3223,7 @@ const opGetHostedZoneLimit = "GetHostedZoneLimit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHostedZoneLimit for more information on using the GetHostedZoneLimit
 // API call, and error handling.
@@ -3313,7 +3313,7 @@ const opGetQueryLoggingConfig = "GetQueryLoggingConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueryLoggingConfig for more information on using the GetQueryLoggingConfig
 // API call, and error handling.
@@ -3398,7 +3398,7 @@ const opGetReusableDelegationSet = "GetReusableDelegationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReusableDelegationSet for more information on using the GetReusableDelegationSet
 // API call, and error handling.
@@ -3484,7 +3484,7 @@ const opGetReusableDelegationSetLimit = "GetReusableDelegationSetLimit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReusableDelegationSetLimit for more information on using the GetReusableDelegationSetLimit
 // API call, and error handling.
@@ -3571,7 +3571,7 @@ const opGetTrafficPolicy = "GetTrafficPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTrafficPolicy for more information on using the GetTrafficPolicy
 // API call, and error handling.
@@ -3656,7 +3656,7 @@ const opGetTrafficPolicyInstance = "GetTrafficPolicyInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTrafficPolicyInstance for more information on using the GetTrafficPolicyInstance
 // API call, and error handling.
@@ -3745,7 +3745,7 @@ const opGetTrafficPolicyInstanceCount = "GetTrafficPolicyInstanceCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTrafficPolicyInstanceCount for more information on using the GetTrafficPolicyInstanceCount
 // API call, and error handling.
@@ -3820,7 +3820,7 @@ const opListGeoLocations = "ListGeoLocations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGeoLocations for more information on using the ListGeoLocations
 // API call, and error handling.
@@ -3907,7 +3907,7 @@ const opListHealthChecks = "ListHealthChecks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHealthChecks for more information on using the ListHealthChecks
 // API call, and error handling.
@@ -4049,7 +4049,7 @@ const opListHostedZones = "ListHostedZones"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHostedZones for more information on using the ListHostedZones
 // API call, and error handling.
@@ -4198,7 +4198,7 @@ const opListHostedZonesByName = "ListHostedZonesByName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHostedZonesByName for more information on using the ListHostedZonesByName
 // API call, and error handling.
@@ -4328,7 +4328,7 @@ const opListHostedZonesByVPC = "ListHostedZonesByVPC"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHostedZonesByVPC for more information on using the ListHostedZonesByVPC
 // API call, and error handling.
@@ -4421,7 +4421,7 @@ const opListQueryLoggingConfigs = "ListQueryLoggingConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQueryLoggingConfigs for more information on using the ListQueryLoggingConfigs
 // API call, and error handling.
@@ -4572,7 +4572,7 @@ const opListResourceRecordSets = "ListResourceRecordSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceRecordSets for more information on using the ListResourceRecordSets
 // API call, and error handling.
@@ -4776,7 +4776,7 @@ const opListReusableDelegationSets = "ListReusableDelegationSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReusableDelegationSets for more information on using the ListReusableDelegationSets
 // API call, and error handling.
@@ -4856,7 +4856,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4955,7 +4955,7 @@ const opListTagsForResources = "ListTagsForResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResources for more information on using the ListTagsForResources
 // API call, and error handling.
@@ -5054,7 +5054,7 @@ const opListTrafficPolicies = "ListTrafficPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrafficPolicies for more information on using the ListTrafficPolicies
 // API call, and error handling.
@@ -5138,7 +5138,7 @@ const opListTrafficPolicyInstances = "ListTrafficPolicyInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrafficPolicyInstances for more information on using the ListTrafficPolicyInstances
 // API call, and error handling.
@@ -5230,7 +5230,7 @@ const opListTrafficPolicyInstancesByHostedZone = "ListTrafficPolicyInstancesByHo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrafficPolicyInstancesByHostedZone for more information on using the ListTrafficPolicyInstancesByHostedZone
 // API call, and error handling.
@@ -5325,7 +5325,7 @@ const opListTrafficPolicyInstancesByPolicy = "ListTrafficPolicyInstancesByPolicy
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrafficPolicyInstancesByPolicy for more information on using the ListTrafficPolicyInstancesByPolicy
 // API call, and error handling.
@@ -5420,7 +5420,7 @@ const opListTrafficPolicyVersions = "ListTrafficPolicyVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrafficPolicyVersions for more information on using the ListTrafficPolicyVersions
 // API call, and error handling.
@@ -5504,7 +5504,7 @@ const opListVPCAssociationAuthorizations = "ListVPCAssociationAuthorizations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVPCAssociationAuthorizations for more information on using the ListVPCAssociationAuthorizations
 // API call, and error handling.
@@ -5595,7 +5595,7 @@ const opTestDNSAnswer = "TestDNSAnswer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestDNSAnswer for more information on using the TestDNSAnswer
 // API call, and error handling.
@@ -5679,7 +5679,7 @@ const opUpdateHealthCheck = "UpdateHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateHealthCheck for more information on using the UpdateHealthCheck
 // API call, and error handling.
@@ -5769,7 +5769,7 @@ const opUpdateHostedZoneComment = "UpdateHostedZoneComment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateHostedZoneComment for more information on using the UpdateHostedZoneComment
 // API call, and error handling.
@@ -5851,7 +5851,7 @@ const opUpdateTrafficPolicyComment = "UpdateTrafficPolicyComment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrafficPolicyComment for more information on using the UpdateTrafficPolicyComment
 // API call, and error handling.
@@ -5937,7 +5937,7 @@ const opUpdateTrafficPolicyInstance = "UpdateTrafficPolicyInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrafficPolicyInstance for more information on using the UpdateTrafficPolicyInstance
 // API call, and error handling.

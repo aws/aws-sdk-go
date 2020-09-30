@@ -21,7 +21,7 @@ const opCreateDataset = "CreateDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataset for more information on using the CreateDataset
 // API call, and error handling.
@@ -132,7 +132,7 @@ const opCreateDatasetGroup = "CreateDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatasetGroup for more information on using the CreateDatasetGroup
 // API call, and error handling.
@@ -236,7 +236,7 @@ const opCreateDatasetImportJob = "CreateDatasetImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatasetImportJob for more information on using the CreateDatasetImportJob
 // API call, and error handling.
@@ -352,7 +352,7 @@ const opCreateForecast = "CreateForecast"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateForecast for more information on using the CreateForecast
 // API call, and error handling.
@@ -463,7 +463,7 @@ const opCreateForecastExportJob = "CreateForecastExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateForecastExportJob for more information on using the CreateForecastExportJob
 // API call, and error handling.
@@ -575,7 +575,7 @@ const opCreatePredictor = "CreatePredictor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePredictor for more information on using the CreatePredictor
 // API call, and error handling.
@@ -713,7 +713,7 @@ const opDeleteDataset = "DeleteDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataset for more information on using the DeleteDataset
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opDeleteDatasetGroup = "DeleteDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatasetGroup for more information on using the DeleteDatasetGroup
 // API call, and error handling.
@@ -899,7 +899,7 @@ const opDeleteDatasetImportJob = "DeleteDatasetImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatasetImportJob for more information on using the DeleteDatasetImportJob
 // API call, and error handling.
@@ -989,7 +989,7 @@ const opDeleteForecast = "DeleteForecast"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteForecast for more information on using the DeleteForecast
 // API call, and error handling.
@@ -1082,7 +1082,7 @@ const opDeleteForecastExportJob = "DeleteForecastExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteForecastExportJob for more information on using the DeleteForecastExportJob
 // API call, and error handling.
@@ -1172,7 +1172,7 @@ const opDeletePredictor = "DeletePredictor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePredictor for more information on using the DeletePredictor
 // API call, and error handling.
@@ -1262,7 +1262,7 @@ const opDescribeDataset = "DescribeDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataset for more information on using the DescribeDataset
 // API call, and error handling.
@@ -1355,7 +1355,7 @@ const opDescribeDatasetGroup = "DescribeDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDatasetGroup for more information on using the DescribeDatasetGroup
 // API call, and error handling.
@@ -1450,7 +1450,7 @@ const opDescribeDatasetImportJob = "DescribeDatasetImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDatasetImportJob for more information on using the DescribeDatasetImportJob
 // API call, and error handling.
@@ -1549,7 +1549,7 @@ const opDescribeForecast = "DescribeForecast"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeForecast for more information on using the DescribeForecast
 // API call, and error handling.
@@ -1646,7 +1646,7 @@ const opDescribeForecastExportJob = "DescribeForecastExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeForecastExportJob for more information on using the DescribeForecastExportJob
 // API call, and error handling.
@@ -1742,7 +1742,7 @@ const opDescribePredictor = "DescribePredictor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePredictor for more information on using the DescribePredictor
 // API call, and error handling.
@@ -1843,7 +1843,7 @@ const opGetAccuracyMetrics = "GetAccuracyMetrics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccuracyMetrics for more information on using the GetAccuracyMetrics
 // API call, and error handling.
@@ -1948,7 +1948,7 @@ const opListDatasetGroups = "ListDatasetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasetGroups for more information on using the ListDatasetGroups
 // API call, and error handling.
@@ -2089,7 +2089,7 @@ const opListDatasetImportJobs = "ListDatasetImportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasetImportJobs for more information on using the ListDatasetImportJobs
 // API call, and error handling.
@@ -2234,7 +2234,7 @@ const opListDatasets = "ListDatasets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasets for more information on using the ListDatasets
 // API call, and error handling.
@@ -2374,7 +2374,7 @@ const opListForecastExportJobs = "ListForecastExportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListForecastExportJobs for more information on using the ListForecastExportJobs
 // API call, and error handling.
@@ -2519,7 +2519,7 @@ const opListForecasts = "ListForecasts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListForecasts for more information on using the ListForecasts
 // API call, and error handling.
@@ -2664,7 +2664,7 @@ const opListPredictors = "ListPredictors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPredictors for more information on using the ListPredictors
 // API call, and error handling.
@@ -2809,7 +2809,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2893,7 +2893,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2984,7 +2984,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3069,7 +3069,7 @@ const opUpdateDatasetGroup = "UpdateDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDatasetGroup for more information on using the UpdateDatasetGroup
 // API call, and error handling.

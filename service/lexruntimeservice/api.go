@@ -21,7 +21,7 @@ const opDeleteSession = "DeleteSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSession for more information on using the DeleteSession
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opGetSession = "GetSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSession for more information on using the GetSession
 // API call, and error handling.
@@ -204,7 +204,7 @@ const opPostContent = "PostContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostContent for more information on using the PostContent
 // API call, and error handling.
@@ -374,7 +374,7 @@ const opPostText = "PostText"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostText for more information on using the PostText
 // API call, and error handling.
@@ -527,7 +527,7 @@ const opPutSession = "PutSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSession for more information on using the PutSession
 // API call, and error handling.

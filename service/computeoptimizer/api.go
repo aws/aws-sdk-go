@@ -20,7 +20,7 @@ const opDescribeRecommendationExportJobs = "DescribeRecommendationExportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRecommendationExportJobs for more information on using the DescribeRecommendationExportJobs
 // API call, and error handling.
@@ -125,7 +125,7 @@ const opExportAutoScalingGroupRecommendations = "ExportAutoScalingGroupRecommend
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportAutoScalingGroupRecommendations for more information on using the ExportAutoScalingGroupRecommendations
 // API call, and error handling.
@@ -234,7 +234,7 @@ const opExportEC2InstanceRecommendations = "ExportEC2InstanceRecommendations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportEC2InstanceRecommendations for more information on using the ExportEC2InstanceRecommendations
 // API call, and error handling.
@@ -344,7 +344,7 @@ const opGetAutoScalingGroupRecommendations = "GetAutoScalingGroupRecommendations
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAutoScalingGroupRecommendations for more information on using the GetAutoScalingGroupRecommendations
 // API call, and error handling.
@@ -453,7 +453,7 @@ const opGetEC2InstanceRecommendations = "GetEC2InstanceRecommendations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEC2InstanceRecommendations for more information on using the GetEC2InstanceRecommendations
 // API call, and error handling.
@@ -559,7 +559,7 @@ const opGetEC2RecommendationProjectedMetrics = "GetEC2RecommendationProjectedMet
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEC2RecommendationProjectedMetrics for more information on using the GetEC2RecommendationProjectedMetrics
 // API call, and error handling.
@@ -660,7 +660,7 @@ const opGetEnrollmentStatus = "GetEnrollmentStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEnrollmentStatus for more information on using the GetEnrollmentStatus
 // API call, and error handling.
@@ -759,7 +759,7 @@ const opGetRecommendationSummaries = "GetRecommendationSummaries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRecommendationSummaries for more information on using the GetRecommendationSummaries
 // API call, and error handling.
@@ -862,7 +862,7 @@ const opUpdateEnrollmentStatus = "UpdateEnrollmentStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEnrollmentStatus for more information on using the UpdateEnrollmentStatus
 // API call, and error handling.

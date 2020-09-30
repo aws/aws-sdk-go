@@ -21,7 +21,7 @@ const opDeleteScalingPolicy = "DeleteScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteScalingPolicy for more information on using the DeleteScalingPolicy
 // API call, and error handling.
@@ -125,7 +125,7 @@ const opDeleteScheduledAction = "DeleteScheduledAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteScheduledAction for more information on using the DeleteScheduledAction
 // API call, and error handling.
@@ -224,7 +224,7 @@ const opDeregisterScalableTarget = "DeregisterScalableTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterScalableTarget for more information on using the DeregisterScalableTarget
 // API call, and error handling.
@@ -324,7 +324,7 @@ const opDescribeScalableTargets = "DescribeScalableTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalableTargets for more information on using the DescribeScalableTargets
 // API call, and error handling.
@@ -474,7 +474,7 @@ const opDescribeScalingActivities = "DescribeScalingActivities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingActivities for more information on using the DescribeScalingActivities
 // API call, and error handling.
@@ -625,7 +625,7 @@ const opDescribeScalingPolicies = "DescribeScalingPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingPolicies for more information on using the DescribeScalingPolicies
 // API call, and error handling.
@@ -788,7 +788,7 @@ const opDescribeScheduledActions = "DescribeScheduledActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScheduledActions for more information on using the DescribeScheduledActions
 // API call, and error handling.
@@ -943,7 +943,7 @@ const opPutScalingPolicy = "PutScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutScalingPolicy for more information on using the PutScalingPolicy
 // API call, and error handling.
@@ -1082,7 +1082,7 @@ const opPutScheduledAction = "PutScheduledAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutScheduledAction for more information on using the PutScheduledAction
 // API call, and error handling.
@@ -1201,7 +1201,7 @@ const opRegisterScalableTarget = "RegisterScalableTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterScalableTarget for more information on using the RegisterScalableTarget
 // API call, and error handling.

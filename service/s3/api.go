@@ -31,7 +31,7 @@ const opAbortMultipartUpload = "AbortMultipartUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AbortMultipartUpload for more information on using the AbortMultipartUpload
 // API call, and error handling.
@@ -134,7 +134,7 @@ const opCompleteMultipartUpload = "CompleteMultipartUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteMultipartUpload for more information on using the CompleteMultipartUpload
 // API call, and error handling.
@@ -267,7 +267,7 @@ const opCopyObject = "CopyObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyObject for more information on using the CopyObject
 // API call, and error handling.
@@ -494,7 +494,7 @@ const opCreateBucket = "CreateBucket"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBucket for more information on using the CreateBucket
 // API call, and error handling.
@@ -641,7 +641,7 @@ const opCreateMultipartUpload = "CreateMultipartUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMultipartUpload for more information on using the CreateMultipartUpload
 // API call, and error handling.
@@ -863,7 +863,7 @@ const opDeleteBucket = "DeleteBucket"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucket for more information on using the DeleteBucket
 // API call, and error handling.
@@ -945,7 +945,7 @@ const opDeleteBucketAnalyticsConfiguration = "DeleteBucketAnalyticsConfiguration
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketAnalyticsConfiguration for more information on using the DeleteBucketAnalyticsConfiguration
 // API call, and error handling.
@@ -1038,7 +1038,7 @@ const opDeleteBucketCors = "DeleteBucketCors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketCors for more information on using the DeleteBucketCors
 // API call, and error handling.
@@ -1126,7 +1126,7 @@ const opDeleteBucketEncryption = "DeleteBucketEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketEncryption for more information on using the DeleteBucketEncryption
 // API call, and error handling.
@@ -1217,7 +1217,7 @@ const opDeleteBucketInventoryConfiguration = "DeleteBucketInventoryConfiguration
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketInventoryConfiguration for more information on using the DeleteBucketInventoryConfiguration
 // API call, and error handling.
@@ -1310,7 +1310,7 @@ const opDeleteBucketLifecycle = "DeleteBucketLifecycle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketLifecycle for more information on using the DeleteBucketLifecycle
 // API call, and error handling.
@@ -1405,7 +1405,7 @@ const opDeleteBucketMetricsConfiguration = "DeleteBucketMetricsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketMetricsConfiguration for more information on using the DeleteBucketMetricsConfiguration
 // API call, and error handling.
@@ -1501,7 +1501,7 @@ const opDeleteBucketPolicy = "DeleteBucketPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketPolicy for more information on using the DeleteBucketPolicy
 // API call, and error handling.
@@ -1598,7 +1598,7 @@ const opDeleteBucketReplication = "DeleteBucketReplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketReplication for more information on using the DeleteBucketReplication
 // API call, and error handling.
@@ -1691,7 +1691,7 @@ const opDeleteBucketTagging = "DeleteBucketTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketTagging for more information on using the DeleteBucketTagging
 // API call, and error handling.
@@ -1776,7 +1776,7 @@ const opDeleteBucketWebsite = "DeleteBucketWebsite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBucketWebsite for more information on using the DeleteBucketWebsite
 // API call, and error handling.
@@ -1870,7 +1870,7 @@ const opDeleteObject = "DeleteObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteObject for more information on using the DeleteObject
 // API call, and error handling.
@@ -1970,7 +1970,7 @@ const opDeleteObjectTagging = "DeleteObjectTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteObjectTagging for more information on using the DeleteObjectTagging
 // API call, and error handling.
@@ -2058,7 +2058,7 @@ const opDeleteObjects = "DeleteObjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteObjects for more information on using the DeleteObjects
 // API call, and error handling.
@@ -2177,7 +2177,7 @@ const opDeletePublicAccessBlock = "DeletePublicAccessBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePublicAccessBlock for more information on using the DeletePublicAccessBlock
 // API call, and error handling.
@@ -2266,7 +2266,7 @@ const opGetBucketAccelerateConfiguration = "GetBucketAccelerateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketAccelerateConfiguration for more information on using the GetBucketAccelerateConfiguration
 // API call, and error handling.
@@ -2366,7 +2366,7 @@ const opGetBucketAcl = "GetBucketAcl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketAcl for more information on using the GetBucketAcl
 // API call, and error handling.
@@ -2448,7 +2448,7 @@ const opGetBucketAnalyticsConfiguration = "GetBucketAnalyticsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketAnalyticsConfiguration for more information on using the GetBucketAnalyticsConfiguration
 // API call, and error handling.
@@ -2542,7 +2542,7 @@ const opGetBucketCors = "GetBucketCors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketCors for more information on using the GetBucketCors
 // API call, and error handling.
@@ -2629,7 +2629,7 @@ const opGetBucketEncryption = "GetBucketEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketEncryption for more information on using the GetBucketEncryption
 // API call, and error handling.
@@ -2717,7 +2717,7 @@ const opGetBucketInventoryConfiguration = "GetBucketInventoryConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketInventoryConfiguration for more information on using the GetBucketInventoryConfiguration
 // API call, and error handling.
@@ -2809,7 +2809,7 @@ const opGetBucketLifecycle = "GetBucketLifecycle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketLifecycle for more information on using the GetBucketLifecycle
 // API call, and error handling.
@@ -2919,7 +2919,7 @@ const opGetBucketLifecycleConfiguration = "GetBucketLifecycleConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketLifecycleConfiguration for more information on using the GetBucketLifecycleConfiguration
 // API call, and error handling.
@@ -3023,7 +3023,7 @@ const opGetBucketLocation = "GetBucketLocation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketLocation for more information on using the GetBucketLocation
 // API call, and error handling.
@@ -3107,7 +3107,7 @@ const opGetBucketLogging = "GetBucketLogging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketLogging for more information on using the GetBucketLogging
 // API call, and error handling.
@@ -3188,7 +3188,7 @@ const opGetBucketMetricsConfiguration = "GetBucketMetricsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketMetricsConfiguration for more information on using the GetBucketMetricsConfiguration
 // API call, and error handling.
@@ -3282,7 +3282,7 @@ const opGetBucketNotification = "GetBucketNotification"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketNotification for more information on using the GetBucketNotification
 // API call, and error handling.
@@ -3365,7 +3365,7 @@ const opGetBucketNotificationConfiguration = "GetBucketNotificationConfiguration
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketNotificationConfiguration for more information on using the GetBucketNotificationConfiguration
 // API call, and error handling.
@@ -3455,7 +3455,7 @@ const opGetBucketPolicy = "GetBucketPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketPolicy for more information on using the GetBucketPolicy
 // API call, and error handling.
@@ -3548,7 +3548,7 @@ const opGetBucketPolicyStatus = "GetBucketPolicyStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketPolicyStatus for more information on using the GetBucketPolicyStatus
 // API call, and error handling.
@@ -3638,7 +3638,7 @@ const opGetBucketReplication = "GetBucketReplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketReplication for more information on using the GetBucketReplication
 // API call, and error handling.
@@ -3736,7 +3736,7 @@ const opGetBucketRequestPayment = "GetBucketRequestPayment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketRequestPayment for more information on using the GetBucketRequestPayment
 // API call, and error handling.
@@ -3816,7 +3816,7 @@ const opGetBucketTagging = "GetBucketTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketTagging for more information on using the GetBucketTagging
 // API call, and error handling.
@@ -3905,7 +3905,7 @@ const opGetBucketVersioning = "GetBucketVersioning"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketVersioning for more information on using the GetBucketVersioning
 // API call, and error handling.
@@ -3993,7 +3993,7 @@ const opGetBucketWebsite = "GetBucketWebsite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketWebsite for more information on using the GetBucketWebsite
 // API call, and error handling.
@@ -4081,7 +4081,7 @@ const opGetObject = "GetObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObject for more information on using the GetObject
 // API call, and error handling.
@@ -4285,7 +4285,7 @@ const opGetObjectAcl = "GetObjectAcl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectAcl for more information on using the GetObjectAcl
 // API call, and error handling.
@@ -4378,7 +4378,7 @@ const opGetObjectLegalHold = "GetObjectLegalHold"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectLegalHold for more information on using the GetObjectLegalHold
 // API call, and error handling.
@@ -4453,7 +4453,7 @@ const opGetObjectLockConfiguration = "GetObjectLockConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectLockConfiguration for more information on using the GetObjectLockConfiguration
 // API call, and error handling.
@@ -4530,7 +4530,7 @@ const opGetObjectRetention = "GetObjectRetention"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectRetention for more information on using the GetObjectRetention
 // API call, and error handling.
@@ -4605,7 +4605,7 @@ const opGetObjectTagging = "GetObjectTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectTagging for more information on using the GetObjectTagging
 // API call, and error handling.
@@ -4697,7 +4697,7 @@ const opGetObjectTorrent = "GetObjectTorrent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectTorrent for more information on using the GetObjectTorrent
 // API call, and error handling.
@@ -4783,7 +4783,7 @@ const opGetPublicAccessBlock = "GetPublicAccessBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPublicAccessBlock for more information on using the GetPublicAccessBlock
 // API call, and error handling.
@@ -4880,7 +4880,7 @@ const opHeadBucket = "HeadBucket"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See HeadBucket for more information on using the HeadBucket
 // API call, and error handling.
@@ -4969,7 +4969,7 @@ const opHeadObject = "HeadObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See HeadObject for more information on using the HeadObject
 // API call, and error handling.
@@ -5105,7 +5105,7 @@ const opListBucketAnalyticsConfigurations = "ListBucketAnalyticsConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBucketAnalyticsConfigurations for more information on using the ListBucketAnalyticsConfigurations
 // API call, and error handling.
@@ -5205,7 +5205,7 @@ const opListBucketInventoryConfigurations = "ListBucketInventoryConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBucketInventoryConfigurations for more information on using the ListBucketInventoryConfigurations
 // API call, and error handling.
@@ -5305,7 +5305,7 @@ const opListBucketMetricsConfigurations = "ListBucketMetricsConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBucketMetricsConfigurations for more information on using the ListBucketMetricsConfigurations
 // API call, and error handling.
@@ -5406,7 +5406,7 @@ const opListBuckets = "ListBuckets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBuckets for more information on using the ListBuckets
 // API call, and error handling.
@@ -5480,7 +5480,7 @@ const opListMultipartUploads = "ListMultipartUploads"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMultipartUploads for more information on using the ListMultipartUploads
 // API call, and error handling.
@@ -5645,7 +5645,7 @@ const opListObjectVersions = "ListObjectVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectVersions for more information on using the ListObjectVersions
 // API call, and error handling.
@@ -5794,7 +5794,7 @@ const opListObjects = "ListObjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjects for more information on using the ListObjects
 // API call, and error handling.
@@ -5952,7 +5952,7 @@ const opListObjectsV2 = "ListObjectsV2"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectsV2 for more information on using the ListObjectsV2
 // API call, and error handling.
@@ -6117,7 +6117,7 @@ const opListParts = "ListParts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListParts for more information on using the ListParts
 // API call, and error handling.
@@ -6276,7 +6276,7 @@ const opPutBucketAccelerateConfiguration = "PutBucketAccelerateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketAccelerateConfiguration for more information on using the PutBucketAccelerateConfiguration
 // API call, and error handling.
@@ -6385,7 +6385,7 @@ const opPutBucketAcl = "PutBucketAcl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketAcl for more information on using the PutBucketAcl
 // API call, and error handling.
@@ -6549,7 +6549,7 @@ const opPutBucketAnalyticsConfiguration = "PutBucketAnalyticsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketAnalyticsConfiguration for more information on using the PutBucketAnalyticsConfiguration
 // API call, and error handling.
@@ -6668,7 +6668,7 @@ const opPutBucketCors = "PutBucketCors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketCors for more information on using the PutBucketCors
 // API call, and error handling.
@@ -6789,7 +6789,7 @@ const opPutBucketEncryption = "PutBucketEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketEncryption for more information on using the PutBucketEncryption
 // API call, and error handling.
@@ -6890,7 +6890,7 @@ const opPutBucketInventoryConfiguration = "PutBucketInventoryConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketInventoryConfiguration for more information on using the PutBucketInventoryConfiguration
 // API call, and error handling.
@@ -7012,7 +7012,7 @@ const opPutBucketLifecycle = "PutBucketLifecycle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketLifecycle for more information on using the PutBucketLifecycle
 // API call, and error handling.
@@ -7148,7 +7148,7 @@ const opPutBucketLifecycleConfiguration = "PutBucketLifecycleConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketLifecycleConfiguration for more information on using the PutBucketLifecycleConfiguration
 // API call, and error handling.
@@ -7289,7 +7289,7 @@ const opPutBucketLogging = "PutBucketLogging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketLogging for more information on using the PutBucketLogging
 // API call, and error handling.
@@ -7414,7 +7414,7 @@ const opPutBucketMetricsConfiguration = "PutBucketMetricsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketMetricsConfiguration for more information on using the PutBucketMetricsConfiguration
 // API call, and error handling.
@@ -7516,7 +7516,7 @@ const opPutBucketNotification = "PutBucketNotification"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketNotification for more information on using the PutBucketNotification
 // API call, and error handling.
@@ -7605,7 +7605,7 @@ const opPutBucketNotificationConfiguration = "PutBucketNotificationConfiguration
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketNotificationConfiguration for more information on using the PutBucketNotificationConfiguration
 // API call, and error handling.
@@ -7728,7 +7728,7 @@ const opPutBucketPolicy = "PutBucketPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketPolicy for more information on using the PutBucketPolicy
 // API call, and error handling.
@@ -7828,7 +7828,7 @@ const opPutBucketReplication = "PutBucketReplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketReplication for more information on using the PutBucketReplication
 // API call, and error handling.
@@ -7964,7 +7964,7 @@ const opPutBucketRequestPayment = "PutBucketRequestPayment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketRequestPayment for more information on using the PutBucketRequestPayment
 // API call, and error handling.
@@ -8053,7 +8053,7 @@ const opPutBucketTagging = "PutBucketTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketTagging for more information on using the PutBucketTagging
 // API call, and error handling.
@@ -8173,7 +8173,7 @@ const opPutBucketVersioning = "PutBucketVersioning"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketVersioning for more information on using the PutBucketVersioning
 // API call, and error handling.
@@ -8286,7 +8286,7 @@ const opPutBucketWebsite = "PutBucketWebsite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBucketWebsite for more information on using the PutBucketWebsite
 // API call, and error handling.
@@ -8430,7 +8430,7 @@ const opPutObject = "PutObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObject for more information on using the PutObject
 // API call, and error handling.
@@ -8568,7 +8568,7 @@ const opPutObjectAcl = "PutObjectAcl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObjectAcl for more information on using the PutObjectAcl
 // API call, and error handling.
@@ -8734,7 +8734,7 @@ const opPutObjectLegalHold = "PutObjectLegalHold"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObjectLegalHold for more information on using the PutObjectLegalHold
 // API call, and error handling.
@@ -8816,7 +8816,7 @@ const opPutObjectLockConfiguration = "PutObjectLockConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObjectLockConfiguration for more information on using the PutObjectLockConfiguration
 // API call, and error handling.
@@ -8903,7 +8903,7 @@ const opPutObjectRetention = "PutObjectRetention"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObjectRetention for more information on using the PutObjectRetention
 // API call, and error handling.
@@ -8985,7 +8985,7 @@ const opPutObjectTagging = "PutObjectTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObjectTagging for more information on using the PutObjectTagging
 // API call, and error handling.
@@ -9100,7 +9100,7 @@ const opPutPublicAccessBlock = "PutPublicAccessBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPublicAccessBlock for more information on using the PutPublicAccessBlock
 // API call, and error handling.
@@ -9202,7 +9202,7 @@ const opRestoreObject = "RestoreObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreObject for more information on using the RestoreObject
 // API call, and error handling.
@@ -9467,7 +9467,7 @@ const opSelectObjectContent = "SelectObjectContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SelectObjectContent for more information on using the SelectObjectContent
 // API call, and error handling.
@@ -9803,7 +9803,7 @@ const opUploadPart = "UploadPart"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadPart for more information on using the UploadPart
 // API call, and error handling.
@@ -9959,7 +9959,7 @@ const opUploadPartCopy = "UploadPartCopy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadPartCopy for more information on using the UploadPartCopy
 // API call, and error handling.

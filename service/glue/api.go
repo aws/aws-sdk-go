@@ -21,7 +21,7 @@ const opBatchCreatePartition = "BatchCreatePartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchCreatePartition for more information on using the BatchCreatePartition
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opBatchDeleteConnection = "BatchDeleteConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteConnection for more information on using the BatchDeleteConnection
 // API call, and error handling.
@@ -200,7 +200,7 @@ const opBatchDeletePartition = "BatchDeletePartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeletePartition for more information on using the BatchDeletePartition
 // API call, and error handling.
@@ -288,7 +288,7 @@ const opBatchDeleteTable = "BatchDeleteTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteTable for more information on using the BatchDeleteTable
 // API call, and error handling.
@@ -385,7 +385,7 @@ const opBatchDeleteTableVersion = "BatchDeleteTableVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteTableVersion for more information on using the BatchDeleteTableVersion
 // API call, and error handling.
@@ -473,7 +473,7 @@ const opBatchGetCrawlers = "BatchGetCrawlers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetCrawlers for more information on using the BatchGetCrawlers
 // API call, and error handling.
@@ -558,7 +558,7 @@ const opBatchGetDevEndpoints = "BatchGetDevEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetDevEndpoints for more information on using the BatchGetDevEndpoints
 // API call, and error handling.
@@ -649,7 +649,7 @@ const opBatchGetJobs = "BatchGetJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetJobs for more information on using the BatchGetJobs
 // API call, and error handling.
@@ -737,7 +737,7 @@ const opBatchGetPartition = "BatchGetPartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetPartition for more information on using the BatchGetPartition
 // API call, and error handling.
@@ -828,7 +828,7 @@ const opBatchGetTriggers = "BatchGetTriggers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetTriggers for more information on using the BatchGetTriggers
 // API call, and error handling.
@@ -916,7 +916,7 @@ const opBatchGetWorkflows = "BatchGetWorkflows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetWorkflows for more information on using the BatchGetWorkflows
 // API call, and error handling.
@@ -1004,7 +1004,7 @@ const opBatchStopJobRun = "BatchStopJobRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchStopJobRun for more information on using the BatchStopJobRun
 // API call, and error handling.
@@ -1089,7 +1089,7 @@ const opBatchUpdatePartition = "BatchUpdatePartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchUpdatePartition for more information on using the BatchUpdatePartition
 // API call, and error handling.
@@ -1180,7 +1180,7 @@ const opCancelMLTaskRun = "CancelMLTaskRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelMLTaskRun for more information on using the CancelMLTaskRun
 // API call, and error handling.
@@ -1271,7 +1271,7 @@ const opCreateClassifier = "CreateClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateClassifier for more information on using the CreateClassifier
 // API call, and error handling.
@@ -1359,7 +1359,7 @@ const opCreateConnection = "CreateConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConnection for more information on using the CreateConnection
 // API call, and error handling.
@@ -1451,7 +1451,7 @@ const opCreateCrawler = "CreateCrawler"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCrawler for more information on using the CreateCrawler
 // API call, and error handling.
@@ -1542,7 +1542,7 @@ const opCreateDatabase = "CreateDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatabase for more information on using the CreateDatabase
 // API call, and error handling.
@@ -1637,7 +1637,7 @@ const opCreateDevEndpoint = "CreateDevEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDevEndpoint for more information on using the CreateDevEndpoint
 // API call, and error handling.
@@ -1737,7 +1737,7 @@ const opCreateJob = "CreateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJob for more information on using the CreateJob
 // API call, and error handling.
@@ -1834,7 +1834,7 @@ const opCreateMLTransform = "CreateMLTransform"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMLTransform for more information on using the CreateMLTransform
 // API call, and error handling.
@@ -1943,7 +1943,7 @@ const opCreatePartition = "CreatePartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePartition for more information on using the CreatePartition
 // API call, and error handling.
@@ -2041,7 +2041,7 @@ const opCreateScript = "CreateScript"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateScript for more information on using the CreateScript
 // API call, and error handling.
@@ -2126,7 +2126,7 @@ const opCreateSecurityConfiguration = "CreateSecurityConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSecurityConfiguration for more information on using the CreateSecurityConfiguration
 // API call, and error handling.
@@ -2221,7 +2221,7 @@ const opCreateTable = "CreateTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTable for more information on using the CreateTable
 // API call, and error handling.
@@ -2319,7 +2319,7 @@ const opCreateTrigger = "CreateTrigger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrigger for more information on using the CreateTrigger
 // API call, and error handling.
@@ -2419,7 +2419,7 @@ const opCreateUserDefinedFunction = "CreateUserDefinedFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserDefinedFunction for more information on using the CreateUserDefinedFunction
 // API call, and error handling.
@@ -2517,7 +2517,7 @@ const opCreateWorkflow = "CreateWorkflow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorkflow for more information on using the CreateWorkflow
 // API call, and error handling.
@@ -2611,7 +2611,7 @@ const opDeleteClassifier = "DeleteClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteClassifier for more information on using the DeleteClassifier
 // API call, and error handling.
@@ -2694,7 +2694,7 @@ const opDeleteColumnStatisticsForPartition = "DeleteColumnStatisticsForPartition
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteColumnStatisticsForPartition for more information on using the DeleteColumnStatisticsForPartition
 // API call, and error handling.
@@ -2786,7 +2786,7 @@ const opDeleteColumnStatisticsForTable = "DeleteColumnStatisticsForTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteColumnStatisticsForTable for more information on using the DeleteColumnStatisticsForTable
 // API call, and error handling.
@@ -2878,7 +2878,7 @@ const opDeleteConnection = "DeleteConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnection for more information on using the DeleteConnection
 // API call, and error handling.
@@ -2961,7 +2961,7 @@ const opDeleteCrawler = "DeleteCrawler"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCrawler for more information on using the DeleteCrawler
 // API call, and error handling.
@@ -3051,7 +3051,7 @@ const opDeleteDatabase = "DeleteDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatabase for more information on using the DeleteDatabase
 // API call, and error handling.
@@ -3151,7 +3151,7 @@ const opDeleteDevEndpoint = "DeleteDevEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDevEndpoint for more information on using the DeleteDevEndpoint
 // API call, and error handling.
@@ -3240,7 +3240,7 @@ const opDeleteJob = "DeleteJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteJob for more information on using the DeleteJob
 // API call, and error handling.
@@ -3326,7 +3326,7 @@ const opDeleteMLTransform = "DeleteMLTransform"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMLTransform for more information on using the DeleteMLTransform
 // API call, and error handling.
@@ -3420,7 +3420,7 @@ const opDeletePartition = "DeletePartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePartition for more information on using the DeletePartition
 // API call, and error handling.
@@ -3509,7 +3509,7 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
 // API call, and error handling.
@@ -3601,7 +3601,7 @@ const opDeleteSecurityConfiguration = "DeleteSecurityConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSecurityConfiguration for more information on using the DeleteSecurityConfiguration
 // API call, and error handling.
@@ -3690,7 +3690,7 @@ const opDeleteTable = "DeleteTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTable for more information on using the DeleteTable
 // API call, and error handling.
@@ -3787,7 +3787,7 @@ const opDeleteTableVersion = "DeleteTableVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTableVersion for more information on using the DeleteTableVersion
 // API call, and error handling.
@@ -3876,7 +3876,7 @@ const opDeleteTrigger = "DeleteTrigger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrigger for more information on using the DeleteTrigger
 // API call, and error handling.
@@ -3965,7 +3965,7 @@ const opDeleteUserDefinedFunction = "DeleteUserDefinedFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserDefinedFunction for more information on using the DeleteUserDefinedFunction
 // API call, and error handling.
@@ -4054,7 +4054,7 @@ const opDeleteWorkflow = "DeleteWorkflow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorkflow for more information on using the DeleteWorkflow
 // API call, and error handling.
@@ -4142,7 +4142,7 @@ const opGetCatalogImportStatus = "GetCatalogImportStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCatalogImportStatus for more information on using the GetCatalogImportStatus
 // API call, and error handling.
@@ -4224,7 +4224,7 @@ const opGetClassifier = "GetClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetClassifier for more information on using the GetClassifier
 // API call, and error handling.
@@ -4306,7 +4306,7 @@ const opGetClassifiers = "GetClassifiers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetClassifiers for more information on using the GetClassifiers
 // API call, and error handling.
@@ -4443,7 +4443,7 @@ const opGetColumnStatisticsForPartition = "GetColumnStatisticsForPartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetColumnStatisticsForPartition for more information on using the GetColumnStatisticsForPartition
 // API call, and error handling.
@@ -4534,7 +4534,7 @@ const opGetColumnStatisticsForTable = "GetColumnStatisticsForTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetColumnStatisticsForTable for more information on using the GetColumnStatisticsForTable
 // API call, and error handling.
@@ -4625,7 +4625,7 @@ const opGetConnection = "GetConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnection for more information on using the GetConnection
 // API call, and error handling.
@@ -4713,7 +4713,7 @@ const opGetConnections = "GetConnections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnections for more information on using the GetConnections
 // API call, and error handling.
@@ -4859,7 +4859,7 @@ const opGetCrawler = "GetCrawler"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCrawler for more information on using the GetCrawler
 // API call, and error handling.
@@ -4941,7 +4941,7 @@ const opGetCrawlerMetrics = "GetCrawlerMetrics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCrawlerMetrics for more information on using the GetCrawlerMetrics
 // API call, and error handling.
@@ -5078,7 +5078,7 @@ const opGetCrawlers = "GetCrawlers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCrawlers for more information on using the GetCrawlers
 // API call, and error handling.
@@ -5215,7 +5215,7 @@ const opGetDataCatalogEncryptionSettings = "GetDataCatalogEncryptionSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataCatalogEncryptionSettings for more information on using the GetDataCatalogEncryptionSettings
 // API call, and error handling.
@@ -5300,7 +5300,7 @@ const opGetDatabase = "GetDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDatabase for more information on using the GetDatabase
 // API call, and error handling.
@@ -5391,7 +5391,7 @@ const opGetDatabases = "GetDatabases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDatabases for more information on using the GetDatabases
 // API call, and error handling.
@@ -5537,7 +5537,7 @@ const opGetDataflowGraph = "GetDataflowGraph"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataflowGraph for more information on using the GetDataflowGraph
 // API call, and error handling.
@@ -5622,7 +5622,7 @@ const opGetDevEndpoint = "GetDevEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevEndpoint for more information on using the GetDevEndpoint
 // API call, and error handling.
@@ -5715,7 +5715,7 @@ const opGetDevEndpoints = "GetDevEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevEndpoints for more information on using the GetDevEndpoints
 // API call, and error handling.
@@ -5866,7 +5866,7 @@ const opGetJob = "GetJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJob for more information on using the GetJob
 // API call, and error handling.
@@ -5954,7 +5954,7 @@ const opGetJobBookmark = "GetJobBookmark"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobBookmark for more information on using the GetJobBookmark
 // API call, and error handling.
@@ -6045,7 +6045,7 @@ const opGetJobRun = "GetJobRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobRun for more information on using the GetJobRun
 // API call, and error handling.
@@ -6133,7 +6133,7 @@ const opGetJobRuns = "GetJobRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobRuns for more information on using the GetJobRuns
 // API call, and error handling.
@@ -6279,7 +6279,7 @@ const opGetJobs = "GetJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobs for more information on using the GetJobs
 // API call, and error handling.
@@ -6425,7 +6425,7 @@ const opGetMLTaskRun = "GetMLTaskRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMLTaskRun for more information on using the GetMLTaskRun
 // API call, and error handling.
@@ -6517,7 +6517,7 @@ const opGetMLTaskRuns = "GetMLTaskRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMLTaskRuns for more information on using the GetMLTaskRuns
 // API call, and error handling.
@@ -6670,7 +6670,7 @@ const opGetMLTransform = "GetMLTransform"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMLTransform for more information on using the GetMLTransform
 // API call, and error handling.
@@ -6762,7 +6762,7 @@ const opGetMLTransforms = "GetMLTransforms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMLTransforms for more information on using the GetMLTransforms
 // API call, and error handling.
@@ -6912,7 +6912,7 @@ const opGetMapping = "GetMapping"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMapping for more information on using the GetMapping
 // API call, and error handling.
@@ -7000,7 +7000,7 @@ const opGetPartition = "GetPartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPartition for more information on using the GetPartition
 // API call, and error handling.
@@ -7091,7 +7091,7 @@ const opGetPartitionIndexes = "GetPartitionIndexes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPartitionIndexes for more information on using the GetPartitionIndexes
 // API call, and error handling.
@@ -7240,7 +7240,7 @@ const opGetPartitions = "GetPartitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPartitions for more information on using the GetPartitions
 // API call, and error handling.
@@ -7389,7 +7389,7 @@ const opGetPlan = "GetPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPlan for more information on using the GetPlan
 // API call, and error handling.
@@ -7474,7 +7474,7 @@ const opGetResourcePolicies = "GetResourcePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourcePolicies for more information on using the GetResourcePolicies
 // API call, and error handling.
@@ -7568,7 +7568,7 @@ const opGetResourcePolicy = "GetResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourcePolicy for more information on using the GetResourcePolicy
 // API call, and error handling.
@@ -7656,7 +7656,7 @@ const opGetSecurityConfiguration = "GetSecurityConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSecurityConfiguration for more information on using the GetSecurityConfiguration
 // API call, and error handling.
@@ -7744,7 +7744,7 @@ const opGetSecurityConfigurations = "GetSecurityConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSecurityConfigurations for more information on using the GetSecurityConfigurations
 // API call, and error handling.
@@ -7890,7 +7890,7 @@ const opGetTable = "GetTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTable for more information on using the GetTable
 // API call, and error handling.
@@ -7981,7 +7981,7 @@ const opGetTableVersion = "GetTableVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTableVersion for more information on using the GetTableVersion
 // API call, and error handling.
@@ -8072,7 +8072,7 @@ const opGetTableVersions = "GetTableVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTableVersions for more information on using the GetTableVersions
 // API call, and error handling.
@@ -8222,7 +8222,7 @@ const opGetTables = "GetTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTables for more information on using the GetTables
 // API call, and error handling.
@@ -8371,7 +8371,7 @@ const opGetTags = "GetTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTags for more information on using the GetTags
 // API call, and error handling.
@@ -8459,7 +8459,7 @@ const opGetTrigger = "GetTrigger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTrigger for more information on using the GetTrigger
 // API call, and error handling.
@@ -8547,7 +8547,7 @@ const opGetTriggers = "GetTriggers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTriggers for more information on using the GetTriggers
 // API call, and error handling.
@@ -8693,7 +8693,7 @@ const opGetUserDefinedFunction = "GetUserDefinedFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserDefinedFunction for more information on using the GetUserDefinedFunction
 // API call, and error handling.
@@ -8784,7 +8784,7 @@ const opGetUserDefinedFunctions = "GetUserDefinedFunctions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserDefinedFunctions for more information on using the GetUserDefinedFunctions
 // API call, and error handling.
@@ -8933,7 +8933,7 @@ const opGetWorkflow = "GetWorkflow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorkflow for more information on using the GetWorkflow
 // API call, and error handling.
@@ -9021,7 +9021,7 @@ const opGetWorkflowRun = "GetWorkflowRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorkflowRun for more information on using the GetWorkflowRun
 // API call, and error handling.
@@ -9109,7 +9109,7 @@ const opGetWorkflowRunProperties = "GetWorkflowRunProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorkflowRunProperties for more information on using the GetWorkflowRunProperties
 // API call, and error handling.
@@ -9197,7 +9197,7 @@ const opGetWorkflowRuns = "GetWorkflowRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorkflowRuns for more information on using the GetWorkflowRuns
 // API call, and error handling.
@@ -9343,7 +9343,7 @@ const opImportCatalogToGlue = "ImportCatalogToGlue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportCatalogToGlue for more information on using the ImportCatalogToGlue
 // API call, and error handling.
@@ -9426,7 +9426,7 @@ const opListCrawlers = "ListCrawlers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCrawlers for more information on using the ListCrawlers
 // API call, and error handling.
@@ -9569,7 +9569,7 @@ const opListDevEndpoints = "ListDevEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevEndpoints for more information on using the ListDevEndpoints
 // API call, and error handling.
@@ -9721,7 +9721,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -9873,7 +9873,7 @@ const opListMLTransforms = "ListMLTransforms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMLTransforms for more information on using the ListMLTransforms
 // API call, and error handling.
@@ -10023,7 +10023,7 @@ const opListTriggers = "ListTriggers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTriggers for more information on using the ListTriggers
 // API call, and error handling.
@@ -10175,7 +10175,7 @@ const opListWorkflows = "ListWorkflows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkflows for more information on using the ListWorkflows
 // API call, and error handling.
@@ -10318,7 +10318,7 @@ const opPutDataCatalogEncryptionSettings = "PutDataCatalogEncryptionSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDataCatalogEncryptionSettings for more information on using the PutDataCatalogEncryptionSettings
 // API call, and error handling.
@@ -10406,7 +10406,7 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourcePolicy for more information on using the PutResourcePolicy
 // API call, and error handling.
@@ -10497,7 +10497,7 @@ const opPutWorkflowRunProperties = "PutWorkflowRunProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutWorkflowRunProperties for more information on using the PutWorkflowRunProperties
 // API call, and error handling.
@@ -10597,7 +10597,7 @@ const opResetJobBookmark = "ResetJobBookmark"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetJobBookmark for more information on using the ResetJobBookmark
 // API call, and error handling.
@@ -10685,7 +10685,7 @@ const opResumeWorkflowRun = "ResumeWorkflowRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResumeWorkflowRun for more information on using the ResumeWorkflowRun
 // API call, and error handling.
@@ -10781,7 +10781,7 @@ const opSearchTables = "SearchTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchTables for more information on using the SearchTables
 // API call, and error handling.
@@ -10933,7 +10933,7 @@ const opStartCrawler = "StartCrawler"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartCrawler for more information on using the StartCrawler
 // API call, and error handling.
@@ -11020,7 +11020,7 @@ const opStartCrawlerSchedule = "StartCrawlerSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartCrawlerSchedule for more information on using the StartCrawlerSchedule
 // API call, and error handling.
@@ -11113,7 +11113,7 @@ const opStartExportLabelsTaskRun = "StartExportLabelsTaskRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartExportLabelsTaskRun for more information on using the StartExportLabelsTaskRun
 // API call, and error handling.
@@ -11209,7 +11209,7 @@ const opStartImportLabelsTaskRun = "StartImportLabelsTaskRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartImportLabelsTaskRun for more information on using the StartImportLabelsTaskRun
 // API call, and error handling.
@@ -11325,7 +11325,7 @@ const opStartJobRun = "StartJobRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartJobRun for more information on using the StartJobRun
 // API call, and error handling.
@@ -11419,7 +11419,7 @@ const opStartMLEvaluationTaskRun = "StartMLEvaluationTaskRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMLEvaluationTaskRun for more information on using the StartMLEvaluationTaskRun
 // API call, and error handling.
@@ -11520,7 +11520,7 @@ const opStartMLLabelingSetGenerationTaskRun = "StartMLLabelingSetGenerationTaskR
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMLLabelingSetGenerationTaskRun for more information on using the StartMLLabelingSetGenerationTaskRun
 // API call, and error handling.
@@ -11624,7 +11624,7 @@ const opStartTrigger = "StartTrigger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTrigger for more information on using the StartTrigger
 // API call, and error handling.
@@ -11719,7 +11719,7 @@ const opStartWorkflowRun = "StartWorkflowRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartWorkflowRun for more information on using the StartWorkflowRun
 // API call, and error handling.
@@ -11813,7 +11813,7 @@ const opStopCrawler = "StopCrawler"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopCrawler for more information on using the StopCrawler
 // API call, and error handling.
@@ -11902,7 +11902,7 @@ const opStopCrawlerSchedule = "StopCrawlerSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopCrawlerSchedule for more information on using the StopCrawlerSchedule
 // API call, and error handling.
@@ -11992,7 +11992,7 @@ const opStopTrigger = "StopTrigger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTrigger for more information on using the StopTrigger
 // API call, and error handling.
@@ -12083,7 +12083,7 @@ const opStopWorkflowRun = "StopWorkflowRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopWorkflowRun for more information on using the StopWorkflowRun
 // API call, and error handling.
@@ -12175,7 +12175,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -12266,7 +12266,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -12355,7 +12355,7 @@ const opUpdateClassifier = "UpdateClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClassifier for more information on using the UpdateClassifier
 // API call, and error handling.
@@ -12445,7 +12445,7 @@ const opUpdateColumnStatisticsForPartition = "UpdateColumnStatisticsForPartition
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateColumnStatisticsForPartition for more information on using the UpdateColumnStatisticsForPartition
 // API call, and error handling.
@@ -12536,7 +12536,7 @@ const opUpdateColumnStatisticsForTable = "UpdateColumnStatisticsForTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateColumnStatisticsForTable for more information on using the UpdateColumnStatisticsForTable
 // API call, and error handling.
@@ -12627,7 +12627,7 @@ const opUpdateConnection = "UpdateConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConnection for more information on using the UpdateConnection
 // API call, and error handling.
@@ -12719,7 +12719,7 @@ const opUpdateCrawler = "UpdateCrawler"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCrawler for more information on using the UpdateCrawler
 // API call, and error handling.
@@ -12812,7 +12812,7 @@ const opUpdateCrawlerSchedule = "UpdateCrawlerSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCrawlerSchedule for more information on using the UpdateCrawlerSchedule
 // API call, and error handling.
@@ -12904,7 +12904,7 @@ const opUpdateDatabase = "UpdateDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDatabase for more information on using the UpdateDatabase
 // API call, and error handling.
@@ -12996,7 +12996,7 @@ const opUpdateDevEndpoint = "UpdateDevEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDevEndpoint for more information on using the UpdateDevEndpoint
 // API call, and error handling.
@@ -13088,7 +13088,7 @@ const opUpdateJob = "UpdateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJob for more information on using the UpdateJob
 // API call, and error handling.
@@ -13179,7 +13179,7 @@ const opUpdateMLTransform = "UpdateMLTransform"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMLTransform for more information on using the UpdateMLTransform
 // API call, and error handling.
@@ -13275,7 +13275,7 @@ const opUpdatePartition = "UpdatePartition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePartition for more information on using the UpdatePartition
 // API call, and error handling.
@@ -13367,7 +13367,7 @@ const opUpdateTable = "UpdateTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTable for more information on using the UpdateTable
 // API call, and error handling.
@@ -13465,7 +13465,7 @@ const opUpdateTrigger = "UpdateTrigger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrigger for more information on using the UpdateTrigger
 // API call, and error handling.
@@ -13556,7 +13556,7 @@ const opUpdateUserDefinedFunction = "UpdateUserDefinedFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserDefinedFunction for more information on using the UpdateUserDefinedFunction
 // API call, and error handling.
@@ -13648,7 +13648,7 @@ const opUpdateWorkflow = "UpdateWorkflow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWorkflow for more information on using the UpdateWorkflow
 // API call, and error handling.

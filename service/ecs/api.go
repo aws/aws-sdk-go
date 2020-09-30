@@ -21,7 +21,7 @@ const opCreateCapacityProvider = "CreateCapacityProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCapacityProvider for more information on using the CreateCapacityProvider
 // API call, and error handling.
@@ -126,7 +126,7 @@ const opCreateCluster = "CreateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCluster for more information on using the CreateCluster
 // API call, and error handling.
@@ -224,7 +224,7 @@ const opCreateService = "CreateService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateService for more information on using the CreateService
 // API call, and error handling.
@@ -429,7 +429,7 @@ const opCreateTaskSet = "CreateTaskSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTaskSet for more information on using the CreateTaskSet
 // API call, and error handling.
@@ -545,7 +545,7 @@ const opDeleteAccountSetting = "DeleteAccountSetting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccountSetting for more information on using the DeleteAccountSetting
 // API call, and error handling.
@@ -634,7 +634,7 @@ const opDeleteAttributes = "DeleteAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAttributes for more information on using the DeleteAttributes
 // API call, and error handling.
@@ -723,7 +723,7 @@ const opDeleteCapacityProvider = "DeleteCapacityProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCapacityProvider for more information on using the DeleteCapacityProvider
 // API call, and error handling.
@@ -825,7 +825,7 @@ const opDeleteCluster = "DeleteCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCluster for more information on using the DeleteCluster
 // API call, and error handling.
@@ -944,7 +944,7 @@ const opDeleteService = "DeleteService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteService for more information on using the DeleteService
 // API call, and error handling.
@@ -1057,7 +1057,7 @@ const opDeleteTaskSet = "DeleteTaskSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTaskSet for more information on using the DeleteTaskSet
 // API call, and error handling.
@@ -1171,7 +1171,7 @@ const opDeregisterContainerInstance = "DeregisterContainerInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterContainerInstance for more information on using the DeregisterContainerInstance
 // API call, and error handling.
@@ -1277,7 +1277,7 @@ const opDeregisterTaskDefinition = "DeregisterTaskDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterTaskDefinition for more information on using the DeregisterTaskDefinition
 // API call, and error handling.
@@ -1379,7 +1379,7 @@ const opDescribeCapacityProviders = "DescribeCapacityProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCapacityProviders for more information on using the DescribeCapacityProviders
 // API call, and error handling.
@@ -1467,7 +1467,7 @@ const opDescribeClusters = "DescribeClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeClusters for more information on using the DescribeClusters
 // API call, and error handling.
@@ -1555,7 +1555,7 @@ const opDescribeContainerInstances = "DescribeContainerInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContainerInstances for more information on using the DescribeContainerInstances
 // API call, and error handling.
@@ -1648,7 +1648,7 @@ const opDescribeServices = "DescribeServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServices for more information on using the DescribeServices
 // API call, and error handling.
@@ -1740,7 +1740,7 @@ const opDescribeTaskDefinition = "DescribeTaskDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTaskDefinition for more information on using the DescribeTaskDefinition
 // API call, and error handling.
@@ -1833,7 +1833,7 @@ const opDescribeTaskSets = "DescribeTaskSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTaskSets for more information on using the DescribeTaskSets
 // API call, and error handling.
@@ -1942,7 +1942,7 @@ const opDescribeTasks = "DescribeTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTasks for more information on using the DescribeTasks
 // API call, and error handling.
@@ -2034,7 +2034,7 @@ const opDiscoverPollEndpoint = "DiscoverPollEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DiscoverPollEndpoint for more information on using the DiscoverPollEndpoint
 // API call, and error handling.
@@ -2122,7 +2122,7 @@ const opListAccountSettings = "ListAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountSettings for more information on using the ListAccountSettings
 // API call, and error handling.
@@ -2268,7 +2268,7 @@ const opListAttributes = "ListAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttributes for more information on using the ListAttributes
 // API call, and error handling.
@@ -2416,7 +2416,7 @@ const opListClusters = "ListClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusters for more information on using the ListClusters
 // API call, and error handling.
@@ -2562,7 +2562,7 @@ const opListContainerInstances = "ListContainerInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListContainerInstances for more information on using the ListContainerInstances
 // API call, and error handling.
@@ -2716,7 +2716,7 @@ const opListServices = "ListServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServices for more information on using the ListServices
 // API call, and error handling.
@@ -2866,7 +2866,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2958,7 +2958,7 @@ const opListTaskDefinitionFamilies = "ListTaskDefinitionFamilies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTaskDefinitionFamilies for more information on using the ListTaskDefinitionFamilies
 // API call, and error handling.
@@ -3110,7 +3110,7 @@ const opListTaskDefinitions = "ListTaskDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTaskDefinitions for more information on using the ListTaskDefinitions
 // API call, and error handling.
@@ -3258,7 +3258,7 @@ const opListTasks = "ListTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTasks for more information on using the ListTasks
 // API call, and error handling.
@@ -3417,7 +3417,7 @@ const opPutAccountSetting = "PutAccountSetting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAccountSetting for more information on using the PutAccountSetting
 // API call, and error handling.
@@ -3534,7 +3534,7 @@ const opPutAccountSettingDefault = "PutAccountSettingDefault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAccountSettingDefault for more information on using the PutAccountSettingDefault
 // API call, and error handling.
@@ -3624,7 +3624,7 @@ const opPutAttributes = "PutAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAttributes for more information on using the PutAttributes
 // API call, and error handling.
@@ -3722,7 +3722,7 @@ const opPutClusterCapacityProviders = "PutClusterCapacityProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutClusterCapacityProviders for more information on using the PutClusterCapacityProviders
 // API call, and error handling.
@@ -3840,7 +3840,7 @@ const opRegisterContainerInstance = "RegisterContainerInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterContainerInstance for more information on using the RegisterContainerInstance
 // API call, and error handling.
@@ -3933,7 +3933,7 @@ const opRegisterTaskDefinition = "RegisterTaskDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterTaskDefinition for more information on using the RegisterTaskDefinition
 // API call, and error handling.
@@ -4041,7 +4041,7 @@ const opRunTask = "RunTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RunTask for more information on using the RunTask
 // API call, and error handling.
@@ -4178,7 +4178,7 @@ const opStartTask = "StartTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTask for more information on using the StartTask
 // API call, and error handling.
@@ -4275,7 +4275,7 @@ const opStopTask = "StopTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTask for more information on using the StopTask
 // API call, and error handling.
@@ -4379,7 +4379,7 @@ const opSubmitAttachmentStateChanges = "SubmitAttachmentStateChanges"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubmitAttachmentStateChanges for more information on using the SubmitAttachmentStateChanges
 // API call, and error handling.
@@ -4474,7 +4474,7 @@ const opSubmitContainerStateChange = "SubmitContainerStateChange"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubmitContainerStateChange for more information on using the SubmitContainerStateChange
 // API call, and error handling.
@@ -4565,7 +4565,7 @@ const opSubmitTaskStateChange = "SubmitTaskStateChange"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubmitTaskStateChange for more information on using the SubmitTaskStateChange
 // API call, and error handling.
@@ -4660,7 +4660,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4759,7 +4759,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4855,7 +4855,7 @@ const opUpdateClusterSettings = "UpdateClusterSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClusterSettings for more information on using the UpdateClusterSettings
 // API call, and error handling.
@@ -4947,7 +4947,7 @@ const opUpdateContainerAgent = "UpdateContainerAgent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContainerAgent for more information on using the UpdateContainerAgent
 // API call, and error handling.
@@ -5067,7 +5067,7 @@ const opUpdateContainerInstancesState = "UpdateContainerInstancesState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContainerInstancesState for more information on using the UpdateContainerInstancesState
 // API call, and error handling.
@@ -5207,7 +5207,7 @@ const opUpdateService = "UpdateService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateService for more information on using the UpdateService
 // API call, and error handling.
@@ -5413,7 +5413,7 @@ const opUpdateServicePrimaryTaskSet = "UpdateServicePrimaryTaskSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServicePrimaryTaskSet for more information on using the UpdateServicePrimaryTaskSet
 // API call, and error handling.
@@ -5528,7 +5528,7 @@ const opUpdateTaskSet = "UpdateTaskSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTaskSet for more information on using the UpdateTaskSet
 // API call, and error handling.

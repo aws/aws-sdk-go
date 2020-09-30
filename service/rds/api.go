@@ -21,7 +21,7 @@ const opAddRoleToDBCluster = "AddRoleToDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddRoleToDBCluster for more information on using the AddRoleToDBCluster
 // API call, and error handling.
@@ -117,7 +117,7 @@ const opAddRoleToDBInstance = "AddRoleToDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddRoleToDBInstance for more information on using the AddRoleToDBInstance
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opAddSourceIdentifierToSubscription = "AddSourceIdentifierToSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddSourceIdentifierToSubscription for more information on using the AddSourceIdentifierToSubscription
 // API call, and error handling.
@@ -292,7 +292,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -391,7 +391,7 @@ const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApplyPendingMaintenanceAction for more information on using the ApplyPendingMaintenanceAction
 // API call, and error handling.
@@ -477,7 +477,7 @@ const opAuthorizeDBSecurityGroupIngress = "AuthorizeDBSecurityGroupIngress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AuthorizeDBSecurityGroupIngress for more information on using the AuthorizeDBSecurityGroupIngress
 // API call, and error handling.
@@ -578,7 +578,7 @@ const opBacktrackDBCluster = "BacktrackDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BacktrackDBCluster for more information on using the BacktrackDBCluster
 // API call, and error handling.
@@ -666,7 +666,7 @@ const opCancelExportTask = "CancelExportTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelExportTask for more information on using the CancelExportTask
 // API call, and error handling.
@@ -749,7 +749,7 @@ const opCopyDBClusterParameterGroup = "CopyDBClusterParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyDBClusterParameterGroup for more information on using the CopyDBClusterParameterGroup
 // API call, and error handling.
@@ -837,7 +837,7 @@ const opCopyDBClusterSnapshot = "CopyDBClusterSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyDBClusterSnapshot for more information on using the CopyDBClusterSnapshot
 // API call, and error handling.
@@ -991,7 +991,7 @@ const opCopyDBParameterGroup = "CopyDBParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyDBParameterGroup for more information on using the CopyDBParameterGroup
 // API call, and error handling.
@@ -1077,7 +1077,7 @@ const opCopyDBSnapshot = "CopyDBSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyDBSnapshot for more information on using the CopyDBSnapshot
 // API call, and error handling.
@@ -1176,7 +1176,7 @@ const opCopyOptionGroup = "CopyOptionGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyOptionGroup for more information on using the CopyOptionGroup
 // API call, and error handling.
@@ -1261,7 +1261,7 @@ const opCreateCustomAvailabilityZone = "CreateCustomAvailabilityZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCustomAvailabilityZone for more information on using the CreateCustomAvailabilityZone
 // API call, and error handling.
@@ -1353,7 +1353,7 @@ const opCreateDBCluster = "CreateDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBCluster for more information on using the CreateDBCluster
 // API call, and error handling.
@@ -1499,7 +1499,7 @@ const opCreateDBClusterEndpoint = "CreateDBClusterEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBClusterEndpoint for more information on using the CreateDBClusterEndpoint
 // API call, and error handling.
@@ -1596,7 +1596,7 @@ const opCreateDBClusterParameterGroup = "CreateDBClusterParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBClusterParameterGroup for more information on using the CreateDBClusterParameterGroup
 // API call, and error handling.
@@ -1708,7 +1708,7 @@ const opCreateDBClusterSnapshot = "CreateDBClusterSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBClusterSnapshot for more information on using the CreateDBClusterSnapshot
 // API call, and error handling.
@@ -1803,7 +1803,7 @@ const opCreateDBInstance = "CreateDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBInstance for more information on using the CreateDBInstance
 // API call, and error handling.
@@ -1944,7 +1944,7 @@ const opCreateDBInstanceReadReplica = "CreateDBInstanceReadReplica"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBInstanceReadReplica for more information on using the CreateDBInstanceReadReplica
 // API call, and error handling.
@@ -2097,7 +2097,7 @@ const opCreateDBParameterGroup = "CreateDBParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBParameterGroup for more information on using the CreateDBParameterGroup
 // API call, and error handling.
@@ -2200,7 +2200,7 @@ const opCreateDBProxy = "CreateDBProxy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBProxy for more information on using the CreateDBProxy
 // API call, and error handling.
@@ -2288,7 +2288,7 @@ const opCreateDBSecurityGroup = "CreateDBSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBSecurityGroup for more information on using the CreateDBSecurityGroup
 // API call, and error handling.
@@ -2379,7 +2379,7 @@ const opCreateDBSnapshot = "CreateDBSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBSnapshot for more information on using the CreateDBSnapshot
 // API call, and error handling.
@@ -2467,7 +2467,7 @@ const opCreateDBSubnetGroup = "CreateDBSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDBSubnetGroup for more information on using the CreateDBSubnetGroup
 // API call, and error handling.
@@ -2563,7 +2563,7 @@ const opCreateEventSubscription = "CreateEventSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEventSubscription for more information on using the CreateEventSubscription
 // API call, and error handling.
@@ -2681,7 +2681,7 @@ const opCreateGlobalCluster = "CreateGlobalCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGlobalCluster for more information on using the CreateGlobalCluster
 // API call, and error handling.
@@ -2777,7 +2777,7 @@ const opCreateOptionGroup = "CreateOptionGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOptionGroup for more information on using the CreateOptionGroup
 // API call, and error handling.
@@ -2859,7 +2859,7 @@ const opDeleteCustomAvailabilityZone = "DeleteCustomAvailabilityZone"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCustomAvailabilityZone for more information on using the DeleteCustomAvailabilityZone
 // API call, and error handling.
@@ -2948,7 +2948,7 @@ const opDeleteDBCluster = "DeleteDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBCluster for more information on using the DeleteDBCluster
 // API call, and error handling.
@@ -3047,7 +3047,7 @@ const opDeleteDBClusterEndpoint = "DeleteDBClusterEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBClusterEndpoint for more information on using the DeleteDBClusterEndpoint
 // API call, and error handling.
@@ -3135,7 +3135,7 @@ const opDeleteDBClusterParameterGroup = "DeleteDBClusterParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBClusterParameterGroup for more information on using the DeleteDBClusterParameterGroup
 // API call, and error handling.
@@ -3226,7 +3226,7 @@ const opDeleteDBClusterSnapshot = "DeleteDBClusterSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBClusterSnapshot for more information on using the DeleteDBClusterSnapshot
 // API call, and error handling.
@@ -3316,7 +3316,7 @@ const opDeleteDBInstance = "DeleteDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBInstance for more information on using the DeleteDBInstance
 // API call, and error handling.
@@ -3436,7 +3436,7 @@ const opDeleteDBInstanceAutomatedBackup = "DeleteDBInstanceAutomatedBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBInstanceAutomatedBackup for more information on using the DeleteDBInstanceAutomatedBackup
 // API call, and error handling.
@@ -3520,7 +3520,7 @@ const opDeleteDBParameterGroup = "DeleteDBParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBParameterGroup for more information on using the DeleteDBParameterGroup
 // API call, and error handling.
@@ -3606,7 +3606,7 @@ const opDeleteDBProxy = "DeleteDBProxy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBProxy for more information on using the DeleteDBProxy
 // API call, and error handling.
@@ -3689,7 +3689,7 @@ const opDeleteDBSecurityGroup = "DeleteDBSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBSecurityGroup for more information on using the DeleteDBSecurityGroup
 // API call, and error handling.
@@ -3774,7 +3774,7 @@ const opDeleteDBSnapshot = "DeleteDBSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBSnapshot for more information on using the DeleteDBSnapshot
 // API call, and error handling.
@@ -3859,7 +3859,7 @@ const opDeleteDBSubnetGroup = "DeleteDBSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDBSubnetGroup for more information on using the DeleteDBSubnetGroup
 // API call, and error handling.
@@ -3947,7 +3947,7 @@ const opDeleteEventSubscription = "DeleteEventSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventSubscription for more information on using the DeleteEventSubscription
 // API call, and error handling.
@@ -4030,7 +4030,7 @@ const opDeleteGlobalCluster = "DeleteGlobalCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGlobalCluster for more information on using the DeleteGlobalCluster
 // API call, and error handling.
@@ -4113,7 +4113,7 @@ const opDeleteInstallationMedia = "DeleteInstallationMedia"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInstallationMedia for more information on using the DeleteInstallationMedia
 // API call, and error handling.
@@ -4193,7 +4193,7 @@ const opDeleteOptionGroup = "DeleteOptionGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOptionGroup for more information on using the DeleteOptionGroup
 // API call, and error handling.
@@ -4276,7 +4276,7 @@ const opDeregisterDBProxyTargets = "DeregisterDBProxyTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterDBProxyTargets for more information on using the DeregisterDBProxyTargets
 // API call, and error handling.
@@ -4369,7 +4369,7 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountAttributes for more information on using the DescribeAccountAttributes
 // API call, and error handling.
@@ -4448,7 +4448,7 @@ const opDescribeCertificates = "DescribeCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCertificates for more information on using the DescribeCertificates
 // API call, and error handling.
@@ -4585,7 +4585,7 @@ const opDescribeCustomAvailabilityZones = "DescribeCustomAvailabilityZones"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCustomAvailabilityZones for more information on using the DescribeCustomAvailabilityZones
 // API call, and error handling.
@@ -4729,7 +4729,7 @@ const opDescribeDBClusterBacktracks = "DescribeDBClusterBacktracks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusterBacktracks for more information on using the DescribeDBClusterBacktracks
 // API call, and error handling.
@@ -4874,7 +4874,7 @@ const opDescribeDBClusterEndpoints = "DescribeDBClusterEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusterEndpoints for more information on using the DescribeDBClusterEndpoints
 // API call, and error handling.
@@ -5013,7 +5013,7 @@ const opDescribeDBClusterParameterGroups = "DescribeDBClusterParameterGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusterParameterGroups for more information on using the DescribeDBClusterParameterGroups
 // API call, and error handling.
@@ -5157,7 +5157,7 @@ const opDescribeDBClusterParameters = "DescribeDBClusterParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusterParameters for more information on using the DescribeDBClusterParameters
 // API call, and error handling.
@@ -5300,7 +5300,7 @@ const opDescribeDBClusterSnapshotAttributes = "DescribeDBClusterSnapshotAttribut
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusterSnapshotAttributes for more information on using the DescribeDBClusterSnapshotAttributes
 // API call, and error handling.
@@ -5392,7 +5392,7 @@ const opDescribeDBClusterSnapshots = "DescribeDBClusterSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusterSnapshots for more information on using the DescribeDBClusterSnapshots
 // API call, and error handling.
@@ -5535,7 +5535,7 @@ const opDescribeDBClusters = "DescribeDBClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBClusters for more information on using the DescribeDBClusters
 // API call, and error handling.
@@ -5679,7 +5679,7 @@ const opDescribeDBEngineVersions = "DescribeDBEngineVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBEngineVersions for more information on using the DescribeDBEngineVersions
 // API call, and error handling.
@@ -5811,7 +5811,7 @@ const opDescribeDBInstanceAutomatedBackups = "DescribeDBInstanceAutomatedBackups
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBInstanceAutomatedBackups for more information on using the DescribeDBInstanceAutomatedBackups
 // API call, and error handling.
@@ -5954,7 +5954,7 @@ const opDescribeDBInstances = "DescribeDBInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBInstances for more information on using the DescribeDBInstances
 // API call, and error handling.
@@ -6094,7 +6094,7 @@ const opDescribeDBLogFiles = "DescribeDBLogFiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBLogFiles for more information on using the DescribeDBLogFiles
 // API call, and error handling.
@@ -6231,7 +6231,7 @@ const opDescribeDBParameterGroups = "DescribeDBParameterGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBParameterGroups for more information on using the DescribeDBParameterGroups
 // API call, and error handling.
@@ -6370,7 +6370,7 @@ const opDescribeDBParameters = "DescribeDBParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBParameters for more information on using the DescribeDBParameters
 // API call, and error handling.
@@ -6507,7 +6507,7 @@ const opDescribeDBProxies = "DescribeDBProxies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBProxies for more information on using the DescribeDBProxies
 // API call, and error handling.
@@ -6645,7 +6645,7 @@ const opDescribeDBProxyTargetGroups = "DescribeDBProxyTargetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBProxyTargetGroups for more information on using the DescribeDBProxyTargetGroups
 // API call, and error handling.
@@ -6791,7 +6791,7 @@ const opDescribeDBProxyTargets = "DescribeDBProxyTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBProxyTargets for more information on using the DescribeDBProxyTargets
 // API call, and error handling.
@@ -6940,7 +6940,7 @@ const opDescribeDBSecurityGroups = "DescribeDBSecurityGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBSecurityGroups for more information on using the DescribeDBSecurityGroups
 // API call, and error handling.
@@ -7079,7 +7079,7 @@ const opDescribeDBSnapshotAttributes = "DescribeDBSnapshotAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBSnapshotAttributes for more information on using the DescribeDBSnapshotAttributes
 // API call, and error handling.
@@ -7169,7 +7169,7 @@ const opDescribeDBSnapshots = "DescribeDBSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBSnapshots for more information on using the DescribeDBSnapshots
 // API call, and error handling.
@@ -7306,7 +7306,7 @@ const opDescribeDBSubnetGroups = "DescribeDBSubnetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDBSubnetGroups for more information on using the DescribeDBSubnetGroups
 // API call, and error handling.
@@ -7446,7 +7446,7 @@ const opDescribeEngineDefaultClusterParameters = "DescribeEngineDefaultClusterPa
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEngineDefaultClusterParameters for more information on using the DescribeEngineDefaultClusterParameters
 // API call, and error handling.
@@ -7524,7 +7524,7 @@ const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEngineDefaultParameters for more information on using the DescribeEngineDefaultParameters
 // API call, and error handling.
@@ -7657,7 +7657,7 @@ const opDescribeEventCategories = "DescribeEventCategories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventCategories for more information on using the DescribeEventCategories
 // API call, and error handling.
@@ -7734,7 +7734,7 @@ const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventSubscriptions for more information on using the DescribeEventSubscriptions
 // API call, and error handling.
@@ -7875,7 +7875,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -8013,7 +8013,7 @@ const opDescribeExportTasks = "DescribeExportTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExportTasks for more information on using the DescribeExportTasks
 // API call, and error handling.
@@ -8151,7 +8151,7 @@ const opDescribeGlobalClusters = "DescribeGlobalClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGlobalClusters for more information on using the DescribeGlobalClusters
 // API call, and error handling.
@@ -8293,7 +8293,7 @@ const opDescribeInstallationMedia = "DescribeInstallationMedia"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstallationMedia for more information on using the DescribeInstallationMedia
 // API call, and error handling.
@@ -8431,7 +8431,7 @@ const opDescribeOptionGroupOptions = "DescribeOptionGroupOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOptionGroupOptions for more information on using the DescribeOptionGroupOptions
 // API call, and error handling.
@@ -8563,7 +8563,7 @@ const opDescribeOptionGroups = "DescribeOptionGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOptionGroups for more information on using the DescribeOptionGroups
 // API call, and error handling.
@@ -8700,7 +8700,7 @@ const opDescribeOrderableDBInstanceOptions = "DescribeOrderableDBInstanceOptions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrderableDBInstanceOptions for more information on using the DescribeOrderableDBInstanceOptions
 // API call, and error handling.
@@ -8832,7 +8832,7 @@ const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePendingMaintenanceActions for more information on using the DescribePendingMaintenanceActions
 // API call, and error handling.
@@ -8970,7 +8970,7 @@ const opDescribeReservedDBInstances = "DescribeReservedDBInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservedDBInstances for more information on using the DescribeReservedDBInstances
 // API call, and error handling.
@@ -9108,7 +9108,7 @@ const opDescribeReservedDBInstancesOfferings = "DescribeReservedDBInstancesOffer
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservedDBInstancesOfferings for more information on using the DescribeReservedDBInstancesOfferings
 // API call, and error handling.
@@ -9245,7 +9245,7 @@ const opDescribeSourceRegions = "DescribeSourceRegions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSourceRegions for more information on using the DescribeSourceRegions
 // API call, and error handling.
@@ -9379,7 +9379,7 @@ const opDescribeValidDBInstanceModifications = "DescribeValidDBInstanceModificat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeValidDBInstanceModifications for more information on using the DescribeValidDBInstanceModifications
 // API call, and error handling.
@@ -9463,7 +9463,7 @@ const opDownloadDBLogFilePortion = "DownloadDBLogFilePortion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DownloadDBLogFilePortion for more information on using the DownloadDBLogFilePortion
 // API call, and error handling.
@@ -9603,7 +9603,7 @@ const opFailoverDBCluster = "FailoverDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See FailoverDBCluster for more information on using the FailoverDBCluster
 // API call, and error handling.
@@ -9703,7 +9703,7 @@ const opImportInstallationMedia = "ImportInstallationMedia"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportInstallationMedia for more information on using the ImportInstallationMedia
 // API call, and error handling.
@@ -9787,7 +9787,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -9884,7 +9884,7 @@ const opModifyCertificates = "ModifyCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyCertificates for more information on using the ModifyCertificates
 // API call, and error handling.
@@ -9989,7 +9989,7 @@ const opModifyCurrentDBClusterCapacity = "ModifyCurrentDBClusterCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyCurrentDBClusterCapacity for more information on using the ModifyCurrentDBClusterCapacity
 // API call, and error handling.
@@ -10096,7 +10096,7 @@ const opModifyDBCluster = "ModifyDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBCluster for more information on using the ModifyDBCluster
 // API call, and error handling.
@@ -10218,7 +10218,7 @@ const opModifyDBClusterEndpoint = "ModifyDBClusterEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBClusterEndpoint for more information on using the ModifyDBClusterEndpoint
 // API call, and error handling.
@@ -10312,7 +10312,7 @@ const opModifyDBClusterParameterGroup = "ModifyDBClusterParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBClusterParameterGroup for more information on using the ModifyDBClusterParameterGroup
 // API call, and error handling.
@@ -10424,7 +10424,7 @@ const opModifyDBClusterSnapshotAttribute = "ModifyDBClusterSnapshotAttribute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBClusterSnapshotAttribute for more information on using the ModifyDBClusterSnapshotAttribute
 // API call, and error handling.
@@ -10531,7 +10531,7 @@ const opModifyDBInstance = "ModifyDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBInstance for more information on using the ModifyDBInstance
 // API call, and error handling.
@@ -10673,7 +10673,7 @@ const opModifyDBParameterGroup = "ModifyDBParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBParameterGroup for more information on using the ModifyDBParameterGroup
 // API call, and error handling.
@@ -10774,7 +10774,7 @@ const opModifyDBProxy = "ModifyDBProxy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBProxy for more information on using the ModifyDBProxy
 // API call, and error handling.
@@ -10861,7 +10861,7 @@ const opModifyDBProxyTargetGroup = "ModifyDBProxyTargetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBProxyTargetGroup for more information on using the ModifyDBProxyTargetGroup
 // API call, and error handling.
@@ -10948,7 +10948,7 @@ const opModifyDBSnapshot = "ModifyDBSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBSnapshot for more information on using the ModifyDBSnapshot
 // API call, and error handling.
@@ -11030,7 +11030,7 @@ const opModifyDBSnapshotAttribute = "ModifyDBSnapshotAttribute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBSnapshotAttribute for more information on using the ModifyDBSnapshotAttribute
 // API call, and error handling.
@@ -11134,7 +11134,7 @@ const opModifyDBSubnetGroup = "ModifyDBSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDBSubnetGroup for more information on using the ModifyDBSubnetGroup
 // API call, and error handling.
@@ -11229,7 +11229,7 @@ const opModifyEventSubscription = "ModifyEventSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyEventSubscription for more information on using the ModifyEventSubscription
 // API call, and error handling.
@@ -11330,7 +11330,7 @@ const opModifyGlobalCluster = "ModifyGlobalCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyGlobalCluster for more information on using the ModifyGlobalCluster
 // API call, and error handling.
@@ -11416,7 +11416,7 @@ const opModifyOptionGroup = "ModifyOptionGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyOptionGroup for more information on using the ModifyOptionGroup
 // API call, and error handling.
@@ -11498,7 +11498,7 @@ const opPromoteReadReplica = "PromoteReadReplica"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PromoteReadReplica for more information on using the PromoteReadReplica
 // API call, and error handling.
@@ -11591,7 +11591,7 @@ const opPromoteReadReplicaDBCluster = "PromoteReadReplicaDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PromoteReadReplicaDBCluster for more information on using the PromoteReadReplicaDBCluster
 // API call, and error handling.
@@ -11675,7 +11675,7 @@ const opPurchaseReservedDBInstancesOffering = "PurchaseReservedDBInstancesOfferi
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurchaseReservedDBInstancesOffering for more information on using the PurchaseReservedDBInstancesOffering
 // API call, and error handling.
@@ -11760,7 +11760,7 @@ const opRebootDBInstance = "RebootDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootDBInstance for more information on using the RebootDBInstance
 // API call, and error handling.
@@ -11852,7 +11852,7 @@ const opRegisterDBProxyTargets = "RegisterDBProxyTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterDBProxyTargets for more information on using the RegisterDBProxyTargets
 // API call, and error handling.
@@ -11960,7 +11960,7 @@ const opRemoveFromGlobalCluster = "RemoveFromGlobalCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveFromGlobalCluster for more information on using the RemoveFromGlobalCluster
 // API call, and error handling.
@@ -12048,7 +12048,7 @@ const opRemoveRoleFromDBCluster = "RemoveRoleFromDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveRoleFromDBCluster for more information on using the RemoveRoleFromDBCluster
 // API call, and error handling.
@@ -12140,7 +12140,7 @@ const opRemoveRoleFromDBInstance = "RemoveRoleFromDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveRoleFromDBInstance for more information on using the RemoveRoleFromDBInstance
 // API call, and error handling.
@@ -12228,7 +12228,7 @@ const opRemoveSourceIdentifierFromSubscription = "RemoveSourceIdentifierFromSubs
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveSourceIdentifierFromSubscription for more information on using the RemoveSourceIdentifierFromSubscription
 // API call, and error handling.
@@ -12310,7 +12310,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.
@@ -12408,7 +12408,7 @@ const opResetDBClusterParameterGroup = "ResetDBClusterParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetDBClusterParameterGroup for more information on using the ResetDBClusterParameterGroup
 // API call, and error handling.
@@ -12506,7 +12506,7 @@ const opResetDBParameterGroup = "ResetDBParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetDBParameterGroup for more information on using the ResetDBParameterGroup
 // API call, and error handling.
@@ -12596,7 +12596,7 @@ const opRestoreDBClusterFromS3 = "RestoreDBClusterFromS3"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDBClusterFromS3 for more information on using the RestoreDBClusterFromS3
 // API call, and error handling.
@@ -12739,7 +12739,7 @@ const opRestoreDBClusterFromSnapshot = "RestoreDBClusterFromSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDBClusterFromSnapshot for more information on using the RestoreDBClusterFromSnapshot
 // API call, and error handling.
@@ -12896,7 +12896,7 @@ const opRestoreDBClusterToPointInTime = "RestoreDBClusterToPointInTime"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDBClusterToPointInTime for more information on using the RestoreDBClusterToPointInTime
 // API call, and error handling.
@@ -13049,7 +13049,7 @@ const opRestoreDBInstanceFromDBSnapshot = "RestoreDBInstanceFromDBSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDBInstanceFromDBSnapshot for more information on using the RestoreDBInstanceFromDBSnapshot
 // API call, and error handling.
@@ -13214,7 +13214,7 @@ const opRestoreDBInstanceFromS3 = "RestoreDBInstanceFromS3"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDBInstanceFromS3 for more information on using the RestoreDBInstanceFromS3
 // API call, and error handling.
@@ -13357,7 +13357,7 @@ const opRestoreDBInstanceToPointInTime = "RestoreDBInstanceToPointInTime"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDBInstanceToPointInTime for more information on using the RestoreDBInstanceToPointInTime
 // API call, and error handling.
@@ -13522,7 +13522,7 @@ const opRevokeDBSecurityGroupIngress = "RevokeDBSecurityGroupIngress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeDBSecurityGroupIngress for more information on using the RevokeDBSecurityGroupIngress
 // API call, and error handling.
@@ -13614,7 +13614,7 @@ const opStartActivityStream = "StartActivityStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartActivityStream for more information on using the StartActivityStream
 // API call, and error handling.
@@ -13710,7 +13710,7 @@ const opStartDBCluster = "StartDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDBCluster for more information on using the StartDBCluster
 // API call, and error handling.
@@ -13801,7 +13801,7 @@ const opStartDBInstance = "StartDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDBInstance for more information on using the StartDBInstance
 // API call, and error handling.
@@ -13926,7 +13926,7 @@ const opStartExportTask = "StartExportTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartExportTask for more information on using the StartExportTask
 // API call, and error handling.
@@ -14033,7 +14033,7 @@ const opStopActivityStream = "StopActivityStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopActivityStream for more information on using the StopActivityStream
 // API call, and error handling.
@@ -14128,7 +14128,7 @@ const opStopDBCluster = "StopDBCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDBCluster for more information on using the StopDBCluster
 // API call, and error handling.
@@ -14221,7 +14221,7 @@ const opStopDBInstance = "StopDBInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDBInstance for more information on using the StopDBInstance
 // API call, and error handling.

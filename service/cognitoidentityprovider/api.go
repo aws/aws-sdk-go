@@ -22,7 +22,7 @@ const opAddCustomAttributes = "AddCustomAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddCustomAttributes for more information on using the AddCustomAttributes
 // API call, and error handling.
@@ -121,7 +121,7 @@ const opAdminAddUserToGroup = "AdminAddUserToGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminAddUserToGroup for more information on using the AdminAddUserToGroup
 // API call, and error handling.
@@ -221,7 +221,7 @@ const opAdminConfirmSignUp = "AdminConfirmSignUp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminConfirmSignUp for more information on using the AdminConfirmSignUp
 // API call, and error handling.
@@ -342,7 +342,7 @@ const opAdminCreateUser = "AdminCreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminCreateUser for more information on using the AdminCreateUser
 // API call, and error handling.
@@ -493,7 +493,7 @@ const opAdminDeleteUser = "AdminDeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminDeleteUser for more information on using the AdminDeleteUser
 // API call, and error handling.
@@ -593,7 +593,7 @@ const opAdminDeleteUserAttributes = "AdminDeleteUserAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminDeleteUserAttributes for more information on using the AdminDeleteUserAttributes
 // API call, and error handling.
@@ -694,7 +694,7 @@ const opAdminDisableProviderForUser = "AdminDisableProviderForUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminDisableProviderForUser for more information on using the AdminDisableProviderForUser
 // API call, and error handling.
@@ -827,7 +827,7 @@ const opAdminDisableUser = "AdminDisableUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminDisableUser for more information on using the AdminDisableUser
 // API call, and error handling.
@@ -927,7 +927,7 @@ const opAdminEnableUser = "AdminEnableUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminEnableUser for more information on using the AdminEnableUser
 // API call, and error handling.
@@ -1027,7 +1027,7 @@ const opAdminForgetDevice = "AdminForgetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminForgetDevice for more information on using the AdminForgetDevice
 // API call, and error handling.
@@ -1130,7 +1130,7 @@ const opAdminGetDevice = "AdminGetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminGetDevice for more information on using the AdminGetDevice
 // API call, and error handling.
@@ -1229,7 +1229,7 @@ const opAdminGetUser = "AdminGetUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminGetUser for more information on using the AdminGetUser
 // API call, and error handling.
@@ -1329,7 +1329,7 @@ const opAdminInitiateAuth = "AdminInitiateAuth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminInitiateAuth for more information on using the AdminInitiateAuth
 // API call, and error handling.
@@ -1463,7 +1463,7 @@ const opAdminLinkProviderForUser = "AdminLinkProviderForUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminLinkProviderForUser for more information on using the AdminLinkProviderForUser
 // API call, and error handling.
@@ -1589,7 +1589,7 @@ const opAdminListDevices = "AdminListDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminListDevices for more information on using the AdminListDevices
 // API call, and error handling.
@@ -1688,7 +1688,7 @@ const opAdminListGroupsForUser = "AdminListGroupsForUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminListGroupsForUser for more information on using the AdminListGroupsForUser
 // API call, and error handling.
@@ -1845,7 +1845,7 @@ const opAdminListUserAuthEvents = "AdminListUserAuthEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminListUserAuthEvents for more information on using the AdminListUserAuthEvents
 // API call, and error handling.
@@ -2004,7 +2004,7 @@ const opAdminRemoveUserFromGroup = "AdminRemoveUserFromGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminRemoveUserFromGroup for more information on using the AdminRemoveUserFromGroup
 // API call, and error handling.
@@ -2104,7 +2104,7 @@ const opAdminResetUserPassword = "AdminResetUserPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminResetUserPassword for more information on using the AdminResetUserPassword
 // API call, and error handling.
@@ -2245,7 +2245,7 @@ const opAdminRespondToAuthChallenge = "AdminRespondToAuthChallenge"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminRespondToAuthChallenge for more information on using the AdminRespondToAuthChallenge
 // API call, and error handling.
@@ -2400,7 +2400,7 @@ const opAdminSetUserMFAPreference = "AdminSetUserMFAPreference"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminSetUserMFAPreference for more information on using the AdminSetUserMFAPreference
 // API call, and error handling.
@@ -2505,7 +2505,7 @@ const opAdminSetUserPassword = "AdminSetUserPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminSetUserPassword for more information on using the AdminSetUserPassword
 // API call, and error handling.
@@ -2618,7 +2618,7 @@ const opAdminSetUserSettings = "AdminSetUserSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminSetUserSettings for more information on using the AdminSetUserSettings
 // API call, and error handling.
@@ -2715,7 +2715,7 @@ const opAdminUpdateAuthEventFeedback = "AdminUpdateAuthEventFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminUpdateAuthEventFeedback for more information on using the AdminUpdateAuthEventFeedback
 // API call, and error handling.
@@ -2818,7 +2818,7 @@ const opAdminUpdateDeviceStatus = "AdminUpdateDeviceStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminUpdateDeviceStatus for more information on using the AdminUpdateDeviceStatus
 // API call, and error handling.
@@ -2921,7 +2921,7 @@ const opAdminUpdateUserAttributes = "AdminUpdateUserAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminUpdateUserAttributes for more information on using the AdminUpdateUserAttributes
 // API call, and error handling.
@@ -3060,7 +3060,7 @@ const opAdminUserGlobalSignOut = "AdminUserGlobalSignOut"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdminUserGlobalSignOut for more information on using the AdminUserGlobalSignOut
 // API call, and error handling.
@@ -3163,7 +3163,7 @@ const opAssociateSoftwareToken = "AssociateSoftwareToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateSoftwareToken for more information on using the AssociateSoftwareToken
 // API call, and error handling.
@@ -3261,7 +3261,7 @@ const opChangePassword = "ChangePassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ChangePassword for more information on using the ChangePassword
 // API call, and error handling.
@@ -3374,7 +3374,7 @@ const opConfirmDevice = "ConfirmDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmDevice for more information on using the ConfirmDevice
 // API call, and error handling.
@@ -3493,7 +3493,7 @@ const opConfirmForgotPassword = "ConfirmForgotPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmForgotPassword for more information on using the ConfirmForgotPassword
 // API call, and error handling.
@@ -3626,7 +3626,7 @@ const opConfirmSignUp = "ConfirmSignUp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmSignUp for more information on using the ConfirmSignUp
 // API call, and error handling.
@@ -3759,7 +3759,7 @@ const opCreateGroup = "CreateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroup for more information on using the CreateGroup
 // API call, and error handling.
@@ -3863,7 +3863,7 @@ const opCreateIdentityProvider = "CreateIdentityProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIdentityProvider for more information on using the CreateIdentityProvider
 // API call, and error handling.
@@ -3965,7 +3965,7 @@ const opCreateResourceServer = "CreateResourceServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResourceServer for more information on using the CreateResourceServer
 // API call, and error handling.
@@ -4063,7 +4063,7 @@ const opCreateUserImportJob = "CreateUserImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserImportJob for more information on using the CreateUserImportJob
 // API call, and error handling.
@@ -4164,7 +4164,7 @@ const opCreateUserPool = "CreateUserPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserPool for more information on using the CreateUserPool
 // API call, and error handling.
@@ -4276,7 +4276,7 @@ const opCreateUserPoolClient = "CreateUserPoolClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserPoolClient for more information on using the CreateUserPoolClient
 // API call, and error handling.
@@ -4380,7 +4380,7 @@ const opCreateUserPoolDomain = "CreateUserPoolDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserPoolDomain for more information on using the CreateUserPoolDomain
 // API call, and error handling.
@@ -4474,7 +4474,7 @@ const opDeleteGroup = "DeleteGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroup for more information on using the DeleteGroup
 // API call, and error handling.
@@ -4571,7 +4571,7 @@ const opDeleteIdentityProvider = "DeleteIdentityProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIdentityProvider for more information on using the DeleteIdentityProvider
 // API call, and error handling.
@@ -4669,7 +4669,7 @@ const opDeleteResourceServer = "DeleteResourceServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourceServer for more information on using the DeleteResourceServer
 // API call, and error handling.
@@ -4764,7 +4764,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -4869,7 +4869,7 @@ const opDeleteUserAttributes = "DeleteUserAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserAttributes for more information on using the DeleteUserAttributes
 // API call, and error handling.
@@ -4974,7 +4974,7 @@ const opDeleteUserPool = "DeleteUserPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserPool for more information on using the DeleteUserPool
 // API call, and error handling.
@@ -5073,7 +5073,7 @@ const opDeleteUserPoolClient = "DeleteUserPoolClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserPoolClient for more information on using the DeleteUserPoolClient
 // API call, and error handling.
@@ -5168,7 +5168,7 @@ const opDeleteUserPoolDomain = "DeleteUserPoolDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserPoolDomain for more information on using the DeleteUserPoolDomain
 // API call, and error handling.
@@ -5259,7 +5259,7 @@ const opDescribeIdentityProvider = "DescribeIdentityProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIdentityProvider for more information on using the DescribeIdentityProvider
 // API call, and error handling.
@@ -5353,7 +5353,7 @@ const opDescribeResourceServer = "DescribeResourceServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeResourceServer for more information on using the DescribeResourceServer
 // API call, and error handling.
@@ -5447,7 +5447,7 @@ const opDescribeRiskConfiguration = "DescribeRiskConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRiskConfiguration for more information on using the DescribeRiskConfiguration
 // API call, and error handling.
@@ -5544,7 +5544,7 @@ const opDescribeUserImportJob = "DescribeUserImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserImportJob for more information on using the DescribeUserImportJob
 // API call, and error handling.
@@ -5638,7 +5638,7 @@ const opDescribeUserPool = "DescribeUserPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserPool for more information on using the DescribeUserPool
 // API call, and error handling.
@@ -5736,7 +5736,7 @@ const opDescribeUserPoolClient = "DescribeUserPoolClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserPoolClient for more information on using the DescribeUserPoolClient
 // API call, and error handling.
@@ -5831,7 +5831,7 @@ const opDescribeUserPoolDomain = "DescribeUserPoolDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserPoolDomain for more information on using the DescribeUserPoolDomain
 // API call, and error handling.
@@ -5921,7 +5921,7 @@ const opForgetDevice = "ForgetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ForgetDevice for more information on using the ForgetDevice
 // API call, and error handling.
@@ -6028,7 +6028,7 @@ const opForgotPassword = "ForgotPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ForgotPassword for more information on using the ForgotPassword
 // API call, and error handling.
@@ -6170,7 +6170,7 @@ const opGetCSVHeader = "GetCSVHeader"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCSVHeader for more information on using the GetCSVHeader
 // API call, and error handling.
@@ -6265,7 +6265,7 @@ const opGetDevice = "GetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevice for more information on using the GetDevice
 // API call, and error handling.
@@ -6371,7 +6371,7 @@ const opGetGroup = "GetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroup for more information on using the GetGroup
 // API call, and error handling.
@@ -6467,7 +6467,7 @@ const opGetIdentityProviderByIdentifier = "GetIdentityProviderByIdentifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityProviderByIdentifier for more information on using the GetIdentityProviderByIdentifier
 // API call, and error handling.
@@ -6561,7 +6561,7 @@ const opGetSigningCertificate = "GetSigningCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSigningCertificate for more information on using the GetSigningCertificate
 // API call, and error handling.
@@ -6648,7 +6648,7 @@ const opGetUICustomization = "GetUICustomization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUICustomization for more information on using the GetUICustomization
 // API call, and error handling.
@@ -6745,7 +6745,7 @@ const opGetUser = "GetUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUser for more information on using the GetUser
 // API call, and error handling.
@@ -6849,7 +6849,7 @@ const opGetUserAttributeVerificationCode = "GetUserAttributeVerificationCode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserAttributeVerificationCode for more information on using the GetUserAttributeVerificationCode
 // API call, and error handling.
@@ -6986,7 +6986,7 @@ const opGetUserPoolMfaConfig = "GetUserPoolMfaConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserPoolMfaConfig for more information on using the GetUserPoolMfaConfig
 // API call, and error handling.
@@ -7080,7 +7080,7 @@ const opGlobalSignOut = "GlobalSignOut"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GlobalSignOut for more information on using the GlobalSignOut
 // API call, and error handling.
@@ -7183,7 +7183,7 @@ const opInitiateAuth = "InitiateAuth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateAuth for more information on using the InitiateAuth
 // API call, and error handling.
@@ -7312,7 +7312,7 @@ const opListDevices = "ListDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevices for more information on using the ListDevices
 // API call, and error handling.
@@ -7418,7 +7418,7 @@ const opListGroups = "ListGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroups for more information on using the ListGroups
 // API call, and error handling.
@@ -7572,7 +7572,7 @@ const opListIdentityProviders = "ListIdentityProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIdentityProviders for more information on using the ListIdentityProviders
 // API call, and error handling.
@@ -7724,7 +7724,7 @@ const opListResourceServers = "ListResourceServers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceServers for more information on using the ListResourceServers
 // API call, and error handling.
@@ -7876,7 +7876,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -7976,7 +7976,7 @@ const opListUserImportJobs = "ListUserImportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserImportJobs for more information on using the ListUserImportJobs
 // API call, and error handling.
@@ -8070,7 +8070,7 @@ const opListUserPoolClients = "ListUserPoolClients"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserPoolClients for more information on using the ListUserPoolClients
 // API call, and error handling.
@@ -8222,7 +8222,7 @@ const opListUserPools = "ListUserPools"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserPools for more information on using the ListUserPools
 // API call, and error handling.
@@ -8370,7 +8370,7 @@ const opListUsers = "ListUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsers for more information on using the ListUsers
 // API call, and error handling.
@@ -8522,7 +8522,7 @@ const opListUsersInGroup = "ListUsersInGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsersInGroup for more information on using the ListUsersInGroup
 // API call, and error handling.
@@ -8676,7 +8676,7 @@ const opResendConfirmationCode = "ResendConfirmationCode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResendConfirmationCode for more information on using the ResendConfirmationCode
 // API call, and error handling.
@@ -8808,7 +8808,7 @@ const opRespondToAuthChallenge = "RespondToAuthChallenge"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RespondToAuthChallenge for more information on using the RespondToAuthChallenge
 // API call, and error handling.
@@ -8962,7 +8962,7 @@ const opSetRiskConfiguration = "SetRiskConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetRiskConfiguration for more information on using the SetRiskConfiguration
 // API call, and error handling.
@@ -9070,7 +9070,7 @@ const opSetUICustomization = "SetUICustomization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetUICustomization for more information on using the SetUICustomization
 // API call, and error handling.
@@ -9175,7 +9175,7 @@ const opSetUserMFAPreference = "SetUserMFAPreference"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetUserMFAPreference for more information on using the SetUserMFAPreference
 // API call, and error handling.
@@ -9280,7 +9280,7 @@ const opSetUserPoolMfaConfig = "SetUserPoolMfaConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetUserPoolMfaConfig for more information on using the SetUserPoolMfaConfig
 // API call, and error handling.
@@ -9384,7 +9384,7 @@ const opSetUserSettings = "SetUserSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetUserSettings for more information on using the SetUserSettings
 // API call, and error handling.
@@ -9488,7 +9488,7 @@ const opSignUp = "SignUp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SignUp for more information on using the SignUp
 // API call, and error handling.
@@ -9621,7 +9621,7 @@ const opStartUserImportJob = "StartUserImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartUserImportJob for more information on using the StartUserImportJob
 // API call, and error handling.
@@ -9718,7 +9718,7 @@ const opStopUserImportJob = "StopUserImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopUserImportJob for more information on using the StopUserImportJob
 // API call, and error handling.
@@ -9815,7 +9815,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -9927,7 +9927,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -10023,7 +10023,7 @@ const opUpdateAuthEventFeedback = "UpdateAuthEventFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAuthEventFeedback for more information on using the UpdateAuthEventFeedback
 // API call, and error handling.
@@ -10126,7 +10126,7 @@ const opUpdateDeviceStatus = "UpdateDeviceStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDeviceStatus for more information on using the UpdateDeviceStatus
 // API call, and error handling.
@@ -10233,7 +10233,7 @@ const opUpdateGroup = "UpdateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroup for more information on using the UpdateGroup
 // API call, and error handling.
@@ -10332,7 +10332,7 @@ const opUpdateIdentityProvider = "UpdateIdentityProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIdentityProvider for more information on using the UpdateIdentityProvider
 // API call, and error handling.
@@ -10429,7 +10429,7 @@ const opUpdateResourceServer = "UpdateResourceServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResourceServer for more information on using the UpdateResourceServer
 // API call, and error handling.
@@ -10526,7 +10526,7 @@ const opUpdateUserAttributes = "UpdateUserAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserAttributes for more information on using the UpdateUserAttributes
 // API call, and error handling.
@@ -10672,7 +10672,7 @@ const opUpdateUserPool = "UpdateUserPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserPool for more information on using the UpdateUserPool
 // API call, and error handling.
@@ -10795,7 +10795,7 @@ const opUpdateUserPoolClient = "UpdateUserPoolClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserPoolClient for more information on using the UpdateUserPoolClient
 // API call, and error handling.
@@ -10903,7 +10903,7 @@ const opUpdateUserPoolDomain = "UpdateUserPoolDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserPoolDomain for more information on using the UpdateUserPoolDomain
 // API call, and error handling.
@@ -11025,7 +11025,7 @@ const opVerifySoftwareToken = "VerifySoftwareToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifySoftwareToken for more information on using the VerifySoftwareToken
 // API call, and error handling.
@@ -11148,7 +11148,7 @@ const opVerifyUserAttribute = "VerifyUserAttribute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifyUserAttribute for more information on using the VerifyUserAttribute
 // API call, and error handling.

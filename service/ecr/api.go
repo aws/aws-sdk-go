@@ -21,7 +21,7 @@ const opBatchCheckLayerAvailability = "BatchCheckLayerAvailability"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchCheckLayerAvailability for more information on using the BatchCheckLayerAvailability
 // API call, and error handling.
@@ -116,7 +116,7 @@ const opBatchDeleteImage = "BatchDeleteImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteImage for more information on using the BatchDeleteImage
 // API call, and error handling.
@@ -211,7 +211,7 @@ const opBatchGetImage = "BatchGetImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetImage for more information on using the BatchGetImage
 // API call, and error handling.
@@ -302,7 +302,7 @@ const opCompleteLayerUpload = "CompleteLayerUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteLayerUpload for more information on using the CompleteLayerUpload
 // API call, and error handling.
@@ -418,7 +418,7 @@ const opCreateRepository = "CreateRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRepository for more information on using the CreateRepository
 // API call, and error handling.
@@ -522,7 +522,7 @@ const opDeleteLifecyclePolicy = "DeleteLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLifecyclePolicy for more information on using the DeleteLifecyclePolicy
 // API call, and error handling.
@@ -612,7 +612,7 @@ const opDeleteRepository = "DeleteRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRepository for more information on using the DeleteRepository
 // API call, and error handling.
@@ -708,7 +708,7 @@ const opDeleteRepositoryPolicy = "DeleteRepositoryPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRepositoryPolicy for more information on using the DeleteRepositoryPolicy
 // API call, and error handling.
@@ -799,7 +799,7 @@ const opDescribeImageScanFindings = "DescribeImageScanFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeImageScanFindings for more information on using the DescribeImageScanFindings
 // API call, and error handling.
@@ -951,7 +951,7 @@ const opDescribeImages = "DescribeImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeImages for more information on using the DescribeImages
 // API call, and error handling.
@@ -1104,7 +1104,7 @@ const opDescribeRepositories = "DescribeRepositories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRepositories for more information on using the DescribeRepositories
 // API call, and error handling.
@@ -1249,7 +1249,7 @@ const opGetAuthorizationToken = "GetAuthorizationToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAuthorizationToken for more information on using the GetAuthorizationToken
 // API call, and error handling.
@@ -1341,7 +1341,7 @@ const opGetDownloadUrlForLayer = "GetDownloadUrlForLayer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDownloadUrlForLayer for more information on using the GetDownloadUrlForLayer
 // API call, and error handling.
@@ -1444,7 +1444,7 @@ const opGetLifecyclePolicy = "GetLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLifecyclePolicy for more information on using the GetLifecyclePolicy
 // API call, and error handling.
@@ -1534,7 +1534,7 @@ const opGetLifecyclePolicyPreview = "GetLifecyclePolicyPreview"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLifecyclePolicyPreview for more information on using the GetLifecyclePolicyPreview
 // API call, and error handling.
@@ -1683,7 +1683,7 @@ const opGetRepositoryPolicy = "GetRepositoryPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRepositoryPolicy for more information on using the GetRepositoryPolicy
 // API call, and error handling.
@@ -1774,7 +1774,7 @@ const opInitiateLayerUpload = "InitiateLayerUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateLayerUpload for more information on using the InitiateLayerUpload
 // API call, and error handling.
@@ -1872,7 +1872,7 @@ const opListImages = "ListImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListImages for more information on using the ListImages
 // API call, and error handling.
@@ -2024,7 +2024,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2111,7 +2111,7 @@ const opPutImage = "PutImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutImage for more information on using the PutImage
 // API call, and error handling.
@@ -2233,7 +2233,7 @@ const opPutImageScanningConfiguration = "PutImageScanningConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutImageScanningConfiguration for more information on using the PutImageScanningConfiguration
 // API call, and error handling.
@@ -2320,7 +2320,7 @@ const opPutImageTagMutability = "PutImageTagMutability"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutImageTagMutability for more information on using the PutImageTagMutability
 // API call, and error handling.
@@ -2409,7 +2409,7 @@ const opPutLifecyclePolicy = "PutLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLifecyclePolicy for more information on using the PutLifecyclePolicy
 // API call, and error handling.
@@ -2497,7 +2497,7 @@ const opSetRepositoryPolicy = "SetRepositoryPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetRepositoryPolicy for more information on using the SetRepositoryPolicy
 // API call, and error handling.
@@ -2586,7 +2586,7 @@ const opStartImageScan = "StartImageScan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartImageScan for more information on using the StartImageScan
 // API call, and error handling.
@@ -2687,7 +2687,7 @@ const opStartLifecyclePolicyPreview = "StartLifecyclePolicyPreview"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartLifecyclePolicyPreview for more information on using the StartLifecyclePolicyPreview
 // API call, and error handling.
@@ -2783,7 +2783,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2881,7 +2881,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2978,7 +2978,7 @@ const opUploadLayerPart = "UploadLayerPart"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadLayerPart for more information on using the UploadLayerPart
 // API call, and error handling.

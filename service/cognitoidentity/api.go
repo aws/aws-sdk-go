@@ -22,7 +22,7 @@ const opCreateIdentityPool = "CreateIdentityPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIdentityPool for more information on using the CreateIdentityPool
 // API call, and error handling.
@@ -131,7 +131,7 @@ const opDeleteIdentities = "DeleteIdentities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIdentities for more information on using the DeleteIdentities
 // API call, and error handling.
@@ -219,7 +219,7 @@ const opDeleteIdentityPool = "DeleteIdentityPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIdentityPool for more information on using the DeleteIdentityPool
 // API call, and error handling.
@@ -315,7 +315,7 @@ const opDescribeIdentity = "DescribeIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIdentity for more information on using the DescribeIdentity
 // API call, and error handling.
@@ -410,7 +410,7 @@ const opDescribeIdentityPool = "DescribeIdentityPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIdentityPool for more information on using the DescribeIdentityPool
 // API call, and error handling.
@@ -505,7 +505,7 @@ const opGetCredentialsForIdentity = "GetCredentialsForIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCredentialsForIdentity for more information on using the GetCredentialsForIdentity
 // API call, and error handling.
@@ -615,7 +615,7 @@ const opGetId = "GetId"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetId for more information on using the GetId
 // API call, and error handling.
@@ -722,7 +722,7 @@ const opGetIdentityPoolRoles = "GetIdentityPoolRoles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityPoolRoles for more information on using the GetIdentityPoolRoles
 // API call, and error handling.
@@ -820,7 +820,7 @@ const opGetOpenIdToken = "GetOpenIdToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOpenIdToken for more information on using the GetOpenIdToken
 // API call, and error handling.
@@ -927,7 +927,7 @@ const opGetOpenIdTokenForDeveloperIdentity = "GetOpenIdTokenForDeveloperIdentity
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOpenIdTokenForDeveloperIdentity for more information on using the GetOpenIdTokenForDeveloperIdentity
 // API call, and error handling.
@@ -1042,7 +1042,7 @@ const opListIdentities = "ListIdentities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIdentities for more information on using the ListIdentities
 // API call, and error handling.
@@ -1136,7 +1136,7 @@ const opListIdentityPools = "ListIdentityPools"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIdentityPools for more information on using the ListIdentityPools
 // API call, and error handling.
@@ -1230,7 +1230,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1328,7 +1328,7 @@ const opLookupDeveloperIdentity = "LookupDeveloperIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LookupDeveloperIdentity for more information on using the LookupDeveloperIdentity
 // API call, and error handling.
@@ -1440,7 +1440,7 @@ const opMergeDeveloperIdentities = "MergeDeveloperIdentities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergeDeveloperIdentities for more information on using the MergeDeveloperIdentities
 // API call, and error handling.
@@ -1548,7 +1548,7 @@ const opSetIdentityPoolRoles = "SetIdentityPoolRoles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityPoolRoles for more information on using the SetIdentityPoolRoles
 // API call, and error handling.
@@ -1651,7 +1651,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1761,7 +1761,7 @@ const opUnlinkDeveloperIdentity = "UnlinkDeveloperIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnlinkDeveloperIdentity for more information on using the UnlinkDeveloperIdentity
 // API call, and error handling.
@@ -1863,7 +1863,7 @@ const opUnlinkIdentity = "UnlinkIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnlinkIdentity for more information on using the UnlinkIdentity
 // API call, and error handling.
@@ -1969,7 +1969,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2063,7 +2063,7 @@ const opUpdateIdentityPool = "UpdateIdentityPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIdentityPool for more information on using the UpdateIdentityPool
 // API call, and error handling.

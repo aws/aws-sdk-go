@@ -21,7 +21,7 @@ const opCreateApp = "CreateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApp for more information on using the CreateApp
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opCreateBackendEnvironment = "CreateBackendEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackendEnvironment for more information on using the CreateBackendEnvironment
 // API call, and error handling.
@@ -203,7 +203,7 @@ const opCreateBranch = "CreateBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBranch for more information on using the CreateBranch
 // API call, and error handling.
@@ -297,7 +297,7 @@ const opCreateDeployment = "CreateDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeployment for more information on using the CreateDeployment
 // API call, and error handling.
@@ -386,7 +386,7 @@ const opCreateDomainAssociation = "CreateDomainAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomainAssociation for more information on using the CreateDomainAssociation
 // API call, and error handling.
@@ -481,7 +481,7 @@ const opCreateWebhook = "CreateWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWebhook for more information on using the CreateWebhook
 // API call, and error handling.
@@ -575,7 +575,7 @@ const opDeleteApp = "DeleteApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApp for more information on using the DeleteApp
 // API call, and error handling.
@@ -666,7 +666,7 @@ const opDeleteBackendEnvironment = "DeleteBackendEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackendEnvironment for more information on using the DeleteBackendEnvironment
 // API call, and error handling.
@@ -757,7 +757,7 @@ const opDeleteBranch = "DeleteBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBranch for more information on using the DeleteBranch
 // API call, and error handling.
@@ -848,7 +848,7 @@ const opDeleteDomainAssociation = "DeleteDomainAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomainAssociation for more information on using the DeleteDomainAssociation
 // API call, and error handling.
@@ -939,7 +939,7 @@ const opDeleteJob = "DeleteJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteJob for more information on using the DeleteJob
 // API call, and error handling.
@@ -1030,7 +1030,7 @@ const opDeleteWebhook = "DeleteWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWebhook for more information on using the DeleteWebhook
 // API call, and error handling.
@@ -1121,7 +1121,7 @@ const opGenerateAccessLogs = "GenerateAccessLogs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateAccessLogs for more information on using the GenerateAccessLogs
 // API call, and error handling.
@@ -1210,7 +1210,7 @@ const opGetApp = "GetApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApp for more information on using the GetApp
 // API call, and error handling.
@@ -1298,7 +1298,7 @@ const opGetArtifactUrl = "GetArtifactUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetArtifactUrl for more information on using the GetArtifactUrl
 // API call, and error handling.
@@ -1389,7 +1389,7 @@ const opGetBackendEnvironment = "GetBackendEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackendEnvironment for more information on using the GetBackendEnvironment
 // API call, and error handling.
@@ -1477,7 +1477,7 @@ const opGetBranch = "GetBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBranch for more information on using the GetBranch
 // API call, and error handling.
@@ -1565,7 +1565,7 @@ const opGetDomainAssociation = "GetDomainAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomainAssociation for more information on using the GetDomainAssociation
 // API call, and error handling.
@@ -1653,7 +1653,7 @@ const opGetJob = "GetJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJob for more information on using the GetJob
 // API call, and error handling.
@@ -1744,7 +1744,7 @@ const opGetWebhook = "GetWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWebhook for more information on using the GetWebhook
 // API call, and error handling.
@@ -1835,7 +1835,7 @@ const opListApps = "ListApps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApps for more information on using the ListApps
 // API call, and error handling.
@@ -1920,7 +1920,7 @@ const opListArtifacts = "ListArtifacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListArtifacts for more information on using the ListArtifacts
 // API call, and error handling.
@@ -2008,7 +2008,7 @@ const opListBackendEnvironments = "ListBackendEnvironments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackendEnvironments for more information on using the ListBackendEnvironments
 // API call, and error handling.
@@ -2093,7 +2093,7 @@ const opListBranches = "ListBranches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBranches for more information on using the ListBranches
 // API call, and error handling.
@@ -2178,7 +2178,7 @@ const opListDomainAssociations = "ListDomainAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomainAssociations for more information on using the ListDomainAssociations
 // API call, and error handling.
@@ -2263,7 +2263,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -2351,7 +2351,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2436,7 +2436,7 @@ const opListWebhooks = "ListWebhooks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWebhooks for more information on using the ListWebhooks
 // API call, and error handling.
@@ -2524,7 +2524,7 @@ const opStartDeployment = "StartDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDeployment for more information on using the StartDeployment
 // API call, and error handling.
@@ -2616,7 +2616,7 @@ const opStartJob = "StartJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartJob for more information on using the StartJob
 // API call, and error handling.
@@ -2707,7 +2707,7 @@ const opStopJob = "StopJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopJob for more information on using the StopJob
 // API call, and error handling.
@@ -2798,7 +2798,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2884,7 +2884,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2970,7 +2970,7 @@ const opUpdateApp = "UpdateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApp for more information on using the UpdateApp
 // API call, and error handling.
@@ -3058,7 +3058,7 @@ const opUpdateBranch = "UpdateBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBranch for more information on using the UpdateBranch
 // API call, and error handling.
@@ -3149,7 +3149,7 @@ const opUpdateDomainAssociation = "UpdateDomainAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainAssociation for more information on using the UpdateDomainAssociation
 // API call, and error handling.
@@ -3240,7 +3240,7 @@ const opUpdateWebhook = "UpdateWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWebhook for more information on using the UpdateWebhook
 // API call, and error handling.

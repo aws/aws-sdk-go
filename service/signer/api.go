@@ -21,7 +21,7 @@ const opCancelSigningProfile = "CancelSigningProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelSigningProfile for more information on using the CancelSigningProfile
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opDescribeSigningJob = "DescribeSigningJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSigningJob for more information on using the DescribeSigningJob
 // API call, and error handling.
@@ -198,7 +198,7 @@ const opGetSigningPlatform = "GetSigningPlatform"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSigningPlatform for more information on using the GetSigningPlatform
 // API call, and error handling.
@@ -283,7 +283,7 @@ const opGetSigningProfile = "GetSigningProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSigningProfile for more information on using the GetSigningProfile
 // API call, and error handling.
@@ -371,7 +371,7 @@ const opListSigningJobs = "ListSigningJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSigningJobs for more information on using the ListSigningJobs
 // API call, and error handling.
@@ -523,7 +523,7 @@ const opListSigningPlatforms = "ListSigningPlatforms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSigningPlatforms for more information on using the ListSigningPlatforms
 // API call, and error handling.
@@ -674,7 +674,7 @@ const opListSigningProfiles = "ListSigningProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSigningProfiles for more information on using the ListSigningProfiles
 // API call, and error handling.
@@ -823,7 +823,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -909,7 +909,7 @@ const opPutSigningProfile = "PutSigningProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSigningProfile for more information on using the PutSigningProfile
 // API call, and error handling.
@@ -1003,7 +1003,7 @@ const opStartSigningJob = "StartSigningJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSigningJob for more information on using the StartSigningJob
 // API call, and error handling.
@@ -1117,7 +1117,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1207,7 +1207,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

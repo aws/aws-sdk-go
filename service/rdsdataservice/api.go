@@ -19,7 +19,7 @@ const opBatchExecuteStatement = "BatchExecuteStatement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchExecuteStatement for more information on using the BatchExecuteStatement
 // API call, and error handling.
@@ -117,7 +117,7 @@ const opBeginTransaction = "BeginTransaction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BeginTransaction for more information on using the BeginTransaction
 // API call, and error handling.
@@ -216,7 +216,7 @@ const opCommitTransaction = "CommitTransaction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CommitTransaction for more information on using the CommitTransaction
 // API call, and error handling.
@@ -311,7 +311,7 @@ const opExecuteSql = "ExecuteSql"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExecuteSql for more information on using the ExecuteSql
 // API call, and error handling.
@@ -411,7 +411,7 @@ const opExecuteStatement = "ExecuteStatement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExecuteStatement for more information on using the ExecuteStatement
 // API call, and error handling.
@@ -508,7 +508,7 @@ const opRollbackTransaction = "RollbackTransaction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RollbackTransaction for more information on using the RollbackTransaction
 // API call, and error handling.

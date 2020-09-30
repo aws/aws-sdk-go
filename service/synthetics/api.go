@@ -21,7 +21,7 @@ const opCreateCanary = "CreateCanary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCanary for more information on using the CreateCanary
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opDeleteCanary = "DeleteCanary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCanary for more information on using the DeleteCanary
 // API call, and error handling.
@@ -231,7 +231,7 @@ const opDescribeCanaries = "DescribeCanaries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCanaries for more information on using the DescribeCanaries
 // API call, and error handling.
@@ -377,7 +377,7 @@ const opDescribeCanariesLastRun = "DescribeCanariesLastRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCanariesLastRun for more information on using the DescribeCanariesLastRun
 // API call, and error handling.
@@ -518,7 +518,7 @@ const opDescribeRuntimeVersions = "DescribeRuntimeVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRuntimeVersions for more information on using the DescribeRuntimeVersions
 // API call, and error handling.
@@ -659,7 +659,7 @@ const opGetCanary = "GetCanary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCanary for more information on using the GetCanary
 // API call, and error handling.
@@ -743,7 +743,7 @@ const opGetCanaryRuns = "GetCanaryRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCanaryRuns for more information on using the GetCanaryRuns
 // API call, and error handling.
@@ -886,7 +886,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -971,7 +971,7 @@ const opStartCanary = "StartCanary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartCanary for more information on using the StartCanary
 // API call, and error handling.
@@ -1062,7 +1062,7 @@ const opStopCanary = "StopCanary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopCanary for more information on using the StopCanary
 // API call, and error handling.
@@ -1157,7 +1157,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1258,7 +1258,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1344,7 +1344,7 @@ const opUpdateCanary = "UpdateCanary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCanary for more information on using the UpdateCanary
 // API call, and error handling.

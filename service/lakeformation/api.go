@@ -21,7 +21,7 @@ const opBatchGrantPermissions = "BatchGrantPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGrantPermissions for more information on using the BatchGrantPermissions
 // API call, and error handling.
@@ -103,7 +103,7 @@ const opBatchRevokePermissions = "BatchRevokePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchRevokePermissions for more information on using the BatchRevokePermissions
 // API call, and error handling.
@@ -185,7 +185,7 @@ const opDeregisterResource = "DeregisterResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterResource for more information on using the DeregisterResource
 // API call, and error handling.
@@ -277,7 +277,7 @@ const opDescribeResource = "DescribeResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeResource for more information on using the DescribeResource
 // API call, and error handling.
@@ -366,7 +366,7 @@ const opGetDataLakeSettings = "GetDataLakeSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataLakeSettings for more information on using the GetDataLakeSettings
 // API call, and error handling.
@@ -452,7 +452,7 @@ const opGetEffectivePermissionsForPath = "GetEffectivePermissionsForPath"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEffectivePermissionsForPath for more information on using the GetEffectivePermissionsForPath
 // API call, and error handling.
@@ -600,7 +600,7 @@ const opGrantPermissions = "GrantPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GrantPermissions for more information on using the GrantPermissions
 // API call, and error handling.
@@ -690,7 +690,7 @@ const opListPermissions = "ListPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPermissions for more information on using the ListPermissions
 // API call, and error handling.
@@ -840,7 +840,7 @@ const opListResources = "ListResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResources for more information on using the ListResources
 // API call, and error handling.
@@ -983,7 +983,7 @@ const opPutDataLakeSettings = "PutDataLakeSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDataLakeSettings for more information on using the PutDataLakeSettings
 // API call, and error handling.
@@ -1072,7 +1072,7 @@ const opRegisterResource = "RegisterResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterResource for more information on using the RegisterResource
 // API call, and error handling.
@@ -1179,7 +1179,7 @@ const opRevokePermissions = "RevokePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokePermissions for more information on using the RevokePermissions
 // API call, and error handling.
@@ -1266,7 +1266,7 @@ const opUpdateResource = "UpdateResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResource for more information on using the UpdateResource
 // API call, and error handling.

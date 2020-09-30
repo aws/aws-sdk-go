@@ -21,7 +21,7 @@ const opCreateGatewayRoute = "CreateGatewayRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGatewayRoute for more information on using the CreateGatewayRoute
 // API call, and error handling.
@@ -134,7 +134,7 @@ const opCreateMesh = "CreateMesh"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMesh for more information on using the CreateMesh
 // API call, and error handling.
@@ -248,7 +248,7 @@ const opCreateRoute = "CreateRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRoute for more information on using the CreateRoute
 // API call, and error handling.
@@ -360,7 +360,7 @@ const opCreateVirtualGateway = "CreateVirtualGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVirtualGateway for more information on using the CreateVirtualGateway
 // API call, and error handling.
@@ -475,7 +475,7 @@ const opCreateVirtualNode = "CreateVirtualNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVirtualNode for more information on using the CreateVirtualNode
 // API call, and error handling.
@@ -605,7 +605,7 @@ const opCreateVirtualRouter = "CreateVirtualRouter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVirtualRouter for more information on using the CreateVirtualRouter
 // API call, and error handling.
@@ -720,7 +720,7 @@ const opCreateVirtualService = "CreateVirtualService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVirtualService for more information on using the CreateVirtualService
 // API call, and error handling.
@@ -835,7 +835,7 @@ const opDeleteGatewayRoute = "DeleteGatewayRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGatewayRoute for more information on using the DeleteGatewayRoute
 // API call, and error handling.
@@ -936,7 +936,7 @@ const opDeleteMesh = "DeleteMesh"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMesh for more information on using the DeleteMesh
 // API call, and error handling.
@@ -1040,7 +1040,7 @@ const opDeleteRoute = "DeleteRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRoute for more information on using the DeleteRoute
 // API call, and error handling.
@@ -1141,7 +1141,7 @@ const opDeleteVirtualGateway = "DeleteVirtualGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVirtualGateway for more information on using the DeleteVirtualGateway
 // API call, and error handling.
@@ -1243,7 +1243,7 @@ const opDeleteVirtualNode = "DeleteVirtualNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVirtualNode for more information on using the DeleteVirtualNode
 // API call, and error handling.
@@ -1347,7 +1347,7 @@ const opDeleteVirtualRouter = "DeleteVirtualRouter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVirtualRouter for more information on using the DeleteVirtualRouter
 // API call, and error handling.
@@ -1451,7 +1451,7 @@ const opDeleteVirtualService = "DeleteVirtualService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVirtualService for more information on using the DeleteVirtualService
 // API call, and error handling.
@@ -1552,7 +1552,7 @@ const opDescribeGatewayRoute = "DescribeGatewayRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGatewayRoute for more information on using the DescribeGatewayRoute
 // API call, and error handling.
@@ -1649,7 +1649,7 @@ const opDescribeMesh = "DescribeMesh"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMesh for more information on using the DescribeMesh
 // API call, and error handling.
@@ -1746,7 +1746,7 @@ const opDescribeRoute = "DescribeRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRoute for more information on using the DescribeRoute
 // API call, and error handling.
@@ -1843,7 +1843,7 @@ const opDescribeVirtualGateway = "DescribeVirtualGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVirtualGateway for more information on using the DescribeVirtualGateway
 // API call, and error handling.
@@ -1940,7 +1940,7 @@ const opDescribeVirtualNode = "DescribeVirtualNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVirtualNode for more information on using the DescribeVirtualNode
 // API call, and error handling.
@@ -2037,7 +2037,7 @@ const opDescribeVirtualRouter = "DescribeVirtualRouter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVirtualRouter for more information on using the DescribeVirtualRouter
 // API call, and error handling.
@@ -2134,7 +2134,7 @@ const opDescribeVirtualService = "DescribeVirtualService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVirtualService for more information on using the DescribeVirtualService
 // API call, and error handling.
@@ -2231,7 +2231,7 @@ const opListGatewayRoutes = "ListGatewayRoutes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGatewayRoutes for more information on using the ListGatewayRoutes
 // API call, and error handling.
@@ -2387,7 +2387,7 @@ const opListMeshes = "ListMeshes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMeshes for more information on using the ListMeshes
 // API call, and error handling.
@@ -2542,7 +2542,7 @@ const opListRoutes = "ListRoutes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoutes for more information on using the ListRoutes
 // API call, and error handling.
@@ -2697,7 +2697,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2852,7 +2852,7 @@ const opListVirtualGateways = "ListVirtualGateways"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVirtualGateways for more information on using the ListVirtualGateways
 // API call, and error handling.
@@ -3007,7 +3007,7 @@ const opListVirtualNodes = "ListVirtualNodes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVirtualNodes for more information on using the ListVirtualNodes
 // API call, and error handling.
@@ -3162,7 +3162,7 @@ const opListVirtualRouters = "ListVirtualRouters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVirtualRouters for more information on using the ListVirtualRouters
 // API call, and error handling.
@@ -3317,7 +3317,7 @@ const opListVirtualServices = "ListVirtualServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVirtualServices for more information on using the ListVirtualServices
 // API call, and error handling.
@@ -3472,7 +3472,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3578,7 +3578,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3676,7 +3676,7 @@ const opUpdateGatewayRoute = "UpdateGatewayRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGatewayRoute for more information on using the UpdateGatewayRoute
 // API call, and error handling.
@@ -3784,7 +3784,7 @@ const opUpdateMesh = "UpdateMesh"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMesh for more information on using the UpdateMesh
 // API call, and error handling.
@@ -3886,7 +3886,7 @@ const opUpdateRoute = "UpdateRoute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoute for more information on using the UpdateRoute
 // API call, and error handling.
@@ -3993,7 +3993,7 @@ const opUpdateVirtualGateway = "UpdateVirtualGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVirtualGateway for more information on using the UpdateVirtualGateway
 // API call, and error handling.
@@ -4100,7 +4100,7 @@ const opUpdateVirtualNode = "UpdateVirtualNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVirtualNode for more information on using the UpdateVirtualNode
 // API call, and error handling.
@@ -4207,7 +4207,7 @@ const opUpdateVirtualRouter = "UpdateVirtualRouter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVirtualRouter for more information on using the UpdateVirtualRouter
 // API call, and error handling.
@@ -4314,7 +4314,7 @@ const opUpdateVirtualService = "UpdateVirtualService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVirtualService for more information on using the UpdateVirtualService
 // API call, and error handling.

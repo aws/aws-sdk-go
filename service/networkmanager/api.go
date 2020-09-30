@@ -21,7 +21,7 @@ const opAssociateCustomerGateway = "AssociateCustomerGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateCustomerGateway for more information on using the AssociateCustomerGateway
 // API call, and error handling.
@@ -130,7 +130,7 @@ const opAssociateLink = "AssociateLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateLink for more information on using the AssociateLink
 // API call, and error handling.
@@ -230,7 +230,7 @@ const opCreateDevice = "CreateDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDevice for more information on using the CreateDevice
 // API call, and error handling.
@@ -330,7 +330,7 @@ const opCreateGlobalNetwork = "CreateGlobalNetwork"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGlobalNetwork for more information on using the CreateGlobalNetwork
 // API call, and error handling.
@@ -425,7 +425,7 @@ const opCreateLink = "CreateLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLink for more information on using the CreateLink
 // API call, and error handling.
@@ -523,7 +523,7 @@ const opCreateSite = "CreateSite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSite for more information on using the CreateSite
 // API call, and error handling.
@@ -621,7 +621,7 @@ const opDeleteDevice = "DeleteDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDevice for more information on using the DeleteDevice
 // API call, and error handling.
@@ -717,7 +717,7 @@ const opDeleteGlobalNetwork = "DeleteGlobalNetwork"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGlobalNetwork for more information on using the DeleteGlobalNetwork
 // API call, and error handling.
@@ -813,7 +813,7 @@ const opDeleteLink = "DeleteLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLink for more information on using the DeleteLink
 // API call, and error handling.
@@ -909,7 +909,7 @@ const opDeleteSite = "DeleteSite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSite for more information on using the DeleteSite
 // API call, and error handling.
@@ -1005,7 +1005,7 @@ const opDeregisterTransitGateway = "DeregisterTransitGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterTransitGateway for more information on using the DeregisterTransitGateway
 // API call, and error handling.
@@ -1102,7 +1102,7 @@ const opDescribeGlobalNetworks = "DescribeGlobalNetworks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGlobalNetworks for more information on using the DescribeGlobalNetworks
 // API call, and error handling.
@@ -1254,7 +1254,7 @@ const opDisassociateCustomerGateway = "DisassociateCustomerGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateCustomerGateway for more information on using the DisassociateCustomerGateway
 // API call, and error handling.
@@ -1349,7 +1349,7 @@ const opDisassociateLink = "DisassociateLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateLink for more information on using the DisassociateLink
 // API call, and error handling.
@@ -1445,7 +1445,7 @@ const opGetCustomerGatewayAssociations = "GetCustomerGatewayAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCustomerGatewayAssociations for more information on using the GetCustomerGatewayAssociations
 // API call, and error handling.
@@ -1599,7 +1599,7 @@ const opGetDevices = "GetDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevices for more information on using the GetDevices
 // API call, and error handling.
@@ -1748,7 +1748,7 @@ const opGetLinkAssociations = "GetLinkAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLinkAssociations for more information on using the GetLinkAssociations
 // API call, and error handling.
@@ -1898,7 +1898,7 @@ const opGetLinks = "GetLinks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLinks for more information on using the GetLinks
 // API call, and error handling.
@@ -2050,7 +2050,7 @@ const opGetSites = "GetSites"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSites for more information on using the GetSites
 // API call, and error handling.
@@ -2199,7 +2199,7 @@ const opGetTransitGatewayRegistrations = "GetTransitGatewayRegistrations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTransitGatewayRegistrations for more information on using the GetTransitGatewayRegistrations
 // API call, and error handling.
@@ -2349,7 +2349,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2440,7 +2440,7 @@ const opRegisterTransitGateway = "RegisterTransitGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterTransitGateway for more information on using the RegisterTransitGateway
 // API call, and error handling.
@@ -2538,7 +2538,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2637,7 +2637,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2733,7 +2733,7 @@ const opUpdateDevice = "UpdateDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDevice for more information on using the UpdateDevice
 // API call, and error handling.
@@ -2829,7 +2829,7 @@ const opUpdateGlobalNetwork = "UpdateGlobalNetwork"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGlobalNetwork for more information on using the UpdateGlobalNetwork
 // API call, and error handling.
@@ -2925,7 +2925,7 @@ const opUpdateLink = "UpdateLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLink for more information on using the UpdateLink
 // API call, and error handling.
@@ -3024,7 +3024,7 @@ const opUpdateSite = "UpdateSite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSite for more information on using the UpdateSite
 // API call, and error handling.

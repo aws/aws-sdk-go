@@ -20,7 +20,7 @@ const opCancelIngestion = "CancelIngestion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelIngestion for more information on using the CancelIngestion
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opCreateAccountCustomization = "CreateAccountCustomization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccountCustomization for more information on using the CreateAccountCustomization
 // API call, and error handling.
@@ -237,7 +237,7 @@ const opCreateAnalysis = "CreateAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAnalysis for more information on using the CreateAnalysis
 // API call, and error handling.
@@ -337,7 +337,7 @@ const opCreateDashboard = "CreateDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDashboard for more information on using the CreateDashboard
 // API call, and error handling.
@@ -444,7 +444,7 @@ const opCreateDataSet = "CreateDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSet for more information on using the CreateDataSet
 // API call, and error handling.
@@ -554,7 +554,7 @@ const opCreateDataSource = "CreateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSource for more information on using the CreateDataSource
 // API call, and error handling.
@@ -658,7 +658,7 @@ const opCreateGroup = "CreateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroup for more information on using the CreateGroup
 // API call, and error handling.
@@ -769,7 +769,7 @@ const opCreateGroupMembership = "CreateGroupMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroupMembership for more information on using the CreateGroupMembership
 // API call, and error handling.
@@ -870,7 +870,7 @@ const opCreateIAMPolicyAssignment = "CreateIAMPolicyAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIAMPolicyAssignment for more information on using the CreateIAMPolicyAssignment
 // API call, and error handling.
@@ -974,7 +974,7 @@ const opCreateIngestion = "CreateIngestion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIngestion for more information on using the CreateIngestion
 // API call, and error handling.
@@ -1081,7 +1081,7 @@ const opCreateNamespace = "CreateNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNamespace for more information on using the CreateNamespace
 // API call, and error handling.
@@ -1200,7 +1200,7 @@ const opCreateTemplate = "CreateTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTemplate for more information on using the CreateTemplate
 // API call, and error handling.
@@ -1318,7 +1318,7 @@ const opCreateTemplateAlias = "CreateTemplateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTemplateAlias for more information on using the CreateTemplateAlias
 // API call, and error handling.
@@ -1421,7 +1421,7 @@ const opCreateTheme = "CreateTheme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTheme for more information on using the CreateTheme
 // API call, and error handling.
@@ -1533,7 +1533,7 @@ const opCreateThemeAlias = "CreateThemeAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateThemeAlias for more information on using the CreateThemeAlias
 // API call, and error handling.
@@ -1636,7 +1636,7 @@ const opDeleteAccountCustomization = "DeleteAccountCustomization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccountCustomization for more information on using the DeleteAccountCustomization
 // API call, and error handling.
@@ -1735,7 +1735,7 @@ const opDeleteAnalysis = "DeleteAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAnalysis for more information on using the DeleteAnalysis
 // API call, and error handling.
@@ -1846,7 +1846,7 @@ const opDeleteDashboard = "DeleteDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDashboard for more information on using the DeleteDashboard
 // API call, and error handling.
@@ -1943,7 +1943,7 @@ const opDeleteDataSet = "DeleteDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataSet for more information on using the DeleteDataSet
 // API call, and error handling.
@@ -2038,7 +2038,7 @@ const opDeleteDataSource = "DeleteDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataSource for more information on using the DeleteDataSource
 // API call, and error handling.
@@ -2134,7 +2134,7 @@ const opDeleteGroup = "DeleteGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroup for more information on using the DeleteGroup
 // API call, and error handling.
@@ -2235,7 +2235,7 @@ const opDeleteGroupMembership = "DeleteGroupMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroupMembership for more information on using the DeleteGroupMembership
 // API call, and error handling.
@@ -2337,7 +2337,7 @@ const opDeleteIAMPolicyAssignment = "DeleteIAMPolicyAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIAMPolicyAssignment for more information on using the DeleteIAMPolicyAssignment
 // API call, and error handling.
@@ -2439,7 +2439,7 @@ const opDeleteNamespace = "DeleteNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNamespace for more information on using the DeleteNamespace
 // API call, and error handling.
@@ -2543,7 +2543,7 @@ const opDeleteTemplate = "DeleteTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTemplate for more information on using the DeleteTemplate
 // API call, and error handling.
@@ -2643,7 +2643,7 @@ const opDeleteTemplateAlias = "DeleteTemplateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTemplateAlias for more information on using the DeleteTemplateAlias
 // API call, and error handling.
@@ -2739,7 +2739,7 @@ const opDeleteTheme = "DeleteTheme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTheme for more information on using the DeleteTheme
 // API call, and error handling.
@@ -2843,7 +2843,7 @@ const opDeleteThemeAlias = "DeleteThemeAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteThemeAlias for more information on using the DeleteThemeAlias
 // API call, and error handling.
@@ -2942,7 +2942,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -3045,7 +3045,7 @@ const opDeleteUserByPrincipalId = "DeleteUserByPrincipalId"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserByPrincipalId for more information on using the DeleteUserByPrincipalId
 // API call, and error handling.
@@ -3146,7 +3146,7 @@ const opDescribeAccountCustomization = "DescribeAccountCustomization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountCustomization for more information on using the DescribeAccountCustomization
 // API call, and error handling.
@@ -3283,7 +3283,7 @@ const opDescribeAccountSettings = "DescribeAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountSettings for more information on using the DescribeAccountSettings
 // API call, and error handling.
@@ -3382,7 +3382,7 @@ const opDescribeAnalysis = "DescribeAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAnalysis for more information on using the DescribeAnalysis
 // API call, and error handling.
@@ -3483,7 +3483,7 @@ const opDescribeAnalysisPermissions = "DescribeAnalysisPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAnalysisPermissions for more information on using the DescribeAnalysisPermissions
 // API call, and error handling.
@@ -3577,7 +3577,7 @@ const opDescribeDashboard = "DescribeDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDashboard for more information on using the DescribeDashboard
 // API call, and error handling.
@@ -3678,7 +3678,7 @@ const opDescribeDashboardPermissions = "DescribeDashboardPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDashboardPermissions for more information on using the DescribeDashboardPermissions
 // API call, and error handling.
@@ -3772,7 +3772,7 @@ const opDescribeDataSet = "DescribeDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataSet for more information on using the DescribeDataSet
 // API call, and error handling.
@@ -3867,7 +3867,7 @@ const opDescribeDataSetPermissions = "DescribeDataSetPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataSetPermissions for more information on using the DescribeDataSetPermissions
 // API call, and error handling.
@@ -3964,7 +3964,7 @@ const opDescribeDataSource = "DescribeDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataSource for more information on using the DescribeDataSource
 // API call, and error handling.
@@ -4059,7 +4059,7 @@ const opDescribeDataSourcePermissions = "DescribeDataSourcePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataSourcePermissions for more information on using the DescribeDataSourcePermissions
 // API call, and error handling.
@@ -4154,7 +4154,7 @@ const opDescribeGroup = "DescribeGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGroup for more information on using the DescribeGroup
 // API call, and error handling.
@@ -4256,7 +4256,7 @@ const opDescribeIAMPolicyAssignment = "DescribeIAMPolicyAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIAMPolicyAssignment for more information on using the DescribeIAMPolicyAssignment
 // API call, and error handling.
@@ -4355,7 +4355,7 @@ const opDescribeIngestion = "DescribeIngestion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIngestion for more information on using the DescribeIngestion
 // API call, and error handling.
@@ -4453,7 +4453,7 @@ const opDescribeNamespace = "DescribeNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNamespace for more information on using the DescribeNamespace
 // API call, and error handling.
@@ -4551,7 +4551,7 @@ const opDescribeTemplate = "DescribeTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTemplate for more information on using the DescribeTemplate
 // API call, and error handling.
@@ -4658,7 +4658,7 @@ const opDescribeTemplateAlias = "DescribeTemplateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTemplateAlias for more information on using the DescribeTemplateAlias
 // API call, and error handling.
@@ -4749,7 +4749,7 @@ const opDescribeTemplatePermissions = "DescribeTemplatePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTemplatePermissions for more information on using the DescribeTemplatePermissions
 // API call, and error handling.
@@ -4846,7 +4846,7 @@ const opDescribeTheme = "DescribeTheme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTheme for more information on using the DescribeTheme
 // API call, and error handling.
@@ -4950,7 +4950,7 @@ const opDescribeThemeAlias = "DescribeThemeAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeThemeAlias for more information on using the DescribeThemeAlias
 // API call, and error handling.
@@ -5047,7 +5047,7 @@ const opDescribeThemePermissions = "DescribeThemePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeThemePermissions for more information on using the DescribeThemePermissions
 // API call, and error handling.
@@ -5148,7 +5148,7 @@ const opDescribeUser = "DescribeUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUser for more information on using the DescribeUser
 // API call, and error handling.
@@ -5249,7 +5249,7 @@ const opGetDashboardEmbedUrl = "GetDashboardEmbedUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDashboardEmbedUrl for more information on using the GetDashboardEmbedUrl
 // API call, and error handling.
@@ -5388,7 +5388,7 @@ const opGetSessionEmbedUrl = "GetSessionEmbedUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSessionEmbedUrl for more information on using the GetSessionEmbedUrl
 // API call, and error handling.
@@ -5514,7 +5514,7 @@ const opListAnalyses = "ListAnalyses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAnalyses for more information on using the ListAnalyses
 // API call, and error handling.
@@ -5663,7 +5663,7 @@ const opListDashboardVersions = "ListDashboardVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDashboardVersions for more information on using the ListDashboardVersions
 // API call, and error handling.
@@ -5818,7 +5818,7 @@ const opListDashboards = "ListDashboards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDashboards for more information on using the ListDashboards
 // API call, and error handling.
@@ -5967,7 +5967,7 @@ const opListDataSets = "ListDataSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSets for more information on using the ListDataSets
 // API call, and error handling.
@@ -6123,7 +6123,7 @@ const opListDataSources = "ListDataSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSources for more information on using the ListDataSources
 // API call, and error handling.
@@ -6276,7 +6276,7 @@ const opListGroupMemberships = "ListGroupMemberships"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroupMemberships for more information on using the ListGroupMemberships
 // API call, and error handling.
@@ -6380,7 +6380,7 @@ const opListGroups = "ListGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroups for more information on using the ListGroups
 // API call, and error handling.
@@ -6484,7 +6484,7 @@ const opListIAMPolicyAssignments = "ListIAMPolicyAssignments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIAMPolicyAssignments for more information on using the ListIAMPolicyAssignments
 // API call, and error handling.
@@ -6582,7 +6582,7 @@ const opListIAMPolicyAssignmentsForUser = "ListIAMPolicyAssignmentsForUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIAMPolicyAssignmentsForUser for more information on using the ListIAMPolicyAssignmentsForUser
 // API call, and error handling.
@@ -6686,7 +6686,7 @@ const opListIngestions = "ListIngestions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIngestions for more information on using the ListIngestions
 // API call, and error handling.
@@ -6845,7 +6845,7 @@ const opListNamespaces = "ListNamespaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNamespaces for more information on using the ListNamespaces
 // API call, and error handling.
@@ -7007,7 +7007,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -7102,7 +7102,7 @@ const opListTemplateAliases = "ListTemplateAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTemplateAliases for more information on using the ListTemplateAliases
 // API call, and error handling.
@@ -7254,7 +7254,7 @@ const opListTemplateVersions = "ListTemplateVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTemplateVersions for more information on using the ListTemplateVersions
 // API call, and error handling.
@@ -7410,7 +7410,7 @@ const opListTemplates = "ListTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTemplates for more information on using the ListTemplates
 // API call, and error handling.
@@ -7565,7 +7565,7 @@ const opListThemeAliases = "ListThemeAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListThemeAliases for more information on using the ListThemeAliases
 // API call, and error handling.
@@ -7665,7 +7665,7 @@ const opListThemeVersions = "ListThemeVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListThemeVersions for more information on using the ListThemeVersions
 // API call, and error handling.
@@ -7769,7 +7769,7 @@ const opListThemes = "ListThemes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListThemes for more information on using the ListThemes
 // API call, and error handling.
@@ -7873,7 +7873,7 @@ const opListUserGroups = "ListUserGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserGroups for more information on using the ListUserGroups
 // API call, and error handling.
@@ -7975,7 +7975,7 @@ const opListUsers = "ListUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsers for more information on using the ListUsers
 // API call, and error handling.
@@ -8079,7 +8079,7 @@ const opRegisterUser = "RegisterUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterUser for more information on using the RegisterUser
 // API call, and error handling.
@@ -8188,7 +8188,7 @@ const opRestoreAnalysis = "RestoreAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreAnalysis for more information on using the RestoreAnalysis
 // API call, and error handling.
@@ -8285,7 +8285,7 @@ const opSearchAnalyses = "SearchAnalyses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchAnalyses for more information on using the SearchAnalyses
 // API call, and error handling.
@@ -8440,7 +8440,7 @@ const opSearchDashboards = "SearchDashboards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchDashboards for more information on using the SearchDashboards
 // API call, and error handling.
@@ -8595,7 +8595,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -8715,7 +8715,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -8810,7 +8810,7 @@ const opUpdateAccountCustomization = "UpdateAccountCustomization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccountCustomization for more information on using the UpdateAccountCustomization
 // API call, and error handling.
@@ -8914,7 +8914,7 @@ const opUpdateAccountSettings = "UpdateAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccountSettings for more information on using the UpdateAccountSettings
 // API call, and error handling.
@@ -9012,7 +9012,7 @@ const opUpdateAnalysis = "UpdateAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAnalysis for more information on using the UpdateAnalysis
 // API call, and error handling.
@@ -9112,7 +9112,7 @@ const opUpdateAnalysisPermissions = "UpdateAnalysisPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAnalysisPermissions for more information on using the UpdateAnalysisPermissions
 // API call, and error handling.
@@ -9209,7 +9209,7 @@ const opUpdateDashboard = "UpdateDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDashboard for more information on using the UpdateDashboard
 // API call, and error handling.
@@ -9309,7 +9309,7 @@ const opUpdateDashboardPermissions = "UpdateDashboardPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDashboardPermissions for more information on using the UpdateDashboardPermissions
 // API call, and error handling.
@@ -9406,7 +9406,7 @@ const opUpdateDashboardPublishedVersion = "UpdateDashboardPublishedVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDashboardPublishedVersion for more information on using the UpdateDashboardPublishedVersion
 // API call, and error handling.
@@ -9503,7 +9503,7 @@ const opUpdateDataSet = "UpdateDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSet for more information on using the UpdateDataSet
 // API call, and error handling.
@@ -9610,7 +9610,7 @@ const opUpdateDataSetPermissions = "UpdateDataSetPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSetPermissions for more information on using the UpdateDataSetPermissions
 // API call, and error handling.
@@ -9710,7 +9710,7 @@ const opUpdateDataSource = "UpdateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSource for more information on using the UpdateDataSource
 // API call, and error handling.
@@ -9808,7 +9808,7 @@ const opUpdateDataSourcePermissions = "UpdateDataSourcePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSourcePermissions for more information on using the UpdateDataSourcePermissions
 // API call, and error handling.
@@ -9906,7 +9906,7 @@ const opUpdateGroup = "UpdateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroup for more information on using the UpdateGroup
 // API call, and error handling.
@@ -10007,7 +10007,7 @@ const opUpdateIAMPolicyAssignment = "UpdateIAMPolicyAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIAMPolicyAssignment for more information on using the UpdateIAMPolicyAssignment
 // API call, and error handling.
@@ -10110,7 +10110,7 @@ const opUpdateTemplate = "UpdateTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTemplate for more information on using the UpdateTemplate
 // API call, and error handling.
@@ -10214,7 +10214,7 @@ const opUpdateTemplateAlias = "UpdateTemplateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTemplateAlias for more information on using the UpdateTemplateAlias
 // API call, and error handling.
@@ -10311,7 +10311,7 @@ const opUpdateTemplatePermissions = "UpdateTemplatePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTemplatePermissions for more information on using the UpdateTemplatePermissions
 // API call, and error handling.
@@ -10408,7 +10408,7 @@ const opUpdateTheme = "UpdateTheme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTheme for more information on using the UpdateTheme
 // API call, and error handling.
@@ -10515,7 +10515,7 @@ const opUpdateThemeAlias = "UpdateThemeAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateThemeAlias for more information on using the UpdateThemeAlias
 // API call, and error handling.
@@ -10615,7 +10615,7 @@ const opUpdateThemePermissions = "UpdateThemePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateThemePermissions for more information on using the UpdateThemePermissions
 // API call, and error handling.
@@ -10730,7 +10730,7 @@ const opUpdateUser = "UpdateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUser for more information on using the UpdateUser
 // API call, and error handling.

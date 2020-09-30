@@ -20,7 +20,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -124,7 +124,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -218,7 +218,7 @@ const opDescribeBundle = "DescribeBundle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBundle for more information on using the DescribeBundle
 // API call, and error handling.
@@ -316,7 +316,7 @@ const opDescribeProject = "DescribeProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProject for more information on using the DescribeProject
 // API call, and error handling.
@@ -414,7 +414,7 @@ const opExportBundle = "ExportBundle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportBundle for more information on using the ExportBundle
 // API call, and error handling.
@@ -513,7 +513,7 @@ const opExportProject = "ExportProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportProject for more information on using the ExportProject
 // API call, and error handling.
@@ -613,7 +613,7 @@ const opListBundles = "ListBundles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBundles for more information on using the ListBundles
 // API call, and error handling.
@@ -766,7 +766,7 @@ const opListProjects = "ListProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjects for more information on using the ListProjects
 // API call, and error handling.
@@ -919,7 +919,7 @@ const opUpdateProject = "UpdateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProject for more information on using the UpdateProject
 // API call, and error handling.

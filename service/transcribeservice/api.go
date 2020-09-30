@@ -21,7 +21,7 @@ const opCreateLanguageModel = "CreateLanguageModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLanguageModel for more information on using the CreateLanguageModel
 // API call, and error handling.
@@ -116,7 +116,7 @@ const opCreateMedicalVocabulary = "CreateMedicalVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMedicalVocabulary for more information on using the CreateMedicalVocabulary
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opCreateVocabulary = "CreateVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVocabulary for more information on using the CreateVocabulary
 // API call, and error handling.
@@ -304,7 +304,7 @@ const opCreateVocabularyFilter = "CreateVocabularyFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVocabularyFilter for more information on using the CreateVocabularyFilter
 // API call, and error handling.
@@ -398,7 +398,7 @@ const opDeleteLanguageModel = "DeleteLanguageModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLanguageModel for more information on using the DeleteLanguageModel
 // API call, and error handling.
@@ -489,7 +489,7 @@ const opDeleteMedicalTranscriptionJob = "DeleteMedicalTranscriptionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMedicalTranscriptionJob for more information on using the DeleteMedicalTranscriptionJob
 // API call, and error handling.
@@ -581,7 +581,7 @@ const opDeleteMedicalVocabulary = "DeleteMedicalVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMedicalVocabulary for more information on using the DeleteMedicalVocabulary
 // API call, and error handling.
@@ -676,7 +676,7 @@ const opDeleteTranscriptionJob = "DeleteTranscriptionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTranscriptionJob for more information on using the DeleteTranscriptionJob
 // API call, and error handling.
@@ -768,7 +768,7 @@ const opDeleteVocabulary = "DeleteVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVocabulary for more information on using the DeleteVocabulary
 // API call, and error handling.
@@ -863,7 +863,7 @@ const opDeleteVocabularyFilter = "DeleteVocabularyFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVocabularyFilter for more information on using the DeleteVocabularyFilter
 // API call, and error handling.
@@ -958,7 +958,7 @@ const opDescribeLanguageModel = "DescribeLanguageModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLanguageModel for more information on using the DescribeLanguageModel
 // API call, and error handling.
@@ -1058,7 +1058,7 @@ const opGetMedicalTranscriptionJob = "GetMedicalTranscriptionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMedicalTranscriptionJob for more information on using the GetMedicalTranscriptionJob
 // API call, and error handling.
@@ -1155,7 +1155,7 @@ const opGetMedicalVocabulary = "GetMedicalVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMedicalVocabulary for more information on using the GetMedicalVocabulary
 // API call, and error handling.
@@ -1249,7 +1249,7 @@ const opGetTranscriptionJob = "GetTranscriptionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTranscriptionJob for more information on using the GetTranscriptionJob
 // API call, and error handling.
@@ -1347,7 +1347,7 @@ const opGetVocabulary = "GetVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVocabulary for more information on using the GetVocabulary
 // API call, and error handling.
@@ -1441,7 +1441,7 @@ const opGetVocabularyFilter = "GetVocabularyFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVocabularyFilter for more information on using the GetVocabularyFilter
 // API call, and error handling.
@@ -1535,7 +1535,7 @@ const opListLanguageModels = "ListLanguageModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLanguageModels for more information on using the ListLanguageModels
 // API call, and error handling.
@@ -1685,7 +1685,7 @@ const opListMedicalTranscriptionJobs = "ListMedicalTranscriptionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMedicalTranscriptionJobs for more information on using the ListMedicalTranscriptionJobs
 // API call, and error handling.
@@ -1834,7 +1834,7 @@ const opListMedicalVocabularies = "ListMedicalVocabularies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMedicalVocabularies for more information on using the ListMedicalVocabularies
 // API call, and error handling.
@@ -1984,7 +1984,7 @@ const opListTranscriptionJobs = "ListTranscriptionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTranscriptionJobs for more information on using the ListTranscriptionJobs
 // API call, and error handling.
@@ -2132,7 +2132,7 @@ const opListVocabularies = "ListVocabularies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVocabularies for more information on using the ListVocabularies
 // API call, and error handling.
@@ -2281,7 +2281,7 @@ const opListVocabularyFilters = "ListVocabularyFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVocabularyFilters for more information on using the ListVocabularyFilters
 // API call, and error handling.
@@ -2429,7 +2429,7 @@ const opStartMedicalTranscriptionJob = "StartMedicalTranscriptionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMedicalTranscriptionJob for more information on using the StartMedicalTranscriptionJob
 // API call, and error handling.
@@ -2522,7 +2522,7 @@ const opStartTranscriptionJob = "StartTranscriptionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTranscriptionJob for more information on using the StartTranscriptionJob
 // API call, and error handling.
@@ -2615,7 +2615,7 @@ const opUpdateMedicalVocabulary = "UpdateMedicalVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMedicalVocabulary for more information on using the UpdateMedicalVocabulary
 // API call, and error handling.
@@ -2715,7 +2715,7 @@ const opUpdateVocabulary = "UpdateVocabulary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVocabulary for more information on using the UpdateVocabulary
 // API call, and error handling.
@@ -2814,7 +2814,7 @@ const opUpdateVocabularyFilter = "UpdateVocabularyFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVocabularyFilter for more information on using the UpdateVocabularyFilter
 // API call, and error handling.

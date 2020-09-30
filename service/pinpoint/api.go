@@ -21,7 +21,7 @@ const opCreateApp = "CreateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApp for more information on using the CreateApp
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opCreateCampaign = "CreateCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCampaign for more information on using the CreateCampaign
 // API call, and error handling.
@@ -216,7 +216,7 @@ const opCreateEmailTemplate = "CreateEmailTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEmailTemplate for more information on using the CreateEmailTemplate
 // API call, and error handling.
@@ -307,7 +307,7 @@ const opCreateExportJob = "CreateExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateExportJob for more information on using the CreateExportJob
 // API call, and error handling.
@@ -404,7 +404,7 @@ const opCreateImportJob = "CreateImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateImportJob for more information on using the CreateImportJob
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opCreateJourney = "CreateJourney"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJourney for more information on using the CreateJourney
 // API call, and error handling.
@@ -598,7 +598,7 @@ const opCreatePushTemplate = "CreatePushTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePushTemplate for more information on using the CreatePushTemplate
 // API call, and error handling.
@@ -690,7 +690,7 @@ const opCreateRecommenderConfiguration = "CreateRecommenderConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRecommenderConfiguration for more information on using the CreateRecommenderConfiguration
 // API call, and error handling.
@@ -787,7 +787,7 @@ const opCreateSegment = "CreateSegment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSegment for more information on using the CreateSegment
 // API call, and error handling.
@@ -885,7 +885,7 @@ const opCreateSmsTemplate = "CreateSmsTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSmsTemplate for more information on using the CreateSmsTemplate
 // API call, and error handling.
@@ -976,7 +976,7 @@ const opCreateVoiceTemplate = "CreateVoiceTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVoiceTemplate for more information on using the CreateVoiceTemplate
 // API call, and error handling.
@@ -1067,7 +1067,7 @@ const opDeleteAdmChannel = "DeleteAdmChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAdmChannel for more information on using the DeleteAdmChannel
 // API call, and error handling.
@@ -1165,7 +1165,7 @@ const opDeleteApnsChannel = "DeleteApnsChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApnsChannel for more information on using the DeleteApnsChannel
 // API call, and error handling.
@@ -1263,7 +1263,7 @@ const opDeleteApnsSandboxChannel = "DeleteApnsSandboxChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApnsSandboxChannel for more information on using the DeleteApnsSandboxChannel
 // API call, and error handling.
@@ -1361,7 +1361,7 @@ const opDeleteApnsVoipChannel = "DeleteApnsVoipChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApnsVoipChannel for more information on using the DeleteApnsVoipChannel
 // API call, and error handling.
@@ -1459,7 +1459,7 @@ const opDeleteApnsVoipSandboxChannel = "DeleteApnsVoipSandboxChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApnsVoipSandboxChannel for more information on using the DeleteApnsVoipSandboxChannel
 // API call, and error handling.
@@ -1557,7 +1557,7 @@ const opDeleteApp = "DeleteApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApp for more information on using the DeleteApp
 // API call, and error handling.
@@ -1654,7 +1654,7 @@ const opDeleteBaiduChannel = "DeleteBaiduChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBaiduChannel for more information on using the DeleteBaiduChannel
 // API call, and error handling.
@@ -1752,7 +1752,7 @@ const opDeleteCampaign = "DeleteCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCampaign for more information on using the DeleteCampaign
 // API call, and error handling.
@@ -1849,7 +1849,7 @@ const opDeleteEmailChannel = "DeleteEmailChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEmailChannel for more information on using the DeleteEmailChannel
 // API call, and error handling.
@@ -1947,7 +1947,7 @@ const opDeleteEmailTemplate = "DeleteEmailTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEmailTemplate for more information on using the DeleteEmailTemplate
 // API call, and error handling.
@@ -2045,7 +2045,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpoint for more information on using the DeleteEndpoint
 // API call, and error handling.
@@ -2142,7 +2142,7 @@ const opDeleteEventStream = "DeleteEventStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventStream for more information on using the DeleteEventStream
 // API call, and error handling.
@@ -2239,7 +2239,7 @@ const opDeleteGcmChannel = "DeleteGcmChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGcmChannel for more information on using the DeleteGcmChannel
 // API call, and error handling.
@@ -2337,7 +2337,7 @@ const opDeleteJourney = "DeleteJourney"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteJourney for more information on using the DeleteJourney
 // API call, and error handling.
@@ -2434,7 +2434,7 @@ const opDeletePushTemplate = "DeletePushTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePushTemplate for more information on using the DeletePushTemplate
 // API call, and error handling.
@@ -2532,7 +2532,7 @@ const opDeleteRecommenderConfiguration = "DeleteRecommenderConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRecommenderConfiguration for more information on using the DeleteRecommenderConfiguration
 // API call, and error handling.
@@ -2629,7 +2629,7 @@ const opDeleteSegment = "DeleteSegment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSegment for more information on using the DeleteSegment
 // API call, and error handling.
@@ -2726,7 +2726,7 @@ const opDeleteSmsChannel = "DeleteSmsChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSmsChannel for more information on using the DeleteSmsChannel
 // API call, and error handling.
@@ -2824,7 +2824,7 @@ const opDeleteSmsTemplate = "DeleteSmsTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSmsTemplate for more information on using the DeleteSmsTemplate
 // API call, and error handling.
@@ -2921,7 +2921,7 @@ const opDeleteUserEndpoints = "DeleteUserEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserEndpoints for more information on using the DeleteUserEndpoints
 // API call, and error handling.
@@ -3018,7 +3018,7 @@ const opDeleteVoiceChannel = "DeleteVoiceChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceChannel for more information on using the DeleteVoiceChannel
 // API call, and error handling.
@@ -3116,7 +3116,7 @@ const opDeleteVoiceTemplate = "DeleteVoiceTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceTemplate for more information on using the DeleteVoiceTemplate
 // API call, and error handling.
@@ -3214,7 +3214,7 @@ const opGetAdmChannel = "GetAdmChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAdmChannel for more information on using the GetAdmChannel
 // API call, and error handling.
@@ -3312,7 +3312,7 @@ const opGetApnsChannel = "GetApnsChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApnsChannel for more information on using the GetApnsChannel
 // API call, and error handling.
@@ -3410,7 +3410,7 @@ const opGetApnsSandboxChannel = "GetApnsSandboxChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApnsSandboxChannel for more information on using the GetApnsSandboxChannel
 // API call, and error handling.
@@ -3508,7 +3508,7 @@ const opGetApnsVoipChannel = "GetApnsVoipChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApnsVoipChannel for more information on using the GetApnsVoipChannel
 // API call, and error handling.
@@ -3606,7 +3606,7 @@ const opGetApnsVoipSandboxChannel = "GetApnsVoipSandboxChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApnsVoipSandboxChannel for more information on using the GetApnsVoipSandboxChannel
 // API call, and error handling.
@@ -3704,7 +3704,7 @@ const opGetApp = "GetApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApp for more information on using the GetApp
 // API call, and error handling.
@@ -3801,7 +3801,7 @@ const opGetApplicationDateRangeKpi = "GetApplicationDateRangeKpi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApplicationDateRangeKpi for more information on using the GetApplicationDateRangeKpi
 // API call, and error handling.
@@ -3899,7 +3899,7 @@ const opGetApplicationSettings = "GetApplicationSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApplicationSettings for more information on using the GetApplicationSettings
 // API call, and error handling.
@@ -3996,7 +3996,7 @@ const opGetApps = "GetApps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApps for more information on using the GetApps
 // API call, and error handling.
@@ -4094,7 +4094,7 @@ const opGetBaiduChannel = "GetBaiduChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBaiduChannel for more information on using the GetBaiduChannel
 // API call, and error handling.
@@ -4192,7 +4192,7 @@ const opGetCampaign = "GetCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCampaign for more information on using the GetCampaign
 // API call, and error handling.
@@ -4290,7 +4290,7 @@ const opGetCampaignActivities = "GetCampaignActivities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCampaignActivities for more information on using the GetCampaignActivities
 // API call, and error handling.
@@ -4387,7 +4387,7 @@ const opGetCampaignDateRangeKpi = "GetCampaignDateRangeKpi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCampaignDateRangeKpi for more information on using the GetCampaignDateRangeKpi
 // API call, and error handling.
@@ -4485,7 +4485,7 @@ const opGetCampaignVersion = "GetCampaignVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCampaignVersion for more information on using the GetCampaignVersion
 // API call, and error handling.
@@ -4583,7 +4583,7 @@ const opGetCampaignVersions = "GetCampaignVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCampaignVersions for more information on using the GetCampaignVersions
 // API call, and error handling.
@@ -4681,7 +4681,7 @@ const opGetCampaigns = "GetCampaigns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCampaigns for more information on using the GetCampaigns
 // API call, and error handling.
@@ -4779,7 +4779,7 @@ const opGetChannels = "GetChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetChannels for more information on using the GetChannels
 // API call, and error handling.
@@ -4877,7 +4877,7 @@ const opGetEmailChannel = "GetEmailChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEmailChannel for more information on using the GetEmailChannel
 // API call, and error handling.
@@ -4975,7 +4975,7 @@ const opGetEmailTemplate = "GetEmailTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEmailTemplate for more information on using the GetEmailTemplate
 // API call, and error handling.
@@ -5073,7 +5073,7 @@ const opGetEndpoint = "GetEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEndpoint for more information on using the GetEndpoint
 // API call, and error handling.
@@ -5171,7 +5171,7 @@ const opGetEventStream = "GetEventStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventStream for more information on using the GetEventStream
 // API call, and error handling.
@@ -5268,7 +5268,7 @@ const opGetExportJob = "GetExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExportJob for more information on using the GetExportJob
 // API call, and error handling.
@@ -5366,7 +5366,7 @@ const opGetExportJobs = "GetExportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExportJobs for more information on using the GetExportJobs
 // API call, and error handling.
@@ -5464,7 +5464,7 @@ const opGetGcmChannel = "GetGcmChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGcmChannel for more information on using the GetGcmChannel
 // API call, and error handling.
@@ -5562,7 +5562,7 @@ const opGetImportJob = "GetImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImportJob for more information on using the GetImportJob
 // API call, and error handling.
@@ -5660,7 +5660,7 @@ const opGetImportJobs = "GetImportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImportJobs for more information on using the GetImportJobs
 // API call, and error handling.
@@ -5758,7 +5758,7 @@ const opGetJourney = "GetJourney"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJourney for more information on using the GetJourney
 // API call, and error handling.
@@ -5856,7 +5856,7 @@ const opGetJourneyDateRangeKpi = "GetJourneyDateRangeKpi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJourneyDateRangeKpi for more information on using the GetJourneyDateRangeKpi
 // API call, and error handling.
@@ -5954,7 +5954,7 @@ const opGetJourneyExecutionActivityMetrics = "GetJourneyExecutionActivityMetrics
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJourneyExecutionActivityMetrics for more information on using the GetJourneyExecutionActivityMetrics
 // API call, and error handling.
@@ -6052,7 +6052,7 @@ const opGetJourneyExecutionMetrics = "GetJourneyExecutionMetrics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJourneyExecutionMetrics for more information on using the GetJourneyExecutionMetrics
 // API call, and error handling.
@@ -6150,7 +6150,7 @@ const opGetPushTemplate = "GetPushTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPushTemplate for more information on using the GetPushTemplate
 // API call, and error handling.
@@ -6248,7 +6248,7 @@ const opGetRecommenderConfiguration = "GetRecommenderConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRecommenderConfiguration for more information on using the GetRecommenderConfiguration
 // API call, and error handling.
@@ -6346,7 +6346,7 @@ const opGetRecommenderConfigurations = "GetRecommenderConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRecommenderConfigurations for more information on using the GetRecommenderConfigurations
 // API call, and error handling.
@@ -6444,7 +6444,7 @@ const opGetSegment = "GetSegment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegment for more information on using the GetSegment
 // API call, and error handling.
@@ -6542,7 +6542,7 @@ const opGetSegmentExportJobs = "GetSegmentExportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegmentExportJobs for more information on using the GetSegmentExportJobs
 // API call, and error handling.
@@ -6640,7 +6640,7 @@ const opGetSegmentImportJobs = "GetSegmentImportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegmentImportJobs for more information on using the GetSegmentImportJobs
 // API call, and error handling.
@@ -6738,7 +6738,7 @@ const opGetSegmentVersion = "GetSegmentVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegmentVersion for more information on using the GetSegmentVersion
 // API call, and error handling.
@@ -6836,7 +6836,7 @@ const opGetSegmentVersions = "GetSegmentVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegmentVersions for more information on using the GetSegmentVersions
 // API call, and error handling.
@@ -6934,7 +6934,7 @@ const opGetSegments = "GetSegments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegments for more information on using the GetSegments
 // API call, and error handling.
@@ -7032,7 +7032,7 @@ const opGetSmsChannel = "GetSmsChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSmsChannel for more information on using the GetSmsChannel
 // API call, and error handling.
@@ -7130,7 +7130,7 @@ const opGetSmsTemplate = "GetSmsTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSmsTemplate for more information on using the GetSmsTemplate
 // API call, and error handling.
@@ -7228,7 +7228,7 @@ const opGetUserEndpoints = "GetUserEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserEndpoints for more information on using the GetUserEndpoints
 // API call, and error handling.
@@ -7326,7 +7326,7 @@ const opGetVoiceChannel = "GetVoiceChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceChannel for more information on using the GetVoiceChannel
 // API call, and error handling.
@@ -7424,7 +7424,7 @@ const opGetVoiceTemplate = "GetVoiceTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceTemplate for more information on using the GetVoiceTemplate
 // API call, and error handling.
@@ -7522,7 +7522,7 @@ const opListJourneys = "ListJourneys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJourneys for more information on using the ListJourneys
 // API call, and error handling.
@@ -7620,7 +7620,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -7695,7 +7695,7 @@ const opListTemplateVersions = "ListTemplateVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTemplateVersions for more information on using the ListTemplateVersions
 // API call, and error handling.
@@ -7792,7 +7792,7 @@ const opListTemplates = "ListTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTemplates for more information on using the ListTemplates
 // API call, and error handling.
@@ -7884,7 +7884,7 @@ const opPhoneNumberValidate = "PhoneNumberValidate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PhoneNumberValidate for more information on using the PhoneNumberValidate
 // API call, and error handling.
@@ -7981,7 +7981,7 @@ const opPutEventStream = "PutEventStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEventStream for more information on using the PutEventStream
 // API call, and error handling.
@@ -8079,7 +8079,7 @@ const opPutEvents = "PutEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEvents for more information on using the PutEvents
 // API call, and error handling.
@@ -8177,7 +8177,7 @@ const opRemoveAttributes = "RemoveAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveAttributes for more information on using the RemoveAttributes
 // API call, and error handling.
@@ -8275,7 +8275,7 @@ const opSendMessages = "SendMessages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendMessages for more information on using the SendMessages
 // API call, and error handling.
@@ -8372,7 +8372,7 @@ const opSendUsersMessages = "SendUsersMessages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendUsersMessages for more information on using the SendUsersMessages
 // API call, and error handling.
@@ -8469,7 +8469,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -8545,7 +8545,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -8621,7 +8621,7 @@ const opUpdateAdmChannel = "UpdateAdmChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAdmChannel for more information on using the UpdateAdmChannel
 // API call, and error handling.
@@ -8719,7 +8719,7 @@ const opUpdateApnsChannel = "UpdateApnsChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApnsChannel for more information on using the UpdateApnsChannel
 // API call, and error handling.
@@ -8817,7 +8817,7 @@ const opUpdateApnsSandboxChannel = "UpdateApnsSandboxChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApnsSandboxChannel for more information on using the UpdateApnsSandboxChannel
 // API call, and error handling.
@@ -8915,7 +8915,7 @@ const opUpdateApnsVoipChannel = "UpdateApnsVoipChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApnsVoipChannel for more information on using the UpdateApnsVoipChannel
 // API call, and error handling.
@@ -9013,7 +9013,7 @@ const opUpdateApnsVoipSandboxChannel = "UpdateApnsVoipSandboxChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApnsVoipSandboxChannel for more information on using the UpdateApnsVoipSandboxChannel
 // API call, and error handling.
@@ -9111,7 +9111,7 @@ const opUpdateApplicationSettings = "UpdateApplicationSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplicationSettings for more information on using the UpdateApplicationSettings
 // API call, and error handling.
@@ -9208,7 +9208,7 @@ const opUpdateBaiduChannel = "UpdateBaiduChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBaiduChannel for more information on using the UpdateBaiduChannel
 // API call, and error handling.
@@ -9306,7 +9306,7 @@ const opUpdateCampaign = "UpdateCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCampaign for more information on using the UpdateCampaign
 // API call, and error handling.
@@ -9403,7 +9403,7 @@ const opUpdateEmailChannel = "UpdateEmailChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEmailChannel for more information on using the UpdateEmailChannel
 // API call, and error handling.
@@ -9501,7 +9501,7 @@ const opUpdateEmailTemplate = "UpdateEmailTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEmailTemplate for more information on using the UpdateEmailTemplate
 // API call, and error handling.
@@ -9599,7 +9599,7 @@ const opUpdateEndpoint = "UpdateEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEndpoint for more information on using the UpdateEndpoint
 // API call, and error handling.
@@ -9700,7 +9700,7 @@ const opUpdateEndpointsBatch = "UpdateEndpointsBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEndpointsBatch for more information on using the UpdateEndpointsBatch
 // API call, and error handling.
@@ -9801,7 +9801,7 @@ const opUpdateGcmChannel = "UpdateGcmChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGcmChannel for more information on using the UpdateGcmChannel
 // API call, and error handling.
@@ -9899,7 +9899,7 @@ const opUpdateJourney = "UpdateJourney"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJourney for more information on using the UpdateJourney
 // API call, and error handling.
@@ -9996,7 +9996,7 @@ const opUpdateJourneyState = "UpdateJourneyState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJourneyState for more information on using the UpdateJourneyState
 // API call, and error handling.
@@ -10093,7 +10093,7 @@ const opUpdatePushTemplate = "UpdatePushTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePushTemplate for more information on using the UpdatePushTemplate
 // API call, and error handling.
@@ -10191,7 +10191,7 @@ const opUpdateRecommenderConfiguration = "UpdateRecommenderConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRecommenderConfiguration for more information on using the UpdateRecommenderConfiguration
 // API call, and error handling.
@@ -10288,7 +10288,7 @@ const opUpdateSegment = "UpdateSegment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSegment for more information on using the UpdateSegment
 // API call, and error handling.
@@ -10386,7 +10386,7 @@ const opUpdateSmsChannel = "UpdateSmsChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSmsChannel for more information on using the UpdateSmsChannel
 // API call, and error handling.
@@ -10484,7 +10484,7 @@ const opUpdateSmsTemplate = "UpdateSmsTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSmsTemplate for more information on using the UpdateSmsTemplate
 // API call, and error handling.
@@ -10582,7 +10582,7 @@ const opUpdateTemplateActiveVersion = "UpdateTemplateActiveVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTemplateActiveVersion for more information on using the UpdateTemplateActiveVersion
 // API call, and error handling.
@@ -10679,7 +10679,7 @@ const opUpdateVoiceChannel = "UpdateVoiceChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVoiceChannel for more information on using the UpdateVoiceChannel
 // API call, and error handling.
@@ -10777,7 +10777,7 @@ const opUpdateVoiceTemplate = "UpdateVoiceTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVoiceTemplate for more information on using the UpdateVoiceTemplate
 // API call, and error handling.

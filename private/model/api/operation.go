@@ -156,7 +156,7 @@ const op{{ .ExportedName }} = "{{ .Name }}"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See {{ .ExportedName }} for more information on using the {{ .ExportedName }}
 // API call, and error handling.

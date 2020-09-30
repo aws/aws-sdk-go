@@ -20,7 +20,7 @@ const opDeleteReportDefinition = "DeleteReportDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReportDefinition for more information on using the DeleteReportDefinition
 // API call, and error handling.
@@ -103,7 +103,7 @@ const opDescribeReportDefinitions = "DescribeReportDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReportDefinitions for more information on using the DescribeReportDefinitions
 // API call, and error handling.
@@ -241,7 +241,7 @@ const opModifyReportDefinition = "ModifyReportDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyReportDefinition for more information on using the ModifyReportDefinition
 // API call, and error handling.
@@ -325,7 +325,7 @@ const opPutReportDefinition = "PutReportDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutReportDefinition for more information on using the PutReportDefinition
 // API call, and error handling.

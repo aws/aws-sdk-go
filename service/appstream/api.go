@@ -21,7 +21,7 @@ const opAssociateFleet = "AssociateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateFleet for more information on using the AssociateFleet
 // API call, and error handling.
@@ -117,7 +117,7 @@ const opBatchAssociateUserStack = "BatchAssociateUserStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchAssociateUserStack for more information on using the BatchAssociateUserStack
 // API call, and error handling.
@@ -201,7 +201,7 @@ const opBatchDisassociateUserStack = "BatchDisassociateUserStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDisassociateUserStack for more information on using the BatchDisassociateUserStack
 // API call, and error handling.
@@ -283,7 +283,7 @@ const opCopyImage = "CopyImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyImage for more information on using the CopyImage
 // API call, and error handling.
@@ -379,7 +379,7 @@ const opCreateDirectoryConfig = "CreateDirectoryConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDirectoryConfig for more information on using the CreateDirectoryConfig
 // API call, and error handling.
@@ -476,7 +476,7 @@ const opCreateFleet = "CreateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFleet for more information on using the CreateFleet
 // API call, and error handling.
@@ -589,7 +589,7 @@ const opCreateImageBuilder = "CreateImageBuilder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateImageBuilder for more information on using the CreateImageBuilder
 // API call, and error handling.
@@ -705,7 +705,7 @@ const opCreateImageBuilderStreamingURL = "CreateImageBuilderStreamingURL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateImageBuilderStreamingURL for more information on using the CreateImageBuilderStreamingURL
 // API call, and error handling.
@@ -787,7 +787,7 @@ const opCreateStack = "CreateStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStack for more information on using the CreateStack
 // API call, and error handling.
@@ -886,7 +886,7 @@ const opCreateStreamingURL = "CreateStreamingURL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStreamingURL for more information on using the CreateStreamingURL
 // API call, and error handling.
@@ -976,7 +976,7 @@ const opCreateUsageReportSubscription = "CreateUsageReportSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUsageReportSubscription for more information on using the CreateUsageReportSubscription
 // API call, and error handling.
@@ -1062,7 +1062,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -1155,7 +1155,7 @@ const opDeleteDirectoryConfig = "DeleteDirectoryConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDirectoryConfig for more information on using the DeleteDirectoryConfig
 // API call, and error handling.
@@ -1240,7 +1240,7 @@ const opDeleteFleet = "DeleteFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFleet for more information on using the DeleteFleet
 // API call, and error handling.
@@ -1326,7 +1326,7 @@ const opDeleteImage = "DeleteImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImage for more information on using the DeleteImage
 // API call, and error handling.
@@ -1415,7 +1415,7 @@ const opDeleteImageBuilder = "DeleteImageBuilder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImageBuilder for more information on using the DeleteImageBuilder
 // API call, and error handling.
@@ -1500,7 +1500,7 @@ const opDeleteImagePermissions = "DeleteImagePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImagePermissions for more information on using the DeleteImagePermissions
 // API call, and error handling.
@@ -1585,7 +1585,7 @@ const opDeleteStack = "DeleteStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStack for more information on using the DeleteStack
 // API call, and error handling.
@@ -1674,7 +1674,7 @@ const opDeleteUsageReportSubscription = "DeleteUsageReportSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUsageReportSubscription for more information on using the DeleteUsageReportSubscription
 // API call, and error handling.
@@ -1758,7 +1758,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -1838,7 +1838,7 @@ const opDescribeDirectoryConfigs = "DescribeDirectoryConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDirectoryConfigs for more information on using the DescribeDirectoryConfigs
 // API call, and error handling.
@@ -1924,7 +1924,7 @@ const opDescribeFleets = "DescribeFleets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleets for more information on using the DescribeFleets
 // API call, and error handling.
@@ -2004,7 +2004,7 @@ const opDescribeImageBuilders = "DescribeImageBuilders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeImageBuilders for more information on using the DescribeImageBuilders
 // API call, and error handling.
@@ -2085,7 +2085,7 @@ const opDescribeImagePermissions = "DescribeImagePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeImagePermissions for more information on using the DescribeImagePermissions
 // API call, and error handling.
@@ -2223,7 +2223,7 @@ const opDescribeImages = "DescribeImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeImages for more information on using the DescribeImages
 // API call, and error handling.
@@ -2365,7 +2365,7 @@ const opDescribeSessions = "DescribeSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSessions for more information on using the DescribeSessions
 // API call, and error handling.
@@ -2447,7 +2447,7 @@ const opDescribeStacks = "DescribeStacks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStacks for more information on using the DescribeStacks
 // API call, and error handling.
@@ -2527,7 +2527,7 @@ const opDescribeUsageReportSubscriptions = "DescribeUsageReportSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUsageReportSubscriptions for more information on using the DescribeUsageReportSubscriptions
 // API call, and error handling.
@@ -2610,7 +2610,7 @@ const opDescribeUserStackAssociations = "DescribeUserStackAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserStackAssociations for more information on using the DescribeUserStackAssociations
 // API call, and error handling.
@@ -2698,7 +2698,7 @@ const opDescribeUsers = "DescribeUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUsers for more information on using the DescribeUsers
 // API call, and error handling.
@@ -2780,7 +2780,7 @@ const opDisableUser = "DisableUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableUser for more information on using the DisableUser
 // API call, and error handling.
@@ -2861,7 +2861,7 @@ const opDisassociateFleet = "DisassociateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateFleet for more information on using the DisassociateFleet
 // API call, and error handling.
@@ -2950,7 +2950,7 @@ const opEnableUser = "EnableUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableUser for more information on using the EnableUser
 // API call, and error handling.
@@ -3035,7 +3035,7 @@ const opExpireSession = "ExpireSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExpireSession for more information on using the ExpireSession
 // API call, and error handling.
@@ -3110,7 +3110,7 @@ const opListAssociatedFleets = "ListAssociatedFleets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociatedFleets for more information on using the ListAssociatedFleets
 // API call, and error handling.
@@ -3184,7 +3184,7 @@ const opListAssociatedStacks = "ListAssociatedStacks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociatedStacks for more information on using the ListAssociatedStacks
 // API call, and error handling.
@@ -3258,7 +3258,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3341,7 +3341,7 @@ const opStartFleet = "StartFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartFleet for more information on using the StartFleet
 // API call, and error handling.
@@ -3445,7 +3445,7 @@ const opStartImageBuilder = "StartImageBuilder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartImageBuilder for more information on using the StartImageBuilder
 // API call, and error handling.
@@ -3537,7 +3537,7 @@ const opStopFleet = "StopFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopFleet for more information on using the StopFleet
 // API call, and error handling.
@@ -3620,7 +3620,7 @@ const opStopImageBuilder = "StopImageBuilder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopImageBuilder for more information on using the StopImageBuilder
 // API call, and error handling.
@@ -3705,7 +3705,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3802,7 +3802,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3888,7 +3888,7 @@ const opUpdateDirectoryConfig = "UpdateDirectoryConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDirectoryConfig for more information on using the UpdateDirectoryConfig
 // API call, and error handling.
@@ -3981,7 +3981,7 @@ const opUpdateFleet = "UpdateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFleet for more information on using the UpdateFleet
 // API call, and error handling.
@@ -4099,7 +4099,7 @@ const opUpdateImagePermissions = "UpdateImagePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateImagePermissions for more information on using the UpdateImagePermissions
 // API call, and error handling.
@@ -4185,7 +4185,7 @@ const opUpdateStack = "UpdateStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateStack for more information on using the UpdateStack
 // API call, and error handling.

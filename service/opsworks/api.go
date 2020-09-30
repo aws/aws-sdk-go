@@ -20,7 +20,7 @@ const opAssignInstance = "AssignInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssignInstance for more information on using the AssignInstance
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opAssignVolume = "AssignVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssignVolume for more information on using the AssignVolume
 // API call, and error handling.
@@ -207,7 +207,7 @@ const opAssociateElasticIp = "AssociateElasticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateElasticIp for more information on using the AssociateElasticIp
 // API call, and error handling.
@@ -297,7 +297,7 @@ const opAttachElasticLoadBalancer = "AttachElasticLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachElasticLoadBalancer for more information on using the AttachElasticLoadBalancer
 // API call, and error handling.
@@ -392,7 +392,7 @@ const opCloneStack = "CloneStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CloneStack for more information on using the CloneStack
 // API call, and error handling.
@@ -480,7 +480,7 @@ const opCreateApp = "CreateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApp for more information on using the CreateApp
 // API call, and error handling.
@@ -568,7 +568,7 @@ const opCreateDeployment = "CreateDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeployment for more information on using the CreateDeployment
 // API call, and error handling.
@@ -657,7 +657,7 @@ const opCreateInstance = "CreateInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInstance for more information on using the CreateInstance
 // API call, and error handling.
@@ -745,7 +745,7 @@ const opCreateLayer = "CreateLayer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLayer for more information on using the CreateLayer
 // API call, and error handling.
@@ -839,7 +839,7 @@ const opCreateStack = "CreateStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStack for more information on using the CreateStack
 // API call, and error handling.
@@ -922,7 +922,7 @@ const opCreateUserProfile = "CreateUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserProfile for more information on using the CreateUserProfile
 // API call, and error handling.
@@ -1005,7 +1005,7 @@ const opDeleteApp = "DeleteApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApp for more information on using the DeleteApp
 // API call, and error handling.
@@ -1093,7 +1093,7 @@ const opDeleteInstance = "DeleteInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInstance for more information on using the DeleteInstance
 // API call, and error handling.
@@ -1184,7 +1184,7 @@ const opDeleteLayer = "DeleteLayer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLayer for more information on using the DeleteLayer
 // API call, and error handling.
@@ -1274,7 +1274,7 @@ const opDeleteStack = "DeleteStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStack for more information on using the DeleteStack
 // API call, and error handling.
@@ -1364,7 +1364,7 @@ const opDeleteUserProfile = "DeleteUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserProfile for more information on using the DeleteUserProfile
 // API call, and error handling.
@@ -1451,7 +1451,7 @@ const opDeregisterEcsCluster = "DeregisterEcsCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterEcsCluster for more information on using the DeregisterEcsCluster
 // API call, and error handling.
@@ -1540,7 +1540,7 @@ const opDeregisterElasticIp = "DeregisterElasticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterElasticIp for more information on using the DeregisterElasticIp
 // API call, and error handling.
@@ -1629,7 +1629,7 @@ const opDeregisterInstance = "DeregisterInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterInstance for more information on using the DeregisterInstance
 // API call, and error handling.
@@ -1719,7 +1719,7 @@ const opDeregisterRdsDbInstance = "DeregisterRdsDbInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterRdsDbInstance for more information on using the DeregisterRdsDbInstance
 // API call, and error handling.
@@ -1807,7 +1807,7 @@ const opDeregisterVolume = "DeregisterVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterVolume for more information on using the DeregisterVolume
 // API call, and error handling.
@@ -1896,7 +1896,7 @@ const opDescribeAgentVersions = "DescribeAgentVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAgentVersions for more information on using the DescribeAgentVersions
 // API call, and error handling.
@@ -1980,7 +1980,7 @@ const opDescribeApps = "DescribeApps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApps for more information on using the DescribeApps
 // API call, and error handling.
@@ -2069,7 +2069,7 @@ const opDescribeCommands = "DescribeCommands"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCommands for more information on using the DescribeCommands
 // API call, and error handling.
@@ -2158,7 +2158,7 @@ const opDescribeDeployments = "DescribeDeployments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDeployments for more information on using the DescribeDeployments
 // API call, and error handling.
@@ -2247,7 +2247,7 @@ const opDescribeEcsClusters = "DescribeEcsClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEcsClusters for more information on using the DescribeEcsClusters
 // API call, and error handling.
@@ -2397,7 +2397,7 @@ const opDescribeElasticIps = "DescribeElasticIps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeElasticIps for more information on using the DescribeElasticIps
 // API call, and error handling.
@@ -2486,7 +2486,7 @@ const opDescribeElasticLoadBalancers = "DescribeElasticLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeElasticLoadBalancers for more information on using the DescribeElasticLoadBalancers
 // API call, and error handling.
@@ -2575,7 +2575,7 @@ const opDescribeInstances = "DescribeInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstances for more information on using the DescribeInstances
 // API call, and error handling.
@@ -2664,7 +2664,7 @@ const opDescribeLayers = "DescribeLayers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLayers for more information on using the DescribeLayers
 // API call, and error handling.
@@ -2753,7 +2753,7 @@ const opDescribeLoadBasedAutoScaling = "DescribeLoadBasedAutoScaling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBasedAutoScaling for more information on using the DescribeLoadBasedAutoScaling
 // API call, and error handling.
@@ -2842,7 +2842,7 @@ const opDescribeMyUserProfile = "DescribeMyUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMyUserProfile for more information on using the DescribeMyUserProfile
 // API call, and error handling.
@@ -2920,7 +2920,7 @@ const opDescribeOperatingSystems = "DescribeOperatingSystems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOperatingSystems for more information on using the DescribeOperatingSystems
 // API call, and error handling.
@@ -2994,7 +2994,7 @@ const opDescribePermissions = "DescribePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePermissions for more information on using the DescribePermissions
 // API call, and error handling.
@@ -3081,7 +3081,7 @@ const opDescribeRaidArrays = "DescribeRaidArrays"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRaidArrays for more information on using the DescribeRaidArrays
 // API call, and error handling.
@@ -3170,7 +3170,7 @@ const opDescribeRdsDbInstances = "DescribeRdsDbInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRdsDbInstances for more information on using the DescribeRdsDbInstances
 // API call, and error handling.
@@ -3259,7 +3259,7 @@ const opDescribeServiceErrors = "DescribeServiceErrors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServiceErrors for more information on using the DescribeServiceErrors
 // API call, and error handling.
@@ -3348,7 +3348,7 @@ const opDescribeStackProvisioningParameters = "DescribeStackProvisioningParamete
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStackProvisioningParameters for more information on using the DescribeStackProvisioningParameters
 // API call, and error handling.
@@ -3435,7 +3435,7 @@ const opDescribeStackSummary = "DescribeStackSummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStackSummary for more information on using the DescribeStackSummary
 // API call, and error handling.
@@ -3523,7 +3523,7 @@ const opDescribeStacks = "DescribeStacks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStacks for more information on using the DescribeStacks
 // API call, and error handling.
@@ -3610,7 +3610,7 @@ const opDescribeTimeBasedAutoScaling = "DescribeTimeBasedAutoScaling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTimeBasedAutoScaling for more information on using the DescribeTimeBasedAutoScaling
 // API call, and error handling.
@@ -3699,7 +3699,7 @@ const opDescribeUserProfiles = "DescribeUserProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserProfiles for more information on using the DescribeUserProfiles
 // API call, and error handling.
@@ -3785,7 +3785,7 @@ const opDescribeVolumes = "DescribeVolumes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVolumes for more information on using the DescribeVolumes
 // API call, and error handling.
@@ -3874,7 +3874,7 @@ const opDetachElasticLoadBalancer = "DetachElasticLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachElasticLoadBalancer for more information on using the DetachElasticLoadBalancer
 // API call, and error handling.
@@ -3959,7 +3959,7 @@ const opDisassociateElasticIp = "DisassociateElasticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateElasticIp for more information on using the DisassociateElasticIp
 // API call, and error handling.
@@ -4049,7 +4049,7 @@ const opGetHostnameSuggestion = "GetHostnameSuggestion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHostnameSuggestion for more information on using the GetHostnameSuggestion
 // API call, and error handling.
@@ -4137,7 +4137,7 @@ const opGrantAccess = "GrantAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GrantAccess for more information on using the GrantAccess
 // API call, and error handling.
@@ -4222,7 +4222,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -4304,7 +4304,7 @@ const opRebootInstance = "RebootInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootInstance for more information on using the RebootInstance
 // API call, and error handling.
@@ -4393,7 +4393,7 @@ const opRegisterEcsCluster = "RegisterEcsCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterEcsCluster for more information on using the RegisterEcsCluster
 // API call, and error handling.
@@ -4482,7 +4482,7 @@ const opRegisterElasticIp = "RegisterElasticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterElasticIp for more information on using the RegisterElasticIp
 // API call, and error handling.
@@ -4572,7 +4572,7 @@ const opRegisterInstance = "RegisterInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterInstance for more information on using the RegisterInstance
 // API call, and error handling.
@@ -4673,7 +4673,7 @@ const opRegisterRdsDbInstance = "RegisterRdsDbInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterRdsDbInstance for more information on using the RegisterRdsDbInstance
 // API call, and error handling.
@@ -4761,7 +4761,7 @@ const opRegisterVolume = "RegisterVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterVolume for more information on using the RegisterVolume
 // API call, and error handling.
@@ -4851,7 +4851,7 @@ const opSetLoadBasedAutoScaling = "SetLoadBasedAutoScaling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetLoadBasedAutoScaling for more information on using the SetLoadBasedAutoScaling
 // API call, and error handling.
@@ -4946,7 +4946,7 @@ const opSetPermission = "SetPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetPermission for more information on using the SetPermission
 // API call, and error handling.
@@ -5035,7 +5035,7 @@ const opSetTimeBasedAutoScaling = "SetTimeBasedAutoScaling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetTimeBasedAutoScaling for more information on using the SetTimeBasedAutoScaling
 // API call, and error handling.
@@ -5125,7 +5125,7 @@ const opStartInstance = "StartInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartInstance for more information on using the StartInstance
 // API call, and error handling.
@@ -5214,7 +5214,7 @@ const opStartStack = "StartStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartStack for more information on using the StartStack
 // API call, and error handling.
@@ -5302,7 +5302,7 @@ const opStopInstance = "StopInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopInstance for more information on using the StopInstance
 // API call, and error handling.
@@ -5393,7 +5393,7 @@ const opStopStack = "StopStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopStack for more information on using the StopStack
 // API call, and error handling.
@@ -5481,7 +5481,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5566,7 +5566,7 @@ const opUnassignInstance = "UnassignInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnassignInstance for more information on using the UnassignInstance
 // API call, and error handling.
@@ -5657,7 +5657,7 @@ const opUnassignVolume = "UnassignVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnassignVolume for more information on using the UnassignVolume
 // API call, and error handling.
@@ -5746,7 +5746,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -5829,7 +5829,7 @@ const opUpdateApp = "UpdateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApp for more information on using the UpdateApp
 // API call, and error handling.
@@ -5917,7 +5917,7 @@ const opUpdateElasticIp = "UpdateElasticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateElasticIp for more information on using the UpdateElasticIp
 // API call, and error handling.
@@ -6006,7 +6006,7 @@ const opUpdateInstance = "UpdateInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInstance for more information on using the UpdateInstance
 // API call, and error handling.
@@ -6094,7 +6094,7 @@ const opUpdateLayer = "UpdateLayer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLayer for more information on using the UpdateLayer
 // API call, and error handling.
@@ -6182,7 +6182,7 @@ const opUpdateMyUserProfile = "UpdateMyUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMyUserProfile for more information on using the UpdateMyUserProfile
 // API call, and error handling.
@@ -6266,7 +6266,7 @@ const opUpdateRdsDbInstance = "UpdateRdsDbInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRdsDbInstance for more information on using the UpdateRdsDbInstance
 // API call, and error handling.
@@ -6354,7 +6354,7 @@ const opUpdateStack = "UpdateStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateStack for more information on using the UpdateStack
 // API call, and error handling.
@@ -6442,7 +6442,7 @@ const opUpdateUserProfile = "UpdateUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserProfile for more information on using the UpdateUserProfile
 // API call, and error handling.
@@ -6529,7 +6529,7 @@ const opUpdateVolume = "UpdateVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVolume for more information on using the UpdateVolume
 // API call, and error handling.

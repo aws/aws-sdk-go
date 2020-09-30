@@ -20,7 +20,7 @@ const opCancelImageCreation = "CancelImageCreation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelImageCreation for more information on using the CancelImageCreation
 // API call, and error handling.
@@ -125,7 +125,7 @@ const opCreateComponent = "CreateComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateComponent for more information on using the CreateComponent
 // API call, and error handling.
@@ -241,7 +241,7 @@ const opCreateDistributionConfiguration = "CreateDistributionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDistributionConfiguration for more information on using the CreateDistributionConfiguration
 // API call, and error handling.
@@ -357,7 +357,7 @@ const opCreateImage = "CreateImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateImage for more information on using the CreateImage
 // API call, and error handling.
@@ -466,7 +466,7 @@ const opCreateImagePipeline = "CreateImagePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateImagePipeline for more information on using the CreateImagePipeline
 // API call, and error handling.
@@ -578,7 +578,7 @@ const opCreateImageRecipe = "CreateImageRecipe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateImageRecipe for more information on using the CreateImageRecipe
 // API call, and error handling.
@@ -693,7 +693,7 @@ const opCreateInfrastructureConfiguration = "CreateInfrastructureConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInfrastructureConfiguration for more information on using the CreateInfrastructureConfiguration
 // API call, and error handling.
@@ -805,7 +805,7 @@ const opDeleteComponent = "DeleteComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteComponent for more information on using the DeleteComponent
 // API call, and error handling.
@@ -905,7 +905,7 @@ const opDeleteDistributionConfiguration = "DeleteDistributionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDistributionConfiguration for more information on using the DeleteDistributionConfiguration
 // API call, and error handling.
@@ -1005,7 +1005,7 @@ const opDeleteImage = "DeleteImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImage for more information on using the DeleteImage
 // API call, and error handling.
@@ -1105,7 +1105,7 @@ const opDeleteImagePipeline = "DeleteImagePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImagePipeline for more information on using the DeleteImagePipeline
 // API call, and error handling.
@@ -1205,7 +1205,7 @@ const opDeleteImageRecipe = "DeleteImageRecipe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImageRecipe for more information on using the DeleteImageRecipe
 // API call, and error handling.
@@ -1305,7 +1305,7 @@ const opDeleteInfrastructureConfiguration = "DeleteInfrastructureConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInfrastructureConfiguration for more information on using the DeleteInfrastructureConfiguration
 // API call, and error handling.
@@ -1405,7 +1405,7 @@ const opGetComponent = "GetComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComponent for more information on using the GetComponent
 // API call, and error handling.
@@ -1501,7 +1501,7 @@ const opGetComponentPolicy = "GetComponentPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComponentPolicy for more information on using the GetComponentPolicy
 // API call, and error handling.
@@ -1595,7 +1595,7 @@ const opGetDistributionConfiguration = "GetDistributionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistributionConfiguration for more information on using the GetDistributionConfiguration
 // API call, and error handling.
@@ -1691,7 +1691,7 @@ const opGetImage = "GetImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImage for more information on using the GetImage
 // API call, and error handling.
@@ -1787,7 +1787,7 @@ const opGetImagePipeline = "GetImagePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImagePipeline for more information on using the GetImagePipeline
 // API call, and error handling.
@@ -1883,7 +1883,7 @@ const opGetImagePolicy = "GetImagePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImagePolicy for more information on using the GetImagePolicy
 // API call, and error handling.
@@ -1977,7 +1977,7 @@ const opGetImageRecipe = "GetImageRecipe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImageRecipe for more information on using the GetImageRecipe
 // API call, and error handling.
@@ -2073,7 +2073,7 @@ const opGetImageRecipePolicy = "GetImageRecipePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImageRecipePolicy for more information on using the GetImageRecipePolicy
 // API call, and error handling.
@@ -2167,7 +2167,7 @@ const opGetInfrastructureConfiguration = "GetInfrastructureConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInfrastructureConfiguration for more information on using the GetInfrastructureConfiguration
 // API call, and error handling.
@@ -2263,7 +2263,7 @@ const opImportComponent = "ImportComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportComponent for more information on using the ImportComponent
 // API call, and error handling.
@@ -2374,7 +2374,7 @@ const opListComponentBuildVersions = "ListComponentBuildVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListComponentBuildVersions for more information on using the ListComponentBuildVersions
 // API call, and error handling.
@@ -2531,7 +2531,7 @@ const opListComponents = "ListComponents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListComponents for more information on using the ListComponents
 // API call, and error handling.
@@ -2688,7 +2688,7 @@ const opListDistributionConfigurations = "ListDistributionConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDistributionConfigurations for more information on using the ListDistributionConfigurations
 // API call, and error handling.
@@ -2845,7 +2845,7 @@ const opListImageBuildVersions = "ListImageBuildVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListImageBuildVersions for more information on using the ListImageBuildVersions
 // API call, and error handling.
@@ -3002,7 +3002,7 @@ const opListImagePipelineImages = "ListImagePipelineImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListImagePipelineImages for more information on using the ListImagePipelineImages
 // API call, and error handling.
@@ -3162,7 +3162,7 @@ const opListImagePipelines = "ListImagePipelines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListImagePipelines for more information on using the ListImagePipelines
 // API call, and error handling.
@@ -3319,7 +3319,7 @@ const opListImageRecipes = "ListImageRecipes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListImageRecipes for more information on using the ListImageRecipes
 // API call, and error handling.
@@ -3476,7 +3476,7 @@ const opListImages = "ListImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListImages for more information on using the ListImages
 // API call, and error handling.
@@ -3633,7 +3633,7 @@ const opListInfrastructureConfigurations = "ListInfrastructureConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInfrastructureConfigurations for more information on using the ListInfrastructureConfigurations
 // API call, and error handling.
@@ -3790,7 +3790,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3876,7 +3876,7 @@ const opPutComponentPolicy = "PutComponentPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutComponentPolicy for more information on using the PutComponentPolicy
 // API call, and error handling.
@@ -3983,7 +3983,7 @@ const opPutImagePolicy = "PutImagePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutImagePolicy for more information on using the PutImagePolicy
 // API call, and error handling.
@@ -4090,7 +4090,7 @@ const opPutImageRecipePolicy = "PutImageRecipePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutImageRecipePolicy for more information on using the PutImageRecipePolicy
 // API call, and error handling.
@@ -4197,7 +4197,7 @@ const opStartImagePipelineExecution = "StartImagePipelineExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartImagePipelineExecution for more information on using the StartImagePipelineExecution
 // API call, and error handling.
@@ -4304,7 +4304,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4391,7 +4391,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4478,7 +4478,7 @@ const opUpdateDistributionConfiguration = "UpdateDistributionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDistributionConfiguration for more information on using the UpdateDistributionConfiguration
 // API call, and error handling.
@@ -4587,7 +4587,7 @@ const opUpdateImagePipeline = "UpdateImagePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateImagePipeline for more information on using the UpdateImagePipeline
 // API call, and error handling.
@@ -4692,7 +4692,7 @@ const opUpdateInfrastructureConfiguration = "UpdateInfrastructureConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInfrastructureConfiguration for more information on using the UpdateInfrastructureConfiguration
 // API call, and error handling.

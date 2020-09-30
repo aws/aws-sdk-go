@@ -21,7 +21,7 @@ const opAcceptInvitation = "AcceptInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptInvitation for more information on using the AcceptInvitation
 // API call, and error handling.
@@ -127,7 +127,7 @@ const opBatchGetCustomDataIdentifiers = "BatchGetCustomDataIdentifiers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetCustomDataIdentifiers for more information on using the BatchGetCustomDataIdentifiers
 // API call, and error handling.
@@ -231,7 +231,7 @@ const opCreateClassificationJob = "CreateClassificationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateClassificationJob for more information on using the CreateClassificationJob
 // API call, and error handling.
@@ -335,7 +335,7 @@ const opCreateCustomDataIdentifier = "CreateCustomDataIdentifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCustomDataIdentifier for more information on using the CreateCustomDataIdentifier
 // API call, and error handling.
@@ -439,7 +439,7 @@ const opCreateFindingsFilter = "CreateFindingsFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFindingsFilter for more information on using the CreateFindingsFilter
 // API call, and error handling.
@@ -543,7 +543,7 @@ const opCreateInvitations = "CreateInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInvitations for more information on using the CreateInvitations
 // API call, and error handling.
@@ -647,7 +647,7 @@ const opCreateMember = "CreateMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMember for more information on using the CreateMember
 // API call, and error handling.
@@ -751,7 +751,7 @@ const opCreateSampleFindings = "CreateSampleFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSampleFindings for more information on using the CreateSampleFindings
 // API call, and error handling.
@@ -856,7 +856,7 @@ const opDeclineInvitations = "DeclineInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeclineInvitations for more information on using the DeclineInvitations
 // API call, and error handling.
@@ -961,7 +961,7 @@ const opDeleteCustomDataIdentifier = "DeleteCustomDataIdentifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCustomDataIdentifier for more information on using the DeleteCustomDataIdentifier
 // API call, and error handling.
@@ -1066,7 +1066,7 @@ const opDeleteFindingsFilter = "DeleteFindingsFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFindingsFilter for more information on using the DeleteFindingsFilter
 // API call, and error handling.
@@ -1171,7 +1171,7 @@ const opDeleteInvitations = "DeleteInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInvitations for more information on using the DeleteInvitations
 // API call, and error handling.
@@ -1276,7 +1276,7 @@ const opDeleteMember = "DeleteMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMember for more information on using the DeleteMember
 // API call, and error handling.
@@ -1381,7 +1381,7 @@ const opDescribeBuckets = "DescribeBuckets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBuckets for more information on using the DescribeBuckets
 // API call, and error handling.
@@ -1544,7 +1544,7 @@ const opDescribeClassificationJob = "DescribeClassificationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeClassificationJob for more information on using the DescribeClassificationJob
 // API call, and error handling.
@@ -1649,7 +1649,7 @@ const opDescribeOrganizationConfiguration = "DescribeOrganizationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationConfiguration for more information on using the DescribeOrganizationConfiguration
 // API call, and error handling.
@@ -1754,7 +1754,7 @@ const opDisableMacie = "DisableMacie"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableMacie for more information on using the DisableMacie
 // API call, and error handling.
@@ -1859,7 +1859,7 @@ const opDisableOrganizationAdminAccount = "DisableOrganizationAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableOrganizationAdminAccount for more information on using the DisableOrganizationAdminAccount
 // API call, and error handling.
@@ -1965,7 +1965,7 @@ const opDisassociateFromMasterAccount = "DisassociateFromMasterAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateFromMasterAccount for more information on using the DisassociateFromMasterAccount
 // API call, and error handling.
@@ -2070,7 +2070,7 @@ const opDisassociateMember = "DisassociateMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateMember for more information on using the DisassociateMember
 // API call, and error handling.
@@ -2175,7 +2175,7 @@ const opEnableMacie = "EnableMacie"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableMacie for more information on using the EnableMacie
 // API call, and error handling.
@@ -2281,7 +2281,7 @@ const opEnableOrganizationAdminAccount = "EnableOrganizationAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableOrganizationAdminAccount for more information on using the EnableOrganizationAdminAccount
 // API call, and error handling.
@@ -2387,7 +2387,7 @@ const opGetBucketStatistics = "GetBucketStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBucketStatistics for more information on using the GetBucketStatistics
 // API call, and error handling.
@@ -2492,7 +2492,7 @@ const opGetClassificationExportConfiguration = "GetClassificationExportConfigura
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetClassificationExportConfiguration for more information on using the GetClassificationExportConfiguration
 // API call, and error handling.
@@ -2596,7 +2596,7 @@ const opGetCustomDataIdentifier = "GetCustomDataIdentifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCustomDataIdentifier for more information on using the GetCustomDataIdentifier
 // API call, and error handling.
@@ -2701,7 +2701,7 @@ const opGetFindingStatistics = "GetFindingStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFindingStatistics for more information on using the GetFindingStatistics
 // API call, and error handling.
@@ -2805,7 +2805,7 @@ const opGetFindings = "GetFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFindings for more information on using the GetFindings
 // API call, and error handling.
@@ -2909,7 +2909,7 @@ const opGetFindingsFilter = "GetFindingsFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFindingsFilter for more information on using the GetFindingsFilter
 // API call, and error handling.
@@ -3014,7 +3014,7 @@ const opGetInvitationsCount = "GetInvitationsCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInvitationsCount for more information on using the GetInvitationsCount
 // API call, and error handling.
@@ -3119,7 +3119,7 @@ const opGetMacieSession = "GetMacieSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMacieSession for more information on using the GetMacieSession
 // API call, and error handling.
@@ -3224,7 +3224,7 @@ const opGetMasterAccount = "GetMasterAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMasterAccount for more information on using the GetMasterAccount
 // API call, and error handling.
@@ -3328,7 +3328,7 @@ const opGetMember = "GetMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMember for more information on using the GetMember
 // API call, and error handling.
@@ -3433,7 +3433,7 @@ const opGetUsageStatistics = "GetUsageStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUsageStatistics for more information on using the GetUsageStatistics
 // API call, and error handling.
@@ -3595,7 +3595,7 @@ const opGetUsageTotals = "GetUsageTotals"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUsageTotals for more information on using the GetUsageTotals
 // API call, and error handling.
@@ -3699,7 +3699,7 @@ const opListClassificationJobs = "ListClassificationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClassificationJobs for more information on using the ListClassificationJobs
 // API call, and error handling.
@@ -3861,7 +3861,7 @@ const opListCustomDataIdentifiers = "ListCustomDataIdentifiers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCustomDataIdentifiers for more information on using the ListCustomDataIdentifiers
 // API call, and error handling.
@@ -4024,7 +4024,7 @@ const opListFindings = "ListFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFindings for more information on using the ListFindings
 // API call, and error handling.
@@ -4186,7 +4186,7 @@ const opListFindingsFilters = "ListFindingsFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFindingsFilters for more information on using the ListFindingsFilters
 // API call, and error handling.
@@ -4348,7 +4348,7 @@ const opListInvitations = "ListInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInvitations for more information on using the ListInvitations
 // API call, and error handling.
@@ -4511,7 +4511,7 @@ const opListMembers = "ListMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMembers for more information on using the ListMembers
 // API call, and error handling.
@@ -4674,7 +4674,7 @@ const opListOrganizationAdminAccounts = "ListOrganizationAdminAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOrganizationAdminAccounts for more information on using the ListOrganizationAdminAccounts
 // API call, and error handling.
@@ -4837,7 +4837,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4912,7 +4912,7 @@ const opPutClassificationExportConfiguration = "PutClassificationExportConfigura
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutClassificationExportConfiguration for more information on using the PutClassificationExportConfiguration
 // API call, and error handling.
@@ -5017,7 +5017,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5094,7 +5094,7 @@ const opTestCustomDataIdentifier = "TestCustomDataIdentifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestCustomDataIdentifier for more information on using the TestCustomDataIdentifier
 // API call, and error handling.
@@ -5198,7 +5198,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -5274,7 +5274,7 @@ const opUpdateClassificationJob = "UpdateClassificationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClassificationJob for more information on using the UpdateClassificationJob
 // API call, and error handling.
@@ -5379,7 +5379,7 @@ const opUpdateFindingsFilter = "UpdateFindingsFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFindingsFilter for more information on using the UpdateFindingsFilter
 // API call, and error handling.
@@ -5483,7 +5483,7 @@ const opUpdateMacieSession = "UpdateMacieSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMacieSession for more information on using the UpdateMacieSession
 // API call, and error handling.
@@ -5589,7 +5589,7 @@ const opUpdateMemberSession = "UpdateMemberSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMemberSession for more information on using the UpdateMemberSession
 // API call, and error handling.
@@ -5694,7 +5694,7 @@ const opUpdateOrganizationConfiguration = "UpdateOrganizationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOrganizationConfiguration for more information on using the UpdateOrganizationConfiguration
 // API call, and error handling.

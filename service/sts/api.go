@@ -20,7 +20,7 @@ const opAssumeRole = "AssumeRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssumeRole for more information on using the AssumeRole
 // API call, and error handling.
@@ -241,7 +241,7 @@ const opAssumeRoleWithSAML = "AssumeRoleWithSAML"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssumeRoleWithSAML for more information on using the AssumeRoleWithSAML
 // API call, and error handling.
@@ -472,7 +472,7 @@ const opAssumeRoleWithWebIdentity = "AssumeRoleWithWebIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssumeRoleWithWebIdentity for more information on using the AssumeRoleWithWebIdentity
 // API call, and error handling.
@@ -731,7 +731,7 @@ const opDecodeAuthorizationMessage = "DecodeAuthorizationMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DecodeAuthorizationMessage for more information on using the DecodeAuthorizationMessage
 // API call, and error handling.
@@ -843,7 +843,7 @@ const opGetAccessKeyInfo = "GetAccessKeyInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccessKeyInfo for more information on using the GetAccessKeyInfo
 // API call, and error handling.
@@ -940,7 +940,7 @@ const opGetCallerIdentity = "GetCallerIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCallerIdentity for more information on using the GetCallerIdentity
 // API call, and error handling.
@@ -1023,7 +1023,7 @@ const opGetFederationToken = "GetFederationToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFederationToken for more information on using the GetFederationToken
 // API call, and error handling.
@@ -1212,7 +1212,7 @@ const opGetSessionToken = "GetSessionToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSessionToken for more information on using the GetSessionToken
 // API call, and error handling.

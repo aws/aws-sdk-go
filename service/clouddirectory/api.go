@@ -21,7 +21,7 @@ const opAddFacetToObject = "AddFacetToObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddFacetToObject for more information on using the AddFacetToObject
 // API call, and error handling.
@@ -137,7 +137,7 @@ const opApplySchema = "ApplySchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApplySchema for more information on using the ApplySchema
 // API call, and error handling.
@@ -254,7 +254,7 @@ const opAttachObject = "AttachObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachObject for more information on using the AttachObject
 // API call, and error handling.
@@ -386,7 +386,7 @@ const opAttachPolicy = "AttachPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachPolicy for more information on using the AttachPolicy
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opAttachToIndex = "AttachToIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachToIndex for more information on using the AttachToIndex
 // API call, and error handling.
@@ -627,7 +627,7 @@ const opAttachTypedLink = "AttachTypedLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachTypedLink for more information on using the AttachTypedLink
 // API call, and error handling.
@@ -751,7 +751,7 @@ const opBatchRead = "BatchRead"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchRead for more information on using the BatchRead
 // API call, and error handling.
@@ -858,7 +858,7 @@ const opBatchWrite = "BatchWrite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchWrite for more information on using the BatchWrite
 // API call, and error handling.
@@ -969,7 +969,7 @@ const opCreateDirectory = "CreateDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDirectory for more information on using the CreateDirectory
 // API call, and error handling.
@@ -1085,7 +1085,7 @@ const opCreateFacet = "CreateFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFacet for more information on using the CreateFacet
 // API call, and error handling.
@@ -1204,7 +1204,7 @@ const opCreateIndex = "CreateIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIndex for more information on using the CreateIndex
 // API call, and error handling.
@@ -1326,7 +1326,7 @@ const opCreateObject = "CreateObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateObject for more information on using the CreateObject
 // API call, and error handling.
@@ -1450,7 +1450,7 @@ const opCreateSchema = "CreateSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSchema for more information on using the CreateSchema
 // API call, and error handling.
@@ -1573,7 +1573,7 @@ const opCreateTypedLinkFacet = "CreateTypedLinkFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTypedLinkFacet for more information on using the CreateTypedLinkFacet
 // API call, and error handling.
@@ -1691,7 +1691,7 @@ const opDeleteDirectory = "DeleteDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDirectory for more information on using the DeleteDirectory
 // API call, and error handling.
@@ -1806,7 +1806,7 @@ const opDeleteFacet = "DeleteFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFacet for more information on using the DeleteFacet
 // API call, and error handling.
@@ -1922,7 +1922,7 @@ const opDeleteObject = "DeleteObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteObject for more information on using the DeleteObject
 // API call, and error handling.
@@ -2040,7 +2040,7 @@ const opDeleteSchema = "DeleteSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSchema for more information on using the DeleteSchema
 // API call, and error handling.
@@ -2152,7 +2152,7 @@ const opDeleteTypedLinkFacet = "DeleteTypedLinkFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTypedLinkFacet for more information on using the DeleteTypedLinkFacet
 // API call, and error handling.
@@ -2263,7 +2263,7 @@ const opDetachFromIndex = "DetachFromIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachFromIndex for more information on using the DetachFromIndex
 // API call, and error handling.
@@ -2379,7 +2379,7 @@ const opDetachObject = "DetachObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachObject for more information on using the DetachObject
 // API call, and error handling.
@@ -2494,7 +2494,7 @@ const opDetachPolicy = "DetachPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachPolicy for more information on using the DetachPolicy
 // API call, and error handling.
@@ -2608,7 +2608,7 @@ const opDetachTypedLink = "DetachTypedLink"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachTypedLink for more information on using the DetachTypedLink
 // API call, and error handling.
@@ -2724,7 +2724,7 @@ const opDisableDirectory = "DisableDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableDirectory for more information on using the DisableDirectory
 // API call, and error handling.
@@ -2837,7 +2837,7 @@ const opEnableDirectory = "EnableDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableDirectory for more information on using the EnableDirectory
 // API call, and error handling.
@@ -2949,7 +2949,7 @@ const opGetAppliedSchemaVersion = "GetAppliedSchemaVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAppliedSchemaVersion for more information on using the GetAppliedSchemaVersion
 // API call, and error handling.
@@ -3057,7 +3057,7 @@ const opGetDirectory = "GetDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDirectory for more information on using the GetDirectory
 // API call, and error handling.
@@ -3161,7 +3161,7 @@ const opGetFacet = "GetFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFacet for more information on using the GetFacet
 // API call, and error handling.
@@ -3273,7 +3273,7 @@ const opGetLinkAttributes = "GetLinkAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLinkAttributes for more information on using the GetLinkAttributes
 // API call, and error handling.
@@ -3387,7 +3387,7 @@ const opGetObjectAttributes = "GetObjectAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectAttributes for more information on using the GetObjectAttributes
 // API call, and error handling.
@@ -3501,7 +3501,7 @@ const opGetObjectInformation = "GetObjectInformation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObjectInformation for more information on using the GetObjectInformation
 // API call, and error handling.
@@ -3611,7 +3611,7 @@ const opGetSchemaAsJson = "GetSchemaAsJson"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSchemaAsJson for more information on using the GetSchemaAsJson
 // API call, and error handling.
@@ -3723,7 +3723,7 @@ const opGetTypedLinkFacetInformation = "GetTypedLinkFacetInformation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTypedLinkFacetInformation for more information on using the GetTypedLinkFacetInformation
 // API call, and error handling.
@@ -3837,7 +3837,7 @@ const opListAppliedSchemaArns = "ListAppliedSchemaArns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAppliedSchemaArns for more information on using the ListAppliedSchemaArns
 // API call, and error handling.
@@ -4006,7 +4006,7 @@ const opListAttachedIndices = "ListAttachedIndices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttachedIndices for more information on using the ListAttachedIndices
 // API call, and error handling.
@@ -4174,7 +4174,7 @@ const opListDevelopmentSchemaArns = "ListDevelopmentSchemaArns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevelopmentSchemaArns for more information on using the ListDevelopmentSchemaArns
 // API call, and error handling.
@@ -4342,7 +4342,7 @@ const opListDirectories = "ListDirectories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDirectories for more information on using the ListDirectories
 // API call, and error handling.
@@ -4507,7 +4507,7 @@ const opListFacetAttributes = "ListFacetAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFacetAttributes for more information on using the ListFacetAttributes
 // API call, and error handling.
@@ -4678,7 +4678,7 @@ const opListFacetNames = "ListFacetNames"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFacetNames for more information on using the ListFacetNames
 // API call, and error handling.
@@ -4846,7 +4846,7 @@ const opListIncomingTypedLinks = "ListIncomingTypedLinks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIncomingTypedLinks for more information on using the ListIncomingTypedLinks
 // API call, and error handling.
@@ -4965,7 +4965,7 @@ const opListIndex = "ListIndex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIndex for more information on using the ListIndex
 // API call, and error handling.
@@ -5143,7 +5143,7 @@ const opListManagedSchemaArns = "ListManagedSchemaArns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListManagedSchemaArns for more information on using the ListManagedSchemaArns
 // API call, and error handling.
@@ -5301,7 +5301,7 @@ const opListObjectAttributes = "ListObjectAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectAttributes for more information on using the ListObjectAttributes
 // API call, and error handling.
@@ -5476,7 +5476,7 @@ const opListObjectChildren = "ListObjectChildren"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectChildren for more information on using the ListObjectChildren
 // API call, and error handling.
@@ -5652,7 +5652,7 @@ const opListObjectParentPaths = "ListObjectParentPaths"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectParentPaths for more information on using the ListObjectParentPaths
 // API call, and error handling.
@@ -5833,7 +5833,7 @@ const opListObjectParents = "ListObjectParents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectParents for more information on using the ListObjectParents
 // API call, and error handling.
@@ -6008,7 +6008,7 @@ const opListObjectPolicies = "ListObjectPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListObjectPolicies for more information on using the ListObjectPolicies
 // API call, and error handling.
@@ -6179,7 +6179,7 @@ const opListOutgoingTypedLinks = "ListOutgoingTypedLinks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOutgoingTypedLinks for more information on using the ListOutgoingTypedLinks
 // API call, and error handling.
@@ -6298,7 +6298,7 @@ const opListPolicyAttachments = "ListPolicyAttachments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPolicyAttachments for more information on using the ListPolicyAttachments
 // API call, and error handling.
@@ -6472,7 +6472,7 @@ const opListPublishedSchemaArns = "ListPublishedSchemaArns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPublishedSchemaArns for more information on using the ListPublishedSchemaArns
 // API call, and error handling.
@@ -6642,7 +6642,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -6814,7 +6814,7 @@ const opListTypedLinkFacetAttributes = "ListTypedLinkFacetAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTypedLinkFacetAttributes for more information on using the ListTypedLinkFacetAttributes
 // API call, and error handling.
@@ -6986,7 +6986,7 @@ const opListTypedLinkFacetNames = "ListTypedLinkFacetNames"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTypedLinkFacetNames for more information on using the ListTypedLinkFacetNames
 // API call, and error handling.
@@ -7155,7 +7155,7 @@ const opLookupPolicy = "LookupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LookupPolicy for more information on using the LookupPolicy
 // API call, and error handling.
@@ -7332,7 +7332,7 @@ const opPublishSchema = "PublishSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PublishSchema for more information on using the PublishSchema
 // API call, and error handling.
@@ -7443,7 +7443,7 @@ const opPutSchemaFromJson = "PutSchemaFromJson"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSchemaFromJson for more information on using the PutSchemaFromJson
 // API call, and error handling.
@@ -7555,7 +7555,7 @@ const opRemoveFacetFromObject = "RemoveFacetFromObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveFacetFromObject for more information on using the RemoveFacetFromObject
 // API call, and error handling.
@@ -7670,7 +7670,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -7783,7 +7783,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -7896,7 +7896,7 @@ const opUpdateFacet = "UpdateFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFacet for more information on using the UpdateFacet
 // API call, and error handling.
@@ -8023,7 +8023,7 @@ const opUpdateLinkAttributes = "UpdateLinkAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLinkAttributes for more information on using the UpdateLinkAttributes
 // API call, and error handling.
@@ -8139,7 +8139,7 @@ const opUpdateObjectAttributes = "UpdateObjectAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateObjectAttributes for more information on using the UpdateObjectAttributes
 // API call, and error handling.
@@ -8257,7 +8257,7 @@ const opUpdateSchema = "UpdateSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSchema for more information on using the UpdateSchema
 // API call, and error handling.
@@ -8365,7 +8365,7 @@ const opUpdateTypedLinkFacet = "UpdateTypedLinkFacet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTypedLinkFacet for more information on using the UpdateTypedLinkFacet
 // API call, and error handling.
@@ -8486,7 +8486,7 @@ const opUpgradeAppliedSchema = "UpgradeAppliedSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpgradeAppliedSchema for more information on using the UpgradeAppliedSchema
 // API call, and error handling.
@@ -8608,7 +8608,7 @@ const opUpgradePublishedSchema = "UpgradePublishedSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpgradePublishedSchema for more information on using the UpgradePublishedSchema
 // API call, and error handling.

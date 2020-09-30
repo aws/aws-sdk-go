@@ -21,7 +21,7 @@ const opCreateApplication = "CreateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplication for more information on using the CreateApplication
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opCreateComponent = "CreateComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateComponent for more information on using the CreateComponent
 // API call, and error handling.
@@ -201,7 +201,7 @@ const opCreateLogPattern = "CreateLogPattern"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLogPattern for more information on using the CreateLogPattern
 // API call, and error handling.
@@ -289,7 +289,7 @@ const opDeleteApplication = "DeleteApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplication for more information on using the DeleteApplication
 // API call, and error handling.
@@ -378,7 +378,7 @@ const opDeleteComponent = "DeleteComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteComponent for more information on using the DeleteComponent
 // API call, and error handling.
@@ -466,7 +466,7 @@ const opDeleteLogPattern = "DeleteLogPattern"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLogPattern for more information on using the DeleteLogPattern
 // API call, and error handling.
@@ -555,7 +555,7 @@ const opDescribeApplication = "DescribeApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApplication for more information on using the DescribeApplication
 // API call, and error handling.
@@ -640,7 +640,7 @@ const opDescribeComponent = "DescribeComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComponent for more information on using the DescribeComponent
 // API call, and error handling.
@@ -726,7 +726,7 @@ const opDescribeComponentConfiguration = "DescribeComponentConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComponentConfiguration for more information on using the DescribeComponentConfiguration
 // API call, and error handling.
@@ -811,7 +811,7 @@ const opDescribeComponentConfigurationRecommendation = "DescribeComponentConfigu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComponentConfigurationRecommendation for more information on using the DescribeComponentConfigurationRecommendation
 // API call, and error handling.
@@ -896,7 +896,7 @@ const opDescribeLogPattern = "DescribeLogPattern"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLogPattern for more information on using the DescribeLogPattern
 // API call, and error handling.
@@ -981,7 +981,7 @@ const opDescribeObservation = "DescribeObservation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeObservation for more information on using the DescribeObservation
 // API call, and error handling.
@@ -1066,7 +1066,7 @@ const opDescribeProblem = "DescribeProblem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProblem for more information on using the DescribeProblem
 // API call, and error handling.
@@ -1151,7 +1151,7 @@ const opDescribeProblemObservations = "DescribeProblemObservations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProblemObservations for more information on using the DescribeProblemObservations
 // API call, and error handling.
@@ -1236,7 +1236,7 @@ const opListApplications = "ListApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplications for more information on using the ListApplications
 // API call, and error handling.
@@ -1376,7 +1376,7 @@ const opListComponents = "ListComponents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListComponents for more information on using the ListComponents
 // API call, and error handling.
@@ -1519,7 +1519,7 @@ const opListConfigurationHistory = "ListConfigurationHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurationHistory for more information on using the ListConfigurationHistory
 // API call, and error handling.
@@ -1670,7 +1670,7 @@ const opListLogPatternSets = "ListLogPatternSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLogPatternSets for more information on using the ListLogPatternSets
 // API call, and error handling.
@@ -1813,7 +1813,7 @@ const opListLogPatterns = "ListLogPatterns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLogPatterns for more information on using the ListLogPatterns
 // API call, and error handling.
@@ -1956,7 +1956,7 @@ const opListProblems = "ListProblems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProblems for more information on using the ListProblems
 // API call, and error handling.
@@ -2099,7 +2099,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2186,7 +2186,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2281,7 +2281,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2364,7 +2364,7 @@ const opUpdateApplication = "UpdateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplication for more information on using the UpdateApplication
 // API call, and error handling.
@@ -2449,7 +2449,7 @@ const opUpdateComponent = "UpdateComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateComponent for more information on using the UpdateComponent
 // API call, and error handling.
@@ -2539,7 +2539,7 @@ const opUpdateComponentConfiguration = "UpdateComponentConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateComponentConfiguration for more information on using the UpdateComponentConfiguration
 // API call, and error handling.
@@ -2627,7 +2627,7 @@ const opUpdateLogPattern = "UpdateLogPattern"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLogPattern for more information on using the UpdateLogPattern
 // API call, and error handling.

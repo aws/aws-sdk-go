@@ -21,7 +21,7 @@ const opAddAttributesToFindings = "AddAttributesToFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddAttributesToFindings for more information on using the AddAttributesToFindings
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateAssessmentTarget = "CreateAssessmentTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAssessmentTarget for more information on using the CreateAssessmentTarget
 // API call, and error handling.
@@ -224,7 +224,7 @@ const opCreateAssessmentTemplate = "CreateAssessmentTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAssessmentTemplate for more information on using the CreateAssessmentTemplate
 // API call, and error handling.
@@ -325,7 +325,7 @@ const opCreateExclusionsPreview = "CreateExclusionsPreview"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateExclusionsPreview for more information on using the CreateExclusionsPreview
 // API call, and error handling.
@@ -424,7 +424,7 @@ const opCreateResourceGroup = "CreateResourceGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResourceGroup for more information on using the CreateResourceGroup
 // API call, and error handling.
@@ -520,7 +520,7 @@ const opDeleteAssessmentRun = "DeleteAssessmentRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAssessmentRun for more information on using the DeleteAssessmentRun
 // API call, and error handling.
@@ -619,7 +619,7 @@ const opDeleteAssessmentTarget = "DeleteAssessmentTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAssessmentTarget for more information on using the DeleteAssessmentTarget
 // API call, and error handling.
@@ -718,7 +718,7 @@ const opDeleteAssessmentTemplate = "DeleteAssessmentTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAssessmentTemplate for more information on using the DeleteAssessmentTemplate
 // API call, and error handling.
@@ -817,7 +817,7 @@ const opDescribeAssessmentRuns = "DescribeAssessmentRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssessmentRuns for more information on using the DescribeAssessmentRuns
 // API call, and error handling.
@@ -901,7 +901,7 @@ const opDescribeAssessmentTargets = "DescribeAssessmentTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssessmentTargets for more information on using the DescribeAssessmentTargets
 // API call, and error handling.
@@ -985,7 +985,7 @@ const opDescribeAssessmentTemplates = "DescribeAssessmentTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssessmentTemplates for more information on using the DescribeAssessmentTemplates
 // API call, and error handling.
@@ -1069,7 +1069,7 @@ const opDescribeCrossAccountAccessRole = "DescribeCrossAccountAccessRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCrossAccountAccessRole for more information on using the DescribeCrossAccountAccessRole
 // API call, and error handling.
@@ -1148,7 +1148,7 @@ const opDescribeExclusions = "DescribeExclusions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExclusions for more information on using the DescribeExclusions
 // API call, and error handling.
@@ -1231,7 +1231,7 @@ const opDescribeFindings = "DescribeFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFindings for more information on using the DescribeFindings
 // API call, and error handling.
@@ -1314,7 +1314,7 @@ const opDescribeResourceGroups = "DescribeResourceGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeResourceGroups for more information on using the DescribeResourceGroups
 // API call, and error handling.
@@ -1398,7 +1398,7 @@ const opDescribeRulesPackages = "DescribeRulesPackages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRulesPackages for more information on using the DescribeRulesPackages
 // API call, and error handling.
@@ -1482,7 +1482,7 @@ const opGetAssessmentReport = "GetAssessmentReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssessmentReport for more information on using the GetAssessmentReport
 // API call, and error handling.
@@ -1587,7 +1587,7 @@ const opGetExclusionsPreview = "GetExclusionsPreview"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExclusionsPreview for more information on using the GetExclusionsPreview
 // API call, and error handling.
@@ -1737,7 +1737,7 @@ const opGetTelemetryMetadata = "GetTelemetryMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTelemetryMetadata for more information on using the GetTelemetryMetadata
 // API call, and error handling.
@@ -1828,7 +1828,7 @@ const opListAssessmentRunAgents = "ListAssessmentRunAgents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssessmentRunAgents for more information on using the ListAssessmentRunAgents
 // API call, and error handling.
@@ -1977,7 +1977,7 @@ const opListAssessmentRuns = "ListAssessmentRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssessmentRuns for more information on using the ListAssessmentRuns
 // API call, and error handling.
@@ -2126,7 +2126,7 @@ const opListAssessmentTargets = "ListAssessmentTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssessmentTargets for more information on using the ListAssessmentTargets
 // API call, and error handling.
@@ -2272,7 +2272,7 @@ const opListAssessmentTemplates = "ListAssessmentTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssessmentTemplates for more information on using the ListAssessmentTemplates
 // API call, and error handling.
@@ -2421,7 +2421,7 @@ const opListEventSubscriptions = "ListEventSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEventSubscriptions for more information on using the ListEventSubscriptions
 // API call, and error handling.
@@ -2571,7 +2571,7 @@ const opListExclusions = "ListExclusions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListExclusions for more information on using the ListExclusions
 // API call, and error handling.
@@ -2719,7 +2719,7 @@ const opListFindings = "ListFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFindings for more information on using the ListFindings
 // API call, and error handling.
@@ -2868,7 +2868,7 @@ const opListRulesPackages = "ListRulesPackages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRulesPackages for more information on using the ListRulesPackages
 // API call, and error handling.
@@ -3012,7 +3012,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3102,7 +3102,7 @@ const opPreviewAgents = "PreviewAgents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PreviewAgents for more information on using the PreviewAgents
 // API call, and error handling.
@@ -3255,7 +3255,7 @@ const opRegisterCrossAccountAccessRole = "RegisterCrossAccountAccessRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterCrossAccountAccessRole for more information on using the RegisterCrossAccountAccessRole
 // API call, and error handling.
@@ -3350,7 +3350,7 @@ const opRemoveAttributesFromFindings = "RemoveAttributesFromFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveAttributesFromFindings for more information on using the RemoveAttributesFromFindings
 // API call, and error handling.
@@ -3445,7 +3445,7 @@ const opSetTagsForResource = "SetTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetTagsForResource for more information on using the SetTagsForResource
 // API call, and error handling.
@@ -3540,7 +3540,7 @@ const opStartAssessmentRun = "StartAssessmentRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartAssessmentRun for more information on using the StartAssessmentRun
 // API call, and error handling.
@@ -3647,7 +3647,7 @@ const opStopAssessmentRun = "StopAssessmentRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopAssessmentRun for more information on using the StopAssessmentRun
 // API call, and error handling.
@@ -3741,7 +3741,7 @@ const opSubscribeToEvent = "SubscribeToEvent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubscribeToEvent for more information on using the SubscribeToEvent
 // API call, and error handling.
@@ -3840,7 +3840,7 @@ const opUnsubscribeFromEvent = "UnsubscribeFromEvent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnsubscribeFromEvent for more information on using the UnsubscribeFromEvent
 // API call, and error handling.
@@ -3935,7 +3935,7 @@ const opUpdateAssessmentTarget = "UpdateAssessmentTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAssessmentTarget for more information on using the UpdateAssessmentTarget
 // API call, and error handling.

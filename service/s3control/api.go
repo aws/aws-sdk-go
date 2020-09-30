@@ -21,7 +21,7 @@ const opCreateAccessPoint = "CreateAccessPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccessPoint for more information on using the CreateAccessPoint
 // API call, and error handling.
@@ -98,7 +98,7 @@ const opCreateJob = "CreateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJob for more information on using the CreateJob
 // API call, and error handling.
@@ -198,7 +198,7 @@ const opDeleteAccessPoint = "DeleteAccessPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccessPoint for more information on using the DeleteAccessPoint
 // API call, and error handling.
@@ -275,7 +275,7 @@ const opDeleteAccessPointPolicy = "DeleteAccessPointPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccessPointPolicy for more information on using the DeleteAccessPointPolicy
 // API call, and error handling.
@@ -352,7 +352,7 @@ const opDeleteJobTagging = "DeleteJobTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteJobTagging for more information on using the DeleteJobTagging
 // API call, and error handling.
@@ -448,7 +448,7 @@ const opDeletePublicAccessBlock = "DeletePublicAccessBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePublicAccessBlock for more information on using the DeletePublicAccessBlock
 // API call, and error handling.
@@ -525,7 +525,7 @@ const opDescribeJob = "DescribeJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJob for more information on using the DescribeJob
 // API call, and error handling.
@@ -623,7 +623,7 @@ const opGetAccessPoint = "GetAccessPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccessPoint for more information on using the GetAccessPoint
 // API call, and error handling.
@@ -699,7 +699,7 @@ const opGetAccessPointPolicy = "GetAccessPointPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccessPointPolicy for more information on using the GetAccessPointPolicy
 // API call, and error handling.
@@ -775,7 +775,7 @@ const opGetAccessPointPolicyStatus = "GetAccessPointPolicyStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccessPointPolicyStatus for more information on using the GetAccessPointPolicyStatus
 // API call, and error handling.
@@ -854,7 +854,7 @@ const opGetJobTagging = "GetJobTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobTagging for more information on using the GetJobTagging
 // API call, and error handling.
@@ -949,7 +949,7 @@ const opGetPublicAccessBlock = "GetPublicAccessBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPublicAccessBlock for more information on using the GetPublicAccessBlock
 // API call, and error handling.
@@ -1032,7 +1032,7 @@ const opListAccessPoints = "ListAccessPoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccessPoints for more information on using the ListAccessPoints
 // API call, and error handling.
@@ -1170,7 +1170,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -1325,7 +1325,7 @@ const opPutAccessPointPolicy = "PutAccessPointPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAccessPointPolicy for more information on using the PutAccessPointPolicy
 // API call, and error handling.
@@ -1404,7 +1404,7 @@ const opPutJobTagging = "PutJobTagging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutJobTagging for more information on using the PutJobTagging
 // API call, and error handling.
@@ -1528,7 +1528,7 @@ const opPutPublicAccessBlock = "PutPublicAccessBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPublicAccessBlock for more information on using the PutPublicAccessBlock
 // API call, and error handling.
@@ -1606,7 +1606,7 @@ const opUpdateJobPriority = "UpdateJobPriority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJobPriority for more information on using the UpdateJobPriority
 // API call, and error handling.
@@ -1704,7 +1704,7 @@ const opUpdateJobStatus = "UpdateJobStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJobStatus for more information on using the UpdateJobStatus
 // API call, and error handling.

@@ -18,7 +18,7 @@ const opBuildSuggesters = "BuildSuggesters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BuildSuggesters for more information on using the BuildSuggesters
 // API call, and error handling.
@@ -104,7 +104,7 @@ const opCreateDomain = "CreateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomain for more information on using the CreateDomain
 // API call, and error handling.
@@ -189,7 +189,7 @@ const opDefineAnalysisScheme = "DefineAnalysisScheme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DefineAnalysisScheme for more information on using the DefineAnalysisScheme
 // API call, and error handling.
@@ -282,7 +282,7 @@ const opDefineExpression = "DefineExpression"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DefineExpression for more information on using the DefineExpression
 // API call, and error handling.
@@ -375,7 +375,7 @@ const opDefineIndexField = "DefineIndexField"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DefineIndexField for more information on using the DefineIndexField
 // API call, and error handling.
@@ -472,7 +472,7 @@ const opDefineSuggester = "DefineSuggester"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DefineSuggester for more information on using the DefineSuggester
 // API call, and error handling.
@@ -567,7 +567,7 @@ const opDeleteAnalysisScheme = "DeleteAnalysisScheme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAnalysisScheme for more information on using the DeleteAnalysisScheme
 // API call, and error handling.
@@ -656,7 +656,7 @@ const opDeleteDomain = "DeleteDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomain for more information on using the DeleteDomain
 // API call, and error handling.
@@ -739,7 +739,7 @@ const opDeleteExpression = "DeleteExpression"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteExpression for more information on using the DeleteExpression
 // API call, and error handling.
@@ -828,7 +828,7 @@ const opDeleteIndexField = "DeleteIndexField"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIndexField for more information on using the DeleteIndexField
 // API call, and error handling.
@@ -917,7 +917,7 @@ const opDeleteSuggester = "DeleteSuggester"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSuggester for more information on using the DeleteSuggester
 // API call, and error handling.
@@ -1006,7 +1006,7 @@ const opDescribeAnalysisSchemes = "DescribeAnalysisSchemes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAnalysisSchemes for more information on using the DescribeAnalysisSchemes
 // API call, and error handling.
@@ -1096,7 +1096,7 @@ const opDescribeAvailabilityOptions = "DescribeAvailabilityOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAvailabilityOptions for more information on using the DescribeAvailabilityOptions
 // API call, and error handling.
@@ -1193,7 +1193,7 @@ const opDescribeDomainEndpointOptions = "DescribeDomainEndpointOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomainEndpointOptions for more information on using the DescribeDomainEndpointOptions
 // API call, and error handling.
@@ -1286,7 +1286,7 @@ const opDescribeDomains = "DescribeDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomains for more information on using the DescribeDomains
 // API call, and error handling.
@@ -1371,7 +1371,7 @@ const opDescribeExpressions = "DescribeExpressions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExpressions for more information on using the DescribeExpressions
 // API call, and error handling.
@@ -1460,7 +1460,7 @@ const opDescribeIndexFields = "DescribeIndexFields"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIndexFields for more information on using the DescribeIndexFields
 // API call, and error handling.
@@ -1549,7 +1549,7 @@ const opDescribeScalingParameters = "DescribeScalingParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingParameters for more information on using the DescribeScalingParameters
 // API call, and error handling.
@@ -1636,7 +1636,7 @@ const opDescribeServiceAccessPolicies = "DescribeServiceAccessPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServiceAccessPolicies for more information on using the DescribeServiceAccessPolicies
 // API call, and error handling.
@@ -1725,7 +1725,7 @@ const opDescribeSuggesters = "DescribeSuggesters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSuggesters for more information on using the DescribeSuggesters
 // API call, and error handling.
@@ -1815,7 +1815,7 @@ const opIndexDocuments = "IndexDocuments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IndexDocuments for more information on using the IndexDocuments
 // API call, and error handling.
@@ -1901,7 +1901,7 @@ const opListDomainNames = "ListDomainNames"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomainNames for more information on using the ListDomainNames
 // API call, and error handling.
@@ -1977,7 +1977,7 @@ const opUpdateAvailabilityOptions = "UpdateAvailabilityOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAvailabilityOptions for more information on using the UpdateAvailabilityOptions
 // API call, and error handling.
@@ -2078,7 +2078,7 @@ const opUpdateDomainEndpointOptions = "UpdateDomainEndpointOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainEndpointOptions for more information on using the UpdateDomainEndpointOptions
 // API call, and error handling.
@@ -2177,7 +2177,7 @@ const opUpdateScalingParameters = "UpdateScalingParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateScalingParameters for more information on using the UpdateScalingParameters
 // API call, and error handling.
@@ -2274,7 +2274,7 @@ const opUpdateServiceAccessPolicies = "UpdateServiceAccessPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServiceAccessPolicies for more information on using the UpdateServiceAccessPolicies
 // API call, and error handling.

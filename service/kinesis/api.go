@@ -29,7 +29,7 @@ const opAddTagsToStream = "AddTagsToStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToStream for more information on using the AddTagsToStream
 // API call, and error handling.
@@ -130,7 +130,7 @@ const opCreateStream = "CreateStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStream for more information on using the CreateStream
 // API call, and error handling.
@@ -257,7 +257,7 @@ const opDecreaseStreamRetentionPeriod = "DecreaseStreamRetentionPeriod"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DecreaseStreamRetentionPeriod for more information on using the DecreaseStreamRetentionPeriod
 // API call, and error handling.
@@ -356,7 +356,7 @@ const opDeleteStream = "DeleteStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStream for more information on using the DeleteStream
 // API call, and error handling.
@@ -464,7 +464,7 @@ const opDeregisterStreamConsumer = "DeregisterStreamConsumer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterStreamConsumer for more information on using the DeregisterStreamConsumer
 // API call, and error handling.
@@ -562,7 +562,7 @@ const opDescribeLimits = "DescribeLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLimits for more information on using the DescribeLimits
 // API call, and error handling.
@@ -647,7 +647,7 @@ const opDescribeStream = "DescribeStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStream for more information on using the DescribeStream
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opDescribeStreamConsumer = "DescribeStreamConsumer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStreamConsumer for more information on using the DescribeStreamConsumer
 // API call, and error handling.
@@ -903,7 +903,7 @@ const opDescribeStreamSummary = "DescribeStreamSummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStreamSummary for more information on using the DescribeStreamSummary
 // API call, and error handling.
@@ -994,7 +994,7 @@ const opDisableEnhancedMonitoring = "DisableEnhancedMonitoring"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableEnhancedMonitoring for more information on using the DisableEnhancedMonitoring
 // API call, and error handling.
@@ -1086,7 +1086,7 @@ const opEnableEnhancedMonitoring = "EnableEnhancedMonitoring"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableEnhancedMonitoring for more information on using the EnableEnhancedMonitoring
 // API call, and error handling.
@@ -1178,7 +1178,7 @@ const opGetRecords = "GetRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRecords for more information on using the GetRecords
 // API call, and error handling.
@@ -1354,7 +1354,7 @@ const opGetShardIterator = "GetShardIterator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetShardIterator for more information on using the GetShardIterator
 // API call, and error handling.
@@ -1484,7 +1484,7 @@ const opIncreaseStreamRetentionPeriod = "IncreaseStreamRetentionPeriod"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IncreaseStreamRetentionPeriod for more information on using the IncreaseStreamRetentionPeriod
 // API call, and error handling.
@@ -1587,7 +1587,7 @@ const opListShards = "ListShards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListShards for more information on using the ListShards
 // API call, and error handling.
@@ -1689,7 +1689,7 @@ const opListStreamConsumers = "ListStreamConsumers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreamConsumers for more information on using the ListStreamConsumers
 // API call, and error handling.
@@ -1845,7 +1845,7 @@ const opListStreams = "ListStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreams for more information on using the ListStreams
 // API call, and error handling.
@@ -1998,7 +1998,7 @@ const opListTagsForStream = "ListTagsForStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForStream for more information on using the ListTagsForStream
 // API call, and error handling.
@@ -2087,7 +2087,7 @@ const opMergeShards = "MergeShards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergeShards for more information on using the MergeShards
 // API call, and error handling.
@@ -2215,7 +2215,7 @@ const opPutRecord = "PutRecord"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRecord for more information on using the PutRecord
 // API call, and error handling.
@@ -2374,7 +2374,7 @@ const opPutRecords = "PutRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRecords for more information on using the PutRecords
 // API call, and error handling.
@@ -2556,7 +2556,7 @@ const opRegisterStreamConsumer = "RegisterStreamConsumer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterStreamConsumer for more information on using the RegisterStreamConsumer
 // API call, and error handling.
@@ -2664,7 +2664,7 @@ const opRemoveTagsFromStream = "RemoveTagsFromStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromStream for more information on using the RemoveTagsFromStream
 // API call, and error handling.
@@ -2762,7 +2762,7 @@ const opSplitShard = "SplitShard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SplitShard for more information on using the SplitShard
 // API call, and error handling.
@@ -2900,7 +2900,7 @@ const opStartStreamEncryption = "StartStreamEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartStreamEncryption for more information on using the StartStreamEncryption
 // API call, and error handling.
@@ -3037,7 +3037,7 @@ const opStopStreamEncryption = "StopStreamEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopStreamEncryption for more information on using the StopStreamEncryption
 // API call, and error handling.
@@ -3147,7 +3147,7 @@ const opSubscribeToShard = "SubscribeToShard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubscribeToShard for more information on using the SubscribeToShard
 // API call, and error handling.
@@ -3479,7 +3479,7 @@ const opUpdateShardCount = "UpdateShardCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateShardCount for more information on using the UpdateShardCount
 // API call, and error handling.

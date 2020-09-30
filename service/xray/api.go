@@ -21,7 +21,7 @@ const opBatchGetTraces = "BatchGetTraces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetTraces for more information on using the BatchGetTraces
 // API call, and error handling.
@@ -163,7 +163,7 @@ const opCreateGroup = "CreateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroup for more information on using the CreateGroup
 // API call, and error handling.
@@ -245,7 +245,7 @@ const opCreateSamplingRule = "CreateSamplingRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSamplingRule for more information on using the CreateSamplingRule
 // API call, and error handling.
@@ -336,7 +336,7 @@ const opDeleteGroup = "DeleteGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroup for more information on using the DeleteGroup
 // API call, and error handling.
@@ -419,7 +419,7 @@ const opDeleteSamplingRule = "DeleteSamplingRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSamplingRule for more information on using the DeleteSamplingRule
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opGetEncryptionConfig = "GetEncryptionConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEncryptionConfig for more information on using the GetEncryptionConfig
 // API call, and error handling.
@@ -583,7 +583,7 @@ const opGetGroup = "GetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroup for more information on using the GetGroup
 // API call, and error handling.
@@ -665,7 +665,7 @@ const opGetGroups = "GetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroups for more information on using the GetGroups
 // API call, and error handling.
@@ -805,7 +805,7 @@ const opGetSamplingRules = "GetSamplingRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSamplingRules for more information on using the GetSamplingRules
 // API call, and error handling.
@@ -945,7 +945,7 @@ const opGetSamplingStatisticSummaries = "GetSamplingStatisticSummaries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSamplingStatisticSummaries for more information on using the GetSamplingStatisticSummaries
 // API call, and error handling.
@@ -1085,7 +1085,7 @@ const opGetSamplingTargets = "GetSamplingTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSamplingTargets for more information on using the GetSamplingTargets
 // API call, and error handling.
@@ -1167,7 +1167,7 @@ const opGetServiceGraph = "GetServiceGraph"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceGraph for more information on using the GetServiceGraph
 // API call, and error handling.
@@ -1312,7 +1312,7 @@ const opGetTimeSeriesServiceStatistics = "GetTimeSeriesServiceStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTimeSeriesServiceStatistics for more information on using the GetTimeSeriesServiceStatistics
 // API call, and error handling.
@@ -1452,7 +1452,7 @@ const opGetTraceGraph = "GetTraceGraph"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTraceGraph for more information on using the GetTraceGraph
 // API call, and error handling.
@@ -1592,7 +1592,7 @@ const opGetTraceSummaries = "GetTraceSummaries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTraceSummaries for more information on using the GetTraceSummaries
 // API call, and error handling.
@@ -1748,7 +1748,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1835,7 +1835,7 @@ const opPutEncryptionConfig = "PutEncryptionConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEncryptionConfig for more information on using the PutEncryptionConfig
 // API call, and error handling.
@@ -1917,7 +1917,7 @@ const opPutTelemetryRecords = "PutTelemetryRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutTelemetryRecords for more information on using the PutTelemetryRecords
 // API call, and error handling.
@@ -2000,7 +2000,7 @@ const opPutTraceSegments = "PutTraceSegments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutTraceSegments for more information on using the PutTraceSegments
 // API call, and error handling.
@@ -2127,7 +2127,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2217,7 +2217,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2305,7 +2305,7 @@ const opUpdateGroup = "UpdateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroup for more information on using the UpdateGroup
 // API call, and error handling.
@@ -2387,7 +2387,7 @@ const opUpdateSamplingRule = "UpdateSamplingRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSamplingRule for more information on using the UpdateSamplingRule
 // API call, and error handling.

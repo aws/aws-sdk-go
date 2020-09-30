@@ -20,7 +20,7 @@ const opAddPermission = "AddPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddPermission for more information on using the AddPermission
 // API call, and error handling.
@@ -133,7 +133,7 @@ const opChangeMessageVisibility = "ChangeMessageVisibility"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ChangeMessageVisibility for more information on using the ChangeMessageVisibility
 // API call, and error handling.
@@ -267,7 +267,7 @@ const opChangeMessageVisibilityBatch = "ChangeMessageVisibilityBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ChangeMessageVisibilityBatch for more information on using the ChangeMessageVisibilityBatch
 // API call, and error handling.
@@ -370,7 +370,7 @@ const opCreateQueue = "CreateQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateQueue for more information on using the CreateQueue
 // API call, and error handling.
@@ -499,7 +499,7 @@ const opDeleteMessage = "DeleteMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMessage for more information on using the DeleteMessage
 // API call, and error handling.
@@ -601,7 +601,7 @@ const opDeleteMessageBatch = "DeleteMessageBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMessageBatch for more information on using the DeleteMessageBatch
 // API call, and error handling.
@@ -703,7 +703,7 @@ const opDeleteQueue = "DeleteQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteQueue for more information on using the DeleteQueue
 // API call, and error handling.
@@ -793,7 +793,7 @@ const opGetQueueAttributes = "GetQueueAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueueAttributes for more information on using the GetQueueAttributes
 // API call, and error handling.
@@ -875,7 +875,7 @@ const opGetQueueUrl = "GetQueueUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueueUrl for more information on using the GetQueueUrl
 // API call, and error handling.
@@ -961,7 +961,7 @@ const opListDeadLetterSourceQueues = "ListDeadLetterSourceQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeadLetterSourceQueues for more information on using the ListDeadLetterSourceQueues
 // API call, and error handling.
@@ -1111,7 +1111,7 @@ const opListQueueTags = "ListQueueTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQueueTags for more information on using the ListQueueTags
 // API call, and error handling.
@@ -1191,7 +1191,7 @@ const opListQueues = "ListQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQueues for more information on using the ListQueues
 // API call, and error handling.
@@ -1337,7 +1337,7 @@ const opPurgeQueue = "PurgeQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurgeQueue for more information on using the PurgeQueue
 // API call, and error handling.
@@ -1434,7 +1434,7 @@ const opReceiveMessage = "ReceiveMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReceiveMessage for more information on using the ReceiveMessage
 // API call, and error handling.
@@ -1562,7 +1562,7 @@ const opRemovePermission = "RemovePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemovePermission for more information on using the RemovePermission
 // API call, and error handling.
@@ -1648,7 +1648,7 @@ const opSendMessage = "SendMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendMessage for more information on using the SendMessage
 // API call, and error handling.
@@ -1738,7 +1738,7 @@ const opSendMessageBatch = "SendMessageBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendMessageBatch for more information on using the SendMessageBatch
 // API call, and error handling.
@@ -1862,7 +1862,7 @@ const opSetQueueAttributes = "SetQueueAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetQueueAttributes for more information on using the SetQueueAttributes
 // API call, and error handling.
@@ -1957,7 +1957,7 @@ const opTagQueue = "TagQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagQueue for more information on using the TagQueue
 // API call, and error handling.
@@ -2053,7 +2053,7 @@ const opUntagQueue = "UntagQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagQueue for more information on using the UntagQueue
 // API call, and error handling.

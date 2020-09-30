@@ -20,7 +20,7 @@ const opCreateOutpost = "CreateOutpost"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOutpost for more information on using the CreateOutpost
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opDeleteOutpost = "DeleteOutpost"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOutpost for more information on using the DeleteOutpost
 // API call, and error handling.
@@ -200,7 +200,7 @@ const opDeleteSite = "DeleteSite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSite for more information on using the DeleteSite
 // API call, and error handling.
@@ -289,7 +289,7 @@ const opGetOutpost = "GetOutpost"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOutpost for more information on using the GetOutpost
 // API call, and error handling.
@@ -377,7 +377,7 @@ const opGetOutpostInstanceTypes = "GetOutpostInstanceTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOutpostInstanceTypes for more information on using the GetOutpostInstanceTypes
 // API call, and error handling.
@@ -465,7 +465,7 @@ const opListOutposts = "ListOutposts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOutposts for more information on using the ListOutposts
 // API call, and error handling.
@@ -608,7 +608,7 @@ const opListSites = "ListSites"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSites for more information on using the ListSites
 // API call, and error handling.

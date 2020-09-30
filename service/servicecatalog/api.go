@@ -21,7 +21,7 @@ const opAcceptPortfolioShare = "AcceptPortfolioShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptPortfolioShare for more information on using the AcceptPortfolioShare
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opAssociateBudgetWithResource = "AssociateBudgetWithResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateBudgetWithResource for more information on using the AssociateBudgetWithResource
 // API call, and error handling.
@@ -200,7 +200,7 @@ const opAssociatePrincipalWithPortfolio = "AssociatePrincipalWithPortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociatePrincipalWithPortfolio for more information on using the AssociatePrincipalWithPortfolio
 // API call, and error handling.
@@ -288,7 +288,7 @@ const opAssociateProductWithPortfolio = "AssociateProductWithPortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateProductWithPortfolio for more information on using the AssociateProductWithPortfolio
 // API call, and error handling.
@@ -378,7 +378,7 @@ const opAssociateServiceActionWithProvisioningArtifact = "AssociateServiceAction
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateServiceActionWithProvisioningArtifact for more information on using the AssociateServiceActionWithProvisioningArtifact
 // API call, and error handling.
@@ -466,7 +466,7 @@ const opAssociateTagOptionWithResource = "AssociateTagOptionWithResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateTagOptionWithResource for more information on using the AssociateTagOptionWithResource
 // API call, and error handling.
@@ -567,7 +567,7 @@ const opBatchAssociateServiceActionWithProvisioningArtifact = "BatchAssociateSer
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchAssociateServiceActionWithProvisioningArtifact for more information on using the BatchAssociateServiceActionWithProvisioningArtifact
 // API call, and error handling.
@@ -646,7 +646,7 @@ const opBatchDisassociateServiceActionFromProvisioningArtifact = "BatchDisassoci
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDisassociateServiceActionFromProvisioningArtifact for more information on using the BatchDisassociateServiceActionFromProvisioningArtifact
 // API call, and error handling.
@@ -726,7 +726,7 @@ const opCopyProduct = "CopyProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyProduct for more information on using the CopyProduct
 // API call, and error handling.
@@ -815,7 +815,7 @@ const opCreateConstraint = "CreateConstraint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConstraint for more information on using the CreateConstraint
 // API call, and error handling.
@@ -907,7 +907,7 @@ const opCreatePortfolio = "CreatePortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePortfolio for more information on using the CreatePortfolio
 // API call, and error handling.
@@ -998,7 +998,7 @@ const opCreatePortfolioShare = "CreatePortfolioShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePortfolioShare for more information on using the CreatePortfolioShare
 // API call, and error handling.
@@ -1105,7 +1105,7 @@ const opCreateProduct = "CreateProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProduct for more information on using the CreateProduct
 // API call, and error handling.
@@ -1196,7 +1196,7 @@ const opCreateProvisionedProductPlan = "CreateProvisionedProductPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProvisionedProductPlan for more information on using the CreateProvisionedProductPlan
 // API call, and error handling.
@@ -1291,7 +1291,7 @@ const opCreateProvisioningArtifact = "CreateProvisioningArtifact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProvisioningArtifact for more information on using the CreateProvisioningArtifact
 // API call, and error handling.
@@ -1382,7 +1382,7 @@ const opCreateServiceAction = "CreateServiceAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateServiceAction for more information on using the CreateServiceAction
 // API call, and error handling.
@@ -1466,7 +1466,7 @@ const opCreateTagOption = "CreateTagOption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTagOption for more information on using the CreateTagOption
 // API call, and error handling.
@@ -1555,7 +1555,7 @@ const opDeleteConstraint = "DeleteConstraint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConstraint for more information on using the DeleteConstraint
 // API call, and error handling.
@@ -1640,7 +1640,7 @@ const opDeletePortfolio = "DeletePortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePortfolio for more information on using the DeletePortfolio
 // API call, and error handling.
@@ -1737,7 +1737,7 @@ const opDeletePortfolioShare = "DeletePortfolioShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePortfolioShare for more information on using the DeletePortfolioShare
 // API call, and error handling.
@@ -1832,7 +1832,7 @@ const opDeleteProduct = "DeleteProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProduct for more information on using the DeleteProduct
 // API call, and error handling.
@@ -1929,7 +1929,7 @@ const opDeleteProvisionedProductPlan = "DeleteProvisionedProductPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProvisionedProductPlan for more information on using the DeleteProvisionedProductPlan
 // API call, and error handling.
@@ -2012,7 +2012,7 @@ const opDeleteProvisioningArtifact = "DeleteProvisioningArtifact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProvisioningArtifact for more information on using the DeleteProvisioningArtifact
 // API call, and error handling.
@@ -2104,7 +2104,7 @@ const opDeleteServiceAction = "DeleteServiceAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServiceAction for more information on using the DeleteServiceAction
 // API call, and error handling.
@@ -2188,7 +2188,7 @@ const opDeleteTagOption = "DeleteTagOption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTagOption for more information on using the DeleteTagOption
 // API call, and error handling.
@@ -2279,7 +2279,7 @@ const opDescribeConstraint = "DescribeConstraint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConstraint for more information on using the DescribeConstraint
 // API call, and error handling.
@@ -2358,7 +2358,7 @@ const opDescribeCopyProductStatus = "DescribeCopyProductStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCopyProductStatus for more information on using the DescribeCopyProductStatus
 // API call, and error handling.
@@ -2437,7 +2437,7 @@ const opDescribePortfolio = "DescribePortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePortfolio for more information on using the DescribePortfolio
 // API call, and error handling.
@@ -2518,7 +2518,7 @@ const opDescribePortfolioShareStatus = "DescribePortfolioShareStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePortfolioShareStatus for more information on using the DescribePortfolioShareStatus
 // API call, and error handling.
@@ -2605,7 +2605,7 @@ const opDescribeProduct = "DescribeProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProduct for more information on using the DescribeProduct
 // API call, and error handling.
@@ -2687,7 +2687,7 @@ const opDescribeProductAsAdmin = "DescribeProductAsAdmin"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProductAsAdmin for more information on using the DescribeProductAsAdmin
 // API call, and error handling.
@@ -2770,7 +2770,7 @@ const opDescribeProductView = "DescribeProductView"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProductView for more information on using the DescribeProductView
 // API call, and error handling.
@@ -2852,7 +2852,7 @@ const opDescribeProvisionedProduct = "DescribeProvisionedProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProvisionedProduct for more information on using the DescribeProvisionedProduct
 // API call, and error handling.
@@ -2934,7 +2934,7 @@ const opDescribeProvisionedProductPlan = "DescribeProvisionedProductPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProvisionedProductPlan for more information on using the DescribeProvisionedProductPlan
 // API call, and error handling.
@@ -3016,7 +3016,7 @@ const opDescribeProvisioningArtifact = "DescribeProvisioningArtifact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProvisioningArtifact for more information on using the DescribeProvisioningArtifact
 // API call, and error handling.
@@ -3099,7 +3099,7 @@ const opDescribeProvisioningParameters = "DescribeProvisioningParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProvisioningParameters for more information on using the DescribeProvisioningParameters
 // API call, and error handling.
@@ -3189,7 +3189,7 @@ const opDescribeRecord = "DescribeRecord"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRecord for more information on using the DescribeRecord
 // API call, and error handling.
@@ -3277,7 +3277,7 @@ const opDescribeServiceAction = "DescribeServiceAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServiceAction for more information on using the DescribeServiceAction
 // API call, and error handling.
@@ -3356,7 +3356,7 @@ const opDescribeServiceActionExecutionParameters = "DescribeServiceActionExecuti
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServiceActionExecutionParameters for more information on using the DescribeServiceActionExecutionParameters
 // API call, and error handling.
@@ -3439,7 +3439,7 @@ const opDescribeTagOption = "DescribeTagOption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTagOption for more information on using the DescribeTagOption
 // API call, and error handling.
@@ -3523,7 +3523,7 @@ const opDisableAWSOrganizationsAccess = "DisableAWSOrganizationsAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableAWSOrganizationsAccess for more information on using the DisableAWSOrganizationsAccess
 // API call, and error handling.
@@ -3620,7 +3620,7 @@ const opDisassociateBudgetFromResource = "DisassociateBudgetFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateBudgetFromResource for more information on using the DisassociateBudgetFromResource
 // API call, and error handling.
@@ -3700,7 +3700,7 @@ const opDisassociatePrincipalFromPortfolio = "DisassociatePrincipalFromPortfolio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociatePrincipalFromPortfolio for more information on using the DisassociatePrincipalFromPortfolio
 // API call, and error handling.
@@ -3783,7 +3783,7 @@ const opDisassociateProductFromPortfolio = "DisassociateProductFromPortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateProductFromPortfolio for more information on using the DisassociateProductFromPortfolio
 // API call, and error handling.
@@ -3872,7 +3872,7 @@ const opDisassociateServiceActionFromProvisioningArtifact = "DisassociateService
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateServiceActionFromProvisioningArtifact for more information on using the DisassociateServiceActionFromProvisioningArtifact
 // API call, and error handling.
@@ -3953,7 +3953,7 @@ const opDisassociateTagOptionFromResource = "DisassociateTagOptionFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateTagOptionFromResource for more information on using the DisassociateTagOptionFromResource
 // API call, and error handling.
@@ -4038,7 +4038,7 @@ const opEnableAWSOrganizationsAccess = "EnableAWSOrganizationsAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableAWSOrganizationsAccess for more information on using the EnableAWSOrganizationsAccess
 // API call, and error handling.
@@ -4135,7 +4135,7 @@ const opExecuteProvisionedProductPlan = "ExecuteProvisionedProductPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExecuteProvisionedProductPlan for more information on using the ExecuteProvisionedProductPlan
 // API call, and error handling.
@@ -4223,7 +4223,7 @@ const opExecuteProvisionedProductServiceAction = "ExecuteProvisionedProductServi
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExecuteProvisionedProductServiceAction for more information on using the ExecuteProvisionedProductServiceAction
 // API call, and error handling.
@@ -4310,7 +4310,7 @@ const opGetAWSOrganizationsAccessStatus = "GetAWSOrganizationsAccessStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAWSOrganizationsAccessStatus for more information on using the GetAWSOrganizationsAccessStatus
 // API call, and error handling.
@@ -4394,7 +4394,7 @@ const opListAcceptedPortfolioShares = "ListAcceptedPortfolioShares"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAcceptedPortfolioShares for more information on using the ListAcceptedPortfolioShares
 // API call, and error handling.
@@ -4534,7 +4534,7 @@ const opListBudgetsForResource = "ListBudgetsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBudgetsForResource for more information on using the ListBudgetsForResource
 // API call, and error handling.
@@ -4674,7 +4674,7 @@ const opListConstraintsForPortfolio = "ListConstraintsForPortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConstraintsForPortfolio for more information on using the ListConstraintsForPortfolio
 // API call, and error handling.
@@ -4814,7 +4814,7 @@ const opListLaunchPaths = "ListLaunchPaths"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLaunchPaths for more information on using the ListLaunchPaths
 // API call, and error handling.
@@ -4956,7 +4956,7 @@ const opListOrganizationPortfolioAccess = "ListOrganizationPortfolioAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOrganizationPortfolioAccess for more information on using the ListOrganizationPortfolioAccess
 // API call, and error handling.
@@ -5103,7 +5103,7 @@ const opListPortfolioAccess = "ListPortfolioAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPortfolioAccess for more information on using the ListPortfolioAccess
 // API call, and error handling.
@@ -5247,7 +5247,7 @@ const opListPortfolios = "ListPortfolios"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPortfolios for more information on using the ListPortfolios
 // API call, and error handling.
@@ -5384,7 +5384,7 @@ const opListPortfoliosForProduct = "ListPortfoliosForProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPortfoliosForProduct for more information on using the ListPortfoliosForProduct
 // API call, and error handling.
@@ -5524,7 +5524,7 @@ const opListPrincipalsForPortfolio = "ListPrincipalsForPortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPrincipalsForPortfolio for more information on using the ListPrincipalsForPortfolio
 // API call, and error handling.
@@ -5664,7 +5664,7 @@ const opListProvisionedProductPlans = "ListProvisionedProductPlans"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProvisionedProductPlans for more information on using the ListProvisionedProductPlans
 // API call, and error handling.
@@ -5747,7 +5747,7 @@ const opListProvisioningArtifacts = "ListProvisioningArtifacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProvisioningArtifacts for more information on using the ListProvisioningArtifacts
 // API call, and error handling.
@@ -5830,7 +5830,7 @@ const opListProvisioningArtifactsForServiceAction = "ListProvisioningArtifactsFo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProvisioningArtifactsForServiceAction for more information on using the ListProvisioningArtifactsForServiceAction
 // API call, and error handling.
@@ -5971,7 +5971,7 @@ const opListRecordHistory = "ListRecordHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecordHistory for more information on using the ListRecordHistory
 // API call, and error handling.
@@ -6050,7 +6050,7 @@ const opListResourcesForTagOption = "ListResourcesForTagOption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourcesForTagOption for more information on using the ListResourcesForTagOption
 // API call, and error handling.
@@ -6195,7 +6195,7 @@ const opListServiceActions = "ListServiceActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServiceActions for more information on using the ListServiceActions
 // API call, and error handling.
@@ -6332,7 +6332,7 @@ const opListServiceActionsForProvisioningArtifact = "ListServiceActionsForProvis
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServiceActionsForProvisioningArtifact for more information on using the ListServiceActionsForProvisioningArtifact
 // API call, and error handling.
@@ -6473,7 +6473,7 @@ const opListStackInstancesForProvisionedProduct = "ListStackInstancesForProvisio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStackInstancesForProvisionedProduct for more information on using the ListStackInstancesForProvisionedProduct
 // API call, and error handling.
@@ -6557,7 +6557,7 @@ const opListTagOptions = "ListTagOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagOptions for more information on using the ListTagOptions
 // API call, and error handling.
@@ -6699,7 +6699,7 @@ const opProvisionProduct = "ProvisionProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ProvisionProduct for more information on using the ProvisionProduct
 // API call, and error handling.
@@ -6794,7 +6794,7 @@ const opRejectPortfolioShare = "RejectPortfolioShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectPortfolioShare for more information on using the RejectPortfolioShare
 // API call, and error handling.
@@ -6874,7 +6874,7 @@ const opScanProvisionedProducts = "ScanProvisionedProducts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ScanProvisionedProducts for more information on using the ScanProvisionedProducts
 // API call, and error handling.
@@ -6955,7 +6955,7 @@ const opSearchProducts = "SearchProducts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchProducts for more information on using the SearchProducts
 // API call, and error handling.
@@ -7092,7 +7092,7 @@ const opSearchProductsAsAdmin = "SearchProductsAsAdmin"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchProductsAsAdmin for more information on using the SearchProductsAsAdmin
 // API call, and error handling.
@@ -7232,7 +7232,7 @@ const opSearchProvisionedProducts = "SearchProvisionedProducts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchProvisionedProducts for more information on using the SearchProvisionedProducts
 // API call, and error handling.
@@ -7369,7 +7369,7 @@ const opTerminateProvisionedProduct = "TerminateProvisionedProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateProvisionedProduct for more information on using the TerminateProvisionedProduct
 // API call, and error handling.
@@ -7453,7 +7453,7 @@ const opUpdateConstraint = "UpdateConstraint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConstraint for more information on using the UpdateConstraint
 // API call, and error handling.
@@ -7535,7 +7535,7 @@ const opUpdatePortfolio = "UpdatePortfolio"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePortfolio for more information on using the UpdatePortfolio
 // API call, and error handling.
@@ -7629,7 +7629,7 @@ const opUpdateProduct = "UpdateProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProduct for more information on using the UpdateProduct
 // API call, and error handling.
@@ -7716,7 +7716,7 @@ const opUpdateProvisionedProduct = "UpdateProvisionedProduct"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProvisionedProduct for more information on using the UpdateProvisionedProduct
 // API call, and error handling.
@@ -7805,7 +7805,7 @@ const opUpdateProvisionedProductProperties = "UpdateProvisionedProductProperties
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProvisionedProductProperties for more information on using the UpdateProvisionedProductProperties
 // API call, and error handling.
@@ -7892,7 +7892,7 @@ const opUpdateProvisioningArtifact = "UpdateProvisioningArtifact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProvisioningArtifact for more information on using the UpdateProvisioningArtifact
 // API call, and error handling.
@@ -7978,7 +7978,7 @@ const opUpdateServiceAction = "UpdateServiceAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServiceAction for more information on using the UpdateServiceAction
 // API call, and error handling.
@@ -8060,7 +8060,7 @@ const opUpdateTagOption = "UpdateTagOption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTagOption for more information on using the UpdateTagOption
 // API call, and error handling.

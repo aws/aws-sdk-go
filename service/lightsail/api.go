@@ -20,7 +20,7 @@ const opAllocateStaticIp = "AllocateStaticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AllocateStaticIp for more information on using the AllocateStaticIp
 // API call, and error handling.
@@ -124,7 +124,7 @@ const opAttachCertificateToDistribution = "AttachCertificateToDistribution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachCertificateToDistribution for more information on using the AttachCertificateToDistribution
 // API call, and error handling.
@@ -236,7 +236,7 @@ const opAttachDisk = "AttachDisk"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachDisk for more information on using the AttachDisk
 // API call, and error handling.
@@ -345,7 +345,7 @@ const opAttachInstancesToLoadBalancer = "AttachInstancesToLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachInstancesToLoadBalancer for more information on using the AttachInstancesToLoadBalancer
 // API call, and error handling.
@@ -456,7 +456,7 @@ const opAttachLoadBalancerTlsCertificate = "AttachLoadBalancerTlsCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachLoadBalancerTlsCertificate for more information on using the AttachLoadBalancerTlsCertificate
 // API call, and error handling.
@@ -571,7 +571,7 @@ const opAttachStaticIp = "AttachStaticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachStaticIp for more information on using the AttachStaticIp
 // API call, and error handling.
@@ -675,7 +675,7 @@ const opCloseInstancePublicPorts = "CloseInstancePublicPorts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CloseInstancePublicPorts for more information on using the CloseInstancePublicPorts
 // API call, and error handling.
@@ -783,7 +783,7 @@ const opCopySnapshot = "CopySnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopySnapshot for more information on using the CopySnapshot
 // API call, and error handling.
@@ -897,7 +897,7 @@ const opCreateCertificate = "CreateCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCertificate for more information on using the CreateCertificate
 // API call, and error handling.
@@ -1003,7 +1003,7 @@ const opCreateCloudFormationStack = "CreateCloudFormationStack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCloudFormationStack for more information on using the CreateCloudFormationStack
 // API call, and error handling.
@@ -1115,7 +1115,7 @@ const opCreateContactMethod = "CreateContactMethod"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateContactMethod for more information on using the CreateContactMethod
 // API call, and error handling.
@@ -1221,7 +1221,7 @@ const opCreateDisk = "CreateDisk"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDisk for more information on using the CreateDisk
 // API call, and error handling.
@@ -1329,7 +1329,7 @@ const opCreateDiskFromSnapshot = "CreateDiskFromSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDiskFromSnapshot for more information on using the CreateDiskFromSnapshot
 // API call, and error handling.
@@ -1439,7 +1439,7 @@ const opCreateDiskSnapshot = "CreateDiskSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDiskSnapshot for more information on using the CreateDiskSnapshot
 // API call, and error handling.
@@ -1569,7 +1569,7 @@ const opCreateDistribution = "CreateDistribution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDistribution for more information on using the CreateDistribution
 // API call, and error handling.
@@ -1674,7 +1674,7 @@ const opCreateDomain = "CreateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomain for more information on using the CreateDomain
 // API call, and error handling.
@@ -1781,7 +1781,7 @@ const opCreateDomainEntry = "CreateDomainEntry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomainEntry for more information on using the CreateDomainEntry
 // API call, and error handling.
@@ -1891,7 +1891,7 @@ const opCreateInstanceSnapshot = "CreateInstanceSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInstanceSnapshot for more information on using the CreateInstanceSnapshot
 // API call, and error handling.
@@ -1999,7 +1999,7 @@ const opCreateInstances = "CreateInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInstances for more information on using the CreateInstances
 // API call, and error handling.
@@ -2106,7 +2106,7 @@ const opCreateInstancesFromSnapshot = "CreateInstancesFromSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInstancesFromSnapshot for more information on using the CreateInstancesFromSnapshot
 // API call, and error handling.
@@ -2216,7 +2216,7 @@ const opCreateKeyPair = "CreateKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateKeyPair for more information on using the CreateKeyPair
 // API call, and error handling.
@@ -2323,7 +2323,7 @@ const opCreateLoadBalancer = "CreateLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoadBalancer for more information on using the CreateLoadBalancer
 // API call, and error handling.
@@ -2437,7 +2437,7 @@ const opCreateLoadBalancerTlsCertificate = "CreateLoadBalancerTlsCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoadBalancerTlsCertificate for more information on using the CreateLoadBalancerTlsCertificate
 // API call, and error handling.
@@ -2547,7 +2547,7 @@ const opCreateRelationalDatabase = "CreateRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRelationalDatabase for more information on using the CreateRelationalDatabase
 // API call, and error handling.
@@ -2654,7 +2654,7 @@ const opCreateRelationalDatabaseFromSnapshot = "CreateRelationalDatabaseFromSnap
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRelationalDatabaseFromSnapshot for more information on using the CreateRelationalDatabaseFromSnapshot
 // API call, and error handling.
@@ -2767,7 +2767,7 @@ const opCreateRelationalDatabaseSnapshot = "CreateRelationalDatabaseSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRelationalDatabaseSnapshot for more information on using the CreateRelationalDatabaseSnapshot
 // API call, and error handling.
@@ -2877,7 +2877,7 @@ const opDeleteAlarm = "DeleteAlarm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAlarm for more information on using the DeleteAlarm
 // API call, and error handling.
@@ -2982,7 +2982,7 @@ const opDeleteAutoSnapshot = "DeleteAutoSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAutoSnapshot for more information on using the DeleteAutoSnapshot
 // API call, and error handling.
@@ -3083,7 +3083,7 @@ const opDeleteCertificate = "DeleteCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCertificate for more information on using the DeleteCertificate
 // API call, and error handling.
@@ -3185,7 +3185,7 @@ const opDeleteContactMethod = "DeleteContactMethod"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteContactMethod for more information on using the DeleteContactMethod
 // API call, and error handling.
@@ -3291,7 +3291,7 @@ const opDeleteDisk = "DeleteDisk"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDisk for more information on using the DeleteDisk
 // API call, and error handling.
@@ -3402,7 +3402,7 @@ const opDeleteDiskSnapshot = "DeleteDiskSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDiskSnapshot for more information on using the DeleteDiskSnapshot
 // API call, and error handling.
@@ -3517,7 +3517,7 @@ const opDeleteDistribution = "DeleteDistribution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDistribution for more information on using the DeleteDistribution
 // API call, and error handling.
@@ -3617,7 +3617,7 @@ const opDeleteDomain = "DeleteDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomain for more information on using the DeleteDomain
 // API call, and error handling.
@@ -3725,7 +3725,7 @@ const opDeleteDomainEntry = "DeleteDomainEntry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomainEntry for more information on using the DeleteDomainEntry
 // API call, and error handling.
@@ -3833,7 +3833,7 @@ const opDeleteInstance = "DeleteInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInstance for more information on using the DeleteInstance
 // API call, and error handling.
@@ -3941,7 +3941,7 @@ const opDeleteInstanceSnapshot = "DeleteInstanceSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInstanceSnapshot for more information on using the DeleteInstanceSnapshot
 // API call, and error handling.
@@ -4049,7 +4049,7 @@ const opDeleteKeyPair = "DeleteKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteKeyPair for more information on using the DeleteKeyPair
 // API call, and error handling.
@@ -4157,7 +4157,7 @@ const opDeleteKnownHostKeys = "DeleteKnownHostKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteKnownHostKeys for more information on using the DeleteKnownHostKeys
 // API call, and error handling.
@@ -4269,7 +4269,7 @@ const opDeleteLoadBalancer = "DeleteLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoadBalancer for more information on using the DeleteLoadBalancer
 // API call, and error handling.
@@ -4379,7 +4379,7 @@ const opDeleteLoadBalancerTlsCertificate = "DeleteLoadBalancerTlsCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoadBalancerTlsCertificate for more information on using the DeleteLoadBalancerTlsCertificate
 // API call, and error handling.
@@ -4487,7 +4487,7 @@ const opDeleteRelationalDatabase = "DeleteRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRelationalDatabase for more information on using the DeleteRelationalDatabase
 // API call, and error handling.
@@ -4595,7 +4595,7 @@ const opDeleteRelationalDatabaseSnapshot = "DeleteRelationalDatabaseSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRelationalDatabaseSnapshot for more information on using the DeleteRelationalDatabaseSnapshot
 // API call, and error handling.
@@ -4703,7 +4703,7 @@ const opDetachCertificateFromDistribution = "DetachCertificateFromDistribution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachCertificateFromDistribution for more information on using the DetachCertificateFromDistribution
 // API call, and error handling.
@@ -4807,7 +4807,7 @@ const opDetachDisk = "DetachDisk"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachDisk for more information on using the DetachDisk
 // API call, and error handling.
@@ -4917,7 +4917,7 @@ const opDetachInstancesFromLoadBalancer = "DetachInstancesFromLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachInstancesFromLoadBalancer for more information on using the DetachInstancesFromLoadBalancer
 // API call, and error handling.
@@ -5028,7 +5028,7 @@ const opDetachStaticIp = "DetachStaticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachStaticIp for more information on using the DetachStaticIp
 // API call, and error handling.
@@ -5132,7 +5132,7 @@ const opDisableAddOn = "DisableAddOn"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableAddOn for more information on using the DisableAddOn
 // API call, and error handling.
@@ -5233,7 +5233,7 @@ const opDownloadDefaultKeyPair = "DownloadDefaultKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DownloadDefaultKeyPair for more information on using the DownloadDefaultKeyPair
 // API call, and error handling.
@@ -5337,7 +5337,7 @@ const opEnableAddOn = "EnableAddOn"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableAddOn for more information on using the EnableAddOn
 // API call, and error handling.
@@ -5438,7 +5438,7 @@ const opExportSnapshot = "ExportSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportSnapshot for more information on using the ExportSnapshot
 // API call, and error handling.
@@ -5558,7 +5558,7 @@ const opGetActiveNames = "GetActiveNames"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetActiveNames for more information on using the GetActiveNames
 // API call, and error handling.
@@ -5662,7 +5662,7 @@ const opGetAlarms = "GetAlarms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAlarms for more information on using the GetAlarms
 // API call, and error handling.
@@ -5769,7 +5769,7 @@ const opGetAutoSnapshots = "GetAutoSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAutoSnapshots for more information on using the GetAutoSnapshots
 // API call, and error handling.
@@ -5870,7 +5870,7 @@ const opGetBlueprints = "GetBlueprints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBlueprints for more information on using the GetBlueprints
 // API call, and error handling.
@@ -5982,7 +5982,7 @@ const opGetBundles = "GetBundles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBundles for more information on using the GetBundles
 // API call, and error handling.
@@ -6087,7 +6087,7 @@ const opGetCertificates = "GetCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCertificates for more information on using the GetCertificates
 // API call, and error handling.
@@ -6188,7 +6188,7 @@ const opGetCloudFormationStackRecords = "GetCloudFormationStackRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCloudFormationStackRecords for more information on using the GetCloudFormationStackRecords
 // API call, and error handling.
@@ -6296,7 +6296,7 @@ const opGetContactMethods = "GetContactMethods"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContactMethods for more information on using the GetContactMethods
 // API call, and error handling.
@@ -6403,7 +6403,7 @@ const opGetDisk = "GetDisk"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDisk for more information on using the GetDisk
 // API call, and error handling.
@@ -6507,7 +6507,7 @@ const opGetDiskSnapshot = "GetDiskSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDiskSnapshot for more information on using the GetDiskSnapshot
 // API call, and error handling.
@@ -6611,7 +6611,7 @@ const opGetDiskSnapshots = "GetDiskSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDiskSnapshots for more information on using the GetDiskSnapshots
 // API call, and error handling.
@@ -6716,7 +6716,7 @@ const opGetDisks = "GetDisks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDisks for more information on using the GetDisks
 // API call, and error handling.
@@ -6821,7 +6821,7 @@ const opGetDistributionBundles = "GetDistributionBundles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistributionBundles for more information on using the GetDistributionBundles
 // API call, and error handling.
@@ -6925,7 +6925,7 @@ const opGetDistributionLatestCacheReset = "GetDistributionLatestCacheReset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistributionLatestCacheReset for more information on using the GetDistributionLatestCacheReset
 // API call, and error handling.
@@ -7026,7 +7026,7 @@ const opGetDistributionMetricData = "GetDistributionMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistributionMetricData for more information on using the GetDistributionMetricData
 // API call, and error handling.
@@ -7131,7 +7131,7 @@ const opGetDistributions = "GetDistributions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDistributions for more information on using the GetDistributions
 // API call, and error handling.
@@ -7232,7 +7232,7 @@ const opGetDomain = "GetDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomain for more information on using the GetDomain
 // API call, and error handling.
@@ -7336,7 +7336,7 @@ const opGetDomains = "GetDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomains for more information on using the GetDomains
 // API call, and error handling.
@@ -7440,7 +7440,7 @@ const opGetExportSnapshotRecords = "GetExportSnapshotRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExportSnapshotRecords for more information on using the GetExportSnapshotRecords
 // API call, and error handling.
@@ -7548,7 +7548,7 @@ const opGetInstance = "GetInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstance for more information on using the GetInstance
 // API call, and error handling.
@@ -7653,7 +7653,7 @@ const opGetInstanceAccessDetails = "GetInstanceAccessDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceAccessDetails for more information on using the GetInstanceAccessDetails
 // API call, and error handling.
@@ -7762,7 +7762,7 @@ const opGetInstanceMetricData = "GetInstanceMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceMetricData for more information on using the GetInstanceMetricData
 // API call, and error handling.
@@ -7871,7 +7871,7 @@ const opGetInstancePortStates = "GetInstancePortStates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstancePortStates for more information on using the GetInstancePortStates
 // API call, and error handling.
@@ -7977,7 +7977,7 @@ const opGetInstanceSnapshot = "GetInstanceSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceSnapshot for more information on using the GetInstanceSnapshot
 // API call, and error handling.
@@ -8081,7 +8081,7 @@ const opGetInstanceSnapshots = "GetInstanceSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceSnapshots for more information on using the GetInstanceSnapshots
 // API call, and error handling.
@@ -8185,7 +8185,7 @@ const opGetInstanceState = "GetInstanceState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceState for more information on using the GetInstanceState
 // API call, and error handling.
@@ -8289,7 +8289,7 @@ const opGetInstances = "GetInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstances for more information on using the GetInstances
 // API call, and error handling.
@@ -8394,7 +8394,7 @@ const opGetKeyPair = "GetKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetKeyPair for more information on using the GetKeyPair
 // API call, and error handling.
@@ -8498,7 +8498,7 @@ const opGetKeyPairs = "GetKeyPairs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetKeyPairs for more information on using the GetKeyPairs
 // API call, and error handling.
@@ -8602,7 +8602,7 @@ const opGetLoadBalancer = "GetLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoadBalancer for more information on using the GetLoadBalancer
 // API call, and error handling.
@@ -8706,7 +8706,7 @@ const opGetLoadBalancerMetricData = "GetLoadBalancerMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoadBalancerMetricData for more information on using the GetLoadBalancerMetricData
 // API call, and error handling.
@@ -8814,7 +8814,7 @@ const opGetLoadBalancerTlsCertificates = "GetLoadBalancerTlsCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoadBalancerTlsCertificates for more information on using the GetLoadBalancerTlsCertificates
 // API call, and error handling.
@@ -8924,7 +8924,7 @@ const opGetLoadBalancers = "GetLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoadBalancers for more information on using the GetLoadBalancers
 // API call, and error handling.
@@ -9028,7 +9028,7 @@ const opGetOperation = "GetOperation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOperation for more information on using the GetOperation
 // API call, and error handling.
@@ -9134,7 +9134,7 @@ const opGetOperations = "GetOperations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOperations for more information on using the GetOperations
 // API call, and error handling.
@@ -9242,7 +9242,7 @@ const opGetOperationsForResource = "GetOperationsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOperationsForResource for more information on using the GetOperationsForResource
 // API call, and error handling.
@@ -9346,7 +9346,7 @@ const opGetRegions = "GetRegions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRegions for more information on using the GetRegions
 // API call, and error handling.
@@ -9451,7 +9451,7 @@ const opGetRelationalDatabase = "GetRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabase for more information on using the GetRelationalDatabase
 // API call, and error handling.
@@ -9555,7 +9555,7 @@ const opGetRelationalDatabaseBlueprints = "GetRelationalDatabaseBlueprints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseBlueprints for more information on using the GetRelationalDatabaseBlueprints
 // API call, and error handling.
@@ -9663,7 +9663,7 @@ const opGetRelationalDatabaseBundles = "GetRelationalDatabaseBundles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseBundles for more information on using the GetRelationalDatabaseBundles
 // API call, and error handling.
@@ -9771,7 +9771,7 @@ const opGetRelationalDatabaseEvents = "GetRelationalDatabaseEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseEvents for more information on using the GetRelationalDatabaseEvents
 // API call, and error handling.
@@ -9875,7 +9875,7 @@ const opGetRelationalDatabaseLogEvents = "GetRelationalDatabaseLogEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseLogEvents for more information on using the GetRelationalDatabaseLogEvents
 // API call, and error handling.
@@ -9979,7 +9979,7 @@ const opGetRelationalDatabaseLogStreams = "GetRelationalDatabaseLogStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseLogStreams for more information on using the GetRelationalDatabaseLogStreams
 // API call, and error handling.
@@ -10084,7 +10084,7 @@ const opGetRelationalDatabaseMasterUserPassword = "GetRelationalDatabaseMasterUs
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseMasterUserPassword for more information on using the GetRelationalDatabaseMasterUserPassword
 // API call, and error handling.
@@ -10192,7 +10192,7 @@ const opGetRelationalDatabaseMetricData = "GetRelationalDatabaseMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseMetricData for more information on using the GetRelationalDatabaseMetricData
 // API call, and error handling.
@@ -10301,7 +10301,7 @@ const opGetRelationalDatabaseParameters = "GetRelationalDatabaseParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseParameters for more information on using the GetRelationalDatabaseParameters
 // API call, and error handling.
@@ -10411,7 +10411,7 @@ const opGetRelationalDatabaseSnapshot = "GetRelationalDatabaseSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseSnapshot for more information on using the GetRelationalDatabaseSnapshot
 // API call, and error handling.
@@ -10515,7 +10515,7 @@ const opGetRelationalDatabaseSnapshots = "GetRelationalDatabaseSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabaseSnapshots for more information on using the GetRelationalDatabaseSnapshots
 // API call, and error handling.
@@ -10619,7 +10619,7 @@ const opGetRelationalDatabases = "GetRelationalDatabases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRelationalDatabases for more information on using the GetRelationalDatabases
 // API call, and error handling.
@@ -10723,7 +10723,7 @@ const opGetStaticIp = "GetStaticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStaticIp for more information on using the GetStaticIp
 // API call, and error handling.
@@ -10827,7 +10827,7 @@ const opGetStaticIps = "GetStaticIps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetStaticIps for more information on using the GetStaticIps
 // API call, and error handling.
@@ -10931,7 +10931,7 @@ const opImportKeyPair = "ImportKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportKeyPair for more information on using the ImportKeyPair
 // API call, and error handling.
@@ -11035,7 +11035,7 @@ const opIsVpcPeered = "IsVpcPeered"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IsVpcPeered for more information on using the IsVpcPeered
 // API call, and error handling.
@@ -11139,7 +11139,7 @@ const opOpenInstancePublicPorts = "OpenInstancePublicPorts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OpenInstancePublicPorts for more information on using the OpenInstancePublicPorts
 // API call, and error handling.
@@ -11248,7 +11248,7 @@ const opPeerVpc = "PeerVpc"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PeerVpc for more information on using the PeerVpc
 // API call, and error handling.
@@ -11352,7 +11352,7 @@ const opPutAlarm = "PutAlarm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAlarm for more information on using the PutAlarm
 // API call, and error handling.
@@ -11465,7 +11465,7 @@ const opPutInstancePublicPorts = "PutInstancePublicPorts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutInstancePublicPorts for more information on using the PutInstancePublicPorts
 // API call, and error handling.
@@ -11578,7 +11578,7 @@ const opRebootInstance = "RebootInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootInstance for more information on using the RebootInstance
 // API call, and error handling.
@@ -11686,7 +11686,7 @@ const opRebootRelationalDatabase = "RebootRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootRelationalDatabase for more information on using the RebootRelationalDatabase
 // API call, and error handling.
@@ -11794,7 +11794,7 @@ const opReleaseStaticIp = "ReleaseStaticIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReleaseStaticIp for more information on using the ReleaseStaticIp
 // API call, and error handling.
@@ -11898,7 +11898,7 @@ const opResetDistributionCache = "ResetDistributionCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetDistributionCache for more information on using the ResetDistributionCache
 // API call, and error handling.
@@ -12002,7 +12002,7 @@ const opSendContactMethodVerification = "SendContactMethodVerification"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendContactMethodVerification for more information on using the SendContactMethodVerification
 // API call, and error handling.
@@ -12116,7 +12116,7 @@ const opStartInstance = "StartInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartInstance for more information on using the StartInstance
 // API call, and error handling.
@@ -12230,7 +12230,7 @@ const opStartRelationalDatabase = "StartRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartRelationalDatabase for more information on using the StartRelationalDatabase
 // API call, and error handling.
@@ -12339,7 +12339,7 @@ const opStopInstance = "StopInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopInstance for more information on using the StopInstance
 // API call, and error handling.
@@ -12452,7 +12452,7 @@ const opStopRelationalDatabase = "StopRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopRelationalDatabase for more information on using the StopRelationalDatabase
 // API call, and error handling.
@@ -12560,7 +12560,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -12671,7 +12671,7 @@ const opTestAlarm = "TestAlarm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestAlarm for more information on using the TestAlarm
 // API call, and error handling.
@@ -12779,7 +12779,7 @@ const opUnpeerVpc = "UnpeerVpc"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnpeerVpc for more information on using the UnpeerVpc
 // API call, and error handling.
@@ -12883,7 +12883,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -12992,7 +12992,7 @@ const opUpdateDistribution = "UpdateDistribution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDistribution for more information on using the UpdateDistribution
 // API call, and error handling.
@@ -13094,7 +13094,7 @@ const opUpdateDistributionBundle = "UpdateDistributionBundle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDistributionBundle for more information on using the UpdateDistributionBundle
 // API call, and error handling.
@@ -13207,7 +13207,7 @@ const opUpdateDomainEntry = "UpdateDomainEntry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainEntry for more information on using the UpdateDomainEntry
 // API call, and error handling.
@@ -13315,7 +13315,7 @@ const opUpdateLoadBalancerAttribute = "UpdateLoadBalancerAttribute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLoadBalancerAttribute for more information on using the UpdateLoadBalancerAttribute
 // API call, and error handling.
@@ -13424,7 +13424,7 @@ const opUpdateRelationalDatabase = "UpdateRelationalDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRelationalDatabase for more information on using the UpdateRelationalDatabase
 // API call, and error handling.
@@ -13535,7 +13535,7 @@ const opUpdateRelationalDatabaseParameters = "UpdateRelationalDatabaseParameters
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRelationalDatabaseParameters for more information on using the UpdateRelationalDatabaseParameters
 // API call, and error handling.

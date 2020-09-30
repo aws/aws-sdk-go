@@ -21,7 +21,7 @@ const opAddTagsToCertificate = "AddTagsToCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToCertificate for more information on using the AddTagsToCertificate
 // API call, and error handling.
@@ -134,7 +134,7 @@ const opDeleteCertificate = "DeleteCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCertificate for more information on using the DeleteCertificate
 // API call, and error handling.
@@ -230,7 +230,7 @@ const opDescribeCertificate = "DescribeCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCertificate for more information on using the DescribeCertificate
 // API call, and error handling.
@@ -313,7 +313,7 @@ const opExportCertificate = "ExportCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportCertificate for more information on using the ExportCertificate
 // API call, and error handling.
@@ -407,7 +407,7 @@ const opGetCertificate = "GetCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCertificate for more information on using the GetCertificate
 // API call, and error handling.
@@ -498,7 +498,7 @@ const opImportCertificate = "ImportCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportCertificate for more information on using the ImportCertificate
 // API call, and error handling.
@@ -648,7 +648,7 @@ const opListCertificates = "ListCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCertificates for more information on using the ListCertificates
 // API call, and error handling.
@@ -788,7 +788,7 @@ const opListTagsForCertificate = "ListTagsForCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForCertificate for more information on using the ListTagsForCertificate
 // API call, and error handling.
@@ -874,7 +874,7 @@ const opRemoveTagsFromCertificate = "RemoveTagsFromCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromCertificate for more information on using the RemoveTagsFromCertificate
 // API call, and error handling.
@@ -975,7 +975,7 @@ const opRenewCertificate = "RenewCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RenewCertificate for more information on using the RenewCertificate
 // API call, and error handling.
@@ -1064,7 +1064,7 @@ const opRequestCertificate = "RequestCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RequestCertificate for more information on using the RequestCertificate
 // API call, and error handling.
@@ -1173,7 +1173,7 @@ const opResendValidationEmail = "ResendValidationEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResendValidationEmail for more information on using the ResendValidationEmail
 // API call, and error handling.
@@ -1273,7 +1273,7 @@ const opUpdateCertificateOptions = "UpdateCertificateOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCertificateOptions for more information on using the UpdateCertificateOptions
 // API call, and error handling.

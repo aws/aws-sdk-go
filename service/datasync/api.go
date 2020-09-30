@@ -21,7 +21,7 @@ const opCancelTaskExecution = "CancelTaskExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelTaskExecution for more information on using the CancelTaskExecution
 // API call, and error handling.
@@ -113,7 +113,7 @@ const opCreateAgent = "CreateAgent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAgent for more information on using the CreateAgent
 // API call, and error handling.
@@ -212,7 +212,7 @@ const opCreateLocationEfs = "CreateLocationEfs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLocationEfs for more information on using the CreateLocationEfs
 // API call, and error handling.
@@ -294,7 +294,7 @@ const opCreateLocationFsxWindows = "CreateLocationFsxWindows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLocationFsxWindows for more information on using the CreateLocationFsxWindows
 // API call, and error handling.
@@ -376,7 +376,7 @@ const opCreateLocationNfs = "CreateLocationNfs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLocationNfs for more information on using the CreateLocationNfs
 // API call, and error handling.
@@ -459,7 +459,7 @@ const opCreateLocationObjectStorage = "CreateLocationObjectStorage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLocationObjectStorage for more information on using the CreateLocationObjectStorage
 // API call, and error handling.
@@ -541,7 +541,7 @@ const opCreateLocationS3 = "CreateLocationS3"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLocationS3 for more information on using the CreateLocationS3
 // API call, and error handling.
@@ -632,7 +632,7 @@ const opCreateLocationSmb = "CreateLocationSmb"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLocationSmb for more information on using the CreateLocationSmb
 // API call, and error handling.
@@ -715,7 +715,7 @@ const opCreateTask = "CreateTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTask for more information on using the CreateTask
 // API call, and error handling.
@@ -813,7 +813,7 @@ const opDeleteAgent = "DeleteAgent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAgent for more information on using the DeleteAgent
 // API call, and error handling.
@@ -899,7 +899,7 @@ const opDeleteLocation = "DeleteLocation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLocation for more information on using the DeleteLocation
 // API call, and error handling.
@@ -982,7 +982,7 @@ const opDeleteTask = "DeleteTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTask for more information on using the DeleteTask
 // API call, and error handling.
@@ -1065,7 +1065,7 @@ const opDescribeAgent = "DescribeAgent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAgent for more information on using the DescribeAgent
 // API call, and error handling.
@@ -1150,7 +1150,7 @@ const opDescribeLocationEfs = "DescribeLocationEfs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocationEfs for more information on using the DescribeLocationEfs
 // API call, and error handling.
@@ -1232,7 +1232,7 @@ const opDescribeLocationFsxWindows = "DescribeLocationFsxWindows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocationFsxWindows for more information on using the DescribeLocationFsxWindows
 // API call, and error handling.
@@ -1315,7 +1315,7 @@ const opDescribeLocationNfs = "DescribeLocationNfs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocationNfs for more information on using the DescribeLocationNfs
 // API call, and error handling.
@@ -1397,7 +1397,7 @@ const opDescribeLocationObjectStorage = "DescribeLocationObjectStorage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocationObjectStorage for more information on using the DescribeLocationObjectStorage
 // API call, and error handling.
@@ -1479,7 +1479,7 @@ const opDescribeLocationS3 = "DescribeLocationS3"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocationS3 for more information on using the DescribeLocationS3
 // API call, and error handling.
@@ -1561,7 +1561,7 @@ const opDescribeLocationSmb = "DescribeLocationSmb"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocationSmb for more information on using the DescribeLocationSmb
 // API call, and error handling.
@@ -1643,7 +1643,7 @@ const opDescribeTask = "DescribeTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTask for more information on using the DescribeTask
 // API call, and error handling.
@@ -1725,7 +1725,7 @@ const opDescribeTaskExecution = "DescribeTaskExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTaskExecution for more information on using the DescribeTaskExecution
 // API call, and error handling.
@@ -1807,7 +1807,7 @@ const opListAgents = "ListAgents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAgents for more information on using the ListAgents
 // API call, and error handling.
@@ -1957,7 +1957,7 @@ const opListLocations = "ListLocations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLocations for more information on using the ListLocations
 // API call, and error handling.
@@ -2102,7 +2102,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2242,7 +2242,7 @@ const opListTaskExecutions = "ListTaskExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTaskExecutions for more information on using the ListTaskExecutions
 // API call, and error handling.
@@ -2382,7 +2382,7 @@ const opListTasks = "ListTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTasks for more information on using the ListTasks
 // API call, and error handling.
@@ -2522,7 +2522,7 @@ const opStartTaskExecution = "StartTaskExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTaskExecution for more information on using the StartTaskExecution
 // API call, and error handling.
@@ -2612,7 +2612,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2695,7 +2695,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2778,7 +2778,7 @@ const opUpdateAgent = "UpdateAgent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAgent for more information on using the UpdateAgent
 // API call, and error handling.
@@ -2861,7 +2861,7 @@ const opUpdateTask = "UpdateTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTask for more information on using the UpdateTask
 // API call, and error handling.

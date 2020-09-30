@@ -21,7 +21,7 @@ const opAcceptInboundCrossClusterSearchConnection = "AcceptInboundCrossClusterSe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptInboundCrossClusterSearchConnection for more information on using the AcceptInboundCrossClusterSearchConnection
 // API call, and error handling.
@@ -107,7 +107,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -199,7 +199,7 @@ const opAssociatePackage = "AssociatePackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociatePackage for more information on using the AssociatePackage
 // API call, and error handling.
@@ -296,7 +296,7 @@ const opCancelElasticsearchServiceSoftwareUpdate = "CancelElasticsearchServiceSo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelElasticsearchServiceSoftwareUpdate for more information on using the CancelElasticsearchServiceSoftwareUpdate
 // API call, and error handling.
@@ -387,7 +387,7 @@ const opCreateElasticsearchDomain = "CreateElasticsearchDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateElasticsearchDomain for more information on using the CreateElasticsearchDomain
 // API call, and error handling.
@@ -490,7 +490,7 @@ const opCreateOutboundCrossClusterSearchConnection = "CreateOutboundCrossCluster
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOutboundCrossClusterSearchConnection for more information on using the CreateOutboundCrossClusterSearchConnection
 // API call, and error handling.
@@ -581,7 +581,7 @@ const opCreatePackage = "CreatePackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePackage for more information on using the CreatePackage
 // API call, and error handling.
@@ -682,7 +682,7 @@ const opDeleteElasticsearchDomain = "DeleteElasticsearchDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteElasticsearchDomain for more information on using the DeleteElasticsearchDomain
 // API call, and error handling.
@@ -772,7 +772,7 @@ const opDeleteElasticsearchServiceRole = "DeleteElasticsearchServiceRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteElasticsearchServiceRole for more information on using the DeleteElasticsearchServiceRole
 // API call, and error handling.
@@ -862,7 +862,7 @@ const opDeleteInboundCrossClusterSearchConnection = "DeleteInboundCrossClusterSe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInboundCrossClusterSearchConnection for more information on using the DeleteInboundCrossClusterSearchConnection
 // API call, and error handling.
@@ -944,7 +944,7 @@ const opDeleteOutboundCrossClusterSearchConnection = "DeleteOutboundCrossCluster
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOutboundCrossClusterSearchConnection for more information on using the DeleteOutboundCrossClusterSearchConnection
 // API call, and error handling.
@@ -1026,7 +1026,7 @@ const opDeletePackage = "DeletePackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePackage for more information on using the DeletePackage
 // API call, and error handling.
@@ -1123,7 +1123,7 @@ const opDescribeElasticsearchDomain = "DescribeElasticsearchDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeElasticsearchDomain for more information on using the DescribeElasticsearchDomain
 // API call, and error handling.
@@ -1213,7 +1213,7 @@ const opDescribeElasticsearchDomainConfig = "DescribeElasticsearchDomainConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeElasticsearchDomainConfig for more information on using the DescribeElasticsearchDomainConfig
 // API call, and error handling.
@@ -1304,7 +1304,7 @@ const opDescribeElasticsearchDomains = "DescribeElasticsearchDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeElasticsearchDomains for more information on using the DescribeElasticsearchDomains
 // API call, and error handling.
@@ -1390,7 +1390,7 @@ const opDescribeElasticsearchInstanceTypeLimits = "DescribeElasticsearchInstance
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeElasticsearchInstanceTypeLimits for more information on using the DescribeElasticsearchInstanceTypeLimits
 // API call, and error handling.
@@ -1489,7 +1489,7 @@ const opDescribeInboundCrossClusterSearchConnections = "DescribeInboundCrossClus
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInboundCrossClusterSearchConnections for more information on using the DescribeInboundCrossClusterSearchConnections
 // API call, and error handling.
@@ -1629,7 +1629,7 @@ const opDescribeOutboundCrossClusterSearchConnections = "DescribeOutboundCrossCl
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOutboundCrossClusterSearchConnections for more information on using the DescribeOutboundCrossClusterSearchConnections
 // API call, and error handling.
@@ -1768,7 +1768,7 @@ const opDescribePackages = "DescribePackages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePackages for more information on using the DescribePackages
 // API call, and error handling.
@@ -1920,7 +1920,7 @@ const opDescribeReservedElasticsearchInstanceOfferings = "DescribeReservedElasti
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservedElasticsearchInstanceOfferings for more information on using the DescribeReservedElasticsearchInstanceOfferings
 // API call, and error handling.
@@ -2068,7 +2068,7 @@ const opDescribeReservedElasticsearchInstances = "DescribeReservedElasticsearchI
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservedElasticsearchInstances for more information on using the DescribeReservedElasticsearchInstances
 // API call, and error handling.
@@ -2216,7 +2216,7 @@ const opDissociatePackage = "DissociatePackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DissociatePackage for more information on using the DissociatePackage
 // API call, and error handling.
@@ -2313,7 +2313,7 @@ const opGetCompatibleElasticsearchVersions = "GetCompatibleElasticsearchVersions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCompatibleElasticsearchVersions for more information on using the GetCompatibleElasticsearchVersions
 // API call, and error handling.
@@ -2408,7 +2408,7 @@ const opGetUpgradeHistory = "GetUpgradeHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUpgradeHistory for more information on using the GetUpgradeHistory
 // API call, and error handling.
@@ -2560,7 +2560,7 @@ const opGetUpgradeStatus = "GetUpgradeStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUpgradeStatus for more information on using the GetUpgradeStatus
 // API call, and error handling.
@@ -2654,7 +2654,7 @@ const opListDomainNames = "ListDomainNames"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomainNames for more information on using the ListDomainNames
 // API call, and error handling.
@@ -2735,7 +2735,7 @@ const opListDomainsForPackage = "ListDomainsForPackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomainsForPackage for more information on using the ListDomainsForPackage
 // API call, and error handling.
@@ -2886,7 +2886,7 @@ const opListElasticsearchInstanceTypes = "ListElasticsearchInstanceTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListElasticsearchInstanceTypes for more information on using the ListElasticsearchInstanceTypes
 // API call, and error handling.
@@ -3033,7 +3033,7 @@ const opListElasticsearchVersions = "ListElasticsearchVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListElasticsearchVersions for more information on using the ListElasticsearchVersions
 // API call, and error handling.
@@ -3180,7 +3180,7 @@ const opListPackagesForDomain = "ListPackagesForDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackagesForDomain for more information on using the ListPackagesForDomain
 // API call, and error handling.
@@ -3331,7 +3331,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -3420,7 +3420,7 @@ const opPurchaseReservedElasticsearchInstanceOffering = "PurchaseReservedElastic
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurchaseReservedElasticsearchInstanceOffering for more information on using the PurchaseReservedElasticsearchInstanceOffering
 // API call, and error handling.
@@ -3518,7 +3518,7 @@ const opRejectInboundCrossClusterSearchConnection = "RejectInboundCrossClusterSe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectInboundCrossClusterSearchConnection for more information on using the RejectInboundCrossClusterSearchConnection
 // API call, and error handling.
@@ -3600,7 +3600,7 @@ const opRemoveTags = "RemoveTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTags for more information on using the RemoveTags
 // API call, and error handling.
@@ -3686,7 +3686,7 @@ const opStartElasticsearchServiceSoftwareUpdate = "StartElasticsearchServiceSoft
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartElasticsearchServiceSoftwareUpdate for more information on using the StartElasticsearchServiceSoftwareUpdate
 // API call, and error handling.
@@ -3775,7 +3775,7 @@ const opUpdateElasticsearchDomainConfig = "UpdateElasticsearchDomainConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateElasticsearchDomainConfig for more information on using the UpdateElasticsearchDomainConfig
 // API call, and error handling.
@@ -3873,7 +3873,7 @@ const opUpgradeElasticsearchDomain = "UpgradeElasticsearchDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpgradeElasticsearchDomain for more information on using the UpgradeElasticsearchDomain
 // API call, and error handling.

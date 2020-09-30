@@ -21,7 +21,7 @@ const opAcceptDomainTransferFromAnotherAwsAccount = "AcceptDomainTransferFromAno
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptDomainTransferFromAnotherAwsAccount for more information on using the AcceptDomainTransferFromAnotherAwsAccount
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opCancelDomainTransferToAnotherAwsAccount = "CancelDomainTransferToAnother
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelDomainTransferToAnotherAwsAccount for more information on using the CancelDomainTransferToAnotherAwsAccount
 // API call, and error handling.
@@ -215,7 +215,7 @@ const opCheckDomainAvailability = "CheckDomainAvailability"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CheckDomainAvailability for more information on using the CheckDomainAvailability
 // API call, and error handling.
@@ -302,7 +302,7 @@ const opCheckDomainTransferability = "CheckDomainTransferability"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CheckDomainTransferability for more information on using the CheckDomainTransferability
 // API call, and error handling.
@@ -387,7 +387,7 @@ const opDeleteTagsForDomain = "DeleteTagsForDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTagsForDomain for more information on using the DeleteTagsForDomain
 // API call, and error handling.
@@ -480,7 +480,7 @@ const opDisableDomainAutoRenew = "DisableDomainAutoRenew"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableDomainAutoRenew for more information on using the DisableDomainAutoRenew
 // API call, and error handling.
@@ -567,7 +567,7 @@ const opDisableDomainTransferLock = "DisableDomainTransferLock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableDomainTransferLock for more information on using the DisableDomainTransferLock
 // API call, and error handling.
@@ -668,7 +668,7 @@ const opEnableDomainAutoRenew = "EnableDomainAutoRenew"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableDomainAutoRenew for more information on using the EnableDomainAutoRenew
 // API call, and error handling.
@@ -766,7 +766,7 @@ const opEnableDomainTransferLock = "EnableDomainTransferLock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableDomainTransferLock for more information on using the EnableDomainTransferLock
 // API call, and error handling.
@@ -865,7 +865,7 @@ const opGetContactReachabilityStatus = "GetContactReachabilityStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContactReachabilityStatus for more information on using the GetContactReachabilityStatus
 // API call, and error handling.
@@ -959,7 +959,7 @@ const opGetDomainDetail = "GetDomainDetail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomainDetail for more information on using the GetDomainDetail
 // API call, and error handling.
@@ -1046,7 +1046,7 @@ const opGetDomainSuggestions = "GetDomainSuggestions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomainSuggestions for more information on using the GetDomainSuggestions
 // API call, and error handling.
@@ -1131,7 +1131,7 @@ const opGetOperationDetail = "GetOperationDetail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOperationDetail for more information on using the GetOperationDetail
 // API call, and error handling.
@@ -1213,7 +1213,7 @@ const opListDomains = "ListDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomains for more information on using the ListDomains
 // API call, and error handling.
@@ -1354,7 +1354,7 @@ const opListOperations = "ListOperations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOperations for more information on using the ListOperations
 // API call, and error handling.
@@ -1496,7 +1496,7 @@ const opListTagsForDomain = "ListTagsForDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForDomain for more information on using the ListTagsForDomain
 // API call, and error handling.
@@ -1589,7 +1589,7 @@ const opRegisterDomain = "RegisterDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterDomain for more information on using the RegisterDomain
 // API call, and error handling.
@@ -1713,7 +1713,7 @@ const opRejectDomainTransferFromAnotherAwsAccount = "RejectDomainTransferFromAno
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectDomainTransferFromAnotherAwsAccount for more information on using the RejectDomainTransferFromAnotherAwsAccount
 // API call, and error handling.
@@ -1807,7 +1807,7 @@ const opRenewDomain = "RenewDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RenewDomain for more information on using the RenewDomain
 // API call, and error handling.
@@ -1909,7 +1909,7 @@ const opResendContactReachabilityEmail = "ResendContactReachabilityEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResendContactReachabilityEmail for more information on using the ResendContactReachabilityEmail
 // API call, and error handling.
@@ -2000,7 +2000,7 @@ const opRetrieveDomainAuthCode = "RetrieveDomainAuthCode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetrieveDomainAuthCode for more information on using the RetrieveDomainAuthCode
 // API call, and error handling.
@@ -2086,7 +2086,7 @@ const opTransferDomain = "TransferDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TransferDomain for more information on using the TransferDomain
 // API call, and error handling.
@@ -2217,7 +2217,7 @@ const opTransferDomainToAnotherAwsAccount = "TransferDomainToAnotherAwsAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TransferDomainToAnotherAwsAccount for more information on using the TransferDomainToAnotherAwsAccount
 // API call, and error handling.
@@ -2332,7 +2332,7 @@ const opUpdateDomainContact = "UpdateDomainContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainContact for more information on using the UpdateDomainContact
 // API call, and error handling.
@@ -2434,7 +2434,7 @@ const opUpdateDomainContactPrivacy = "UpdateDomainContactPrivacy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainContactPrivacy for more information on using the UpdateDomainContactPrivacy
 // API call, and error handling.
@@ -2549,7 +2549,7 @@ const opUpdateDomainNameservers = "UpdateDomainNameservers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainNameservers for more information on using the UpdateDomainNameservers
 // API call, and error handling.
@@ -2651,7 +2651,7 @@ const opUpdateTagsForDomain = "UpdateTagsForDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTagsForDomain for more information on using the UpdateTagsForDomain
 // API call, and error handling.
@@ -2744,7 +2744,7 @@ const opViewBilling = "ViewBilling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ViewBilling for more information on using the ViewBilling
 // API call, and error handling.

@@ -20,7 +20,7 @@ const opBatchCreateVariable = "BatchCreateVariable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchCreateVariable for more information on using the BatchCreateVariable
 // API call, and error handling.
@@ -110,7 +110,7 @@ const opBatchGetVariable = "BatchGetVariable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetVariable for more information on using the BatchGetVariable
 // API call, and error handling.
@@ -200,7 +200,7 @@ const opCreateDetectorVersion = "CreateDetectorVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDetectorVersion for more information on using the CreateDetectorVersion
 // API call, and error handling.
@@ -293,7 +293,7 @@ const opCreateModel = "CreateModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateModel for more information on using the CreateModel
 // API call, and error handling.
@@ -381,7 +381,7 @@ const opCreateModelVersion = "CreateModelVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateModelVersion for more information on using the CreateModelVersion
 // API call, and error handling.
@@ -471,7 +471,7 @@ const opCreateRule = "CreateRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRule for more information on using the CreateRule
 // API call, and error handling.
@@ -561,7 +561,7 @@ const opCreateVariable = "CreateVariable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVariable for more information on using the CreateVariable
 // API call, and error handling.
@@ -652,7 +652,7 @@ const opDeleteDetector = "DeleteDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDetector for more information on using the DeleteDetector
 // API call, and error handling.
@@ -758,7 +758,7 @@ const opDeleteDetectorVersion = "DeleteDetectorVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDetectorVersion for more information on using the DeleteDetectorVersion
 // API call, and error handling.
@@ -867,7 +867,7 @@ const opDeleteEvent = "DeleteEvent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEvent for more information on using the DeleteEvent
 // API call, and error handling.
@@ -955,7 +955,7 @@ const opDeleteRule = "DeleteRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRule for more information on using the DeleteRule
 // API call, and error handling.
@@ -1061,7 +1061,7 @@ const opDescribeDetector = "DescribeDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDetector for more information on using the DescribeDetector
 // API call, and error handling.
@@ -1154,7 +1154,7 @@ const opDescribeModelVersions = "DescribeModelVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeModelVersions for more information on using the DescribeModelVersions
 // API call, and error handling.
@@ -1304,7 +1304,7 @@ const opGetDetectorVersion = "GetDetectorVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDetectorVersion for more information on using the GetDetectorVersion
 // API call, and error handling.
@@ -1397,7 +1397,7 @@ const opGetDetectors = "GetDetectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDetectors for more information on using the GetDetectors
 // API call, and error handling.
@@ -1553,7 +1553,7 @@ const opGetEntityTypes = "GetEntityTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEntityTypes for more information on using the GetEntityTypes
 // API call, and error handling.
@@ -1706,7 +1706,7 @@ const opGetEventPrediction = "GetEventPrediction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventPrediction for more information on using the GetEventPrediction
 // API call, and error handling.
@@ -1800,7 +1800,7 @@ const opGetEventTypes = "GetEventTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventTypes for more information on using the GetEventTypes
 // API call, and error handling.
@@ -1953,7 +1953,7 @@ const opGetExternalModels = "GetExternalModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExternalModels for more information on using the GetExternalModels
 // API call, and error handling.
@@ -2109,7 +2109,7 @@ const opGetKMSEncryptionKey = "GetKMSEncryptionKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetKMSEncryptionKey for more information on using the GetKMSEncryptionKey
 // API call, and error handling.
@@ -2198,7 +2198,7 @@ const opGetLabels = "GetLabels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLabels for more information on using the GetLabels
 // API call, and error handling.
@@ -2351,7 +2351,7 @@ const opGetModelVersion = "GetModelVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetModelVersion for more information on using the GetModelVersion
 // API call, and error handling.
@@ -2441,7 +2441,7 @@ const opGetModels = "GetModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetModels for more information on using the GetModels
 // API call, and error handling.
@@ -2598,7 +2598,7 @@ const opGetOutcomes = "GetOutcomes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOutcomes for more information on using the GetOutcomes
 // API call, and error handling.
@@ -2754,7 +2754,7 @@ const opGetRules = "GetRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRules for more information on using the GetRules
 // API call, and error handling.
@@ -2913,7 +2913,7 @@ const opGetVariables = "GetVariables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVariables for more information on using the GetVariables
 // API call, and error handling.
@@ -3069,7 +3069,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3217,7 +3217,7 @@ const opPutDetector = "PutDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDetector for more information on using the PutDetector
 // API call, and error handling.
@@ -3308,7 +3308,7 @@ const opPutEntityType = "PutEntityType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEntityType for more information on using the PutEntityType
 // API call, and error handling.
@@ -3399,7 +3399,7 @@ const opPutEventType = "PutEventType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEventType for more information on using the PutEventType
 // API call, and error handling.
@@ -3493,7 +3493,7 @@ const opPutExternalModel = "PutExternalModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutExternalModel for more information on using the PutExternalModel
 // API call, and error handling.
@@ -3586,7 +3586,7 @@ const opPutKMSEncryptionKey = "PutKMSEncryptionKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutKMSEncryptionKey for more information on using the PutKMSEncryptionKey
 // API call, and error handling.
@@ -3678,7 +3678,7 @@ const opPutLabel = "PutLabel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLabel for more information on using the PutLabel
 // API call, and error handling.
@@ -3768,7 +3768,7 @@ const opPutOutcome = "PutOutcome"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutOutcome for more information on using the PutOutcome
 // API call, and error handling.
@@ -3859,7 +3859,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3947,7 +3947,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4035,7 +4035,7 @@ const opUpdateDetectorVersion = "UpdateDetectorVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDetectorVersion for more information on using the UpdateDetectorVersion
 // API call, and error handling.
@@ -4131,7 +4131,7 @@ const opUpdateDetectorVersionMetadata = "UpdateDetectorVersionMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDetectorVersionMetadata for more information on using the UpdateDetectorVersionMetadata
 // API call, and error handling.
@@ -4223,7 +4223,7 @@ const opUpdateDetectorVersionStatus = "UpdateDetectorVersionStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDetectorVersionStatus for more information on using the UpdateDetectorVersionStatus
 // API call, and error handling.
@@ -4319,7 +4319,7 @@ const opUpdateModel = "UpdateModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateModel for more information on using the UpdateModel
 // API call, and error handling.
@@ -4410,7 +4410,7 @@ const opUpdateModelVersion = "UpdateModelVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateModelVersion for more information on using the UpdateModelVersion
 // API call, and error handling.
@@ -4504,7 +4504,7 @@ const opUpdateModelVersionStatus = "UpdateModelVersionStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateModelVersionStatus for more information on using the UpdateModelVersionStatus
 // API call, and error handling.
@@ -4601,7 +4601,7 @@ const opUpdateRuleMetadata = "UpdateRuleMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRuleMetadata for more information on using the UpdateRuleMetadata
 // API call, and error handling.
@@ -4695,7 +4695,7 @@ const opUpdateRuleVersion = "UpdateRuleVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRuleVersion for more information on using the UpdateRuleVersion
 // API call, and error handling.
@@ -4789,7 +4789,7 @@ const opUpdateVariable = "UpdateVariable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVariable for more information on using the UpdateVariable
 // API call, and error handling.

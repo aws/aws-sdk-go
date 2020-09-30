@@ -20,7 +20,7 @@ const opDescribeReportCreation = "DescribeReportCreation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReportCreation for more information on using the DescribeReportCreation
 // API call, and error handling.
@@ -139,7 +139,7 @@ const opGetComplianceSummary = "GetComplianceSummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComplianceSummary for more information on using the GetComplianceSummary
 // API call, and error handling.
@@ -320,7 +320,7 @@ const opGetResources = "GetResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResources for more information on using the GetResources
 // API call, and error handling.
@@ -498,7 +498,7 @@ const opGetTagKeys = "GetTagKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTagKeys for more information on using the GetTagKeys
 // API call, and error handling.
@@ -659,7 +659,7 @@ const opGetTagValues = "GetTagValues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTagValues for more information on using the GetTagValues
 // API call, and error handling.
@@ -821,7 +821,7 @@ const opStartReportCreation = "StartReportCreation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartReportCreation for more information on using the StartReportCreation
 // API call, and error handling.
@@ -951,7 +951,7 @@ const opTagResources = "TagResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResources for more information on using the TagResources
 // API call, and error handling.
@@ -1069,7 +1069,7 @@ const opUntagResources = "UntagResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResources for more information on using the UntagResources
 // API call, and error handling.

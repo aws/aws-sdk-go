@@ -24,7 +24,7 @@ const opCreateDatabase = "CreateDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatabase for more information on using the CreateDatabase
 // API call, and error handling.
@@ -152,7 +152,7 @@ const opCreateTable = "CreateTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTable for more information on using the CreateTable
 // API call, and error handling.
@@ -286,7 +286,7 @@ const opDeleteDatabase = "DeleteDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatabase for more information on using the DeleteDatabase
 // API call, and error handling.
@@ -411,7 +411,7 @@ const opDeleteTable = "DeleteTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTable for more information on using the DeleteTable
 // API call, and error handling.
@@ -534,7 +534,7 @@ const opDescribeDatabase = "DescribeDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDatabase for more information on using the DescribeDatabase
 // API call, and error handling.
@@ -658,7 +658,7 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoints for more information on using the DescribeEndpoints
 // API call, and error handling.
@@ -830,7 +830,7 @@ const opDescribeTable = "DescribeTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTable for more information on using the DescribeTable
 // API call, and error handling.
@@ -953,7 +953,7 @@ const opListDatabases = "ListDatabases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatabases for more information on using the ListDatabases
 // API call, and error handling.
@@ -1129,7 +1129,7 @@ const opListTables = "ListTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTables for more information on using the ListTables
 // API call, and error handling.
@@ -1308,7 +1308,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1417,7 +1417,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1532,7 +1532,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1645,7 +1645,7 @@ const opUpdateDatabase = "UpdateDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDatabase for more information on using the UpdateDatabase
 // API call, and error handling.
@@ -1771,7 +1771,7 @@ const opUpdateTable = "UpdateTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTable for more information on using the UpdateTable
 // API call, and error handling.
@@ -1900,7 +1900,7 @@ const opWriteRecords = "WriteRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See WriteRecords for more information on using the WriteRecords
 // API call, and error handling.

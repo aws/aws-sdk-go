@@ -19,7 +19,7 @@ const opDescribeServices = "DescribeServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServices for more information on using the DescribeServices
 // API call, and error handling.
@@ -174,7 +174,7 @@ const opGetAttributeValues = "GetAttributeValues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAttributeValues for more information on using the GetAttributeValues
 // API call, and error handling.
@@ -327,7 +327,7 @@ const opGetProducts = "GetProducts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProducts for more information on using the GetProducts
 // API call, and error handling.

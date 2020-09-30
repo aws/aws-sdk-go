@@ -20,7 +20,7 @@ const opBatchDeleteAttributes = "BatchDeleteAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteAttributes for more information on using the BatchDeleteAttributes
 // API call, and error handling.
@@ -116,7 +116,7 @@ const opBatchPutAttributes = "BatchPutAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchPutAttributes for more information on using the BatchPutAttributes
 // API call, and error handling.
@@ -270,7 +270,7 @@ const opCreateDomain = "CreateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomain for more information on using the CreateDomain
 // API call, and error handling.
@@ -361,7 +361,7 @@ const opDeleteAttributes = "DeleteAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAttributes for more information on using the DeleteAttributes
 // API call, and error handling.
@@ -459,7 +459,7 @@ const opDeleteDomain = "DeleteDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomain for more information on using the DeleteDomain
 // API call, and error handling.
@@ -542,7 +542,7 @@ const opDomainMetadata = "DomainMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DomainMetadata for more information on using the DomainMetadata
 // API call, and error handling.
@@ -623,7 +623,7 @@ const opGetAttributes = "GetAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAttributes for more information on using the GetAttributes
 // API call, and error handling.
@@ -713,7 +713,7 @@ const opListDomains = "ListDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomains for more information on using the ListDomains
 // API call, and error handling.
@@ -855,7 +855,7 @@ const opPutAttributes = "PutAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAttributes for more information on using the PutAttributes
 // API call, and error handling.
@@ -984,7 +984,7 @@ const opSelect = "Select"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Select for more information on using the Select
 // API call, and error handling.

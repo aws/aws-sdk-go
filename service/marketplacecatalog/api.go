@@ -19,7 +19,7 @@ const opCancelChangeSet = "CancelChangeSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelChangeSet for more information on using the CancelChangeSet
 // API call, and error handling.
@@ -116,7 +116,7 @@ const opDescribeChangeSet = "DescribeChangeSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeChangeSet for more information on using the DescribeChangeSet
 // API call, and error handling.
@@ -207,7 +207,7 @@ const opDescribeEntity = "DescribeEntity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEntity for more information on using the DescribeEntity
 // API call, and error handling.
@@ -301,7 +301,7 @@ const opListChangeSets = "ListChangeSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChangeSets for more information on using the ListChangeSets
 // API call, and error handling.
@@ -453,7 +453,7 @@ const opListEntities = "ListEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEntities for more information on using the ListEntities
 // API call, and error handling.
@@ -602,7 +602,7 @@ const opStartChangeSet = "StartChangeSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartChangeSet for more information on using the StartChangeSet
 // API call, and error handling.

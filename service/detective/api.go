@@ -21,7 +21,7 @@ const opAcceptInvitation = "AcceptInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptInvitation for more information on using the AcceptInvitation
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateGraph = "CreateGraph"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGraph for more information on using the CreateGraph
 // API call, and error handling.
@@ -230,7 +230,7 @@ const opCreateMembers = "CreateMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMembers for more information on using the CreateMembers
 // API call, and error handling.
@@ -346,7 +346,7 @@ const opDeleteGraph = "DeleteGraph"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGraph for more information on using the DeleteGraph
 // API call, and error handling.
@@ -435,7 +435,7 @@ const opDeleteMembers = "DeleteMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMembers for more information on using the DeleteMembers
 // API call, and error handling.
@@ -527,7 +527,7 @@ const opDisassociateMembership = "DisassociateMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateMembership for more information on using the DisassociateMembership
 // API call, and error handling.
@@ -617,7 +617,7 @@ const opGetMembers = "GetMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMembers for more information on using the GetMembers
 // API call, and error handling.
@@ -703,7 +703,7 @@ const opListGraphs = "ListGraphs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGraphs for more information on using the ListGraphs
 // API call, and error handling.
@@ -847,7 +847,7 @@ const opListInvitations = "ListInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInvitations for more information on using the ListInvitations
 // API call, and error handling.
@@ -995,7 +995,7 @@ const opListMembers = "ListMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMembers for more information on using the ListMembers
 // API call, and error handling.
@@ -1139,7 +1139,7 @@ const opRejectInvitation = "RejectInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectInvitation for more information on using the RejectInvitation
 // API call, and error handling.
@@ -1229,7 +1229,7 @@ const opStartMonitoringMember = "StartMonitoringMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMonitoringMember for more information on using the StartMonitoringMember
 // API call, and error handling.

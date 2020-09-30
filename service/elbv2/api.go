@@ -21,7 +21,7 @@ const opAddListenerCertificates = "AddListenerCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddListenerCertificates for more information on using the AddListenerCertificates
 // API call, and error handling.
@@ -117,7 +117,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -214,7 +214,7 @@ const opCreateListener = "CreateListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateListener for more information on using the CreateListener
 // API call, and error handling.
@@ -358,7 +358,7 @@ const opCreateLoadBalancer = "CreateLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoadBalancer for more information on using the CreateLoadBalancer
 // API call, and error handling.
@@ -494,7 +494,7 @@ const opCreateRule = "CreateRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRule for more information on using the CreateRule
 // API call, and error handling.
@@ -627,7 +627,7 @@ const opCreateTargetGroup = "CreateTargetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTargetGroup for more information on using the CreateTargetGroup
 // API call, and error handling.
@@ -731,7 +731,7 @@ const opDeleteListener = "DeleteListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteListener for more information on using the DeleteListener
 // API call, and error handling.
@@ -814,7 +814,7 @@ const opDeleteLoadBalancer = "DeleteLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoadBalancer for more information on using the DeleteLoadBalancer
 // API call, and error handling.
@@ -909,7 +909,7 @@ const opDeleteRule = "DeleteRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRule for more information on using the DeleteRule
 // API call, and error handling.
@@ -994,7 +994,7 @@ const opDeleteTargetGroup = "DeleteTargetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTargetGroup for more information on using the DeleteTargetGroup
 // API call, and error handling.
@@ -1077,7 +1077,7 @@ const opDeregisterTargets = "DeregisterTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterTargets for more information on using the DeregisterTargets
 // API call, and error handling.
@@ -1163,7 +1163,7 @@ const opDescribeAccountLimits = "DescribeAccountLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountLimits for more information on using the DescribeAccountLimits
 // API call, and error handling.
@@ -1243,7 +1243,7 @@ const opDescribeListenerCertificates = "DescribeListenerCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeListenerCertificates for more information on using the DescribeListenerCertificates
 // API call, and error handling.
@@ -1330,7 +1330,7 @@ const opDescribeListeners = "DescribeListeners"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeListeners for more information on using the DescribeListeners
 // API call, and error handling.
@@ -1479,7 +1479,7 @@ const opDescribeLoadBalancerAttributes = "DescribeLoadBalancerAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancerAttributes for more information on using the DescribeLoadBalancerAttributes
 // API call, and error handling.
@@ -1563,7 +1563,7 @@ const opDescribeLoadBalancers = "DescribeLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancers for more information on using the DescribeLoadBalancers
 // API call, and error handling.
@@ -1703,7 +1703,7 @@ const opDescribeRules = "DescribeRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRules for more information on using the DescribeRules
 // API call, and error handling.
@@ -1789,7 +1789,7 @@ const opDescribeSSLPolicies = "DescribeSSLPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSSLPolicies for more information on using the DescribeSSLPolicies
 // API call, and error handling.
@@ -1871,7 +1871,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -1961,7 +1961,7 @@ const opDescribeTargetGroupAttributes = "DescribeTargetGroupAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTargetGroupAttributes for more information on using the DescribeTargetGroupAttributes
 // API call, and error handling.
@@ -2044,7 +2044,7 @@ const opDescribeTargetGroups = "DescribeTargetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTargetGroups for more information on using the DescribeTargetGroups
 // API call, and error handling.
@@ -2190,7 +2190,7 @@ const opDescribeTargetHealth = "DescribeTargetHealth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTargetHealth for more information on using the DescribeTargetHealth
 // API call, and error handling.
@@ -2277,7 +2277,7 @@ const opModifyListener = "ModifyListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyListener for more information on using the ModifyListener
 // API call, and error handling.
@@ -2417,7 +2417,7 @@ const opModifyLoadBalancerAttributes = "ModifyLoadBalancerAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyLoadBalancerAttributes for more information on using the ModifyLoadBalancerAttributes
 // API call, and error handling.
@@ -2504,7 +2504,7 @@ const opModifyRule = "ModifyRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyRule for more information on using the ModifyRule
 // API call, and error handling.
@@ -2623,7 +2623,7 @@ const opModifyTargetGroup = "ModifyTargetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyTargetGroup for more information on using the ModifyTargetGroup
 // API call, and error handling.
@@ -2708,7 +2708,7 @@ const opModifyTargetGroupAttributes = "ModifyTargetGroupAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyTargetGroupAttributes for more information on using the ModifyTargetGroupAttributes
 // API call, and error handling.
@@ -2790,7 +2790,7 @@ const opRegisterTargets = "RegisterTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterTargets for more information on using the RegisterTargets
 // API call, and error handling.
@@ -2896,7 +2896,7 @@ const opRemoveListenerCertificates = "RemoveListenerCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveListenerCertificates for more information on using the RemoveListenerCertificates
 // API call, and error handling.
@@ -2985,7 +2985,7 @@ const opRemoveTags = "RemoveTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTags for more information on using the RemoveTags
 // API call, and error handling.
@@ -3079,7 +3079,7 @@ const opSetIpAddressType = "SetIpAddressType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIpAddressType for more information on using the SetIpAddressType
 // API call, and error handling.
@@ -3165,7 +3165,7 @@ const opSetRulePriorities = "SetRulePriorities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetRulePriorities for more information on using the SetRulePriorities
 // API call, and error handling.
@@ -3254,7 +3254,7 @@ const opSetSecurityGroups = "SetSecurityGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetSecurityGroups for more information on using the SetSecurityGroups
 // API call, and error handling.
@@ -3343,7 +3343,7 @@ const opSetSubnets = "SetSubnets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetSubnets for more information on using the SetSubnets
 // API call, and error handling.

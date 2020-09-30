@@ -20,7 +20,7 @@ const opSearch = "Search"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Search for more information on using the Search
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opSuggest = "Suggest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Suggest for more information on using the Suggest
 // API call, and error handling.
@@ -212,7 +212,7 @@ const opUploadDocuments = "UploadDocuments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadDocuments for more information on using the UploadDocuments
 // API call, and error handling.

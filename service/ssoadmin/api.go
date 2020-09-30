@@ -21,7 +21,7 @@ const opAttachManagedPolicyToPermissionSet = "AttachManagedPolicyToPermissionSet
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachManagedPolicyToPermissionSet for more information on using the AttachManagedPolicyToPermissionSet
 // API call, and error handling.
@@ -129,7 +129,7 @@ const opCreateAccountAssignment = "CreateAccountAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccountAssignment for more information on using the CreateAccountAssignment
 // API call, and error handling.
@@ -243,7 +243,7 @@ const opCreatePermissionSet = "CreatePermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePermissionSet for more information on using the CreatePermissionSet
 // API call, and error handling.
@@ -348,7 +348,7 @@ const opDeleteAccountAssignment = "DeleteAccountAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccountAssignment for more information on using the DeleteAccountAssignment
 // API call, and error handling.
@@ -448,7 +448,7 @@ const opDeleteInlinePolicyFromPermissionSet = "DeleteInlinePolicyFromPermissionS
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInlinePolicyFromPermissionSet for more information on using the DeleteInlinePolicyFromPermissionSet
 // API call, and error handling.
@@ -548,7 +548,7 @@ const opDeletePermissionSet = "DeletePermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePermissionSet for more information on using the DeletePermissionSet
 // API call, and error handling.
@@ -648,7 +648,7 @@ const opDescribeAccountAssignmentCreationStatus = "DescribeAccountAssignmentCrea
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountAssignmentCreationStatus for more information on using the DescribeAccountAssignmentCreationStatus
 // API call, and error handling.
@@ -741,7 +741,7 @@ const opDescribeAccountAssignmentDeletionStatus = "DescribeAccountAssignmentDele
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountAssignmentDeletionStatus for more information on using the DescribeAccountAssignmentDeletionStatus
 // API call, and error handling.
@@ -834,7 +834,7 @@ const opDescribePermissionSet = "DescribePermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePermissionSet for more information on using the DescribePermissionSet
 // API call, and error handling.
@@ -927,7 +927,7 @@ const opDescribePermissionSetProvisioningStatus = "DescribePermissionSetProvisio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePermissionSetProvisioningStatus for more information on using the DescribePermissionSetProvisioningStatus
 // API call, and error handling.
@@ -1020,7 +1020,7 @@ const opDetachManagedPolicyFromPermissionSet = "DetachManagedPolicyFromPermissio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachManagedPolicyFromPermissionSet for more information on using the DetachManagedPolicyFromPermissionSet
 // API call, and error handling.
@@ -1121,7 +1121,7 @@ const opGetInlinePolicyForPermissionSet = "GetInlinePolicyForPermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInlinePolicyForPermissionSet for more information on using the GetInlinePolicyForPermissionSet
 // API call, and error handling.
@@ -1214,7 +1214,7 @@ const opListAccountAssignmentCreationStatus = "ListAccountAssignmentCreationStat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountAssignmentCreationStatus for more information on using the ListAccountAssignmentCreationStatus
 // API call, and error handling.
@@ -1366,7 +1366,7 @@ const opListAccountAssignmentDeletionStatus = "ListAccountAssignmentDeletionStat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountAssignmentDeletionStatus for more information on using the ListAccountAssignmentDeletionStatus
 // API call, and error handling.
@@ -1518,7 +1518,7 @@ const opListAccountAssignments = "ListAccountAssignments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountAssignments for more information on using the ListAccountAssignments
 // API call, and error handling.
@@ -1670,7 +1670,7 @@ const opListAccountsForProvisionedPermissionSet = "ListAccountsForProvisionedPer
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountsForProvisionedPermissionSet for more information on using the ListAccountsForProvisionedPermissionSet
 // API call, and error handling.
@@ -1821,7 +1821,7 @@ const opListInstances = "ListInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstances for more information on using the ListInstances
 // API call, and error handling.
@@ -1969,7 +1969,7 @@ const opListManagedPoliciesInPermissionSet = "ListManagedPoliciesInPermissionSet
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListManagedPoliciesInPermissionSet for more information on using the ListManagedPoliciesInPermissionSet
 // API call, and error handling.
@@ -2120,7 +2120,7 @@ const opListPermissionSetProvisioningStatus = "ListPermissionSetProvisioningStat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPermissionSetProvisioningStatus for more information on using the ListPermissionSetProvisioningStatus
 // API call, and error handling.
@@ -2272,7 +2272,7 @@ const opListPermissionSets = "ListPermissionSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPermissionSets for more information on using the ListPermissionSets
 // API call, and error handling.
@@ -2423,7 +2423,7 @@ const opListPermissionSetsProvisionedToAccount = "ListPermissionSetsProvisionedT
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPermissionSetsProvisionedToAccount for more information on using the ListPermissionSetsProvisionedToAccount
 // API call, and error handling.
@@ -2574,7 +2574,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2725,7 +2725,7 @@ const opProvisionPermissionSet = "ProvisionPermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ProvisionPermissionSet for more information on using the ProvisionPermissionSet
 // API call, and error handling.
@@ -2825,7 +2825,7 @@ const opPutInlinePolicyToPermissionSet = "PutInlinePolicyToPermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutInlinePolicyToPermissionSet for more information on using the PutInlinePolicyToPermissionSet
 // API call, and error handling.
@@ -2933,7 +2933,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3037,7 +3037,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3137,7 +3137,7 @@ const opUpdatePermissionSet = "UpdatePermissionSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePermissionSet for more information on using the UpdatePermissionSet
 // API call, and error handling.

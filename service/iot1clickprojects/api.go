@@ -21,7 +21,7 @@ const opAssociateDeviceWithPlacement = "AssociateDeviceWithPlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDeviceWithPlacement for more information on using the AssociateDeviceWithPlacement
 // API call, and error handling.
@@ -106,7 +106,7 @@ const opCreatePlacement = "CreatePlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePlacement for more information on using the CreatePlacement
 // API call, and error handling.
@@ -191,7 +191,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -275,7 +275,7 @@ const opDeletePlacement = "DeletePlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePlacement for more information on using the DeletePlacement
 // API call, and error handling.
@@ -363,7 +363,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -451,7 +451,7 @@ const opDescribePlacement = "DescribePlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePlacement for more information on using the DescribePlacement
 // API call, and error handling.
@@ -533,7 +533,7 @@ const opDescribeProject = "DescribeProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProject for more information on using the DescribeProject
 // API call, and error handling.
@@ -615,7 +615,7 @@ const opDisassociateDeviceFromPlacement = "DisassociateDeviceFromPlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateDeviceFromPlacement for more information on using the DisassociateDeviceFromPlacement
 // API call, and error handling.
@@ -700,7 +700,7 @@ const opGetDevicesInPlacement = "GetDevicesInPlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevicesInPlacement for more information on using the GetDevicesInPlacement
 // API call, and error handling.
@@ -782,7 +782,7 @@ const opListPlacements = "ListPlacements"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPlacements for more information on using the ListPlacements
 // API call, and error handling.
@@ -922,7 +922,7 @@ const opListProjects = "ListProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjects for more information on using the ListProjects
 // API call, and error handling.
@@ -1061,7 +1061,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1144,7 +1144,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1229,7 +1229,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1312,7 +1312,7 @@ const opUpdatePlacement = "UpdatePlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePlacement for more information on using the UpdatePlacement
 // API call, and error handling.
@@ -1398,7 +1398,7 @@ const opUpdateProject = "UpdateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProject for more information on using the UpdateProject
 // API call, and error handling.

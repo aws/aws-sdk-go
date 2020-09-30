@@ -20,7 +20,7 @@ const opCreateHomeRegionControl = "CreateHomeRegionControl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHomeRegionControl for more information on using the CreateHomeRegionControl
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opDescribeHomeRegionControls = "DescribeHomeRegionControls"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHomeRegionControls for more information on using the DescribeHomeRegionControls
 // API call, and error handling.
@@ -270,7 +270,7 @@ const opGetHomeRegion = "GetHomeRegion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHomeRegion for more information on using the GetHomeRegion
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opAddNotificationChannels = "AddNotificationChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddNotificationChannels for more information on using the AddNotificationChannels
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opBatchGetFrameMetricData = "BatchGetFrameMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetFrameMetricData for more information on using the BatchGetFrameMetricData
 // API call, and error handling.
@@ -208,7 +208,7 @@ const opConfigureAgent = "ConfigureAgent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfigureAgent for more information on using the ConfigureAgent
 // API call, and error handling.
@@ -298,7 +298,7 @@ const opCreateProfilingGroup = "CreateProfilingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProfilingGroup for more information on using the CreateProfilingGroup
 // API call, and error handling.
@@ -393,7 +393,7 @@ const opDeleteProfilingGroup = "DeleteProfilingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProfilingGroup for more information on using the DeleteProfilingGroup
 // API call, and error handling.
@@ -482,7 +482,7 @@ const opDescribeProfilingGroup = "DescribeProfilingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProfilingGroup for more information on using the DescribeProfilingGroup
 // API call, and error handling.
@@ -571,7 +571,7 @@ const opGetFindingsReportAccountSummary = "GetFindingsReportAccountSummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFindingsReportAccountSummary for more information on using the GetFindingsReportAccountSummary
 // API call, and error handling.
@@ -716,7 +716,7 @@ const opGetNotificationConfiguration = "GetNotificationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNotificationConfiguration for more information on using the GetNotificationConfiguration
 // API call, and error handling.
@@ -804,7 +804,7 @@ const opGetPolicy = "GetPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPolicy for more information on using the GetPolicy
 // API call, and error handling.
@@ -889,7 +889,7 @@ const opGetProfile = "GetProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProfile for more information on using the GetProfile
 // API call, and error handling.
@@ -1011,7 +1011,7 @@ const opGetRecommendations = "GetRecommendations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRecommendations for more information on using the GetRecommendations
 // API call, and error handling.
@@ -1103,7 +1103,7 @@ const opListFindingsReports = "ListFindingsReports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFindingsReports for more information on using the ListFindingsReports
 // API call, and error handling.
@@ -1249,7 +1249,7 @@ const opListProfileTimes = "ListProfileTimes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProfileTimes for more information on using the ListProfileTimes
 // API call, and error handling.
@@ -1396,7 +1396,7 @@ const opListProfilingGroups = "ListProfilingGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProfilingGroups for more information on using the ListProfilingGroups
 // API call, and error handling.
@@ -1538,7 +1538,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1623,7 +1623,7 @@ const opPostAgentProfile = "PostAgentProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostAgentProfile for more information on using the PostAgentProfile
 // API call, and error handling.
@@ -1714,7 +1714,7 @@ const opPutPermission = "PutPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPermission for more information on using the PutPermission
 // API call, and error handling.
@@ -1823,7 +1823,7 @@ const opRemoveNotificationChannel = "RemoveNotificationChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveNotificationChannel for more information on using the RemoveNotificationChannel
 // API call, and error handling.
@@ -1911,7 +1911,7 @@ const opRemovePermission = "RemovePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemovePermission for more information on using the RemovePermission
 // API call, and error handling.
@@ -2009,7 +2009,7 @@ const opSubmitFeedback = "SubmitFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubmitFeedback for more information on using the SubmitFeedback
 // API call, and error handling.
@@ -2099,7 +2099,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2185,7 +2185,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2271,7 +2271,7 @@ const opUpdateProfilingGroup = "UpdateProfilingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProfilingGroup for more information on using the UpdateProfilingGroup
 // API call, and error handling.

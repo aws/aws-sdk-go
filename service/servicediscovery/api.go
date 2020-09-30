@@ -21,7 +21,7 @@ const opCreateHttpNamespace = "CreateHttpNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHttpNamespace for more information on using the CreateHttpNamespace
 // API call, and error handling.
@@ -122,7 +122,7 @@ const opCreatePrivateDnsNamespace = "CreatePrivateDnsNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePrivateDnsNamespace for more information on using the CreatePrivateDnsNamespace
 // API call, and error handling.
@@ -223,7 +223,7 @@ const opCreatePublicDnsNamespace = "CreatePublicDnsNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePublicDnsNamespace for more information on using the CreatePublicDnsNamespace
 // API call, and error handling.
@@ -324,7 +324,7 @@ const opCreateService = "CreateService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateService for more information on using the CreateService
 // API call, and error handling.
@@ -433,7 +433,7 @@ const opDeleteNamespace = "DeleteNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNamespace for more information on using the DeleteNamespace
 // API call, and error handling.
@@ -525,7 +525,7 @@ const opDeleteService = "DeleteService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteService for more information on using the DeleteService
 // API call, and error handling.
@@ -615,7 +615,7 @@ const opDeregisterInstance = "DeregisterInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterInstance for more information on using the DeregisterInstance
 // API call, and error handling.
@@ -711,7 +711,7 @@ const opDiscoverInstances = "DiscoverInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DiscoverInstances for more information on using the DiscoverInstances
 // API call, and error handling.
@@ -809,7 +809,7 @@ const opGetInstance = "GetInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstance for more information on using the GetInstance
 // API call, and error handling.
@@ -897,7 +897,7 @@ const opGetInstancesHealthStatus = "GetInstancesHealthStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstancesHealthStatus for more information on using the GetInstancesHealthStatus
 // API call, and error handling.
@@ -1047,7 +1047,7 @@ const opGetNamespace = "GetNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNamespace for more information on using the GetNamespace
 // API call, and error handling.
@@ -1131,7 +1131,7 @@ const opGetOperation = "GetOperation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOperation for more information on using the GetOperation
 // API call, and error handling.
@@ -1219,7 +1219,7 @@ const opGetService = "GetService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetService for more information on using the GetService
 // API call, and error handling.
@@ -1303,7 +1303,7 @@ const opListInstances = "ListInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstances for more information on using the ListInstances
 // API call, and error handling.
@@ -1446,7 +1446,7 @@ const opListNamespaces = "ListNamespaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNamespaces for more information on using the ListNamespaces
 // API call, and error handling.
@@ -1586,7 +1586,7 @@ const opListOperations = "ListOperations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOperations for more information on using the ListOperations
 // API call, and error handling.
@@ -1725,7 +1725,7 @@ const opListServices = "ListServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServices for more information on using the ListServices
 // API call, and error handling.
@@ -1865,7 +1865,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1949,7 +1949,7 @@ const opRegisterInstance = "RegisterInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterInstance for more information on using the RegisterInstance
 // API call, and error handling.
@@ -2076,7 +2076,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2165,7 +2165,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2250,7 +2250,7 @@ const opUpdateInstanceCustomHealthStatus = "UpdateInstanceCustomHealthStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInstanceCustomHealthStatus for more information on using the UpdateInstanceCustomHealthStatus
 // API call, and error handling.
@@ -2351,7 +2351,7 @@ const opUpdateService = "UpdateService"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateService for more information on using the UpdateService
 // API call, and error handling.

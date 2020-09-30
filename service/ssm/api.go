@@ -21,7 +21,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -137,7 +137,7 @@ const opCancelCommand = "CancelCommand"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelCommand for more information on using the CancelCommand
 // API call, and error handling.
@@ -235,7 +235,7 @@ const opCancelMaintenanceWindowExecution = "CancelMaintenanceWindowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelMaintenanceWindowExecution for more information on using the CancelMaintenanceWindowExecution
 // API call, and error handling.
@@ -324,7 +324,7 @@ const opCreateActivation = "CreateActivation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateActivation for more information on using the CreateActivation
 // API call, and error handling.
@@ -413,7 +413,7 @@ const opCreateAssociation = "CreateAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAssociation for more information on using the CreateAssociation
 // API call, and error handling.
@@ -546,7 +546,7 @@ const opCreateAssociationBatch = "CreateAssociationBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAssociationBatch for more information on using the CreateAssociationBatch
 // API call, and error handling.
@@ -676,7 +676,7 @@ const opCreateDocument = "CreateDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDocument for more information on using the CreateDocument
 // API call, and error handling.
@@ -774,7 +774,7 @@ const opCreateMaintenanceWindow = "CreateMaintenanceWindow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMaintenanceWindow for more information on using the CreateMaintenanceWindow
 // API call, and error handling.
@@ -872,7 +872,7 @@ const opCreateOpsItem = "CreateOpsItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOpsItem for more information on using the CreateOpsItem
 // API call, and error handling.
@@ -971,7 +971,7 @@ const opCreatePatchBaseline = "CreatePatchBaseline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePatchBaseline for more information on using the CreatePatchBaseline
 // API call, and error handling.
@@ -1065,7 +1065,7 @@ const opCreateResourceDataSync = "CreateResourceDataSync"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResourceDataSync for more information on using the CreateResourceDataSync
 // API call, and error handling.
@@ -1179,7 +1179,7 @@ const opDeleteActivation = "DeleteActivation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteActivation for more information on using the DeleteActivation
 // API call, and error handling.
@@ -1274,7 +1274,7 @@ const opDeleteAssociation = "DeleteAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAssociation for more information on using the DeleteAssociation
 // API call, and error handling.
@@ -1381,7 +1381,7 @@ const opDeleteDocument = "DeleteDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDocument for more information on using the DeleteDocument
 // API call, and error handling.
@@ -1476,7 +1476,7 @@ const opDeleteInventory = "DeleteInventory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInventory for more information on using the DeleteInventory
 // API call, and error handling.
@@ -1571,7 +1571,7 @@ const opDeleteMaintenanceWindow = "DeleteMaintenanceWindow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMaintenanceWindow for more information on using the DeleteMaintenanceWindow
 // API call, and error handling.
@@ -1650,7 +1650,7 @@ const opDeleteParameter = "DeleteParameter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteParameter for more information on using the DeleteParameter
 // API call, and error handling.
@@ -1733,7 +1733,7 @@ const opDeleteParameters = "DeleteParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteParameters for more information on using the DeleteParameters
 // API call, and error handling.
@@ -1812,7 +1812,7 @@ const opDeletePatchBaseline = "DeletePatchBaseline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePatchBaseline for more information on using the DeletePatchBaseline
 // API call, and error handling.
@@ -1895,7 +1895,7 @@ const opDeleteResourceDataSync = "DeleteResourceDataSync"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourceDataSync for more information on using the DeleteResourceDataSync
 // API call, and error handling.
@@ -1983,7 +1983,7 @@ const opDeregisterManagedInstance = "DeregisterManagedInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterManagedInstance for more information on using the DeregisterManagedInstance
 // API call, and error handling.
@@ -2077,7 +2077,7 @@ const opDeregisterPatchBaselineForPatchGroup = "DeregisterPatchBaselineForPatchG
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterPatchBaselineForPatchGroup for more information on using the DeregisterPatchBaselineForPatchGroup
 // API call, and error handling.
@@ -2160,7 +2160,7 @@ const opDeregisterTargetFromMaintenanceWindow = "DeregisterTargetFromMaintenance
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterTargetFromMaintenanceWindow for more information on using the DeregisterTargetFromMaintenanceWindow
 // API call, and error handling.
@@ -2251,7 +2251,7 @@ const opDeregisterTaskFromMaintenanceWindow = "DeregisterTaskFromMaintenanceWind
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterTaskFromMaintenanceWindow for more information on using the DeregisterTaskFromMaintenanceWindow
 // API call, and error handling.
@@ -2338,7 +2338,7 @@ const opDescribeActivations = "DescribeActivations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeActivations for more information on using the DescribeActivations
 // API call, and error handling.
@@ -2484,7 +2484,7 @@ const opDescribeAssociation = "DescribeAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssociation for more information on using the DescribeAssociation
 // API call, and error handling.
@@ -2590,7 +2590,7 @@ const opDescribeAssociationExecutionTargets = "DescribeAssociationExecutionTarge
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssociationExecutionTargets for more information on using the DescribeAssociationExecutionTargets
 // API call, and error handling.
@@ -2737,7 +2737,7 @@ const opDescribeAssociationExecutions = "DescribeAssociationExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssociationExecutions for more information on using the DescribeAssociationExecutions
 // API call, and error handling.
@@ -2880,7 +2880,7 @@ const opDescribeAutomationExecutions = "DescribeAutomationExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAutomationExecutions for more information on using the DescribeAutomationExecutions
 // API call, and error handling.
@@ -3026,7 +3026,7 @@ const opDescribeAutomationStepExecutions = "DescribeAutomationStepExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAutomationStepExecutions for more information on using the DescribeAutomationStepExecutions
 // API call, and error handling.
@@ -3177,7 +3177,7 @@ const opDescribeAvailablePatches = "DescribeAvailablePatches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAvailablePatches for more information on using the DescribeAvailablePatches
 // API call, and error handling.
@@ -3314,7 +3314,7 @@ const opDescribeDocument = "DescribeDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDocument for more information on using the DescribeDocument
 // API call, and error handling.
@@ -3399,7 +3399,7 @@ const opDescribeDocumentPermission = "DescribeDocumentPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDocumentPermission for more information on using the DescribeDocumentPermission
 // API call, and error handling.
@@ -3487,7 +3487,7 @@ const opDescribeEffectiveInstanceAssociations = "DescribeEffectiveInstanceAssoci
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEffectiveInstanceAssociations for more information on using the DescribeEffectiveInstanceAssociations
 // API call, and error handling.
@@ -3639,7 +3639,7 @@ const opDescribeEffectivePatchesForPatchBaseline = "DescribeEffectivePatchesForP
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEffectivePatchesForPatchBaseline for more information on using the DescribeEffectivePatchesForPatchBaseline
 // API call, and error handling.
@@ -3794,7 +3794,7 @@ const opDescribeInstanceAssociationsStatus = "DescribeInstanceAssociationsStatus
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstanceAssociationsStatus for more information on using the DescribeInstanceAssociationsStatus
 // API call, and error handling.
@@ -3946,7 +3946,7 @@ const opDescribeInstanceInformation = "DescribeInstanceInformation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstanceInformation for more information on using the DescribeInstanceInformation
 // API call, and error handling.
@@ -4115,7 +4115,7 @@ const opDescribeInstancePatchStates = "DescribeInstancePatchStates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstancePatchStates for more information on using the DescribeInstancePatchStates
 // API call, and error handling.
@@ -4255,7 +4255,7 @@ const opDescribeInstancePatchStatesForPatchGroup = "DescribeInstancePatchStatesF
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstancePatchStatesForPatchGroup for more information on using the DescribeInstancePatchStatesForPatchGroup
 // API call, and error handling.
@@ -4400,7 +4400,7 @@ const opDescribeInstancePatches = "DescribeInstancePatches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstancePatches for more information on using the DescribeInstancePatches
 // API call, and error handling.
@@ -4557,7 +4557,7 @@ const opDescribeInventoryDeletions = "DescribeInventoryDeletions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInventoryDeletions for more information on using the DescribeInventoryDeletions
 // API call, and error handling.
@@ -4701,7 +4701,7 @@ const opDescribeMaintenanceWindowExecutionTaskInvocations = "DescribeMaintenance
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowExecutionTaskInvocations for more information on using the DescribeMaintenanceWindowExecutionTaskInvocations
 // API call, and error handling.
@@ -4847,7 +4847,7 @@ const opDescribeMaintenanceWindowExecutionTasks = "DescribeMaintenanceWindowExec
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowExecutionTasks for more information on using the DescribeMaintenanceWindowExecutionTasks
 // API call, and error handling.
@@ -4992,7 +4992,7 @@ const opDescribeMaintenanceWindowExecutions = "DescribeMaintenanceWindowExecutio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowExecutions for more information on using the DescribeMaintenanceWindowExecutions
 // API call, and error handling.
@@ -5131,7 +5131,7 @@ const opDescribeMaintenanceWindowSchedule = "DescribeMaintenanceWindowSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowSchedule for more information on using the DescribeMaintenanceWindowSchedule
 // API call, and error handling.
@@ -5276,7 +5276,7 @@ const opDescribeMaintenanceWindowTargets = "DescribeMaintenanceWindowTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowTargets for more information on using the DescribeMaintenanceWindowTargets
 // API call, and error handling.
@@ -5421,7 +5421,7 @@ const opDescribeMaintenanceWindowTasks = "DescribeMaintenanceWindowTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowTasks for more information on using the DescribeMaintenanceWindowTasks
 // API call, and error handling.
@@ -5566,7 +5566,7 @@ const opDescribeMaintenanceWindows = "DescribeMaintenanceWindows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindows for more information on using the DescribeMaintenanceWindows
 // API call, and error handling.
@@ -5703,7 +5703,7 @@ const opDescribeMaintenanceWindowsForTarget = "DescribeMaintenanceWindowsForTarg
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceWindowsForTarget for more information on using the DescribeMaintenanceWindowsForTarget
 // API call, and error handling.
@@ -5841,7 +5841,7 @@ const opDescribeOpsItems = "DescribeOpsItems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOpsItems for more information on using the DescribeOpsItems
 // API call, and error handling.
@@ -5987,7 +5987,7 @@ const opDescribeParameters = "DescribeParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeParameters for more information on using the DescribeParameters
 // API call, and error handling.
@@ -6145,7 +6145,7 @@ const opDescribePatchBaselines = "DescribePatchBaselines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePatchBaselines for more information on using the DescribePatchBaselines
 // API call, and error handling.
@@ -6282,7 +6282,7 @@ const opDescribePatchGroupState = "DescribePatchGroupState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePatchGroupState for more information on using the DescribePatchGroupState
 // API call, and error handling.
@@ -6364,7 +6364,7 @@ const opDescribePatchGroups = "DescribePatchGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePatchGroups for more information on using the DescribePatchGroups
 // API call, and error handling.
@@ -6501,7 +6501,7 @@ const opDescribePatchProperties = "DescribePatchProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePatchProperties for more information on using the DescribePatchProperties
 // API call, and error handling.
@@ -6681,7 +6681,7 @@ const opDescribeSessions = "DescribeSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSessions for more information on using the DescribeSessions
 // API call, and error handling.
@@ -6825,7 +6825,7 @@ const opGetAutomationExecution = "GetAutomationExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAutomationExecution for more information on using the GetAutomationExecution
 // API call, and error handling.
@@ -6908,7 +6908,7 @@ const opGetCalendarState = "GetCalendarState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCalendarState for more information on using the GetCalendarState
 // API call, and error handling.
@@ -7011,7 +7011,7 @@ const opGetCommandInvocation = "GetCommandInvocation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCommandInvocation for more information on using the GetCommandInvocation
 // API call, and error handling.
@@ -7112,7 +7112,7 @@ const opGetConnectionStatus = "GetConnectionStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnectionStatus for more information on using the GetConnectionStatus
 // API call, and error handling.
@@ -7192,7 +7192,7 @@ const opGetDefaultPatchBaseline = "GetDefaultPatchBaseline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDefaultPatchBaseline for more information on using the GetDefaultPatchBaseline
 // API call, and error handling.
@@ -7276,7 +7276,7 @@ const opGetDeployablePatchSnapshotForInstance = "GetDeployablePatchSnapshotForIn
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeployablePatchSnapshotForInstance for more information on using the GetDeployablePatchSnapshotForInstance
 // API call, and error handling.
@@ -7367,7 +7367,7 @@ const opGetDocument = "GetDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDocument for more information on using the GetDocument
 // API call, and error handling.
@@ -7452,7 +7452,7 @@ const opGetInventory = "GetInventory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInventory for more information on using the GetInventory
 // API call, and error handling.
@@ -7609,7 +7609,7 @@ const opGetInventorySchema = "GetInventorySchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInventorySchema for more information on using the GetInventorySchema
 // API call, and error handling.
@@ -7753,7 +7753,7 @@ const opGetMaintenanceWindow = "GetMaintenanceWindow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMaintenanceWindow for more information on using the GetMaintenanceWindow
 // API call, and error handling.
@@ -7840,7 +7840,7 @@ const opGetMaintenanceWindowExecution = "GetMaintenanceWindowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMaintenanceWindowExecution for more information on using the GetMaintenanceWindowExecution
 // API call, and error handling.
@@ -7927,7 +7927,7 @@ const opGetMaintenanceWindowExecutionTask = "GetMaintenanceWindowExecutionTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMaintenanceWindowExecutionTask for more information on using the GetMaintenanceWindowExecutionTask
 // API call, and error handling.
@@ -8015,7 +8015,7 @@ const opGetMaintenanceWindowExecutionTaskInvocation = "GetMaintenanceWindowExecu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMaintenanceWindowExecutionTaskInvocation for more information on using the GetMaintenanceWindowExecutionTaskInvocation
 // API call, and error handling.
@@ -8102,7 +8102,7 @@ const opGetMaintenanceWindowTask = "GetMaintenanceWindowTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMaintenanceWindowTask for more information on using the GetMaintenanceWindowTask
 // API call, and error handling.
@@ -8189,7 +8189,7 @@ const opGetOpsItem = "GetOpsItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOpsItem for more information on using the GetOpsItem
 // API call, and error handling.
@@ -8280,7 +8280,7 @@ const opGetOpsSummary = "GetOpsSummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOpsSummary for more information on using the GetOpsSummary
 // API call, and error handling.
@@ -8434,7 +8434,7 @@ const opGetParameter = "GetParameter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetParameter for more information on using the GetParameter
 // API call, and error handling.
@@ -8524,7 +8524,7 @@ const opGetParameterHistory = "GetParameterHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetParameterHistory for more information on using the GetParameterHistory
 // API call, and error handling.
@@ -8670,7 +8670,7 @@ const opGetParameters = "GetParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetParameters for more information on using the GetParameters
 // API call, and error handling.
@@ -8753,7 +8753,7 @@ const opGetParametersByPath = "GetParametersByPath"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetParametersByPath for more information on using the GetParametersByPath
 // API call, and error handling.
@@ -8914,7 +8914,7 @@ const opGetPatchBaseline = "GetPatchBaseline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPatchBaseline for more information on using the GetPatchBaseline
 // API call, and error handling.
@@ -9005,7 +9005,7 @@ const opGetPatchBaselineForPatchGroup = "GetPatchBaselineForPatchGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPatchBaselineForPatchGroup for more information on using the GetPatchBaselineForPatchGroup
 // API call, and error handling.
@@ -9085,7 +9085,7 @@ const opGetServiceSetting = "GetServiceSetting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceSetting for more information on using the GetServiceSetting
 // API call, and error handling.
@@ -9182,7 +9182,7 @@ const opLabelParameterVersion = "LabelParameterVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LabelParameterVersion for more information on using the LabelParameterVersion
 // API call, and error handling.
@@ -9303,7 +9303,7 @@ const opListAssociationVersions = "ListAssociationVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociationVersions for more information on using the ListAssociationVersions
 // API call, and error handling.
@@ -9446,7 +9446,7 @@ const opListAssociations = "ListAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociations for more information on using the ListAssociations
 // API call, and error handling.
@@ -9588,7 +9588,7 @@ const opListCommandInvocations = "ListCommandInvocations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCommandInvocations for more information on using the ListCommandInvocations
 // API call, and error handling.
@@ -9749,7 +9749,7 @@ const opListCommands = "ListCommands"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCommands for more information on using the ListCommands
 // API call, and error handling.
@@ -9906,7 +9906,7 @@ const opListComplianceItems = "ListComplianceItems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListComplianceItems for more information on using the ListComplianceItems
 // API call, and error handling.
@@ -10061,7 +10061,7 @@ const opListComplianceSummaries = "ListComplianceSummaries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListComplianceSummaries for more information on using the ListComplianceSummaries
 // API call, and error handling.
@@ -10207,7 +10207,7 @@ const opListDocumentVersions = "ListDocumentVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDocumentVersions for more information on using the ListDocumentVersions
 // API call, and error handling.
@@ -10350,7 +10350,7 @@ const opListDocuments = "ListDocuments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDocuments for more information on using the ListDocuments
 // API call, and error handling.
@@ -10494,7 +10494,7 @@ const opListInventoryEntries = "ListInventoryEntries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInventoryEntries for more information on using the ListInventoryEntries
 // API call, and error handling.
@@ -10595,7 +10595,7 @@ const opListResourceComplianceSummaries = "ListResourceComplianceSummaries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceComplianceSummaries for more information on using the ListResourceComplianceSummaries
 // API call, and error handling.
@@ -10741,7 +10741,7 @@ const opListResourceDataSync = "ListResourceDataSync"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceDataSync for more information on using the ListResourceDataSync
 // API call, and error handling.
@@ -10893,7 +10893,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -10980,7 +10980,7 @@ const opModifyDocumentPermission = "ModifyDocumentPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyDocumentPermission for more information on using the ModifyDocumentPermission
 // API call, and error handling.
@@ -11078,7 +11078,7 @@ const opPutComplianceItems = "PutComplianceItems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutComplianceItems for more information on using the PutComplianceItems
 // API call, and error handling.
@@ -11220,7 +11220,7 @@ const opPutInventory = "PutInventory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutInventory for more information on using the PutInventory
 // API call, and error handling.
@@ -11349,7 +11349,7 @@ const opPutParameter = "PutParameter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutParameter for more information on using the PutParameter
 // API call, and error handling.
@@ -11480,7 +11480,7 @@ const opRegisterDefaultPatchBaseline = "RegisterDefaultPatchBaseline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterDefaultPatchBaseline for more information on using the RegisterDefaultPatchBaseline
 // API call, and error handling.
@@ -11576,7 +11576,7 @@ const opRegisterPatchBaselineForPatchGroup = "RegisterPatchBaselineForPatchGroup
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterPatchBaselineForPatchGroup for more information on using the RegisterPatchBaselineForPatchGroup
 // API call, and error handling.
@@ -11679,7 +11679,7 @@ const opRegisterTargetWithMaintenanceWindow = "RegisterTargetWithMaintenanceWind
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterTargetWithMaintenanceWindow for more information on using the RegisterTargetWithMaintenanceWindow
 // API call, and error handling.
@@ -11778,7 +11778,7 @@ const opRegisterTaskWithMaintenanceWindow = "RegisterTaskWithMaintenanceWindow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterTaskWithMaintenanceWindow for more information on using the RegisterTaskWithMaintenanceWindow
 // API call, and error handling.
@@ -11881,7 +11881,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.
@@ -11973,7 +11973,7 @@ const opResetServiceSetting = "ResetServiceSetting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetServiceSetting for more information on using the ResetServiceSetting
 // API call, and error handling.
@@ -12075,7 +12075,7 @@ const opResumeSession = "ResumeSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResumeSession for more information on using the ResumeSession
 // API call, and error handling.
@@ -12166,7 +12166,7 @@ const opSendAutomationSignal = "SendAutomationSignal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendAutomationSignal for more information on using the SendAutomationSignal
 // API call, and error handling.
@@ -12258,7 +12258,7 @@ const opSendCommand = "SendCommand"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendCommand for more information on using the SendCommand
 // API call, and error handling.
@@ -12384,7 +12384,7 @@ const opStartAssociationsOnce = "StartAssociationsOnce"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartAssociationsOnce for more information on using the StartAssociationsOnce
 // API call, and error handling.
@@ -12468,7 +12468,7 @@ const opStartAutomationExecution = "StartAutomationExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartAutomationExecution for more information on using the StartAutomationExecution
 // API call, and error handling.
@@ -12570,7 +12570,7 @@ const opStartSession = "StartSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSession for more information on using the StartSession
 // API call, and error handling.
@@ -12670,7 +12670,7 @@ const opStopAutomationExecution = "StopAutomationExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopAutomationExecution for more information on using the StopAutomationExecution
 // API call, and error handling.
@@ -12757,7 +12757,7 @@ const opTerminateSession = "TerminateSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateSession for more information on using the TerminateSession
 // API call, and error handling.
@@ -12846,7 +12846,7 @@ const opUpdateAssociation = "UpdateAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAssociation for more information on using the UpdateAssociation
 // API call, and error handling.
@@ -12976,7 +12976,7 @@ const opUpdateAssociationStatus = "UpdateAssociationStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAssociationStatus for more information on using the UpdateAssociationStatus
 // API call, and error handling.
@@ -13081,7 +13081,7 @@ const opUpdateDocument = "UpdateDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDocument for more information on using the UpdateDocument
 // API call, and error handling.
@@ -13191,7 +13191,7 @@ const opUpdateDocumentDefaultVersion = "UpdateDocumentDefaultVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDocumentDefaultVersion for more information on using the UpdateDocumentDefaultVersion
 // API call, and error handling.
@@ -13279,7 +13279,7 @@ const opUpdateMaintenanceWindow = "UpdateMaintenanceWindow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMaintenanceWindow for more information on using the UpdateMaintenanceWindow
 // API call, and error handling.
@@ -13373,7 +13373,7 @@ const opUpdateMaintenanceWindowTarget = "UpdateMaintenanceWindowTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMaintenanceWindowTarget for more information on using the UpdateMaintenanceWindowTarget
 // API call, and error handling.
@@ -13477,7 +13477,7 @@ const opUpdateMaintenanceWindowTask = "UpdateMaintenanceWindowTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMaintenanceWindowTask for more information on using the UpdateMaintenanceWindowTask
 // API call, and error handling.
@@ -13591,7 +13591,7 @@ const opUpdateManagedInstanceRole = "UpdateManagedInstanceRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateManagedInstanceRole for more information on using the UpdateManagedInstanceRole
 // API call, and error handling.
@@ -13686,7 +13686,7 @@ const opUpdateOpsItem = "UpdateOpsItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOpsItem for more information on using the UpdateOpsItem
 // API call, and error handling.
@@ -13789,7 +13789,7 @@ const opUpdatePatchBaseline = "UpdatePatchBaseline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePatchBaseline for more information on using the UpdatePatchBaseline
 // API call, and error handling.
@@ -13880,7 +13880,7 @@ const opUpdateResourceDataSync = "UpdateResourceDataSync"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResourceDataSync for more information on using the UpdateResourceDataSync
 // API call, and error handling.
@@ -13978,7 +13978,7 @@ const opUpdateServiceSetting = "UpdateServiceSetting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServiceSetting for more information on using the UpdateServiceSetting
 // API call, and error handling.

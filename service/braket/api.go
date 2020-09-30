@@ -20,7 +20,7 @@ const opCancelQuantumTask = "CancelQuantumTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelQuantumTask for more information on using the CancelQuantumTask
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateQuantumTask = "CreateQuantumTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateQuantumTask for more information on using the CreateQuantumTask
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opGetDevice = "GetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevice for more information on using the GetDevice
 // API call, and error handling.
@@ -302,7 +302,7 @@ const opGetQuantumTask = "GetQuantumTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQuantumTask for more information on using the GetQuantumTask
 // API call, and error handling.
@@ -394,7 +394,7 @@ const opSearchDevices = "SearchDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchDevices for more information on using the SearchDevices
 // API call, and error handling.
@@ -541,7 +541,7 @@ const opSearchQuantumTasks = "SearchQuantumTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchQuantumTasks for more information on using the SearchQuantumTasks
 // API call, and error handling.

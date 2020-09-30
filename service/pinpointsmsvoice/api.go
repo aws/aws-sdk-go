@@ -20,7 +20,7 @@ const opCreateConfigurationSet = "CreateConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSet for more information on using the CreateConfigurationSet
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateConfigurationSetEventDestination = "CreateConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSetEventDestination for more information on using the CreateConfigurationSetEventDestination
 // API call, and error handling.
@@ -212,7 +212,7 @@ const opDeleteConfigurationSet = "DeleteConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSet for more information on using the DeleteConfigurationSet
 // API call, and error handling.
@@ -303,7 +303,7 @@ const opDeleteConfigurationSetEventDestination = "DeleteConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSetEventDestination for more information on using the DeleteConfigurationSetEventDestination
 // API call, and error handling.
@@ -394,7 +394,7 @@ const opGetConfigurationSetEventDestinations = "GetConfigurationSetEventDestinat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConfigurationSetEventDestinations for more information on using the GetConfigurationSetEventDestinations
 // API call, and error handling.
@@ -486,7 +486,7 @@ const opListConfigurationSets = "ListConfigurationSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurationSets for more information on using the ListConfigurationSets
 // API call, and error handling.
@@ -574,7 +574,7 @@ const opSendVoiceMessage = "SendVoiceMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendVoiceMessage for more information on using the SendVoiceMessage
 // API call, and error handling.
@@ -661,7 +661,7 @@ const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationSetEventDestination for more information on using the UpdateConfigurationSetEventDestination
 // API call, and error handling.

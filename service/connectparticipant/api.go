@@ -20,7 +20,7 @@ const opCreateParticipantConnection = "CreateParticipantConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateParticipantConnection for more information on using the CreateParticipantConnection
 // API call, and error handling.
@@ -126,7 +126,7 @@ const opDisconnectParticipant = "DisconnectParticipant"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisconnectParticipant for more information on using the DisconnectParticipant
 // API call, and error handling.
@@ -217,7 +217,7 @@ const opGetTranscript = "GetTranscript"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTranscript for more information on using the GetTranscript
 // API call, and error handling.
@@ -365,7 +365,7 @@ const opSendEvent = "SendEvent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendEvent for more information on using the SendEvent
 // API call, and error handling.
@@ -455,7 +455,7 @@ const opSendMessage = "SendMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendMessage for more information on using the SendMessage
 // API call, and error handling.

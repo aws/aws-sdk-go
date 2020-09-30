@@ -20,7 +20,7 @@ const opBatchMeterUsage = "BatchMeterUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchMeterUsage for more information on using the BatchMeterUsage
 // API call, and error handling.
@@ -129,7 +129,7 @@ const opMeterUsage = "MeterUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MeterUsage for more information on using the MeterUsage
 // API call, and error handling.
@@ -241,7 +241,7 @@ const opRegisterUsage = "RegisterUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterUsage for more information on using the RegisterUsage
 // API call, and error handling.
@@ -377,7 +377,7 @@ const opResolveCustomer = "ResolveCustomer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResolveCustomer for more information on using the ResolveCustomer
 // API call, and error handling.

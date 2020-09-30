@@ -21,7 +21,7 @@ const opCloneReceiptRuleSet = "CloneReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CloneReceiptRuleSet for more information on using the CloneReceiptRuleSet
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateConfigurationSet = "CreateConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSet for more information on using the CreateConfigurationSet
 // API call, and error handling.
@@ -209,7 +209,7 @@ const opCreateConfigurationSetEventDestination = "CreateConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSetEventDestination for more information on using the CreateConfigurationSetEventDestination
 // API call, and error handling.
@@ -319,7 +319,7 @@ const opCreateConfigurationSetTrackingOptions = "CreateConfigurationSetTrackingO
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSetTrackingOptions for more information on using the CreateConfigurationSetTrackingOptions
 // API call, and error handling.
@@ -417,7 +417,7 @@ const opCreateCustomVerificationEmailTemplate = "CreateCustomVerificationEmailTe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCustomVerificationEmailTemplate for more information on using the CreateCustomVerificationEmailTemplate
 // API call, and error handling.
@@ -516,7 +516,7 @@ const opCreateReceiptFilter = "CreateReceiptFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReceiptFilter for more information on using the CreateReceiptFilter
 // API call, and error handling.
@@ -605,7 +605,7 @@ const opCreateReceiptRule = "CreateReceiptRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReceiptRule for more information on using the CreateReceiptRule
 // API call, and error handling.
@@ -717,7 +717,7 @@ const opCreateReceiptRuleSet = "CreateReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReceiptRuleSet for more information on using the CreateReceiptRuleSet
 // API call, and error handling.
@@ -806,7 +806,7 @@ const opCreateTemplate = "CreateTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTemplate for more information on using the CreateTemplate
 // API call, and error handling.
@@ -898,7 +898,7 @@ const opDeleteConfigurationSet = "DeleteConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSet for more information on using the DeleteConfigurationSet
 // API call, and error handling.
@@ -982,7 +982,7 @@ const opDeleteConfigurationSetEventDestination = "DeleteConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSetEventDestination for more information on using the DeleteConfigurationSetEventDestination
 // API call, and error handling.
@@ -1070,7 +1070,7 @@ const opDeleteConfigurationSetTrackingOptions = "DeleteConfigurationSetTrackingO
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSetTrackingOptions for more information on using the DeleteConfigurationSetTrackingOptions
 // API call, and error handling.
@@ -1163,7 +1163,7 @@ const opDeleteCustomVerificationEmailTemplate = "DeleteCustomVerificationEmailTe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCustomVerificationEmailTemplate for more information on using the DeleteCustomVerificationEmailTemplate
 // API call, and error handling.
@@ -1244,7 +1244,7 @@ const opDeleteIdentity = "DeleteIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIdentity for more information on using the DeleteIdentity
 // API call, and error handling.
@@ -1322,7 +1322,7 @@ const opDeleteIdentityPolicy = "DeleteIdentityPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIdentityPolicy for more information on using the DeleteIdentityPolicy
 // API call, and error handling.
@@ -1408,7 +1408,7 @@ const opDeleteReceiptFilter = "DeleteReceiptFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReceiptFilter for more information on using the DeleteReceiptFilter
 // API call, and error handling.
@@ -1488,7 +1488,7 @@ const opDeleteReceiptRule = "DeleteReceiptRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReceiptRule for more information on using the DeleteReceiptRule
 // API call, and error handling.
@@ -1573,7 +1573,7 @@ const opDeleteReceiptRuleSet = "DeleteReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReceiptRuleSet for more information on using the DeleteReceiptRuleSet
 // API call, and error handling.
@@ -1660,7 +1660,7 @@ const opDeleteTemplate = "DeleteTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTemplate for more information on using the DeleteTemplate
 // API call, and error handling.
@@ -1737,7 +1737,7 @@ const opDeleteVerifiedEmailAddress = "DeleteVerifiedEmailAddress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVerifiedEmailAddress for more information on using the DeleteVerifiedEmailAddress
 // API call, and error handling.
@@ -1813,7 +1813,7 @@ const opDescribeActiveReceiptRuleSet = "DescribeActiveReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeActiveReceiptRuleSet for more information on using the DescribeActiveReceiptRuleSet
 // API call, and error handling.
@@ -1893,7 +1893,7 @@ const opDescribeConfigurationSet = "DescribeConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationSet for more information on using the DescribeConfigurationSet
 // API call, and error handling.
@@ -1975,7 +1975,7 @@ const opDescribeReceiptRule = "DescribeReceiptRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReceiptRule for more information on using the DescribeReceiptRule
 // API call, and error handling.
@@ -2062,7 +2062,7 @@ const opDescribeReceiptRuleSet = "DescribeReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReceiptRuleSet for more information on using the DescribeReceiptRuleSet
 // API call, and error handling.
@@ -2146,7 +2146,7 @@ const opGetAccountSendingEnabled = "GetAccountSendingEnabled"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountSendingEnabled for more information on using the GetAccountSendingEnabled
 // API call, and error handling.
@@ -2223,7 +2223,7 @@ const opGetCustomVerificationEmailTemplate = "GetCustomVerificationEmailTemplate
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCustomVerificationEmailTemplate for more information on using the GetCustomVerificationEmailTemplate
 // API call, and error handling.
@@ -2310,7 +2310,7 @@ const opGetIdentityDkimAttributes = "GetIdentityDkimAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityDkimAttributes for more information on using the GetIdentityDkimAttributes
 // API call, and error handling.
@@ -2405,7 +2405,7 @@ const opGetIdentityMailFromDomainAttributes = "GetIdentityMailFromDomainAttribut
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityMailFromDomainAttributes for more information on using the GetIdentityMailFromDomainAttributes
 // API call, and error handling.
@@ -2483,7 +2483,7 @@ const opGetIdentityNotificationAttributes = "GetIdentityNotificationAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityNotificationAttributes for more information on using the GetIdentityNotificationAttributes
 // API call, and error handling.
@@ -2564,7 +2564,7 @@ const opGetIdentityPolicies = "GetIdentityPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityPolicies for more information on using the GetIdentityPolicies
 // API call, and error handling.
@@ -2650,7 +2650,7 @@ const opGetIdentityVerificationAttributes = "GetIdentityVerificationAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityVerificationAttributes for more information on using the GetIdentityVerificationAttributes
 // API call, and error handling.
@@ -2745,7 +2745,7 @@ const opGetSendQuota = "GetSendQuota"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSendQuota for more information on using the GetSendQuota
 // API call, and error handling.
@@ -2821,7 +2821,7 @@ const opGetSendStatistics = "GetSendStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSendStatistics for more information on using the GetSendStatistics
 // API call, and error handling.
@@ -2899,7 +2899,7 @@ const opGetTemplate = "GetTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTemplate for more information on using the GetTemplate
 // API call, and error handling.
@@ -2982,7 +2982,7 @@ const opListConfigurationSets = "ListConfigurationSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurationSets for more information on using the ListConfigurationSets
 // API call, and error handling.
@@ -3066,7 +3066,7 @@ const opListCustomVerificationEmailTemplates = "ListCustomVerificationEmailTempl
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCustomVerificationEmailTemplates for more information on using the ListCustomVerificationEmailTemplates
 // API call, and error handling.
@@ -3205,7 +3205,7 @@ const opListIdentities = "ListIdentities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIdentities for more information on using the ListIdentities
 // API call, and error handling.
@@ -3341,7 +3341,7 @@ const opListIdentityPolicies = "ListIdentityPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIdentityPolicies for more information on using the ListIdentityPolicies
 // API call, and error handling.
@@ -3426,7 +3426,7 @@ const opListReceiptFilters = "ListReceiptFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReceiptFilters for more information on using the ListReceiptFilters
 // API call, and error handling.
@@ -3506,7 +3506,7 @@ const opListReceiptRuleSets = "ListReceiptRuleSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReceiptRuleSets for more information on using the ListReceiptRuleSets
 // API call, and error handling.
@@ -3588,7 +3588,7 @@ const opListTemplates = "ListTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTemplates for more information on using the ListTemplates
 // API call, and error handling.
@@ -3665,7 +3665,7 @@ const opListVerifiedEmailAddresses = "ListVerifiedEmailAddresses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVerifiedEmailAddresses for more information on using the ListVerifiedEmailAddresses
 // API call, and error handling.
@@ -3740,7 +3740,7 @@ const opPutConfigurationSetDeliveryOptions = "PutConfigurationSetDeliveryOptions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationSetDeliveryOptions for more information on using the PutConfigurationSetDeliveryOptions
 // API call, and error handling.
@@ -3823,7 +3823,7 @@ const opPutIdentityPolicy = "PutIdentityPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutIdentityPolicy for more information on using the PutIdentityPolicy
 // API call, and error handling.
@@ -3914,7 +3914,7 @@ const opReorderReceiptRuleSet = "ReorderReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReorderReceiptRuleSet for more information on using the ReorderReceiptRuleSet
 // API call, and error handling.
@@ -4006,7 +4006,7 @@ const opSendBounce = "SendBounce"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendBounce for more information on using the SendBounce
 // API call, and error handling.
@@ -4096,7 +4096,7 @@ const opSendBulkTemplatedEmail = "SendBulkTemplatedEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendBulkTemplatedEmail for more information on using the SendBulkTemplatedEmail
 // API call, and error handling.
@@ -4233,7 +4233,7 @@ const opSendCustomVerificationEmail = "SendCustomVerificationEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendCustomVerificationEmail for more information on using the SendCustomVerificationEmail
 // API call, and error handling.
@@ -4338,7 +4338,7 @@ const opSendEmail = "SendEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendEmail for more information on using the SendEmail
 // API call, and error handling.
@@ -4471,7 +4471,7 @@ const opSendRawEmail = "SendRawEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendRawEmail for more information on using the SendRawEmail
 // API call, and error handling.
@@ -4641,7 +4641,7 @@ const opSendTemplatedEmail = "SendTemplatedEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendTemplatedEmail for more information on using the SendTemplatedEmail
 // API call, and error handling.
@@ -4785,7 +4785,7 @@ const opSetActiveReceiptRuleSet = "SetActiveReceiptRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetActiveReceiptRuleSet for more information on using the SetActiveReceiptRuleSet
 // API call, and error handling.
@@ -4873,7 +4873,7 @@ const opSetIdentityDkimEnabled = "SetIdentityDkimEnabled"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityDkimEnabled for more information on using the SetIdentityDkimEnabled
 // API call, and error handling.
@@ -4965,7 +4965,7 @@ const opSetIdentityFeedbackForwardingEnabled = "SetIdentityFeedbackForwardingEna
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityFeedbackForwardingEnabled for more information on using the SetIdentityFeedbackForwardingEnabled
 // API call, and error handling.
@@ -5051,7 +5051,7 @@ const opSetIdentityHeadersInNotificationsEnabled = "SetIdentityHeadersInNotifica
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityHeadersInNotificationsEnabled for more information on using the SetIdentityHeadersInNotificationsEnabled
 // API call, and error handling.
@@ -5133,7 +5133,7 @@ const opSetIdentityMailFromDomain = "SetIdentityMailFromDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityMailFromDomain for more information on using the SetIdentityMailFromDomain
 // API call, and error handling.
@@ -5216,7 +5216,7 @@ const opSetIdentityNotificationTopic = "SetIdentityNotificationTopic"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityNotificationTopic for more information on using the SetIdentityNotificationTopic
 // API call, and error handling.
@@ -5301,7 +5301,7 @@ const opSetReceiptRulePosition = "SetReceiptRulePosition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetReceiptRulePosition for more information on using the SetReceiptRulePosition
 // API call, and error handling.
@@ -5389,7 +5389,7 @@ const opTestRenderTemplate = "TestRenderTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestRenderTemplate for more information on using the TestRenderTemplate
 // API call, and error handling.
@@ -5481,7 +5481,7 @@ const opUpdateAccountSendingEnabled = "UpdateAccountSendingEnabled"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccountSendingEnabled for more information on using the UpdateAccountSendingEnabled
 // API call, and error handling.
@@ -5562,7 +5562,7 @@ const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationSetEventDestination for more information on using the UpdateConfigurationSetEventDestination
 // API call, and error handling.
@@ -5668,7 +5668,7 @@ const opUpdateConfigurationSetReputationMetricsEnabled = "UpdateConfigurationSet
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationSetReputationMetricsEnabled for more information on using the UpdateConfigurationSetReputationMetricsEnabled
 // API call, and error handling.
@@ -5754,7 +5754,7 @@ const opUpdateConfigurationSetSendingEnabled = "UpdateConfigurationSetSendingEna
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationSetSendingEnabled for more information on using the UpdateConfigurationSetSendingEnabled
 // API call, and error handling.
@@ -5840,7 +5840,7 @@ const opUpdateConfigurationSetTrackingOptions = "UpdateConfigurationSetTrackingO
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationSetTrackingOptions for more information on using the UpdateConfigurationSetTrackingOptions
 // API call, and error handling.
@@ -5937,7 +5937,7 @@ const opUpdateCustomVerificationEmailTemplate = "UpdateCustomVerificationEmailTe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCustomVerificationEmailTemplate for more information on using the UpdateCustomVerificationEmailTemplate
 // API call, and error handling.
@@ -6032,7 +6032,7 @@ const opUpdateReceiptRule = "UpdateReceiptRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateReceiptRule for more information on using the UpdateReceiptRule
 // API call, and error handling.
@@ -6141,7 +6141,7 @@ const opUpdateTemplate = "UpdateTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTemplate for more information on using the UpdateTemplate
 // API call, and error handling.
@@ -6230,7 +6230,7 @@ const opVerifyDomainDkim = "VerifyDomainDkim"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifyDomainDkim for more information on using the VerifyDomainDkim
 // API call, and error handling.
@@ -6332,7 +6332,7 @@ const opVerifyDomainIdentity = "VerifyDomainIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifyDomainIdentity for more information on using the VerifyDomainIdentity
 // API call, and error handling.
@@ -6411,7 +6411,7 @@ const opVerifyEmailAddress = "VerifyEmailAddress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifyEmailAddress for more information on using the VerifyEmailAddress
 // API call, and error handling.
@@ -6486,7 +6486,7 @@ const opVerifyEmailIdentity = "VerifyEmailIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifyEmailIdentity for more information on using the VerifyEmailIdentity
 // API call, and error handling.

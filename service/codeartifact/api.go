@@ -21,7 +21,7 @@ const opAssociateExternalConnection = "AssociateExternalConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateExternalConnection for more information on using the AssociateExternalConnection
 // API call, and error handling.
@@ -125,7 +125,7 @@ const opCopyPackageVersions = "CopyPackageVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyPackageVersions for more information on using the CopyPackageVersions
 // API call, and error handling.
@@ -229,7 +229,7 @@ const opCreateDomain = "CreateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomain for more information on using the CreateDomain
 // API call, and error handling.
@@ -338,7 +338,7 @@ const opCreateRepository = "CreateRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRepository for more information on using the CreateRepository
 // API call, and error handling.
@@ -439,7 +439,7 @@ const opDeleteDomain = "DeleteDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomain for more information on using the DeleteDomain
 // API call, and error handling.
@@ -537,7 +537,7 @@ const opDeleteDomainPermissionsPolicy = "DeleteDomainPermissionsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomainPermissionsPolicy for more information on using the DeleteDomainPermissionsPolicy
 // API call, and error handling.
@@ -634,7 +634,7 @@ const opDeletePackageVersions = "DeletePackageVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePackageVersions for more information on using the DeletePackageVersions
 // API call, and error handling.
@@ -736,7 +736,7 @@ const opDeleteRepository = "DeleteRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRepository for more information on using the DeleteRepository
 // API call, and error handling.
@@ -833,7 +833,7 @@ const opDeleteRepositoryPermissionsPolicy = "DeleteRepositoryPermissionsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRepositoryPermissionsPolicy for more information on using the DeleteRepositoryPermissionsPolicy
 // API call, and error handling.
@@ -936,7 +936,7 @@ const opDescribeDomain = "DescribeDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomain for more information on using the DescribeDomain
 // API call, and error handling.
@@ -1031,7 +1031,7 @@ const opDescribePackageVersion = "DescribePackageVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePackageVersion for more information on using the DescribePackageVersion
 // API call, and error handling.
@@ -1129,7 +1129,7 @@ const opDescribeRepository = "DescribeRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRepository for more information on using the DescribeRepository
 // API call, and error handling.
@@ -1224,7 +1224,7 @@ const opDisassociateExternalConnection = "DisassociateExternalConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateExternalConnection for more information on using the DisassociateExternalConnection
 // API call, and error handling.
@@ -1325,7 +1325,7 @@ const opDisposePackageVersions = "DisposePackageVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisposePackageVersions for more information on using the DisposePackageVersions
 // API call, and error handling.
@@ -1434,7 +1434,7 @@ const opGetAuthorizationToken = "GetAuthorizationToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAuthorizationToken for more information on using the GetAuthorizationToken
 // API call, and error handling.
@@ -1547,7 +1547,7 @@ const opGetDomainPermissionsPolicy = "GetDomainPermissionsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomainPermissionsPolicy for more information on using the GetDomainPermissionsPolicy
 // API call, and error handling.
@@ -1646,7 +1646,7 @@ const opGetPackageVersionAsset = "GetPackageVersionAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPackageVersionAsset for more information on using the GetPackageVersionAsset
 // API call, and error handling.
@@ -1742,7 +1742,7 @@ const opGetPackageVersionReadme = "GetPackageVersionReadme"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPackageVersionReadme for more information on using the GetPackageVersionReadme
 // API call, and error handling.
@@ -1842,7 +1842,7 @@ const opGetRepositoryEndpoint = "GetRepositoryEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRepositoryEndpoint for more information on using the GetRepositoryEndpoint
 // API call, and error handling.
@@ -1943,7 +1943,7 @@ const opGetRepositoryPermissionsPolicy = "GetRepositoryPermissionsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRepositoryPermissionsPolicy for more information on using the GetRepositoryPermissionsPolicy
 // API call, and error handling.
@@ -2037,7 +2037,7 @@ const opListDomains = "ListDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomains for more information on using the ListDomains
 // API call, and error handling.
@@ -2187,7 +2187,7 @@ const opListPackageVersionAssets = "ListPackageVersionAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackageVersionAssets for more information on using the ListPackageVersionAssets
 // API call, and error handling.
@@ -2340,7 +2340,7 @@ const opListPackageVersionDependencies = "ListPackageVersionDependencies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackageVersionDependencies for more information on using the ListPackageVersionDependencies
 // API call, and error handling.
@@ -2439,7 +2439,7 @@ const opListPackageVersions = "ListPackageVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackageVersions for more information on using the ListPackageVersions
 // API call, and error handling.
@@ -2592,7 +2592,7 @@ const opListPackages = "ListPackages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPackages for more information on using the ListPackages
 // API call, and error handling.
@@ -2745,7 +2745,7 @@ const opListRepositories = "ListRepositories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRepositories for more information on using the ListRepositories
 // API call, and error handling.
@@ -2895,7 +2895,7 @@ const opListRepositoriesInDomain = "ListRepositoriesInDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRepositoriesInDomain for more information on using the ListRepositoriesInDomain
 // API call, and error handling.
@@ -3049,7 +3049,7 @@ const opPutDomainPermissionsPolicy = "PutDomainPermissionsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDomainPermissionsPolicy for more information on using the PutDomainPermissionsPolicy
 // API call, and error handling.
@@ -3150,7 +3150,7 @@ const opPutRepositoryPermissionsPolicy = "PutRepositoryPermissionsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRepositoryPermissionsPolicy for more information on using the PutRepositoryPermissionsPolicy
 // API call, and error handling.
@@ -3252,7 +3252,7 @@ const opUpdatePackageVersionsStatus = "UpdatePackageVersionsStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePackageVersionsStatus for more information on using the UpdatePackageVersionsStatus
 // API call, and error handling.
@@ -3349,7 +3349,7 @@ const opUpdateRepository = "UpdateRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRepository for more information on using the UpdateRepository
 // API call, and error handling.

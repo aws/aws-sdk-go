@@ -21,7 +21,7 @@ const opCreateBackupPlan = "CreateBackupPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackupPlan for more information on using the CreateBackupPlan
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opCreateBackupSelection = "CreateBackupSelection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackupSelection for more information on using the CreateBackupSelection
 // API call, and error handling.
@@ -232,7 +232,7 @@ const opCreateBackupVault = "CreateBackupVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackupVault for more information on using the CreateBackupVault
 // API call, and error handling.
@@ -330,7 +330,7 @@ const opDeleteBackupPlan = "DeleteBackupPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackupPlan for more information on using the DeleteBackupPlan
 // API call, and error handling.
@@ -426,7 +426,7 @@ const opDeleteBackupSelection = "DeleteBackupSelection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackupSelection for more information on using the DeleteBackupSelection
 // API call, and error handling.
@@ -517,7 +517,7 @@ const opDeleteBackupVault = "DeleteBackupVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackupVault for more information on using the DeleteBackupVault
 // API call, and error handling.
@@ -612,7 +612,7 @@ const opDeleteBackupVaultAccessPolicy = "DeleteBackupVaultAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackupVaultAccessPolicy for more information on using the DeleteBackupVaultAccessPolicy
 // API call, and error handling.
@@ -702,7 +702,7 @@ const opDeleteBackupVaultNotifications = "DeleteBackupVaultNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackupVaultNotifications for more information on using the DeleteBackupVaultNotifications
 // API call, and error handling.
@@ -792,7 +792,7 @@ const opDeleteRecoveryPoint = "DeleteRecoveryPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRecoveryPoint for more information on using the DeleteRecoveryPoint
 // API call, and error handling.
@@ -886,7 +886,7 @@ const opDescribeBackupJob = "DescribeBackupJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBackupJob for more information on using the DescribeBackupJob
 // API call, and error handling.
@@ -979,7 +979,7 @@ const opDescribeBackupVault = "DescribeBackupVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBackupVault for more information on using the DescribeBackupVault
 // API call, and error handling.
@@ -1068,7 +1068,7 @@ const opDescribeCopyJob = "DescribeCopyJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCopyJob for more information on using the DescribeCopyJob
 // API call, and error handling.
@@ -1157,7 +1157,7 @@ const opDescribeProtectedResource = "DescribeProtectedResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProtectedResource for more information on using the DescribeProtectedResource
 // API call, and error handling.
@@ -1248,7 +1248,7 @@ const opDescribeRecoveryPoint = "DescribeRecoveryPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRecoveryPoint for more information on using the DescribeRecoveryPoint
 // API call, and error handling.
@@ -1338,7 +1338,7 @@ const opDescribeRegionSettings = "DescribeRegionSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRegionSettings for more information on using the DescribeRegionSettings
 // API call, and error handling.
@@ -1421,7 +1421,7 @@ const opDescribeRestoreJob = "DescribeRestoreJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRestoreJob for more information on using the DescribeRestoreJob
 // API call, and error handling.
@@ -1515,7 +1515,7 @@ const opExportBackupPlanTemplate = "ExportBackupPlanTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportBackupPlanTemplate for more information on using the ExportBackupPlanTemplate
 // API call, and error handling.
@@ -1604,7 +1604,7 @@ const opGetBackupPlan = "GetBackupPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackupPlan for more information on using the GetBackupPlan
 // API call, and error handling.
@@ -1694,7 +1694,7 @@ const opGetBackupPlanFromJSON = "GetBackupPlanFromJSON"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackupPlanFromJSON for more information on using the GetBackupPlanFromJSON
 // API call, and error handling.
@@ -1788,7 +1788,7 @@ const opGetBackupPlanFromTemplate = "GetBackupPlanFromTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackupPlanFromTemplate for more information on using the GetBackupPlanFromTemplate
 // API call, and error handling.
@@ -1877,7 +1877,7 @@ const opGetBackupSelection = "GetBackupSelection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackupSelection for more information on using the GetBackupSelection
 // API call, and error handling.
@@ -1967,7 +1967,7 @@ const opGetBackupVaultAccessPolicy = "GetBackupVaultAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackupVaultAccessPolicy for more information on using the GetBackupVaultAccessPolicy
 // API call, and error handling.
@@ -2057,7 +2057,7 @@ const opGetBackupVaultNotifications = "GetBackupVaultNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBackupVaultNotifications for more information on using the GetBackupVaultNotifications
 // API call, and error handling.
@@ -2146,7 +2146,7 @@ const opGetRecoveryPointRestoreMetadata = "GetRecoveryPointRestoreMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRecoveryPointRestoreMetadata for more information on using the GetRecoveryPointRestoreMetadata
 // API call, and error handling.
@@ -2235,7 +2235,7 @@ const opGetSupportedResourceTypes = "GetSupportedResourceTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSupportedResourceTypes for more information on using the GetSupportedResourceTypes
 // API call, and error handling.
@@ -2314,7 +2314,7 @@ const opListBackupJobs = "ListBackupJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackupJobs for more information on using the ListBackupJobs
 // API call, and error handling.
@@ -2455,7 +2455,7 @@ const opListBackupPlanTemplates = "ListBackupPlanTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackupPlanTemplates for more information on using the ListBackupPlanTemplates
 // API call, and error handling.
@@ -2603,7 +2603,7 @@ const opListBackupPlanVersions = "ListBackupPlanVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackupPlanVersions for more information on using the ListBackupPlanVersions
 // API call, and error handling.
@@ -2752,7 +2752,7 @@ const opListBackupPlans = "ListBackupPlans"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackupPlans for more information on using the ListBackupPlans
 // API call, and error handling.
@@ -2903,7 +2903,7 @@ const opListBackupSelections = "ListBackupSelections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackupSelections for more information on using the ListBackupSelections
 // API call, and error handling.
@@ -3051,7 +3051,7 @@ const opListBackupVaults = "ListBackupVaults"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackupVaults for more information on using the ListBackupVaults
 // API call, and error handling.
@@ -3199,7 +3199,7 @@ const opListCopyJobs = "ListCopyJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCopyJobs for more information on using the ListCopyJobs
 // API call, and error handling.
@@ -3340,7 +3340,7 @@ const opListProtectedResources = "ListProtectedResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProtectedResources for more information on using the ListProtectedResources
 // API call, and error handling.
@@ -3483,7 +3483,7 @@ const opListRecoveryPointsByBackupVault = "ListRecoveryPointsByBackupVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecoveryPointsByBackupVault for more information on using the ListRecoveryPointsByBackupVault
 // API call, and error handling.
@@ -3631,7 +3631,7 @@ const opListRecoveryPointsByResource = "ListRecoveryPointsByResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecoveryPointsByResource for more information on using the ListRecoveryPointsByResource
 // API call, and error handling.
@@ -3779,7 +3779,7 @@ const opListRestoreJobs = "ListRestoreJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRestoreJobs for more information on using the ListRestoreJobs
 // API call, and error handling.
@@ -3927,7 +3927,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -4077,7 +4077,7 @@ const opPutBackupVaultAccessPolicy = "PutBackupVaultAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBackupVaultAccessPolicy for more information on using the PutBackupVaultAccessPolicy
 // API call, and error handling.
@@ -4169,7 +4169,7 @@ const opPutBackupVaultNotifications = "PutBackupVaultNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBackupVaultNotifications for more information on using the PutBackupVaultNotifications
 // API call, and error handling.
@@ -4259,7 +4259,7 @@ const opStartBackupJob = "StartBackupJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartBackupJob for more information on using the StartBackupJob
 // API call, and error handling.
@@ -4352,7 +4352,7 @@ const opStartCopyJob = "StartCopyJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartCopyJob for more information on using the StartCopyJob
 // API call, and error handling.
@@ -4445,7 +4445,7 @@ const opStartRestoreJob = "StartRestoreJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartRestoreJob for more information on using the StartRestoreJob
 // API call, and error handling.
@@ -4538,7 +4538,7 @@ const opStopBackupJob = "StopBackupJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopBackupJob for more information on using the StopBackupJob
 // API call, and error handling.
@@ -4632,7 +4632,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4727,7 +4727,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4818,7 +4818,7 @@ const opUpdateBackupPlan = "UpdateBackupPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBackupPlan for more information on using the UpdateBackupPlan
 // API call, and error handling.
@@ -4908,7 +4908,7 @@ const opUpdateRecoveryPointLifecycle = "UpdateRecoveryPointLifecycle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRecoveryPointLifecycle for more information on using the UpdateRecoveryPointLifecycle
 // API call, and error handling.
@@ -5007,7 +5007,7 @@ const opUpdateRegionSettings = "UpdateRegionSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRegionSettings for more information on using the UpdateRegionSettings
 // API call, and error handling.

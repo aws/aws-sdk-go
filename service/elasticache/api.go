@@ -21,7 +21,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -121,7 +121,7 @@ const opAuthorizeCacheSecurityGroupIngress = "AuthorizeCacheSecurityGroupIngress
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AuthorizeCacheSecurityGroupIngress for more information on using the AuthorizeCacheSecurityGroupIngress
 // API call, and error handling.
@@ -219,7 +219,7 @@ const opBatchApplyUpdateAction = "BatchApplyUpdateAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchApplyUpdateAction for more information on using the BatchApplyUpdateAction
 // API call, and error handling.
@@ -302,7 +302,7 @@ const opBatchStopUpdateAction = "BatchStopUpdateAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchStopUpdateAction for more information on using the BatchStopUpdateAction
 // API call, and error handling.
@@ -385,7 +385,7 @@ const opCompleteMigration = "CompleteMigration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteMigration for more information on using the CompleteMigration
 // API call, and error handling.
@@ -470,7 +470,7 @@ const opCopySnapshot = "CopySnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopySnapshot for more information on using the CopySnapshot
 // API call, and error handling.
@@ -621,7 +621,7 @@ const opCreateCacheCluster = "CreateCacheCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCacheCluster for more information on using the CreateCacheCluster
 // API call, and error handling.
@@ -752,7 +752,7 @@ const opCreateCacheParameterGroup = "CreateCacheParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCacheParameterGroup for more information on using the CreateCacheParameterGroup
 // API call, and error handling.
@@ -858,7 +858,7 @@ const opCreateCacheSecurityGroup = "CreateCacheSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCacheSecurityGroup for more information on using the CreateCacheSecurityGroup
 // API call, and error handling.
@@ -953,7 +953,7 @@ const opCreateCacheSubnetGroup = "CreateCacheSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCacheSubnetGroup for more information on using the CreateCacheSubnetGroup
 // API call, and error handling.
@@ -1047,7 +1047,7 @@ const opCreateGlobalReplicationGroup = "CreateGlobalReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGlobalReplicationGroup for more information on using the CreateGlobalReplicationGroup
 // API call, and error handling.
@@ -1147,7 +1147,7 @@ const opCreateReplicationGroup = "CreateReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReplicationGroup for more information on using the CreateReplicationGroup
 // API call, and error handling.
@@ -1309,7 +1309,7 @@ const opCreateSnapshot = "CreateSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSnapshot for more information on using the CreateSnapshot
 // API call, and error handling.
@@ -1424,7 +1424,7 @@ const opDecreaseNodeGroupsInGlobalReplicationGroup = "DecreaseNodeGroupsInGlobal
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DecreaseNodeGroupsInGlobalReplicationGroup for more information on using the DecreaseNodeGroupsInGlobalReplicationGroup
 // API call, and error handling.
@@ -1512,7 +1512,7 @@ const opDecreaseReplicaCount = "DecreaseReplicaCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DecreaseReplicaCount for more information on using the DecreaseReplicaCount
 // API call, and error handling.
@@ -1633,7 +1633,7 @@ const opDeleteCacheCluster = "DeleteCacheCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCacheCluster for more information on using the DeleteCacheCluster
 // API call, and error handling.
@@ -1754,7 +1754,7 @@ const opDeleteCacheParameterGroup = "DeleteCacheParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCacheParameterGroup for more information on using the DeleteCacheParameterGroup
 // API call, and error handling.
@@ -1846,7 +1846,7 @@ const opDeleteCacheSecurityGroup = "DeleteCacheSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCacheSecurityGroup for more information on using the DeleteCacheSecurityGroup
 // API call, and error handling.
@@ -1938,7 +1938,7 @@ const opDeleteCacheSubnetGroup = "DeleteCacheSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCacheSubnetGroup for more information on using the DeleteCacheSubnetGroup
 // API call, and error handling.
@@ -2024,7 +2024,7 @@ const opDeleteGlobalReplicationGroup = "DeleteGlobalReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGlobalReplicationGroup for more information on using the DeleteGlobalReplicationGroup
 // API call, and error handling.
@@ -2123,7 +2123,7 @@ const opDeleteReplicationGroup = "DeleteReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReplicationGroup for more information on using the DeleteReplicationGroup
 // API call, and error handling.
@@ -2239,7 +2239,7 @@ const opDeleteSnapshot = "DeleteSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSnapshot for more information on using the DeleteSnapshot
 // API call, and error handling.
@@ -2332,7 +2332,7 @@ const opDescribeCacheClusters = "DescribeCacheClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCacheClusters for more information on using the DescribeCacheClusters
 // API call, and error handling.
@@ -2496,7 +2496,7 @@ const opDescribeCacheEngineVersions = "DescribeCacheEngineVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCacheEngineVersions for more information on using the DescribeCacheEngineVersions
 // API call, and error handling.
@@ -2628,7 +2628,7 @@ const opDescribeCacheParameterGroups = "DescribeCacheParameterGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCacheParameterGroups for more information on using the DescribeCacheParameterGroups
 // API call, and error handling.
@@ -2774,7 +2774,7 @@ const opDescribeCacheParameters = "DescribeCacheParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCacheParameters for more information on using the DescribeCacheParameters
 // API call, and error handling.
@@ -2918,7 +2918,7 @@ const opDescribeCacheSecurityGroups = "DescribeCacheSecurityGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCacheSecurityGroups for more information on using the DescribeCacheSecurityGroups
 // API call, and error handling.
@@ -3064,7 +3064,7 @@ const opDescribeCacheSubnetGroups = "DescribeCacheSubnetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCacheSubnetGroups for more information on using the DescribeCacheSubnetGroups
 // API call, and error handling.
@@ -3205,7 +3205,7 @@ const opDescribeEngineDefaultParameters = "DescribeEngineDefaultParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEngineDefaultParameters for more information on using the DescribeEngineDefaultParameters
 // API call, and error handling.
@@ -3346,7 +3346,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -3491,7 +3491,7 @@ const opDescribeGlobalReplicationGroups = "DescribeGlobalReplicationGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGlobalReplicationGroups for more information on using the DescribeGlobalReplicationGroups
 // API call, and error handling.
@@ -3635,7 +3635,7 @@ const opDescribeReplicationGroups = "DescribeReplicationGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationGroups for more information on using the DescribeReplicationGroups
 // API call, and error handling.
@@ -3782,7 +3782,7 @@ const opDescribeReservedCacheNodes = "DescribeReservedCacheNodes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservedCacheNodes for more information on using the DescribeReservedCacheNodes
 // API call, and error handling.
@@ -3926,7 +3926,7 @@ const opDescribeReservedCacheNodesOfferings = "DescribeReservedCacheNodesOfferin
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservedCacheNodesOfferings for more information on using the DescribeReservedCacheNodesOfferings
 // API call, and error handling.
@@ -4069,7 +4069,7 @@ const opDescribeServiceUpdates = "DescribeServiceUpdates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServiceUpdates for more information on using the DescribeServiceUpdates
 // API call, and error handling.
@@ -4212,7 +4212,7 @@ const opDescribeSnapshots = "DescribeSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSnapshots for more information on using the DescribeSnapshots
 // API call, and error handling.
@@ -4363,7 +4363,7 @@ const opDescribeUpdateActions = "DescribeUpdateActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUpdateActions for more information on using the DescribeUpdateActions
 // API call, and error handling.
@@ -4503,7 +4503,7 @@ const opDisassociateGlobalReplicationGroup = "DisassociateGlobalReplicationGroup
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateGlobalReplicationGroup for more information on using the DisassociateGlobalReplicationGroup
 // API call, and error handling.
@@ -4593,7 +4593,7 @@ const opFailoverGlobalReplicationGroup = "FailoverGlobalReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See FailoverGlobalReplicationGroup for more information on using the FailoverGlobalReplicationGroup
 // API call, and error handling.
@@ -4683,7 +4683,7 @@ const opIncreaseNodeGroupsInGlobalReplicationGroup = "IncreaseNodeGroupsInGlobal
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IncreaseNodeGroupsInGlobalReplicationGroup for more information on using the IncreaseNodeGroupsInGlobalReplicationGroup
 // API call, and error handling.
@@ -4768,7 +4768,7 @@ const opIncreaseReplicaCount = "IncreaseReplicaCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IncreaseReplicaCount for more information on using the IncreaseReplicaCount
 // API call, and error handling.
@@ -4889,7 +4889,7 @@ const opListAllowedNodeTypeModifications = "ListAllowedNodeTypeModifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAllowedNodeTypeModifications for more information on using the ListAllowedNodeTypeModifications
 // API call, and error handling.
@@ -4982,7 +4982,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -5076,7 +5076,7 @@ const opModifyCacheCluster = "ModifyCacheCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyCacheCluster for more information on using the ModifyCacheCluster
 // API call, and error handling.
@@ -5193,7 +5193,7 @@ const opModifyCacheParameterGroup = "ModifyCacheParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyCacheParameterGroup for more information on using the ModifyCacheParameterGroup
 // API call, and error handling.
@@ -5288,7 +5288,7 @@ const opModifyCacheSubnetGroup = "ModifyCacheSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyCacheSubnetGroup for more information on using the ModifyCacheSubnetGroup
 // API call, and error handling.
@@ -5378,7 +5378,7 @@ const opModifyGlobalReplicationGroup = "ModifyGlobalReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyGlobalReplicationGroup for more information on using the ModifyGlobalReplicationGroup
 // API call, and error handling.
@@ -5463,7 +5463,7 @@ const opModifyReplicationGroup = "ModifyReplicationGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyReplicationGroup for more information on using the ModifyReplicationGroup
 // API call, and error handling.
@@ -5595,7 +5595,7 @@ const opModifyReplicationGroupShardConfiguration = "ModifyReplicationGroupShardC
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyReplicationGroupShardConfiguration for more information on using the ModifyReplicationGroupShardConfiguration
 // API call, and error handling.
@@ -5707,7 +5707,7 @@ const opPurchaseReservedCacheNodesOffering = "PurchaseReservedCacheNodesOffering
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurchaseReservedCacheNodesOffering for more information on using the PurchaseReservedCacheNodesOffering
 // API call, and error handling.
@@ -5799,7 +5799,7 @@ const opRebalanceSlotsInGlobalReplicationGroup = "RebalanceSlotsInGlobalReplicat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebalanceSlotsInGlobalReplicationGroup for more information on using the RebalanceSlotsInGlobalReplicationGroup
 // API call, and error handling.
@@ -5885,7 +5885,7 @@ const opRebootCacheCluster = "RebootCacheCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootCacheCluster for more information on using the RebootCacheCluster
 // API call, and error handling.
@@ -5983,7 +5983,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.
@@ -6071,7 +6071,7 @@ const opResetCacheParameterGroup = "ResetCacheParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetCacheParameterGroup for more information on using the ResetCacheParameterGroup
 // API call, and error handling.
@@ -6167,7 +6167,7 @@ const opRevokeCacheSecurityGroupIngress = "RevokeCacheSecurityGroupIngress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeCacheSecurityGroupIngress for more information on using the RevokeCacheSecurityGroupIngress
 // API call, and error handling.
@@ -6261,7 +6261,7 @@ const opStartMigration = "StartMigration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMigration for more information on using the StartMigration
 // API call, and error handling.
@@ -6349,7 +6349,7 @@ const opTestFailover = "TestFailover"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestFailover for more information on using the TestFailover
 // API call, and error handling.

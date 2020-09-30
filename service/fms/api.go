@@ -21,7 +21,7 @@ const opAssociateAdminAccount = "AssociateAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateAdminAccount for more information on using the AssociateAdminAccount
 // API call, and error handling.
@@ -123,7 +123,7 @@ const opDeleteAppsList = "DeleteAppsList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAppsList for more information on using the DeleteAppsList
 // API call, and error handling.
@@ -215,7 +215,7 @@ const opDeleteNotificationChannel = "DeleteNotificationChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotificationChannel for more information on using the DeleteNotificationChannel
 // API call, and error handling.
@@ -309,7 +309,7 @@ const opDeletePolicy = "DeletePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePolicy for more information on using the DeletePolicy
 // API call, and error handling.
@@ -401,7 +401,7 @@ const opDeleteProtocolsList = "DeleteProtocolsList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProtocolsList for more information on using the DeleteProtocolsList
 // API call, and error handling.
@@ -493,7 +493,7 @@ const opDisassociateAdminAccount = "DisassociateAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateAdminAccount for more information on using the DisassociateAdminAccount
 // API call, and error handling.
@@ -587,7 +587,7 @@ const opGetAdminAccount = "GetAdminAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAdminAccount for more information on using the GetAdminAccount
 // API call, and error handling.
@@ -679,7 +679,7 @@ const opGetAppsList = "GetAppsList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAppsList for more information on using the GetAppsList
 // API call, and error handling.
@@ -771,7 +771,7 @@ const opGetComplianceDetail = "GetComplianceDetail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComplianceDetail for more information on using the GetComplianceDetail
 // API call, and error handling.
@@ -871,7 +871,7 @@ const opGetNotificationChannel = "GetNotificationChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNotificationChannel for more information on using the GetNotificationChannel
 // API call, and error handling.
@@ -963,7 +963,7 @@ const opGetPolicy = "GetPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPolicy for more information on using the GetPolicy
 // API call, and error handling.
@@ -1057,7 +1057,7 @@ const opGetProtectionStatus = "GetProtectionStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProtectionStatus for more information on using the GetProtectionStatus
 // API call, and error handling.
@@ -1145,7 +1145,7 @@ const opGetProtocolsList = "GetProtocolsList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProtocolsList for more information on using the GetProtocolsList
 // API call, and error handling.
@@ -1236,7 +1236,7 @@ const opGetViolationDetails = "GetViolationDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetViolationDetails for more information on using the GetViolationDetails
 // API call, and error handling.
@@ -1323,7 +1323,7 @@ const opListAppsLists = "ListAppsLists"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAppsLists for more information on using the ListAppsLists
 // API call, and error handling.
@@ -1420,7 +1420,7 @@ const opListComplianceStatus = "ListComplianceStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListComplianceStatus for more information on using the ListComplianceStatus
 // API call, and error handling.
@@ -1563,7 +1563,7 @@ const opListMemberAccounts = "ListMemberAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMemberAccounts for more information on using the ListMemberAccounts
 // API call, and error handling.
@@ -1708,7 +1708,7 @@ const opListPolicies = "ListPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPolicies for more information on using the ListPolicies
 // API call, and error handling.
@@ -1863,7 +1863,7 @@ const opListProtocolsLists = "ListProtocolsLists"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProtocolsLists for more information on using the ListProtocolsLists
 // API call, and error handling.
@@ -1954,7 +1954,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2048,7 +2048,7 @@ const opPutAppsList = "PutAppsList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAppsList for more information on using the PutAppsList
 // API call, and error handling.
@@ -2148,7 +2148,7 @@ const opPutNotificationChannel = "PutNotificationChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutNotificationChannel for more information on using the PutNotificationChannel
 // API call, and error handling.
@@ -2241,7 +2241,7 @@ const opPutPolicy = "PutPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPolicy for more information on using the PutPolicy
 // API call, and error handling.
@@ -2366,7 +2366,7 @@ const opPutProtocolsList = "PutProtocolsList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutProtocolsList for more information on using the PutProtocolsList
 // API call, and error handling.
@@ -2466,7 +2466,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2567,7 +2567,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

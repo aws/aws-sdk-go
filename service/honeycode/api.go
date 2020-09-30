@@ -19,7 +19,7 @@ const opGetScreenData = "GetScreenData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetScreenData for more information on using the GetScreenData
 // API call, and error handling.
@@ -122,7 +122,7 @@ const opInvokeScreenAutomation = "InvokeScreenAutomation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InvokeScreenAutomation for more information on using the InvokeScreenAutomation
 // API call, and error handling.

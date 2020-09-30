@@ -20,7 +20,7 @@ const opDescribeEntitiesDetectionV2Job = "DescribeEntitiesDetectionV2Job"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEntitiesDetectionV2Job for more information on using the DescribeEntitiesDetectionV2Job
 // API call, and error handling.
@@ -113,7 +113,7 @@ const opDescribeICD10CMInferenceJob = "DescribeICD10CMInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeICD10CMInferenceJob for more information on using the DescribeICD10CMInferenceJob
 // API call, and error handling.
@@ -206,7 +206,7 @@ const opDescribePHIDetectionJob = "DescribePHIDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePHIDetectionJob for more information on using the DescribePHIDetectionJob
 // API call, and error handling.
@@ -299,7 +299,7 @@ const opDescribeRxNormInferenceJob = "DescribeRxNormInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRxNormInferenceJob for more information on using the DescribeRxNormInferenceJob
 // API call, and error handling.
@@ -392,7 +392,7 @@ const opDetectEntities = "DetectEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectEntities for more information on using the DetectEntities
 // API call, and error handling.
@@ -506,7 +506,7 @@ const opDetectEntitiesV2 = "DetectEntitiesV2"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectEntitiesV2 for more information on using the DetectEntitiesV2
 // API call, and error handling.
@@ -617,7 +617,7 @@ const opDetectPHI = "DetectPHI"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectPHI for more information on using the DetectPHI
 // API call, and error handling.
@@ -720,7 +720,7 @@ const opInferICD10CM = "InferICD10CM"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InferICD10CM for more information on using the InferICD10CM
 // API call, and error handling.
@@ -823,7 +823,7 @@ const opInferRxNorm = "InferRxNorm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InferRxNorm for more information on using the InferRxNorm
 // API call, and error handling.
@@ -926,7 +926,7 @@ const opListEntitiesDetectionV2Jobs = "ListEntitiesDetectionV2Jobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEntitiesDetectionV2Jobs for more information on using the ListEntitiesDetectionV2Jobs
 // API call, and error handling.
@@ -1018,7 +1018,7 @@ const opListICD10CMInferenceJobs = "ListICD10CMInferenceJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListICD10CMInferenceJobs for more information on using the ListICD10CMInferenceJobs
 // API call, and error handling.
@@ -1110,7 +1110,7 @@ const opListPHIDetectionJobs = "ListPHIDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPHIDetectionJobs for more information on using the ListPHIDetectionJobs
 // API call, and error handling.
@@ -1203,7 +1203,7 @@ const opListRxNormInferenceJobs = "ListRxNormInferenceJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRxNormInferenceJobs for more information on using the ListRxNormInferenceJobs
 // API call, and error handling.
@@ -1295,7 +1295,7 @@ const opStartEntitiesDetectionV2Job = "StartEntitiesDetectionV2Job"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartEntitiesDetectionV2Job for more information on using the StartEntitiesDetectionV2Job
 // API call, and error handling.
@@ -1389,7 +1389,7 @@ const opStartICD10CMInferenceJob = "StartICD10CMInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartICD10CMInferenceJob for more information on using the StartICD10CMInferenceJob
 // API call, and error handling.
@@ -1483,7 +1483,7 @@ const opStartPHIDetectionJob = "StartPHIDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartPHIDetectionJob for more information on using the StartPHIDetectionJob
 // API call, and error handling.
@@ -1576,7 +1576,7 @@ const opStartRxNormInferenceJob = "StartRxNormInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartRxNormInferenceJob for more information on using the StartRxNormInferenceJob
 // API call, and error handling.
@@ -1670,7 +1670,7 @@ const opStopEntitiesDetectionV2Job = "StopEntitiesDetectionV2Job"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopEntitiesDetectionV2Job for more information on using the StopEntitiesDetectionV2Job
 // API call, and error handling.
@@ -1757,7 +1757,7 @@ const opStopICD10CMInferenceJob = "StopICD10CMInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopICD10CMInferenceJob for more information on using the StopICD10CMInferenceJob
 // API call, and error handling.
@@ -1844,7 +1844,7 @@ const opStopPHIDetectionJob = "StopPHIDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopPHIDetectionJob for more information on using the StopPHIDetectionJob
 // API call, and error handling.
@@ -1931,7 +1931,7 @@ const opStopRxNormInferenceJob = "StopRxNormInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopRxNormInferenceJob for more information on using the StopRxNormInferenceJob
 // API call, and error handling.

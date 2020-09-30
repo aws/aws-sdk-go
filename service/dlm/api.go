@@ -21,7 +21,7 @@ const opCreateLifecyclePolicy = "CreateLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLifecyclePolicy for more information on using the CreateLifecyclePolicy
 // API call, and error handling.
@@ -107,7 +107,7 @@ const opDeleteLifecyclePolicy = "DeleteLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLifecyclePolicy for more information on using the DeleteLifecyclePolicy
 // API call, and error handling.
@@ -194,7 +194,7 @@ const opGetLifecyclePolicies = "GetLifecyclePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLifecyclePolicies for more information on using the GetLifecyclePolicies
 // API call, and error handling.
@@ -284,7 +284,7 @@ const opGetLifecyclePolicy = "GetLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLifecyclePolicy for more information on using the GetLifecyclePolicy
 // API call, and error handling.
@@ -369,7 +369,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -454,7 +454,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -540,7 +540,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -626,7 +626,7 @@ const opUpdateLifecyclePolicy = "UpdateLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLifecyclePolicy for more information on using the UpdateLifecyclePolicy
 // API call, and error handling.

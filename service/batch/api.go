@@ -20,7 +20,7 @@ const opCancelJob = "CancelJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelJob for more information on using the CancelJob
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opCreateComputeEnvironment = "CreateComputeEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateComputeEnvironment for more information on using the CreateComputeEnvironment
 // API call, and error handling.
@@ -232,7 +232,7 @@ const opCreateJobQueue = "CreateJobQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJobQueue for more information on using the CreateJobQueue
 // API call, and error handling.
@@ -324,7 +324,7 @@ const opDeleteComputeEnvironment = "DeleteComputeEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteComputeEnvironment for more information on using the DeleteComputeEnvironment
 // API call, and error handling.
@@ -413,7 +413,7 @@ const opDeleteJobQueue = "DeleteJobQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteJobQueue for more information on using the DeleteJobQueue
 // API call, and error handling.
@@ -503,7 +503,7 @@ const opDeregisterJobDefinition = "DeregisterJobDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterJobDefinition for more information on using the DeregisterJobDefinition
 // API call, and error handling.
@@ -589,7 +589,7 @@ const opDescribeComputeEnvironments = "DescribeComputeEnvironments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComputeEnvironments for more information on using the DescribeComputeEnvironments
 // API call, and error handling.
@@ -735,7 +735,7 @@ const opDescribeJobDefinitions = "DescribeJobDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJobDefinitions for more information on using the DescribeJobDefinitions
 // API call, and error handling.
@@ -878,7 +878,7 @@ const opDescribeJobQueues = "DescribeJobQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJobQueues for more information on using the DescribeJobQueues
 // API call, and error handling.
@@ -1020,7 +1020,7 @@ const opDescribeJobs = "DescribeJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJobs for more information on using the DescribeJobs
 // API call, and error handling.
@@ -1104,7 +1104,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -1257,7 +1257,7 @@ const opRegisterJobDefinition = "RegisterJobDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterJobDefinition for more information on using the RegisterJobDefinition
 // API call, and error handling.
@@ -1341,7 +1341,7 @@ const opSubmitJob = "SubmitJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubmitJob for more information on using the SubmitJob
 // API call, and error handling.
@@ -1426,7 +1426,7 @@ const opTerminateJob = "TerminateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateJob for more information on using the TerminateJob
 // API call, and error handling.
@@ -1513,7 +1513,7 @@ const opUpdateComputeEnvironment = "UpdateComputeEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateComputeEnvironment for more information on using the UpdateComputeEnvironment
 // API call, and error handling.
@@ -1597,7 +1597,7 @@ const opUpdateJobQueue = "UpdateJobQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJobQueue for more information on using the UpdateJobQueue
 // API call, and error handling.

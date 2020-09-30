@@ -21,7 +21,7 @@ const opAddTagsToOnPremisesInstances = "AddTagsToOnPremisesInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToOnPremisesInstances for more information on using the AddTagsToOnPremisesInstances
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opBatchGetApplicationRevisions = "BatchGetApplicationRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetApplicationRevisions for more information on using the BatchGetApplicationRevisions
 // API call, and error handling.
@@ -215,7 +215,7 @@ const opBatchGetApplications = "BatchGetApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetApplications for more information on using the BatchGetApplications
 // API call, and error handling.
@@ -304,7 +304,7 @@ const opBatchGetDeploymentGroups = "BatchGetDeploymentGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetDeploymentGroups for more information on using the BatchGetDeploymentGroups
 // API call, and error handling.
@@ -401,7 +401,7 @@ const opBatchGetDeploymentInstances = "BatchGetDeploymentInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetDeploymentInstances for more information on using the BatchGetDeploymentInstances
 // API call, and error handling.
@@ -514,7 +514,7 @@ const opBatchGetDeploymentTargets = "BatchGetDeploymentTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetDeploymentTargets for more information on using the BatchGetDeploymentTargets
 // API call, and error handling.
@@ -635,7 +635,7 @@ const opBatchGetDeployments = "BatchGetDeployments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetDeployments for more information on using the BatchGetDeployments
 // API call, and error handling.
@@ -721,7 +721,7 @@ const opBatchGetOnPremisesInstances = "BatchGetOnPremisesInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetOnPremisesInstances for more information on using the BatchGetOnPremisesInstances
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opContinueDeployment = "ContinueDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ContinueDeployment for more information on using the ContinueDeployment
 // API call, and error handling.
@@ -913,7 +913,7 @@ const opCreateApplication = "CreateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplication for more information on using the CreateApplication
 // API call, and error handling.
@@ -1009,7 +1009,7 @@ const opCreateDeployment = "CreateDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeployment for more information on using the CreateDeployment
 // API call, and error handling.
@@ -1176,7 +1176,7 @@ const opCreateDeploymentConfig = "CreateDeploymentConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeploymentConfig for more information on using the CreateDeploymentConfig
 // API call, and error handling.
@@ -1276,7 +1276,7 @@ const opCreateDeploymentGroup = "CreateDeploymentGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeploymentGroup for more information on using the CreateDeploymentGroup
 // API call, and error handling.
@@ -1475,7 +1475,7 @@ const opDeleteApplication = "DeleteApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplication for more information on using the DeleteApplication
 // API call, and error handling.
@@ -1563,7 +1563,7 @@ const opDeleteDeploymentConfig = "DeleteDeploymentConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDeploymentConfig for more information on using the DeleteDeploymentConfig
 // API call, and error handling.
@@ -1655,7 +1655,7 @@ const opDeleteDeploymentGroup = "DeleteDeploymentGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDeploymentGroup for more information on using the DeleteDeploymentGroup
 // API call, and error handling.
@@ -1748,7 +1748,7 @@ const opDeleteGitHubAccountToken = "DeleteGitHubAccountToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGitHubAccountToken for more information on using the DeleteGitHubAccountToken
 // API call, and error handling.
@@ -1839,7 +1839,7 @@ const opDeleteResourcesByExternalId = "DeleteResourcesByExternalId"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourcesByExternalId for more information on using the DeleteResourcesByExternalId
 // API call, and error handling.
@@ -1914,7 +1914,7 @@ const opDeregisterOnPremisesInstance = "DeregisterOnPremisesInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterOnPremisesInstance for more information on using the DeregisterOnPremisesInstance
 // API call, and error handling.
@@ -1997,7 +1997,7 @@ const opGetApplication = "GetApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApplication for more information on using the GetApplication
 // API call, and error handling.
@@ -2082,7 +2082,7 @@ const opGetApplicationRevision = "GetApplicationRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApplicationRevision for more information on using the GetApplicationRevision
 // API call, and error handling.
@@ -2176,7 +2176,7 @@ const opGetDeployment = "GetDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeployment for more information on using the GetDeployment
 // API call, and error handling.
@@ -2266,7 +2266,7 @@ const opGetDeploymentConfig = "GetDeploymentConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeploymentConfig for more information on using the GetDeploymentConfig
 // API call, and error handling.
@@ -2355,7 +2355,7 @@ const opGetDeploymentGroup = "GetDeploymentGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeploymentGroup for more information on using the GetDeploymentGroup
 // API call, and error handling.
@@ -2452,7 +2452,7 @@ const opGetDeploymentInstance = "GetDeploymentInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeploymentInstance for more information on using the GetDeploymentInstance
 // API call, and error handling.
@@ -2559,7 +2559,7 @@ const opGetDeploymentTarget = "GetDeploymentTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeploymentTarget for more information on using the GetDeploymentTarget
 // API call, and error handling.
@@ -2659,7 +2659,7 @@ const opGetOnPremisesInstance = "GetOnPremisesInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOnPremisesInstance for more information on using the GetOnPremisesInstance
 // API call, and error handling.
@@ -2744,7 +2744,7 @@ const opListApplicationRevisions = "ListApplicationRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplicationRevisions for more information on using the ListApplicationRevisions
 // API call, and error handling.
@@ -2909,7 +2909,7 @@ const opListApplications = "ListApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplications for more information on using the ListApplications
 // API call, and error handling.
@@ -3046,7 +3046,7 @@ const opListDeploymentConfigs = "ListDeploymentConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeploymentConfigs for more information on using the ListDeploymentConfigs
 // API call, and error handling.
@@ -3183,7 +3183,7 @@ const opListDeploymentGroups = "ListDeploymentGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeploymentGroups for more information on using the ListDeploymentGroups
 // API call, and error handling.
@@ -3330,7 +3330,7 @@ const opListDeploymentInstances = "ListDeploymentInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeploymentInstances for more information on using the ListDeploymentInstances
 // API call, and error handling.
@@ -3516,7 +3516,7 @@ const opListDeploymentTargets = "ListDeploymentTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeploymentTargets for more information on using the ListDeploymentTargets
 // API call, and error handling.
@@ -3619,7 +3619,7 @@ const opListDeployments = "ListDeployments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeployments for more information on using the ListDeployments
 // API call, and error handling.
@@ -3787,7 +3787,7 @@ const opListGitHubAccountTokenNames = "ListGitHubAccountTokenNames"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGitHubAccountTokenNames for more information on using the ListGitHubAccountTokenNames
 // API call, and error handling.
@@ -3872,7 +3872,7 @@ const opListOnPremisesInstances = "ListOnPremisesInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOnPremisesInstances for more information on using the ListOnPremisesInstances
 // API call, and error handling.
@@ -3961,7 +3961,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4049,7 +4049,7 @@ const opPutLifecycleEventHookExecutionStatus = "PutLifecycleEventHookExecutionSt
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLifecycleEventHookExecutionStatus for more information on using the PutLifecycleEventHookExecutionStatus
 // API call, and error handling.
@@ -4156,7 +4156,7 @@ const opRegisterApplicationRevision = "RegisterApplicationRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterApplicationRevision for more information on using the RegisterApplicationRevision
 // API call, and error handling.
@@ -4251,7 +4251,7 @@ const opRegisterOnPremisesInstance = "RegisterOnPremisesInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterOnPremisesInstance for more information on using the RegisterOnPremisesInstance
 // API call, and error handling.
@@ -4364,7 +4364,7 @@ const opRemoveTagsFromOnPremisesInstances = "RemoveTagsFromOnPremisesInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromOnPremisesInstances for more information on using the RemoveTagsFromOnPremisesInstances
 // API call, and error handling.
@@ -4463,7 +4463,7 @@ const opSkipWaitTimeForInstanceTermination = "SkipWaitTimeForInstanceTermination
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SkipWaitTimeForInstanceTermination for more information on using the SkipWaitTimeForInstanceTermination
 // API call, and error handling.
@@ -4568,7 +4568,7 @@ const opStopDeployment = "StopDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDeployment for more information on using the StopDeployment
 // API call, and error handling.
@@ -4662,7 +4662,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4765,7 +4765,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4869,7 +4869,7 @@ const opUpdateApplication = "UpdateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplication for more information on using the UpdateApplication
 // API call, and error handling.
@@ -4959,7 +4959,7 @@ const opUpdateDeploymentGroup = "UpdateDeploymentGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDeploymentGroup for more information on using the UpdateDeploymentGroup
 // API call, and error handling.

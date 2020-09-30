@@ -20,7 +20,7 @@ const opCreateCluster = "CreateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCluster for more information on using the CreateCluster
 // API call, and error handling.
@@ -141,7 +141,7 @@ const opCreateParameterGroup = "CreateParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateParameterGroup for more information on using the CreateParameterGroup
 // API call, and error handling.
@@ -236,7 +236,7 @@ const opCreateSubnetGroup = "CreateSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSubnetGroup for more information on using the CreateSubnetGroup
 // API call, and error handling.
@@ -329,7 +329,7 @@ const opDecreaseReplicationFactor = "DecreaseReplicationFactor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DecreaseReplicationFactor for more information on using the DecreaseReplicationFactor
 // API call, and error handling.
@@ -426,7 +426,7 @@ const opDeleteCluster = "DeleteCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCluster for more information on using the DeleteCluster
 // API call, and error handling.
@@ -520,7 +520,7 @@ const opDeleteParameterGroup = "DeleteParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteParameterGroup for more information on using the DeleteParameterGroup
 // API call, and error handling.
@@ -612,7 +612,7 @@ const opDeleteSubnetGroup = "DeleteSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSubnetGroup for more information on using the DeleteSubnetGroup
 // API call, and error handling.
@@ -699,7 +699,7 @@ const opDescribeClusters = "DescribeClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeClusters for more information on using the DescribeClusters
 // API call, and error handling.
@@ -803,7 +803,7 @@ const opDescribeDefaultParameters = "DescribeDefaultParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDefaultParameters for more information on using the DescribeDefaultParameters
 // API call, and error handling.
@@ -888,7 +888,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -978,7 +978,7 @@ const opDescribeParameterGroups = "DescribeParameterGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeParameterGroups for more information on using the DescribeParameterGroups
 // API call, and error handling.
@@ -1067,7 +1067,7 @@ const opDescribeParameters = "DescribeParameters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeParameters for more information on using the DescribeParameters
 // API call, and error handling.
@@ -1155,7 +1155,7 @@ const opDescribeSubnetGroups = "DescribeSubnetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSubnetGroups for more information on using the DescribeSubnetGroups
 // API call, and error handling.
@@ -1238,7 +1238,7 @@ const opIncreaseReplicationFactor = "IncreaseReplicationFactor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IncreaseReplicationFactor for more information on using the IncreaseReplicationFactor
 // API call, and error handling.
@@ -1342,7 +1342,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -1437,7 +1437,7 @@ const opRebootNode = "RebootNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootNode for more information on using the RebootNode
 // API call, and error handling.
@@ -1535,7 +1535,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1633,7 +1633,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1731,7 +1731,7 @@ const opUpdateCluster = "UpdateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCluster for more information on using the UpdateCluster
 // API call, and error handling.
@@ -1830,7 +1830,7 @@ const opUpdateParameterGroup = "UpdateParameterGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateParameterGroup for more information on using the UpdateParameterGroup
 // API call, and error handling.
@@ -1922,7 +1922,7 @@ const opUpdateSubnetGroup = "UpdateSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSubnetGroup for more information on using the UpdateSubnetGroup
 // API call, and error handling.

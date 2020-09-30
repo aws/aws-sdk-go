@@ -21,7 +21,7 @@ const opActivatePipeline = "ActivatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ActivatePipeline for more information on using the ActivatePipeline
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -212,7 +212,7 @@ const opCreatePipeline = "CreatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePipeline for more information on using the CreatePipeline
 // API call, and error handling.
@@ -297,7 +297,7 @@ const opDeactivatePipeline = "DeactivatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeactivatePipeline for more information on using the DeactivatePipeline
 // API call, and error handling.
@@ -394,7 +394,7 @@ const opDeletePipeline = "DeletePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePipeline for more information on using the DeletePipeline
 // API call, and error handling.
@@ -490,7 +490,7 @@ const opDescribeObjects = "DescribeObjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeObjects for more information on using the DescribeObjects
 // API call, and error handling.
@@ -641,7 +641,7 @@ const opDescribePipelines = "DescribePipelines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePipelines for more information on using the DescribePipelines
 // API call, and error handling.
@@ -740,7 +740,7 @@ const opEvaluateExpression = "EvaluateExpression"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EvaluateExpression for more information on using the EvaluateExpression
 // API call, and error handling.
@@ -836,7 +836,7 @@ const opGetPipelineDefinition = "GetPipelineDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPipelineDefinition for more information on using the GetPipelineDefinition
 // API call, and error handling.
@@ -928,7 +928,7 @@ const opListPipelines = "ListPipelines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPipelines for more information on using the ListPipelines
 // API call, and error handling.
@@ -1071,7 +1071,7 @@ const opPollForTask = "PollForTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PollForTask for more information on using the PollForTask
 // API call, and error handling.
@@ -1171,7 +1171,7 @@ const opPutPipelineDefinition = "PutPipelineDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPipelineDefinition for more information on using the PutPipelineDefinition
 // API call, and error handling.
@@ -1272,7 +1272,7 @@ const opQueryObjects = "QueryObjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See QueryObjects for more information on using the QueryObjects
 // API call, and error handling.
@@ -1422,7 +1422,7 @@ const opRemoveTags = "RemoveTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTags for more information on using the RemoveTags
 // API call, and error handling.
@@ -1514,7 +1514,7 @@ const opReportTaskProgress = "ReportTaskProgress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReportTaskProgress for more information on using the ReportTaskProgress
 // API call, and error handling.
@@ -1619,7 +1619,7 @@ const opReportTaskRunnerHeartbeat = "ReportTaskRunnerHeartbeat"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReportTaskRunnerHeartbeat for more information on using the ReportTaskRunnerHeartbeat
 // API call, and error handling.
@@ -1707,7 +1707,7 @@ const opSetStatus = "SetStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetStatus for more information on using the SetStatus
 // API call, and error handling.
@@ -1803,7 +1803,7 @@ const opSetTaskStatus = "SetTaskStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetTaskStatus for more information on using the SetTaskStatus
 // API call, and error handling.
@@ -1902,7 +1902,7 @@ const opValidatePipelineDefinition = "ValidatePipelineDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ValidatePipelineDefinition for more information on using the ValidatePipelineDefinition
 // API call, and error handling.

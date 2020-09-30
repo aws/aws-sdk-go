@@ -21,7 +21,7 @@ const opCreateDetectorModel = "CreateDetectorModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDetectorModel for more information on using the CreateDetectorModel
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opCreateInput = "CreateInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInput for more information on using the CreateInput
 // API call, and error handling.
@@ -209,7 +209,7 @@ const opDeleteDetectorModel = "DeleteDetectorModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDetectorModel for more information on using the DeleteDetectorModel
 // API call, and error handling.
@@ -305,7 +305,7 @@ const opDeleteInput = "DeleteInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInput for more information on using the DeleteInput
 // API call, and error handling.
@@ -400,7 +400,7 @@ const opDescribeDetectorModel = "DescribeDetectorModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDetectorModel for more information on using the DescribeDetectorModel
 // API call, and error handling.
@@ -492,7 +492,7 @@ const opDescribeInput = "DescribeInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInput for more information on using the DescribeInput
 // API call, and error handling.
@@ -583,7 +583,7 @@ const opDescribeLoggingOptions = "DescribeLoggingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoggingOptions for more information on using the DescribeLoggingOptions
 // API call, and error handling.
@@ -677,7 +677,7 @@ const opListDetectorModelVersions = "ListDetectorModelVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDetectorModelVersions for more information on using the ListDetectorModelVersions
 // API call, and error handling.
@@ -769,7 +769,7 @@ const opListDetectorModels = "ListDetectorModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDetectorModels for more information on using the ListDetectorModels
 // API call, and error handling.
@@ -858,7 +858,7 @@ const opListInputs = "ListInputs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInputs for more information on using the ListInputs
 // API call, and error handling.
@@ -946,7 +946,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1037,7 +1037,7 @@ const opPutLoggingOptions = "PutLoggingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLoggingOptions for more information on using the PutLoggingOptions
 // API call, and error handling.
@@ -1137,7 +1137,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1233,7 +1233,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1325,7 +1325,7 @@ const opUpdateDetectorModel = "UpdateDetectorModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDetectorModel for more information on using the UpdateDetectorModel
 // API call, and error handling.
@@ -1420,7 +1420,7 @@ const opUpdateInput = "UpdateInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInput for more information on using the UpdateInput
 // API call, and error handling.

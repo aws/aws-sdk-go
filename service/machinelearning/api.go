@@ -20,7 +20,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opCreateBatchPrediction = "CreateBatchPrediction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBatchPrediction for more information on using the CreateBatchPrediction
 // API call, and error handling.
@@ -207,7 +207,7 @@ const opCreateDataSourceFromRDS = "CreateDataSourceFromRDS"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSourceFromRDS for more information on using the CreateDataSourceFromRDS
 // API call, and error handling.
@@ -305,7 +305,7 @@ const opCreateDataSourceFromRedshift = "CreateDataSourceFromRedshift"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSourceFromRedshift for more information on using the CreateDataSourceFromRedshift
 // API call, and error handling.
@@ -422,7 +422,7 @@ const opCreateDataSourceFromS3 = "CreateDataSourceFromS3"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSourceFromS3 for more information on using the CreateDataSourceFromS3
 // API call, and error handling.
@@ -534,7 +534,7 @@ const opCreateEvaluation = "CreateEvaluation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEvaluation for more information on using the CreateEvaluation
 // API call, and error handling.
@@ -634,7 +634,7 @@ const opCreateMLModel = "CreateMLModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMLModel for more information on using the CreateMLModel
 // API call, and error handling.
@@ -735,7 +735,7 @@ const opCreateRealtimeEndpoint = "CreateRealtimeEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRealtimeEndpoint for more information on using the CreateRealtimeEndpoint
 // API call, and error handling.
@@ -820,7 +820,7 @@ const opDeleteBatchPrediction = "DeleteBatchPrediction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBatchPrediction for more information on using the DeleteBatchPrediction
 // API call, and error handling.
@@ -908,7 +908,7 @@ const opDeleteDataSource = "DeleteDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataSource for more information on using the DeleteDataSource
 // API call, and error handling.
@@ -996,7 +996,7 @@ const opDeleteEvaluation = "DeleteEvaluation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEvaluation for more information on using the DeleteEvaluation
 // API call, and error handling.
@@ -1084,7 +1084,7 @@ const opDeleteMLModel = "DeleteMLModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMLModel for more information on using the DeleteMLModel
 // API call, and error handling.
@@ -1172,7 +1172,7 @@ const opDeleteRealtimeEndpoint = "DeleteRealtimeEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRealtimeEndpoint for more information on using the DeleteRealtimeEndpoint
 // API call, and error handling.
@@ -1255,7 +1255,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -1343,7 +1343,7 @@ const opDescribeBatchPredictions = "DescribeBatchPredictions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBatchPredictions for more information on using the DescribeBatchPredictions
 // API call, and error handling.
@@ -1482,7 +1482,7 @@ const opDescribeDataSources = "DescribeDataSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataSources for more information on using the DescribeDataSources
 // API call, and error handling.
@@ -1620,7 +1620,7 @@ const opDescribeEvaluations = "DescribeEvaluations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvaluations for more information on using the DescribeEvaluations
 // API call, and error handling.
@@ -1759,7 +1759,7 @@ const opDescribeMLModels = "DescribeMLModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMLModels for more information on using the DescribeMLModels
 // API call, and error handling.
@@ -1897,7 +1897,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -1980,7 +1980,7 @@ const opGetBatchPrediction = "GetBatchPrediction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBatchPrediction for more information on using the GetBatchPrediction
 // API call, and error handling.
@@ -2064,7 +2064,7 @@ const opGetDataSource = "GetDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataSource for more information on using the GetDataSource
 // API call, and error handling.
@@ -2152,7 +2152,7 @@ const opGetEvaluation = "GetEvaluation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEvaluation for more information on using the GetEvaluation
 // API call, and error handling.
@@ -2236,7 +2236,7 @@ const opGetMLModel = "GetMLModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMLModel for more information on using the GetMLModel
 // API call, and error handling.
@@ -2322,7 +2322,7 @@ const opPredict = "Predict"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Predict for more information on using the Predict
 // API call, and error handling.
@@ -2415,7 +2415,7 @@ const opUpdateBatchPrediction = "UpdateBatchPrediction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBatchPrediction for more information on using the UpdateBatchPrediction
 // API call, and error handling.
@@ -2501,7 +2501,7 @@ const opUpdateDataSource = "UpdateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSource for more information on using the UpdateDataSource
 // API call, and error handling.
@@ -2587,7 +2587,7 @@ const opUpdateEvaluation = "UpdateEvaluation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEvaluation for more information on using the UpdateEvaluation
 // API call, and error handling.
@@ -2673,7 +2673,7 @@ const opUpdateMLModel = "UpdateMLModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMLModel for more information on using the UpdateMLModel
 // API call, and error handling.

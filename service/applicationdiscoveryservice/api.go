@@ -21,7 +21,7 @@ const opAssociateConfigurationItemsToApplication = "AssociateConfigurationItemsT
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateConfigurationItemsToApplication for more information on using the AssociateConfigurationItemsToApplication
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opBatchDeleteImportData = "BatchDeleteImportData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteImportData for more information on using the BatchDeleteImportData
 // API call, and error handling.
@@ -216,7 +216,7 @@ const opCreateApplication = "CreateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplication for more information on using the CreateApplication
 // API call, and error handling.
@@ -309,7 +309,7 @@ const opCreateTags = "CreateTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTags for more information on using the CreateTags
 // API call, and error handling.
@@ -409,7 +409,7 @@ const opDeleteApplications = "DeleteApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplications for more information on using the DeleteApplications
 // API call, and error handling.
@@ -504,7 +504,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -603,7 +603,7 @@ const opDescribeAgents = "DescribeAgents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAgents for more information on using the DescribeAgents
 // API call, and error handling.
@@ -698,7 +698,7 @@ const opDescribeConfigurations = "DescribeConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurations for more information on using the DescribeConfigurations
 // API call, and error handling.
@@ -810,7 +810,7 @@ const opDescribeContinuousExports = "DescribeContinuousExports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContinuousExports for more information on using the DescribeContinuousExports
 // API call, and error handling.
@@ -970,7 +970,7 @@ const opDescribeExportConfigurations = "DescribeExportConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExportConfigurations for more information on using the DescribeExportConfigurations
 // API call, and error handling.
@@ -1077,7 +1077,7 @@ const opDescribeExportTasks = "DescribeExportTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExportTasks for more information on using the DescribeExportTasks
 // API call, and error handling.
@@ -1171,7 +1171,7 @@ const opDescribeImportTasks = "DescribeImportTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeImportTasks for more information on using the DescribeImportTasks
 // API call, and error handling.
@@ -1323,7 +1323,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -1432,7 +1432,7 @@ const opDisassociateConfigurationItemsFromApplication = "DisassociateConfigurati
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateConfigurationItemsFromApplication for more information on using the DisassociateConfigurationItemsFromApplication
 // API call, and error handling.
@@ -1526,7 +1526,7 @@ const opExportConfigurations = "ExportConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportConfigurations for more information on using the ExportConfigurations
 // API call, and error handling.
@@ -1637,7 +1637,7 @@ const opGetDiscoverySummary = "GetDiscoverySummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDiscoverySummary for more information on using the GetDiscoverySummary
 // API call, and error handling.
@@ -1733,7 +1733,7 @@ const opListConfigurations = "ListConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurations for more information on using the ListConfigurations
 // API call, and error handling.
@@ -1832,7 +1832,7 @@ const opListServerNeighbors = "ListServerNeighbors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServerNeighbors for more information on using the ListServerNeighbors
 // API call, and error handling.
@@ -1926,7 +1926,7 @@ const opStartContinuousExport = "StartContinuousExport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartContinuousExport for more information on using the StartContinuousExport
 // API call, and error handling.
@@ -2031,7 +2031,7 @@ const opStartDataCollectionByAgentIds = "StartDataCollectionByAgentIds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDataCollectionByAgentIds for more information on using the StartDataCollectionByAgentIds
 // API call, and error handling.
@@ -2124,7 +2124,7 @@ const opStartExportTask = "StartExportTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartExportTask for more information on using the StartExportTask
 // API call, and error handling.
@@ -2230,7 +2230,7 @@ const opStartImportTask = "StartImportTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartImportTask for more information on using the StartImportTask
 // API call, and error handling.
@@ -2358,7 +2358,7 @@ const opStopContinuousExport = "StopContinuousExport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopContinuousExport for more information on using the StopContinuousExport
 // API call, and error handling.
@@ -2465,7 +2465,7 @@ const opStopDataCollectionByAgentIds = "StopDataCollectionByAgentIds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDataCollectionByAgentIds for more information on using the StopDataCollectionByAgentIds
 // API call, and error handling.
@@ -2558,7 +2558,7 @@ const opUpdateApplication = "UpdateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplication for more information on using the UpdateApplication
 // API call, and error handling.

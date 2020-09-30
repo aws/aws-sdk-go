@@ -21,7 +21,7 @@ const opAssociateTeamMember = "AssociateTeamMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateTeamMember for more information on using the AssociateTeamMember
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -224,7 +224,7 @@ const opCreateUserProfile = "CreateUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserProfile for more information on using the CreateUserProfile
 // API call, and error handling.
@@ -312,7 +312,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -400,7 +400,7 @@ const opDeleteUserProfile = "DeleteUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserProfile for more information on using the DeleteUserProfile
 // API call, and error handling.
@@ -482,7 +482,7 @@ const opDescribeProject = "DescribeProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProject for more information on using the DescribeProject
 // API call, and error handling.
@@ -574,7 +574,7 @@ const opDescribeUserProfile = "DescribeUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserProfile for more information on using the DescribeUserProfile
 // API call, and error handling.
@@ -656,7 +656,7 @@ const opDisassociateTeamMember = "DisassociateTeamMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateTeamMember for more information on using the DisassociateTeamMember
 // API call, and error handling.
@@ -749,7 +749,7 @@ const opListProjects = "ListProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjects for more information on using the ListProjects
 // API call, and error handling.
@@ -831,7 +831,7 @@ const opListResources = "ListResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResources for more information on using the ListResources
 // API call, and error handling.
@@ -916,7 +916,7 @@ const opListTagsForProject = "ListTagsForProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForProject for more information on using the ListTagsForProject
 // API call, and error handling.
@@ -1001,7 +1001,7 @@ const opListTeamMembers = "ListTeamMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTeamMembers for more information on using the ListTeamMembers
 // API call, and error handling.
@@ -1086,7 +1086,7 @@ const opListUserProfiles = "ListUserProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserProfiles for more information on using the ListUserProfiles
 // API call, and error handling.
@@ -1168,7 +1168,7 @@ const opTagProject = "TagProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagProject for more information on using the TagProject
 // API call, and error handling.
@@ -1257,7 +1257,7 @@ const opUntagProject = "UntagProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagProject for more information on using the UntagProject
 // API call, and error handling.
@@ -1347,7 +1347,7 @@ const opUpdateProject = "UpdateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProject for more information on using the UpdateProject
 // API call, and error handling.
@@ -1430,7 +1430,7 @@ const opUpdateTeamMember = "UpdateTeamMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTeamMember for more information on using the UpdateTeamMember
 // API call, and error handling.
@@ -1530,7 +1530,7 @@ const opUpdateUserProfile = "UpdateUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserProfile for more information on using the UpdateUserProfile
 // API call, and error handling.

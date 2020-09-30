@@ -21,7 +21,7 @@ const opAssociateAssets = "AssociateAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateAssets for more information on using the AssociateAssets
 // API call, and error handling.
@@ -133,7 +133,7 @@ const opBatchAssociateProjectAssets = "BatchAssociateProjectAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchAssociateProjectAssets for more information on using the BatchAssociateProjectAssets
 // API call, and error handling.
@@ -237,7 +237,7 @@ const opBatchDisassociateProjectAssets = "BatchDisassociateProjectAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDisassociateProjectAssets for more information on using the BatchDisassociateProjectAssets
 // API call, and error handling.
@@ -334,7 +334,7 @@ const opBatchPutAssetPropertyValue = "BatchPutAssetPropertyValue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchPutAssetPropertyValue for more information on using the BatchPutAssetPropertyValue
 // API call, and error handling.
@@ -471,7 +471,7 @@ const opCreateAccessPolicy = "CreateAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccessPolicy for more information on using the CreateAccessPolicy
 // API call, and error handling.
@@ -577,7 +577,7 @@ const opCreateAsset = "CreateAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAsset for more information on using the CreateAsset
 // API call, and error handling.
@@ -690,7 +690,7 @@ const opCreateAssetModel = "CreateAssetModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAssetModel for more information on using the CreateAssetModel
 // API call, and error handling.
@@ -806,7 +806,7 @@ const opCreateDashboard = "CreateDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDashboard for more information on using the CreateDashboard
 // API call, and error handling.
@@ -910,7 +910,7 @@ const opCreateGateway = "CreateGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGateway for more information on using the CreateGateway
 // API call, and error handling.
@@ -1017,7 +1017,7 @@ const opCreatePortal = "CreatePortal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePortal for more information on using the CreatePortal
 // API call, and error handling.
@@ -1128,7 +1128,7 @@ const opCreatePresignedPortalUrl = "CreatePresignedPortalUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePresignedPortalUrl for more information on using the CreatePresignedPortalUrl
 // API call, and error handling.
@@ -1225,7 +1225,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -1329,7 +1329,7 @@ const opDeleteAccessPolicy = "DeleteAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccessPolicy for more information on using the DeleteAccessPolicy
 // API call, and error handling.
@@ -1428,7 +1428,7 @@ const opDeleteAsset = "DeleteAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAsset for more information on using the DeleteAsset
 // API call, and error handling.
@@ -1533,7 +1533,7 @@ const opDeleteAssetModel = "DeleteAssetModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAssetModel for more information on using the DeleteAssetModel
 // API call, and error handling.
@@ -1638,7 +1638,7 @@ const opDeleteDashboard = "DeleteDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDashboard for more information on using the DeleteDashboard
 // API call, and error handling.
@@ -1735,7 +1735,7 @@ const opDeleteGateway = "DeleteGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGateway for more information on using the DeleteGateway
 // API call, and error handling.
@@ -1833,7 +1833,7 @@ const opDeletePortal = "DeletePortal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePortal for more information on using the DeletePortal
 // API call, and error handling.
@@ -1933,7 +1933,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -2030,7 +2030,7 @@ const opDescribeAccessPolicy = "DescribeAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccessPolicy for more information on using the DescribeAccessPolicy
 // API call, and error handling.
@@ -2127,7 +2127,7 @@ const opDescribeAsset = "DescribeAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAsset for more information on using the DescribeAsset
 // API call, and error handling.
@@ -2223,7 +2223,7 @@ const opDescribeAssetModel = "DescribeAssetModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssetModel for more information on using the DescribeAssetModel
 // API call, and error handling.
@@ -2319,7 +2319,7 @@ const opDescribeAssetProperty = "DescribeAssetProperty"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAssetProperty for more information on using the DescribeAssetProperty
 // API call, and error handling.
@@ -2423,7 +2423,7 @@ const opDescribeDashboard = "DescribeDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDashboard for more information on using the DescribeDashboard
 // API call, and error handling.
@@ -2519,7 +2519,7 @@ const opDescribeGateway = "DescribeGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGateway for more information on using the DescribeGateway
 // API call, and error handling.
@@ -2615,7 +2615,7 @@ const opDescribeGatewayCapabilityConfiguration = "DescribeGatewayCapabilityConfi
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGatewayCapabilityConfiguration for more information on using the DescribeGatewayCapabilityConfiguration
 // API call, and error handling.
@@ -2716,7 +2716,7 @@ const opDescribeLoggingOptions = "DescribeLoggingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoggingOptions for more information on using the DescribeLoggingOptions
 // API call, and error handling.
@@ -2812,7 +2812,7 @@ const opDescribePortal = "DescribePortal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePortal for more information on using the DescribePortal
 // API call, and error handling.
@@ -2908,7 +2908,7 @@ const opDescribeProject = "DescribeProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProject for more information on using the DescribeProject
 // API call, and error handling.
@@ -3004,7 +3004,7 @@ const opDisassociateAssets = "DisassociateAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateAssets for more information on using the DisassociateAssets
 // API call, and error handling.
@@ -3106,7 +3106,7 @@ const opGetAssetPropertyAggregates = "GetAssetPropertyAggregates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssetPropertyAggregates for more information on using the GetAssetPropertyAggregates
 // API call, and error handling.
@@ -3272,7 +3272,7 @@ const opGetAssetPropertyValue = "GetAssetPropertyValue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssetPropertyValue for more information on using the GetAssetPropertyValue
 // API call, and error handling.
@@ -3380,7 +3380,7 @@ const opGetAssetPropertyValueHistory = "GetAssetPropertyValueHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssetPropertyValueHistory for more information on using the GetAssetPropertyValueHistory
 // API call, and error handling.
@@ -3546,7 +3546,7 @@ const opListAccessPolicies = "ListAccessPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccessPolicies for more information on using the ListAccessPolicies
 // API call, and error handling.
@@ -3699,7 +3699,7 @@ const opListAssetModels = "ListAssetModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssetModels for more information on using the ListAssetModels
 // API call, and error handling.
@@ -3850,7 +3850,7 @@ const opListAssets = "ListAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssets for more information on using the ListAssets
 // API call, and error handling.
@@ -4015,7 +4015,7 @@ const opListAssociatedAssets = "ListAssociatedAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociatedAssets for more information on using the ListAssociatedAssets
 // API call, and error handling.
@@ -4176,7 +4176,7 @@ const opListDashboards = "ListDashboards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDashboards for more information on using the ListDashboards
 // API call, and error handling.
@@ -4328,7 +4328,7 @@ const opListGateways = "ListGateways"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGateways for more information on using the ListGateways
 // API call, and error handling.
@@ -4479,7 +4479,7 @@ const opListPortals = "ListPortals"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPortals for more information on using the ListPortals
 // API call, and error handling.
@@ -4630,7 +4630,7 @@ const opListProjectAssets = "ListProjectAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjectAssets for more information on using the ListProjectAssets
 // API call, and error handling.
@@ -4782,7 +4782,7 @@ const opListProjects = "ListProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjects for more information on using the ListProjects
 // API call, and error handling.
@@ -4933,7 +4933,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -5027,7 +5027,7 @@ const opPutLoggingOptions = "PutLoggingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLoggingOptions for more information on using the PutLoggingOptions
 // API call, and error handling.
@@ -5128,7 +5128,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5229,7 +5229,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -5324,7 +5324,7 @@ const opUpdateAccessPolicy = "UpdateAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccessPolicy for more information on using the UpdateAccessPolicy
 // API call, and error handling.
@@ -5422,7 +5422,7 @@ const opUpdateAsset = "UpdateAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAsset for more information on using the UpdateAsset
 // API call, and error handling.
@@ -5527,7 +5527,7 @@ const opUpdateAssetModel = "UpdateAssetModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAssetModel for more information on using the UpdateAssetModel
 // API call, and error handling.
@@ -5652,7 +5652,7 @@ const opUpdateAssetProperty = "UpdateAssetProperty"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAssetProperty for more information on using the UpdateAssetProperty
 // API call, and error handling.
@@ -5758,7 +5758,7 @@ const opUpdateDashboard = "UpdateDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDashboard for more information on using the UpdateDashboard
 // API call, and error handling.
@@ -5855,7 +5855,7 @@ const opUpdateGateway = "UpdateGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGateway for more information on using the UpdateGateway
 // API call, and error handling.
@@ -5956,7 +5956,7 @@ const opUpdateGatewayCapabilityConfiguration = "UpdateGatewayCapabilityConfigura
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGatewayCapabilityConfiguration for more information on using the UpdateGatewayCapabilityConfiguration
 // API call, and error handling.
@@ -6069,7 +6069,7 @@ const opUpdatePortal = "UpdatePortal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePortal for more information on using the UpdatePortal
 // API call, and error handling.
@@ -6169,7 +6169,7 @@ const opUpdateProject = "UpdateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProject for more information on using the UpdateProject
 // API call, and error handling.

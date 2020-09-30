@@ -20,7 +20,7 @@ const opActivateGateway = "ActivateGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ActivateGateway for more information on using the ActivateGateway
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opAddCache = "AddCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddCache for more information on using the AddCache
 // API call, and error handling.
@@ -201,7 +201,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -300,7 +300,7 @@ const opAddUploadBuffer = "AddUploadBuffer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddUploadBuffer for more information on using the AddUploadBuffer
 // API call, and error handling.
@@ -390,7 +390,7 @@ const opAddWorkingStorage = "AddWorkingStorage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddWorkingStorage for more information on using the AddWorkingStorage
 // API call, and error handling.
@@ -484,7 +484,7 @@ const opAssignTapePool = "AssignTapePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssignTapePool for more information on using the AssignTapePool
 // API call, and error handling.
@@ -574,7 +574,7 @@ const opAttachVolume = "AttachVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachVolume for more information on using the AttachVolume
 // API call, and error handling.
@@ -662,7 +662,7 @@ const opCancelArchival = "CancelArchival"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelArchival for more information on using the CancelArchival
 // API call, and error handling.
@@ -748,7 +748,7 @@ const opCancelRetrieval = "CancelRetrieval"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelRetrieval for more information on using the CancelRetrieval
 // API call, and error handling.
@@ -834,7 +834,7 @@ const opCreateCachediSCSIVolume = "CreateCachediSCSIVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCachediSCSIVolume for more information on using the CreateCachediSCSIVolume
 // API call, and error handling.
@@ -934,7 +934,7 @@ const opCreateNFSFileShare = "CreateNFSFileShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNFSFileShare for more information on using the CreateNFSFileShare
 // API call, and error handling.
@@ -1030,7 +1030,7 @@ const opCreateSMBFileShare = "CreateSMBFileShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSMBFileShare for more information on using the CreateSMBFileShare
 // API call, and error handling.
@@ -1126,7 +1126,7 @@ const opCreateSnapshot = "CreateSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSnapshot for more information on using the CreateSnapshot
 // API call, and error handling.
@@ -1239,7 +1239,7 @@ const opCreateSnapshotFromVolumeRecoveryPoint = "CreateSnapshotFromVolumeRecover
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSnapshotFromVolumeRecoveryPoint for more information on using the CreateSnapshotFromVolumeRecoveryPoint
 // API call, and error handling.
@@ -1345,7 +1345,7 @@ const opCreateStorediSCSIVolume = "CreateStorediSCSIVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStorediSCSIVolume for more information on using the CreateStorediSCSIVolume
 // API call, and error handling.
@@ -1441,7 +1441,7 @@ const opCreateTapePool = "CreateTapePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTapePool for more information on using the CreateTapePool
 // API call, and error handling.
@@ -1526,7 +1526,7 @@ const opCreateTapeWithBarcode = "CreateTapeWithBarcode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTapeWithBarcode for more information on using the CreateTapeWithBarcode
 // API call, and error handling.
@@ -1616,7 +1616,7 @@ const opCreateTapes = "CreateTapes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTapes for more information on using the CreateTapes
 // API call, and error handling.
@@ -1705,7 +1705,7 @@ const opDeleteAutomaticTapeCreationPolicy = "DeleteAutomaticTapeCreationPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAutomaticTapeCreationPolicy for more information on using the DeleteAutomaticTapeCreationPolicy
 // API call, and error handling.
@@ -1791,7 +1791,7 @@ const opDeleteBandwidthRateLimit = "DeleteBandwidthRateLimit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBandwidthRateLimit for more information on using the DeleteBandwidthRateLimit
 // API call, and error handling.
@@ -1880,7 +1880,7 @@ const opDeleteChapCredentials = "DeleteChapCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteChapCredentials for more information on using the DeleteChapCredentials
 // API call, and error handling.
@@ -1966,7 +1966,7 @@ const opDeleteFileShare = "DeleteFileShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFileShare for more information on using the DeleteFileShare
 // API call, and error handling.
@@ -2051,7 +2051,7 @@ const opDeleteGateway = "DeleteGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGateway for more information on using the DeleteGateway
 // API call, and error handling.
@@ -2150,7 +2150,7 @@ const opDeleteSnapshotSchedule = "DeleteSnapshotSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSnapshotSchedule for more information on using the DeleteSnapshotSchedule
 // API call, and error handling.
@@ -2245,7 +2245,7 @@ const opDeleteTape = "DeleteTape"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTape for more information on using the DeleteTape
 // API call, and error handling.
@@ -2330,7 +2330,7 @@ const opDeleteTapeArchive = "DeleteTapeArchive"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTapeArchive for more information on using the DeleteTapeArchive
 // API call, and error handling.
@@ -2415,7 +2415,7 @@ const opDeleteTapePool = "DeleteTapePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTapePool for more information on using the DeleteTapePool
 // API call, and error handling.
@@ -2501,7 +2501,7 @@ const opDeleteVolume = "DeleteVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVolume for more information on using the DeleteVolume
 // API call, and error handling.
@@ -2599,7 +2599,7 @@ const opDescribeAvailabilityMonitorTest = "DescribeAvailabilityMonitorTest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAvailabilityMonitorTest for more information on using the DescribeAvailabilityMonitorTest
 // API call, and error handling.
@@ -2685,7 +2685,7 @@ const opDescribeBandwidthRateLimit = "DescribeBandwidthRateLimit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBandwidthRateLimit for more information on using the DescribeBandwidthRateLimit
 // API call, and error handling.
@@ -2776,7 +2776,7 @@ const opDescribeCache = "DescribeCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCache for more information on using the DescribeCache
 // API call, and error handling.
@@ -2864,7 +2864,7 @@ const opDescribeCachediSCSIVolumes = "DescribeCachediSCSIVolumes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCachediSCSIVolumes for more information on using the DescribeCachediSCSIVolumes
 // API call, and error handling.
@@ -2953,7 +2953,7 @@ const opDescribeChapCredentials = "DescribeChapCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeChapCredentials for more information on using the DescribeChapCredentials
 // API call, and error handling.
@@ -3039,7 +3039,7 @@ const opDescribeGatewayInformation = "DescribeGatewayInformation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGatewayInformation for more information on using the DescribeGatewayInformation
 // API call, and error handling.
@@ -3126,7 +3126,7 @@ const opDescribeMaintenanceStartTime = "DescribeMaintenanceStartTime"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMaintenanceStartTime for more information on using the DescribeMaintenanceStartTime
 // API call, and error handling.
@@ -3211,7 +3211,7 @@ const opDescribeNFSFileShares = "DescribeNFSFileShares"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNFSFileShares for more information on using the DescribeNFSFileShares
 // API call, and error handling.
@@ -3296,7 +3296,7 @@ const opDescribeSMBFileShares = "DescribeSMBFileShares"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSMBFileShares for more information on using the DescribeSMBFileShares
 // API call, and error handling.
@@ -3381,7 +3381,7 @@ const opDescribeSMBSettings = "DescribeSMBSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSMBSettings for more information on using the DescribeSMBSettings
 // API call, and error handling.
@@ -3466,7 +3466,7 @@ const opDescribeSnapshotSchedule = "DescribeSnapshotSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSnapshotSchedule for more information on using the DescribeSnapshotSchedule
 // API call, and error handling.
@@ -3553,7 +3553,7 @@ const opDescribeStorediSCSIVolumes = "DescribeStorediSCSIVolumes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStorediSCSIVolumes for more information on using the DescribeStorediSCSIVolumes
 // API call, and error handling.
@@ -3640,7 +3640,7 @@ const opDescribeTapeArchives = "DescribeTapeArchives"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTapeArchives for more information on using the DescribeTapeArchives
 // API call, and error handling.
@@ -3786,7 +3786,7 @@ const opDescribeTapeRecoveryPoints = "DescribeTapeRecoveryPoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTapeRecoveryPoints for more information on using the DescribeTapeRecoveryPoints
 // API call, and error handling.
@@ -3934,7 +3934,7 @@ const opDescribeTapes = "DescribeTapes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTapes for more information on using the DescribeTapes
 // API call, and error handling.
@@ -4079,7 +4079,7 @@ const opDescribeUploadBuffer = "DescribeUploadBuffer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUploadBuffer for more information on using the DescribeUploadBuffer
 // API call, and error handling.
@@ -4167,7 +4167,7 @@ const opDescribeVTLDevices = "DescribeVTLDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVTLDevices for more information on using the DescribeVTLDevices
 // API call, and error handling.
@@ -4312,7 +4312,7 @@ const opDescribeWorkingStorage = "DescribeWorkingStorage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkingStorage for more information on using the DescribeWorkingStorage
 // API call, and error handling.
@@ -4404,7 +4404,7 @@ const opDetachVolume = "DetachVolume"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachVolume for more information on using the DetachVolume
 // API call, and error handling.
@@ -4493,7 +4493,7 @@ const opDisableGateway = "DisableGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableGateway for more information on using the DisableGateway
 // API call, and error handling.
@@ -4584,7 +4584,7 @@ const opJoinDomain = "JoinDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See JoinDomain for more information on using the JoinDomain
 // API call, and error handling.
@@ -4669,7 +4669,7 @@ const opListAutomaticTapeCreationPolicies = "ListAutomaticTapeCreationPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAutomaticTapeCreationPolicies for more information on using the ListAutomaticTapeCreationPolicies
 // API call, and error handling.
@@ -4756,7 +4756,7 @@ const opListFileShares = "ListFileShares"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFileShares for more information on using the ListFileShares
 // API call, and error handling.
@@ -4900,7 +4900,7 @@ const opListGateways = "ListGateways"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGateways for more information on using the ListGateways
 // API call, and error handling.
@@ -5052,7 +5052,7 @@ const opListLocalDisks = "ListLocalDisks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLocalDisks for more information on using the ListLocalDisks
 // API call, and error handling.
@@ -5145,7 +5145,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -5288,7 +5288,7 @@ const opListTapePools = "ListTapePools"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTapePools for more information on using the ListTapePools
 // API call, and error handling.
@@ -5380,7 +5380,7 @@ const opListTapes = "ListTapes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTapes for more information on using the ListTapes
 // API call, and error handling.
@@ -5532,7 +5532,7 @@ const opListVolumeInitiators = "ListVolumeInitiators"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVolumeInitiators for more information on using the ListVolumeInitiators
 // API call, and error handling.
@@ -5618,7 +5618,7 @@ const opListVolumeRecoveryPoints = "ListVolumeRecoveryPoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVolumeRecoveryPoints for more information on using the ListVolumeRecoveryPoints
 // API call, and error handling.
@@ -5709,7 +5709,7 @@ const opListVolumes = "ListVolumes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVolumes for more information on using the ListVolumes
 // API call, and error handling.
@@ -5862,7 +5862,7 @@ const opNotifyWhenUploaded = "NotifyWhenUploaded"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See NotifyWhenUploaded for more information on using the NotifyWhenUploaded
 // API call, and error handling.
@@ -5959,7 +5959,7 @@ const opRefreshCache = "RefreshCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RefreshCache for more information on using the RefreshCache
 // API call, and error handling.
@@ -6069,7 +6069,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.
@@ -6154,7 +6154,7 @@ const opResetCache = "ResetCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetCache for more information on using the ResetCache
 // API call, and error handling.
@@ -6249,7 +6249,7 @@ const opRetrieveTapeArchive = "RetrieveTapeArchive"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetrieveTapeArchive for more information on using the RetrieveTapeArchive
 // API call, and error handling.
@@ -6342,7 +6342,7 @@ const opRetrieveTapeRecoveryPoint = "RetrieveTapeRecoveryPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetrieveTapeRecoveryPoint for more information on using the RetrieveTapeRecoveryPoint
 // API call, and error handling.
@@ -6435,7 +6435,7 @@ const opSetLocalConsolePassword = "SetLocalConsolePassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetLocalConsolePassword for more information on using the SetLocalConsolePassword
 // API call, and error handling.
@@ -6522,7 +6522,7 @@ const opSetSMBGuestPassword = "SetSMBGuestPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetSMBGuestPassword for more information on using the SetSMBGuestPassword
 // API call, and error handling.
@@ -6607,7 +6607,7 @@ const opShutdownGateway = "ShutdownGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ShutdownGateway for more information on using the ShutdownGateway
 // API call, and error handling.
@@ -6711,7 +6711,7 @@ const opStartAvailabilityMonitorTest = "StartAvailabilityMonitorTest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartAvailabilityMonitorTest for more information on using the StartAvailabilityMonitorTest
 // API call, and error handling.
@@ -6801,7 +6801,7 @@ const opStartGateway = "StartGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartGateway for more information on using the StartGateway
 // API call, and error handling.
@@ -6896,7 +6896,7 @@ const opUpdateAutomaticTapeCreationPolicy = "UpdateAutomaticTapeCreationPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAutomaticTapeCreationPolicy for more information on using the UpdateAutomaticTapeCreationPolicy
 // API call, and error handling.
@@ -6986,7 +6986,7 @@ const opUpdateBandwidthRateLimit = "UpdateBandwidthRateLimit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBandwidthRateLimit for more information on using the UpdateBandwidthRateLimit
 // API call, and error handling.
@@ -7080,7 +7080,7 @@ const opUpdateChapCredentials = "UpdateChapCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateChapCredentials for more information on using the UpdateChapCredentials
 // API call, and error handling.
@@ -7170,7 +7170,7 @@ const opUpdateGatewayInformation = "UpdateGatewayInformation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGatewayInformation for more information on using the UpdateGatewayInformation
 // API call, and error handling.
@@ -7260,7 +7260,7 @@ const opUpdateGatewaySoftwareNow = "UpdateGatewaySoftwareNow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGatewaySoftwareNow for more information on using the UpdateGatewaySoftwareNow
 // API call, and error handling.
@@ -7358,7 +7358,7 @@ const opUpdateMaintenanceStartTime = "UpdateMaintenanceStartTime"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMaintenanceStartTime for more information on using the UpdateMaintenanceStartTime
 // API call, and error handling.
@@ -7444,7 +7444,7 @@ const opUpdateNFSFileShare = "UpdateNFSFileShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNFSFileShare for more information on using the UpdateNFSFileShare
 // API call, and error handling.
@@ -7547,7 +7547,7 @@ const opUpdateSMBFileShare = "UpdateSMBFileShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSMBFileShare for more information on using the UpdateSMBFileShare
 // API call, and error handling.
@@ -7643,7 +7643,7 @@ const opUpdateSMBSecurityStrategy = "UpdateSMBSecurityStrategy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSMBSecurityStrategy for more information on using the UpdateSMBSecurityStrategy
 // API call, and error handling.
@@ -7732,7 +7732,7 @@ const opUpdateSnapshotSchedule = "UpdateSnapshotSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSnapshotSchedule for more information on using the UpdateSnapshotSchedule
 // API call, and error handling.
@@ -7825,7 +7825,7 @@ const opUpdateVTLDeviceType = "UpdateVTLDeviceType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVTLDeviceType for more information on using the UpdateVTLDeviceType
 // API call, and error handling.

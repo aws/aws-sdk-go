@@ -21,7 +21,7 @@ const opDeleteAlarms = "DeleteAlarms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAlarms for more information on using the DeleteAlarms
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opDeleteAnomalyDetector = "DeleteAnomalyDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAnomalyDetector for more information on using the DeleteAnomalyDetector
 // API call, and error handling.
@@ -209,7 +209,7 @@ const opDeleteDashboards = "DeleteDashboards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDashboards for more information on using the DeleteDashboards
 // API call, and error handling.
@@ -296,7 +296,7 @@ const opDeleteInsightRules = "DeleteInsightRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInsightRules for more information on using the DeleteInsightRules
 // API call, and error handling.
@@ -381,7 +381,7 @@ const opDescribeAlarmHistory = "DescribeAlarmHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAlarmHistory for more information on using the DescribeAlarmHistory
 // API call, and error handling.
@@ -522,7 +522,7 @@ const opDescribeAlarms = "DescribeAlarms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAlarms for more information on using the DescribeAlarms
 // API call, and error handling.
@@ -660,7 +660,7 @@ const opDescribeAlarmsForMetric = "DescribeAlarmsForMetric"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAlarmsForMetric for more information on using the DescribeAlarmsForMetric
 // API call, and error handling.
@@ -735,7 +735,7 @@ const opDescribeAnomalyDetectors = "DescribeAnomalyDetectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAnomalyDetectors for more information on using the DescribeAnomalyDetectors
 // API call, and error handling.
@@ -822,7 +822,7 @@ const opDescribeInsightRules = "DescribeInsightRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInsightRules for more information on using the DescribeInsightRules
 // API call, and error handling.
@@ -963,7 +963,7 @@ const opDisableAlarmActions = "DisableAlarmActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableAlarmActions for more information on using the DisableAlarmActions
 // API call, and error handling.
@@ -1039,7 +1039,7 @@ const opDisableInsightRules = "DisableInsightRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableInsightRules for more information on using the DisableInsightRules
 // API call, and error handling.
@@ -1122,7 +1122,7 @@ const opEnableAlarmActions = "EnableAlarmActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableAlarmActions for more information on using the EnableAlarmActions
 // API call, and error handling.
@@ -1197,7 +1197,7 @@ const opEnableInsightRules = "EnableInsightRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableInsightRules for more information on using the EnableInsightRules
 // API call, and error handling.
@@ -1283,7 +1283,7 @@ const opGetDashboard = "GetDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDashboard for more information on using the GetDashboard
 // API call, and error handling.
@@ -1372,7 +1372,7 @@ const opGetInsightRuleReport = "GetInsightRuleReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInsightRuleReport for more information on using the GetInsightRuleReport
 // API call, and error handling.
@@ -1487,7 +1487,7 @@ const opGetMetricData = "GetMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMetricData for more information on using the GetMetricData
 // API call, and error handling.
@@ -1665,7 +1665,7 @@ const opGetMetricStatistics = "GetMetricStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMetricStatistics for more information on using the GetMetricStatistics
 // API call, and error handling.
@@ -1806,7 +1806,7 @@ const opGetMetricWidgetImage = "GetMetricWidgetImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMetricWidgetImage for more information on using the GetMetricWidgetImage
 // API call, and error handling.
@@ -1894,7 +1894,7 @@ const opListDashboards = "ListDashboards"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDashboards for more information on using the ListDashboards
 // API call, and error handling.
@@ -2040,7 +2040,7 @@ const opListMetrics = "ListMetrics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMetrics for more information on using the ListMetrics
 // API call, and error handling.
@@ -2195,7 +2195,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2281,7 +2281,7 @@ const opPutAnomalyDetector = "PutAnomalyDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAnomalyDetector for more information on using the PutAnomalyDetector
 // API call, and error handling.
@@ -2373,7 +2373,7 @@ const opPutCompositeAlarm = "PutCompositeAlarm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutCompositeAlarm for more information on using the PutCompositeAlarm
 // API call, and error handling.
@@ -2491,7 +2491,7 @@ const opPutDashboard = "PutDashboard"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDashboard for more information on using the PutDashboard
 // API call, and error handling.
@@ -2590,7 +2590,7 @@ const opPutInsightRule = "PutInsightRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutInsightRule for more information on using the PutInsightRule
 // API call, and error handling.
@@ -2682,7 +2682,7 @@ const opPutMetricAlarm = "PutMetricAlarm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutMetricAlarm for more information on using the PutMetricAlarm
 // API call, and error handling.
@@ -2804,7 +2804,7 @@ const opPutMetricData = "PutMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutMetricData for more information on using the PutMetricData
 // API call, and error handling.
@@ -2935,7 +2935,7 @@ const opSetAlarmState = "SetAlarmState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetAlarmState for more information on using the SetAlarmState
 // API call, and error handling.
@@ -3036,7 +3036,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3142,7 +3142,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opCreateSignalingChannel = "CreateSignalingChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSignalingChannel for more information on using the CreateSignalingChannel
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opCreateStream = "CreateStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStream for more information on using the CreateStream
 // API call, and error handling.
@@ -229,7 +229,7 @@ const opDeleteSignalingChannel = "DeleteSignalingChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSignalingChannel for more information on using the DeleteSignalingChannel
 // API call, and error handling.
@@ -329,7 +329,7 @@ const opDeleteStream = "DeleteStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStream for more information on using the DeleteStream
 // API call, and error handling.
@@ -438,7 +438,7 @@ const opDescribeSignalingChannel = "DescribeSignalingChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSignalingChannel for more information on using the DescribeSignalingChannel
 // API call, and error handling.
@@ -529,7 +529,7 @@ const opDescribeStream = "DescribeStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStream for more information on using the DescribeStream
 // API call, and error handling.
@@ -619,7 +619,7 @@ const opGetDataEndpoint = "GetDataEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataEndpoint for more information on using the GetDataEndpoint
 // API call, and error handling.
@@ -716,7 +716,7 @@ const opGetSignalingChannelEndpoint = "GetSignalingChannelEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSignalingChannelEndpoint for more information on using the GetSignalingChannelEndpoint
 // API call, and error handling.
@@ -820,7 +820,7 @@ const opListSignalingChannels = "ListSignalingChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSignalingChannels for more information on using the ListSignalingChannels
 // API call, and error handling.
@@ -966,7 +966,7 @@ const opListStreams = "ListStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreams for more information on using the ListStreams
 // API call, and error handling.
@@ -1109,7 +1109,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1198,7 +1198,7 @@ const opListTagsForStream = "ListTagsForStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForStream for more information on using the ListTagsForStream
 // API call, and error handling.
@@ -1292,7 +1292,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1391,7 +1391,7 @@ const opTagStream = "TagStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagStream for more information on using the TagStream
 // API call, and error handling.
@@ -1499,7 +1499,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1591,7 +1591,7 @@ const opUntagStream = "UntagStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagStream for more information on using the UntagStream
 // API call, and error handling.
@@ -1688,7 +1688,7 @@ const opUpdateDataRetention = "UpdateDataRetention"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataRetention for more information on using the UpdateDataRetention
 // API call, and error handling.
@@ -1806,7 +1806,7 @@ const opUpdateSignalingChannel = "UpdateSignalingChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSignalingChannel for more information on using the UpdateSignalingChannel
 // API call, and error handling.
@@ -1910,7 +1910,7 @@ const opUpdateStream = "UpdateStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateStream for more information on using the UpdateStream
 // API call, and error handling.

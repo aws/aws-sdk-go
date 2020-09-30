@@ -21,7 +21,7 @@ const opCancelRotateSecret = "CancelRotateSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelRotateSecret for more information on using the CancelRotateSecret
 // API call, and error handling.
@@ -160,7 +160,7 @@ const opCreateSecret = "CreateSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSecret for more information on using the CreateSecret
 // API call, and error handling.
@@ -347,7 +347,7 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
 // API call, and error handling.
@@ -457,7 +457,7 @@ const opDeleteSecret = "DeleteSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSecret for more information on using the DeleteSecret
 // API call, and error handling.
@@ -590,7 +590,7 @@ const opDescribeSecret = "DescribeSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSecret for more information on using the DescribeSecret
 // API call, and error handling.
@@ -690,7 +690,7 @@ const opGetRandomPassword = "GetRandomPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRandomPassword for more information on using the GetRandomPassword
 // API call, and error handling.
@@ -794,7 +794,7 @@ const opGetResourcePolicy = "GetResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourcePolicy for more information on using the GetResourcePolicy
 // API call, and error handling.
@@ -906,7 +906,7 @@ const opGetSecretValue = "GetSecretValue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSecretValue for more information on using the GetSecretValue
 // API call, and error handling.
@@ -1026,7 +1026,7 @@ const opListSecretVersionIds = "ListSecretVersionIds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSecretVersionIds for more information on using the ListSecretVersionIds
 // API call, and error handling.
@@ -1188,7 +1188,7 @@ const opListSecrets = "ListSecrets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSecrets for more information on using the ListSecrets
 // API call, and error handling.
@@ -1350,7 +1350,7 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourcePolicy for more information on using the PutResourcePolicy
 // API call, and error handling.
@@ -1479,7 +1479,7 @@ const opPutSecretValue = "PutSecretValue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSecretValue for more information on using the PutSecretValue
 // API call, and error handling.
@@ -1658,7 +1658,7 @@ const opRestoreSecret = "RestoreSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreSecret for more information on using the RestoreSecret
 // API call, and error handling.
@@ -1767,7 +1767,7 @@ const opRotateSecret = "RotateSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RotateSecret for more information on using the RotateSecret
 // API call, and error handling.
@@ -1919,7 +1919,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2060,7 +2060,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2180,7 +2180,7 @@ const opUpdateSecret = "UpdateSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSecret for more information on using the UpdateSecret
 // API call, and error handling.
@@ -2359,7 +2359,7 @@ const opUpdateSecretVersionStage = "UpdateSecretVersionStage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSecretVersionStage for more information on using the UpdateSecretVersionStage
 // API call, and error handling.
@@ -2493,7 +2493,7 @@ const opValidateResourcePolicy = "ValidateResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ValidateResourcePolicy for more information on using the ValidateResourcePolicy
 // API call, and error handling.

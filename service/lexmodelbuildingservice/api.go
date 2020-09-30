@@ -21,7 +21,7 @@ const opCreateBotVersion = "CreateBotVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBotVersion for more information on using the CreateBotVersion
 // API call, and error handling.
@@ -128,7 +128,7 @@ const opCreateIntentVersion = "CreateIntentVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIntentVersion for more information on using the CreateIntentVersion
 // API call, and error handling.
@@ -237,7 +237,7 @@ const opCreateSlotTypeVersion = "CreateSlotTypeVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSlotTypeVersion for more information on using the CreateSlotTypeVersion
 // API call, and error handling.
@@ -345,7 +345,7 @@ const opDeleteBot = "DeleteBot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBot for more information on using the DeleteBot
 // API call, and error handling.
@@ -467,7 +467,7 @@ const opDeleteBotAlias = "DeleteBotAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBotAlias for more information on using the DeleteBotAlias
 // API call, and error handling.
@@ -582,7 +582,7 @@ const opDeleteBotChannelAssociation = "DeleteBotChannelAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBotChannelAssociation for more information on using the DeleteBotChannelAssociation
 // API call, and error handling.
@@ -679,7 +679,7 @@ const opDeleteBotVersion = "DeleteBotVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBotVersion for more information on using the DeleteBotVersion
 // API call, and error handling.
@@ -789,7 +789,7 @@ const opDeleteIntent = "DeleteIntent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIntent for more information on using the DeleteIntent
 // API call, and error handling.
@@ -909,7 +909,7 @@ const opDeleteIntentVersion = "DeleteIntentVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIntentVersion for more information on using the DeleteIntentVersion
 // API call, and error handling.
@@ -1019,7 +1019,7 @@ const opDeleteSlotType = "DeleteSlotType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSlotType for more information on using the DeleteSlotType
 // API call, and error handling.
@@ -1141,7 +1141,7 @@ const opDeleteSlotTypeVersion = "DeleteSlotTypeVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSlotTypeVersion for more information on using the DeleteSlotTypeVersion
 // API call, and error handling.
@@ -1251,7 +1251,7 @@ const opDeleteUtterances = "DeleteUtterances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUtterances for more information on using the DeleteUtterances
 // API call, and error handling.
@@ -1355,7 +1355,7 @@ const opGetBot = "GetBot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBot for more information on using the GetBot
 // API call, and error handling.
@@ -1448,7 +1448,7 @@ const opGetBotAlias = "GetBotAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBotAlias for more information on using the GetBotAlias
 // API call, and error handling.
@@ -1541,7 +1541,7 @@ const opGetBotAliases = "GetBotAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBotAliases for more information on using the GetBotAliases
 // API call, and error handling.
@@ -1687,7 +1687,7 @@ const opGetBotChannelAssociation = "GetBotChannelAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBotChannelAssociation for more information on using the GetBotChannelAssociation
 // API call, and error handling.
@@ -1781,7 +1781,7 @@ const opGetBotChannelAssociations = "GetBotChannelAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBotChannelAssociations for more information on using the GetBotChannelAssociations
 // API call, and error handling.
@@ -1928,7 +1928,7 @@ const opGetBotVersions = "GetBotVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBotVersions for more information on using the GetBotVersions
 // API call, and error handling.
@@ -2086,7 +2086,7 @@ const opGetBots = "GetBots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBots for more information on using the GetBots
 // API call, and error handling.
@@ -2243,7 +2243,7 @@ const opGetBuiltinIntent = "GetBuiltinIntent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBuiltinIntent for more information on using the GetBuiltinIntent
 // API call, and error handling.
@@ -2335,7 +2335,7 @@ const opGetBuiltinIntents = "GetBuiltinIntents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBuiltinIntents for more information on using the GetBuiltinIntents
 // API call, and error handling.
@@ -2481,7 +2481,7 @@ const opGetBuiltinSlotTypes = "GetBuiltinSlotTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBuiltinSlotTypes for more information on using the GetBuiltinSlotTypes
 // API call, and error handling.
@@ -2630,7 +2630,7 @@ const opGetExport = "GetExport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExport for more information on using the GetExport
 // API call, and error handling.
@@ -2720,7 +2720,7 @@ const opGetImport = "GetImport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetImport for more information on using the GetImport
 // API call, and error handling.
@@ -2810,7 +2810,7 @@ const opGetIntent = "GetIntent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIntent for more information on using the GetIntent
 // API call, and error handling.
@@ -2903,7 +2903,7 @@ const opGetIntentVersions = "GetIntentVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIntentVersions for more information on using the GetIntentVersions
 // API call, and error handling.
@@ -3061,7 +3061,7 @@ const opGetIntents = "GetIntents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIntents for more information on using the GetIntents
 // API call, and error handling.
@@ -3217,7 +3217,7 @@ const opGetSlotType = "GetSlotType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSlotType for more information on using the GetSlotType
 // API call, and error handling.
@@ -3310,7 +3310,7 @@ const opGetSlotTypeVersions = "GetSlotTypeVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSlotTypeVersions for more information on using the GetSlotTypeVersions
 // API call, and error handling.
@@ -3468,7 +3468,7 @@ const opGetSlotTypes = "GetSlotTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSlotTypes for more information on using the GetSlotTypes
 // API call, and error handling.
@@ -3624,7 +3624,7 @@ const opGetUtterancesView = "GetUtterancesView"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUtterancesView for more information on using the GetUtterancesView
 // API call, and error handling.
@@ -3734,7 +3734,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3825,7 +3825,7 @@ const opPutBot = "PutBot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBot for more information on using the PutBot
 // API call, and error handling.
@@ -3935,7 +3935,7 @@ const opPutBotAlias = "PutBotAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBotAlias for more information on using the PutBotAlias
 // API call, and error handling.
@@ -4032,7 +4032,7 @@ const opPutIntent = "PutIntent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutIntent for more information on using the PutIntent
 // API call, and error handling.
@@ -4169,7 +4169,7 @@ const opPutSlotType = "PutSlotType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSlotType for more information on using the PutSlotType
 // API call, and error handling.
@@ -4275,7 +4275,7 @@ const opStartImport = "StartImport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartImport for more information on using the StartImport
 // API call, and error handling.
@@ -4361,7 +4361,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4456,7 +4456,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
