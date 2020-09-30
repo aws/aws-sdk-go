@@ -3717,6 +3717,9 @@
         },
         {
           "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -5183,7 +5186,8 @@
         "PENDING_NEXT_RUN",
         "COMPLETED",
         "PAUSED",
-        "DELETED"
+        "DELETED",
+        "INVALID"
       ]
     },
     "CampaignsResponse": {
@@ -5286,6 +5290,21 @@
         "TrueActivity": {
           "shape": "__string"
         }
+      }
+    },
+    "ConflictException": {
+      "type": "structure",
+      "members": {
+        "Message": {
+          "shape": "__string"
+        },
+        "RequestID": {
+          "shape": "__string"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
       }
     },
     "CreateAppRequest": {
@@ -6943,10 +6962,7 @@
         "MessageActivity": {
           "shape": "__string"
         }
-      },
-      "required": [
-        "Dimensions"
-      ]
+      }
     },
     "EventDimensions": {
       "type": "structure",
@@ -6962,6 +6978,21 @@
         }
       }
     },
+    "EventFilter": {
+      "type": "structure",
+      "members": {
+        "Dimensions": {
+          "shape": "EventDimensions"
+        },
+        "FilterType": {
+          "shape": "FilterType"
+        }
+      },
+      "required": [
+        "FilterType",
+        "Dimensions"
+      ]
+    },
     "EventItemResponse": {
       "type": "structure",
       "members": {
@@ -6970,6 +7001,17 @@
         },
         "StatusCode": {
           "shape": "__integer"
+        }
+      }
+    },
+    "EventStartCondition": {
+      "type": "structure",
+      "members": {
+        "EventFilter": {
+          "shape": "EventFilter"
+        },
+        "SegmentId": {
+          "shape": "__string"
         }
       }
     },
@@ -10673,6 +10715,9 @@
       "members": {
         "Description": {
           "shape": "__string"
+        },
+        "EventStartCondition": {
+          "shape": "EventStartCondition"
         },
         "SegmentStartCondition": {
           "shape": "SegmentCondition"

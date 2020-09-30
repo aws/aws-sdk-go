@@ -46,9 +46,16 @@
     "UpdateInfrastructureConfiguration": "<p> Updates a new infrastructure configuration. An infrastructure configuration defines the environment in which your image will be built and tested. </p>"
   },
   "shapes": {
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "AccountList$member": null
+      }
+    },
     "AccountList": {
       "base": null,
       "refs": {
+        "AmiDistributionConfiguration$targetAccountIds": "<p> The ID of an account to which you want to distribute an image. </p>",
         "LaunchPermissionConfiguration$userIds": "<p>The AWS account ID. </p>"
       }
     },
@@ -79,17 +86,10 @@
     "Arn": {
       "base": null,
       "refs": {
-        "ArnList$member": null,
         "Image$sourcePipelineArn": "<p>The Amazon Resource Name (ARN) of the image pipeline that created this image.</p>",
         "ImagePipeline$imageRecipeArn": "<p>The Amazon Resource Name (ARN) of the image recipe associated with this image pipeline.</p>",
         "ImagePipeline$infrastructureConfigurationArn": "<p>The Amazon Resource Name (ARN) of the infrastructure configuration associated with this image pipeline.</p>",
         "ImagePipeline$distributionConfigurationArn": "<p>The Amazon Resource Name (ARN) of the distribution configuration associated with this image pipeline.</p>"
-      }
-    },
-    "ArnList": {
-      "base": null,
-      "refs": {
-        "Distribution$licenseConfigurationArns": "<p>The License Manager Configuration to associate with the AMI in the specified Region.</p>"
       }
     },
     "CallRateLimitExceededException": {
@@ -897,6 +897,18 @@
         "AmiDistributionConfiguration$launchPermission": "<p> Launch permissions can be used to configure which AWS accounts can use the AMI to launch instances. </p>"
       }
     },
+    "LicenseConfigurationArn": {
+      "base": null,
+      "refs": {
+        "LicenseConfigurationArnList$member": null
+      }
+    },
+    "LicenseConfigurationArnList": {
+      "base": null,
+      "refs": {
+        "Distribution$licenseConfigurationArns": "<p>The License Manager Configuration to associate with the AMI in the specified Region.</p>"
+      }
+    },
     "ListComponentBuildVersionsRequest": {
       "base": null,
       "refs": {
@@ -1008,11 +1020,11 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
-        "AccountList$member": null,
         "Ami$region": "<p>The AWS Region of the EC2 AMI. </p>",
         "Ami$image": "<p>The AMI ID of the EC2 AMI. </p>",
         "Ami$name": "<p>The name of the EC2 AMI. </p>",
         "Ami$description": "<p>The description of the EC2 AMI. </p>",
+        "Ami$accountId": "<p> The account ID of the owner of the AMI. </p>",
         "AmiDistributionConfiguration$description": "<p>The description of the distribution configuration. </p>",
         "AmiDistributionConfiguration$kmsKeyId": "<p> The KMS key identifier used to encrypt the distributed image. </p>",
         "CancelImageCreationResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -1034,7 +1046,7 @@
         "CreateImagePipelineRequest$description": "<p> The description of the image pipeline. </p>",
         "CreateImagePipelineResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
         "CreateImageRecipeRequest$description": "<p> The description of the image recipe. </p>",
-        "CreateImageRecipeRequest$parentImage": "<p>The parent image of the image recipe. The value of the string can be the ARN of the parent image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/2019.x.x</code>. The ARN ends with <code>/20xx.x.x</code>, which communicates to EC2 Image Builder that you want to use the latest AMI created in 20xx (year). You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder. </p>",
+        "CreateImageRecipeRequest$parentImage": "<p>The parent image of the image recipe. The value of the string can be the ARN of the parent image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/xxxx.x.x</code>. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder. </p>",
         "CreateImageRecipeRequest$workingDirectory": "<p>The working directory to be used during build and test workflows.</p>",
         "CreateImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "CreateImageResponse$requestId": "<p> The request ID that uniquely identifies this request. </p>",
@@ -1118,7 +1130,7 @@
         "PutImageRecipePolicyResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "S3Logs$s3BucketName": "<p>The Amazon S3 bucket in which to store the logs.</p>",
         "S3Logs$s3KeyPrefix": "<p>The Amazon S3 path in which to store the logs.</p>",
-        "Schedule$scheduleExpression": "<p>The expression determines how often EC2 Image Builder evaluates your <code>pipelineExecutionStartCondition</code>.</p>",
+        "Schedule$scheduleExpression": "<p>The cron expression determines how often EC2 Image Builder evaluates your <code>pipelineExecutionStartCondition</code>.</p> <p>For information on how to format a cron expression in Image Builder, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/userguide/image-builder-cron.html\">Use cron expressions in EC2 Image Builder</a>.</p>",
         "SecurityGroupIds$member": null,
         "StartImagePipelineExecutionResponse$requestId": "<p>The request ID that uniquely identifies this request. </p>",
         "StringList$member": null,
@@ -1186,7 +1198,7 @@
     "PipelineExecutionStartCondition": {
       "base": null,
       "refs": {
-        "Schedule$pipelineExecutionStartCondition": "<p>The condition configures when the pipeline should trigger a new image build. When the <code>pipelineExecutionStartCondition</code> is set to <code>EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE</code>, EC2 Image Builder will build a new image only when there are known changes pending. When it is set to <code>EXPRESSION_MATCH_ONLY</code>, it will build a new image every time the CRON expression matches the current time.</p>"
+        "Schedule$pipelineExecutionStartCondition": "<p>The condition configures when the pipeline should trigger a new image build. When the <code>pipelineExecutionStartCondition</code> is set to <code>EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE</code>, and you use semantic version filters on the source image or components in your image recipe, EC2 Image Builder will build a new image only when there are new versions of the image or components in your recipe that match the semantic version filter. When it is set to <code>EXPRESSION_MATCH_ONLY</code>, it will build a new image every time the CRON expression matches the current time. For semantic version syntax, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateComponent.html\">CreateComponent</a> in the <i> EC2 Image Builder API Reference</i>.</p>"
       }
     },
     "PipelineStatus": {

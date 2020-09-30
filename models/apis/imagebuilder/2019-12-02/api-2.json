@@ -784,9 +784,15 @@
     }
   },
   "shapes":{
+    "AccountId":{
+      "type":"string",
+      "pattern":"^\\d{12}$"
+    },
     "AccountList":{
       "type":"list",
-      "member":{"shape":"NonEmptyString"}
+      "member":{"shape":"AccountId"},
+      "max":50,
+      "min":1
     },
     "Ami":{
       "type":"structure",
@@ -795,7 +801,8 @@
         "image":{"shape":"NonEmptyString"},
         "name":{"shape":"NonEmptyString"},
         "description":{"shape":"NonEmptyString"},
-        "state":{"shape":"ImageState"}
+        "state":{"shape":"ImageState"},
+        "accountId":{"shape":"NonEmptyString"}
       }
     },
     "AmiDistributionConfiguration":{
@@ -803,6 +810,7 @@
       "members":{
         "name":{"shape":"AmiNameString"},
         "description":{"shape":"NonEmptyString"},
+        "targetAccountIds":{"shape":"AccountList"},
         "amiTags":{"shape":"TagMap"},
         "kmsKeyId":{"shape":"NonEmptyString"},
         "launchPermission":{"shape":"LaunchPermissionConfiguration"}
@@ -819,10 +827,6 @@
       "pattern":"^[-_A-Za-z0-9{][-_A-Za-z0-9\\s:{}\\.]+[-_A-Za-z0-9}]$"
     },
     "Arn":{"type":"string"},
-    "ArnList":{
-      "type":"list",
-      "member":{"shape":"Arn"}
-    },
     "CallRateLimitExceededException":{
       "type":"structure",
       "members":{
@@ -1260,7 +1264,7 @@
       "members":{
         "region":{"shape":"NonEmptyString"},
         "amiDistributionConfiguration":{"shape":"AmiDistributionConfiguration"},
-        "licenseConfigurationArns":{"shape":"ArnList"}
+        "licenseConfigurationArns":{"shape":"LicenseConfigurationArnList"}
       }
     },
     "DistributionConfiguration":{
@@ -1332,6 +1336,7 @@
       "enum":[
         "standard",
         "io1",
+        "io2",
         "gp2",
         "sc1",
         "st1"
@@ -1874,6 +1879,16 @@
         "userIds":{"shape":"AccountList"},
         "userGroups":{"shape":"StringList"}
       }
+    },
+    "LicenseConfigurationArn":{
+      "type":"string",
+      "pattern":"^arn:aws[^:]*:license-manager:[^:]+:\\d{12}:license-configuration:lic-[a-z0-9-_]{32}$"
+    },
+    "LicenseConfigurationArnList":{
+      "type":"list",
+      "member":{"shape":"LicenseConfigurationArn"},
+      "max":50,
+      "min":1
     },
     "ListComponentBuildVersionsRequest":{
       "type":"structure",

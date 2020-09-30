@@ -6358,6 +6358,18 @@
           "eu-central-1" : { },
           "eu-west-1" : { },
           "eu-west-2" : { },
+          "fips-us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "workspaces-fips.us-east-1.amazonaws.com"
+          },
+          "fips-us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "workspaces-fips.us-west-2.amazonaws.com"
+          },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-west-2" : { }
@@ -6776,6 +6788,21 @@
         "endpoints" : {
           "cn-north-1" : { },
           "cn-northwest-1" : { }
+        }
+      },
+      "iotevents" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
+      "ioteventsdata" : {
+        "endpoints" : {
+          "cn-north-1" : {
+            "credentialScope" : {
+              "region" : "cn-north-1"
+            },
+            "hostname" : "data.iotevents.cn-north-1.amazonaws.com.cn"
+          }
         }
       },
       "iotsecuredtunneling" : {
@@ -8544,6 +8571,12 @@
           "us-gov-west-1" : { }
         }
       },
+      "transfer" : {
+        "endpoints" : {
+          "us-gov-east-1" : { },
+          "us-gov-west-1" : { }
+        }
+      },
       "translate" : {
         "defaults" : {
           "protocols" : [ "https" ]
@@ -8576,6 +8609,12 @@
       },
       "workspaces" : {
         "endpoints" : {
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "workspaces-fips.us-gov-west-1.amazonaws.com"
+          },
           "us-gov-west-1" : { }
         }
       },

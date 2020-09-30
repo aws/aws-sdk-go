@@ -121,7 +121,7 @@
     "GetV2LoggingOptions": "<p>Gets the fine grained logging options.</p>",
     "ListActiveViolations": "<p>Lists the active violations for a given Device Defender security profile.</p>",
     "ListAttachedPolicies": "<p>Lists the policies attached to the specified thing group.</p>",
-    "ListAuditFindings": "<p>Lists the findings (results) of a Device Defender audit or of the audits performed during a specified time period. (Findings are retained for 180 days.)</p>",
+    "ListAuditFindings": "<p>Lists the findings (results) of a Device Defender audit or of the audits performed during a specified time period. (Findings are retained for 90 days.)</p>",
     "ListAuditMitigationActionsExecutions": "<p>Gets the status of audit mitigation action tasks that were executed.</p>",
     "ListAuditMitigationActionsTasks": "<p>Gets a list of audit mitigation action tasks that match the specified filters.</p>",
     "ListAuditSuppressions": "<p> Lists your Device Defender audit listings. </p>",
@@ -994,6 +994,7 @@
         "SnsAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "SqsAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "StepFunctionsAction$roleArn": "<p>The ARN of the role that grants IoT permission to start execution of a state machine (\"Action\":\"states:StartExecution\").</p>",
+        "TimestreamAction$roleArn": "<p>The ARN of the role that grants permission to write to the Amazon Timestream database table.</p>",
         "TopicRuleDestination$arn": "<p>The topic rule destination URL.</p>",
         "TopicRuleDestinationSummary$arn": "<p>The topic rule destination ARN.</p>",
         "UpdateTopicRuleDestinationRequest$arn": "<p>The ARN of the topic rule destination.</p>"
@@ -6839,7 +6840,7 @@
         "ListAuditFindingsRequest$endTime": "<p>A filter to limit results to those found before the specified time. You must specify either the startTime and endTime or the taskId, but not both.</p>",
         "ListAuditMitigationActionsTasksRequest$startTime": "<p>Specify this filter to limit results to tasks that began on or after a specific date and time.</p>",
         "ListAuditMitigationActionsTasksRequest$endTime": "<p>Specify this filter to limit results to tasks that were completed or canceled on or before a specific date and time.</p>",
-        "ListAuditTasksRequest$startTime": "<p>The beginning of the time period. Audit information is retained for a limited time (180 days). Requesting a start time prior to what is retained results in an \"InvalidRequestException\".</p>",
+        "ListAuditTasksRequest$startTime": "<p>The beginning of the time period. Audit information is retained for a limited time (90 days). Requesting a start time prior to what is retained results in an \"InvalidRequestException\".</p>",
         "ListAuditTasksRequest$endTime": "<p>The end of the time period.</p>",
         "ListViolationEventsRequest$startTime": "<p>The start time for the alerts to be listed.</p>",
         "ListViolationEventsRequest$endTime": "<p>The end time for the alerts to be listed.</p>",
@@ -6850,6 +6851,66 @@
         "UpdateSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
         "UpdateSecurityProfileResponse$lastModifiedDate": "<p>The time the security profile was last modified.</p>",
         "ViolationEvent$violationEventTime": "<p>The time the violation event occurred.</p>"
+      }
+    },
+    "TimestreamAction": {
+      "base": "<p>The Timestream rule action writes attributes (measures) from an MQTT message into an Amazon Timestream table. For more information, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/timestream-rule-action.html\">Timestream</a> topic rule action documentation.</p>",
+      "refs": {
+        "Action$timestream": "<p>The Timestream rule action writes attributes (measures) from an MQTT message into an Amazon Timestream table. For more information, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/timestream-rule-action.html\">Timestream</a> topic rule action documentation.</p>"
+      }
+    },
+    "TimestreamDatabaseName": {
+      "base": null,
+      "refs": {
+        "TimestreamAction$databaseName": "<p>The name of an Amazon Timestream database.</p>"
+      }
+    },
+    "TimestreamDimension": {
+      "base": "<p>Metadata attributes of the time series that are written in each measure record.</p>",
+      "refs": {
+        "TimestreamDimensionList$member": null
+      }
+    },
+    "TimestreamDimensionList": {
+      "base": null,
+      "refs": {
+        "TimestreamAction$dimensions": "<p>Metadata attributes of the time series that are written in each measure record.</p>"
+      }
+    },
+    "TimestreamDimensionName": {
+      "base": null,
+      "refs": {
+        "TimestreamDimension$name": "<p>The metadata dimension name. This is the name of the column in the Amazon Timestream database table record.</p> <p>Dimensions cannot be named: <code>measure_name</code>, <code>measure_value</code>, or <code>time</code>. These names are reserved. Dimension names cannot start with <code>ts_</code> or <code>measure_value</code> and they cannot contain the colon (<code>:</code>) character.</p>"
+      }
+    },
+    "TimestreamDimensionValue": {
+      "base": null,
+      "refs": {
+        "TimestreamDimension$value": "<p>The value to write in this column of the database record.</p>"
+      }
+    },
+    "TimestreamTableName": {
+      "base": null,
+      "refs": {
+        "TimestreamAction$tableName": "<p>The name of the database table into which to write the measure records.</p>"
+      }
+    },
+    "TimestreamTimestamp": {
+      "base": "<p>Describes how to interpret an application-defined timestamp value from an MQTT message payload and the precision of that value.</p>",
+      "refs": {
+        "TimestreamAction$timestamp": "<p>Specifies an application-defined value to replace the default value assigned to the Timestream record's timestamp in the <code>time</code> column.</p> <p>You can use this property to specify the value and the precision of the Timestream record's timestamp. You can specify a value from the message payload or a value computed by a substitution template.</p> <p>If omitted, the topic rule action assigns the timestamp, in milliseconds, at the time it processed the rule. </p>"
+      }
+    },
+    "TimestreamTimestampUnit": {
+      "base": null,
+      "refs": {
+        "TimestreamTimestamp$unit": "<p>The precision of the timestamp value that results from the expression described in <code>value</code>.</p> <p>Valid values: <code>SECONDS</code> | <code>MILLISECONDS</code> | <code>MICROSECONDS</code> | <code>NANOSECONDS</code>. The default is <code>MILLISECONDS</code>.</p>"
+      }
+    },
+    "TimestreamTimestampValue": {
+      "base": null,
+      "refs": {
+        "TimestreamTimestamp$value": "<p>An expression that returns a long epoch time value.</p>"
       }
     },
     "TlsContext": {

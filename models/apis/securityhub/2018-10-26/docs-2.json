@@ -1,12 +1,12 @@
 {
   "version": "2.0",
-  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the master account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
+  "service": "<p>Security Hub provides you with a comprehensive view of the security state of your AWS environment and resources. It also provides you with the readiness status of your environment based on controls from supported security standards. Security Hub collects security data from AWS accounts, services, and integrated third-party products and helps you analyze security trends in your environment to identify the highest priority security issues. For more information about Security Hub, see the <i> <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/what-is-securityhub.html\">AWS Security Hub User Guide</a> </i>.</p> <p>When you use operations in the Security Hub API, the requests are executed only in the AWS Region that is currently active or in the specific AWS Region that you specify in your request. Any configuration or settings change that results from the operation is applied only to that Region. To make the same change in other Regions, execute the same command for each Region to apply the change to.</p> <p>For example, if your Region is set to <code>us-west-2</code>, when you use <code> <a>CreateMembers</a> </code> to add a member account to Security Hub, the association of the member account with the master account is created only in the <code>us-west-2</code> Region. Security Hub must be enabled for the member account in the same Region that the invitation was sent from.</p> <p>The following throttling limits apply to using Security Hub API operations.</p> <ul> <li> <p> <code> <a>BatchEnableStandards</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 1 request per second.</p> </li> <li> <p> <code> <a>GetFindings</a> </code> - <code>RateLimit</code> of 3 requests per second. <code>BurstLimit</code> of 6 requests per second.</p> </li> <li> <p> <code> <a>UpdateFindings</a> </code> - <code>RateLimit</code> of 1 request per second. <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p> <code> <a>UpdateStandardsControl</a> </code> - <code>RateLimit</code> of 1 request per second, <code>BurstLimit</code> of 5 requests per second.</p> </li> <li> <p>All other operations - <code>RateLimit</code> of 10 requests per second. <code>BurstLimit</code> of 30 requests per second.</p> </li> </ul>",
   "operations": {
     "AcceptInvitation": "<p>Accepts the invitation to be a member account and be monitored by the Security Hub master account that the invitation was sent from.</p> <p>When the member account accepts the invitation, permission is granted to the master account to view findings generated in the member account.</p>",
     "BatchDisableStandards": "<p>Disables the standards specified by the provided <code>StandardsSubscriptionArns</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchEnableStandards": "<p>Enables the standards specified by the provided <code>StandardsArn</code>. To obtain the ARN for a standard, use the <code> <a>DescribeStandards</a> </code> operation.</p> <p>For more information, see the <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/securityhub-standards.html\">Security Standards</a> section of the <i>AWS Security Hub User Guide</i>.</p>",
     "BatchImportFindings": "<p>Imports security findings generated from an integrated third-party product into Security Hub. This action is requested by the integrated product to import its findings into Security Hub.</p> <p>The maximum allowed size for a finding is 240 Kb. An error is returned for any finding larger than 240 Kb.</p> <p>After a finding is created, <code>BatchImportFindings</code> cannot be used to update the following finding fields and objects, which Security Hub customers use to manage their investigation workflow.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul>",
-    "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by master accounts or member accounts. Master accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Master accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>Member accounts can only use <code>BatchUpdateFindings</code> to update the Note object.</p>",
+    "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by master accounts or member accounts. Master accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Master and member accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access\">Configuring access to BatchUpdateFindings</a> in the <i>AWS Security Hub User Guide</i>.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
     "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the master account. To successfully create a member, you must use this action from an account that already has Security Hub enabled. To enable Security Hub, you can use the <code> <a>EnableSecurityHub</a> </code> operation.</p> <p>After you use <code>CreateMembers</code> to create member account associations in Security Hub, you must use the <code> <a>InviteMembers</a> </code> operation to invite the accounts to enable Security Hub and become member accounts in Security Hub.</p> <p>If the account owner accepts the invitation, the account becomes a member account in Security Hub. A permissions policy is added that permits the master account to view the findings generated in the member account. When Security Hub is enabled in the invited account, findings start to be sent to both the member and master accounts.</p> <p>To remove the association between the master and member accounts, use the <code> <a>DisassociateFromMasterAccount</a> </code> or <code> <a>DisassociateMembers</a> </code> operation.</p>",
@@ -125,10 +125,157 @@
         "AwsElbv2LoadBalancerDetails$AvailabilityZones": "<p>The Availability Zones for the load balancer.</p>"
       }
     },
+    "AwsApiGatewayAccessLogSettings": {
+      "base": "<p>Contains information about settings for logging access for the stage.</p>",
+      "refs": {
+        "AwsApiGatewayStageDetails$AccessLogSettings": "<p>Settings for logging access for the stage.</p>",
+        "AwsApiGatewayV2StageDetails$AccessLogSettings": "<p>Information about settings for logging access for the stage.</p>"
+      }
+    },
+    "AwsApiGatewayCanarySettings": {
+      "base": "<p>Contains information about settings for canary deployment in the stage.</p>",
+      "refs": {
+        "AwsApiGatewayStageDetails$CanarySettings": "<p>Information about settings for canary deployment in the stage.</p>"
+      }
+    },
+    "AwsApiGatewayEndpointConfiguration": {
+      "base": "<p>Contains information about the endpoints for the API.</p>",
+      "refs": {
+        "AwsApiGatewayRestApiDetails$EndpointConfiguration": "<p>The endpoint configuration of the REST API.</p>"
+      }
+    },
+    "AwsApiGatewayMethodSettings": {
+      "base": "<p>Defines settings for a method for the stage.</p>",
+      "refs": {
+        "AwsApiGatewayMethodSettingsList$member": null
+      }
+    },
+    "AwsApiGatewayMethodSettingsList": {
+      "base": null,
+      "refs": {
+        "AwsApiGatewayStageDetails$MethodSettings": "<p>Defines the method settings for the stage.</p>"
+      }
+    },
+    "AwsApiGatewayRestApiDetails": {
+      "base": "<p>contains information about a REST API in version 1 of Amazon API Gateway.</p>",
+      "refs": {
+        "ResourceDetails$AwsApiGatewayRestApi": "<p/>"
+      }
+    },
+    "AwsApiGatewayStageDetails": {
+      "base": "<p>Provides information about a version 1 Amazon API Gateway stage.</p>",
+      "refs": {
+        "ResourceDetails$AwsApiGatewayStage": "<p/>"
+      }
+    },
+    "AwsApiGatewayV2ApiDetails": {
+      "base": "<p>Contains information about a version 2 API in Amazon API Gateway.</p>",
+      "refs": {
+        "ResourceDetails$AwsApiGatewayV2Api": "<p/>"
+      }
+    },
+    "AwsApiGatewayV2RouteSettings": {
+      "base": "<p>Contains route settings for a stage.</p>",
+      "refs": {
+        "AwsApiGatewayV2StageDetails$DefaultRouteSettings": "<p>Default route settings for the stage.</p>",
+        "AwsApiGatewayV2StageDetails$RouteSettings": "<p>The route settings for the stage.</p>"
+      }
+    },
+    "AwsApiGatewayV2StageDetails": {
+      "base": "<p>Contains information about a version 2 stage for Amazon API Gateway.</p>",
+      "refs": {
+        "ResourceDetails$AwsApiGatewayV2Stage": "<p/>"
+      }
+    },
     "AwsAutoScalingAutoScalingGroupDetails": {
       "base": "<p>Provides details about an auto scaling group.</p>",
       "refs": {
         "ResourceDetails$AwsAutoScalingAutoScalingGroup": "<p>Details for an autoscaling group.</p>"
+      }
+    },
+    "AwsCertificateManagerCertificateDetails": {
+      "base": "<p>Provides details about an AWS Certificate Manager certificate.</p>",
+      "refs": {
+        "ResourceDetails$AwsCertificateManagerCertificate": "<p/>"
+      }
+    },
+    "AwsCertificateManagerCertificateDomainValidationOption": {
+      "base": "<p>Contains information about one of the following:</p> <ul> <li> <p>The initial validation of each domain name that occurs as a result of the <code>RequestCertificate</code> request</p> </li> <li> <p>The validation of each domain name in the certificate, as it pertains to AWS Certificate Manager managed renewal</p> </li> </ul>",
+      "refs": {
+        "AwsCertificateManagerCertificateDomainValidationOptions$member": null
+      }
+    },
+    "AwsCertificateManagerCertificateDomainValidationOptions": {
+      "base": null,
+      "refs": {
+        "AwsCertificateManagerCertificateDetails$DomainValidationOptions": "<p>Contains information about the initial validation of each domain name that occurs as a result of the <code>RequestCertificate</code> request.</p> <p>Only provided if the certificate type is <code>AMAZON_ISSUED</code>.</p>",
+        "AwsCertificateManagerCertificateRenewalSummary$DomainValidationOptions": "<p>Information about the validation of each domain name in the certificate, as it pertains to AWS Certificate Manager managed renewal. Provided only when the certificate type is <code>AMAZON_ISSUED</code>.</p>"
+      }
+    },
+    "AwsCertificateManagerCertificateExtendedKeyUsage": {
+      "base": "<p>Contains information about an extended key usage X.509 v3 extension object.</p>",
+      "refs": {
+        "AwsCertificateManagerCertificateExtendedKeyUsages$member": null
+      }
+    },
+    "AwsCertificateManagerCertificateExtendedKeyUsages": {
+      "base": null,
+      "refs": {
+        "AwsCertificateManagerCertificateDetails$ExtendedKeyUsages": "<p>Contains a list of Extended Key Usage X.509 v3 extension objects. Each object specifies a purpose for which the certificate public key can be used and consists of a name and an object identifier (OID).</p>"
+      }
+    },
+    "AwsCertificateManagerCertificateKeyUsage": {
+      "base": "<p>Contains information about a key usage X.509 v3 extension object.</p>",
+      "refs": {
+        "AwsCertificateManagerCertificateKeyUsages$member": null
+      }
+    },
+    "AwsCertificateManagerCertificateKeyUsages": {
+      "base": null,
+      "refs": {
+        "AwsCertificateManagerCertificateDetails$KeyUsages": "<p>A list of key usage X.509 v3 extension objects.</p>"
+      }
+    },
+    "AwsCertificateManagerCertificateOptions": {
+      "base": "<p>Contains other options for the certificate.</p>",
+      "refs": {
+        "AwsCertificateManagerCertificateDetails$Options": "<p>Provides a value that specifies whether to add the certificate to a transparency log.</p>"
+      }
+    },
+    "AwsCertificateManagerCertificateRenewalSummary": {
+      "base": "<p>Contains information about the AWS Certificate Manager managed renewal for an <code>AMAZON_ISSUED</code> certificate.</p>",
+      "refs": {
+        "AwsCertificateManagerCertificateDetails$RenewalSummary": "<p>Information about the status of the AWS Certificate Manager managed renewal for the certificate. Provided only when the certificate type is <code>AMAZON_ISSUED</code>.</p>"
+      }
+    },
+    "AwsCertificateManagerCertificateResourceRecord": {
+      "base": "<p>Provides details about the CNAME record that is added to the DNS database for domain validation.</p>",
+      "refs": {
+        "AwsCertificateManagerCertificateDomainValidationOption$ResourceRecord": "<p>The CNAME record that is added to the DNS database for domain validation.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionCacheBehavior": {
+      "base": "<p>Information about a cache behavior for the distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionCacheBehaviorsItemList$member": null
+      }
+    },
+    "AwsCloudFrontDistributionCacheBehaviors": {
+      "base": "<p>Provides information about caching for the distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionDetails$CacheBehaviors": "<p>Provides information about the cache configuration for the distribution.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionCacheBehaviorsItemList": {
+      "base": null,
+      "refs": {
+        "AwsCloudFrontDistributionCacheBehaviors$Items": "<p>The cache behaviors for the distribution.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionDefaultCacheBehavior": {
+      "base": "<p>Contains information about the default cache configuration for the distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionDetails$DefaultCacheBehavior": "<p>The default cache behavior for the configuration.</p>"
       }
     },
     "AwsCloudFrontDistributionDetails": {
@@ -143,6 +290,42 @@
         "AwsCloudFrontDistributionDetails$Logging": "<p>A complex type that controls whether access logs are written for the distribution.</p>"
       }
     },
+    "AwsCloudFrontDistributionOriginGroup": {
+      "base": "<p>Information about an origin group for the distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginGroupsItemList$member": null
+      }
+    },
+    "AwsCloudFrontDistributionOriginGroupFailover": {
+      "base": "<p>Provides information about when an origin group fails over.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginGroup$FailoverCriteria": "<p>Provides the criteria for an origin group to fail over.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionOriginGroupFailoverStatusCodes": {
+      "base": "<p>The status codes that cause an origin group to fail over.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginGroupFailover$StatusCodes": "<p>Information about the status codes that cause an origin group to fail over.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionOriginGroupFailoverStatusCodesItemList": {
+      "base": null,
+      "refs": {
+        "AwsCloudFrontDistributionOriginGroupFailoverStatusCodes$Items": "<p>The list of status code values that can cause a failover to the next origin.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionOriginGroups": {
+      "base": "<p>Provides information about origin groups that are associated with the distribution.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionDetails$OriginGroups": "<p>Provides information about the origin groups in the distribution.</p>"
+      }
+    },
+    "AwsCloudFrontDistributionOriginGroupsItemList": {
+      "base": null,
+      "refs": {
+        "AwsCloudFrontDistributionOriginGroups$Items": "<p>The list of origin groups.</p>"
+      }
+    },
     "AwsCloudFrontDistributionOriginItem": {
       "base": "<p>A complex type that describes the Amazon S3 bucket, HTTP server (for example, a web server), Amazon Elemental MediaStore, or other server from which CloudFront gets your files.</p>",
       "refs": {
@@ -155,10 +338,22 @@
         "AwsCloudFrontDistributionOrigins$Items": "<p>A complex type that contains origins or origin groups for this distribution.</p>"
       }
     },
+    "AwsCloudFrontDistributionOriginS3OriginConfig": {
+      "base": "<p>Information about an origin that is an S3 bucket that is not configured with static website hosting.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionOriginItem$S3OriginConfig": "<p>An origin that is an S3 bucket that is not configured with static website hosting.</p>"
+      }
+    },
     "AwsCloudFrontDistributionOrigins": {
       "base": "<p>A complex type that contains information about origins and origin groups for this distribution.</p>",
       "refs": {
         "AwsCloudFrontDistributionDetails$Origins": "<p>A complex type that contains information about origins for this distribution.</p>"
+      }
+    },
+    "AwsCloudTrailTrailDetails": {
+      "base": "<p>Provides details about a CloudTrail trail.</p>",
+      "refs": {
+        "ResourceDetails$AwsCloudTrailTrail": "<p/>"
       }
     },
     "AwsCodeBuildProjectDetails": {
@@ -189,6 +384,12 @@
       "base": "<p>Information about the VPC configuration that AWS CodeBuild accesses.</p>",
       "refs": {
         "AwsCodeBuildProjectDetails$VpcConfig": "<p>Information about the VPC configuration that AWS CodeBuild accesses.</p>"
+      }
+    },
+    "AwsCorsConfiguration": {
+      "base": "<p>Contains the cross-origin resource sharing (CORS) configuration for the API. CORS is only supported for HTTP APIs.</p>",
+      "refs": {
+        "AwsApiGatewayV2ApiDetails$CorsConfiguration": "<p>A cross-origin resource sharing (CORS) configuration. Supported only for HTTP APIs.</p>"
       }
     },
     "AwsDynamoDbTableAttributeDefinition": {
@@ -473,6 +674,126 @@
         "AwsElasticsearchDomainDetails$VPCOptions": "<p>Information that Amazon ES derives based on <code>VPCOptions</code> for the domain.</p>"
       }
     },
+    "AwsElbAppCookieStickinessPolicies": {
+      "base": null,
+      "refs": {
+        "AwsElbLoadBalancerPolicies$AppCookieStickinessPolicies": "<p>The stickiness policies that are created using <code>CreateAppCookieStickinessPolicy</code>.</p>"
+      }
+    },
+    "AwsElbAppCookieStickinessPolicy": {
+      "base": "<p>Contains information about a stickiness policy that was created using <code>CreateAppCookieStickinessPolicy</code>.</p>",
+      "refs": {
+        "AwsElbAppCookieStickinessPolicies$member": null
+      }
+    },
+    "AwsElbLbCookieStickinessPolicies": {
+      "base": null,
+      "refs": {
+        "AwsElbLoadBalancerPolicies$LbCookieStickinessPolicies": "<p>The stickiness policies that are created using <code>CreateLBCookieStickinessPolicy</code>.</p>"
+      }
+    },
+    "AwsElbLbCookieStickinessPolicy": {
+      "base": "<p>Contains information about a stickiness policy that was created using <code>CreateLBCookieStickinessPolicy</code>.</p>",
+      "refs": {
+        "AwsElbLbCookieStickinessPolicies$member": null
+      }
+    },
+    "AwsElbLoadBalancerAccessLog": {
+      "base": "<p>Contains information about the access log configuration for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerAttributes$AccessLog": "<p>Information about the access log configuration for the load balancer.</p> <p>If the access log is enabled, the load balancer captures detailed information about all requests. It delivers the information to a specified S3 bucket.</p>"
+      }
+    },
+    "AwsElbLoadBalancerAttributes": {
+      "base": "<p>Contains attributes for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerDetails$LoadBalancerAttributes": "<p>The attributes for a load balancer.</p>"
+      }
+    },
+    "AwsElbLoadBalancerBackendServerDescription": {
+      "base": "<p>Provides information about the configuration of an EC2 instance for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerBackendServerDescriptions$member": null
+      }
+    },
+    "AwsElbLoadBalancerBackendServerDescriptions": {
+      "base": null,
+      "refs": {
+        "AwsElbLoadBalancerDetails$BackendServerDescriptions": "<p>Information about the configuration of the EC2 instances.</p>"
+      }
+    },
+    "AwsElbLoadBalancerConnectionDraining": {
+      "base": "<p>Contains information about the connection draining configuration for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerAttributes$ConnectionDraining": "<p>Information about the connection draining configuration for the load balancer.</p> <p>If connection draining is enabled, the load balancer allows existing requests to complete before it shifts traffic away from a deregistered or unhealthy instance.</p>"
+      }
+    },
+    "AwsElbLoadBalancerConnectionSettings": {
+      "base": "<p>Contains connection settings for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerAttributes$ConnectionSettings": "<p>Connection settings for the load balancer.</p> <p>If an idle timeout is configured, the load balancer allows connections to remain idle for the specified duration. When a connection is idle, no data is sent over the connection.</p>"
+      }
+    },
+    "AwsElbLoadBalancerCrossZoneLoadBalancing": {
+      "base": "<p>Contains cross-zone load balancing settings for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerAttributes$CrossZoneLoadBalancing": "<p>Cross-zone load balancing settings for the load balancer.</p> <p>If cross-zone load balancing is enabled, the load balancer routes the request traffic evenly across all instances regardless of the Availability Zones.</p>"
+      }
+    },
+    "AwsElbLoadBalancerDetails": {
+      "base": "<p>Contains details about a Classic Load Balancer.</p>",
+      "refs": {
+        "ResourceDetails$AwsElbLoadBalancer": "<p/>"
+      }
+    },
+    "AwsElbLoadBalancerHealthCheck": {
+      "base": "<p>Contains information about the health checks that are conducted on the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerDetails$HealthCheck": "<p>Information about the health checks that are conducted on the load balancer.</p>"
+      }
+    },
+    "AwsElbLoadBalancerInstance": {
+      "base": "<p>Provides information about an EC2 instance for a load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerInstances$member": null
+      }
+    },
+    "AwsElbLoadBalancerInstances": {
+      "base": null,
+      "refs": {
+        "AwsElbLoadBalancerDetails$Instances": "<p>List of EC2 instances for the load balancer.</p>"
+      }
+    },
+    "AwsElbLoadBalancerListener": {
+      "base": "<p>Information about a load balancer listener.</p>",
+      "refs": {
+        "AwsElbLoadBalancerListenerDescription$Listener": "<p>Information about the listener.</p>"
+      }
+    },
+    "AwsElbLoadBalancerListenerDescription": {
+      "base": "<p>Lists the policies that are enabled for a load balancer listener.</p>",
+      "refs": {
+        "AwsElbLoadBalancerListenerDescriptions$member": null
+      }
+    },
+    "AwsElbLoadBalancerListenerDescriptions": {
+      "base": null,
+      "refs": {
+        "AwsElbLoadBalancerDetails$ListenerDescriptions": "<p>The policies that are enabled for the load balancer listeners.</p>"
+      }
+    },
+    "AwsElbLoadBalancerPolicies": {
+      "base": "<p>Contains information about the policies for a load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerDetails$Policies": "<p>The policies for a load balancer.</p>"
+      }
+    },
+    "AwsElbLoadBalancerSourceSecurityGroup": {
+      "base": "<p>Contains information about the security group for the load balancer.</p>",
+      "refs": {
+        "AwsElbLoadBalancerDetails$SourceSecurityGroup": "<p>Information about the security group for the load balancer. This is the security group that is used for inbound rules.</p>"
+      }
+    },
     "AwsElbv2LoadBalancerDetails": {
       "base": "<p>Information about a load balancer.</p>",
       "refs": {
@@ -485,6 +806,24 @@
         "ResourceDetails$AwsIamAccessKey": "<p>Details about an IAM access key related to a finding.</p>"
       }
     },
+    "AwsIamAccessKeySessionContext": {
+      "base": "<p>Provides information about the session that the key was used for.</p>",
+      "refs": {
+        "AwsIamAccessKeyDetails$SessionContext": "<p>Information about the session that the key was used for.</p>"
+      }
+    },
+    "AwsIamAccessKeySessionContextAttributes": {
+      "base": "<p>Attributes of the session that the key was used for.</p>",
+      "refs": {
+        "AwsIamAccessKeySessionContext$Attributes": "<p>Attributes of the session that the key was used for.</p>"
+      }
+    },
+    "AwsIamAccessKeySessionContextSessionIssuer": {
+      "base": "<p>Information about the entity that created the session.</p>",
+      "refs": {
+        "AwsIamAccessKeySessionContext$SessionIssuer": "<p>Information about the entity that created the session.</p>"
+      }
+    },
     "AwsIamAccessKeyStatus": {
       "base": null,
       "refs": {
@@ -492,7 +831,7 @@
       }
     },
     "AwsIamAttachedManagedPolicy": {
-      "base": "<p>A managed policy that is attached to an IAM user.</p>",
+      "base": "<p>A managed policy that is attached to an IAM principal.</p>",
       "refs": {
         "AwsIamAttachedManagedPolicyList$member": null
       }
@@ -500,12 +839,57 @@
     "AwsIamAttachedManagedPolicyList": {
       "base": null,
       "refs": {
+        "AwsIamGroupDetails$AttachedManagedPolicies": "<p>A list of the managed policies that are attached to the IAM group.</p>",
+        "AwsIamRoleDetails$AttachedManagedPolicies": "<p>The list of the managed policies that are attached to the role.</p>",
         "AwsIamUserDetails$AttachedManagedPolicies": "<p>A list of the managed policies that are attached to the user.</p>"
       }
     },
-    "AwsIamPermissionsBoundary": {
-      "base": "<p>Information about the policy used to set the permissions boundary for an IAM user.</p>",
+    "AwsIamGroupDetails": {
+      "base": "<p>Contains details about an IAM group.</p>",
       "refs": {
+        "ResourceDetails$AwsIamGroup": "<p/>"
+      }
+    },
+    "AwsIamGroupPolicy": {
+      "base": "<p>A managed policy that is attached to the IAM group.</p>",
+      "refs": {
+        "AwsIamGroupPolicyList$member": null
+      }
+    },
+    "AwsIamGroupPolicyList": {
+      "base": null,
+      "refs": {
+        "AwsIamGroupDetails$GroupPolicyList": "<p>The list of inline policies that are embedded in the group.</p>"
+      }
+    },
+    "AwsIamInstanceProfile": {
+      "base": "<p>Information about an instance profile.</p>",
+      "refs": {
+        "AwsIamInstanceProfileList$member": null
+      }
+    },
+    "AwsIamInstanceProfileList": {
+      "base": null,
+      "refs": {
+        "AwsIamRoleDetails$InstanceProfileList": "<p>The list of instance profiles that contain this role.</p>"
+      }
+    },
+    "AwsIamInstanceProfileRole": {
+      "base": "<p>Information about a role associated with an instance profile.</p>",
+      "refs": {
+        "AwsIamInstanceProfileRoles$member": null
+      }
+    },
+    "AwsIamInstanceProfileRoles": {
+      "base": null,
+      "refs": {
+        "AwsIamInstanceProfile$Roles": "<p>The roles associated with the instance profile.</p>"
+      }
+    },
+    "AwsIamPermissionsBoundary": {
+      "base": "<p>Information about the policy used to set the permissions boundary for an IAM principal.</p>",
+      "refs": {
+        "AwsIamRoleDetails$PermissionsBoundary": null,
         "AwsIamUserDetails$PermissionsBoundary": "<p>The permissions boundary for the user.</p>"
       }
     },
@@ -530,6 +914,7 @@
     "AwsIamRoleAssumeRolePolicyDocument": {
       "base": null,
       "refs": {
+        "AwsIamInstanceProfileRole$AssumeRolePolicyDocument": "<p>The policy that grants an entity permission to assume the role.</p>",
         "AwsIamRoleDetails$AssumeRolePolicyDocument": "<p>The trust policy that grants permission to assume the role.</p>"
       }
     },
@@ -537,6 +922,18 @@
       "base": "<p>Contains information about an IAM role, including all of the role's policies.</p>",
       "refs": {
         "ResourceDetails$AwsIamRole": "<p>Details about an IAM role.</p>"
+      }
+    },
+    "AwsIamRolePolicy": {
+      "base": "<p>An inline policy that is embedded in the role.</p>",
+      "refs": {
+        "AwsIamRolePolicyList$member": null
+      }
+    },
+    "AwsIamRolePolicyList": {
+      "base": null,
+      "refs": {
+        "AwsIamRoleDetails$RolePolicyList": "<p>The list of inline policies that are embedded in the role.</p>"
       }
     },
     "AwsIamUserDetails": {
@@ -820,6 +1217,138 @@
         "AwsRdsDbPendingModifiedValues$PendingCloudWatchLogsExports": "<p/>"
       }
     },
+    "AwsRedshiftClusterClusterNode": {
+      "base": "<p>A node in an Amazon Redshift cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterClusterNodes$member": null
+      }
+    },
+    "AwsRedshiftClusterClusterNodes": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterDetails$ClusterNodes": "<p>The nodes in the cluster.</p>"
+      }
+    },
+    "AwsRedshiftClusterClusterParameterGroup": {
+      "base": "<p>A cluster parameter group that is associated with an Amazon Redshift cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterClusterParameterGroups$member": null
+      }
+    },
+    "AwsRedshiftClusterClusterParameterGroups": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterDetails$ClusterParameterGroups": "<p>The list of cluster parameter groups that are associated with this cluster.</p>"
+      }
+    },
+    "AwsRedshiftClusterClusterParameterStatus": {
+      "base": "<p>The status of a parameter in a cluster parameter group for an Amazon Redshift cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterClusterParameterStatusList$member": null
+      }
+    },
+    "AwsRedshiftClusterClusterParameterStatusList": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterClusterParameterGroup$ClusterParameterStatusList": "<p>The list of parameter statuses.</p>"
+      }
+    },
+    "AwsRedshiftClusterClusterSecurityGroup": {
+      "base": "<p>A security group that is associated with the cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterClusterSecurityGroups$member": null
+      }
+    },
+    "AwsRedshiftClusterClusterSecurityGroups": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterDetails$ClusterSecurityGroups": "<p>A list of cluster security groups that are associated with the cluster.</p>"
+      }
+    },
+    "AwsRedshiftClusterClusterSnapshotCopyStatus": {
+      "base": "<p>Information about a cross-Region snapshot copy.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$ClusterSnapshotCopyStatus": "<p>Information about the destination Region and retention period for the cross-Region snapshot copy.</p>"
+      }
+    },
+    "AwsRedshiftClusterDeferredMaintenanceWindow": {
+      "base": "<p>A time windows during which maintenance was deferred for an Amazon Redshift cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterDeferredMaintenanceWindows$member": null
+      }
+    },
+    "AwsRedshiftClusterDeferredMaintenanceWindows": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterDetails$DeferredMaintenanceWindows": "<p>List of time windows during which maintenance was deferred.</p>"
+      }
+    },
+    "AwsRedshiftClusterDetails": {
+      "base": "<p>Details about an Amazon Redshift cluster.</p>",
+      "refs": {
+        "ResourceDetails$AwsRedshiftCluster": "<p/>"
+      }
+    },
+    "AwsRedshiftClusterElasticIpStatus": {
+      "base": "<p>The status of the elastic IP (EIP) address for an Amazon Redshift cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$ElasticIpStatus": "<p>Information about the status of the Elastic IP (EIP) address.</p>"
+      }
+    },
+    "AwsRedshiftClusterEndpoint": {
+      "base": "<p>The connection endpoint for an Amazon Redshift cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$Endpoint": "<p>The connection endpoint.</p>"
+      }
+    },
+    "AwsRedshiftClusterHsmStatus": {
+      "base": "<p>Information about whether an Amazon Redshift cluster finished applying any hardware changes to security module (HSM) settings that were specified in a modify cluster command.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$HsmStatus": "<p>Information about whether the Amazon Redshift cluster finished applying any changes to hardware security module (HSM) settings that were specified in a modify cluster command.</p>"
+      }
+    },
+    "AwsRedshiftClusterIamRole": {
+      "base": "<p>An IAM role that the cluster can use to access other AWS services.</p>",
+      "refs": {
+        "AwsRedshiftClusterIamRoles$member": null
+      }
+    },
+    "AwsRedshiftClusterIamRoles": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterDetails$IamRoles": "<p>A list of IAM roles that the cluster can use to access other AWS services.</p>"
+      }
+    },
+    "AwsRedshiftClusterPendingModifiedValues": {
+      "base": "<p>Changes to the Amazon Redshift cluster that are currently pending.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$PendingModifiedValues": "<p>A list of changes to the cluster that are currently pending.</p>"
+      }
+    },
+    "AwsRedshiftClusterResizeInfo": {
+      "base": "<p>Information about the resize operation for the cluster.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$ResizeInfo": "<p>Information about the resize operation for the cluster.</p>"
+      }
+    },
+    "AwsRedshiftClusterRestoreStatus": {
+      "base": "<p>Information about the status of a cluster restore action. It only applies if the cluster was created by restoring a snapshot.</p>",
+      "refs": {
+        "AwsRedshiftClusterDetails$RestoreStatus": "<p>Information about the status of a cluster restore action. Only applies to a cluster that was created by restoring a snapshot.</p>"
+      }
+    },
+    "AwsRedshiftClusterVpcSecurityGroup": {
+      "base": "<p>A VPC security group that the cluster belongs to, if the cluster is in a VPC.</p>",
+      "refs": {
+        "AwsRedshiftClusterVpcSecurityGroups$member": null
+      }
+    },
+    "AwsRedshiftClusterVpcSecurityGroups": {
+      "base": null,
+      "refs": {
+        "AwsRedshiftClusterDetails$VpcSecurityGroups": "<p>The list of VPC security groups that the cluster belongs to, if the cluster is in a VPC.</p>"
+      }
+    },
     "AwsS3BucketDetails": {
       "base": "<p>The details of an Amazon S3 bucket.</p>",
       "refs": {
@@ -875,10 +1404,10 @@
       }
     },
     "AwsSecurityFindingFilters": {
-      "base": "<p>A collection of attributes that are applied to all active Security Hub-aggregated findings and that result in a subset of findings that are included in this insight.</p>",
+      "base": "<p>A collection of attributes that are applied to all active Security Hub-aggregated findings and that result in a subset of findings that are included in this insight.</p> <p>You can filter by up to 10 finding attributes. For each attribute, you can provide up to 20 filter values.</p>",
       "refs": {
         "CreateInsightRequest$Filters": "<p>One or more attributes used to filter the findings included in the insight. The insight only includes findings that match the criteria defined in the filters.</p>",
-        "GetFindingsRequest$Filters": "<p>The finding attributes used to define a condition to filter the returned findings.</p> <p>Note that in the available filter fields, <code>WorkflowState</code> is deprecated. To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.</p>",
+        "GetFindingsRequest$Filters": "<p>The finding attributes used to define a condition to filter the returned findings.</p> <p>You can filter by up to 10 finding attributes. For each attribute, you can provide up to 20 filter values.</p> <p>Note that in the available filter fields, <code>WorkflowState</code> is deprecated. To search for a finding based on its workflow status, use <code>WorkflowStatus</code>.</p>",
         "Insight$Filters": "<p>One or more attributes used to filter the findings included in the insight. The insight only includes findings that match the criteria defined in the filters.</p>",
         "UpdateFindingsRequest$Filters": "<p>A collection of attributes that specify which findings you want to update.</p>",
         "UpdateInsightRequest$Filters": "<p>The updated filters that define this insight.</p>"
@@ -1002,9 +1531,27 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "AwsApiGatewayCanarySettings$UseStageCache": "<p>Indicates whether the canary deployment uses the stage cache.</p>",
+        "AwsApiGatewayMethodSettings$MetricsEnabled": "<p>Indicates whether CloudWatch metrics are enabled for the method. </p>",
+        "AwsApiGatewayMethodSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled for the method. Data trace logging affects the log entries that are pushed to CloudWatch Logs.</p>",
+        "AwsApiGatewayMethodSettings$CachingEnabled": "<p>Indicates whether responses are cached and returned for requests. For responses to be cached, a cache cluster must be enabled on the stage.</p>",
+        "AwsApiGatewayMethodSettings$CacheDataEncrypted": "<p>Indicates whether the cached responses are encrypted. </p>",
+        "AwsApiGatewayMethodSettings$RequireAuthorizationForCacheControl": "<p>Indicates whether authorization is required for a cache invalidation request.</p>",
+        "AwsApiGatewayStageDetails$CacheClusterEnabled": "<p>Indicates whether a cache cluster is enabled for the stage.</p>",
+        "AwsApiGatewayStageDetails$TracingEnabled": "<p>Indicates whether active tracing with AWS X-Ray is enabled for the stage.</p>",
+        "AwsApiGatewayV2RouteSettings$DetailedMetricsEnabled": "<p>Indicates whether detailed metrics are enabled.</p>",
+        "AwsApiGatewayV2RouteSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled. Data trace logging affects the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket APIs.</p>",
+        "AwsApiGatewayV2StageDetails$AutoDeploy": "<p>Indicates whether updates to an API automatically trigger a new deployment.</p>",
+        "AwsApiGatewayV2StageDetails$ApiGatewayManaged": "<p>Indicates whether the stage is managed by API Gateway.</p>",
         "AwsCloudFrontDistributionLogging$Enabled": "<p>With this field, you can enable or disable the selected distribution.</p>",
         "AwsCloudFrontDistributionLogging$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs.</p>",
+        "AwsCloudTrailTrailDetails$HasCustomEventSelectors": "<p>Indicates whether the trail has custom event selectors.</p>",
+        "AwsCloudTrailTrailDetails$IncludeGlobalServiceEvents": "<p>Indicates whether the trail publishes events from global services such as IAM to the log files.</p>",
+        "AwsCloudTrailTrailDetails$IsMultiRegionTrail": "<p>Indicates whether the trail applies only to the current Region or to all Regions.</p>",
+        "AwsCloudTrailTrailDetails$IsOrganizationTrail": "<p>Whether the trail is created for all accounts in an organization in AWS Organizations, or only for the current AWS account.</p>",
+        "AwsCloudTrailTrailDetails$LogFileValidationEnabled": "<p>Indicates whether CloudTrail log file validation is enabled.</p>",
         "AwsCodeBuildProjectSource$InsecureSsl": "<p>Whether to ignore SSL warnings while connecting to the project source code.</p>",
+        "AwsCorsConfiguration$AllowCredentials": "<p>Indicates whether the CORS request includes credentials.</p>",
         "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
         "AwsDynamoDbTableRestoreSummary$RestoreInProgress": "<p>Whether a restore is currently in progress.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamEnabled": "<p>Indicates whether DynamoDB Streams is enabled on the table.</p>",
@@ -1015,6 +1562,10 @@
         "AwsElasticsearchDomainDomainEndpointOptions$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$Enabled": "<p>Whether encryption at rest is enabled.</p>",
         "AwsElasticsearchDomainNodeToNodeEncryptionOptions$Enabled": "<p>Whether node-to-node encryption is enabled.</p>",
+        "AwsElbLoadBalancerAccessLog$Enabled": "<p>Indicates whether access logs are enabled for the load balancer.</p>",
+        "AwsElbLoadBalancerConnectionDraining$Enabled": "<p>Indicates whether connection draining is enabled for the load balancer.</p>",
+        "AwsElbLoadBalancerCrossZoneLoadBalancing$Enabled": "<p>Indicates whether cross-zone load balancing is enabled for the load balancer.</p>",
+        "AwsIamAccessKeySessionContextAttributes$MfaAuthenticated": "<p>Indicates whether the session used multi-factor authentication (MFA).</p>",
         "AwsIamPolicyDetails$IsAttachable": "<p>Whether the policy can be attached to a user, group, or role.</p>",
         "AwsIamPolicyVersion$IsDefaultVersion": "<p>Whether the version is the default version.</p>",
         "AwsRdsDbClusterDetails$MultiAz": "<p>Whether the DB cluster has instances in multiple Availability Zones.</p>",
@@ -1039,6 +1590,13 @@
         "AwsRdsDbSnapshotDetails$Encrypted": "<p/>",
         "AwsRdsDbSnapshotDetails$IamDatabaseAuthenticationEnabled": "<p/>",
         "AwsRdsDbStatusInfo$Normal": "<p>Whether the read replica instance is operating normally.</p>",
+        "AwsRedshiftClusterDetails$AllowVersionUpgrade": "<p>Indicates whether major version upgrades are applied automatically to the cluster during the maintenance window.</p>",
+        "AwsRedshiftClusterDetails$Encrypted": "<p>Indicates whether the data in the cluster is encrypted at rest.</p>",
+        "AwsRedshiftClusterDetails$EnhancedVpcRouting": "<p>Indicates whether to create the cluster with enhanced VPC routing enabled.</p>",
+        "AwsRedshiftClusterDetails$PubliclyAccessible": "<p>Whether the cluster can be accessed from a public network.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$EnhancedVpcRouting": "<p>Indicates whether to create the cluster with enhanced VPC routing enabled.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$PubliclyAccessible": "<p>The pending or in-progress change to whether the cluster can be connected to from the public network.</p>",
+        "AwsRedshiftClusterResizeInfo$AllowCancelResize": "<p>Indicates whether the resize operation can be canceled.</p>",
         "AwsSecretsManagerSecretDetails$RotationOccurredWithinFrequency": "<p>Whether the rotation occurred within the specified rotation frequency.</p>",
         "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
         "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
@@ -1311,7 +1869,11 @@
     "Double": {
       "base": null,
       "refs": {
+        "AwsApiGatewayCanarySettings$PercentTraffic": "<p>The percentage of traffic that is diverted to a canary deployment.</p>",
+        "AwsApiGatewayMethodSettings$ThrottlingRateLimit": "<p>The throttling rate limit for the method.</p>",
+        "AwsApiGatewayV2RouteSettings$ThrottlingRateLimit": "<p>The throttling rate limit.</p>",
         "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the CMK was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterRestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
         "NumberFilter$Gte": "<p>The greater-than-equal condition to be applied to a single field when querying for findings. </p>",
         "NumberFilter$Lte": "<p>The less-than-equal condition to be applied to a single field when querying for findings. </p>",
@@ -1343,6 +1905,9 @@
     "FieldMap": {
       "base": null,
       "refs": {
+        "AwsApiGatewayCanarySettings$StageVariableOverrides": "<p>Stage variables that are overridden in the canary release deployment. The variables include new stage variables that are introduced in the canary.</p> <p>Each variable is represented as a string-to-string map between the stage variable name and the variable value.</p>",
+        "AwsApiGatewayStageDetails$Variables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
+        "AwsApiGatewayV2StageDetails$StageVariables": "<p>A map that defines the stage variables for the stage.</p> <p>Variable names can have alphanumeric and underscore characters.</p> <p>Variable values can contain the following characters:</p> <ul> <li> <p>Uppercase and lowercase letters</p> </li> <li> <p>Numbers</p> </li> <li> <p>Special characters -._~:/?#&amp;=,</p> </li> </ul>",
         "AwsElasticsearchDomainDetails$Endpoints": "<p>The key-value pair that exists if the Amazon ES domain uses VPC endpoints.</p>",
         "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
         "AwsSecurityFinding$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p>",
@@ -1467,8 +2032,15 @@
     "Integer": {
       "base": null,
       "refs": {
+        "AwsApiGatewayMethodSettings$ThrottlingBurstLimit": "<p>The throttling burst limit for the method.</p>",
+        "AwsApiGatewayMethodSettings$CacheTtlInSeconds": "<p>Specifies the time to live (TTL), in seconds, for cached responses. The higher the TTL, the longer the response is cached.</p>",
+        "AwsApiGatewayRestApiDetails$MinimumCompressionSize": "<p>The minimum size in bytes of a payload before compression is enabled.</p> <p>If <code>null</code>, then compression is disabled.</p> <p>If 0, then all payloads are compressed.</p>",
+        "AwsApiGatewayV2RouteSettings$ThrottlingBurstLimit": "<p>The throttling burst limit.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before it checks the health status of an EC2 instance that has come into service.</p>",
+        "AwsCloudFrontDistributionOriginGroupFailoverStatusCodes$Quantity": "<p>The number of status codes that can cause a failover.</p>",
+        "AwsCloudFrontDistributionOriginGroupFailoverStatusCodesItemList$member": null,
         "AwsCodeBuildProjectSource$GitCloneDepth": "<p>Information about the Git clone depth for the build project.</p>",
+        "AwsCorsConfiguration$MaxAge": "<p>The number of seconds for which the browser caches preflight request results.</p>",
         "AwsDynamoDbTableDetails$ItemCount": "<p>The number of items in the table.</p>",
         "AwsDynamoDbTableGlobalSecondaryIndex$ItemCount": "<p>The number of items in the index.</p>",
         "AwsDynamoDbTableProvisionedThroughput$NumberOfDecreasesToday": "<p>The number of times during the current UTC calendar day that the provisioned throughput was decreased.</p>",
@@ -1479,6 +2051,16 @@
         "AwsEc2SecurityGroupIpPermission$FromPort": "<p>The start of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number.</p> <p>A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>",
         "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
         "AwsEc2VolumeDetails$Size": "<p>The size of the volume, in GiBs.</p>",
+        "AwsElbLoadBalancerAccessLog$EmitInterval": "<p>The interval in minutes for publishing the access logs.</p> <p>You can publish access logs either every 5 minutes or every 60 minutes.</p>",
+        "AwsElbLoadBalancerBackendServerDescription$InstancePort": "<p>The port on which the EC2 instance is listening.</p>",
+        "AwsElbLoadBalancerConnectionDraining$Timeout": "<p>The maximum time, in seconds, to keep the existing connections open before deregistering the instances.</p>",
+        "AwsElbLoadBalancerConnectionSettings$IdleTimeout": "<p>The time, in seconds, that the connection can be idle (no data is sent over the connection) before it is closed by the load balancer.</p>",
+        "AwsElbLoadBalancerHealthCheck$HealthyThreshold": "<p>The number of consecutive health check successes required before the instance is moved to the Healthy state.</p>",
+        "AwsElbLoadBalancerHealthCheck$Interval": "<p>The approximate interval, in seconds, between health checks of an individual instance.</p>",
+        "AwsElbLoadBalancerHealthCheck$Timeout": "<p>The amount of time, in seconds, during which no response means a failed health check.</p>",
+        "AwsElbLoadBalancerHealthCheck$UnhealthyThreshold": "<p>The number of consecutive health check failures that must occur before the instance is moved to the Unhealthy state.</p>",
+        "AwsElbLoadBalancerListener$InstancePort": "<p>The port on which the instance is listening.</p>",
+        "AwsElbLoadBalancerListener$LoadBalancerPort": "<p>The port on which the load balancer is listening.</p> <p>On EC2-VPC, you can specify any port from the range 1-65535.</p> <p>On EC2-Classic, you can specify any port from the following list: 25, 80, 443, 465, 587, 1024-65535.</p>",
         "AwsIamPolicyDetails$AttachmentCount": "<p>The number of users, groups, and roles that the policy is attached to.</p>",
         "AwsIamPolicyDetails$PermissionsBoundaryUsageCount": "<p>The number of users and roles that use the policy to set the permissions boundary.</p>",
         "AwsIamRoleDetails$MaxSessionDuration": "<p>The maximum session duration (in seconds) that you want to set for the specified role.</p>",
@@ -1509,6 +2091,14 @@
         "AwsRdsDbSnapshotDetails$Port": "<p/>",
         "AwsRdsDbSnapshotDetails$Iops": "<p/>",
         "AwsRdsDbSnapshotDetails$PercentProgress": "<p/>",
+        "AwsRedshiftClusterClusterSnapshotCopyStatus$ManualSnapshotRetentionPeriod": "<p>The number of days that manual snapshots are retained in the destination region after they are copied from a source region.</p> <p>If the value is -1, then the manual snapshot is retained indefinitely.</p> <p>Valid values: Either -1 or an integer between 1 and 3,653</p>",
+        "AwsRedshiftClusterClusterSnapshotCopyStatus$RetentionPeriod": "<p>The number of days to retain automated snapshots in the destination Region after they are copied from a source Region.</p>",
+        "AwsRedshiftClusterDetails$AutomatedSnapshotRetentionPeriod": "<p>The number of days that automatic cluster snapshots are retained.</p>",
+        "AwsRedshiftClusterDetails$ManualSnapshotRetentionPeriod": "<p>The default number of days to retain a manual snapshot.</p> <p>If the value is -1, the snapshot is retained indefinitely.</p> <p>This setting doesn't change the retention period of existing snapshots.</p> <p>Valid values: Either -1 or an integer between 1 and 3,653</p>",
+        "AwsRedshiftClusterDetails$NumberOfNodes": "<p>The number of compute nodes in the cluster.</p>",
+        "AwsRedshiftClusterEndpoint$Port": "<p>The port that the database engine listens on.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$AutomatedSnapshotRetentionPeriod": "<p>The pending or in-progress change to the automated snapshot retention period.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$NumberOfNodes": "<p>The pending or in-progress change to the number of nodes in the cluster.</p>",
         "AwsSecretsManagerSecretRotationRules$AutomaticallyAfterDays": "<p>The number of days after the previous rotation to rotate the secret.</p>",
         "AwsSecurityFinding$Confidence": "<p>A finding's confidence. Confidence is defined as the likelihood that a finding accurately identifies the behavior or issue that it was intended to identify.</p> <p>Confidence is scored on a 0-100 basis using a ratio scale, where 0 means zero percent confidence and 100 means 100 percent confidence.</p>",
         "AwsSecurityFinding$Criticality": "<p>The level of importance assigned to the resources associated with the finding.</p> <p>A score of 0 means that the underlying resources have no criticality, and a score of 100 is reserved for the most critical resources.</p>",
@@ -1526,7 +2116,7 @@
         "PatchSummary$FailedCount": "<p>The number of patches from the compliance standard that failed to install.</p>",
         "PatchSummary$InstalledOtherCount": "<p>The number of installed patches that are not part of the compliance standard.</p>",
         "PatchSummary$InstalledRejectedCount": "<p>The number of patches that are installed but are also on a list of patches that the customer rejected.</p>",
-        "PatchSummary$InstalledPendingReboot": "<p>The number of patches that were installed since the last time the instance was rebooted.</p>",
+        "PatchSummary$InstalledPendingReboot": "<p>The number of patches that were applied, but that require the instance to be rebooted in order to be marked as installed.</p>",
         "PortRange$Begin": "<p>The first port in the port range.</p>",
         "PortRange$End": "<p>The last port in the port range.</p>",
         "ProcessDetails$Pid": "<p>The process ID.</p>",
@@ -1674,6 +2264,16 @@
       "base": "<p>Information about the state of the load balancer.</p>",
       "refs": {
         "AwsElbv2LoadBalancerDetails$State": "<p>The state of the load balancer.</p>"
+      }
+    },
+    "Long": {
+      "base": null,
+      "refs": {
+        "AwsElbLbCookieStickinessPolicy$CookieExpirationPeriod": "<p>The amount of time, in seconds, after which the cookie is considered stale. If an expiration period is not specified, the stickiness session lasts for the duration of the browser session.</p>",
+        "AwsRedshiftClusterRestoreStatus$ElapsedTimeInSeconds": "<p>The amount of time an in-progress restore has been running, or the amount of time it took a completed restore to finish.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
+        "AwsRedshiftClusterRestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore is complete. Returns 0 for a completed restore.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
+        "AwsRedshiftClusterRestoreStatus$ProgressInMegaBytes": "<p>The number of megabytes that were transferred from snapshot storage.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
+        "AwsRedshiftClusterRestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data that was used to restore the cluster.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>"
       }
     },
     "Malware": {
@@ -1825,9 +2425,81 @@
         "ArnList$member": null,
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
         "AvailabilityZone$SubnetId": "<p>The ID of the subnet. You can specify one subnet per Availability Zone.</p>",
+        "AwsApiGatewayAccessLogSettings$Format": "<p>A single-line format of the access logs of data, as specified by selected <code>$context</code> variables. The format must include at least <code>$context.requestId</code>.</p>",
+        "AwsApiGatewayAccessLogSettings$DestinationArn": "<p>The ARN of the CloudWatch Logs log group that receives the access logs.</p>",
+        "AwsApiGatewayCanarySettings$DeploymentId": "<p>The deployment identifier for the canary deployment.</p>",
+        "AwsApiGatewayMethodSettings$LoggingLevel": "<p>The logging level for this method. The logging level affects the log entries that are pushed to CloudWatch Logs.</p> <p>If the logging level is <code>ERROR</code>, then the logs only include error-level entries.</p> <p>If the logging level is <code>INFO</code>, then the logs include both <code>ERROR</code> events and extra informational events.</p> <p>Valid values: <code>OFF</code> | <code>ERROR</code> | <code>INFO</code> </p>",
+        "AwsApiGatewayMethodSettings$UnauthorizedCacheControlHeaderStrategy": "<p>Indicates how to handle unauthorized requests for cache invalidation.</p> <p>Valid values: <code>FAIL_WITH_403</code> | <code>SUCCEED_WITH_RESPONSE_HEADER</code> | <code>SUCCEED_WITHOUT_RESPONSE_HEADER</code> </p>",
+        "AwsApiGatewayMethodSettings$HttpMethod": "<p>The HTTP method. You can use an asterisk (*) as a wildcard to apply method settings to multiple methods.</p>",
+        "AwsApiGatewayMethodSettings$ResourcePath": "<p>The resource path for this method. Forward slashes (/) are encoded as ~1 . The initial slash must include a forward slash.</p> <p>For example, the path value <code>/resource/subresource</code> must be encoded as <code>/~1resource~1subresource</code>.</p> <p>To specify the root path, use only a slash (/). You can use an asterisk (*) as a wildcard to apply method settings to multiple methods.</p>",
+        "AwsApiGatewayRestApiDetails$Id": "<p>The identifier of the REST API.</p>",
+        "AwsApiGatewayRestApiDetails$Name": "<p>The name of the REST API.</p>",
+        "AwsApiGatewayRestApiDetails$Description": "<p>A description of the REST API.</p>",
+        "AwsApiGatewayRestApiDetails$CreatedDate": "<p>Indicates when the API was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsApiGatewayRestApiDetails$Version": "<p>The version identifier for the REST API.</p>",
+        "AwsApiGatewayRestApiDetails$ApiKeySource": "<p>The source of the API key for metering requests according to a usage plan.</p> <p> <code>HEADER</code> indicates whether to read the API key from the X-API-Key header of a request.</p> <p> <code>AUTHORIZER</code> indicates whether to read the API key from the <code>UsageIdentifierKey</code> from a custom authorizer.</p>",
+        "AwsApiGatewayStageDetails$DeploymentId": "<p>The identifier of the deployment that the stage points to.</p>",
+        "AwsApiGatewayStageDetails$ClientCertificateId": "<p>The identifier of the client certificate for the stage.</p>",
+        "AwsApiGatewayStageDetails$StageName": "<p>The name of the stage.</p>",
+        "AwsApiGatewayStageDetails$Description": "<p>A description of the stage.</p>",
+        "AwsApiGatewayStageDetails$CacheClusterSize": "<p>If a cache cluster is enabled, the size of the cache cluster.</p>",
+        "AwsApiGatewayStageDetails$CacheClusterStatus": "<p>If a cache cluster is enabled, the status of the cache cluster.</p>",
+        "AwsApiGatewayStageDetails$DocumentationVersion": "<p>The version of the API documentation that is associated with the stage.</p>",
+        "AwsApiGatewayStageDetails$CreatedDate": "<p>Indicates when the stage was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsApiGatewayStageDetails$LastUpdatedDate": "<p>Indicates when the stage was most recently updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsApiGatewayStageDetails$WebAclArn": "<p>The ARN of the web ACL associated with the stage.</p>",
+        "AwsApiGatewayV2ApiDetails$ApiEndpoint": "<p>The URI of the API. </p> <p>Uses the format <code> <i>&lt;api-id&gt;</i>.execute-api.<i>&lt;region&gt;</i>.amazonaws.com</code> </p> <p>The stage name is typically appended to the URI to form a complete path to a deployed API stage.</p>",
+        "AwsApiGatewayV2ApiDetails$ApiId": "<p>The identifier of the API.</p>",
+        "AwsApiGatewayV2ApiDetails$ApiKeySelectionExpression": "<p>An API key selection expression. Supported only for WebSocket APIs. </p>",
+        "AwsApiGatewayV2ApiDetails$CreatedDate": "<p>Indicates when the API was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsApiGatewayV2ApiDetails$Description": "<p>A description of the API.</p>",
+        "AwsApiGatewayV2ApiDetails$Version": "<p>The version identifier for the API.</p>",
+        "AwsApiGatewayV2ApiDetails$Name": "<p>The name of the API.</p>",
+        "AwsApiGatewayV2ApiDetails$ProtocolType": "<p>The API protocol for the API.</p> <p>Valid values: <code>WEBSOCKET</code> | <code>HTTP</code> </p>",
+        "AwsApiGatewayV2ApiDetails$RouteSelectionExpression": "<p>The route selection expression for the API.</p> <p>For HTTP APIs, must be <code>${request.method} ${request.path}</code>. This is the default value for HTTP APIs.</p> <p>For WebSocket APIs, there is no default value.</p>",
+        "AwsApiGatewayV2RouteSettings$LoggingLevel": "<p>The logging level. The logging level affects the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket APIs.</p> <p>If the logging level is <code>ERROR</code>, then the logs only include error-level entries.</p> <p>If the logging level is <code>INFO</code>, then the logs include both <code>ERROR</code> events and extra informational events.</p> <p>Valid values: <code>OFF</code> | <code>ERROR</code> | <code>INFO</code> </p>",
+        "AwsApiGatewayV2StageDetails$CreatedDate": "<p>Indicates when the stage was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsApiGatewayV2StageDetails$Description": "<p>The description of the stage.</p>",
+        "AwsApiGatewayV2StageDetails$DeploymentId": "<p>The identifier of the deployment that the stage is associated with. </p>",
+        "AwsApiGatewayV2StageDetails$LastUpdatedDate": "<p>Indicates when the stage was most recently updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsApiGatewayV2StageDetails$StageName": "<p>The name of the stage.</p>",
+        "AwsApiGatewayV2StageDetails$LastDeploymentStatusMessage": "<p>The status of the last deployment of a stage. Supported only if the stage has automatic deployment enabled.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckType": "<p>The service to use for the health checks.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$CreatedTime": "<p>Indicates when the auto scaling group was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateDetails$CertificateAuthorityArn": "<p>The ARN of the private certificate authority (CA) that will be used to issue the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$CreatedAt": "<p>Indicates when the certificate was requested.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateDetails$DomainName": "<p>The fully qualified domain name (FQDN), such as www.example.com, that is secured by the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$FailureReason": "<p>For a failed certificate request, the reason for the failure.</p> <p>Valid values: <code>NO_AVAILABLE_CONTACTS</code> | <code>ADDITIONAL_VERIFICATION_REQUIRED</code> | <code>DOMAIN_NOT_ALLOWED</code> | <code>INVALID_PUBLIC_DOMAIN</code> | <code>DOMAIN_VALIDATION_DENIED</code> | <code>CAA_ERROR</code> | <code>PCA_LIMIT_EXCEEDED</code> | <code>PCA_INVALID_ARN</code> | <code>PCA_INVALID_STATE</code> | <code>PCA_REQUEST_FAILED</code> | <code>PCA_NAME_CONSTRAINTS_VALIDATION</code> | <code>PCA_RESOURCE_NOT_FOUND</code> | <code>PCA_INVALID_ARGS</code> | <code>PCA_INVALID_DURATION</code> | <code>PCA_ACCESS_DENIED</code> | <code>SLR_NOT_FOUND</code> | <code>OTHER</code> </p>",
+        "AwsCertificateManagerCertificateDetails$ImportedAt": "<p>Indicates when the certificate was imported. Provided if the certificate type is <code>IMPORTED</code>.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateDetails$IssuedAt": "<p>Indicates when the certificate was issued. Provided if the certificate type is <code>AMAZON_ISSUED</code>.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateDetails$Issuer": "<p>The name of the certificate authority that issued and signed the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$KeyAlgorithm": "<p>The algorithm that was used to generate the public-private key pair.</p> <p>Valid values: <code>RSA_2048</code> | <code>RSA_1024</code> |<code> RSA_4096</code> | <code>EC_prime256v1</code> | <code>EC_secp384r1</code> | <code>EC_secp521r1</code> </p>",
+        "AwsCertificateManagerCertificateDetails$NotAfter": "<p>The time after which the certificate becomes invalid.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateDetails$NotBefore": "<p>The time before which the certificate is not valid.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateDetails$RenewalEligibility": "<p>Whether the certificate is eligible for renewal.</p> <p>Valid values: <code>ELIGIBLE</code> | <code>INELIGIBLE</code> </p>",
+        "AwsCertificateManagerCertificateDetails$Serial": "<p>The serial number of the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$SignatureAlgorithm": "<p>The algorithm that was used to sign the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$Status": "<p>The status of the certificate.</p> <p>Valid values: <code>PENDING_VALIDATION</code> | <code>ISSUED</code> | <code>INACTIVE</code> | <code>EXPIRED</code> | <code>VALIDATION_TIMED_OUT</code> | <code>REVOKED</code> | <code>FAILED</code> </p>",
+        "AwsCertificateManagerCertificateDetails$Subject": "<p>The name of the entity that is associated with the public key contained in the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$Type": "<p>The source of the certificate. For certificates that AWS Certificate Manager provides, <code>Type</code> is <code>AMAZON_ISSUED</code>. For certificates that are imported with <code>ImportCertificate</code>, <code>Type</code> is <code>IMPORTED</code>.</p> <p>Valid values: <code>IMPORTED</code> | <code>AMAZON_ISSUED</code> | <code>PRIVATE</code> </p>",
+        "AwsCertificateManagerCertificateDomainValidationOption$DomainName": "<p>A fully qualified domain name (FQDN) in the certificate.</p>",
+        "AwsCertificateManagerCertificateDomainValidationOption$ValidationDomain": "<p>The domain name that AWS Certificate Manager uses to send domain validation emails.</p>",
+        "AwsCertificateManagerCertificateDomainValidationOption$ValidationMethod": "<p>The method used to validate the domain name.</p>",
+        "AwsCertificateManagerCertificateDomainValidationOption$ValidationStatus": "<p>The validation status of the domain name.</p>",
+        "AwsCertificateManagerCertificateExtendedKeyUsage$Name": "<p>The name of an extension value. Indicates the purpose for which the certificate public key can be used.</p>",
+        "AwsCertificateManagerCertificateExtendedKeyUsage$OId": "<p>An object identifier (OID) for the extension value.</p> <p>The format is numbers separated by periods.</p>",
+        "AwsCertificateManagerCertificateKeyUsage$Name": "<p>The key usage extension name.</p>",
+        "AwsCertificateManagerCertificateOptions$CertificateTransparencyLoggingPreference": "<p>Whether to add the certificate to a transparency log.</p> <p>Valid values: <code>DISABLED</code> | <code>ENABLED</code> </p>",
+        "AwsCertificateManagerCertificateRenewalSummary$RenewalStatus": "<p>The status of the AWS Certificate Manager managed renewal of the certificate.</p> <p>Valid values: <code>PENDING_AUTO_RENEWAL</code> | <code>PENDING_VALIDATION</code> | <code>SUCCESS</code> | <code>FAILED</code> </p>",
+        "AwsCertificateManagerCertificateRenewalSummary$RenewalStatusReason": "<p>The reason that a renewal request was unsuccessful.</p> <p>Valid values: <code>NO_AVAILABLE_CONTACTS</code> | <code>ADDITIONAL_VERIFICATION_REQUIRED</code> | <code>DOMAIN_NOT_ALLOWED</code> | <code>INVALID_PUBLIC_DOMAIN</code> | <code>DOMAIN_VALIDATION_DENIED</code> | <code>CAA_ERROR</code> | <code>PCA_LIMIT_EXCEEDED</code> | <code>PCA_INVALID_ARN</code> | <code>PCA_INVALID_STATE</code> | <code>PCA_REQUEST_FAILED</code> | <code>PCA_NAME_CONSTRAINTS_VALIDATION</code> | <code>PCA_RESOURCE_NOT_FOUND</code> | <code>PCA_INVALID_ARGS</code> | <code>PCA_INVALID_DURATION</code> | <code>PCA_ACCESS_DENIED</code> | <code>SLR_NOT_FOUND</code> | <code>OTHER</code> </p>",
+        "AwsCertificateManagerCertificateRenewalSummary$UpdatedAt": "<p>Indicates when the renewal summary was last updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsCertificateManagerCertificateResourceRecord$Name": "<p>The name of the resource.</p>",
+        "AwsCertificateManagerCertificateResourceRecord$Type": "<p>The type of resource.</p>",
+        "AwsCertificateManagerCertificateResourceRecord$Value": "<p>The value of the resource.</p>",
+        "AwsCloudFrontDistributionCacheBehavior$ViewerProtocolPolicy": "<p>The protocol that viewers can use to access the files in an origin. You can specify the following options:</p> <ul> <li> <p> <code>allow-all</code> - Viewers can use HTTP or HTTPS.</p> </li> <li> <p> <code>redirect-to-https</code> - CloudFront responds to HTTP requests with an HTTP status code of 301 (Moved Permanently) and the HTTPS URL. The viewer then uses the new URL to resubmit.</p> </li> <li> <p> <code>https-only</code> - CloudFront responds to HTTP request with an HTTP status code of 403 (Forbidden).</p> </li> </ul>",
+        "AwsCloudFrontDistributionDefaultCacheBehavior$ViewerProtocolPolicy": "<p>The protocol that viewers can use to access the files in an origin. You can specify the following options:</p> <ul> <li> <p> <code>allow-all</code> - Viewers can use HTTP or HTTPS.</p> </li> <li> <p> <code>redirect-to-https</code> - CloudFront responds to HTTP requests with an HTTP status code of 301 (Moved Permanently) and the HTTPS URL. The viewer then uses the new URL to resubmit.</p> </li> <li> <p> <code>https-only</code> - CloudFront responds to HTTP request with an HTTP status code of 403 (Forbidden).</p> </li> </ul>",
+        "AwsCloudFrontDistributionDetails$DefaultRootObject": "<p>The object that CloudFront sends in response to requests from the origin (for example, index.html) when a viewer requests the root URL for the distribution (http://www.example.com) instead of an object in your distribution (http://www.example.com/product-description.html). </p>",
         "AwsCloudFrontDistributionDetails$DomainName": "<p>The domain name corresponding to the distribution.</p>",
         "AwsCloudFrontDistributionDetails$ETag": "<p>The entity tag is a hash of the object.</p>",
         "AwsCloudFrontDistributionDetails$LastModifiedTime": "<p>Indicates when that the distribution was last modified.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -1838,6 +2510,17 @@
         "AwsCloudFrontDistributionOriginItem$DomainName": "<p>Amazon S3 origins: The DNS name of the Amazon S3 bucket from which you want CloudFront to get objects for this origin.</p>",
         "AwsCloudFrontDistributionOriginItem$Id": "<p>A unique identifier for the origin or origin group.</p>",
         "AwsCloudFrontDistributionOriginItem$OriginPath": "<p>An optional element that causes CloudFront to request your content from a directory in your Amazon S3 bucket or your custom origin.</p>",
+        "AwsCloudFrontDistributionOriginS3OriginConfig$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the origin.</p>",
+        "AwsCloudTrailTrailDetails$CloudWatchLogsLogGroupArn": "<p>The ARN of the log group that CloudTrail logs are delivered to.</p>",
+        "AwsCloudTrailTrailDetails$CloudWatchLogsRoleArn": "<p>The ARN of the role that the CloudWatch Logs endpoint assumes when it writes to the log group.</p>",
+        "AwsCloudTrailTrailDetails$HomeRegion": "<p>The Region where the trail was created.</p>",
+        "AwsCloudTrailTrailDetails$KmsKeyId": "<p>The AWS KMS key ID to use to encrypt the logs.</p>",
+        "AwsCloudTrailTrailDetails$Name": "<p>The name of the trail.</p>",
+        "AwsCloudTrailTrailDetails$S3BucketName": "<p>The name of the S3 bucket where the log files are published.</p>",
+        "AwsCloudTrailTrailDetails$S3KeyPrefix": "<p>The S3 key prefix. The key prefix is added after the name of the S3 bucket where the log files are published.</p>",
+        "AwsCloudTrailTrailDetails$SnsTopicArn": "<p>The ARN of the SNS topic that is used for notifications of log file delivery.</p>",
+        "AwsCloudTrailTrailDetails$SnsTopicName": "<p>The name of the SNS topic that is used for notifications of log file delivery.</p>",
+        "AwsCloudTrailTrailDetails$TrailArn": "<p>The ARN of the trail.</p>",
         "AwsCodeBuildProjectDetails$EncryptionKey": "<p>The AWS Key Management Service (AWS KMS) customer master key (CMK) used to encrypt the build output artifacts.</p> <p>You can specify either the Amazon Resource Name (ARN) of the CMK or, if available, the CMK alias (using the format alias/alias-name). </p>",
         "AwsCodeBuildProjectDetails$Name": "<p>The name of the build project.</p>",
         "AwsCodeBuildProjectDetails$ServiceRole": "<p>The ARN of the IAM role that enables AWS CodeBuild to interact with dependent AWS services on behalf of the AWS account.</p>",
@@ -1939,6 +2622,25 @@
         "AwsElasticsearchDomainDomainEndpointOptions$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the Elasticsearch domain.</p> <p>Valid values:</p> <ul> <li> <p> <code>Policy-Min-TLS-1-0-2019-07</code>, which supports TLSv1.0 and higher</p> </li> <li> <p> <code>Policy-Min-TLS-1-2-2019-07</code>, which only supports TLSv1.2</p> </li> </ul>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$KmsKeyId": "<p>The KMS key ID. Takes the form 1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a.</p>",
         "AwsElasticsearchDomainVPCOptions$VPCId": "<p>ID for the VPC.</p>",
+        "AwsElbAppCookieStickinessPolicy$CookieName": "<p>The name of the application cookie used for stickiness.</p>",
+        "AwsElbAppCookieStickinessPolicy$PolicyName": "<p>The mnemonic name for the policy being created. The name must be unique within the set of policies for the load balancer.</p>",
+        "AwsElbLbCookieStickinessPolicy$PolicyName": "<p>The name of the policy. The name must be unique within the set of policies for the load balancer.</p>",
+        "AwsElbLoadBalancerAccessLog$S3BucketName": "<p>The name of the S3 bucket where the access logs are stored.</p>",
+        "AwsElbLoadBalancerAccessLog$S3BucketPrefix": "<p>The logical hierarchy that was created for the S3 bucket.</p> <p>If a prefix is not provided, the log is placed at the root level of the bucket.</p>",
+        "AwsElbLoadBalancerDetails$CanonicalHostedZoneName": "<p>The name of the Amazon Route 53 hosted zone for the load balancer.</p>",
+        "AwsElbLoadBalancerDetails$CanonicalHostedZoneNameID": "<p>The ID of the Amazon Route 53 hosted zone for the load balancer.</p>",
+        "AwsElbLoadBalancerDetails$CreatedTime": "<p>Indicates when the load balancer was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsElbLoadBalancerDetails$DnsName": "<p>The DNS name of the load balancer.</p>",
+        "AwsElbLoadBalancerDetails$LoadBalancerName": "<p>The name of the load balancer.</p>",
+        "AwsElbLoadBalancerDetails$Scheme": "<p>The type of load balancer. Only provided if the load balancer is in a VPC.</p> <p>If <code>Scheme</code> is <code>internet-facing</code>, the load balancer has a public DNS name that resolves to a public IP address.</p> <p>If <code>Scheme</code> is <code>internal</code>, the load balancer has a public DNS name that resolves to a private IP address.</p>",
+        "AwsElbLoadBalancerDetails$VpcId": "<p>The identifier of the VPC for the load balancer.</p>",
+        "AwsElbLoadBalancerHealthCheck$Target": "<p>The instance that is being checked. The target specifies the protocol and port. The available protocols are TCP, SSL, HTTP, and HTTPS. The range of valid ports is 1 through 65535.</p> <p>For the HTTP and HTTPS protocols, the target also specifies the ping path.</p> <p>For the TCP protocol, the target is specified as <code>TCP: <i>&lt;port&gt;</i> </code>.</p> <p>For the SSL protocol, the target is specified as <code>SSL.<i>&lt;port&gt;</i> </code>.</p> <p>For the HTTP and HTTPS protocols, the target is specified as <code> <i>&lt;protocol&gt;</i>:<i>&lt;port&gt;</i>/<i>&lt;path to ping&gt;</i> </code>.</p>",
+        "AwsElbLoadBalancerInstance$InstanceId": "<p>The instance identifier.</p>",
+        "AwsElbLoadBalancerListener$InstanceProtocol": "<p>The protocol to use to route traffic to instances.</p> <p>Valid values: <code>HTTP</code> | <code>HTTPS</code> | <code>TCP</code> | <code>SSL</code> </p>",
+        "AwsElbLoadBalancerListener$Protocol": "<p>The load balancer transport protocol to use for routing.</p> <p>Valid values: <code>HTTP</code> | <code>HTTPS</code> | <code>TCP</code> | <code>SSL</code> </p>",
+        "AwsElbLoadBalancerListener$SslCertificateId": "<p>The ARN of the server certificate.</p>",
+        "AwsElbLoadBalancerSourceSecurityGroup$GroupName": "<p>The name of the security group.</p>",
+        "AwsElbLoadBalancerSourceSecurityGroup$OwnerAlias": "<p>The owner of the security group.</p>",
         "AwsElbv2LoadBalancerDetails$CanonicalHostedZoneId": "<p>The ID of the Amazon Route 53 hosted zone associated with the load balancer.</p>",
         "AwsElbv2LoadBalancerDetails$CreatedTime": "<p>Indicates when the load balancer was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsElbv2LoadBalancerDetails$DNSName": "<p>The public DNS name of the load balancer.</p>",
@@ -1951,9 +2653,32 @@
         "AwsIamAccessKeyDetails$PrincipalId": "<p>The ID of the principal associated with an access key.</p>",
         "AwsIamAccessKeyDetails$PrincipalType": "<p>The type of principal associated with an access key.</p>",
         "AwsIamAccessKeyDetails$PrincipalName": "<p>The name of the principal.</p>",
+        "AwsIamAccessKeyDetails$AccountId": "<p>The AWS account ID of the account for the key.</p>",
+        "AwsIamAccessKeyDetails$AccessKeyId": "<p>The identifier of the access key.</p>",
+        "AwsIamAccessKeySessionContextAttributes$CreationDate": "<p>Indicates when the session was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamAccessKeySessionContextSessionIssuer$Type": "<p>The type of principal (user, role, or group) that created the session.</p>",
+        "AwsIamAccessKeySessionContextSessionIssuer$PrincipalId": "<p>The principal ID of the principal (user, role, or group) that created the session.</p>",
+        "AwsIamAccessKeySessionContextSessionIssuer$Arn": "<p>The ARN of the session.</p>",
+        "AwsIamAccessKeySessionContextSessionIssuer$AccountId": "<p>The identifier of the AWS account that created the session.</p>",
+        "AwsIamAccessKeySessionContextSessionIssuer$UserName": "<p>The name of the principal that created the session.</p>",
         "AwsIamAttachedManagedPolicy$PolicyName": "<p>The name of the policy.</p>",
         "AwsIamAttachedManagedPolicy$PolicyArn": "<p>The ARN of the policy.</p>",
-        "AwsIamPermissionsBoundary$PermissionsBoundaryArn": "<p>The ARN of the policy used to set the permissions boundary for the user.</p>",
+        "AwsIamGroupDetails$CreateDate": "<p>Indicates when the IAM group was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamGroupDetails$GroupId": "<p>The identifier of the IAM group.</p>",
+        "AwsIamGroupDetails$GroupName": "<p>The name of the IAM group.</p>",
+        "AwsIamGroupDetails$Path": "<p>The path to the group.</p>",
+        "AwsIamGroupPolicy$PolicyName": "<p>The name of the policy.</p>",
+        "AwsIamInstanceProfile$Arn": "<p>The ARN of the instance profile.</p>",
+        "AwsIamInstanceProfile$CreateDate": "<p>Indicates when the instance profile was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamInstanceProfile$InstanceProfileId": "<p>The identifier of the instance profile.</p>",
+        "AwsIamInstanceProfile$InstanceProfileName": "<p>The name of the instance profile.</p>",
+        "AwsIamInstanceProfile$Path": "<p>The path to the instance profile.</p>",
+        "AwsIamInstanceProfileRole$Arn": "<p>The ARN of the role.</p>",
+        "AwsIamInstanceProfileRole$CreateDate": "<p>Indicates when the role was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsIamInstanceProfileRole$Path": "<p>The path to the role.</p>",
+        "AwsIamInstanceProfileRole$RoleId": "<p>The identifier of the role.</p>",
+        "AwsIamInstanceProfileRole$RoleName": "<p>The name of the role.</p>",
+        "AwsIamPermissionsBoundary$PermissionsBoundaryArn": "<p>The ARN of the policy used to set the permissions boundary.</p>",
         "AwsIamPermissionsBoundary$PermissionsBoundaryType": "<p>The usage type for the permissions boundary.</p>",
         "AwsIamPolicyDetails$CreateDate": "<p>When the policy was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsIamPolicyDetails$DefaultVersionId": "<p>The identifier of the default version of the policy.</p>",
@@ -1968,6 +2693,7 @@
         "AwsIamRoleDetails$RoleId": "<p>The stable and unique string identifying the role.</p>",
         "AwsIamRoleDetails$RoleName": "<p>The friendly name that identifies the role.</p>",
         "AwsIamRoleDetails$Path": "<p>The path to the role.</p>",
+        "AwsIamRolePolicy$PolicyName": "<p>The name of the policy.</p>",
         "AwsIamUserDetails$CreateDate": "<p>Indicates when the user was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsIamUserDetails$Path": "<p>The path to the user.</p>",
         "AwsIamUserDetails$UserId": "<p>The unique identifier for the user.</p>",
@@ -2118,6 +2844,62 @@
         "AwsRdsDbSubnetGroupSubnet$SubnetIdentifier": "<p>The identifier of a subnet in the subnet group.</p>",
         "AwsRdsDbSubnetGroupSubnet$SubnetStatus": "<p>The status of a subnet in the subnet group.</p>",
         "AwsRdsDbSubnetGroupSubnetAvailabilityZone$Name": "<p>The name of the Availability Zone for a subnet in the subnet group.</p>",
+        "AwsRedshiftClusterClusterNode$NodeRole": "<p>The role of the node. A node might be a leader node or a compute node.</p>",
+        "AwsRedshiftClusterClusterNode$PrivateIpAddress": "<p>The private IP address of the node.</p>",
+        "AwsRedshiftClusterClusterNode$PublicIpAddress": "<p>The public IP address of the node.</p>",
+        "AwsRedshiftClusterClusterParameterGroup$ParameterApplyStatus": "<p>The status of updates to the parameters.</p>",
+        "AwsRedshiftClusterClusterParameterGroup$ParameterGroupName": "<p>The name of the parameter group.</p>",
+        "AwsRedshiftClusterClusterParameterStatus$ParameterName": "<p>The name of the parameter.</p>",
+        "AwsRedshiftClusterClusterParameterStatus$ParameterApplyStatus": "<p>The status of the parameter. Indicates whether the parameter is in sync with the database, waiting for a cluster reboot, or encountered an error when it was applied.</p> <p>Valid values: <code>in-sync</code> | <code>pending-reboot</code> | <code>applying</code> | <code>invalid-parameter</code> | <code>apply-deferred</code> | <code>apply-error</code> | <code>unknown-error</code> </p>",
+        "AwsRedshiftClusterClusterParameterStatus$ParameterApplyErrorDescription": "<p>The error that prevented the parameter from being applied to the database.</p>",
+        "AwsRedshiftClusterClusterSecurityGroup$ClusterSecurityGroupName": "<p>The name of the cluster security group.</p>",
+        "AwsRedshiftClusterClusterSecurityGroup$Status": "<p>The status of the cluster security group.</p>",
+        "AwsRedshiftClusterClusterSnapshotCopyStatus$DestinationRegion": "<p>The destination Region that snapshots are automatically copied to when cross-Region snapshot copy is enabled.</p>",
+        "AwsRedshiftClusterClusterSnapshotCopyStatus$SnapshotCopyGrantName": "<p>The name of the snapshot copy grant.</p>",
+        "AwsRedshiftClusterDeferredMaintenanceWindow$DeferMaintenanceEndTime": "<p>The end of the time window for which maintenance was deferred.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterDeferredMaintenanceWindow$DeferMaintenanceIdentifier": "<p>The identifier of the maintenance window.</p>",
+        "AwsRedshiftClusterDeferredMaintenanceWindow$DeferMaintenanceStartTime": "<p>The start of the time window for which maintenance was deferred.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterDetails$AvailabilityZone": "<p>The name of the Availability Zone in which the cluster is located.</p>",
+        "AwsRedshiftClusterDetails$ClusterAvailabilityStatus": "<p>The availability status of the cluster for queries. Possible values are the following:</p> <ul> <li> <p> <code>Available</code> - The cluster is available for queries.</p> </li> <li> <p> <code>Unavailable</code> - The cluster is not available for queries.</p> </li> <li> <p> <code>Maintenance</code> - The cluster is intermittently available for queries due to maintenance activities.</p> </li> <li> <p> <code>Modifying</code> -The cluster is intermittently available for queries due to changes that modify the cluster.</p> </li> <li> <p> <code>Failed</code> - The cluster failed and is not available for queries.</p> </li> </ul>",
+        "AwsRedshiftClusterDetails$ClusterCreateTime": "<p>Indicates when the cluster was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterDetails$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",
+        "AwsRedshiftClusterDetails$ClusterPublicKey": "<p>The public key for the cluster.</p>",
+        "AwsRedshiftClusterDetails$ClusterRevisionNumber": "<p>The specific revision number of the database in the cluster.</p>",
+        "AwsRedshiftClusterDetails$ClusterStatus": "<p>The current status of the cluster.</p> <p>Valid values: <code>available</code> | <code>available, prep-for-resize</code> | <code>available, resize-cleanup</code> |<code> cancelling-resize</code> | <code>creating</code> | <code>deleting</code> | <code>final-snapshot</code> | <code>hardware-failure</code> | <code>incompatible-hsm</code> |<code> incompatible-network</code> | <code>incompatible-parameters</code> | <code>incompatible-restore</code> | <code>modifying</code> | <code>paused</code> | <code>rebooting</code> | <code>renaming</code> | <code>resizing</code> | <code>rotating-keys</code> | <code>storage-full</code> | <code>updating-hsm</code> </p>",
+        "AwsRedshiftClusterDetails$ClusterSubnetGroupName": "<p>The name of the subnet group that is associated with the cluster. This parameter is valid only when the cluster is in a VPC.</p>",
+        "AwsRedshiftClusterDetails$ClusterVersion": "<p>The version ID of the Amazon Redshift engine that runs on the cluster.</p>",
+        "AwsRedshiftClusterDetails$DBName": "<p>The name of the initial database that was created when the cluster was created.</p> <p>The same name is returned for the life of the cluster.</p> <p>If an initial database is not specified, a database named <code>devdev</code> is created by default.</p>",
+        "AwsRedshiftClusterDetails$ElasticResizeNumberOfNodeOptions": "<p>The number of nodes that you can use the elastic resize method to resize the cluster to.</p>",
+        "AwsRedshiftClusterDetails$ExpectedNextSnapshotScheduleTime": "<p>Indicates when the next snapshot is expected to be taken. The cluster must have a valid snapshot schedule and have backups enabled.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterDetails$ExpectedNextSnapshotScheduleTimeStatus": "<p>The status of the next expected snapshot.</p> <p>Valid values: <code>OnTrack</code> | <code>Pending</code> </p>",
+        "AwsRedshiftClusterDetails$KmsKeyId": "<p>The identifier of the AWS KMS encryption key that is used to encrypt data in the cluster.</p>",
+        "AwsRedshiftClusterDetails$MaintenanceTrackName": "<p>The name of the maintenance track for the cluster.</p>",
+        "AwsRedshiftClusterDetails$MasterUsername": "<p>The master user name for the cluster. This name is used to connect to the database that is specified in as the value of <code>DBName</code>.</p>",
+        "AwsRedshiftClusterDetails$NextMaintenanceWindowStartTime": "<p>Indicates the start of the next maintenance window.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsRedshiftClusterDetails$NodeType": "<p>The node type for the nodes in the cluster.</p>",
+        "AwsRedshiftClusterDetails$PreferredMaintenanceWindow": "<p>The weekly time range, in Universal Coordinated Time (UTC), during which system maintenance can occur.</p> <p>Format: <code> <i>&lt;day&gt;</i>:HH:MM-<i>&lt;day&gt;</i>:HH:MM</code> </p> <p>For the day values, use <code>mon</code> | <code>tue</code> | <code>wed</code> | <code>thu</code> | <code>fri</code> | <code>sat</code> | <code>sun</code> </p> <p>For example, <code>sun:09:32-sun:10:02</code> </p>",
+        "AwsRedshiftClusterDetails$SnapshotScheduleIdentifier": "<p>A unique identifier for the cluster snapshot schedule.</p>",
+        "AwsRedshiftClusterDetails$SnapshotScheduleState": "<p>The current state of the cluster snapshot schedule.</p> <p>Valid values: <code>MODIFYING</code> | <code>ACTIVE</code> | <code>FAILED</code> </p>",
+        "AwsRedshiftClusterDetails$VpcId": "<p>The identifier of the VPC that the cluster is in, if the cluster is in a VPC.</p>",
+        "AwsRedshiftClusterElasticIpStatus$ElasticIp": "<p>The elastic IP address for the cluster.</p>",
+        "AwsRedshiftClusterElasticIpStatus$Status": "<p>The status of the elastic IP address.</p>",
+        "AwsRedshiftClusterEndpoint$Address": "<p>The DNS address of the cluster.</p>",
+        "AwsRedshiftClusterHsmStatus$HsmClientCertificateIdentifier": "<p>The name of the HSM client certificate that the Amazon Redshift cluster uses to retrieve the data encryption keys that are stored in an HSM.</p>",
+        "AwsRedshiftClusterHsmStatus$HsmConfigurationIdentifier": "<p>The name of the HSM configuration that contains the information that the Amazon Redshift cluster can use to retrieve and store keys in an HSM.</p>",
+        "AwsRedshiftClusterHsmStatus$Status": "<p>Indicates whether the Amazon Redshift cluster has finished applying any HSM settings changes specified in a modify cluster command.</p> <p>Type: String</p> <p>Valid values: <code>active</code> | <code>applying</code> </p>",
+        "AwsRedshiftClusterIamRole$ApplyStatus": "<p>The status of the IAM role's association with the cluster.</p> <p>Valid values: <code>in-sync</code> | <code>adding</code> | <code>removing</code> </p>",
+        "AwsRedshiftClusterIamRole$IamRoleArn": "<p>The ARN of the IAM role.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$ClusterIdentifier": "<p>The pending or in-progress change to the identifier for the cluster.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$ClusterType": "<p>The pending or in-progress change to the cluster type.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$ClusterVersion": "<p>The pending or in-progress change to the service version.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$EncryptionType": "<p>The encryption type for a cluster.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$MaintenanceTrackName": "<p>The name of the maintenance track that the cluster changes to during the next maintenance window.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$MasterUserPassword": "<p>The pending or in-progress change to the master user password for the cluster.</p>",
+        "AwsRedshiftClusterPendingModifiedValues$NodeType": "<p>The pending or in-progress change to the cluster's node type.</p>",
+        "AwsRedshiftClusterResizeInfo$ResizeType": "<p>The type of resize operation.</p> <p>Valid values: <code>ClassicResize</code> </p>",
+        "AwsRedshiftClusterRestoreStatus$Status": "<p>The status of the restore action.</p> <p>Valid values: <code>starting</code> | <code>restoring</code> | <code>completed</code> | <code>failed</code> </p>",
+        "AwsRedshiftClusterVpcSecurityGroup$Status": "<p>The status of the VPC security group.</p>",
+        "AwsRedshiftClusterVpcSecurityGroup$VpcSecurityGroupId": "<p>The identifier of the VPC security group.</p>",
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$CreatedAt": "<p>Indicates when the S3 bucket was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
@@ -2229,7 +3011,7 @@
         "MapFilter$Value": "<p>The value for the key in the map filter. Filter values are case sensitive. For example, one of the values for a tag called <code>Department</code> might be <code>Security</code>. If you provide <code>security</code> as the filter value, then there is no match.</p>",
         "Member$Email": "<p>The email address of the member account.</p>",
         "Member$MasterId": "<p>The AWS account ID of the Security Hub master account associated with this member account.</p>",
-        "Member$MemberStatus": "<p>The status of the relationship between the member account and its master account. </p>",
+        "Member$MemberStatus": "<p>The status of the relationship between the member account and its master account. </p> <p>The status can have one of the following values:</p> <ul> <li> <p> <code>CREATED</code> - Indicates that the master account added the member account, but has not yet invited the member account.</p> </li> <li> <p> <code>INVITED</code> - Indicates that the master account invited the member account. The member account has not yet responded to the invitation.</p> </li> <li> <p> <code>ASSOCIATED</code> - Indicates that the member account accepted the invitation.</p> </li> <li> <p> <code>REMOVED</code> - Indicates that the master account disassociated the member account.</p> </li> <li> <p> <code>RESIGNED</code> - Indicates that the member account disassociated themselves from the master account.</p> </li> <li> <p> <code>DELETED</code> - Indicates that the master account deleted the member account.</p> </li> </ul>",
         "Network$Protocol": "<p>The protocol of network-related information about a finding.</p>",
         "Network$SourceIpV4": "<p>The source IPv4 address of network-related information about a finding.</p>",
         "Network$SourceIpV6": "<p>The source IPv6 address of network-related information about a finding.</p>",
@@ -2272,6 +3054,7 @@
         "Resource$Type": "<p>The type of the resource that details are provided for. If possible, set <code>Type</code> to one of the supported resource types. For example, if the resource is an EC2 instance, then set <code>Type</code> to <code>AwsEc2Instance</code>.</p> <p>If the resource does not match any of the provided types, then set <code>Type</code> to <code>Other</code>. </p>",
         "Resource$Id": "<p>The canonical identifier for the given resource type.</p>",
         "Resource$Region": "<p>The canonical AWS external Region name where this resource is located.</p>",
+        "Resource$ResourceRole": "<p/>",
         "ResourceConflictException$Message": null,
         "ResourceConflictException$Code": null,
         "ResourceNotFoundException$Message": null,
@@ -2331,8 +3114,14 @@
     "NonEmptyStringList": {
       "base": null,
       "refs": {
+        "AwsApiGatewayEndpointConfiguration$Types": "<p>A list of endpoint types for the REST API.</p> <p>For an edge-optimized API, the endpoint type is <code>EDGE</code>. For a Regional API, the endpoint type is <code>REGIONAL</code>. For a private API, the endpoint type is <code>PRIVATE</code>.</p>",
+        "AwsApiGatewayRestApiDetails$BinaryMediaTypes": "<p>The list of binary media types supported by the REST API.</p>",
         "AwsCodeBuildProjectVpcConfig$Subnets": "<p>A list of one or more subnet IDs in your Amazon VPC.</p>",
         "AwsCodeBuildProjectVpcConfig$SecurityGroupIds": "<p>A list of one or more security group IDs in your Amazon VPC.</p>",
+        "AwsCorsConfiguration$AllowOrigins": "<p>The allowed origins for CORS requests.</p>",
+        "AwsCorsConfiguration$ExposeHeaders": "<p>The exposed headers for CORS requests.</p>",
+        "AwsCorsConfiguration$AllowMethods": "<p>The allowed methods for CORS requests.</p>",
+        "AwsCorsConfiguration$AllowHeaders": "<p>The allowed headers for CORS requests.</p>",
         "AwsElasticsearchDomainVPCOptions$AvailabilityZones": "<p>The list of Availability Zones associated with the VPC subnets.</p>",
         "AwsElasticsearchDomainVPCOptions$SecurityGroupIds": "<p>The list of security group IDs associated with the VPC endpoints for the domain.</p>",
         "AwsElasticsearchDomainVPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain.</p>",
@@ -2747,9 +3536,18 @@
       "base": null,
       "refs": {
         "AwsAutoScalingAutoScalingGroupDetails$LoadBalancerNames": "<p>The list of load balancers associated with the group.</p>",
+        "AwsCertificateManagerCertificateDetails$InUseBy": "<p>The list of ARNs for the AWS resources that use the certificate.</p>",
+        "AwsCertificateManagerCertificateDetails$SubjectAlternativeNames": "<p>One or more domain names (subject alternative names) included in the certificate. This list contains the domain names that are bound to the public key that is contained in the certificate.</p> <p>The subject alternative names include the canonical domain name (CN) of the certificate and additional domain names that can be used to connect to the website.</p>",
+        "AwsCertificateManagerCertificateDomainValidationOption$ValidationEmails": "<p>A list of email addresses that AWS Certificate Manager uses to send domain validation emails.</p>",
         "AwsDynamoDbTableProjection$NonKeyAttributes": "<p>The nonkey attributes that are projected into the index. For each attribute, provide the attribute name.</p>",
         "AwsEc2InstanceDetails$IpV4Addresses": "<p>The IPv4 addresses associated with the instance.</p>",
         "AwsEc2InstanceDetails$IpV6Addresses": "<p>The IPv6 addresses associated with the instance.</p>",
+        "AwsElbLoadBalancerBackendServerDescription$PolicyNames": "<p>The names of the policies that are enabled for the EC2 instance.</p>",
+        "AwsElbLoadBalancerDetails$AvailabilityZones": "<p>The list of Availability Zones for the load balancer.</p>",
+        "AwsElbLoadBalancerDetails$SecurityGroups": "<p>The security groups for the load balancer. Only provided if the load balancer is in a VPC.</p>",
+        "AwsElbLoadBalancerDetails$Subnets": "<p>The list of subnet identifiers for the load balancer.</p>",
+        "AwsElbLoadBalancerListenerDescription$PolicyNames": "<p>The policies enabled for the listener.</p>",
+        "AwsElbLoadBalancerPolicies$OtherPolicies": "<p>The policies other than the stickiness policies.</p>",
         "AwsIamUserDetails$GroupList": "<p>A list of IAM groups that the user belongs to.</p>",
         "AwsRdsDbClusterDetails$AvailabilityZones": "<p>A list of Availability Zones (AZs) where instances in the DB cluster can be created.</p>",
         "AwsRdsDbClusterDetails$CustomEndpoints": "<p>A list of custom endpoints for the DB cluster.</p>",
@@ -2762,6 +3560,7 @@
         "AwsRdsDbInstanceDetails$EnabledCloudWatchLogsExports": "<p>A list of log types that this DB instance is configured to export to CloudWatch Logs.</p>",
         "AwsRdsPendingCloudWatchLogsExports$LogTypesToEnable": "<p>A list of log types that are being enabled.</p>",
         "AwsRdsPendingCloudWatchLogsExports$LogTypesToDisable": "<p>A list of log types that are being disabled.</p>",
+        "AwsRedshiftClusterDetails$PendingActions": "<p>A list of cluster operations that are waiting to start.</p>",
         "NetworkPathComponentDetails$Address": "<p>The IP addresses of the destination.</p>",
         "Vulnerability$RelatedVulnerabilities": "<p>List of vulnerabilities that are related to this vulnerability.</p>",
         "Vulnerability$ReferenceUrls": "<p>A list of URLs that provide additional information about the vulnerability.</p>"

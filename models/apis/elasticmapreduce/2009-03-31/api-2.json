@@ -755,7 +755,8 @@
         "KerberosAttributes":{"shape":"KerberosAttributes"},
         "ClusterArn":{"shape":"ArnType"},
         "OutpostArn":{"shape":"OptionalArnType"},
-        "StepConcurrencyLevel":{"shape":"Integer"}
+        "StepConcurrencyLevel":{"shape":"Integer"},
+        "PlacementGroups":{"shape":"PlacementGroupConfigList"}
       }
     },
     "ClusterId":{"type":"string"},
@@ -1938,6 +1939,27 @@
       "max":2048,
       "min":0
     },
+    "PlacementGroupConfig":{
+      "type":"structure",
+      "required":["InstanceRole"],
+      "members":{
+        "InstanceRole":{"shape":"InstanceRoleType"},
+        "PlacementStrategy":{"shape":"PlacementGroupStrategy"}
+      }
+    },
+    "PlacementGroupConfigList":{
+      "type":"list",
+      "member":{"shape":"PlacementGroupConfig"}
+    },
+    "PlacementGroupStrategy":{
+      "type":"string",
+      "enum":[
+        "SPREAD",
+        "PARTITION",
+        "CLUSTER",
+        "NONE"
+      ]
+    },
     "PlacementType":{
       "type":"structure",
       "members":{
@@ -2096,7 +2118,8 @@
         "RepoUpgradeOnBoot":{"shape":"RepoUpgradeOnBoot"},
         "KerberosAttributes":{"shape":"KerberosAttributes"},
         "StepConcurrencyLevel":{"shape":"Integer"},
-        "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"}
+        "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"},
+        "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"}
       }
     },
     "RunJobFlowOutput":{

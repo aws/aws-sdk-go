@@ -434,7 +434,8 @@
         "ComprehendInferenceUtilization",
         "LambdaProvisionedConcurrencyUtilization",
         "CassandraReadCapacityUtilization",
-        "CassandraWriteCapacityUtilization"
+        "CassandraWriteCapacityUtilization",
+        "KafkaBrokerStorageUtilization"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -577,7 +578,8 @@
         "comprehend:entity-recognizer-endpoint:DesiredInferenceUnits",
         "lambda:function:ProvisionedConcurrency",
         "cassandra:table:ReadCapacityUnits",
-        "cassandra:table:WriteCapacityUnits"
+        "cassandra:table:WriteCapacityUnits",
+        "kafka:broker-storage:VolumeSize"
       ]
     },
     "ScalableTarget":{
@@ -730,7 +732,8 @@
         "custom-resource",
         "comprehend",
         "lambda",
-        "cassandra"
+        "cassandra",
+        "kafka"
       ]
     },
     "StepAdjustment":{

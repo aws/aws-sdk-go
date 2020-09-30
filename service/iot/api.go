@@ -11068,8 +11068,7 @@ func (c *IoT) ListAuditFindingsRequest(input *ListAuditFindingsInput) (req *requ
 // ListAuditFindings API operation for AWS IoT.
 //
 // Lists the findings (results) of a Device Defender audit or of the audits
-// performed during a specified time period. (Findings are retained for 180
-// days.)
+// performed during a specified time period. (Findings are retained for 90 days.)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18943,6 +18942,9 @@ func (c *IoT) SetV2LoggingLevelRequest(input *SetV2LoggingLevelInput) (req *requ
 //   * ServiceUnavailableException
 //   The service is temporarily unavailable.
 //
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
 func (c *IoT) SetV2LoggingLevel(input *SetV2LoggingLevelInput) (*SetV2LoggingLevelOutput, error) {
 	req, out := c.SetV2LoggingLevelRequest(input)
 	return out, req.Send()
@@ -22200,6 +22202,12 @@ type Action struct {
 
 	// Starts execution of a Step Functions state machine.
 	StepFunctions *StepFunctionsAction `locationName:"stepFunctions" type:"structure"`
+
+	// The Timestream rule action writes attributes (measures) from an MQTT message
+	// into an Amazon Timestream table. For more information, see the Timestream
+	// (https://docs.aws.amazon.com/iot/latest/developerguide/timestream-rule-action.html)
+	// topic rule action documentation.
+	Timestream *TimestreamAction `locationName:"timestream" type:"structure"`
 }
 
 // String returns the string representation
@@ -22303,6 +22311,11 @@ func (s *Action) Validate() error {
 	if s.StepFunctions != nil {
 		if err := s.StepFunctions.Validate(); err != nil {
 			invalidParams.AddNested("StepFunctions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Timestream != nil {
+		if err := s.Timestream.Validate(); err != nil {
+			invalidParams.AddNested("Timestream", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -22423,6 +22436,12 @@ func (s *Action) SetSqs(v *SqsAction) *Action {
 // SetStepFunctions sets the StepFunctions field's value.
 func (s *Action) SetStepFunctions(v *StepFunctionsAction) *Action {
 	s.StepFunctions = v
+	return s
+}
+
+// SetTimestream sets the Timestream field's value.
+func (s *Action) SetTimestream(v *TimestreamAction) *Action {
+	s.Timestream = v
 	return s
 }
 
@@ -39489,7 +39508,7 @@ type ListAuditTasksInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The beginning of the time period. Audit information is retained for a limited
-	// time (180 days). Requesting a start time prior to what is retained results
+	// time (90 days). Requesting a start time prior to what is retained results
 	// in an "InvalidRequestException".
 	//
 	// StartTime is a required field
@@ -49915,6 +49934,242 @@ func (s TimeoutConfig) GoString() string {
 // SetInProgressTimeoutInMinutes sets the InProgressTimeoutInMinutes field's value.
 func (s *TimeoutConfig) SetInProgressTimeoutInMinutes(v int64) *TimeoutConfig {
 	s.InProgressTimeoutInMinutes = &v
+	return s
+}
+
+// The Timestream rule action writes attributes (measures) from an MQTT message
+// into an Amazon Timestream table. For more information, see the Timestream
+// (https://docs.aws.amazon.com/iot/latest/developerguide/timestream-rule-action.html)
+// topic rule action documentation.
+type TimestreamAction struct {
+	_ struct{} `type:"structure"`
+
+	// The name of an Amazon Timestream database.
+	//
+	// DatabaseName is a required field
+	DatabaseName *string `locationName:"databaseName" type:"string" required:"true"`
+
+	// Metadata attributes of the time series that are written in each measure record.
+	//
+	// Dimensions is a required field
+	Dimensions []*TimestreamDimension `locationName:"dimensions" min:"1" type:"list" required:"true"`
+
+	// The ARN of the role that grants permission to write to the Amazon Timestream
+	// database table.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The name of the database table into which to write the measure records.
+	//
+	// TableName is a required field
+	TableName *string `locationName:"tableName" type:"string" required:"true"`
+
+	// Specifies an application-defined value to replace the default value assigned
+	// to the Timestream record's timestamp in the time column.
+	//
+	// You can use this property to specify the value and the precision of the Timestream
+	// record's timestamp. You can specify a value from the message payload or a
+	// value computed by a substitution template.
+	//
+	// If omitted, the topic rule action assigns the timestamp, in milliseconds,
+	// at the time it processed the rule.
+	Timestamp *TimestreamTimestamp `locationName:"timestamp" type:"structure"`
+}
+
+// String returns the string representation
+func (s TimestreamAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimestreamAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimestreamAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimestreamAction"}
+	if s.DatabaseName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseName"))
+	}
+	if s.Dimensions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Dimensions"))
+	}
+	if s.Dimensions != nil && len(s.Dimensions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Dimensions", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.TableName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TableName"))
+	}
+	if s.Dimensions != nil {
+		for i, v := range s.Dimensions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Dimensions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Timestamp != nil {
+		if err := s.Timestamp.Validate(); err != nil {
+			invalidParams.AddNested("Timestamp", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *TimestreamAction) SetDatabaseName(v string) *TimestreamAction {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDimensions sets the Dimensions field's value.
+func (s *TimestreamAction) SetDimensions(v []*TimestreamDimension) *TimestreamAction {
+	s.Dimensions = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *TimestreamAction) SetRoleArn(v string) *TimestreamAction {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTableName sets the TableName field's value.
+func (s *TimestreamAction) SetTableName(v string) *TimestreamAction {
+	s.TableName = &v
+	return s
+}
+
+// SetTimestamp sets the Timestamp field's value.
+func (s *TimestreamAction) SetTimestamp(v *TimestreamTimestamp) *TimestreamAction {
+	s.Timestamp = v
+	return s
+}
+
+// Metadata attributes of the time series that are written in each measure record.
+type TimestreamDimension struct {
+	_ struct{} `type:"structure"`
+
+	// The metadata dimension name. This is the name of the column in the Amazon
+	// Timestream database table record.
+	//
+	// Dimensions cannot be named: measure_name, measure_value, or time. These names
+	// are reserved. Dimension names cannot start with ts_ or measure_value and
+	// they cannot contain the colon (:) character.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+
+	// The value to write in this column of the database record.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s TimestreamDimension) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimestreamDimension) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimestreamDimension) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimestreamDimension"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TimestreamDimension) SetName(v string) *TimestreamDimension {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TimestreamDimension) SetValue(v string) *TimestreamDimension {
+	s.Value = &v
+	return s
+}
+
+// Describes how to interpret an application-defined timestamp value from an
+// MQTT message payload and the precision of that value.
+type TimestreamTimestamp struct {
+	_ struct{} `type:"structure"`
+
+	// The precision of the timestamp value that results from the expression described
+	// in value.
+	//
+	// Valid values: SECONDS | MILLISECONDS | MICROSECONDS | NANOSECONDS. The default
+	// is MILLISECONDS.
+	//
+	// Unit is a required field
+	Unit *string `locationName:"unit" type:"string" required:"true"`
+
+	// An expression that returns a long epoch time value.
+	//
+	// Value is a required field
+	Value *string `locationName:"value" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s TimestreamTimestamp) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TimestreamTimestamp) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TimestreamTimestamp) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TimestreamTimestamp"}
+	if s.Unit == nil {
+		invalidParams.Add(request.NewErrParamRequired("Unit"))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUnit sets the Unit field's value.
+func (s *TimestreamTimestamp) SetUnit(v string) *TimestreamTimestamp {
+	s.Unit = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *TimestreamTimestamp) SetValue(v string) *TimestreamTimestamp {
+	s.Value = &v
 	return s
 }
 

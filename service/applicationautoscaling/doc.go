@@ -28,6 +28,8 @@
 //
 //    * Amazon Keyspaces (for Apache Cassandra) tables
 //
+//    * Amazon Managed Streaming for Apache Kafka cluster storage
+//
 // API Summary
 //
 // The Application Auto Scaling service API includes three key sets of actions:

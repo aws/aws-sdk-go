@@ -314,11 +314,11 @@
       }
     },
     "CampaignLimits" : {
-      "base" : "<p>For a campaign, specifies limits on the messages that the campaign can send. For an application, specifies the default limits for messages that campaigns and journeys in the application can send.</p>",
+      "base" : "<p>For a campaign, specifies limits on the messages that the campaign can send. For an application, specifies the default limits for messages that campaigns in the application can send.</p>",
       "refs" : {
-        "ApplicationSettingsResource$Limits" : "<p>The default sending limits for campaigns and journeys in the application.</p>",
+        "ApplicationSettingsResource$Limits" : "<p>The default sending limits for campaigns in the application.</p>",
         "CampaignResponse$Limits" : "<p>The messaging limits for the campaign.</p>",
-        "WriteApplicationSettingsRequest$Limits" : "<p>The default sending limits for campaigns and journeys in the application. To override these limits and define custom limits for a specific campaign or journey, use the <link  linkend=\"apps-application-id-campaigns-campaign-id\">Campaign</link> resource or the <link  linkend=\"apps-application-id-journeys-journey-id\">Journey</link> resource, respectively.</p>",
+        "WriteApplicationSettingsRequest$Limits" : "<p>The default sending limits for campaigns in the application. To override these limits and define custom limits for a specific campaign or journey, use the <link  linkend=\"apps-application-id-campaigns-campaign-id\">Campaign</link> resource or the <link  linkend=\"apps-application-id-journeys-journey-id\">Journey</link> resource, respectively.</p>",
         "WriteCampaignRequest$Limits" : "<p>The messaging limits for the campaign.</p>"
       }
     },
@@ -379,10 +379,14 @@
       }
     },
     "ConditionalSplitActivity" : {
-      "base" : "<p>Specifies the settings for a yes/no split activity in a journey. This type of activity sends participants down one of two paths in a journey, based on conditions that you specify.</p>",
+      "base" : "<p>Specifies the settings for a yes/no split activity in a journey. This type of activity sends participants down one of two paths in a journey, based on conditions that you specify.</p> <note><p>To create yes/no split activities that send participants down different paths based on push notification events (such as Open or Received events), your mobile app has to specify the User ID and Endpoint ID values. For more information, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/integrate.html\">Integrating Amazon Pinpoint with your application</a> in the <i>Amazon Pinpoint Developer Guide</i>.</p></note>",
       "refs" : {
         "Activity$ConditionalSplit" : "<p>The settings for a yes/no split activity. This type of activity sends participants down one of two paths in a journey, based on conditions that you specify.</p>"
       }
+    },
+    "ConflictException" : {
+      "base" : "<p>Provides information about an API request or response.</p>",
+      "refs" : { }
     },
     "CreateApplicationRequest" : {
       "base" : "<p>Specifies the display name of an application and the tags to associate with the application.</p>",
@@ -569,13 +573,26 @@
       "base" : "<p>Specifies the dimensions for an event filter that determines when a campaign is sent or a journey activity is performed.</p>",
       "refs" : {
         "CampaignEventFilter$Dimensions" : "<p>The dimension settings of the event filter for the campaign.</p>",
-        "EventCondition$Dimensions" : "<p>The dimensions for the event filter to use for the activity.</p>"
+        "EventCondition$Dimensions" : "<p>The dimensions for the event filter to use for the activity.</p>",
+        "EventFilter$Dimensions" : "<p>The dimensions for the event filter to use for the campaign or the journey activity.</p>"
+      }
+    },
+    "EventFilter" : {
+      "base" : "<p>Specifies the settings for an event that causes a campaign to be sent or a journey activity to be performed.</p>",
+      "refs" : {
+        "EventStartCondition$EventFilter" : null
       }
     },
     "EventItemResponse" : {
       "base" : "<p>Provides the status code and message that result from processing an event.</p>",
       "refs" : {
         "MapOfEventItemResponse$member" : null
+      }
+    },
+    "EventStartCondition" : {
+      "base" : "<p>Specifies the settings for an event that causes a journey activity to start.</p>",
+      "refs" : {
+        "StartCondition$EventStartCondition" : null
       }
     },
     "EventStream" : {
@@ -619,7 +636,8 @@
     "FilterType" : {
       "base" : null,
       "refs" : {
-        "CampaignEventFilter$FilterType" : "<p>The type of event that causes the campaign to be sent. Valid values are: SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT, sends the campaign when an endpoint event (<link  linkend=\"apps-application-id-events\">Events</link> resource) occurs.</p>"
+        "CampaignEventFilter$FilterType" : "<p>The type of event that causes the campaign to be sent. Valid values are: SYSTEM, sends the campaign when a system event occurs; and, ENDPOINT, sends the campaign when an endpoint event (<link  linkend=\"apps-application-id-events\">Events</link> resource) occurs.</p>",
+        "EventFilter$FilterType" : "<p>The type of event that causes the campaign to be sent or the journey activity to be performed. Valid values are: SYSTEM, sends the campaign or performs the activity when a system event occurs; and, ENDPOINT, sends the campaign or performs the activity when an endpoint event (<link  linkend=\"apps-application-id-events\">Events resource</link>) occurs.</p>"
       }
     },
     "ForbiddenException" : {
@@ -851,7 +869,7 @@
       }
     },
     "MultiConditionalSplitActivity" : {
-      "base" : "<p>Specifies the settings for a multivariate split activity in a journey. This type of activity sends participants down one of as many as five paths (including a default <i>Else</i> path) in a journey, based on conditions that you specify.</p>",
+      "base" : "<p>Specifies the settings for a multivariate split activity in a journey. This type of activity sends participants down one of as many as five paths (including a default <i>Else</i> path) in a journey, based on conditions that you specify.</p> <note><p>To create multivariate split activities that send participants down different paths based on push notification events (such as Open or Received events), your mobile app has to specify the User ID and Endpoint ID values. For more information, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/integrate.html\">Integrating Amazon Pinpoint with your application</a> in the <i>Amazon Pinpoint Developer Guide</i>.</p></note>",
       "refs" : {
         "Activity$MultiCondition" : "<p>The settings for a multivariate split activity. This type of activity sends participants down one of as many as five paths (including a default <i>Else</i> path) in a journey, based on conditions that you specify.</p>"
       }
@@ -901,10 +919,10 @@
     "QuietTime" : {
       "base" : "<p>Specifies the start and end times that define a time range when messages aren't sent to endpoints.</p>",
       "refs" : {
-        "ApplicationSettingsResource$QuietTime" : "<p>The default quiet time for campaigns and journeys in the application. Quiet time is a specific time range when messages aren't sent to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the application (or a campaign or journey that has custom quiet time settings).</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the application (or a campaign or journey that has custom quiet time settings).</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from a campaign or journey, even if quiet time is enabled.</p>",
+        "ApplicationSettingsResource$QuietTime" : "<p>The default quiet time for campaigns in the application. Quiet time is a specific time range when messages aren't sent to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the application (or a campaign or journey that has custom quiet time settings).</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the application (or a campaign or journey that has custom quiet time settings).</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from a campaign or journey, even if quiet time is enabled.</p>",
         "JourneyResponse$QuietTime" : "<p>The quiet time settings for the journey. Quiet time is a specific time range when a journey doesn't send messages to participants, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint for the participant is set to a valid value.</p></li> <li><p>The current time in the participant's time zone is later than or equal to the time specified by the QuietTime.Start property for the journey.</p></li> <li><p>The current time in the participant's time zone is earlier than or equal to the time specified by the QuietTime.End property for the journey.</p></li></ul> <p>If any of the preceding conditions isn't met, the participant will receive messages from the journey, even if quiet time is enabled.</p>",
         "Schedule$QuietTime" : "<p>The default quiet time for the campaign. Quiet time is a specific time range when a campaign doesn't send messages to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the campaign.</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the campaign.</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from the campaign, even if quiet time is enabled.</p>",
-        "WriteApplicationSettingsRequest$QuietTime" : "<p>The default quiet time for campaigns and journeys in the application. Quiet time is a specific time range when messages aren't sent to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the application (or a campaign or journey that has custom quiet time settings).</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the application (or a campaign or journey that has custom quiet time settings).</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from a campaign or journey, even if quiet time is enabled.</p> <p>To override the default quiet time settings for a specific campaign or journey, use the <link  linkend=\"apps-application-id-campaigns-campaign-id\">Campaign</link> resource or the <link  linkend=\"apps-application-id-journeys-journey-id\">Journey</link> resource to define a custom quiet time for the campaign or journey.</p>",
+        "WriteApplicationSettingsRequest$QuietTime" : "<p>The default quiet time for campaigns in the application. Quiet time is a specific time range when messages aren't sent to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the application (or a campaign or journey that has custom quiet time settings).</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the application (or a campaign or journey that has custom quiet time settings).</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from a campaign or journey, even if quiet time is enabled.</p> <p>To override the default quiet time settings for a specific campaign or journey, use the <link  linkend=\"apps-application-id-campaigns-campaign-id\">Campaign</link> resource or the <link  linkend=\"apps-application-id-journeys-journey-id\">Journey</link> resource to define a custom quiet time for the campaign or journey.</p>",
         "WriteJourneyRequest$QuietTime" : "<p>The quiet time settings for the journey. Quiet time is a specific time range when a journey doesn't send messages to participants, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint for the participant is set to a valid value.</p></li> <li><p>The current time in the participant's time zone is later than or equal to the time specified by the QuietTime.Start property for the journey.</p></li> <li><p>The current time in the participant's time zone is earlier than or equal to the time specified by the QuietTime.End property for the journey.</p></li></ul> <p>If any of the preceding conditions isn't met, the participant will receive messages from the journey, even if quiet time is enabled.</p>"
       }
     },
@@ -1351,6 +1369,7 @@
         "VoiceChannelResponse$HasCredential" : "<p>(Not used) This property is retained only for backward compatibility.</p>",
         "VoiceChannelResponse$IsArchived" : "<p>Specifies whether the voice channel is archived.</p>",
         "WriteApplicationSettingsRequest$CloudWatchMetricsEnabled" : "<p>Specifies whether to enable application-related alarms in Amazon CloudWatch.</p>",
+        "WriteApplicationSettingsRequest$EventTaggingEnabled" : null,
         "WriteCampaignRequest$IsPaused" : "<p>Specifies whether to pause the campaign. A paused campaign doesn't run unless you resume it by changing this value to false.</p>",
         "WriteJourneyRequest$LocalTime" : "<p>Specifies whether the journey's scheduled start and end times use each participant's local time. To base the schedule on each participant's local time, set this value to true.</p>"
       }
@@ -1385,7 +1404,7 @@
         "BaiduMessage$TimeToLive" : "<p>The amount of time, in seconds, that the Baidu Cloud Push service should store the message if the recipient's device is offline. The default value and maximum supported time is 604,800 seconds (7 days).</p>",
         "CampaignLimits$Daily" : "<p>The maximum number of messages that a campaign can send to a single endpoint during a 24-hour period. For an application, this value specifies the default limit for the number of messages that campaigns and journeys can send to a single endpoint during a 24-hour period. The maximum value is 100.</p>",
         "CampaignLimits$MaximumDuration" : "<p>The maximum amount of time, in seconds, that a campaign can attempt to deliver a message after the scheduled start time for the campaign. The minimum value is 60 seconds.</p>",
-        "CampaignLimits$MessagesPerSecond" : "<p>The maximum number of messages that a campaign can send each second. For an application, this value specifies the default limit for the number of messages that campaigns and journeys can send each second. The minimum value is 50. The maximum value is 20,000.</p>",
+        "CampaignLimits$MessagesPerSecond" : "<p>The maximum number of messages that a campaign can send each second. For an application, this value specifies the default limit for the number of messages that campaigns can send each second. The minimum value is 50. The maximum value is 20,000.</p>",
         "CampaignLimits$Total" : "<p>The maximum number of messages that a campaign can send to a single endpoint during the course of the campaign. If a campaign recurs, this setting applies to all runs of the campaign. The maximum value is 100.</p>",
         "CampaignResponse$HoldoutPercent" : "<p>The allocated percentage of users (segment members) who shouldn't receive messages from the campaign.</p>",
         "CampaignResponse$SegmentVersion" : "<p>The version number of the segment that's associated with the campaign.</p>",
@@ -1599,7 +1618,7 @@
     "MapOfAddressConfiguration" : {
       "base" : null,
       "refs" : {
-        "MessageRequest$Addresses" : "<p>A map of key-value pairs, where each key is an address and each value is an AddressConfiguration object. An address can be a push notification token, a phone number, or an email address. You can use an AddressConfiguration object to tailor the message for an address by specifying settings such as content overrides and message variables.</p>"
+        "MessageRequest$Addresses" : "<p>A map of key-value pairs, where each key is an address and each value is an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-addressconfiguration\">AddressConfiguration</a> object. An address can be a push notification token, a phone number, or an email address. You can use an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-addressconfiguration\">AddressConfiguration</a> object to tailor the message for an address by specifying settings such as content overrides and message variables.</p>"
       }
     },
     "MapOfAttributeDimension" : {
@@ -1626,8 +1645,8 @@
     "MapOfEndpointSendConfiguration" : {
       "base" : null,
       "refs" : {
-        "MessageRequest$Endpoints" : "<p>A map of key-value pairs, where each key is an endpoint ID and each value is an EndpointSendConfiguration object. You can use an EndpointSendConfiguration object to tailor the message for an endpoint by specifying settings such as content overrides and message variables.</p>",
-        "SendUsersMessageRequest$Users" : "<p>A map that associates user IDs with EndpointSendConfiguration objects. You can use an EndpointSendConfiguration object to tailor the message for a user by specifying settings such as content overrides and message variables.</p>"
+        "MessageRequest$Endpoints" : "<p>A map of key-value pairs, where each key is an endpoint ID and each value is an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration\">EndpointSendConfiguration</a> object. You can use an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration\">EndpointSendConfiguration</a> object to tailor the message for an endpoint by specifying settings such as content overrides and message variables.</p>",
+        "SendUsersMessageRequest$Users" : "<p>A map that associates user IDs with <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration\">EndpointSendConfiguration</a> objects. You can use an <a href=\"https://docs.aws.amazon.com/pinpoint/latest/apireference/apps-application-id-messages.html#apps-application-id-messages-model-endpointsendconfiguration\">EndpointSendConfiguration</a> object to tailor the message for a user by specifying settings such as content overrides and message variables.</p>"
       }
     },
     "MapOfEvent" : {
@@ -1728,7 +1747,7 @@
         "Event$Attributes" : "<p>One or more custom attributes that are associated with the event.</p>",
         "GCMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
         "JourneyExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. The results vary depending on the type of activity (ActivityType). For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
-        "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
+        "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyResponse$tags" : "<p>This object is not used or supported.</p>",
         "MessageRequest$Context" : "<p>A map of custom attributes to attach to the message. For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "PushNotificationTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
@@ -1942,7 +1961,7 @@
         "CreateTemplateMessageBody$Message" : "<p>The message that's returned from the API for the request to create the message template.</p>",
         "CreateTemplateMessageBody$RequestID" : "<p>The unique identifier for the request to create the message template.</p>",
         "CustomDeliveryConfiguration$DeliveryUri" : "<p>The destination to send the campaign or treatment to. This value can be one of the following:</p> <ul><li><p>The name or Amazon Resource Name (ARN) of an AWS Lambda function to invoke to handle delivery of the campaign or treatment.</p></li> <li><p>The URL for a web application or service that supports HTTPS and can receive the message. The URL has to be a full URL, including the HTTPS protocol.</p></li></ul> ",
-        "CustomMessageActivity$DeliveryUri" : "<p>The destination to send the custom message to. This value can be one of the following:</p> <ul><li><p>The name or Amazon Resource Name (ARN) of an AWS Lambda function to invoke to handle delivery of the custom message.</p></li> <li><p>The URL for a web application or service that supports HTTPS and can receive the message. The URL has to be a full URL, including the HTTPS protocol.</p></li></ul>",
+        "CustomMessageActivity$DeliveryUri" : "<p>The destination to send the campaign or treatment to. This value can be one of the following:</p> <ul><li><p>The name or Amazon Resource Name (ARN) of an AWS Lambda function to invoke to handle delivery of the campaign or treatment.</p></li> <li><p>The URL for a web application or service that supports HTTPS and can receive the message. The URL has to be a full URL, including the HTTPS protocol.</p></li></ul>",
         "CustomMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after Amazon Pinpoint calls the AWS Lambda function or web hook.</p>",
         "CustomMessageActivity$TemplateName" : "<p>The name of the custom message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
         "CustomMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
@@ -2041,6 +2060,7 @@
         "Event$Timestamp" : "<p>The date and time, in ISO 8601 format, when the event occurred.</p>",
         "EventCondition$MessageActivity" : "<p>The message identifier (message_id) for the message to use when determining whether message events meet the condition.</p>",
         "EventItemResponse$Message" : "<p>A custom message that's returned in the response as a result of processing the event.</p>",
+        "EventStartCondition$SegmentId" : null,
         "EventStream$ApplicationId" : "<p>The unique identifier for the application to publish event data for.</p>",
         "EventStream$DestinationStreamArn" : "<p>The Amazon Resource Name (ARN) of the Amazon Kinesis data stream or Amazon Kinesis Data Firehose delivery stream to publish event data to.</p> <p>For a Kinesis data stream, the ARN format is: arn:aws:kinesis:<replaceable>region</replaceable>:<replaceable>account-id</replaceable>:stream/<replaceable>stream_name</replaceable>\n               </p> <p>For a Kinesis Data Firehose delivery stream, the ARN format is: arn:aws:firehose:<replaceable>region</replaceable>:<replaceable>account-id</replaceable>:deliverystream/<replaceable>stream_name</replaceable>\n               </p>",
         "EventStream$ExternalId" : "<p>(Deprecated) Your AWS account ID, which you assigned to an external ID key in an IAM trust policy. Amazon Pinpoint previously used this value to assume an IAM role when publishing event data, but we removed this requirement. We don't recommend use of external IDs for IAM roles that are assumed by Amazon Pinpoint.</p>",
@@ -2120,7 +2140,7 @@
         "JourneyResponse$Name" : "<p>The name of the journey.</p>",
         "JourneyResponse$RefreshFrequency" : "<p>The frequency with which Amazon Pinpoint evaluates segment and event data for the journey, as a duration in ISO 8601 format.</p>",
         "JourneyResponse$StartActivity" : "<p>The unique identifier for the first activity in the journey.</p>",
-        "JourneySMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region. For more information, see <a href=\"https://docs.aws.amazon.com.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html\">Supported Countries and Regions</a> in the Amazon Pinpoint User Guide.</p>",
+        "JourneySMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region. For more information, see <a href=\"https://docs.aws.amazon.com/pinpoint/latest/userguide/channels-sms-countries.html\">Supported Countries and Regions</a> in the Amazon Pinpoint User Guide.</p>",
         "JourneySchedule$EndTime" : "<p>The scheduled time, in ISO 8601 format, when the journey ended or will end.</p>",
         "JourneySchedule$StartTime" : "<p>The scheduled time, in ISO 8601 format, when the journey began or will begin.</p>",
         "JourneySchedule$Timezone" : "<p>The starting UTC offset for the journey schedule, if the value of the journey's LocalTime property is true. Valid values are: UTC,\n                  UTC+01, UTC+02, UTC+03, UTC+03:30, UTC+04, UTC+04:30, UTC+05, UTC+05:30,\n                  UTC+05:45, UTC+06, UTC+06:30, UTC+07, UTC+08, UTC+08:45, UTC+09, UTC+09:30,\n                  UTC+10, UTC+10:30, UTC+11, UTC+12, UTC+12:45, UTC+13, UTC+13:45, UTC-02,\n                  UTC-02:30, UTC-03, UTC-03:30, UTC-04, UTC-05, UTC-06, UTC-07, UTC-08, UTC-09,\n                  UTC-09:30, UTC-10, and UTC-11.</p>",
@@ -2209,7 +2229,7 @@
         "SMSChannelResponse$ShortCode" : "<p>The registered short code to use when you send messages through the SMS channel.</p>",
         "SMSMessage$Body" : "<p>The body of the SMS message.</p>",
         "SMSMessage$Keyword" : "<p>The SMS program name that you provided to AWS Support when you requested your dedicated number.</p>",
-        "SMSMessage$MediaUrl" : "<p>The URL of an image or video to display in the SMS message. This field is reserved for future use.</p>",
+        "SMSMessage$MediaUrl" : "<p>This field is reserved for future use.</p>",
         "SMSMessage$OriginationNumber" : "<p>The number to send the SMS message from. This value should be one of the dedicated long or short codes that's assigned to your AWS account. If you don't specify a long or short code, Amazon Pinpoint assigns a random long code to the SMS message and sends the message from that code.</p>",
         "SMSMessage$SenderId" : "<p>The sender ID to display as the sender of the message on a recipient's device. Support for sender IDs varies by country or region.</p>",
         "SMSMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after the message is sent.</p>",

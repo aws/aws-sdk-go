@@ -656,6 +656,211 @@ func (c *MediaConnect) DescribeFlowWithContext(ctx aws.Context, input *DescribeF
 	return out, req.Send()
 }
 
+const opDescribeOffering = "DescribeOffering"
+
+// DescribeOfferingRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeOffering operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeOffering for more information on using the DescribeOffering
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeOfferingRequest method.
+//    req, resp := client.DescribeOfferingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeOffering
+func (c *MediaConnect) DescribeOfferingRequest(input *DescribeOfferingInput) (req *request.Request, output *DescribeOfferingOutput) {
+	op := &request.Operation{
+		Name:       opDescribeOffering,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/offerings/{offeringArn}",
+	}
+
+	if input == nil {
+		input = &DescribeOfferingInput{}
+	}
+
+	output = &DescribeOfferingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeOffering API operation for AWS MediaConnect.
+//
+// Displays the details of an offering. The response includes the offering description,
+// duration, outbound bandwidth, price, and Amazon Resource Name (ARN).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation DescribeOffering for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeOffering
+func (c *MediaConnect) DescribeOffering(input *DescribeOfferingInput) (*DescribeOfferingOutput, error) {
+	req, out := c.DescribeOfferingRequest(input)
+	return out, req.Send()
+}
+
+// DescribeOfferingWithContext is the same as DescribeOffering with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeOffering for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) DescribeOfferingWithContext(ctx aws.Context, input *DescribeOfferingInput, opts ...request.Option) (*DescribeOfferingOutput, error) {
+	req, out := c.DescribeOfferingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeReservation = "DescribeReservation"
+
+// DescribeReservationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReservation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReservation for more information on using the DescribeReservation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeReservationRequest method.
+//    req, resp := client.DescribeReservationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeReservation
+func (c *MediaConnect) DescribeReservationRequest(input *DescribeReservationInput) (req *request.Request, output *DescribeReservationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReservation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/reservations/{reservationArn}",
+	}
+
+	if input == nil {
+		input = &DescribeReservationInput{}
+	}
+
+	output = &DescribeReservationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReservation API operation for AWS MediaConnect.
+//
+// Displays the details of a reservation. The response includes the reservation
+// name, state, start date and time, and the details of the offering that make
+// up the rest of the reservation (such as price, duration, and outbound bandwidth).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation DescribeReservation for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/DescribeReservation
+func (c *MediaConnect) DescribeReservation(input *DescribeReservationInput) (*DescribeReservationOutput, error) {
+	req, out := c.DescribeReservationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReservationWithContext is the same as DescribeReservation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReservation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) DescribeReservationWithContext(ctx aws.Context, input *DescribeReservationInput, opts ...request.Option) (*DescribeReservationOutput, error) {
+	req, out := c.DescribeReservationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGrantFlowEntitlements = "GrantFlowEntitlements"
 
 // GrantFlowEntitlementsRequest generates a "aws/request.Request" representing the
@@ -1077,6 +1282,319 @@ func (c *MediaConnect) ListFlowsPagesWithContext(ctx aws.Context, input *ListFlo
 	return p.Err()
 }
 
+const opListOfferings = "ListOfferings"
+
+// ListOfferingsRequest generates a "aws/request.Request" representing the
+// client's request for the ListOfferings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListOfferings for more information on using the ListOfferings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListOfferingsRequest method.
+//    req, resp := client.ListOfferingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/ListOfferings
+func (c *MediaConnect) ListOfferingsRequest(input *ListOfferingsInput) (req *request.Request, output *ListOfferingsOutput) {
+	op := &request.Operation{
+		Name:       opListOfferings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/offerings",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListOfferingsInput{}
+	}
+
+	output = &ListOfferingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListOfferings API operation for AWS MediaConnect.
+//
+// Displays a list of all offerings that are available to this account in the
+// current AWS Region. If you have an active reservation (which means you've
+// purchased an offering that has already started and hasn't expired yet), your
+// account isn't eligible for other offerings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation ListOfferings for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/ListOfferings
+func (c *MediaConnect) ListOfferings(input *ListOfferingsInput) (*ListOfferingsOutput, error) {
+	req, out := c.ListOfferingsRequest(input)
+	return out, req.Send()
+}
+
+// ListOfferingsWithContext is the same as ListOfferings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListOfferings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) ListOfferingsWithContext(ctx aws.Context, input *ListOfferingsInput, opts ...request.Option) (*ListOfferingsOutput, error) {
+	req, out := c.ListOfferingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListOfferingsPages iterates over the pages of a ListOfferings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListOfferings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListOfferings operation.
+//    pageNum := 0
+//    err := client.ListOfferingsPages(params,
+//        func(page *mediaconnect.ListOfferingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaConnect) ListOfferingsPages(input *ListOfferingsInput, fn func(*ListOfferingsOutput, bool) bool) error {
+	return c.ListOfferingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListOfferingsPagesWithContext same as ListOfferingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) ListOfferingsPagesWithContext(ctx aws.Context, input *ListOfferingsInput, fn func(*ListOfferingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListOfferingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListOfferingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListOfferingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListReservations = "ListReservations"
+
+// ListReservationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListReservations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReservations for more information on using the ListReservations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListReservationsRequest method.
+//    req, resp := client.ListReservationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/ListReservations
+func (c *MediaConnect) ListReservationsRequest(input *ListReservationsInput) (req *request.Request, output *ListReservationsOutput) {
+	op := &request.Operation{
+		Name:       opListReservations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/reservations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListReservationsInput{}
+	}
+
+	output = &ListReservationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListReservations API operation for AWS MediaConnect.
+//
+// Displays a list of all reservations that have been purchased by this account
+// in the current AWS Region. This list includes all reservations in all states
+// (such as active and expired).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation ListReservations for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/ListReservations
+func (c *MediaConnect) ListReservations(input *ListReservationsInput) (*ListReservationsOutput, error) {
+	req, out := c.ListReservationsRequest(input)
+	return out, req.Send()
+}
+
+// ListReservationsWithContext is the same as ListReservations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReservations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) ListReservationsWithContext(ctx aws.Context, input *ListReservationsInput, opts ...request.Option) (*ListReservationsOutput, error) {
+	req, out := c.ListReservationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListReservationsPages iterates over the pages of a ListReservations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListReservations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListReservations operation.
+//    pageNum := 0
+//    err := client.ListReservationsPages(params,
+//        func(page *mediaconnect.ListReservationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaConnect) ListReservationsPages(input *ListReservationsInput, fn func(*ListReservationsOutput, bool) bool) error {
+	return c.ListReservationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListReservationsPagesWithContext same as ListReservationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) ListReservationsPagesWithContext(ctx aws.Context, input *ListReservationsInput, fn func(*ListReservationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListReservationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListReservationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListReservationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -1163,6 +1681,113 @@ func (c *MediaConnect) ListTagsForResource(input *ListTagsForResourceInput) (*Li
 // for more information on using Contexts.
 func (c *MediaConnect) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPurchaseOffering = "PurchaseOffering"
+
+// PurchaseOfferingRequest generates a "aws/request.Request" representing the
+// client's request for the PurchaseOffering operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PurchaseOffering for more information on using the PurchaseOffering
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PurchaseOfferingRequest method.
+//    req, resp := client.PurchaseOfferingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/PurchaseOffering
+func (c *MediaConnect) PurchaseOfferingRequest(input *PurchaseOfferingInput) (req *request.Request, output *PurchaseOfferingOutput) {
+	op := &request.Operation{
+		Name:       opPurchaseOffering,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/offerings/{offeringArn}",
+	}
+
+	if input == nil {
+		input = &PurchaseOfferingInput{}
+	}
+
+	output = &PurchaseOfferingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PurchaseOffering API operation for AWS MediaConnect.
+//
+// Submits a request to purchase an offering. If you already have an active
+// reservation, you can't purchase another offering.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaConnect's
+// API operation PurchaseOffering for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * InternalServerErrorException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ForbiddenException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * NotFoundException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * ServiceUnavailableException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+//   * TooManyRequestsException
+//   Exception raised by AWS Elemental MediaConnect. See the error message and
+//   documentation for the operation for more information on the cause of this
+//   exception.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconnect-2018-11-14/PurchaseOffering
+func (c *MediaConnect) PurchaseOffering(input *PurchaseOfferingInput) (*PurchaseOfferingOutput, error) {
+	req, out := c.PurchaseOfferingRequest(input)
+	return out, req.Send()
+}
+
+// PurchaseOfferingWithContext is the same as PurchaseOffering with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PurchaseOffering for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConnect) PurchaseOfferingWithContext(ctx aws.Context, input *PurchaseOfferingInput, opts ...request.Option) (*PurchaseOfferingOutput, error) {
+	req, out := c.PurchaseOfferingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3358,6 +3983,138 @@ func (s *DescribeFlowOutput) SetMessages(v *Messages) *DescribeFlowOutput {
 	return s
 }
 
+type DescribeOfferingInput struct {
+	_ struct{} `type:"structure"`
+
+	// OfferingArn is a required field
+	OfferingArn *string `location:"uri" locationName:"offeringArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeOfferingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOfferingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeOfferingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeOfferingInput"}
+	if s.OfferingArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("OfferingArn"))
+	}
+	if s.OfferingArn != nil && len(*s.OfferingArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OfferingArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOfferingArn sets the OfferingArn field's value.
+func (s *DescribeOfferingInput) SetOfferingArn(v string) *DescribeOfferingInput {
+	s.OfferingArn = &v
+	return s
+}
+
+// The result of a successful DescribeOffering request.
+type DescribeOfferingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A savings plan that reserves a certain amount of outbound bandwidth usage
+	// at a discounted rate each month over a period of time.
+	Offering *Offering `locationName:"offering" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeOfferingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeOfferingOutput) GoString() string {
+	return s.String()
+}
+
+// SetOffering sets the Offering field's value.
+func (s *DescribeOfferingOutput) SetOffering(v *Offering) *DescribeOfferingOutput {
+	s.Offering = v
+	return s
+}
+
+type DescribeReservationInput struct {
+	_ struct{} `type:"structure"`
+
+	// ReservationArn is a required field
+	ReservationArn *string `location:"uri" locationName:"reservationArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeReservationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReservationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReservationInput"}
+	if s.ReservationArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReservationArn"))
+	}
+	if s.ReservationArn != nil && len(*s.ReservationArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReservationArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReservationArn sets the ReservationArn field's value.
+func (s *DescribeReservationInput) SetReservationArn(v string) *DescribeReservationInput {
+	s.ReservationArn = &v
+	return s
+}
+
+// The result of a successful DescribeReservation request.
+type DescribeReservationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pricing agreement for a discounted rate for a specific outbound bandwidth
+	// that your MediaConnect account will use each month over a specific time period.
+	// The discounted rate in the reservation applies to outbound bandwidth for
+	// all flows from your account until your account reaches the amount of bandwidth
+	// in your reservation. If you use more outbound bandwidth than the agreed upon
+	// amount in a single month, the overage is charged at the on-demand rate.
+	Reservation *Reservation `locationName:"reservation" type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReservationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReservationOutput) GoString() string {
+	return s.String()
+}
+
+// SetReservation sets the Reservation field's value.
+func (s *DescribeReservationOutput) SetReservation(v *Reservation) *DescribeReservationOutput {
+	s.Reservation = v
+	return s
+}
+
 // Information about the encryption of the flow.
 type Encryption struct {
 	_ struct{} `type:"structure"`
@@ -4278,6 +5035,176 @@ func (s *ListFlowsOutput) SetNextToken(v string) *ListFlowsOutput {
 	return s
 }
 
+type ListOfferingsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListOfferingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListOfferingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListOfferingsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListOfferingsInput) SetMaxResults(v int64) *ListOfferingsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingsInput) SetNextToken(v string) *ListOfferingsInput {
+	s.NextToken = &v
+	return s
+}
+
+// The result of a successful ListOfferings request. The response includes the
+// details of each offering that your account is eligible for. The response
+// includes the following information for each offering: description, duration,
+// outbound bandwidth, price, Amazon Resource Name (ARN), and the NextToken
+// to use in a subsequent ListOfferings request.
+type ListOfferingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token that identifies which batch of results that you want to see. For
+	// example, you submit a ListOfferings request with MaxResults set at 5. The
+	// service returns the first batch of results (up to 5) and a NextToken value.
+	// To see the next batch of results, you can submit the ListOfferings request
+	// a second time and specify the NextToken value.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of offerings that are available to this account in the current AWS
+	// Region.
+	Offerings []*Offering `locationName:"offerings" type:"list"`
+}
+
+// String returns the string representation
+func (s ListOfferingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListOfferingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListOfferingsOutput) SetNextToken(v string) *ListOfferingsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOfferings sets the Offerings field's value.
+func (s *ListOfferingsOutput) SetOfferings(v []*Offering) *ListOfferingsOutput {
+	s.Offerings = v
+	return s
+}
+
+type ListReservationsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListReservationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReservationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReservationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReservationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListReservationsInput) SetMaxResults(v int64) *ListReservationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReservationsInput) SetNextToken(v string) *ListReservationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// The result of a successful ListReservations request. The response includes
+// the details of each offering that your account is eligible for. The response
+// includes the following information for each offering: description, duration,
+// outbound bandwidth, price, Amazon Resource Name (ARN), and the NextToken
+// to use in a subsequent ListOfferings request.
+type ListReservationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token that identifies which batch of results that you want to see. For
+	// example, you submit a ListReservations request with MaxResults set at 5.
+	// The service returns the first batch of results (up to 5) and a NextToken
+	// value. To see the next batch of results, you can submit the ListReservations
+	// request a second time and specify the NextToken value.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A list of all reservations that have been purchased by this account in the
+	// current AWS Region.
+	Reservations []*Reservation `locationName:"reservations" type:"list"`
+}
+
+// String returns the string representation
+func (s ListReservationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReservationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReservationsOutput) SetNextToken(v string) *ListReservationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReservations sets the Reservations field's value.
+func (s *ListReservationsOutput) SetReservations(v []*Reservation) *ListReservationsOutput {
+	s.Reservations = v
+	return s
+}
+
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4557,6 +5484,114 @@ func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A savings plan that reserves a certain amount of outbound bandwidth usage
+// at a discounted rate each month over a period of time.
+type Offering struct {
+	_ struct{} `type:"structure"`
+
+	// The type of currency that is used for billing. The currencyCode used for
+	// all reservations is US dollars.
+	//
+	// CurrencyCode is a required field
+	CurrencyCode *string `locationName:"currencyCode" type:"string" required:"true"`
+
+	// The length of time that your reservation would be active.
+	//
+	// Duration is a required field
+	Duration *int64 `locationName:"duration" type:"integer" required:"true"`
+
+	// The unit of measurement for the duration of the offering.
+	//
+	// DurationUnits is a required field
+	DurationUnits *string `locationName:"durationUnits" type:"string" required:"true" enum:"DurationUnits"`
+
+	// The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.
+	//
+	// OfferingArn is a required field
+	OfferingArn *string `locationName:"offeringArn" type:"string" required:"true"`
+
+	// A description of the offering.
+	//
+	// OfferingDescription is a required field
+	OfferingDescription *string `locationName:"offeringDescription" type:"string" required:"true"`
+
+	// The cost of a single unit. This value, in combination with priceUnits, makes
+	// up the rate.
+	//
+	// PricePerUnit is a required field
+	PricePerUnit *string `locationName:"pricePerUnit" type:"string" required:"true"`
+
+	// The unit of measurement that is used for billing. This value, in combination
+	// with pricePerUnit, makes up the rate.
+	//
+	// PriceUnits is a required field
+	PriceUnits *string `locationName:"priceUnits" type:"string" required:"true" enum:"PriceUnits"`
+
+	// A definition of the amount of outbound bandwidth that you would be reserving
+	// if you purchase the offering.
+	//
+	// ResourceSpecification is a required field
+	ResourceSpecification *ResourceSpecification `locationName:"resourceSpecification" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s Offering) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Offering) GoString() string {
+	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *Offering) SetCurrencyCode(v string) *Offering {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *Offering) SetDuration(v int64) *Offering {
+	s.Duration = &v
+	return s
+}
+
+// SetDurationUnits sets the DurationUnits field's value.
+func (s *Offering) SetDurationUnits(v string) *Offering {
+	s.DurationUnits = &v
+	return s
+}
+
+// SetOfferingArn sets the OfferingArn field's value.
+func (s *Offering) SetOfferingArn(v string) *Offering {
+	s.OfferingArn = &v
+	return s
+}
+
+// SetOfferingDescription sets the OfferingDescription field's value.
+func (s *Offering) SetOfferingDescription(v string) *Offering {
+	s.OfferingDescription = &v
+	return s
+}
+
+// SetPricePerUnit sets the PricePerUnit field's value.
+func (s *Offering) SetPricePerUnit(v string) *Offering {
+	s.PricePerUnit = &v
+	return s
+}
+
+// SetPriceUnits sets the PriceUnits field's value.
+func (s *Offering) SetPriceUnits(v string) *Offering {
+	s.PriceUnits = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *Offering) SetResourceSpecification(v *ResourceSpecification) *Offering {
+	s.ResourceSpecification = v
+	return s
+}
+
 // The settings for an output.
 type Output struct {
 	_ struct{} `type:"structure"`
@@ -4675,6 +5710,110 @@ func (s *Output) SetTransport(v *Transport) *Output {
 // SetVpcInterfaceAttachment sets the VpcInterfaceAttachment field's value.
 func (s *Output) SetVpcInterfaceAttachment(v *VpcInterfaceAttachment) *Output {
 	s.VpcInterfaceAttachment = v
+	return s
+}
+
+// Submits a request to purchase an offering, which creates a reservation in
+// your AWS account. If you already have an active reservation, you can't purchase
+// another offering.
+type PurchaseOfferingInput struct {
+	_ struct{} `type:"structure"`
+
+	// OfferingArn is a required field
+	OfferingArn *string `location:"uri" locationName:"offeringArn" type:"string" required:"true"`
+
+	// The name that you want to use for the reservation.
+	//
+	// ReservationName is a required field
+	ReservationName *string `locationName:"reservationName" type:"string" required:"true"`
+
+	// The date and time that you want the reservation to begin, in Coordinated
+	// Universal Time (UTC). You can specify any date and time between 12:00am on
+	// the first day of the current month to the current time on today's date, inclusive.
+	// Specify the start in a 24-hour notation. Use the following format: YYYY-MM-DDTHH:mm:SSZ,
+	// where T and Z are literal characters. For example, to specify 11:30pm on
+	// March 5, 2020, enter 2020-03-05T23:30:00Z.
+	//
+	// Start is a required field
+	Start *string `locationName:"start" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PurchaseOfferingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseOfferingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PurchaseOfferingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PurchaseOfferingInput"}
+	if s.OfferingArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("OfferingArn"))
+	}
+	if s.OfferingArn != nil && len(*s.OfferingArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OfferingArn", 1))
+	}
+	if s.ReservationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReservationName"))
+	}
+	if s.Start == nil {
+		invalidParams.Add(request.NewErrParamRequired("Start"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOfferingArn sets the OfferingArn field's value.
+func (s *PurchaseOfferingInput) SetOfferingArn(v string) *PurchaseOfferingInput {
+	s.OfferingArn = &v
+	return s
+}
+
+// SetReservationName sets the ReservationName field's value.
+func (s *PurchaseOfferingInput) SetReservationName(v string) *PurchaseOfferingInput {
+	s.ReservationName = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *PurchaseOfferingInput) SetStart(v string) *PurchaseOfferingInput {
+	s.Start = &v
+	return s
+}
+
+// The result of a successful PurchaseOffering request.
+type PurchaseOfferingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A pricing agreement for a discounted rate for a specific outbound bandwidth
+	// that your MediaConnect account will use each month over a specific time period.
+	// The discounted rate in the reservation applies to outbound bandwidth for
+	// all flows from your account until your account reaches the amount of bandwidth
+	// in your reservation. If you use more outbound bandwidth than the agreed upon
+	// amount in a single month, the overage is charged at the on-demand rate.
+	Reservation *Reservation `locationName:"reservation" type:"structure"`
+}
+
+// String returns the string representation
+func (s PurchaseOfferingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PurchaseOfferingOutput) GoString() string {
+	return s.String()
+}
+
+// SetReservation sets the Reservation field's value.
+func (s *PurchaseOfferingOutput) SetReservation(v *Reservation) *PurchaseOfferingOutput {
+	s.Reservation = v
 	return s
 }
 
@@ -4949,6 +6088,215 @@ func (s *RemoveFlowVpcInterfaceOutput) SetNonDeletedNetworkInterfaceIds(v []*str
 // SetVpcInterfaceName sets the VpcInterfaceName field's value.
 func (s *RemoveFlowVpcInterfaceOutput) SetVpcInterfaceName(v string) *RemoveFlowVpcInterfaceOutput {
 	s.VpcInterfaceName = &v
+	return s
+}
+
+// A pricing agreement for a discounted rate for a specific outbound bandwidth
+// that your MediaConnect account will use each month over a specific time period.
+// The discounted rate in the reservation applies to outbound bandwidth for
+// all flows from your account until your account reaches the amount of bandwidth
+// in your reservation. If you use more outbound bandwidth than the agreed upon
+// amount in a single month, the overage is charged at the on-demand rate.
+type Reservation struct {
+	_ struct{} `type:"structure"`
+
+	// The type of currency that is used for billing. The currencyCode used for
+	// your reservation is US dollars.
+	//
+	// CurrencyCode is a required field
+	CurrencyCode *string `locationName:"currencyCode" type:"string" required:"true"`
+
+	// The length of time that this reservation is active. MediaConnect defines
+	// this value in the offering.
+	//
+	// Duration is a required field
+	Duration *int64 `locationName:"duration" type:"integer" required:"true"`
+
+	// The unit of measurement for the duration of the reservation. MediaConnect
+	// defines this value in the offering.
+	//
+	// DurationUnits is a required field
+	DurationUnits *string `locationName:"durationUnits" type:"string" required:"true" enum:"DurationUnits"`
+
+	// The day and time that this reservation expires. This value is calculated
+	// based on the start date and time that you set and the offering's duration.
+	//
+	// End is a required field
+	End *string `locationName:"end" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) that MediaConnect assigns to the offering.
+	//
+	// OfferingArn is a required field
+	OfferingArn *string `locationName:"offeringArn" type:"string" required:"true"`
+
+	// A description of the offering. MediaConnect defines this value in the offering.
+	//
+	// OfferingDescription is a required field
+	OfferingDescription *string `locationName:"offeringDescription" type:"string" required:"true"`
+
+	// The cost of a single unit. This value, in combination with priceUnits, makes
+	// up the rate. MediaConnect defines this value in the offering.
+	//
+	// PricePerUnit is a required field
+	PricePerUnit *string `locationName:"pricePerUnit" type:"string" required:"true"`
+
+	// The unit of measurement that is used for billing. This value, in combination
+	// with pricePerUnit, makes up the rate. MediaConnect defines this value in
+	// the offering.
+	//
+	// PriceUnits is a required field
+	PriceUnits *string `locationName:"priceUnits" type:"string" required:"true" enum:"PriceUnits"`
+
+	// The Amazon Resource Name (ARN) that MediaConnect assigns to the reservation
+	// when you purchase an offering.
+	//
+	// ReservationArn is a required field
+	ReservationArn *string `locationName:"reservationArn" type:"string" required:"true"`
+
+	// The name that you assigned to the reservation when you purchased the offering.
+	//
+	// ReservationName is a required field
+	ReservationName *string `locationName:"reservationName" type:"string" required:"true"`
+
+	// The status of your reservation.
+	//
+	// ReservationState is a required field
+	ReservationState *string `locationName:"reservationState" type:"string" required:"true" enum:"ReservationState"`
+
+	// A definition of the amount of outbound bandwidth that you would be reserving
+	// if you purchase the offering. MediaConnect defines the values that make up
+	// the resourceSpecification in the offering.
+	//
+	// ResourceSpecification is a required field
+	ResourceSpecification *ResourceSpecification `locationName:"resourceSpecification" type:"structure" required:"true"`
+
+	// The day and time that the reservation becomes active. You set this value
+	// when you purchase the offering.
+	//
+	// Start is a required field
+	Start *string `locationName:"start" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Reservation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Reservation) GoString() string {
+	return s.String()
+}
+
+// SetCurrencyCode sets the CurrencyCode field's value.
+func (s *Reservation) SetCurrencyCode(v string) *Reservation {
+	s.CurrencyCode = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *Reservation) SetDuration(v int64) *Reservation {
+	s.Duration = &v
+	return s
+}
+
+// SetDurationUnits sets the DurationUnits field's value.
+func (s *Reservation) SetDurationUnits(v string) *Reservation {
+	s.DurationUnits = &v
+	return s
+}
+
+// SetEnd sets the End field's value.
+func (s *Reservation) SetEnd(v string) *Reservation {
+	s.End = &v
+	return s
+}
+
+// SetOfferingArn sets the OfferingArn field's value.
+func (s *Reservation) SetOfferingArn(v string) *Reservation {
+	s.OfferingArn = &v
+	return s
+}
+
+// SetOfferingDescription sets the OfferingDescription field's value.
+func (s *Reservation) SetOfferingDescription(v string) *Reservation {
+	s.OfferingDescription = &v
+	return s
+}
+
+// SetPricePerUnit sets the PricePerUnit field's value.
+func (s *Reservation) SetPricePerUnit(v string) *Reservation {
+	s.PricePerUnit = &v
+	return s
+}
+
+// SetPriceUnits sets the PriceUnits field's value.
+func (s *Reservation) SetPriceUnits(v string) *Reservation {
+	s.PriceUnits = &v
+	return s
+}
+
+// SetReservationArn sets the ReservationArn field's value.
+func (s *Reservation) SetReservationArn(v string) *Reservation {
+	s.ReservationArn = &v
+	return s
+}
+
+// SetReservationName sets the ReservationName field's value.
+func (s *Reservation) SetReservationName(v string) *Reservation {
+	s.ReservationName = &v
+	return s
+}
+
+// SetReservationState sets the ReservationState field's value.
+func (s *Reservation) SetReservationState(v string) *Reservation {
+	s.ReservationState = &v
+	return s
+}
+
+// SetResourceSpecification sets the ResourceSpecification field's value.
+func (s *Reservation) SetResourceSpecification(v *ResourceSpecification) *Reservation {
+	s.ResourceSpecification = v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *Reservation) SetStart(v string) *Reservation {
+	s.Start = &v
+	return s
+}
+
+// A definition of what is being billed for, including the type and amount.
+type ResourceSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of outbound bandwidth that is discounted in the offering.
+	ReservedBitrate *int64 `locationName:"reservedBitrate" type:"integer"`
+
+	// The type of resource and the unit that is being billed for.
+	//
+	// ResourceType is a required field
+	ResourceType *string `locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s ResourceSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceSpecification) GoString() string {
+	return s.String()
+}
+
+// SetReservedBitrate sets the ReservedBitrate field's value.
+func (s *ResourceSpecification) SetReservedBitrate(v int64) *ResourceSpecification {
+	s.ReservedBitrate = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ResourceSpecification) SetResourceType(v string) *ResourceSpecification {
+	s.ResourceType = &v
 	return s
 }
 
@@ -6026,7 +7374,7 @@ func (s *UpdateFlowEntitlementInput) SetSubscribers(v []*string) *UpdateFlowEnti
 type UpdateFlowEntitlementOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The settings for a flow entitlement.
+	// The new configuration of the entitlement that you updated.
 	Entitlement *Entitlement `locationName:"entitlement" type:"structure"`
 
 	// The ARN of the flow that this entitlement was granted on.
@@ -6295,7 +7643,7 @@ type UpdateFlowOutputOutput struct {
 	// The ARN of the flow that is associated with the updated output.
 	FlowArn *string `locationName:"flowArn" type:"string"`
 
-	// The settings for an output.
+	// The new settings of the output that you updated.
 	Output *Output `locationName:"output" type:"structure"`
 }
 
@@ -6704,6 +8052,18 @@ func Algorithm_Values() []string {
 }
 
 const (
+	// DurationUnitsMonths is a DurationUnits enum value
+	DurationUnitsMonths = "MONTHS"
+)
+
+// DurationUnits_Values returns all elements of the DurationUnits enum
+func DurationUnits_Values() []string {
+	return []string{
+		DurationUnitsMonths,
+	}
+}
+
+const (
 	// EntitlementStatusEnabled is a EntitlementStatus enum value
 	EntitlementStatusEnabled = "ENABLED"
 
@@ -6736,6 +8096,18 @@ func KeyType_Values() []string {
 }
 
 const (
+	// PriceUnitsHourly is a PriceUnits enum value
+	PriceUnitsHourly = "HOURLY"
+)
+
+// PriceUnits_Values returns all elements of the PriceUnits enum
+func PriceUnits_Values() []string {
+	return []string{
+		PriceUnitsHourly,
+	}
+}
+
+const (
 	// ProtocolZixiPush is a Protocol enum value
 	ProtocolZixiPush = "zixi-push"
 
@@ -6760,6 +8132,42 @@ func Protocol_Values() []string {
 		ProtocolRtp,
 		ProtocolZixiPull,
 		ProtocolRist,
+	}
+}
+
+const (
+	// ReservationStateActive is a ReservationState enum value
+	ReservationStateActive = "ACTIVE"
+
+	// ReservationStateExpired is a ReservationState enum value
+	ReservationStateExpired = "EXPIRED"
+
+	// ReservationStateProcessing is a ReservationState enum value
+	ReservationStateProcessing = "PROCESSING"
+
+	// ReservationStateCanceled is a ReservationState enum value
+	ReservationStateCanceled = "CANCELED"
+)
+
+// ReservationState_Values returns all elements of the ReservationState enum
+func ReservationState_Values() []string {
+	return []string{
+		ReservationStateActive,
+		ReservationStateExpired,
+		ReservationStateProcessing,
+		ReservationStateCanceled,
+	}
+}
+
+const (
+	// ResourceTypeMbpsOutboundBandwidth is a ResourceType enum value
+	ResourceTypeMbpsOutboundBandwidth = "Mbps_Outbound_Bandwidth"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeMbpsOutboundBandwidth,
 	}
 }
 

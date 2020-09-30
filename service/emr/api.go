@@ -4792,6 +4792,8 @@ type Cluster struct {
 	// The Amazon Resource Name (ARN) of the Outpost where the cluster is launched.
 	OutpostArn *string `type:"string"`
 
+	PlacementGroups []*PlacementGroupConfig `type:"list"`
+
 	// The Amazon EMR release label, which determines the version of open-source
 	// application packages installed on the cluster. Release labels are in the
 	// form emr-x.x.x, where x.x.x is an Amazon EMR release version such as emr-5.14.0.
@@ -4968,6 +4970,12 @@ func (s *Cluster) SetNormalizedInstanceHours(v int64) *Cluster {
 // SetOutpostArn sets the OutpostArn field's value.
 func (s *Cluster) SetOutpostArn(v string) *Cluster {
 	s.OutpostArn = &v
+	return s
+}
+
+// SetPlacementGroups sets the PlacementGroups field's value.
+func (s *Cluster) SetPlacementGroups(v []*PlacementGroupConfig) *Cluster {
+	s.PlacementGroups = v
 	return s
 }
 
@@ -10600,6 +10608,50 @@ func (s *OnDemandProvisioningSpecification) SetAllocationStrategy(v string) *OnD
 	return s
 }
 
+type PlacementGroupConfig struct {
+	_ struct{} `type:"structure"`
+
+	// InstanceRole is a required field
+	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
+
+	PlacementStrategy *string `type:"string" enum:"PlacementGroupStrategy"`
+}
+
+// String returns the string representation
+func (s PlacementGroupConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PlacementGroupConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PlacementGroupConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PlacementGroupConfig"}
+	if s.InstanceRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceRole"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceRole sets the InstanceRole field's value.
+func (s *PlacementGroupConfig) SetInstanceRole(v string) *PlacementGroupConfig {
+	s.InstanceRole = &v
+	return s
+}
+
+// SetPlacementStrategy sets the PlacementStrategy field's value.
+func (s *PlacementGroupConfig) SetPlacementStrategy(v string) *PlacementGroupConfig {
+	s.PlacementStrategy = &v
+	return s
+}
+
 // The Amazon EC2 Availability Zone configuration of the cluster (job flow).
 type PlacementType struct {
 	_ struct{} `type:"structure"`
@@ -11262,6 +11314,8 @@ type RunJobFlowInput struct {
 	//    * "ganglia" - launch the cluster with the Ganglia Monitoring System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
 
+	PlacementGroupConfigs []*PlacementGroupConfig `type:"list"`
+
 	// The Amazon EMR release label, which determines the version of open-source
 	// application packages installed on the cluster. Release labels are in the
 	// form emr-x.x.x, where x.x.x is an Amazon EMR release version such as emr-5.14.0.
@@ -11374,6 +11428,16 @@ func (s *RunJobFlowInput) Validate() error {
 			invalidParams.AddNested("ManagedScalingPolicy", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.PlacementGroupConfigs != nil {
+		for i, v := range s.PlacementGroupConfigs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PlacementGroupConfigs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Steps != nil {
 		for i, v := range s.Steps {
 			if v == nil {
@@ -11484,6 +11548,12 @@ func (s *RunJobFlowInput) SetName(v string) *RunJobFlowInput {
 // SetNewSupportedProducts sets the NewSupportedProducts field's value.
 func (s *RunJobFlowInput) SetNewSupportedProducts(v []*SupportedProductConfig) *RunJobFlowInput {
 	s.NewSupportedProducts = v
+	return s
+}
+
+// SetPlacementGroupConfigs sets the PlacementGroupConfigs field's value.
+func (s *RunJobFlowInput) SetPlacementGroupConfigs(v []*PlacementGroupConfig) *RunJobFlowInput {
+	s.PlacementGroupConfigs = v
 	return s
 }
 
@@ -13705,6 +13775,30 @@ const (
 func OnDemandProvisioningAllocationStrategy_Values() []string {
 	return []string{
 		OnDemandProvisioningAllocationStrategyLowestPrice,
+	}
+}
+
+const (
+	// PlacementGroupStrategySpread is a PlacementGroupStrategy enum value
+	PlacementGroupStrategySpread = "SPREAD"
+
+	// PlacementGroupStrategyPartition is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyPartition = "PARTITION"
+
+	// PlacementGroupStrategyCluster is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyCluster = "CLUSTER"
+
+	// PlacementGroupStrategyNone is a PlacementGroupStrategy enum value
+	PlacementGroupStrategyNone = "NONE"
+)
+
+// PlacementGroupStrategy_Values returns all elements of the PlacementGroupStrategy enum
+func PlacementGroupStrategy_Values() []string {
+	return []string{
+		PlacementGroupStrategySpread,
+		PlacementGroupStrategyPartition,
+		PlacementGroupStrategyCluster,
+		PlacementGroupStrategyNone,
 	}
 }
 
