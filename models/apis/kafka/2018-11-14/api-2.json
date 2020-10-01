@@ -1162,6 +1162,10 @@
         "ZookeeperConnectString": {
           "shape": "__string",
           "locationName": "zookeeperConnectString"
+        },
+        "ZookeeperConnectStringTls" : {
+          "shape" : "__string",
+          "locationName" : "zookeeperConnectStringTls"
         }
       }
     },

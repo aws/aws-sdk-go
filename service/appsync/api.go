@@ -2205,7 +2205,7 @@ func (c *AppSync) ListApiKeysRequest(input *ListApiKeysInput) (req *request.Requ
 //
 // Lists the API keys for a given API.
 //
-// API keys are deleted automatically sometime after they expire. However, they
+// API keys are deleted automatically 60 days after they expire. However, they
 // may still be included in the response until they have actually been deleted.
 // You can safely call DeleteApiKey to manually delete a key before it's automatically
 // deleted.
@@ -3318,7 +3318,7 @@ func (c *AppSync) UpdateApiKeyRequest(input *UpdateApiKeyInput) (req *request.Re
 
 // UpdateApiKey API operation for AWS AppSync.
 //
-// Updates an API key.
+// Updates an API key. The key can be updated while it is not deleted.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4102,20 +4102,30 @@ func (s *ApiCache) SetType(v string) *ApiCache {
 // da2: This version was introduced in February 2018 when AppSync added support
 // to extend key expiration.
 //
-//    * ListApiKeys returns the expiration time in seconds.
+//    * ListApiKeys returns the expiration time and deletion time in seconds.
 //
-//    * CreateApiKey returns the expiration time in seconds and accepts a user-provided
-//    expiration time in seconds.
+//    * CreateApiKey returns the expiration time and deletion time in seconds
+//    and accepts a user-provided expiration time in seconds.
 //
-//    * UpdateApiKey returns the expiration time in seconds and accepts a user-provided
-//    expiration time in seconds. Key expiration can only be updated while the
-//    key has not expired.
+//    * UpdateApiKey returns the expiration time and and deletion time in seconds
+//    and accepts a user-provided expiration time in seconds. Expired API keys
+//    are kept for 60 days after the expiration time. Key expiration time can
+//    be updated while the key is not deleted.
 //
 //    * DeleteApiKey deletes the item from the table.
 //
-//    * Expiration is stored in Amazon DynamoDB as seconds.
+//    * Expiration is stored in Amazon DynamoDB as seconds. After the expiration
+//    time, using the key to authenticate will fail. But the key can be reinstated
+//    before deletion.
+//
+//    * Deletion is stored in Amazon DynamoDB as seconds. The key will be deleted
+//    after deletion time.
 type ApiKey struct {
 	_ struct{} `type:"structure"`
+
+	// The time after which the API key is deleted. The date is represented as seconds
+	// since the epoch, rounded down to the nearest hour.
+	Deletes *int64 `locationName:"deletes" type:"long"`
 
 	// A description of the purpose of the API key.
 	Description *string `locationName:"description" type:"string"`
@@ -4136,6 +4146,12 @@ func (s ApiKey) String() string {
 // GoString returns the string representation
 func (s ApiKey) GoString() string {
 	return s.String()
+}
+
+// SetDeletes sets the Deletes field's value.
+func (s *ApiKey) SetDeletes(v int64) *ApiKey {
+	s.Deletes = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -7312,6 +7328,9 @@ type GraphqlApi struct {
 	// The Amazon Cognito user pool configuration.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
 
+	// The ARN of the AWS WAF ACL associated with this GraphqlApi if one exists.
+	WafWebAclArn *string `locationName:"wafWebAclArn" type:"string"`
+
 	// A flag representing whether X-Ray tracing is enabled for this GraphqlApi.
 	XrayEnabled *bool `locationName:"xrayEnabled" type:"boolean"`
 }
@@ -7383,6 +7402,12 @@ func (s *GraphqlApi) SetUris(v map[string]*string) *GraphqlApi {
 // SetUserPoolConfig sets the UserPoolConfig field's value.
 func (s *GraphqlApi) SetUserPoolConfig(v *UserPoolConfig) *GraphqlApi {
 	s.UserPoolConfig = v
+	return s
+}
+
+// SetWafWebAclArn sets the WafWebAclArn field's value.
+func (s *GraphqlApi) SetWafWebAclArn(v string) *GraphqlApi {
+	s.WafWebAclArn = &v
 	return s
 }
 

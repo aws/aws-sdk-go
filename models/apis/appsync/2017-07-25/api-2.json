@@ -734,7 +734,8 @@
       "members":{
         "id":{"shape":"String"},
         "description":{"shape":"String"},
-        "expires":{"shape":"Long"}
+        "expires":{"shape":"Long"},
+        "deletes":{"shape":"Long"}
       }
     },
     "ApiKeyLimitExceededException":{
@@ -1525,7 +1526,8 @@
         "uris":{"shape":"MapOfStringToString"},
         "tags":{"shape":"TagMap"},
         "additionalAuthenticationProviders":{"shape":"AdditionalAuthenticationProviders"},
-        "xrayEnabled":{"shape":"Boolean"}
+        "xrayEnabled":{"shape":"Boolean"},
+        "wafWebAclArn":{"shape":"String"}
       }
     },
     "GraphqlApis":{

@@ -3800,6 +3800,9 @@ type ClusterInfo struct {
 
 	// The connection string to use to connect to the Apache ZooKeeper cluster.
 	ZookeeperConnectString *string `locationName:"zookeeperConnectString" type:"string"`
+
+	// The connection string to use to connect to zookeeper cluster on Tls port.
+	ZookeeperConnectStringTls *string `locationName:"zookeeperConnectStringTls" type:"string"`
 }
 
 // String returns the string representation
@@ -3905,6 +3908,12 @@ func (s *ClusterInfo) SetTags(v map[string]*string) *ClusterInfo {
 // SetZookeeperConnectString sets the ZookeeperConnectString field's value.
 func (s *ClusterInfo) SetZookeeperConnectString(v string) *ClusterInfo {
 	s.ZookeeperConnectString = &v
+	return s
+}
+
+// SetZookeeperConnectStringTls sets the ZookeeperConnectStringTls field's value.
+func (s *ClusterInfo) SetZookeeperConnectStringTls(v string) *ClusterInfo {
+	s.ZookeeperConnectStringTls = &v
 	return s
 }
 

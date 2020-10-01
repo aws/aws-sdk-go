@@ -4792,6 +4792,7 @@ type Cluster struct {
 	// The Amazon Resource Name (ARN) of the Outpost where the cluster is launched.
 	OutpostArn *string `type:"string"`
 
+	// Placement group configured for an Amazon EMR cluster.
 	PlacementGroups []*PlacementGroupConfig `type:"list"`
 
 	// The Amazon EMR release label, which determines the version of open-source
@@ -10608,12 +10609,27 @@ func (s *OnDemandProvisioningSpecification) SetAllocationStrategy(v string) *OnD
 	return s
 }
 
+// Placement group configuration for an Amazon EMR cluster. The configuration
+// specifies the placement strategy that can be applied to instance roles during
+// cluster creation.
+//
+// To use this configuration, consider attaching managed policy AmazonElasticMapReducePlacementGroupPolicy
+// to the EMR role.
 type PlacementGroupConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Role of the instance in the cluster.
+	//
+	// Starting with Amazon EMR version 5.23.0, the only supported instance role
+	// is MASTER.
+	//
 	// InstanceRole is a required field
 	InstanceRole *string `type:"string" required:"true" enum:"InstanceRoleType"`
 
+	// EC2 Placement Group strategy associated with instance role.
+	//
+	// Starting with Amazon EMR version 5.23.0, the only supported placement strategy
+	// is SPREAD for the MASTER instance role.
 	PlacementStrategy *string `type:"string" enum:"PlacementGroupStrategy"`
 }
 
@@ -11314,6 +11330,7 @@ type RunJobFlowInput struct {
 	//    * "ganglia" - launch the cluster with the Ganglia Monitoring System installed.
 	NewSupportedProducts []*SupportedProductConfig `type:"list"`
 
+	// The specified placement group configuration for an Amazon EMR cluster.
 	PlacementGroupConfigs []*PlacementGroupConfig `type:"list"`
 
 	// The Amazon EMR release label, which determines the version of open-source

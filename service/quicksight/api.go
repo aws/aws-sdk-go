@@ -33443,6 +33443,9 @@ const (
 
 	// DataSourceTypeTwitter is a DataSourceType enum value
 	DataSourceTypeTwitter = "TWITTER"
+
+	// DataSourceTypeTimestream is a DataSourceType enum value
+	DataSourceTypeTimestream = "TIMESTREAM"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -33469,6 +33472,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeSqlserver,
 		DataSourceTypeTeradata,
 		DataSourceTypeTwitter,
+		DataSourceTypeTimestream,
 	}
 }
 
