@@ -1,3 +1,17 @@
+Release v1.35.1 (2020-10-01)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service documentation
+  * Documentation updates for elasticmapreduce
+* `service/glue`: Updates service API and documentation
+  * Adding additional optional map parameter to get-plan api
+* `service/kafka`: Updates service API and documentation
+* `service/quicksight`: Updates service API
+  * QuickSight now supports connecting to AWS Timestream data source
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.35.0 (2020-09-30)
 ===
 

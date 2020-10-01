@@ -679,6 +679,7 @@
         "ClusterInfo$ClusterName" : "<p>The name of the cluster.</p>",
         "ClusterInfo$CurrentVersion" : "<p>The current version of the MSK cluster. Cluster versions aren't simple integers. You can obtain the current version by describing the cluster. An example version is KTVPDKIKX0DER.</p>",
         "ClusterInfo$ZookeeperConnectString" : "<p>The connection string to use to connect to the Apache ZooKeeper cluster.</p>",
+        "ClusterInfo$ZookeeperConnectStringTls" : "<p>The connection string to use to connect to zookeeper cluster on Tls port.</p>",
         "ClusterOperationInfo$ClientRequestId" : "<p>The ID of the API request that triggered this operation.</p>",
         "ClusterOperationInfo$ClusterArn" : "<p>ARN of the cluster.</p>",
         "ClusterOperationInfo$OperationArn" : "<p>ARN of the cluster operation.</p>",

@@ -2104,6 +2104,11 @@
       "type":"list",
       "member":{"shape":"Action"}
     },
+    "AdditionalPlanOptionsMap":{
+      "type":"map",
+      "key":{"shape":"GenericString"},
+      "value":{"shape":"GenericString"}
+    },
     "AlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -4499,7 +4504,8 @@
         "Source":{"shape":"CatalogEntry"},
         "Sinks":{"shape":"CatalogEntries"},
         "Location":{"shape":"Location"},
-        "Language":{"shape":"Language"}
+        "Language":{"shape":"Language"},
+        "AdditionalPlanOptionsMap":{"shape":"AdditionalPlanOptionsMap"}
       }
     },
     "GetPlanResponse":{

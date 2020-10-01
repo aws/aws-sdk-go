@@ -25,7 +25,7 @@
     "GetResolver": "<p>Retrieves a <code>Resolver</code> object.</p>",
     "GetSchemaCreationStatus": "<p>Retrieves the current status of a schema creation operation.</p>",
     "GetType": "<p>Retrieves a <code>Type</code> object.</p>",
-    "ListApiKeys": "<p>Lists the API keys for a given API.</p> <note> <p>API keys are deleted automatically sometime after they expire. However, they may still be included in the response until they have actually been deleted. You can safely call <code>DeleteApiKey</code> to manually delete a key before it's automatically deleted.</p> </note>",
+    "ListApiKeys": "<p>Lists the API keys for a given API.</p> <note> <p>API keys are deleted automatically 60 days after they expire. However, they may still be included in the response until they have actually been deleted. You can safely call <code>DeleteApiKey</code> to manually delete a key before it's automatically deleted.</p> </note>",
     "ListDataSources": "<p>Lists the data sources for a given API.</p>",
     "ListFunctions": "<p>List multiple functions.</p>",
     "ListGraphqlApis": "<p>Lists your GraphQL APIs.</p>",
@@ -37,7 +37,7 @@
     "TagResource": "<p>Tags a resource with user-supplied tags.</p>",
     "UntagResource": "<p>Untags a resource.</p>",
     "UpdateApiCache": "<p>Updates the cache for the GraphQL API.</p>",
-    "UpdateApiKey": "<p>Updates an API key.</p>",
+    "UpdateApiKey": "<p>Updates an API key. The key can be updated while it is not deleted.</p>",
     "UpdateDataSource": "<p>Updates a <code>DataSource</code> object.</p>",
     "UpdateFunction": "<p>Updates a <code>Function</code> object.</p>",
     "UpdateGraphqlApi": "<p>Updates a <code>GraphqlApi</code> object.</p>",
@@ -95,7 +95,7 @@
       }
     },
     "ApiKey": {
-      "base": "<p>Describes an API key.</p> <p>Customers invoke AWS AppSync GraphQL API operations with API keys as an identity mechanism. There are two key versions:</p> <p> <b>da1</b>: This version was introduced at launch in November 2017. These keys always expire after 7 days. Key expiration is managed by Amazon DynamoDB TTL. The keys ceased to be valid after February 21, 2018 and should not be used after that date.</p> <ul> <li> <p> <code>ListApiKeys</code> returns the expiration time in milliseconds.</p> </li> <li> <p> <code>CreateApiKey</code> returns the expiration time in milliseconds.</p> </li> <li> <p> <code>UpdateApiKey</code> is not available for this key version.</p> </li> <li> <p> <code>DeleteApiKey</code> deletes the item from the table.</p> </li> <li> <p>Expiration is stored in Amazon DynamoDB as milliseconds. This results in a bug where keys are not automatically deleted because DynamoDB expects the TTL to be stored in seconds. As a one-time action, we will delete these keys from the table after February 21, 2018.</p> </li> </ul> <p> <b>da2</b>: This version was introduced in February 2018 when AppSync added support to extend key expiration.</p> <ul> <li> <p> <code>ListApiKeys</code> returns the expiration time in seconds.</p> </li> <li> <p> <code>CreateApiKey</code> returns the expiration time in seconds and accepts a user-provided expiration time in seconds.</p> </li> <li> <p> <code>UpdateApiKey</code> returns the expiration time in seconds and accepts a user-provided expiration time in seconds. Key expiration can only be updated while the key has not expired.</p> </li> <li> <p> <code>DeleteApiKey</code> deletes the item from the table.</p> </li> <li> <p>Expiration is stored in Amazon DynamoDB as seconds.</p> </li> </ul>",
+      "base": "<p>Describes an API key.</p> <p>Customers invoke AWS AppSync GraphQL API operations with API keys as an identity mechanism. There are two key versions:</p> <p> <b>da1</b>: This version was introduced at launch in November 2017. These keys always expire after 7 days. Key expiration is managed by Amazon DynamoDB TTL. The keys ceased to be valid after February 21, 2018 and should not be used after that date.</p> <ul> <li> <p> <code>ListApiKeys</code> returns the expiration time in milliseconds.</p> </li> <li> <p> <code>CreateApiKey</code> returns the expiration time in milliseconds.</p> </li> <li> <p> <code>UpdateApiKey</code> is not available for this key version.</p> </li> <li> <p> <code>DeleteApiKey</code> deletes the item from the table.</p> </li> <li> <p>Expiration is stored in Amazon DynamoDB as milliseconds. This results in a bug where keys are not automatically deleted because DynamoDB expects the TTL to be stored in seconds. As a one-time action, we will delete these keys from the table after February 21, 2018.</p> </li> </ul> <p> <b>da2</b>: This version was introduced in February 2018 when AppSync added support to extend key expiration.</p> <ul> <li> <p> <code>ListApiKeys</code> returns the expiration time and deletion time in seconds.</p> </li> <li> <p> <code>CreateApiKey</code> returns the expiration time and deletion time in seconds and accepts a user-provided expiration time in seconds.</p> </li> <li> <p> <code>UpdateApiKey</code> returns the expiration time and and deletion time in seconds and accepts a user-provided expiration time in seconds. Expired API keys are kept for 60 days after the expiration time. Key expiration time can be updated while the key is not deleted. </p> </li> <li> <p> <code>DeleteApiKey</code> deletes the item from the table.</p> </li> <li> <p>Expiration is stored in Amazon DynamoDB as seconds. After the expiration time, using the key to authenticate will fail. But the key can be reinstated before deletion.</p> </li> <li> <p>Deletion is stored in Amazon DynamoDB as seconds. The key will be deleted after deletion time. </p> </li> </ul>",
       "refs": {
         "ApiKeys$member": null,
         "CreateApiKeyResponse$apiKey": "<p>The API key.</p>",
@@ -681,6 +681,7 @@
       "refs": {
         "ApiCache$ttl": "<p>TTL in seconds for cache entries.</p> <p>Valid values are between 1 and 3600 seconds.</p>",
         "ApiKey$expires": "<p>The time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour.</p>",
+        "ApiKey$deletes": "<p>The time after which the API key is deleted. The date is represented as seconds since the epoch, rounded down to the nearest hour.</p>",
         "CachingConfig$ttl": "<p>The TTL in seconds for a resolver that has caching enabled.</p> <p>Valid values are between 1 and 3600 seconds.</p>",
         "CreateApiCacheRequest$ttl": "<p>TTL in seconds for cache entries.</p> <p>Valid values are between 1 and 3600 seconds.</p>",
         "CreateApiKeyRequest$expires": "<p>The time from creation time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour. The default value for this parameter is 7 days from creation time. For more information, see .</p>",
@@ -941,6 +942,7 @@
         "GetTypeRequest$apiId": "<p>The API ID.</p>",
         "GraphqlApi$apiId": "<p>The API ID.</p>",
         "GraphqlApi$arn": "<p>The ARN.</p>",
+        "GraphqlApi$wafWebAclArn": "<p>The ARN of the AWS WAF ACL associated with this <code>GraphqlApi</code> if one exists.</p>",
         "HttpDataSourceConfig$endpoint": "<p>The HTTP URL endpoint. You can either specify the domain name or IP, and port combination, and the URL scheme must be HTTP or HTTPS. If the port is not specified, AWS AppSync uses the default port 80 for the HTTP endpoint and port 443 for HTTPS endpoints.</p>",
         "InternalFailureException$message": null,
         "LambdaConflictHandlerConfig$lambdaConflictHandlerArn": "<p>The Arn for the Lambda function to use as the Conflict Handler.</p>",

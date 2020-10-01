@@ -1957,7 +1957,9 @@
     },
     "PolicyString":{
       "type":"string",
-      "min":1
+      "max":395000,
+      "min":1,
+      "pattern":".*\\S.*"
     },
     "PopulationSize":{"type":"long"},
     "PositionalConstraint":{
@@ -2108,7 +2110,8 @@
       "type":"string",
       "enum":[
         "APPLICATION_LOAD_BALANCER",
-        "API_GATEWAY"
+        "API_GATEWAY",
+        "APPSYNC"
       ]
     },
     "Rule":{

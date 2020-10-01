@@ -26200,6 +26200,9 @@ func (s *GetPartitionsOutput) SetPartitions(v []*Partition) *GetPartitionsOutput
 type GetPlanInput struct {
 	_ struct{} `type:"structure"`
 
+	// A map to hold additional optional key-value parameters.
+	AdditionalPlanOptionsMap map[string]*string `type:"map"`
+
 	// The programming language of the code to perform the mapping.
 	Language *string `type:"string" enum:"Language"`
 
@@ -26264,6 +26267,12 @@ func (s *GetPlanInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalPlanOptionsMap sets the AdditionalPlanOptionsMap field's value.
+func (s *GetPlanInput) SetAdditionalPlanOptionsMap(v map[string]*string) *GetPlanInput {
+	s.AdditionalPlanOptionsMap = v
+	return s
 }
 
 // SetLanguage sets the Language field's value.

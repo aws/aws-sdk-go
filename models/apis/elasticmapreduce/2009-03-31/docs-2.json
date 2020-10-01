@@ -859,7 +859,7 @@
       "refs": {
         "InstanceGroupConfig$InstanceRole": "<p>The role of the instance group in the cluster.</p>",
         "InstanceGroupDetail$InstanceRole": "<p>Instance group role in the cluster</p>",
-        "PlacementGroupConfig$InstanceRole": null
+        "PlacementGroupConfig$InstanceRole": "<p>Role of the instance in the cluster.</p> <p>Starting with Amazon EMR version 5.23.0, the only supported instance role is <code>MASTER</code>.</p>"
       }
     },
     "InstanceState": {
@@ -1270,7 +1270,7 @@
       }
     },
     "PlacementGroupConfig": {
-      "base": null,
+      "base": "<p>Placement group configuration for an Amazon EMR cluster. The configuration specifies the placement strategy that can be applied to instance roles during cluster creation.</p> <p>To use this configuration, consider attaching managed policy AmazonElasticMapReducePlacementGroupPolicy to the EMR role.</p>",
       "refs": {
         "PlacementGroupConfigList$member": null
       }
@@ -1278,14 +1278,14 @@
     "PlacementGroupConfigList": {
       "base": null,
       "refs": {
-        "Cluster$PlacementGroups": null,
-        "RunJobFlowInput$PlacementGroupConfigs": null
+        "Cluster$PlacementGroups": "<p>Placement group configured for an Amazon EMR cluster.</p>",
+        "RunJobFlowInput$PlacementGroupConfigs": "<p>The specified placement group configuration for an Amazon EMR cluster.</p>"
       }
     },
     "PlacementGroupStrategy": {
       "base": null,
       "refs": {
-        "PlacementGroupConfig$PlacementStrategy": null
+        "PlacementGroupConfig$PlacementStrategy": "<p>EC2 Placement Group strategy associated with instance role.</p> <p>Starting with Amazon EMR version 5.23.0, the only supported placement strategy is <code>SPREAD</code> for the <code>MASTER</code> instance role.</p>"
       }
     },
     "PlacementType": {

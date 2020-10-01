@@ -158,6 +158,12 @@
         "TriggerUpdate$Actions": "<p>The actions initiated by this trigger.</p>"
       }
     },
+    "AdditionalPlanOptionsMap": {
+      "base": null,
+      "refs": {
+        "GetPlanRequest$AdditionalPlanOptionsMap": "<p>A map to hold additional optional key-value parameters.</p>"
+      }
+    },
     "AlreadyExistsException": {
       "base": "<p>A resource to be created or added already exists.</p>",
       "refs": {
@@ -1697,6 +1703,8 @@
     "GenericString": {
       "base": null,
       "refs": {
+        "AdditionalPlanOptionsMap$key": null,
+        "AdditionalPlanOptionsMap$value": null,
         "CreateDevEndpointRequest$EndpointName": "<p>The name to be assigned to the new <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointRequest$SubnetId": "<p>The subnet ID for the new <code>DevEndpoint</code> to use.</p>",
         "CreateDevEndpointRequest$PublicKey": "<p>The public key to be used by this <code>DevEndpoint</code> for authentication. This attribute is provided for backward compatibility because the recommended attribute to use is public keys.</p>",
