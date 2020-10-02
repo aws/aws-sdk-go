@@ -175,7 +175,7 @@ type Expiry struct {
 func (e *Expiry) SetExpiration(expiration time.Time, window time.Duration) {
 	// Passed in expirations should have the monotonic clock values stripped.
 	// This ensures time comparisons will be based on wall-time.
-	e.expiration = expiration.Truncate(0)
+	e.expiration = expiration.Round(0)
 	if window > 0 {
 		e.expiration = e.expiration.Add(-window)
 	}
