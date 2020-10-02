@@ -75,7 +75,8 @@
         {"shape":"TooManyActionsException"},
         {"shape":"InvalidLoadBalancerActionException"},
         {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"},
-        {"shape":"ALPNPolicyNotSupportedException"}
+        {"shape":"ALPNPolicyNotSupportedException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateLoadBalancer":{
@@ -130,7 +131,8 @@
         {"shape":"UnsupportedProtocolException"},
         {"shape":"TooManyActionsException"},
         {"shape":"InvalidLoadBalancerActionException"},
-        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"}
+        {"shape":"TooManyUniqueTargetGroupsPerLoadBalancerException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "CreateTargetGroup":{
@@ -147,7 +149,8 @@
       "errors":[
         {"shape":"DuplicateTargetGroupNameException"},
         {"shape":"TooManyTargetGroupsException"},
-        {"shape":"InvalidConfigurationRequestException"}
+        {"shape":"InvalidConfigurationRequestException"},
+        {"shape":"TooManyTagsException"}
       ]
     },
     "DeleteListener":{
@@ -893,7 +896,8 @@
         "SslPolicy":{"shape":"SslPolicyName"},
         "Certificates":{"shape":"CertificateList"},
         "DefaultActions":{"shape":"Actions"},
-        "AlpnPolicy":{"shape":"AlpnPolicyName"}
+        "AlpnPolicy":{"shape":"AlpnPolicyName"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateListenerOutput":{
@@ -935,7 +939,8 @@
         "ListenerArn":{"shape":"ListenerArn"},
         "Conditions":{"shape":"RuleConditionList"},
         "Priority":{"shape":"RulePriority"},
-        "Actions":{"shape":"Actions"}
+        "Actions":{"shape":"Actions"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateRuleOutput":{
@@ -961,7 +966,8 @@
         "HealthyThresholdCount":{"shape":"HealthCheckThresholdCount"},
         "UnhealthyThresholdCount":{"shape":"HealthCheckThresholdCount"},
         "Matcher":{"shape":"Matcher"},
-        "TargetType":{"shape":"TargetTypeEnum"}
+        "TargetType":{"shape":"TargetTypeEnum"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateTargetGroupOutput":{

@@ -536,7 +536,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 // become the bucket owner.
 //
 // Not every string is an acceptable bucket name. For information about bucket
-// naming restrictions, see Working with Amazon S3 Buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html).
+// naming restrictions, see Working with Amazon S3 buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html).
 //
 // If you want to create an Amazon S3 on Outposts bucket, see Create Bucket
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html).
@@ -546,7 +546,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 // to optimize latency, minimize costs, or address regulatory requirements.
 // For example, if you reside in Europe, you will probably find it advantageous
 // to create buckets in the Europe (Ireland) Region. For more information, see
-// How to Select a Region for Your Buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro).
+// Accessing a bucket (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingBucket.html#access-bucket-intro).
 //
 // If you send your create bucket request to the s3.amazonaws.com endpoint,
 // the request goes to the us-east-1 Region. Accordingly, the signature calculations
@@ -554,7 +554,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 // constraint in the request specifies another Region where the bucket is to
 // be created. If you create a bucket in a Region other than US East (N. Virginia),
 // your application must be able to handle 307 redirect. For more information,
-// see Virtual Hosting of Buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html).
+// see Virtual hosting of buckets (https://docs.aws.amazon.com/AmazonS3/latest/dev/VirtualHosting.html).
 //
 // When creating a bucket using this operation, you can optionally specify the
 // accounts or groups that should be granted specific permissions on the bucket.
@@ -569,7 +569,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 //    * Specify access permissions explicitly using the x-amz-grant-read, x-amz-grant-write,
 //    x-amz-grant-read-acp, x-amz-grant-write-acp, and x-amz-grant-full-control
 //    headers. These headers map to the set of permissions Amazon S3 supports
-//    in an ACL. For more information, see Access Control List (ACL) Overview
+//    in an ACL. For more information, see Access control list (ACL) overview
 //    (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html). You
 //    specify each grantee as a type=value pair, where the type is one of the
 //    following: id – if the value specified is the canonical user ID of an
@@ -605,7 +605,7 @@ func (c *S3) CreateBucketRequest(input *CreateBucketInput) (req *request.Request
 // Returned Error Codes:
 //   * ErrCodeBucketAlreadyExists "BucketAlreadyExists"
 //   The requested bucket name is not available. The bucket namespace is shared
-//   by all users of the system. Please select a different name and try again.
+//   by all users of the system. Select a different name and try again.
 //
 //   * ErrCodeBucketAlreadyOwnedByYou "BucketAlreadyOwnedByYou"
 //   The bucket you tried to create already exists, and you own it. Amazon S3
@@ -1491,6 +1491,92 @@ func (c *S3) DeleteBucketMetricsConfiguration(input *DeleteBucketMetricsConfigur
 // for more information on using Contexts.
 func (c *S3) DeleteBucketMetricsConfigurationWithContext(ctx aws.Context, input *DeleteBucketMetricsConfigurationInput, opts ...request.Option) (*DeleteBucketMetricsConfigurationOutput, error) {
 	req, out := c.DeleteBucketMetricsConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBucketOwnershipControls = "DeleteBucketOwnershipControls"
+
+// DeleteBucketOwnershipControlsRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBucketOwnershipControls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBucketOwnershipControls for more information on using the DeleteBucketOwnershipControls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBucketOwnershipControlsRequest method.
+//    req, resp := client.DeleteBucketOwnershipControlsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketOwnershipControls
+func (c *S3) DeleteBucketOwnershipControlsRequest(input *DeleteBucketOwnershipControlsInput) (req *request.Request, output *DeleteBucketOwnershipControlsOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBucketOwnershipControls,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/{Bucket}?ownershipControls",
+	}
+
+	if input == nil {
+		input = &DeleteBucketOwnershipControlsInput{}
+	}
+
+	output = &DeleteBucketOwnershipControlsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteBucketOwnershipControls API operation for Amazon Simple Storage Service.
+//
+// Removes OwnershipControls for an Amazon S3 bucket. To use this operation,
+// you must have the s3:PutBucketOwnershipControls permission. For more information
+// about Amazon S3 permissions, see Specifying Permissions in a Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
+//
+// For information about Amazon S3 Object Ownership, see Using Object Ownership
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html).
+//
+// The following operations are related to DeleteBucketOwnershipControls:
+//
+//    * GetBucketOwnershipControls
+//
+//    * PutBucketOwnershipControls
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation DeleteBucketOwnershipControls for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/DeleteBucketOwnershipControls
+func (c *S3) DeleteBucketOwnershipControls(input *DeleteBucketOwnershipControlsInput) (*DeleteBucketOwnershipControlsOutput, error) {
+	req, out := c.DeleteBucketOwnershipControlsRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBucketOwnershipControlsWithContext is the same as DeleteBucketOwnershipControls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBucketOwnershipControls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3) DeleteBucketOwnershipControlsWithContext(ctx aws.Context, input *DeleteBucketOwnershipControlsInput, opts ...request.Option) (*DeleteBucketOwnershipControlsOutput, error) {
+	req, out := c.DeleteBucketOwnershipControlsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3445,6 +3531,91 @@ func (c *S3) GetBucketNotificationConfiguration(input *GetBucketNotificationConf
 // for more information on using Contexts.
 func (c *S3) GetBucketNotificationConfigurationWithContext(ctx aws.Context, input *GetBucketNotificationConfigurationRequest, opts ...request.Option) (*NotificationConfiguration, error) {
 	req, out := c.GetBucketNotificationConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBucketOwnershipControls = "GetBucketOwnershipControls"
+
+// GetBucketOwnershipControlsRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketOwnershipControls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketOwnershipControls for more information on using the GetBucketOwnershipControls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBucketOwnershipControlsRequest method.
+//    req, resp := client.GetBucketOwnershipControlsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetBucketOwnershipControls
+func (c *S3) GetBucketOwnershipControlsRequest(input *GetBucketOwnershipControlsInput) (req *request.Request, output *GetBucketOwnershipControlsOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketOwnershipControls,
+		HTTPMethod: "GET",
+		HTTPPath:   "/{Bucket}?ownershipControls",
+	}
+
+	if input == nil {
+		input = &GetBucketOwnershipControlsInput{}
+	}
+
+	output = &GetBucketOwnershipControlsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBucketOwnershipControls API operation for Amazon Simple Storage Service.
+//
+// Retrieves OwnershipControls for an Amazon S3 bucket. To use this operation,
+// you must have the s3:GetBucketOwnershipControls permission. For more information
+// about Amazon S3 permissions, see Specifying Permissions in a Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
+//
+// For information about Amazon S3 Object Ownership, see Using Object Ownership
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html).
+//
+// The following operations are related to GetBucketOwnershipControls:
+//
+//    * PutBucketOwnershipControls
+//
+//    * DeleteBucketOwnershipControls
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation GetBucketOwnershipControls for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/GetBucketOwnershipControls
+func (c *S3) GetBucketOwnershipControls(input *GetBucketOwnershipControlsInput) (*GetBucketOwnershipControlsOutput, error) {
+	req, out := c.GetBucketOwnershipControlsRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketOwnershipControlsWithContext is the same as GetBucketOwnershipControls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketOwnershipControls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3) GetBucketOwnershipControlsWithContext(ctx aws.Context, input *GetBucketOwnershipControlsInput, opts ...request.Option) (*GetBucketOwnershipControlsOutput, error) {
+	req, out := c.GetBucketOwnershipControlsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7733,6 +7904,93 @@ func (c *S3) PutBucketNotificationConfigurationWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opPutBucketOwnershipControls = "PutBucketOwnershipControls"
+
+// PutBucketOwnershipControlsRequest generates a "aws/request.Request" representing the
+// client's request for the PutBucketOwnershipControls operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBucketOwnershipControls for more information on using the PutBucketOwnershipControls
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutBucketOwnershipControlsRequest method.
+//    req, resp := client.PutBucketOwnershipControlsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketOwnershipControls
+func (c *S3) PutBucketOwnershipControlsRequest(input *PutBucketOwnershipControlsInput) (req *request.Request, output *PutBucketOwnershipControlsOutput) {
+	op := &request.Operation{
+		Name:       opPutBucketOwnershipControls,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/{Bucket}?ownershipControls",
+	}
+
+	if input == nil {
+		input = &PutBucketOwnershipControlsInput{}
+	}
+
+	output = &PutBucketOwnershipControlsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutBucketOwnershipControls API operation for Amazon Simple Storage Service.
+//
+// Creates or modifies OwnershipControls for an Amazon S3 bucket. To use this
+// operation, you must have the s3:GetBucketOwnershipControls permission. For
+// more information about Amazon S3 permissions, see Specifying Permissions
+// in a Policy (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html).
+//
+// For information about Amazon S3 Object Ownership, see Using Object Ownership
+// (https://docs.aws.amazon.com/AmazonS3/latest/dev/about-object-ownership.html).
+//
+// The following operations are related to GetBucketOwnershipControls:
+//
+//    * GetBucketOwnershipControls
+//
+//    * DeleteBucketOwnershipControls
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Storage Service's
+// API operation PutBucketOwnershipControls for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3-2006-03-01/PutBucketOwnershipControls
+func (c *S3) PutBucketOwnershipControls(input *PutBucketOwnershipControlsInput) (*PutBucketOwnershipControlsOutput, error) {
+	req, out := c.PutBucketOwnershipControlsRequest(input)
+	return out, req.Send()
+}
+
+// PutBucketOwnershipControlsWithContext is the same as PutBucketOwnershipControls with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBucketOwnershipControls for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3) PutBucketOwnershipControlsWithContext(ctx aws.Context, input *PutBucketOwnershipControlsInput, opts ...request.Option) (*PutBucketOwnershipControlsOutput, error) {
+	req, out := c.PutBucketOwnershipControlsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBucketPolicy = "PutBucketPolicy"
 
 // PutBucketPolicyRequest generates a "aws/request.Request" representing the
@@ -8520,10 +8778,11 @@ func (c *S3) PutObjectRequest(input *PutObjectInput) (req *request.Request, outp
 //
 // Storage Class Options
 //
-// By default, Amazon S3 uses the STANDARD storage class to store newly created
+// By default, Amazon S3 uses the STANDARD Storage Class to store newly created
 // objects. The STANDARD storage class provides high durability and high availability.
-// Depending on performance needs, you can specify a different storage class.
-// For more information, see Storage Classes (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html)
+// Depending on performance needs, you can specify a different Storage Class.
+// Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information,
+// see Storage Classes (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html)
 // in the Amazon S3 Service Developer Guide.
 //
 // Versioning
@@ -9887,6 +10146,11 @@ func (c *S3) UploadPartRequest(input *UploadPartInput) (req *request.Request, ou
 // data against the provided MD5 value. If they do not match, Amazon S3 returns
 // an error.
 //
+// If the upload request is signed with Signature Version 4, then AWS S3 uses
+// the x-amz-content-sha256 header as a checksum instead of Content-MD5. For
+// more information see Authenticating Requests: Using the Authorization Header
+// (AWS Signature Version 4) (https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html).
+//
 // Note: After you initiate multipart upload and upload one or more parts, you
 // must either complete or abort multipart upload in order to stop getting charged
 // for storage of the uploaded parts. Only after you either complete or abort
@@ -10172,7 +10436,7 @@ type AbortMultipartUploadInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -10182,7 +10446,7 @@ type AbortMultipartUploadInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -11452,7 +11716,7 @@ type CompleteMultipartUploadOutput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -11462,7 +11726,7 @@ type CompleteMultipartUploadOutput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	Bucket *string `type:"string"`
 
@@ -11716,13 +11980,15 @@ type CopyObjectInput struct {
 	_ struct{} `locationName:"CopyObjectRequest" type:"structure"`
 
 	// The canned ACL to apply to the object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	// The name of the destination bucket.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -11732,7 +11998,7 @@ type CopyObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -11829,15 +12095,23 @@ type CopyObjectInput struct {
 	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp"`
 
 	// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
 
 	// Allows grantee to read the object data and its metadata.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
 
 	// Allows grantee to read the object ACL.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
 
 	// Allows grantee to write the ACL for the applicable object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	// The key of the destination object.
@@ -11901,7 +12175,12 @@ type CopyObjectInput struct {
 	// S3 (for example, AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
-	// The type of storage to use for the object. Defaults to 'STANDARD'.
+	// By default, Amazon S3 uses the STANDARD Storage Class to store newly created
+	// objects. The STANDARD storage class provides high durability and high availability.
+	// Depending on performance needs, you can specify a different Storage Class.
+	// Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information,
+	// see Storage Classes (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html)
+	// in the Amazon S3 Service Developer Guide.
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// The tag-set for the object destination object this value must be used in
@@ -12591,13 +12870,15 @@ type CreateMultipartUploadInput struct {
 	_ struct{} `locationName:"CreateMultipartUploadRequest" type:"structure"`
 
 	// The canned ACL to apply to the object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	// The name of the bucket to which to initiate the upload
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -12607,7 +12888,7 @@ type CreateMultipartUploadInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -12639,15 +12920,23 @@ type CreateMultipartUploadInput struct {
 	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp"`
 
 	// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
 
 	// Allows grantee to read the object data and its metadata.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
 
 	// Allows grantee to read the object ACL.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
 
 	// Allows grantee to write the ACL for the applicable object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	// Object key for which the multipart upload is to be initiated.
@@ -12707,7 +12996,12 @@ type CreateMultipartUploadInput struct {
 	// S3 (for example, AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
-	// The type of storage to use for the object. Defaults to 'STANDARD'.
+	// By default, Amazon S3 uses the STANDARD Storage Class to store newly created
+	// objects. The STANDARD storage class provides high durability and high availability.
+	// Depending on performance needs, you can specify a different Storage Class.
+	// Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information,
+	// see Storage Classes (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html)
+	// in the Amazon S3 Service Developer Guide.
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// The tag-set for the object. The tag-set must be encoded as URL Query parameters.
@@ -12981,7 +13275,7 @@ type CreateMultipartUploadOutput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -12991,7 +13285,7 @@ type CreateMultipartUploadOutput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	Bucket *string `locationName:"Bucket" type:"string"`
 
@@ -13945,6 +14239,101 @@ func (s DeleteBucketOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteBucketOwnershipControlsInput struct {
+	_ struct{} `locationName:"DeleteBucketOwnershipControlsRequest" type:"structure"`
+
+	// The Amazon S3 bucket whose OwnershipControls you want to delete.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ExpectedBucketOwner *string `location:"header" locationName:"x-amz-expected-bucket-owner" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteBucketOwnershipControlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketOwnershipControlsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBucketOwnershipControlsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBucketOwnershipControlsInput"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *DeleteBucketOwnershipControlsInput) SetBucket(v string) *DeleteBucketOwnershipControlsInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *DeleteBucketOwnershipControlsInput) getBucket() (v string) {
+	if s.Bucket == nil {
+		return v
+	}
+	return *s.Bucket
+}
+
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *DeleteBucketOwnershipControlsInput) SetExpectedBucketOwner(v string) *DeleteBucketOwnershipControlsInput {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
+func (s *DeleteBucketOwnershipControlsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *DeleteBucketOwnershipControlsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *DeleteBucketOwnershipControlsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+type DeleteBucketOwnershipControlsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteBucketOwnershipControlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBucketOwnershipControlsOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteBucketPolicyInput struct {
 	_ struct{} `locationName:"DeleteBucketPolicyRequest" type:"structure"`
 
@@ -14442,7 +14831,7 @@ type DeleteObjectInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -14452,7 +14841,7 @@ type DeleteObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -14646,7 +15035,7 @@ type DeleteObjectTaggingInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -14656,7 +15045,7 @@ type DeleteObjectTaggingInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -14794,7 +15183,7 @@ type DeleteObjectsInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -14804,7 +15193,7 @@ type DeleteObjectsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -17248,6 +17637,111 @@ func (s *GetBucketNotificationConfigurationRequest) updateArnableField(v string)
 	return nil
 }
 
+type GetBucketOwnershipControlsInput struct {
+	_ struct{} `locationName:"GetBucketOwnershipControlsRequest" type:"structure"`
+
+	// The name of the Amazon S3 bucket whose OwnershipControls you want to retrieve.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ExpectedBucketOwner *string `location:"header" locationName:"x-amz-expected-bucket-owner" type:"string"`
+}
+
+// String returns the string representation
+func (s GetBucketOwnershipControlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketOwnershipControlsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketOwnershipControlsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketOwnershipControlsInput"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *GetBucketOwnershipControlsInput) SetBucket(v string) *GetBucketOwnershipControlsInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *GetBucketOwnershipControlsInput) getBucket() (v string) {
+	if s.Bucket == nil {
+		return v
+	}
+	return *s.Bucket
+}
+
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *GetBucketOwnershipControlsInput) SetExpectedBucketOwner(v string) *GetBucketOwnershipControlsInput {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
+func (s *GetBucketOwnershipControlsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *GetBucketOwnershipControlsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *GetBucketOwnershipControlsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+type GetBucketOwnershipControlsOutput struct {
+	_ struct{} `type:"structure" payload:"OwnershipControls"`
+
+	// The OwnershipControls (BucketOwnerPreferred or ObjectWriter) currently in
+	// effect for this Amazon S3 bucket.
+	OwnershipControls *OwnershipControls `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBucketOwnershipControlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketOwnershipControlsOutput) GoString() string {
+	return s.String()
+}
+
+// SetOwnershipControls sets the OwnershipControls field's value.
+func (s *GetBucketOwnershipControlsOutput) SetOwnershipControls(v *OwnershipControls) *GetBucketOwnershipControlsOutput {
+	s.OwnershipControls = v
+	return s
+}
+
 type GetBucketPolicyInput struct {
 	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
 
@@ -18046,7 +18540,7 @@ type GetObjectAclInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -18218,7 +18712,7 @@ type GetObjectInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -18228,7 +18722,7 @@ type GetObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -18516,7 +19010,7 @@ type GetObjectLegalHoldInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -18669,7 +19163,7 @@ type GetObjectLockConfigurationInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -19105,7 +19599,7 @@ type GetObjectRetentionInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -19258,7 +19752,7 @@ type GetObjectTaggingInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -19268,7 +19762,7 @@ type GetObjectTaggingInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -19859,7 +20353,7 @@ type HeadBucketInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -19869,7 +20363,7 @@ type HeadBucketInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -19972,7 +20466,7 @@ type HeadObjectInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -19982,7 +20476,7 @@ type HeadObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -20021,7 +20515,8 @@ type HeadObjectInput struct {
 	PartNumber *int64 `location:"querystring" locationName:"partNumber" type:"integer"`
 
 	// Downloads the specified range bytes of an object. For more information about
-	// the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35.
+	// the HTTP Range header, see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35
+	// (http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.35).
 	//
 	// Amazon S3 doesn't support retrieving multiple ranges of data per GET request.
 	Range *string `location:"header" locationName:"Range" type:"string"`
@@ -22090,7 +22585,7 @@ type ListMultipartUploadsInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -22100,7 +22595,7 @@ type ListMultipartUploadsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -22726,7 +23221,7 @@ type ListObjectsInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -22736,7 +23231,7 @@ type ListObjectsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -23018,7 +23513,7 @@ type ListObjectsV2Input struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -23028,7 +23523,7 @@ type ListObjectsV2Input struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -23252,7 +23747,7 @@ type ListObjectsV2Output struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -23262,7 +23757,7 @@ type ListObjectsV2Output struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	Name *string `type:"string"`
 
@@ -23368,7 +23863,7 @@ type ListPartsInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -23378,7 +23873,7 @@ type ListPartsInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -24917,6 +25412,101 @@ func (s *Owner) SetDisplayName(v string) *Owner {
 // SetID sets the ID field's value.
 func (s *Owner) SetID(v string) *Owner {
 	s.ID = &v
+	return s
+}
+
+// The container element for a bucket's ownership controls.
+type OwnershipControls struct {
+	_ struct{} `type:"structure"`
+
+	// The container element for an ownership control rule.
+	//
+	// Rules is a required field
+	Rules []*OwnershipControlsRule `locationName:"Rule" type:"list" flattened:"true" required:"true"`
+}
+
+// String returns the string representation
+func (s OwnershipControls) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OwnershipControls) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OwnershipControls) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OwnershipControls"}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRules sets the Rules field's value.
+func (s *OwnershipControls) SetRules(v []*OwnershipControlsRule) *OwnershipControls {
+	s.Rules = v
+	return s
+}
+
+// The container element for an ownership control rule.
+type OwnershipControlsRule struct {
+	_ struct{} `type:"structure"`
+
+	// The container element for object ownership for a bucket's ownership controls.
+	//
+	// BucketOwnerPreferred - Objects uploaded to the bucket change ownership to
+	// the bucket owner if the objects are uploaded with the bucket-owner-full-control
+	// canned ACL.
+	//
+	// ObjectWriter - The uploading account will own the object if the object is
+	// uploaded with the bucket-owner-full-control canned ACL.
+	//
+	// ObjectOwnership is a required field
+	ObjectOwnership *string `type:"string" required:"true" enum:"ObjectOwnership"`
+}
+
+// String returns the string representation
+func (s OwnershipControlsRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OwnershipControlsRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OwnershipControlsRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OwnershipControlsRule"}
+	if s.ObjectOwnership == nil {
+		invalidParams.Add(request.NewErrParamRequired("ObjectOwnership"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetObjectOwnership sets the ObjectOwnership field's value.
+func (s *OwnershipControlsRule) SetObjectOwnership(v string) *OwnershipControlsRule {
+	s.ObjectOwnership = &v
 	return s
 }
 
@@ -26671,6 +27261,121 @@ func (s PutBucketNotificationOutput) GoString() string {
 	return s.String()
 }
 
+type PutBucketOwnershipControlsInput struct {
+	_ struct{} `locationName:"PutBucketOwnershipControlsRequest" type:"structure" payload:"OwnershipControls"`
+
+	// The name of the Amazon S3 bucket whose OwnershipControls you want to set.
+	//
+	// Bucket is a required field
+	Bucket *string `location:"uri" locationName:"Bucket" type:"string" required:"true"`
+
+	ExpectedBucketOwner *string `location:"header" locationName:"x-amz-expected-bucket-owner" type:"string"`
+
+	// The OwnershipControls (BucketOwnerPreferred or ObjectWriter) that you want
+	// to apply to this Amazon S3 bucket.
+	//
+	// OwnershipControls is a required field
+	OwnershipControls *OwnershipControls `locationName:"OwnershipControls" type:"structure" required:"true" xmlURI:"http://s3.amazonaws.com/doc/2006-03-01/"`
+}
+
+// String returns the string representation
+func (s PutBucketOwnershipControlsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketOwnershipControlsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBucketOwnershipControlsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBucketOwnershipControlsInput"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 1))
+	}
+	if s.OwnershipControls == nil {
+		invalidParams.Add(request.NewErrParamRequired("OwnershipControls"))
+	}
+	if s.OwnershipControls != nil {
+		if err := s.OwnershipControls.Validate(); err != nil {
+			invalidParams.AddNested("OwnershipControls", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *PutBucketOwnershipControlsInput) SetBucket(v string) *PutBucketOwnershipControlsInput {
+	s.Bucket = &v
+	return s
+}
+
+func (s *PutBucketOwnershipControlsInput) getBucket() (v string) {
+	if s.Bucket == nil {
+		return v
+	}
+	return *s.Bucket
+}
+
+// SetExpectedBucketOwner sets the ExpectedBucketOwner field's value.
+func (s *PutBucketOwnershipControlsInput) SetExpectedBucketOwner(v string) *PutBucketOwnershipControlsInput {
+	s.ExpectedBucketOwner = &v
+	return s
+}
+
+// SetOwnershipControls sets the OwnershipControls field's value.
+func (s *PutBucketOwnershipControlsInput) SetOwnershipControls(v *OwnershipControls) *PutBucketOwnershipControlsInput {
+	s.OwnershipControls = v
+	return s
+}
+
+func (s *PutBucketOwnershipControlsInput) getEndpointARN() (arn.Resource, error) {
+	if s.Bucket == nil {
+		return nil, fmt.Errorf("member Bucket is nil")
+	}
+	return parseEndpointARN(*s.Bucket)
+}
+
+func (s *PutBucketOwnershipControlsInput) hasEndpointARN() bool {
+	if s.Bucket == nil {
+		return false
+	}
+	return arn.IsARN(*s.Bucket)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+func (s *PutBucketOwnershipControlsInput) updateArnableField(v string) error {
+	if s.Bucket == nil {
+		return fmt.Errorf("member Bucket is nil")
+	}
+	s.Bucket = aws.String(v)
+	return nil
+}
+
+type PutBucketOwnershipControlsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutBucketOwnershipControlsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutBucketOwnershipControlsOutput) GoString() string {
+	return s.String()
+}
+
 type PutBucketPolicyInput struct {
 	_ struct{} `locationName:"PutBucketPolicyRequest" type:"structure" payload:"Policy"`
 
@@ -27407,7 +28112,7 @@ type PutObjectAclInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -27422,25 +28127,33 @@ type PutObjectAclInput struct {
 
 	// Allows grantee the read, write, read ACP, and write ACP permissions on the
 	// bucket.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
 
 	// Allows grantee to list the objects in the bucket.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
 
 	// Allows grantee to read the bucket ACL.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
 
 	// Allows grantee to create, overwrite, and delete any object in the bucket.
 	GrantWrite *string `location:"header" locationName:"x-amz-grant-write" type:"string"`
 
 	// Allows grantee to write the ACL for the applicable bucket.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	// Key for which the PUT operation was initiated.
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -27450,7 +28163,7 @@ type PutObjectAclInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Key is a required field
@@ -27637,6 +28350,8 @@ type PutObjectInput struct {
 
 	// The canned ACL to apply to the object. For more information, see Canned ACL
 	// (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#CannedACL).
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	ACL *string `location:"header" locationName:"x-amz-acl" type:"string" enum:"ObjectCannedACL"`
 
 	// Object data.
@@ -27646,7 +28361,7 @@ type PutObjectInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -27656,7 +28371,7 @@ type PutObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -27707,15 +28422,23 @@ type PutObjectInput struct {
 	Expires *time.Time `location:"header" locationName:"Expires" type:"timestamp"`
 
 	// Gives the grantee READ, READ_ACP, and WRITE_ACP permissions on the object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantFullControl *string `location:"header" locationName:"x-amz-grant-full-control" type:"string"`
 
 	// Allows grantee to read the object data and its metadata.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantRead *string `location:"header" locationName:"x-amz-grant-read" type:"string"`
 
 	// Allows grantee to read the object ACL.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantReadACP *string `location:"header" locationName:"x-amz-grant-read-acp" type:"string"`
 
 	// Allows grantee to write the ACL for the applicable object.
+	//
+	// This action is not supported by Amazon S3 on Outposts.
 	GrantWriteACP *string `location:"header" locationName:"x-amz-grant-write-acp" type:"string"`
 
 	// Object key for which the PUT operation was initiated.
@@ -27780,8 +28503,12 @@ type PutObjectInput struct {
 	// S3 (for example, AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
-	// If you don't specify, S3 Standard is the default storage class. Amazon S3
-	// supports other storage classes.
+	// By default, Amazon S3 uses the STANDARD Storage Class to store newly created
+	// objects. The STANDARD storage class provides high durability and high availability.
+	// Depending on performance needs, you can specify a different Storage Class.
+	// Amazon S3 on Outposts only uses the OUTPOSTS Storage Class. For more information,
+	// see Storage Classes (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html)
+	// in the Amazon S3 Service Developer Guide.
 	StorageClass *string `location:"header" locationName:"x-amz-storage-class" type:"string" enum:"StorageClass"`
 
 	// The tag-set for the object. The tag-set must be encoded as URL Query parameters.
@@ -28074,7 +28801,7 @@ type PutObjectLegalHoldInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -28490,7 +29217,7 @@ type PutObjectRetentionInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -28664,7 +29391,7 @@ type PutObjectTaggingInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -28674,7 +29401,7 @@ type PutObjectTaggingInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -29775,7 +30502,7 @@ type RestoreObjectInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -29785,7 +30512,7 @@ type RestoreObjectInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -31641,7 +32368,7 @@ type UploadPartCopyInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -31651,7 +32378,7 @@ type UploadPartCopyInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -32071,7 +32798,7 @@ type UploadPartInput struct {
 	//
 	// When using this API with an access point, you must direct requests to the
 	// access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com.
-	// When using this operation using an access point through the AWS SDKs, you
+	// When using this operation with an access point through the AWS SDKs, you
 	// provide the access point ARN in place of the bucket name. For more information
 	// about access point ARNs, see Using Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
@@ -32081,7 +32808,7 @@ type UploadPartInput struct {
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
 	// using this operation using S3 on Outposts through the AWS SDKs, you provide
 	// the Outposts bucket ARN in place of the bucket name. For more information
-	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/)
+	// about S3 on Outposts ARNs, see Using S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
 	// Bucket is a required field
@@ -33175,6 +33902,30 @@ func ObjectLockRetentionMode_Values() []string {
 	return []string{
 		ObjectLockRetentionModeGovernance,
 		ObjectLockRetentionModeCompliance,
+	}
+}
+
+// The container element for object ownership for a bucket's ownership controls.
+//
+// BucketOwnerPreferred - Objects uploaded to the bucket change ownership to
+// the bucket owner if the objects are uploaded with the bucket-owner-full-control
+// canned ACL.
+//
+// ObjectWriter - The uploading account will own the object if the object is
+// uploaded with the bucket-owner-full-control canned ACL.
+const (
+	// ObjectOwnershipBucketOwnerPreferred is a ObjectOwnership enum value
+	ObjectOwnershipBucketOwnerPreferred = "BucketOwnerPreferred"
+
+	// ObjectOwnershipObjectWriter is a ObjectOwnership enum value
+	ObjectOwnershipObjectWriter = "ObjectWriter"
+)
+
+// ObjectOwnership_Values returns all elements of the ObjectOwnership enum
+func ObjectOwnership_Values() []string {
+	return []string{
+		ObjectOwnershipBucketOwnerPreferred,
+		ObjectOwnershipObjectWriter,
 	}
 }
 

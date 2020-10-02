@@ -63,6 +63,14 @@ type PersonalizeEventsAPI interface {
 	PutEvents(*personalizeevents.PutEventsInput) (*personalizeevents.PutEventsOutput, error)
 	PutEventsWithContext(aws.Context, *personalizeevents.PutEventsInput, ...request.Option) (*personalizeevents.PutEventsOutput, error)
 	PutEventsRequest(*personalizeevents.PutEventsInput) (*request.Request, *personalizeevents.PutEventsOutput)
+
+	PutItems(*personalizeevents.PutItemsInput) (*personalizeevents.PutItemsOutput, error)
+	PutItemsWithContext(aws.Context, *personalizeevents.PutItemsInput, ...request.Option) (*personalizeevents.PutItemsOutput, error)
+	PutItemsRequest(*personalizeevents.PutItemsInput) (*request.Request, *personalizeevents.PutItemsOutput)
+
+	PutUsers(*personalizeevents.PutUsersInput) (*personalizeevents.PutUsersOutput, error)
+	PutUsersWithContext(aws.Context, *personalizeevents.PutUsersInput, ...request.Option) (*personalizeevents.PutUsersOutput, error)
+	PutUsersRequest(*personalizeevents.PutUsersInput) (*request.Request, *personalizeevents.PutUsersOutput)
 }
 
 var _ PersonalizeEventsAPI = (*personalizeevents.PersonalizeEvents)(nil)

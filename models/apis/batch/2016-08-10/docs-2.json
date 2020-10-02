@@ -13,9 +13,12 @@
     "DescribeJobQueues": "<p>Describes one or more of your job queues.</p>",
     "DescribeJobs": "<p>Describes a list of AWS Batch jobs.</p>",
     "ListJobs": "<p>Returns a list of AWS Batch jobs.</p> <p>You must specify only one of the following:</p> <ul> <li> <p>a job queue ID to return a list of jobs in that job queue</p> </li> <li> <p>a multi-node parallel job ID to return a list of that job's nodes</p> </li> <li> <p>an array job ID to return a list of that job's children</p> </li> </ul> <p>You can filter the results by job status with the <code>jobStatus</code> parameter. If you do not specify a status, only <code>RUNNING</code> jobs are returned.</p>",
+    "ListTagsForResource": "<p>List the tags for an AWS Batch resource. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.</p>",
     "RegisterJobDefinition": "<p>Registers an AWS Batch job definition.</p>",
     "SubmitJob": "<p>Submits an AWS Batch job from a job definition. Parameters specified during <a>SubmitJob</a> override parameters defined in the job definition.</p>",
+    "TagResource": "<p>Associates the specified tags to a resource with the specified <code>resourceArn</code>. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.</p>",
     "TerminateJob": "<p>Terminates a job in a job queue. Jobs that are in the <code>STARTING</code> or <code>RUNNING</code> state are terminated, which causes them to transition to <code>FAILED</code>. Jobs that have not progressed to the <code>STARTING</code> state are cancelled.</p>",
+    "UntagResource": "<p>Deletes specified tags from an AWS Batch resource.</p>",
     "UpdateComputeEnvironment": "<p>Updates an AWS Batch compute environment.</p>",
     "UpdateJobQueue": "<p>Updates a job queue.</p>"
   },
@@ -75,7 +78,7 @@
         "ContainerDetail$privileged": "<p>When this parameter is true, the container is given elevated privileges on the host container instance (similar to the <code>root</code> user).</p>",
         "ContainerProperties$readonlyRootFilesystem": "<p>When this parameter is true, the container is given read-only access to its root file system. This parameter maps to <code>ReadonlyRootfs</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--read-only</code> option to <code>docker run</code>.</p>",
         "ContainerProperties$privileged": "<p>When this parameter is true, the container is given elevated privileges on the host container instance (similar to the <code>root</code> user). This parameter maps to <code>Privileged</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--privileged</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>",
-        "LinuxParameters$initProcessEnabled": "<p>Run an <code>init</code> process inside the container that forwards signals and reaps processes. This parameter maps to the <code>--init</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>. This parameter requires version 1.25 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log into your container instance and run the following command: <code>sudo docker version | grep \"Server API version\"</code> </p>",
+        "LinuxParameters$initProcessEnabled": "<p>If true, run an <code>init</code> process inside the container that forwards signals and reaps processes. This parameter maps to the <code>--init</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>. This parameter requires version 1.25 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log into your container instance and run the following command: <code>sudo docker version | grep \"Server API version\"</code> </p>",
         "MountPoint$readOnly": "<p>If this value is <code>true</code>, the container has read-only access to the volume; otherwise, the container can write to the volume. The default value is <code>false</code>.</p>",
         "NodeDetails$isMainNode": "<p>Specifies whether the current node is the main node for a multi-node parallel job.</p>",
         "NodePropertiesSummary$isMainNode": "<p>Specifies whether the current node is the main node for a multi-node parallel job.</p>"
@@ -341,8 +344,8 @@
         "ComputeResourceUpdate$minvCpus": "<p>The minimum number of Amazon EC2 vCPUs that an environment should maintain.</p>",
         "ComputeResourceUpdate$maxvCpus": "<p>The maximum number of Amazon EC2 vCPUs that an environment can reach.</p>",
         "ComputeResourceUpdate$desiredvCpus": "<p>The desired number of Amazon EC2 vCPUS in the compute environment.</p>",
-        "ContainerDetail$vcpus": "<p>The number of VCPUs allocated for the job.</p>",
-        "ContainerDetail$memory": "<p>The number of MiB of memory reserved for the job.</p>",
+        "ContainerDetail$vcpus": "<p>The number of VCPUs allocated for the job. This is a required parameter.</p>",
+        "ContainerDetail$memory": "<p>The number of MiB of memory reserved for the job. This is a required parameter.</p>",
         "ContainerDetail$exitCode": "<p>The exit code to return upon completion.</p>",
         "ContainerOverrides$vcpus": "<p>The number of vCPUs to reserve for the container. This value overrides the value set in the job definition.</p>",
         "ContainerOverrides$memory": "<p>The number of MiB of memory reserved for the job. This value overrides the value set in the job definition.</p>",
@@ -501,6 +504,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "LogConfiguration": {
       "base": "<p>Log configuration options to send to a custom log driver for the container.</p>",
       "refs": {
@@ -517,7 +530,7 @@
     "LogDriver": {
       "base": null,
       "refs": {
-        "LogConfiguration$logDriver": "<p>The log driver to use for the container. The valid values listed for this parameter are log drivers that the Amazon ECS container agent can communicate with by default.</p> <p>The supported log drivers are <code>awslogs</code>, <code>fluentd</code>, <code>gelf</code>, <code>json-file</code>, <code>journald</code>, <code>logentries</code>, <code>syslog</code>, and <code>splunk</code>.</p> <p>For more information about using the <code>awslogs</code> log driver, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/using_awslogs.html\">Using the awslogs Log Driver</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p> <note> <p>If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is <a href=\"https://github.com/aws/amazon-ecs-agent\">available on GitHub</a> and customize it to work with that driver. We encourage you to submit pull requests for changes that you would like to have included. However, Amazon Web Services does not currently support running modified copies of this software.</p> </note> <p>This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log into your container instance and run the following command: <code>sudo docker version | grep \"Server API version\"</code> </p>"
+        "LogConfiguration$logDriver": "<p>The log driver to use for the container. The valid values listed for this parameter are log drivers that the Amazon ECS container agent can communicate with by default.</p> <p>The supported log drivers are <code>awslogs</code>, <code>fluentd</code>, <code>gelf</code>, <code>json-file</code>, <code>journald</code>, <code>logentries</code>, <code>syslog</code>, and <code>splunk</code>.</p> <dl> <dt>awslogs</dt> <dd> <p>Specifies the Amazon CloudWatch Logs logging driver. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/using_awslogs.html\">Using the awslogs Log Driver</a> in the <i>AWS Batch User Guide</i> and <a href=\"https://docs.docker.com/config/containers/logging/awslogs/\">Amazon CloudWatch Logs logging driver</a> in the Docker documentation.</p> </dd> <dt>fluentd</dt> <dd> <p>Specifies the Fluentd logging driver. For more information, including usage and options, see <a href=\"https://docs.docker.com/config/containers/logging/fluentd/\">Fluentd logging driver</a> in the Docker documentation.</p> </dd> <dt>gelf</dt> <dd> <p>Specifies the Graylog Extended Format (GELF) logging driver. For more information, including usage and options, see <a href=\"https://docs.docker.com/config/containers/logging/gelf/\">Graylog Extended Format logging driver</a> in the Docker documentation.</p> </dd> <dt>journald</dt> <dd> <p>Specifies the journald logging driver. For more information, including usage and options, see <a href=\"https://docs.docker.com/config/containers/logging/journald/\">Journald logging driver</a> in the Docker documentation.</p> </dd> <dt>json-file</dt> <dd> <p>Specifies the JSON file logging driver. For more information, including usage and options, see <a href=\"https://docs.docker.com/config/containers/logging/json-file/\">JSON File logging driver</a> in the Docker documentation.</p> </dd> <dt>splunk</dt> <dd> <p>Specifies the Splunk logging driver. For more information, including usage and options, see <a href=\"https://docs.docker.com/config/containers/logging/splunk/\">Splunk logging driver</a> in the Docker documentation.</p> </dd> <dt>syslog</dt> <dd> <p>Specifies the syslog logging driver. For more information, including usage and options, see <a href=\"https://docs.docker.com/config/containers/logging/syslog/\">Syslog logging driver</a> in the Docker documentation.</p> </dd> </dl> <note> <p>If you have a custom driver that is not listed earlier that you would like to work with the Amazon ECS container agent, you can fork the Amazon ECS container agent project that is <a href=\"https://github.com/aws/amazon-ecs-agent\">available on GitHub</a> and customize it to work with that driver. We encourage you to submit pull requests for changes that you would like to have included. However, Amazon Web Services does not currently support running modified copies of this software.</p> </note> <p>This parameter requires version 1.18 of the Docker Remote API or greater on your container instance. To check the Docker Remote API version on your container instance, log into your container instance and run the following command: <code>sudo docker version | grep \"Server API version\"</code> </p>"
       }
     },
     "Long": {
@@ -668,7 +681,7 @@
       "refs": {
         "ContainerDetail$secrets": "<p>The secrets to pass to the container. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html\">Specifying Sensitive Data</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
         "ContainerProperties$secrets": "<p>The secrets for the container. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html\">Specifying Sensitive Data</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>",
-        "LogConfiguration$secretOptions": "<p>The secrets to pass to the log configuration. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/specifying-sensitive-data.html\">Specifying Sensitive Data</a> in the <i>Amazon Elastic Container Service Developer Guide</i>.</p>"
+        "LogConfiguration$secretOptions": "<p>The secrets to pass to the log configuration. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/specifying-sensitive-data.html\">Specifying Sensitive Data</a> in the <i>AWS Batch User Guide</i>.</p>"
       }
     },
     "ServerException": {
@@ -701,7 +714,7 @@
         "ComputeResource$spotIamFleetRole": "<p>The Amazon Resource Name (ARN) of the Amazon EC2 Spot Fleet IAM role applied to a <code>SPOT</code> compute environment. This role is required if the allocation strategy set to <code>BEST_FIT</code> or if the allocation strategy is not specified. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/spot_fleet_IAM_role.html\">Amazon EC2 Spot Fleet Role</a> in the <i>AWS Batch User Guide</i>.</p>",
         "ContainerDetail$image": "<p>The image used to start the container.</p>",
         "ContainerDetail$jobRoleArn": "<p>The Amazon Resource Name (ARN) associated with the job upon execution.</p>",
-        "ContainerDetail$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the execution role that AWS Batch can assume. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html\">Amazon ECS task execution IAM role</a>.</p>",
+        "ContainerDetail$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the execution role that AWS Batch can assume. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/execution-IAM-role.html\">AWS Batch execution IAM role</a>.</p>",
         "ContainerDetail$user": "<p>The user name to use inside the container.</p>",
         "ContainerDetail$reason": "<p>A short (255 max characters) human-readable string to provide additional details about a running or stopped container.</p>",
         "ContainerDetail$containerInstanceArn": "<p>The Amazon Resource Name (ARN) of the container instance on which the container is running.</p>",
@@ -711,7 +724,7 @@
         "ContainerOverrides$instanceType": "<p>The instance type to use for a multi-node parallel job. This parameter is not valid for single-node container jobs.</p>",
         "ContainerProperties$image": "<p>The image used to start a container. This string is passed directly to the Docker daemon. Images in the Docker Hub registry are available by default. Other repositories are specified with <code> <i>repository-url</i>/<i>image</i>:<i>tag</i> </code>. Up to 255 letters (uppercase and lowercase), numbers, hyphens, underscores, colons, periods, forward slashes, and number signs are allowed. This parameter maps to <code>Image</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>IMAGE</code> parameter of <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p> <ul> <li> <p>Images in Amazon ECR repositories use the full registry and repository URI (for example, <code>012345678910.dkr.ecr.&lt;region-name&gt;.amazonaws.com/&lt;repository-name&gt;</code>).</p> </li> <li> <p>Images in official repositories on Docker Hub use a single name (for example, <code>ubuntu</code> or <code>mongo</code>).</p> </li> <li> <p>Images in other repositories on Docker Hub are qualified with an organization name (for example, <code>amazon/amazon-ecs-agent</code>).</p> </li> <li> <p>Images in other online repositories are qualified further by a domain name (for example, <code>quay.io/assemblyline/ubuntu</code>).</p> </li> </ul>",
         "ContainerProperties$jobRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that the container can assume for AWS permissions.</p>",
-        "ContainerProperties$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the execution role that AWS Batch can assume. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_execution_IAM_role.html\">Amazon ECS task execution IAM role</a>.</p>",
+        "ContainerProperties$executionRoleArn": "<p>The Amazon Resource Name (ARN) of the execution role that AWS Batch can assume. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/execution-IAM-role.html\">AWS Batch execution IAM role</a>.</p>",
         "ContainerProperties$user": "<p>The user name to use inside the container. This parameter maps to <code>User</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--user</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>",
         "ContainerProperties$instanceType": "<p>The instance type to use for a multi-node parallel job. Currently all node groups in a multi-node parallel job must use the same instance type. This parameter is not valid for single-node container jobs.</p>",
         "ContainerSummary$reason": "<p>A short (255 max characters) human-readable string to provide additional details about a running or stopped container.</p>",
@@ -741,6 +754,7 @@
         "JobDefinition$status": "<p>The status of the job definition.</p>",
         "JobDefinition$type": "<p>The type of job definition.</p>",
         "JobDependency$jobId": "<p>The job ID of the AWS Batch job associated with this dependency.</p>",
+        "JobDetail$jobArn": "<p>The Amazon Resource Name (ARN) of the job.</p>",
         "JobDetail$jobName": "<p>The name of the job.</p>",
         "JobDetail$jobId": "<p>The ID for the job.</p>",
         "JobDetail$jobQueue": "<p>The Amazon Resource Name (ARN) of the job queue with which the job is associated.</p>",
@@ -749,6 +763,7 @@
         "JobQueueDetail$jobQueueName": "<p>The name of the job queue.</p>",
         "JobQueueDetail$jobQueueArn": "<p>The Amazon Resource Name (ARN) of the job queue.</p>",
         "JobQueueDetail$statusReason": "<p>A short, human-readable string to provide additional details about the current status of the job queue.</p>",
+        "JobSummary$jobArn": "<p>The Amazon Resource Name (ARN) of the job.</p>",
         "JobSummary$jobId": "<p>The ID of the job.</p>",
         "JobSummary$jobName": "<p>The name of the job.</p>",
         "JobSummary$statusReason": "<p>A short, human-readable string to provide additional details about the current status of the job.</p>",
@@ -762,6 +777,7 @@
         "ListJobsRequest$multiNodeJobId": "<p>The job ID for a multi-node parallel job. Specifying a multi-node parallel job ID with this parameter lists all nodes that are associated with the specified job.</p>",
         "ListJobsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>ListJobs</code> request where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value. This value is <code>null</code> when there are no more results to return.</p> <note> <p>This token should be treated as an opaque identifier that is only used to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
         "ListJobsResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>ListJobs</code> request. When the results of a <code>ListJobs</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.</p>",
         "LogConfigurationOptionsMap$key": null,
         "LogConfigurationOptionsMap$value": null,
         "MountPoint$containerPath": "<p>The path on the container at which to mount the host volume.</p>",
@@ -784,14 +800,17 @@
         "SubmitJobRequest$jobName": "<p>The name of the job. The first character must be alphanumeric, and up to 128 letters (uppercase and lowercase), numbers, hyphens, and underscores are allowed.</p>",
         "SubmitJobRequest$jobQueue": "<p>The job queue into which the job is submitted. You can specify either the name or the Amazon Resource Name (ARN) of the queue.</p>",
         "SubmitJobRequest$jobDefinition": "<p>The job definition used by this job. This value can be one of <code>name</code>, <code>name:revision</code>, or the Amazon Resource Name (ARN) for the job definition. If <code>name</code> is specified without a revision then the latest active revision is used.</p>",
+        "SubmitJobResponse$jobArn": "<p>The Amazon Resource Name (ARN) for the job.</p>",
         "SubmitJobResponse$jobName": "<p>The name of the job.</p>",
         "SubmitJobResponse$jobId": "<p>The unique identifier for the job.</p>",
+        "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource to which to add tags. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.</p>",
         "TagsMap$key": null,
         "TagsMap$value": null,
         "TerminateJobRequest$jobId": "<p>The AWS Batch job ID of the job to terminate.</p>",
         "TerminateJobRequest$reason": "<p>A message to attach to the job that explains the reason for canceling it. This message is returned by future <a>DescribeJobs</a> operations on the job. This message is also recorded in the AWS Batch activity logs.</p>",
-        "Tmpfs$containerPath": "<p>The absolute file path where the tmpfs volume is to be mounted.</p>",
+        "Tmpfs$containerPath": "<p>The absolute file path in the container where the tmpfs volume is to be mounted.</p>",
         "Ulimit$name": "<p>The <code>type</code> of the <code>ulimit</code>.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to delete tags. AWS Batch resources that support tags are compute environments, jobs, job definitions, and job queues. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.</p>",
         "UpdateComputeEnvironmentRequest$computeEnvironment": "<p>The name or full Amazon Resource Name (ARN) of the compute environment to update.</p>",
         "UpdateComputeEnvironmentRequest$serviceRole": "<p>The full Amazon Resource Name (ARN) of the IAM role that allows AWS Batch to make calls to other AWS services on your behalf.</p> <p>If your specified role has a path other than <code>/</code>, then you must either specify the full role ARN (this is recommended) or prefix the role name with the path.</p> <note> <p>Depending on how you created your AWS Batch service role, its ARN may contain the <code>service-role</code> path prefix. When you only specify the name of the service role, AWS Batch assumes that your ARN does not use the <code>service-role</code> path prefix. Because of this, we recommend that you specify the full ARN of your service role when you create compute environments.</p> </note>",
         "UpdateComputeEnvironmentResponse$computeEnvironmentName": "<p>The name of the compute environment.</p>",
@@ -815,7 +834,7 @@
         "DescribeJobDefinitionsRequest$jobDefinitions": "<p>A list of up to 100 job definition names or full Amazon Resource Name (ARN) entries.</p>",
         "DescribeJobQueuesRequest$jobQueues": "<p>A list of up to 100 queue names or full queue Amazon Resource Name (ARN) entries.</p>",
         "DescribeJobsRequest$jobs": "<p>A list of up to 100 job IDs.</p>",
-        "Tmpfs$mountOptions": "<p>The list of tmpfs volume mount options.</p> <p>Valid values: <code>\"defaults\" | \"ro\" | \"rw\" | \"suid\" | \"nosuid\" | \"dev\" | \"nodev\" | \"exec\" | \"noexec\" | \"sync\" | \"async\" | \"dirsync\" | \"remount\" | \"mand\" | \"nomand\" | \"atime\" | \"noatime\" | \"diratime\" | \"nodiratime\" | \"bind\" | \"rbind\" | \"unbindable\" | \"runbindable\" | \"private\" | \"rprivate\" | \"shared\" | \"rshared\" | \"slave\" | \"rslave\" | \"relatime\" | \"norelatime\" | \"strictatime\" | \"nostrictatime\" | \"mode\" | \"uid\" | \"gid\" | \"nr_inodes\" | \"nr_blocks\" | \"mpol\"</code> </p>"
+        "Tmpfs$mountOptions": "<p>The list of tmpfs volume mount options.</p> <p>Valid values: \"<code>defaults</code>\" | \"<code>ro</code>\" | \"<code>rw</code>\" | \"<code>suid</code>\" | \"<code>nosuid</code>\" | \"<code>dev</code>\" | \"<code>nodev</code>\" | \"<code>exec</code>\" | \"<code>noexec</code>\" | \"<code>sync</code>\" | \"<code>async</code>\" | \"<code>dirsync</code>\" | \"<code>remount</code>\" | \"<code>mand</code>\" | \"<code>nomand</code>\" | \"<code>atime</code>\" | \"<code>noatime</code>\" | \"<code>diratime</code>\" | \"<code>nodiratime</code>\" | \"<code>bind</code>\" | \"<code>rbind\" | \"unbindable\" | \"runbindable\" | \"private\" | \"rprivate\" | \"shared\" | \"rshared\" | \"slave\" | \"rslave\" | \"relatime</code>\" | \"<code>norelatime</code>\" | \"<code>strictatime</code>\" | \"<code>nostrictatime</code>\" | \"<code>mode</code>\" | \"<code>uid</code>\" | \"<code>gid</code>\" | \"<code>nr_inodes</code>\" | \"<code>nr_blocks</code>\" | \"<code>mpol</code>\"</p>"
       }
     },
     "SubmitJobRequest": {
@@ -828,10 +847,54 @@
       "refs": {
       }
     },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeysList$member": null,
+        "TagrisTagsMap$key": null
+      }
+    },
+    "TagKeysList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>The keys of the tags to be removed.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagrisTagsMap$value": null
+      }
+    },
+    "TagrisTagsMap": {
+      "base": null,
+      "refs": {
+        "ComputeEnvironmentDetail$tags": "<p>The tags applied to the compute environment.</p>",
+        "CreateComputeEnvironmentRequest$tags": "<p>The tags that you apply to the compute environment to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> in <i>AWS General Reference</i>.</p> <p>These tags can be updated or removed using the <a href=\"https://docs.aws.amazon.com/batch/latest/APIReference/API_TagResource.html\">TagResource</a> and <a href=\"https://docs.aws.amazon.com/batch/latest/APIReference/API_UntagResource.html\">UntagResource</a> API operations. These tags do not propagate to the underlying compute resources.</p>",
+        "CreateJobQueueRequest$tags": "<p>The tags that you apply to the job queue to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> in <i>AWS General Reference</i>.</p>",
+        "JobDefinition$tags": "<p>The tags applied to the job definition.</p>",
+        "JobDetail$tags": "<p>The tags applied to the job.</p>",
+        "JobQueueDetail$tags": "<p>The tags applied to the job queue.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The tags for the resource.</p>",
+        "RegisterJobDefinitionRequest$tags": "<p>The tags that you apply to the job definition to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> in <i>AWS General Reference</i>.</p>",
+        "SubmitJobRequest$tags": "<p>The tags that you apply to the job request to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> in <i>AWS General Reference</i>.</p>",
+        "TagResourceRequest$tags": "<p>The tags that you apply to the resource to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html\">Tagging AWS Resources</a> in <i>AWS General Reference</i>.</p>"
+      }
+    },
     "TagsMap": {
       "base": null,
       "refs": {
-        "ComputeResource$tags": "<p>Key-value pair tags to be applied to resources that are launched in the compute environment. For AWS Batch, these take the form of \"String1\": \"String2\", where String1 is the tag key and String2 is the tag value—for example, { \"Name\": \"AWS Batch Instance - C4OnDemand\" }.</p>"
+        "ComputeResource$tags": "<p>Key-value pair tags to be applied to resources that are launched in the compute environment. For AWS Batch, these take the form of \"String1\": \"String2\", where String1 is the tag key and String2 is the tag value—for example, { \"Name\": \"AWS Batch Instance - C4OnDemand\" }. These tags can not be updated or removed after the compute environment has been created; any changes require creating a new compute environment and removing the old compute environment. These tags are not seen when using the AWS Batch ListTagsForResource API operation.</p>"
       }
     },
     "TerminateJobRequest": {
@@ -867,6 +930,16 @@
       "refs": {
         "ContainerDetail$ulimits": "<p>A list of <code>ulimit</code> values to set in the container.</p>",
         "ContainerProperties$ulimits": "<p>A list of <code>ulimits</code> to set in the container. This parameter maps to <code>Ulimits</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--ulimit</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateComputeEnvironmentRequest": {

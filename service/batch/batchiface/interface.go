@@ -116,6 +116,10 @@ type BatchAPI interface {
 	ListJobsPages(*batch.ListJobsInput, func(*batch.ListJobsOutput, bool) bool) error
 	ListJobsPagesWithContext(aws.Context, *batch.ListJobsInput, func(*batch.ListJobsOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*batch.ListTagsForResourceInput) (*batch.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *batch.ListTagsForResourceInput, ...request.Option) (*batch.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*batch.ListTagsForResourceInput) (*request.Request, *batch.ListTagsForResourceOutput)
+
 	RegisterJobDefinition(*batch.RegisterJobDefinitionInput) (*batch.RegisterJobDefinitionOutput, error)
 	RegisterJobDefinitionWithContext(aws.Context, *batch.RegisterJobDefinitionInput, ...request.Option) (*batch.RegisterJobDefinitionOutput, error)
 	RegisterJobDefinitionRequest(*batch.RegisterJobDefinitionInput) (*request.Request, *batch.RegisterJobDefinitionOutput)
@@ -124,9 +128,17 @@ type BatchAPI interface {
 	SubmitJobWithContext(aws.Context, *batch.SubmitJobInput, ...request.Option) (*batch.SubmitJobOutput, error)
 	SubmitJobRequest(*batch.SubmitJobInput) (*request.Request, *batch.SubmitJobOutput)
 
+	TagResource(*batch.TagResourceInput) (*batch.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *batch.TagResourceInput, ...request.Option) (*batch.TagResourceOutput, error)
+	TagResourceRequest(*batch.TagResourceInput) (*request.Request, *batch.TagResourceOutput)
+
 	TerminateJob(*batch.TerminateJobInput) (*batch.TerminateJobOutput, error)
 	TerminateJobWithContext(aws.Context, *batch.TerminateJobInput, ...request.Option) (*batch.TerminateJobOutput, error)
 	TerminateJobRequest(*batch.TerminateJobInput) (*request.Request, *batch.TerminateJobOutput)
+
+	UntagResource(*batch.UntagResourceInput) (*batch.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *batch.UntagResourceInput, ...request.Option) (*batch.UntagResourceOutput, error)
+	UntagResourceRequest(*batch.UntagResourceInput) (*request.Request, *batch.UntagResourceOutput)
 
 	UpdateComputeEnvironment(*batch.UpdateComputeEnvironmentInput) (*batch.UpdateComputeEnvironmentOutput, error)
 	UpdateComputeEnvironmentWithContext(aws.Context, *batch.UpdateComputeEnvironmentInput, ...request.Option) (*batch.UpdateComputeEnvironmentOutput, error)
