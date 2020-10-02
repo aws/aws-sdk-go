@@ -155,8 +155,8 @@ func (c *ELBV2) AddTagsRequest(input *AddTagsInput) (req *request.Request, outpu
 // AddTags API operation for Elastic Load Balancing.
 //
 // Adds the specified tags to the specified Elastic Load Balancing resource.
-// You can tag your Application Load Balancers, Network Load Balancers, and
-// your target groups.
+// You can tag your Application Load Balancers, Network Load Balancers, target
+// groups, listeners, and rules.
 //
 // Each tag consists of a key and an optional value. If a resource already has
 // a tag with the same key, AddTags updates its value.
@@ -327,6 +327,9 @@ func (c *ELBV2) CreateListenerRequest(input *CreateListenerInput) (req *request.
 //
 //   * ErrCodeALPNPolicyNotSupportedException "ALPNPolicyNotFound"
 //   The specified ALPN policy is not supported.
+//
+//   * ErrCodeTooManyTagsException "TooManyTags"
+//   You've reached the limit on the number of tags per load balancer.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateListener
 func (c *ELBV2) CreateListener(input *CreateListenerInput) (*CreateListenerOutput, error) {
@@ -597,6 +600,9 @@ func (c *ELBV2) CreateRuleRequest(input *CreateRuleInput) (req *request.Request,
 //   across all listeners. If a target group is used by multiple actions for a
 //   load balancer, it is counted as only one use.
 //
+//   * ErrCodeTooManyTagsException "TooManyTags"
+//   You've reached the limit on the number of tags per load balancer.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateRule
 func (c *ELBV2) CreateRule(input *CreateRuleInput) (*CreateRuleOutput, error) {
 	req, out := c.CreateRuleRequest(input)
@@ -700,6 +706,9 @@ func (c *ELBV2) CreateTargetGroupRequest(input *CreateTargetGroupInput) (req *re
 //
 //   * ErrCodeInvalidConfigurationRequestException "InvalidConfigurationRequest"
 //   The requested configuration is not valid.
+//
+//   * ErrCodeTooManyTagsException "TooManyTags"
+//   You've reached the limit on the number of tags per load balancer.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/CreateTargetGroup
 func (c *ELBV2) CreateTargetGroup(input *CreateTargetGroupInput) (*CreateTargetGroupOutput, error) {
@@ -1907,9 +1916,9 @@ func (c *ELBV2) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Requ
 
 // DescribeTags API operation for Elastic Load Balancing.
 //
-// Describes the tags for the specified resources. You can describe the tags
-// for one or more Application Load Balancers, Network Load Balancers, and target
-// groups.
+// Describes the tags for the specified Elastic Load Balancing resources. You
+// can describe the tags for one or more Application Load Balancers, Network
+// Load Balancers, target groups, listeners, or rules.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3022,7 +3031,9 @@ func (c *ELBV2) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request,
 
 // RemoveTags API operation for Elastic Load Balancing.
 //
-// Removes the specified tags from the specified Elastic Load Balancing resource.
+// Removes the specified tags from the specified Elastic Load Balancing resources.
+// You can remove the tags for one or more Application Load Balancers, Network
+// Load Balancers, target groups, listeners, or rules.
 //
 // To list the current tags for your resources, use DescribeTags.
 //
@@ -4251,6 +4262,9 @@ type CreateListenerInput struct {
 	// in the Application Load Balancers Guide and Security Policies (https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-tls-listener.html#describe-ssl-policies)
 	// in the Network Load Balancers Guide.
 	SslPolicy *string `type:"string"`
+
+	// The tags to assign to the listener.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -4281,6 +4295,9 @@ func (s *CreateListenerInput) Validate() error {
 	if s.Protocol == nil {
 		invalidParams.Add(request.NewErrParamRequired("Protocol"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.DefaultActions != nil {
 		for i, v := range s.DefaultActions {
 			if v == nil {
@@ -4288,6 +4305,16 @@ func (s *CreateListenerInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DefaultActions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -4337,6 +4364,12 @@ func (s *CreateListenerInput) SetProtocol(v string) *CreateListenerInput {
 // SetSslPolicy sets the SslPolicy field's value.
 func (s *CreateListenerInput) SetSslPolicy(v string) *CreateListenerInput {
 	s.SslPolicy = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateListenerInput) SetTags(v []*Tag) *CreateListenerInput {
+	s.Tags = v
 	return s
 }
 
@@ -4435,7 +4468,7 @@ type CreateLoadBalancerInput struct {
 	// Zones.
 	Subnets []*string `type:"list"`
 
-	// One or more tags to assign to the load balancer.
+	// The tags to assign to the load balancer.
 	Tags []*Tag `min:"1" type:"list"`
 
 	// The type of load balancer. The default is application.
@@ -4599,6 +4632,9 @@ type CreateRuleInput struct {
 	//
 	// Priority is a required field
 	Priority *int64 `min:"1" type:"integer" required:"true"`
+
+	// The tags to assign to the rule.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -4629,6 +4665,9 @@ func (s *CreateRuleInput) Validate() error {
 	if s.Priority != nil && *s.Priority < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Priority", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.Actions != nil {
 		for i, v := range s.Actions {
 			if v == nil {
@@ -4636,6 +4675,16 @@ func (s *CreateRuleInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Actions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -4667,6 +4716,12 @@ func (s *CreateRuleInput) SetListenerArn(v string) *CreateRuleInput {
 // SetPriority sets the Priority field's value.
 func (s *CreateRuleInput) SetPriority(v int64) *CreateRuleInput {
 	s.Priority = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRuleInput) SetTags(v []*Tag) *CreateRuleInput {
+	s.Tags = v
 	return s
 }
 
@@ -4763,6 +4818,9 @@ type CreateTargetGroupInput struct {
 	// function, this parameter does not apply.
 	Protocol *string `type:"string" enum:"ProtocolEnum"`
 
+	// The tags to assign to the target group.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The type of target that you must specify when registering targets with this
 	// target group. You can't specify targets for a target group using more than
 	// one target type.
@@ -4822,12 +4880,25 @@ func (s *CreateTargetGroupInput) Validate() error {
 	if s.Port != nil && *s.Port < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.UnhealthyThresholdCount != nil && *s.UnhealthyThresholdCount < 2 {
 		invalidParams.Add(request.NewErrParamMinValue("UnhealthyThresholdCount", 2))
 	}
 	if s.Matcher != nil {
 		if err := s.Matcher.Validate(); err != nil {
 			invalidParams.AddNested("Matcher", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -4900,6 +4971,12 @@ func (s *CreateTargetGroupInput) SetPort(v int64) *CreateTargetGroupInput {
 // SetProtocol sets the Protocol field's value.
 func (s *CreateTargetGroupInput) SetProtocol(v string) *CreateTargetGroupInput {
 	s.Protocol = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateTargetGroupInput) SetTags(v []*Tag) *CreateTargetGroupInput {
+	s.Tags = v
 	return s
 }
 

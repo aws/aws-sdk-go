@@ -1,3 +1,17 @@
+Release v1.35.2 (2020-10-02)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API, documentation, and examples
+  * Support tagging for Batch resources (compute environment, job queue, job definition and job) and tag based access control on Batch APIs
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/personalize-events`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Adds the NCHAR Character Set ID parameter to the CreateDbInstance API for RDS Oracle.
+* `service/s3`: Updates service API and documentation
+  * Amazon S3 Object Ownership is a new S3 feature that enables bucket owners to automatically assume ownership of objects that are uploaded to their buckets by other AWS Accounts.
+* `service/servicediscovery`: Updates service API and documentation
+
 Release v1.35.1 (2020-10-01)
 ===
 

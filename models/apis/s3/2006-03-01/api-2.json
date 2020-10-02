@@ -143,6 +143,15 @@
       },
       "input":{"shape":"DeleteBucketMetricsConfigurationRequest"}
     },
+    "DeleteBucketOwnershipControls":{
+      "name":"DeleteBucketOwnershipControls",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/{Bucket}?ownershipControls",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteBucketOwnershipControlsRequest"}
+    },
     "DeleteBucketPolicy":{
       "name":"DeleteBucketPolicy",
       "http":{
@@ -348,6 +357,15 @@
       },
       "input":{"shape":"GetBucketNotificationConfigurationRequest"},
       "output":{"shape":"NotificationConfiguration"}
+    },
+    "GetBucketOwnershipControls":{
+      "name":"GetBucketOwnershipControls",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?ownershipControls"
+      },
+      "input":{"shape":"GetBucketOwnershipControlsRequest"},
+      "output":{"shape":"GetBucketOwnershipControlsOutput"}
     },
     "GetBucketPolicy":{
       "name":"GetBucketPolicy",
@@ -726,6 +744,14 @@
         "requestUri":"/{Bucket}?notification"
       },
       "input":{"shape":"PutBucketNotificationConfigurationRequest"}
+    },
+    "PutBucketOwnershipControls":{
+      "name":"PutBucketOwnershipControls",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}?ownershipControls"
+      },
+      "input":{"shape":"PutBucketOwnershipControlsRequest"}
     },
     "PutBucketPolicy":{
       "name":"PutBucketPolicy",
@@ -2096,6 +2122,22 @@
         }
       }
     },
+    "DeleteBucketOwnershipControlsRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ExpectedBucketOwner":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-expected-bucket-owner"
+        }
+      }
+    },
     "DeleteBucketPolicyRequest":{
       "type":"structure",
       "required":["Bucket"],
@@ -2836,6 +2878,29 @@
       }
     },
     "GetBucketNotificationConfigurationRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ExpectedBucketOwner":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-expected-bucket-owner"
+        }
+      }
+    },
+    "GetBucketOwnershipControlsOutput":{
+      "type":"structure",
+      "members":{
+        "OwnershipControls":{"shape":"OwnershipControls"}
+      },
+      "payload":"OwnershipControls"
+    },
+    "GetBucketOwnershipControlsRequest":{
       "type":"structure",
       "required":["Bucket"],
       "members":{
@@ -4873,6 +4938,13 @@
       },
       "exception":true
     },
+    "ObjectOwnership":{
+      "type":"string",
+      "enum":[
+        "BucketOwnerPreferred",
+        "ObjectWriter"
+      ]
+    },
     "ObjectStorageClass":{
       "type":"string",
       "enum":[
@@ -4932,6 +5004,28 @@
     "OwnerOverride":{
       "type":"string",
       "enum":["Destination"]
+    },
+    "OwnershipControls":{
+      "type":"structure",
+      "required":["Rules"],
+      "members":{
+        "Rules":{
+          "shape":"OwnershipControlsRules",
+          "locationName":"Rule"
+        }
+      }
+    },
+    "OwnershipControlsRule":{
+      "type":"structure",
+      "required":["ObjectOwnership"],
+      "members":{
+        "ObjectOwnership":{"shape":"ObjectOwnership"}
+      }
+    },
+    "OwnershipControlsRules":{
+      "type":"list",
+      "member":{"shape":"OwnershipControlsRule"},
+      "flattened":true
     },
     "ParquetInput":{
       "type":"structure",
@@ -5410,6 +5504,36 @@
         }
       },
       "payload":"NotificationConfiguration"
+    },
+    "PutBucketOwnershipControlsRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "OwnershipControls"
+      ],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ContentMD5":{
+          "shape":"ContentMD5",
+          "location":"header",
+          "locationName":"Content-MD5"
+        },
+        "ExpectedBucketOwner":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-expected-bucket-owner"
+        },
+        "OwnershipControls":{
+          "shape":"OwnershipControls",
+          "locationName":"OwnershipControls",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"}
+        }
+      },
+      "payload":"OwnershipControls"
     },
     "PutBucketPolicyRequest":{
       "type":"structure",

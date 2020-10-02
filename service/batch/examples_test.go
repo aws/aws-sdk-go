@@ -550,6 +550,37 @@ func ExampleBatch_ListJobs_shared01() {
 	fmt.Println(result)
 }
 
+// ListTagsForResource Example
+//
+// This demonstrates calling the ListTagsForResource action.
+func ExampleBatch_ListTagsForResource_shared00() {
+	svc := batch.New(session.New())
+	input := &batch.ListTagsForResourceInput{
+		ResourceArn: aws.String("arn:aws:batch:us-east-1:123456789012:job-definition/sleep30:1"),
+	}
+
+	result, err := svc.ListTagsForResource(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case batch.ErrCodeClientException:
+				fmt.Println(batch.ErrCodeClientException, aerr.Error())
+			case batch.ErrCodeServerException:
+				fmt.Println(batch.ErrCodeServerException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To register a job definition
 //
 // This example registers a job definition for a simple container job.
@@ -567,6 +598,51 @@ func ExampleBatch_RegisterJobDefinition_shared00() {
 		},
 		JobDefinitionName: aws.String("sleep10"),
 		Type:              aws.String("container"),
+	}
+
+	result, err := svc.RegisterJobDefinition(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case batch.ErrCodeClientException:
+				fmt.Println(batch.ErrCodeClientException, aerr.Error())
+			case batch.ErrCodeServerException:
+				fmt.Println(batch.ErrCodeServerException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// RegisterJobDefinition with tags
+//
+// This demonstrates calling the RegisterJobDefinition action, including tags.
+func ExampleBatch_RegisterJobDefinition_shared01() {
+	svc := batch.New(session.New())
+	input := &batch.RegisterJobDefinitionInput{
+		ContainerProperties: &batch.ContainerProperties{
+			Command: []*string{
+				aws.String("sleep"),
+				aws.String("30"),
+			},
+			Image:  aws.String("busybox"),
+			Memory: aws.Int64(128),
+			Vcpus:  aws.Int64(1),
+		},
+		JobDefinitionName: aws.String("sleep30"),
+		Tags: map[string]*string{
+			"Department": aws.String("Engineering"),
+			"User":       aws.String("JaneDoe"),
+		},
+		Type: aws.String("container"),
 	}
 
 	result, err := svc.RegisterJobDefinition(input)
@@ -625,6 +701,40 @@ func ExampleBatch_SubmitJob_shared00() {
 	fmt.Println(result)
 }
 
+// TagResource Example
+//
+// This demonstrates calling the TagResource action.
+func ExampleBatch_TagResource_shared00() {
+	svc := batch.New(session.New())
+	input := &batch.TagResourceInput{
+		ResourceArn: aws.String("arn:aws:batch:us-east-1:123456789012:job-definition/sleep30:1"),
+		Tags: map[string]*string{
+			"Stage": aws.String("Alpha"),
+		},
+	}
+
+	result, err := svc.TagResource(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case batch.ErrCodeClientException:
+				fmt.Println(batch.ErrCodeClientException, aerr.Error())
+			case batch.ErrCodeServerException:
+				fmt.Println(batch.ErrCodeServerException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
 // To terminate a job
 //
 // This example terminates a job with the specified job ID.
@@ -636,6 +746,40 @@ func ExampleBatch_TerminateJob_shared00() {
 	}
 
 	result, err := svc.TerminateJob(input)
+	if err != nil {
+		if aerr, ok := err.(awserr.Error); ok {
+			switch aerr.Code() {
+			case batch.ErrCodeClientException:
+				fmt.Println(batch.ErrCodeClientException, aerr.Error())
+			case batch.ErrCodeServerException:
+				fmt.Println(batch.ErrCodeServerException, aerr.Error())
+			default:
+				fmt.Println(aerr.Error())
+			}
+		} else {
+			// Print the error, cast err to awserr.Error to get the Code and
+			// Message from an error.
+			fmt.Println(err.Error())
+		}
+		return
+	}
+
+	fmt.Println(result)
+}
+
+// UntagResource Example
+//
+// This demonstrates calling the UntagResource action.
+func ExampleBatch_UntagResource_shared00() {
+	svc := batch.New(session.New())
+	input := &batch.UntagResourceInput{
+		ResourceArn: aws.String("arn:aws:batch:us-east-1:123456789012:job-definition/sleep30:1"),
+		TagKeys: []*string{
+			aws.String("Stage"),
+		},
+	}
+
+	result, err := svc.UntagResource(input)
 	if err != nil {
 		if aerr, ok := err.(awserr.Error); ok {
 			switch aerr.Code() {

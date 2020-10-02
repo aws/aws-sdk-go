@@ -93,6 +93,172 @@ func (c *PersonalizeEvents) PutEventsWithContext(ctx aws.Context, input *PutEven
 	return out, req.Send()
 }
 
+const opPutItems = "PutItems"
+
+// PutItemsRequest generates a "aws/request.Request" representing the
+// client's request for the PutItems operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutItems for more information on using the PutItems
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutItemsRequest method.
+//    req, resp := client.PutItemsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-events-2018-03-22/PutItems
+func (c *PersonalizeEvents) PutItemsRequest(input *PutItemsInput) (req *request.Request, output *PutItemsOutput) {
+	op := &request.Operation{
+		Name:       opPutItems,
+		HTTPMethod: "POST",
+		HTTPPath:   "/items",
+	}
+
+	if input == nil {
+		input = &PutItemsInput{}
+	}
+
+	output = &PutItemsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutItems API operation for Amazon Personalize Events.
+//
+// Adds one or more items to an Items dataset. For more information see importing-items.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize Events's
+// API operation PutItems for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-events-2018-03-22/PutItems
+func (c *PersonalizeEvents) PutItems(input *PutItemsInput) (*PutItemsOutput, error) {
+	req, out := c.PutItemsRequest(input)
+	return out, req.Send()
+}
+
+// PutItemsWithContext is the same as PutItems with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutItems for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PersonalizeEvents) PutItemsWithContext(ctx aws.Context, input *PutItemsInput, opts ...request.Option) (*PutItemsOutput, error) {
+	req, out := c.PutItemsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutUsers = "PutUsers"
+
+// PutUsersRequest generates a "aws/request.Request" representing the
+// client's request for the PutUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutUsers for more information on using the PutUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutUsersRequest method.
+//    req, resp := client.PutUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-events-2018-03-22/PutUsers
+func (c *PersonalizeEvents) PutUsersRequest(input *PutUsersInput) (req *request.Request, output *PutUsersOutput) {
+	op := &request.Operation{
+		Name:       opPutUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/users",
+	}
+
+	if input == nil {
+		input = &PutUsersInput{}
+	}
+
+	output = &PutUsersOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutUsers API operation for Amazon Personalize Events.
+//
+// Adds one or more users to a Users dataset. For more information see importing-users.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Personalize Events's
+// API operation PutUsers for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   Provide a valid value for the field or parameter.
+//
+//   * ResourceNotFoundException
+//   Could not find the specified resource.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/personalize-events-2018-03-22/PutUsers
+func (c *PersonalizeEvents) PutUsers(input *PutUsersInput) (*PutUsersOutput, error) {
+	req, out := c.PutUsersRequest(input)
+	return out, req.Send()
+}
+
+// PutUsersWithContext is the same as PutUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PersonalizeEvents) PutUsersWithContext(ctx aws.Context, input *PutUsersInput, opts ...request.Option) (*PutUsersOutput, error) {
+	req, out := c.PutUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents user interaction event information sent using the PutEvents API.
 type Event struct {
 	_ struct{} `type:"structure"`
@@ -104,8 +270,9 @@ type Event struct {
 	// not used in model training.
 	EventId *string `locationName:"eventId" min:"1" type:"string"`
 
-	// The type of event. This property corresponds to the EVENT_TYPE field of the
-	// Interactions schema.
+	// The type of event, such as click or download. This property corresponds to
+	// the EVENT_TYPE field of your Interactions schema and depends on the types
+	// of events you are tracking.
 	//
 	// EventType is a required field
 	EventType *string `locationName:"eventType" min:"1" type:"string" required:"true"`
@@ -290,6 +457,64 @@ func (s *InvalidInputException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Represents item metadata added to an Items dataset using the PutItems API.
+type Item struct {
+	_ struct{} `type:"structure"`
+
+	// The ID associated with the item.
+	//
+	// ItemId is a required field
+	ItemId *string `locationName:"itemId" min:"1" type:"string" required:"true"`
+
+	// A string map of item-specific metadata. Each element in the map consists
+	// of a key-value pair. For example,
+	//
+	// {"numberOfRatings": "12"}
+	//
+	// The keys use camel case names that match the fields in the Items schema.
+	// In the above example, the numberOfRatings would match the 'NUMBER_OF_RATINGS'
+	// field defined in the Items schema.
+	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue"`
+}
+
+// String returns the string representation
+func (s Item) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Item) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Item) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Item"}
+	if s.ItemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ItemId"))
+	}
+	if s.ItemId != nil && len(*s.ItemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ItemId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetItemId sets the ItemId field's value.
+func (s *Item) SetItemId(v string) *Item {
+	s.ItemId = &v
+	return s
+}
+
+// SetProperties sets the Properties field's value.
+func (s *Item) SetProperties(v aws.JSONValue) *Item {
+	s.Properties = v
+	return s
+}
+
 type PutEventsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -404,4 +629,278 @@ func (s PutEventsOutput) String() string {
 // GoString returns the string representation
 func (s PutEventsOutput) GoString() string {
 	return s.String()
+}
+
+type PutItemsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the Items dataset you are adding the
+	// item or items to.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
+
+	// A list of item data.
+	//
+	// Items is a required field
+	Items []*Item `locationName:"items" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PutItemsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutItemsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutItemsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutItemsInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Items != nil && len(s.Items) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Items", 1))
+	}
+	if s.Items != nil {
+		for i, v := range s.Items {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Items", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *PutItemsInput) SetDatasetArn(v string) *PutItemsInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *PutItemsInput) SetItems(v []*Item) *PutItemsInput {
+	s.Items = v
+	return s
+}
+
+type PutItemsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutItemsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutItemsOutput) GoString() string {
+	return s.String()
+}
+
+type PutUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Number (ARN) of the Users dataset you are adding the
+	// user or users to.
+	//
+	// DatasetArn is a required field
+	DatasetArn *string `locationName:"datasetArn" type:"string" required:"true"`
+
+	// A list of user data.
+	//
+	// Users is a required field
+	Users []*User `locationName:"users" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PutUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutUsersInput"}
+	if s.DatasetArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatasetArn"))
+	}
+	if s.Users == nil {
+		invalidParams.Add(request.NewErrParamRequired("Users"))
+	}
+	if s.Users != nil && len(s.Users) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Users", 1))
+	}
+	if s.Users != nil {
+		for i, v := range s.Users {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Users", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatasetArn sets the DatasetArn field's value.
+func (s *PutUsersInput) SetDatasetArn(v string) *PutUsersInput {
+	s.DatasetArn = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *PutUsersInput) SetUsers(v []*User) *PutUsersInput {
+	s.Users = v
+	return s
+}
+
+type PutUsersOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutUsersOutput) GoString() string {
+	return s.String()
+}
+
+// Could not find the specified resource.
+type ResourceNotFoundException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceNotFoundException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceNotFoundException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceNotFoundException(v protocol.ResponseMetadata) error {
+	return &ResourceNotFoundException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceNotFoundException) Code() string {
+	return "ResourceNotFoundException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceNotFoundException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceNotFoundException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceNotFoundException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceNotFoundException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Represents user metadata added to a Users dataset using the PutUsers API.
+type User struct {
+	_ struct{} `type:"structure"`
+
+	// A string map of user-specific metadata. Each element in the map consists
+	// of a key-value pair. For example,
+	//
+	// {"numberOfVideosWatched": "45"}
+	//
+	// The keys use camel case names that match the fields in the Users schema.
+	// In the above example, the numberOfVideosWatched would match the 'NUMBER_OF_VIDEOS_WATCHED'
+	// field defined in the Users schema.
+	Properties aws.JSONValue `locationName:"properties" type:"jsonvalue"`
+
+	// The ID associated with the user.
+	//
+	// UserId is a required field
+	UserId *string `locationName:"userId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s User) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s User) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *User) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "User"}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProperties sets the Properties field's value.
+func (s *User) SetProperties(v aws.JSONValue) *User {
+	s.Properties = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *User) SetUserId(v string) *User {
+	s.UserId = &v
+	return s
 }

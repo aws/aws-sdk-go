@@ -3221,10 +3221,16 @@ type DiscoverInstancesInput struct {
 	// NamespaceName is a required field
 	NamespaceName *string `type:"string" required:"true"`
 
-	// A string map that contains attributes with values that you can use to filter
-	// instances by any custom attribute that you specified when you registered
-	// the instance. Only instances that match all the specified key/value pairs
-	// will be returned.
+	// Opportunistic filters to scope the results based on custom attributes. If
+	// there are instances that match both the filters specified in both the QueryParameters
+	// parameter and this parameter, they are returned. Otherwise, these filters
+	// are ignored and only instances that match the filters specified in the QueryParameters
+	// parameter are returned.
+	OptionalParameters map[string]*string `type:"map"`
+
+	// Filters to scope the results based on custom attributes for the instance.
+	// For example, {version=v1, az=1a}. Only instances that match all the specified
+	// key-value pairs will be returned.
 	QueryParameters map[string]*string `type:"map"`
 
 	// The name of the service that you specified when you registered the instance.
@@ -3277,6 +3283,12 @@ func (s *DiscoverInstancesInput) SetMaxResults(v int64) *DiscoverInstancesInput 
 // SetNamespaceName sets the NamespaceName field's value.
 func (s *DiscoverInstancesInput) SetNamespaceName(v string) *DiscoverInstancesInput {
 	s.NamespaceName = &v
+	return s
+}
+
+// SetOptionalParameters sets the OptionalParameters field's value.
+func (s *DiscoverInstancesInput) SetOptionalParameters(v map[string]*string) *DiscoverInstancesInput {
+	s.OptionalParameters = v
 	return s
 }
 
@@ -4286,17 +4298,19 @@ func (s *HealthCheckConfig) SetType(v string) *HealthCheckConfig {
 type HealthCheckCustomConfig struct {
 	_ struct{} `type:"structure"`
 
+	//
+	// This parameter has been deprecated and is always set to 1. AWS Cloud Map
+	// waits for approximately 30 seconds after receiving an UpdateInstanceCustomHealthStatus
+	// request before changing the status of the service instance.
+	//
 	// The number of 30-second intervals that you want AWS Cloud Map to wait after
 	// receiving an UpdateInstanceCustomHealthStatus request before it changes the
-	// health status of a service instance. For example, suppose you specify a value
-	// of 2 for FailureTheshold, and then your application sends an UpdateInstanceCustomHealthStatus
-	// request. AWS Cloud Map waits for approximately 60 seconds (2 x 30) before
-	// changing the status of the service instance based on that request.
+	// health status of a service instance.
 	//
 	// Sending a second or subsequent UpdateInstanceCustomHealthStatus request with
-	// the same value before FailureThreshold x 30 seconds has passed doesn't accelerate
-	// the change. AWS Cloud Map still waits FailureThreshold x 30 seconds after
-	// the first request to make the change.
+	// the same value before 30 seconds has passed doesn't accelerate the change.
+	// AWS Cloud Map still waits 30 seconds after the first request to make the
+	// change.
 	FailureThreshold *int64 `min:"1" type:"integer"`
 }
 

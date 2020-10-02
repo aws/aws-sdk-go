@@ -128,6 +128,8 @@ func ExampleELBV2_CreateListener_shared00() {
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
 			case elbv2.ErrCodeALPNPolicyNotSupportedException:
 				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
+			case elbv2.ErrCodeTooManyTagsException:
+				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -208,6 +210,8 @@ func ExampleELBV2_CreateListener_shared01() {
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
 			case elbv2.ErrCodeALPNPolicyNotSupportedException:
 				fmt.Println(elbv2.ErrCodeALPNPolicyNotSupportedException, aerr.Error())
+			case elbv2.ErrCodeTooManyTagsException:
+				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -396,6 +400,8 @@ func ExampleELBV2_CreateRule_shared00() {
 				fmt.Println(elbv2.ErrCodeInvalidLoadBalancerActionException, aerr.Error())
 			case elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException:
 				fmt.Println(elbv2.ErrCodeTooManyUniqueTargetGroupsPerLoadBalancerException, aerr.Error())
+			case elbv2.ErrCodeTooManyTagsException:
+				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -433,6 +439,8 @@ func ExampleELBV2_CreateTargetGroup_shared00() {
 				fmt.Println(elbv2.ErrCodeTooManyTargetGroupsException, aerr.Error())
 			case elbv2.ErrCodeInvalidConfigurationRequestException:
 				fmt.Println(elbv2.ErrCodeInvalidConfigurationRequestException, aerr.Error())
+			case elbv2.ErrCodeTooManyTagsException:
+				fmt.Println(elbv2.ErrCodeTooManyTagsException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

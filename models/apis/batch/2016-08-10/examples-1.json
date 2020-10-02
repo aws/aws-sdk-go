@@ -471,6 +471,29 @@
         "title": "To list submitted jobs"
       }
     ],
+    "ListTagsForResource": [
+      {
+        "input": {
+          "resourceArn": "arn:aws:batch:us-east-1:123456789012:job-definition/sleep30:1"
+        },
+        "output": {
+          "tags": {
+            "Department": "Engineering",
+            "Stage": "Alpha",
+            "User": "JaneDoe"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This demonstrates calling the ListTagsForResource action.",
+        "id": "listtagsforresource-example-1591293003710",
+        "title": "ListTagsForResource Example"
+      }
+    ],
     "RegisterJobDefinition": [
       {
         "input": {
@@ -500,6 +523,39 @@
         "description": "This example registers a job definition for a simple container job.",
         "id": "to-register-a-job-definition-1481154325325",
         "title": "To register a job definition"
+      },
+      {
+        "input": {
+          "type": "container",
+          "containerProperties": {
+            "command": [
+              "sleep",
+              "30"
+            ],
+            "image": "busybox",
+            "memory": 128,
+            "vcpus": 1
+          },
+          "jobDefinitionName": "sleep30",
+          "tags": {
+            "Department": "Engineering",
+            "User": "JaneDoe"
+          }
+        },
+        "output": {
+          "jobDefinitionArn": "arn:aws:batch:us-east-1:012345678910:job-definition/sleep30:1",
+          "jobDefinitionName": "sleep30",
+          "revision": 1
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This demonstrates calling the RegisterJobDefinition action, including tags.",
+        "id": "registerjobdefinition-with-tags-1591290509028",
+        "title": "RegisterJobDefinition with tags"
       }
     ],
     "SubmitJob": [
@@ -524,6 +580,27 @@
         "title": "To submit a job to a queue"
       }
     ],
+    "TagResource": [
+      {
+        "input": {
+          "resourceArn": "arn:aws:batch:us-east-1:123456789012:job-definition/sleep30:1",
+          "tags": {
+            "Stage": "Alpha"
+          }
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This demonstrates calling the TagResource action.",
+        "id": "tagresource-example-1591291959952",
+        "title": "TagResource Example"
+      }
+    ],
     "TerminateJob": [
       {
         "input": {
@@ -541,6 +618,27 @@
         "description": "This example terminates a job with the specified job ID.",
         "id": "to-terminate-a-job-1481154558276",
         "title": "To terminate a job"
+      }
+    ],
+    "UntagResource": [
+      {
+        "input": {
+          "resourceArn": "arn:aws:batch:us-east-1:123456789012:job-definition/sleep30:1",
+          "tagKeys": [
+            "Stage"
+          ]
+        },
+        "output": {
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "This demonstrates calling the UntagResource action.",
+        "id": "untagresource-example-1591292811042",
+        "title": "UntagResource Example"
       }
     ],
     "UpdateComputeEnvironment": [

@@ -516,6 +516,7 @@
         "ServiceName":{"shape":"ServiceName"},
         "MaxResults":{"shape":"DiscoverMaxResults"},
         "QueryParameters":{"shape":"Attributes"},
+        "OptionalParameters":{"shape":"Attributes"},
         "HealthStatus":{"shape":"HealthStatusFilter"}
       }
     },

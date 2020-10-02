@@ -18328,6 +18328,9 @@ type CreateDBInstanceInput struct {
 	// deployment.
 	MultiAZ *bool `type:"boolean"`
 
+	// The name of the NCHAR character set for the Oracle DB instance.
+	NcharCharacterSetName *string `type:"string"`
+
 	// Indicates that the DB instance should be associated with the specified option
 	// group.
 	//
@@ -18734,6 +18737,12 @@ func (s *CreateDBInstanceInput) SetMonitoringRoleArn(v string) *CreateDBInstance
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *CreateDBInstanceInput) SetMultiAZ(v bool) *CreateDBInstanceInput {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
+func (s *CreateDBInstanceInput) SetNcharCharacterSetName(v string) *CreateDBInstanceInput {
+	s.NcharCharacterSetName = &v
 	return s
 }
 
@@ -21768,7 +21777,7 @@ type DBEngineVersion struct {
 	Status *string `type:"string"`
 
 	// A list of the character sets supported by this engine for the CharacterSetName
-	// parameter of the CreateDBInstance action.
+	// parameter of the CreateDBInstance operation.
 	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
 
 	// A list of the supported DB engine modes.
@@ -21783,6 +21792,10 @@ type DBEngineVersion struct {
 	//
 	//    * s3Import
 	SupportedFeatureNames []*string `type:"list"`
+
+	// A list of the character sets supported by the Oracle DB engine for the NcharCharacterSetName
+	// parameter of the CreateDBInstance operation.
+	SupportedNcharCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
 
 	// A list of the time zones supported by this engine for the Timezone parameter
 	// of the CreateDBInstance action.
@@ -21881,6 +21894,12 @@ func (s *DBEngineVersion) SetSupportedEngineModes(v []*string) *DBEngineVersion 
 // SetSupportedFeatureNames sets the SupportedFeatureNames field's value.
 func (s *DBEngineVersion) SetSupportedFeatureNames(v []*string) *DBEngineVersion {
 	s.SupportedFeatureNames = v
+	return s
+}
+
+// SetSupportedNcharCharacterSets sets the SupportedNcharCharacterSets field's value.
+func (s *DBEngineVersion) SetSupportedNcharCharacterSets(v []*CharacterSet) *DBEngineVersion {
+	s.SupportedNcharCharacterSets = v
 	return s
 }
 
@@ -22095,6 +22114,11 @@ type DBInstance struct {
 
 	// Specifies if the DB instance is a Multi-AZ deployment.
 	MultiAZ *bool `type:"boolean"`
+
+	// The name of the NCHAR character set for the Oracle DB instance. This character
+	// set specifies the Unicode encoding for data stored in table columns of type
+	// NCHAR, NCLOB, or NVARCHAR2.
+	NcharCharacterSetName *string `type:"string"`
 
 	// Provides the list of option group memberships for this DB instance.
 	OptionGroupMemberships []*OptionGroupMembership `locationNameList:"OptionGroupMembership" type:"list"`
@@ -22436,6 +22460,12 @@ func (s *DBInstance) SetMonitoringRoleArn(v string) *DBInstance {
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *DBInstance) SetMultiAZ(v bool) *DBInstance {
 	s.MultiAZ = &v
+	return s
+}
+
+// SetNcharCharacterSetName sets the NcharCharacterSetName field's value.
+func (s *DBInstance) SetNcharCharacterSetName(v string) *DBInstance {
+	s.NcharCharacterSetName = &v
 	return s
 }
 
