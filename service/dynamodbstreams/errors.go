@@ -36,7 +36,7 @@ const (
 	// if the table or index specifications are complex, DynamoDB might temporarily
 	// reduce the number of concurrent operations.
 	//
-	// There is a soft account limit of 256 tables.
+	// There is a soft account quota of 256 tables.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeResourceNotFoundException for service response error code

@@ -674,24 +674,54 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 
 // CreateDomain API operation for Amazon SageMaker Service.
 //
-// Creates a Domain used by SageMaker Studio. A domain consists of an associated
-// directory, a list of authorized users, and a variety of security, application,
-// policy, and Amazon Virtual Private Cloud (VPC) configurations. An AWS account
-// is limited to one domain per region. Users within a domain can share notebook
-// files and other artifacts with each other.
+// Creates a Domain used by Amazon SageMaker Studio. A domain consists of an
+// associated Amazon Elastic File System (EFS) volume, a list of authorized
+// users, and a variety of security, application, policy, and Amazon Virtual
+// Private Cloud (VPC) configurations. An AWS account is limited to one domain
+// per region. Users within a domain can share notebook files and other artifacts
+// with each other.
 //
-// When a domain is created, an Amazon Elastic File System (EFS) volume is also
-// created for use by all of the users within the domain. Each user receives
-// a private home directory within the EFS for notebooks, Git repositories,
-// and data files.
+// When a domain is created, an EFS volume is created for use by all of the
+// users within the domain. Each user receives a private home directory within
+// the EFS volume for notebooks, Git repositories, and data files.
 //
-// All traffic between the domain and the EFS volume is communicated through
-// the specified subnet IDs. All other traffic goes over the Internet through
-// an Amazon SageMaker system VPC. The EFS traffic uses the NFS/TCP protocol
-// over port 2049.
+// VPC configuration
 //
-// NFS traffic over TCP on port 2049 needs to be allowed in both inbound and
-// outbound rules in order to launch a SageMaker Studio app successfully.
+// All SageMaker Studio traffic between the domain and the EFS volume is through
+// the specified VPC and subnets. For other Studio traffic, you specify the
+// AppNetworkAccessType parameter. AppNetworkAccessType corresponds to the VPC
+// mode that's chosen when you onboard to Studio. The following options are
+// available:
+//
+//    * PublicInternetOnly - Non-EFS traffic goes through a VPC managed by Amazon
+//    SageMaker, which allows internet access. This is the default value.
+//
+//    * VpcOnly - All Studio traffic is through the specified VPC and subnets.
+//    Internet access is disabled by default. To allow internet access, you
+//    must specify a NAT gateway. When internet access is disabled, you won't
+//    be able to train or host models unless your VPC has an interface endpoint
+//    (PrivateLink) or a NAT gateway and your security groups allow outbound
+//    connections.
+//
+//  VpcOnly mode
+//
+// When you specify VpcOnly, you must specify the following:
+//
+//    * Security group inbound and outbound rules to allow NFS traffic over
+//    TCP on port 2049 between the domain and the EFS volume
+//
+//    * Security group inbound and outbound rules to allow traffic between the
+//    JupyterServer app and the KernelGateway apps
+//
+//    * Interface endpoints to access the SageMaker API and SageMaker runtime
+//
+// For more information, see:
+//
+//    * Security groups for your VPC (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
+//
+//    * VPC with public and private subnets (NAT) (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
+//
+//    * Connect to SageMaker through a VPC interface endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/interface-vpc-endpoint.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1971,6 +2001,10 @@ func (c *SageMaker) CreatePresignedDomainUrlRequest(input *CreatePresignedDomain
 // Studio, and granted access to all of the Apps and files associated with the
 // Domain's Amazon Elastic File System (EFS) volume. This operation can only
 // be called when the authentication mode equals IAM.
+//
+// The URL that you get from a call to CreatePresignedDomainUrl is valid only
+// for 5 minutes. If you try to use the URL after the 5-minute limit expires,
+// you are directed to the AWS console sign-in page.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14733,7 +14767,7 @@ type AutoMLDataSource struct {
 
 	// The Amazon S3 location of the input data.
 	//
-	// The input data must be in CSV format and contain at least 1000 rows.
+	// The input data must be in CSV format and contain at least 500 rows.
 	//
 	// S3DataSource is a required field
 	S3DataSource *AutoMLS3DataSource `type:"structure" required:"true"`
@@ -16256,6 +16290,9 @@ type ContainerDefinition struct {
 	// but not if you use your own algorithms. For more information on built-in
 	// algorithms, see Common Parameters (https://docs.aws.amazon.com/sagemaker/latest/dg/sagemaker-algo-docker-registry-paths.html).
 	//
+	// The model artifacts must be in an S3 bucket that is in the same region as
+	// the model or endpoint you are creating.
+	//
 	// If you provide a value for this parameter, Amazon SageMaker uses AWS Security
 	// Token Service to download model artifacts from the S3 path you provide. AWS
 	// STS is activated in your IAM user account by default. If you previously deactivated
@@ -16818,7 +16855,7 @@ type CreateAutoMLJobInput struct {
 	GenerateCandidateDefinitionsOnly *bool `type:"boolean"`
 
 	// Similar to InputDataConfig supported by Tuning. Format(s) supported: CSV.
-	// Minimum of 1000 rows.
+	// Minimum of 500 rows.
 	//
 	// InputDataConfig is a required field
 	InputDataConfig []*AutoMLChannel `min:"1" type:"list" required:"true"`
@@ -17251,6 +17288,14 @@ func (s *CreateCompilationJobOutput) SetCompilationJobArn(v string) *CreateCompi
 type CreateDomainInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the VPC used for non-EFS traffic. The default value is PublicInternetOnly.
+	//
+	//    * PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon
+	//    SageMaker, which allows direct internet access
+	//
+	//    * VpcOnly - All Studio traffic is through the specified VPC and subnets
+	AppNetworkAccessType *string `type:"string" enum:"AppNetworkAccessType"`
+
 	// The mode of authentication that members use to access the domain.
 	//
 	// AuthMode is a required field
@@ -17270,7 +17315,7 @@ type CreateDomainInput struct {
 	// customer master key (CMK) is not supported.
 	HomeEfsFileSystemKmsKeyId *string `type:"string"`
 
-	// The VPC subnets to use for communication with the EFS volume.
+	// The VPC subnets that Studio uses for communication.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `min:"1" type:"list" required:"true"`
@@ -17280,8 +17325,7 @@ type CreateDomainInput struct {
 	// Search API.
 	Tags []*Tag `type:"list"`
 
-	// The ID of the Amazon Virtual Private Cloud (VPC) to use for communication
-	// with the EFS volume.
+	// The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
 	//
 	// VpcId is a required field
 	VpcId *string `type:"string" required:"true"`
@@ -17338,6 +17382,12 @@ func (s *CreateDomainInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAppNetworkAccessType sets the AppNetworkAccessType field's value.
+func (s *CreateDomainInput) SetAppNetworkAccessType(v string) *CreateDomainInput {
+	s.AppNetworkAccessType = &v
+	return s
 }
 
 // SetAuthMode sets the AuthMode field's value.
@@ -23858,6 +23908,14 @@ func (s *DescribeDomainInput) SetDomainId(v string) *DescribeDomainInput {
 type DescribeDomainOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the VPC used for non-EFS traffic. The default value is PublicInternetOnly.
+	//
+	//    * PublicInternetOnly - Non-EFS traffic is through a VPC managed by Amazon
+	//    SageMaker, which allows direct internet access
+	//
+	//    * VpcOnly - All Studio traffic is through the specified VPC and subnets
+	AppNetworkAccessType *string `type:"string" enum:"AppNetworkAccessType"`
+
 	// The domain's authentication mode.
 	AuthMode *string `type:"string" enum:"AuthMode"`
 
@@ -23895,13 +23953,13 @@ type DescribeDomainOutput struct {
 	// The status.
 	Status *string `type:"string" enum:"DomainStatus"`
 
-	// Security setting to limit to a set of subnets.
+	// The VPC subnets that Studio uses for communication.
 	SubnetIds []*string `min:"1" type:"list"`
 
 	// The domain's URL.
 	Url *string `type:"string"`
 
-	// The ID of the Amazon Virtual Private Cloud.
+	// The ID of the Amazon Virtual Private Cloud (VPC) that Studio uses for communication.
 	VpcId *string `type:"string"`
 }
 
@@ -23913,6 +23971,12 @@ func (s DescribeDomainOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDomainOutput) GoString() string {
 	return s.String()
+}
+
+// SetAppNetworkAccessType sets the AppNetworkAccessType field's value.
+func (s *DescribeDomainOutput) SetAppNetworkAccessType(v string) *DescribeDomainOutput {
+	s.AppNetworkAccessType = &v
+	return s
 }
 
 // SetAuthMode sets the AuthMode field's value.
@@ -37582,6 +37646,9 @@ type ModelPackageContainerDefinition struct {
 	// The Amazon S3 path where the model artifacts, which result from model training,
 	// are stored. This path must point to a single gzip compressed tar archive
 	// (.tar.gz suffix).
+	//
+	// The model artifacts must be in an S3 bucket that is in the same region as
+	// the model package.
 	ModelDataUrl *string `type:"string"`
 
 	// The AWS Marketplace product ID of the model package.
@@ -42786,8 +42853,7 @@ type SharingSettings struct {
 	S3KmsKeyId *string `type:"string"`
 
 	// When NotebookOutputOption is Allowed, the Amazon S3 bucket used to save the
-	// notebook cell output. If S3OutputPath isn't specified, a default bucket is
-	// used.
+	// notebook cell output.
 	S3OutputPath *string `type:"string"`
 }
 
@@ -42887,6 +42953,9 @@ type SourceAlgorithm struct {
 	// The Amazon S3 path where the model artifacts, which result from model training,
 	// are stored. This path must point to a single gzip compressed tar archive
 	// (.tar.gz suffix).
+	//
+	// The model artifacts must be in an S3 bucket that is in the same region as
+	// the algorithm.
 	ModelDataUrl *string `type:"string"`
 }
 
@@ -46394,7 +46463,7 @@ type TrialComponentSourceDetail struct {
 	// Information about a training job that's the source of a trial component.
 	TrainingJob *TrainingJob `type:"structure"`
 
-	// Information about a transform job that's the source of the trial component.
+	// Information about a transform job that's the source of a trial component.
 	TransformJob *TransformJob `type:"structure"`
 }
 
@@ -49037,6 +49106,22 @@ func AppInstanceType_Values() []string {
 		AppInstanceTypeMlG4dn8xlarge,
 		AppInstanceTypeMlG4dn12xlarge,
 		AppInstanceTypeMlG4dn16xlarge,
+	}
+}
+
+const (
+	// AppNetworkAccessTypePublicInternetOnly is a AppNetworkAccessType enum value
+	AppNetworkAccessTypePublicInternetOnly = "PublicInternetOnly"
+
+	// AppNetworkAccessTypeVpcOnly is a AppNetworkAccessType enum value
+	AppNetworkAccessTypeVpcOnly = "VpcOnly"
+)
+
+// AppNetworkAccessType_Values returns all elements of the AppNetworkAccessType enum
+func AppNetworkAccessType_Values() []string {
+	return []string{
+		AppNetworkAccessTypePublicInternetOnly,
+		AppNetworkAccessTypeVpcOnly,
 	}
 }
 

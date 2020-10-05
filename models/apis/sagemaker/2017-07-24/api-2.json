@@ -1702,6 +1702,13 @@
       "max":63,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
+    "AppNetworkAccessType":{
+      "type":"string",
+      "enum":[
+        "PublicInternetOnly",
+        "VpcOnly"
+      ]
+    },
     "AppSortKey":{
       "type":"string",
       "enum":["CreationTime"]
@@ -2690,7 +2697,8 @@
         "SubnetIds":{"shape":"Subnets"},
         "VpcId":{"shape":"VpcId"},
         "Tags":{"shape":"TagList"},
-        "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"}
+        "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"},
+        "AppNetworkAccessType":{"shape":"AppNetworkAccessType"}
       }
     },
     "CreateDomainResponse":{
@@ -3711,7 +3719,8 @@
         "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"},
         "SubnetIds":{"shape":"Subnets"},
         "Url":{"shape":"String1024"},
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "AppNetworkAccessType":{"shape":"AppNetworkAccessType"}
       }
     },
     "DescribeEndpointConfigInput":{

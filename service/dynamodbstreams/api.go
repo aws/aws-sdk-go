@@ -186,7 +186,7 @@ func (c *DynamoDBStreams) GetRecordsRequest(input *GetRecordsInput) (req *reques
 //   if the table or index specifications are complex, DynamoDB might temporarily
 //   reduce the number of concurrent operations.
 //
-//   There is a soft account limit of 256 tables.
+//   There is a soft account quota of 256 tables.
 //
 //   * InternalServerError
 //   An error occurred on the server side.
@@ -893,7 +893,7 @@ func (s *InternalServerError) RequestID() string {
 // if the table or index specifications are complex, DynamoDB might temporarily
 // reduce the number of concurrent operations.
 //
-// There is a soft account limit of 256 tables.
+// There is a soft account quota of 256 tables.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

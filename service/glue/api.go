@@ -17706,6 +17706,9 @@ type CrawlerTargets struct {
 	// Specifies JDBC targets.
 	JdbcTargets []*JdbcTarget `type:"list"`
 
+	// Specifies Amazon DocumentDB or MongoDB targets.
+	MongoDBTargets []*MongoDBTarget `type:"list"`
+
 	// Specifies Amazon Simple Storage Service (Amazon S3) targets.
 	S3Targets []*S3Target `type:"list"`
 }
@@ -17755,6 +17758,12 @@ func (s *CrawlerTargets) SetDynamoDBTargets(v []*DynamoDBTarget) *CrawlerTargets
 // SetJdbcTargets sets the JdbcTargets field's value.
 func (s *CrawlerTargets) SetJdbcTargets(v []*JdbcTarget) *CrawlerTargets {
 	s.JdbcTargets = v
+	return s
+}
+
+// SetMongoDBTargets sets the MongoDBTargets field's value.
+func (s *CrawlerTargets) SetMongoDBTargets(v []*MongoDBTarget) *CrawlerTargets {
+	s.MongoDBTargets = v
 	return s
 }
 
@@ -30625,6 +30634,54 @@ func (s *MappingEntry) SetTargetTable(v string) *MappingEntry {
 // SetTargetType sets the TargetType field's value.
 func (s *MappingEntry) SetTargetType(v string) *MappingEntry {
 	s.TargetType = &v
+	return s
+}
+
+// Specifies an Amazon DocumentDB or MongoDB data store to crawl.
+type MongoDBTarget struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connection to use to connect to the Amazon DocumentDB or
+	// MongoDB target.
+	ConnectionName *string `type:"string"`
+
+	// The path of the Amazon DocumentDB or MongoDB target (database/collection).
+	Path *string `type:"string"`
+
+	// Indicates whether to scan all the records, or to sample rows from the table.
+	// Scanning all the records can take a long time when the table is not a high
+	// throughput table.
+	//
+	// A value of true means to scan all records, while a value of false means to
+	// sample the records. If no value is specified, the value defaults to true.
+	ScanAll *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s MongoDBTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MongoDBTarget) GoString() string {
+	return s.String()
+}
+
+// SetConnectionName sets the ConnectionName field's value.
+func (s *MongoDBTarget) SetConnectionName(v string) *MongoDBTarget {
+	s.ConnectionName = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *MongoDBTarget) SetPath(v string) *MongoDBTarget {
+	s.Path = &v
+	return s
+}
+
+// SetScanAll sets the ScanAll field's value.
+func (s *MongoDBTarget) SetScanAll(v bool) *MongoDBTarget {
+	s.ScanAll = &v
 	return s
 }
 

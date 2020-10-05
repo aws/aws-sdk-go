@@ -819,6 +819,7 @@
       "base": null,
       "refs": {
         "JdbcTarget$ConnectionName": "<p>The name of the connection to use to connect to the JDBC target.</p>",
+        "MongoDBTarget$ConnectionName": "<p>The name of the connection to use to connect to the Amazon DocumentDB or MongoDB target.</p>",
         "S3Target$ConnectionName": "<p>The name of a connection which allows a job or crawler to access data in Amazon S3 within an Amazon Virtual Private Cloud environment (Amazon VPC).</p>"
       }
     },
@@ -2882,6 +2883,18 @@
         "Crawler$CrawlElapsedTime": "<p>If the crawler is running, contains the total time elapsed since the last crawl began.</p>"
       }
     },
+    "MongoDBTarget": {
+      "base": "<p>Specifies an Amazon DocumentDB or MongoDB data store to crawl.</p>",
+      "refs": {
+        "MongoDBTargetList$member": null
+      }
+    },
+    "MongoDBTargetList": {
+      "base": null,
+      "refs": {
+        "CrawlerTargets$MongoDBTargets": "<p>Specifies Amazon DocumentDB or MongoDB targets.</p>"
+      }
+    },
     "NameString": {
       "base": null,
       "refs": {
@@ -3228,6 +3241,7 @@
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
         "GetWorkflowRunsRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
+        "MongoDBTarget$ScanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "UpdateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "UpdateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>"
       }
@@ -3439,6 +3453,7 @@
       "refs": {
         "DynamoDBTarget$Path": "<p>The name of the DynamoDB table to crawl.</p>",
         "JdbcTarget$Path": "<p>The path of the JDBC target.</p>",
+        "MongoDBTarget$Path": "<p>The path of the Amazon DocumentDB or MongoDB target (database/collection).</p>",
         "PathList$member": null,
         "S3Target$Path": "<p>The path to the Amazon S3 target.</p>"
       }
