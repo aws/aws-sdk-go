@@ -2275,7 +2275,8 @@
         "ReplicaStatusPercentProgress":{"shape":"ReplicaStatusPercentProgress"},
         "KMSMasterKeyId":{"shape":"KMSMasterKeyId"},
         "ProvisionedThroughputOverride":{"shape":"ProvisionedThroughputOverride"},
-        "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexDescriptionList"}
+        "GlobalSecondaryIndexes":{"shape":"ReplicaGlobalSecondaryIndexDescriptionList"},
+        "ReplicaInaccessibleDateTime":{"shape":"Date"}
       }
     },
     "ReplicaDescriptionList":{
@@ -2413,7 +2414,8 @@
         "CREATION_FAILED",
         "UPDATING",
         "DELETING",
-        "ACTIVE"
+        "ACTIVE",
+        "REGION_DISABLED"
       ]
     },
     "ReplicaStatusDescription":{"type":"string"},

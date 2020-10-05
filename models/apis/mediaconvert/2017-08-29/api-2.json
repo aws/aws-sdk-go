@@ -1463,7 +1463,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "Av1QvbrSettings": {
@@ -1553,6 +1554,90 @@
           "locationName": "availBlankingImage"
         }
       }
+    },
+    "AvcIntraClass": {
+      "type": "string",
+      "enum": [
+        "CLASS_50",
+        "CLASS_100",
+        "CLASS_200"
+      ]
+    },
+    "AvcIntraFramerateControl": {
+      "type": "string",
+      "enum": [
+        "INITIALIZE_FROM_SOURCE",
+        "SPECIFIED"
+      ]
+    },
+    "AvcIntraFramerateConversionAlgorithm": {
+      "type": "string",
+      "enum": [
+        "DUPLICATE_DROP",
+        "INTERPOLATE",
+        "FRAMEFORMER"
+      ]
+    },
+    "AvcIntraInterlaceMode": {
+      "type": "string",
+      "enum": [
+        "PROGRESSIVE",
+        "TOP_FIELD",
+        "BOTTOM_FIELD",
+        "FOLLOW_TOP_FIELD",
+        "FOLLOW_BOTTOM_FIELD"
+      ]
+    },
+    "AvcIntraSettings": {
+      "type": "structure",
+      "members": {
+        "AvcIntraClass": {
+          "shape": "AvcIntraClass",
+          "locationName": "avcIntraClass"
+        },
+        "FramerateControl": {
+          "shape": "AvcIntraFramerateControl",
+          "locationName": "framerateControl"
+        },
+        "FramerateConversionAlgorithm": {
+          "shape": "AvcIntraFramerateConversionAlgorithm",
+          "locationName": "framerateConversionAlgorithm"
+        },
+        "FramerateDenominator": {
+          "shape": "__integerMin1Max1001",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin24Max60000",
+          "locationName": "framerateNumerator"
+        },
+        "InterlaceMode": {
+          "shape": "AvcIntraInterlaceMode",
+          "locationName": "interlaceMode"
+        },
+        "SlowPal": {
+          "shape": "AvcIntraSlowPal",
+          "locationName": "slowPal"
+        },
+        "Telecine": {
+          "shape": "AvcIntraTelecine",
+          "locationName": "telecine"
+        }
+      }
+    },
+    "AvcIntraSlowPal": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "AvcIntraTelecine": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "HARD"
+      ]
     },
     "BadRequestException": {
       "type": "structure",
@@ -3727,7 +3812,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "H264GopBReference": {
@@ -4088,7 +4174,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "H265GopBReference": {
@@ -4897,6 +4984,10 @@
           "shape": "__listOfInputClipping",
           "locationName": "inputClippings"
         },
+        "InputScanType": {
+          "shape": "InputScanType",
+          "locationName": "inputScanType"
+        },
         "Position": {
           "shape": "Rectangle",
           "locationName": "position"
@@ -5000,6 +5091,13 @@
         "AUTO"
       ]
     },
+    "InputScanType": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "PSF"
+      ]
+    },
     "InputTemplate": {
       "type": "structure",
       "members": {
@@ -5042,6 +5140,10 @@
         "InputClippings": {
           "shape": "__listOfInputClipping",
           "locationName": "inputClippings"
+        },
+        "InputScanType": {
+          "shape": "InputScanType",
+          "locationName": "inputScanType"
         },
         "Position": {
           "shape": "Rectangle",
@@ -5296,6 +5398,10 @@
           "shape": "NielsenConfiguration",
           "locationName": "nielsenConfiguration"
         },
+        "NielsenNonLinearWatermark": {
+          "shape": "NielsenNonLinearWatermarkSettings",
+          "locationName": "nielsenNonLinearWatermark"
+        },
         "OutputGroups": {
           "shape": "__listOfOutputGroup",
           "locationName": "outputGroups"
@@ -5415,6 +5521,10 @@
         "NielsenConfiguration": {
           "shape": "NielsenConfiguration",
           "locationName": "nielsenConfiguration"
+        },
+        "NielsenNonLinearWatermark": {
+          "shape": "NielsenNonLinearWatermarkSettings",
+          "locationName": "nielsenNonLinearWatermark"
         },
         "OutputGroups": {
           "shape": "__listOfOutputGroup",
@@ -6457,7 +6567,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "Mpeg2GopSizeUnits": {
@@ -6756,12 +6867,24 @@
         "COPY_FROM_VIDEO"
       ]
     },
+    "MxfProfile": {
+      "type": "string",
+      "enum": [
+        "D_10",
+        "XDCAM",
+        "OP1A"
+      ]
+    },
     "MxfSettings": {
       "type": "structure",
       "members": {
         "AfdSignaling": {
           "shape": "MxfAfdSignaling",
           "locationName": "afdSignaling"
+        },
+        "Profile": {
+          "shape": "MxfProfile",
+          "locationName": "profile"
         }
       }
     },
@@ -6786,6 +6909,14 @@
         }
       }
     },
+    "NielsenActiveWatermarkProcessType": {
+      "type": "string",
+      "enum": [
+        "NAES2_AND_NW",
+        "CBET",
+        "NAES2_AND_NW_AND_CBET"
+      ]
+    },
     "NielsenConfiguration": {
       "type": "structure",
       "members": {
@@ -6798,6 +6929,69 @@
           "locationName": "distributorId"
         }
       }
+    },
+    "NielsenNonLinearWatermarkSettings": {
+      "type": "structure",
+      "members": {
+        "ActiveWatermarkProcess": {
+          "shape": "NielsenActiveWatermarkProcessType",
+          "locationName": "activeWatermarkProcess"
+        },
+        "AdiFilename": {
+          "shape": "__stringPatternS3",
+          "locationName": "adiFilename"
+        },
+        "AssetId": {
+          "shape": "__stringMin1Max20",
+          "locationName": "assetId"
+        },
+        "AssetName": {
+          "shape": "__stringMin1Max50",
+          "locationName": "assetName"
+        },
+        "CbetSourceId": {
+          "shape": "__stringPattern0xAFaF0908190908",
+          "locationName": "cbetSourceId"
+        },
+        "EpisodeId": {
+          "shape": "__stringMin1Max20",
+          "locationName": "episodeId"
+        },
+        "MetadataDestination": {
+          "shape": "__stringPatternS3",
+          "locationName": "metadataDestination"
+        },
+        "SourceId": {
+          "shape": "__integerMin0Max65534",
+          "locationName": "sourceId"
+        },
+        "SourceWatermarkStatus": {
+          "shape": "NielsenSourceWatermarkStatusType",
+          "locationName": "sourceWatermarkStatus"
+        },
+        "TicServerUrl": {
+          "shape": "__stringPatternHttps",
+          "locationName": "ticServerUrl"
+        },
+        "UniqueTicPerAudioTrack": {
+          "shape": "NielsenUniqueTicPerAudioTrackType",
+          "locationName": "uniqueTicPerAudioTrack"
+        }
+      }
+    },
+    "NielsenSourceWatermarkStatusType": {
+      "type": "string",
+      "enum": [
+        "CLEAN",
+        "WATERMARKED"
+      ]
+    },
+    "NielsenUniqueTicPerAudioTrackType": {
+      "type": "string",
+      "enum": [
+        "RESERVE_UNIQUE_TICS_PER_TRACK",
+        "SAME_TICS_PER_TRACK"
+      ]
     },
     "NoiseFilterPostTemporalSharpening": {
       "type": "string",
@@ -7177,7 +7371,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "ProresInterlaceMode": {
@@ -7974,15 +8169,98 @@
         }
       }
     },
+    "Vc3Class": {
+      "type": "string",
+      "enum": [
+        "CLASS_145_8BIT",
+        "CLASS_220_8BIT",
+        "CLASS_220_10BIT"
+      ]
+    },
+    "Vc3FramerateControl": {
+      "type": "string",
+      "enum": [
+        "INITIALIZE_FROM_SOURCE",
+        "SPECIFIED"
+      ]
+    },
+    "Vc3FramerateConversionAlgorithm": {
+      "type": "string",
+      "enum": [
+        "DUPLICATE_DROP",
+        "INTERPOLATE",
+        "FRAMEFORMER"
+      ]
+    },
+    "Vc3InterlaceMode": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "PROGRESSIVE"
+      ]
+    },
+    "Vc3Settings": {
+      "type": "structure",
+      "members": {
+        "FramerateControl": {
+          "shape": "Vc3FramerateControl",
+          "locationName": "framerateControl"
+        },
+        "FramerateConversionAlgorithm": {
+          "shape": "Vc3FramerateConversionAlgorithm",
+          "locationName": "framerateConversionAlgorithm"
+        },
+        "FramerateDenominator": {
+          "shape": "__integerMin1Max1001",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin24Max60000",
+          "locationName": "framerateNumerator"
+        },
+        "InterlaceMode": {
+          "shape": "Vc3InterlaceMode",
+          "locationName": "interlaceMode"
+        },
+        "SlowPal": {
+          "shape": "Vc3SlowPal",
+          "locationName": "slowPal"
+        },
+        "Telecine": {
+          "shape": "Vc3Telecine",
+          "locationName": "telecine"
+        },
+        "Vc3Class": {
+          "shape": "Vc3Class",
+          "locationName": "vc3Class"
+        }
+      }
+    },
+    "Vc3SlowPal": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "Vc3Telecine": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "HARD"
+      ]
+    },
     "VideoCodec": {
       "type": "string",
       "enum": [
-        "FRAME_CAPTURE",
         "AV1",
+        "AVC_INTRA",
+        "FRAME_CAPTURE",
         "H_264",
         "H_265",
         "MPEG2",
         "PRORES",
+        "VC3",
         "VP8",
         "VP9"
       ]
@@ -7993,6 +8271,10 @@
         "Av1Settings": {
           "shape": "Av1Settings",
           "locationName": "av1Settings"
+        },
+        "AvcIntraSettings": {
+          "shape": "AvcIntraSettings",
+          "locationName": "avcIntraSettings"
         },
         "Codec": {
           "shape": "VideoCodec",
@@ -8017,6 +8299,10 @@
         "ProresSettings": {
           "shape": "ProresSettings",
           "locationName": "proresSettings"
+        },
+        "Vc3Settings": {
+          "shape": "Vc3Settings",
+          "locationName": "vc3Settings"
         },
         "Vp8Settings": {
           "shape": "Vp8Settings",
@@ -8207,7 +8493,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "Vp8ParControl": {
@@ -8298,7 +8585,8 @@
       "type": "string",
       "enum": [
         "DUPLICATE_DROP",
-        "INTERPOLATE"
+        "INTERPOLATE",
+        "FRAMEFORMER"
       ]
     },
     "Vp9ParControl": {
@@ -8555,6 +8843,11 @@
       "type": "integer",
       "min": 0,
       "max": 50000
+    },
+    "__integerMin0Max65534": {
+      "type": "integer",
+      "min": 0,
+      "max": 65534
     },
     "__integerMin0Max65535": {
       "type": "integer",
@@ -9151,10 +9444,20 @@
       "min": 1,
       "max": 100000
     },
+    "__stringMin1Max20": {
+      "type": "string",
+      "min": 1,
+      "max": 20
+    },
     "__stringMin1Max256": {
       "type": "string",
       "min": 1,
       "max": 256
+    },
+    "__stringMin1Max50": {
+      "type": "string",
+      "min": 1,
+      "max": 50
     },
     "__stringMin24Max512PatternAZaZ0902": {
       "type": "string",
@@ -9211,6 +9514,10 @@
     "__stringPattern09aFAF809aFAF409aFAF409aFAF409aFAF12": {
       "type": "string",
       "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "__stringPattern0xAFaF0908190908": {
+      "type": "string",
+      "pattern": "(^0x[A-Fa-f0-9]{0,8}$|^[1-9][0-9]{0,8}$)"
     },
     "__stringPatternAZaZ0902": {
       "type": "string",
