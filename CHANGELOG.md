@@ -1,3 +1,14 @@
+Release v1.35.4 (2020-10-06)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Added new S3 endpoint settings to allow partitioning CDC data by date for S3 as target. Exposed some Extra Connection Attributes as endpoint settings for relational databases as target.
+* `service/ec2`: Updates service API and documentation
+  * This release supports returning additional information about local gateway virtual interfaces, and virtual interface groups.
+* `service/kinesisanalyticsv2`: Updates service API and documentation
+* `service/marketplace-catalog`: Updates service API and documentation
+
 Release v1.35.3 (2020-10-05)
 ===
 

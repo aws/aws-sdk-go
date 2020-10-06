@@ -20574,6 +20574,10 @@
           "shape":"Integer",
           "locationName":"peerBgpAsn"
         },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -20594,6 +20598,10 @@
         "LocalGatewayId":{
           "shape":"String",
           "locationName":"localGatewayId"
+        },
+        "OwnerId":{
+          "shape":"String",
+          "locationName":"ownerId"
         },
         "Tags":{
           "shape":"TagList",
