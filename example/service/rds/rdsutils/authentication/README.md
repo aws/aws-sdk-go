@@ -6,7 +6,7 @@ rdsutils package.
 # Usage
 
 ```sh
-go run -tags example iam_authetnication.go <region> <db user> <db name> <endpoint to database> <iam arn>
+go run -tags example iam_authentication.go <region> <db user> <db name> <endpoint to database> <iam arn>
 ```
 
 Output:

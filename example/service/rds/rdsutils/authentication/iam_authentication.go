@@ -4,17 +4,22 @@ package main
 
 import (
 	"database/sql"
+	"database/sql/driver"
 	"fmt"
 	"log"
 	"os"
-
-	"github.com/go-sql-driver/mysql"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/rds/rdsutils"
 )
+
+type stubDriver struct{}
+
+func (sd stubDriver) Open(name string) (driver.Conn, error) {
+	return nil, nil
+}
 
 // Usage ./iam_authentication <region> <db user> <db name> <endpoint to database> <iam arn>
 func main() {
@@ -36,10 +41,10 @@ func main() {
 		dbUser, authToken, dbEndpoint, dbName,
 	)
 
-	driver := mysql.MySQLDriver{}
-	_ = driver
+	const driverName = "stubSql"
+	sql.Register(driverName, &stubDriver{})
 	// Use db to perform SQL operations on database
-	if _, err = sql.Open("mysql", dnsStr); err != nil {
+	if _, err = sql.Open(driverName, dnsStr); err != nil {
 		panic(err)
 	}
 
