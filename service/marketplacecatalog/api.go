@@ -953,6 +953,12 @@ type ChangeSetSummaryListItem struct {
 	// one entity.
 	EntityIdList []*string `type:"list"`
 
+	// Returned if the change set is in FAILED status. Can be either CLIENT_ERROR,
+	// which means that there are issues with the request (see the ErrorDetailList
+	// of DescribeChangeSet), or SERVER_FAULT, which means that there is a problem
+	// in the system, and you should retry your request.
+	FailureCode *string `type:"string" enum:"FailureCode"`
+
 	// The time, in ISO 8601 format (2018-02-27T13:45:22Z), when the change set
 	// was started.
 	StartTime *string `min:"20" type:"string"`
@@ -998,6 +1004,12 @@ func (s *ChangeSetSummaryListItem) SetEndTime(v string) *ChangeSetSummaryListIte
 // SetEntityIdList sets the EntityIdList field's value.
 func (s *ChangeSetSummaryListItem) SetEntityIdList(v []*string) *ChangeSetSummaryListItem {
 	s.EntityIdList = v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *ChangeSetSummaryListItem) SetFailureCode(v string) *ChangeSetSummaryListItem {
+	s.FailureCode = &v
 	return s
 }
 
@@ -1147,6 +1159,12 @@ type DescribeChangeSetOutput struct {
 	// state. Null if the request is not in a terminal state.
 	EndTime *string `min:"20" type:"string"`
 
+	// Returned if the change set is in FAILED status. Can be either CLIENT_ERROR,
+	// which means that there are issues with the request (see the ErrorDetailList),
+	// or SERVER_FAULT, which means that there is a problem in the system, and you
+	// should retry your request.
+	FailureCode *string `type:"string" enum:"FailureCode"`
+
 	// Returned if there is a failure on the change set, but that failure is not
 	// related to any of the changes in the request.
 	FailureDescription *string `type:"string"`
@@ -1196,6 +1214,12 @@ func (s *DescribeChangeSetOutput) SetChangeSetName(v string) *DescribeChangeSetO
 // SetEndTime sets the EndTime field's value.
 func (s *DescribeChangeSetOutput) SetEndTime(v string) *DescribeChangeSetOutput {
 	s.EndTime = &v
+	return s
+}
+
+// SetFailureCode sets the FailureCode field's value.
+func (s *DescribeChangeSetOutput) SetFailureCode(v string) *DescribeChangeSetOutput {
+	s.FailureCode = &v
 	return s
 }
 
@@ -2451,6 +2475,22 @@ func ChangeStatus_Values() []string {
 		ChangeStatusSucceeded,
 		ChangeStatusCancelled,
 		ChangeStatusFailed,
+	}
+}
+
+const (
+	// FailureCodeClientError is a FailureCode enum value
+	FailureCodeClientError = "CLIENT_ERROR"
+
+	// FailureCodeServerFault is a FailureCode enum value
+	FailureCodeServerFault = "SERVER_FAULT"
+)
+
+// FailureCode_Values returns all elements of the FailureCode enum
+func FailureCode_Values() []string {
+	return []string{
+		FailureCodeClientError,
+		FailureCodeServerFault,
 	}
 }
 

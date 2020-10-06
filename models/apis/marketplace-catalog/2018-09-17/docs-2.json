@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace.</p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
+  "service": "<p>Catalog API actions allow you to manage your entities through list, describe, and update capabilities. An entity can be a product or an offer on AWS Marketplace. </p> <p>You can automate your entity update process by integrating the AWS Marketplace Catalog API with your AWS Marketplace product build or deployment pipelines. You can also create your own applications on top of the Catalog API to manage your products on AWS Marketplace.</p>",
   "operations": {
     "CancelChangeSet": "<p>Used to cancel an open change request. Must be sent before the status of the request changes to <code>APPLYING</code>, the final stage of completing your change request. You can describe a change during the 60-day request history retention period for API calls.</p>",
     "DescribeChangeSet": "<p>Provides information about a given change set.</p>",
@@ -172,6 +172,13 @@
       "base": null,
       "refs": {
         "ChangeSummary$ErrorDetailList": "<p>An array of <code>ErrorDetail</code> objects associated with the change.</p>"
+      }
+    },
+    "FailureCode": {
+      "base": null,
+      "refs": {
+        "ChangeSetSummaryListItem$FailureCode": "<p>Returned if the change set is in <code>FAILED</code> status. Can be either <code>CLIENT_ERROR</code>, which means that there are issues with the request (see the <code>ErrorDetailList</code> of <code>DescribeChangeSet</code>), or <code>SERVER_FAULT</code>, which means that there is a problem in the system, and you should retry your request.</p>",
+        "DescribeChangeSetResponse$FailureCode": "<p>Returned if the change set is in <code>FAILED</code> status. Can be either <code>CLIENT_ERROR</code>, which means that there are issues with the request (see the <code>ErrorDetailList</code>), or <code>SERVER_FAULT</code>, which means that there is a problem in the system, and you should retry your request.</p>"
       }
     },
     "Filter": {

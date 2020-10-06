@@ -63,7 +63,7 @@ const (
 	// "ResourceProvisionedThroughputExceededException".
 	//
 	// Discovery failed to get a record from the streaming source because of the
-	// Amazon Kinesis Streams ProvisionedThroughputExceededException. For more information,
+	// Kinesis Streams ProvisionedThroughputExceededException. For more information,
 	// see GetRecords (http://docs.aws.amazon.com/kinesis/latest/APIReference/API_GetRecords.html)
 	// in the Amazon Kinesis Streams API Reference.
 	ErrCodeResourceProvisionedThroughputExceededException = "ResourceProvisionedThroughputExceededException"
@@ -85,8 +85,8 @@ const (
 	// ErrCodeUnableToDetectSchemaException for service response error code
 	// "UnableToDetectSchemaException".
 	//
-	// The data format is not valid. Amazon Kinesis Data Analytics cannot detect
-	// the schema for the given streaming source.
+	// The data format is not valid. Kinesis Data Analytics cannot detect the schema
+	// for the given streaming source.
 	ErrCodeUnableToDetectSchemaException = "UnableToDetectSchemaException"
 
 	// ErrCodeUnsupportedOperationException for service response error code

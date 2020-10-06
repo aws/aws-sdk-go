@@ -197,7 +197,8 @@
         "StartTime":{"shape":"DateTimeISO8601"},
         "EndTime":{"shape":"DateTimeISO8601"},
         "Status":{"shape":"ChangeStatus"},
-        "EntityIdList":{"shape":"ResourceIdList"}
+        "EntityIdList":{"shape":"ResourceIdList"},
+        "FailureCode":{"shape":"FailureCode"}
       }
     },
     "ChangeStatus":{
@@ -265,6 +266,7 @@
         "StartTime":{"shape":"DateTimeISO8601"},
         "EndTime":{"shape":"DateTimeISO8601"},
         "Status":{"shape":"ChangeStatus"},
+        "FailureCode":{"shape":"FailureCode"},
         "FailureDescription":{"shape":"StringValue"},
         "ChangeSet":{"shape":"ChangeSetDescription"}
       }
@@ -337,6 +339,13 @@
     "ErrorDetailList":{
       "type":"list",
       "member":{"shape":"ErrorDetail"}
+    },
+    "FailureCode":{
+      "type":"string",
+      "enum":[
+        "CLIENT_ERROR",
+        "SERVER_FAULT"
+      ]
     },
     "Filter":{
       "type":"structure",

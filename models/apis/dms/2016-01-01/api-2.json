@@ -851,6 +851,14 @@
       "member":{"shape":"Certificate"}
     },
     "CertificateWallet":{"type":"blob"},
+    "CharLengthSemantics":{
+      "type":"string",
+      "enum":[
+        "default",
+        "char",
+        "byte"
+      ]
+    },
     "CompressionTypeValue":{
       "type":"string",
       "enum":[
@@ -1026,6 +1034,25 @@
       "enum":[
         "csv",
         "parquet"
+      ]
+    },
+    "DatePartitionDelimiterValue":{
+      "type":"string",
+      "enum":[
+        "SLASH",
+        "UNDERSCORE",
+        "DASH",
+        "NONE"
+      ]
+    },
+    "DatePartitionSequenceValue":{
+      "type":"string",
+      "enum":[
+        "YYYYMMDD",
+        "YYYYMMDDHH",
+        "YYYYMM",
+        "MMYYYYDD",
+        "DDMMYYYY"
       ]
     },
     "DeleteCertificateMessage":{
@@ -1632,6 +1659,9 @@
         "Password":{"shape":"SecretString"},
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
+        "SetDataCaptureChanges":{"shape":"BooleanOptional"},
+        "CurrentLsn":{"shape":"String"},
+        "MaxKBytesPerRead":{"shape":"IntegerOptional"},
         "Username":{"shape":"String"}
       }
     },
@@ -1796,10 +1826,15 @@
       "type":"structure",
       "members":{
         "Port":{"shape":"IntegerOptional"},
+        "BcpPacketSize":{"shape":"IntegerOptional"},
         "DatabaseName":{"shape":"String"},
+        "ControlTablesFileGroup":{"shape":"String"},
         "Password":{"shape":"SecretString"},
+        "ReadBackupOnly":{"shape":"BooleanOptional"},
+        "SafeguardPolicy":{"shape":"SafeguardPolicy"},
         "ServerName":{"shape":"String"},
-        "Username":{"shape":"String"}
+        "Username":{"shape":"String"},
+        "UseBcpFullLoad":{"shape":"BooleanOptional"}
       }
     },
     "MigrationTypeValue":{
@@ -1950,10 +1985,16 @@
     "MySQLSettings":{
       "type":"structure",
       "members":{
+        "AfterConnectScript":{"shape":"String"},
         "DatabaseName":{"shape":"String"},
+        "EventsPollInterval":{"shape":"IntegerOptional"},
+        "TargetDbType":{"shape":"TargetDbType"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
+        "ParallelLoadThreads":{"shape":"IntegerOptional"},
         "Password":{"shape":"SecretString"},
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
+        "ServerTimezone":{"shape":"String"},
         "Username":{"shape":"String"}
       }
     },
@@ -1983,12 +2024,32 @@
     "OracleSettings":{
       "type":"structure",
       "members":{
+        "AddSupplementalLogging":{"shape":"BooleanOptional"},
+        "ArchivedLogDestId":{"shape":"IntegerOptional"},
+        "AdditionalArchivedLogDestId":{"shape":"IntegerOptional"},
+        "AllowSelectNestedTables":{"shape":"BooleanOptional"},
+        "ParallelAsmReadThreads":{"shape":"IntegerOptional"},
+        "ReadAheadBlocks":{"shape":"IntegerOptional"},
+        "AccessAlternateDirectly":{"shape":"BooleanOptional"},
+        "UseAlternateFolderForOnline":{"shape":"BooleanOptional"},
+        "OraclePathPrefix":{"shape":"String"},
+        "UsePathPrefix":{"shape":"String"},
+        "ReplacePathPrefix":{"shape":"BooleanOptional"},
+        "EnableHomogenousTablespace":{"shape":"BooleanOptional"},
+        "DirectPathNoLog":{"shape":"BooleanOptional"},
+        "ArchivedLogsOnly":{"shape":"BooleanOptional"},
         "AsmPassword":{"shape":"SecretString"},
         "AsmServer":{"shape":"String"},
         "AsmUser":{"shape":"String"},
+        "CharLengthSemantics":{"shape":"CharLengthSemantics"},
         "DatabaseName":{"shape":"String"},
+        "DirectPathParallelLoad":{"shape":"BooleanOptional"},
+        "FailTasksOnLobTruncation":{"shape":"BooleanOptional"},
+        "NumberDatatypeScale":{"shape":"IntegerOptional"},
         "Password":{"shape":"SecretString"},
         "Port":{"shape":"IntegerOptional"},
+        "ReadTableSpaceName":{"shape":"BooleanOptional"},
+        "RetryInterval":{"shape":"IntegerOptional"},
         "SecurityDbEncryption":{"shape":"SecretString"},
         "SecurityDbEncryptionName":{"shape":"String"},
         "ServerName":{"shape":"String"},
@@ -2042,11 +2103,18 @@
     "PostgreSQLSettings":{
       "type":"structure",
       "members":{
+        "AfterConnectScript":{"shape":"String"},
+        "CaptureDdls":{"shape":"BooleanOptional"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
         "DatabaseName":{"shape":"String"},
+        "DdlArtifactsSchema":{"shape":"String"},
+        "ExecuteTimeout":{"shape":"IntegerOptional"},
+        "FailTasksOnLobTruncation":{"shape":"BooleanOptional"},
         "Password":{"shape":"SecretString"},
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
-        "Username":{"shape":"String"}
+        "Username":{"shape":"String"},
+        "SlotName":{"shape":"String"}
       }
     },
     "RebootReplicationInstanceMessage":{
@@ -2436,7 +2504,10 @@
         "CdcInsertsOnly":{"shape":"BooleanOptional"},
         "TimestampColumnName":{"shape":"String"},
         "ParquetTimestampInMillisecond":{"shape":"BooleanOptional"},
-        "CdcInsertsAndUpdates":{"shape":"BooleanOptional"}
+        "CdcInsertsAndUpdates":{"shape":"BooleanOptional"},
+        "DatePartitionEnabled":{"shape":"BooleanOptional"},
+        "DatePartitionSequence":{"shape":"DatePartitionSequenceValue"},
+        "DatePartitionDelimiter":{"shape":"DatePartitionDelimiterValue"}
       }
     },
     "SNSInvalidTopicFault":{
@@ -2452,6 +2523,14 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "SafeguardPolicy":{
+      "type":"string",
+      "enum":[
+        "rely-on-sql-server-replication-agent",
+        "exclusive-automatic-truncation",
+        "shared-automatic-truncation"
+      ]
     },
     "SchemaList":{
       "type":"list",
@@ -2658,6 +2737,13 @@
     "TagList":{
       "type":"list",
       "member":{"shape":"Tag"}
+    },
+    "TargetDbType":{
+      "type":"string",
+      "enum":[
+        "specific-database",
+        "multiple-databases"
+      ]
     },
     "TestConnectionMessage":{
       "type":"structure",
