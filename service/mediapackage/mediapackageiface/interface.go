@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Elemental MediaPackage.
 //    func myFunc(svc mediapackageiface.MediaPackageAPI) bool {
-//        // Make svc.CreateChannel request
+//        // Make svc.ConfigureLogs request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockMediaPackageClient struct {
 //        mediapackageiface.MediaPackageAPI
 //    }
-//    func (m *mockMediaPackageClient) CreateChannel(input *mediapackage.CreateChannelInput) (*mediapackage.CreateChannelOutput, error) {
+//    func (m *mockMediaPackageClient) ConfigureLogs(input *mediapackage.ConfigureLogsInput) (*mediapackage.ConfigureLogsOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaPackageAPI interface {
+	ConfigureLogs(*mediapackage.ConfigureLogsInput) (*mediapackage.ConfigureLogsOutput, error)
+	ConfigureLogsWithContext(aws.Context, *mediapackage.ConfigureLogsInput, ...request.Option) (*mediapackage.ConfigureLogsOutput, error)
+	ConfigureLogsRequest(*mediapackage.ConfigureLogsInput) (*request.Request, *mediapackage.ConfigureLogsOutput)
+
 	CreateChannel(*mediapackage.CreateChannelInput) (*mediapackage.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *mediapackage.CreateChannelInput, ...request.Option) (*mediapackage.CreateChannelOutput, error)
 	CreateChannelRequest(*mediapackage.CreateChannelInput) (*request.Request, *mediapackage.CreateChannelOutput)

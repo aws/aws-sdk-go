@@ -863,6 +863,15 @@
       "type":"list",
       "member":{"shape":"DimensionValuesWithAttributes"}
     },
+    "EBSResourceUtilization":{
+      "type":"structure",
+      "members":{
+        "EbsReadOpsPerSecond":{"shape":"GenericString"},
+        "EbsWriteOpsPerSecond":{"shape":"GenericString"},
+        "EbsReadBytesPerSecond":{"shape":"GenericString"},
+        "EbsWriteBytesPerSecond":{"shape":"GenericString"}
+      }
+    },
     "EC2InstanceDetails":{
       "type":"structure",
       "members":{
@@ -895,7 +904,8 @@
       "members":{
         "MaxCpuUtilizationPercentage":{"shape":"GenericString"},
         "MaxMemoryUtilizationPercentage":{"shape":"GenericString"},
-        "MaxStorageUtilizationPercentage":{"shape":"GenericString"}
+        "MaxStorageUtilizationPercentage":{"shape":"GenericString"},
+        "EBSResourceUtilization":{"shape":"EBSResourceUtilization"}
       }
     },
     "EC2Specification":{

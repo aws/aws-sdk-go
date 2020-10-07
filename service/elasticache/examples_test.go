@@ -381,6 +381,8 @@ func ExampleElastiCache_CreateCacheSubnetGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeCacheSubnetQuotaExceededFault, aerr.Error())
 			case elasticache.ErrCodeInvalidSubnet:
 				fmt.Println(elasticache.ErrCodeInvalidSubnet, aerr.Error())
+			case elasticache.ErrCodeSubnetNotAllowedFault:
+				fmt.Println(elasticache.ErrCodeSubnetNotAllowedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -421,6 +423,10 @@ func ExampleElastiCache_CreateReplicationGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeInvalidCacheClusterStateFault, aerr.Error())
 			case elasticache.ErrCodeReplicationGroupAlreadyExistsFault:
 				fmt.Println(elasticache.ErrCodeReplicationGroupAlreadyExistsFault, aerr.Error())
+			case elasticache.ErrCodeInvalidUserGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidUserGroupStateFault, aerr.Error())
+			case elasticache.ErrCodeUserGroupNotFoundFault:
+				fmt.Println(elasticache.ErrCodeUserGroupNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeInsufficientCacheClusterCapacityFault:
 				fmt.Println(elasticache.ErrCodeInsufficientCacheClusterCapacityFault, aerr.Error())
 			case elasticache.ErrCodeCacheSecurityGroupNotFoundFault:
@@ -510,6 +516,10 @@ func ExampleElastiCache_CreateReplicationGroup_shared01() {
 				fmt.Println(elasticache.ErrCodeInvalidCacheClusterStateFault, aerr.Error())
 			case elasticache.ErrCodeReplicationGroupAlreadyExistsFault:
 				fmt.Println(elasticache.ErrCodeReplicationGroupAlreadyExistsFault, aerr.Error())
+			case elasticache.ErrCodeInvalidUserGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidUserGroupStateFault, aerr.Error())
+			case elasticache.ErrCodeUserGroupNotFoundFault:
+				fmt.Println(elasticache.ErrCodeUserGroupNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeInsufficientCacheClusterCapacityFault:
 				fmt.Println(elasticache.ErrCodeInsufficientCacheClusterCapacityFault, aerr.Error())
 			case elasticache.ErrCodeCacheSecurityGroupNotFoundFault:
@@ -1701,6 +1711,8 @@ func ExampleElastiCache_ModifyCacheSubnetGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeSubnetInUse, aerr.Error())
 			case elasticache.ErrCodeInvalidSubnet:
 				fmt.Println(elasticache.ErrCodeInvalidSubnet, aerr.Error())
+			case elasticache.ErrCodeSubnetNotAllowedFault:
+				fmt.Println(elasticache.ErrCodeSubnetNotAllowedFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -1736,6 +1748,10 @@ func ExampleElastiCache_ModifyReplicationGroup_shared00() {
 				fmt.Println(elasticache.ErrCodeReplicationGroupNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeInvalidReplicationGroupStateFault:
 				fmt.Println(elasticache.ErrCodeInvalidReplicationGroupStateFault, aerr.Error())
+			case elasticache.ErrCodeInvalidUserGroupStateFault:
+				fmt.Println(elasticache.ErrCodeInvalidUserGroupStateFault, aerr.Error())
+			case elasticache.ErrCodeUserGroupNotFoundFault:
+				fmt.Println(elasticache.ErrCodeUserGroupNotFoundFault, aerr.Error())
 			case elasticache.ErrCodeInvalidCacheClusterStateFault:
 				fmt.Println(elasticache.ErrCodeInvalidCacheClusterStateFault, aerr.Error())
 			case elasticache.ErrCodeInvalidCacheSecurityGroupStateFault:

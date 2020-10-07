@@ -5,9 +5,9 @@
     "DescribeRecommendationExportJobs": "<p>Describes recommendation export jobs created in the last seven days.</p> <p>Use the <code>ExportAutoScalingGroupRecommendations</code> or <code>ExportEC2InstanceRecommendations</code> actions to request an export of your recommendations. Then use the <code>DescribeRecommendationExportJobs</code> action to view your export jobs.</p>",
     "ExportAutoScalingGroupRecommendations": "<p>Exports optimization recommendations for Auto Scaling groups.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Auto Scaling group export job in progress per AWS Region.</p>",
     "ExportEC2InstanceRecommendations": "<p>Exports optimization recommendations for Amazon EC2 instances.</p> <p>Recommendations are exported in a comma-separated values (.csv) file, and its metadata in a JavaScript Object Notation (.json) file, to an existing Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html\">Exporting Recommendations</a> in the <i>Compute Optimizer User Guide</i>.</p> <p>You can have only one Amazon EC2 instance export job in progress per AWS Region.</p>",
-    "GetAutoScalingGroupRecommendations": "<p>Returns Auto Scaling group recommendations.</p> <p>AWS Compute Optimizer currently generates recommendations for Auto Scaling groups that are configured to run instances of the M, C, R, T, and X instance families. The service does not generate recommendations for Auto Scaling groups that have a scaling policy attached to them, or that do not have the same values for desired, minimum, and maximum capacity. In order for Compute Optimizer to analyze your Auto Scaling groups, they must be of a fixed size. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is.html\">AWS Compute Optimizer User Guide</a>.</p>",
-    "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>AWS Compute Optimizer currently generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) and Amazon EC2 Auto Scaling. It generates recommendations for M, C, R, T, and X instance families. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is.html\">AWS Compute Optimizer User Guide</a>.</p>",
-    "GetEC2RecommendationProjectedMetrics": "<p>Returns the projected utilization metrics of Amazon EC2 instance recommendations.</p>",
+    "GetAutoScalingGroupRecommendations": "<p>Returns Auto Scaling group recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
+    "GetEC2InstanceRecommendations": "<p>Returns Amazon EC2 instance recommendations.</p> <p>AWS Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud (Amazon EC2) instances that meet a specific set of requirements. For more information, see the <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html\">Supported resources and requirements</a> in the <i>AWS Compute Optimizer User Guide</i>.</p>",
+    "GetEC2RecommendationProjectedMetrics": "<p>Returns the projected utilization metrics of Amazon EC2 instance recommendations.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run this action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
     "GetEnrollmentStatus": "<p>Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is the master account of an organization, this action also confirms the enrollment status of member accounts within the organization.</p>",
     "GetRecommendationSummaries": "<p>Returns the optimization findings for an account.</p> <p>For example, it returns the number of Amazon EC2 instances in an account that are under-provisioned, over-provisioned, or optimized. It also returns the number of Auto Scaling groups in an account that are not optimized, or optimized.</p>",
     "UpdateEnrollmentStatus": "<p>Updates the enrollment (opt in) status of an account to the AWS Compute Optimizer service.</p> <p>If the account is a master account of an organization, this action can also be used to enroll member accounts within the organization.</p>"
@@ -189,7 +189,7 @@
     "ExportableAutoScalingGroupFields": {
       "base": null,
       "refs": {
-        "ExportAutoScalingGroupRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file.</p>"
+        "ExportAutoScalingGroupRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
     "ExportableInstanceField": {
@@ -201,7 +201,7 @@
     "ExportableInstanceFields": {
       "base": null,
       "refs": {
-        "ExportEC2InstanceRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file.</p>"
+        "ExportEC2InstanceRecommendationsRequest$fieldsToExport": "<p>The recommendations data to include in the export file. For more information about the fields that can be exported, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files\">Exported files</a> in the <i>Compute Optimizer User Guide</i>.</p>"
       }
     },
     "FailureReason": {
@@ -491,8 +491,8 @@
     "MetricName": {
       "base": null,
       "refs": {
-        "ProjectedMetric$name": "<p>The name of the projected utilization metric.</p> <note> <p>Memory metrics are only returned for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
-        "UtilizationMetric$name": "<p>The name of the utilization metric.</p> <note> <p>Memory metrics are only returned for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>"
+        "ProjectedMetric$name": "<p>The name of the projected utilization metric.</p>",
+        "UtilizationMetric$name": "<p>The name of the utilization metric.</p> <note> <p>The <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>"
       }
     },
     "MetricStatistic": {
@@ -558,7 +558,7 @@
       }
     },
     "ProjectedMetric": {
-      "base": "<p>Describes a projected utilization metric of a recommendation option, such as an Amazon EC2 instance.</p>",
+      "base": "<p>Describes a projected utilization metric of a recommendation option, such as an Amazon EC2 instance.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run the <code>GetEC2RecommendationProjectedMetrics</code> action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
       "refs": {
         "ProjectedMetrics$member": null
       }
@@ -572,8 +572,8 @@
     "ProjectedUtilizationMetrics": {
       "base": null,
       "refs": {
-        "AutoScalingGroupRecommendationOption$projectedUtilizationMetrics": "<p>An array of objects that describe the projected utilization metrics of the Auto Scaling group recommendation option.</p>",
-        "InstanceRecommendationOption$projectedUtilizationMetrics": "<p>An array of objects that describe the projected utilization metrics of the instance recommendation option.</p>"
+        "AutoScalingGroupRecommendationOption$projectedUtilizationMetrics": "<p>An array of objects that describe the projected utilization metrics of the Auto Scaling group recommendation option.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
+        "InstanceRecommendationOption$projectedUtilizationMetrics": "<p>An array of objects that describe the projected utilization metrics of the instance recommendation option.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>"
       }
     },
     "Rank": {
@@ -646,7 +646,7 @@
       }
     },
     "RecommendedOptionProjectedMetric": {
-      "base": "<p>Describes a projected utilization metric of a recommendation option.</p>",
+      "base": "<p>Describes a projected utilization metric of a recommendation option.</p> <note> <p>The <code>Cpu</code> and <code>Memory</code> metrics are the only projected utilization metrics returned when you run the <code>GetEC2RecommendationProjectedMetrics</code> action. Additionally, the <code>Memory</code> metric is returned only for resources that have the unified CloudWatch agent installed on them. For more information, see <a href=\"https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent\">Enabling Memory Utilization with the CloudWatch Agent</a>.</p> </note>",
       "refs": {
         "RecommendedOptionProjectedMetrics$member": null
       }

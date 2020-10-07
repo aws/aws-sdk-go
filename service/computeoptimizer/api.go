@@ -382,13 +382,10 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 //
 // Returns Auto Scaling group recommendations.
 //
-// AWS Compute Optimizer currently generates recommendations for Auto Scaling
-// groups that are configured to run instances of the M, C, R, T, and X instance
-// families. The service does not generate recommendations for Auto Scaling
-// groups that have a scaling policy attached to them, or that do not have the
-// same values for desired, minimum, and maximum capacity. In order for Compute
-// Optimizer to analyze your Auto Scaling groups, they must be of a fixed size.
-// For more information, see the AWS Compute Optimizer User Guide (https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is.html).
+// AWS Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling
+// groups that meet a specific set of requirements. For more information, see
+// the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the AWS Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -491,10 +488,10 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 //
 // Returns Amazon EC2 instance recommendations.
 //
-// AWS Compute Optimizer currently generates recommendations for Amazon Elastic
-// Compute Cloud (Amazon EC2) and Amazon EC2 Auto Scaling. It generates recommendations
-// for M, C, R, T, and X instance families. For more information, see the AWS
-// Compute Optimizer User Guide (https://docs.aws.amazon.com/compute-optimizer/latest/ug/what-is.html).
+// AWS Compute Optimizer generates recommendations for Amazon Elastic Compute
+// Cloud (Amazon EC2) instances that meet a specific set of requirements. For
+// more information, see the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the AWS Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -596,6 +593,12 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsRequest(input *Ge
 // GetEC2RecommendationProjectedMetrics API operation for AWS Compute Optimizer.
 //
 // Returns the projected utilization metrics of Amazon EC2 instance recommendations.
+//
+// The Cpu and Memory metrics are the only projected utilization metrics returned
+// when you run this action. Additionally, the Memory metric is returned only
+// for resources that have the unified CloudWatch agent installed on them. For
+// more information, see Enabling Memory Utilization with the CloudWatch Agent
+// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1190,6 +1193,11 @@ type AutoScalingGroupRecommendationOption struct {
 
 	// An array of objects that describe the projected utilization metrics of the
 	// Auto Scaling group recommendation option.
+	//
+	// The Cpu and Memory metrics are the only projected utilization metrics returned.
+	// Additionally, the Memory metric is returned only for resources that have
+	// the unified CloudWatch agent installed on them. For more information, see
+	// Enabling Memory Utilization with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 	ProjectedUtilizationMetrics []*UtilizationMetric `locationName:"projectedUtilizationMetrics" type:"list"`
 
 	// The rank of the Auto Scaling group recommendation option.
@@ -1343,7 +1351,9 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	// You can specify multiple account IDs per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
-	// The recommendations data to include in the export file.
+	// The recommendations data to include in the export file. For more information
+	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
+	// in the Compute Optimizer User Guide.
 	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
 
 	// The format of the export file.
@@ -1526,7 +1536,9 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// You can specify multiple account IDs per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
-	// The recommendations data to include in the export file.
+	// The recommendations data to include in the export file. For more information
+	// about the fields that can be exported, see Exported files (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html#exported-files)
+	// in the Compute Optimizer User Guide.
 	FieldsToExport []*string `locationName:"fieldsToExport" type:"list"`
 
 	// The format of the export file.
@@ -2398,6 +2410,11 @@ type InstanceRecommendationOption struct {
 
 	// An array of objects that describe the projected utilization metrics of the
 	// instance recommendation option.
+	//
+	// The Cpu and Memory metrics are the only projected utilization metrics returned.
+	// Additionally, the Memory metric is returned only for resources that have
+	// the unified CloudWatch agent installed on them. For more information, see
+	// Enabling Memory Utilization with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 	ProjectedUtilizationMetrics []*UtilizationMetric `locationName:"projectedUtilizationMetrics" type:"list"`
 
 	// The rank of the instance recommendation option.
@@ -2770,14 +2787,16 @@ func (s *OptInRequiredException) RequestID() string {
 
 // Describes a projected utilization metric of a recommendation option, such
 // as an Amazon EC2 instance.
+//
+// The Cpu and Memory metrics are the only projected utilization metrics returned
+// when you run the GetEC2RecommendationProjectedMetrics action. Additionally,
+// the Memory metric is returned only for resources that have the unified CloudWatch
+// agent installed on them. For more information, see Enabling Memory Utilization
+// with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 type ProjectedMetric struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the projected utilization metric.
-	//
-	// Memory metrics are only returned for resources that have the unified CloudWatch
-	// agent installed on them. For more information, see Enabling Memory Utilization
-	// with the CloudWatch Agent (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html).
 	Name *string `locationName:"name" type:"string" enum:"MetricName"`
 
 	// The time stamps of the projected utilization metric.
@@ -2976,6 +2995,12 @@ func (s *RecommendationSummary) SetSummaries(v []*Summary) *RecommendationSummar
 }
 
 // Describes a projected utilization metric of a recommendation option.
+//
+// The Cpu and Memory metrics are the only projected utilization metrics returned
+// when you run the GetEC2RecommendationProjectedMetrics action. Additionally,
+// the Memory metric is returned only for resources that have the unified CloudWatch
+// agent installed on them. For more information, see Enabling Memory Utilization
+// with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 type RecommendedOptionProjectedMetric struct {
 	_ struct{} `type:"structure"`
 
@@ -3408,9 +3433,9 @@ type UtilizationMetric struct {
 
 	// The name of the utilization metric.
 	//
-	// Memory metrics are only returned for resources that have the unified CloudWatch
+	// The Memory metric is returned only for resources that have the unified CloudWatch
 	// agent installed on them. For more information, see Enabling Memory Utilization
-	// with the CloudWatch Agent (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Install-CloudWatch-Agent.html).
+	// with the CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 	Name *string `locationName:"name" type:"string" enum:"MetricName"`
 
 	// The statistic of the utilization metric.
@@ -3466,6 +3491,18 @@ const (
 
 	// ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum = "UtilizationMetricsMemoryMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadOpsPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadOpsPerSecondMaximum = "UtilizationMetricsEbsReadOpsPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum = "UtilizationMetricsEbsWriteOpsPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadBytesPerSecondMaximum = "UtilizationMetricsEbsReadBytesPerSecondMaximum"
+
+	// ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum is a ExportableAutoScalingGroupField enum value
+	ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum = "UtilizationMetricsEbsWriteBytesPerSecondMaximum"
 
 	// ExportableAutoScalingGroupFieldLookbackPeriodInDays is a ExportableAutoScalingGroupField enum value
 	ExportableAutoScalingGroupFieldLookbackPeriodInDays = "LookbackPeriodInDays"
@@ -3558,6 +3595,10 @@ func ExportableAutoScalingGroupField_Values() []string {
 		ExportableAutoScalingGroupFieldFinding,
 		ExportableAutoScalingGroupFieldUtilizationMetricsCpuMaximum,
 		ExportableAutoScalingGroupFieldUtilizationMetricsMemoryMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadOpsPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsEbsReadBytesPerSecondMaximum,
+		ExportableAutoScalingGroupFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum,
 		ExportableAutoScalingGroupFieldLookbackPeriodInDays,
 		ExportableAutoScalingGroupFieldCurrentConfigurationInstanceType,
 		ExportableAutoScalingGroupFieldCurrentConfigurationDesiredCapacity,
@@ -3612,6 +3653,18 @@ const (
 
 	// ExportableInstanceFieldUtilizationMetricsMemoryMaximum is a ExportableInstanceField enum value
 	ExportableInstanceFieldUtilizationMetricsMemoryMaximum = "UtilizationMetricsMemoryMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsEbsReadOpsPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsEbsReadOpsPerSecondMaximum = "UtilizationMetricsEbsReadOpsPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum = "UtilizationMetricsEbsWriteOpsPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsEbsReadBytesPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsEbsReadBytesPerSecondMaximum = "UtilizationMetricsEbsReadBytesPerSecondMaximum"
+
+	// ExportableInstanceFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum is a ExportableInstanceField enum value
+	ExportableInstanceFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum = "UtilizationMetricsEbsWriteBytesPerSecondMaximum"
 
 	// ExportableInstanceFieldCurrentOnDemandPrice is a ExportableInstanceField enum value
 	ExportableInstanceFieldCurrentOnDemandPrice = "CurrentOnDemandPrice"
@@ -3688,6 +3741,10 @@ func ExportableInstanceField_Values() []string {
 		ExportableInstanceFieldCurrentInstanceType,
 		ExportableInstanceFieldUtilizationMetricsCpuMaximum,
 		ExportableInstanceFieldUtilizationMetricsMemoryMaximum,
+		ExportableInstanceFieldUtilizationMetricsEbsReadOpsPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsEbsWriteOpsPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsEbsReadBytesPerSecondMaximum,
+		ExportableInstanceFieldUtilizationMetricsEbsWriteBytesPerSecondMaximum,
 		ExportableInstanceFieldCurrentOnDemandPrice,
 		ExportableInstanceFieldCurrentStandardOneYearNoUpfrontReservedPrice,
 		ExportableInstanceFieldCurrentStandardThreeYearNoUpfrontReservedPrice,
@@ -3810,6 +3867,18 @@ const (
 
 	// MetricNameMemory is a MetricName enum value
 	MetricNameMemory = "Memory"
+
+	// MetricNameEbsReadOpsPerSecond is a MetricName enum value
+	MetricNameEbsReadOpsPerSecond = "EBS_READ_OPS_PER_SECOND"
+
+	// MetricNameEbsWriteOpsPerSecond is a MetricName enum value
+	MetricNameEbsWriteOpsPerSecond = "EBS_WRITE_OPS_PER_SECOND"
+
+	// MetricNameEbsReadBytesPerSecond is a MetricName enum value
+	MetricNameEbsReadBytesPerSecond = "EBS_READ_BYTES_PER_SECOND"
+
+	// MetricNameEbsWriteBytesPerSecond is a MetricName enum value
+	MetricNameEbsWriteBytesPerSecond = "EBS_WRITE_BYTES_PER_SECOND"
 )
 
 // MetricName_Values returns all elements of the MetricName enum
@@ -3817,6 +3886,10 @@ func MetricName_Values() []string {
 	return []string{
 		MetricNameCpu,
 		MetricNameMemory,
+		MetricNameEbsReadOpsPerSecond,
+		MetricNameEbsWriteOpsPerSecond,
+		MetricNameEbsReadBytesPerSecond,
+		MetricNameEbsWriteBytesPerSecond,
 	}
 }
 

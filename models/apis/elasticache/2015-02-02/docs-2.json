@@ -15,6 +15,8 @@
     "CreateGlobalReplicationGroup": "<p>Global Datastore for Redis offers fully managed, fast, reliable and secure cross-region replication. Using Global Datastore for Redis, you can create cross-region read replica clusters for ElastiCache for Redis to enable low-latency reads and disaster recovery across regions. For more information, see <a href=\"/AmazonElastiCache/latest/red-ug/Redis-Global-Clusters.html\">Replication Across Regions Using Global Datastore</a>. </p> <ul> <li> <p>The <b>GlobalReplicationGroupIdSuffix</b> is the name of the Global Datastore.</p> </li> <li> <p>The <b>PrimaryReplicationGroupId</b> represents the name of the primary cluster that accepts writes and will replicate updates to the secondary cluster.</p> </li> </ul>",
     "CreateReplicationGroup": "<p>Creates a Redis (cluster mode disabled) or a Redis (cluster mode enabled) replication group.</p> <p>This API can be used to create a standalone regional replication group or a secondary replication group associated with a Global Datastore.</p> <p>A Redis (cluster mode disabled) replication group is a collection of clusters, where one of the clusters is a read/write primary and the others are read-only replicas. Writes to the primary are asynchronously propagated to the replicas.</p> <p>A Redis (cluster mode enabled) replication group is a collection of 1 to 90 node groups (shards). Each node group (shard) has one read/write primary node and up to 5 read-only replica nodes. Writes to the primary are asynchronously propagated to the replicas. Redis (cluster mode enabled) replication groups partition the data across node groups (shards).</p> <p>When a Redis (cluster mode disabled) replication group has been successfully created, you can add one or more read replicas to it, up to a total of 5 read replicas. If you need to increase or decrease the number of node groups (console: shards), you can avail yourself of ElastiCache for Redis' scaling. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Scaling.html\">Scaling ElastiCache for Redis Clusters</a> in the <i>ElastiCache User Guide</i>.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
     "CreateSnapshot": "<p>Creates a copy of an entire cluster or replication group at a specific moment in time.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
+    "CreateUser": "<p>For Redis engine version 6.04 onwards: Creates a Redis user. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html\">Using Role Based Access Control (RBAC)</a>.</p>",
+    "CreateUserGroup": "<p>For Redis engine version 6.04 onwards: Creates a Redis user group. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html\">Using Role Based Access Control (RBAC)</a> </p>",
     "DecreaseNodeGroupsInGlobalReplicationGroup": "<p>Decreases the number of node groups in a Global Datastore</p>",
     "DecreaseReplicaCount": "<p>Dynamically decreases the number of replicas in a Redis (cluster mode disabled) replication group or the number of replica nodes in one or more node groups (shards) of a Redis (cluster mode enabled) replication group. This operation is performed with no cluster down time.</p>",
     "DeleteCacheCluster": "<p>Deletes a previously provisioned cluster. <code>DeleteCacheCluster</code> deletes all associated cache nodes, node endpoints and the cluster itself. When you receive a successful response from this operation, Amazon ElastiCache immediately begins deleting the cluster; you cannot cancel or revert this operation.</p> <p>This operation is not valid for:</p> <ul> <li> <p>Redis (cluster mode enabled) clusters</p> </li> <li> <p>A cluster that is the last read replica of a replication group</p> </li> <li> <p>A node group (shard) that has Multi-AZ mode enabled</p> </li> <li> <p>A cluster from a Redis (cluster mode enabled) replication group</p> </li> <li> <p>A cluster that is not in the <code>available</code> state</p> </li> </ul>",
@@ -24,6 +26,8 @@
     "DeleteGlobalReplicationGroup": "<p>Deleting a Global Datastore is a two-step process: </p> <ul> <li> <p>First, you must <a>DisassociateGlobalReplicationGroup</a> to remove the secondary clusters in the Global Datastore.</p> </li> <li> <p>Once the Global Datastore contains only the primary cluster, you can use DeleteGlobalReplicationGroup API to delete the Global Datastore while retainining the primary cluster using Retain…= true.</p> </li> </ul> <p>Since the Global Datastore has only a primary cluster, you can delete the Global Datastore while retaining the primary by setting <code>RetainPrimaryCluster=true</code>.</p> <p>When you receive a successful response from this operation, Amazon ElastiCache immediately begins deleting the selected resources; you cannot cancel or revert this operation.</p>",
     "DeleteReplicationGroup": "<p>Deletes an existing replication group. By default, this operation deletes the entire replication group, including the primary/primaries and all of the read replicas. If the replication group has only one primary, you can optionally delete only the read replicas, while retaining the primary by setting <code>RetainPrimaryCluster=true</code>.</p> <p>When you receive a successful response from this operation, Amazon ElastiCache immediately begins deleting the selected resources; you cannot cancel or revert this operation.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
     "DeleteSnapshot": "<p>Deletes an existing snapshot. When you receive a successful response from this operation, ElastiCache immediately begins deleting the snapshot; you cannot cancel or revert this operation.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
+    "DeleteUser": "<p>For Redis engine version 6.04 onwards: Deletes a user. The user will be removed from all user groups and in turn removed from all replication groups. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html\">Using Role Based Access Control (RBAC)</a>. </p>",
+    "DeleteUserGroup": "<p>For Redis engine version 6.04 onwards: Deletes a ser group. The user group must first be disassociated from the replcation group before it can be deleted. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html\">Using Role Based Access Control (RBAC)</a>. </p>",
     "DescribeCacheClusters": "<p>Returns information about all provisioned clusters if no cluster identifier is specified, or about a specific cache cluster if a cluster identifier is supplied.</p> <p>By default, abbreviated information about the clusters is returned. You can use the optional <i>ShowCacheNodeInfo</i> flag to retrieve detailed information about the cache nodes associated with the clusters. These details include the DNS address and port for the cache node endpoint.</p> <p>If the cluster is in the <i>creating</i> state, only cluster-level information is displayed until all of the nodes are successfully provisioned.</p> <p>If the cluster is in the <i>deleting</i> state, only cluster-level information is displayed.</p> <p>If cache nodes are currently being added to the cluster, node endpoint information and creation time for the additional nodes are not displayed until they are completely provisioned. When the cluster state is <i>available</i>, the cluster is ready for use.</p> <p>If cache nodes are currently being removed from the cluster, no endpoint information for the removed nodes is displayed.</p>",
     "DescribeCacheEngineVersions": "<p>Returns a list of the available cache engines and their versions.</p>",
     "DescribeCacheParameterGroups": "<p>Returns a list of cache parameter group descriptions. If a cache parameter group name is specified, the list contains only the descriptions for that group.</p>",
@@ -39,6 +43,8 @@
     "DescribeServiceUpdates": "<p>Returns details of the service updates</p>",
     "DescribeSnapshots": "<p>Returns information about cluster or replication group snapshots. By default, <code>DescribeSnapshots</code> lists all of your snapshots; it can optionally describe a single snapshot, or just the snapshots associated with a particular cache cluster.</p> <note> <p>This operation is valid for Redis only.</p> </note>",
     "DescribeUpdateActions": "<p>Returns details of the update actions </p>",
+    "DescribeUserGroups": "<p>Returns a list of user groups.</p>",
+    "DescribeUsers": "<p>Returns a list of users.</p>",
     "DisassociateGlobalReplicationGroup": "<p>Remove a secondary cluster from the Global Datastore using the Global Datastore name. The secondary cluster will no longer receive updates from the primary cluster, but will remain as a standalone cluster in that AWS region.</p>",
     "FailoverGlobalReplicationGroup": "<p>Used to failover the primary region to a selected secondary region. The selected secondary region will become primary, and all other clusters will become secondary.</p>",
     "IncreaseNodeGroupsInGlobalReplicationGroup": "<p>Increase the number of node groups in the Global Datastore</p>",
@@ -51,6 +57,8 @@
     "ModifyGlobalReplicationGroup": "<p>Modifies the settings for a Global Datastore.</p>",
     "ModifyReplicationGroup": "<p>Modifies the settings for a replication group.</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/scaling-redis-cluster-mode-enabled.html\">Scaling for Amazon ElastiCache for Redis (cluster mode enabled)</a> in the ElastiCache User Guide</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/APIReference/API_ModifyReplicationGroupShardConfiguration.html\">ModifyReplicationGroupShardConfiguration</a> in the ElastiCache API Reference</p> </li> </ul> <note> <p>This operation is valid for Redis only.</p> </note>",
     "ModifyReplicationGroupShardConfiguration": "<p>Modifies a replication group's shards (node groups) by allowing you to add shards, remove shards, or rebalance the keyspaces among exisiting shards.</p>",
+    "ModifyUser": "<p>Changes user password(s) and/or access string.</p>",
+    "ModifyUserGroup": "<p>Changes the list of users that belong to the user group.</p>",
     "PurchaseReservedCacheNodesOffering": "<p>Allows you to purchase a reserved cache node offering.</p>",
     "RebalanceSlotsInGlobalReplicationGroup": "<p>Redistribute slots to ensure uniform distribution across existing shards in the cluster.</p>",
     "RebootCacheCluster": "<p>Reboots some, or all, of the cache nodes within a provisioned cluster. This operation applies any modified cache parameter groups to the cluster. The reboot operation takes place as soon as possible, and results in a momentary outage to the cluster. During the reboot, the cluster status is set to REBOOTING.</p> <p>The reboot causes the contents of the cache (for each cache node being rebooted) to be lost.</p> <p>When the reboot is complete, a cluster event is created.</p> <p>Rebooting a cluster is currently supported on Memcached and Redis (cluster mode disabled) clusters. Rebooting is not supported on Redis (cluster mode enabled) clusters.</p> <p>If you make changes to parameters that require a Redis (cluster mode enabled) cluster reboot for the changes to be applied, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.Rebooting.html\">Rebooting a Cluster</a> for an alternate process.</p>",
@@ -71,6 +79,14 @@
       "refs": {
         "CreateCacheClusterMessage$AZMode": "<p>Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region.</p> <p>This parameter is only supported for Memcached clusters.</p> <p>If the <code>AZMode</code> and <code>PreferredAvailabilityZones</code> are not specified, ElastiCache assumes <code>single-az</code> mode.</p>",
         "ModifyCacheClusterMessage$AZMode": "<p>Specifies whether the new nodes in this Memcached cluster are all created in a single Availability Zone or created across multiple Availability Zones.</p> <p>Valid values: <code>single-az</code> | <code>cross-az</code>.</p> <p>This option is only supported for Memcached clusters.</p> <note> <p>You cannot specify <code>single-az</code> if the Memcached cluster already has cache nodes in different Availability Zones. If <code>cross-az</code> is specified, existing Memcached nodes remain in their current Availability Zone.</p> <p>Only newly created nodes are located in different Availability Zones. </p> </note>"
+      }
+    },
+    "AccessString": {
+      "base": null,
+      "refs": {
+        "CreateUserMessage$AccessString": "<p>Access permissions string used for this user account.</p>",
+        "ModifyUserMessage$AccessString": "<p>Access permissions string used for this user account.</p>",
+        "ModifyUserMessage$AppendAccessString": "<p>Adds additional user permissions to the access string.</p>"
       }
     },
     "AddTagsToResourceMessage": {
@@ -106,6 +122,18 @@
       "refs": {
         "ModifyCacheClusterMessage$AuthTokenUpdateStrategy": "<p>Specifies the strategy to use to update the AUTH token. This parameter must be specified with the <code>auth-token</code> parameter. Possible values:</p> <ul> <li> <p>Rotate</p> </li> <li> <p>Set</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html\">Authenticating Users with Redis AUTH</a> </p>",
         "ModifyReplicationGroupMessage$AuthTokenUpdateStrategy": "<p>Specifies the strategy to use to update the AUTH token. This parameter must be specified with the <code>auth-token</code> parameter. Possible values:</p> <ul> <li> <p>Rotate</p> </li> <li> <p>Set</p> </li> </ul> <p> For more information, see <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/auth.html\">Authenticating Users with Redis AUTH</a> </p>"
+      }
+    },
+    "Authentication": {
+      "base": "<p>Indicates whether the user requires a password to authenticate.</p>",
+      "refs": {
+        "User$Authentication": "<p>Denotes whether the user requires a password to authenticate.</p>"
+      }
+    },
+    "AuthenticationType": {
+      "base": null,
+      "refs": {
+        "Authentication$Type": "<p>Indicates whether the user requires a password to authenticate.</p>"
       }
     },
     "AuthorizationAlreadyExistsFault": {
@@ -202,6 +230,7 @@
         "CreateReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
         "CreateReplicationGroupMessage$TransitEncryptionEnabled": "<p>A flag that enables in-transit encryption when set to <code>true</code>.</p> <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after the cluster is created. To enable in-transit encryption on a cluster you must set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p>This parameter is valid only if the <code>Engine</code> parameter is <code>redis</code>, the <code>EngineVersion</code> parameter is <code>3.2.6</code>, <code>4.x</code> or later, and the cluster is being created in an Amazon VPC.</p> <p>If you enable in-transit encryption, you must also specify a value for <code>CacheSubnetGroup</code>.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p> <important> <p>For HIPAA compliance, you must specify <code>TransitEncryptionEnabled</code> as <code>true</code>, an <code>AuthToken</code>, and a <code>CacheSubnetGroup</code>.</p> </important>",
         "CreateReplicationGroupMessage$AtRestEncryptionEnabled": "<p>A flag that enables encryption at rest when set to <code>true</code>.</p> <p>You cannot modify the value of <code>AtRestEncryptionEnabled</code> after the replication group is created. To enable encryption at rest on a replication group you must set <code>AtRestEncryptionEnabled</code> to <code>true</code> when you create the replication group. </p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>",
+        "CreateUserMessage$NoPasswordRequired": "<p>Indicates a password is not required for this user account.</p>",
         "DeleteReplicationGroupMessage$RetainPrimaryCluster": "<p>If set to <code>true</code>, all of the read replicas are deleted, but the primary node is retained.</p>",
         "DescribeCacheClustersMessage$ShowCacheNodeInfo": "<p>An optional flag that can be included in the <code>DescribeCacheCluster</code> request to retrieve information about the individual cache nodes.</p>",
         "DescribeCacheClustersMessage$ShowCacheClustersNotInReplicationGroups": "<p>An optional flag that can be included in the <code>DescribeCacheCluster</code> request to show only nodes (API/CLI: clusters) that are not members of a replication group. In practice, this mean Memcached and single node Redis clusters.</p>",
@@ -217,6 +246,8 @@
         "ModifyReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure.</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
         "ModifyReplicationGroupMessage$MultiAZEnabled": "<p>A flag indicating if you have Multi-AZ enabled to enhance fault tolerance. For more information, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html\">Minimizing Downtime: Multi-AZ</a>.</p>",
         "ModifyReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
+        "ModifyReplicationGroupMessage$RemoveUserGroups": "<p>Removes the user groups that can access this replication group.</p>",
+        "ModifyUserMessage$NoPasswordRequired": "<p>Indicates no password is required for the user account.</p>",
         "ReplicationGroup$ClusterEnabled": "<p>A flag indicating whether or not this replication group is cluster enabled; i.e., whether its data can be partitioned across multiple shards (API/CLI: node groups).</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
         "ReplicationGroup$AuthTokenEnabled": "<p>A flag that enables using an <code>AuthToken</code> (password) when issuing Redis commands.</p> <p>Default: <code>false</code> </p>",
         "ReplicationGroup$TransitEncryptionEnabled": "<p>A flag that enables in-transit encryption when set to <code>true</code>.</p> <p>You cannot modify the value of <code>TransitEncryptionEnabled</code> after the cluster is created. To enable in-transit encryption on a cluster you must set <code>TransitEncryptionEnabled</code> to <code>true</code> when you create a cluster.</p> <p> <b>Required:</b> Only available when creating a replication group in an Amazon VPC using redis version <code>3.2.6</code>, <code>4.x</code> or later.</p> <p>Default: <code>false</code> </p>",
@@ -601,6 +632,16 @@
       "refs": {
       }
     },
+    "CreateUserGroupMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CustomerNodeEndpoint": {
       "base": "<p>The endpoint from which data should be migrated.</p>",
       "refs": {
@@ -630,6 +671,16 @@
     },
     "DecreaseReplicaCountResult": {
       "base": null,
+      "refs": {
+      }
+    },
+    "DefaultUserAssociatedToUserGroupFault": {
+      "base": "<p/>",
+      "refs": {
+      }
+    },
+    "DefaultUserRequired": {
+      "base": "<p>You must add default user to a user group.</p>",
       "refs": {
       }
     },
@@ -684,6 +735,16 @@
       }
     },
     "DeleteSnapshotResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteUserGroupMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteUserMessage": {
       "base": null,
       "refs": {
       }
@@ -778,6 +839,26 @@
       "refs": {
       }
     },
+    "DescribeUserGroupsMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeUserGroupsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeUsersMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeUsersResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateGlobalReplicationGroupMessage": {
       "base": null,
       "refs": {
@@ -797,6 +878,11 @@
         "ReservedCacheNodesOffering$FixedPrice": "<p>The fixed price charged for this offering.</p>",
         "ReservedCacheNodesOffering$UsagePrice": "<p>The hourly price charged for this offering.</p>",
         "SlotMigration$ProgressPercentage": "<p>The percentage of the slot migration that is complete.</p>"
+      }
+    },
+    "DuplicateUserNameFault": {
+      "base": "<p>A user with this username already exists.</p>",
+      "refs": {
       }
     },
     "EC2SecurityGroup": {
@@ -828,6 +914,16 @@
         "DescribeEngineDefaultParametersResult$EngineDefaults": null
       }
     },
+    "EngineType": {
+      "base": null,
+      "refs": {
+        "CreateUserGroupMessage$Engine": "<p>Must be Redis. </p>",
+        "CreateUserMessage$Engine": "<p>Must be Redis. </p>",
+        "DescribeUsersMessage$Engine": "<p>The Redis engine. </p>",
+        "User$Engine": "<p>Must be Redis. </p>",
+        "UserGroup$Engine": "<p>Must be Redis. </p>"
+      }
+    },
     "Event": {
       "base": "<p>Represents a single occurrence of something interesting within the system. Some examples of events are creating a cluster, adding or removing a cache node, or rebooting a node.</p>",
       "refs": {
@@ -853,6 +949,36 @@
     "FailoverGlobalReplicationGroupResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "Filter": {
+      "base": "<p>Used to streamline results of a search based on the property being filtered.</p>",
+      "refs": {
+        "FilterList$member": null
+      }
+    },
+    "FilterList": {
+      "base": null,
+      "refs": {
+        "DescribeUsersMessage$Filters": "<p>Filter to determine the list of User IDs to return.</p>"
+      }
+    },
+    "FilterName": {
+      "base": null,
+      "refs": {
+        "Filter$Name": "<p>The property being filtered. For example, UserId.</p>"
+      }
+    },
+    "FilterValue": {
+      "base": null,
+      "refs": {
+        "FilterValueList$member": null
+      }
+    },
+    "FilterValueList": {
+      "base": null,
+      "refs": {
+        "Filter$Values": "<p>The property values to filter on. For example, \"user-123\".</p>"
       }
     },
     "GlobalNodeGroup": {
@@ -963,6 +1089,7 @@
     "IntegerOptional": {
       "base": null,
       "refs": {
+        "Authentication$PasswordCount": "<p>The number of passwords belonging to the user. The maximum is two.</p>",
         "CacheCluster$NumCacheNodes": "<p>The number of cache nodes in the cluster.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p>",
         "CacheCluster$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <important> <p> If the value of SnapshotRetentionLimit is set to zero (0), backups are turned off.</p> </important>",
         "CreateCacheClusterMessage$NumCacheNodes": "<p>The initial number of cache nodes that the cluster has.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p> <p>If you need more than 20 nodes for your Memcached cluster, please fill out the ElastiCache Limit Increase Request form at <a href=\"http://aws.amazon.com/contact-us/elasticache-node-limit-request/\">http://aws.amazon.com/contact-us/elasticache-node-limit-request/</a>.</p>",
@@ -991,6 +1118,8 @@
         "DescribeServiceUpdatesMessage$MaxRecords": "<p>The maximum number of records to include in the response</p>",
         "DescribeSnapshotsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 50</p> <p>Constraints: minimum 20; maximum 50.</p>",
         "DescribeUpdateActionsMessage$MaxRecords": "<p>The maximum number of records to include in the response</p>",
+        "DescribeUserGroupsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved. </p>",
+        "DescribeUsersMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved. </p>",
         "IncreaseReplicaCountMessage$NewReplicaCount": "<p>The number of read replica nodes you want at the completion of this operation. For Redis (cluster mode disabled) replication groups, this is the number of replica nodes in the replication group. For Redis (cluster mode enabled) replication groups, this is the number of replica nodes in each of the replication group's node groups.</p>",
         "ModifyCacheClusterMessage$NumCacheNodes": "<p>The number of cache nodes that the cluster should have. If the value for <code>NumCacheNodes</code> is greater than the sum of the number of current cache nodes and the number of cache nodes pending creation (which may be zero), more nodes are added. If the value is less than the number of existing cache nodes, nodes are removed. If the value is equal to the number of current cache nodes, any pending add or remove requests are canceled.</p> <p>If you are removing cache nodes, you must use the <code>CacheNodeIdsToRemove</code> parameter to provide the IDs of the specific cache nodes to remove.</p> <p>For clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 20.</p> <note> <p>Adding or removing Memcached cache nodes can be applied immediately or as a pending operation (see <code>ApplyImmediately</code>).</p> <p>A pending operation to modify the number of cache nodes in a cluster during its maintenance window, whether by adding or removing nodes in accordance with the scale out architecture, is not queued. The customer's latest request to add or remove nodes to the cluster overrides any previous pending operations to modify the number of cache nodes in the cluster. For example, a request to remove 2 nodes would override a previous pending operation to remove 3 nodes. Similarly, a request to add 2 nodes would override a previous pending operation to remove 3 nodes and vice versa. As Memcached cache nodes may now be provisioned in different Availability Zones with flexible cache node placement, a request to add nodes does not automatically override a previous pending operation to add nodes. The customer can modify the previous pending operation to add more nodes or explicitly cancel the pending request and retry the new request. To cancel pending operations to modify the number of cache nodes in a cluster, use the <code>ModifyCacheCluster</code> request and set <code>NumCacheNodes</code> equal to the number of cache nodes currently in the cluster.</p> </note>",
         "ModifyCacheClusterMessage$SnapshotRetentionLimit": "<p>The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set <code>SnapshotRetentionLimit</code> to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p> <note> <p>If the value of <code>SnapshotRetentionLimit</code> is set to zero (0), backups are turned off.</p> </note>",
@@ -1057,6 +1186,16 @@
     },
     "InvalidSubnet": {
       "base": "<p>An invalid subnet identifier was specified.</p>",
+      "refs": {
+      }
+    },
+    "InvalidUserGroupStateFault": {
+      "base": "<p>The user group is not in an active state.</p>",
+      "refs": {
+      }
+    },
+    "InvalidUserStateFault": {
+      "base": "<p>The user is not in active state.</p>",
       "refs": {
       }
     },
@@ -1132,6 +1271,16 @@
       }
     },
     "ModifyReplicationGroupShardConfigurationResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyUserGroupMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyUserMessage": {
       "base": null,
       "refs": {
       }
@@ -1279,6 +1428,18 @@
         "CacheCluster$NotificationConfiguration": "<p>Describes a notification topic and its status. Notification topics are used for publishing ElastiCache events to subscribers using Amazon Simple Notification Service (SNS). </p>"
       }
     },
+    "OutpostArnsList": {
+      "base": null,
+      "refs": {
+        "NodeGroupConfiguration$ReplicaOutpostArns": "<p>The outpost ARN of the node replicas.</p>"
+      }
+    },
+    "OutpostMode": {
+      "base": null,
+      "refs": {
+        "CreateCacheClusterMessage$OutpostMode": "<p>Specifies whether the nodes in the cluster are created in a single outpost or across multiple outposts.</p>"
+      }
+    },
     "Parameter": {
       "base": "<p>Describes an individual setting that controls some aspect of ElastiCache behavior.</p>",
       "refs": {
@@ -1305,6 +1466,13 @@
         "EngineDefaults$Parameters": "<p>Contains a list of engine default parameters.</p>"
       }
     },
+    "PasswordListInput": {
+      "base": null,
+      "refs": {
+        "CreateUserMessage$Passwords": "<p>Passwords used for this user account. You can create up to two passwords for each user.</p>",
+        "ModifyUserMessage$Passwords": "<p>The passwords belonging to the user account. You are allowed up to two.</p>"
+      }
+    },
     "PendingAutomaticFailoverStatus": {
       "base": null,
       "refs": {
@@ -1323,6 +1491,13 @@
         "ConfigureShard$PreferredAvailabilityZones": "<p>A list of <code>PreferredAvailabilityZone</code> strings that specify which availability zones the replication group's nodes are to be in. The nummber of <code>PreferredAvailabilityZone</code> values must equal the value of <code>NewReplicaCount</code> plus 1 to account for the primary node. If this member of <code>ReplicaConfiguration</code> is omitted, ElastiCache for Redis selects the availability zone for each of the replicas.</p>",
         "CreateCacheClusterMessage$PreferredAvailabilityZones": "<p>A list of the Availability Zones in which cache nodes are created. The order of the zones in the list is not important.</p> <p>This option is only supported on Memcached.</p> <note> <p>If you are creating your cluster in an Amazon VPC (recommended) you can only locate nodes in Availability Zones that are associated with the subnets in the selected subnet group.</p> <p>The number of Availability Zones listed must equal the value of <code>NumCacheNodes</code>.</p> </note> <p>If you want all the nodes in the same Availability Zone, use <code>PreferredAvailabilityZone</code> instead, or repeat the Availability Zone multiple times in the list.</p> <p>Default: System chosen Availability Zones.</p>",
         "ModifyCacheClusterMessage$NewAvailabilityZones": "<p>The list of Availability Zones where the new Memcached cache nodes are created.</p> <p>This parameter is only valid when <code>NumCacheNodes</code> in the request is greater than the sum of the number of active cache nodes and the number of cache nodes pending creation (which may be zero). The number of Availability Zones supplied in this list must match the cache nodes being added in this request.</p> <p>This option is only supported on Memcached clusters.</p> <p>Scenarios:</p> <ul> <li> <p> <b>Scenario 1:</b> You have 3 active nodes and wish to add 2 nodes. Specify <code>NumCacheNodes=5</code> (3 + 2) and optionally specify two Availability Zones for the two new nodes.</p> </li> <li> <p> <b>Scenario 2:</b> You have 3 active nodes and 2 nodes pending creation (from the scenario 1 call) and want to add 1 more node. Specify <code>NumCacheNodes=6</code> ((3 + 2) + 1) and optionally specify an Availability Zone for the new node.</p> </li> <li> <p> <b>Scenario 3:</b> You want to cancel all pending operations. Specify <code>NumCacheNodes=3</code> to cancel all pending operations.</p> </li> </ul> <p>The Availability Zone placement of nodes pending creation cannot be modified. If you wish to cancel any nodes pending creation, add 0 nodes by setting <code>NumCacheNodes</code> to the number of current nodes.</p> <p>If <code>cross-az</code> is specified, existing Memcached nodes remain in their current Availability Zone. Only newly created nodes can be located in different Availability Zones. For guidance on how to move existing Memcached nodes to different Availability Zones, see the <b>Availability Zone Considerations</b> section of <a href=\"https://docs.aws.amazon.com/AmazonElastiCache/latest/mem-ug/CacheNodes.SupportedTypes.html\">Cache Node Considerations for Memcached</a>.</p> <p> <b>Impact of new add/remove requests upon pending requests</b> </p> <ul> <li> <p>Scenario-1</p> <ul> <li> <p>Pending Action: Delete</p> </li> <li> <p>New Request: Delete</p> </li> <li> <p>Result: The new delete, pending or immediate, replaces the pending delete.</p> </li> </ul> </li> <li> <p>Scenario-2</p> <ul> <li> <p>Pending Action: Delete</p> </li> <li> <p>New Request: Create</p> </li> <li> <p>Result: The new create, pending or immediate, replaces the pending delete.</p> </li> </ul> </li> <li> <p>Scenario-3</p> <ul> <li> <p>Pending Action: Create</p> </li> <li> <p>New Request: Delete</p> </li> <li> <p>Result: The new delete, pending or immediate, replaces the pending create.</p> </li> </ul> </li> <li> <p>Scenario-4</p> <ul> <li> <p>Pending Action: Create</p> </li> <li> <p>New Request: Create</p> </li> <li> <p>Result: The new create is added to the pending create.</p> <important> <p> <b>Important:</b> If the new create request is <b>Apply Immediately - Yes</b>, all creates are performed immediately. If the new create request is <b>Apply Immediately - No</b>, all creates are pending.</p> </important> </li> </ul> </li> </ul>"
+      }
+    },
+    "PreferredOutpostArnList": {
+      "base": null,
+      "refs": {
+        "ConfigureShard$PreferredOutpostArns": "<p>The outpost ARNs in which the cache cluster is created.</p>",
+        "CreateCacheClusterMessage$PreferredOutpostArns": "<p>The outpost ARNs in which the cache cluster is created.</p>"
       }
     },
     "ProcessedUpdateAction": {
@@ -1462,6 +1637,12 @@
     "ReplicationGroupNotUnderMigrationFault": {
       "base": "<p>The designated replication group is not available for data migration.</p>",
       "refs": {
+      }
+    },
+    "ReplicationGroupOutpostArnList": {
+      "base": null,
+      "refs": {
+        "ReplicationGroup$MemberClustersOutpostArns": "<p>The outpost ARNs of the replication group's member clusters.</p>"
       }
     },
     "ReplicationGroupPendingModifiedValues": {
@@ -1725,6 +1906,7 @@
         "CacheCluster$EngineVersion": "<p>The version of the cache engine that is used in this cluster.</p>",
         "CacheCluster$CacheClusterStatus": "<p>The current state of this cluster, one of the following values: <code>available</code>, <code>creating</code>, <code>deleted</code>, <code>deleting</code>, <code>incompatible-network</code>, <code>modifying</code>, <code>rebooting cluster nodes</code>, <code>restore-failed</code>, or <code>snapshotting</code>.</p>",
         "CacheCluster$PreferredAvailabilityZone": "<p>The name of the Availability Zone in which the cluster is located or \"Multiple\" if the cache nodes are located in different Availability Zones.</p>",
+        "CacheCluster$PreferredOutpostArn": "<p>The outpost ARN in which the cache cluster is created.</p>",
         "CacheCluster$PreferredMaintenanceWindow": "<p>Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul> <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li> <p> <code>tue</code> </p> </li> <li> <p> <code>wed</code> </p> </li> <li> <p> <code>thu</code> </p> </li> <li> <p> <code>fri</code> </p> </li> <li> <p> <code>sat</code> </p> </li> </ul> <p>Example: <code>sun:23:00-mon:01:30</code> </p>",
         "CacheCluster$CacheSubnetGroupName": "<p>The name of the cache subnet group associated with the cluster.</p>",
         "CacheCluster$ReplicationGroupId": "<p>The replication group to which this cluster belongs. If this field is empty, the cluster is not associated with any replication group.</p>",
@@ -1743,6 +1925,7 @@
         "CacheNode$ParameterGroupStatus": "<p>The status of the parameter group applied to this cache node.</p>",
         "CacheNode$SourceCacheNodeId": "<p>The ID of the primary node to which this read replica node is synchronized. If this field is empty, this node is not associated with a primary cluster.</p>",
         "CacheNode$CustomerAvailabilityZone": "<p>The Availability Zone where this node was created and now resides.</p>",
+        "CacheNode$CustomerOutpostArn": "<p>The customer outpost ARN of the cache node.</p>",
         "CacheNodeIdsList$member": null,
         "CacheNodeTypeSpecificParameter$ParameterName": "<p>The name of the parameter.</p>",
         "CacheNodeTypeSpecificParameter$Description": "<p>A description of the parameter.</p>",
@@ -1765,7 +1948,7 @@
         "CacheSecurityGroup$OwnerId": "<p>The AWS account ID of the cache security group owner.</p>",
         "CacheSecurityGroup$CacheSecurityGroupName": "<p>The name of the cache security group.</p>",
         "CacheSecurityGroup$Description": "<p>The description of the cache security group.</p>",
-        "CacheSecurityGroup$ARN": "<p>The ARN (Amazon Resource Name) of the cache security group.</p>",
+        "CacheSecurityGroup$ARN": "<p>The ARN of the cache security group,</p>",
         "CacheSecurityGroupMembership$CacheSecurityGroupName": "<p>The name of the cache security group.</p>",
         "CacheSecurityGroupMembership$Status": "<p>The membership status in the cache security group. The status changes when a cache security group is modified, or when the cache security groups assigned to a cluster are modified.</p>",
         "CacheSecurityGroupMessage$Marker": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
@@ -1794,6 +1977,7 @@
         "CreateCacheClusterMessage$NotificationTopicArn": "<p>The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.</p> <note> <p>The Amazon SNS topic owner must be the same as the cluster owner.</p> </note>",
         "CreateCacheClusterMessage$SnapshotWindow": "<p>The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard).</p> <p>Example: <code>05:00-09:00</code> </p> <p>If you do not specify this parameter, ElastiCache automatically chooses an appropriate time range.</p> <note> <p>This parameter is only valid if the <code>Engine</code> parameter is <code>redis</code>.</p> </note>",
         "CreateCacheClusterMessage$AuthToken": "<p> <b>Reserved parameter.</b> The password used to access a password protected server.</p> <p>Password constraints:</p> <ul> <li> <p>Must be only printable ASCII characters.</p> </li> <li> <p>Must be at least 16 characters and no more than 128 characters in length.</p> </li> <li> <p>The only permitted printable special characters are !, &amp;, #, $, ^, &lt;, &gt;, and -. Other printable special characters cannot be used in the AUTH token.</p> </li> </ul> <p>For more information, see <a href=\"http://redis.io/commands/AUTH\">AUTH password</a> at http://redis.io/commands/AUTH.</p>",
+        "CreateCacheClusterMessage$PreferredOutpostArn": "<p>The outpost ARN in which the cache cluster is created.</p>",
         "CreateCacheParameterGroupMessage$CacheParameterGroupName": "<p>A user-specified name for the cache parameter group.</p>",
         "CreateCacheParameterGroupMessage$CacheParameterGroupFamily": "<p>The name of the cache parameter group family that the cache parameter group can be used with.</p> <p>Valid values are: <code>memcached1.4</code> | <code>memcached1.5</code> | <code>redis2.6</code> | <code>redis2.8</code> | <code>redis3.2</code> | <code>redis4.0</code> | <code>redis5.0</code> | </p>",
         "CreateCacheParameterGroupMessage$Description": "<p>A user-specified description for the cache parameter group.</p>",
@@ -1801,7 +1985,7 @@
         "CreateCacheSecurityGroupMessage$Description": "<p>A description for the cache security group.</p>",
         "CreateCacheSubnetGroupMessage$CacheSubnetGroupName": "<p>A name for the cache subnet group. This value is stored as a lowercase string.</p> <p>Constraints: Must contain no more than 255 alphanumeric characters or hyphens.</p> <p>Example: <code>mysubnetgroup</code> </p>",
         "CreateCacheSubnetGroupMessage$CacheSubnetGroupDescription": "<p>A description for the cache subnet group.</p>",
-        "CreateGlobalReplicationGroupMessage$GlobalReplicationGroupIdSuffix": "<p>The suffix name of a Global Datastore. The suffix guarantees uniqueness of the Global Datastore name across multiple regions.</p>",
+        "CreateGlobalReplicationGroupMessage$GlobalReplicationGroupIdSuffix": "<p>The suffix name of a Global Datastore. Amazon ElastiCache automatically applies a prefix to the Global Datastore ID when it is created. Each AWS Region has its own prefix. For instance, a Global Datastore ID created in the US-West-1 region will begin with \"dsdfu\" along with the suffix name you provide. The suffix, combined with the auto-generated prefix, guarantees uniqueness of the Global Datastore name across multiple regions. </p> <p>For a full list of AWS Regions and their respective Global Datastore iD prefixes, see <a href=\"http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Clusters-CLI.html\">Using the AWS CLI with Global Datastores </a>.</p>",
         "CreateGlobalReplicationGroupMessage$GlobalReplicationGroupDescription": "<p>Provides details of the Global Datastore</p>",
         "CreateGlobalReplicationGroupMessage$PrimaryReplicationGroupId": "<p>The name of the primary cluster that accepts writes and will replicate updates to the secondary cluster.</p>",
         "CreateReplicationGroupMessage$ReplicationGroupId": "<p>The replication group identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>A name must contain from 1 to 40 alphanumeric characters or hyphens.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>A name cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul>",
@@ -1823,6 +2007,7 @@
         "CreateSnapshotMessage$CacheClusterId": "<p>The identifier of an existing cluster. The snapshot is created from this cluster.</p>",
         "CreateSnapshotMessage$SnapshotName": "<p>A name for the snapshot being created.</p>",
         "CreateSnapshotMessage$KmsKeyId": "<p>The ID of the KMS key used to encrypt the snapshot.</p>",
+        "CreateUserGroupMessage$UserGroupId": "<p>The ID of the user group.</p>",
         "CustomerNodeEndpoint$Address": "<p>The address of the node endpoint</p>",
         "DecreaseNodeGroupsInGlobalReplicationGroupMessage$GlobalReplicationGroupId": "<p>The name of the Global Datastore</p>",
         "DecreaseReplicaCountMessage$ReplicationGroupId": "<p>The id of the replication group from which you want to remove replica nodes.</p>",
@@ -1835,6 +2020,7 @@
         "DeleteReplicationGroupMessage$ReplicationGroupId": "<p>The identifier for the cluster to be deleted. This parameter is not case sensitive.</p>",
         "DeleteReplicationGroupMessage$FinalSnapshotIdentifier": "<p>The name of a final node group (shard) snapshot. ElastiCache creates the snapshot from the primary node in the cluster, rather than one of the replicas; this is to ensure that it captures the freshest data. After the final snapshot is taken, the replication group is immediately deleted.</p>",
         "DeleteSnapshotMessage$SnapshotName": "<p>The name of the snapshot to be deleted.</p>",
+        "DeleteUserGroupMessage$UserGroupId": "<p>The ID of the user group.</p>",
         "DescribeCacheClustersMessage$CacheClusterId": "<p>The user-supplied cluster identifier. If this parameter is specified, only information about that specific cluster is returned. This parameter isn't case sensitive.</p>",
         "DescribeCacheClustersMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeCacheEngineVersionsMessage$Engine": "<p>The cache engine to return. Valid values: <code>memcached</code> | <code>redis</code> </p>",
@@ -1883,6 +2069,11 @@
         "DescribeUpdateActionsMessage$ServiceUpdateName": "<p>The unique ID of the service update</p>",
         "DescribeUpdateActionsMessage$Engine": "<p>The Elasticache engine to which the update applies. Either Redis or Memcached </p>",
         "DescribeUpdateActionsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DescribeUserGroupsMessage$UserGroupId": "<p>The ID of the user group.</p>",
+        "DescribeUserGroupsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. &gt;</p>",
+        "DescribeUserGroupsResult$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. &gt;</p>",
+        "DescribeUsersMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. &gt;</p>",
+        "DescribeUsersResult$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. &gt;</p>",
         "DisassociateGlobalReplicationGroupMessage$GlobalReplicationGroupId": "<p>The name of the Global Datastore</p>",
         "DisassociateGlobalReplicationGroupMessage$ReplicationGroupId": "<p>The name of the secondary cluster you wish to remove from the Global Datastore</p>",
         "DisassociateGlobalReplicationGroupMessage$ReplicationGroupRegion": "<p>The AWS region of secondary cluster you wish to remove from the Global Datastore</p>",
@@ -1950,14 +2141,17 @@
         "ModifyReplicationGroupMessage$CacheNodeType": "<p>A valid cache node type that you want to scale this replication group to.</p>",
         "ModifyReplicationGroupMessage$AuthToken": "<p>Reserved parameter. The password used to access a password protected server. This parameter must be specified with the <code>auth-token-update-strategy </code> parameter. Password constraints:</p> <ul> <li> <p>Must be only printable ASCII characters</p> </li> <li> <p>Must be at least 16 characters and no more than 128 characters in length</p> </li> <li> <p>Cannot contain any of the following characters: '/', '\"', or '@', '%'</p> </li> </ul> <p> For more information, see AUTH password at <a href=\"http://redis.io/commands/AUTH\">AUTH</a>.</p>",
         "ModifyReplicationGroupShardConfigurationMessage$ReplicationGroupId": "<p>The name of the Redis (cluster mode enabled) cluster (replication group) on which the shards are to be configured.</p>",
+        "ModifyUserGroupMessage$UserGroupId": "<p>The ID of the user group.</p>",
         "NodeGroup$NodeGroupId": "<p>The identifier for the node group (shard). A Redis (cluster mode disabled) replication group contains only 1 node group; therefore, the node group ID is 0001. A Redis (cluster mode enabled) replication group contains 1 to 90 node groups numbered 0001 to 0090. Optionally, the user can provide the id for a node group. </p>",
         "NodeGroup$Status": "<p>The current state of this replication group - <code>creating</code>, <code>available</code>, <code>modifying</code>, <code>deleting</code>.</p>",
         "NodeGroup$Slots": "<p>The keyspace for this node group (shard).</p>",
         "NodeGroupConfiguration$Slots": "<p>A string that specifies the keyspace for a particular node group. Keyspaces range from 0 to 16,383. The string is in the format <code>startkey-endkey</code>.</p> <p>Example: <code>\"0-3999\"</code> </p>",
         "NodeGroupConfiguration$PrimaryAvailabilityZone": "<p>The Availability Zone where the primary node of this node group (shard) is launched.</p>",
+        "NodeGroupConfiguration$PrimaryOutpostArn": "<p>The output ARN of the primary node.</p>",
         "NodeGroupMember$CacheClusterId": "<p>The ID of the cluster to which the node belongs.</p>",
         "NodeGroupMember$CacheNodeId": "<p>The ID of the node within its cluster. A node ID is a numeric identifier (0001, 0002, etc.).</p>",
         "NodeGroupMember$PreferredAvailabilityZone": "<p>The name of the Availability Zone in which the node is located.</p>",
+        "NodeGroupMember$PreferredOutpostArn": "<p>The outpost ARN of the node group member.</p>",
         "NodeGroupMember$CurrentRole": "<p>The role that is currently assigned to the node - <code>primary</code> or <code>replica</code>. This member is only applicable for Redis (cluster mode disabled) replication groups.</p>",
         "NodeGroupMemberUpdateStatus$CacheClusterId": "<p>The cache cluster ID</p>",
         "NodeGroupMemberUpdateStatus$CacheNodeId": "<p>The node ID of the cache cluster</p>",
@@ -1969,6 +2163,7 @@
         "NodeTypeList$member": null,
         "NotificationConfiguration$TopicArn": "<p>The Amazon Resource Name (ARN) that identifies the topic.</p>",
         "NotificationConfiguration$TopicStatus": "<p>The current state of the topic.</p>",
+        "OutpostArnsList$member": null,
         "Parameter$ParameterName": "<p>The name of the parameter.</p>",
         "Parameter$ParameterValue": "<p>The value of the parameter.</p>",
         "Parameter$Description": "<p>A description of the parameter.</p>",
@@ -1978,9 +2173,11 @@
         "Parameter$MinimumEngineVersion": "<p>The earliest cache engine version to which the parameter can apply.</p>",
         "ParameterNameValue$ParameterName": "<p>The name of the parameter.</p>",
         "ParameterNameValue$ParameterValue": "<p>The value of the parameter.</p>",
+        "PasswordListInput$member": null,
         "PendingModifiedValues$EngineVersion": "<p>The new cache engine version that the cluster runs.</p>",
         "PendingModifiedValues$CacheNodeType": "<p>The cache node type that this cluster or replication group is scaled to.</p>",
         "PreferredAvailabilityZoneList$member": null,
+        "PreferredOutpostArnList$member": null,
         "ProcessedUpdateAction$ReplicationGroupId": "<p>The ID of the replication group</p>",
         "ProcessedUpdateAction$CacheClusterId": "<p>The ID of the cache cluster</p>",
         "ProcessedUpdateAction$ServiceUpdateName": "<p>The unique ID of the service update</p>",
@@ -2003,6 +2200,7 @@
         "ReplicationGroup$ARN": "<p>The ARN (Amazon Resource Name) of the replication group.</p>",
         "ReplicationGroupIdList$member": null,
         "ReplicationGroupMessage$Marker": "<p>Provides an identifier to allow retrieval of paginated results.</p>",
+        "ReplicationGroupOutpostArnList$member": null,
         "ReplicationGroupPendingModifiedValues$PrimaryClusterId": "<p>The primary cluster ID that is applied immediately (if <code>--apply-immediately</code> was specified), or during the next maintenance window.</p>",
         "ReservedCacheNode$ReservedCacheNodeId": "<p>The unique identifier for the reservation.</p>",
         "ReservedCacheNode$ReservedCacheNodesOfferingId": "<p>The offering identifier.</p>",
@@ -2040,6 +2238,7 @@
         "Snapshot$Engine": "<p>The name of the cache engine (<code>memcached</code> or <code>redis</code>) used by the source cluster.</p>",
         "Snapshot$EngineVersion": "<p>The version of the cache engine version that is used by the source cluster.</p>",
         "Snapshot$PreferredAvailabilityZone": "<p>The name of the Availability Zone in which the source cluster is located.</p>",
+        "Snapshot$PreferredOutpostArn": "<p>The ARN (Amazon Resource Name) of the preferred outpost.</p>",
         "Snapshot$PreferredMaintenanceWindow": "<p>Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.</p> <p>Valid values for <code>ddd</code> are:</p> <ul> <li> <p> <code>sun</code> </p> </li> <li> <p> <code>mon</code> </p> </li> <li> <p> <code>tue</code> </p> </li> <li> <p> <code>wed</code> </p> </li> <li> <p> <code>thu</code> </p> </li> <li> <p> <code>fri</code> </p> </li> <li> <p> <code>sat</code> </p> </li> </ul> <p>Example: <code>sun:23:00-mon:01:30</code> </p>",
         "Snapshot$TopicArn": "<p>The Amazon Resource Name (ARN) for the topic used by the source cluster for publishing notifications.</p>",
         "Snapshot$CacheParameterGroupName": "<p>The cache parameter group that is associated with the source cluster.</p>",
@@ -2052,9 +2251,11 @@
         "StartMigrationMessage$ReplicationGroupId": "<p>The ID of the replication group to which data should be migrated.</p>",
         "Subnet$SubnetIdentifier": "<p>The unique identifier for the subnet.</p>",
         "SubnetIdentifierList$member": null,
+        "SubnetOutpost$SubnetOutpostArn": "<p>The outpost ARN of the subnet.</p>",
         "Tag$Key": "<p>The key for the tag. May not be null.</p>",
         "Tag$Value": "<p>The tag's value. May be null.</p>",
         "TestFailoverMessage$ReplicationGroupId": "<p>The name of the replication group (console: cluster) whose automatic failover is being tested by this operation.</p>",
+        "UGReplicationGroupIdList$member": null,
         "UnprocessedUpdateAction$ReplicationGroupId": "<p>The replication group ID</p>",
         "UnprocessedUpdateAction$CacheClusterId": "<p>The ID of the cache cluster</p>",
         "UnprocessedUpdateAction$ServiceUpdateName": "<p>The unique ID of the service update</p>",
@@ -2066,7 +2267,15 @@
         "UpdateAction$NodesUpdated": "<p>The progress of the service update on the replication group</p>",
         "UpdateAction$EstimatedUpdateTime": "<p>The estimated length of time for the update to complete</p>",
         "UpdateAction$Engine": "<p>The Elasticache engine to which the update applies. Either Redis or Memcached</p>",
-        "UpdateActionsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>"
+        "UpdateActionsMessage$Marker": "<p>An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "User$UserId": "<p>The ID of the user.</p>",
+        "User$UserName": "<p>The username of the user.</p>",
+        "User$Status": "<p>Indicates the user status. Can be \"active\", \"modifying\" or \"deleting\".</p>",
+        "User$AccessString": "<p>Access permissions string used for this user account.</p>",
+        "User$ARN": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
+        "UserGroup$UserGroupId": "<p>The ID of the user group.</p>",
+        "UserGroup$Status": "<p>Indicates user group status. Can be \"creating\", \"active\", \"modifying\", \"deleting\".</p>",
+        "UserGroup$ARN": "<p>The Amazon Resource Name (ARN) of the user group.</p>"
       }
     },
     "Subnet": {
@@ -2091,6 +2300,17 @@
       "base": null,
       "refs": {
         "CacheSubnetGroup$Subnets": "<p>A list of subnets associated with the cache subnet group.</p>"
+      }
+    },
+    "SubnetNotAllowedFault": {
+      "base": "<p>At least one subnet ID does not match the other subnet IDs. This mismatch typically occurs when a user sets one subnet ID to a regional Availability Zone and a different one to an outpost. Or when a user sets the subnet ID to an Outpost when not subscribed on this service.</p>",
+      "refs": {
+      }
+    },
+    "SubnetOutpost": {
+      "base": "<p>The ID of the outpost subnet.</p>",
+      "refs": {
+        "Subnet$SubnetOutpost": "<p>The outpost ARN of the subnet.</p>"
       }
     },
     "TStamp": {
@@ -2179,6 +2399,12 @@
         "DescribeUpdateActionsMessage$ServiceUpdateTimeRange": "<p>The range of time specified to search for service updates that are in available status</p>"
       }
     },
+    "UGReplicationGroupIdList": {
+      "base": null,
+      "refs": {
+        "UserGroup$ReplicationGroups": "<p>A list of replication groups that the user group can access.</p>"
+      }
+    },
     "UnprocessedUpdateAction": {
       "base": "<p>Update action that has failed to be processed for the corresponding apply/stop request</p>",
       "refs": {
@@ -2224,6 +2450,129 @@
     },
     "UpdateActionsMessage": {
       "base": null,
+      "refs": {
+      }
+    },
+    "User": {
+      "base": null,
+      "refs": {
+        "UserList$member": null
+      }
+    },
+    "UserAlreadyExistsFault": {
+      "base": "<p>A user with this ID already exists.</p>",
+      "refs": {
+      }
+    },
+    "UserGroup": {
+      "base": null,
+      "refs": {
+        "UserGroupList$member": null
+      }
+    },
+    "UserGroupAlreadyExistsFault": {
+      "base": "<p>The user group with this ID already exists.</p>",
+      "refs": {
+      }
+    },
+    "UserGroupId": {
+      "base": null,
+      "refs": {
+        "UserGroupIdList$member": null,
+        "UserGroupIdListInput$member": null
+      }
+    },
+    "UserGroupIdList": {
+      "base": null,
+      "refs": {
+        "ModifyReplicationGroupMessage$UserGroupIdsToAdd": "<p>A list of user group IDs.</p>",
+        "ModifyReplicationGroupMessage$UserGroupIdsToRemove": "<p>A list of users groups to remove, meaning the users in the group no longer can access thereplication group.</p>",
+        "ReplicationGroup$UserGroupIds": "<p>The list of user group IDs that have access to the replication group.</p>",
+        "User$UserGroupIds": "<p>Returns a list of the user group IDs the user belongs to.</p>",
+        "UserGroupsUpdateStatus$UserGroupIdsToAdd": "<p>The list of user group IDs to add.</p>",
+        "UserGroupsUpdateStatus$UserGroupIdsToRemove": "<p>The list of user group IDs to remove.</p>"
+      }
+    },
+    "UserGroupIdListInput": {
+      "base": null,
+      "refs": {
+        "CreateReplicationGroupMessage$UserGroupIds": "<p>The list of user groups to associate with the replication group.</p>"
+      }
+    },
+    "UserGroupList": {
+      "base": null,
+      "refs": {
+        "DescribeUserGroupsResult$UserGroups": "<p>Returns a list of user groups.</p>"
+      }
+    },
+    "UserGroupNotFoundFault": {
+      "base": "<p>The user group was not found or does not exist</p>",
+      "refs": {
+      }
+    },
+    "UserGroupPendingChanges": {
+      "base": "<p>Returns the updates being applied to the user group.</p>",
+      "refs": {
+        "UserGroup$PendingChanges": "<p>A list of updates being applied to the user groups.</p>"
+      }
+    },
+    "UserGroupQuotaExceededFault": {
+      "base": "<p>The number of users exceeds the user group limit.</p>",
+      "refs": {
+      }
+    },
+    "UserGroupsUpdateStatus": {
+      "base": "<p>The status of the user group update.</p>",
+      "refs": {
+        "ReplicationGroupPendingModifiedValues$UserGroups": "<p>The user groups being modified.</p>"
+      }
+    },
+    "UserId": {
+      "base": null,
+      "refs": {
+        "CreateUserMessage$UserId": "<p>The ID of the user.</p>",
+        "DeleteUserMessage$UserId": "<p>The ID of the user.</p>",
+        "DescribeUsersMessage$UserId": "<p>The ID of the user.</p>",
+        "ModifyUserMessage$UserId": "<p>The ID of the user.</p>",
+        "UserIdList$member": null,
+        "UserIdListInput$member": null
+      }
+    },
+    "UserIdList": {
+      "base": null,
+      "refs": {
+        "UserGroup$UserIds": "<p>The list of user IDs that belong to the user group.</p>",
+        "UserGroupPendingChanges$UserIdsToRemove": "<p>The list of user group IDs ro remove.</p>",
+        "UserGroupPendingChanges$UserIdsToAdd": "<p>The list of user IDs to add.</p>"
+      }
+    },
+    "UserIdListInput": {
+      "base": null,
+      "refs": {
+        "CreateUserGroupMessage$UserIds": "<p>The list of user IDs that belong to the user group.</p>",
+        "ModifyUserGroupMessage$UserIdsToAdd": "<p>The list of user IDs to add to the user group.</p>",
+        "ModifyUserGroupMessage$UserIdsToRemove": "<p>The list of user IDs to remove from the user group.</p>"
+      }
+    },
+    "UserList": {
+      "base": null,
+      "refs": {
+        "DescribeUsersResult$Users": "<p>A list of users.</p>"
+      }
+    },
+    "UserName": {
+      "base": null,
+      "refs": {
+        "CreateUserMessage$UserName": "<p>The username of the user.</p>"
+      }
+    },
+    "UserNotFoundFault": {
+      "base": "<p>The user does not exist or could not be found.</p>",
+      "refs": {
+      }
+    },
+    "UserQuotaExceededFault": {
+      "base": "<p>The quota of users has been exceeded.</p>",
       "refs": {
       }
     }

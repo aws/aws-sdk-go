@@ -1,3 +1,18 @@
+Release v1.35.5 (2020-10-07)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/elasticache`: Updates service API, documentation, and paginators
+  * This release introduces User and UserGroup to allow customers to have access control list of the Redis resources for AWS ElastiCache. This release also adds support for Outposts  for AWS ElastiCache.
+* `service/mediapackage`: Updates service API and documentation
+  * AWS Elemental MediaPackage provides access logs that capture detailed information about requests sent to a customer's MediaPackage channel.
+
+### SDK Bugs
+* `aws/credentials`: Monotonic clock readings will now be cleared when setting credential expiry time. ([#3573](https://github.com/aws/aws-sdk-go/pull/3573))
+  * Prevents potential issues when the host system is hibernated / slept and the monotonic clock readings don't match the wall-clock time.
+
 Release v1.35.4 (2020-10-06)
 ===
 
