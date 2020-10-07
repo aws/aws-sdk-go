@@ -12,6 +12,94 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opConfigureLogs = "ConfigureLogs"
+
+// ConfigureLogsRequest generates a "aws/request.Request" representing the
+// client's request for the ConfigureLogs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ConfigureLogs for more information on using the ConfigureLogs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ConfigureLogsRequest method.
+//    req, resp := client.ConfigureLogsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/ConfigureLogs
+func (c *MediaPackage) ConfigureLogsRequest(input *ConfigureLogsInput) (req *request.Request, output *ConfigureLogsOutput) {
+	op := &request.Operation{
+		Name:       opConfigureLogs,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/channels/{id}/configure_logs",
+	}
+
+	if input == nil {
+		input = &ConfigureLogsInput{}
+	}
+
+	output = &ConfigureLogsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ConfigureLogs API operation for AWS Elemental MediaPackage.
+//
+// Changes the Channel's properities to configure log subscription
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaPackage's
+// API operation ConfigureLogs for usage and error information.
+//
+// Returned Error Types:
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * ServiceUnavailableException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediapackage-2017-10-12/ConfigureLogs
+func (c *MediaPackage) ConfigureLogs(input *ConfigureLogsInput) (*ConfigureLogsOutput, error) {
+	req, out := c.ConfigureLogsRequest(input)
+	return out, req.Send()
+}
+
+// ConfigureLogsWithContext is the same as ConfigureLogs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ConfigureLogs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaPackage) ConfigureLogsWithContext(ctx aws.Context, input *ConfigureLogsInput, opts ...request.Option) (*ConfigureLogsOutput, error) {
+	req, out := c.ConfigureLogsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateChannel = "CreateChannel"
 
 // CreateChannelRequest generates a "aws/request.Request" representing the
@@ -1803,11 +1891,17 @@ type Channel struct {
 	// A short text description of the Channel.
 	Description *string `locationName:"description" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// An HTTP Live Streaming (HLS) ingest resource configuration.
 	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
 
 	// The ID of the Channel.
 	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
 
 	// A collection of tags associated with a resource
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -1835,6 +1929,12 @@ func (s *Channel) SetDescription(v string) *Channel {
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *Channel) SetEgressAccessLogs(v *EgressAccessLogs) *Channel {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetHlsIngest sets the HlsIngest field's value.
 func (s *Channel) SetHlsIngest(v *HlsIngest) *Channel {
 	s.HlsIngest = v
@@ -1844,6 +1944,12 @@ func (s *Channel) SetHlsIngest(v *HlsIngest) *Channel {
 // SetId sets the Id field's value.
 func (s *Channel) SetId(v string) *Channel {
 	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *Channel) SetIngressAccessLogs(v *IngressAccessLogs) *Channel {
+	s.IngressAccessLogs = v
 	return s
 }
 
@@ -2056,6 +2162,137 @@ func (s *CmafPackageCreateOrUpdateParameters) SetStreamSelection(v *StreamSelect
 	return s
 }
 
+type ConfigureLogsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
+	// Id is a required field
+	Id *string `location:"uri" locationName:"id" type:"string" required:"true"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfigureLogsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigureLogsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigureLogsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigureLogsInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *ConfigureLogsInput) SetEgressAccessLogs(v *EgressAccessLogs) *ConfigureLogsInput {
+	s.EgressAccessLogs = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfigureLogsInput) SetId(v string) *ConfigureLogsInput {
+	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *ConfigureLogsInput) SetIngressAccessLogs(v *IngressAccessLogs) *ConfigureLogsInput {
+	s.IngressAccessLogs = v
+	return s
+}
+
+type ConfigureLogsOutput struct {
+	_ struct{} `type:"structure"`
+
+	Arn *string `locationName:"arn" type:"string"`
+
+	Description *string `locationName:"description" type:"string"`
+
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
+	// An HTTP Live Streaming (HLS) ingest resource configuration.
+	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
+
+	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
+
+	// A collection of tags associated with a resource
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s ConfigureLogsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfigureLogsOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ConfigureLogsOutput) SetArn(v string) *ConfigureLogsOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ConfigureLogsOutput) SetDescription(v string) *ConfigureLogsOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *ConfigureLogsOutput) SetEgressAccessLogs(v *EgressAccessLogs) *ConfigureLogsOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
+// SetHlsIngest sets the HlsIngest field's value.
+func (s *ConfigureLogsOutput) SetHlsIngest(v *HlsIngest) *ConfigureLogsOutput {
+	s.HlsIngest = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ConfigureLogsOutput) SetId(v string) *ConfigureLogsOutput {
+	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *ConfigureLogsOutput) SetIngressAccessLogs(v *IngressAccessLogs) *ConfigureLogsOutput {
+	s.IngressAccessLogs = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ConfigureLogsOutput) SetTags(v map[string]*string) *ConfigureLogsOutput {
+	s.Tags = v
+	return s
+}
+
 type CreateChannelInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2116,10 +2353,16 @@ type CreateChannelOutput struct {
 
 	Description *string `locationName:"description" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// An HTTP Live Streaming (HLS) ingest resource configuration.
 	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
 
 	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
 
 	// A collection of tags associated with a resource
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2147,6 +2390,12 @@ func (s *CreateChannelOutput) SetDescription(v string) *CreateChannelOutput {
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *CreateChannelOutput) SetEgressAccessLogs(v *EgressAccessLogs) *CreateChannelOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetHlsIngest sets the HlsIngest field's value.
 func (s *CreateChannelOutput) SetHlsIngest(v *HlsIngest) *CreateChannelOutput {
 	s.HlsIngest = v
@@ -2156,6 +2405,12 @@ func (s *CreateChannelOutput) SetHlsIngest(v *HlsIngest) *CreateChannelOutput {
 // SetId sets the Id field's value.
 func (s *CreateChannelOutput) SetId(v string) *CreateChannelOutput {
 	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *CreateChannelOutput) SetIngressAccessLogs(v *IngressAccessLogs) *CreateChannelOutput {
+	s.IngressAccessLogs = v
 	return s
 }
 
@@ -3068,10 +3323,16 @@ type DescribeChannelOutput struct {
 
 	Description *string `locationName:"description" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// An HTTP Live Streaming (HLS) ingest resource configuration.
 	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
 
 	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
 
 	// A collection of tags associated with a resource
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -3099,6 +3360,12 @@ func (s *DescribeChannelOutput) SetDescription(v string) *DescribeChannelOutput 
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *DescribeChannelOutput) SetEgressAccessLogs(v *EgressAccessLogs) *DescribeChannelOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetHlsIngest sets the HlsIngest field's value.
 func (s *DescribeChannelOutput) SetHlsIngest(v *HlsIngest) *DescribeChannelOutput {
 	s.HlsIngest = v
@@ -3108,6 +3375,12 @@ func (s *DescribeChannelOutput) SetHlsIngest(v *HlsIngest) *DescribeChannelOutpu
 // SetId sets the Id field's value.
 func (s *DescribeChannelOutput) SetId(v string) *DescribeChannelOutput {
 	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *DescribeChannelOutput) SetIngressAccessLogs(v *IngressAccessLogs) *DescribeChannelOutput {
+	s.IngressAccessLogs = v
 	return s
 }
 
@@ -3428,6 +3701,30 @@ func (s *DescribeOriginEndpointOutput) SetUrl(v string) *DescribeOriginEndpointO
 // SetWhitelist sets the Whitelist field's value.
 func (s *DescribeOriginEndpointOutput) SetWhitelist(v []*string) *DescribeOriginEndpointOutput {
 	s.Whitelist = v
+	return s
+}
+
+// Configure egress access logging.
+type EgressAccessLogs struct {
+	_ struct{} `type:"structure"`
+
+	// Customize the log group name.
+	LogGroupName *string `locationName:"logGroupName" type:"string"`
+}
+
+// String returns the string representation
+func (s EgressAccessLogs) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EgressAccessLogs) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *EgressAccessLogs) SetLogGroupName(v string) *EgressAccessLogs {
+	s.LogGroupName = &v
 	return s
 }
 
@@ -4145,6 +4442,30 @@ func (s *IngestEndpoint) SetUrl(v string) *IngestEndpoint {
 // SetUsername sets the Username field's value.
 func (s *IngestEndpoint) SetUsername(v string) *IngestEndpoint {
 	s.Username = &v
+	return s
+}
+
+// Configure ingress access logging.
+type IngressAccessLogs struct {
+	_ struct{} `type:"structure"`
+
+	// Customize the log group name.
+	LogGroupName *string `locationName:"logGroupName" type:"string"`
+}
+
+// String returns the string representation
+func (s IngressAccessLogs) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IngressAccessLogs) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *IngressAccessLogs) SetLogGroupName(v string) *IngressAccessLogs {
+	s.LogGroupName = &v
 	return s
 }
 
@@ -4886,10 +5207,16 @@ type RotateChannelCredentialsOutput struct {
 
 	Description *string `locationName:"description" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// An HTTP Live Streaming (HLS) ingest resource configuration.
 	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
 
 	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
 
 	// A collection of tags associated with a resource
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -4917,6 +5244,12 @@ func (s *RotateChannelCredentialsOutput) SetDescription(v string) *RotateChannel
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *RotateChannelCredentialsOutput) SetEgressAccessLogs(v *EgressAccessLogs) *RotateChannelCredentialsOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetHlsIngest sets the HlsIngest field's value.
 func (s *RotateChannelCredentialsOutput) SetHlsIngest(v *HlsIngest) *RotateChannelCredentialsOutput {
 	s.HlsIngest = v
@@ -4926,6 +5259,12 @@ func (s *RotateChannelCredentialsOutput) SetHlsIngest(v *HlsIngest) *RotateChann
 // SetId sets the Id field's value.
 func (s *RotateChannelCredentialsOutput) SetId(v string) *RotateChannelCredentialsOutput {
 	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *RotateChannelCredentialsOutput) SetIngressAccessLogs(v *IngressAccessLogs) *RotateChannelCredentialsOutput {
+	s.IngressAccessLogs = v
 	return s
 }
 
@@ -4996,10 +5335,16 @@ type RotateIngestEndpointCredentialsOutput struct {
 
 	Description *string `locationName:"description" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// An HTTP Live Streaming (HLS) ingest resource configuration.
 	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
 
 	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
 
 	// A collection of tags associated with a resource
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -5027,6 +5372,12 @@ func (s *RotateIngestEndpointCredentialsOutput) SetDescription(v string) *Rotate
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *RotateIngestEndpointCredentialsOutput) SetEgressAccessLogs(v *EgressAccessLogs) *RotateIngestEndpointCredentialsOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetHlsIngest sets the HlsIngest field's value.
 func (s *RotateIngestEndpointCredentialsOutput) SetHlsIngest(v *HlsIngest) *RotateIngestEndpointCredentialsOutput {
 	s.HlsIngest = v
@@ -5036,6 +5387,12 @@ func (s *RotateIngestEndpointCredentialsOutput) SetHlsIngest(v *HlsIngest) *Rota
 // SetId sets the Id field's value.
 func (s *RotateIngestEndpointCredentialsOutput) SetId(v string) *RotateIngestEndpointCredentialsOutput {
 	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *RotateIngestEndpointCredentialsOutput) SetIngressAccessLogs(v *IngressAccessLogs) *RotateIngestEndpointCredentialsOutput {
+	s.IngressAccessLogs = v
 	return s
 }
 
@@ -5599,10 +5956,16 @@ type UpdateChannelOutput struct {
 
 	Description *string `locationName:"description" type:"string"`
 
+	// Configure egress access logging.
+	EgressAccessLogs *EgressAccessLogs `locationName:"egressAccessLogs" type:"structure"`
+
 	// An HTTP Live Streaming (HLS) ingest resource configuration.
 	HlsIngest *HlsIngest `locationName:"hlsIngest" type:"structure"`
 
 	Id *string `locationName:"id" type:"string"`
+
+	// Configure ingress access logging.
+	IngressAccessLogs *IngressAccessLogs `locationName:"ingressAccessLogs" type:"structure"`
 
 	// A collection of tags associated with a resource
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -5630,6 +5993,12 @@ func (s *UpdateChannelOutput) SetDescription(v string) *UpdateChannelOutput {
 	return s
 }
 
+// SetEgressAccessLogs sets the EgressAccessLogs field's value.
+func (s *UpdateChannelOutput) SetEgressAccessLogs(v *EgressAccessLogs) *UpdateChannelOutput {
+	s.EgressAccessLogs = v
+	return s
+}
+
 // SetHlsIngest sets the HlsIngest field's value.
 func (s *UpdateChannelOutput) SetHlsIngest(v *HlsIngest) *UpdateChannelOutput {
 	s.HlsIngest = v
@@ -5639,6 +6008,12 @@ func (s *UpdateChannelOutput) SetHlsIngest(v *HlsIngest) *UpdateChannelOutput {
 // SetId sets the Id field's value.
 func (s *UpdateChannelOutput) SetId(v string) *UpdateChannelOutput {
 	s.Id = &v
+	return s
+}
+
+// SetIngressAccessLogs sets the IngressAccessLogs field's value.
+func (s *UpdateChannelOutput) SetIngressAccessLogs(v *IngressAccessLogs) *UpdateChannelOutput {
+	s.IngressAccessLogs = v
 	return s
 }
 

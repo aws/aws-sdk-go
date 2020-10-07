@@ -901,7 +901,7 @@ func (c *CostExplorer) GetCostAndUsageRequest(input *GetCostAndUsageInput) (req 
 // you want the request to return. You can also filter and group your data by
 // various dimensions, such as SERVICE or AZ, in a specific time range. For
 // a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
-// operation. Master accounts in an organization in AWS Organizations have access
+// operation. Master account in an organization in AWS Organizations have access
 // to all member accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -999,7 +999,7 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsag
 // that you want the request to return. You can also filter and group your data
 // by various dimensions, such as SERVICE or AZ, in a specific time range. For
 // a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
-// operation. Master accounts in an organization in AWS Organizations have access
+// operation. Master account in an organization in AWS Organizations have access
 // to all member accounts. This API is currently available for the Amazon Elastic
 // Compute Cloud – Compute service only.
 //
@@ -1493,7 +1493,7 @@ func (c *CostExplorer) GetReservationUtilizationRequest(input *GetReservationUti
 
 // GetReservationUtilization API operation for AWS Cost Explorer Service.
 //
-// Retrieves the reservation utilization for your account. Master accounts in
+// Retrieves the reservation utilization for your account. Master account in
 // an organization have access to member accounts. You can filter data by dimensions
 // in a time period. You can use GetDimensionValues to determine the possible
 // dimension values. Currently, you can group only by SUBSCRIPTION_ID.
@@ -1910,7 +1910,7 @@ func (c *CostExplorer) GetSavingsPlansUtilizationRequest(input *GetSavingsPlansU
 // GetSavingsPlansUtilization API operation for AWS Cost Explorer Service.
 //
 // Retrieves the Savings Plans utilization for your account across date ranges
-// with daily or monthly granularity. Master accounts in an organization have
+// with daily or monthly granularity. Master account in an organization have
 // access to member accounts. You can use GetDimensionValues in SAVINGS_PLANS
 // to determine the possible dimension values.
 //
@@ -2947,11 +2947,13 @@ type AnomalyMonitor struct {
 	//
 	//    * Simple dimension values - You can set the dimension name and values
 	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. The Expression for that looks
-	//    like this: { "Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
-	//    “us-west-1” ] } } The list of dimension values are OR'd together to
-	//    retrieve cost or usage data. You can create Expression and DimensionValues
-	//    objects using either with* methods or set* methods in multiple lines.
+	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+	//    the Region is a full name (for example, REGION==US East (N. Virginia).
+	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+	//    are OR'd together to retrieve cost or usage data. You can create Expression
+	//    and DimensionValues objects using either with* methods or set* methods
+	//    in multiple lines.
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
@@ -4588,6 +4590,58 @@ func (s *DimensionValuesWithAttributes) SetValue(v string) *DimensionValuesWithA
 	return s
 }
 
+// The EBS field that contains a list of EBS metrics associated with the current
+// instance.
+type EBSResourceUtilization struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of read operations per second
+	EbsReadBytesPerSecond *string `type:"string"`
+
+	// The maximum number of read operations per second.
+	EbsReadOpsPerSecond *string `type:"string"`
+
+	// The maximum size of write operations per second.
+	EbsWriteBytesPerSecond *string `type:"string"`
+
+	// The maximum number of write operations per second.
+	EbsWriteOpsPerSecond *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EBSResourceUtilization) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EBSResourceUtilization) GoString() string {
+	return s.String()
+}
+
+// SetEbsReadBytesPerSecond sets the EbsReadBytesPerSecond field's value.
+func (s *EBSResourceUtilization) SetEbsReadBytesPerSecond(v string) *EBSResourceUtilization {
+	s.EbsReadBytesPerSecond = &v
+	return s
+}
+
+// SetEbsReadOpsPerSecond sets the EbsReadOpsPerSecond field's value.
+func (s *EBSResourceUtilization) SetEbsReadOpsPerSecond(v string) *EBSResourceUtilization {
+	s.EbsReadOpsPerSecond = &v
+	return s
+}
+
+// SetEbsWriteBytesPerSecond sets the EbsWriteBytesPerSecond field's value.
+func (s *EBSResourceUtilization) SetEbsWriteBytesPerSecond(v string) *EBSResourceUtilization {
+	s.EbsWriteBytesPerSecond = &v
+	return s
+}
+
+// SetEbsWriteOpsPerSecond sets the EbsWriteOpsPerSecond field's value.
+func (s *EBSResourceUtilization) SetEbsWriteOpsPerSecond(v string) *EBSResourceUtilization {
+	s.EbsWriteOpsPerSecond = &v
+	return s
+}
+
 // Details about the Amazon EC2 instances that AWS recommends that you purchase.
 type EC2InstanceDetails struct {
 	_ struct{} `type:"structure"`
@@ -4777,6 +4831,10 @@ func (s *EC2ResourceDetails) SetVcpu(v string) *EC2ResourceDetails {
 type EC2ResourceUtilization struct {
 	_ struct{} `type:"structure"`
 
+	// The EBS field that contains a list of EBS metrics associated with the current
+	// instance.
+	EBSResourceUtilization *EBSResourceUtilization `type:"structure"`
+
 	// Maximum observed or expected CPU utilization of the instance.
 	MaxCpuUtilizationPercentage *string `type:"string"`
 
@@ -4796,6 +4854,12 @@ func (s EC2ResourceUtilization) String() string {
 // GoString returns the string representation
 func (s EC2ResourceUtilization) GoString() string {
 	return s.String()
+}
+
+// SetEBSResourceUtilization sets the EBSResourceUtilization field's value.
+func (s *EC2ResourceUtilization) SetEBSResourceUtilization(v *EBSResourceUtilization) *EC2ResourceUtilization {
+	s.EBSResourceUtilization = v
+	return s
 }
 
 // SetMaxCpuUtilizationPercentage sets the MaxCpuUtilizationPercentage field's value.
@@ -4975,11 +5039,13 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //
 //    * Simple dimension values - You can set the dimension name and values
 //    for the filters that you plan to use. For example, you can filter for
-//    REGION==us-east-1 OR REGION==us-west-1. The Expression for that looks
-//    like this: { "Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
-//    “us-west-1” ] } } The list of dimension values are OR'd together to
-//    retrieve cost or usage data. You can create Expression and DimensionValues
-//    objects using either with* methods or set* methods in multiple lines.
+//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+//    the Region is a full name (for example, REGION==US East (N. Virginia).
+//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+//    are OR'd together to retrieve cost or usage data. You can create Expression
+//    and DimensionValues objects using either with* methods or set* methods
+//    in multiple lines.
 //
 //    * Compound dimension values with logical operations - You can use multiple
 //    Expression types and the logical operators AND/OR/NOT to create a list
@@ -6505,9 +6571,9 @@ type GetReservationPurchaseRecommendationInput struct {
 	AccountId *string `type:"string"`
 
 	// The account scope that you want your recommendations for. Amazon Web Services
-	// calculates recommendations including the payer account and linked accounts
+	// calculates recommendations including the master account and member accounts
 	// if the value is set to PAYER. If the value is LINKED, recommendations are
-	// calculated for individual linked accounts only.
+	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
 	// The number of previous days that you want AWS to consider when it calculates
@@ -6837,11 +6903,13 @@ type GetRightsizingRecommendationInput struct {
 	//
 	//    * Simple dimension values - You can set the dimension name and values
 	//    for the filters that you plan to use. For example, you can filter for
-	//    REGION==us-east-1 OR REGION==us-west-1. The Expression for that looks
-	//    like this: { "Dimensions": { "Key": "REGION", "Values": [ "us-east-1",
-	//    “us-west-1” ] } } The list of dimension values are OR'd together to
-	//    retrieve cost or usage data. You can create Expression and DimensionValues
-	//    objects using either with* methods or set* methods in multiple lines.
+	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
+	//    the Region is a full name (for example, REGION==US East (N. Virginia).
+	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
+	//    are OR'd together to retrieve cost or usage data. You can create Expression
+	//    and DimensionValues objects using either with* methods or set* methods
+	//    in multiple lines.
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
@@ -7173,9 +7241,9 @@ type GetSavingsPlansPurchaseRecommendationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The account scope that you want your recommendations for. Amazon Web Services
-	// calculates recommendations including the payer account and linked accounts
+	// calculates recommendations including the master account and member accounts
 	// if the value is set to PAYER. If the value is LINKED, recommendations are
-	// calculated for individual linked accounts only.
+	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
 	// You can filter your recommendations by Account ID with the LINKED_ACCOUNT
@@ -9832,10 +9900,10 @@ func (s *SavingsPlansDetails) SetRegion(v string) *SavingsPlansDetails {
 type SavingsPlansPurchaseRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The account scope that you want your recommendations for. AWS calculates
-	// recommendations including the payer account and linked accounts if the value
-	// is set to PAYER. If the value is LINKED, recommendations are calculated for
-	// individual linked accounts only.
+	// The account scope that you want your recommendations for. Amazon Web Services
+	// calculates recommendations including the master account and member accounts
+	// if the value is set to PAYER. If the value is LINKED, recommendations are
+	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
 	// The lookback period in days, used to generate the recommendation.
@@ -10440,7 +10508,7 @@ func (s *SavingsPlansUtilizationByTime) SetUtilization(v *SavingsPlansUtilizatio
 }
 
 // A single daily or monthly Savings Plans utilization rate, and details for
-// your account. Master accounts in an organization have access to member accounts.
+// your account. A master account in an organization have access to member accounts.
 // You can use GetDimensionValues to determine the possible dimension values.
 type SavingsPlansUtilizationDetail struct {
 	_ struct{} `type:"structure"`

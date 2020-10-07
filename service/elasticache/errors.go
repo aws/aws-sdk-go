@@ -117,6 +117,22 @@ const (
 	// of clusters per customer.
 	ErrCodeClusterQuotaForCustomerExceededFault = "ClusterQuotaForCustomerExceeded"
 
+	// ErrCodeDefaultUserAssociatedToUserGroupFault for service response error code
+	// "DefaultUserAssociatedToUserGroup".
+	ErrCodeDefaultUserAssociatedToUserGroupFault = "DefaultUserAssociatedToUserGroup"
+
+	// ErrCodeDefaultUserRequired for service response error code
+	// "DefaultUserRequired".
+	//
+	// You must add default user to a user group.
+	ErrCodeDefaultUserRequired = "DefaultUserRequired"
+
+	// ErrCodeDuplicateUserNameFault for service response error code
+	// "DuplicateUserName".
+	//
+	// A user with this username already exists.
+	ErrCodeDuplicateUserNameFault = "DuplicateUserName"
+
 	// ErrCodeGlobalReplicationGroupAlreadyExistsFault for service response error code
 	// "GlobalReplicationGroupAlreadyExistsFault".
 	//
@@ -204,6 +220,18 @@ const (
 	//
 	// An invalid subnet identifier was specified.
 	ErrCodeInvalidSubnet = "InvalidSubnet"
+
+	// ErrCodeInvalidUserGroupStateFault for service response error code
+	// "InvalidUserGroupState".
+	//
+	// The user group is not in an active state.
+	ErrCodeInvalidUserGroupStateFault = "InvalidUserGroupState"
+
+	// ErrCodeInvalidUserStateFault for service response error code
+	// "InvalidUserState".
+	//
+	// The user is not in active state.
+	ErrCodeInvalidUserStateFault = "InvalidUserState"
 
 	// ErrCodeInvalidVPCNetworkStateFault for service response error code
 	// "InvalidVPCNetworkStateFault".
@@ -347,6 +375,15 @@ const (
 	// The requested subnet is being used by another cache subnet group.
 	ErrCodeSubnetInUse = "SubnetInUse"
 
+	// ErrCodeSubnetNotAllowedFault for service response error code
+	// "SubnetNotAllowedFault".
+	//
+	// At least one subnet ID does not match the other subnet IDs. This mismatch
+	// typically occurs when a user sets one subnet ID to a regional Availability
+	// Zone and a different one to an outpost. Or when a user sets the subnet ID
+	// to an Outpost when not subscribed on this service.
+	ErrCodeSubnetNotAllowedFault = "SubnetNotAllowedFault"
+
 	// ErrCodeTagNotFoundFault for service response error code
 	// "TagNotFound".
 	//
@@ -366,4 +403,40 @@ const (
 	//
 	// The TestFailover action is not available.
 	ErrCodeTestFailoverNotAvailableFault = "TestFailoverNotAvailableFault"
+
+	// ErrCodeUserAlreadyExistsFault for service response error code
+	// "UserAlreadyExists".
+	//
+	// A user with this ID already exists.
+	ErrCodeUserAlreadyExistsFault = "UserAlreadyExists"
+
+	// ErrCodeUserGroupAlreadyExistsFault for service response error code
+	// "UserGroupAlreadyExists".
+	//
+	// The user group with this ID already exists.
+	ErrCodeUserGroupAlreadyExistsFault = "UserGroupAlreadyExists"
+
+	// ErrCodeUserGroupNotFoundFault for service response error code
+	// "UserGroupNotFound".
+	//
+	// The user group was not found or does not exist
+	ErrCodeUserGroupNotFoundFault = "UserGroupNotFound"
+
+	// ErrCodeUserGroupQuotaExceededFault for service response error code
+	// "UserGroupQuotaExceeded".
+	//
+	// The number of users exceeds the user group limit.
+	ErrCodeUserGroupQuotaExceededFault = "UserGroupQuotaExceeded"
+
+	// ErrCodeUserNotFoundFault for service response error code
+	// "UserNotFound".
+	//
+	// The user does not exist or could not be found.
+	ErrCodeUserNotFoundFault = "UserNotFound"
+
+	// ErrCodeUserQuotaExceededFault for service response error code
+	// "UserQuotaExceeded".
+	//
+	// The quota of users has been exceeded.
+	ErrCodeUserQuotaExceededFault = "UserQuotaExceeded"
 )

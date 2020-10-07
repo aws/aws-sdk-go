@@ -1017,6 +1017,12 @@ func (c *ElastiCache) CreateCacheSubnetGroupRequest(input *CreateCacheSubnetGrou
 //   * ErrCodeInvalidSubnet "InvalidSubnet"
 //   An invalid subnet identifier was specified.
 //
+//   * ErrCodeSubnetNotAllowedFault "SubnetNotAllowedFault"
+//   At least one subnet ID does not match the other subnet IDs. This mismatch
+//   typically occurs when a user sets one subnet ID to a regional Availability
+//   Zone and a different one to an outpost. Or when a user sets the subnet ID
+//   to an Outpost when not subscribed on this service.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateCacheSubnetGroup
 func (c *ElastiCache) CreateCacheSubnetGroup(input *CreateCacheSubnetGroupInput) (*CreateCacheSubnetGroupOutput, error) {
 	req, out := c.CreateCacheSubnetGroupRequest(input)
@@ -1225,6 +1231,12 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 //   * ErrCodeReplicationGroupAlreadyExistsFault "ReplicationGroupAlreadyExists"
 //   The specified replication group already exists.
 //
+//   * ErrCodeInvalidUserGroupStateFault "InvalidUserGroupState"
+//   The user group is not in an active state.
+//
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
+//
 //   * ErrCodeInsufficientCacheClusterCapacityFault "InsufficientCacheClusterCapacity"
 //   The requested cache node type is not available in the specified Availability
 //   Zone. For more information, see InsufficientCacheClusterCapacity (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/ErrorMessages.html#ErrorMessages.INSUFFICIENT_CACHE_CLUSTER_CAPACITY)
@@ -1411,6 +1423,193 @@ func (c *ElastiCache) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapsho
 // for more information on using Contexts.
 func (c *ElastiCache) CreateSnapshotWithContext(ctx aws.Context, input *CreateSnapshotInput, opts ...request.Option) (*CreateSnapshotOutput, error) {
 	req, out := c.CreateSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUser = "CreateUser"
+
+// CreateUserRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUser for more information on using the CreateUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUserRequest method.
+//    req, resp := client.CreateUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateUser
+func (c *ElastiCache) CreateUserRequest(input *CreateUserInput) (req *request.Request, output *CreateUserOutput) {
+	op := &request.Operation{
+		Name:       opCreateUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUserInput{}
+	}
+
+	output = &CreateUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUser API operation for Amazon ElastiCache.
+//
+// For Redis engine version 6.04 onwards: Creates a Redis user. For more information,
+// see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateUser for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserAlreadyExistsFault "UserAlreadyExists"
+//   A user with this ID already exists.
+//
+//   * ErrCodeUserQuotaExceededFault "UserQuotaExceeded"
+//   The quota of users has been exceeded.
+//
+//   * ErrCodeDuplicateUserNameFault "DuplicateUserName"
+//   A user with this username already exists.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value for a parameter is invalid.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Two or more incompatible parameters were specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateUser
+func (c *ElastiCache) CreateUser(input *CreateUserInput) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserWithContext is the same as CreateUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, opts ...request.Option) (*CreateUserOutput, error) {
+	req, out := c.CreateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUserGroup = "CreateUserGroup"
+
+// CreateUserGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUserGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUserGroup for more information on using the CreateUserGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUserGroupRequest method.
+//    req, resp := client.CreateUserGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateUserGroup
+func (c *ElastiCache) CreateUserGroupRequest(input *CreateUserGroupInput) (req *request.Request, output *CreateUserGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateUserGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUserGroupInput{}
+	}
+
+	output = &CreateUserGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUserGroup API operation for Amazon ElastiCache.
+//
+// For Redis engine version 6.04 onwards: Creates a Redis user group. For more
+// information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation CreateUserGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeDuplicateUserNameFault "DuplicateUserName"
+//   A user with this username already exists.
+//
+//   * ErrCodeUserGroupAlreadyExistsFault "UserGroupAlreadyExists"
+//   The user group with this ID already exists.
+//
+//   * ErrCodeDefaultUserRequired "DefaultUserRequired"
+//   You must add default user to a user group.
+//
+//   * ErrCodeUserGroupQuotaExceededFault "UserGroupQuotaExceeded"
+//   The number of users exceeds the user group limit.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value for a parameter is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/CreateUserGroup
+func (c *ElastiCache) CreateUserGroup(input *CreateUserGroupInput) (*CreateUserGroupOutput, error) {
+	req, out := c.CreateUserGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserGroupWithContext is the same as CreateUserGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUserGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) CreateUserGroupWithContext(ctx aws.Context, input *CreateUserGroupInput, opts ...request.Option) (*CreateUserGroupOutput, error) {
+	req, out := c.CreateUserGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2319,6 +2518,182 @@ func (c *ElastiCache) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapsho
 // for more information on using Contexts.
 func (c *ElastiCache) DeleteSnapshotWithContext(ctx aws.Context, input *DeleteSnapshotInput, opts ...request.Option) (*DeleteSnapshotOutput, error) {
 	req, out := c.DeleteSnapshotRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUser = "DeleteUser"
+
+// DeleteUserRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUser for more information on using the DeleteUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUserRequest method.
+//    req, resp := client.DeleteUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteUser
+func (c *ElastiCache) DeleteUserRequest(input *DeleteUserInput) (req *request.Request, output *DeleteUserOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteUserInput{}
+	}
+
+	output = &DeleteUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteUser API operation for Amazon ElastiCache.
+//
+// For Redis engine version 6.04 onwards: Deletes a user. The user will be removed
+// from all user groups and in turn removed from all replication groups. For
+// more information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteUser for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidUserStateFault "InvalidUserState"
+//   The user is not in active state.
+//
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value for a parameter is invalid.
+//
+//   * ErrCodeDefaultUserAssociatedToUserGroupFault "DefaultUserAssociatedToUserGroup"
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteUser
+func (c *ElastiCache) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
+	req, out := c.DeleteUserRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUserWithContext is the same as DeleteUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput, opts ...request.Option) (*DeleteUserOutput, error) {
+	req, out := c.DeleteUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUserGroup = "DeleteUserGroup"
+
+// DeleteUserGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUserGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUserGroup for more information on using the DeleteUserGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUserGroupRequest method.
+//    req, resp := client.DeleteUserGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteUserGroup
+func (c *ElastiCache) DeleteUserGroupRequest(input *DeleteUserGroupInput) (req *request.Request, output *DeleteUserGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUserGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteUserGroupInput{}
+	}
+
+	output = &DeleteUserGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteUserGroup API operation for Amazon ElastiCache.
+//
+// For Redis engine version 6.04 onwards: Deletes a ser group. The user group
+// must first be disassociated from the replcation group before it can be deleted.
+// For more information, see Using Role Based Access Control (RBAC) (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Clusters.RBAC.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DeleteUserGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
+//
+//   * ErrCodeInvalidUserGroupStateFault "InvalidUserGroupState"
+//   The user group is not in an active state.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value for a parameter is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteUserGroup
+func (c *ElastiCache) DeleteUserGroup(input *DeleteUserGroupInput) (*DeleteUserGroupOutput, error) {
+	req, out := c.DeleteUserGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUserGroupWithContext is the same as DeleteUserGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUserGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) DeleteUserGroupWithContext(ctx aws.Context, input *DeleteUserGroupInput, opts ...request.Option) (*DeleteUserGroupOutput, error) {
+	req, out := c.DeleteUserGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4495,6 +4870,286 @@ func (c *ElastiCache) DescribeUpdateActionsPagesWithContext(ctx aws.Context, inp
 	return p.Err()
 }
 
+const opDescribeUserGroups = "DescribeUserGroups"
+
+// DescribeUserGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeUserGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeUserGroups for more information on using the DescribeUserGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeUserGroupsRequest method.
+//    req, resp := client.DescribeUserGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeUserGroups
+func (c *ElastiCache) DescribeUserGroupsRequest(input *DescribeUserGroupsInput) (req *request.Request, output *DescribeUserGroupsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeUserGroups,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeUserGroupsInput{}
+	}
+
+	output = &DescribeUserGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeUserGroups API operation for Amazon ElastiCache.
+//
+// Returns a list of user groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeUserGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Two or more incompatible parameters were specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeUserGroups
+func (c *ElastiCache) DescribeUserGroups(input *DescribeUserGroupsInput) (*DescribeUserGroupsOutput, error) {
+	req, out := c.DescribeUserGroupsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeUserGroupsWithContext is the same as DescribeUserGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeUserGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) DescribeUserGroupsWithContext(ctx aws.Context, input *DescribeUserGroupsInput, opts ...request.Option) (*DescribeUserGroupsOutput, error) {
+	req, out := c.DescribeUserGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeUserGroupsPages iterates over the pages of a DescribeUserGroups operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeUserGroups method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeUserGroups operation.
+//    pageNum := 0
+//    err := client.DescribeUserGroupsPages(params,
+//        func(page *elasticache.DescribeUserGroupsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ElastiCache) DescribeUserGroupsPages(input *DescribeUserGroupsInput, fn func(*DescribeUserGroupsOutput, bool) bool) error {
+	return c.DescribeUserGroupsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeUserGroupsPagesWithContext same as DescribeUserGroupsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) DescribeUserGroupsPagesWithContext(ctx aws.Context, input *DescribeUserGroupsInput, fn func(*DescribeUserGroupsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeUserGroupsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeUserGroupsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeUserGroupsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeUsers = "DescribeUsers"
+
+// DescribeUsersRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeUsers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeUsers for more information on using the DescribeUsers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeUsersRequest method.
+//    req, resp := client.DescribeUsersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeUsers
+func (c *ElastiCache) DescribeUsersRequest(input *DescribeUsersInput) (req *request.Request, output *DescribeUsersOutput) {
+	op := &request.Operation{
+		Name:       opDescribeUsers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeUsersInput{}
+	}
+
+	output = &DescribeUsersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeUsers API operation for Amazon ElastiCache.
+//
+// Returns a list of users.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation DescribeUsers for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Two or more incompatible parameters were specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DescribeUsers
+func (c *ElastiCache) DescribeUsers(input *DescribeUsersInput) (*DescribeUsersOutput, error) {
+	req, out := c.DescribeUsersRequest(input)
+	return out, req.Send()
+}
+
+// DescribeUsersWithContext is the same as DescribeUsers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeUsers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) DescribeUsersWithContext(ctx aws.Context, input *DescribeUsersInput, opts ...request.Option) (*DescribeUsersOutput, error) {
+	req, out := c.DescribeUsersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeUsersPages iterates over the pages of a DescribeUsers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeUsers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeUsers operation.
+//    pageNum := 0
+//    err := client.DescribeUsersPages(params,
+//        func(page *elasticache.DescribeUsersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ElastiCache) DescribeUsersPages(input *DescribeUsersInput, fn func(*DescribeUsersOutput, bool) bool) error {
+	return c.DescribeUsersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeUsersPagesWithContext same as DescribeUsersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) DescribeUsersPagesWithContext(ctx aws.Context, input *DescribeUsersInput, fn func(*DescribeUsersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeUsersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeUsersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeUsersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDisassociateGlobalReplicationGroup = "DisassociateGlobalReplicationGroup"
 
 // DisassociateGlobalReplicationGroupRequest generates a "aws/request.Request" representing the
@@ -5348,6 +6003,12 @@ func (c *ElastiCache) ModifyCacheSubnetGroupRequest(input *ModifyCacheSubnetGrou
 //   * ErrCodeInvalidSubnet "InvalidSubnet"
 //   An invalid subnet identifier was specified.
 //
+//   * ErrCodeSubnetNotAllowedFault "SubnetNotAllowedFault"
+//   At least one subnet ID does not match the other subnet IDs. This mismatch
+//   typically occurs when a user sets one subnet ID to a regional Availability
+//   Zone and a different one to an outpost. Or when a user sets the subnet ID
+//   to an Outpost when not subscribed on this service.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyCacheSubnetGroup
 func (c *ElastiCache) ModifyCacheSubnetGroup(input *ModifyCacheSubnetGroupInput) (*ModifyCacheSubnetGroupOutput, error) {
 	req, out := c.ModifyCacheSubnetGroupRequest(input)
@@ -5523,6 +6184,12 @@ func (c *ElastiCache) ModifyReplicationGroupRequest(input *ModifyReplicationGrou
 //   * ErrCodeInvalidReplicationGroupStateFault "InvalidReplicationGroupState"
 //   The requested replication group is not in the available state.
 //
+//   * ErrCodeInvalidUserGroupStateFault "InvalidUserGroupState"
+//   The user group is not in an active state.
+//
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
+//
 //   * ErrCodeInvalidCacheClusterStateFault "InvalidCacheClusterState"
 //   The requested cluster is not in the available state.
 //
@@ -5694,6 +6361,191 @@ func (c *ElastiCache) ModifyReplicationGroupShardConfiguration(input *ModifyRepl
 // for more information on using Contexts.
 func (c *ElastiCache) ModifyReplicationGroupShardConfigurationWithContext(ctx aws.Context, input *ModifyReplicationGroupShardConfigurationInput, opts ...request.Option) (*ModifyReplicationGroupShardConfigurationOutput, error) {
 	req, out := c.ModifyReplicationGroupShardConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyUser = "ModifyUser"
+
+// ModifyUserRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyUser operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyUser for more information on using the ModifyUser
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyUserRequest method.
+//    req, resp := client.ModifyUserRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyUser
+func (c *ElastiCache) ModifyUserRequest(input *ModifyUserInput) (req *request.Request, output *ModifyUserOutput) {
+	op := &request.Operation{
+		Name:       opModifyUser,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyUserInput{}
+	}
+
+	output = &ModifyUserOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyUser API operation for Amazon ElastiCache.
+//
+// Changes user password(s) and/or access string.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ModifyUser for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeInvalidUserStateFault "InvalidUserState"
+//   The user is not in active state.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value for a parameter is invalid.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Two or more incompatible parameters were specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyUser
+func (c *ElastiCache) ModifyUser(input *ModifyUserInput) (*ModifyUserOutput, error) {
+	req, out := c.ModifyUserRequest(input)
+	return out, req.Send()
+}
+
+// ModifyUserWithContext is the same as ModifyUser with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyUser for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) ModifyUserWithContext(ctx aws.Context, input *ModifyUserInput, opts ...request.Option) (*ModifyUserOutput, error) {
+	req, out := c.ModifyUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opModifyUserGroup = "ModifyUserGroup"
+
+// ModifyUserGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyUserGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyUserGroup for more information on using the ModifyUserGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyUserGroupRequest method.
+//    req, resp := client.ModifyUserGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyUserGroup
+func (c *ElastiCache) ModifyUserGroupRequest(input *ModifyUserGroupInput) (req *request.Request, output *ModifyUserGroupOutput) {
+	op := &request.Operation{
+		Name:       opModifyUserGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyUserGroupInput{}
+	}
+
+	output = &ModifyUserGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyUserGroup API operation for Amazon ElastiCache.
+//
+// Changes the list of users that belong to the user group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon ElastiCache's
+// API operation ModifyUserGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeUserGroupNotFoundFault "UserGroupNotFound"
+//   The user group was not found or does not exist
+//
+//   * ErrCodeUserNotFoundFault "UserNotFound"
+//   The user does not exist or could not be found.
+//
+//   * ErrCodeDuplicateUserNameFault "DuplicateUserName"
+//   A user with this username already exists.
+//
+//   * ErrCodeDefaultUserRequired "DefaultUserRequired"
+//   You must add default user to a user group.
+//
+//   * ErrCodeInvalidUserGroupStateFault "InvalidUserGroupState"
+//   The user group is not in an active state.
+//
+//   * ErrCodeInvalidParameterValueException "InvalidParameterValue"
+//   The value for a parameter is invalid.
+//
+//   * ErrCodeInvalidParameterCombinationException "InvalidParameterCombination"
+//   Two or more incompatible parameters were specified.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/ModifyUserGroup
+func (c *ElastiCache) ModifyUserGroup(input *ModifyUserGroupInput) (*ModifyUserGroupOutput, error) {
+	req, out := c.ModifyUserGroupRequest(input)
+	return out, req.Send()
+}
+
+// ModifyUserGroupWithContext is the same as ModifyUserGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyUserGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElastiCache) ModifyUserGroupWithContext(ctx aws.Context, input *ModifyUserGroupInput, opts ...request.Option) (*ModifyUserGroupOutput, error) {
+	req, out := c.ModifyUserGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6537,6 +7389,39 @@ func (s *AddTagsToResourceInput) SetTags(v []*Tag) *AddTagsToResourceInput {
 	return s
 }
 
+// Indicates whether the user requires a password to authenticate.
+type Authentication struct {
+	_ struct{} `type:"structure"`
+
+	// The number of passwords belonging to the user. The maximum is two.
+	PasswordCount *int64 `type:"integer"`
+
+	// Indicates whether the user requires a password to authenticate.
+	Type *string `type:"string" enum:"AuthenticationType"`
+}
+
+// String returns the string representation
+func (s Authentication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Authentication) GoString() string {
+	return s.String()
+}
+
+// SetPasswordCount sets the PasswordCount field's value.
+func (s *Authentication) SetPasswordCount(v int64) *Authentication {
+	s.PasswordCount = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Authentication) SetType(v string) *Authentication {
+	s.Type = &v
+	return s
+}
+
 // Represents the input of an AuthorizeCacheSecurityGroupIngress operation.
 type AuthorizeCacheSecurityGroupIngressInput struct {
 	_ struct{} `type:"structure"`
@@ -6987,6 +7872,9 @@ type CacheCluster struct {
 	// Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
+	// The outpost ARN in which the cache cluster is created.
+	PreferredOutpostArn *string `type:"string"`
+
 	// The replication group to which this cluster belongs. If this field is empty,
 	// the cluster is not associated with any replication group.
 	ReplicationGroupId *string `type:"string"`
@@ -7163,6 +8051,12 @@ func (s *CacheCluster) SetPreferredMaintenanceWindow(v string) *CacheCluster {
 	return s
 }
 
+// SetPreferredOutpostArn sets the PreferredOutpostArn field's value.
+func (s *CacheCluster) SetPreferredOutpostArn(v string) *CacheCluster {
+	s.PreferredOutpostArn = &v
+	return s
+}
+
 // SetReplicationGroupId sets the ReplicationGroupId field's value.
 func (s *CacheCluster) SetReplicationGroupId(v string) *CacheCluster {
 	s.ReplicationGroupId = &v
@@ -7312,6 +8206,9 @@ type CacheNode struct {
 	// The Availability Zone where this node was created and now resides.
 	CustomerAvailabilityZone *string `type:"string"`
 
+	// The customer outpost ARN of the cache node.
+	CustomerOutpostArn *string `type:"string"`
+
 	// The hostname for connecting to this cache node.
 	Endpoint *Endpoint `type:"structure"`
 
@@ -7354,6 +8251,12 @@ func (s *CacheNode) SetCacheNodeStatus(v string) *CacheNode {
 // SetCustomerAvailabilityZone sets the CustomerAvailabilityZone field's value.
 func (s *CacheNode) SetCustomerAvailabilityZone(v string) *CacheNode {
 	s.CustomerAvailabilityZone = &v
+	return s
+}
+
+// SetCustomerOutpostArn sets the CustomerOutpostArn field's value.
+func (s *CacheNode) SetCustomerOutpostArn(v string) *CacheNode {
+	s.CustomerOutpostArn = &v
 	return s
 }
 
@@ -7744,7 +8647,7 @@ func (s *CacheParameterGroupStatus) SetParameterApplyStatus(v string) *CachePara
 type CacheSecurityGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN (Amazon Resource Name) of the cache security group.
+	// The ARN of the cache security group,
 	ARN *string `type:"string"`
 
 	// The name of the cache security group.
@@ -8007,6 +8910,9 @@ type ConfigureShard struct {
 	// primary node. If this member of ReplicaConfiguration is omitted, ElastiCache
 	// for Redis selects the availability zone for each of the replicas.
 	PreferredAvailabilityZones []*string `locationNameList:"PreferredAvailabilityZone" type:"list"`
+
+	// The outpost ARNs in which the cache cluster is created.
+	PreferredOutpostArns []*string `locationNameList:"PreferredOutpostArn" type:"list"`
 }
 
 // String returns the string representation
@@ -8053,6 +8959,12 @@ func (s *ConfigureShard) SetNodeGroupId(v string) *ConfigureShard {
 // SetPreferredAvailabilityZones sets the PreferredAvailabilityZones field's value.
 func (s *ConfigureShard) SetPreferredAvailabilityZones(v []*string) *ConfigureShard {
 	s.PreferredAvailabilityZones = v
+	return s
+}
+
+// SetPreferredOutpostArns sets the PreferredOutpostArns field's value.
+func (s *ConfigureShard) SetPreferredOutpostArns(v []*string) *ConfigureShard {
+	s.PreferredOutpostArns = v
 	return s
 }
 
@@ -8301,6 +9213,10 @@ type CreateCacheClusterInput struct {
 	// (http://aws.amazon.com/contact-us/elasticache-node-limit-request/).
 	NumCacheNodes *int64 `type:"integer"`
 
+	// Specifies whether the nodes in the cluster are created in a single outpost
+	// or across multiple outposts.
+	OutpostMode *string `type:"string" enum:"OutpostMode"`
+
 	// The port number on which each of the cache nodes accepts connections.
 	Port *int64 `type:"integer"`
 
@@ -8357,6 +9273,12 @@ type CreateCacheClusterInput struct {
 	//
 	// Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
+
+	// The outpost ARN in which the cache cluster is created.
+	PreferredOutpostArn *string `type:"string"`
+
+	// The outpost ARNs in which the cache cluster is created.
+	PreferredOutpostArns []*string `locationNameList:"PreferredOutpostArn" type:"list"`
 
 	// The ID of the replication group to which this cluster should belong. If this
 	// parameter is specified, the cluster is added to the specified replication
@@ -8512,6 +9434,12 @@ func (s *CreateCacheClusterInput) SetNumCacheNodes(v int64) *CreateCacheClusterI
 	return s
 }
 
+// SetOutpostMode sets the OutpostMode field's value.
+func (s *CreateCacheClusterInput) SetOutpostMode(v string) *CreateCacheClusterInput {
+	s.OutpostMode = &v
+	return s
+}
+
 // SetPort sets the Port field's value.
 func (s *CreateCacheClusterInput) SetPort(v int64) *CreateCacheClusterInput {
 	s.Port = &v
@@ -8533,6 +9461,18 @@ func (s *CreateCacheClusterInput) SetPreferredAvailabilityZones(v []*string) *Cr
 // SetPreferredMaintenanceWindow sets the PreferredMaintenanceWindow field's value.
 func (s *CreateCacheClusterInput) SetPreferredMaintenanceWindow(v string) *CreateCacheClusterInput {
 	s.PreferredMaintenanceWindow = &v
+	return s
+}
+
+// SetPreferredOutpostArn sets the PreferredOutpostArn field's value.
+func (s *CreateCacheClusterInput) SetPreferredOutpostArn(v string) *CreateCacheClusterInput {
+	s.PreferredOutpostArn = &v
+	return s
+}
+
+// SetPreferredOutpostArns sets the PreferredOutpostArns field's value.
+func (s *CreateCacheClusterInput) SetPreferredOutpostArns(v []*string) *CreateCacheClusterInput {
+	s.PreferredOutpostArns = v
 	return s
 }
 
@@ -8887,8 +9827,15 @@ type CreateGlobalReplicationGroupInput struct {
 	// Provides details of the Global Datastore
 	GlobalReplicationGroupDescription *string `type:"string"`
 
-	// The suffix name of a Global Datastore. The suffix guarantees uniqueness of
+	// The suffix name of a Global Datastore. Amazon ElastiCache automatically applies
+	// a prefix to the Global Datastore ID when it is created. Each AWS Region has
+	// its own prefix. For instance, a Global Datastore ID created in the US-West-1
+	// region will begin with "dsdfu" along with the suffix name you provide. The
+	// suffix, combined with the auto-generated prefix, guarantees uniqueness of
 	// the Global Datastore name across multiple regions.
+	//
+	// For a full list of AWS Regions and their respective Global Datastore iD prefixes,
+	// see Using the AWS CLI with Global Datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Clusters-CLI.html).
 	//
 	// GlobalReplicationGroupIdSuffix is a required field
 	GlobalReplicationGroupIdSuffix *string `type:"string" required:"true"`
@@ -9293,6 +10240,9 @@ type CreateReplicationGroupInput struct {
 	// For HIPAA compliance, you must specify TransitEncryptionEnabled as true,
 	// an AuthToken, and a CacheSubnetGroup.
 	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// The list of user groups to associate with the replication group.
+	UserGroupIds []*string `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -9313,6 +10263,9 @@ func (s *CreateReplicationGroupInput) Validate() error {
 	}
 	if s.ReplicationGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ReplicationGroupId"))
+	}
+	if s.UserGroupIds != nil && len(s.UserGroupIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserGroupIds", 1))
 	}
 	if s.NodeGroupConfiguration != nil {
 		for i, v := range s.NodeGroupConfiguration {
@@ -9517,6 +10470,12 @@ func (s *CreateReplicationGroupInput) SetTransitEncryptionEnabled(v bool) *Creat
 	return s
 }
 
+// SetUserGroupIds sets the UserGroupIds field's value.
+func (s *CreateReplicationGroupInput) SetUserGroupIds(v []*string) *CreateReplicationGroupInput {
+	s.UserGroupIds = v
+	return s
+}
+
 type CreateReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9629,6 +10588,341 @@ func (s CreateSnapshotOutput) GoString() string {
 // SetSnapshot sets the Snapshot field's value.
 func (s *CreateSnapshotOutput) SetSnapshot(v *Snapshot) *CreateSnapshotOutput {
 	s.Snapshot = v
+	return s
+}
+
+type CreateUserGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// Must be Redis.
+	//
+	// Engine is a required field
+	Engine *string `type:"string" required:"true"`
+
+	// The ID of the user group.
+	//
+	// UserGroupId is a required field
+	UserGroupId *string `type:"string" required:"true"`
+
+	// The list of user IDs that belong to the user group.
+	UserIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateUserGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserGroupInput"}
+	if s.Engine == nil {
+		invalidParams.Add(request.NewErrParamRequired("Engine"))
+	}
+	if s.UserGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserGroupId"))
+	}
+	if s.UserIds != nil && len(s.UserIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateUserGroupInput) SetEngine(v string) *CreateUserGroupInput {
+	s.Engine = &v
+	return s
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *CreateUserGroupInput) SetUserGroupId(v string) *CreateUserGroupInput {
+	s.UserGroupId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *CreateUserGroupInput) SetUserIds(v []*string) *CreateUserGroupInput {
+	s.UserIds = v
+	return s
+}
+
+type CreateUserGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user group.
+	ARN *string `type:"string"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// A list of updates being applied to the user groups.
+	PendingChanges *UserGroupPendingChanges `type:"structure"`
+
+	// A list of replication groups that the user group can access.
+	ReplicationGroups []*string `type:"list"`
+
+	// Indicates user group status. Can be "creating", "active", "modifying", "deleting".
+	Status *string `type:"string"`
+
+	// The ID of the user group.
+	UserGroupId *string `type:"string"`
+
+	// The list of user IDs that belong to the user group.
+	UserIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateUserGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *CreateUserGroupOutput) SetARN(v string) *CreateUserGroupOutput {
+	s.ARN = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateUserGroupOutput) SetEngine(v string) *CreateUserGroupOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetPendingChanges sets the PendingChanges field's value.
+func (s *CreateUserGroupOutput) SetPendingChanges(v *UserGroupPendingChanges) *CreateUserGroupOutput {
+	s.PendingChanges = v
+	return s
+}
+
+// SetReplicationGroups sets the ReplicationGroups field's value.
+func (s *CreateUserGroupOutput) SetReplicationGroups(v []*string) *CreateUserGroupOutput {
+	s.ReplicationGroups = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateUserGroupOutput) SetStatus(v string) *CreateUserGroupOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *CreateUserGroupOutput) SetUserGroupId(v string) *CreateUserGroupOutput {
+	s.UserGroupId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *CreateUserGroupOutput) SetUserIds(v []*string) *CreateUserGroupOutput {
+	s.UserIds = v
+	return s
+}
+
+type CreateUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Access permissions string used for this user account.
+	//
+	// AccessString is a required field
+	AccessString *string `type:"string" required:"true"`
+
+	// Must be Redis.
+	//
+	// Engine is a required field
+	Engine *string `type:"string" required:"true"`
+
+	// Indicates a password is not required for this user account.
+	NoPasswordRequired *bool `type:"boolean"`
+
+	// Passwords used for this user account. You can create up to two passwords
+	// for each user.
+	Passwords []*string `min:"1" type:"list"`
+
+	// The ID of the user.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+
+	// The username of the user.
+	//
+	// UserName is a required field
+	UserName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserInput"}
+	if s.AccessString == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccessString"))
+	}
+	if s.Engine == nil {
+		invalidParams.Add(request.NewErrParamRequired("Engine"))
+	}
+	if s.Passwords != nil && len(s.Passwords) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Passwords", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+	if s.UserName == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserName"))
+	}
+	if s.UserName != nil && len(*s.UserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessString sets the AccessString field's value.
+func (s *CreateUserInput) SetAccessString(v string) *CreateUserInput {
+	s.AccessString = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateUserInput) SetEngine(v string) *CreateUserInput {
+	s.Engine = &v
+	return s
+}
+
+// SetNoPasswordRequired sets the NoPasswordRequired field's value.
+func (s *CreateUserInput) SetNoPasswordRequired(v bool) *CreateUserInput {
+	s.NoPasswordRequired = &v
+	return s
+}
+
+// SetPasswords sets the Passwords field's value.
+func (s *CreateUserInput) SetPasswords(v []*string) *CreateUserInput {
+	s.Passwords = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *CreateUserInput) SetUserId(v string) *CreateUserInput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *CreateUserInput) SetUserName(v string) *CreateUserInput {
+	s.UserName = &v
+	return s
+}
+
+type CreateUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user account.
+	ARN *string `type:"string"`
+
+	// Access permissions string used for this user account.
+	AccessString *string `type:"string"`
+
+	// Denotes whether the user requires a password to authenticate.
+	Authentication *Authentication `type:"structure"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// Indicates the user status. Can be "active", "modifying" or "deleting".
+	Status *string `type:"string"`
+
+	// Returns a list of the user group IDs the user belongs to.
+	UserGroupIds []*string `type:"list"`
+
+	// The ID of the user.
+	UserId *string `type:"string"`
+
+	// The username of the user.
+	UserName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *CreateUserOutput) SetARN(v string) *CreateUserOutput {
+	s.ARN = &v
+	return s
+}
+
+// SetAccessString sets the AccessString field's value.
+func (s *CreateUserOutput) SetAccessString(v string) *CreateUserOutput {
+	s.AccessString = &v
+	return s
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *CreateUserOutput) SetAuthentication(v *Authentication) *CreateUserOutput {
+	s.Authentication = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *CreateUserOutput) SetEngine(v string) *CreateUserOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateUserOutput) SetStatus(v string) *CreateUserOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupIds sets the UserGroupIds field's value.
+func (s *CreateUserOutput) SetUserGroupIds(v []*string) *CreateUserOutput {
+	s.UserGroupIds = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *CreateUserOutput) SetUserId(v string) *CreateUserOutput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *CreateUserOutput) SetUserName(v string) *CreateUserOutput {
+	s.UserName = &v
 	return s
 }
 
@@ -10381,6 +11675,248 @@ func (s DeleteSnapshotOutput) GoString() string {
 // SetSnapshot sets the Snapshot field's value.
 func (s *DeleteSnapshotOutput) SetSnapshot(v *Snapshot) *DeleteSnapshotOutput {
 	s.Snapshot = v
+	return s
+}
+
+type DeleteUserGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the user group.
+	//
+	// UserGroupId is a required field
+	UserGroupId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteUserGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserGroupInput"}
+	if s.UserGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserGroupId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *DeleteUserGroupInput) SetUserGroupId(v string) *DeleteUserGroupInput {
+	s.UserGroupId = &v
+	return s
+}
+
+type DeleteUserGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user group.
+	ARN *string `type:"string"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// A list of updates being applied to the user groups.
+	PendingChanges *UserGroupPendingChanges `type:"structure"`
+
+	// A list of replication groups that the user group can access.
+	ReplicationGroups []*string `type:"list"`
+
+	// Indicates user group status. Can be "creating", "active", "modifying", "deleting".
+	Status *string `type:"string"`
+
+	// The ID of the user group.
+	UserGroupId *string `type:"string"`
+
+	// The list of user IDs that belong to the user group.
+	UserIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DeleteUserGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *DeleteUserGroupOutput) SetARN(v string) *DeleteUserGroupOutput {
+	s.ARN = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DeleteUserGroupOutput) SetEngine(v string) *DeleteUserGroupOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetPendingChanges sets the PendingChanges field's value.
+func (s *DeleteUserGroupOutput) SetPendingChanges(v *UserGroupPendingChanges) *DeleteUserGroupOutput {
+	s.PendingChanges = v
+	return s
+}
+
+// SetReplicationGroups sets the ReplicationGroups field's value.
+func (s *DeleteUserGroupOutput) SetReplicationGroups(v []*string) *DeleteUserGroupOutput {
+	s.ReplicationGroups = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteUserGroupOutput) SetStatus(v string) *DeleteUserGroupOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *DeleteUserGroupOutput) SetUserGroupId(v string) *DeleteUserGroupOutput {
+	s.UserGroupId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *DeleteUserGroupOutput) SetUserIds(v []*string) *DeleteUserGroupOutput {
+	s.UserIds = v
+	return s
+}
+
+type DeleteUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the user.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserInput"}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
+	s.UserId = &v
+	return s
+}
+
+type DeleteUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user account.
+	ARN *string `type:"string"`
+
+	// Access permissions string used for this user account.
+	AccessString *string `type:"string"`
+
+	// Denotes whether the user requires a password to authenticate.
+	Authentication *Authentication `type:"structure"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// Indicates the user status. Can be "active", "modifying" or "deleting".
+	Status *string `type:"string"`
+
+	// Returns a list of the user group IDs the user belongs to.
+	UserGroupIds []*string `type:"list"`
+
+	// The ID of the user.
+	UserId *string `type:"string"`
+
+	// The username of the user.
+	UserName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *DeleteUserOutput) SetARN(v string) *DeleteUserOutput {
+	s.ARN = &v
+	return s
+}
+
+// SetAccessString sets the AccessString field's value.
+func (s *DeleteUserOutput) SetAccessString(v string) *DeleteUserOutput {
+	s.AccessString = &v
+	return s
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *DeleteUserOutput) SetAuthentication(v *Authentication) *DeleteUserOutput {
+	s.Authentication = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DeleteUserOutput) SetEngine(v string) *DeleteUserOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteUserOutput) SetStatus(v string) *DeleteUserOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupIds sets the UserGroupIds field's value.
+func (s *DeleteUserOutput) SetUserGroupIds(v []*string) *DeleteUserOutput {
+	s.UserGroupIds = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DeleteUserOutput) SetUserId(v string) *DeleteUserOutput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *DeleteUserOutput) SetUserName(v string) *DeleteUserOutput {
+	s.UserName = &v
 	return s
 }
 
@@ -12079,6 +13615,209 @@ func (s *DescribeUpdateActionsOutput) SetUpdateActions(v []*UpdateAction) *Descr
 	return s
 }
 
+type DescribeUserGroupsInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional marker returned from a prior request. Use this marker for pagination
+	// of results from this operation. If this parameter is specified, the response
+	// includes only records beyond the marker, up to the value specified by MaxRecords.
+	// >
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a marker is included in the response
+	// so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+
+	// The ID of the user group.
+	UserGroupId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeUserGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUserGroupsInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeUserGroupsInput) SetMarker(v string) *DescribeUserGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeUserGroupsInput) SetMaxRecords(v int64) *DescribeUserGroupsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *DescribeUserGroupsInput) SetUserGroupId(v string) *DescribeUserGroupsInput {
+	s.UserGroupId = &v
+	return s
+}
+
+type DescribeUserGroupsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional marker returned from a prior request. Use this marker for pagination
+	// of results from this operation. If this parameter is specified, the response
+	// includes only records beyond the marker, up to the value specified by MaxRecords.
+	// >
+	Marker *string `type:"string"`
+
+	// Returns a list of user groups.
+	UserGroups []*UserGroup `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeUserGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUserGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeUserGroupsOutput) SetMarker(v string) *DescribeUserGroupsOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetUserGroups sets the UserGroups field's value.
+func (s *DescribeUserGroupsOutput) SetUserGroups(v []*UserGroup) *DescribeUserGroupsOutput {
+	s.UserGroups = v
+	return s
+}
+
+type DescribeUsersInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Redis engine.
+	Engine *string `type:"string"`
+
+	// Filter to determine the list of User IDs to return.
+	Filters []*Filter `type:"list"`
+
+	// An optional marker returned from a prior request. Use this marker for pagination
+	// of results from this operation. If this parameter is specified, the response
+	// includes only records beyond the marker, up to the value specified by MaxRecords.
+	// >
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a marker is included in the response
+	// so that the remaining results can be retrieved.
+	MaxRecords *int64 `type:"integer"`
+
+	// The ID of the user.
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeUsersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUsersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeUsersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeUsersInput"}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEngine sets the Engine field's value.
+func (s *DescribeUsersInput) SetEngine(v string) *DescribeUsersInput {
+	s.Engine = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeUsersInput) SetFilters(v []*Filter) *DescribeUsersInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeUsersInput) SetMarker(v string) *DescribeUsersInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeUsersInput) SetMaxRecords(v int64) *DescribeUsersInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DescribeUsersInput) SetUserId(v string) *DescribeUsersInput {
+	s.UserId = &v
+	return s
+}
+
+type DescribeUsersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional marker returned from a prior request. Use this marker for pagination
+	// of results from this operation. If this parameter is specified, the response
+	// includes only records beyond the marker, up to the value specified by MaxRecords.
+	// >
+	Marker *string `type:"string"`
+
+	// A list of users.
+	Users []*User `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeUsersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeUsersOutput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeUsersOutput) SetMarker(v string) *DescribeUsersOutput {
+	s.Marker = &v
+	return s
+}
+
+// SetUsers sets the Users field's value.
+func (s *DescribeUsersOutput) SetUsers(v []*User) *DescribeUsersOutput {
+	s.Users = v
+	return s
+}
+
 type DisassociateGlobalReplicationGroupInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12453,6 +14192,62 @@ func (s FailoverGlobalReplicationGroupOutput) GoString() string {
 // SetGlobalReplicationGroup sets the GlobalReplicationGroup field's value.
 func (s *FailoverGlobalReplicationGroupOutput) SetGlobalReplicationGroup(v *GlobalReplicationGroup) *FailoverGlobalReplicationGroupOutput {
 	s.GlobalReplicationGroup = v
+	return s
+}
+
+// Used to streamline results of a search based on the property being filtered.
+type Filter struct {
+	_ struct{} `type:"structure"`
+
+	// The property being filtered. For example, UserId.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The property values to filter on. For example, "user-123".
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s Filter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Filter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Filter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Filter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *Filter) SetName(v string) *Filter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *Filter) SetValues(v []*string) *Filter {
+	s.Values = v
 	return s
 }
 
@@ -13884,6 +15679,9 @@ type ModifyReplicationGroupInput struct {
 	// are read replicas.
 	PrimaryClusterId *string `type:"string"`
 
+	// Removes the user groups that can access this replication group.
+	RemoveUserGroups *bool `type:"boolean"`
+
 	// A description for the replication group. Maximum length is 255 characters.
 	ReplicationGroupDescription *string `type:"string"`
 
@@ -13921,6 +15719,13 @@ type ModifyReplicationGroupInput struct {
 	// group. This parameter cannot be set for Redis (cluster mode enabled) replication
 	// groups.
 	SnapshottingClusterId *string `type:"string"`
+
+	// A list of user group IDs.
+	UserGroupIdsToAdd []*string `type:"list"`
+
+	// A list of users groups to remove, meaning the users in the group no longer
+	// can access thereplication group.
+	UserGroupIdsToRemove []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -14036,6 +15841,12 @@ func (s *ModifyReplicationGroupInput) SetPrimaryClusterId(v string) *ModifyRepli
 	return s
 }
 
+// SetRemoveUserGroups sets the RemoveUserGroups field's value.
+func (s *ModifyReplicationGroupInput) SetRemoveUserGroups(v bool) *ModifyReplicationGroupInput {
+	s.RemoveUserGroups = &v
+	return s
+}
+
 // SetReplicationGroupDescription sets the ReplicationGroupDescription field's value.
 func (s *ModifyReplicationGroupInput) SetReplicationGroupDescription(v string) *ModifyReplicationGroupInput {
 	s.ReplicationGroupDescription = &v
@@ -14069,6 +15880,18 @@ func (s *ModifyReplicationGroupInput) SetSnapshotWindow(v string) *ModifyReplica
 // SetSnapshottingClusterId sets the SnapshottingClusterId field's value.
 func (s *ModifyReplicationGroupInput) SetSnapshottingClusterId(v string) *ModifyReplicationGroupInput {
 	s.SnapshottingClusterId = &v
+	return s
+}
+
+// SetUserGroupIdsToAdd sets the UserGroupIdsToAdd field's value.
+func (s *ModifyReplicationGroupInput) SetUserGroupIdsToAdd(v []*string) *ModifyReplicationGroupInput {
+	s.UserGroupIdsToAdd = v
+	return s
+}
+
+// SetUserGroupIdsToRemove sets the UserGroupIdsToRemove field's value.
+func (s *ModifyReplicationGroupInput) SetUserGroupIdsToRemove(v []*string) *ModifyReplicationGroupInput {
+	s.UserGroupIdsToRemove = v
 	return s
 }
 
@@ -14244,6 +16067,311 @@ func (s *ModifyReplicationGroupShardConfigurationOutput) SetReplicationGroup(v *
 	return s
 }
 
+type ModifyUserGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the user group.
+	//
+	// UserGroupId is a required field
+	UserGroupId *string `type:"string" required:"true"`
+
+	// The list of user IDs to add to the user group.
+	UserIdsToAdd []*string `min:"1" type:"list"`
+
+	// The list of user IDs to remove from the user group.
+	UserIdsToRemove []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyUserGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyUserGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyUserGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyUserGroupInput"}
+	if s.UserGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserGroupId"))
+	}
+	if s.UserIdsToAdd != nil && len(s.UserIdsToAdd) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserIdsToAdd", 1))
+	}
+	if s.UserIdsToRemove != nil && len(s.UserIdsToRemove) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserIdsToRemove", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *ModifyUserGroupInput) SetUserGroupId(v string) *ModifyUserGroupInput {
+	s.UserGroupId = &v
+	return s
+}
+
+// SetUserIdsToAdd sets the UserIdsToAdd field's value.
+func (s *ModifyUserGroupInput) SetUserIdsToAdd(v []*string) *ModifyUserGroupInput {
+	s.UserIdsToAdd = v
+	return s
+}
+
+// SetUserIdsToRemove sets the UserIdsToRemove field's value.
+func (s *ModifyUserGroupInput) SetUserIdsToRemove(v []*string) *ModifyUserGroupInput {
+	s.UserIdsToRemove = v
+	return s
+}
+
+type ModifyUserGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user group.
+	ARN *string `type:"string"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// A list of updates being applied to the user groups.
+	PendingChanges *UserGroupPendingChanges `type:"structure"`
+
+	// A list of replication groups that the user group can access.
+	ReplicationGroups []*string `type:"list"`
+
+	// Indicates user group status. Can be "creating", "active", "modifying", "deleting".
+	Status *string `type:"string"`
+
+	// The ID of the user group.
+	UserGroupId *string `type:"string"`
+
+	// The list of user IDs that belong to the user group.
+	UserIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyUserGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyUserGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ModifyUserGroupOutput) SetARN(v string) *ModifyUserGroupOutput {
+	s.ARN = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *ModifyUserGroupOutput) SetEngine(v string) *ModifyUserGroupOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetPendingChanges sets the PendingChanges field's value.
+func (s *ModifyUserGroupOutput) SetPendingChanges(v *UserGroupPendingChanges) *ModifyUserGroupOutput {
+	s.PendingChanges = v
+	return s
+}
+
+// SetReplicationGroups sets the ReplicationGroups field's value.
+func (s *ModifyUserGroupOutput) SetReplicationGroups(v []*string) *ModifyUserGroupOutput {
+	s.ReplicationGroups = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyUserGroupOutput) SetStatus(v string) *ModifyUserGroupOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *ModifyUserGroupOutput) SetUserGroupId(v string) *ModifyUserGroupOutput {
+	s.UserGroupId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *ModifyUserGroupOutput) SetUserIds(v []*string) *ModifyUserGroupOutput {
+	s.UserIds = v
+	return s
+}
+
+type ModifyUserInput struct {
+	_ struct{} `type:"structure"`
+
+	// Access permissions string used for this user account.
+	AccessString *string `type:"string"`
+
+	// Adds additional user permissions to the access string.
+	AppendAccessString *string `type:"string"`
+
+	// Indicates no password is required for the user account.
+	NoPasswordRequired *bool `type:"boolean"`
+
+	// The passwords belonging to the user account. You are allowed up to two.
+	Passwords []*string `min:"1" type:"list"`
+
+	// The ID of the user.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ModifyUserInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyUserInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyUserInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyUserInput"}
+	if s.Passwords != nil && len(s.Passwords) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Passwords", 1))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessString sets the AccessString field's value.
+func (s *ModifyUserInput) SetAccessString(v string) *ModifyUserInput {
+	s.AccessString = &v
+	return s
+}
+
+// SetAppendAccessString sets the AppendAccessString field's value.
+func (s *ModifyUserInput) SetAppendAccessString(v string) *ModifyUserInput {
+	s.AppendAccessString = &v
+	return s
+}
+
+// SetNoPasswordRequired sets the NoPasswordRequired field's value.
+func (s *ModifyUserInput) SetNoPasswordRequired(v bool) *ModifyUserInput {
+	s.NoPasswordRequired = &v
+	return s
+}
+
+// SetPasswords sets the Passwords field's value.
+func (s *ModifyUserInput) SetPasswords(v []*string) *ModifyUserInput {
+	s.Passwords = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ModifyUserInput) SetUserId(v string) *ModifyUserInput {
+	s.UserId = &v
+	return s
+}
+
+type ModifyUserOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user account.
+	ARN *string `type:"string"`
+
+	// Access permissions string used for this user account.
+	AccessString *string `type:"string"`
+
+	// Denotes whether the user requires a password to authenticate.
+	Authentication *Authentication `type:"structure"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// Indicates the user status. Can be "active", "modifying" or "deleting".
+	Status *string `type:"string"`
+
+	// Returns a list of the user group IDs the user belongs to.
+	UserGroupIds []*string `type:"list"`
+
+	// The ID of the user.
+	UserId *string `type:"string"`
+
+	// The username of the user.
+	UserName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModifyUserOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyUserOutput) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ModifyUserOutput) SetARN(v string) *ModifyUserOutput {
+	s.ARN = &v
+	return s
+}
+
+// SetAccessString sets the AccessString field's value.
+func (s *ModifyUserOutput) SetAccessString(v string) *ModifyUserOutput {
+	s.AccessString = &v
+	return s
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *ModifyUserOutput) SetAuthentication(v *Authentication) *ModifyUserOutput {
+	s.Authentication = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *ModifyUserOutput) SetEngine(v string) *ModifyUserOutput {
+	s.Engine = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyUserOutput) SetStatus(v string) *ModifyUserOutput {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupIds sets the UserGroupIds field's value.
+func (s *ModifyUserOutput) SetUserGroupIds(v []*string) *ModifyUserOutput {
+	s.UserGroupIds = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ModifyUserOutput) SetUserId(v string) *ModifyUserOutput {
+	s.UserId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *ModifyUserOutput) SetUserName(v string) *ModifyUserOutput {
+	s.UserName = &v
+	return s
+}
+
 // Represents a collection of cache nodes in a replication group. One node in
 // the node group is the read/write primary node. All the other nodes are read-only
 // Replica nodes.
@@ -14335,6 +16463,9 @@ type NodeGroupConfiguration struct {
 	// launched.
 	PrimaryAvailabilityZone *string `type:"string"`
 
+	// The output ARN of the primary node.
+	PrimaryOutpostArn *string `type:"string"`
+
 	// A list of Availability Zones to be used for the read replicas. The number
 	// of Availability Zones in this list must match the value of ReplicaCount or
 	// ReplicasPerNodeGroup if not specified.
@@ -14342,6 +16473,9 @@ type NodeGroupConfiguration struct {
 
 	// The number of read replica nodes in this node group (shard).
 	ReplicaCount *int64 `type:"integer"`
+
+	// The outpost ARN of the node replicas.
+	ReplicaOutpostArns []*string `locationNameList:"OutpostArn" type:"list"`
 
 	// A string that specifies the keyspace for a particular node group. Keyspaces
 	// range from 0 to 16,383. The string is in the format startkey-endkey.
@@ -14385,6 +16519,12 @@ func (s *NodeGroupConfiguration) SetPrimaryAvailabilityZone(v string) *NodeGroup
 	return s
 }
 
+// SetPrimaryOutpostArn sets the PrimaryOutpostArn field's value.
+func (s *NodeGroupConfiguration) SetPrimaryOutpostArn(v string) *NodeGroupConfiguration {
+	s.PrimaryOutpostArn = &v
+	return s
+}
+
 // SetReplicaAvailabilityZones sets the ReplicaAvailabilityZones field's value.
 func (s *NodeGroupConfiguration) SetReplicaAvailabilityZones(v []*string) *NodeGroupConfiguration {
 	s.ReplicaAvailabilityZones = v
@@ -14394,6 +16534,12 @@ func (s *NodeGroupConfiguration) SetReplicaAvailabilityZones(v []*string) *NodeG
 // SetReplicaCount sets the ReplicaCount field's value.
 func (s *NodeGroupConfiguration) SetReplicaCount(v int64) *NodeGroupConfiguration {
 	s.ReplicaCount = &v
+	return s
+}
+
+// SetReplicaOutpostArns sets the ReplicaOutpostArns field's value.
+func (s *NodeGroupConfiguration) SetReplicaOutpostArns(v []*string) *NodeGroupConfiguration {
+	s.ReplicaOutpostArns = v
 	return s
 }
 
@@ -14420,6 +16566,9 @@ type NodeGroupMember struct {
 
 	// The name of the Availability Zone in which the node is located.
 	PreferredAvailabilityZone *string `type:"string"`
+
+	// The outpost ARN of the node group member.
+	PreferredOutpostArn *string `type:"string"`
 
 	// The information required for client programs to connect to a node for read
 	// operations. The read endpoint is only applicable on Redis (cluster mode disabled)
@@ -14458,6 +16607,12 @@ func (s *NodeGroupMember) SetCurrentRole(v string) *NodeGroupMember {
 // SetPreferredAvailabilityZone sets the PreferredAvailabilityZone field's value.
 func (s *NodeGroupMember) SetPreferredAvailabilityZone(v string) *NodeGroupMember {
 	s.PreferredAvailabilityZone = &v
+	return s
+}
+
+// SetPreferredOutpostArn sets the PreferredOutpostArn field's value.
+func (s *NodeGroupMember) SetPreferredOutpostArn(v string) *NodeGroupMember {
+	s.PreferredOutpostArn = &v
 	return s
 }
 
@@ -15438,6 +17593,9 @@ type ReplicationGroup struct {
 	// The names of all the cache clusters that are part of this replication group.
 	MemberClusters []*string `locationNameList:"ClusterId" type:"list"`
 
+	// The outpost ARNs of the replication group's member clusters.
+	MemberClustersOutpostArns []*string `locationNameList:"ReplicationGroupOutpostArn" type:"list"`
+
 	// A flag indicating if you have Multi-AZ enabled to enhance fault tolerance.
 	// For more information, see Minimizing Downtime: Multi-AZ (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/AutoFailover.html)
 	MultiAZ *string `type:"string" enum:"MultiAZStatus"`
@@ -15493,6 +17651,9 @@ type ReplicationGroup struct {
 	//
 	// Default: false
 	TransitEncryptionEnabled *bool `type:"boolean"`
+
+	// The list of user group IDs that have access to the replication group.
+	UserGroupIds []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -15577,6 +17738,12 @@ func (s *ReplicationGroup) SetMemberClusters(v []*string) *ReplicationGroup {
 	return s
 }
 
+// SetMemberClustersOutpostArns sets the MemberClustersOutpostArns field's value.
+func (s *ReplicationGroup) SetMemberClustersOutpostArns(v []*string) *ReplicationGroup {
+	s.MemberClustersOutpostArns = v
+	return s
+}
+
 // SetMultiAZ sets the MultiAZ field's value.
 func (s *ReplicationGroup) SetMultiAZ(v string) *ReplicationGroup {
 	s.MultiAZ = &v
@@ -15631,6 +17798,12 @@ func (s *ReplicationGroup) SetTransitEncryptionEnabled(v bool) *ReplicationGroup
 	return s
 }
 
+// SetUserGroupIds sets the UserGroupIds field's value.
+func (s *ReplicationGroup) SetUserGroupIds(v []*string) *ReplicationGroup {
+	s.UserGroupIds = v
+	return s
+}
+
 // The settings to be applied to the Redis replication group, either immediately
 // or during the next maintenance window.
 type ReplicationGroupPendingModifiedValues struct {
@@ -15648,6 +17821,9 @@ type ReplicationGroupPendingModifiedValues struct {
 
 	// The status of an online resharding operation.
 	Resharding *ReshardingStatus `type:"structure"`
+
+	// The user groups being modified.
+	UserGroups *UserGroupsUpdateStatus `type:"structure"`
 }
 
 // String returns the string representation
@@ -15681,6 +17857,12 @@ func (s *ReplicationGroupPendingModifiedValues) SetPrimaryClusterId(v string) *R
 // SetResharding sets the Resharding field's value.
 func (s *ReplicationGroupPendingModifiedValues) SetResharding(v *ReshardingStatus) *ReplicationGroupPendingModifiedValues {
 	s.Resharding = v
+	return s
+}
+
+// SetUserGroups sets the UserGroups field's value.
+func (s *ReplicationGroupPendingModifiedValues) SetUserGroups(v *UserGroupsUpdateStatus) *ReplicationGroupPendingModifiedValues {
+	s.UserGroups = v
 	return s
 }
 
@@ -16511,6 +18693,9 @@ type Snapshot struct {
 	// Example: sun:23:00-mon:01:30
 	PreferredMaintenanceWindow *string `type:"string"`
 
+	// The ARN (Amazon Resource Name) of the preferred outpost.
+	PreferredOutpostArn *string `type:"string"`
+
 	// A description of the source replication group.
 	ReplicationGroupDescription *string `type:"string"`
 
@@ -16666,6 +18851,12 @@ func (s *Snapshot) SetPreferredMaintenanceWindow(v string) *Snapshot {
 	return s
 }
 
+// SetPreferredOutpostArn sets the PreferredOutpostArn field's value.
+func (s *Snapshot) SetPreferredOutpostArn(v string) *Snapshot {
+	s.PreferredOutpostArn = &v
+	return s
+}
+
 // SetReplicationGroupDescription sets the ReplicationGroupDescription field's value.
 func (s *Snapshot) SetReplicationGroupDescription(v string) *Snapshot {
 	s.ReplicationGroupDescription = &v
@@ -16807,6 +18998,9 @@ type Subnet struct {
 
 	// The unique identifier for the subnet.
 	SubnetIdentifier *string `type:"string"`
+
+	// The outpost ARN of the subnet.
+	SubnetOutpost *SubnetOutpost `type:"structure"`
 }
 
 // String returns the string representation
@@ -16828,6 +19022,36 @@ func (s *Subnet) SetSubnetAvailabilityZone(v *AvailabilityZone) *Subnet {
 // SetSubnetIdentifier sets the SubnetIdentifier field's value.
 func (s *Subnet) SetSubnetIdentifier(v string) *Subnet {
 	s.SubnetIdentifier = &v
+	return s
+}
+
+// SetSubnetOutpost sets the SubnetOutpost field's value.
+func (s *Subnet) SetSubnetOutpost(v *SubnetOutpost) *Subnet {
+	s.SubnetOutpost = v
+	return s
+}
+
+// The ID of the outpost subnet.
+type SubnetOutpost struct {
+	_ struct{} `type:"structure"`
+
+	// The outpost ARN of the subnet.
+	SubnetOutpostArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SubnetOutpost) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubnetOutpost) GoString() string {
+	return s.String()
+}
+
+// SetSubnetOutpostArn sets the SubnetOutpostArn field's value.
+func (s *SubnetOutpost) SetSubnetOutpostArn(v string) *SubnetOutpost {
+	s.SubnetOutpostArn = &v
 	return s
 }
 
@@ -17240,6 +19464,235 @@ func (s *UpdateAction) SetUpdateActionStatusModifiedDate(v time.Time) *UpdateAct
 	return s
 }
 
+type User struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user account.
+	ARN *string `type:"string"`
+
+	// Access permissions string used for this user account.
+	AccessString *string `type:"string"`
+
+	// Denotes whether the user requires a password to authenticate.
+	Authentication *Authentication `type:"structure"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// Indicates the user status. Can be "active", "modifying" or "deleting".
+	Status *string `type:"string"`
+
+	// Returns a list of the user group IDs the user belongs to.
+	UserGroupIds []*string `type:"list"`
+
+	// The ID of the user.
+	UserId *string `type:"string"`
+
+	// The username of the user.
+	UserName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s User) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s User) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *User) SetARN(v string) *User {
+	s.ARN = &v
+	return s
+}
+
+// SetAccessString sets the AccessString field's value.
+func (s *User) SetAccessString(v string) *User {
+	s.AccessString = &v
+	return s
+}
+
+// SetAuthentication sets the Authentication field's value.
+func (s *User) SetAuthentication(v *Authentication) *User {
+	s.Authentication = v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *User) SetEngine(v string) *User {
+	s.Engine = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *User) SetStatus(v string) *User {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupIds sets the UserGroupIds field's value.
+func (s *User) SetUserGroupIds(v []*string) *User {
+	s.UserGroupIds = v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *User) SetUserId(v string) *User {
+	s.UserId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *User) SetUserName(v string) *User {
+	s.UserName = &v
+	return s
+}
+
+type UserGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the user group.
+	ARN *string `type:"string"`
+
+	// Must be Redis.
+	Engine *string `type:"string"`
+
+	// A list of updates being applied to the user groups.
+	PendingChanges *UserGroupPendingChanges `type:"structure"`
+
+	// A list of replication groups that the user group can access.
+	ReplicationGroups []*string `type:"list"`
+
+	// Indicates user group status. Can be "creating", "active", "modifying", "deleting".
+	Status *string `type:"string"`
+
+	// The ID of the user group.
+	UserGroupId *string `type:"string"`
+
+	// The list of user IDs that belong to the user group.
+	UserIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s UserGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserGroup) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *UserGroup) SetARN(v string) *UserGroup {
+	s.ARN = &v
+	return s
+}
+
+// SetEngine sets the Engine field's value.
+func (s *UserGroup) SetEngine(v string) *UserGroup {
+	s.Engine = &v
+	return s
+}
+
+// SetPendingChanges sets the PendingChanges field's value.
+func (s *UserGroup) SetPendingChanges(v *UserGroupPendingChanges) *UserGroup {
+	s.PendingChanges = v
+	return s
+}
+
+// SetReplicationGroups sets the ReplicationGroups field's value.
+func (s *UserGroup) SetReplicationGroups(v []*string) *UserGroup {
+	s.ReplicationGroups = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *UserGroup) SetStatus(v string) *UserGroup {
+	s.Status = &v
+	return s
+}
+
+// SetUserGroupId sets the UserGroupId field's value.
+func (s *UserGroup) SetUserGroupId(v string) *UserGroup {
+	s.UserGroupId = &v
+	return s
+}
+
+// SetUserIds sets the UserIds field's value.
+func (s *UserGroup) SetUserIds(v []*string) *UserGroup {
+	s.UserIds = v
+	return s
+}
+
+// Returns the updates being applied to the user group.
+type UserGroupPendingChanges struct {
+	_ struct{} `type:"structure"`
+
+	// The list of user IDs to add.
+	UserIdsToAdd []*string `type:"list"`
+
+	// The list of user group IDs ro remove.
+	UserIdsToRemove []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s UserGroupPendingChanges) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserGroupPendingChanges) GoString() string {
+	return s.String()
+}
+
+// SetUserIdsToAdd sets the UserIdsToAdd field's value.
+func (s *UserGroupPendingChanges) SetUserIdsToAdd(v []*string) *UserGroupPendingChanges {
+	s.UserIdsToAdd = v
+	return s
+}
+
+// SetUserIdsToRemove sets the UserIdsToRemove field's value.
+func (s *UserGroupPendingChanges) SetUserIdsToRemove(v []*string) *UserGroupPendingChanges {
+	s.UserIdsToRemove = v
+	return s
+}
+
+// The status of the user group update.
+type UserGroupsUpdateStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The list of user group IDs to add.
+	UserGroupIdsToAdd []*string `type:"list"`
+
+	// The list of user group IDs to remove.
+	UserGroupIdsToRemove []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s UserGroupsUpdateStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserGroupsUpdateStatus) GoString() string {
+	return s.String()
+}
+
+// SetUserGroupIdsToAdd sets the UserGroupIdsToAdd field's value.
+func (s *UserGroupsUpdateStatus) SetUserGroupIdsToAdd(v []*string) *UserGroupsUpdateStatus {
+	s.UserGroupIdsToAdd = v
+	return s
+}
+
+// SetUserGroupIdsToRemove sets the UserGroupIdsToRemove field's value.
+func (s *UserGroupsUpdateStatus) SetUserGroupIdsToRemove(v []*string) *UserGroupsUpdateStatus {
+	s.UserGroupIdsToRemove = v
+	return s
+}
+
 const (
 	// AZModeSingleAz is a AZMode enum value
 	AZModeSingleAz = "single-az"
@@ -17278,6 +19731,9 @@ const (
 
 	// AuthTokenUpdateStrategyTypeRotate is a AuthTokenUpdateStrategyType enum value
 	AuthTokenUpdateStrategyTypeRotate = "ROTATE"
+
+	// AuthTokenUpdateStrategyTypeDelete is a AuthTokenUpdateStrategyType enum value
+	AuthTokenUpdateStrategyTypeDelete = "DELETE"
 )
 
 // AuthTokenUpdateStrategyType_Values returns all elements of the AuthTokenUpdateStrategyType enum
@@ -17285,6 +19741,23 @@ func AuthTokenUpdateStrategyType_Values() []string {
 	return []string{
 		AuthTokenUpdateStrategyTypeSet,
 		AuthTokenUpdateStrategyTypeRotate,
+		AuthTokenUpdateStrategyTypeDelete,
+	}
+}
+
+const (
+	// AuthenticationTypePassword is a AuthenticationType enum value
+	AuthenticationTypePassword = "password"
+
+	// AuthenticationTypeNoPassword is a AuthenticationType enum value
+	AuthenticationTypeNoPassword = "no-password"
+)
+
+// AuthenticationType_Values returns all elements of the AuthenticationType enum
+func AuthenticationType_Values() []string {
+	return []string{
+		AuthenticationTypePassword,
+		AuthenticationTypeNoPassword,
 	}
 }
 
@@ -17389,6 +19862,22 @@ func NodeUpdateStatus_Values() []string {
 		NodeUpdateStatusStopping,
 		NodeUpdateStatusStopped,
 		NodeUpdateStatusComplete,
+	}
+}
+
+const (
+	// OutpostModeSingleOutpost is a OutpostMode enum value
+	OutpostModeSingleOutpost = "single-outpost"
+
+	// OutpostModeCrossOutpost is a OutpostMode enum value
+	OutpostModeCrossOutpost = "cross-outpost"
+)
+
+// OutpostMode_Values returns all elements of the OutpostMode enum
+func OutpostMode_Values() []string {
+	return []string{
+		OutpostModeSingleOutpost,
+		OutpostModeCrossOutpost,
 	}
 }
 
@@ -17499,6 +19988,12 @@ const (
 
 	// SourceTypeReplicationGroup is a SourceType enum value
 	SourceTypeReplicationGroup = "replication-group"
+
+	// SourceTypeUser is a SourceType enum value
+	SourceTypeUser = "user"
+
+	// SourceTypeUserGroup is a SourceType enum value
+	SourceTypeUserGroup = "user-group"
 )
 
 // SourceType_Values returns all elements of the SourceType enum
@@ -17509,6 +20004,8 @@ func SourceType_Values() []string {
 		SourceTypeCacheSecurityGroup,
 		SourceTypeCacheSubnetGroup,
 		SourceTypeReplicationGroup,
+		SourceTypeUser,
+		SourceTypeUserGroup,
 	}
 }
 
