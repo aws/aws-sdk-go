@@ -3308,6 +3308,10 @@ type CostCategory struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// The list of processing statuses for Cost Management products for a specific
+	// cost category.
+	ProcessingStatus []*CostCategoryProcessingStatus `type:"list"`
+
 	// The rule schema version in this particular Cost Category.
 	//
 	// RuleVersion is a required field
@@ -3355,6 +3359,12 @@ func (s *CostCategory) SetName(v string) *CostCategory {
 	return s
 }
 
+// SetProcessingStatus sets the ProcessingStatus field's value.
+func (s *CostCategory) SetProcessingStatus(v []*CostCategoryProcessingStatus) *CostCategory {
+	s.ProcessingStatus = v
+	return s
+}
+
 // SetRuleVersion sets the RuleVersion field's value.
 func (s *CostCategory) SetRuleVersion(v string) *CostCategory {
 	s.RuleVersion = &v
@@ -3364,6 +3374,40 @@ func (s *CostCategory) SetRuleVersion(v string) *CostCategory {
 // SetRules sets the Rules field's value.
 func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 	s.Rules = v
+	return s
+}
+
+// The list of processing statuses for Cost Management products for a specific
+// cost category.
+type CostCategoryProcessingStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The Cost Management product name of the applied status.
+	Component *string `type:"string" enum:"CostCategoryStatusComponent"`
+
+	// The process status for a specific cost category.
+	Status *string `type:"string" enum:"CostCategoryStatus"`
+}
+
+// String returns the string representation
+func (s CostCategoryProcessingStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategoryProcessingStatus) GoString() string {
+	return s.String()
+}
+
+// SetComponent sets the Component field's value.
+func (s *CostCategoryProcessingStatus) SetComponent(v string) *CostCategoryProcessingStatus {
+	s.Component = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CostCategoryProcessingStatus) SetStatus(v string) *CostCategoryProcessingStatus {
+	s.Status = &v
 	return s
 }
 
@@ -3389,6 +3433,13 @@ type CostCategoryReference struct {
 
 	// The number of rules associated with a specific Cost Category.
 	NumberOfRules *int64 `type:"integer"`
+
+	// The list of processing statuses for Cost Management products for a specific
+	// cost category.
+	ProcessingStatus []*CostCategoryProcessingStatus `type:"list"`
+
+	// A list of unique cost category values in a specific cost category.
+	Values []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -3428,6 +3479,18 @@ func (s *CostCategoryReference) SetName(v string) *CostCategoryReference {
 // SetNumberOfRules sets the NumberOfRules field's value.
 func (s *CostCategoryReference) SetNumberOfRules(v int64) *CostCategoryReference {
 	s.NumberOfRules = &v
+	return s
+}
+
+// SetProcessingStatus sets the ProcessingStatus field's value.
+func (s *CostCategoryReference) SetProcessingStatus(v []*CostCategoryProcessingStatus) *CostCategoryReference {
+	s.ProcessingStatus = v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *CostCategoryReference) SetValues(v []*string) *CostCategoryReference {
+	s.Values = v
 	return s
 }
 
@@ -3513,6 +3576,11 @@ type CostCategoryValues struct {
 	// The unique name of the Cost Category.
 	Key *string `min:"1" type:"string"`
 
+	// The match options that you can use to filter your results. MatchOptions is
+	// only applicable for only applicable for actions related to cost category.
+	// The default values for MatchOptions is EQUALS and CASE_SENSITIVE.
+	MatchOptions []*string `type:"list"`
+
 	// The specific value of the Cost Category.
 	Values []*string `type:"list"`
 }
@@ -3543,6 +3611,12 @@ func (s *CostCategoryValues) Validate() error {
 // SetKey sets the Key field's value.
 func (s *CostCategoryValues) SetKey(v string) *CostCategoryValues {
 	s.Key = &v
+	return s
+}
+
+// SetMatchOptions sets the MatchOptions field's value.
+func (s *CostCategoryValues) SetMatchOptions(v []*string) *CostCategoryValues {
+	s.MatchOptions = v
 	return s
 }
 
@@ -11520,6 +11594,34 @@ const (
 func CostCategoryRuleVersion_Values() []string {
 	return []string{
 		CostCategoryRuleVersionCostCategoryExpressionV1,
+	}
+}
+
+const (
+	// CostCategoryStatusProcessing is a CostCategoryStatus enum value
+	CostCategoryStatusProcessing = "PROCESSING"
+
+	// CostCategoryStatusApplied is a CostCategoryStatus enum value
+	CostCategoryStatusApplied = "APPLIED"
+)
+
+// CostCategoryStatus_Values returns all elements of the CostCategoryStatus enum
+func CostCategoryStatus_Values() []string {
+	return []string{
+		CostCategoryStatusProcessing,
+		CostCategoryStatusApplied,
+	}
+}
+
+const (
+	// CostCategoryStatusComponentCostExplorer is a CostCategoryStatusComponent enum value
+	CostCategoryStatusComponentCostExplorer = "COST_EXPLORER"
+)
+
+// CostCategoryStatusComponent_Values returns all elements of the CostCategoryStatusComponent enum
+func CostCategoryStatusComponent_Values() []string {
+	return []string{
+		CostCategoryStatusComponentCostExplorer,
 	}
 }
 

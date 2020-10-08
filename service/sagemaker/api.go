@@ -688,10 +688,10 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 // VPC configuration
 //
 // All SageMaker Studio traffic between the domain and the EFS volume is through
-// the specified VPC and subnets. For other Studio traffic, you specify the
-// AppNetworkAccessType parameter. AppNetworkAccessType corresponds to the VPC
-// mode that's chosen when you onboard to Studio. The following options are
-// available:
+// the specified VPC and subnets. For other Studio traffic, you can specify
+// the AppNetworkAccessType parameter. AppNetworkAccessType corresponds to the
+// network access type that you choose when you onboard to Studio. The following
+// options are available:
 //
 //    * PublicInternetOnly - Non-EFS traffic goes through a VPC managed by Amazon
 //    SageMaker, which allows internet access. This is the default value.
@@ -703,9 +703,9 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //    (PrivateLink) or a NAT gateway and your security groups allow outbound
 //    connections.
 //
-//  VpcOnly mode
+//  VpcOnly network access type
 //
-// When you specify VpcOnly, you must specify the following:
+// When you choose VpcOnly, you must specify the following:
 //
 //    * Security group inbound and outbound rules to allow NFS traffic over
 //    TCP on port 2049 between the domain and the EFS volume
@@ -31879,6 +31879,52 @@ type InputConfig struct {
 	//
 	//    * XGBOOST: input data name and shape are not needed.
 	//
+	// DataInputConfig supports the following parameters for CoreML OutputConfig$TargetDevice
+	// (ML Model format):
+	//
+	//    * shape: Input shape, for example {"input_1": {"shape": [1,224,224,3]}}.
+	//    In addition to static input shapes, CoreML converter supports Flexible
+	//    input shapes: Range Dimension. You can use the Range Dimension feature
+	//    if you know the input shape will be within some specific interval in that
+	//    dimension, for example: {"input_1": {"shape": ["1..10", 224, 224, 3]}}
+	//    Enumerated shapes. Sometimes, the models are trained to work only on a
+	//    select set of inputs. You can enumerate all supported input shapes, for
+	//    example: {"input_1": {"shape": [[1, 224, 224, 3], [1, 160, 160, 3]]}}
+	//
+	//    * default_shape: Default input shape. You can set a default shape during
+	//    conversion for both Range Dimension and Enumerated Shapes. For example
+	//    {"input_1": {"shape": ["1..10", 224, 224, 3], "default_shape": [1, 224,
+	//    224, 3]}}
+	//
+	//    * type: Input type. Allowed values: Image and Tensor. By default, the
+	//    converter generates an ML Model with inputs of type Tensor (MultiArray).
+	//    User can set input type to be Image. Image input type requires additional
+	//    input parameters such as bias and scale.
+	//
+	//    * bias: If the input type is an Image, you need to provide the bias vector.
+	//
+	//    * scale: If the input type is an Image, you need to provide a scale factor.
+	//
+	// CoreML ClassifierConfig parameters can be specified using OutputConfig$CompilerOptions.
+	// CoreML converter supports Tensorflow and PyTorch models. CoreML conversion
+	// examples:
+	//
+	//    * Tensor type input: "DataInputConfig": {"input_1": {"shape": [[1,224,224,3],
+	//    [1,160,160,3]], "default_shape": [1,224,224,3]}}
+	//
+	//    * Tensor type input without input name (PyTorch): "DataInputConfig": [{"shape":
+	//    [[1,3,224,224], [1,3,160,160]], "default_shape": [1,3,224,224]}]
+	//
+	//    * Image type input: "DataInputConfig": {"input_1": {"shape": [[1,224,224,3],
+	//    [1,160,160,3]], "default_shape": [1,224,224,3], "type": "Image", "bias":
+	//    [-1,-1,-1], "scale": 0.007843137255}} "CompilerOptions": {"class_labels":
+	//    "imagenet_labels_1000.txt"}
+	//
+	//    * Image type input without input name (PyTorch): "DataInputConfig": [{"shape":
+	//    [[1,3,224,224], [1,3,160,160]], "default_shape": [1,3,224,224], "type":
+	//    "Image", "bias": [-1,-1,-1], "scale": 0.007843137255}] "CompilerOptions":
+	//    {"class_labels": "imagenet_labels_1000.txt"}
+	//
 	// DataInputConfig is a required field
 	DataInputConfig *string `min:"1" type:"string" required:"true"`
 
@@ -39752,7 +39798,7 @@ type OutputConfig struct {
 
 	// Specifies additional parameters for compiler options in JSON format. The
 	// compiler options are TargetPlatform specific. It is required for NVIDIA accelerators
-	// and highly recommended for CPU compliations. For any other cases, it is optional
+	// and highly recommended for CPU compilations. For any other cases, it is optional
 	// to specify CompilerOptions.
 	//
 	//    * CPU: Compilation for CPU supports the following compiler options. mcpu:
@@ -39775,6 +39821,12 @@ type OutputConfig struct {
 	//    levels range from 21 to 29. For example, {'ANDROID_PLATFORM': 28}. mattr:
 	//    Add {'mattr': ['+neon']} to compiler options if compiling for ARM 32-bit
 	//    platform with NEON support.
+	//
+	//    * CoreML: Compilation for the CoreML OutputConfig$TargetDevice supports
+	//    the following compiler options: class_labels: Specifies the classification
+	//    labels file name inside input tar.gz file. For example, {"class_labels":
+	//    "imagenet_labels_1000.txt"}. Labels inside the txt file should be separated
+	//    by newlines.
 	CompilerOptions *string `min:"7" type:"string"`
 
 	// Identifies the S3 bucket where you want Amazon SageMaker to store the model
@@ -51757,6 +51809,9 @@ const (
 
 	// TargetDeviceX86Win64 is a TargetDevice enum value
 	TargetDeviceX86Win64 = "x86_win64"
+
+	// TargetDeviceCoreml is a TargetDevice enum value
+	TargetDeviceCoreml = "coreml"
 )
 
 // TargetDevice_Values returns all elements of the TargetDevice enum
@@ -51788,6 +51843,7 @@ func TargetDevice_Values() []string {
 		TargetDeviceAmbaCv22,
 		TargetDeviceX86Win32,
 		TargetDeviceX86Win64,
+		TargetDeviceCoreml,
 	}
 }
 

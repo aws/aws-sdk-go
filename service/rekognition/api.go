@@ -89,10 +89,6 @@ func (c *Rekognition) CompareFacesRequest(input *CompareFacesInput) (req *reques
 // LOW, MEDIUM, or HIGH. If you do not want to filter detected faces, specify
 // NONE. The default value is NONE.
 //
-// To use quality filtering, you need a collection associated with version 3
-// of the face model or higher. To get the version of the face model associated
-// with a collection, call DescribeCollection.
-//
 // If the image doesn't contain Exif metadata, CompareFaces returns orientation
 // information for the source and target images. Use these values to display
 // the images with the correct image orientation.
@@ -4619,10 +4615,10 @@ func (c *Rekognition) RecognizeCelebritiesRequest(input *RecognizeCelebritiesInp
 // Returns an array of celebrities recognized in the input image. For more information,
 // see Recognizing Celebrities in the Amazon Rekognition Developer Guide.
 //
-// RecognizeCelebrities returns the 100 largest faces in the image. It lists
+// RecognizeCelebrities returns the 64 largest faces in the image. It lists
 // recognized celebrities in the CelebrityFaces array and unrecognized faces
 // in the UnrecognizedFaces array. RecognizeCelebrities doesn't return celebrities
-// whose faces aren't among the largest 100 faces in the image.
+// whose faces aren't among the largest 64 faces in the image.
 //
 // For each celebrity recognized, RecognizeCelebrities returns a Celebrity object.
 // The Celebrity object contains the celebrity name, ID, URL links to additional
@@ -6465,11 +6461,13 @@ func (s *AgeRange) SetLow(v int64) *AgeRange {
 }
 
 // Assets are the images that you use to train and evaluate a model version.
-// Assets are referenced by Sagemaker GroundTruth manifest files.
+// Assets can also contain validation information that you use to debug a failed
+// model training.
 type Asset struct {
 	_ struct{} `type:"structure"`
 
-	// The S3 bucket that contains the Ground Truth manifest file.
+	// The S3 bucket that contains an Amazon Sagemaker Ground Truth format manifest
+	// file.
 	GroundTruthManifest *GroundTruthManifest `type:"structure"`
 }
 
@@ -6515,7 +6513,7 @@ type AudioMetadata struct {
 	// The duration of the audio stream in milliseconds.
 	DurationMillis *int64 `type:"long"`
 
-	// The number of audio channels in the segement.
+	// The number of audio channels in the segment.
 	NumberOfChannels *int64 `type:"long"`
 
 	// The sample rate for the audio stream.
@@ -10740,7 +10738,10 @@ type GetSegmentDetectionOutput struct {
 	// You can use this pagination token to retrieve the next set of text.
 	NextToken *string `type:"string"`
 
-	// An array of segments detected in a video.
+	// An array of segments detected in a video. The array is sorted by the segment
+	// types (TECHNICAL_CUE or SHOT) specified in the SegmentTypes input parameter
+	// of StartSegmentDetection. Within each segment type the array is sorted by
+	// timestamp values.
 	Segments []*SegmentDetection `type:"list"`
 
 	// An array containing the segment types requested in the call to StartSegmentDetection.
@@ -10948,7 +10949,8 @@ func (s *GetTextDetectionOutput) SetVideoMetadata(v *VideoMetadata) *GetTextDete
 	return s
 }
 
-// The S3 bucket that contains the Ground Truth manifest file.
+// The S3 bucket that contains an Amazon Sagemaker Ground Truth format manifest
+// file.
 type GroundTruthManifest struct {
 	_ struct{} `type:"structure"`
 
@@ -12108,14 +12110,16 @@ type Landmark struct {
 	// Type of landmark.
 	Type *string `type:"string" enum:"LandmarkType"`
 
-	// The x-coordinate from the top left of the landmark expressed as the ratio
-	// of the width of the image. For example, if the image is 700 x 200 and the
-	// x-coordinate of the landmark is at 350 pixels, this value is 0.5.
+	// The x-coordinate of the landmark expressed as a ratio of the width of the
+	// image. The x-coordinate is measured from the left-side of the image. For
+	// example, if the image is 700 pixels wide and the x-coordinate of the landmark
+	// is at 350 pixels, this value is 0.5.
 	X *float64 `type:"float"`
 
-	// The y-coordinate from the top left of the landmark expressed as the ratio
-	// of the height of the image. For example, if the image is 700 x 200 and the
-	// y-coordinate of the landmark is at 100 pixels, this value is 0.5.
+	// The y-coordinate of the landmark expressed as a ratio of the height of the
+	// image. The y-coordinate is measured from the top of the image. For example,
+	// if the image height is 200 pixels and the y-coordinate of the landmark is
+	// at 50 pixels, this value is 0.25.
 	Y *float64 `type:"float"`
 }
 
@@ -12987,6 +12991,10 @@ type ProjectVersionDescription struct {
 	// The training results. EvaluationResult is only returned if training is successful.
 	EvaluationResult *EvaluationResult `type:"structure"`
 
+	// The location of the summary manifest. The summary manifest provides aggregate
+	// data validation results for the training and test datasets.
+	ManifestSummary *GroundTruthManifest `type:"structure"`
+
 	// The minimum number of inference units used by the model. For more information,
 	// see StartProjectVersion.
 	MinInferenceUnits *int64 `min:"1" type:"integer"`
@@ -13003,10 +13011,10 @@ type ProjectVersionDescription struct {
 	// A descriptive message for an error or warning that occurred.
 	StatusMessage *string `type:"string"`
 
-	// The manifest file that represents the testing results.
+	// Contains information about the testing results.
 	TestingDataResult *TestingDataResult `type:"structure"`
 
-	// The manifest file that represents the training results.
+	// Contains information about the training results.
 	TrainingDataResult *TrainingDataResult `type:"structure"`
 
 	// The Unix date and time that training of the model ended.
@@ -13038,6 +13046,12 @@ func (s *ProjectVersionDescription) SetCreationTimestamp(v time.Time) *ProjectVe
 // SetEvaluationResult sets the EvaluationResult field's value.
 func (s *ProjectVersionDescription) SetEvaluationResult(v *EvaluationResult) *ProjectVersionDescription {
 	s.EvaluationResult = v
+	return s
+}
+
+// SetManifestSummary sets the ManifestSummary field's value.
+func (s *ProjectVersionDescription) SetManifestSummary(v *GroundTruthManifest) *ProjectVersionDescription {
+	s.ManifestSummary = v
 	return s
 }
 
@@ -13199,7 +13213,7 @@ type RecognizeCelebritiesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Details about each celebrity found in the image. Amazon Rekognition can detect
-	// a maximum of 15 celebrities in an image.
+	// a maximum of 64 celebrities in an image.
 	CelebrityFaces []*Celebrity `type:"list"`
 
 	// The orientation of the input image (counterclockwise direction). If your
@@ -13872,7 +13886,7 @@ type SegmentDetection struct {
 	EndTimecodeSMPTE *string `type:"string"`
 
 	// The end time of the detected segment, in milliseconds, from the start of
-	// the video.
+	// the video. This value is rounded down.
 	EndTimestampMillis *int64 `type:"long"`
 
 	// If the segment is a shot detection, contains information about the shot detection.
@@ -13884,7 +13898,9 @@ type SegmentDetection struct {
 	StartTimecodeSMPTE *string `type:"string"`
 
 	// The start time of the detected segment in milliseconds from the start of
-	// the video.
+	// the video. This value is rounded down. For example, if the actual timestamp
+	// is 100.6667 milliseconds, Amazon Rekognition Video returns a value of 100
+	// millis.
 	StartTimestampMillis *int64 `type:"long"`
 
 	// If the segment is a technical cue, contains information about the technical
@@ -14002,7 +14018,7 @@ type ShotSegment struct {
 	// segment.
 	Confidence *float64 `min:"50" type:"float"`
 
-	// An Identifier for a shot detection segment detected in a video
+	// An Identifier for a shot detection segment detected in a video.
 	Index *int64 `type:"long"`
 }
 
@@ -15812,8 +15828,8 @@ func (s *TestingData) SetAutoCreate(v bool) *TestingData {
 	return s
 }
 
-// A Sagemaker Groundtruth format manifest file representing the dataset used
-// for testing.
+// Sagemaker Groundtruth format manifest files for the input, output and validation
+// datasets that are used and created during testing.
 type TestingDataResult struct {
 	_ struct{} `type:"structure"`
 
@@ -15823,6 +15839,10 @@ type TestingDataResult struct {
 	// The subset of the dataset that was actually tested. Some images (assets)
 	// might not be tested due to file formatting and other issues.
 	Output *TestingData `type:"structure"`
+
+	// The location of the data validation manifest. The data validation manifest
+	// is created for the test dataset during model training.
+	Validation *ValidationData `type:"structure"`
 }
 
 // String returns the string representation
@@ -15844,6 +15864,12 @@ func (s *TestingDataResult) SetInput(v *TestingData) *TestingDataResult {
 // SetOutput sets the Output field's value.
 func (s *TestingDataResult) SetOutput(v *TestingData) *TestingDataResult {
 	s.Output = v
+	return s
+}
+
+// SetValidation sets the Validation field's value.
+func (s *TestingDataResult) SetValidation(v *ValidationData) *TestingDataResult {
+	s.Validation = v
 	return s
 }
 
@@ -16069,8 +16095,8 @@ func (s *TrainingData) SetAssets(v []*Asset) *TrainingData {
 	return s
 }
 
-// A Sagemaker Groundtruth format manifest file that represents the dataset
-// used for training.
+// Sagemaker Groundtruth format manifest files for the input, output and validation
+// datasets that are used and created during testing.
 type TrainingDataResult struct {
 	_ struct{} `type:"structure"`
 
@@ -16080,6 +16106,10 @@ type TrainingDataResult struct {
 	// The images (assets) that were actually trained by Amazon Rekognition Custom
 	// Labels.
 	Output *TrainingData `type:"structure"`
+
+	// The location of the data validation manifest. The data validation manifest
+	// is created for the training dataset during model training.
+	Validation *ValidationData `type:"structure"`
 }
 
 // String returns the string representation
@@ -16101,6 +16131,12 @@ func (s *TrainingDataResult) SetInput(v *TrainingData) *TrainingDataResult {
 // SetOutput sets the Output field's value.
 func (s *TrainingDataResult) SetOutput(v *TrainingData) *TrainingDataResult {
 	s.Output = v
+	return s
+}
+
+// SetValidation sets the Validation field's value.
+func (s *TrainingDataResult) SetValidation(v *ValidationData) *TrainingDataResult {
+	s.Validation = v
 	return s
 }
 
@@ -16150,6 +16186,42 @@ func (s *UnindexedFace) SetFaceDetail(v *FaceDetail) *UnindexedFace {
 // SetReasons sets the Reasons field's value.
 func (s *UnindexedFace) SetReasons(v []*string) *UnindexedFace {
 	s.Reasons = v
+	return s
+}
+
+// Contains the Amazon S3 bucket location of the validation data for a model
+// training job.
+//
+// The validation data includes error information for individual JSON lines
+// in the dataset. For more information, see Debugging a Failed Model Training
+// in the Amazon Rekognition Custom Labels Developer Guide.
+//
+// You get the ValidationData object for the training dataset (TrainingDataResult)
+// and the test dataset (TestingDataResult) by calling DescribeProjectVersions.
+//
+// The assets array contains a single Asset object. The GroundTruthManifest
+// field of the Asset object contains the S3 bucket location of the validation
+// data.
+type ValidationData struct {
+	_ struct{} `type:"structure"`
+
+	// The assets that comprise the validation data.
+	Assets []*Asset `type:"list"`
+}
+
+// String returns the string representation
+func (s ValidationData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ValidationData) GoString() string {
+	return s.String()
+}
+
+// SetAssets sets the Assets field's value.
+func (s *ValidationData) SetAssets(v []*Asset) *ValidationData {
+	s.Assets = v
 	return s
 }
 

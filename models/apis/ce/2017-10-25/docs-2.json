@@ -186,6 +186,19 @@
         "CreateCostCategoryDefinitionRequest$Name": null
       }
     },
+    "CostCategoryProcessingStatus": {
+      "base": "<p> The list of processing statuses for Cost Management products for a specific cost category. </p>",
+      "refs": {
+        "CostCategoryProcessingStatusList$member": null
+      }
+    },
+    "CostCategoryProcessingStatusList": {
+      "base": null,
+      "refs": {
+        "CostCategory$ProcessingStatus": "<p> The list of processing statuses for Cost Management products for a specific cost category. </p>",
+        "CostCategoryReference$ProcessingStatus": "<p> The list of processing statuses for Cost Management products for a specific cost category. </p>"
+      }
+    },
     "CostCategoryReference": {
       "base": "<p>A reference to a Cost Category containing only enough information to identify the Cost Category.</p> <p>You can use this information to retrieve the full Cost Category information using <code>DescribeCostCategory</code>.</p>",
       "refs": {
@@ -220,16 +233,35 @@
         "UpdateCostCategoryDefinitionRequest$Rules": "<p>The <code>Expression</code> object used to categorize costs. For more information, see <a href=\"https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategoryRule.html\">CostCategoryRule </a>. </p>"
       }
     },
+    "CostCategoryStatus": {
+      "base": null,
+      "refs": {
+        "CostCategoryProcessingStatus$Status": "<p> The process status for a specific cost category. </p>"
+      }
+    },
+    "CostCategoryStatusComponent": {
+      "base": null,
+      "refs": {
+        "CostCategoryProcessingStatus$Component": "<p> The Cost Management product name of the applied status. </p>"
+      }
+    },
     "CostCategoryValue": {
       "base": "<p>The value a line item will be categorized as, if it matches the rule.</p>",
       "refs": {
-        "CostCategoryRule$Value": null
+        "CostCategoryRule$Value": null,
+        "CostCategoryValuesList$member": null
       }
     },
     "CostCategoryValues": {
       "base": "<p>The Cost Categories values used for filtering the costs.</p>",
       "refs": {
         "Expression$CostCategories": "<p>The filter based on <code>CostCategory</code> values.</p>"
+      }
+    },
+    "CostCategoryValuesList": {
+      "base": null,
+      "refs": {
+        "CostCategoryReference$Values": "<p> A list of unique cost category values in a specific cost category. </p>"
       }
     },
     "Coverage": {
@@ -999,6 +1031,7 @@
     "MatchOptions": {
       "base": null,
       "refs": {
+        "CostCategoryValues$MatchOptions": "<p> The match options that you can use to filter your results. MatchOptions is only applicable for only applicable for actions related to cost category. The default values for <code>MatchOptions</code> is <code>EQUALS</code> and <code>CASE_SENSITIVE</code>. </p>",
         "DimensionValues$MatchOptions": "<p>The match options that you can use to filter your results. <code>MatchOptions</code> is only applicable for actions related to Cost Category. The default values for <code>MatchOptions</code> are <code>EQUALS</code> and <code>CASE_SENSITIVE</code>.</p>",
         "TagValues$MatchOptions": "<p>The match options that you can use to filter your results. <code>MatchOptions</code> is only applicable for actions related to Cost Category. The default values for <code>MatchOptions</code> are <code>EQUALS</code> and <code>CASE_SENSITIVE</code>.</p>"
       }

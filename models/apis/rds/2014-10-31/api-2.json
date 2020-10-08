@@ -7146,7 +7146,8 @@
         "EnableCloudwatchLogsExports":{"shape":"LogTypeList"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
-        "DeletionProtection":{"shape":"BooleanOptional"}
+        "DeletionProtection":{"shape":"BooleanOptional"},
+        "MaxAllocatedStorage":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceFromS3Result":{
@@ -7189,7 +7190,8 @@
         "UseDefaultProcessorFeatures":{"shape":"BooleanOptional"},
         "DBParameterGroupName":{"shape":"String"},
         "DeletionProtection":{"shape":"BooleanOptional"},
-        "SourceDbiResourceId":{"shape":"String"}
+        "SourceDbiResourceId":{"shape":"String"},
+        "MaxAllocatedStorage":{"shape":"IntegerOptional"}
       }
     },
     "RestoreDBInstanceToPointInTimeResult":{

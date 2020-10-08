@@ -3653,6 +3653,44 @@ func (s DeactivateEventSourceOutput) GoString() string {
 	return s.String()
 }
 
+// A DeadLetterConfig object that contains information about a dead-letter queue
+// configuration.
+type DeadLetterConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the SQS queue specified as the target for the dead-letter queue.
+	Arn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeadLetterConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeadLetterConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeadLetterConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeadLetterConfig"}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *DeadLetterConfig) SetArn(v string) *DeadLetterConfig {
+	s.Arn = &v
+	return s
+}
+
 type DeleteEventBusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7456,6 +7494,54 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A RetryPolicy object that includes information about the retry policy settings.
+type RetryPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of time, in seconds, to continue to make retry attempts.
+	MaximumEventAgeInSeconds *int64 `min:"60" type:"integer"`
+
+	// The maximum number of retry attempts to make before the request fails. Retry
+	// attempts continue until either the maximum number of attempts is made or
+	// until the duration of the MaximumEventAgeInSeconds is met.
+	MaximumRetryAttempts *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s RetryPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryPolicy"}
+	if s.MaximumEventAgeInSeconds != nil && *s.MaximumEventAgeInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("MaximumEventAgeInSeconds", 60))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaximumEventAgeInSeconds sets the MaximumEventAgeInSeconds field's value.
+func (s *RetryPolicy) SetMaximumEventAgeInSeconds(v int64) *RetryPolicy {
+	s.MaximumEventAgeInSeconds = &v
+	return s
+}
+
+// SetMaximumRetryAttempts sets the MaximumRetryAttempts field's value.
+func (s *RetryPolicy) SetMaximumRetryAttempts(v int64) *RetryPolicy {
+	s.MaximumRetryAttempts = &v
+	return s
+}
+
 // Contains information about a rule in Amazon EventBridge.
 type Rule struct {
 	_ struct{} `type:"structure"`
@@ -7855,6 +7941,10 @@ type Target struct {
 	// in the AWS Batch User Guide.
 	BatchParameters *BatchParameters `type:"structure"`
 
+	// The DeadLetterConfig that defines the target queue to send dead-letter queue
+	// events to.
+	DeadLetterConfig *DeadLetterConfig `type:"structure"`
+
 	// Contains the Amazon ECS task definition and task count to be used, if the
 	// event target is an Amazon ECS task. For more information about Amazon ECS
 	// tasks, see Task Definitions (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_defintions.html)
@@ -7901,6 +7991,10 @@ type Target struct {
 	// parameters to invoke the Redshift Data API ExecuteStatement based on EventBridge
 	// events.
 	RedshiftDataParameters *RedshiftDataParameters `type:"structure"`
+
+	// The RetryPolicy object that contains the retry policy configuration to use
+	// for the dead-letter queue.
+	RetryPolicy *RetryPolicy `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to be used for this target
 	// when the rule is triggered. If one rule triggers multiple targets, you can
@@ -7950,6 +8044,11 @@ func (s *Target) Validate() error {
 			invalidParams.AddNested("BatchParameters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DeadLetterConfig != nil {
+		if err := s.DeadLetterConfig.Validate(); err != nil {
+			invalidParams.AddNested("DeadLetterConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EcsParameters != nil {
 		if err := s.EcsParameters.Validate(); err != nil {
 			invalidParams.AddNested("EcsParameters", err.(request.ErrInvalidParams))
@@ -7968,6 +8067,11 @@ func (s *Target) Validate() error {
 	if s.RedshiftDataParameters != nil {
 		if err := s.RedshiftDataParameters.Validate(); err != nil {
 			invalidParams.AddNested("RedshiftDataParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RetryPolicy != nil {
+		if err := s.RetryPolicy.Validate(); err != nil {
+			invalidParams.AddNested("RetryPolicy", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.RunCommandParameters != nil {
@@ -7991,6 +8095,12 @@ func (s *Target) SetArn(v string) *Target {
 // SetBatchParameters sets the BatchParameters field's value.
 func (s *Target) SetBatchParameters(v *BatchParameters) *Target {
 	s.BatchParameters = v
+	return s
+}
+
+// SetDeadLetterConfig sets the DeadLetterConfig field's value.
+func (s *Target) SetDeadLetterConfig(v *DeadLetterConfig) *Target {
+	s.DeadLetterConfig = v
 	return s
 }
 
@@ -8039,6 +8149,12 @@ func (s *Target) SetKinesisParameters(v *KinesisParameters) *Target {
 // SetRedshiftDataParameters sets the RedshiftDataParameters field's value.
 func (s *Target) SetRedshiftDataParameters(v *RedshiftDataParameters) *Target {
 	s.RedshiftDataParameters = v
+	return s
+}
+
+// SetRetryPolicy sets the RetryPolicy field's value.
+func (s *Target) SetRetryPolicy(v *RetryPolicy) *Target {
+	s.RetryPolicy = v
 	return s
 }
 
