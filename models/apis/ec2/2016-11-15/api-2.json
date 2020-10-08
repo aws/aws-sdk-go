@@ -3571,7 +3571,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"RevokeSecurityGroupEgressRequest"}
+      "input":{"shape":"RevokeSecurityGroupEgressRequest"},
+      "output":{"shape":"RevokeSecurityGroupEgressResult"}
     },
     "RevokeSecurityGroupIngress":{
       "name":"RevokeSecurityGroupIngress",
@@ -3579,7 +3580,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"RevokeSecurityGroupIngressRequest"}
+      "input":{"shape":"RevokeSecurityGroupIngressRequest"},
+      "output":{"shape":"RevokeSecurityGroupIngressResult"}
     },
     "RunInstances":{
       "name":"RunInstances",
@@ -25460,6 +25462,19 @@
         }
       }
     },
+    "RevokeSecurityGroupEgressResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        },
+        "UnknownIpPermissions":{
+          "shape":"IpPermissionList",
+          "locationName":"unknownIpPermissionSet"
+        }
+      }
+    },
     "RevokeSecurityGroupIngressRequest":{
       "type":"structure",
       "members":{
@@ -25475,6 +25490,19 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        }
+      }
+    },
+    "RevokeSecurityGroupIngressResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        },
+        "UnknownIpPermissions":{
+          "shape":"IpPermissionList",
+          "locationName":"unknownIpPermissionSet"
         }
       }
     },

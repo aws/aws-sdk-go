@@ -6149,12 +6149,12 @@ type SubscribeInput struct {
 	// Sets whether the response from the Subscribe request includes the subscription
 	// ARN, even if the subscription is not yet confirmed.
 	//
-	//    * If you set this parameter to true, the response includes the ARN in
-	//    all cases, even if the subscription is not yet confirmed. In addition
-	//    to the ARN for confirmed subscriptions, the response also includes the
-	//    pending subscription ARN value for subscriptions that aren't yet confirmed.
-	//    A subscription becomes confirmed when the subscriber calls the ConfirmSubscription
-	//    action with a confirmation token.
+	// If you set this parameter to true, the response includes the ARN in all cases,
+	// even if the subscription is not yet confirmed. In addition to the ARN for
+	// confirmed subscriptions, the response also includes the pending subscription
+	// ARN value for subscriptions that aren't yet confirmed. A subscription becomes
+	// confirmed when the subscriber calls the ConfirmSubscription action with a
+	// confirmation token.
 	//
 	// The default value is false.
 	ReturnSubscriptionArn *bool `type:"boolean"`

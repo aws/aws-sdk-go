@@ -15563,9 +15563,15 @@ func (s *CharacterSet) SetCharacterSetName(v string) *CharacterSet {
 //
 // The EnableLogTypes and DisableLogTypes arrays determine which logs will be
 // exported (or not exported) to CloudWatch Logs. The values within these arrays
-// depend on the DB engine being used. For more information, see Publishing
-// Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+// depend on the DB engine being used.
+//
+// For more information about exporting CloudWatch Logs for Amazon RDS DB instances,
+// see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 // in the Amazon RDS User Guide.
+//
+// For more information about exporting CloudWatch Logs for Amazon Aurora DB
+// clusters, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+// in the Amazon Aurora User Guide.
 type CloudwatchLogsExportConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -16483,20 +16489,11 @@ func (s *CopyDBSnapshotOutput) SetDBSnapshot(v *DBSnapshot) *CopyDBSnapshotOutpu
 type CopyOptionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier or ARN for the source option group. For information about
-	// creating an ARN, see Constructing an ARN for Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.ARN.html#USER_Tagging.ARN.Constructing)
-	// in the Amazon RDS User Guide.
+	// The identifier for the source option group.
 	//
 	// Constraints:
 	//
 	//    * Must specify a valid option group.
-	//
-	//    * If the source option group is in the same AWS Region as the copy, specify
-	//    a valid option group identifier, for example my-option-group, or a valid
-	//    ARN.
-	//
-	//    * If the source option group is in a different AWS Region than the copy,
-	//    specify a valid option group ARN, for example arn:aws:rds:us-west-2:123456789012:og:special-options.
 	//
 	// SourceOptionGroupIdentifier is a required field
 	SourceOptionGroupIdentifier *string `type:"string" required:"true"`
@@ -18037,6 +18034,10 @@ type CreateDBInstanceInput struct {
 	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
 	// in the Amazon Relational Database Service User Guide.
 	//
+	// Amazon Aurora
+	//
+	// Not applicable. CloudWatch Logs exports are managed by the DB cluster.
+	//
 	// MariaDB
 	//
 	// Possible values are audit, error, general, and slowquery.
@@ -18153,7 +18154,7 @@ type CreateDBInstanceInput struct {
 	//
 	// Microsoft SQL Server
 	//
-	// See Version and Feature Support on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.FeatureSupport)
+	// See Microsoft SQL Server Versions on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport)
 	// in the Amazon RDS User Guide.
 	//
 	// MySQL
@@ -31602,7 +31603,7 @@ type ImportInstallationMediaInput struct {
 	//
 	// Microsoft SQL Server
 	//
-	// See Version and Feature Support on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.FeatureSupport)
+	// See Microsoft SQL Server Versions on Amazon RDS (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_SQLServer.html#SQLServer.Concepts.General.VersionSupport)
 	// in the Amazon RDS User Guide.
 	//
 	// EngineVersion is a required field
@@ -38940,8 +38941,8 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// The list of logs that the restored DB instance is to export to CloudWatch
 	// Logs. The values in the list depend on the DB engine being used. For more
-	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
-	// in the Amazon Aurora User Guide.
+	// information, see Publishing Database Logs to Amazon CloudWatch Logs (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_LogAccess.html#USER_LogAccess.Procedural.UploadtoCloudWatch)
+	// in the Amazon RDS User Guide.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
@@ -39458,6 +39459,10 @@ type RestoreDBInstanceFromS3Input struct {
 	//    * Can't be a reserved word for the chosen database engine.
 	MasterUsername *string `type:"string"`
 
+	// The upper limit to which Amazon RDS can automatically scale the storage of
+	// the DB instance.
+	MaxAllocatedStorage *int64 `type:"integer"`
+
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
 	// are collected for the DB instance. To disable collecting Enhanced Monitoring
 	// metrics, specify 0.
@@ -39793,6 +39798,12 @@ func (s *RestoreDBInstanceFromS3Input) SetMasterUsername(v string) *RestoreDBIns
 	return s
 }
 
+// SetMaxAllocatedStorage sets the MaxAllocatedStorage field's value.
+func (s *RestoreDBInstanceFromS3Input) SetMaxAllocatedStorage(v int64) *RestoreDBInstanceFromS3Input {
+	s.MaxAllocatedStorage = &v
+	return s
+}
+
 // SetMonitoringInterval sets the MonitoringInterval field's value.
 func (s *RestoreDBInstanceFromS3Input) SetMonitoringInterval(v int64) *RestoreDBInstanceFromS3Input {
 	s.MonitoringInterval = &v
@@ -40084,6 +40095,10 @@ type RestoreDBInstanceToPointInTimeInput struct {
 	// Valid values: license-included | bring-your-own-license | general-public-license
 	LicenseModel *string `type:"string"`
 
+	// The upper limit to which Amazon RDS can automatically scale the storage of
+	// the DB instance.
+	MaxAllocatedStorage *int64 `type:"integer"`
+
 	// A value that indicates whether the DB instance is a Multi-AZ deployment.
 	//
 	// Constraint: You can't specify the AvailabilityZone parameter if the DB instance
@@ -40306,6 +40321,12 @@ func (s *RestoreDBInstanceToPointInTimeInput) SetIops(v int64) *RestoreDBInstanc
 // SetLicenseModel sets the LicenseModel field's value.
 func (s *RestoreDBInstanceToPointInTimeInput) SetLicenseModel(v string) *RestoreDBInstanceToPointInTimeInput {
 	s.LicenseModel = &v
+	return s
+}
+
+// SetMaxAllocatedStorage sets the MaxAllocatedStorage field's value.
+func (s *RestoreDBInstanceToPointInTimeInput) SetMaxAllocatedStorage(v int64) *RestoreDBInstanceToPointInTimeInput {
+	s.MaxAllocatedStorage = &v
 	return s
 }
 

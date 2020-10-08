@@ -150,6 +150,12 @@
       "refs": {
       }
     },
+    "DeadLetterConfig": {
+      "base": "<p>A <code>DeadLetterConfig</code> object that contains information about a dead-letter queue configuration.</p>",
+      "refs": {
+        "Target$DeadLetterConfig": "<p>The <code>DeadLetterConfig</code> that defines the target queue to send dead-letter queue events to.</p>"
+      }
+    },
     "DeleteEventBusRequest": {
       "base": null,
       "refs": {
@@ -537,6 +543,18 @@
       "refs": {
       }
     },
+    "MaximumEventAgeInSeconds": {
+      "base": null,
+      "refs": {
+        "RetryPolicy$MaximumEventAgeInSeconds": "<p>The maximum amount of time, in seconds, to continue to make retry attempts.</p>"
+      }
+    },
+    "MaximumRetryAttempts": {
+      "base": null,
+      "refs": {
+        "RetryPolicy$MaximumRetryAttempts": "<p>The maximum number of retry attempts to make before the request fails. Retry attempts continue until either the maximum number of attempts is made or until the duration of the <code>MaximumEventAgeInSeconds</code> is met.</p>"
+      }
+    },
     "MessageGroupId": {
       "base": null,
       "refs": {
@@ -801,9 +819,21 @@
       "refs": {
       }
     },
+    "ResourceArn": {
+      "base": null,
+      "refs": {
+        "DeadLetterConfig$Arn": "<p>The ARN of the SQS queue specified as the target for the dead-letter queue.</p>"
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>An entity that you specified does not exist.</p>",
       "refs": {
+      }
+    },
+    "RetryPolicy": {
+      "base": "<p>A <code>RetryPolicy</code> object that includes information about the retry policy settings.</p>",
+      "refs": {
+        "Target$RetryPolicy": "<p>The <code>RetryPolicy</code> object that contains the retry policy configuration to use for the dead-letter queue.</p>"
       }
     },
     "RoleArn": {

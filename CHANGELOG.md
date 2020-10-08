@@ -1,3 +1,22 @@
+Release v1.35.6 (2020-10-08)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * AWS EC2 RevokeSecurityGroupIngress and RevokeSecurityGroupEgress APIs will return IpPermissions which do not match with any existing IpPermissions for security groups in default VPC and EC2-Classic.
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * Amazon EventBridge (formerly called CloudWatch Events) adds support for target Dead-letter Queues and custom retry policies.
+* `service/rds`: Updates service API and documentation
+  * Supports a new parameter to set the max allocated storage in gigabytes for restore database instance from S3 and restore database instance to a point in time APIs.
+* `service/rekognition`: Updates service API and documentation
+  * This release provides location information for the manifest validation files.
+* `service/sagemaker`: Updates service API and documentation
+  * This release enables Sagemaker customers to convert Tensorflow and PyTorch models to CoreML (ML Model) format.
+* `service/sns`: Updates service documentation
+  * Documentation updates for SNS.
+
 Release v1.35.5 (2020-10-07)
 ===
 

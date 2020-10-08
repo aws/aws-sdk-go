@@ -2337,7 +2337,8 @@
         "OutputConfig":{"shape":"OutputConfig"},
         "TrainingDataResult":{"shape":"TrainingDataResult"},
         "TestingDataResult":{"shape":"TestingDataResult"},
-        "EvaluationResult":{"shape":"EvaluationResult"}
+        "EvaluationResult":{"shape":"EvaluationResult"},
+        "ManifestSummary":{"shape":"GroundTruthManifest"}
       }
     },
     "ProjectVersionDescriptions":{
@@ -2907,7 +2908,8 @@
       "type":"structure",
       "members":{
         "Input":{"shape":"TestingData"},
-        "Output":{"shape":"TestingData"}
+        "Output":{"shape":"TestingData"},
+        "Validation":{"shape":"ValidationData"}
       }
     },
     "TextDetection":{
@@ -2962,7 +2964,8 @@
       "type":"structure",
       "members":{
         "Input":{"shape":"TrainingData"},
-        "Output":{"shape":"TrainingData"}
+        "Output":{"shape":"TrainingData"},
+        "Validation":{"shape":"ValidationData"}
       }
     },
     "UInteger":{
@@ -2988,6 +2991,12 @@
     "Urls":{
       "type":"list",
       "member":{"shape":"Url"}
+    },
+    "ValidationData":{
+      "type":"structure",
+      "members":{
+        "Assets":{"shape":"Assets"}
+      }
     },
     "VersionName":{
       "type":"string",
