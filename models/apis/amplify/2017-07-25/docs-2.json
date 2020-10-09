@@ -656,6 +656,15 @@
         "UpdateBranchRequest$enableNotification": "<p> Enables notifications for the branch. </p>"
       }
     },
+    "EnablePerformanceMode": {
+      "base": null,
+      "refs": {
+        "AutoBranchCreationConfig$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
+        "Branch$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
+        "CreateBranchRequest$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
+        "UpdateBranchRequest$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>"
+      }
+    },
     "EnablePullRequestPreview": {
       "base": null,
       "refs": {

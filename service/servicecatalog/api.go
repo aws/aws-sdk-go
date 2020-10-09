@@ -1035,9 +1035,9 @@ func (c *ServiceCatalog) CreatePortfolioShareRequest(input *CreatePortfolioShare
 // CreatePortfolioShare API operation for AWS Service Catalog.
 //
 // Shares the specified portfolio with the specified account or organization
-// node. Shares to an organization node can only be created by the master account
-// of an organization or by a delegated administrator. You can share portfolios
-// to an organization, an organizational unit, or a specific account.
+// node. Shares to an organization node can only be created by the management
+// account of an organization or by a delegated administrator. You can share
+// portfolios to an organization, an organizational unit, or a specific account.
 //
 // Note that if a delegated admin is de-registered, they can no longer create
 // portfolio shares.
@@ -1774,8 +1774,8 @@ func (c *ServiceCatalog) DeletePortfolioShareRequest(input *DeletePortfolioShare
 // DeletePortfolioShare API operation for AWS Service Catalog.
 //
 // Stops sharing the specified portfolio with the specified account or organization
-// node. Shares to an organization node can only be deleted by the master account
-// of an organization or by a delegated administrator.
+// node. Shares to an organization node can only be deleted by the management
+// account of an organization or by a delegated administrator.
 //
 // Note that if a delegated admin is de-registered, portfolio shares created
 // from that account are removed.
@@ -2555,7 +2555,7 @@ func (c *ServiceCatalog) DescribePortfolioShareStatusRequest(input *DescribePort
 // DescribePortfolioShareStatus API operation for AWS Service Catalog.
 //
 // Gets the status of the specified portfolio share operation. This API can
-// only be called by the master account in the organization or by a delegated
+// only be called by the management account in the organization or by a delegated
 // admin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3564,7 +3564,7 @@ func (c *ServiceCatalog) DisableAWSOrganizationsAccessRequest(input *DisableAWSO
 // will not delete your current shares but it will prevent you from creating
 // new shares throughout your organization. Current shares will not be in sync
 // with your organization structure if it changes after calling this API. This
-// API can only be called by the master account in the organization.
+// API can only be called by the management account in the organization.
 //
 // This API can't be invoked if there are active delegated administrators in
 // the organization.
@@ -4078,7 +4078,7 @@ func (c *ServiceCatalog) EnableAWSOrganizationsAccessRequest(input *EnableAWSOrg
 // Enable portfolio sharing feature through AWS Organizations. This API will
 // allow Service Catalog to receive updates on your organization in order to
 // sync your shares with the current structure. This API can only be called
-// by the master account in the organization.
+// by the management account in the organization.
 //
 // By calling this API Service Catalog will make a call to organizations:EnableAWSServiceAccess
 // on your behalf so that your shares can be in sync with any changes in your
@@ -4347,8 +4347,8 @@ func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusRequest(input *GetAWSOrg
 // GetAWSOrganizationsAccessStatus API operation for AWS Service Catalog.
 //
 // Get the Access Status for AWS Organization portfolio share feature. This
-// API can only be called by the master account in the organization or by a
-// delegated admin.
+// API can only be called by the management account in the organization or by
+// a delegated admin.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4384,6 +4384,148 @@ func (c *ServiceCatalog) GetAWSOrganizationsAccessStatusWithContext(ctx aws.Cont
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetProvisionedProductOutputs = "GetProvisionedProductOutputs"
+
+// GetProvisionedProductOutputsRequest generates a "aws/request.Request" representing the
+// client's request for the GetProvisionedProductOutputs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetProvisionedProductOutputs for more information on using the GetProvisionedProductOutputs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetProvisionedProductOutputsRequest method.
+//    req, resp := client.GetProvisionedProductOutputsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/GetProvisionedProductOutputs
+func (c *ServiceCatalog) GetProvisionedProductOutputsRequest(input *GetProvisionedProductOutputsInput) (req *request.Request, output *GetProvisionedProductOutputsOutput) {
+	op := &request.Operation{
+		Name:       opGetProvisionedProductOutputs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"PageToken"},
+			OutputTokens:    []string{"NextPageToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetProvisionedProductOutputsInput{}
+	}
+
+	output = &GetProvisionedProductOutputsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetProvisionedProductOutputs API operation for AWS Service Catalog.
+//
+// This API takes either a ProvisonedProductId or a ProvisionedProductName,
+// along with a list of one or more output keys, and responds with the key/value
+// pairs of those outputs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation GetProvisionedProductOutputs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/GetProvisionedProductOutputs
+func (c *ServiceCatalog) GetProvisionedProductOutputs(input *GetProvisionedProductOutputsInput) (*GetProvisionedProductOutputsOutput, error) {
+	req, out := c.GetProvisionedProductOutputsRequest(input)
+	return out, req.Send()
+}
+
+// GetProvisionedProductOutputsWithContext is the same as GetProvisionedProductOutputs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetProvisionedProductOutputs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) GetProvisionedProductOutputsWithContext(ctx aws.Context, input *GetProvisionedProductOutputsInput, opts ...request.Option) (*GetProvisionedProductOutputsOutput, error) {
+	req, out := c.GetProvisionedProductOutputsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetProvisionedProductOutputsPages iterates over the pages of a GetProvisionedProductOutputs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetProvisionedProductOutputs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetProvisionedProductOutputs operation.
+//    pageNum := 0
+//    err := client.GetProvisionedProductOutputsPages(params,
+//        func(page *servicecatalog.GetProvisionedProductOutputsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ServiceCatalog) GetProvisionedProductOutputsPages(input *GetProvisionedProductOutputsInput, fn func(*GetProvisionedProductOutputsOutput, bool) bool) error {
+	return c.GetProvisionedProductOutputsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetProvisionedProductOutputsPagesWithContext same as GetProvisionedProductOutputsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) GetProvisionedProductOutputsPagesWithContext(ctx aws.Context, input *GetProvisionedProductOutputsInput, fn func(*GetProvisionedProductOutputsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetProvisionedProductOutputsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetProvisionedProductOutputsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetProvisionedProductOutputsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListAcceptedPortfolioShares = "ListAcceptedPortfolioShares"
@@ -4999,8 +5141,8 @@ func (c *ServiceCatalog) ListOrganizationPortfolioAccessRequest(input *ListOrgan
 // ListOrganizationPortfolioAccess API operation for AWS Service Catalog.
 //
 // Lists the organization nodes that have access to the specified portfolio.
-// This API can only be called by the master account in the organization or
-// by a delegated admin.
+// This API can only be called by the management account in the organization
+// or by a delegated admin.
 //
 // If a delegated admin is de-registered, they can no longer perform this operation.
 //
@@ -8162,8 +8304,8 @@ type AcceptPortfolioShareInput struct {
 	// The type of shared portfolios to accept. The default is to accept imported
 	// portfolios.
 	//
-	//    * AWS_ORGANIZATIONS - Accept portfolios shared by the master account of
-	//    your organization.
+	//    * AWS_ORGANIZATIONS - Accept portfolios shared by the management account
+	//    of your organization.
 	//
 	//    * IMPORTED - Accept imported portfolios.
 	//
@@ -9601,9 +9743,9 @@ type CreatePortfolioShareInput struct {
 	AccountId *string `type:"string"`
 
 	// The organization node to whom you are going to share. If OrganizationNode
-	// is passed in, PortfolioShare will be created for the node and its children
-	// (when applies), and a PortfolioShareToken will be returned in the output
-	// in order for the administrator to monitor the status of the PortfolioShare
+	// is passed in, PortfolioShare will be created for the node an ListOrganizationPortfolioAccessd
+	// its children (when applies), and a PortfolioShareToken will be returned in
+	// the output in order for the administrator to monitor the status of the PortfolioShare
 	// creation process.
 	OrganizationNode *OrganizationNode `type:"structure"`
 
@@ -9666,7 +9808,7 @@ func (s *CreatePortfolioShareInput) SetPortfolioId(v string) *CreatePortfolioSha
 type CreatePortfolioShareOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The portfolio share unique identifier. This will only be returned if portfolio
+	// The portfolio shares a unique identifier that only returns if the portfolio
 	// is shared to an organization node.
 	PortfolioShareToken *string `min:"1" type:"string"`
 }
@@ -11871,18 +12013,10 @@ type DescribeProvisionedProductInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The provisioned product identifier. You must provide the name or ID, but
-	// not both.
-	//
-	// If you do not provide a name or ID, or you provide both name and ID, an InvalidParametersException
-	// will occur.
+	// The provisioned product identifier.
 	Id *string `min:"1" type:"string"`
 
-	// The name of the provisioned product. You must provide the name or ID, but
-	// not both.
-	//
-	// If you do not provide a name or ID, or you provide both name and ID, an InvalidParametersException
-	// will occur.
+	// The name of the provisioned product.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -13641,6 +13775,133 @@ func (s *GetAWSOrganizationsAccessStatusOutput) SetAccessStatus(v string) *GetAW
 	return s
 }
 
+type GetProvisionedProductOutputsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code.
+	//
+	//    * en - English (default)
+	//
+	//    * jp - Japanese
+	//
+	//    * zh - Chinese
+	AcceptLanguage *string `type:"string"`
+
+	// The list of keys that the API should return with their values. If none are
+	// provided, the API will return all outputs of the provisioned product.
+	OutputKeys []*string `type:"list"`
+
+	// The maximum number of items to return with this call.
+	PageSize *int64 `type:"integer"`
+
+	// The page token for the next set of results. To retrieve the first set of
+	// results, use null.
+	PageToken *string `type:"string"`
+
+	// The identifier of the provisioned product that you want the outputs from.
+	ProvisionedProductId *string `min:"1" type:"string"`
+
+	// The name of the provisioned product that you want the outputs from.
+	ProvisionedProductName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetProvisionedProductOutputsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetProvisionedProductOutputsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetProvisionedProductOutputsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetProvisionedProductOutputsInput"}
+	if s.ProvisionedProductId != nil && len(*s.ProvisionedProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductId", 1))
+	}
+	if s.ProvisionedProductName != nil && len(*s.ProvisionedProductName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceptLanguage sets the AcceptLanguage field's value.
+func (s *GetProvisionedProductOutputsInput) SetAcceptLanguage(v string) *GetProvisionedProductOutputsInput {
+	s.AcceptLanguage = &v
+	return s
+}
+
+// SetOutputKeys sets the OutputKeys field's value.
+func (s *GetProvisionedProductOutputsInput) SetOutputKeys(v []*string) *GetProvisionedProductOutputsInput {
+	s.OutputKeys = v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *GetProvisionedProductOutputsInput) SetPageSize(v int64) *GetProvisionedProductOutputsInput {
+	s.PageSize = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *GetProvisionedProductOutputsInput) SetPageToken(v string) *GetProvisionedProductOutputsInput {
+	s.PageToken = &v
+	return s
+}
+
+// SetProvisionedProductId sets the ProvisionedProductId field's value.
+func (s *GetProvisionedProductOutputsInput) SetProvisionedProductId(v string) *GetProvisionedProductOutputsInput {
+	s.ProvisionedProductId = &v
+	return s
+}
+
+// SetProvisionedProductName sets the ProvisionedProductName field's value.
+func (s *GetProvisionedProductOutputsInput) SetProvisionedProductName(v string) *GetProvisionedProductOutputsInput {
+	s.ProvisionedProductName = &v
+	return s
+}
+
+type GetProvisionedProductOutputsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The page token to use to retrieve the next set of results. If there are no
+	// additional results, this value is null.
+	NextPageToken *string `type:"string"`
+
+	// Information about the product created as the result of a request. For example,
+	// the output for a CloudFormation-backed product that creates an S3 bucket
+	// would include the S3 bucket URL.
+	Outputs []*RecordOutput `type:"list"`
+}
+
+// String returns the string representation
+func (s GetProvisionedProductOutputsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetProvisionedProductOutputsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetProvisionedProductOutputsOutput) SetNextPageToken(v string) *GetProvisionedProductOutputsOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *GetProvisionedProductOutputsOutput) SetOutputs(v []*RecordOutput) *GetProvisionedProductOutputsOutput {
+	s.Outputs = v
+	return s
+}
+
 // One or more parameters provided to the operation are not valid.
 type InvalidParametersException struct {
 	_            struct{}                  `type:"structure"`
@@ -13918,8 +14179,8 @@ type ListAcceptedPortfolioSharesInput struct {
 
 	// The type of shared portfolios to list. The default is to list imported portfolios.
 	//
-	//    * AWS_ORGANIZATIONS - List portfolios shared by the master account of
-	//    your organization
+	//    * AWS_ORGANIZATIONS - List portfolios shared by the management account
+	//    of your organization
 	//
 	//    * AWS_SERVICECATALOG - List default portfolios
 	//
@@ -18137,8 +18398,8 @@ type RejectPortfolioShareInput struct {
 	// The type of shared portfolios to reject. The default is to reject imported
 	// portfolios.
 	//
-	//    * AWS_ORGANIZATIONS - Reject portfolios shared by the master account of
-	//    your organization.
+	//    * AWS_ORGANIZATIONS - Reject portfolios shared by the management account
+	//    of your organization.
 	//
 	//    * IMPORTED - Reject imported portfolios.
 	//

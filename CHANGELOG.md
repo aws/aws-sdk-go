@@ -1,3 +1,16 @@
+Release v1.35.7 (2020-10-09)
+===
+
+### Service Client Updates
+* `service/amplify`: Updates service API and documentation
+* `service/eks`: Updates service API
+* `service/medialive`: Updates service API and documentation
+  * WAV audio output. Extracting ancillary captions in MP4 file inputs. Priority on channels feeding a multiplex (higher priority channels will tend to have higher video quality).
+* `service/servicecatalog`: Updates service API, documentation, and paginators
+  * This new API takes either a ProvisonedProductId or a ProvisionedProductName, along with a list of 1 or more output keys and responds with the (key,value) pairs of those outputs.
+* `service/snowball`: Updates service API and documentation
+  * We added new APIs to allow customers to better manage their device shipping. You can check if your shipping label expired, generate a new label, and tell us that you received or shipped your job.
+
 Release v1.35.6 (2020-10-08)
 ===
 
