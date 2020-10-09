@@ -5258,12 +5258,57 @@ func (s *Ac3Settings) SetMetadataControl(v string) *Ac3Settings {
 	return s
 }
 
+// Ancillary Source Settings
+type AncillarySourceSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number (1 to 4) of the captions channel you want to extract
+	// from the ancillary captions. If you plan to convert the ancillary captions
+	// to another format, complete this field. If you plan to choose Embedded as
+	// the captions destination in the output (to pass through all the channels
+	// in the ancillary captions), leave this field blank because MediaLive ignores
+	// the field.
+	SourceAncillaryChannelNumber *int64 `locationName:"sourceAncillaryChannelNumber" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s AncillarySourceSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AncillarySourceSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AncillarySourceSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AncillarySourceSettings"}
+	if s.SourceAncillaryChannelNumber != nil && *s.SourceAncillaryChannelNumber < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SourceAncillaryChannelNumber", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSourceAncillaryChannelNumber sets the SourceAncillaryChannelNumber field's value.
+func (s *AncillarySourceSettings) SetSourceAncillaryChannelNumber(v int64) *AncillarySourceSettings {
+	s.SourceAncillaryChannelNumber = &v
+	return s
+}
+
 // Archive Container Settings
 type ArchiveContainerSettings struct {
 	_ struct{} `type:"structure"`
 
 	// M2ts Settings
 	M2tsSettings *M2tsSettings `locationName:"m2tsSettings" type:"structure"`
+
+	// Raw Settings
+	RawSettings *RawSettings `locationName:"rawSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -5294,6 +5339,12 @@ func (s *ArchiveContainerSettings) Validate() error {
 // SetM2tsSettings sets the M2tsSettings field's value.
 func (s *ArchiveContainerSettings) SetM2tsSettings(v *M2tsSettings) *ArchiveContainerSettings {
 	s.M2tsSettings = v
+	return s
+}
+
+// SetRawSettings sets the RawSettings field's value.
+func (s *ArchiveContainerSettings) SetRawSettings(v *RawSettings) *ArchiveContainerSettings {
+	s.RawSettings = v
 	return s
 }
 
@@ -5525,6 +5576,9 @@ type AudioCodecSettings struct {
 
 	// Pass Through Settings
 	PassThroughSettings *PassThroughSettings `locationName:"passThroughSettings" type:"structure"`
+
+	// Wav Settings
+	WavSettings *WavSettings `locationName:"wavSettings" type:"structure"`
 }
 
 // String returns the string representation
@@ -5584,6 +5638,12 @@ func (s *AudioCodecSettings) SetMp2Settings(v *Mp2Settings) *AudioCodecSettings 
 // SetPassThroughSettings sets the PassThroughSettings field's value.
 func (s *AudioCodecSettings) SetPassThroughSettings(v *PassThroughSettings) *AudioCodecSettings {
 	s.PassThroughSettings = v
+	return s
+}
+
+// SetWavSettings sets the WavSettings field's value.
+func (s *AudioCodecSettings) SetWavSettings(v *WavSettings) *AudioCodecSettings {
+	s.WavSettings = v
 	return s
 }
 
@@ -7717,6 +7777,9 @@ func (s *CaptionSelector) SetSelectorSettings(v *CaptionSelectorSettings) *Capti
 type CaptionSelectorSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Ancillary Source Settings
+	AncillarySourceSettings *AncillarySourceSettings `locationName:"ancillarySourceSettings" type:"structure"`
+
 	// Arib Source Settings
 	AribSourceSettings *AribSourceSettings `locationName:"aribSourceSettings" type:"structure"`
 
@@ -7749,6 +7812,11 @@ func (s CaptionSelectorSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CaptionSelectorSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CaptionSelectorSettings"}
+	if s.AncillarySourceSettings != nil {
+		if err := s.AncillarySourceSettings.Validate(); err != nil {
+			invalidParams.AddNested("AncillarySourceSettings", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DvbSubSourceSettings != nil {
 		if err := s.DvbSubSourceSettings.Validate(); err != nil {
 			invalidParams.AddNested("DvbSubSourceSettings", err.(request.ErrInvalidParams))
@@ -7774,6 +7842,12 @@ func (s *CaptionSelectorSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAncillarySourceSettings sets the AncillarySourceSettings field's value.
+func (s *CaptionSelectorSettings) SetAncillarySourceSettings(v *AncillarySourceSettings) *CaptionSelectorSettings {
+	s.AncillarySourceSettings = v
+	return s
 }
 
 // SetAribSourceSettings sets the AribSourceSettings field's value.
@@ -7812,11 +7886,37 @@ func (s *CaptionSelectorSettings) SetTeletextSourceSettings(v *TeletextSourceSet
 	return s
 }
 
+type CdiInputSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum CDI input resolution
+	Resolution *string `locationName:"resolution" type:"string" enum:"CdiInputResolution"`
+}
+
+// String returns the string representation
+func (s CdiInputSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CdiInputSpecification) GoString() string {
+	return s.String()
+}
+
+// SetResolution sets the Resolution field's value.
+func (s *CdiInputSpecification) SetResolution(v string) *CdiInputSpecification {
+	s.Resolution = &v
+	return s
+}
+
 type Channel struct {
 	_ struct{} `type:"structure"`
 
 	// The unique arn of the channel.
 	Arn *string `locationName:"arn" type:"string"`
+
+	// Specification of CDI inputs for this channel
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
 
 	// The class for this channel. STANDARD for a channel with two pipelines or
 	// SINGLE_PIPELINE for a channel with one pipeline.
@@ -7839,6 +7939,7 @@ type Channel struct {
 	// List of input attachments for channel.
 	InputAttachments []*InputAttachment `locationName:"inputAttachments" type:"list"`
 
+	// Specification of network and file inputs for this channel
 	InputSpecification *InputSpecification `locationName:"inputSpecification" type:"structure"`
 
 	// The log level being written to CloudWatch Logs.
@@ -7875,6 +7976,12 @@ func (s Channel) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *Channel) SetArn(v string) *Channel {
 	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *Channel) SetCdiInputSpecification(v *CdiInputSpecification) *Channel {
+	s.CdiInputSpecification = v
 	return s
 }
 
@@ -7991,6 +8098,9 @@ type ChannelSummary struct {
 	// The unique arn of the channel.
 	Arn *string `locationName:"arn" type:"string"`
 
+	// Specification of CDI inputs for this channel
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// The class for this channel. STANDARD for a channel with two pipelines or
 	// SINGLE_PIPELINE for a channel with one pipeline.
 	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
@@ -8009,6 +8119,7 @@ type ChannelSummary struct {
 	// List of input attachments for channel.
 	InputAttachments []*InputAttachment `locationName:"inputAttachments" type:"list"`
 
+	// Specification of network and file inputs for this channel
 	InputSpecification *InputSpecification `locationName:"inputSpecification" type:"structure"`
 
 	// The log level being written to CloudWatch Logs.
@@ -8042,6 +8153,12 @@ func (s ChannelSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *ChannelSummary) SetArn(v string) *ChannelSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *ChannelSummary) SetCdiInputSpecification(v *CdiInputSpecification) *ChannelSummary {
+	s.CdiInputSpecification = v
 	return s
 }
 
@@ -8190,6 +8307,8 @@ func (s *ConflictException) RequestID() string {
 type CreateChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// A standard channel has two encoding pipelines and a single pipeline channel
 	// only has one.
 	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
@@ -8260,6 +8379,12 @@ func (s *CreateChannelInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *CreateChannelInput) SetCdiInputSpecification(v *CdiInputSpecification) *CreateChannelInput {
+	s.CdiInputSpecification = v
+	return s
 }
 
 // SetChannelClass sets the ChannelClass field's value.
@@ -8858,6 +8983,8 @@ type DeleteChannelOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// A standard channel has two encoding pipelines and a single pipeline channel
 	// only has one.
 	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
@@ -8904,6 +9031,12 @@ func (s DeleteChannelOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DeleteChannelOutput) SetArn(v string) *DeleteChannelOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *DeleteChannelOutput) SetCdiInputSpecification(v *CdiInputSpecification) *DeleteChannelOutput {
+	s.CdiInputSpecification = v
 	return s
 }
 
@@ -9297,6 +9430,8 @@ type DeleteMultiplexProgramOutput struct {
 	// Packet identifiers map for a given Multiplex program.
 	PacketIdentifiersMap *MultiplexProgramPacketIdentifiersMap `locationName:"packetIdentifiersMap" type:"structure"`
 
+	PipelineDetails []*MultiplexProgramPipelineDetail `locationName:"pipelineDetails" type:"list"`
+
 	ProgramName *string `locationName:"programName" type:"string"`
 }
 
@@ -9325,6 +9460,12 @@ func (s *DeleteMultiplexProgramOutput) SetMultiplexProgramSettings(v *MultiplexP
 // SetPacketIdentifiersMap sets the PacketIdentifiersMap field's value.
 func (s *DeleteMultiplexProgramOutput) SetPacketIdentifiersMap(v *MultiplexProgramPacketIdentifiersMap) *DeleteMultiplexProgramOutput {
 	s.PacketIdentifiersMap = v
+	return s
+}
+
+// SetPipelineDetails sets the PipelineDetails field's value.
+func (s *DeleteMultiplexProgramOutput) SetPipelineDetails(v []*MultiplexProgramPipelineDetail) *DeleteMultiplexProgramOutput {
+	s.PipelineDetails = v
 	return s
 }
 
@@ -9697,6 +9838,8 @@ type DescribeChannelOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// A standard channel has two encoding pipelines and a single pipeline channel
 	// only has one.
 	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
@@ -9743,6 +9886,12 @@ func (s DescribeChannelOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeChannelOutput) SetArn(v string) *DescribeChannelOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *DescribeChannelOutput) SetCdiInputSpecification(v *CdiInputSpecification) *DescribeChannelOutput {
+	s.CdiInputSpecification = v
 	return s
 }
 
@@ -10558,6 +10707,8 @@ type DescribeMultiplexProgramOutput struct {
 	// Packet identifiers map for a given Multiplex program.
 	PacketIdentifiersMap *MultiplexProgramPacketIdentifiersMap `locationName:"packetIdentifiersMap" type:"structure"`
 
+	PipelineDetails []*MultiplexProgramPipelineDetail `locationName:"pipelineDetails" type:"list"`
+
 	ProgramName *string `locationName:"programName" type:"string"`
 }
 
@@ -10586,6 +10737,12 @@ func (s *DescribeMultiplexProgramOutput) SetMultiplexProgramSettings(v *Multiple
 // SetPacketIdentifiersMap sets the PacketIdentifiersMap field's value.
 func (s *DescribeMultiplexProgramOutput) SetPacketIdentifiersMap(v *MultiplexProgramPacketIdentifiersMap) *DescribeMultiplexProgramOutput {
 	s.PacketIdentifiersMap = v
+	return s
+}
+
+// SetPipelineDetails sets the PipelineDetails field's value.
+func (s *DescribeMultiplexProgramOutput) SetPipelineDetails(v []*MultiplexProgramPipelineDetail) *DescribeMultiplexProgramOutput {
+	s.PipelineDetails = v
 	return s
 }
 
@@ -18124,6 +18281,256 @@ func (s *Mp2Settings) SetSampleRate(v float64) *Mp2Settings {
 	return s
 }
 
+// Mpeg2 Filter Settings
+type Mpeg2FilterSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Temporal Filter Settings
+	TemporalFilterSettings *TemporalFilterSettings `locationName:"temporalFilterSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s Mpeg2FilterSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Mpeg2FilterSettings) GoString() string {
+	return s.String()
+}
+
+// SetTemporalFilterSettings sets the TemporalFilterSettings field's value.
+func (s *Mpeg2FilterSettings) SetTemporalFilterSettings(v *TemporalFilterSettings) *Mpeg2FilterSettings {
+	s.TemporalFilterSettings = v
+	return s
+}
+
+// Mpeg2 Settings
+type Mpeg2Settings struct {
+	_ struct{} `type:"structure"`
+
+	// Choose Off to disable adaptive quantization. Or choose another value to enable
+	// the quantizer and set its strength. The strengths are: Auto, Off, Low, Medium,
+	// High. When you enable this field, MediaLive allows intra-frame quantizers
+	// to vary, which might improve visual quality.
+	AdaptiveQuantization *string `locationName:"adaptiveQuantization" type:"string" enum:"Mpeg2AdaptiveQuantization"`
+
+	// Indicates the AFD values that MediaLive will write into the video encode.
+	// If you do not know what AFD signaling is, or if your downstream system has
+	// not given you guidance, choose AUTO.AUTO: MediaLive will try to preserve
+	// the input AFD value (in cases where multiple AFD values are valid).FIXED:
+	// MediaLive will use the value you specify in fixedAFD.
+	AfdSignaling *string `locationName:"afdSignaling" type:"string" enum:"AfdSignaling"`
+
+	// Specifies whether to include the color space metadata. The metadata describes
+	// the color space that applies to the video (the colorSpace field). We recommend
+	// that you insert the metadata.
+	ColorMetadata *string `locationName:"colorMetadata" type:"string" enum:"Mpeg2ColorMetadata"`
+
+	// Choose the type of color space conversion to apply to the output. For detailed
+	// information on setting up both the input and the output to obtain the desired
+	// color space in the output, see the section on \"MediaLive Features - Video
+	// - color space\" in the MediaLive User Guide.PASSTHROUGH: Keep the color space
+	// of the input content - do not convert it.AUTO:Convert all content that is
+	// SD to rec 601, and convert all content that is HD to rec 709.
+	ColorSpace *string `locationName:"colorSpace" type:"string" enum:"Mpeg2ColorSpace"`
+
+	// Sets the pixel aspect ratio for the encode.
+	DisplayAspectRatio *string `locationName:"displayAspectRatio" type:"string" enum:"Mpeg2DisplayRatio"`
+
+	// Optionally specify a noise reduction filter, which can improve quality of
+	// compressed content. If you do not choose a filter, no filter will be applied.TEMPORAL:
+	// This filter is useful for both source content that is noisy (when it has
+	// excessive digital artifacts) and source content that is clean.When the content
+	// is noisy, the filter cleans up the source content before the encoding phase,
+	// with these two effects: First, it improves the output video quality because
+	// the content has been cleaned up. Secondly, it decreases the bandwidth because
+	// MediaLive does not waste bits on encoding noise.When the content is reasonably
+	// clean, the filter tends to decrease the bitrate.
+	FilterSettings *Mpeg2FilterSettings `locationName:"filterSettings" type:"structure"`
+
+	// Complete this field only when afdSignaling is set to FIXED. Enter the AFD
+	// value (4 bits) to write on all frames of the video encode.
+	FixedAfd *string `locationName:"fixedAfd" type:"string" enum:"FixedAfd"`
+
+	// description": "The framerate denominator. For example, 1001. The framerate
+	// is the numerator divided by the denominator. For example, 24000 / 1001 =
+	// 23.976 FPS.
+	//
+	// FramerateDenominator is a required field
+	FramerateDenominator *int64 `locationName:"framerateDenominator" min:"1" type:"integer" required:"true"`
+
+	// The framerate numerator. For example, 24000. The framerate is the numerator
+	// divided by the denominator. For example, 24000 / 1001 = 23.976 FPS.
+	//
+	// FramerateNumerator is a required field
+	FramerateNumerator *int64 `locationName:"framerateNumerator" min:"1" type:"integer" required:"true"`
+
+	// MPEG2: default is open GOP.
+	GopClosedCadence *int64 `locationName:"gopClosedCadence" type:"integer"`
+
+	// Relates to the GOP structure. The number of B-frames between reference frames.
+	// If you do not know what a B-frame is, use the default.
+	GopNumBFrames *int64 `locationName:"gopNumBFrames" type:"integer"`
+
+	// Relates to the GOP structure. The GOP size (keyframe interval) in the units
+	// specified in gopSizeUnits. If you do not know what GOP is, use the default.If
+	// gopSizeUnits is frames, then the gopSize must be an integer and must be greater
+	// than or equal to 1.If gopSizeUnits is seconds, the gopSize must be greater
+	// than 0, but does not need to be an integer.
+	GopSize *float64 `locationName:"gopSize" type:"double"`
+
+	// Relates to the GOP structure. Specifies whether the gopSize is specified
+	// in frames or seconds. If you do not plan to change the default gopSize, leave
+	// the default. If you specify SECONDS, MediaLive will internally convert the
+	// gop size to a frame count.
+	GopSizeUnits *string `locationName:"gopSizeUnits" type:"string" enum:"Mpeg2GopSizeUnits"`
+
+	// Set the scan type of the output to PROGRESSIVE or INTERLACED (top field first).
+	ScanType *string `locationName:"scanType" type:"string" enum:"Mpeg2ScanType"`
+
+	// Relates to the GOP structure. If you do not know what GOP is, use the default.FIXED:
+	// Set the number of B-frames in each sub-GOP to the value in gopNumBFrames.DYNAMIC:
+	// Let MediaLive optimize the number of B-frames in each sub-GOP, to improve
+	// visual quality.
+	SubgopLength *string `locationName:"subgopLength" type:"string" enum:"Mpeg2SubGopLength"`
+
+	// Determines how MediaLive inserts timecodes in the output video. For detailed
+	// information about setting up the input and the output for a timecode, see
+	// the section on \"MediaLive Features - Timecode configuration\" in the MediaLive
+	// User Guide.DISABLED: do not include timecodes.GOP_TIMECODE: Include timecode
+	// metadata in the GOP header.
+	TimecodeInsertion *string `locationName:"timecodeInsertion" type:"string" enum:"Mpeg2TimecodeInsertionBehavior"`
+}
+
+// String returns the string representation
+func (s Mpeg2Settings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Mpeg2Settings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Mpeg2Settings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Mpeg2Settings"}
+	if s.FramerateDenominator == nil {
+		invalidParams.Add(request.NewErrParamRequired("FramerateDenominator"))
+	}
+	if s.FramerateDenominator != nil && *s.FramerateDenominator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateDenominator", 1))
+	}
+	if s.FramerateNumerator == nil {
+		invalidParams.Add(request.NewErrParamRequired("FramerateNumerator"))
+	}
+	if s.FramerateNumerator != nil && *s.FramerateNumerator < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FramerateNumerator", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAdaptiveQuantization sets the AdaptiveQuantization field's value.
+func (s *Mpeg2Settings) SetAdaptiveQuantization(v string) *Mpeg2Settings {
+	s.AdaptiveQuantization = &v
+	return s
+}
+
+// SetAfdSignaling sets the AfdSignaling field's value.
+func (s *Mpeg2Settings) SetAfdSignaling(v string) *Mpeg2Settings {
+	s.AfdSignaling = &v
+	return s
+}
+
+// SetColorMetadata sets the ColorMetadata field's value.
+func (s *Mpeg2Settings) SetColorMetadata(v string) *Mpeg2Settings {
+	s.ColorMetadata = &v
+	return s
+}
+
+// SetColorSpace sets the ColorSpace field's value.
+func (s *Mpeg2Settings) SetColorSpace(v string) *Mpeg2Settings {
+	s.ColorSpace = &v
+	return s
+}
+
+// SetDisplayAspectRatio sets the DisplayAspectRatio field's value.
+func (s *Mpeg2Settings) SetDisplayAspectRatio(v string) *Mpeg2Settings {
+	s.DisplayAspectRatio = &v
+	return s
+}
+
+// SetFilterSettings sets the FilterSettings field's value.
+func (s *Mpeg2Settings) SetFilterSettings(v *Mpeg2FilterSettings) *Mpeg2Settings {
+	s.FilterSettings = v
+	return s
+}
+
+// SetFixedAfd sets the FixedAfd field's value.
+func (s *Mpeg2Settings) SetFixedAfd(v string) *Mpeg2Settings {
+	s.FixedAfd = &v
+	return s
+}
+
+// SetFramerateDenominator sets the FramerateDenominator field's value.
+func (s *Mpeg2Settings) SetFramerateDenominator(v int64) *Mpeg2Settings {
+	s.FramerateDenominator = &v
+	return s
+}
+
+// SetFramerateNumerator sets the FramerateNumerator field's value.
+func (s *Mpeg2Settings) SetFramerateNumerator(v int64) *Mpeg2Settings {
+	s.FramerateNumerator = &v
+	return s
+}
+
+// SetGopClosedCadence sets the GopClosedCadence field's value.
+func (s *Mpeg2Settings) SetGopClosedCadence(v int64) *Mpeg2Settings {
+	s.GopClosedCadence = &v
+	return s
+}
+
+// SetGopNumBFrames sets the GopNumBFrames field's value.
+func (s *Mpeg2Settings) SetGopNumBFrames(v int64) *Mpeg2Settings {
+	s.GopNumBFrames = &v
+	return s
+}
+
+// SetGopSize sets the GopSize field's value.
+func (s *Mpeg2Settings) SetGopSize(v float64) *Mpeg2Settings {
+	s.GopSize = &v
+	return s
+}
+
+// SetGopSizeUnits sets the GopSizeUnits field's value.
+func (s *Mpeg2Settings) SetGopSizeUnits(v string) *Mpeg2Settings {
+	s.GopSizeUnits = &v
+	return s
+}
+
+// SetScanType sets the ScanType field's value.
+func (s *Mpeg2Settings) SetScanType(v string) *Mpeg2Settings {
+	s.ScanType = &v
+	return s
+}
+
+// SetSubgopLength sets the SubgopLength field's value.
+func (s *Mpeg2Settings) SetSubgopLength(v string) *Mpeg2Settings {
+	s.SubgopLength = &v
+	return s
+}
+
+// SetTimecodeInsertion sets the TimecodeInsertion field's value.
+func (s *Mpeg2Settings) SetTimecodeInsertion(v string) *Mpeg2Settings {
+	s.TimecodeInsertion = &v
+	return s
+}
+
 // Ms Smooth Group Settings
 type MsSmoothGroupSettings struct {
 	_ struct{} `type:"structure"`
@@ -18609,6 +19016,12 @@ type MultiplexProgram struct {
 	// The packet identifier map for this multiplex program.
 	PacketIdentifiersMap *MultiplexProgramPacketIdentifiersMap `locationName:"packetIdentifiersMap" type:"structure"`
 
+	// Contains information about the current sources for the specified program
+	// in the specified multiplex. Keep in mind that each multiplex pipeline connects
+	// to both pipelines in a given source channel (the channel identified by the
+	// program). But only one of those channel pipelines is ever active at one time.
+	PipelineDetails []*MultiplexProgramPipelineDetail `locationName:"pipelineDetails" type:"list"`
+
 	// The name of the multiplex program.
 	ProgramName *string `locationName:"programName" type:"string"`
 }
@@ -18638,6 +19051,12 @@ func (s *MultiplexProgram) SetMultiplexProgramSettings(v *MultiplexProgramSettin
 // SetPacketIdentifiersMap sets the PacketIdentifiersMap field's value.
 func (s *MultiplexProgram) SetPacketIdentifiersMap(v *MultiplexProgramPacketIdentifiersMap) *MultiplexProgram {
 	s.PacketIdentifiersMap = v
+	return s
+}
+
+// SetPipelineDetails sets the PipelineDetails field's value.
+func (s *MultiplexProgram) SetPipelineDetails(v []*MultiplexProgramPipelineDetail) *MultiplexProgram {
+	s.PipelineDetails = v
 	return s
 }
 
@@ -18820,6 +19239,40 @@ func (s *MultiplexProgramPacketIdentifiersMap) SetVideoPid(v int64) *MultiplexPr
 	return s
 }
 
+// The current source for one of the pipelines in the multiplex.
+type MultiplexProgramPipelineDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the channel pipeline that is currently active for the pipeline
+	// (identified by PipelineId) in the multiplex.
+	ActiveChannelPipeline *string `locationName:"activeChannelPipeline" type:"string"`
+
+	// Identifies a specific pipeline in the multiplex.
+	PipelineId *string `locationName:"pipelineId" type:"string"`
+}
+
+// String returns the string representation
+func (s MultiplexProgramPipelineDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultiplexProgramPipelineDetail) GoString() string {
+	return s.String()
+}
+
+// SetActiveChannelPipeline sets the ActiveChannelPipeline field's value.
+func (s *MultiplexProgramPipelineDetail) SetActiveChannelPipeline(v string) *MultiplexProgramPipelineDetail {
+	s.ActiveChannelPipeline = &v
+	return s
+}
+
+// SetPipelineId sets the PipelineId field's value.
+func (s *MultiplexProgramPipelineDetail) SetPipelineId(v string) *MultiplexProgramPipelineDetail {
+	s.PipelineId = &v
+	return s
+}
+
 // Transport stream service descriptor configuration for the Multiplex program.
 type MultiplexProgramServiceDescriptor struct {
 	_ struct{} `type:"structure"`
@@ -18986,7 +19439,7 @@ type MultiplexSettings struct {
 	_ struct{} `type:"structure"`
 
 	// Maximum video buffer delay in milliseconds.
-	MaximumVideoBufferDelayMilliseconds *int64 `locationName:"maximumVideoBufferDelayMilliseconds" min:"1000" type:"integer"`
+	MaximumVideoBufferDelayMilliseconds *int64 `locationName:"maximumVideoBufferDelayMilliseconds" min:"800" type:"integer"`
 
 	// Transport stream bit rate.
 	//
@@ -19015,8 +19468,8 @@ func (s MultiplexSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MultiplexSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MultiplexSettings"}
-	if s.MaximumVideoBufferDelayMilliseconds != nil && *s.MaximumVideoBufferDelayMilliseconds < 1000 {
-		invalidParams.Add(request.NewErrParamMinValue("MaximumVideoBufferDelayMilliseconds", 1000))
+	if s.MaximumVideoBufferDelayMilliseconds != nil && *s.MaximumVideoBufferDelayMilliseconds < 800 {
+		invalidParams.Add(request.NewErrParamMinValue("MaximumVideoBufferDelayMilliseconds", 800))
 	}
 	if s.TransportStreamBitrate == nil {
 		invalidParams.Add(request.NewErrParamRequired("TransportStreamBitrate"))
@@ -19091,6 +19544,13 @@ type MultiplexStatmuxVideoSettings struct {
 
 	// Minimum statmux bitrate.
 	MinimumBitrate *int64 `locationName:"minimumBitrate" min:"100000" type:"integer"`
+
+	// The purpose of the priority is to use a combination of the\nmultiplex rate
+	// control algorithm and the QVBR capability of the\nencoder to prioritize the
+	// video quality of some channels in a\nmultiplex over others. Channels that
+	// have a higher priority will\nget higher video quality at the expense of the
+	// video quality of\nother channels in the multiplex with lower priority.
+	Priority *int64 `locationName:"priority" type:"integer"`
 }
 
 // String returns the string representation
@@ -19112,6 +19572,9 @@ func (s *MultiplexStatmuxVideoSettings) Validate() error {
 	if s.MinimumBitrate != nil && *s.MinimumBitrate < 100000 {
 		invalidParams.Add(request.NewErrParamMinValue("MinimumBitrate", 100000))
 	}
+	if s.Priority != nil && *s.Priority < -5 {
+		invalidParams.Add(request.NewErrParamMinValue("Priority", -5))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19128,6 +19591,12 @@ func (s *MultiplexStatmuxVideoSettings) SetMaximumBitrate(v int64) *MultiplexSta
 // SetMinimumBitrate sets the MinimumBitrate field's value.
 func (s *MultiplexStatmuxVideoSettings) SetMinimumBitrate(v int64) *MultiplexStatmuxVideoSettings {
 	s.MinimumBitrate = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *MultiplexStatmuxVideoSettings) SetPriority(v int64) *MultiplexStatmuxVideoSettings {
+	s.Priority = &v
 	return s
 }
 
@@ -20329,6 +20798,21 @@ func (s PurchaseOfferingOutput) GoString() string {
 func (s *PurchaseOfferingOutput) SetReservation(v *Reservation) *PurchaseOfferingOutput {
 	s.Reservation = v
 	return s
+}
+
+// Raw Settings
+type RawSettings struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RawSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RawSettings) GoString() string {
+	return s.String()
 }
 
 // Rec601 Settings
@@ -22005,6 +22489,8 @@ type StartChannelOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// A standard channel has two encoding pipelines and a single pipeline channel
 	// only has one.
 	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
@@ -22051,6 +22537,12 @@ func (s StartChannelOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *StartChannelOutput) SetArn(v string) *StartChannelOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *StartChannelOutput) SetCdiInputSpecification(v *CdiInputSpecification) *StartChannelOutput {
+	s.CdiInputSpecification = v
 	return s
 }
 
@@ -22584,6 +23076,8 @@ type StopChannelOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// A standard channel has two encoding pipelines and a single pipeline channel
 	// only has one.
 	ChannelClass *string `locationName:"channelClass" type:"string" enum:"ChannelClass"`
@@ -22630,6 +23124,12 @@ func (s StopChannelOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *StopChannelOutput) SetArn(v string) *StopChannelOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *StopChannelOutput) SetCdiInputSpecification(v *CdiInputSpecification) *StopChannelOutput {
+	s.CdiInputSpecification = v
 	return s
 }
 
@@ -23433,6 +23933,8 @@ func (s *UpdateChannelClassOutput) SetChannel(v *Channel) *UpdateChannelClassOut
 type UpdateChannelInput struct {
 	_ struct{} `type:"structure"`
 
+	CdiInputSpecification *CdiInputSpecification `locationName:"cdiInputSpecification" type:"structure"`
+
 	// ChannelId is a required field
 	ChannelId *string `location:"uri" locationName:"channelId" type:"string" required:"true"`
 
@@ -23502,6 +24004,12 @@ func (s *UpdateChannelInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCdiInputSpecification sets the CdiInputSpecification field's value.
+func (s *UpdateChannelInput) SetCdiInputSpecification(v *CdiInputSpecification) *UpdateChannelInput {
+	s.CdiInputSpecification = v
+	return s
 }
 
 // SetChannelId sets the ChannelId field's value.
@@ -24219,6 +24727,9 @@ type VideoCodecSettings struct {
 
 	// H265 Settings
 	H265Settings *H265Settings `locationName:"h265Settings" type:"structure"`
+
+	// Mpeg2 Settings
+	Mpeg2Settings *Mpeg2Settings `locationName:"mpeg2Settings" type:"structure"`
 }
 
 // String returns the string representation
@@ -24249,6 +24760,11 @@ func (s *VideoCodecSettings) Validate() error {
 			invalidParams.AddNested("H265Settings", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Mpeg2Settings != nil {
+		if err := s.Mpeg2Settings.Validate(); err != nil {
+			invalidParams.AddNested("Mpeg2Settings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -24271,6 +24787,12 @@ func (s *VideoCodecSettings) SetH264Settings(v *H264Settings) *VideoCodecSetting
 // SetH265Settings sets the H265Settings field's value.
 func (s *VideoCodecSettings) SetH265Settings(v *H265Settings) *VideoCodecSettings {
 	s.H265Settings = v
+	return s
+}
+
+// SetMpeg2Settings sets the Mpeg2Settings field's value.
+func (s *VideoCodecSettings) SetMpeg2Settings(v *Mpeg2Settings) *VideoCodecSettings {
+	s.Mpeg2Settings = v
 	return s
 }
 
@@ -24526,6 +25048,49 @@ func (s *VideoSelectorSettings) SetVideoSelectorPid(v *VideoSelectorPid) *VideoS
 // SetVideoSelectorProgramId sets the VideoSelectorProgramId field's value.
 func (s *VideoSelectorSettings) SetVideoSelectorProgramId(v *VideoSelectorProgramId) *VideoSelectorSettings {
 	s.VideoSelectorProgramId = v
+	return s
+}
+
+// Wav Settings
+type WavSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Bits per sample.
+	BitDepth *float64 `locationName:"bitDepth" type:"double"`
+
+	// The audio coding mode for the WAV audio. The mode determines the number of
+	// channels in the audio.
+	CodingMode *string `locationName:"codingMode" type:"string" enum:"WavCodingMode"`
+
+	// Sample rate in Hz.
+	SampleRate *float64 `locationName:"sampleRate" type:"double"`
+}
+
+// String returns the string representation
+func (s WavSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WavSettings) GoString() string {
+	return s.String()
+}
+
+// SetBitDepth sets the BitDepth field's value.
+func (s *WavSettings) SetBitDepth(v float64) *WavSettings {
+	s.BitDepth = &v
+	return s
+}
+
+// SetCodingMode sets the CodingMode field's value.
+func (s *WavSettings) SetCodingMode(v string) *WavSettings {
+	s.CodingMode = &v
+	return s
+}
+
+// SetSampleRate sets the SampleRate field's value.
+func (s *WavSettings) SetSampleRate(v float64) *WavSettings {
+	s.SampleRate = &v
 	return s
 }
 
@@ -25196,6 +25761,33 @@ func BurnInTeletextGridControl_Values() []string {
 	return []string{
 		BurnInTeletextGridControlFixed,
 		BurnInTeletextGridControlScaled,
+	}
+}
+
+// Maximum CDI input resolution; SD is 480i and 576i up to 30 frames-per-second
+// (fps), HD is 720p up to 60 fps / 1080i up to 30 fps, FHD is 1080p up to 60
+// fps, UHD is 2160p up to 60 fps
+const (
+	// CdiInputResolutionSd is a CdiInputResolution enum value
+	CdiInputResolutionSd = "SD"
+
+	// CdiInputResolutionHd is a CdiInputResolution enum value
+	CdiInputResolutionHd = "HD"
+
+	// CdiInputResolutionFhd is a CdiInputResolution enum value
+	CdiInputResolutionFhd = "FHD"
+
+	// CdiInputResolutionUhd is a CdiInputResolution enum value
+	CdiInputResolutionUhd = "UHD"
+)
+
+// CdiInputResolution_Values returns all elements of the CdiInputResolution enum
+func CdiInputResolution_Values() []string {
+	return []string{
+		CdiInputResolutionSd,
+		CdiInputResolutionHd,
+		CdiInputResolutionFhd,
+		CdiInputResolutionUhd,
 	}
 }
 
@@ -28237,6 +28829,154 @@ func Mp2CodingMode_Values() []string {
 	}
 }
 
+// Mpeg2 Adaptive Quantization
+const (
+	// Mpeg2AdaptiveQuantizationAuto is a Mpeg2AdaptiveQuantization enum value
+	Mpeg2AdaptiveQuantizationAuto = "AUTO"
+
+	// Mpeg2AdaptiveQuantizationHigh is a Mpeg2AdaptiveQuantization enum value
+	Mpeg2AdaptiveQuantizationHigh = "HIGH"
+
+	// Mpeg2AdaptiveQuantizationLow is a Mpeg2AdaptiveQuantization enum value
+	Mpeg2AdaptiveQuantizationLow = "LOW"
+
+	// Mpeg2AdaptiveQuantizationMedium is a Mpeg2AdaptiveQuantization enum value
+	Mpeg2AdaptiveQuantizationMedium = "MEDIUM"
+
+	// Mpeg2AdaptiveQuantizationOff is a Mpeg2AdaptiveQuantization enum value
+	Mpeg2AdaptiveQuantizationOff = "OFF"
+)
+
+// Mpeg2AdaptiveQuantization_Values returns all elements of the Mpeg2AdaptiveQuantization enum
+func Mpeg2AdaptiveQuantization_Values() []string {
+	return []string{
+		Mpeg2AdaptiveQuantizationAuto,
+		Mpeg2AdaptiveQuantizationHigh,
+		Mpeg2AdaptiveQuantizationLow,
+		Mpeg2AdaptiveQuantizationMedium,
+		Mpeg2AdaptiveQuantizationOff,
+	}
+}
+
+// Mpeg2 Color Metadata
+const (
+	// Mpeg2ColorMetadataIgnore is a Mpeg2ColorMetadata enum value
+	Mpeg2ColorMetadataIgnore = "IGNORE"
+
+	// Mpeg2ColorMetadataInsert is a Mpeg2ColorMetadata enum value
+	Mpeg2ColorMetadataInsert = "INSERT"
+)
+
+// Mpeg2ColorMetadata_Values returns all elements of the Mpeg2ColorMetadata enum
+func Mpeg2ColorMetadata_Values() []string {
+	return []string{
+		Mpeg2ColorMetadataIgnore,
+		Mpeg2ColorMetadataInsert,
+	}
+}
+
+// Mpeg2 Color Space
+const (
+	// Mpeg2ColorSpaceAuto is a Mpeg2ColorSpace enum value
+	Mpeg2ColorSpaceAuto = "AUTO"
+
+	// Mpeg2ColorSpacePassthrough is a Mpeg2ColorSpace enum value
+	Mpeg2ColorSpacePassthrough = "PASSTHROUGH"
+)
+
+// Mpeg2ColorSpace_Values returns all elements of the Mpeg2ColorSpace enum
+func Mpeg2ColorSpace_Values() []string {
+	return []string{
+		Mpeg2ColorSpaceAuto,
+		Mpeg2ColorSpacePassthrough,
+	}
+}
+
+// Mpeg2 Display Ratio
+const (
+	// Mpeg2DisplayRatioDisplayratio16x9 is a Mpeg2DisplayRatio enum value
+	Mpeg2DisplayRatioDisplayratio16x9 = "DISPLAYRATIO16X9"
+
+	// Mpeg2DisplayRatioDisplayratio4x3 is a Mpeg2DisplayRatio enum value
+	Mpeg2DisplayRatioDisplayratio4x3 = "DISPLAYRATIO4X3"
+)
+
+// Mpeg2DisplayRatio_Values returns all elements of the Mpeg2DisplayRatio enum
+func Mpeg2DisplayRatio_Values() []string {
+	return []string{
+		Mpeg2DisplayRatioDisplayratio16x9,
+		Mpeg2DisplayRatioDisplayratio4x3,
+	}
+}
+
+// Mpeg2 Gop Size Units
+const (
+	// Mpeg2GopSizeUnitsFrames is a Mpeg2GopSizeUnits enum value
+	Mpeg2GopSizeUnitsFrames = "FRAMES"
+
+	// Mpeg2GopSizeUnitsSeconds is a Mpeg2GopSizeUnits enum value
+	Mpeg2GopSizeUnitsSeconds = "SECONDS"
+)
+
+// Mpeg2GopSizeUnits_Values returns all elements of the Mpeg2GopSizeUnits enum
+func Mpeg2GopSizeUnits_Values() []string {
+	return []string{
+		Mpeg2GopSizeUnitsFrames,
+		Mpeg2GopSizeUnitsSeconds,
+	}
+}
+
+// Mpeg2 Scan Type
+const (
+	// Mpeg2ScanTypeInterlaced is a Mpeg2ScanType enum value
+	Mpeg2ScanTypeInterlaced = "INTERLACED"
+
+	// Mpeg2ScanTypeProgressive is a Mpeg2ScanType enum value
+	Mpeg2ScanTypeProgressive = "PROGRESSIVE"
+)
+
+// Mpeg2ScanType_Values returns all elements of the Mpeg2ScanType enum
+func Mpeg2ScanType_Values() []string {
+	return []string{
+		Mpeg2ScanTypeInterlaced,
+		Mpeg2ScanTypeProgressive,
+	}
+}
+
+// Mpeg2 Sub Gop Length
+const (
+	// Mpeg2SubGopLengthDynamic is a Mpeg2SubGopLength enum value
+	Mpeg2SubGopLengthDynamic = "DYNAMIC"
+
+	// Mpeg2SubGopLengthFixed is a Mpeg2SubGopLength enum value
+	Mpeg2SubGopLengthFixed = "FIXED"
+)
+
+// Mpeg2SubGopLength_Values returns all elements of the Mpeg2SubGopLength enum
+func Mpeg2SubGopLength_Values() []string {
+	return []string{
+		Mpeg2SubGopLengthDynamic,
+		Mpeg2SubGopLengthFixed,
+	}
+}
+
+// Mpeg2 Timecode Insertion Behavior
+const (
+	// Mpeg2TimecodeInsertionBehaviorDisabled is a Mpeg2TimecodeInsertionBehavior enum value
+	Mpeg2TimecodeInsertionBehaviorDisabled = "DISABLED"
+
+	// Mpeg2TimecodeInsertionBehaviorGopTimecode is a Mpeg2TimecodeInsertionBehavior enum value
+	Mpeg2TimecodeInsertionBehaviorGopTimecode = "GOP_TIMECODE"
+)
+
+// Mpeg2TimecodeInsertionBehavior_Values returns all elements of the Mpeg2TimecodeInsertionBehavior enum
+func Mpeg2TimecodeInsertionBehavior_Values() []string {
+	return []string{
+		Mpeg2TimecodeInsertionBehaviorDisabled,
+		Mpeg2TimecodeInsertionBehaviorGopTimecode,
+	}
+}
+
 // Ms Smooth H265 Packaging Type
 const (
 	// MsSmoothH265PackagingTypeHev1 is a MsSmoothH265PackagingType enum value
@@ -29219,5 +29959,30 @@ func VideoSelectorColorSpaceUsage_Values() []string {
 	return []string{
 		VideoSelectorColorSpaceUsageFallback,
 		VideoSelectorColorSpaceUsageForce,
+	}
+}
+
+// Wav Coding Mode
+const (
+	// WavCodingModeCodingMode10 is a WavCodingMode enum value
+	WavCodingModeCodingMode10 = "CODING_MODE_1_0"
+
+	// WavCodingModeCodingMode20 is a WavCodingMode enum value
+	WavCodingModeCodingMode20 = "CODING_MODE_2_0"
+
+	// WavCodingModeCodingMode40 is a WavCodingMode enum value
+	WavCodingModeCodingMode40 = "CODING_MODE_4_0"
+
+	// WavCodingModeCodingMode80 is a WavCodingMode enum value
+	WavCodingModeCodingMode80 = "CODING_MODE_8_0"
+)
+
+// WavCodingMode_Values returns all elements of the WavCodingMode enum
+func WavCodingMode_Values() []string {
+	return []string{
+		WavCodingModeCodingMode10,
+		WavCodingModeCodingMode20,
+		WavCodingModeCodingMode40,
+		WavCodingModeCodingMode80,
 	}
 }

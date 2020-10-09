@@ -6941,6 +6941,9 @@ const (
 
 	// ErrorCodeInsufficientFreeAddresses is a ErrorCode enum value
 	ErrorCodeInsufficientFreeAddresses = "InsufficientFreeAddresses"
+
+	// ErrorCodeClusterUnreachable is a ErrorCode enum value
+	ErrorCodeClusterUnreachable = "ClusterUnreachable"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -6957,6 +6960,7 @@ func ErrorCode_Values() []string {
 		ErrorCodeNodeCreationFailure,
 		ErrorCodePodEvictionFailure,
 		ErrorCodeInsufficientFreeAddresses,
+		ErrorCodeClusterUnreachable,
 	}
 }
 
@@ -7067,6 +7071,9 @@ const (
 
 	// NodegroupIssueCodeInternalFailure is a NodegroupIssueCode enum value
 	NodegroupIssueCodeInternalFailure = "InternalFailure"
+
+	// NodegroupIssueCodeClusterUnreachable is a NodegroupIssueCode enum value
+	NodegroupIssueCodeClusterUnreachable = "ClusterUnreachable"
 )
 
 // NodegroupIssueCode_Values returns all elements of the NodegroupIssueCode enum
@@ -7089,6 +7096,7 @@ func NodegroupIssueCode_Values() []string {
 		NodegroupIssueCodeInsufficientFreeAddresses,
 		NodegroupIssueCodeAccessDenied,
 		NodegroupIssueCodeInternalFailure,
+		NodegroupIssueCodeClusterUnreachable,
 	}
 }
 

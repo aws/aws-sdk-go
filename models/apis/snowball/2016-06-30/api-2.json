@@ -85,6 +85,22 @@
         {"shape":"Ec2RequestFailedException"}
       ]
     },
+    "CreateReturnShippingLabel":{
+      "name":"CreateReturnShippingLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateReturnShippingLabelRequest"},
+      "output":{"shape":"CreateReturnShippingLabelResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"},
+        {"shape":"InvalidJobStateException"},
+        {"shape":"InvalidInputCombinationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ReturnShippingLabelAlreadyExistsException"}
+      ]
+    },
     "DescribeAddress":{
       "name":"DescribeAddress",
       "http":{
@@ -132,6 +148,20 @@
       "output":{"shape":"DescribeJobResult"},
       "errors":[
         {"shape":"InvalidResourceException"}
+      ]
+    },
+    "DescribeReturnShippingLabel":{
+      "name":"DescribeReturnShippingLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReturnShippingLabelRequest"},
+      "output":{"shape":"DescribeReturnShippingLabelResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"},
+        {"shape":"InvalidJobStateException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetJobManifest":{
@@ -264,6 +294,19 @@
         {"shape":"ClusterLimitExceededException"},
         {"shape":"Ec2RequestFailedException"}
       ]
+    },
+    "UpdateJobShipmentState":{
+      "name":"UpdateJobShipmentState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateJobShipmentStateRequest"},
+      "output":{"shape":"UpdateJobShipmentStateResult"},
+      "errors":[
+        {"shape":"InvalidResourceException"},
+        {"shape":"InvalidJobStateException"}
+      ]
     }
   },
   "shapes":{
@@ -393,6 +436,14 @@
       "type":"list",
       "member":{"shape":"CompatibleImage"}
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "ConflictResource":{"shape":"String"},
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "CreateAddressRequest":{
       "type":"structure",
       "required":["Address"],
@@ -460,6 +511,20 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "CreateReturnShippingLabelRequest":{
+      "type":"structure",
+      "required":["JobId"],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "ShippingOption":{"shape":"ShippingOption"}
+      }
+    },
+    "CreateReturnShippingLabelResult":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ShippingLabelStatus"}
+      }
+    },
     "DataTransfer":{
       "type":"structure",
       "members":{
@@ -521,6 +586,19 @@
       "members":{
         "JobMetadata":{"shape":"JobMetadata"},
         "SubJobMetadata":{"shape":"JobMetadataList"}
+      }
+    },
+    "DescribeReturnShippingLabelRequest":{
+      "type":"structure",
+      "members":{
+        "JobId":{"shape":"JobId"}
+      }
+    },
+    "DescribeReturnShippingLabelResult":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"ShippingLabelStatus"},
+        "ExpirationDate":{"shape":"Timestamp"}
       }
     },
     "DeviceConfiguration":{
@@ -858,6 +936,13 @@
       "type":"string",
       "max":255
     },
+    "ReturnShippingLabelAlreadyExistsException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "RoleARN":{
       "type":"string",
       "max":255,
@@ -881,6 +966,13 @@
         "TrackingNumber":{"shape":"String"}
       }
     },
+    "ShipmentState":{
+      "type":"string",
+      "enum":[
+        "RECEIVED",
+        "RETURNED"
+      ]
+    },
     "ShippingDetails":{
       "type":"structure",
       "members":{
@@ -888,6 +980,15 @@
         "InboundShipment":{"shape":"Shipment"},
         "OutboundShipment":{"shape":"Shipment"}
       }
+    },
+    "ShippingLabelStatus":{
+      "type":"string",
+      "enum":[
+        "InProgress",
+        "TimedOut",
+        "Succeeded",
+        "Failed"
+      ]
     },
     "ShippingOption":{
       "type":"string",
@@ -985,6 +1086,22 @@
       }
     },
     "UpdateJobResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateJobShipmentStateRequest":{
+      "type":"structure",
+      "required":[
+        "JobId",
+        "ShipmentState"
+      ],
+      "members":{
+        "JobId":{"shape":"JobId"},
+        "ShipmentState":{"shape":"ShipmentState"}
+      }
+    },
+    "UpdateJobShipmentStateResult":{
       "type":"structure",
       "members":{
       }

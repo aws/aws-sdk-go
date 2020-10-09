@@ -2062,12 +2062,25 @@
         "NONE"
       ]
     },
+    "AncillarySourceSettings": {
+      "type": "structure",
+      "members": {
+        "SourceAncillaryChannelNumber": {
+          "shape": "__integerMin1Max4",
+          "locationName": "sourceAncillaryChannelNumber"
+        }
+      }
+    },
     "ArchiveContainerSettings": {
       "type": "structure",
       "members": {
         "M2tsSettings": {
           "shape": "M2tsSettings",
           "locationName": "m2tsSettings"
+        },
+        "RawSettings": {
+          "shape": "RawSettings",
+          "locationName": "rawSettings"
         }
       }
     },
@@ -2156,6 +2169,10 @@
         "PassThroughSettings": {
           "shape": "PassThroughSettings",
           "locationName": "passThroughSettings"
+        },
+        "WavSettings": {
+          "shape": "WavSettings",
+          "locationName": "wavSettings"
         }
       }
     },
@@ -3082,6 +3099,10 @@
     "CaptionSelectorSettings": {
       "type": "structure",
       "members": {
+        "AncillarySourceSettings": {
+          "shape": "AncillarySourceSettings",
+          "locationName": "ancillarySourceSettings"
+        },
         "AribSourceSettings": {
           "shape": "AribSourceSettings",
           "locationName": "aribSourceSettings"
@@ -3108,12 +3129,34 @@
         }
       }
     },
+    "CdiInputResolution": {
+      "type": "string",
+      "enum": [
+        "SD",
+        "HD",
+        "FHD",
+        "UHD"
+      ]
+    },
+    "CdiInputSpecification": {
+      "type": "structure",
+      "members": {
+        "Resolution": {
+          "shape": "CdiInputResolution",
+          "locationName": "resolution"
+        }
+      }
+    },
     "Channel": {
       "type": "structure",
       "members": {
         "Arn": {
           "shape": "__string",
           "locationName": "arn"
+        },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
         },
         "ChannelClass": {
           "shape": "ChannelClass",
@@ -3225,6 +3268,10 @@
           "shape": "__string",
           "locationName": "arn"
         },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "ChannelClass": {
           "shape": "ChannelClass",
           "locationName": "channelClass"
@@ -3296,6 +3343,10 @@
     "CreateChannel": {
       "type": "structure",
       "members": {
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "ChannelClass": {
           "shape": "ChannelClass",
           "locationName": "channelClass"
@@ -3347,6 +3398,10 @@
     "CreateChannelRequest": {
       "type": "structure",
       "members": {
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "ChannelClass": {
           "shape": "ChannelClass",
           "locationName": "channelClass"
@@ -3751,6 +3806,10 @@
           "shape": "__string",
           "locationName": "arn"
         },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "ChannelClass": {
           "shape": "ChannelClass",
           "locationName": "channelClass"
@@ -3878,6 +3937,10 @@
         "PacketIdentifiersMap": {
           "shape": "MultiplexProgramPacketIdentifiersMap",
           "locationName": "packetIdentifiersMap"
+        },
+        "PipelineDetails": {
+          "shape": "__listOfMultiplexProgramPipelineDetail",
+          "locationName": "pipelineDetails"
         },
         "ProgramName": {
           "shape": "__string",
@@ -4089,6 +4152,10 @@
         "Arn": {
           "shape": "__string",
           "locationName": "arn"
+        },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
         },
         "ChannelClass": {
           "shape": "ChannelClass",
@@ -4408,6 +4475,10 @@
         "PacketIdentifiersMap": {
           "shape": "MultiplexProgramPacketIdentifiersMap",
           "locationName": "packetIdentifiersMap"
+        },
+        "PipelineDetails": {
+          "shape": "__listOfMultiplexProgramPipelineDetail",
+          "locationName": "pipelineDetails"
         },
         "ProgramName": {
           "shape": "__string",
@@ -8481,6 +8552,147 @@
         }
       }
     },
+    "Mpeg2AdaptiveQuantization": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "HIGH",
+        "LOW",
+        "MEDIUM",
+        "OFF"
+      ]
+    },
+    "Mpeg2ColorMetadata": {
+      "type": "string",
+      "enum": [
+        "IGNORE",
+        "INSERT"
+      ]
+    },
+    "Mpeg2ColorSpace": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "PASSTHROUGH"
+      ]
+    },
+    "Mpeg2DisplayRatio": {
+      "type": "string",
+      "enum": [
+        "DISPLAYRATIO16X9",
+        "DISPLAYRATIO4X3"
+      ]
+    },
+    "Mpeg2FilterSettings": {
+      "type": "structure",
+      "members": {
+        "TemporalFilterSettings": {
+          "shape": "TemporalFilterSettings",
+          "locationName": "temporalFilterSettings"
+        }
+      }
+    },
+    "Mpeg2GopSizeUnits": {
+      "type": "string",
+      "enum": [
+        "FRAMES",
+        "SECONDS"
+      ]
+    },
+    "Mpeg2ScanType": {
+      "type": "string",
+      "enum": [
+        "INTERLACED",
+        "PROGRESSIVE"
+      ]
+    },
+    "Mpeg2Settings": {
+      "type": "structure",
+      "members": {
+        "AdaptiveQuantization": {
+          "shape": "Mpeg2AdaptiveQuantization",
+          "locationName": "adaptiveQuantization"
+        },
+        "AfdSignaling": {
+          "shape": "AfdSignaling",
+          "locationName": "afdSignaling"
+        },
+        "ColorMetadata": {
+          "shape": "Mpeg2ColorMetadata",
+          "locationName": "colorMetadata"
+        },
+        "ColorSpace": {
+          "shape": "Mpeg2ColorSpace",
+          "locationName": "colorSpace"
+        },
+        "DisplayAspectRatio": {
+          "shape": "Mpeg2DisplayRatio",
+          "locationName": "displayAspectRatio"
+        },
+        "FilterSettings": {
+          "shape": "Mpeg2FilterSettings",
+          "locationName": "filterSettings"
+        },
+        "FixedAfd": {
+          "shape": "FixedAfd",
+          "locationName": "fixedAfd"
+        },
+        "FramerateDenominator": {
+          "shape": "__integerMin1",
+          "locationName": "framerateDenominator"
+        },
+        "FramerateNumerator": {
+          "shape": "__integerMin1",
+          "locationName": "framerateNumerator"
+        },
+        "GopClosedCadence": {
+          "shape": "__integerMin0",
+          "locationName": "gopClosedCadence"
+        },
+        "GopNumBFrames": {
+          "shape": "__integerMin0Max7",
+          "locationName": "gopNumBFrames"
+        },
+        "GopSize": {
+          "shape": "__double",
+          "locationName": "gopSize"
+        },
+        "GopSizeUnits": {
+          "shape": "Mpeg2GopSizeUnits",
+          "locationName": "gopSizeUnits"
+        },
+        "ScanType": {
+          "shape": "Mpeg2ScanType",
+          "locationName": "scanType"
+        },
+        "SubgopLength": {
+          "shape": "Mpeg2SubGopLength",
+          "locationName": "subgopLength"
+        },
+        "TimecodeInsertion": {
+          "shape": "Mpeg2TimecodeInsertionBehavior",
+          "locationName": "timecodeInsertion"
+        }
+      },
+      "required": [
+        "FramerateNumerator",
+        "FramerateDenominator"
+      ]
+    },
+    "Mpeg2SubGopLength": {
+      "type": "string",
+      "enum": [
+        "DYNAMIC",
+        "FIXED"
+      ]
+    },
+    "Mpeg2TimecodeInsertionBehavior": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "GOP_TIMECODE"
+      ]
+    },
     "MsSmoothGroupSettings": {
       "type": "structure",
       "members": {
@@ -8693,6 +8905,10 @@
           "shape": "MultiplexProgramPacketIdentifiersMap",
           "locationName": "packetIdentifiersMap"
         },
+        "PipelineDetails": {
+          "shape": "__listOfMultiplexProgramPipelineDetail",
+          "locationName": "pipelineDetails"
+        },
         "ProgramName": {
           "shape": "__string",
           "locationName": "programName"
@@ -8769,6 +8985,19 @@
         }
       }
     },
+    "MultiplexProgramPipelineDetail": {
+      "type": "structure",
+      "members": {
+        "ActiveChannelPipeline": {
+          "shape": "__string",
+          "locationName": "activeChannelPipeline"
+        },
+        "PipelineId": {
+          "shape": "__string",
+          "locationName": "pipelineId"
+        }
+      }
+    },
     "MultiplexProgramServiceDescriptor": {
       "type": "structure",
       "members": {
@@ -8827,7 +9056,7 @@
       "type": "structure",
       "members": {
         "MaximumVideoBufferDelayMilliseconds": {
-          "shape": "__integerMin1000Max3000",
+          "shape": "__integerMin800Max3000",
           "locationName": "maximumVideoBufferDelayMilliseconds"
         },
         "TransportStreamBitrate": {
@@ -8881,6 +9110,10 @@
         "MinimumBitrate": {
           "shape": "__integerMin100000Max100000000",
           "locationName": "minimumBitrate"
+        },
+        "Priority": {
+          "shape": "__integerMinNegative5Max5",
+          "locationName": "priority"
         }
       }
     },
@@ -9364,6 +9597,11 @@
           "shape": "Reservation",
           "locationName": "reservation"
         }
+      }
+    },
+    "RawSettings": {
+      "type": "structure",
+      "members": {
       }
     },
     "Rec601Settings": {
@@ -10168,6 +10406,10 @@
           "shape": "__string",
           "locationName": "arn"
         },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "ChannelClass": {
           "shape": "ChannelClass",
           "locationName": "channelClass"
@@ -10389,6 +10631,10 @@
         "Arn": {
           "shape": "__string",
           "locationName": "arn"
+        },
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
         },
         "ChannelClass": {
           "shape": "ChannelClass",
@@ -10726,6 +10972,10 @@
     "UpdateChannel": {
       "type": "structure",
       "members": {
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "Destinations": {
           "shape": "__listOfOutputDestination",
           "locationName": "destinations"
@@ -10806,6 +11056,10 @@
     "UpdateChannelRequest": {
       "type": "structure",
       "members": {
+        "CdiInputSpecification": {
+          "shape": "CdiInputSpecification",
+          "locationName": "cdiInputSpecification"
+        },
         "ChannelId": {
           "shape": "__string",
           "location": "uri",
@@ -11245,6 +11499,10 @@
         "H265Settings": {
           "shape": "H265Settings",
           "locationName": "h265Settings"
+        },
+        "Mpeg2Settings": {
+          "shape": "Mpeg2Settings",
+          "locationName": "mpeg2Settings"
         }
       }
     },
@@ -11359,6 +11617,32 @@
         "VideoSelectorProgramId": {
           "shape": "VideoSelectorProgramId",
           "locationName": "videoSelectorProgramId"
+        }
+      }
+    },
+    "WavCodingMode": {
+      "type": "string",
+      "enum": [
+        "CODING_MODE_1_0",
+        "CODING_MODE_2_0",
+        "CODING_MODE_4_0",
+        "CODING_MODE_8_0"
+      ]
+    },
+    "WavSettings": {
+      "type": "structure",
+      "members": {
+        "BitDepth": {
+          "shape": "__double",
+          "locationName": "bitDepth"
+        },
+        "CodingMode": {
+          "shape": "WavCodingMode",
+          "locationName": "codingMode"
+        },
+        "SampleRate": {
+          "shape": "__double",
+          "locationName": "sampleRate"
         }
       }
     },
@@ -11507,11 +11791,6 @@
       "min": 100000,
       "max": 80000000
     },
-    "__integerMin1000Max3000": {
-      "type": "integer",
-      "min": 1000,
-      "max": 3000
-    },
     "__integerMin1000Max30000": {
       "type": "integer",
       "min": 1000,
@@ -11599,6 +11878,11 @@
       "type": "integer",
       "min": 4,
       "max": 20
+    },
+    "__integerMin800Max3000": {
+      "type": "integer",
+      "min": 800,
+      "max": 3000
     },
     "__integerMin96Max600": {
       "type": "integer",
@@ -11797,6 +12081,12 @@
       "type": "list",
       "member": {
         "shape": "MultiplexOutputDestination"
+      }
+    },
+    "__listOfMultiplexProgramPipelineDetail": {
+      "type": "list",
+      "member": {
+        "shape": "MultiplexProgramPipelineDetail"
       }
     },
     "__listOfMultiplexProgramSummary": {

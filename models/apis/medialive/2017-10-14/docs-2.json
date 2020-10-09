@@ -147,7 +147,14 @@
       "base": "Afd Signaling",
       "refs": {
         "H264Settings$AfdSignaling": "Indicates that AFD values will be written into the output stream.  If afdSignaling is \"auto\", the system will try to preserve the input AFD value (in cases where multiple AFD values are valid). If set to \"fixed\", the AFD value will be the value configured in the fixedAfd parameter.",
-        "H265Settings$AfdSignaling": "Indicates that AFD values will be written into the output stream.  If afdSignaling is \"auto\", the system will try to preserve the input AFD value (in cases where multiple AFD values are valid). If set to \"fixed\", the AFD value will be the value configured in the fixedAfd parameter."
+        "H265Settings$AfdSignaling": "Indicates that AFD values will be written into the output stream.  If afdSignaling is \"auto\", the system will try to preserve the input AFD value (in cases where multiple AFD values are valid). If set to \"fixed\", the AFD value will be the value configured in the fixedAfd parameter.",
+        "Mpeg2Settings$AfdSignaling": "Indicates the AFD values that MediaLive will write into the video encode. If you do not know what AFD signaling is, or if your downstream system has not given you guidance, choose AUTO.\nAUTO: MediaLive will try to preserve the input AFD value (in cases where multiple AFD values are valid).\nFIXED: MediaLive will use the value you specify in fixedAFD."
+      }
+    },
+    "AncillarySourceSettings": {
+      "base": "Ancillary Source Settings",
+      "refs": {
+        "CaptionSelectorSettings$AncillarySourceSettings": null
       }
     },
     "ArchiveContainerSettings": {
@@ -506,6 +513,21 @@
         "CaptionSelector$SelectorSettings": "Caption selector settings."
       }
     },
+    "CdiInputResolution": {
+      "base": "Maximum CDI input resolution; SD is 480i and 576i up to 30 frames-per-second (fps), HD is 720p up to 60 fps / 1080i up to 30 fps, FHD is 1080p up to 60 fps, UHD is 2160p up to 60 fps\n",
+      "refs": {
+        "CdiInputSpecification$Resolution": "Maximum CDI input resolution"
+      }
+    },
+    "CdiInputSpecification": {
+      "base": null,
+      "refs": {
+        "Channel$CdiInputSpecification": "Specification of CDI inputs for this channel",
+        "ChannelSummary$CdiInputSpecification": "Specification of CDI inputs for this channel",
+        "CreateChannel$CdiInputSpecification": "Specification of CDI inputs for this channel",
+        "UpdateChannel$CdiInputSpecification": "Specification of CDI inputs for this channel"
+      }
+    },
     "Channel": {
       "base": null,
       "refs": {
@@ -862,7 +884,8 @@
       "base": "Fixed Afd",
       "refs": {
         "H264Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'.",
-        "H265Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'."
+        "H265Settings$FixedAfd": "Four bit AFD value to write on all frames of video in the output stream. Only valid when afdSignaling is set to 'Fixed'.",
+        "Mpeg2Settings$FixedAfd": "Complete this field only when afdSignaling is set to FIXED. Enter the AFD value (4 bits) to write on all frames of the video encode."
       }
     },
     "FixedModeScheduleActionStartSettings": {
@@ -1721,10 +1744,10 @@
     "InputSpecification": {
       "base": null,
       "refs": {
-        "Channel$InputSpecification": null,
-        "ChannelSummary$InputSpecification": null,
-        "CreateChannel$InputSpecification": "Specification of input for this channel (max. bitrate, resolution, codec, etc.)",
-        "UpdateChannel$InputSpecification": "Specification of input for this channel (max. bitrate, resolution, codec, etc.)"
+        "Channel$InputSpecification": "Specification of network and file inputs for this channel",
+        "ChannelSummary$InputSpecification": "Specification of network and file inputs for this channel",
+        "CreateChannel$InputSpecification": "Specification of network and file inputs for this channel",
+        "UpdateChannel$InputSpecification": "Specification of network and file inputs for this channel"
       }
     },
     "InputState": {
@@ -2044,6 +2067,66 @@
         "AudioCodecSettings$Mp2Settings": null
       }
     },
+    "Mpeg2AdaptiveQuantization": {
+      "base": "Mpeg2 Adaptive Quantization",
+      "refs": {
+        "Mpeg2Settings$AdaptiveQuantization": "Choose Off to disable adaptive quantization. Or choose another value to enable the quantizer and set its strength. The strengths are: Auto, Off, Low, Medium, High. When you enable this field, MediaLive allows intra-frame quantizers to vary, which might improve visual quality."
+      }
+    },
+    "Mpeg2ColorMetadata": {
+      "base": "Mpeg2 Color Metadata",
+      "refs": {
+        "Mpeg2Settings$ColorMetadata": "Specifies whether to include the color space metadata. The metadata describes the color space that applies to the video (the colorSpace field). We recommend that you insert the metadata."
+      }
+    },
+    "Mpeg2ColorSpace": {
+      "base": "Mpeg2 Color Space",
+      "refs": {
+        "Mpeg2Settings$ColorSpace": "Choose the type of color space conversion to apply to the output. For detailed information on setting up both the input and the output to obtain the desired color space in the output, see the section on \\\"MediaLive Features - Video - color space\\\" in the MediaLive User Guide.\nPASSTHROUGH: Keep the color space of the input content - do not convert it.\nAUTO:Convert all content that is SD to rec 601, and convert all content that is HD to rec 709."
+      }
+    },
+    "Mpeg2DisplayRatio": {
+      "base": "Mpeg2 Display Ratio",
+      "refs": {
+        "Mpeg2Settings$DisplayAspectRatio": "Sets the pixel aspect ratio for the encode."
+      }
+    },
+    "Mpeg2FilterSettings": {
+      "base": "Mpeg2 Filter Settings",
+      "refs": {
+        "Mpeg2Settings$FilterSettings": "Optionally specify a noise reduction filter, which can improve quality of compressed content. If you do not choose a filter, no filter will be applied.\nTEMPORAL: This filter is useful for both source content that is noisy (when it has excessive digital artifacts) and source content that is clean.\nWhen the content is noisy, the filter cleans up the source content before the encoding phase, with these two effects: First, it improves the output video quality because the content has been cleaned up. Secondly, it decreases the bandwidth because MediaLive does not waste bits on encoding noise.\nWhen the content is reasonably clean, the filter tends to decrease the bitrate."
+      }
+    },
+    "Mpeg2GopSizeUnits": {
+      "base": "Mpeg2 Gop Size Units",
+      "refs": {
+        "Mpeg2Settings$GopSizeUnits": "Relates to the GOP structure. Specifies whether the gopSize is specified in frames or seconds. If you do not plan to change the default gopSize, leave the default. If you specify SECONDS, MediaLive will internally convert the gop size to a frame count."
+      }
+    },
+    "Mpeg2ScanType": {
+      "base": "Mpeg2 Scan Type",
+      "refs": {
+        "Mpeg2Settings$ScanType": "Set the scan type of the output to PROGRESSIVE or INTERLACED (top field first)."
+      }
+    },
+    "Mpeg2Settings": {
+      "base": "Mpeg2 Settings",
+      "refs": {
+        "VideoCodecSettings$Mpeg2Settings": null
+      }
+    },
+    "Mpeg2SubGopLength": {
+      "base": "Mpeg2 Sub Gop Length",
+      "refs": {
+        "Mpeg2Settings$SubgopLength": "Relates to the GOP structure. If you do not know what GOP is, use the default.\nFIXED: Set the number of B-frames in each sub-GOP to the value in gopNumBFrames.\nDYNAMIC: Let MediaLive optimize the number of B-frames in each sub-GOP, to improve visual quality."
+      }
+    },
+    "Mpeg2TimecodeInsertionBehavior": {
+      "base": "Mpeg2 Timecode Insertion Behavior",
+      "refs": {
+        "Mpeg2Settings$TimecodeInsertion": "Determines how MediaLive inserts timecodes in the output video. For detailed information about setting up the input and the output for a timecode, see the section on \\\"MediaLive Features - Timecode configuration\\\" in the MediaLive User Guide.\nDISABLED: do not include timecodes.\nGOP_TIMECODE: Include timecode metadata in the GOP header."
+      }
+    },
     "MsSmoothGroupSettings": {
       "base": "Ms Smooth Group Settings",
       "refs": {
@@ -2115,6 +2198,12 @@
       "base": "Packet identifiers map for a given Multiplex program.",
       "refs": {
         "MultiplexProgram$PacketIdentifiersMap": "The packet identifier map for this multiplex program."
+      }
+    },
+    "MultiplexProgramPipelineDetail": {
+      "base": "The current source for one of the pipelines in the multiplex.",
+      "refs": {
+        "__listOfMultiplexProgramPipelineDetail$member": null
       }
     },
     "MultiplexProgramServiceDescriptor": {
@@ -2318,6 +2407,12 @@
     "PurchaseOfferingResultModel": {
       "base": "PurchaseOffering response",
       "refs": {
+      }
+    },
+    "RawSettings": {
+      "base": "Raw Settings",
+      "refs": {
+        "ArchiveContainerSettings$RawSettings": null
       }
     },
     "Rec601Settings": {
@@ -2756,7 +2851,8 @@
       "base": "Temporal Filter Settings",
       "refs": {
         "H264FilterSettings$TemporalFilterSettings": null,
-        "H265FilterSettings$TemporalFilterSettings": null
+        "H265FilterSettings$TemporalFilterSettings": null,
+        "Mpeg2FilterSettings$TemporalFilterSettings": null
       }
     },
     "TemporalFilterStrength": {
@@ -2954,6 +3050,18 @@
         "VideoSelector$SelectorSettings": "The video selector settings."
       }
     },
+    "WavCodingMode": {
+      "base": "Wav Coding Mode",
+      "refs": {
+        "WavSettings$CodingMode": "The audio coding mode for the WAV audio. The mode determines the number of channels in the audio."
+      }
+    },
+    "WavSettings": {
+      "base": "Wav Settings",
+      "refs": {
+        "AudioCodecSettings$WavSettings": null
+      }
+    },
     "WebvttDestinationSettings": {
       "base": "Webvtt Destination Settings",
       "refs": {
@@ -2981,10 +3089,13 @@
         "InputDeviceHdSettings$Framerate": "The frame rate of the video source.",
         "Mp2Settings$Bitrate": "Average bitrate in bits/second.",
         "Mp2Settings$SampleRate": "Sample rate in Hz.",
+        "Mpeg2Settings$GopSize": "Relates to the GOP structure. The GOP size (keyframe interval) in the units specified in gopSizeUnits. If you do not know what GOP is, use the default.\nIf gopSizeUnits is frames, then the gopSize must be an integer and must be greater than or equal to 1.\nIf gopSizeUnits is seconds, the gopSize must be greater than 0, but does not need to be an integer.",
         "Offering$FixedPrice": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
         "Offering$UsagePrice": "Recurring usage charge for each reserved resource, e.g. '157.0'",
         "Reservation$FixedPrice": "One-time charge for each reserved resource, e.g. '0.0' for a NO_UPFRONT offering",
-        "Reservation$UsagePrice": "Recurring usage charge for each reserved resource, e.g. '157.0'"
+        "Reservation$UsagePrice": "Recurring usage charge for each reserved resource, e.g. '157.0'",
+        "WavSettings$BitDepth": "Bits per sample.",
+        "WavSettings$SampleRate": "Sample rate in Hz."
       }
     },
     "__doubleMin0": {
@@ -3068,6 +3179,7 @@
         "M2tsSettings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
         "M2tsSettings$Bitrate": "The output bitrate of the transport stream in bits per second. Setting to 0 lets the muxer automatically determine the appropriate bitrate.",
         "M3u8Settings$AudioFramesPerPes": "The number of audio frames to insert for each PES packet.",
+        "Mpeg2Settings$GopClosedCadence": "MPEG2: default is open GOP.",
         "MsSmoothGroupSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying connection to the IIS server if the connection is lost. Content will be cached during this time and the cache will be be delivered to the IIS server once the connection is re-established.",
         "MsSmoothGroupSettings$FilecacheDuration": "Size in seconds of file cache for streaming outputs.",
         "MsSmoothGroupSettings$NumRetries": "Number of retry attempts.",
@@ -3220,6 +3332,7 @@
       "refs": {
         "AudioChannelMapping$OutputChannel": "The index of the output channel being produced.",
         "H264Settings$GopNumBFrames": "Number of B-frames between reference frames.",
+        "Mpeg2Settings$GopNumBFrames": "Relates to the GOP structure. The number of B-frames between reference frames. If you do not know what a B-frame is, use the default.",
         "StaticImageActivateScheduleActionSettings$Layer": "The number of the layer, 0 to 7. There are 8 layers that can be overlaid on the video, each layer with a different image. The layers are in Z order, which means that overlays with higher values of layer are inserted on top of overlays with lower values of layer. Default is 0.",
         "StaticImageDeactivateScheduleActionSettings$Layer": "The image overlay layer to deactivate, 0 to 7. Default is 0."
       }
@@ -3247,6 +3360,8 @@
         "HlsGroupSettings$KeepSegments": "Applies only if Mode field is LIVE.\n\nSpecifies the number of media segments to retain in the destination directory. This number should be bigger than indexNSegments (Num segments). We recommend (value = (2 x indexNsegments) + 1).\n\nIf this \"keep segments\" number is too low, the following might happen: the player is still reading a media manifest file that lists this segment, but that segment has been removed from the destination directory (as directed by indexNSegments). This situation would result in a 404 HTTP error on the player.",
         "HlsGroupSettings$SegmentLength": "Length of MPEG-2 Transport Stream segments to create (in seconds). Note that segments will end on the next keyframe after this number of seconds, so actual segment length may be longer.",
         "HlsGroupSettings$SegmentsPerSubdirectory": "Number of segments to write to a subdirectory before starting a new one. directoryStructure must be subdirectoryPerStream for this setting to have an effect.",
+        "Mpeg2Settings$FramerateDenominator": "description\": \"The framerate denominator. For example, 1001. The framerate is the numerator divided by the denominator. For example, 24000 / 1001 = 23.976 FPS.",
+        "Mpeg2Settings$FramerateNumerator": "The framerate numerator. For example, 24000. The framerate is the numerator divided by the denominator. For example, 24000 / 1001 = 23.976 FPS.",
         "MsSmoothGroupSettings$FragmentLength": "Length of mp4 fragments to generate (in seconds). Fragment length must be compatible with GOP size and framerate.",
         "PurchaseOffering$Count": "Number of resources",
         "RtmpOutputSettings$ConnectionRetryInterval": "Number of seconds to wait before retrying a connection to the Flash Media server if the connection is lost.",
@@ -3288,12 +3403,6 @@
       "base": null,
       "refs": {
         "H265Settings$BufSize": "Size of buffer (HRD buffer model) in bits."
-      }
-    },
-    "__integerMin1000Max3000": {
-      "base": null,
-      "refs": {
-        "MultiplexSettings$MaximumVideoBufferDelayMilliseconds": "Maximum video buffer delay in milliseconds."
       }
     },
     "__integerMin1000Max30000": {
@@ -3356,6 +3465,7 @@
     "__integerMin1Max4": {
       "base": null,
       "refs": {
+        "AncillarySourceSettings$SourceAncillaryChannelNumber": "Specifies the number (1 to 4) of the captions channel you want to extract from the ancillary captions. If you plan to convert the ancillary captions to another format, complete this field. If you plan to choose Embedded as the captions destination in the output (to pass through all the channels in the ancillary captions), leave this field blank because MediaLive ignores the field.",
         "CaptionLanguageMapping$CaptionChannel": "The closed caption channel being described by this CaptionLanguageMapping.  Each channel mapping must have a unique channel number (maximum of 4)",
         "EmbeddedSourceSettings$Source608ChannelNumber": "Specifies the 608/708 channel number within the video track from which to extract captions. Unused for passthrough.",
         "Scte20SourceSettings$Source608ChannelNumber": "Specifies the 608/708 channel number within the video track from which to extract captions. Unused for passthrough."
@@ -3410,6 +3520,12 @@
         "FecOutputSettings$ColumnDepth": "Parameter D from SMPTE 2022-1. The height of the FEC protection matrix.  The number of transport stream packets per column error correction packet. Must be between 4 and 20, inclusive."
       }
     },
+    "__integerMin800Max3000": {
+      "base": null,
+      "refs": {
+        "MultiplexSettings$MaximumVideoBufferDelayMilliseconds": "Maximum video buffer delay in milliseconds."
+      }
+    },
     "__integerMin96Max600": {
       "base": null,
       "refs": {
@@ -3427,6 +3543,7 @@
     "__integerMinNegative5Max5": {
       "base": null,
       "refs": {
+        "MultiplexStatmuxVideoSettings$Priority": "The purpose of the priority is to use a combination of the\\nmultiplex rate control algorithm and the QVBR capability of the\\nencoder to prioritize the video quality of some channels in a\\nmultiplex over others.  Channels that have a higher priority will\\nget higher video quality at the expense of the video quality of\\nother channels in the multiplex with lower priority."
       }
     },
     "__integerMinNegative60Max6": {
@@ -3625,6 +3742,12 @@
       "base": null,
       "refs": {
         "Multiplex$Destinations": "A list of the multiplex output destinations."
+      }
+    },
+    "__listOfMultiplexProgramPipelineDetail": {
+      "base": null,
+      "refs": {
+        "MultiplexProgram$PipelineDetails": "Contains information about the current sources for the specified program in the specified multiplex. Keep in mind that each multiplex pipeline connects to both pipelines in a given source channel (the channel identified by the program). But only one of those channel pipelines is ever active at one time."
       }
     },
     "__listOfMultiplexProgramSummary": {
@@ -3930,6 +4053,8 @@
         "MultiplexConfigurationValidationError$Message": "The error message.",
         "MultiplexProgram$ChannelId": "The MediaLive channel associated with the program.",
         "MultiplexProgram$ProgramName": "The name of the multiplex program.",
+        "MultiplexProgramPipelineDetail$ActiveChannelPipeline": "Identifies the channel pipeline that is currently active for the pipeline (identified by PipelineId) in the multiplex.",
+        "MultiplexProgramPipelineDetail$PipelineId": "Identifies a specific pipeline in the multiplex.",
         "MultiplexProgramSummary$ChannelId": "The MediaLive Channel associated with the program.",
         "MultiplexProgramSummary$ProgramName": "The name of the multiplex program.",
         "MultiplexSummary$Arn": "The unique arn of the multiplex.",

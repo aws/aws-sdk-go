@@ -724,7 +724,8 @@
         "Unknown",
         "NodeCreationFailure",
         "PodEvictionFailure",
-        "InsufficientFreeAddresses"
+        "InsufficientFreeAddresses",
+        "ClusterUnreachable"
       ]
     },
     "ErrorDetail":{
@@ -1071,7 +1072,8 @@
         "InstanceLimitExceeded",
         "InsufficientFreeAddresses",
         "AccessDenied",
-        "InternalFailure"
+        "InternalFailure",
+        "ClusterUnreachable"
       ]
     },
     "NodegroupResources":{

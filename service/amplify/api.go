@@ -3617,6 +3617,12 @@ type AutoBranchCreationConfig struct {
 	// Enables basic authorization for the autocreated branch.
 	EnableBasicAuth *bool `locationName:"enableBasicAuth" type:"boolean"`
 
+	// Performance mode optimizes for faster hosting performance by keeping content
+	// cached at the edge for a longer interval. Enabling performance mode will
+	// mean that hosting configuration or code changes can take up to 10 minutes
+	// to roll out.
+	EnablePerformanceMode *bool `locationName:"enablePerformanceMode" type:"boolean"`
+
 	// Enables pull request preview for the autocreated branch.
 	EnablePullRequestPreview *bool `locationName:"enablePullRequestPreview" type:"boolean"`
 
@@ -3677,6 +3683,12 @@ func (s *AutoBranchCreationConfig) SetEnableAutoBuild(v bool) *AutoBranchCreatio
 // SetEnableBasicAuth sets the EnableBasicAuth field's value.
 func (s *AutoBranchCreationConfig) SetEnableBasicAuth(v bool) *AutoBranchCreationConfig {
 	s.EnableBasicAuth = &v
+	return s
+}
+
+// SetEnablePerformanceMode sets the EnablePerformanceMode field's value.
+func (s *AutoBranchCreationConfig) SetEnablePerformanceMode(v bool) *AutoBranchCreationConfig {
+	s.EnablePerformanceMode = &v
 	return s
 }
 
@@ -3917,6 +3929,12 @@ type Branch struct {
 	// EnableNotification is a required field
 	EnableNotification *bool `locationName:"enableNotification" type:"boolean" required:"true"`
 
+	// Performance mode optimizes for faster hosting performance by keeping content
+	// cached at the edge for a longer interval. Enabling performance mode will
+	// mean that hosting configuration or code changes can take up to 10 minutes
+	// to roll out.
+	EnablePerformanceMode *bool `locationName:"enablePerformanceMode" type:"boolean"`
+
 	// Enables pull request preview for the branch.
 	//
 	// EnablePullRequestPreview is a required field
@@ -4062,6 +4080,12 @@ func (s *Branch) SetEnableBasicAuth(v bool) *Branch {
 // SetEnableNotification sets the EnableNotification field's value.
 func (s *Branch) SetEnableNotification(v bool) *Branch {
 	s.EnableNotification = &v
+	return s
+}
+
+// SetEnablePerformanceMode sets the EnablePerformanceMode field's value.
+func (s *Branch) SetEnablePerformanceMode(v bool) *Branch {
+	s.EnablePerformanceMode = &v
 	return s
 }
 
@@ -4534,6 +4558,12 @@ type CreateBranchInput struct {
 	// Enables notifications for the branch.
 	EnableNotification *bool `locationName:"enableNotification" type:"boolean"`
 
+	// Performance mode optimizes for faster hosting performance by keeping content
+	// cached at the edge for a longer interval. Enabling performance mode will
+	// mean that hosting configuration or code changes can take up to 10 minutes
+	// to roll out.
+	EnablePerformanceMode *bool `locationName:"enablePerformanceMode" type:"boolean"`
+
 	// Enables pull request preview for this branch.
 	EnablePullRequestPreview *bool `locationName:"enablePullRequestPreview" type:"boolean"`
 
@@ -4654,6 +4684,12 @@ func (s *CreateBranchInput) SetEnableBasicAuth(v bool) *CreateBranchInput {
 // SetEnableNotification sets the EnableNotification field's value.
 func (s *CreateBranchInput) SetEnableNotification(v bool) *CreateBranchInput {
 	s.EnableNotification = &v
+	return s
+}
+
+// SetEnablePerformanceMode sets the EnablePerformanceMode field's value.
+func (s *CreateBranchInput) SetEnablePerformanceMode(v bool) *CreateBranchInput {
+	s.EnablePerformanceMode = &v
 	return s
 }
 
@@ -8835,6 +8871,12 @@ type UpdateBranchInput struct {
 	// Enables notifications for the branch.
 	EnableNotification *bool `locationName:"enableNotification" type:"boolean"`
 
+	// Performance mode optimizes for faster hosting performance by keeping content
+	// cached at the edge for a longer interval. Enabling performance mode will
+	// mean that hosting configuration or code changes can take up to 10 minutes
+	// to roll out.
+	EnablePerformanceMode *bool `locationName:"enablePerformanceMode" type:"boolean"`
+
 	// Enables pull request preview for this branch.
 	EnablePullRequestPreview *bool `locationName:"enablePullRequestPreview" type:"boolean"`
 
@@ -8949,6 +8991,12 @@ func (s *UpdateBranchInput) SetEnableBasicAuth(v bool) *UpdateBranchInput {
 // SetEnableNotification sets the EnableNotification field's value.
 func (s *UpdateBranchInput) SetEnableNotification(v bool) *UpdateBranchInput {
 	s.EnableNotification = &v
+	return s
+}
+
+// SetEnablePerformanceMode sets the EnablePerformanceMode field's value.
+func (s *UpdateBranchInput) SetEnablePerformanceMode(v bool) *UpdateBranchInput {
+	s.EnablePerformanceMode = &v
 	return s
 }
 
