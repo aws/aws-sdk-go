@@ -76,6 +76,7 @@ func endpointHandler(req *request.Request) {
 		updatedInput, err := endpoint.updateArnableField(tv.AccessPointName)
 		if err != nil {
 			req.Error = err
+			return
 		}
 
 		// update request params to use modified ARN field value, if not nil
@@ -96,6 +97,7 @@ func endpointHandler(req *request.Request) {
 		updatedInput, err := endpoint.updateArnableField(tv.BucketName)
 		if err != nil {
 			req.Error = err
+			return
 		}
 
 		// update request params to use modified ARN field value, if not nil
