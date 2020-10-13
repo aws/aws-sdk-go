@@ -23,13 +23,15 @@ const endpointARNShapeTmplDef = `
 
 		// updateArnableField updates the value of the input field that 
 		// takes an ARN as an input. This method is useful to backfill 
-		// the parsed resource name from ARN into the input member. 
-		func (s *{{ $.ShapeName }}) updateArnableField(v string) error {
+		// the parsed resource name from ARN into the input member.
+		// It returns a pointer to a modified copy of input and an error.
+		// Note that original input is not modified. 
+		func (s {{ $.ShapeName }}) updateArnableField(v string) (interface{}, error) {
 			if s.{{ $name }} == nil {
-				return fmt.Errorf("member {{ $name }} is nil")
+				return nil, fmt.Errorf("member {{ $name }} is nil")
 			}
 			s.{{ $name }} = aws.String(v)
-			return nil
+			return &s, nil 
 		}
 	{{ end -}}
 {{ end }}
@@ -74,13 +76,18 @@ const accountIDWithARNShapeTmplDef = `
 {{ range $_, $name := $.MemberNames -}}
 	{{ $elem := index $.MemberRefs $name -}}
 	{{ if $elem.AccountIDMemberWithARN -}}
-		func (s *{{ $.ShapeName }}) updateAccountID(accountId string) error {
+		// updateAccountID returns a pointer to a modified copy of input, 
+		// if account id is not provided, we update the account id in modified input
+		// if account id is provided, but doesn't match with the one in ARN, we throw an error
+		// if account id is not updated, we return nil. Note that original input is not modified. 
+		func (s {{ $.ShapeName }}) updateAccountID(accountId string) (interface{}, error) {
 			if s.{{ $name }} == nil {
-				s.{{ $name }} = aws.String(accountId)	
+				s.{{ $name }} = aws.String(accountId)
+				return &s, nil
 			} else if *s.{{ $name }} != accountId  {
-				return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+				return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 			}
-			return nil 
+			return nil, nil
 		}
 	{{ end -}}
 {{ end }}

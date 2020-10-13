@@ -26,12 +26,18 @@ var updateAccountIDWithARNHandler = request.NamedHandler{
 
 		// Validate that the present account id in a request input matches the account id
 		// present in an ARN. If a value for request input account id member is not provided,
-		// the accountID member is populated using the account id present in the ARN.
+		// the accountID member is populated using the account id present in the ARN
+		// and a pointer to copy of updatedInput is returned.
 		if accountIDValidator, ok := req.Params.(accountIDValidator); ok {
 			accID := resource.GetARN().AccountID
-			if err := accountIDValidator.updateAccountID(accID); err != nil {
+			updatedInput, err := accountIDValidator.updateAccountID(accID)
+			if err != nil {
 				req.Error = s3shared.NewInvalidARNError(resource, err)
 				return
+			}
+			// update request params to use modified account id, if not nil
+			if updatedInput != nil {
+				req.Params = updatedInput
 			}
 		}
 	},

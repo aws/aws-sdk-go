@@ -73,7 +73,15 @@ func endpointHandler(req *request.Request) {
 		req.HTTPRequest.Header.Add(outpostIDHeader, tv.OutpostID)
 
 		// update arnable field to resource value
-		endpoint.updateArnableField(tv.AccessPointName)
+		updatedInput, err := endpoint.updateArnableField(tv.AccessPointName)
+		if err != nil {
+			req.Error = err
+		}
+
+		// update request params to use modified ARN field value, if not nil
+		if updatedInput != nil {
+			req.Params = updatedInput
+		}
 
 		// update request for outpost access point endpoint
 		err = updateRequestOutpostAccessPointEndpoint(req, tv)
@@ -85,7 +93,15 @@ func endpointHandler(req *request.Request) {
 		req.HTTPRequest.Header.Add(outpostIDHeader, tv.OutpostID)
 
 		// update arnable field to resource value
-		endpoint.updateArnableField(tv.BucketName)
+		updatedInput, err := endpoint.updateArnableField(tv.BucketName)
+		if err != nil {
+			req.Error = err
+		}
+
+		// update request params to use modified ARN field value, if not nil
+		if updatedInput != nil {
+			req.Params = updatedInput
+		}
 
 		// update request for outpost bucket endpoint
 		err = updateRequestOutpostBucketEndpoint(req, tv)
