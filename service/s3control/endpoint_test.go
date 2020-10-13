@@ -506,3 +506,65 @@ func TestCustomEndpoint_SpecialOperations(t *testing.T) {
 		})
 	}
 }
+
+func TestInputIsNotModified(t *testing.T) {
+	inputBucket := "arn:aws:s3-outposts:us-east-1:123456789012:outpost:op-01234567890123456:bucket:mybucket"
+	expectedAccountID := "123456789012"
+	sess := unit.Session.Copy(&aws.Config{
+		Region:         aws.String("us-west-2"),
+		S3UseARNRegion: aws.Bool(true),
+	})
+
+	svc := New(sess)
+	params := &DeleteBucketInput{
+		Bucket: aws.String(inputBucket),
+	}
+	req, _ := svc.DeleteBucketRequest(params)
+
+	req.Handlers.Send.Clear()
+	req.Handlers.Send.PushBack(func(r *request.Request) {
+		defer func() {
+			r.HTTPResponse = &http.Response{
+				StatusCode:    200,
+				ContentLength: 0,
+				Body:          ioutil.NopCloser(bytes.NewReader(nil)),
+			}
+		}()
+	})
+
+	err := req.Send()
+	if err != nil {
+		t.Fatalf("expected no error, got %v", err)
+	}
+
+	// check if req params were modified
+	if e, a := *params.Bucket, inputBucket; !strings.EqualFold(e, a) {
+		t.Fatalf("expected no modification for operation input, "+
+			"expected %v, got %v as bucket input", e, a)
+	}
+
+	if params.AccountId != nil {
+		t.Fatalf("expected original input to be unmodified, but account id was backfilled")
+	}
+
+	modifiedInput, ok := req.Params.(*DeleteBucketInput)
+	if !ok {
+		t.Fatalf("expected modified input of type *DeleteBucketInput")
+	}
+
+	if modifiedInput.AccountId == nil {
+		t.Fatalf("expected AccountID value to be backfilled, was not")
+	}
+
+	if e, a := expectedAccountID, *modifiedInput.AccountId; !strings.EqualFold(e, a) {
+		t.Fatalf("expected account id backfilled on request params to be %v, got %v", e, a)
+	}
+
+	if modifiedInput.Bucket == nil {
+		t.Fatalf("expected Bucket value to be set, was not")
+	}
+
+	if e, a := "mybucket", *modifiedInput.Bucket; !strings.EqualFold(e, a) {
+		t.Fatalf("expected modified input bucket name to be %v, got %v", e, a)
+	}
+}

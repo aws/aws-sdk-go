@@ -27,7 +27,7 @@ func defaultInitClientFn(c *client.Client) {
 type endpointARNGetter interface {
 	getEndpointARN() (arn.Resource, error)
 	hasEndpointARN() bool
-	updateArnableField(string) error
+	updateArnableField(string) (interface{}, error)
 }
 
 // endpointOutpostIDGetter is an accessor interface to grab the
@@ -40,5 +40,5 @@ type endpointOutpostIDGetter interface {
 // accountIDValidator is an accessor interface to validate the
 // account id member value and account id present in endpoint ARN.
 type accountIDValidator interface {
-	updateAccountID(string) error
+	updateAccountID(string) (interface{}, error)
 }

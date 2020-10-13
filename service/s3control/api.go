@@ -3695,21 +3695,28 @@ func (s *CreateAccessPointInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *CreateAccessPointInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s CreateAccessPointInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *CreateAccessPointInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s CreateAccessPointInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type CreateAccessPointOutput struct {
@@ -4269,21 +4276,28 @@ func (s *DeleteAccessPointInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *DeleteAccessPointInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteAccessPointInput) updateArnableField(v string) (interface{}, error) {
 	if s.Name == nil {
-		return fmt.Errorf("member Name is nil")
+		return nil, fmt.Errorf("member Name is nil")
 	}
 	s.Name = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *DeleteAccessPointInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteAccessPointInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type DeleteAccessPointOutput struct {
@@ -4472,21 +4486,28 @@ func (s *DeleteBucketInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *DeleteBucketInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteBucketInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *DeleteBucketInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteBucketInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type DeleteBucketLifecycleConfigurationInput struct {
@@ -4576,21 +4597,28 @@ func (s *DeleteBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *DeleteBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteBucketLifecycleConfigurationInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *DeleteBucketLifecycleConfigurationInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteBucketLifecycleConfigurationInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type DeleteBucketLifecycleConfigurationOutput struct {
@@ -4708,21 +4736,28 @@ func (s *DeleteBucketPolicyInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *DeleteBucketPolicyInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteBucketPolicyInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *DeleteBucketPolicyInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteBucketPolicyInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type DeleteBucketPolicyOutput struct {
@@ -4826,21 +4861,28 @@ func (s *DeleteBucketTaggingInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *DeleteBucketTaggingInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteBucketTaggingInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *DeleteBucketTaggingInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteBucketTaggingInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type DeleteBucketTaggingOutput struct {
@@ -5172,21 +5214,28 @@ func (s *GetAccessPointInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *GetAccessPointInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetAccessPointInput) updateArnableField(v string) (interface{}, error) {
 	if s.Name == nil {
-		return fmt.Errorf("member Name is nil")
+		return nil, fmt.Errorf("member Name is nil")
 	}
 	s.Name = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *GetAccessPointInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetAccessPointInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type GetAccessPointOutput struct {
@@ -5538,21 +5587,28 @@ func (s *GetBucketInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *GetBucketInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetBucketInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *GetBucketInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetBucketInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type GetBucketLifecycleConfigurationInput struct {
@@ -5642,21 +5698,28 @@ func (s *GetBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *GetBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetBucketLifecycleConfigurationInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *GetBucketLifecycleConfigurationInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetBucketLifecycleConfigurationInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type GetBucketLifecycleConfigurationOutput struct {
@@ -5809,21 +5872,28 @@ func (s *GetBucketPolicyInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *GetBucketPolicyInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetBucketPolicyInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *GetBucketPolicyInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetBucketPolicyInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type GetBucketPolicyOutput struct {
@@ -5936,21 +6006,28 @@ func (s *GetBucketTaggingInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *GetBucketTaggingInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetBucketTaggingInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *GetBucketTaggingInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetBucketTaggingInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type GetBucketTaggingOutput struct {
@@ -7361,21 +7438,28 @@ func (s *ListAccessPointsInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *ListAccessPointsInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s ListAccessPointsInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *ListAccessPointsInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s ListAccessPointsInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type ListAccessPointsOutput struct {
@@ -8036,21 +8120,28 @@ func (s *PutBucketLifecycleConfigurationInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *PutBucketLifecycleConfigurationInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PutBucketLifecycleConfigurationInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *PutBucketLifecycleConfigurationInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s PutBucketLifecycleConfigurationInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type PutBucketLifecycleConfigurationOutput struct {
@@ -8180,21 +8271,28 @@ func (s *PutBucketPolicyInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *PutBucketPolicyInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PutBucketPolicyInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *PutBucketPolicyInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s PutBucketPolicyInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type PutBucketPolicyOutput struct {
@@ -8315,21 +8413,28 @@ func (s *PutBucketTaggingInput) hasEndpointARN() bool {
 // updateArnableField updates the value of the input field that
 // takes an ARN as an input. This method is useful to backfill
 // the parsed resource name from ARN into the input member.
-func (s *PutBucketTaggingInput) updateArnableField(v string) error {
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PutBucketTaggingInput) updateArnableField(v string) (interface{}, error) {
 	if s.Bucket == nil {
-		return fmt.Errorf("member Bucket is nil")
+		return nil, fmt.Errorf("member Bucket is nil")
 	}
 	s.Bucket = aws.String(v)
-	return nil
+	return &s, nil
 }
 
-func (s *PutBucketTaggingInput) updateAccountID(accountId string) error {
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s PutBucketTaggingInput) updateAccountID(accountId string) (interface{}, error) {
 	if s.AccountId == nil {
 		s.AccountId = aws.String(accountId)
+		return &s, nil
 	} else if *s.AccountId != accountId {
-		return fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
 	}
-	return nil
+	return nil, nil
 }
 
 type PutBucketTaggingOutput struct {
