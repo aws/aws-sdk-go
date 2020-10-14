@@ -290,7 +290,7 @@ output = json
 			},
 		},
 		{
-			name: "missing section statement as the last statement in the file",
+			name: "missing right hand expression in the last statement in the file",
 			r: bytes.NewBuffer([]byte(
 				`[default]
 region = us-west-2
