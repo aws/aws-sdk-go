@@ -66,6 +66,7 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenLit: ValueState,
 		TokenWS:  SkipTokenState,
 		TokenNL:  SkipState,
+		TokenNone:    SkipState,
 	},
 	ASTKindStatement: map[TokenType]int{
 		TokenLit:     SectionState,
