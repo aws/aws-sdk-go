@@ -63,9 +63,9 @@ var parseTable = map[ASTKind]map[TokenType]int{
 		TokenNone:    MarkCompleteState,
 	},
 	ASTKindEqualExpr: map[TokenType]int{
-		TokenLit: ValueState,
-		TokenWS:  SkipTokenState,
-		TokenNL:  SkipState,
+		TokenLit:     ValueState,
+		TokenWS:      SkipTokenState,
+		TokenNL:      SkipState,
 		TokenNone:    SkipState,
 	},
 	ASTKindStatement: map[TokenType]int{
