@@ -491,6 +491,9 @@ func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolic
 
 	output = &DeleteAccessPointPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -1397,6 +1400,9 @@ func (c *S3Control) GetAccessPointPolicyRequest(input *GetAccessPointPolicyInput
 
 	output = &GetAccessPointPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
@@ -2628,6 +2634,9 @@ func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput
 
 	output = &PutAccessPointPolicyOutput{}
 	req = c.newRequest(op, input, output)
+	// update account id or check if provided input for account id member matches
+	// the account id present in ARN
+	req.Handlers.Validate.PushFrontNamed(updateAccountIDWithARNHandler)
 	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
 	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
@@ -4385,6 +4394,47 @@ func (s *DeleteAccessPointPolicyInput) hostLabels() map[string]string {
 	}
 }
 
+func (s *DeleteAccessPointPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	return parseEndpointARN(*s.Name)
+}
+
+func (s *DeleteAccessPointPolicyInput) hasEndpointARN() bool {
+	if s.Name == nil {
+		return false
+	}
+	return arn.IsARN(*s.Name)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s DeleteAccessPointPolicyInput) updateArnableField(v string) (interface{}, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	s.Name = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s DeleteAccessPointPolicyInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
+}
+
 type DeleteAccessPointPolicyOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -5388,6 +5438,47 @@ func (s *GetAccessPointPolicyInput) hostLabels() map[string]string {
 	return map[string]string{
 		"AccountId": aws.StringValue(s.AccountId),
 	}
+}
+
+func (s *GetAccessPointPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	return parseEndpointARN(*s.Name)
+}
+
+func (s *GetAccessPointPolicyInput) hasEndpointARN() bool {
+	if s.Name == nil {
+		return false
+	}
+	return arn.IsARN(*s.Name)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s GetAccessPointPolicyInput) updateArnableField(v string) (interface{}, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	s.Name = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s GetAccessPointPolicyInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
 }
 
 type GetAccessPointPolicyOutput struct {
@@ -8009,6 +8100,47 @@ func (s *PutAccessPointPolicyInput) hostLabels() map[string]string {
 	return map[string]string{
 		"AccountId": aws.StringValue(s.AccountId),
 	}
+}
+
+func (s *PutAccessPointPolicyInput) getEndpointARN() (arn.Resource, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	return parseEndpointARN(*s.Name)
+}
+
+func (s *PutAccessPointPolicyInput) hasEndpointARN() bool {
+	if s.Name == nil {
+		return false
+	}
+	return arn.IsARN(*s.Name)
+}
+
+// updateArnableField updates the value of the input field that
+// takes an ARN as an input. This method is useful to backfill
+// the parsed resource name from ARN into the input member.
+// It returns a pointer to a modified copy of input and an error.
+// Note that original input is not modified.
+func (s PutAccessPointPolicyInput) updateArnableField(v string) (interface{}, error) {
+	if s.Name == nil {
+		return nil, fmt.Errorf("member Name is nil")
+	}
+	s.Name = aws.String(v)
+	return &s, nil
+}
+
+// updateAccountID returns a pointer to a modified copy of input,
+// if account id is not provided, we update the account id in modified input
+// if account id is provided, but doesn't match with the one in ARN, we throw an error
+// if account id is not updated, we return nil. Note that original input is not modified.
+func (s PutAccessPointPolicyInput) updateAccountID(accountId string) (interface{}, error) {
+	if s.AccountId == nil {
+		s.AccountId = aws.String(accountId)
+		return &s, nil
+	} else if *s.AccountId != accountId {
+		return &s, fmt.Errorf("Account ID mismatch, the Account ID cannot be specified in an ARN and in the accountId field")
+	}
+	return nil, nil
 }
 
 type PutAccessPointPolicyOutput struct {
