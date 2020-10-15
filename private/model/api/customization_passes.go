@@ -226,9 +226,9 @@ func s3ControlCustomizations(a *API) error {
 			accessPointNameArnables := map[string]struct{}{
 				"GetAccessPointInput":     {},
 				"DeleteAccessPointInput":  {},
-				"PutAccessPointPolicy":    {},
-				"GetAccessPointPolicy":    {},
-				"DeleteAccessPointPolicy": {},
+				"PutAccessPointPolicyInput":    {},
+				"GetAccessPointPolicyInput":    {},
+				"DeleteAccessPointPolicyInput": {},
 			}
 
 			var endpointARNShape *ShapeRef
