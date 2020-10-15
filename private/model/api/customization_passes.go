@@ -224,11 +224,11 @@ func s3ControlCustomizations(a *API) error {
 
 			// List of input shapes that use accesspoint names as arnable fields
 			accessPointNameArnables := map[string]struct{}{
-				"GetAccessPointInput":     {},
-				"DeleteAccessPointInput":  {},
-				"PutAccessPointPolicy":    {},
-				"GetAccessPointPolicy":    {},
-				"DeleteAccessPointPolicy": {},
+				"GetAccessPointInput":          {},
+				"DeleteAccessPointInput":       {},
+				"PutAccessPointPolicyInput":    {},
+				"GetAccessPointPolicyInput":    {},
+				"DeleteAccessPointPolicyInput": {},
 			}
 
 			var endpointARNShape *ShapeRef
