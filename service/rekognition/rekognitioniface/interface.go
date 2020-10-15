@@ -138,6 +138,10 @@ type RekognitionAPI interface {
 	DetectModerationLabelsWithContext(aws.Context, *rekognition.DetectModerationLabelsInput, ...request.Option) (*rekognition.DetectModerationLabelsOutput, error)
 	DetectModerationLabelsRequest(*rekognition.DetectModerationLabelsInput) (*request.Request, *rekognition.DetectModerationLabelsOutput)
 
+	DetectProtectiveEquipment(*rekognition.DetectProtectiveEquipmentInput) (*rekognition.DetectProtectiveEquipmentOutput, error)
+	DetectProtectiveEquipmentWithContext(aws.Context, *rekognition.DetectProtectiveEquipmentInput, ...request.Option) (*rekognition.DetectProtectiveEquipmentOutput, error)
+	DetectProtectiveEquipmentRequest(*rekognition.DetectProtectiveEquipmentInput) (*request.Request, *rekognition.DetectProtectiveEquipmentOutput)
+
 	DetectText(*rekognition.DetectTextInput) (*rekognition.DetectTextOutput, error)
 	DetectTextWithContext(aws.Context, *rekognition.DetectTextInput, ...request.Option) (*rekognition.DetectTextOutput, error)
 	DetectTextRequest(*rekognition.DetectTextInput) (*request.Request, *rekognition.DetectTextOutput)

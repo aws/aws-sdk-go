@@ -13,6 +13,99 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opApplyArchiveRule = "ApplyArchiveRule"
+
+// ApplyArchiveRuleRequest generates a "aws/request.Request" representing the
+// client's request for the ApplyArchiveRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ApplyArchiveRule for more information on using the ApplyArchiveRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ApplyArchiveRuleRequest method.
+//    req, resp := client.ApplyArchiveRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ApplyArchiveRule
+func (c *AccessAnalyzer) ApplyArchiveRuleRequest(input *ApplyArchiveRuleInput) (req *request.Request, output *ApplyArchiveRuleOutput) {
+	op := &request.Operation{
+		Name:       opApplyArchiveRule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/archive-rule",
+	}
+
+	if input == nil {
+		input = &ApplyArchiveRuleInput{}
+	}
+
+	output = &ApplyArchiveRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// ApplyArchiveRule API operation for Access Analyzer.
+//
+// Retroactively applies the archive rule to existing findings that meet the
+// archive rule criteria.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Access Analyzer's
+// API operation ApplyArchiveRule for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource could not be found.
+//
+//   * ValidationException
+//   Validation exception error.
+//
+//   * InternalServerException
+//   Internal server error.
+//
+//   * ThrottlingException
+//   Throttling limit exceeded error.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/accessanalyzer-2019-11-01/ApplyArchiveRule
+func (c *AccessAnalyzer) ApplyArchiveRule(input *ApplyArchiveRuleInput) (*ApplyArchiveRuleOutput, error) {
+	req, out := c.ApplyArchiveRuleRequest(input)
+	return out, req.Send()
+}
+
+// ApplyArchiveRuleWithContext is the same as ApplyArchiveRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ApplyArchiveRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AccessAnalyzer) ApplyArchiveRuleWithContext(ctx aws.Context, input *ApplyArchiveRuleInput, opts ...request.Option) (*ApplyArchiveRuleOutput, error) {
+	req, out := c.ApplyArchiveRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAnalyzer = "CreateAnalyzer"
 
 // CreateAnalyzerRequest generates a "aws/request.Request" representing the
@@ -153,7 +246,8 @@ func (c *AccessAnalyzer) CreateArchiveRuleRequest(input *CreateArchiveRuleInput)
 // CreateArchiveRule API operation for Access Analyzer.
 //
 // Creates an archive rule for the specified analyzer. Archive rules automatically
-// archive findings that meet the criteria you define when you create the rule.
+// archive new findings that meet the criteria you define when you create the
+// rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2247,6 +2341,85 @@ func (s *AnalyzerSummary) SetTags(v map[string]*string) *AnalyzerSummary {
 func (s *AnalyzerSummary) SetType(v string) *AnalyzerSummary {
 	s.Type = &v
 	return s
+}
+
+// Retroactively applies an archive rule.
+type ApplyArchiveRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) of the analyzer.
+	//
+	// AnalyzerArn is a required field
+	AnalyzerArn *string `locationName:"analyzerArn" type:"string" required:"true"`
+
+	// A client token.
+	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
+
+	// The name of the rule to apply.
+	//
+	// RuleName is a required field
+	RuleName *string `locationName:"ruleName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ApplyArchiveRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplyArchiveRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ApplyArchiveRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ApplyArchiveRuleInput"}
+	if s.AnalyzerArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("AnalyzerArn"))
+	}
+	if s.RuleName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleName"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAnalyzerArn sets the AnalyzerArn field's value.
+func (s *ApplyArchiveRuleInput) SetAnalyzerArn(v string) *ApplyArchiveRuleInput {
+	s.AnalyzerArn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *ApplyArchiveRuleInput) SetClientToken(v string) *ApplyArchiveRuleInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *ApplyArchiveRuleInput) SetRuleName(v string) *ApplyArchiveRuleInput {
+	s.RuleName = &v
+	return s
+}
+
+type ApplyArchiveRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s ApplyArchiveRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ApplyArchiveRuleOutput) GoString() string {
+	return s.String()
 }
 
 // Contains information about an archive rule.
@@ -4889,11 +5062,11 @@ func AnalyzerStatus_Values() []string {
 }
 
 const (
-	// FindingSourceTypeBucketAcl is a FindingSourceType enum value
-	FindingSourceTypeBucketAcl = "BUCKET_ACL"
-
 	// FindingSourceTypePolicy is a FindingSourceType enum value
 	FindingSourceTypePolicy = "POLICY"
+
+	// FindingSourceTypeBucketAcl is a FindingSourceType enum value
+	FindingSourceTypeBucketAcl = "BUCKET_ACL"
 
 	// FindingSourceTypeS3AccessPoint is a FindingSourceType enum value
 	FindingSourceTypeS3AccessPoint = "S3_ACCESS_POINT"
@@ -4902,8 +5075,8 @@ const (
 // FindingSourceType_Values returns all elements of the FindingSourceType enum
 func FindingSourceType_Values() []string {
 	return []string{
-		FindingSourceTypeBucketAcl,
 		FindingSourceTypePolicy,
+		FindingSourceTypeBucketAcl,
 		FindingSourceTypeS3AccessPoint,
 	}
 }
@@ -4985,11 +5158,14 @@ func ReasonCode_Values() []string {
 }
 
 const (
+	// ResourceTypeAwsS3Bucket is a ResourceType enum value
+	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
+
 	// ResourceTypeAwsIamRole is a ResourceType enum value
 	ResourceTypeAwsIamRole = "AWS::IAM::Role"
 
-	// ResourceTypeAwsKmsKey is a ResourceType enum value
-	ResourceTypeAwsKmsKey = "AWS::KMS::Key"
+	// ResourceTypeAwsSqsQueue is a ResourceType enum value
+	ResourceTypeAwsSqsQueue = "AWS::SQS::Queue"
 
 	// ResourceTypeAwsLambdaFunction is a ResourceType enum value
 	ResourceTypeAwsLambdaFunction = "AWS::Lambda::Function"
@@ -4997,22 +5173,19 @@ const (
 	// ResourceTypeAwsLambdaLayerVersion is a ResourceType enum value
 	ResourceTypeAwsLambdaLayerVersion = "AWS::Lambda::LayerVersion"
 
-	// ResourceTypeAwsS3Bucket is a ResourceType enum value
-	ResourceTypeAwsS3Bucket = "AWS::S3::Bucket"
-
-	// ResourceTypeAwsSqsQueue is a ResourceType enum value
-	ResourceTypeAwsSqsQueue = "AWS::SQS::Queue"
+	// ResourceTypeAwsKmsKey is a ResourceType enum value
+	ResourceTypeAwsKmsKey = "AWS::KMS::Key"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
 func ResourceType_Values() []string {
 	return []string{
+		ResourceTypeAwsS3Bucket,
 		ResourceTypeAwsIamRole,
-		ResourceTypeAwsKmsKey,
+		ResourceTypeAwsSqsQueue,
 		ResourceTypeAwsLambdaFunction,
 		ResourceTypeAwsLambdaLayerVersion,
-		ResourceTypeAwsS3Bucket,
-		ResourceTypeAwsSqsQueue,
+		ResourceTypeAwsKmsKey,
 	}
 }
 
@@ -5033,6 +5206,9 @@ func Type_Values() []string {
 }
 
 const (
+	// ValidationExceptionReasonUnknownOperation is a ValidationExceptionReason enum value
+	ValidationExceptionReasonUnknownOperation = "unknownOperation"
+
 	// ValidationExceptionReasonCannotParse is a ValidationExceptionReason enum value
 	ValidationExceptionReasonCannotParse = "cannotParse"
 
@@ -5041,17 +5217,14 @@ const (
 
 	// ValidationExceptionReasonOther is a ValidationExceptionReason enum value
 	ValidationExceptionReasonOther = "other"
-
-	// ValidationExceptionReasonUnknownOperation is a ValidationExceptionReason enum value
-	ValidationExceptionReasonUnknownOperation = "unknownOperation"
 )
 
 // ValidationExceptionReason_Values returns all elements of the ValidationExceptionReason enum
 func ValidationExceptionReason_Values() []string {
 	return []string{
+		ValidationExceptionReasonUnknownOperation,
 		ValidationExceptionReasonCannotParse,
 		ValidationExceptionReasonFieldValidationFailed,
 		ValidationExceptionReasonOther,
-		ValidationExceptionReasonUnknownOperation,
 	}
 }

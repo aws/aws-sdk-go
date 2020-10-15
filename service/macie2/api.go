@@ -1580,8 +1580,7 @@ func (c *Macie2) DescribeClassificationJobRequest(input *DescribeClassificationJ
 
 // DescribeClassificationJob API operation for Amazon Macie 2.
 //
-// Retrieves information about the status and settings for a classification
-// job.
+// Retrieves the status and settings for a classification job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1685,8 +1684,7 @@ func (c *Macie2) DescribeOrganizationConfigurationRequest(input *DescribeOrganiz
 
 // DescribeOrganizationConfiguration API operation for Amazon Macie 2.
 //
-// Retrieves information about the Amazon Macie configuration settings for an
-// AWS organization.
+// Retrieves the Amazon Macie configuration settings for an AWS organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2632,8 +2630,7 @@ func (c *Macie2) GetCustomDataIdentifierRequest(input *GetCustomDataIdentifierIn
 
 // GetCustomDataIdentifier API operation for Amazon Macie 2.
 //
-// Retrieves information about the criteria and other settings for a custom
-// data identifier.
+// Retrieves the criteria and other settings for a custom data identifier.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2841,7 +2838,7 @@ func (c *Macie2) GetFindingsRequest(input *GetFindingsInput) (req *request.Reque
 
 // GetFindings API operation for Amazon Macie 2.
 //
-// Retrieves information about one or more findings.
+// Retrieves the details of one or more findings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2945,8 +2942,7 @@ func (c *Macie2) GetFindingsFilterRequest(input *GetFindingsFilterInput) (req *r
 
 // GetFindingsFilter API operation for Amazon Macie 2.
 //
-// Retrieves information about the criteria and other settings for a findings
-// filter.
+// Retrieves the criteria and other settings for a findings filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3155,8 +3151,8 @@ func (c *Macie2) GetMacieSessionRequest(input *GetMacieSessionInput) (req *reque
 
 // GetMacieSession API operation for Amazon Macie 2.
 //
-// Retrieves information about the current status and configuration settings
-// for an Amazon Macie account.
+// Retrieves the current status and configuration settings for an Amazon Macie
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5311,7 +5307,7 @@ func (c *Macie2) UpdateClassificationJobRequest(input *UpdateClassificationJobIn
 
 // UpdateClassificationJob API operation for Amazon Macie 2.
 //
-// Cancels a classification job.
+// Changes the status of a classification job.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6399,6 +6395,8 @@ type BucketCountByEffectivePermission struct {
 	PubliclyReadable *int64 `locationName:"publiclyReadable" type:"long"`
 
 	PubliclyWritable *int64 `locationName:"publiclyWritable" type:"long"`
+
+	Unknown *int64 `locationName:"unknown" type:"long"`
 }
 
 // String returns the string representation
@@ -6426,6 +6424,12 @@ func (s *BucketCountByEffectivePermission) SetPubliclyReadable(v int64) *BucketC
 // SetPubliclyWritable sets the PubliclyWritable field's value.
 func (s *BucketCountByEffectivePermission) SetPubliclyWritable(v int64) *BucketCountByEffectivePermission {
 	s.PubliclyWritable = &v
+	return s
+}
+
+// SetUnknown sets the Unknown field's value.
+func (s *BucketCountByEffectivePermission) SetUnknown(v int64) *BucketCountByEffectivePermission {
+	s.Unknown = &v
 	return s
 }
 
@@ -6479,6 +6483,8 @@ type BucketCountBySharedAccessType struct {
 	Internal *int64 `locationName:"internal" type:"long"`
 
 	NotShared *int64 `locationName:"notShared" type:"long"`
+
+	Unknown *int64 `locationName:"unknown" type:"long"`
 }
 
 // String returns the string representation
@@ -6506,6 +6512,12 @@ func (s *BucketCountBySharedAccessType) SetInternal(v int64) *BucketCountByShare
 // SetNotShared sets the NotShared field's value.
 func (s *BucketCountBySharedAccessType) SetNotShared(v int64) *BucketCountBySharedAccessType {
 	s.NotShared = &v
+	return s
+}
+
+// SetUnknown sets the Unknown field's value.
+func (s *BucketCountBySharedAccessType) SetUnknown(v int64) *BucketCountBySharedAccessType {
+	s.Unknown = &v
 	return s
 }
 
@@ -6947,6 +6959,54 @@ func (s *BucketSortCriteria) SetOrderBy(v string) *BucketSortCriteria {
 	return s
 }
 
+// Specifies the location of an occurrence of sensitive data in a Microsoft
+// Excel workbook, CSV file, or TSV file.
+type Cell struct {
+	_ struct{} `type:"structure"`
+
+	CellReference *string `locationName:"cellReference" type:"string"`
+
+	Column *int64 `locationName:"column" type:"long"`
+
+	ColumnName *string `locationName:"columnName" type:"string"`
+
+	Row *int64 `locationName:"row" type:"long"`
+}
+
+// String returns the string representation
+func (s Cell) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Cell) GoString() string {
+	return s.String()
+}
+
+// SetCellReference sets the CellReference field's value.
+func (s *Cell) SetCellReference(v string) *Cell {
+	s.CellReference = &v
+	return s
+}
+
+// SetColumn sets the Column field's value.
+func (s *Cell) SetColumn(v int64) *Cell {
+	s.Column = &v
+	return s
+}
+
+// SetColumnName sets the ColumnName field's value.
+func (s *Cell) SetColumnName(v string) *Cell {
+	s.ColumnName = &v
+	return s
+}
+
+// SetRow sets the Row field's value.
+func (s *Cell) SetRow(v int64) *Cell {
+	s.Row = &v
+	return s
+}
+
 // Provides information about a sensitive data finding, including the classification
 // job that produced the finding.
 type ClassificationDetails struct {
@@ -6958,8 +7018,8 @@ type ClassificationDetails struct {
 
 	JobId *string `locationName:"jobId" type:"string"`
 
-	// Provides detailed information about a sensitive data finding, including the
-	// types and number of occurrences of the sensitive data that was found.
+	// Provides the details of a sensitive data finding, including the types, number
+	// of occurrences, and locations of the sensitive data that was detected.
 	Result *ClassificationResult `locationName:"result" type:"structure"`
 }
 
@@ -7039,10 +7099,12 @@ func (s *ClassificationExportConfiguration) SetS3Destination(v *S3Destination) *
 	return s
 }
 
-// Provides detailed information about a sensitive data finding, including the
-// types and number of occurrences of the sensitive data that was found.
+// Provides the details of a sensitive data finding, including the types, number
+// of occurrences, and locations of the sensitive data that was detected.
 type ClassificationResult struct {
 	_ struct{} `type:"structure"`
+
+	AdditionalOccurrences *bool `locationName:"additionalOccurrences" type:"boolean"`
 
 	// Provides information about the number of occurrences of the data that produced
 	// a sensitive data finding, and the custom data identifiers that detected the
@@ -7069,6 +7131,12 @@ func (s ClassificationResult) String() string {
 // GoString returns the string representation
 func (s ClassificationResult) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalOccurrences sets the AdditionalOccurrences field's value.
+func (s *ClassificationResult) SetAdditionalOccurrences(v bool) *ClassificationResult {
+	s.AdditionalOccurrences = &v
+	return s
 }
 
 // SetCustomDataIdentifiers sets the CustomDataIdentifiers field's value.
@@ -7190,10 +7258,9 @@ func (s *ConflictException) RequestID() string {
 }
 
 // Specifies the scope, schedule, and other settings for a classification job.
-// You can't delete or change the settings for a classification job after you
-// create it. This helps ensure that you have an immutable history of sensitive
-// data findings and discovery results for data privacy and protection audits
-// or investigations.
+// You can't change any settings for a classification job after you create it.
+// This helps ensure that you have an immutable history of sensitive data findings
+// and discovery results for data privacy and protection audits or investigations.
 type CreateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7946,8 +8013,7 @@ func (s *CustomDataIdentifiers) SetTotalCount(v int64) *CustomDataIdentifiers {
 }
 
 // Provides information about a custom data identifier that produced a sensitive
-// data finding, and the number of occurrences of the data that it detected
-// for the finding.
+// data finding, and the sensitive data that it detected for the finding.
 type CustomDetection struct {
 	_ struct{} `type:"structure"`
 
@@ -7956,6 +8022,11 @@ type CustomDetection struct {
 	Count *int64 `locationName:"count" type:"long"`
 
 	Name *string `locationName:"name" type:"string"`
+
+	// Provides the location of 1-15 occurrences of sensitive data that was detected
+	// by managed data identifiers or a custom data identifier and produced a sensitive
+	// data finding.
+	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
 }
 
 // String returns the string representation
@@ -7983,6 +8054,12 @@ func (s *CustomDetection) SetCount(v int64) *CustomDetection {
 // SetName sets the Name field's value.
 func (s *CustomDetection) SetName(v string) *CustomDetection {
 	s.Name = &v
+	return s
+}
+
+// SetOccurrences sets the Occurrences field's value.
+func (s *CustomDetection) SetOccurrences(v *Occurrences) *CustomDetection {
+	s.Occurrences = v
 	return s
 }
 
@@ -8064,12 +8141,17 @@ func (s *DeclineInvitationsOutput) SetUnprocessedAccounts(v []*UnprocessedAccoun
 	return s
 }
 
-// Provides information about sensitive data that was detected by managed data
-// identifiers and produced a sensitive data finding.
+// Provides information about a type of sensitive data that was detected by
+// managed data identifiers and produced a sensitive data finding.
 type DefaultDetection struct {
 	_ struct{} `type:"structure"`
 
 	Count *int64 `locationName:"count" type:"long"`
+
+	// Provides the location of 1-15 occurrences of sensitive data that was detected
+	// by managed data identifiers or a custom data identifier and produced a sensitive
+	// data finding.
+	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
 
 	Type *string `locationName:"type" type:"string"`
 }
@@ -8087,6 +8169,12 @@ func (s DefaultDetection) GoString() string {
 // SetCount sets the Count field's value.
 func (s *DefaultDetection) SetCount(v int64) *DefaultDetection {
 	s.Count = &v
+	return s
+}
+
+// SetOccurrences sets the Occurrences field's value.
+func (s *DefaultDetection) SetOccurrences(v *Occurrences) *DefaultDetection {
+	s.Occurrences = v
 	return s
 }
 
@@ -8485,6 +8573,11 @@ type DescribeClassificationJobOutput struct {
 	// values) for a classification job, custom data identifier, findings filter,
 	// or member account.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// Provides information about when a classification job was paused and when
+	// it will expire and be cancelled if it isn’t resumed. This object is present
+	// only if a job’s current status (jobStatus) is USER_PAUSED.
+	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
 // String returns the string representation
@@ -8590,6 +8683,12 @@ func (s *DescribeClassificationJobOutput) SetStatistics(v *Statistics) *Describe
 // SetTags sets the Tags field's value.
 func (s *DescribeClassificationJobOutput) SetTags(v map[string]*string) *DescribeClassificationJobOutput {
 	s.Tags = v
+	return s
+}
+
+// SetUserPausedDetails sets the UserPausedDetails field's value.
+func (s *DescribeClassificationJobOutput) SetUserPausedDetails(v *UserPausedDetails) *DescribeClassificationJobOutput {
+	s.UserPausedDetails = v
 	return s
 }
 
@@ -9002,7 +9101,7 @@ func (s *FederatedUser) SetSessionContext(v *SessionContext) *FederatedUser {
 	return s
 }
 
-// Provides information about a finding.
+// Provides the details of a finding.
 type Finding struct {
 	_ struct{} `type:"structure"`
 
@@ -9039,12 +9138,14 @@ type Finding struct {
 
 	SchemaVersion *string `locationName:"schemaVersion" type:"string"`
 
-	// Provides the numeric score and textual representation of a severity value.
+	// Provides the numerical and qualitative representations of a finding's severity.
 	Severity *Severity `locationName:"severity" type:"structure"`
 
 	Title *string `locationName:"title" type:"string"`
 
-	// The type of finding. Valid values are:
+	// The type of finding. For details about each type, see Types of Amazon Macie
+	// findings (https://docs.aws.amazon.com/macie/latest/user/findings-types.html)
+	// in the Amazon Macie User Guide. Valid values are:
 	Type *string `locationName:"type" type:"string" enum:"FindingType"`
 
 	UpdatedAt *time.Time `locationName:"updatedAt" type:"timestamp" timestampFormat:"iso8601"`
@@ -9924,15 +10025,14 @@ func (s *GetFindingsFilterOutput) SetTags(v map[string]*string) *GetFindingsFilt
 	return s
 }
 
-// Specifies one or more findings to retrieve information about.
+// Specifies one or more findings to retrieve.
 type GetFindingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// FindingIds is a required field
 	FindingIds []*string `locationName:"findingIds" type:"list" required:"true"`
 
-	// Specifies criteria for sorting the results of a request for information about
-	// findings.
+	// Specifies criteria for sorting the results of a request for findings.
 	SortCriteria *SortCriteria `locationName:"sortCriteria" type:"structure"`
 }
 
@@ -9971,7 +10071,7 @@ func (s *GetFindingsInput) SetSortCriteria(v *SortCriteria) *GetFindingsInput {
 	return s
 }
 
-// Provides the results of a request for information about one or more findings.
+// Provides the results of a request for one or more findings.
 type GetFindingsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -10853,7 +10953,8 @@ func (s *JobScopeTerm) SetTagScopeTerm(v *TagScopeTerm) *JobScopeTerm {
 }
 
 // Specifies one or more property- and tag-based conditions that define criteria
-// for including or excluding objects from a classification job.
+// for including or excluding objects from a classification job. If you specify
+// more than one condition, Amazon Macie uses an AND operator to join the conditions.
 type JobScopingBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -10894,6 +10995,11 @@ type JobSummary struct {
 	JobType *string `locationName:"jobType" type:"string" enum:"JobType"`
 
 	Name *string `locationName:"name" type:"string"`
+
+	// Provides information about when a classification job was paused and when
+	// it will expire and be cancelled if it isn’t resumed. This object is present
+	// only if a job’s current status (jobStatus) is USER_PAUSED.
+	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
 // String returns the string representation
@@ -10939,6 +11045,12 @@ func (s *JobSummary) SetJobType(v string) *JobSummary {
 // SetName sets the Name field's value.
 func (s *JobSummary) SetName(v string) *JobSummary {
 	s.Name = &v
+	return s
+}
+
+// SetUserPausedDetails sets the UserPausedDetails field's value.
+func (s *JobSummary) SetUserPausedDetails(v *UserPausedDetails) *JobSummary {
+	s.UserPausedDetails = v
 	return s
 }
 
@@ -11209,8 +11321,7 @@ type ListFindingsInput struct {
 
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// Specifies criteria for sorting the results of a request for information about
-	// findings.
+	// Specifies criteria for sorting the results of a request for findings.
 	SortCriteria *SortCriteria `locationName:"sortCriteria" type:"structure"`
 }
 
@@ -11886,6 +11997,121 @@ func (s *ObjectLevelStatistics) SetTotal(v int64) *ObjectLevelStatistics {
 	return s
 }
 
+// Provides the location of 1-15 occurrences of sensitive data that was detected
+// by managed data identifiers or a custom data identifier and produced a sensitive
+// data finding.
+type Occurrences struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the location of occurrences of sensitive data in a Microsoft Excel
+	// workbook, CSV file, or TSV file.
+	Cells []*Cell `locationName:"cells" type:"list"`
+
+	// Provides details about the location of occurrences of sensitive data in an
+	// Adobe Portable Document Format file, Apache Avro object container, Microsoft
+	// Word document, or non-binary text file.
+	LineRanges []*Range `locationName:"lineRanges" type:"list"`
+
+	// Provides details about the location of occurrences of sensitive data in an
+	// Adobe Portable Document Format file, Apache Avro object container, Microsoft
+	// Word document, or non-binary text file.
+	OffsetRanges []*Range `locationName:"offsetRanges" type:"list"`
+
+	// Specifies the location of occurrences of sensitive data in an Adobe Portable
+	// Document Format file.
+	Pages []*Page `locationName:"pages" type:"list"`
+
+	// Specifies the location of occurrences of sensitive data in an Apache Parquet
+	// file.
+	Records []*Record `locationName:"records" type:"list"`
+}
+
+// String returns the string representation
+func (s Occurrences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Occurrences) GoString() string {
+	return s.String()
+}
+
+// SetCells sets the Cells field's value.
+func (s *Occurrences) SetCells(v []*Cell) *Occurrences {
+	s.Cells = v
+	return s
+}
+
+// SetLineRanges sets the LineRanges field's value.
+func (s *Occurrences) SetLineRanges(v []*Range) *Occurrences {
+	s.LineRanges = v
+	return s
+}
+
+// SetOffsetRanges sets the OffsetRanges field's value.
+func (s *Occurrences) SetOffsetRanges(v []*Range) *Occurrences {
+	s.OffsetRanges = v
+	return s
+}
+
+// SetPages sets the Pages field's value.
+func (s *Occurrences) SetPages(v []*Page) *Occurrences {
+	s.Pages = v
+	return s
+}
+
+// SetRecords sets the Records field's value.
+func (s *Occurrences) SetRecords(v []*Record) *Occurrences {
+	s.Records = v
+	return s
+}
+
+// Specifies the location of an occurrence of sensitive data in an Adobe Portable
+// Document Format file.
+type Page struct {
+	_ struct{} `type:"structure"`
+
+	// Provides details about the location of an occurrence of sensitive data in
+	// an Adobe Portable Document Format file, Apache Avro object container, Microsoft
+	// Word document, or non-binary text file.
+	LineRange *Range `locationName:"lineRange" type:"structure"`
+
+	// Provides details about the location of an occurrence of sensitive data in
+	// an Adobe Portable Document Format file, Apache Avro object container, Microsoft
+	// Word document, or non-binary text file.
+	OffsetRange *Range `locationName:"offsetRange" type:"structure"`
+
+	PageNumber *int64 `locationName:"pageNumber" type:"long"`
+}
+
+// String returns the string representation
+func (s Page) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Page) GoString() string {
+	return s.String()
+}
+
+// SetLineRange sets the LineRange field's value.
+func (s *Page) SetLineRange(v *Range) *Page {
+	s.LineRange = v
+	return s
+}
+
+// SetOffsetRange sets the OffsetRange field's value.
+func (s *Page) SetOffsetRange(v *Range) *Page {
+	s.OffsetRange = v
+	return s
+}
+
+// SetPageNumber sets the PageNumber field's value.
+func (s *Page) SetPageNumber(v int64) *Page {
+	s.PageNumber = &v
+	return s
+}
+
 // Provides the details of a policy finding.
 type PolicyDetails struct {
 	_ struct{} `type:"structure"`
@@ -11993,6 +12219,71 @@ func (s PutClassificationExportConfigurationOutput) GoString() string {
 // SetConfiguration sets the Configuration field's value.
 func (s *PutClassificationExportConfigurationOutput) SetConfiguration(v *ClassificationExportConfiguration) *PutClassificationExportConfigurationOutput {
 	s.Configuration = v
+	return s
+}
+
+// Provides details about the location of an occurrence of sensitive data in
+// an Adobe Portable Document Format file, Apache Avro object container, Microsoft
+// Word document, or non-binary text file.
+type Range struct {
+	_ struct{} `type:"structure"`
+
+	End *int64 `locationName:"end" type:"long"`
+
+	Start *int64 `locationName:"start" type:"long"`
+
+	StartColumn *int64 `locationName:"startColumn" type:"long"`
+}
+
+// String returns the string representation
+func (s Range) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Range) GoString() string {
+	return s.String()
+}
+
+// SetEnd sets the End field's value.
+func (s *Range) SetEnd(v int64) *Range {
+	s.End = &v
+	return s
+}
+
+// SetStart sets the Start field's value.
+func (s *Range) SetStart(v int64) *Range {
+	s.Start = &v
+	return s
+}
+
+// SetStartColumn sets the StartColumn field's value.
+func (s *Range) SetStartColumn(v int64) *Range {
+	s.StartColumn = &v
+	return s
+}
+
+// Specifies the location of an occurrence of sensitive data in an Apache Parquet
+// file.
+type Record struct {
+	_ struct{} `type:"structure"`
+
+	RecordIndex *int64 `locationName:"recordIndex" type:"long"`
+}
+
+// String returns the string representation
+func (s Record) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Record) GoString() string {
+	return s.String()
+}
+
+// SetRecordIndex sets the RecordIndex field's value.
+func (s *Record) SetRecordIndex(v int64) *Record {
+	s.RecordIndex = &v
 	return s
 }
 
@@ -12136,7 +12427,7 @@ type S3Bucket struct {
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// Provides information about the server-side encryption settings for an S3
-	// bucket or object.
+	// bucket or S3 object.
 	DefaultServerSideEncryption *ServerSideEncryption `locationName:"defaultServerSideEncryption" type:"structure"`
 
 	Name *string `locationName:"name" type:"string"`
@@ -12336,7 +12627,8 @@ type S3JobDefinition struct {
 
 	// Specifies one or more property- and tag-based conditions that refine the
 	// scope of a classification job. These conditions define criteria that determine
-	// which objects a job analyzes.
+	// which objects a job analyzes. Exclude conditions take precedence over include
+	// conditions.
 	Scoping *Scoping `locationName:"scoping" type:"structure"`
 }
 
@@ -12381,12 +12673,12 @@ type S3Object struct {
 	PublicAccess *bool `locationName:"publicAccess" type:"boolean"`
 
 	// Provides information about the server-side encryption settings for an S3
-	// bucket or object.
+	// bucket or S3 object.
 	ServerSideEncryption *ServerSideEncryption `locationName:"serverSideEncryption" type:"structure"`
 
 	Size *int64 `locationName:"size" type:"long"`
 
-	// The storage class of the S3 bucket or object. Possible values are:
+	// The storage class of the S3 object. Possible values are:
 	StorageClass *string `locationName:"storageClass" type:"string" enum:"StorageClass"`
 
 	// Provides information about the tags that are associated with an S3 bucket
@@ -12481,16 +12773,19 @@ func (s *S3Object) SetVersionId(v string) *S3Object {
 
 // Specifies one or more property- and tag-based conditions that refine the
 // scope of a classification job. These conditions define criteria that determine
-// which objects a job analyzes.
+// which objects a job analyzes. Exclude conditions take precedence over include
+// conditions.
 type Scoping struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies one or more property- and tag-based conditions that define criteria
-	// for including or excluding objects from a classification job.
+	// for including or excluding objects from a classification job. If you specify
+	// more than one condition, Amazon Macie uses an AND operator to join the conditions.
 	Excludes *JobScopingBlock `locationName:"excludes" type:"structure"`
 
 	// Specifies one or more property- and tag-based conditions that define criteria
-	// for including or excluding objects from a classification job.
+	// for including or excluding objects from a classification job. If you specify
+	// more than one condition, Amazon Macie uses an AND operator to join the conditions.
 	Includes *JobScopingBlock `locationName:"includes" type:"structure"`
 }
 
@@ -12516,8 +12811,8 @@ func (s *Scoping) SetIncludes(v *JobScopingBlock) *Scoping {
 	return s
 }
 
-// Provides information about the category, type, and number of occurrences
-// of sensitive data that produced a finding.
+// Provides information about the category, types, and occurrences of sensitive
+// data that produced a sensitive data finding.
 type SensitiveDataItem struct {
 	_ struct{} `type:"structure"`
 
@@ -12562,12 +12857,12 @@ func (s *SensitiveDataItem) SetTotalCount(v int64) *SensitiveDataItem {
 }
 
 // Provides information about the server-side encryption settings for an S3
-// bucket or object.
+// bucket or S3 object.
 type ServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
-	// The type of server-side encryption that's used to encrypt objects in the
-	// S3 bucket. Valid values are:
+	// The type of server-side encryption that's used to encrypt an S3 object or
+	// objects in an S3 bucket. Valid values are:
 	EncryptionType *string `locationName:"encryptionType" type:"string" enum:"EncryptionType"`
 
 	KmsMasterKeyId *string `locationName:"kmsMasterKeyId" type:"string"`
@@ -12815,11 +13110,12 @@ func (s *SessionIssuer) SetUserName(v string) *SessionIssuer {
 	return s
 }
 
-// Provides the numeric score and textual representation of a severity value.
+// Provides the numerical and qualitative representations of a finding's severity.
 type Severity struct {
 	_ struct{} `type:"structure"`
 
-	// The textual representation of the finding's severity. Possible values are:
+	// The qualitative representation of the finding's severity. Possible values
+	// are:
 	Description *string `locationName:"description" type:"string" enum:"SeverityDescription"`
 
 	Score *int64 `locationName:"score" type:"long"`
@@ -12890,8 +13186,7 @@ func (s *SimpleScopeTerm) SetValues(v []*string) *SimpleScopeTerm {
 	return s
 }
 
-// Specifies criteria for sorting the results of a request for information about
-// findings.
+// Specifies criteria for sorting the results of a request for findings.
 type SortCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -13075,7 +13370,7 @@ func (s *TagScopeTerm) SetTarget(v string) *TagScopeTerm {
 	return s
 }
 
-// Specifies a tag key and value, as a pair, to use in a tag-based condition
+// Specifies a tag key or tag key and value pair to use in a tag-based condition
 // for a classification job.
 type TagValuePair struct {
 	_ struct{} `type:"structure"`
@@ -13366,7 +13661,7 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Cancels a classification job.
+// Changes the status of a classification job.
 type UpdateClassificationJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14067,6 +14362,47 @@ func (s *UserIdentityRoot) SetPrincipalId(v string) *UserIdentityRoot {
 	return s
 }
 
+// Provides information about when a classification job was paused and when
+// it will expire and be cancelled if it isn’t resumed. This object is present
+// only if a job’s current status (jobStatus) is USER_PAUSED.
+type UserPausedDetails struct {
+	_ struct{} `type:"structure"`
+
+	JobExpiresAt *time.Time `locationName:"jobExpiresAt" type:"timestamp" timestampFormat:"iso8601"`
+
+	JobImminentExpirationHealthEventArn *string `locationName:"jobImminentExpirationHealthEventArn" type:"string"`
+
+	JobPausedAt *time.Time `locationName:"jobPausedAt" type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s UserPausedDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserPausedDetails) GoString() string {
+	return s.String()
+}
+
+// SetJobExpiresAt sets the JobExpiresAt field's value.
+func (s *UserPausedDetails) SetJobExpiresAt(v time.Time) *UserPausedDetails {
+	s.JobExpiresAt = &v
+	return s
+}
+
+// SetJobImminentExpirationHealthEventArn sets the JobImminentExpirationHealthEventArn field's value.
+func (s *UserPausedDetails) SetJobImminentExpirationHealthEventArn(v string) *UserPausedDetails {
+	s.JobImminentExpirationHealthEventArn = &v
+	return s
+}
+
+// SetJobPausedAt sets the JobPausedAt field's value.
+func (s *UserPausedDetails) SetJobPausedAt(v time.Time) *UserPausedDetails {
+	s.JobPausedAt = &v
+	return s
+}
+
 // Provides information about an error that occurred due to a syntax error in
 // a request.
 type ValidationException struct {
@@ -14235,8 +14571,8 @@ func EffectivePermission_Values() []string {
 	}
 }
 
-// The type of server-side encryption that's used to encrypt objects in the
-// S3 bucket. Valid values are:
+// The type of server-side encryption that's used to encrypt an S3 object or
+// objects in an S3 bucket. Valid values are:
 const (
 	// EncryptionTypeNone is a EncryptionType enum value
 	EncryptionTypeNone = "NONE"
@@ -14350,7 +14686,9 @@ func FindingStatisticsSortAttributeName_Values() []string {
 	}
 }
 
-// The type of finding. Valid values are:
+// The type of finding. For details about each type, see Types of Amazon Macie
+// findings (https://docs.aws.amazon.com/macie/latest/user/findings-types.html)
+// in the Amazon Macie User Guide. Valid values are:
 const (
 	// FindingTypeSensitiveDataS3objectMultiple is a FindingType enum value
 	FindingTypeSensitiveDataS3objectMultiple = "SensitiveData:S3Object/Multiple"
@@ -14495,6 +14833,9 @@ const (
 
 	// JobStatusIdle is a JobStatus enum value
 	JobStatusIdle = "IDLE"
+
+	// JobStatusUserPaused is a JobStatus enum value
+	JobStatusUserPaused = "USER_PAUSED"
 )
 
 // JobStatus_Values returns all elements of the JobStatus enum
@@ -14505,6 +14846,7 @@ func JobStatus_Values() []string {
 		JobStatusCancelled,
 		JobStatusComplete,
 		JobStatusIdle,
+		JobStatusUserPaused,
 	}
 }
 
@@ -14714,7 +15056,8 @@ func SensitiveDataItemCategory_Values() []string {
 	}
 }
 
-// The textual representation of the finding's severity. Possible values are:
+// The qualitative representation of the finding's severity. Possible values
+// are:
 const (
 	// SeverityDescriptionLow is a SeverityDescription enum value
 	SeverityDescriptionLow = "Low"
@@ -14759,7 +15102,7 @@ func SharedAccess_Values() []string {
 	}
 }
 
-// The storage class of the S3 bucket or object. Possible values are:
+// The storage class of the S3 object. Possible values are:
 const (
 	// StorageClassStandard is a StorageClass enum value
 	StorageClassStandard = "STANDARD"

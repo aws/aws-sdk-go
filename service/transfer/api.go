@@ -1634,8 +1634,10 @@ func (c *Transfer) StopServerRequest(input *StopServerInput) (req *request.Reque
 // Changes the state of a file transfer protocol-enabled server from ONLINE
 // to OFFLINE. An OFFLINE server cannot accept and process file transfer jobs.
 // Information tied to your server, such as server and user properties, are
-// not affected by stopping your server. Stopping the server will not reduce
-// or impact your file transfer protocol endpoint billing.
+// not affected by stopping your server.
+//
+// Stopping the server will not reduce or impact your file transfer protocol
+// endpoint billing; you must delete the server to stop being billed.
 //
 // The state of STOPPING indicates that the server is in an intermediate state,
 // either not fully able to respond, or not fully offline. The values of STOP_FAILED
@@ -2332,16 +2334,15 @@ type CreateServerInput struct {
 	Certificate *string `type:"string"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
-	// your file transfer protocol-enabled server. When you host your endpoint within
-	// your VPC, you can make it accessible only to resources within your VPC, or
-	// you can attach Elastic IPs and make it accessible to clients over the internet.
-	// Your VPC's default security groups are automatically assigned to your endpoint.
+	// your server. When you host your endpoint within your VPC, you can make it
+	// accessible only to resources within your VPC, or you can attach Elastic IPs
+	// and make it accessible to clients over the internet. Your VPC's default security
+	// groups are automatically assigned to your endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
-	// The type of VPC endpoint that you want your file transfer protocol-enabled
-	// server to connect to. You can choose to connect to the public internet or
-	// a VPC endpoint. With a VPC endpoint, you can restrict access to your server
-	// and resources only within your VPC.
+	// The type of VPC endpoint that you want your server to connect to. You can
+	// choose to connect to the public internet or a VPC endpoint. With a VPC endpoint,
+	// you can restrict access to your server and resources only within your VPC.
 	//
 	// It is recommended that you use VPC as the EndpointType. With this endpoint
 	// type, you have the option to directly associate up to three Elastic IPv4
@@ -2368,12 +2369,12 @@ type CreateServerInput struct {
 	// is set to SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
-	// Specifies the mode of authentication for a file transfer protocol-enabled
-	// server. The default value is SERVICE_MANAGED, which allows you to store and
-	// access user credentials within the AWS Transfer Family service. Use the API_GATEWAY
-	// value to integrate with an identity provider of your choosing. The API_GATEWAY
-	// setting requires you to provide an API Gateway endpoint URL to call for authentication
-	// using the IdentityProviderDetails parameter.
+	// Specifies the mode of authentication for a server. The default value is SERVICE_MANAGED,
+	// which allows you to store and access user credentials within the AWS Transfer
+	// Family service. Use the API_GATEWAY value to integrate with an identity provider
+	// of your choosing. The API_GATEWAY setting requires you to provide an API
+	// Gateway endpoint URL to call for authentication using the IdentityProviderDetails
+	// parameter.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Allows the service to write your users' activity to your Amazon CloudWatch
@@ -2392,8 +2393,8 @@ type CreateServerInput struct {
 	//    * FTP (File Transfer Protocol): Unencrypted file transfer
 	//
 	// If you select FTPS, you must choose a certificate stored in AWS Certificate
-	// Manager (ACM) which will be used to identify your file transfer protocol-enabled
-	// server when clients connect to it over FTPS.
+	// Manager (ACM) which will be used to identify your server when clients connect
+	// to it over FTPS.
 	//
 	// If Protocol includes either FTP or FTPS, then the EndpointType must be VPC
 	// and the IdentityProviderType must be API_GATEWAY.
@@ -2407,8 +2408,7 @@ type CreateServerInput struct {
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
-	// Key-value pairs that can be used to group and search for file transfer protocol-enabled
-	// servers.
+	// Key-value pairs that can be used to group and search for servers.
 	Tags []*Tag `min:"1" type:"list"`
 }
 
@@ -2524,8 +2524,7 @@ func (s *CreateServerInput) SetTags(v []*Tag) *CreateServerInput {
 type CreateServerOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The service-assigned ID of the file transfer protocol-enabled server that
-	// is created.
+	// The service-assigned ID of the server that is created.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -2550,8 +2549,8 @@ func (s *CreateServerOutput) SetServerId(v string) *CreateServerOutput {
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// The landing directory (folder) for a user when they log in to the file transfer
-	// protocol-enabled server using the client.
+	// The landing directory (folder) for a user when they log in to the server
+	// using the client.
 	//
 	// An example is your-Amazon-S3-bucket-name>/home/username .
 	HomeDirectory *string `type:"string"`
@@ -2580,11 +2579,11 @@ type CreateUserInput struct {
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the file transfer protocol-enabled server. If you
-	// set it to PATH, the user will see the absolute Amazon S3 bucket paths as
-	// is in their file transfer protocol clients. If you set it LOGICAL, you will
-	// need to provide mappings in the HomeDirectoryMappings for how you want to
-	// make Amazon S3 paths visible to your users.
+	// to be when they log into the server. If you set it to PATH, the user will
+	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
+	// clients. If you set it LOGICAL, you will need to provide mappings in the
+	// HomeDirectoryMappings for how you want to make Amazon S3 paths visible to
+	// your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
 	// A scope-down policy for your user so you can use the same IAM role across
@@ -2606,32 +2605,31 @@ type CreateUserInput struct {
 	// policies attached to this role will determine the level of access you want
 	// to provide your users when transferring files into and out of your Amazon
 	// S3 bucket or buckets. The IAM role should also contain a trust relationship
-	// that allows the file transfer protocol-enabled server to access your resources
-	// when servicing your users' transfer requests.
+	// that allows the server to access your resources when servicing your users'
+	// transfer requests.
 	//
 	// Role is a required field
 	Role *string `min:"20" type:"string" required:"true"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server instance. This is the specific server that you added your user to.
+	// A system-assigned unique identifier for a server instance. This is the specific
+	// server that you added your user to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
 	// The public portion of the Secure Shell (SSH) key used to authenticate the
-	// user to the file transfer protocol-enabled server.
+	// user to the server.
 	SshPublicKeyBody *string `type:"string"`
 
 	// Key-value pairs that can be used to group and search for users. Tags are
 	// metadata attached to users for any purpose.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// A unique string that identifies a user and is associated with a file transfer
-	// protocol-enabled server as specified by the ServerId. This user name must
-	// be a minimum of 3 and a maximum of 100 characters long. The following are
-	// valid characters: a-z, A-Z, 0-9, underscore '_', hyphen '-', period '.',
-	// and at sign '@'. The user name can't start with a hyphen, period, and at
-	// sign.
+	// A unique string that identifies a user and is associated with a as specified
+	// by the ServerId. This user name must be a minimum of 3 and a maximum of 100
+	// characters long. The following are valid characters: a-z, A-Z, 0-9, underscore
+	// '_', hyphen '-', period '.', and at sign '@'. The user name can't start with
+	// a hyphen, period, or at sign.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -2758,14 +2756,12 @@ func (s *CreateUserInput) SetUserName(v string) *CreateUserInput {
 type CreateUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the file transfer protocol-enabled server that the user is attached
-	// to.
+	// The ID of the server that the user is attached to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// A unique string that identifies a user account associated with a file transfer
-	// protocol-enabled server.
+	// A unique string that identifies a user account associated with a server.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -2796,8 +2792,7 @@ func (s *CreateUserOutput) SetUserName(v string) *CreateUserOutput {
 type DeleteServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// A unique system-assigned identifier for a file transfer protocol-enabled
-	// server instance.
+	// A unique system-assigned identifier for a server instance.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -2942,14 +2937,13 @@ func (s DeleteSshPublicKeyOutput) GoString() string {
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server instance that has the user assigned to it.
+	// A system-assigned unique identifier for a server instance that has the user
+	// assigned to it.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// A unique string that identifies a user that is being deleted from a file
-	// transfer protocol-enabled server.
+	// A unique string that identifies a user that is being deleted from a server.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -3079,8 +3073,7 @@ func (s *DescribeSecurityPolicyOutput) SetSecurityPolicy(v *DescribedSecurityPol
 type DescribeServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server.
+	// A system-assigned unique identifier for a server.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -3121,8 +3114,7 @@ func (s *DescribeServerInput) SetServerId(v string) *DescribeServerInput {
 type DescribeServerOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array containing the properties of a file transfer protocol-enabled server
-	// with the ServerID you specified.
+	// An array containing the properties of a server with the ServerID you specified.
 	//
 	// Server is a required field
 	Server *DescribedServer `type:"structure" required:"true"`
@@ -3147,15 +3139,14 @@ func (s *DescribeServerOutput) SetServer(v *DescribedServer) *DescribeServerOutp
 type DescribeUserInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that has this user assigned.
+	// A system-assigned unique identifier for a server that has this user assigned.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// The name of the user assigned to one or more file transfer protocol-enabled
-	// servers. User names are part of the sign-in credentials to use the AWS Transfer
-	// Family service and perform file transfer tasks.
+	// The name of the user assigned to one or more servers. User names are part
+	// of the sign-in credentials to use the AWS Transfer Family service and perform
+	// file transfer tasks.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -3208,8 +3199,7 @@ func (s *DescribeUserInput) SetUserName(v string) *DescribeUserInput {
 type DescribeUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that has this user assigned.
+	// A system-assigned unique identifier for a server that has this user assigned.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -3325,8 +3315,7 @@ func (s *DescribedSecurityPolicy) SetTlsCiphers(v []*string) *DescribedSecurityP
 type DescribedServer struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the unique Amazon Resource Name (ARN) of the file transfer protocol-enabled
-	// server.
+	// Specifies the unique Amazon Resource Name (ARN) of the server.
 	//
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
@@ -3336,12 +3325,12 @@ type DescribedServer struct {
 	Certificate *string `type:"string"`
 
 	// Specifies the virtual private cloud (VPC) endpoint settings that you configured
-	// for your file transfer protocol-enabled server.
+	// for your server.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
-	// Defines the type of endpoint that your file transfer protocol-enabled server
-	// is connected to. If your server is connected to a VPC endpoint, your server
-	// isn't accessible over the public internet.
+	// Defines the type of endpoint that your server is connected to. If your server
+	// is connected to a VPC endpoint, your server isn't accessible over the public
+	// internet.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
 	// Specifies the Base64-encoded SHA256 fingerprint of the server's host key.
@@ -3350,21 +3339,19 @@ type DescribedServer struct {
 	HostKeyFingerprint *string `type:"string"`
 
 	// Specifies information to call a customer-supplied authentication API. This
-	// field is not populated when the IdentityProviderType of a file transfer protocol-enabled
-	// server is SERVICE_MANAGED.
+	// field is not populated when the IdentityProviderType of a server is SERVICE_MANAGED.
 	IdentityProviderDetails *IdentityProviderDetails `type:"structure"`
 
 	// Specifies the mode of authentication method enabled for this service. A value
-	// of SERVICE_MANAGED means that you are using this file transfer protocol-enabled
-	// server to store and access user credentials within the service. A value of
-	// API_GATEWAY indicates that you have integrated an API Gateway endpoint that
-	// will be invoked for authenticating your user into the service.
+	// of SERVICE_MANAGED means that you are using this server to store and access
+	// user credentials within the service. A value of API_GATEWAY indicates that
+	// you have integrated an API Gateway endpoint that will be invoked for authenticating
+	// your user into the service.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the AWS Identity and Access Management (IAM) role that allows a
-	// file transfer protocol-enabled server to turn on Amazon CloudWatch logging
-	// for Amazon S3 events. When set, user activity can be viewed in your CloudWatch
-	// logs.
+	// server to turn on Amazon CloudWatch logging for Amazon S3 events. When set,
+	// user activity can be viewed in your CloudWatch logs.
 	LoggingRole *string `min:"20" type:"string"`
 
 	// Specifies the file transfer protocol or protocols over which your file transfer
@@ -3382,27 +3369,25 @@ type DescribedServer struct {
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
-	// Specifies the unique system-assigned identifier for a file transfer protocol-enabled
-	// server that you instantiate.
+	// Specifies the unique system-assigned identifier for a server that you instantiate.
 	ServerId *string `min:"19" type:"string"`
 
-	// Specifies the condition of a file transfer protocol-enabled server for the
-	// server that was described. A value of ONLINE indicates that the server can
-	// accept jobs and transfer files. A State value of OFFLINE means that the server
-	// cannot perform file transfer operations.
+	// Specifies the condition of a server for the server that was described. A
+	// value of ONLINE indicates that the server can accept jobs and transfer files.
+	// A State value of OFFLINE means that the server cannot perform file transfer
+	// operations.
 	//
 	// The states of STARTING and STOPPING indicate that the server is in an intermediate
 	// state, either not fully able to respond, or not fully offline. The values
 	// of START_FAILED or STOP_FAILED can indicate an error condition.
 	State *string `type:"string" enum:"State"`
 
-	// Specifies the key-value pairs that you can use to search for and group file
-	// transfer protocol-enabled servers that were assigned to the server that was
-	// described.
+	// Specifies the key-value pairs that you can use to search for and group servers
+	// that were assigned to the server that was described.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// Specifies the number of users that are assigned to a file transfer protocol-enabled
-	// server you specified with the ServerId.
+	// Specifies the number of users that are assigned to a server you specified
+	// with the ServerId.
 	UserCount *int64 `type:"integer"`
 }
 
@@ -3543,8 +3528,8 @@ type DescribedUser struct {
 	// bucket. The policies attached to this role will determine the level of access
 	// you want to provide your users when transferring files into and out of your
 	// Amazon S3 bucket or buckets. The IAM role should also contain a trust relationship
-	// that allows a file transfer protocol-enabled server to access your resources
-	// when servicing your users' transfer requests.
+	// that allows a server to access your resources when servicing your users'
+	// transfer requests.
 	Role *string `min:"20" type:"string"`
 
 	// Specifies the public key portion of the Secure Shell (SSH) keys stored for
@@ -3557,7 +3542,7 @@ type DescribedUser struct {
 
 	// Specifies the name of the user that was requested to be described. User names
 	// are used for authentication purposes. This is the string that will be used
-	// by your user when they log in to your file transfer protocol-enabled server.
+	// by your user when they log in to your server.
 	UserName *string `min:"3" type:"string"`
 }
 
@@ -3634,27 +3619,36 @@ type EndpointDetails struct {
 	_ struct{} `type:"structure"`
 
 	// A list of address allocation IDs that are required to attach an Elastic IP
-	// address to your file transfer protocol-enabled server's endpoint. This is
-	// only valid in the UpdateServer API.
+	// address to your server's endpoint.
 	//
-	// This property can only be use when EndpointType is set to VPC.
+	// This property can only be set when EndpointType is set to VPC and it is only
+	// valid in the UpdateServer API.
 	AddressAllocationIds []*string `type:"list"`
 
-	// A list of subnet IDs that are required to host your file transfer protocol-enabled
-	// server endpoint in your VPC.
+	// A list of security groups IDs that are available to attach to your server's
+	// endpoint.
 	//
-	// This property can only be used when EndpointType is set to VPC.
+	// This property can only be set when EndpointType is set to VPC.
+	//
+	// You can only edit the SecurityGroupIds property in the UpdateServer API and
+	// only if you are changing the EndpointType from PUBLIC or VPC_ENDPOINT to
+	// VPC.
+	SecurityGroupIds []*string `type:"list"`
+
+	// A list of subnet IDs that are required to host your server endpoint in your
+	// VPC.
+	//
+	// This property can only be set when EndpointType is set to VPC.
 	SubnetIds []*string `type:"list"`
 
 	// The ID of the VPC endpoint.
 	//
-	// This property can only be used when EndpointType is set to VPC_ENDPOINT.
+	// This property can only be set when EndpointType is set to VPC_ENDPOINT.
 	VpcEndpointId *string `min:"22" type:"string"`
 
-	// The VPC ID of the VPC in which a file transfer protocol-enabled server's
-	// endpoint will be hosted.
+	// The VPC ID of the VPC in which a server's endpoint will be hosted.
 	//
-	// This property can only be used when EndpointType is set to VPC.
+	// This property can only be set when EndpointType is set to VPC.
 	VpcId *string `type:"string"`
 }
 
@@ -3684,6 +3678,12 @@ func (s *EndpointDetails) Validate() error {
 // SetAddressAllocationIds sets the AddressAllocationIds field's value.
 func (s *EndpointDetails) SetAddressAllocationIds(v []*string) *EndpointDetails {
 	s.AddressAllocationIds = v
+	return s
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *EndpointDetails) SetSecurityGroupIds(v []*string) *EndpointDetails {
+	s.SecurityGroupIds = v
 	return s
 }
 
@@ -3809,8 +3809,7 @@ func (s *IdentityProviderDetails) SetUrl(v string) *IdentityProviderDetails {
 type ImportSshPublicKeyInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server.
+	// A system-assigned unique identifier for a server.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -3820,8 +3819,7 @@ type ImportSshPublicKeyInput struct {
 	// SshPublicKeyBody is a required field
 	SshPublicKeyBody *string `type:"string" required:"true"`
 
-	// The name of the user account that is assigned to one or more file transfer
-	// protocol-enabled servers.
+	// The name of the user account that is assigned to one or more servers.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -3880,14 +3878,13 @@ func (s *ImportSshPublicKeyInput) SetUserName(v string) *ImportSshPublicKeyInput
 	return s
 }
 
-// Identifies the user, the file transfer protocol-enabled server they belong
-// to, and the identifier of the SSH public key associated with that user. A
-// user can have more than one key on each server that they are associated with.
+// Identifies the user, the server they belong to, and the identifier of the
+// SSH public key associated with that user. A user can have more than one key
+// on each server that they are associated with.
 type ImportSshPublicKeyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server.
+	// A system-assigned unique identifier for a server.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -4191,14 +4188,13 @@ func (s *ListSecurityPoliciesOutput) SetSecurityPolicyNames(v []*string) *ListSe
 type ListServersInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the number of file transfer protocol-enabled servers to return
-	// as a response to the ListServers query.
+	// Specifies the number of servers to return as a response to the ListServers
+	// query.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// When additional results are obtained from the ListServers command, a NextToken
 	// parameter is returned in the output. You can then pass the NextToken parameter
-	// in a subsequent command to continue listing additional file transfer protocol-enabled
-	// servers.
+	// in a subsequent command to continue listing additional servers.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4245,11 +4241,10 @@ type ListServersOutput struct {
 
 	// When you can get additional results from the ListServers operation, a NextToken
 	// parameter is returned in the output. In a following command, you can pass
-	// in the NextToken parameter to continue listing additional file transfer protocol-enabled
-	// servers.
+	// in the NextToken parameter to continue listing additional servers.
 	NextToken *string `min:"1" type:"string"`
 
-	// An array of file transfer protocol-enabled servers that were listed.
+	// An array of servers that were listed.
 	//
 	// Servers is a required field
 	Servers []*ListedServer `type:"list" required:"true"`
@@ -4402,8 +4397,8 @@ type ListUsersInput struct {
 	// to the NextToken parameter to continue listing additional users.
 	NextToken *string `min:"1" type:"string"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that has users assigned to it.
+	// A system-assigned unique identifier for a server that has users assigned
+	// to it.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -4467,8 +4462,8 @@ type ListUsersOutput struct {
 	// to the NextToken parameter to continue listing additional users.
 	NextToken *string `min:"1" type:"string"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that the users are assigned to.
+	// A system-assigned unique identifier for a server that the users are assigned
+	// to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -4512,43 +4507,42 @@ func (s *ListUsersOutput) SetUsers(v []*ListedUser) *ListUsersOutput {
 type ListedServer struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the unique Amazon Resource Name (ARN) for a file transfer protocol-enabled
-	// server to be listed.
+	// Specifies the unique Amazon Resource Name (ARN) for a server to be listed.
 	//
 	// Arn is a required field
 	Arn *string `min:"20" type:"string" required:"true"`
 
-	// Specifies the type of VPC endpoint that your file transfer protocol-enabled
-	// server is connected to. If your server is connected to a VPC endpoint, your
-	// server isn't accessible over the public internet.
+	// Specifies the type of VPC endpoint that your server is connected to. If your
+	// server is connected to a VPC endpoint, your server isn't accessible over
+	// the public internet.
 	EndpointType *string `type:"string" enum:"EndpointType"`
 
-	// Specifies the authentication method used to validate a user for a file transfer
-	// protocol-enabled server that was specified. This can include Secure Shell
-	// (SSH), user name and password combinations, or your own custom authentication
-	// method. Valid values include SERVICE_MANAGED or API_GATEWAY.
+	// Specifies the authentication method used to validate a user for a server
+	// that was specified. This can include Secure Shell (SSH), user name and password
+	// combinations, or your own custom authentication method. Valid values include
+	// SERVICE_MANAGED or API_GATEWAY.
 	IdentityProviderType *string `type:"string" enum:"IdentityProviderType"`
 
 	// Specifies the AWS Identity and Access Management (IAM) role that allows a
-	// file transfer protocol-enabled server to turn on Amazon CloudWatch logging.
+	// server to turn on Amazon CloudWatch logging.
 	LoggingRole *string `min:"20" type:"string"`
 
-	// Specifies the unique system assigned identifier for a file transfer protocol-enabled
-	// servers that were listed.
+	// Specifies the unique system assigned identifier for the servers that were
+	// listed.
 	ServerId *string `min:"19" type:"string"`
 
-	// Specifies the condition of a file transfer protocol-enabled server for the
-	// server that was described. A value of ONLINE indicates that the server can
-	// accept jobs and transfer files. A State value of OFFLINE means that the server
-	// cannot perform file transfer operations.
+	// Specifies the condition of a server for the server that was described. A
+	// value of ONLINE indicates that the server can accept jobs and transfer files.
+	// A State value of OFFLINE means that the server cannot perform file transfer
+	// operations.
 	//
 	// The states of STARTING and STOPPING indicate that the server is in an intermediate
 	// state, either not fully able to respond, or not fully offline. The values
 	// of START_FAILED or STOP_FAILED can indicate an error condition.
 	State *string `type:"string" enum:"State"`
 
-	// Specifies the number of users that are assigned to a file transfer protocol-enabled
-	// server you specified with the ServerId.
+	// Specifies the number of users that are assigned to a server you specified
+	// with the ServerId.
 	UserCount *int64 `type:"integer"`
 }
 
@@ -4924,8 +4918,7 @@ func (s *SshPublicKey) SetSshPublicKeyId(v string) *SshPublicKey {
 type StartServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that you start.
+	// A system-assigned unique identifier for a server that you start.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -4980,8 +4973,7 @@ func (s StartServerOutput) GoString() string {
 type StopServerInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that you stopped.
+	// A system-assigned unique identifier for a server that you stopped.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -5179,9 +5171,8 @@ func (s TagResourceOutput) GoString() string {
 type TestIdentityProviderInput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned identifier for a specific file transfer protocol-enabled
-	// server. That server's user authentication method is tested with a user name
-	// and password.
+	// A system-assigned identifier for a specific server. That server's user authentication
+	// method is tested with a user name and password.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -5496,16 +5487,15 @@ type UpdateServerInput struct {
 	Certificate *string `type:"string"`
 
 	// The virtual private cloud (VPC) endpoint settings that are configured for
-	// your file transfer protocol-enabled server. With a VPC endpoint, you can
-	// restrict access to your server to resources only within your VPC. To control
-	// incoming internet traffic, you will need to associate one or more Elastic
-	// IP addresses with your server's endpoint.
+	// your server. With a VPC endpoint, you can restrict access to your server
+	// to resources only within your VPC. To control incoming internet traffic,
+	// you will need to associate one or more Elastic IP addresses with your server's
+	// endpoint.
 	EndpointDetails *EndpointDetails `type:"structure"`
 
-	// The type of endpoint that you want your file transfer protocol-enabled server
-	// to connect to. You can choose to connect to the public internet or a VPC
-	// endpoint. With a VPC endpoint, you can restrict access to your server and
-	// resources only within your VPC.
+	// The type of endpoint that you want your server to connect to. You can choose
+	// to connect to the public internet or a VPC endpoint. With a VPC endpoint,
+	// you can restrict access to your server and resources only within your VPC.
 	//
 	// It is recommended that you use VPC as the EndpointType. With this endpoint
 	// type, you have the option to directly associate up to three Elastic IPv4
@@ -5516,9 +5506,9 @@ type UpdateServerInput struct {
 
 	// The RSA private key as generated by ssh-keygen -N "" -m PEM -f my-new-server-key.
 	//
-	// If you aren't planning to migrate existing users from an existing file transfer
-	// protocol-enabled server to a new server, don't update the host key. Accidentally
-	// changing a server's host key can be disruptive.
+	// If you aren't planning to migrate existing users from an existing server
+	// to a new server, don't update the host key. Accidentally changing a server's
+	// host key can be disruptive.
 	//
 	// For more information, see Change the host key for your SFTP-enabled server
 	// (https://docs.aws.amazon.com/transfer/latest/userguide/edit-server-config.html#configuring-servers-change-host-key)
@@ -5560,8 +5550,8 @@ type UpdateServerInput struct {
 	// Specifies the name of the security policy that is attached to the server.
 	SecurityPolicyName *string `type:"string"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server instance that the user account is assigned to.
+	// A system-assigned unique identifier for a server instance that the user account
+	// is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -5663,8 +5653,8 @@ func (s *UpdateServerInput) SetServerId(v string) *UpdateServerInput {
 type UpdateServerOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server that the user account is assigned to.
+	// A system-assigned unique identifier for a server that the user account is
+	// assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
@@ -5690,8 +5680,7 @@ type UpdateUserInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the landing directory (folder) for a user when they log in to the
-	// file transfer protocol-enabled server using their file transfer protocol
-	// client.
+	// server using their file transfer protocol client.
 	//
 	// An example is your-Amazon-S3-bucket-name>/home/username.
 	HomeDirectory *string `type:"string"`
@@ -5720,11 +5709,11 @@ type UpdateUserInput struct {
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
-	// to be when they log into the file transfer protocol-enabled server. If you
-	// set it to PATH, the user will see the absolute Amazon S3 bucket paths as
-	// is in their file transfer protocol clients. If you set it LOGICAL, you will
-	// need to provide mappings in the HomeDirectoryMappings for how you want to
-	// make Amazon S3 paths visible to your users.
+	// to be when they log into the server. If you set it to PATH, the user will
+	// see the absolute Amazon S3 bucket paths as is in their file transfer protocol
+	// clients. If you set it LOGICAL, you will need to provide mappings in the
+	// HomeDirectoryMappings for how you want to make Amazon S3 paths visible to
+	// your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
 	// Allows you to supply a scope-down policy for your user so you can use the
@@ -5746,22 +5735,21 @@ type UpdateUserInput struct {
 	// policies attached to this role will determine the level of access you want
 	// to provide your users when transferring files into and out of your Amazon
 	// S3 bucket or buckets. The IAM role should also contain a trust relationship
-	// that allows the file transfer protocol-enabled server to access your resources
-	// when servicing your users' transfer requests.
+	// that allows the server to access your resources when servicing your users'
+	// transfer requests.
 	Role *string `min:"20" type:"string"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server instance that the user account is assigned to.
+	// A system-assigned unique identifier for a server instance that the user account
+	// is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// A unique string that identifies a user and is associated with a file transfer
-	// protocol-enabled server as specified by the ServerId. This user name must
-	// be a minimum of 3 and a maximum of 100 characters long. The following are
-	// valid characters: a-z, A-Z, 0-9, underscore '_', hyphen '-', period '.',
-	// and at sign '@'. The user name can't start with a hyphen, period, and at
-	// sign.
+	// A unique string that identifies a user and is associated with a server as
+	// specified by the ServerId. This user name must be a minimum of 3 and a maximum
+	// of 100 characters long. The following are valid characters: a-z, A-Z, 0-9,
+	// underscore '_', hyphen '-', period '.', and at sign '@'. The user name can't
+	// start with a hyphen, period, or at sign.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -5857,19 +5845,19 @@ func (s *UpdateUserInput) SetUserName(v string) *UpdateUserInput {
 	return s
 }
 
-// UpdateUserResponse returns the user name and file transfer protocol-enabled
-// server identifier for the request to update a user's properties.
+// UpdateUserResponse returns the user name and identifier for the request to
+// update a user's properties.
 type UpdateUserOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A system-assigned unique identifier for a file transfer protocol-enabled
-	// server instance that the user account is assigned to.
+	// A system-assigned unique identifier for a server instance that the user account
+	// is assigned to.
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
 
-	// The unique identifier for a user that is assigned to a file transfer protocol-enabled
-	// server instance that was specified in the request.
+	// The unique identifier for a user that is assigned to a server instance that
+	// was specified in the request.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`

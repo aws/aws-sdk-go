@@ -542,7 +542,8 @@
         "AddressAllocationIds":{"shape":"AddressAllocationIds"},
         "SubnetIds":{"shape":"SubnetIds"},
         "VpcEndpointId":{"shape":"VpcEndpointId"},
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "SecurityGroupIds":{"shape":"SecurityGroupIds"}
       }
     },
     "EndpointType":{
@@ -836,6 +837,16 @@
       "max":2048,
       "min":20,
       "pattern":"arn:.*role/.*"
+    },
+    "SecurityGroupId":{
+      "type":"string",
+      "max":20,
+      "min":11,
+      "pattern":"^sg-[0-9a-f]{8,17}$"
+    },
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupId"}
     },
     "SecurityPolicyName":{
       "type":"string",

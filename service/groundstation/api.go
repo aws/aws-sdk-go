@@ -3524,6 +3524,9 @@ type DataflowDetail struct {
 	// Dataflow details for the destination side.
 	Destination *Destination `locationName:"destination" type:"structure"`
 
+	// Error message for a dataflow.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
 	// Dataflow details for the source side.
 	Source *Source `locationName:"source" type:"structure"`
 }
@@ -3541,6 +3544,12 @@ func (s DataflowDetail) GoString() string {
 // SetDestination sets the Destination field's value.
 func (s *DataflowDetail) SetDestination(v *Destination) *DataflowDetail {
 	s.Destination = v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *DataflowDetail) SetErrorMessage(v string) *DataflowDetail {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -6981,6 +6990,9 @@ const (
 	// ContactStatusAwsCancelled is a ContactStatus enum value
 	ContactStatusAwsCancelled = "AWS_CANCELLED"
 
+	// ContactStatusAwsFailed is a ContactStatus enum value
+	ContactStatusAwsFailed = "AWS_FAILED"
+
 	// ContactStatusCancelled is a ContactStatus enum value
 	ContactStatusCancelled = "CANCELLED"
 
@@ -7017,6 +7029,7 @@ func ContactStatus_Values() []string {
 	return []string{
 		ContactStatusAvailable,
 		ContactStatusAwsCancelled,
+		ContactStatusAwsFailed,
 		ContactStatusCancelled,
 		ContactStatusCancelling,
 		ContactStatusCompleted,

@@ -864,7 +864,8 @@
     "InsightsConfiguration":{
       "type":"structure",
       "members":{
-        "InsightsEnabled":{"shape":"NullableBoolean"}
+        "InsightsEnabled":{"shape":"NullableBoolean"},
+        "NotificationsEnabled":{"shape":"NullableBoolean"}
       }
     },
     "InstanceIdDetail":{
@@ -1345,6 +1346,7 @@
       "members":{
         "Id":{"shape":"TraceId"},
         "Duration":{"shape":"NullableDouble"},
+        "LimitExceeded":{"shape":"NullableBoolean"},
         "Segments":{"shape":"SegmentList"}
       }
     },

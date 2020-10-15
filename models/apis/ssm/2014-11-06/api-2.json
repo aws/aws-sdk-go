@@ -7319,7 +7319,17 @@
         "MsrcSeverity":{"shape":"PatchMsrcSeverity"},
         "KbNumber":{"shape":"PatchKbNumber"},
         "MsrcNumber":{"shape":"PatchMsrcNumber"},
-        "Language":{"shape":"PatchLanguage"}
+        "Language":{"shape":"PatchLanguage"},
+        "AdvisoryIds":{"shape":"PatchAdvisoryIdList"},
+        "BugzillaIds":{"shape":"PatchBugzillaIdList"},
+        "CVEIds":{"shape":"PatchCVEIdList"},
+        "Name":{"shape":"PatchName"},
+        "Epoch":{"shape":"PatchEpoch"},
+        "Version":{"shape":"PatchVersion"},
+        "Release":{"shape":"PatchRelease"},
+        "Arch":{"shape":"PatchArch"},
+        "Severity":{"shape":"PatchSeverity"},
+        "Repository":{"shape":"PatchRepository"}
       }
     },
     "PatchAction":{
@@ -7329,6 +7339,12 @@
         "BLOCK"
       ]
     },
+    "PatchAdvisoryId":{"type":"string"},
+    "PatchAdvisoryIdList":{
+      "type":"list",
+      "member":{"shape":"PatchAdvisoryId"}
+    },
+    "PatchArch":{"type":"string"},
     "PatchBaselineIdentity":{
       "type":"structure",
       "members":{
@@ -7347,6 +7363,16 @@
       "type":"integer",
       "max":100,
       "min":1
+    },
+    "PatchBugzillaId":{"type":"string"},
+    "PatchBugzillaIdList":{
+      "type":"list",
+      "member":{"shape":"PatchBugzillaId"}
+    },
+    "PatchCVEId":{"type":"string"},
+    "PatchCVEIdList":{
+      "type":"list",
+      "member":{"shape":"PatchCVEId"}
     },
     "PatchClassification":{"type":"string"},
     "PatchComplianceData":{
@@ -7411,6 +7437,7 @@
       ]
     },
     "PatchDescription":{"type":"string"},
+    "PatchEpoch":{"type":"integer"},
     "PatchFailedCount":{"type":"integer"},
     "PatchFilter":{
       "type":"structure",
@@ -7433,15 +7460,25 @@
     "PatchFilterKey":{
       "type":"string",
       "enum":[
+        "ARCH",
+        "ADVISORY_ID",
+        "BUGZILLA_ID",
         "PATCH_SET",
         "PRODUCT",
         "PRODUCT_FAMILY",
         "CLASSIFICATION",
+        "CVE_ID",
+        "EPOCH",
         "MSRC_SEVERITY",
+        "NAME",
         "PATCH_ID",
         "SECTION",
         "PRIORITY",
-        "SEVERITY"
+        "REPOSITORY",
+        "RELEASE",
+        "SEVERITY",
+        "SECURITY",
+        "VERSION"
       ]
     },
     "PatchFilterList":{
@@ -7506,6 +7543,7 @@
     "PatchMissingCount":{"type":"integer"},
     "PatchMsrcNumber":{"type":"string"},
     "PatchMsrcSeverity":{"type":"string"},
+    "PatchName":{"type":"string"},
     "PatchNotApplicableCount":{"type":"integer"},
     "PatchOperationType":{
       "type":"string",
@@ -7563,6 +7601,8 @@
       "key":{"shape":"AttributeName"},
       "value":{"shape":"AttributeValue"}
     },
+    "PatchRelease":{"type":"string"},
+    "PatchRepository":{"type":"string"},
     "PatchRule":{
       "type":"structure",
       "required":["PatchFilterGroup"],
@@ -7660,6 +7700,7 @@
     "PatchTitle":{"type":"string"},
     "PatchUnreportedNotApplicableCount":{"type":"integer"},
     "PatchVendor":{"type":"string"},
+    "PatchVersion":{"type":"string"},
     "PingStatus":{
       "type":"string",
       "enum":[

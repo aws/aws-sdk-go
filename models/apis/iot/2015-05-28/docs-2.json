@@ -323,10 +323,10 @@
     "AdditionalMetricsToRetainList": {
       "base": null,
       "refs": {
-        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>CreateSecurityProfileRequest$additionalMetricsToRetainV2</a> instead.</p>",
-        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.</p>",
-        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>UpdateSecurityProfileRequest$additionalMetricsToRetainV2</a> instead.</p>",
-        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p> <p> <b>Note:</b> This API field is deprecated. Please use <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.</p>"
+        "CreateSecurityProfileRequest$additionalMetricsToRetain": "<p> <i>Please use <a>CreateSecurityProfileRequest$additionalMetricsToRetainV2</a> instead.</i> </p> <p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "DescribeSecurityProfileResponse$additionalMetricsToRetain": "<p> <i>Please use <a>DescribeSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.</i> </p> <p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileRequest$additionalMetricsToRetain": "<p> <i>Please use <a>UpdateSecurityProfileRequest$additionalMetricsToRetainV2</a> instead.</i> </p> <p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>",
+        "UpdateSecurityProfileResponse$additionalMetricsToRetain": "<p> <i>Please use <a>UpdateSecurityProfileResponse$additionalMetricsToRetainV2</a> instead.</i> </p> <p>A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the security profile's <code>behaviors</code>, but it is also retained for any metric specified here.</p>"
       }
     },
     "AdditionalMetricsToRetainV2List": {
@@ -1943,6 +1943,7 @@
         "CertificateValidity$notBefore": "<p>The certificate is not valid before this date.</p>",
         "CertificateValidity$notAfter": "<p>The certificate is not valid after this date.</p>",
         "CreateProvisioningClaimResponse$expiration": "<p>The provisioning claim expiration time.</p>",
+        "DescribeDomainConfigurationResponse$lastStatusChangeDate": "<p>The date and time the domain configuration's status was last changed.</p>",
         "DescribeProvisioningTemplateResponse$creationDate": "<p>The date when the fleet provisioning template was created.</p>",
         "DescribeProvisioningTemplateResponse$lastModifiedDate": "<p>The date when the fleet provisioning template was last modified.</p>",
         "DescribeProvisioningTemplateVersionResponse$creationDate": "<p>The date when the fleet provisioning template version was created.</p>",
@@ -3400,7 +3401,7 @@
     "IncrementFactor": {
       "base": null,
       "refs": {
-        "ExponentialRolloutRate$incrementFactor": "<p>The exponential factor to increase the rate of rollout for a job.</p>"
+        "ExponentialRolloutRate$incrementFactor": "<p>The exponential factor to increase the rate of rollout for a job.</p> <p>AWS IoT supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
       }
     },
     "IndexName": {
@@ -5231,7 +5232,7 @@
     "RateIncreaseCriteria": {
       "base": "<p>Allows you to define a criteria to initiate the increase in rate of rollout for a job.</p>",
       "refs": {
-        "ExponentialRolloutRate$rateIncreaseCriteria": "<p>The criteria to initiate the increase in rate of rollout for a job.</p> <p>AWS IoT supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
+        "ExponentialRolloutRate$rateIncreaseCriteria": "<p>The criteria to initiate the increase in rate of rollout for a job.</p>"
       }
     },
     "ReasonCode": {
@@ -5682,7 +5683,7 @@
       "base": null,
       "refs": {
         "TopicRule$sql": "<p>The SQL statement used to query the topic. When using a SQL query with multiple lines, be sure to escape the newline characters.</p>",
-        "TopicRulePayload$sql": "<p>The SQL statement used to query the topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference\">AWS IoT SQL Reference</a> in the <i>AWS IoT Developer Guide</i>.</p>"
+        "TopicRulePayload$sql": "<p>The SQL statement used to query the topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html\">AWS IoT SQL Reference</a> in the <i>AWS IoT Developer Guide</i>.</p>"
       }
     },
     "SalesforceAction": {

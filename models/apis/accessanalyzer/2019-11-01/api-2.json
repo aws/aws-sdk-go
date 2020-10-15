@@ -12,6 +12,23 @@
     "uid":"accessanalyzer-2019-11-01"
   },
   "operations":{
+    "ApplyArchiveRule":{
+      "name":"ApplyArchiveRule",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/archive-rule",
+        "responseCode":200
+      },
+      "input":{"shape":"ApplyArchiveRuleRequest"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
     "CreateAnalyzer":{
       "name":"CreateAnalyzer",
       "http":{
@@ -419,6 +436,21 @@
       "type":"list",
       "member":{"shape":"AnalyzerSummary"}
     },
+    "ApplyArchiveRuleRequest":{
+      "type":"structure",
+      "required":[
+        "analyzerArn",
+        "ruleName"
+      ],
+      "members":{
+        "analyzerArn":{"shape":"AnalyzerArn"},
+        "clientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "ruleName":{"shape":"Name"}
+      }
+    },
     "ArchiveRuleSummary":{
       "type":"structure",
       "required":[
@@ -620,8 +652,8 @@
     "FindingSourceType":{
       "type":"string",
       "enum":[
-        "BUCKET_ACL",
         "POLICY",
+        "BUCKET_ACL",
         "S3_ACCESS_POINT"
       ]
     },
@@ -799,7 +831,8 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true,
-      "fault":true
+      "fault":true,
+      "retryable":{"throttling":false}
     },
     "ListAnalyzedResourcesRequest":{
       "type":"structure",
@@ -964,12 +997,12 @@
     "ResourceType":{
       "type":"string",
       "enum":[
+        "AWS::S3::Bucket",
         "AWS::IAM::Role",
-        "AWS::KMS::Key",
+        "AWS::SQS::Queue",
         "AWS::Lambda::Function",
         "AWS::Lambda::LayerVersion",
-        "AWS::S3::Bucket",
-        "AWS::SQS::Queue"
+        "AWS::KMS::Key"
       ]
     },
     "ServiceQuotaExceededException":{
@@ -1064,7 +1097,8 @@
         "httpStatusCode":429,
         "senderFault":true
       },
-      "exception":true
+      "exception":true,
+      "retryable":{"throttling":true}
     },
     "Timestamp":{
       "type":"timestamp",
@@ -1179,10 +1213,10 @@
     "ValidationExceptionReason":{
       "type":"string",
       "enum":[
+        "unknownOperation",
         "cannotParse",
         "fieldValidationFailed",
-        "other",
-        "unknownOperation"
+        "other"
       ]
     },
     "ValueList":{

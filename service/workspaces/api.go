@@ -347,6 +347,15 @@ func (c *WorkSpaces) CopyWorkspaceImageRequest(input *CopyWorkspaceImageInput) (
 // CopyWorkspaceImage API operation for Amazon WorkSpaces.
 //
 // Copies the specified image from the specified Region to the current Region.
+// For more information about copying images, see Copy a Custom WorkSpaces Image
+// (https://docs.aws.amazon.com/workspaces/latest/adminguide/copy-custom-image.html).
+//
+// Before copying a shared image, be sure to verify that it has been shared
+// from the correct AWS account. To determine if an image has been shared and
+// to see the AWS account ID that owns an image, use the DescribeWorkSpaceImages
+// (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html)
+// and DescribeWorkspaceImagePermissions (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImagePermissions.html)
+// API operations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2895,6 +2904,10 @@ func (c *WorkSpaces) ListAvailableManagementCidrRangesRequest(input *ListAvailab
 // you can use for the network management interface when you enable Bring Your
 // Own License (BYOL).
 //
+// This operation can be run only by AWS accounts that are enabled for BYOL.
+// If your account isn't enabled for BYOL, you'll receive an AccessDeniedException
+// error.
+//
 // The management network interface is connected to a secure Amazon WorkSpaces
 // management network. It is used for interactive streaming of the WorkSpace
 // desktop to Amazon WorkSpaces clients, and to allow Amazon WorkSpaces to manage
@@ -4334,13 +4347,18 @@ func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput)
 // Terminates the specified WorkSpaces.
 //
 // Terminating a WorkSpace is a permanent action and cannot be undone. The user's
-// data is destroyed. If you need to archive any user data, contact Amazon Web
-// Services before terminating the WorkSpace.
+// data is destroyed. If you need to archive any user data, contact AWS Support
+// before terminating the WorkSpace.
 //
 // You can terminate a WorkSpace that is in any state except SUSPENDED.
 //
 // This operation is asynchronous and returns before the WorkSpaces have been
-// completely terminated.
+// completely terminated. After a WorkSpace is terminated, the TERMINATED state
+// is returned only briefly before the WorkSpace directory metadata is cleaned
+// up, so this state is rarely returned. To confirm that a WorkSpace is terminated,
+// check for the WorkSpace ID by using DescribeWorkSpaces (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html).
+// If the WorkSpace ID isn't returned, then the WorkSpace has been successfully
+// terminated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4624,7 +4642,8 @@ func (c *WorkSpaces) UpdateWorkspaceImagePermissionRequest(input *UpdateWorkspac
 // Shares or unshares an image with one account by specifying whether that account
 // has permission to copy the image. If the copy image permission is granted,
 // the image is shared with that account. If the copy image permission is revoked,
-// the image is unshared with the account.
+// the image is unshared with the account. For more information about sharing
+// images, see Share or Unshare a Custom WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
 //
 //    * To delete an image that has been shared, you must unshare the image
 //    before you delete it.
@@ -5607,9 +5626,7 @@ type CreateTagsInput struct {
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
-	// The tags. Each WorkSpaces resource can have a maximum of 50 tags. If you
-	// want to add new tags to a set of existing tags, you must submit all of the
-	// existing tags along with the new ones.
+	// The tags. Each WorkSpaces resource can have a maximum of 50 tags.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -7598,7 +7615,8 @@ func (s *FailedWorkspaceChangeRequest) SetWorkspaceId(v string) *FailedWorkspace
 }
 
 // Describes the AWS accounts that have been granted permission to use a shared
-// image.
+// image. For more information about sharing images, see Share or Unshare a
+// Custom WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
 type ImagePermission struct {
 	_ struct{} `type:"structure"`
 
@@ -10329,6 +10347,9 @@ type UpdateWorkspaceImagePermissionInput struct {
 
 	// The identifier of the AWS account to share or unshare the image with.
 	//
+	// Before sharing the image, confirm that you are sharing to the correct AWS
+	// account ID.
+	//
 	// SharedAccountId is a required field
 	SharedAccountId *string `type:"string" required:"true"`
 }
@@ -10449,6 +10470,13 @@ type Workspace struct {
 	RootVolumeEncryptionEnabled *bool `type:"boolean"`
 
 	// The operational state of the WorkSpace.
+	//
+	// After a WorkSpace is terminated, the TERMINATED state is returned only briefly
+	// before the WorkSpace directory metadata is cleaned up, so this state is rarely
+	// returned. To confirm that a WorkSpace is terminated, check for the WorkSpace
+	// ID by using DescribeWorkSpaces (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaces.html).
+	// If the WorkSpace ID isn't returned, then the WorkSpace has been successfully
+	// terminated.
 	State *string `type:"string" enum:"WorkspaceState"`
 
 	// The identifier of the subnet for the WorkSpace.
@@ -10948,7 +10976,13 @@ type WorkspaceDirectory struct {
 	// The default self-service permissions for WorkSpaces in the directory.
 	SelfservicePermissions *SelfservicePermissions `type:"structure"`
 
-	// The state of the directory's registration with Amazon WorkSpaces.
+	// The state of the directory's registration with Amazon WorkSpaces. After a
+	// directory is deregistered, the DEREGISTERED state is returned very briefly
+	// before the directory metadata is cleaned up, so this state is rarely returned.
+	// To confirm that a directory is deregistered, check for the directory ID by
+	// using DescribeWorkspaceDirectories (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceDirectories.html).
+	// If the directory ID isn't returned, then the directory has been successfully
+	// deregistered.
 	State *string `type:"string" enum:"WorkspaceDirectoryState"`
 
 	// The identifiers of the subnets used with the directory.

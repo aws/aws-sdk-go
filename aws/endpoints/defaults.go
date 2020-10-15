@@ -7299,6 +7299,13 @@ var awscnPartition = partition{
 				},
 			},
 		},
+		"servicediscovery": service{
+
+			Endpoints: endpoints{
+				"cn-north-1":     endpoint{},
+				"cn-northwest-1": endpoint{},
+			},
+		},
 		"sms": service{
 
 			Endpoints: endpoints{

@@ -75,7 +75,7 @@
     "GetOpsItem": "<p>Get information about an OpsItem by using the ID. You must have permission in AWS Identity and Access Management (IAM) to view information about an OpsItem. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter-getting-started.html\">Getting started with OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>.</p> <p>Operations engineers and IT professionals use OpsCenter to view, investigate, and remediate operational issues impacting the performance and health of their AWS resources. For more information, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html\">AWS Systems Manager OpsCenter</a> in the <i>AWS Systems Manager User Guide</i>. </p>",
     "GetOpsSummary": "<p>View a summary of OpsItems based on specified filters and aggregators.</p>",
     "GetParameter": "<p>Get information about a parameter by using the parameter name. Don't confuse this API action with the <a>GetParameters</a> API action.</p>",
-    "GetParameterHistory": "<p>Query a list of all parameters used by the AWS account.</p>",
+    "GetParameterHistory": "<p>Retrieves the history of all changes to a parameter.</p>",
     "GetParameters": "<p>Get details of a parameter. Don't confuse this API action with the <a>GetParameter</a> API action.</p>",
     "GetParametersByPath": "<p>Retrieve information about one or more parameters in a specific hierarchy. </p> <note> <p>Request results are returned on a best-effort basis. If you specify <code>MaxResults</code> in the request, the response includes information up to the limit specified. The number of items returned, however, can be between zero and the value of <code>MaxResults</code>. If the service reaches an internal limit while processing the results, it stops the operation and returns the matching values up to that point and a <code>NextToken</code>. You can specify the <code>NextToken</code> in a subsequent call to get the next set of results.</p> </note>",
     "GetPatchBaseline": "<p>Retrieves information about a patch baseline.</p>",
@@ -4904,7 +4904,7 @@
       "base": null,
       "refs": {
         "DeleteParameterRequest$Name": "<p>The name of the parameter to delete.</p>",
-        "GetParameterHistoryRequest$Name": "<p>The name of a parameter you want to query.</p>",
+        "GetParameterHistoryRequest$Name": "<p>The name of the parameter for which you want to review history.</p>",
         "GetParameterRequest$Name": "<p>The name of the parameter you want to query.</p>",
         "GetParametersByPathRequest$Path": "<p>The hierarchy for the parameter. Hierarchies start with a forward slash (/) and end with the parameter name. A parameter name hierarchy can have a maximum of 15 levels. Here is an example of a hierarchy: <code>/Finance/Prod/IAD/WinServ2016/license33</code> </p>",
         "LabelParameterVersionRequest$Name": "<p>The parameter name on which you want to attach one or more labels.</p>",
@@ -5214,6 +5214,24 @@
         "UpdatePatchBaselineResult$RejectedPatchesAction": "<p>The action specified to take on patches included in the RejectedPatches list. A patch can be allowed only if it is a dependency of another package, or blocked entirely along with packages that include it as a dependency.</p>"
       }
     },
+    "PatchAdvisoryId": {
+      "base": null,
+      "refs": {
+        "PatchAdvisoryIdList$member": null
+      }
+    },
+    "PatchAdvisoryIdList": {
+      "base": null,
+      "refs": {
+        "Patch$AdvisoryIds": "<p>The Advisory ID of the patch. For example, <code>RHSA-2020:3779</code>. Applies to Linux-based instances only.</p>"
+      }
+    },
+    "PatchArch": {
+      "base": null,
+      "refs": {
+        "Patch$Arch": "<p>The architecture of the patch. For example, in <code>example-pkg-0.710.10-2.7.abcd.x86_64</code>, the architecture is indicated by <code>x86_64</code>. Applies to Linux-based instances only.</p>"
+      }
+    },
     "PatchBaselineIdentity": {
       "base": "<p>Defines the basic information about a patch baseline.</p>",
       "refs": {
@@ -5236,10 +5254,34 @@
         "DescribePatchGroupsRequest$MaxResults": "<p>The maximum number of patch groups to return (per page).</p>"
       }
     },
+    "PatchBugzillaId": {
+      "base": null,
+      "refs": {
+        "PatchBugzillaIdList$member": null
+      }
+    },
+    "PatchBugzillaIdList": {
+      "base": null,
+      "refs": {
+        "Patch$BugzillaIds": "<p>The Bugzilla ID of the patch. For example, <code>1600646</code>. Applies to Linux-based instances only.</p>"
+      }
+    },
+    "PatchCVEId": {
+      "base": null,
+      "refs": {
+        "PatchCVEIdList$member": null
+      }
+    },
+    "PatchCVEIdList": {
+      "base": null,
+      "refs": {
+        "Patch$CVEIds": "<p>The Common Vulnerabilities and Exposures (CVE) ID of the patch. For example, <code>CVE-1999-0067</code>. Applies to Linux-based instances only.</p>"
+      }
+    },
     "PatchClassification": {
       "base": null,
       "refs": {
-        "Patch$Classification": "<p>The classification of the patch (for example, SecurityUpdates, Updates, CriticalUpdates).</p>",
+        "Patch$Classification": "<p>The classification of the patch. For example, <code>SecurityUpdates</code>, <code>Updates</code>, or <code>CriticalUpdates</code>.</p>",
         "PatchComplianceData$Classification": "<p>The classification of the patch (for example, SecurityUpdates, Updates, CriticalUpdates).</p>"
       }
     },
@@ -5296,6 +5338,12 @@
       "base": null,
       "refs": {
         "Patch$Description": "<p>The description of the patch.</p>"
+      }
+    },
+    "PatchEpoch": {
+      "base": null,
+      "refs": {
+        "Patch$Epoch": "<p>The epoch of the patch. For example in <code>pkg-example-EE-20180914-2.2.amzn1.noarch</code>, the epoch value is <code>20180914-2</code>. Applies to Linux-based instances only.</p>"
       }
     },
     "PatchFailedCount": {
@@ -5381,7 +5429,7 @@
     "PatchId": {
       "base": null,
       "refs": {
-        "Patch$Id": "<p>The ID of the patch (this is different than the Microsoft Knowledge Base ID).</p>",
+        "Patch$Id": "<p>The ID of the patch. Applies to Windows patches only.</p> <note> <p>This ID is not the same as the Microsoft Knowledge Base ID.</p> </note>",
         "PatchIdList$member": null
       }
     },
@@ -5425,7 +5473,7 @@
     "PatchKbNumber": {
       "base": null,
       "refs": {
-        "Patch$KbNumber": "<p>The Microsoft Knowledge Base ID of the patch.</p>",
+        "Patch$KbNumber": "<p>The Microsoft Knowledge Base ID of the patch. Applies to Windows patches only.</p>",
         "PatchComplianceData$KBId": "<p>The operating system-specific ID of the patch.</p>"
       }
     },
@@ -5450,13 +5498,19 @@
     "PatchMsrcNumber": {
       "base": null,
       "refs": {
-        "Patch$MsrcNumber": "<p>The ID of the MSRC bulletin the patch is related to.</p>"
+        "Patch$MsrcNumber": "<p>The ID of the Microsoft Security Response Center (MSRC) bulletin the patch is related to. For example, <code>MS14-045</code>. Applies to Windows patches only.</p>"
       }
     },
     "PatchMsrcSeverity": {
       "base": null,
       "refs": {
-        "Patch$MsrcSeverity": "<p>The severity of the patch (for example Critical, Important, Moderate).</p>"
+        "Patch$MsrcSeverity": "<p>The severity of the patch, such as <code>Critical</code>, <code>Important</code>, or <code>Moderate</code>. Applies to Windows patches only.</p>"
+      }
+    },
+    "PatchName": {
+      "base": null,
+      "refs": {
+        "Patch$Name": "<p>The name of the patch. Applies to Linux-based instances only.</p>"
       }
     },
     "PatchNotApplicableCount": {
@@ -5508,13 +5562,13 @@
     "PatchProduct": {
       "base": null,
       "refs": {
-        "Patch$Product": "<p>The specific product the patch is applicable for (for example, WindowsServer2016).</p>"
+        "Patch$Product": "<p>The specific product the patch is applicable for. For example, <code>WindowsServer2016</code> or <code>AmazonLinux2018.03</code>.</p>"
       }
     },
     "PatchProductFamily": {
       "base": null,
       "refs": {
-        "Patch$ProductFamily": "<p>The product family the patch is applicable for (for example, Windows).</p>"
+        "Patch$ProductFamily": "<p>The product family the patch is applicable for. For example, <code>Windows</code> or <code>Amazon Linux 2</code>.</p>"
       }
     },
     "PatchPropertiesList": {
@@ -5533,6 +5587,18 @@
       "base": null,
       "refs": {
         "PatchPropertiesList$member": null
+      }
+    },
+    "PatchRelease": {
+      "base": null,
+      "refs": {
+        "Patch$Release": "<p>The particular release of a patch. For example, in <code>pkg-example-EE-20180914-2.2.amzn1.noarch</code>, the release is <code>2.amaz1</code>. Applies to Linux-based instances only.</p>"
+      }
+    },
+    "PatchRepository": {
+      "base": null,
+      "refs": {
+        "Patch$Repository": "<p>The source patch repository for the operating system and version, such as <code>trusty-security</code> for Ubuntu Server 14.04 LTE and <code>focal-security</code> for Ubuntu Server 20.04 LTE. Applies to Linux-based instances only.</p>"
       }
     },
     "PatchRule": {
@@ -5565,6 +5631,7 @@
     "PatchSeverity": {
       "base": null,
       "refs": {
+        "Patch$Severity": "<p>The severity level of the patch. For example, <code>CRITICAL</code> or <code>MODERATE</code>.</p>",
         "PatchComplianceData$Severity": "<p>The severity of the patch (for example, Critical, Important, Moderate).</p>"
       }
     },
@@ -5636,6 +5703,12 @@
       "base": null,
       "refs": {
         "Patch$Vendor": "<p>The name of the vendor providing the patch.</p>"
+      }
+    },
+    "PatchVersion": {
+      "base": null,
+      "refs": {
+        "Patch$Version": "<p>The version number of the patch. For example, in <code>example-pkg-1.710.10-2.7.abcd.x86_64</code>, the version number is indicated by <code>-1</code>. Applies to Linux-based instances only.</p>"
       }
     },
     "PingStatus": {

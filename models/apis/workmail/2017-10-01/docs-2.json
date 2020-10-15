@@ -7,12 +7,14 @@
     "CancelMailboxExportJob": "<p>Cancels a mailbox export job.</p> <note> <p>If the mailbox export job is near completion, it might not be possible to cancel it.</p> </note>",
     "CreateAlias": "<p>Adds an alias to the set of a given member (user or group) of Amazon WorkMail.</p>",
     "CreateGroup": "<p>Creates a group that can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
+    "CreateOrganization": "<p>Creates a new Amazon WorkMail organization. Optionally, you can choose to associate an existing AWS Directory Service directory with your organization. If an AWS Directory Service directory ID is specified, the organization alias must match the directory alias. If you choose not to associate an existing directory with your organization, then we create a new Amazon WorkMail directory for you. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_new_organization.html\">Adding an organization</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p> <p>You can associate multiple email domains with an organization, then set your default email domain from the Amazon WorkMail console. You can also associate a domain that is managed in an Amazon Route 53 public hosted zone. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html\">Adding a domain</a> and <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/default_domain.html\">Choosing the default domain</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p> <p>Optionally, you can use a customer managed master key from AWS Key Management Service (AWS KMS) to encrypt email for your organization. If you don't associate an AWS KMS key, Amazon WorkMail creates a default AWS managed master key for you.</p>",
     "CreateResource": "<p>Creates a new Amazon WorkMail resource. </p>",
     "CreateUser": "<p>Creates a user who can be used in Amazon WorkMail by calling the <a>RegisterToWorkMail</a> operation.</p>",
     "DeleteAccessControlRule": "<p>Deletes an access control rule for the specified WorkMail organization.</p>",
     "DeleteAlias": "<p>Remove one or more specified aliases from a set of aliases for a given user.</p>",
     "DeleteGroup": "<p>Deletes a group from Amazon WorkMail.</p>",
     "DeleteMailboxPermissions": "<p>Deletes permissions granted to a member (user or group).</p>",
+    "DeleteOrganization": "<p>Deletes an Amazon WorkMail organization and all underlying AWS resources managed by Amazon WorkMail as part of the organization. You can choose whether to delete the associated directory. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/remove_organization.html\">Removing an organization</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p>",
     "DeleteResource": "<p>Deletes the specified resource. </p>",
     "DeleteRetentionPolicy": "<p>Deletes the specified retention policy from the specified organization.</p>",
     "DeleteUser": "<p>Deletes a user from Amazon WorkMail and all subsequent systems. Before you can delete a user, the user state must be <code>DISABLED</code>. Use the <a>DescribeUser</a> action to confirm the user state.</p> <p>Deleting a user is permanent and cannot be undone. WorkMail archives user mailboxes for 30 days before they are permanently removed.</p>",
@@ -156,7 +158,9 @@
       "refs": {
         "BookingOptions$AutoAcceptRequests": "<p>The resource's ability to automatically reply to requests. If disabled, delegates must be associated to the resource.</p>",
         "BookingOptions$AutoDeclineRecurringRequests": "<p>The resource's ability to automatically decline any recurring requests.</p>",
-        "BookingOptions$AutoDeclineConflictingRequests": "<p>The resource's ability to automatically decline any conflicting requests.</p>"
+        "BookingOptions$AutoDeclineConflictingRequests": "<p>The resource's ability to automatically decline any conflicting requests.</p>",
+        "CreateOrganizationRequest$EnableInteroperability": "<p>When <code>true</code>, allows organization interoperability between Amazon WorkMail and Microsoft Exchange. Can only be set to <code>true</code> if an AD Connector directory ID is included in the request.</p>",
+        "DeleteOrganizationRequest$DeleteDirectory": "<p>If true, deletes the AWS Directory Service directory associated with the organization.</p>"
       }
     },
     "CancelMailboxExportJobRequest": {
@@ -185,6 +189,16 @@
       }
     },
     "CreateGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateOrganizationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateOrganizationResponse": {
       "base": null,
       "refs": {
       }
@@ -251,6 +265,16 @@
       }
     },
     "DeleteMailboxPermissionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOrganizationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOrganizationResponse": {
       "base": null,
       "refs": {
       }
@@ -353,13 +377,24 @@
         "StartMailboxExportJobRequest$Description": "<p>The mailbox export job description.</p>"
       }
     },
+    "DirectoryId": {
+      "base": null,
+      "refs": {
+        "CreateOrganizationRequest$DirectoryId": "<p>The AWS Directory Service directory ID.</p>"
+      }
+    },
+    "DirectoryInUseException": {
+      "base": "<p>The directory is already in use by another WorkMail organization in the same account and Region.</p>",
+      "refs": {
+      }
+    },
     "DirectoryServiceAuthenticationFailedException": {
       "base": "<p>The directory service doesn't recognize the credentials supplied by WorkMail.</p>",
       "refs": {
       }
     },
     "DirectoryUnavailableException": {
-      "base": "<p>The directory on which you are trying to perform operations isn't available.</p>",
+      "base": "<p>The directory is unavailable. It might be located in another Region or deleted.</p>",
       "refs": {
       }
     },
@@ -381,6 +416,25 @@
     "DisassociateMemberFromGroupResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "Domain": {
+      "base": "<p>The domain to associate with an Amazon WorkMail organization.</p> <p>When you configure a domain hosted in Amazon Route 53 (Route 53), all recommended DNS records are added to the organization when you create it. For more information, see <a href=\"https://docs.aws.amazon.com/workmail/latest/adminguide/add_domain.html\">Adding a domain</a> in the <i>Amazon WorkMail Administrator Guide</i>.</p>",
+      "refs": {
+        "Domains$member": null
+      }
+    },
+    "DomainName": {
+      "base": null,
+      "refs": {
+        "Domain$DomainName": "<p>The fully qualified domain name.</p>",
+        "OrganizationSummary$DefaultMailDomain": "<p>The default email domain associated with the organization.</p>"
+      }
+    },
+    "Domains": {
+      "base": null,
+      "refs": {
+        "CreateOrganizationRequest$Domains": "<p>The email domains to associate with the organization.</p>"
       }
     },
     "EmailAddress": {
@@ -500,10 +554,18 @@
         "ListGroupsResponse$Groups": "<p>The overview of groups for an organization.</p>"
       }
     },
+    "HostedZoneId": {
+      "base": null,
+      "refs": {
+        "Domain$HostedZoneId": "<p>The hosted zone ID for a domain hosted in Route 53. Required when configuring a domain hosted in Route 53.</p>"
+      }
+    },
     "IdempotencyClientToken": {
       "base": null,
       "refs": {
         "CancelMailboxExportJobRequest$ClientToken": "<p>The idempotency token for the client request.</p>",
+        "CreateOrganizationRequest$ClientToken": "<p>The idempotency token associated with the request.</p>",
+        "DeleteOrganizationRequest$ClientToken": "<p>The idempotency token associated with the request.</p>",
         "StartMailboxExportJobRequest$ClientToken": "<p>The idempotency token for the client request.</p>"
       }
     },
@@ -552,6 +614,7 @@
     "KmsKeyArn": {
       "base": null,
       "refs": {
+        "CreateOrganizationRequest$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of a customer managed master key from AWS KMS.</p>",
         "DescribeMailboxExportJobResponse$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the symmetric AWS Key Management Service (AWS KMS) key that encrypts the exported mailbox content.</p>",
         "StartMailboxExportJobRequest$KmsKeyArn": "<p>The Amazon Resource Name (ARN) of the symmetric AWS Key Management Service (AWS KMS) key that encrypts the exported mailbox content.</p>"
       }
@@ -792,12 +855,15 @@
         "CancelMailboxExportJobRequest$OrganizationId": "<p>The organization ID.</p>",
         "CreateAliasRequest$OrganizationId": "<p>The organization under which the member (user or group) exists.</p>",
         "CreateGroupRequest$OrganizationId": "<p>The organization under which the group is to be created.</p>",
+        "CreateOrganizationResponse$OrganizationId": "<p>The organization ID.</p>",
         "CreateResourceRequest$OrganizationId": "<p>The identifier associated with the organization for which the resource is created.</p>",
         "CreateUserRequest$OrganizationId": "<p>The identifier of the organization for which the user is created.</p>",
         "DeleteAccessControlRuleRequest$OrganizationId": "<p>The identifier for the organization.</p>",
         "DeleteAliasRequest$OrganizationId": "<p>The identifier for the organization under which the user exists.</p>",
         "DeleteGroupRequest$OrganizationId": "<p>The organization that contains the group.</p>",
         "DeleteMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the member (user or group) exists.</p>",
+        "DeleteOrganizationRequest$OrganizationId": "<p>The organization ID.</p>",
+        "DeleteOrganizationResponse$OrganizationId": "<p>The organization ID.</p>",
         "DeleteResourceRequest$OrganizationId": "<p>The identifier associated with the organization from which the resource is deleted.</p>",
         "DeleteRetentionPolicyRequest$OrganizationId": "<p>The organization ID.</p>",
         "DeleteUserRequest$OrganizationId": "<p>The organization that contains the user to be deleted.</p>",
@@ -837,6 +903,7 @@
     "OrganizationName": {
       "base": null,
       "refs": {
+        "CreateOrganizationRequest$Alias": "<p>The organization alias.</p>",
         "DescribeOrganizationResponse$Alias": "<p>The alias for an organization.</p>",
         "OrganizationSummary$Alias": "<p>The alias associated with the organization.</p>"
       }
@@ -847,7 +914,7 @@
       }
     },
     "OrganizationStateException": {
-      "base": "<p>The organization must have a valid state (Active or Synchronizing) to perform certain operations on the organization or its members.</p>",
+      "base": "<p>The organization must have a valid state to perform certain operations on the organization or its members.</p>",
       "refs": {
       }
     },
@@ -1076,12 +1143,14 @@
       "refs": {
         "CreateUserRequest$DisplayName": "<p>The display name for the new user.</p>",
         "Delegate$Id": "<p>The identifier for the user or group associated as the resource's delegate.</p>",
+        "DeleteOrganizationResponse$State": "<p>The state of the organization.</p>",
         "DescribeOrganizationResponse$State": "<p>The state of an organization.</p>",
         "DescribeOrganizationResponse$DirectoryId": "<p>The identifier for the directory associated with an Amazon WorkMail organization.</p>",
         "DescribeOrganizationResponse$DirectoryType": "<p>The type of directory associated with the WorkMail organization.</p>",
         "DescribeOrganizationResponse$DefaultMailDomain": "<p>The default mail domain associated with the organization.</p>",
         "DescribeOrganizationResponse$ErrorMessage": "<p>(Optional) The error message indicating if unexpected behavior was encountered with regards to the organization.</p>",
         "DescribeUserResponse$DisplayName": "<p>The display name of the user.</p>",
+        "DirectoryInUseException$Message": null,
         "DirectoryServiceAuthenticationFailedException$Message": null,
         "DirectoryUnavailableException$Message": null,
         "EmailAddressInUseException$Message": null,
@@ -1274,7 +1343,7 @@
         "CreateUserResponse$UserId": "<p>The identifier for the new user.</p>",
         "DeleteAliasRequest$EntityId": "<p>The identifier for the member (user or group) from which to have the aliases removed.</p>",
         "DeleteGroupRequest$GroupId": "<p>The identifier of the group to be deleted.</p>",
-        "DeleteMailboxPermissionsRequest$EntityId": "<p>The identifier of the member (user or group)that owns the mailbox.</p>",
+        "DeleteMailboxPermissionsRequest$EntityId": "<p>The identifier of the member (user or group) that owns the mailbox.</p>",
         "DeleteMailboxPermissionsRequest$GranteeId": "<p>The identifier of the member (user or group) for which to delete granted permissions.</p>",
         "DeleteUserRequest$UserId": "<p>The identifier of the user to be deleted.</p>",
         "DeregisterFromWorkMailRequest$EntityId": "<p>The identifier for the member (user or group) to be updated.</p>",

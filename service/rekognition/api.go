@@ -2182,6 +2182,143 @@ func (c *Rekognition) DetectModerationLabelsWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opDetectProtectiveEquipment = "DetectProtectiveEquipment"
+
+// DetectProtectiveEquipmentRequest generates a "aws/request.Request" representing the
+// client's request for the DetectProtectiveEquipment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DetectProtectiveEquipment for more information on using the DetectProtectiveEquipment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DetectProtectiveEquipmentRequest method.
+//    req, resp := client.DetectProtectiveEquipmentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *Rekognition) DetectProtectiveEquipmentRequest(input *DetectProtectiveEquipmentInput) (req *request.Request, output *DetectProtectiveEquipmentOutput) {
+	op := &request.Operation{
+		Name:       opDetectProtectiveEquipment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DetectProtectiveEquipmentInput{}
+	}
+
+	output = &DetectProtectiveEquipmentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DetectProtectiveEquipment API operation for Amazon Rekognition.
+//
+// Detects Personal Protective Equipment (PPE) worn by people detected in an
+// image. Amazon Rekognition can detect the following types of PPE.
+//
+//    * Face cover
+//
+//    * Hand cover
+//
+//    * Head cover
+//
+// You pass the input image as base64-encoded image bytes or as a reference
+// to an image in an Amazon S3 bucket. The image must be either a PNG or JPG
+// formatted file.
+//
+// DetectProtectiveEquipment detects PPE worn by up to 15 persons detected in
+// an image.
+//
+// For each person detected in the image the API returns an array of body parts
+// (face, head, left-hand, right-hand). For each body part, an array of detected
+// items of PPE is returned, including an indicator of whether or not the PPE
+// covers the body part. The API returns the confidence it has in each detection
+// (person, PPE, body part and body part coverage). It also returns a bounding
+// box (BoundingBox) for each detected person and each detected item of PPE.
+//
+// You can optionally request a summary of detected PPE items with the SummarizationAttributes
+// input parameter. The summary provides the following information.
+//
+//    * The persons detected as wearing all of the types of PPE that you specify.
+//
+//    * The persons detected as not wearing all of the types PPE that you specify.
+//
+//    * The persons detected where PPE adornment could not be determined.
+//
+// This is a stateless API operation. That is, the operation does not persist
+// any data.
+//
+// This operation requires permissions to perform the rekognition:DetectProtectiveEquipment
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Rekognition's
+// API operation DetectProtectiveEquipment for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidS3ObjectException
+//   Amazon Rekognition is unable to access the S3 object specified in the request.
+//
+//   * InvalidParameterException
+//   Input parameter violated a constraint. Validate your parameter before calling
+//   the API operation again.
+//
+//   * ImageTooLargeException
+//   The input image size exceeds the allowed limit. For more information, see
+//   Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+//
+//   * AccessDeniedException
+//   You are not authorized to perform the action.
+//
+//   * InternalServerError
+//   Amazon Rekognition experienced a service issue. Try your call again.
+//
+//   * ThrottlingException
+//   Amazon Rekognition is temporarily unable to process the request. Try your
+//   call again.
+//
+//   * ProvisionedThroughputExceededException
+//   The number of requests exceeded your throughput limit. If you want to increase
+//   this limit, contact Amazon Rekognition.
+//
+//   * InvalidImageFormatException
+//   The provided image format is not supported.
+//
+func (c *Rekognition) DetectProtectiveEquipment(input *DetectProtectiveEquipmentInput) (*DetectProtectiveEquipmentOutput, error) {
+	req, out := c.DetectProtectiveEquipmentRequest(input)
+	return out, req.Send()
+}
+
+// DetectProtectiveEquipmentWithContext is the same as DetectProtectiveEquipment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DetectProtectiveEquipment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Rekognition) DetectProtectiveEquipmentWithContext(ctx aws.Context, input *DetectProtectiveEquipmentInput, opts ...request.Option) (*DetectProtectiveEquipmentOutput, error) {
+	req, out := c.DetectProtectiveEquipmentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDetectText = "DetectText"
 
 // DetectTextRequest generates a "aws/request.Request" representing the
@@ -4072,6 +4209,10 @@ func (c *Rekognition) IndexFacesRequest(input *IndexFacesInput) (req *request.Re
 //
 //   * InvalidImageFormatException
 //   The provided image format is not supported.
+//
+//   * ServiceQuotaExceededException
+//   The size of the collection exceeds the allowed limit. For more information,
+//   see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
 //
 func (c *Rekognition) IndexFaces(input *IndexFacesInput) (*IndexFacesOutput, error) {
 	req, out := c.IndexFacesRequest(input)
@@ -6588,10 +6729,10 @@ func (s *Beard) SetValue(v bool) *Beard {
 	return s
 }
 
-// Identifies the bounding box around the label, face, or text. The left (x-coordinate)
-// and top (y-coordinate) are coordinates representing the top and left sides
-// of the bounding box. Note that the upper-left corner of the image is the
-// origin (0,0).
+// Identifies the bounding box around the label, face, text or personal protective
+// equipment. The left (x-coordinate) and top (y-coordinate) are coordinates
+// representing the top and left sides of the bounding box. Note that the upper-left
+// corner of the image is the origin (0,0).
 //
 // The top and left values returned are ratios of the overall image size. For
 // example, if the input image is 700x200 pixels, and the top-left coordinate
@@ -7184,6 +7325,40 @@ func (s *ContentModerationDetection) SetModerationLabel(v *ModerationLabel) *Con
 // SetTimestamp sets the Timestamp field's value.
 func (s *ContentModerationDetection) SetTimestamp(v int64) *ContentModerationDetection {
 	s.Timestamp = &v
+	return s
+}
+
+// Information about an item of Personal Protective Equipment covering a corresponding
+// body part. For more information, see DetectProtectiveEquipment.
+type CoversBodyPart struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that Amazon Rekognition has in the value of Value.
+	Confidence *float64 `type:"float"`
+
+	// True if the PPE covers the corresponding body part, otherwise false.
+	Value *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s CoversBodyPart) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CoversBodyPart) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *CoversBodyPart) SetConfidence(v float64) *CoversBodyPart {
+	s.Confidence = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *CoversBodyPart) SetValue(v bool) *CoversBodyPart {
+	s.Value = &v
 	return s
 }
 
@@ -8918,6 +9093,108 @@ func (s *DetectModerationLabelsOutput) SetModerationModelVersion(v string) *Dete
 	return s
 }
 
+type DetectProtectiveEquipmentInput struct {
+	_ struct{} `type:"structure"`
+
+	// The image in which you want to detect PPE on detected persons. The image
+	// can be passed as image bytes or you can reference an image stored in an Amazon
+	// S3 bucket.
+	//
+	// Image is a required field
+	Image *Image `type:"structure" required:"true"`
+
+	// An array of PPE types that you want to summarize.
+	SummarizationAttributes *ProtectiveEquipmentSummarizationAttributes `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetectProtectiveEquipmentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectProtectiveEquipmentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DetectProtectiveEquipmentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DetectProtectiveEquipmentInput"}
+	if s.Image == nil {
+		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.Image != nil {
+		if err := s.Image.Validate(); err != nil {
+			invalidParams.AddNested("Image", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SummarizationAttributes != nil {
+		if err := s.SummarizationAttributes.Validate(); err != nil {
+			invalidParams.AddNested("SummarizationAttributes", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImage sets the Image field's value.
+func (s *DetectProtectiveEquipmentInput) SetImage(v *Image) *DetectProtectiveEquipmentInput {
+	s.Image = v
+	return s
+}
+
+// SetSummarizationAttributes sets the SummarizationAttributes field's value.
+func (s *DetectProtectiveEquipmentInput) SetSummarizationAttributes(v *ProtectiveEquipmentSummarizationAttributes) *DetectProtectiveEquipmentInput {
+	s.SummarizationAttributes = v
+	return s
+}
+
+type DetectProtectiveEquipmentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of persons detected in the image (including persons not wearing
+	// PPE).
+	Persons []*ProtectiveEquipmentPerson `type:"list"`
+
+	// The version number of the PPE detection model used to detect PPE in the image.
+	ProtectiveEquipmentModelVersion *string `type:"string"`
+
+	// Summary information for the types of PPE specified in the SummarizationAttributes
+	// input parameter.
+	Summary *ProtectiveEquipmentSummary `type:"structure"`
+}
+
+// String returns the string representation
+func (s DetectProtectiveEquipmentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetectProtectiveEquipmentOutput) GoString() string {
+	return s.String()
+}
+
+// SetPersons sets the Persons field's value.
+func (s *DetectProtectiveEquipmentOutput) SetPersons(v []*ProtectiveEquipmentPerson) *DetectProtectiveEquipmentOutput {
+	s.Persons = v
+	return s
+}
+
+// SetProtectiveEquipmentModelVersion sets the ProtectiveEquipmentModelVersion field's value.
+func (s *DetectProtectiveEquipmentOutput) SetProtectiveEquipmentModelVersion(v string) *DetectProtectiveEquipmentOutput {
+	s.ProtectiveEquipmentModelVersion = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *DetectProtectiveEquipmentOutput) SetSummary(v *ProtectiveEquipmentSummary) *DetectProtectiveEquipmentOutput {
+	s.Summary = v
+	return s
+}
+
 // A set of optional parameters that you can use to set the criteria that the
 // text must meet to be included in your response. WordFilter looks at a word’s
 // height, width, and minimum confidence. RegionOfInterest lets you set a specific
@@ -9128,6 +9405,59 @@ func (s *Emotion) SetConfidence(v float64) *Emotion {
 
 // SetType sets the Type field's value.
 func (s *Emotion) SetType(v string) *Emotion {
+	s.Type = &v
+	return s
+}
+
+// Information about an item of Personal Protective Equipment (PPE) detected
+// by DetectProtectiveEquipment. For more information, see DetectProtectiveEquipment.
+type EquipmentDetection struct {
+	_ struct{} `type:"structure"`
+
+	// A bounding box surrounding the item of detected PPE.
+	BoundingBox *BoundingBox `type:"structure"`
+
+	// The confidence that Amazon Rekognition has that the bounding box (BoundingBox)
+	// contains an item of PPE.
+	Confidence *float64 `type:"float"`
+
+	// Information about the body part covered by the detected PPE.
+	CoversBodyPart *CoversBodyPart `type:"structure"`
+
+	// The type of detected PPE.
+	Type *string `type:"string" enum:"ProtectiveEquipmentType"`
+}
+
+// String returns the string representation
+func (s EquipmentDetection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EquipmentDetection) GoString() string {
+	return s.String()
+}
+
+// SetBoundingBox sets the BoundingBox field's value.
+func (s *EquipmentDetection) SetBoundingBox(v *BoundingBox) *EquipmentDetection {
+	s.BoundingBox = v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *EquipmentDetection) SetConfidence(v float64) *EquipmentDetection {
+	s.Confidence = &v
+	return s
+}
+
+// SetCoversBodyPart sets the CoversBodyPart field's value.
+func (s *EquipmentDetection) SetCoversBodyPart(v *CoversBodyPart) *EquipmentDetection {
+	s.CoversBodyPart = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EquipmentDetection) SetType(v string) *EquipmentDetection {
 	s.Type = &v
 	return s
 }
@@ -13103,6 +13433,238 @@ func (s *ProjectVersionDescription) SetTrainingEndTimestamp(v time.Time) *Projec
 	return s
 }
 
+// Information about a body part detected by DetectProtectiveEquipment that
+// contains PPE. An array of ProtectiveEquipmentBodyPart objects is returned
+// for each person detected by DetectProtectiveEquipment.
+type ProtectiveEquipmentBodyPart struct {
+	_ struct{} `type:"structure"`
+
+	// The confidence that Amazon Rekognition has in the detection accuracy of the
+	// detected body part.
+	Confidence *float64 `type:"float"`
+
+	// An array of Personal Protective Equipment items detected around a body part.
+	EquipmentDetections []*EquipmentDetection `type:"list"`
+
+	// The detected body part.
+	Name *string `type:"string" enum:"BodyPart"`
+}
+
+// String returns the string representation
+func (s ProtectiveEquipmentBodyPart) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProtectiveEquipmentBodyPart) GoString() string {
+	return s.String()
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *ProtectiveEquipmentBodyPart) SetConfidence(v float64) *ProtectiveEquipmentBodyPart {
+	s.Confidence = &v
+	return s
+}
+
+// SetEquipmentDetections sets the EquipmentDetections field's value.
+func (s *ProtectiveEquipmentBodyPart) SetEquipmentDetections(v []*EquipmentDetection) *ProtectiveEquipmentBodyPart {
+	s.EquipmentDetections = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ProtectiveEquipmentBodyPart) SetName(v string) *ProtectiveEquipmentBodyPart {
+	s.Name = &v
+	return s
+}
+
+// A person detected by a call to DetectProtectiveEquipment. The API returns
+// all persons detected in the input image in an array of ProtectiveEquipmentPerson
+// objects.
+type ProtectiveEquipmentPerson struct {
+	_ struct{} `type:"structure"`
+
+	// An array of body parts detected on a person's body (including body parts
+	// without PPE).
+	BodyParts []*ProtectiveEquipmentBodyPart `type:"list"`
+
+	// A bounding box around the detected person.
+	BoundingBox *BoundingBox `type:"structure"`
+
+	// The confidence that Amazon Rekognition has that the bounding box contains
+	// a person.
+	Confidence *float64 `type:"float"`
+
+	// The identifier for the detected person. The identifier is only unique for
+	// a single call to DetectProtectiveEquipment.
+	Id *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ProtectiveEquipmentPerson) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProtectiveEquipmentPerson) GoString() string {
+	return s.String()
+}
+
+// SetBodyParts sets the BodyParts field's value.
+func (s *ProtectiveEquipmentPerson) SetBodyParts(v []*ProtectiveEquipmentBodyPart) *ProtectiveEquipmentPerson {
+	s.BodyParts = v
+	return s
+}
+
+// SetBoundingBox sets the BoundingBox field's value.
+func (s *ProtectiveEquipmentPerson) SetBoundingBox(v *BoundingBox) *ProtectiveEquipmentPerson {
+	s.BoundingBox = v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *ProtectiveEquipmentPerson) SetConfidence(v float64) *ProtectiveEquipmentPerson {
+	s.Confidence = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ProtectiveEquipmentPerson) SetId(v int64) *ProtectiveEquipmentPerson {
+	s.Id = &v
+	return s
+}
+
+// Specifies summary attributes to return from a call to DetectProtectiveEquipment.
+// You can specify which types of PPE to summarize. You can also specify a minimum
+// confidence value for detections. Summary information is returned in the Summary
+// (ProtectiveEquipmentSummary) field of the response from DetectProtectiveEquipment.
+// The summary includes which persons in an image were detected wearing the
+// requested types of person protective equipment (PPE), which persons were
+// detected as not wearing PPE, and the persons in which a determination could
+// not be made. For more information, see ProtectiveEquipmentSummary.
+type ProtectiveEquipmentSummarizationAttributes struct {
+	_ struct{} `type:"structure"`
+
+	// The minimum confidence level for which you want summary information. The
+	// confidence level applies to person detection, body part detection, equipment
+	// detection, and body part coverage. Amazon Rekognition doesn't return summary
+	// information with a confidence than this specified value. There isn't a default
+	// value.
+	//
+	// Specify a MinConfidence value that is between 50-100% as DetectProtectiveEquipment
+	// returns predictions only where the detection confidence is between 50% -
+	// 100%. If you specify a value that is less than 50%, the results are the same
+	// specifying a value of 50%.
+	//
+	// MinConfidence is a required field
+	MinConfidence *float64 `type:"float" required:"true"`
+
+	// An array of personal protective equipment types for which you want summary
+	// information. If a person is detected wearing a required requipment type,
+	// the person's ID is added to the PersonsWithRequiredEquipment array field
+	// returned in ProtectiveEquipmentSummary by DetectProtectiveEquipment.
+	//
+	// RequiredEquipmentTypes is a required field
+	RequiredEquipmentTypes []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ProtectiveEquipmentSummarizationAttributes) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProtectiveEquipmentSummarizationAttributes) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProtectiveEquipmentSummarizationAttributes) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProtectiveEquipmentSummarizationAttributes"}
+	if s.MinConfidence == nil {
+		invalidParams.Add(request.NewErrParamRequired("MinConfidence"))
+	}
+	if s.RequiredEquipmentTypes == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequiredEquipmentTypes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMinConfidence sets the MinConfidence field's value.
+func (s *ProtectiveEquipmentSummarizationAttributes) SetMinConfidence(v float64) *ProtectiveEquipmentSummarizationAttributes {
+	s.MinConfidence = &v
+	return s
+}
+
+// SetRequiredEquipmentTypes sets the RequiredEquipmentTypes field's value.
+func (s *ProtectiveEquipmentSummarizationAttributes) SetRequiredEquipmentTypes(v []*string) *ProtectiveEquipmentSummarizationAttributes {
+	s.RequiredEquipmentTypes = v
+	return s
+}
+
+// Summary information for required items of personal protective equipment (PPE)
+// detected on persons by a call to DetectProtectiveEquipment. You specify the
+// required type of PPE in the SummarizationAttributes (ProtectiveEquipmentSummarizationAttributes)
+// input parameter. The summary includes which persons were detected wearing
+// the required personal protective equipment (PersonsWithRequiredEquipment),
+// which persons were detected as not wearing the required PPE (PersonsWithoutRequiredEquipment),
+// and the persons in which a determination could not be made (PersonsIndeterminate).
+//
+// To get a total for each category, use the size of the field array. For example,
+// to find out how many people were detected as wearing the specified PPE, use
+// the size of the PersonsWithRequiredEquipment array. If you want to find out
+// more about a person, such as the location (BoundingBox) of the person on
+// the image, use the person ID in each array element. Each person ID matches
+// the ID field of a ProtectiveEquipmentPerson object returned in the Persons
+// array by DetectProtectiveEquipment.
+type ProtectiveEquipmentSummary struct {
+	_ struct{} `type:"structure"`
+
+	// An array of IDs for persons where it was not possible to determine if they
+	// are wearing personal protective equipment.
+	PersonsIndeterminate []*int64 `type:"list"`
+
+	// An array of IDs for persons who are wearing detected personal protective
+	// equipment.
+	PersonsWithRequiredEquipment []*int64 `type:"list"`
+
+	// An array of IDs for persons who are not wearing all of the types of PPE specified
+	// in the RequiredEquipmentTypes field of the detected personal protective equipment.
+	PersonsWithoutRequiredEquipment []*int64 `type:"list"`
+}
+
+// String returns the string representation
+func (s ProtectiveEquipmentSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProtectiveEquipmentSummary) GoString() string {
+	return s.String()
+}
+
+// SetPersonsIndeterminate sets the PersonsIndeterminate field's value.
+func (s *ProtectiveEquipmentSummary) SetPersonsIndeterminate(v []*int64) *ProtectiveEquipmentSummary {
+	s.PersonsIndeterminate = v
+	return s
+}
+
+// SetPersonsWithRequiredEquipment sets the PersonsWithRequiredEquipment field's value.
+func (s *ProtectiveEquipmentSummary) SetPersonsWithRequiredEquipment(v []*int64) *ProtectiveEquipmentSummary {
+	s.PersonsWithRequiredEquipment = v
+	return s
+}
+
+// SetPersonsWithoutRequiredEquipment sets the PersonsWithoutRequiredEquipment field's value.
+func (s *ProtectiveEquipmentSummary) SetPersonsWithoutRequiredEquipment(v []*int64) *ProtectiveEquipmentSummary {
+	s.PersonsWithoutRequiredEquipment = v
+	return s
+}
+
 // The number of requests exceeded your throughput limit. If you want to increase
 // this limit, contact Amazon Rekognition.
 type ProvisionedThroughputExceededException struct {
@@ -14007,6 +14569,63 @@ func (s *SegmentTypeInfo) SetModelVersion(v string) *SegmentTypeInfo {
 func (s *SegmentTypeInfo) SetType(v string) *SegmentTypeInfo {
 	s.Type = &v
 	return s
+}
+
+// The size of the collection exceeds the allowed limit. For more information,
+// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+type ServiceQuotaExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ServiceQuotaExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceQuotaExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorServiceQuotaExceededException(v protocol.ResponseMetadata) error {
+	return &ServiceQuotaExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ServiceQuotaExceededException) Code() string {
+	return "ServiceQuotaExceededException"
+}
+
+// Message returns the exception's message.
+func (s *ServiceQuotaExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ServiceQuotaExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *ServiceQuotaExceededException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ServiceQuotaExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ServiceQuotaExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // Information about a shot detection segment detected in a video. For more
@@ -16411,6 +17030,30 @@ func Attribute_Values() []string {
 }
 
 const (
+	// BodyPartFace is a BodyPart enum value
+	BodyPartFace = "FACE"
+
+	// BodyPartHead is a BodyPart enum value
+	BodyPartHead = "HEAD"
+
+	// BodyPartLeftHand is a BodyPart enum value
+	BodyPartLeftHand = "LEFT_HAND"
+
+	// BodyPartRightHand is a BodyPart enum value
+	BodyPartRightHand = "RIGHT_HAND"
+)
+
+// BodyPart_Values returns all elements of the BodyPart enum
+func BodyPart_Values() []string {
+	return []string{
+		BodyPartFace,
+		BodyPartHead,
+		BodyPartLeftHand,
+		BodyPartRightHand,
+	}
+}
+
+const (
 	// CelebrityRecognitionSortById is a CelebrityRecognitionSortBy enum value
 	CelebrityRecognitionSortById = "ID"
 
@@ -16795,6 +17438,26 @@ func ProjectVersionStatus_Values() []string {
 		ProjectVersionStatusStopping,
 		ProjectVersionStatusStopped,
 		ProjectVersionStatusDeleting,
+	}
+}
+
+const (
+	// ProtectiveEquipmentTypeFaceCover is a ProtectiveEquipmentType enum value
+	ProtectiveEquipmentTypeFaceCover = "FACE_COVER"
+
+	// ProtectiveEquipmentTypeHandCover is a ProtectiveEquipmentType enum value
+	ProtectiveEquipmentTypeHandCover = "HAND_COVER"
+
+	// ProtectiveEquipmentTypeHeadCover is a ProtectiveEquipmentType enum value
+	ProtectiveEquipmentTypeHeadCover = "HEAD_COVER"
+)
+
+// ProtectiveEquipmentType_Values returns all elements of the ProtectiveEquipmentType enum
+func ProtectiveEquipmentType_Values() []string {
+	return []string{
+		ProtectiveEquipmentTypeFaceCover,
+		ProtectiveEquipmentTypeHandCover,
+		ProtectiveEquipmentTypeHeadCover,
 	}
 }
 

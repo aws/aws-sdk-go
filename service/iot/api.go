@@ -5238,6 +5238,10 @@ func (c *IoT) DeleteProvisioningTemplateRequest(input *DeleteProvisioningTemplat
 //   * ThrottlingException
 //   The rate exceeds the limit.
 //
+//   * ConflictingResourceUpdateException
+//   A conflicting resource update exception. This exception is thrown when two
+//   pending updates cause a conflict.
+//
 //   * UnauthorizedException
 //   You are not authorized to perform this operation.
 //
@@ -5329,6 +5333,10 @@ func (c *IoT) DeleteProvisioningTemplateVersionRequest(input *DeleteProvisioning
 //
 //   * UnauthorizedException
 //   You are not authorized to perform this operation.
+//
+//   * ConflictingResourceUpdateException
+//   A conflicting resource update exception. This exception is thrown when two
+//   pending updates cause a conflict.
 //
 //   * DeleteConflictException
 //   You can't delete the resource because it is attached to one or more resources.
@@ -29001,12 +29009,11 @@ func (s *CreateScheduledAuditOutput) SetScheduledAuditArn(v string) *CreateSched
 type CreateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Please use CreateSecurityProfileRequest$additionalMetricsToRetainV2 instead.
+	//
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
 	// any metric specified here.
-	//
-	// Note: This API field is deprecated. Please use CreateSecurityProfileRequest$additionalMetricsToRetainV2
-	// instead.
 	//
 	// Deprecated: Use additionalMetricsToRetainV2.
 	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
@@ -32788,6 +32795,9 @@ type DescribeDomainConfigurationOutput struct {
 	// The type of the domain.
 	DomainType *string `locationName:"domainType" type:"string" enum:"DomainType"`
 
+	// The date and time the domain configuration's status was last changed.
+	LastStatusChangeDate *time.Time `locationName:"lastStatusChangeDate" type:"timestamp"`
+
 	// A list containing summary information about the server certificate included
 	// in the domain configuration.
 	ServerCertificates []*ServerCertificateSummary `locationName:"serverCertificates" type:"list"`
@@ -32839,6 +32849,12 @@ func (s *DescribeDomainConfigurationOutput) SetDomainName(v string) *DescribeDom
 // SetDomainType sets the DomainType field's value.
 func (s *DescribeDomainConfigurationOutput) SetDomainType(v string) *DescribeDomainConfigurationOutput {
 	s.DomainType = &v
+	return s
+}
+
+// SetLastStatusChangeDate sets the LastStatusChangeDate field's value.
+func (s *DescribeDomainConfigurationOutput) SetLastStatusChangeDate(v time.Time) *DescribeDomainConfigurationOutput {
+	s.LastStatusChangeDate = &v
 	return s
 }
 
@@ -33831,12 +33847,11 @@ func (s *DescribeSecurityProfileInput) SetSecurityProfileName(v string) *Describ
 type DescribeSecurityProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Please use DescribeSecurityProfileResponse$additionalMetricsToRetainV2 instead.
+	//
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
 	// any metric specified here.
-	//
-	// Note: This API field is deprecated. Please use DescribeSecurityProfileResponse$additionalMetricsToRetainV2
-	// instead.
 	//
 	// Deprecated: Use additionalMetricsToRetainV2.
 	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
@@ -35534,13 +35549,13 @@ type ExponentialRolloutRate struct {
 
 	// The exponential factor to increase the rate of rollout for a job.
 	//
+	// AWS IoT supports up to one digit after the decimal (for example, 1.5, but
+	// not 1.55).
+	//
 	// IncrementFactor is a required field
 	IncrementFactor *float64 `locationName:"incrementFactor" min:"1" type:"double" required:"true"`
 
 	// The criteria to initiate the increase in rate of rollout for a job.
-	//
-	// AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-	// not 1.55).
 	//
 	// RateIncreaseCriteria is a required field
 	RateIncreaseCriteria *RateIncreaseCriteria `locationName:"rateIncreaseCriteria" type:"structure" required:"true"`
@@ -50572,7 +50587,7 @@ type TopicRulePayload struct {
 	RuleDisabled *bool `locationName:"ruleDisabled" type:"boolean"`
 
 	// The SQL statement used to query the topic. For more information, see AWS
-	// IoT SQL Reference (https://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html#aws-iot-sql-reference)
+	// IoT SQL Reference (https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html)
 	// in the AWS IoT Developer Guide.
 	//
 	// Sql is a required field
@@ -52717,12 +52732,11 @@ func (s *UpdateScheduledAuditOutput) SetScheduledAuditArn(v string) *UpdateSched
 type UpdateSecurityProfileInput struct {
 	_ struct{} `type:"structure"`
 
+	// Please use UpdateSecurityProfileRequest$additionalMetricsToRetainV2 instead.
+	//
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the profile's behaviors, but it is also retained for
 	// any metric specified here.
-	//
-	// Note: This API field is deprecated. Please use UpdateSecurityProfileRequest$additionalMetricsToRetainV2
-	// instead.
 	//
 	// Deprecated: Use additionalMetricsToRetainV2.
 	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
@@ -52885,12 +52899,11 @@ func (s *UpdateSecurityProfileInput) SetSecurityProfileName(v string) *UpdateSec
 type UpdateSecurityProfileOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Please use UpdateSecurityProfileResponse$additionalMetricsToRetainV2 instead.
+	//
 	// A list of metrics whose data is retained (stored). By default, data is retained
 	// for any metric used in the security profile's behaviors, but it is also retained
 	// for any metric specified here.
-	//
-	// Note: This API field is deprecated. Please use UpdateSecurityProfileResponse$additionalMetricsToRetainV2
-	// instead.
 	//
 	// Deprecated: Use additionalMetricsToRetainV2.
 	AdditionalMetricsToRetain []*string `locationName:"additionalMetricsToRetain" deprecated:"true" type:"list"`
