@@ -918,7 +918,8 @@
         "OracleSettings":{"shape":"OracleSettings"},
         "SybaseSettings":{"shape":"SybaseSettings"},
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
-        "IBMDb2Settings":{"shape":"IBMDb2Settings"}
+        "IBMDb2Settings":{"shape":"IBMDb2Settings"},
+        "ResourceIdentifier":{"shape":"String"}
       }
     },
     "CreateEndpointResponse":{
@@ -969,7 +970,8 @@
         "Tags":{"shape":"TagList"},
         "KmsKeyId":{"shape":"String"},
         "PubliclyAccessible":{"shape":"BooleanOptional"},
-        "DnsNameServers":{"shape":"String"}
+        "DnsNameServers":{"shape":"String"},
+        "ResourceIdentifier":{"shape":"String"}
       }
     },
     "CreateReplicationInstanceResponse":{
@@ -1020,7 +1022,8 @@
         "CdcStartPosition":{"shape":"String"},
         "CdcStopPosition":{"shape":"String"},
         "Tags":{"shape":"TagList"},
-        "TaskData":{"shape":"String"}
+        "TaskData":{"shape":"String"},
+        "ResourceIdentifier":{"shape":"String"}
       }
     },
     "CreateReplicationTaskResponse":{
@@ -2138,11 +2141,14 @@
         "AfterConnectScript":{"shape":"String"},
         "BucketFolder":{"shape":"String"},
         "BucketName":{"shape":"String"},
+        "CaseSensitiveNames":{"shape":"BooleanOptional"},
+        "CompUpdate":{"shape":"BooleanOptional"},
         "ConnectionTimeout":{"shape":"IntegerOptional"},
         "DatabaseName":{"shape":"String"},
         "DateFormat":{"shape":"String"},
         "EmptyAsNull":{"shape":"BooleanOptional"},
         "EncryptionMode":{"shape":"EncryptionModeValue"},
+        "ExplicitIds":{"shape":"BooleanOptional"},
         "FileTransferUploadStreams":{"shape":"IntegerOptional"},
         "LoadTimeout":{"shape":"IntegerOptional"},
         "MaxFileSize":{"shape":"IntegerOptional"},

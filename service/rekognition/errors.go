@@ -109,6 +109,13 @@ const (
 	// you call DetectCustomLabels with a model version that isn't deployed.
 	ErrCodeResourceNotReadyException = "ResourceNotReadyException"
 
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// The size of the collection exceeds the allowed limit. For more information,
+	// see Limits in Amazon Rekognition in the Amazon Rekognition Developer Guide.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
@@ -140,6 +147,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ResourceInUseException":                 newErrorResourceInUseException,
 	"ResourceNotFoundException":              newErrorResourceNotFoundException,
 	"ResourceNotReadyException":              newErrorResourceNotReadyException,
+	"ServiceQuotaExceededException":          newErrorServiceQuotaExceededException,
 	"ThrottlingException":                    newErrorThrottlingException,
 	"VideoTooLargeException":                 newErrorVideoTooLargeException,
 }

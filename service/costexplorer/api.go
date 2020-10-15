@@ -5786,7 +5786,7 @@ type GetCostAndUsageWithResourcesInput struct {
 	Granularity *string `type:"string" enum:"Granularity"`
 
 	// You can group Amazon Web Services costs using up to two different groups:
-	// either dimensions, tag keys, or both.
+	// DIMENSION, TAG, COST_CATEGORY.
 	GroupBy []*GroupDefinition `type:"list"`
 
 	// Which metrics are returned in the query. For more information about blended

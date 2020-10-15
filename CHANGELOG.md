@@ -1,3 +1,38 @@
+Release v1.35.8 (2020-10-15)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/budgets`: Updates service API, documentation, and paginators
+  * This release introduces AWS Budgets Actions, allowing you to define an explicit response(or set of responses)  to take when your budget exceeds it's action threshold.
+* `service/ce`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * When creating Endpoints, Replication Instances, and Replication Tasks, the feature provides you the option to specify friendly name to the resources.
+* `service/glue`: Updates service documentation
+  * API Documentation updates for Glue Get-Plan API
+* `service/groundstation`: Updates service API and documentation
+* `service/iot`: Updates service API and documentation
+  * Add new variable, lastStatusChangeDate, to DescribeDomainConfiguration  API
+* `service/macie2`: Updates service API and documentation
+* `service/rds`: Updates service API and documentation
+  * Return tags for all resources in the output of DescribeDBInstances, DescribeDBSnapshots, DescribeDBClusters, and DescribeDBClusterSnapshots API operations.
+* `service/rekognition`: Updates service API and documentation
+  * This SDK Release introduces new API (DetectProtectiveEquipment) for Amazon Rekognition. This release also adds ServiceQuotaExceeded exception to Amazon Rekognition IndexFaces API.
+* `service/ssm`: Updates service API and documentation
+  * This Patch Manager release now supports searching for available packages from Amazon Linux and Amazon Linux 2 via the DescribeAvailablePatches API.
+* `service/transfer`: Updates service API and documentation
+  * Add support to associate VPC Security Groups at server creation.
+* `service/workmail`: Updates service API and documentation
+  * Add CreateOrganization and DeleteOrganization API operations.
+* `service/workspaces`: Updates service documentation
+  * Documentation updates for WorkSpaces
+* `service/xray`: Updates service API, documentation, and paginators
+  * Enhancing CreateGroup, UpdateGroup, GetGroup and GetGroups APIs to support configuring X-Ray Insights Notifications. Adding TraceLimit information into X-Ray BatchGetTraces API response.
+
+### SDK Bugs
+* `s3control`: Fixes bug in SDK that caused input for certain s3control operation to be modified, when using ARNs. ([#3595](https://github.com/aws/aws-sdk-go/pull/3595))
+  * Fixes [#3583](https://github.com/aws/aws-sdk-go/issues/3583).
+
 Release v1.35.7 (2020-10-09)
 ===
 

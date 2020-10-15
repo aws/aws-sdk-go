@@ -2081,6 +2081,10 @@
         "publiclyWritable": {
           "shape": "__long",
           "locationName": "publiclyWritable"
+        },
+        "unknown": {
+          "shape": "__long",
+          "locationName": "unknown"
         }
       }
     },
@@ -2115,6 +2119,10 @@
         "notShared": {
           "shape": "__long",
           "locationName": "notShared"
+        },
+        "unknown": {
+          "shape": "__long",
+          "locationName": "unknown"
         }
       }
     },
@@ -2310,6 +2318,33 @@
         }
       }
     },
+    "Cell": {
+      "type": "structure",
+      "members": {
+        "cellReference": {
+          "shape": "__string",
+          "locationName": "cellReference"
+        },
+        "column": {
+          "shape": "__long",
+          "locationName": "column"
+        },
+        "columnName": {
+          "shape": "__string",
+          "locationName": "columnName"
+        },
+        "row": {
+          "shape": "__long",
+          "locationName": "row"
+        }
+      }
+    },
+    "Cells": {
+      "type": "list",
+      "member": {
+        "shape": "Cell"
+      }
+    },
     "ClassificationDetails": {
       "type": "structure",
       "members": {
@@ -2343,6 +2378,10 @@
     "ClassificationResult": {
       "type": "structure",
       "members": {
+        "additionalOccurrences": {
+          "shape": "__boolean",
+          "locationName": "additionalOccurrences"
+        },
         "customDataIdentifiers": {
           "shape": "CustomDataIdentifiers",
           "locationName": "customDataIdentifiers"
@@ -2718,6 +2757,10 @@
         "name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "occurrences": {
+          "shape": "Occurrences",
+          "locationName": "occurrences"
         }
       }
     },
@@ -2770,6 +2813,10 @@
         "count": {
           "shape": "__long",
           "locationName": "count"
+        },
+        "occurrences": {
+          "shape": "Occurrences",
+          "locationName": "occurrences"
         },
         "type": {
           "shape": "__string",
@@ -2969,6 +3016,10 @@
         "tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "userPausedDetails": {
+          "shape": "UserPausedDetails",
+          "locationName": "userPausedDetails"
         }
       }
     },
@@ -3961,7 +4012,8 @@
         "PAUSED",
         "CANCELLED",
         "COMPLETE",
-        "IDLE"
+        "IDLE",
+        "USER_PAUSED"
       ]
     },
     "JobSummary": {
@@ -3990,6 +4042,10 @@
         "name": {
           "shape": "__string",
           "locationName": "name"
+        },
+        "userPausedDetails": {
+          "shape": "UserPausedDetails",
+          "locationName": "userPausedDetails"
         }
       }
     },
@@ -4409,12 +4465,60 @@
         }
       }
     },
+    "Occurrences": {
+      "type": "structure",
+      "members": {
+        "cells": {
+          "shape": "Cells",
+          "locationName": "cells"
+        },
+        "lineRanges": {
+          "shape": "Ranges",
+          "locationName": "lineRanges"
+        },
+        "offsetRanges": {
+          "shape": "Ranges",
+          "locationName": "offsetRanges"
+        },
+        "pages": {
+          "shape": "Pages",
+          "locationName": "pages"
+        },
+        "records": {
+          "shape": "Records",
+          "locationName": "records"
+        }
+      }
+    },
     "OrderBy": {
       "type": "string",
       "enum": [
         "ASC",
         "DESC"
       ]
+    },
+    "Page": {
+      "type": "structure",
+      "members": {
+        "lineRange": {
+          "shape": "Range",
+          "locationName": "lineRange"
+        },
+        "offsetRange": {
+          "shape": "Range",
+          "locationName": "offsetRange"
+        },
+        "pageNumber": {
+          "shape": "__long",
+          "locationName": "pageNumber"
+        }
+      }
+    },
+    "Pages": {
+      "type": "list",
+      "member": {
+        "shape": "Page"
+      }
     },
     "PolicyDetails": {
       "type": "structure",
@@ -4448,6 +4552,44 @@
           "shape": "ClassificationExportConfiguration",
           "locationName": "configuration"
         }
+      }
+    },
+    "Range": {
+      "type": "structure",
+      "members": {
+        "end": {
+          "shape": "__long",
+          "locationName": "end"
+        },
+        "start": {
+          "shape": "__long",
+          "locationName": "start"
+        },
+        "startColumn": {
+          "shape": "__long",
+          "locationName": "startColumn"
+        }
+      }
+    },
+    "Ranges": {
+      "type": "list",
+      "member": {
+        "shape": "Range"
+      }
+    },
+    "Record": {
+      "type": "structure",
+      "members": {
+        "recordIndex": {
+          "shape": "__long",
+          "locationName": "recordIndex"
+        }
+      }
+    },
+    "Records": {
+      "type": "list",
+      "member": {
+        "shape": "Record"
       }
     },
     "RelationshipStatus": {
@@ -5361,6 +5503,23 @@
         "AWSAccount",
         "AWSService"
       ]
+    },
+    "UserPausedDetails": {
+      "type": "structure",
+      "members": {
+        "jobExpiresAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "jobExpiresAt"
+        },
+        "jobImminentExpirationHealthEventArn": {
+          "shape": "__string",
+          "locationName": "jobImminentExpirationHealthEventArn"
+        },
+        "jobPausedAt": {
+          "shape": "__timestampIso8601",
+          "locationName": "jobPausedAt"
+        }
+      }
     },
     "ValidationException": {
       "type": "structure",

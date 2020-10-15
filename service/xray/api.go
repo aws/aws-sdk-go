@@ -1802,8 +1802,8 @@ func (c *XRay) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req 
 //   The request exceeds the maximum number of requests per second.
 //
 //   * ResourceNotFoundException
-//   The resource was not found. Verify that the name or ARN of the resource is
-//   correct.
+//   The resource was not found. Verify that the name or Amazon Resource Name
+//   (ARN) of the resource is correct.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/ListTagsForResource
 func (c *XRay) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2045,7 +2045,7 @@ func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *reque
 // schema, see AWS X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
 // in the AWS X-Ray Developer Guide.
 //
-// Required Segment Document Fields
+// Required segment document fields
 //
 //    * name - The name of the service that handled the request.
 //
@@ -2063,18 +2063,17 @@ func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *reque
 //    or 1.480615200090E9. Specify either an end_time or in_progress.
 //
 //    * in_progress - Set to true instead of specifying an end_time to record
-//    that a segment has been started, but is not complete. Send an in progress
+//    that a segment has been started, but is not complete. Send an in-progress
 //    segment when your application receives a request that will take a long
-//    time to serve, to trace the fact that the request was received. When the
-//    response is sent, send the complete segment to overwrite the in-progress
-//    segment.
+//    time to serve, to trace that the request was received. When the response
+//    is sent, send the complete segment to overwrite the in-progress segment.
 //
 // A trace_id consists of three numbers separated by hyphens. For example, 1-58406520-a006649127e371903a2de979.
 // This includes:
 //
 // Trace ID Format
 //
-//    * The version number, i.e. 1.
+//    * The version number, for instance, 1.
 //
 //    * The time of the original request, in Unix epoch time, in 8 hexadecimal
 //    digits. For example, 10:00AM December 2nd, 2016 PST in epoch time is 1480615200
@@ -2181,8 +2180,8 @@ func (c *XRay) TagResourceRequest(input *TagResourceInput) (req *request.Request
 //   The request exceeds the maximum number of requests per second.
 //
 //   * ResourceNotFoundException
-//   The resource was not found. Verify that the name or ARN of the resource is
-//   correct.
+//   The resource was not found. Verify that the name or Amazon Resource Name
+//   (ARN) of the resource is correct.
 //
 //   * TooManyTagsException
 //   You have exceeded the maximum number of tags you can apply to this resource.
@@ -2272,8 +2271,8 @@ func (c *XRay) UntagResourceRequest(input *UntagResourceInput) (req *request.Req
 //   The request exceeds the maximum number of requests per second.
 //
 //   * ResourceNotFoundException
-//   The resource was not found. Verify that the name or ARN of the resource is
-//   correct.
+//   The resource was not found. Verify that the name or Amazon Resource Name
+//   (ARN) of the resource is correct.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/UntagResource
 func (c *XRay) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -2503,7 +2502,7 @@ func (s *Alias) SetType(v string) *Alias {
 	return s
 }
 
-// Value of a segment annotation. Has one of three value types: Number, Boolean
+// Value of a segment annotation. Has one of three value types: Number, Boolean,
 // or String.
 type AnnotationValue struct {
 	_ struct{} `type:"structure"`
@@ -2546,11 +2545,11 @@ func (s *AnnotationValue) SetStringValue(v string) *AnnotationValue {
 	return s
 }
 
-// A list of availability zones corresponding to the segments in a trace.
+// A list of Availability Zones corresponding to the segments in a trace.
 type AvailabilityZoneDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a corresponding availability zone.
+	// The name of a corresponding Availability Zone.
 	Name *string `type:"string"`
 }
 
@@ -2732,9 +2731,14 @@ type CreateGroupInput struct {
 	// GroupName is a required field
 	GroupName *string `min:"1" type:"string" required:"true"`
 
-	// The structure containing configurations related to insights. The InsightsEnabled
-	// boolean can be set to true to enable insights for the new group or false
-	// to disable insights for the new group.
+	// The structure containing configurations related to insights.
+	//
+	//    * The InsightsEnabled boolean can be set to true to enable insights for
+	//    the new group or false to disable insights for the new group.
+	//
+	//    * The NotifcationsEnabled boolean can be set to true to enable insights
+	//    notifications for the new group. Notifications may only be enabled on
+	//    a group with InsightsEnabled set to true.
 	InsightsConfiguration *InsightsConfiguration `type:"structure"`
 
 	// A map that contains one or more tag keys and tag values to attach to an X-Ray
@@ -2823,8 +2827,9 @@ type CreateGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The group that was created. Contains the name of the group that was created,
-	// the ARN of the group that was generated based on the group name, the filter
-	// expression, and the insight configuration that was assigned to the group.
+	// the Amazon Resource Name (ARN) of the group that was generated based on the
+	// group name, the filter expression, and the insight configuration that was
+	// assigned to the group.
 	Group *Group `type:"structure"`
 }
 
@@ -3697,7 +3702,8 @@ type GetGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The group that was requested. Contains the name of the group, the ARN of
-	// the group, and the filter expression that assigned to the group.
+	// the group, the filter expression, and the insight configuration assigned
+	// to the group.
 	Group *Group `type:"structure"`
 }
 
@@ -3994,10 +4000,11 @@ type GetServiceGraphInput struct {
 	// EndTime is a required field
 	EndTime *time.Time `type:"timestamp" required:"true"`
 
-	// The ARN of a group to generate a graph based on.
+	// The Amazon Resource Name (ARN) of a group based on which you want to generate
+	// a graph.
 	GroupARN *string `min:"1" type:"string"`
 
-	// The name of a group to generate a graph based on.
+	// The name of a group based on which you want to generate a graph.
 	GroupName *string `min:"1" type:"string"`
 
 	// Pagination token.
@@ -4146,7 +4153,8 @@ type GetTimeSeriesServiceStatisticsInput struct {
 	// edge statistics are returned.
 	EntitySelectorExpression *string `min:"1" type:"string"`
 
-	// The ARN of the group for which to pull statistics from.
+	// The Amazon Resource Name (ARN) of the group for which to pull statistics
+	// from.
 	GroupARN *string `min:"1" type:"string"`
 
 	// The case-sensitive name of the group for which to pull statistics from.
@@ -4245,8 +4253,8 @@ type GetTimeSeriesServiceStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A flag indicating whether or not a group's filter expression has been consistent,
-	// or if a returned aggregation may show statistics from an older version of
-	// the group's filter expression.
+	// or if a returned aggregation might show statistics from an older version
+	// of the group's filter expression.
 	ContainsOldGroupVersions *bool `type:"boolean"`
 
 	// Pagination token.
@@ -4382,7 +4390,7 @@ type GetTraceSummariesInput struct {
 	// Set to true to get summaries for only a subset of available traces.
 	Sampling *bool `type:"boolean"`
 
-	// A paramater to indicate whether to enable sampling on trace summaries. Input
+	// A parameter to indicate whether to enable sampling on trace summaries. Input
 	// parameters are Name and Value.
 	SamplingStrategy *SamplingStrategy `type:"structure"`
 
@@ -4472,7 +4480,7 @@ type GetTraceSummariesOutput struct {
 
 	// If the requested time frame contained more than one page of results, you
 	// can use this token to retrieve the next page. The first page contains the
-	// most most recent results, closest to the end of the time frame.
+	// most recent results, closest to the end of the time frame.
 	NextToken *string `type:"string"`
 
 	// Trace IDs and annotations for traces that were found in the specified time
@@ -4525,15 +4533,19 @@ type Group struct {
 	// The filter expression defining the parameters to include traces.
 	FilterExpression *string `type:"string"`
 
-	// The ARN of the group generated based on the GroupName.
+	// The Amazon Resource Name (ARN) of the group generated based on the GroupName.
 	GroupARN *string `type:"string"`
 
 	// The unique case-sensitive name of the group.
 	GroupName *string `type:"string"`
 
-	// The structure containing configurations related to insights. The InsightsEnabled
-	// boolean can be set to true to enable insights for the group or false to disable
-	// insights for the group.
+	// The structure containing configurations related to insights.
+	//
+	//    * The InsightsEnabled boolean can be set to true to enable insights for
+	//    the group or false to disable insights for the group.
+	//
+	//    * The NotifcationsEnabled boolean can be set to true to enable insights
+	//    notifications through Amazon EventBridge for the group.
 	InsightsConfiguration *InsightsConfiguration `type:"structure"`
 }
 
@@ -4584,9 +4596,14 @@ type GroupSummary struct {
 	// The unique case-sensitive name of the group.
 	GroupName *string `type:"string"`
 
-	// The structure containing configurations related to insights. The InsightsEnabled
-	// boolean can be set to true to enable insights for the groups or false to
-	// disable insights for the groups.
+	// The structure containing configurations related to insights.
+	//
+	//    * The InsightsEnabled boolean can be set to true to enable insights for
+	//    the group or false to disable insights for the group.
+	//
+	//    * The NotificationsEnabled boolean can be set to true to enable insights
+	//    notifications. Notifications can only be enabled on a group with InsightsEnabled
+	//    set to true.
 	InsightsConfiguration *InsightsConfiguration `type:"structure"`
 }
 
@@ -4725,6 +4742,11 @@ type InsightsConfiguration struct {
 	// Set the InsightsEnabled value to true to enable insights or false to disable
 	// insights.
 	InsightsEnabled *bool `type:"boolean"`
+
+	// Set the NotificationsEnabled value to true to enable insights notifications.
+	// Notifications can only be enabled on a group with InsightsEnabled set to
+	// true.
+	NotificationsEnabled *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -4740,6 +4762,12 @@ func (s InsightsConfiguration) GoString() string {
 // SetInsightsEnabled sets the InsightsEnabled field's value.
 func (s *InsightsConfiguration) SetInsightsEnabled(v bool) *InsightsConfiguration {
 	s.InsightsEnabled = &v
+	return s
+}
+
+// SetNotificationsEnabled sets the NotificationsEnabled field's value.
+func (s *InsightsConfiguration) SetNotificationsEnabled(v bool) *InsightsConfiguration {
+	s.NotificationsEnabled = &v
 	return s
 }
 
@@ -5163,8 +5191,8 @@ func (s *ResourceARNDetail) SetARN(v string) *ResourceARNDetail {
 	return s
 }
 
-// The resource was not found. Verify that the name or ARN of the resource is
-// correct.
+// The resource was not found. Verify that the name or Amazon Resource Name
+// (ARN) of the resource is correct.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5261,7 +5289,7 @@ func (s *ResponseTimeRootCause) SetServices(v []*ResponseTimeRootCauseService) *
 type ResponseTimeRootCauseEntity struct {
 	_ struct{} `type:"structure"`
 
-	// The types and messages of the exceptions.
+	// The type and messages of the exceptions.
 	Coverage *float64 `type:"double"`
 
 	// The name of the entity.
@@ -5849,7 +5877,7 @@ func (s *SamplingRuleUpdate) SetURLPath(v string) *SamplingRuleUpdate {
 }
 
 // Aggregated request sampling data for a sampling rule across all services
-// for a 10 second window.
+// for a 10-second window.
 type SamplingStatisticSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6068,7 +6096,7 @@ type SamplingTargetDocument struct {
 	// again.
 	Interval *int64 `type:"integer"`
 
-	// The number of requests per second that X-Ray allocated this service.
+	// The number of requests per second that X-Ray allocated for this service.
 	ReservoirQuota *int64 `type:"integer"`
 
 	// When the reservoir quota expires.
@@ -6158,7 +6186,7 @@ func (s *Segment) SetId(v string) *Segment {
 }
 
 // Information about an application that processed requests, users that made
-// requests, or downstream services, resources and applications that an application
+// requests, or downstream services, resources, and applications that an application
 // used.
 type Service struct {
 	_ struct{} `type:"structure"`
@@ -6202,7 +6230,7 @@ type Service struct {
 	// The type of service.
 	//
 	//    * AWS Resource - The type of an AWS resource. For example, AWS::EC2::Instance
-	//    for a application running on Amazon EC2 or AWS::DynamoDB::Table for an
+	//    for an application running on Amazon EC2 or AWS::DynamoDB::Table for an
 	//    Amazon DynamoDB table that the application used.
 	//
 	//    * AWS Service - The type of an AWS service. For example, AWS::DynamoDB
@@ -6832,6 +6860,11 @@ type Trace struct {
 	// and subsegments.
 	Id *string `min:"1" type:"string"`
 
+	// LimitExceeded is set to true when the trace has exceeded one of the defined
+	// quotas. For more information about quotas, see AWS X-Ray endpoints and quotas
+	// (https://docs.aws.amazon.com/general/latest/gr/xray.html).
+	LimitExceeded *bool `type:"boolean"`
+
 	// Segment documents for the segments and subsegments that comprise the trace.
 	Segments []*Segment `type:"list"`
 }
@@ -6858,6 +6891,12 @@ func (s *Trace) SetId(v string) *Trace {
 	return s
 }
 
+// SetLimitExceeded sets the LimitExceeded field's value.
+func (s *Trace) SetLimitExceeded(v bool) *Trace {
+	s.LimitExceeded = &v
+	return s
+}
+
 // SetSegments sets the Segments field's value.
 func (s *Trace) SetSegments(v []*Segment) *Trace {
 	s.Segments = v
@@ -6871,7 +6910,7 @@ type TraceSummary struct {
 	// Annotations from the trace's segment documents.
 	Annotations map[string][]*ValueWithServiceIds `type:"map"`
 
-	// A list of availability zones for any zone corresponding to the trace segments.
+	// A list of Availability Zones for any zone corresponding to the trace segments.
 	AvailabilityZones []*AvailabilityZoneDetail `type:"list"`
 
 	// The length of time in seconds between the start time of the root segment
@@ -6884,8 +6923,7 @@ type TraceSummary struct {
 	// A collection of ErrorRootCause structures corresponding to the trace segments.
 	ErrorRootCauses []*ErrorRootCause `type:"list"`
 
-	// A collection of FaultRootCause structures corresponding to the the trace
-	// segments.
+	// A collection of FaultRootCause structures corresponding to the trace segments.
 	FaultRootCauses []*FaultRootCause `type:"list"`
 
 	// The root segment document has a 400 series error.
@@ -7266,9 +7304,14 @@ type UpdateGroupInput struct {
 	// The case-sensitive name of the group.
 	GroupName *string `min:"1" type:"string"`
 
-	// The structure containing configurations related to insights. The InsightsEnabled
-	// boolean can be set to true to enable insights for the group or false to disable
-	// insights for the group.
+	// The structure containing configurations related to insights.
+	//
+	//    * The InsightsEnabled boolean can be set to true to enable insights for
+	//    the group or false to disable insights for the group.
+	//
+	//    * The NotifcationsEnabled boolean can be set to true to enable insights
+	//    notifications for the group. Notifications can only be enabled on a group
+	//    with InsightsEnabled set to true.
 	InsightsConfiguration *InsightsConfiguration `type:"structure"`
 }
 

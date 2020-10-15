@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Access Analyzer.
 //    func myFunc(svc accessanalyzeriface.AccessAnalyzerAPI) bool {
-//        // Make svc.CreateAnalyzer request
+//        // Make svc.ApplyArchiveRule request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockAccessAnalyzerClient struct {
 //        accessanalyzeriface.AccessAnalyzerAPI
 //    }
-//    func (m *mockAccessAnalyzerClient) CreateAnalyzer(input *accessanalyzer.CreateAnalyzerInput) (*accessanalyzer.CreateAnalyzerOutput, error) {
+//    func (m *mockAccessAnalyzerClient) ApplyArchiveRule(input *accessanalyzer.ApplyArchiveRuleInput) (*accessanalyzer.ApplyArchiveRuleOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AccessAnalyzerAPI interface {
+	ApplyArchiveRule(*accessanalyzer.ApplyArchiveRuleInput) (*accessanalyzer.ApplyArchiveRuleOutput, error)
+	ApplyArchiveRuleWithContext(aws.Context, *accessanalyzer.ApplyArchiveRuleInput, ...request.Option) (*accessanalyzer.ApplyArchiveRuleOutput, error)
+	ApplyArchiveRuleRequest(*accessanalyzer.ApplyArchiveRuleInput) (*request.Request, *accessanalyzer.ApplyArchiveRuleOutput)
+
 	CreateAnalyzer(*accessanalyzer.CreateAnalyzerInput) (*accessanalyzer.CreateAnalyzerOutput, error)
 	CreateAnalyzerWithContext(aws.Context, *accessanalyzer.CreateAnalyzerInput, ...request.Option) (*accessanalyzer.CreateAnalyzerOutput, error)
 	CreateAnalyzerRequest(*accessanalyzer.CreateAnalyzerInput) (*request.Request, *accessanalyzer.CreateAnalyzerOutput)

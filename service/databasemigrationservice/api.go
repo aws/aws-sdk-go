@@ -6415,6 +6415,16 @@ type CreateEndpointInput struct {
 	// Provides information that defines an Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
 
+	// A friendly name for the resource identifier at the end of the EndpointArn
+	// response parameter that is returned in the created Endpoint object. The value
+	// for this parameter can have up to 31 characters. It can contain only ASCII
+	// letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain
+	// two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1.
+	// For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1.
+	// If you don't specify a ResourceIdentifier value, AWS DMS generates a default
+	// identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
+
 	// Settings in JSON format for the target Amazon S3 endpoint. For more information
 	// about the available settings, see Extra Connection Attributes When Using
 	// Amazon S3 as a Target for AWS DMS (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring)
@@ -6626,6 +6636,12 @@ func (s *CreateEndpointInput) SetPostgreSQLSettings(v *PostgreSQLSettings) *Crea
 // SetRedshiftSettings sets the RedshiftSettings field's value.
 func (s *CreateEndpointInput) SetRedshiftSettings(v *RedshiftSettings) *CreateEndpointInput {
 	s.RedshiftSettings = v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateEndpointInput) SetResourceIdentifier(v string) *CreateEndpointInput {
+	s.ResourceIdentifier = &v
 	return s
 }
 
@@ -6926,6 +6942,16 @@ type CreateReplicationInstanceInput struct {
 	// A subnet group to associate with the replication instance.
 	ReplicationSubnetGroupIdentifier *string `type:"string"`
 
+	// A friendly name for the resource identifier at the end of the EndpointArn
+	// response parameter that is returned in the created Endpoint object. The value
+	// for this parameter can have up to 31 characters. It can contain only ASCII
+	// letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain
+	// two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1.
+	// For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1.
+	// If you don't specify a ResourceIdentifier value, AWS DMS generates a default
+	// identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
+
 	// One or more tags to be assigned to the replication instance.
 	Tags []*Tag `type:"list"`
 
@@ -7030,6 +7056,12 @@ func (s *CreateReplicationInstanceInput) SetReplicationInstanceIdentifier(v stri
 // SetReplicationSubnetGroupIdentifier sets the ReplicationSubnetGroupIdentifier field's value.
 func (s *CreateReplicationInstanceInput) SetReplicationSubnetGroupIdentifier(v string) *CreateReplicationInstanceInput {
 	s.ReplicationSubnetGroupIdentifier = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateReplicationInstanceInput) SetResourceIdentifier(v string) *CreateReplicationInstanceInput {
+	s.ResourceIdentifier = &v
 	return s
 }
 
@@ -7238,6 +7270,16 @@ type CreateReplicationTaskInput struct {
 	// in the AWS Database Migration User Guide.
 	ReplicationTaskSettings *string `type:"string"`
 
+	// A friendly name for the resource identifier at the end of the EndpointArn
+	// response parameter that is returned in the created Endpoint object. The value
+	// for this parameter can have up to 31 characters. It can contain only ASCII
+	// letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain
+	// two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1.
+	// For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1.
+	// If you don't specify a ResourceIdentifier value, AWS DMS generates a default
+	// identifier value for the end of EndpointArn.
+	ResourceIdentifier *string `type:"string"`
+
 	// An Amazon Resource Name (ARN) that uniquely identifies the source endpoint.
 	//
 	// SourceEndpointArn is a required field
@@ -7342,6 +7384,12 @@ func (s *CreateReplicationTaskInput) SetReplicationTaskIdentifier(v string) *Cre
 // SetReplicationTaskSettings sets the ReplicationTaskSettings field's value.
 func (s *CreateReplicationTaskInput) SetReplicationTaskSettings(v string) *CreateReplicationTaskInput {
 	s.ReplicationTaskSettings = &v
+	return s
+}
+
+// SetResourceIdentifier sets the ResourceIdentifier field's value.
+func (s *CreateReplicationTaskInput) SetResourceIdentifier(v string) *CreateReplicationTaskInput {
+	s.ResourceIdentifier = &v
 	return s
 }
 
@@ -14221,6 +14269,17 @@ type RedshiftSettings struct {
 	// data to Redshift.
 	BucketName *string `type:"string"`
 
+	// If Amazon Redshift is configured to support case sensitive schema names,
+	// set CaseSensitiveNames to true. The default is false.
+	CaseSensitiveNames *bool `type:"boolean"`
+
+	// If you set CompUpdate to true Amazon Redshift applies automatic compression
+	// if the table is empty. This applies even if the table columns already have
+	// encodings other than RAW. If you set CompUpdate to false, automatic compression
+	// is disabled and existing column encodings aren't changed. The default is
+	// true.
+	CompUpdate *bool `type:"boolean"`
+
 	// A value that sets the amount of time to wait (in milliseconds) before timing
 	// out, beginning from when you initially establish a connection.
 	ConnectionTimeout *int64 `type:"integer"`
@@ -14256,6 +14315,12 @@ type RedshiftSettings struct {
 	// a policy that allows "arn:aws:s3:::*" to use the following actions: "s3:PutObject",
 	// "s3:ListBucket"
 	EncryptionMode *string `type:"string" enum:"EncryptionModeValue"`
+
+	// This setting is only valid for a full-load migration task. Set ExplicitIds
+	// to true to have tables with IDENTITY columns override their auto-generated
+	// values with explicit values loaded from the source data files used to populate
+	// the tables. The default is false.
+	ExplicitIds *bool `type:"boolean"`
 
 	// The number of threads used to upload a single file. This parameter accepts
 	// a value from 1 through 64. It defaults to 10.
@@ -14371,6 +14436,18 @@ func (s *RedshiftSettings) SetBucketName(v string) *RedshiftSettings {
 	return s
 }
 
+// SetCaseSensitiveNames sets the CaseSensitiveNames field's value.
+func (s *RedshiftSettings) SetCaseSensitiveNames(v bool) *RedshiftSettings {
+	s.CaseSensitiveNames = &v
+	return s
+}
+
+// SetCompUpdate sets the CompUpdate field's value.
+func (s *RedshiftSettings) SetCompUpdate(v bool) *RedshiftSettings {
+	s.CompUpdate = &v
+	return s
+}
+
 // SetConnectionTimeout sets the ConnectionTimeout field's value.
 func (s *RedshiftSettings) SetConnectionTimeout(v int64) *RedshiftSettings {
 	s.ConnectionTimeout = &v
@@ -14398,6 +14475,12 @@ func (s *RedshiftSettings) SetEmptyAsNull(v bool) *RedshiftSettings {
 // SetEncryptionMode sets the EncryptionMode field's value.
 func (s *RedshiftSettings) SetEncryptionMode(v string) *RedshiftSettings {
 	s.EncryptionMode = &v
+	return s
+}
+
+// SetExplicitIds sets the ExplicitIds field's value.
+func (s *RedshiftSettings) SetExplicitIds(v bool) *RedshiftSettings {
+	s.ExplicitIds = &v
 	return s
 }
 
@@ -16409,7 +16492,7 @@ type S3Settings struct {
 	DataPageSize *int64 `type:"integer"`
 
 	// Specifies a date separating delimiter to use during folder partitioning.
-	// The default value is SLASH (/). Use this parameter when DatePartitionedEnabled
+	// The default value is SLASH. Use this parameter when DatePartitionedEnabled
 	// is set to true.
 	DatePartitionDelimiter *string `type:"string" enum:"DatePartitionDelimiterValue"`
 
@@ -17131,7 +17214,7 @@ type StartReplicationTaskInput struct {
 	// ReplicationTaskArn is a required field
 	ReplicationTaskArn *string `type:"string" required:"true"`
 
-	// The type of replication task.
+	// A type of replication task.
 	//
 	// StartReplicationTaskType is a required field
 	StartReplicationTaskType *string `type:"string" required:"true" enum:"StartReplicationTaskTypeValue"`

@@ -16,8 +16,8 @@
     "DeleteInvitations" : "<p>Deletes Amazon Macie membership invitations that were received from specific accounts.</p>",
     "DeleteMember" : "<p>Deletes the association between an Amazon Macie master account and an account.</p>",
     "DescribeBuckets" : " <p>Retrieves (queries) statistical data and other information about one or more S3 buckets that Amazon Macie monitors and analyzes.</p>",
-    "DescribeClassificationJob" : "<p>Retrieves information about the status and settings for a classification job.</p>",
-    "DescribeOrganizationConfiguration" : "<p>Retrieves information about the Amazon Macie configuration settings for an AWS organization.</p>",
+    "DescribeClassificationJob" : "<p>Retrieves the status and settings for a classification job.</p>",
+    "DescribeOrganizationConfiguration" : "<p>Retrieves the Amazon Macie configuration settings for an AWS organization.</p>",
     "DisableMacie" : "<p>Disables an Amazon Macie account and deletes Macie resources for the account.</p>",
     "DisableOrganizationAdminAccount" : "<p>Disables an account as a delegated administrator of Amazon Macie for an AWS organization.</p>",
     "DisassociateFromMasterAccount" : "<p>Disassociates a member account from its Amazon Macie master account.</p>",
@@ -26,12 +26,12 @@
     "EnableOrganizationAdminAccount" : "<p>Enables an account as a delegated administrator of Amazon Macie for an AWS organization.</p>",
     "GetBucketStatistics" : " <p>Retrieves (queries) aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes.</p>",
     "GetClassificationExportConfiguration" : "<p>Retrieves the configuration settings for storing data classification results.</p>",
-    "GetCustomDataIdentifier" : "<p>Retrieves information about the criteria and other settings for a custom data identifier.</p>",
+    "GetCustomDataIdentifier" : "<p>Retrieves the criteria and other settings for a custom data identifier.</p>",
     "GetFindingStatistics" : " <p>Retrieves (queries) aggregated statistical data about findings.</p>",
-    "GetFindings" : "<p>Retrieves information about one or more findings.</p>",
-    "GetFindingsFilter" : "<p>Retrieves information about the criteria and other settings for a findings filter.</p>",
+    "GetFindings" : "<p>Retrieves the details of one or more findings.</p>",
+    "GetFindingsFilter" : "<p>Retrieves the criteria and other settings for a findings filter.</p>",
     "GetInvitationsCount" : "<p>Retrieves the count of Amazon Macie membership invitations that were received by an account.</p>",
-    "GetMacieSession" : "<p>Retrieves information about the current status and configuration settings for an Amazon Macie account.</p>",
+    "GetMacieSession" : "<p>Retrieves the current status and configuration settings for an Amazon Macie account.</p>",
     "GetMasterAccount" : "<p>Retrieves information about the Amazon Macie master account for an account.</p>",
     "GetMember" : "<p>Retrieves information about a member account that's associated with an Amazon Macie master account.</p>",
     "GetUsageStatistics" : "<p>Retrieves (queries) quotas and aggregated usage data for one or more accounts.</p>",
@@ -48,7 +48,7 @@
     "TagResource" : "<p>Adds or updates one or more tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "TestCustomDataIdentifier" : "<p>Tests a custom data identifier.</p>",
     "UntagResource" : "<p>Removes one or more tags (keys and values) from a classification job, custom data identifier, findings filter, or member account.</p>",
-    "UpdateClassificationJob" : "<p>Cancels a classification job.</p>",
+    "UpdateClassificationJob" : "<p>Changes the status of a classification job.</p>",
     "UpdateFindingsFilter" : "<p>Updates the criteria and other settings for a findings filter.</p>",
     "UpdateMacieSession" : "<p>Suspends or re-enables an Amazon Macie account, or updates the configuration settings for a Macie account.</p>",
     "UpdateMemberSession" : " <p>Enables an Amazon Macie master account to suspend or re-enable a member account.</p>",
@@ -205,6 +205,18 @@
         "DescribeBucketsRequest$SortCriteria" : "<p>The criteria to use to sort the query results.</p>"
       }
     },
+    "Cell" : {
+      "base" : "<p>Specifies the location of an occurrence of sensitive data in a Microsoft Excel workbook, CSV file, or TSV file.</p>",
+      "refs" : {
+        "Cells$member" : null
+      }
+    },
+    "Cells" : {
+      "base" : "<p>Specifies the location of occurrences of sensitive data in a Microsoft Excel workbook, CSV file, or TSV file.</p>",
+      "refs" : {
+        "Occurrences$Cells" : "<p>An array of objects, one for each occurrence of sensitive data in a Microsoft Excel workbook, CSV file, or TSV file. Each object specifies the cell that contains the data. This value is null for all other types of files.</p>"
+      }
+    },
     "ClassificationDetails" : {
       "base" : "<p>Provides information about a sensitive data finding, including the classification job that produced the finding.</p>",
       "refs" : {
@@ -220,7 +232,7 @@
       }
     },
     "ClassificationResult" : {
-      "base" : "<p>Provides detailed information about a sensitive data finding, including the types and number of occurrences of the sensitive data that was found.</p>",
+      "base" : "<p>Provides the details of a sensitive data finding, including the types, number of occurrences, and locations of the sensitive data that was detected.</p>",
       "refs" : {
         "ClassificationDetails$Result" : "<p>The status and other details for the finding.</p>"
       }
@@ -236,7 +248,7 @@
       "refs" : { }
     },
     "CreateClassificationJobRequest" : {
-      "base" : "<p>Specifies the scope, schedule, and other settings for a classification job. You can't delete or change the settings for a classification job after you create it. This helps ensure that you have an immutable history of sensitive data findings and discovery results for data privacy and protection audits or investigations.</p>",
+      "base" : "<p>Specifies the scope, schedule, and other settings for a classification job. You can't change any settings for a classification job after you create it. This helps ensure that you have an immutable history of sensitive data findings and discovery results for data privacy and protection audits or investigations.</p>",
       "refs" : { }
     },
     "CreateClassificationJobResponse" : {
@@ -307,11 +319,11 @@
     "CustomDataIdentifiers" : {
       "base" : "<p>Provides information about the number of occurrences of the data that produced a sensitive data finding, and the custom data identifiers that detected the data for the finding.</p>",
       "refs" : {
-        "ClassificationResult$CustomDataIdentifiers" : "<p>The number of occurrences of the data that produced the finding, and the custom data identifiers that detected the data.</p>"
+        "ClassificationResult$CustomDataIdentifiers" : "<p>The custom data identifiers that detected the sensitive data and the number of occurrences of the data that they detected.</p>"
       }
     },
     "CustomDetection" : {
-      "base" : "<p>Provides information about a custom data identifier that produced a sensitive data finding, and the number of occurrences of the data that it detected for the finding.</p>",
+      "base" : "<p>Provides information about a custom data identifier that produced a sensitive data finding, and the sensitive data that it detected for the finding.</p>",
       "refs" : {
         "CustomDetections$member" : null
       }
@@ -343,7 +355,7 @@
       "refs" : { }
     },
     "DefaultDetection" : {
-      "base" : "<p>Provides information about sensitive data that was detected by managed data identifiers and produced a sensitive data finding.</p>",
+      "base" : "<p>Provides information about a type of sensitive data that was detected by managed data identifiers and produced a sensitive data finding.</p>",
       "refs" : {
         "DefaultDetections$member" : null
       }
@@ -351,7 +363,7 @@
     "DefaultDetections" : {
       "base" : "<p>Provides information about sensitive data that was detected by managed data identifiers and produced a sensitive data finding, and the number of occurrences of each type of sensitive data that was detected.</p>",
       "refs" : {
-        "SensitiveDataItem$Detections" : "<p>An array of objects, one for each type of sensitive data that was detected. Each object reports the number of occurrences of a specific type of sensitive data that was detected.</p>"
+        "SensitiveDataItem$Detections" : "<p>An array of objects, one for each type of sensitive data that was detected. Each object reports the number of occurrences of a specific type of sensitive data that was detected, and the location of up to 15 of those occurrences.</p>"
       }
     },
     "DeleteInvitationsRequest" : {
@@ -403,7 +415,7 @@
       "refs" : { }
     },
     "EncryptionType" : {
-      "base" : "<p>The type of server-side encryption that's used to encrypt objects in the S3 bucket. Valid values are:</p>",
+      "base" : "<p>The type of server-side encryption that's used to encrypt an S3 object or objects in an S3 bucket. Valid values are:</p>",
       "refs" : {
         "ServerSideEncryption$EncryptionType" : "<p>The server-side encryption algorithm that's used when storing data in the bucket or object. If encryption is disabled for the bucket or object, this value is NONE.</p>"
       }
@@ -421,7 +433,7 @@
       }
     },
     "Finding" : {
-      "base" : "<p>Provides information about a finding.</p>",
+      "base" : "<p>Provides the details of a finding.</p>",
       "refs" : {
         "__listOfFinding$member" : null
       }
@@ -481,7 +493,7 @@
       }
     },
     "FindingType" : {
-      "base" : "<p>The type of finding. Valid values are:</p>",
+      "base" : "<p>The type of finding. For details about each type, see <a href=\"https://docs.aws.amazon.com/macie/latest/user/findings-types.html\">Types of Amazon Macie findings</a> in the <i>Amazon Macie User Guide</i>. Valid values are:</p>",
       "refs" : {
         "Finding$Type" : "<p>The type of the finding.</p>",
         "__listOfFindingType$member" : null
@@ -531,11 +543,11 @@
       "refs" : { }
     },
     "GetFindingsRequest" : {
-      "base" : "<p>Specifies one or more findings to retrieve information about.</p>",
+      "base" : "<p>Specifies one or more findings to retrieve.</p>",
       "refs" : { }
     },
     "GetFindingsResponse" : {
-      "base" : "<p>Provides the results of a request for information about one or more findings.</p>",
+      "base" : "<p>Provides the results of a request for one or more findings.</p>",
       "refs" : { }
     },
     "GetInvitationsCountResponse" : {
@@ -569,7 +581,7 @@
     "GroupBy" : {
       "base" : null,
       "refs" : {
-        "GetFindingStatisticsRequest$GroupBy" : "<p>The finding property to use to group the query results. Valid values are:</p> <ul><li><p>classificationDetails.jobId - The unique identifier for the classification job that produced the finding.</p></li> <li><p>resourcesAffected.s3Bucket.name - The name of the S3 bucket that the finding applies to.</p></li> <li><p>severity.description - The severity of the finding, such as High or Medium.</p></li> <li><p>type - The type of finding, such as Policy:IAMUser/S3BucketPublic and SensitiveData:S3Object/Personal.</p></li></ul>"
+        "GetFindingStatisticsRequest$GroupBy" : "<p>The finding property to use to group the query results. Valid values are:</p> <ul><li><p>classificationDetails.jobId - The unique identifier for the classification job that produced the finding.</p></li> <li><p>resourcesAffected.s3Bucket.name - The name of the S3 bucket that the finding applies to.</p></li> <li><p>severity.description - The severity level of the finding, such as High or Medium.</p></li> <li><p>type - The type of finding, such as Policy:IAMUser/S3BucketPublic and SensitiveData:S3Object/Personal.</p></li></ul>"
       }
     },
     "GroupCount" : {
@@ -629,14 +641,14 @@
       "base" : "<p>The operator to use in a condition. Valid values are:</p>",
       "refs" : {
         "ListJobsFilterTerm$Comparator" : "<p>The operator to use to filter the results.</p>",
-        "SimpleScopeTerm$Comparator" : "<p>The operator to use in the condition.</p>",
-        "TagScopeTerm$Comparator" : "<p>The operator to use in the condition.</p>"
+        "SimpleScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION – EQ (equals) or NE (not equals)</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE – Any operator except CONTAINS</p></li> <li><p>OBJECT_SIZE – Any operator except CONTAINS</p></li> <li><p>TAG - EQ (equals) or NE (not equals)</p></li></ul>",
+        "TagScopeTerm$Comparator" : "<p>The operator to use in the condition. Valid operators are EQ (equals) or NE (not equals).</p>"
       }
     },
     "JobScheduleFrequency" : {
       "base" : "<p>Specifies the recurrence pattern for running a classification job.</p>",
       "refs" : {
-        "CreateClassificationJobRequest$ScheduleFrequency" : "<p>The recurrence pattern for running the job. To run the job only once, don't specify a value for this property and set the value of the jobType property to ONE_TIME.</p>",
+        "CreateClassificationJobRequest$ScheduleFrequency" : "<p>The recurrence pattern for running the job. To run the job only once, don't specify a value for this property and set the value for the jobType property to ONE_TIME.</p>",
         "DescribeClassificationJobResponse$ScheduleFrequency" : "<p>The recurrence pattern for running the job. If the job is configured to run only once, this value is null.</p>"
       }
     },
@@ -647,7 +659,7 @@
       }
     },
     "JobScopingBlock" : {
-      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding objects from a classification job.</p>",
+      "base" : "<p>Specifies one or more property- and tag-based conditions that define criteria for including or excluding objects from a classification job. If you specify more than one condition, Amazon Macie uses an AND operator to join the conditions.</p>",
       "refs" : {
         "Scoping$Excludes" : "<p>The property- or tag-based conditions that determine which objects to exclude from the analysis.</p>",
         "Scoping$Includes" : "<p>The property- or tag-based conditions that determine which objects to include in the analysis.</p>"
@@ -656,9 +668,9 @@
     "JobStatus" : {
       "base" : "<p>The current status of a classification job. Possible values are:</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
-        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job. A job might also be cancelled if ownership of an S3 bucket changed while the job was running, and that change affected the job's access to the bucket.</p></li> <li><p>COMPLETE - Amazon Macie finished processing all the data specified for the job.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to jobs that occur only once.</p></li> <li><p>PAUSED - Amazon Macie started the job, but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - The job is in progress.</p></li></ul>",
-        "UpdateClassificationJobRequest$JobStatus" : "<p>The status to change the job's status to. The only supported value is CANCELLED, which cancels the job completely.</p>"
+        "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job and didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing all the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you don’t resume the job within 30 days of pausing it, the job will expire and be cancelled.</p></li></ul>",
+        "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job and didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing all the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you don’t resume the job within 30 days of pausing it, the job will expire and be cancelled.</p></li></ul>",
+        "UpdateClassificationJobRequest$JobStatus" : "<p>The new status for the job. Valid values are:</p> <ul><li><p>CANCELLED - Stops the job permanently and cancels it. You can’t resume a job after you cancel it. This value is valid only if the job’s current status is IDLE, PAUSED, RUNNING, or USER_PAUSED.</p></li> <li><p>RUNNING - Resumes the job. This value is valid only if the job’s current status is USER_PAUSED. If you specify this value, Amazon Macie immediately resumes the job.</p></li> <li><p>USER_PAUSED - Pauses the job. This value is valid only if the job’s current status is IDLE or RUNNING. If you specify this value and the job is currently running, Macie immediately stops running the job.</p> <p>To resume a job after you pause it, change the job's status to RUNNING. If you don’t resume a job within 30 days of pausing it, the job expires and Macie cancels it. You can’t resume a job after it's cancelled.</p></li></ul>"
       }
     },
     "JobSummary" : {
@@ -671,8 +683,8 @@
       "base" : "<p>The schedule for running a classification job. Valid values are:</p>",
       "refs" : {
         "CreateClassificationJobRequest$JobType" : "<p>The schedule for running the job. Valid values are:</p> <ul><li><p>ONE_TIME - Run the job only once. If you specify this value, don't specify a value for the scheduleFrequency property.</p></li> <li><p>SCHEDULED - Run the job on a daily, weekly, or monthly basis. If you specify this value, use the scheduleFrequency property to define the recurrence pattern for the job.</p></li></ul>",
-        "DescribeClassificationJobResponse$JobType" : "<p>The schedule for running the job. Possible values are:</p> <ul><li><p>ONE_TIME - The job ran or will run only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis. The scheduleFrequency property indicates the recurrence pattern for the job.</p></li></ul>",
-        "JobSummary$JobType" : "<p>The schedule for running the job. Possible values are:</p> <ul><li><p>ONE_TIME - The job ran or will run only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis.</p></li></ul>"
+        "DescribeClassificationJobResponse$JobType" : "<p>The schedule for running the job. Possible values are:</p> <ul><li><p>ONE_TIME - The job runs only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis. The scheduleFrequency property indicates the recurrence pattern for the job.</p></li></ul>",
+        "JobSummary$JobType" : "<p>The schedule for running the job. Possible values are:</p> <ul><li><p>ONE_TIME - The job runs only once.</p></li> <li><p>SCHEDULED - The job runs on a daily, weekly, or monthly basis.</p></li></ul>"
       }
     },
     "KeyValuePair" : {
@@ -793,10 +805,17 @@
     "ObjectLevelStatistics" : {
       "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results.</p>",
       "refs" : {
-        "BucketMetadata$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects use an unsupported file or storage format or storage class.</p>",
-        "BucketMetadata$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects use an unsupported file or storage format or storage class.</p>",
-        "GetBucketStatisticsResponse$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the buckets. These objects use an unsupported file or storage format or storage class.</p>",
-        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can't analyze in the buckets. These objects use an unsupported file or storage format or storage class.</p>"
+        "BucketMetadata$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
+        "BucketMetadata$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
+        "GetBucketStatisticsResponse$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
+        "GetBucketStatisticsResponse$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can't analyze in the buckets. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>"
+      }
+    },
+    "Occurrences" : {
+      "base" : "<p>Provides the location of 1-15 occurrences of sensitive data that was detected by managed data identifiers or a custom data identifier and produced a sensitive data finding.</p>",
+      "refs" : {
+        "CustomDetection$Occurrences" : "<p>The location of 1-15 occurrences of the sensitive data that the custom data identifier detected. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p>",
+        "DefaultDetection$Occurrences" : "<p>The location of 1-15 occurrences of the sensitive data that was detected. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p>"
       }
     },
     "OrderBy" : {
@@ -807,6 +826,18 @@
         "ListJobsSortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "SortCriteria$OrderBy" : "<p>The sort order to apply to the results, based on the value for the property specified by the attributeName property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>",
         "UsageStatisticsSortBy$OrderBy" : "<p>The sort order to apply to the results, based on the value for the field specified by the key property. Valid values are: ASC, sort the results in ascending order; and, DESC, sort the results in descending order.</p>"
+      }
+    },
+    "Page" : {
+      "base" : "<p>Specifies the location of an occurrence of sensitive data in an Adobe Portable Document Format file.</p>",
+      "refs" : {
+        "Pages$member" : null
+      }
+    },
+    "Pages" : {
+      "base" : "<p>Specifies the location of occurrences of sensitive data in an Adobe Portable Document Format file.</p>",
+      "refs" : {
+        "Occurrences$Pages" : "<p>An array of objects, one for each occurrence of sensitive data in an Adobe Portable Document Format file. Each object specifies the page that contains the data, and the position of the data on that page. This value is null for all other types of files.</p>"
       }
     },
     "PolicyDetails" : {
@@ -822,6 +853,33 @@
     "PutClassificationExportConfigurationResponse" : {
       "base" : "<p>Provides information about updated settings for storing data classification results.</p>",
       "refs" : { }
+    },
+    "Range" : {
+      "base" : "<p>Provides details about the location of an occurrence of sensitive data in an Adobe Portable Document Format file, Apache Avro object container, Microsoft Word document, or non-binary text file.</p>",
+      "refs" : {
+        "Page$LineRange" : "<p>The line that contains the data, and the position of the data on that line.</p>",
+        "Page$OffsetRange" : "<p>The position of the data on the page, relative to the start and end of the page.</p>",
+        "Ranges$member" : null
+      }
+    },
+    "Ranges" : {
+      "base" : "<p>Provides details about the location of occurrences of sensitive data in an Adobe Portable Document Format file, Apache Avro object container, Microsoft Word document, or non-binary text file.</p>",
+      "refs" : {
+        "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in an Apache Avro object container, Microsoft Word document, or non-binary text file, such as an HTML, JSON, TXT, or XML file. Each object specifies the line that contains the data, and the position of the data on that line.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the locations of: full names and addresses in a Microsoft Excel workbook, CSV file, or TSV file; data in unstructured sections of an otherwise structured file, such as a comment in a file; and, data in a malformed file that Amazon Macie analyzes as plain text.</p>",
+        "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the start of the file.</p> <p>This value is typically null. For binary text files, Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
+      }
+    },
+    "Record" : {
+      "base" : "<p>Specifies the location of an occurrence of sensitive data in an Apache Parquet file.</p>",
+      "refs" : {
+        "Records$member" : null
+      }
+    },
+    "Records" : {
+      "base" : "<p>Specifies the location of occurrences of sensitive data in an Apache Parquet file.</p>",
+      "refs" : {
+        "Occurrences$Records" : "<p>An array of objects, one for each occurrence of sensitive data in an Apache Parquet file. Each object specifies the row that contains the data. This value is null for all other types of files.</p>"
+      }
     },
     "RelationshipStatus" : {
       "base" : "<p>The current status of the relationship between an account and an associated Amazon Macie master account (<i>inviter account</i>). Possible values are:</p>",
@@ -887,11 +945,11 @@
     "ScopeFilterKey" : {
       "base" : "<p>The property to use in a condition that determines which objects are analyzed by a classification job. Valid values are:</p>",
       "refs" : {
-        "SimpleScopeTerm$Key" : "<p>The property to use in the condition.</p>"
+        "SimpleScopeTerm$Key" : "<p>The object property to use in the condition.</p>"
       }
     },
     "Scoping" : {
-      "base" : "<p>Specifies one or more property- and tag-based conditions that refine the scope of a classification job. These conditions define criteria that determine which objects a job analyzes.</p>",
+      "base" : "<p>Specifies one or more property- and tag-based conditions that refine the scope of a classification job. These conditions define criteria that determine which objects a job analyzes. Exclude conditions take precedence over include conditions.</p>",
       "refs" : {
         "S3JobDefinition$Scoping" : "<p>The property- and tag-based conditions that determine which objects to include or exclude from the analysis.</p>"
       }
@@ -899,11 +957,11 @@
     "SensitiveData" : {
       "base" : "<p>Provides information about the category and number of occurrences of sensitive data that produced a finding.</p>",
       "refs" : {
-        "ClassificationResult$SensitiveData" : "<p>The category and number of occurrences of the sensitive data that produced the finding.</p>"
+        "ClassificationResult$SensitiveData" : "<p>The category, types, and number of occurrences of the sensitive data that produced the finding.</p>"
       }
     },
     "SensitiveDataItem" : {
-      "base" : "<p>Provides information about the category, type, and number of occurrences of sensitive data that produced a finding.</p>",
+      "base" : "<p>Provides information about the category, types, and occurrences of sensitive data that produced a sensitive data finding.</p>",
       "refs" : {
         "SensitiveData$member" : null
       }
@@ -911,14 +969,14 @@
     "SensitiveDataItemCategory" : {
       "base" : "<p>The category of sensitive data that was detected and produced the finding. Possible values are:</p>",
       "refs" : {
-        "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: FINANCIAL_INFORMATION, for financial information such as credit card numbers; PERSONAL_INFORMATION, for personally identifiable information such as full names and mailing addresses; or, CUSTOM_IDENTIFIER, for data that was detected by a custom data identifier.</p>"
+        "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: FINANCIAL_INFORMATION, for financial information such as credit card numbers; PERSONAL_INFORMATION, for personally identifiable information, such as full names and mailing addresses, or personal health information; or, CUSTOM_IDENTIFIER, for data that was detected by a custom data identifier.</p>"
       }
     },
     "ServerSideEncryption" : {
-      "base" : "<p>Provides information about the server-side encryption settings for an S3 bucket or object.</p>",
+      "base" : "<p>Provides information about the server-side encryption settings for an S3 bucket or S3 object.</p>",
       "refs" : {
-        "S3Bucket$DefaultServerSideEncryption" : "<p>The server-side encryption settings for the bucket.</p>",
-        "S3Object$ServerSideEncryption" : "<p>The server-side encryption settings for the object.</p>"
+        "S3Bucket$DefaultServerSideEncryption" : "<p>The type of server-side encryption that's used by default to encrypt objects in the bucket.</p>",
+        "S3Object$ServerSideEncryption" : "<p>The type of server-side encryption that's used for the object.</p>"
       }
     },
     "ServiceLimit" : {
@@ -951,15 +1009,15 @@
       }
     },
     "Severity" : {
-      "base" : "<p>Provides the numeric score and textual representation of a severity value.</p>",
+      "base" : "<p>Provides the numerical and qualitative representations of a finding's severity.</p>",
       "refs" : {
-        "Finding$Severity" : "<p>The severity of the finding.</p>"
+        "Finding$Severity" : "<p>The severity level and score for the finding.</p>"
       }
     },
     "SeverityDescription" : {
-      "base" : "<p>The textual representation of the finding's severity. Possible values are:</p>",
+      "base" : "<p>The qualitative representation of the finding's severity. Possible values are:</p>",
       "refs" : {
-        "Severity$Description" : "<p>The textual representation of the severity value, such as Low or High.</p>"
+        "Severity$Description" : "<p>The qualitative representation of the finding's severity, ranging from Low (least severe) to High (most severe).</p>"
       }
     },
     "SharedAccess" : {
@@ -975,7 +1033,7 @@
       }
     },
     "SortCriteria" : {
-      "base" : "<p>Specifies criteria for sorting the results of a request for information about findings.</p>",
+      "base" : "<p>Specifies criteria for sorting the results of a request for findings.</p>",
       "refs" : {
         "GetFindingsRequest$SortCriteria" : "<p>The criteria for sorting the results of the request.</p>",
         "ListFindingsRequest$SortCriteria" : "<p>The criteria to use to sort the results.</p>"
@@ -984,11 +1042,11 @@
     "Statistics" : {
       "base" : "<p>Provides processing statistics for a classification job.</p>",
       "refs" : {
-        "DescribeClassificationJobResponse$Statistics" : "<p>The number of times that the job has run and processing statistics for the job's most recent run.</p>"
+        "DescribeClassificationJobResponse$Statistics" : "<p>The number of times that the job has run and processing statistics for the job's current run.</p>"
       }
     },
     "StorageClass" : {
-      "base" : "<p>The storage class of the S3 bucket or object. Possible values are:</p>",
+      "base" : "<p>The storage class of the S3 object. Possible values are:</p>",
       "refs" : {
         "S3Object$StorageClass" : "<p>The storage class of the object.</p>"
       }
@@ -1000,7 +1058,7 @@
         "CreateCustomDataIdentifierRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the custom data identifier.</p> <p>A custom data identifier can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
         "CreateFindingsFilterRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the filter.</p> <p>A findings filter can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
         "CreateMemberRequest$Tags" : "<p>A map of key-value pairs that specifies the tags to associate with the account in Amazon Macie.</p> <p>An account can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.</p>",
-        "DescribeClassificationJobResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the classification job.</p>",
+        "DescribeClassificationJobResponse$Tags" : "<p>A map of key-value pairs that specifies which tags (keys and values) are associated with the classification job.</p>",
         "FindingsFilterListItem$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the filter.</p>",
         "GetCustomDataIdentifierResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the custom data identifier.</p>",
         "GetFindingsFilterResponse$Tags" : "<p>A map of key-value pairs that identifies the tags (keys and values) that are associated with the filter.</p>",
@@ -1021,7 +1079,7 @@
     "TagScopeTerm" : {
       "base" : "<p>Specifies a tag-based condition that determines whether an object is included or excluded from a classification job.</p>",
       "refs" : {
-        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and a tag key or tag keys and values for including or excluding an object from the job.</p>"
+        "JobScopeTerm$TagScopeTerm" : "<p>A tag-based condition that defines the operator and tag keys or tag key and value pairs for including or excluding an object from the job.</p>"
       }
     },
     "TagTarget" : {
@@ -1031,7 +1089,7 @@
       }
     },
     "TagValuePair" : {
-      "base" : "<p>Specifies a tag key and value, as a pair, to use in a tag-based condition for a classification job.</p>",
+      "base" : "<p>Specifies a tag key or tag key and value pair to use in a tag-based condition for a classification job.</p>",
       "refs" : {
         "__listOfTagValuePair$member" : null
       }
@@ -1065,7 +1123,7 @@
       "refs" : { }
     },
     "UpdateClassificationJobRequest" : {
-      "base" : "<p>Cancels a classification job.</p>",
+      "base" : "<p>Changes the status of a classification job.</p>",
       "refs" : { }
     },
     "UpdateFindingsFilterRequest" : {
@@ -1161,6 +1219,13 @@
         "UserIdentity$Type" : "<p>The type of entity that performed the action.</p>"
       }
     },
+    "UserPausedDetails" : {
+      "base" : "<p>Provides information about when a classification job was paused and when it will expire and be cancelled if it isn’t resumed. This object is present only if a job’s current status (jobStatus) is USER_PAUSED.</p>",
+      "refs" : {
+        "DescribeClassificationJobResponse$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job will expire and be cancelled if it isn’t resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>",
+        "JobSummary$UserPausedDetails" : "<p>If the current status of the job is USER_PAUSED, specifies when the job was paused and when the job will expire and be cancelled if it isn’t resumed. This value is present only if the value for jobStatus is USER_PAUSED.</p>"
+      }
+    },
     "ValidationException" : {
       "base" : "<p>Provides information about an error that occurred due to a syntax error in a request.</p>",
       "refs" : { }
@@ -1184,6 +1249,7 @@
         "BucketMetadata$Versioning" : "<p>Specifies whether versioning is enabled for the bucket.</p>",
         "BucketPolicy$AllowsPublicReadAccess" : "<p>Specifies whether the bucket policy allows the general public to have read access to the bucket.</p>",
         "BucketPolicy$AllowsPublicWriteAccess" : "<p>Specifies whether the bucket policy allows the general public to have write access to the bucket.</p>",
+        "ClassificationResult$AdditionalOccurrences" : "<p>Specifies whether Amazon Macie detected additional occurrences of sensitive data in the S3 object. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p> <p>This value can help you to determine whether to investigate additional occurrences of sensitive data in an object. You can do this by referring to the corresponding sensitive data discovery result for the finding (ClassificationDetails.detailedResultsLocation).</p>",
         "CreateClassificationJobRequest$InitialRun" : "<p>Specifies whether to analyze all existing, eligible objects immediately after the job is created.</p>",
         "CreateInvitationsRequest$DisableEmailNotification" : "<p>Specifies whether to send an email notification to the root user of each account that the invitation will be sent to. This notification is in addition to an alert that the root user receives in AWS Personal Health Dashboard. To send an email notification to the root user of each account, set this value to true.</p>",
         "DescribeClassificationJobResponse$InitialRun" : "<p>Specifies whether the job is configured to analyze all existing, eligible objects immediately after it's created.</p>",
@@ -1224,7 +1290,7 @@
         "ListClassificationJobsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListCustomDataIdentifiersRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
         "ListFindingsRequest$MaxResults" : "<p>The maximum number of items to include in each page of the response.</p>",
-        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 30.</p>",
+        "MonthlySchedule$DayOfMonth" : "<p>The numeric day of the month when Amazon Macie runs the job. This value can be an integer from 1 through 31.</p> <p>If this value exceeds the number of days in a certain month, Macie runs the job on the last day of that month. For example, if this value is 31 and a month has only 30 days, Macie runs the job on day 30 of that month.</p>",
         "TestCustomDataIdentifierRequest$MaximumMatchDistance" : "<p>The maximum number of characters that can exist between text that matches the regex pattern and the character sequences specified by the keywords array. Macie includes or excludes a result based on the proximity of a keyword to text that matches the regex pattern. The distance can be 1 - 300 characters. The default value is 50.</p>",
         "TestCustomDataIdentifierResponse$MatchCount" : "<p>The number of instances of sample text that matched the detection criteria specified in the custom data identifier.</p>",
         "UpdateFindingsFilterRequest$Position" : "<p>The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.</p>"
@@ -1325,7 +1391,7 @@
     "__listOfTagValuePair" : {
       "base" : null,
       "refs" : {
-        "TagScopeTerm$TagValues" : "<p>The tag key and value pairs to use in the condition.</p>"
+        "TagScopeTerm$TagValues" : "<p>The tag keys or tag key and value pairs to use in the condition.</p>"
       }
     },
     "__listOfUnprocessedAccount" : {
@@ -1378,12 +1444,12 @@
         "DescribeClassificationJobResponse$CustomDataIdentifierIds" : "<p>The custom data identifiers that the job uses to analyze data.</p>",
         "GetCustomDataIdentifierResponse$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. Ignore words are case sensitive.</p>",
         "GetCustomDataIdentifierResponse$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. Keywords aren't case sensitive.</p>",
-        "GetFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to retrieve information about.</p>",
+        "GetFindingsRequest$FindingIds" : "<p>An array of strings that lists the unique identifiers for the findings to retrieve.</p>",
         "ListFindingsResponse$FindingIds" : "<p>An array of strings, where each string is the unique identifier for a finding that meets the filter criteria specified in the request.</p>",
         "ListJobsFilterTerm$Values" : "<p>An array that lists one or more values to use to filter the results.</p>",
         "ReplicationDetails$ReplicationAccounts" : "<p>An array of AWS account IDs, one for each AWS account that the bucket is configured to replicate one or more objects to.</p>",
         "S3BucketDefinitionForJob$Buckets" : "<p>An array that lists the names of the buckets.</p>",
-        "SimpleScopeTerm$Values" : "<p>An array that lists one or more values to use in the condition.</p>",
+        "SimpleScopeTerm$Values" : "<p>An array that lists the values to use in the condition. If the value for the key property is OBJECT_EXTENSION, this array can specify multiple values and Amazon Macie uses an OR operator to join the values. Otherwise, this array can specify only one value. Valid values for each supported property (key) are:</p> <ul><li><p>OBJECT_EXTENSION – A string that represents the file name extension of an object. For example: doc, docx, pdf</p></li> <li><p>OBJECT_LAST_MODIFIED_DATE – The date and time (in UTC and extended ISO 8601 format) when an object was created or last changed, whichever is latest. For example: 2020-09-28T14:31:13Z</p></li> <li><p>OBJECT_SIZE – An integer that represents the storage size (in bytes) of an object.</p></li> <li><p>TAG – A string that represents a tag key for an object. For advanced options, use a TagScopeTerm object, instead of a SimpleScopeTerm object, to define a tag-based condition for the job.</p></li></ul>",
         "TestCustomDataIdentifierRequest$IgnoreWords" : "<p>An array that lists specific character sequences (ignore words) to exclude from the results. If the text matched by the regular expression is the same as any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4 - 90 characters. Ignore words are case sensitive.</p>",
         "TestCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
         "UsageStatisticsFilter$Values" : "<p>An array that lists values to use in the condition, based on the value for the field specified by the key property. If the value for the key property is accountId, this array can specify multiple values. Otherwise, this array can specify only one value.</p> <p>Valid values for each supported field are:</p> <ul><li><p>accountId - The unique identifier for an AWS account.</p></li></ul> <ul><li><p>freeTrialStartDate - The date and time, in UTC and extended ISO 8601 format, when the free trial started for an account.</p></li></ul> <ul><li><p>serviceLimit - A Boolean (true or false) value that indicates whether an account has reached its monthly quota.</p></li></ul> <ul><li><p>total - A string that represents the current, estimated month-to-date cost for an account.</p></li></ul>"
@@ -1395,33 +1461,37 @@
         "BucketCountByEffectivePermission$PubliclyAccessible" : "<p>The total number of buckets that allow the general public to have read or write access to the bucket.</p>",
         "BucketCountByEffectivePermission$PubliclyReadable" : "<p>The total number of buckets that allow the general public to have read access to the bucket.</p>",
         "BucketCountByEffectivePermission$PubliclyWritable" : "<p>The total number of buckets that allow the general public to have write access to the bucket.</p>",
+        "BucketCountByEffectivePermission$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate permissions settings for. Macie can't determine whether these buckets are publicly accessible.</p>",
         "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an AWS Key Management Service (AWS KMS) customer master key (CMK) to encrypt objects. These buckets use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
         "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3-managed key to encrypt objects. These buckets use Amazon S3-managed (SSE-S3) encryption.</p>",
         "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt objects by default. Default encryption is disabled for these buckets.</p>",
         "BucketCountBySharedAccessType$External" : "<p>The total number of buckets that are shared with an AWS account that isn't part of the same Amazon Macie organization.</p>",
         "BucketCountBySharedAccessType$Internal" : "<p>The total number of buckets that are shared with an AWS account that's part of the same Amazon Macie organization.</p>",
-        "BucketCountBySharedAccessType$NotShared" : "<p>The total number of buckets that aren't shared with any other AWS accounts.</p>",
+        "BucketCountBySharedAccessType$NotShared" : "<p>The total number of buckets that aren't shared with other AWS accounts.</p>",
+        "BucketCountBySharedAccessType$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate shared access settings for. Macie can't determine whether these buckets are shared with other AWS accounts.</p>",
         "BucketCriteriaAdditionalProperties$Gt" : "<p>A greater than condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Gte" : "<p>A greater than or equal to condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Lt" : "<p>A less than condition to apply to a specified attribute value for buckets.</p>",
         "BucketCriteriaAdditionalProperties$Lte" : "<p>A less than or equal to condition to apply to a specified attribute value for buckets.</p>",
-        "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported file or storage format and storage class.</p>",
-        "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported file or storage format and storage class.</p>",
+        "BucketMetadata$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
+        "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
         "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p>",
         "BucketMetadata$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the bucket.</p>",
+        "Cell$Column" : "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, this value correlates to the alphabetical character(s) for a column identifier. For example, 1 for column A, 2 for column B, and so on.</p>",
+        "Cell$Row" : "<p>The row number of the row that contains the data.</p>",
         "ClassificationResult$SizeClassified" : "<p>The total size, in bytes, of the data that the finding applies to.</p>",
         "CriterionAdditionalProperties$Gt" : "<p>A greater than condition to apply to a specified property value for findings.</p>",
         "CriterionAdditionalProperties$Gte" : "<p>A greater than or equal to condition to apply to a specified property value for findings.</p>",
         "CriterionAdditionalProperties$Lt" : "<p>A less than condition to apply to a specified property value for findings.</p>",
         "CriterionAdditionalProperties$Lte" : "<p>A less than or equal to condition to apply to a specified property value for findings.</p>",
         "CustomDataIdentifiers$TotalCount" : "<p>The total number of occurrences of the data that was detected by the custom data identifiers and produced the finding.</p>",
-        "CustomDetection$Count" : "<p>The total number of occurrences of the data that the custom data identifier detected for the finding.</p>",
-        "DefaultDetection$Count" : "<p>The total number of occurrences of the type of data that was detected.</p>",
-        "Finding$Count" : "<p>The total number of occurrences of this finding.</p>",
+        "CustomDetection$Count" : "<p>The total number of occurrences of the sensitive data that the custom data identifier detected.</p>",
+        "DefaultDetection$Count" : "<p>The total number of occurrences of the type of sensitive data that was detected.</p>",
+        "Finding$Count" : "<p>The total number of occurrences of the finding.</p>",
         "GetBucketStatisticsResponse$BucketCount" : "<p>The total number of buckets.</p>",
-        "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the buckets. These objects use a supported file or storage format and storage class.</p>",
-        "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported file or storage format and storage class.</p>",
+        "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
+        "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in the buckets.</p>",
         "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p>",
         "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total compressed storage size, in bytes, of the buckets.</p>",
@@ -1431,13 +1501,18 @@
         "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted using an AWS Key Management Service (AWS KMS) customer master key (CMK). The objects use AWS KMS AWS-managed (AWS-KMS) encryption or AWS KMS customer-managed (SSE-KMS) encryption.</p>",
         "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted using an Amazon S3-managed key. The objects use Amazon S3-managed (SSE-S3) encryption.</p>",
         "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
-        "ObjectLevelStatistics$FileType" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported file or storage format.</p>",
+        "ObjectLevelStatistics$FileType" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects don’t have a file name extension for a supported file or storage format.</p>",
         "ObjectLevelStatistics$StorageClass" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class.</p>",
-        "ObjectLevelStatistics$Total" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported file or storage format or storage class.</p>",
+        "ObjectLevelStatistics$Total" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class or don’t have a file name extension for a supported file or storage format.</p>",
+        "Page$PageNumber" : "<p>The page number of the page that contains the data.</p>",
+        "Range$End" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the end of the file.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the end of the file.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the end of the page.</p></li></ul>",
+        "Range$Start" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the start of the file.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the start of the file.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the start of the page.</p></li></ul>",
+        "Range$StartColumn" : "<p>The column number for the column that contains the data, if the file contains structured data.</p>",
+        "Record$RecordIndex" : "<p>The row index, starting from 0, for the row that contains the data.</p>",
         "S3Object$Size" : "<p>The total storage size, in bytes, of the object.</p>",
         "SensitiveDataItem$TotalCount" : "<p>The total number of occurrences of the sensitive data that was detected.</p>",
         "ServiceLimit$Value" : "<p>The value for the metric specified by the UsageByAccount.type field in the response.</p>",
-        "Severity$Score" : "<p>The numeric score for the severity value, ranging from 0 (least severe) to 4 (most severe).</p>"
+        "Severity$Score" : "<p>The numerical representation of the finding's severity, ranging from 1 (least severe) to 3 (most severe).</p>"
       }
     },
     "__string" : {
@@ -1468,11 +1543,13 @@
         "BucketMetadata$BucketName" : "<p>The name of the bucket.</p>",
         "BucketMetadata$Region" : "<p>The AWS Region that hosts the bucket.</p>",
         "BucketSortCriteria$AttributeName" : "<p>The name of the attribute to sort the results by. This value can be the name of any property that Amazon Macie defines as bucket metadata, such as bucketName or accountId.</p>",
-        "ClassificationDetails$DetailedResultsLocation" : "<p>The path to the folder or file (in Amazon S3) that contains the corresponding sensitive data discovery results for the finding. If a finding applies to a large archive or compressed file, this is a path to a folder. Otherwise, this is a path to a file.</p>",
+        "Cell$CellReference" : "<p>The location of the cell, as an absolute cell reference, that contains the data. For example, Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel workbook. This value is null for CSV and TSV files.</p>",
+        "Cell$ColumnName" : "<p>The name of the column that contains the data, if available.</p>",
+        "ClassificationDetails$DetailedResultsLocation" : "<p>The path to the folder or file (in Amazon S3) that contains the corresponding sensitive data discovery result for the finding. If a finding applies to a large archive or compressed file, this value is the path to a folder. Otherwise, this value is the path to a file.</p>",
         "ClassificationDetails$JobArn" : "<p>The Amazon Resource Name (ARN) of the classification job that produced the finding.</p>",
         "ClassificationDetails$JobId" : "<p>The unique identifier for the classification job that produced the finding.</p>",
-        "ClassificationResult$MimeType" : "<p>The type of content, expressed as a MIME type, that the finding applies to. For example, application/gzip, for a GNU Gzip compressed archive file, or application/pdf, for an Adobe PDF file.</p>",
-        "ClassificationResultStatus$Code" : " <p>The status of the finding. Possible values are:</p> <ul><li><p>COMPLETE - Amazon Macie successfully completed its analysis of the object that the finding applies to.</p></li> <li><p>PARTIAL - Macie was able to analyze only a subset of the data in the object that the finding applies to. For example, the object is a compressed or archive file that contains files in an unsupported format.</p></li> <li><p>SKIPPED - Macie wasn't able to analyze the object that the finding applies to. For example, the object is a malformed file or a file that's in an unsupported format.</p></li></ul>",
+        "ClassificationResult$MimeType" : "<p>The type of content, as a MIME type, that the finding applies to. For example, application/gzip, for a GNU Gzip compressed archive file, or application/pdf, for an Adobe Portable Document Format file.</p>",
+        "ClassificationResultStatus$Code" : " <p>The status of the finding. Possible values are:</p> <ul><li><p>COMPLETE - Amazon Macie successfully completed its analysis of the object that the finding applies to.</p></li> <li><p>PARTIAL - Macie was able to analyze only a subset of the data in the object that the finding applies to. For example, the object is a compressed or archive file that contains files in an unsupported format.</p></li> <li><p>SKIPPED - Macie wasn't able to analyze the object that the finding applies to. For example, the object is a malformed file or a file that uses an unsupported format.</p></li></ul>",
         "ClassificationResultStatus$Reason" : "<p>A brief description of the status of the finding. Amazon Macie uses this value to notify you of any errors, warnings, or considerations that might impact your analysis of the finding.</p>",
         "ConflictException$Message" : "<p>The explanation of the error that occurred.</p>",
         "CreateClassificationJobRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
@@ -1498,7 +1575,7 @@
         "CustomDataIdentifierSummary$Name" : "<p>The custom name of the custom data identifier.</p>",
         "CustomDetection$Arn" : "<p>The Amazon Resource Name (ARN) of the custom data identifier.</p>",
         "CustomDetection$Name" : "<p>The name of the custom data identifier.</p>",
-        "DefaultDetection$Type" : "<p>The type of data that was detected. For example, AWS_CREDENTIALS, PHONE_NUMBER, or ADDRESS.</p>",
+        "DefaultDetection$Type" : "<p>The type of sensitive data that was detected. For example, AWS_CREDENTIALS, PHONE_NUMBER, or ADDRESS.</p>",
         "DescribeBucketsRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
         "DescribeBucketsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "DescribeClassificationJobResponse$ClientToken" : "<p>The token that was provided to ensure the idempotency of the request to create the job.</p>",
@@ -1601,7 +1678,7 @@
         "TagMap$member" : null,
         "TagScopeTerm$Key" : "<p>The tag key to use in the condition.</p>",
         "TagValuePair$Key" : "<p>The value for the tag key to use in the condition.</p>",
-        "TagValuePair$Value" : "<p>The tag value, associated with the specified tag key, to use in the condition.</p>",
+        "TagValuePair$Value" : "<p>The tag value, associated with the specified tag key (key), to use in the condition. To specify only a tag key for a condition, specify the tag key for the key property and set this value to an empty string.</p>",
         "TestCustomDataIdentifierRequest$Regex" : "<p>The regular expression (<i>regex</i>) that defines the pattern to match. The expression can contain as many as 512 characters.</p>",
         "TestCustomDataIdentifierRequest$SampleText" : "<p>The sample text to inspect by using the custom data identifier. The text can contain as many as 1,000 characters.</p>",
         "ThrottlingException$Message" : "<p>The explanation of the error that occurred.</p>",
@@ -1617,6 +1694,7 @@
         "UserIdentityRoot$AccountId" : "<p>The unique identifier for the AWS account.</p>",
         "UserIdentityRoot$Arn" : "<p>The Amazon Resource Name (ARN) of the principal that performed the action. The last section of the ARN contains the name of the user or role that performed the action.</p>",
         "UserIdentityRoot$PrincipalId" : "<p>The unique identifier for the entity that performed the action.</p>",
+        "UserPausedDetails$JobImminentExpirationHealthEventArn" : "<p>The Amazon Resource Name (ARN) of the AWS Health event that Amazon Macie sent to notify you of the job’s pending expiration and cancellation. This value is null if a job has been paused for less than 23 days.</p>",
         "ValidationException$Message" : "<p>The explanation of the error that occurred.</p>",
         "__listOf__string$member" : null
       }
@@ -1633,7 +1711,7 @@
         "DescribeClassificationJobResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job was created.</p>",
         "DescribeClassificationJobResponse$LastRunTime" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job last ran.</p>",
         "Finding$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was created.</p>",
-        "Finding$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was last updated. For sensitive data findings, this value is the same as the value for the createdAt property. Sensitive data findings aren't updated.</p>",
+        "Finding$UpdatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the finding was last updated. For sensitive data findings, this value is the same as the value for the createdAt property. All sensitive data findings are considered new (unique) because they derive from individual classification jobs.</p>",
         "GetBucketStatisticsResponse$LastUpdated" : "<p>The date and time, in UTC and extended ISO 8601 format, when Amazon Macie most recently retrieved data about the buckets from Amazon S3.</p>",
         "GetCustomDataIdentifierResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the custom data identifier was created.</p>",
         "GetMacieSessionResponse$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the Amazon Macie account was created.</p>",
@@ -1647,7 +1725,9 @@
         "S3Bucket$CreatedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the bucket was created.</p>",
         "S3Object$LastModified" : "<p>The date and time, in UTC and extended ISO 8601 format, when the object was last modified.</p>",
         "SessionContextAttributes$CreationDate" : "<p>The date and time, in UTC and ISO 8601 format, when the credentials were issued.</p>",
-        "UsageRecord$FreeTrialStartDate" : "<p>The date and time, in UTC and extended ISO 8601 format, when the free trial started for the account.</p>"
+        "UsageRecord$FreeTrialStartDate" : "<p>The date and time, in UTC and extended ISO 8601 format, when the free trial started for the account.</p>",
+        "UserPausedDetails$JobExpiresAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when the job will expire and be cancelled if you don't resume it first. If you don’t resume a job within 30 days of pausing it, the job expires and Amazon Macie cancels it.</p>",
+        "UserPausedDetails$JobPausedAt" : "<p>The date and time, in UTC and extended ISO 8601 format, when you paused the job.</p>"
       }
     }
   }

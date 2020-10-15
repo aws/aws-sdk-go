@@ -676,6 +676,7 @@
         "ContactData$groundStation": "<p>Name of a ground station.</p>",
         "ContactData$region": "<p>Region of a contact.</p>",
         "ContactIdResponse$contactId": "<p>UUID of a contact.</p>",
+        "DataflowDetail$errorMessage": "<p>Error message for a dataflow.</p>",
         "DataflowEndpointConfig$dataflowEndpointName": "<p>Name of a dataflow endpoint.</p>",
         "DataflowEndpointConfig$dataflowEndpointRegion": "<p>Region of a dataflow endpoint.</p>",
         "DataflowEndpointGroupIdResponse$dataflowEndpointGroupId": "<p>UUID of a dataflow endpoint group.</p>",

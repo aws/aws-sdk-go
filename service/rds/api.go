@@ -1114,7 +1114,7 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 // CopyDBSnapshot API operation for Amazon Relational Database Service.
 //
 // Copies the specified DB snapshot. The source DB snapshot must be in the available
-// or storage-optimization state.
+// state.
 //
 // You can copy a snapshot from one AWS Region to another. In that case, the
 // AWS Region where you call the CopyDBSnapshot action is the destination AWS
@@ -2415,7 +2415,8 @@ func (c *RDS) CreateDBSnapshotRequest(input *CreateDBSnapshotInput) (req *reques
 
 // CreateDBSnapshot API operation for Amazon Relational Database Service.
 //
-// Creates a DBSnapshot. The source DBInstance must be in "available" state.
+// Creates a snapshot of a DB instance. The source DB instance must be in the
+// available or storage-optimizationstate.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17066,12 +17067,20 @@ type CreateDBClusterInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
+	// The DB engine mode of the DB cluster, either provisioned serverless, parallelquery,
 	// global, or multimaster.
 	//
-	// global engine mode only applies for global database clusters created with
-	// Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters
-	// in a global database use provisioned engine mode.
+	// The parallelquery engine mode isn't required for Aurora MySQL version 1.23
+	// and higher 1.x versions, and version 2.09 and higher 2.x versions.
+	//
+	// The global engine mode isn't required for Aurora MySQL version 1.22 and higher
+	// 1.x versions, and global engine mode isn't required for any 2.x versions.
+	//
+	// The multimaster engine mode only applies for DB clusters created with Aurora
+	// MySQL version 5.6.10a.
+	//
+	// For Aurora PostgreSQL, the global engine mode isn't required, and both the
+	// parallelquery and the multimaster engine modes currently aren't supported.
 	//
 	// Limitations and requirements apply to some DB engine modes. For more information,
 	// see the following sections in the Amazon Aurora User Guide:
@@ -17080,7 +17089,7 @@ type CreateDBClusterInput struct {
 	//
 	//    * Limitations of Parallel Query (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-mysql-parallel-query.html#aurora-mysql-parallel-query-limitations)
 	//
-	//    * Requirements for Aurora Global Databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
+	//    * Limitations of Aurora Global Databases (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-global-database.html#aurora-global-database.limitations)
 	//
 	//    * Limitations of Multi-Master Clusters (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-multi-master.html#aurora-multi-master-limitations)
 	EngineMode *string `type:"string"`
@@ -20656,11 +20665,7 @@ type DBCluster struct {
 	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
 	// global, or multimaster.
 	//
-	// global engine mode only applies for global database clusters created with
-	// Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters
-	// in a global database use provisioned engine mode. To check if a DB cluster
-	// is part of a global database, use DescribeGlobalClusters instead of checking
-	// the EngineMode return value from DescribeDBClusters.
+	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
 	EngineMode *string `type:"string"`
 
 	// Indicates the database engine version.
@@ -20756,6 +20761,10 @@ type DBCluster struct {
 
 	// Specifies whether the DB cluster is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
+
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
 
 	// Provides a list of VPC security groups that the DB cluster belongs to.
 	VpcSecurityGroups []*VpcSecurityGroupMembership `locationNameList:"VpcSecurityGroupMembership" type:"list"`
@@ -21086,6 +21095,12 @@ func (s *DBCluster) SetStatus(v string) *DBCluster {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBCluster) SetStorageEncrypted(v bool) *DBCluster {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DBCluster) SetTagList(v []*Tag) *DBCluster {
+	s.TagList = v
 	return s
 }
 
@@ -21527,6 +21542,10 @@ type DBClusterSnapshot struct {
 	// Specifies whether the DB cluster snapshot is encrypted.
 	StorageEncrypted *bool `type:"boolean"`
 
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
 	// Provides the VPC ID associated with the DB cluster snapshot.
 	VpcId *string `type:"string"`
 }
@@ -21652,6 +21671,12 @@ func (s *DBClusterSnapshot) SetStatus(v string) *DBClusterSnapshot {
 // SetStorageEncrypted sets the StorageEncrypted field's value.
 func (s *DBClusterSnapshot) SetStorageEncrypted(v bool) *DBClusterSnapshot {
 	s.StorageEncrypted = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DBClusterSnapshot) SetTagList(v []*Tag) *DBClusterSnapshot {
+	s.TagList = v
 	return s
 }
 
@@ -21782,10 +21807,6 @@ type DBEngineVersion struct {
 	SupportedCharacterSets []*CharacterSet `locationNameList:"CharacterSet" type:"list"`
 
 	// A list of the supported DB engine modes.
-	//
-	// global engine mode only applies for global database clusters created with
-	// Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters
-	// in a global database use provisioned engine mode.
 	SupportedEngineModes []*string `type:"list"`
 
 	// A list of features supported by the DB engine. Supported feature names include
@@ -22212,6 +22233,10 @@ type DBInstance struct {
 	// Specifies the storage type associated with DB instance.
 	StorageType *string `type:"string"`
 
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ARN from the key store with which the instance is associated for TDE
 	// encryption.
 	TdeCredentialArn *string `type:"string"`
@@ -22575,6 +22600,12 @@ func (s *DBInstance) SetStorageEncrypted(v bool) *DBInstance {
 // SetStorageType sets the StorageType field's value.
 func (s *DBInstance) SetStorageType(v string) *DBInstance {
 	s.StorageType = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DBInstance) SetTagList(v []*Tag) *DBInstance {
+	s.TagList = v
 	return s
 }
 
@@ -23640,6 +23671,10 @@ type DBSnapshot struct {
 	// Specifies the storage type associated with DB snapshot.
 	StorageType *string `type:"string"`
 
+	// A list of tags. For more information, see Tagging Amazon RDS Resources (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Tagging.html)
+	// in the Amazon RDS User Guide.
+	TagList []*Tag `locationNameList:"Tag" type:"list"`
+
 	// The ARN from the key store with which to associate the instance for TDE encryption.
 	TdeCredentialArn *string `type:"string"`
 
@@ -23809,6 +23844,12 @@ func (s *DBSnapshot) SetStatus(v string) *DBSnapshot {
 // SetStorageType sets the StorageType field's value.
 func (s *DBSnapshot) SetStorageType(v string) *DBSnapshot {
 	s.StorageType = &v
+	return s
+}
+
+// SetTagList sets the TagList field's value.
+func (s *DBSnapshot) SetTagList(v []*Tag) *DBSnapshot {
+	s.TagList = v
 	return s
 }
 
@@ -35539,10 +35580,6 @@ type OrderableDBInstanceOption struct {
 	StorageType *string `type:"string"`
 
 	// A list of the supported DB engine modes.
-	//
-	// global engine mode only applies for global database clusters created with
-	// Aurora MySQL version 5.6.10a. For higher Aurora MySQL versions, the clusters
-	// in a global database use provisioned engine mode.
 	SupportedEngineModes []*string `type:"list"`
 
 	// Indicates whether a DB instance supports Enhanced Monitoring at intervals
@@ -38217,6 +38254,8 @@ type RestoreDBClusterFromSnapshotInput struct {
 
 	// The DB engine mode of the DB cluster, either provisioned, serverless, parallelquery,
 	// global, or multimaster.
+	//
+	// For more information, see CreateDBCluster (https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_CreateDBCluster.html).
 	EngineMode *string `type:"string"`
 
 	// The version of the database engine to use for the new DB cluster.

@@ -29,6 +29,23 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "CreateBudgetAction":{
+      "name":"CreateBudgetAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBudgetActionRequest"},
+      "output":{"shape":"CreateBudgetActionResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InternalErrorException"},
+        {"shape":"CreationLimitExceededException"},
+        {"shape":"DuplicateRecordException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "CreateNotification":{
       "name":"CreateNotification",
       "http":{
@@ -78,6 +95,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DeleteBudgetAction":{
+      "name":"DeleteBudgetAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBudgetActionRequest"},
+      "output":{"shape":"DeleteBudgetActionResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceLockedException"}
+      ]
+    },
     "DeleteNotification":{
       "name":"DeleteNotification",
       "http":{
@@ -121,6 +154,68 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeBudgetAction":{
+      "name":"DescribeBudgetAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBudgetActionRequest"},
+      "output":{"shape":"DescribeBudgetActionResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DescribeBudgetActionHistories":{
+      "name":"DescribeBudgetActionHistories",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBudgetActionHistoriesRequest"},
+      "output":{"shape":"DescribeBudgetActionHistoriesResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
+    "DescribeBudgetActionsForAccount":{
+      "name":"DescribeBudgetActionsForAccount",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBudgetActionsForAccountRequest"},
+      "output":{"shape":"DescribeBudgetActionsForAccountResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"}
+      ]
+    },
+    "DescribeBudgetActionsForBudget":{
+      "name":"DescribeBudgetActionsForBudget",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBudgetActionsForBudgetRequest"},
+      "output":{"shape":"DescribeBudgetActionsForBudgetResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidNextTokenException"}
       ]
     },
     "DescribeBudgetPerformanceHistory":{
@@ -191,6 +286,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "ExecuteBudgetAction":{
+      "name":"ExecuteBudgetAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExecuteBudgetActionRequest"},
+      "output":{"shape":"ExecuteBudgetActionResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceLockedException"}
+      ]
+    },
     "UpdateBudget":{
       "name":"UpdateBudget",
       "http":{
@@ -204,6 +315,22 @@
         {"shape":"InvalidParameterException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "UpdateBudgetAction":{
+      "name":"UpdateBudgetAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateBudgetActionRequest"},
+      "output":{"shape":"UpdateBudgetActionResponse"},
+      "errors":[
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceLockedException"}
       ]
     },
     "UpdateNotification":{
@@ -252,6 +379,125 @@
       "max":12,
       "min":12,
       "pattern":"\\d{12}"
+    },
+    "Action":{
+      "type":"structure",
+      "required":[
+        "ActionId",
+        "BudgetName",
+        "NotificationType",
+        "ActionType",
+        "ActionThreshold",
+        "Definition",
+        "ExecutionRoleArn",
+        "ApprovalModel",
+        "Status",
+        "Subscribers"
+      ],
+      "members":{
+        "ActionId":{"shape":"ActionId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "NotificationType":{"shape":"NotificationType"},
+        "ActionType":{"shape":"ActionType"},
+        "ActionThreshold":{"shape":"ActionThreshold"},
+        "Definition":{"shape":"Definition"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
+        "ApprovalModel":{"shape":"ApprovalModel"},
+        "Status":{"shape":"ActionStatus"},
+        "Subscribers":{"shape":"Subscribers"}
+      }
+    },
+    "ActionHistories":{
+      "type":"list",
+      "member":{"shape":"ActionHistory"},
+      "max":100,
+      "min":0
+    },
+    "ActionHistory":{
+      "type":"structure",
+      "required":[
+        "Timestamp",
+        "Status",
+        "EventType",
+        "ActionHistoryDetails"
+      ],
+      "members":{
+        "Timestamp":{"shape":"GenericTimestamp"},
+        "Status":{"shape":"ActionStatus"},
+        "EventType":{"shape":"EventType"},
+        "ActionHistoryDetails":{"shape":"ActionHistoryDetails"}
+      }
+    },
+    "ActionHistoryDetails":{
+      "type":"structure",
+      "required":[
+        "Message",
+        "Action"
+      ],
+      "members":{
+        "Message":{"shape":"GenericString"},
+        "Action":{"shape":"Action"}
+      }
+    },
+    "ActionId":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+    },
+    "ActionStatus":{
+      "type":"string",
+      "enum":[
+        "STANDBY",
+        "PENDING",
+        "EXECUTION_IN_PROGRESS",
+        "EXECUTION_SUCCESS",
+        "EXECUTION_FAILURE",
+        "REVERSE_IN_PROGRESS",
+        "REVERSE_SUCCESS",
+        "REVERSE_FAILURE",
+        "RESET_IN_PROGRESS",
+        "RESET_FAILURE"
+      ]
+    },
+    "ActionSubType":{
+      "type":"string",
+      "enum":[
+        "STOP_EC2_INSTANCES",
+        "STOP_RDS_INSTANCES"
+      ]
+    },
+    "ActionThreshold":{
+      "type":"structure",
+      "required":[
+        "ActionThresholdValue",
+        "ActionThresholdType"
+      ],
+      "members":{
+        "ActionThresholdValue":{"shape":"NotificationThreshold"},
+        "ActionThresholdType":{"shape":"ThresholdType"}
+      }
+    },
+    "ActionType":{
+      "type":"string",
+      "enum":[
+        "APPLY_IAM_POLICY",
+        "APPLY_SCP_POLICY",
+        "RUN_SSM_DOCUMENTS"
+      ]
+    },
+    "Actions":{
+      "type":"list",
+      "member":{"shape":"Action"},
+      "max":100,
+      "min":0
+    },
+    "ApprovalModel":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "MANUAL"
+      ]
     },
     "Budget":{
       "type":"structure",
@@ -354,6 +600,44 @@
         "UseAmortized":{"shape":"NullableBoolean"}
       }
     },
+    "CreateBudgetActionRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "NotificationType",
+        "ActionType",
+        "ActionThreshold",
+        "Definition",
+        "ExecutionRoleArn",
+        "ApprovalModel",
+        "Subscribers"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "NotificationType":{"shape":"NotificationType"},
+        "ActionType":{"shape":"ActionType"},
+        "ActionThreshold":{"shape":"ActionThreshold"},
+        "Definition":{"shape":"Definition"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
+        "ApprovalModel":{"shape":"ApprovalModel"},
+        "Subscribers":{"shape":"Subscribers"}
+      }
+    },
+    "CreateBudgetActionResponse":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"}
+      }
+    },
     "CreateBudgetRequest":{
       "type":"structure",
       "required":[
@@ -418,6 +702,40 @@
       },
       "exception":true
     },
+    "Definition":{
+      "type":"structure",
+      "members":{
+        "IamActionDefinition":{"shape":"IamActionDefinition"},
+        "ScpActionDefinition":{"shape":"ScpActionDefinition"},
+        "SsmActionDefinition":{"shape":"SsmActionDefinition"}
+      }
+    },
+    "DeleteBudgetActionRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"}
+      }
+    },
+    "DeleteBudgetActionResponse":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "Action"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "Action":{"shape":"Action"}
+      }
+    },
     "DeleteBudgetRequest":{
       "type":"structure",
       "required":[
@@ -470,6 +788,94 @@
     "DeleteSubscriberResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DescribeBudgetActionHistoriesRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"},
+        "TimePeriod":{"shape":"TimePeriod"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "DescribeBudgetActionHistoriesResponse":{
+      "type":"structure",
+      "required":["ActionHistories"],
+      "members":{
+        "ActionHistories":{"shape":"ActionHistories"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "DescribeBudgetActionRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"}
+      }
+    },
+    "DescribeBudgetActionResponse":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "Action"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "Action":{"shape":"Action"}
+      }
+    },
+    "DescribeBudgetActionsForAccountRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "DescribeBudgetActionsForAccountResponse":{
+      "type":"structure",
+      "required":["Actions"],
+      "members":{
+        "Actions":{"shape":"Actions"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "DescribeBudgetActionsForBudgetRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
+    "DescribeBudgetActionsForBudgetResponse":{
+      "type":"structure",
+      "required":["Actions"],
+      "members":{
+        "Actions":{"shape":"Actions"},
+        "NextToken":{"shape":"GenericString"}
       }
     },
     "DescribeBudgetPerformanceHistoryRequest":{
@@ -579,6 +985,55 @@
       },
       "exception":true
     },
+    "EventType":{
+      "type":"string",
+      "enum":[
+        "SYSTEM",
+        "CREATE_ACTION",
+        "DELETE_ACTION",
+        "UPDATE_ACTION",
+        "EXECUTE_ACTION"
+      ]
+    },
+    "ExecuteBudgetActionRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId",
+        "ExecutionType"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"},
+        "ExecutionType":{"shape":"ExecutionType"}
+      }
+    },
+    "ExecuteBudgetActionResponse":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId",
+        "ExecutionType"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"},
+        "ExecutionType":{"shape":"ExecutionType"}
+      }
+    },
+    "ExecutionType":{
+      "type":"string",
+      "enum":[
+        "APPROVE_BUDGET_ACTION",
+        "RETRY_BUDGET_ACTION",
+        "REVERSE_BUDGET_ACTION",
+        "RESET_BUDGET_ACTION"
+      ]
+    },
     "ExpiredNextTokenException":{
       "type":"structure",
       "members":{
@@ -593,6 +1048,40 @@
       "pattern":".*"
     },
     "GenericTimestamp":{"type":"timestamp"},
+    "Group":{
+      "type":"string",
+      "max":640,
+      "min":1,
+      "pattern":"^([\\u0021-\\u007F]+\\u002F)?[\\w+=,.@-]+$"
+    },
+    "Groups":{
+      "type":"list",
+      "member":{"shape":"Group"},
+      "max":100,
+      "min":1
+    },
+    "IamActionDefinition":{
+      "type":"structure",
+      "required":["PolicyArn"],
+      "members":{
+        "PolicyArn":{"shape":"PolicyArn"},
+        "Roles":{"shape":"Roles"},
+        "Groups":{"shape":"Groups"},
+        "Users":{"shape":"Users"}
+      }
+    },
+    "InstanceId":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^i-(\\w{8}|\\w{17})$|^[a-zA-Z]([\\w-]{0,61}\\w)?$"
+    },
+    "InstanceIds":{
+      "type":"list",
+      "member":{"shape":"InstanceId"},
+      "max":100,
+      "min":1
+    },
     "InternalErrorException":{
       "type":"structure",
       "members":{
@@ -696,6 +1185,60 @@
       "key":{"shape":"GenericString"},
       "value":{"shape":"Spend"}
     },
+    "PolicyArn":{
+      "type":"string",
+      "max":684,
+      "min":25,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|us-iso-east-1|us-isob-east-1):iam::(\\d{12}|aws):policy(\\u002F[\\u0021-\\u007F]+\\u002F|\\u002F)[\\w+=,.@-]+$"
+    },
+    "PolicyId":{
+      "type":"string",
+      "max":130,
+      "min":10,
+      "pattern":"^p-[0-9a-zA-Z_]{8,128}$"
+    },
+    "Region":{
+      "type":"string",
+      "max":20,
+      "min":9,
+      "pattern":"^\\w{2}-\\w+(-\\w+)?-\\d$"
+    },
+    "ResourceLockedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
+    },
+    "Role":{
+      "type":"string",
+      "max":576,
+      "min":1,
+      "pattern":"^([\\u0021-\\u007F]+\\u002F)?[\\w+=,.@-]+$"
+    },
+    "RoleArn":{
+      "type":"string",
+      "max":618,
+      "min":32,
+      "pattern":"^arn:(aws|aws-cn|aws-us-gov|us-iso-east-1|us-isob-east-1):iam::\\d{12}:role(\\u002F[\\u0021-\\u007F]+\\u002F|\\u002F)[\\w+=,.@-]+$"
+    },
+    "Roles":{
+      "type":"list",
+      "member":{"shape":"Role"},
+      "max":100,
+      "min":1
+    },
+    "ScpActionDefinition":{
+      "type":"structure",
+      "required":[
+        "PolicyId",
+        "TargetIds"
+      ],
+      "members":{
+        "PolicyId":{"shape":"PolicyId"},
+        "TargetIds":{"shape":"TargetIds"}
+      }
+    },
     "Spend":{
       "type":"structure",
       "required":[
@@ -705,6 +1248,19 @@
       "members":{
         "Amount":{"shape":"NumericValue"},
         "Unit":{"shape":"UnitValue"}
+      }
+    },
+    "SsmActionDefinition":{
+      "type":"structure",
+      "required":[
+        "ActionSubType",
+        "Region",
+        "InstanceIds"
+      ],
+      "members":{
+        "ActionSubType":{"shape":"ActionSubType"},
+        "Region":{"shape":"Region"},
+        "InstanceIds":{"shape":"InstanceIds"}
       }
     },
     "Subscriber":{
@@ -738,6 +1294,18 @@
         "EMAIL"
       ]
     },
+    "TargetId":{
+      "type":"string",
+      "max":68,
+      "min":12,
+      "pattern":"^(ou-[0-9a-z]{4,32}-[a-z0-9]{8,32}$)|(\\d{12})"
+    },
+    "TargetIds":{
+      "type":"list",
+      "member":{"shape":"TargetId"},
+      "max":100,
+      "min":1
+    },
     "ThresholdType":{
       "type":"string",
       "enum":[
@@ -766,6 +1334,40 @@
       "max":2147483647,
       "min":1,
       "pattern":".*"
+    },
+    "UpdateBudgetActionRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "ActionId"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "ActionId":{"shape":"ActionId"},
+        "NotificationType":{"shape":"NotificationType"},
+        "ActionThreshold":{"shape":"ActionThreshold"},
+        "Definition":{"shape":"Definition"},
+        "ExecutionRoleArn":{"shape":"RoleArn"},
+        "ApprovalModel":{"shape":"ApprovalModel"},
+        "Subscribers":{"shape":"Subscribers"}
+      }
+    },
+    "UpdateBudgetActionResponse":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "BudgetName",
+        "OldAction",
+        "NewAction"
+      ],
+      "members":{
+        "AccountId":{"shape":"AccountId"},
+        "BudgetName":{"shape":"BudgetName"},
+        "OldAction":{"shape":"Action"},
+        "NewAction":{"shape":"Action"}
+      }
     },
     "UpdateBudgetRequest":{
       "type":"structure",
@@ -824,6 +1426,18 @@
       "type":"structure",
       "members":{
       }
+    },
+    "User":{
+      "type":"string",
+      "max":576,
+      "min":1,
+      "pattern":"^([\\u0021-\\u007F]+\\u002F)?[\\w+=,.@-]+$"
+    },
+    "Users":{
+      "type":"list",
+      "member":{"shape":"User"},
+      "max":100,
+      "min":1
     },
     "errorMessage":{"type":"string"}
   }

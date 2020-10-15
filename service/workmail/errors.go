@@ -8,6 +8,13 @@ import (
 
 const (
 
+	// ErrCodeDirectoryInUseException for service response error code
+	// "DirectoryInUseException".
+	//
+	// The directory is already in use by another WorkMail organization in the same
+	// account and Region.
+	ErrCodeDirectoryInUseException = "DirectoryInUseException"
+
 	// ErrCodeDirectoryServiceAuthenticationFailedException for service response error code
 	// "DirectoryServiceAuthenticationFailedException".
 	//
@@ -17,7 +24,7 @@ const (
 	// ErrCodeDirectoryUnavailableException for service response error code
 	// "DirectoryUnavailableException".
 	//
-	// The directory on which you are trying to perform operations isn't available.
+	// The directory is unavailable. It might be located in another Region or deleted.
 	ErrCodeDirectoryUnavailableException = "DirectoryUnavailableException"
 
 	// ErrCodeEmailAddressInUseException for service response error code
@@ -104,8 +111,8 @@ const (
 	// ErrCodeOrganizationStateException for service response error code
 	// "OrganizationStateException".
 	//
-	// The organization must have a valid state (Active or Synchronizing) to perform
-	// certain operations on the organization or its members.
+	// The organization must have a valid state to perform certain operations on
+	// the organization or its members.
 	ErrCodeOrganizationStateException = "OrganizationStateException"
 
 	// ErrCodeReservedNameException for service response error code
@@ -134,6 +141,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"DirectoryInUseException":                       newErrorDirectoryInUseException,
 	"DirectoryServiceAuthenticationFailedException": newErrorDirectoryServiceAuthenticationFailedException,
 	"DirectoryUnavailableException":                 newErrorDirectoryUnavailableException,
 	"EmailAddressInUseException":                    newErrorEmailAddressInUseException,
