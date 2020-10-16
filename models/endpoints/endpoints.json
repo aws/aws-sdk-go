@@ -2951,7 +2951,12 @@
       },
       "health" : {
         "endpoints" : {
-          "us-east-1" : { }
+          "fips-us-east-2" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "health-fips.us-east-2.amazonaws.com"
+          }
         }
       },
       "honeycode" : {
@@ -6841,6 +6846,11 @@
           "cn-northwest-1" : { }
         }
       },
+      "lakeformation" : {
+        "endpoints" : {
+          "cn-north-1" : { }
+        }
+      },
       "lambda" : {
         "endpoints" : {
           "cn-north-1" : { },
@@ -7174,8 +7184,18 @@
       },
       "acm" : {
         "endpoints" : {
-          "us-gov-east-1" : { },
-          "us-gov-west-1" : { }
+          "us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "acm.us-gov-east-1.amazonaws.com"
+          },
+          "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "acm.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "acm-pca" : {
@@ -8123,9 +8143,14 @@
             "credentialScope" : {
               "region" : "us-gov-west-1"
             },
-            "hostname" : "pinpoint.us-gov-west-1.amazonaws.com"
+            "hostname" : "pinpoint-fips.us-gov-west-1.amazonaws.com"
           },
-          "us-gov-west-1" : { }
+          "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "pinpoint.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "polly" : {

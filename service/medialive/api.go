@@ -14,6 +14,102 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opAcceptInputDeviceTransfer = "AcceptInputDeviceTransfer"
+
+// AcceptInputDeviceTransferRequest generates a "aws/request.Request" representing the
+// client's request for the AcceptInputDeviceTransfer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AcceptInputDeviceTransfer for more information on using the AcceptInputDeviceTransfer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AcceptInputDeviceTransferRequest method.
+//    req, resp := client.AcceptInputDeviceTransferRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/AcceptInputDeviceTransfer
+func (c *MediaLive) AcceptInputDeviceTransferRequest(input *AcceptInputDeviceTransferInput) (req *request.Request, output *AcceptInputDeviceTransferOutput) {
+	op := &request.Operation{
+		Name:       opAcceptInputDeviceTransfer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/accept",
+	}
+
+	if input == nil {
+		input = &AcceptInputDeviceTransferInput{}
+	}
+
+	output = &AcceptInputDeviceTransferOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AcceptInputDeviceTransfer API operation for AWS Elemental MediaLive.
+//
+// Accept an incoming input device transfer. The ownership of the device will
+// transfer to your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation AcceptInputDeviceTransfer for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/AcceptInputDeviceTransfer
+func (c *MediaLive) AcceptInputDeviceTransfer(input *AcceptInputDeviceTransferInput) (*AcceptInputDeviceTransferOutput, error) {
+	req, out := c.AcceptInputDeviceTransferRequest(input)
+	return out, req.Send()
+}
+
+// AcceptInputDeviceTransferWithContext is the same as AcceptInputDeviceTransfer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AcceptInputDeviceTransfer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) AcceptInputDeviceTransferWithContext(ctx aws.Context, input *AcceptInputDeviceTransferInput, opts ...request.Option) (*AcceptInputDeviceTransferOutput, error) {
+	req, out := c.AcceptInputDeviceTransferRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchDelete = "BatchDelete"
 
 // BatchDeleteRequest generates a "aws/request.Request" representing the
@@ -377,6 +473,101 @@ func (c *MediaLive) BatchUpdateSchedule(input *BatchUpdateScheduleInput) (*Batch
 // for more information on using Contexts.
 func (c *MediaLive) BatchUpdateScheduleWithContext(ctx aws.Context, input *BatchUpdateScheduleInput, opts ...request.Option) (*BatchUpdateScheduleOutput, error) {
 	req, out := c.BatchUpdateScheduleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCancelInputDeviceTransfer = "CancelInputDeviceTransfer"
+
+// CancelInputDeviceTransferRequest generates a "aws/request.Request" representing the
+// client's request for the CancelInputDeviceTransfer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelInputDeviceTransfer for more information on using the CancelInputDeviceTransfer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelInputDeviceTransferRequest method.
+//    req, resp := client.CancelInputDeviceTransferRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CancelInputDeviceTransfer
+func (c *MediaLive) CancelInputDeviceTransferRequest(input *CancelInputDeviceTransferInput) (req *request.Request, output *CancelInputDeviceTransferOutput) {
+	op := &request.Operation{
+		Name:       opCancelInputDeviceTransfer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/cancel",
+	}
+
+	if input == nil {
+		input = &CancelInputDeviceTransferInput{}
+	}
+
+	output = &CancelInputDeviceTransferOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CancelInputDeviceTransfer API operation for AWS Elemental MediaLive.
+//
+// Cancel an input device transfer that you have requested.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation CancelInputDeviceTransfer for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/CancelInputDeviceTransfer
+func (c *MediaLive) CancelInputDeviceTransfer(input *CancelInputDeviceTransferInput) (*CancelInputDeviceTransferOutput, error) {
+	req, out := c.CancelInputDeviceTransferRequest(input)
+	return out, req.Send()
+}
+
+// CancelInputDeviceTransferWithContext is the same as CancelInputDeviceTransfer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelInputDeviceTransfer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) CancelInputDeviceTransferWithContext(ctx aws.Context, input *CancelInputDeviceTransferInput, opts ...request.Option) (*CancelInputDeviceTransferOutput, error) {
+	req, out := c.CancelInputDeviceTransferRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2751,6 +2942,156 @@ func (c *MediaLive) ListChannelsPagesWithContext(ctx aws.Context, input *ListCha
 	return p.Err()
 }
 
+const opListInputDeviceTransfers = "ListInputDeviceTransfers"
+
+// ListInputDeviceTransfersRequest generates a "aws/request.Request" representing the
+// client's request for the ListInputDeviceTransfers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListInputDeviceTransfers for more information on using the ListInputDeviceTransfers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListInputDeviceTransfersRequest method.
+//    req, resp := client.ListInputDeviceTransfersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListInputDeviceTransfers
+func (c *MediaLive) ListInputDeviceTransfersRequest(input *ListInputDeviceTransfersInput) (req *request.Request, output *ListInputDeviceTransfersOutput) {
+	op := &request.Operation{
+		Name:       opListInputDeviceTransfers,
+		HTTPMethod: "GET",
+		HTTPPath:   "/prod/inputDeviceTransfers",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListInputDeviceTransfersInput{}
+	}
+
+	output = &ListInputDeviceTransfersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListInputDeviceTransfers API operation for AWS Elemental MediaLive.
+//
+// List input devices that are currently being transferred. List input devices
+// that you are transferring from your AWS account or input devices that another
+// AWS account is transferring to you.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation ListInputDeviceTransfers for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/ListInputDeviceTransfers
+func (c *MediaLive) ListInputDeviceTransfers(input *ListInputDeviceTransfersInput) (*ListInputDeviceTransfersOutput, error) {
+	req, out := c.ListInputDeviceTransfersRequest(input)
+	return out, req.Send()
+}
+
+// ListInputDeviceTransfersWithContext is the same as ListInputDeviceTransfers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListInputDeviceTransfers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListInputDeviceTransfersWithContext(ctx aws.Context, input *ListInputDeviceTransfersInput, opts ...request.Option) (*ListInputDeviceTransfersOutput, error) {
+	req, out := c.ListInputDeviceTransfersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListInputDeviceTransfersPages iterates over the pages of a ListInputDeviceTransfers operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListInputDeviceTransfers method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListInputDeviceTransfers operation.
+//    pageNum := 0
+//    err := client.ListInputDeviceTransfersPages(params,
+//        func(page *medialive.ListInputDeviceTransfersOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaLive) ListInputDeviceTransfersPages(input *ListInputDeviceTransfersInput, fn func(*ListInputDeviceTransfersOutput, bool) bool) error {
+	return c.ListInputDeviceTransfersPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListInputDeviceTransfersPagesWithContext same as ListInputDeviceTransfersPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) ListInputDeviceTransfersPagesWithContext(ctx aws.Context, input *ListInputDeviceTransfersInput, fn func(*ListInputDeviceTransfersOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListInputDeviceTransfersInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListInputDeviceTransfersRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListInputDeviceTransfersOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListInputDevices = "ListInputDevices"
 
 // ListInputDevicesRequest generates a "aws/request.Request" representing the
@@ -3951,6 +4292,101 @@ func (c *MediaLive) PurchaseOfferingWithContext(ctx aws.Context, input *Purchase
 	return out, req.Send()
 }
 
+const opRejectInputDeviceTransfer = "RejectInputDeviceTransfer"
+
+// RejectInputDeviceTransferRequest generates a "aws/request.Request" representing the
+// client's request for the RejectInputDeviceTransfer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RejectInputDeviceTransfer for more information on using the RejectInputDeviceTransfer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RejectInputDeviceTransferRequest method.
+//    req, resp := client.RejectInputDeviceTransferRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RejectInputDeviceTransfer
+func (c *MediaLive) RejectInputDeviceTransferRequest(input *RejectInputDeviceTransferInput) (req *request.Request, output *RejectInputDeviceTransferOutput) {
+	op := &request.Operation{
+		Name:       opRejectInputDeviceTransfer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/reject",
+	}
+
+	if input == nil {
+		input = &RejectInputDeviceTransferInput{}
+	}
+
+	output = &RejectInputDeviceTransferOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RejectInputDeviceTransfer API operation for AWS Elemental MediaLive.
+//
+// Reject the transfer of the specified input device to your AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation RejectInputDeviceTransfer for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/RejectInputDeviceTransfer
+func (c *MediaLive) RejectInputDeviceTransfer(input *RejectInputDeviceTransferInput) (*RejectInputDeviceTransferOutput, error) {
+	req, out := c.RejectInputDeviceTransferRequest(input)
+	return out, req.Send()
+}
+
+// RejectInputDeviceTransferWithContext is the same as RejectInputDeviceTransfer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RejectInputDeviceTransfer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) RejectInputDeviceTransferWithContext(ctx aws.Context, input *RejectInputDeviceTransferInput, opts ...request.Option) (*RejectInputDeviceTransferOutput, error) {
+	req, out := c.RejectInputDeviceTransferRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartChannel = "StartChannel"
 
 // StartChannelRequest generates a "aws/request.Request" representing the
@@ -4316,6 +4752,102 @@ func (c *MediaLive) StopMultiplex(input *StopMultiplexInput) (*StopMultiplexOutp
 // for more information on using Contexts.
 func (c *MediaLive) StopMultiplexWithContext(ctx aws.Context, input *StopMultiplexInput, opts ...request.Option) (*StopMultiplexOutput, error) {
 	req, out := c.StopMultiplexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opTransferInputDevice = "TransferInputDevice"
+
+// TransferInputDeviceRequest generates a "aws/request.Request" representing the
+// client's request for the TransferInputDevice operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TransferInputDevice for more information on using the TransferInputDevice
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TransferInputDeviceRequest method.
+//    req, resp := client.TransferInputDeviceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/TransferInputDevice
+func (c *MediaLive) TransferInputDeviceRequest(input *TransferInputDeviceInput) (req *request.Request, output *TransferInputDeviceOutput) {
+	op := &request.Operation{
+		Name:       opTransferInputDevice,
+		HTTPMethod: "POST",
+		HTTPPath:   "/prod/inputDevices/{inputDeviceId}/transfer",
+	}
+
+	if input == nil {
+		input = &TransferInputDeviceInput{}
+	}
+
+	output = &TransferInputDeviceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TransferInputDevice API operation for AWS Elemental MediaLive.
+//
+// Start an input device transfer to another AWS account. After you make the
+// request, the other account must accept or reject the transfer.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaLive's
+// API operation TransferInputDevice for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * UnprocessableEntityException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * BadGatewayException
+//
+//   * NotFoundException
+//
+//   * GatewayTimeoutException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/medialive-2017-10-14/TransferInputDevice
+func (c *MediaLive) TransferInputDevice(input *TransferInputDeviceInput) (*TransferInputDeviceOutput, error) {
+	req, out := c.TransferInputDeviceRequest(input)
+	return out, req.Send()
+}
+
+// TransferInputDeviceWithContext is the same as TransferInputDevice with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TransferInputDevice for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaLive) TransferInputDeviceWithContext(ctx aws.Context, input *TransferInputDeviceInput, opts ...request.Option) (*TransferInputDeviceOutput, error) {
+	req, out := c.TransferInputDeviceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5256,6 +5788,59 @@ func (s *Ac3Settings) SetLfeFilter(v string) *Ac3Settings {
 func (s *Ac3Settings) SetMetadataControl(v string) *Ac3Settings {
 	s.MetadataControl = &v
 	return s
+}
+
+type AcceptInputDeviceTransferInput struct {
+	_ struct{} `type:"structure"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AcceptInputDeviceTransferInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AcceptInputDeviceTransferInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AcceptInputDeviceTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AcceptInputDeviceTransferInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *AcceptInputDeviceTransferInput) SetInputDeviceId(v string) *AcceptInputDeviceTransferInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+type AcceptInputDeviceTransferOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AcceptInputDeviceTransferOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AcceptInputDeviceTransferOutput) GoString() string {
+	return s.String()
 }
 
 // Ancillary Source Settings
@@ -7383,6 +7968,59 @@ func (s *BurnInDestinationSettings) SetXPosition(v int64) *BurnInDestinationSett
 func (s *BurnInDestinationSettings) SetYPosition(v int64) *BurnInDestinationSettings {
 	s.YPosition = &v
 	return s
+}
+
+type CancelInputDeviceTransferInput struct {
+	_ struct{} `type:"structure"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelInputDeviceTransferInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelInputDeviceTransferInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelInputDeviceTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelInputDeviceTransferInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *CancelInputDeviceTransferInput) SetInputDeviceId(v string) *CancelInputDeviceTransferInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+type CancelInputDeviceTransferOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CancelInputDeviceTransferOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelInputDeviceTransferOutput) GoString() string {
+	return s.String()
 }
 
 // Caption Description
@@ -16629,6 +17267,91 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 	return s
 }
 
+type ListInputDeviceTransfersInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// TransferType is a required field
+	TransferType *string `location:"querystring" locationName:"transferType" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListInputDeviceTransfersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInputDeviceTransfersInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListInputDeviceTransfersInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListInputDeviceTransfersInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.TransferType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TransferType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListInputDeviceTransfersInput) SetMaxResults(v int64) *ListInputDeviceTransfersInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInputDeviceTransfersInput) SetNextToken(v string) *ListInputDeviceTransfersInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTransferType sets the TransferType field's value.
+func (s *ListInputDeviceTransfersInput) SetTransferType(v string) *ListInputDeviceTransfersInput {
+	s.TransferType = &v
+	return s
+}
+
+type ListInputDeviceTransfersOutput struct {
+	_ struct{} `type:"structure"`
+
+	InputDeviceTransfers []*TransferringInputDeviceSummary `locationName:"inputDeviceTransfers" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListInputDeviceTransfersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListInputDeviceTransfersOutput) GoString() string {
+	return s.String()
+}
+
+// SetInputDeviceTransfers sets the InputDeviceTransfers field's value.
+func (s *ListInputDeviceTransfersOutput) SetInputDeviceTransfers(v []*TransferringInputDeviceSummary) *ListInputDeviceTransfersOutput {
+	s.InputDeviceTransfers = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListInputDeviceTransfersOutput) SetNextToken(v string) *ListInputDeviceTransfersOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListInputDevicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20845,6 +21568,59 @@ func (s Rec709Settings) GoString() string {
 	return s.String()
 }
 
+type RejectInputDeviceTransferInput struct {
+	_ struct{} `type:"structure"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RejectInputDeviceTransferInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RejectInputDeviceTransferInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RejectInputDeviceTransferInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RejectInputDeviceTransferInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *RejectInputDeviceTransferInput) SetInputDeviceId(v string) *RejectInputDeviceTransferInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+type RejectInputDeviceTransferOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RejectInputDeviceTransferOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RejectInputDeviceTransferOutput) GoString() string {
+	return s.String()
+}
+
 // Remix Settings
 type RemixSettings struct {
 	_ struct{} `type:"structure"`
@@ -23579,6 +24355,126 @@ func (s *TooManyRequestsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type TransferInputDeviceInput struct {
+	_ struct{} `type:"structure"`
+
+	// InputDeviceId is a required field
+	InputDeviceId *string `location:"uri" locationName:"inputDeviceId" type:"string" required:"true"`
+
+	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
+
+	TransferMessage *string `locationName:"transferMessage" type:"string"`
+}
+
+// String returns the string representation
+func (s TransferInputDeviceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TransferInputDeviceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransferInputDeviceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransferInputDeviceInput"}
+	if s.InputDeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputDeviceId"))
+	}
+	if s.InputDeviceId != nil && len(*s.InputDeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputDeviceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputDeviceId sets the InputDeviceId field's value.
+func (s *TransferInputDeviceInput) SetInputDeviceId(v string) *TransferInputDeviceInput {
+	s.InputDeviceId = &v
+	return s
+}
+
+// SetTargetCustomerId sets the TargetCustomerId field's value.
+func (s *TransferInputDeviceInput) SetTargetCustomerId(v string) *TransferInputDeviceInput {
+	s.TargetCustomerId = &v
+	return s
+}
+
+// SetTransferMessage sets the TransferMessage field's value.
+func (s *TransferInputDeviceInput) SetTransferMessage(v string) *TransferInputDeviceInput {
+	s.TransferMessage = &v
+	return s
+}
+
+type TransferInputDeviceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TransferInputDeviceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TransferInputDeviceOutput) GoString() string {
+	return s.String()
+}
+
+// Details about the input device that is being transferred.
+type TransferringInputDeviceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the input device.
+	Id *string `locationName:"id" type:"string"`
+
+	// The optional message that the sender has attached to the transfer.
+	Message *string `locationName:"message" type:"string"`
+
+	// The AWS account ID for the recipient of the input device transfer.
+	TargetCustomerId *string `locationName:"targetCustomerId" type:"string"`
+
+	// The type (direction) of the input device transfer.
+	TransferType *string `locationName:"transferType" type:"string" enum:"InputDeviceTransferType"`
+}
+
+// String returns the string representation
+func (s TransferringInputDeviceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TransferringInputDeviceSummary) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *TransferringInputDeviceSummary) SetId(v string) *TransferringInputDeviceSummary {
+	s.Id = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *TransferringInputDeviceSummary) SetMessage(v string) *TransferringInputDeviceSummary {
+	s.Message = &v
+	return s
+}
+
+// SetTargetCustomerId sets the TargetCustomerId field's value.
+func (s *TransferringInputDeviceSummary) SetTargetCustomerId(v string) *TransferringInputDeviceSummary {
+	s.TargetCustomerId = &v
+	return s
+}
+
+// SetTransferType sets the TransferType field's value.
+func (s *TransferringInputDeviceSummary) SetTransferType(v string) *TransferringInputDeviceSummary {
+	s.TransferType = &v
+	return s
 }
 
 // Ttml Destination Settings
@@ -28010,6 +28906,25 @@ func InputDeviceState_Values() []string {
 	return []string{
 		InputDeviceStateIdle,
 		InputDeviceStateStreaming,
+	}
+}
+
+// The type of device transfer. INCOMING for an input device that is being transferred
+// to you, OUTGOING for an input device that you are transferring to another
+// AWS account.
+const (
+	// InputDeviceTransferTypeOutgoing is a InputDeviceTransferType enum value
+	InputDeviceTransferTypeOutgoing = "OUTGOING"
+
+	// InputDeviceTransferTypeIncoming is a InputDeviceTransferType enum value
+	InputDeviceTransferTypeIncoming = "INCOMING"
+)
+
+// InputDeviceTransferType_Values returns all elements of the InputDeviceTransferType enum
+func InputDeviceTransferType_Values() []string {
+	return []string{
+		InputDeviceTransferTypeOutgoing,
+		InputDeviceTransferTypeIncoming,
 	}
 }
 

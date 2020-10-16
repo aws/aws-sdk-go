@@ -1,3 +1,16 @@
+Release v1.35.9 (2020-10-16)
+===
+
+### Service Client Updates
+* `service/medialive`: Updates service API, documentation, and paginators
+  * The AWS Elemental MediaLive APIs and SDKs now support the ability to transfer the ownership of MediaLive Link devices across AWS accounts.
+* `service/organizations`: Updates service documentation
+  * Documentation updates for AWS Organizations.
+
+### SDK Bugs
+* `s3control`: Fixes bug in SDK that caused GetAccessPointPolicy, DeleteAccessPointPolicy, and PutAccessPointPolicy operations to not route properly for S3 on Outposts. ([#3599](https://github.com/aws/aws-sdk-go/pull/3599))
+  * Fixes [#3598](https://github.com/aws/aws-sdk-go/issues/3598).
+
 Release v1.35.8 (2020-10-15)
 ===
 

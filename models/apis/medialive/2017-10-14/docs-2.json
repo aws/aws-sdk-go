@@ -2,10 +2,12 @@
   "version": "2.0",
   "service": "API for AWS Elemental MediaLive",
   "operations": {
+    "AcceptInputDeviceTransfer": "Accept an incoming input device transfer. The ownership of the device will transfer to your AWS account.",
     "BatchDelete": "Starts delete of resources.",
     "BatchStart": "Starts existing resources",
     "BatchStop": "Stops running resources",
     "BatchUpdateSchedule": "Update a channel schedule",
+    "CancelInputDeviceTransfer": "Cancel an input device transfer that you have requested.",
     "CreateChannel": "Creates a new channel",
     "CreateInput": "Create an input",
     "CreateInputSecurityGroup": "Creates a Input Security Group",
@@ -31,6 +33,7 @@
     "DescribeReservation": "Get details for a reservation.",
     "DescribeSchedule": "Get a channel schedule",
     "ListChannels": "Produces list of channels that have been created",
+    "ListInputDeviceTransfers": "List input devices that are currently being transferred. List input devices that you are transferring from your AWS account or input devices that another AWS account is transferring to you.",
     "ListInputDevices": "List input devices",
     "ListInputSecurityGroups": "Produces a list of Input Security Groups for an account",
     "ListInputs": "Produces list of inputs that have been created",
@@ -40,10 +43,12 @@
     "ListReservations": "List purchased reservations.",
     "ListTagsForResource": "Produces list of tags that have been created for a resource",
     "PurchaseOffering": "Purchase an offering and create a reservation.",
+    "RejectInputDeviceTransfer": "Reject the transfer of the specified input device to your AWS account.",
     "StartChannel": "Starts an existing channel",
     "StartMultiplex": "Start (run) the multiplex. Starting the multiplex does not start the channels. You must explicitly start each channel.",
     "StopChannel": "Stops a running channel",
     "StopMultiplex": "Stops a running multiplex. If the multiplex isn't running, this action has no effect.",
+    "TransferInputDevice": "Start an input device transfer to another AWS account. After you make the request, the other account must accept or reject the transfer.",
     "UpdateChannel": "Updates a channel.",
     "UpdateChannelClass": "Changes the class of the channel.",
     "UpdateInput": "Updates an input.",
@@ -1605,6 +1610,12 @@
         "__listOfInputDeviceSummary$member": null
       }
     },
+    "InputDeviceTransferType": {
+      "base": "The type of device transfer. INCOMING for an input device that is being transferred to you, OUTGOING for an input device that you are transferring to another AWS account.",
+      "refs": {
+        "TransferringInputDeviceSummary$TransferType": "The type (direction) of the input device transfer."
+      }
+    },
     "InputDeviceType": {
       "base": "The type of the input device. For an AWS Elemental Link device that outputs resolutions up to 1080, choose \"HD\".",
       "refs": {
@@ -1827,6 +1838,11 @@
     },
     "ListChannelsResultModel": {
       "base": null,
+      "refs": {
+      }
+    },
+    "ListInputDeviceTransfersResultModel": {
+      "base": "The list of input devices in the transferred state. The recipient hasn't yet accepted or rejected the transfer.",
       "refs": {
       }
     },
@@ -2861,6 +2877,11 @@
         "TemporalFilterSettings$Strength": "Choose a filter strength. We recommend a strength of 1 or 2. A higher strength might take out good information, resulting in an image that is overly soft."
       }
     },
+    "ThumbnailData": {
+      "base": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
+      "refs": {
+      }
+    },
     "TimecodeConfig": {
       "base": "Timecode Config",
       "refs": {
@@ -2876,6 +2897,17 @@
     "TooManyRequestsException": {
       "base": null,
       "refs": {
+      }
+    },
+    "TransferInputDevice": {
+      "base": "The transfer details of the input device.",
+      "refs": {
+      }
+    },
+    "TransferringInputDeviceSummary": {
+      "base": "Details about the input device that is being transferred.",
+      "refs": {
+        "__listOfTransferringInputDeviceSummary$member": null
       }
     },
     "TtmlDestinationSettings": {
@@ -3829,6 +3861,12 @@
         "Scte35TimeSignalScheduleActionSettings$Scte35Descriptors": "The list of SCTE-35 descriptors accompanying the SCTE-35 time_signal."
       }
     },
+    "__listOfTransferringInputDeviceSummary": {
+      "base": null,
+      "refs": {
+        "ListInputDeviceTransfersResultModel$InputDeviceTransfers": "The list of devices that you are transferring or are being transferred to you."
+      }
+    },
     "__listOfValidationError": {
       "base": null,
       "refs": {
@@ -4013,6 +4051,7 @@
         "InvalidRequest$Message": null,
         "LimitExceeded$Message": null,
         "ListChannelsResultModel$NextToken": null,
+        "ListInputDeviceTransfersResultModel$NextToken": "A token to get additional list results.",
         "ListInputDevicesResultModel$NextToken": "A token to get additional list results.",
         "ListInputSecurityGroupsResultModel$NextToken": null,
         "ListInputsResultModel$NextToken": null,
@@ -4098,6 +4137,12 @@
         "StopTimecode$Timecode": "The timecode for the frame where you want to stop the clip. Optional; if not specified, the clip continues to the end of the file. Enter the timecode as HH:MM:SS:FF or HH:MM:SS;FF.",
         "Tags$member": null,
         "TeletextSourceSettings$PageNumber": "Specifies the teletext page number within the data stream from which to extract captions. Range of 0x100 (256) to 0x8FF (2303). Unused for passthrough. Should be specified as a hexadecimal string with no \"0x\" prefix.",
+        "ThumbnailData$Body": "The binary data for the thumbnail that the Link device has most recently sent to MediaLive.",
+        "TransferInputDevice$TargetCustomerId": "The AWS account ID (12 digits) for the recipient of the device transfer.",
+        "TransferInputDevice$TransferMessage": "An optional message for the recipient. Maximum 280 characters.",
+        "TransferringInputDeviceSummary$Id": "The unique ID of the input device.",
+        "TransferringInputDeviceSummary$Message": "The optional message that the sender has attached to the transfer.",
+        "TransferringInputDeviceSummary$TargetCustomerId": "The AWS account ID for the recipient of the input device transfer.",
         "UpdateChannel$Name": "The name of the channel.",
         "UpdateChannel$RoleArn": "An optional Amazon Resource Name (ARN) of the role to assume when running the Channel. If you do not specify this on an update call but the role was previously set that role will be removed.",
         "UpdateInput$Name": "Name of the input.",

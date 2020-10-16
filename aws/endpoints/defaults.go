@@ -3098,7 +3098,12 @@ var awsPartition = partition{
 		"health": service{
 
 			Endpoints: endpoints{
-				"us-east-1": endpoint{},
+				"fips-us-east-2": endpoint{
+					Hostname: "health-fips.us-east-2.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-east-2",
+					},
+				},
 			},
 		},
 		"honeycode": service{
@@ -7123,6 +7128,12 @@ var awscnPartition = partition{
 				"cn-northwest-1": endpoint{},
 			},
 		},
+		"lakeformation": service{
+
+			Endpoints: endpoints{
+				"cn-north-1": endpoint{},
+			},
+		},
 		"lambda": service{
 
 			Endpoints: endpoints{
@@ -7501,8 +7512,18 @@ var awsusgovPartition = partition{
 		"acm": service{
 
 			Endpoints: endpoints{
-				"us-gov-east-1": endpoint{},
-				"us-gov-west-1": endpoint{},
+				"us-gov-east-1": endpoint{
+					Hostname: "acm.us-gov-east-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-east-1",
+					},
+				},
+				"us-gov-west-1": endpoint{
+					Hostname: "acm.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
 			},
 		},
 		"acm-pca": service{
@@ -8505,12 +8526,17 @@ var awsusgovPartition = partition{
 			},
 			Endpoints: endpoints{
 				"fips-us-gov-west-1": endpoint{
+					Hostname: "pinpoint-fips.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
+				"us-gov-west-1": endpoint{
 					Hostname: "pinpoint.us-gov-west-1.amazonaws.com",
 					CredentialScope: credentialScope{
 						Region: "us-gov-west-1",
 					},
 				},
-				"us-gov-west-1": endpoint{},
 			},
 		},
 		"polly": service{
