@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Elemental MediaLive.
 //    func myFunc(svc medialiveiface.MediaLiveAPI) bool {
-//        // Make svc.BatchDelete request
+//        // Make svc.AcceptInputDeviceTransfer request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockMediaLiveClient struct {
 //        medialiveiface.MediaLiveAPI
 //    }
-//    func (m *mockMediaLiveClient) BatchDelete(input *medialive.BatchDeleteInput) (*medialive.BatchDeleteOutput, error) {
+//    func (m *mockMediaLiveClient) AcceptInputDeviceTransfer(input *medialive.AcceptInputDeviceTransferInput) (*medialive.AcceptInputDeviceTransferOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaLiveAPI interface {
+	AcceptInputDeviceTransfer(*medialive.AcceptInputDeviceTransferInput) (*medialive.AcceptInputDeviceTransferOutput, error)
+	AcceptInputDeviceTransferWithContext(aws.Context, *medialive.AcceptInputDeviceTransferInput, ...request.Option) (*medialive.AcceptInputDeviceTransferOutput, error)
+	AcceptInputDeviceTransferRequest(*medialive.AcceptInputDeviceTransferInput) (*request.Request, *medialive.AcceptInputDeviceTransferOutput)
+
 	BatchDelete(*medialive.BatchDeleteInput) (*medialive.BatchDeleteOutput, error)
 	BatchDeleteWithContext(aws.Context, *medialive.BatchDeleteInput, ...request.Option) (*medialive.BatchDeleteOutput, error)
 	BatchDeleteRequest(*medialive.BatchDeleteInput) (*request.Request, *medialive.BatchDeleteOutput)
@@ -75,6 +79,10 @@ type MediaLiveAPI interface {
 	BatchUpdateSchedule(*medialive.BatchUpdateScheduleInput) (*medialive.BatchUpdateScheduleOutput, error)
 	BatchUpdateScheduleWithContext(aws.Context, *medialive.BatchUpdateScheduleInput, ...request.Option) (*medialive.BatchUpdateScheduleOutput, error)
 	BatchUpdateScheduleRequest(*medialive.BatchUpdateScheduleInput) (*request.Request, *medialive.BatchUpdateScheduleOutput)
+
+	CancelInputDeviceTransfer(*medialive.CancelInputDeviceTransferInput) (*medialive.CancelInputDeviceTransferOutput, error)
+	CancelInputDeviceTransferWithContext(aws.Context, *medialive.CancelInputDeviceTransferInput, ...request.Option) (*medialive.CancelInputDeviceTransferOutput, error)
+	CancelInputDeviceTransferRequest(*medialive.CancelInputDeviceTransferInput) (*request.Request, *medialive.CancelInputDeviceTransferOutput)
 
 	CreateChannel(*medialive.CreateChannelInput) (*medialive.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *medialive.CreateChannelInput, ...request.Option) (*medialive.CreateChannelOutput, error)
@@ -182,6 +190,13 @@ type MediaLiveAPI interface {
 	ListChannelsPages(*medialive.ListChannelsInput, func(*medialive.ListChannelsOutput, bool) bool) error
 	ListChannelsPagesWithContext(aws.Context, *medialive.ListChannelsInput, func(*medialive.ListChannelsOutput, bool) bool, ...request.Option) error
 
+	ListInputDeviceTransfers(*medialive.ListInputDeviceTransfersInput) (*medialive.ListInputDeviceTransfersOutput, error)
+	ListInputDeviceTransfersWithContext(aws.Context, *medialive.ListInputDeviceTransfersInput, ...request.Option) (*medialive.ListInputDeviceTransfersOutput, error)
+	ListInputDeviceTransfersRequest(*medialive.ListInputDeviceTransfersInput) (*request.Request, *medialive.ListInputDeviceTransfersOutput)
+
+	ListInputDeviceTransfersPages(*medialive.ListInputDeviceTransfersInput, func(*medialive.ListInputDeviceTransfersOutput, bool) bool) error
+	ListInputDeviceTransfersPagesWithContext(aws.Context, *medialive.ListInputDeviceTransfersInput, func(*medialive.ListInputDeviceTransfersOutput, bool) bool, ...request.Option) error
+
 	ListInputDevices(*medialive.ListInputDevicesInput) (*medialive.ListInputDevicesOutput, error)
 	ListInputDevicesWithContext(aws.Context, *medialive.ListInputDevicesInput, ...request.Option) (*medialive.ListInputDevicesOutput, error)
 	ListInputDevicesRequest(*medialive.ListInputDevicesInput) (*request.Request, *medialive.ListInputDevicesOutput)
@@ -239,6 +254,10 @@ type MediaLiveAPI interface {
 	PurchaseOfferingWithContext(aws.Context, *medialive.PurchaseOfferingInput, ...request.Option) (*medialive.PurchaseOfferingOutput, error)
 	PurchaseOfferingRequest(*medialive.PurchaseOfferingInput) (*request.Request, *medialive.PurchaseOfferingOutput)
 
+	RejectInputDeviceTransfer(*medialive.RejectInputDeviceTransferInput) (*medialive.RejectInputDeviceTransferOutput, error)
+	RejectInputDeviceTransferWithContext(aws.Context, *medialive.RejectInputDeviceTransferInput, ...request.Option) (*medialive.RejectInputDeviceTransferOutput, error)
+	RejectInputDeviceTransferRequest(*medialive.RejectInputDeviceTransferInput) (*request.Request, *medialive.RejectInputDeviceTransferOutput)
+
 	StartChannel(*medialive.StartChannelInput) (*medialive.StartChannelOutput, error)
 	StartChannelWithContext(aws.Context, *medialive.StartChannelInput, ...request.Option) (*medialive.StartChannelOutput, error)
 	StartChannelRequest(*medialive.StartChannelInput) (*request.Request, *medialive.StartChannelOutput)
@@ -254,6 +273,10 @@ type MediaLiveAPI interface {
 	StopMultiplex(*medialive.StopMultiplexInput) (*medialive.StopMultiplexOutput, error)
 	StopMultiplexWithContext(aws.Context, *medialive.StopMultiplexInput, ...request.Option) (*medialive.StopMultiplexOutput, error)
 	StopMultiplexRequest(*medialive.StopMultiplexInput) (*request.Request, *medialive.StopMultiplexOutput)
+
+	TransferInputDevice(*medialive.TransferInputDeviceInput) (*medialive.TransferInputDeviceOutput, error)
+	TransferInputDeviceWithContext(aws.Context, *medialive.TransferInputDeviceInput, ...request.Option) (*medialive.TransferInputDeviceOutput, error)
+	TransferInputDeviceRequest(*medialive.TransferInputDeviceInput) (*request.Request, *medialive.TransferInputDeviceOutput)
 
 	UpdateChannel(*medialive.UpdateChannelInput) (*medialive.UpdateChannelOutput, error)
 	UpdateChannelWithContext(aws.Context, *medialive.UpdateChannelInput, ...request.Option) (*medialive.UpdateChannelOutput, error)

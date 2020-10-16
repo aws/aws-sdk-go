@@ -321,13 +321,13 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 // account. How the policy affects accounts depends on the type of policy. Refer
 // to the AWS Organizations User Guide for information about each policy type:
 //
-//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 //
-//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 //
-//    * SERVICE_CONTROL_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
+//    * SERVICE_CONTROL_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 //
-//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 //
 // This operation can be called only from the organization's master account.
 //
@@ -871,8 +871,9 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 // can successfully access the account. To check the status of the request,
 // do one of the following:
 //
-//    * Use the OperationId response element from this operation to provide
-//    as a parameter to the DescribeCreateAccountStatus operation.
+//    * Use the Id member of the CreateAccountStatus response element from this
+//    operation to provide as a parameter to the DescribeCreateAccountStatus
+//    operation.
 //
 //    * Check the AWS CloudTrail log for the CreateAccountResult event. For
 //    information on using AWS CloudTrail with AWS Organizations, see Monitoring
@@ -1262,7 +1263,7 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //    User Guide. (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
 //
 //    * You already have an account in the AWS GovCloud (US) Region that is
-//    associated with your master account in the commercial Region.
+//    paired with a master account of an organization in the commercial Region.
 //
 //    * You call this action from the master account of your organization in
 //    the commercial Region.
@@ -15074,12 +15075,12 @@ type Child struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a child ID string
 	// requires one of the following:
 	//
-	//    * Account: A string that consists of exactly 12 digits.
+	//    * Account - A string that consists of exactly 12 digits.
 	//
-	//    * Organizational unit (OU): A string that begins with "ou-" followed by
-	//    from 4 to 32 lower-case letters or digits (the ID of the root that contains
+	//    * Organizational unit (OU) - A string that begins with "ou-" followed
+	//    by from 4 to 32 lowercase letters or digits (the ID of the root that contains
 	//    the OU). This string is followed by a second "-" dash and from 8 to 32
-	//    additional lower-case letters or digits.
+	//    additional lowercase letters or digits.
 	Id *string `type:"string"`
 
 	// The type of this child entity.
@@ -15642,7 +15643,7 @@ type CreateAccountStatus struct {
 	// from the response of the initial CreateAccount request to create the account.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a create account
-	// request ID string requires "car-" followed by from 8 to 32 lower-case letters
+	// request ID string requires "car-" followed by from 8 to 32 lowercase letters
 	// or digits.
 	Id *string `type:"string"`
 
@@ -16145,13 +16146,13 @@ type CreatePolicyInput struct {
 
 	// The type of policy to create. You can specify one of the following values:
 	//
-	//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 	//
-	//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+	//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 	//
-	//    * SERVICE_CONTROL_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
+	//    * SERVICE_CONTROL_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 	//
-	//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+	//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"PolicyType"`
@@ -16735,9 +16736,9 @@ func (s *DescribeAccountOutput) SetAccount(v *Account) *DescribeAccountOutput {
 type DescribeCreateAccountStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the operationId that uniquely identifies the request. You can get
-	// the ID from the response to an earlier CreateAccount request, or from the
-	// ListCreateAccountStatus operation.
+	// Specifies the Id value that uniquely identifies the CreateAccount request.
+	// You can get the value from the CreateAccountStatus.Id response in an earlier
+	// CreateAccount request, or from the ListCreateAccountStatus operation.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a create account
 	// request ID string requires "car-" followed by from 8 to 32 lowercase letters
@@ -16805,11 +16806,11 @@ type DescribeEffectivePolicyInput struct {
 	// The type of policy that you want information about. You can specify one of
 	// the following values:
 	//
-	//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 	//
-	//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+	//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 	//
-	//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+	//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 	//
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"EffectivePolicyType"`
@@ -17325,13 +17326,13 @@ type DisablePolicyTypeInput struct {
 	// The policy type that you want to disable in this root. You can specify one
 	// of the following values:
 	//
-	//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 	//
-	//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+	//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 	//
-	//    * SERVICE_CONTROL_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
+	//    * SERVICE_CONTROL_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 	//
-	//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+	//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 	//
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
@@ -17904,13 +17905,13 @@ type EnablePolicyTypeInput struct {
 	// The policy type that you want to enable. You can specify one of the following
 	// values:
 	//
-	//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 	//
-	//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+	//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 	//
-	//    * SERVICE_CONTROL_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
+	//    * SERVICE_CONTROL_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 	//
-	//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+	//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 	//
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"PolicyType"`
@@ -18126,7 +18127,7 @@ type Handshake struct {
 	// the ID when it initiates the handshake.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for handshake ID string
-	// requires "h-" followed by from 8 to 32 lower-case letters or digits.
+	// requires "h-" followed by from 8 to 32 lowercase letters or digits.
 	Id *string `type:"string"`
 
 	// Information about the two accounts that are participating in the handshake.
@@ -18390,7 +18391,7 @@ type HandshakeFilter struct {
 	// If you specify ParentHandshakeId, you cannot also specify ActionType.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for handshake ID string
-	// requires "h-" followed by from 8 to 32 lower-case letters or digits.
+	// requires "h-" followed by from 8 to 32 lowercase letters or digits.
 	ParentHandshakeId *string `type:"string"`
 }
 
@@ -18479,7 +18480,7 @@ type HandshakeParty struct {
 	// The unique identifier (ID) for the party.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for handshake ID string
-	// requires "h-" followed by from 8 to 32 lower-case letters or digits.
+	// requires "h-" followed by from 8 to 32 lowercase letters or digits.
 	//
 	// Id is a required field
 	Id *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -20121,13 +20122,13 @@ type ListPoliciesForTargetInput struct {
 	// The type of policy that you want to include in the returned list. You must
 	// specify one of the following values:
 	//
-	//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 	//
-	//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+	//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 	//
-	//    * SERVICE_CONTROL_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
+	//    * SERVICE_CONTROL_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 	//
-	//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+	//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 	//
 	// Filter is a required field
 	Filter *string `type:"string" required:"true" enum:"PolicyType"`
@@ -20263,13 +20264,13 @@ type ListPoliciesInput struct {
 	// Specifies the type of policy that you want to include in the response. You
 	// must specify one of the following values:
 	//
-	//    * AISERVICES_OPT_OUT_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
+	//    * AISERVICES_OPT_OUT_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html)
 	//
-	//    * BACKUP_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
+	//    * BACKUP_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_backup.html)
 	//
-	//    * SERVICE_CONTROL_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
+	//    * SERVICE_CONTROL_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_scp.html)
 	//
-	//    * TAG_POLICY (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
+	//    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 	//
 	// Filter is a required field
 	Filter *string `type:"string" required:"true" enum:"PolicyType"`
@@ -20929,7 +20930,7 @@ type Organization struct {
 	// The unique identifier (ID) of an organization.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for an organization ID
-	// string requires "o-" followed by from 10 to 32 lower-case letters or digits.
+	// string requires "o-" followed by from 10 to 32 lowercase letters or digits.
 	Id *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the account that is designated as the master
@@ -21076,9 +21077,9 @@ type OrganizationalUnit struct {
 	// The unique identifier (ID) associated with this OU.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for an organizational
-	// unit ID string requires "ou-" followed by from 4 to 32 lower-case letters
+	// unit ID string requires "ou-" followed by from 4 to 32 lowercase letters
 	// or digits (the ID of the root that contains the OU). This string is followed
-	// by a second "-" dash and from 8 to 32 additional lower-case letters or digits.
+	// by a second "-" dash and from 8 to 32 additional lowercase letters or digits.
 	Id *string `type:"string"`
 
 	// The friendly name of this OU.
@@ -21240,13 +21241,13 @@ type Parent struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a parent ID string
 	// requires one of the following:
 	//
-	//    * Root: A string that begins with "r-" followed by from 4 to 32 lower-case
+	//    * Root - A string that begins with "r-" followed by from 4 to 32 lowercase
 	//    letters or digits.
 	//
-	//    * Organizational unit (OU): A string that begins with "ou-" followed by
-	//    from 4 to 32 lower-case letters or digits (the ID of the root that the
+	//    * Organizational unit (OU) - A string that begins with "ou-" followed
+	//    by from 4 to 32 lowercase letters or digits (the ID of the root that the
 	//    OU is in). This string is followed by a second "-" dash and from 8 to
-	//    32 additional lower-case letters or digits.
+	//    32 additional lowercase letters or digits.
 	Id *string `type:"string"`
 
 	// The type of the parent entity.
@@ -21615,7 +21616,8 @@ type PolicySummary struct {
 	// The unique identifier (ID) of the policy.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a policy ID string
-	// requires "p-" followed by from 8 to 128 lower-case letters or digits.
+	// requires "p-" followed by from 8 to 128 lowercase or uppercase letters, digits,
+	// or the underscore character (_).
 	Id *string `type:"string"`
 
 	// The friendly name of the policy.
@@ -21699,15 +21701,15 @@ type PolicyTargetSummary struct {
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a target ID string
 	// requires one of the following:
 	//
-	//    * Root: A string that begins with "r-" followed by from 4 to 32 lower-case
+	//    * Root - A string that begins with "r-" followed by from 4 to 32 lowercase
 	//    letters or digits.
 	//
-	//    * Account: A string that consists of exactly 12 digits.
+	//    * Account - A string that consists of exactly 12 digits.
 	//
-	//    * Organizational unit (OU): A string that begins with "ou-" followed by
-	//    from 4 to 32 lower-case letters or digits (the ID of the root that the
+	//    * Organizational unit (OU) - A string that begins with "ou-" followed
+	//    by from 4 to 32 lowercase letters or digits (the ID of the root that the
 	//    OU is in). This string is followed by a second "-" dash and from 8 to
-	//    32 additional lower-case letters or digits.
+	//    32 additional lowercase letters or digits.
 	TargetId *string `type:"string"`
 
 	// The type of the policy target.
@@ -22089,9 +22091,7 @@ func (s RemoveAccountFromOrganizationOutput) GoString() string {
 
 // Contains details about a root. A root is a top-level parent node in the hierarchy
 // of an organization that can contain organizational units (OUs) and accounts.
-// Every root contains every AWS account in the organization. Each root enables
-// the accounts to be organized in a different way and to have different policy
-// types enabled for use in that root.
+// The root contains every AWS account in the organization.
 type Root struct {
 	_ struct{} `type:"structure"`
 
@@ -22105,7 +22105,7 @@ type Root struct {
 	// The unique identifier (ID) for the root.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for a root ID string
-	// requires "r-" followed by from 4 to 32 lower-case letters or digits.
+	// requires "r-" followed by from 4 to 32 lowercase letters or digits.
 	Id *string `type:"string"`
 
 	// The friendly name of the root.

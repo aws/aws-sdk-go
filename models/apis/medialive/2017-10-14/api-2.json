@@ -12,6 +12,49 @@
     "jsonVersion": "1.1"
   },
   "operations": {
+    "AcceptInputDeviceTransfer": {
+      "name": "AcceptInputDeviceTransfer",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}/accept",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "AcceptInputDeviceTransferRequest"
+      },
+      "output": {
+        "shape": "AcceptInputDeviceTransferResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "BatchDelete": {
       "name": "BatchDelete",
       "http": {
@@ -169,6 +212,49 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "CancelInputDeviceTransfer": {
+      "name": "CancelInputDeviceTransfer",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}/cancel",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CancelInputDeviceTransferRequest"
+      },
+      "output": {
+        "shape": "CancelInputDeviceTransferResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
         }
       ]
     },
@@ -1088,6 +1174,43 @@
         }
       ]
     },
+    "ListInputDeviceTransfers": {
+      "name": "ListInputDeviceTransfers",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/inputDeviceTransfers",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListInputDeviceTransfersRequest"
+      },
+      "output": {
+        "shape": "ListInputDeviceTransfersResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "ListInputDevices": {
       "name": "ListInputDevices",
       "http": {
@@ -1397,6 +1520,49 @@
         }
       ]
     },
+    "RejectInputDeviceTransfer": {
+      "name": "RejectInputDeviceTransfer",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}/reject",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "RejectInputDeviceTransferRequest"
+      },
+      "output": {
+        "shape": "RejectInputDeviceTransferResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
     "StartChannel": {
       "name": "StartChannel",
       "http": {
@@ -1533,6 +1699,49 @@
       "errors": [
         {
           "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "TransferInputDevice": {
+      "name": "TransferInputDevice",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/inputDevices/{inputDeviceId}/transfer",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "TransferInputDeviceRequest"
+      },
+      "output": {
+        "shape": "TransferInputDeviceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnprocessableEntityException"
         },
         {
           "shape": "InternalServerErrorException"
@@ -2043,6 +2252,24 @@
           "shape": "Ac3MetadataControl",
           "locationName": "metadataControl"
         }
+      }
+    },
+    "AcceptInputDeviceTransferRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "AcceptInputDeviceTransferResponse": {
+      "type": "structure",
+      "members": {
       }
     },
     "AccessDenied": {
@@ -2967,6 +3194,24 @@
         "FIXED",
         "SCALED"
       ]
+    },
+    "CancelInputDeviceTransferRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "CancelInputDeviceTransferResponse": {
+      "type": "structure",
+      "members": {
+      }
     },
     "CaptionDescription": {
       "type": "structure",
@@ -7153,6 +7398,13 @@
         }
       }
     },
+    "InputDeviceTransferType": {
+      "type": "string",
+      "enum": [
+        "OUTGOING",
+        "INCOMING"
+      ]
+    },
     "InputDeviceType": {
       "type": "string",
       "enum": [
@@ -7624,6 +7876,55 @@
         "Channels": {
           "shape": "__listOfChannelSummary",
           "locationName": "channels"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListInputDeviceTransfersRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "TransferType": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "transferType"
+        }
+      },
+      "required": [
+        "TransferType"
+      ]
+    },
+    "ListInputDeviceTransfersResponse": {
+      "type": "structure",
+      "members": {
+        "InputDeviceTransfers": {
+          "shape": "__listOfTransferringInputDeviceSummary",
+          "locationName": "inputDeviceTransfers"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListInputDeviceTransfersResultModel": {
+      "type": "structure",
+      "members": {
+        "InputDeviceTransfers": {
+          "shape": "__listOfTransferringInputDeviceSummary",
+          "locationName": "inputDeviceTransfers"
         },
         "NextToken": {
           "shape": "__string",
@@ -9614,6 +9915,24 @@
       "members": {
       }
     },
+    "RejectInputDeviceTransferRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "RejectInputDeviceTransferResponse": {
+      "type": "structure",
+      "members": {
+      }
+    },
     "RemixSettings": {
       "type": "structure",
       "members": {
@@ -10840,6 +11159,15 @@
         "STRENGTH_16"
       ]
     },
+    "ThumbnailData": {
+      "type": "structure",
+      "members": {
+        "Body": {
+          "shape": "__string",
+          "locationName": "body"
+        }
+      }
+    },
     "TimecodeConfig": {
       "type": "structure",
       "members": {
@@ -10875,6 +11203,66 @@
       "exception": true,
       "error": {
         "httpStatusCode": 429
+      }
+    },
+    "TransferInputDevice": {
+      "type": "structure",
+      "members": {
+        "TargetCustomerId": {
+          "shape": "__string",
+          "locationName": "targetCustomerId"
+        },
+        "TransferMessage": {
+          "shape": "__string",
+          "locationName": "transferMessage"
+        }
+      }
+    },
+    "TransferInputDeviceRequest": {
+      "type": "structure",
+      "members": {
+        "InputDeviceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "inputDeviceId"
+        },
+        "TargetCustomerId": {
+          "shape": "__string",
+          "locationName": "targetCustomerId"
+        },
+        "TransferMessage": {
+          "shape": "__string",
+          "locationName": "transferMessage"
+        }
+      },
+      "required": [
+        "InputDeviceId"
+      ]
+    },
+    "TransferInputDeviceResponse": {
+      "type": "structure",
+      "members": {
+      }
+    },
+    "TransferringInputDeviceSummary": {
+      "type": "structure",
+      "members": {
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        },
+        "TargetCustomerId": {
+          "shape": "__string",
+          "locationName": "targetCustomerId"
+        },
+        "TransferType": {
+          "shape": "InputDeviceTransferType",
+          "locationName": "transferType"
+        }
       }
     },
     "TtmlDestinationSettings": {
@@ -12159,6 +12547,12 @@
       "type": "list",
       "member": {
         "shape": "Scte35Descriptor"
+      }
+    },
+    "__listOfTransferringInputDeviceSummary": {
+      "type": "list",
+      "member": {
+        "shape": "TransferringInputDeviceSummary"
       }
     },
     "__listOfValidationError": {
