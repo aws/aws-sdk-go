@@ -7374,6 +7374,7 @@
       "type":"list",
       "member":{"shape":"PatchCVEId"}
     },
+    "PatchCVEIds":{"type":"string"},
     "PatchClassification":{"type":"string"},
     "PatchComplianceData":{
       "type":"structure",
@@ -7391,7 +7392,8 @@
         "Classification":{"shape":"PatchClassification"},
         "Severity":{"shape":"PatchSeverity"},
         "State":{"shape":"PatchComplianceDataState"},
-        "InstalledTime":{"shape":"DateTime"}
+        "InstalledTime":{"shape":"DateTime"},
+        "CVEIds":{"shape":"PatchCVEIds"}
       }
     },
     "PatchComplianceDataList":{

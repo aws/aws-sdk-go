@@ -12013,10 +12013,18 @@ type DescribeProvisionedProductInput struct {
 	//    * zh - Chinese
 	AcceptLanguage *string `type:"string"`
 
-	// The provisioned product identifier.
+	// The provisioned product identifier. You must provide the name or ID, but
+	// not both.
+	//
+	// If you do not provide a name or ID, or you provide both name and ID, an InvalidParametersException
+	// will occur.
 	Id *string `min:"1" type:"string"`
 
-	// The name of the provisioned product.
+	// The name of the provisioned product. You must provide the name or ID, but
+	// not both.
+	//
+	// If you do not provide a name or ID, or you provide both name and ID, an InvalidParametersException
+	// will occur.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -17084,6 +17092,9 @@ type ProvisionedProductDetail struct {
 	//    * TerminateProvisionedProduct
 	LastSuccessfulProvisioningRecordId *string `min:"1" type:"string"`
 
+	// The ARN of the launch role associated with the provisioned product.
+	LaunchRoleArn *string `min:"1" type:"string"`
+
 	// The user-friendly name of the provisioned product.
 	Name *string `min:"1" type:"string"`
 
@@ -17172,6 +17183,12 @@ func (s *ProvisionedProductDetail) SetLastRecordId(v string) *ProvisionedProduct
 // SetLastSuccessfulProvisioningRecordId sets the LastSuccessfulProvisioningRecordId field's value.
 func (s *ProvisionedProductDetail) SetLastSuccessfulProvisioningRecordId(v string) *ProvisionedProductDetail {
 	s.LastSuccessfulProvisioningRecordId = &v
+	return s
+}
+
+// SetLaunchRoleArn sets the LaunchRoleArn field's value.
+func (s *ProvisionedProductDetail) SetLaunchRoleArn(v string) *ProvisionedProductDetail {
+	s.LaunchRoleArn = &v
 	return s
 }
 
@@ -18124,6 +18141,9 @@ type RecordDetail struct {
 	// The UTC time stamp of the creation time.
 	CreatedTime *time.Time `type:"timestamp"`
 
+	// The ARN of the launch role associated with the provisioned product.
+	LaunchRoleArn *string `min:"1" type:"string"`
+
 	// The path identifier.
 	PathId *string `min:"1" type:"string"`
 
@@ -18193,6 +18213,12 @@ func (s RecordDetail) GoString() string {
 // SetCreatedTime sets the CreatedTime field's value.
 func (s *RecordDetail) SetCreatedTime(v time.Time) *RecordDetail {
 	s.CreatedTime = &v
+	return s
+}
+
+// SetLaunchRoleArn sets the LaunchRoleArn field's value.
+func (s *RecordDetail) SetLaunchRoleArn(v string) *RecordDetail {
+	s.LaunchRoleArn = &v
 	return s
 }
 
@@ -20652,9 +20678,19 @@ type UpdateProvisionedProductPropertiesInput struct {
 
 	// A map that contains the provisioned product properties to be updated.
 	//
+	// The LAUNCH_ROLE key accepts user ARNs and role ARNs. This key allows an administrator
+	// to call UpdateProvisionedProductProperties to update the launch role that
+	// is associated with a provisioned product. This role is used when an end-user
+	// calls a provisioning operation such as UpdateProvisionedProduct, TerminateProvisionedProduct,
+	// or ExecuteProvisionedProductServiceAction. Only an ARN role or null is valid.
+	// A user ARN is invalid. For example, if an admin user passes null as the value
+	// for the key LAUNCH_ROLE, the admin removes the launch role that is associated
+	// with the provisioned product. As a result, the end user operations use the
+	// credentials of the end user.
+	//
 	// The OWNER key accepts user ARNs and role ARNs. The owner is the user that
-	// is allowed to see, update, terminate, and execute service actions in the
-	// provisioned product.
+	// has permission to see, update, terminate, and execute service actions in
+	// the provisioned product.
 	//
 	// The administrator can change the owner of a provisioned product to another
 	// IAM user within the same account. Both end user owners and administrators
@@ -21645,12 +21681,16 @@ func ProductViewSortBy_Values() []string {
 const (
 	// PropertyKeyOwner is a PropertyKey enum value
 	PropertyKeyOwner = "OWNER"
+
+	// PropertyKeyLaunchRole is a PropertyKey enum value
+	PropertyKeyLaunchRole = "LAUNCH_ROLE"
 )
 
 // PropertyKey_Values returns all elements of the PropertyKey enum
 func PropertyKey_Values() []string {
 	return []string{
 		PropertyKeyOwner,
+		PropertyKeyLaunchRole,
 	}
 }
 

@@ -1,3 +1,17 @@
+Release v1.35.10 (2020-10-19)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service documentation
+* `service/cloudfront`: Updates service API and documentation
+  * Amazon CloudFront adds support for Origin Shield.
+* `service/docdb`: Updates service documentation
+  * Documentation updates for docdb
+* `service/servicecatalog`: Updates service API and documentation
+  * An Admin can now update the launch role associated with a Provisioned Product. Admins and End Users can now view the launch role associated with a Provisioned Product.
+* `service/ssm`: Updates service API and documentation
+  * This Patch Manager release now supports Common Vulnerabilities and Exposure (CVE) Ids for missing packages via the DescribeInstancePatches API.
+
 Release v1.35.9 (2020-10-16)
 ===
 

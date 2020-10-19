@@ -4023,7 +4023,8 @@
         "S3OriginConfig":{"shape":"S3OriginConfig"},
         "CustomOriginConfig":{"shape":"CustomOriginConfig"},
         "ConnectionAttempts":{"shape":"integer"},
-        "ConnectionTimeout":{"shape":"integer"}
+        "ConnectionTimeout":{"shape":"integer"},
+        "OriginShield":{"shape":"OriginShield"}
       }
     },
     "OriginCustomHeader":{
@@ -4253,6 +4254,20 @@
         "managed",
         "custom"
       ]
+    },
+    "OriginShield":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"boolean"},
+        "OriginShieldRegion":{"shape":"OriginShieldRegion"}
+      }
+    },
+    "OriginShieldRegion":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"[a-z]{2}-[a-z]+-\\d"
     },
     "OriginSslProtocols":{
       "type":"structure",

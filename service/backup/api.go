@@ -4483,10 +4483,6 @@ func (c *Backup) StartRestoreJobRequest(input *StartRestoreJobInput) (req *reque
 //
 // Recovers the saved resource identified by an Amazon Resource Name (ARN).
 //
-// If the resource ARN is included in the request, then the last complete backup
-// of that resource is recovered. If the ARN of a recovery point is supplied,
-// then that recovery point is restored.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5097,8 +5093,9 @@ type AdvancedBackupSetting struct {
 	// Specifies the backup option for a selected resource. This option is only
 	// available for Windows VSS backup jobs.
 	//
-	// Valid value: "WindowsVSS”:“enabled". If enabled, creates a VSS Windows
-	// backup; otherwise, creates a regular backup.
+	// Valid values: Set to "WindowsVSS”:“enabled" to enable WindowsVSS backup
+	// option and create a VSS Windows backup. Set to “WindowsVSS”:”disabled”
+	// to create a regular backup. The WindowsVSS option is not enabled by default.
 	//
 	// If you specify an invalid option, you get an InvalidParameterValueException
 	// exception.
@@ -8373,9 +8370,10 @@ type Job struct {
 	// Specifies the backup option for a selected resource. This option is only
 	// available for Windows VSS backup jobs.
 	//
-	// Valid value: "WindowsVSS”:“enabled". If enabled, creates a VSS Windows
-	// backup; otherwise, creates a regular backup. If you specify an invalid option,
-	// you get an InvalidParameterValueException exception.
+	// Valid values: Set to "WindowsVSS”:“enabled" to enable WindowsVSS backup
+	// option and create a VSS Windows backup. Set to “WindowsVSS”:”disabled”
+	// to create a regular backup. If you specify an invalid option, you get an
+	// InvalidParameterValueException exception.
 	BackupOptions map[string]*string `type:"map"`
 
 	// The size, in bytes, of a backup.
@@ -11144,7 +11142,12 @@ type Rule struct {
 	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
-	// A CRON expression specifying when AWS Backup initiates a backup job.
+	// A CRON expression specifying when AWS Backup initiates a backup job. For
+	// more information about cron expressions, see Schedule Expressions for Rules
+	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
+	// in the Amazon CloudWatch Events User Guide.. Prior to specifying a value
+	// for this parameter, we recommend testing your cron expression using one of
+	// the many available cron generator and testing tools.
 	ScheduleExpression *string `type:"string"`
 
 	// A value in minutes after a backup is scheduled before a job will be canceled
@@ -11582,8 +11585,9 @@ type StartBackupJobInput struct {
 	// Specifies the backup option for a selected resource. This option is only
 	// available for Windows VSS backup jobs.
 	//
-	// Valid value: "WindowsVSS”:“enabled". If enabled, creates a VSS Windows
-	// backup; otherwise, creates a regular backup.
+	// Valid values: Set to "WindowsVSS”:“enabled" to enable WindowsVSS backup
+	// option and create a VSS Windows backup. Set to “WindowsVSS”:”disabled”
+	// to create a regular backup. The WindowsVSS option is not enabled by default.
 	BackupOptions map[string]*string `type:"map"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
@@ -11940,7 +11944,8 @@ type StartRestoreJobInput struct {
 	//    is encrypted. If KmsKeyId is specified, Encrypted must be set to true.
 	//
 	//    * KmsKeyId: Specifies the AWS KMS key that is used to encrypt the restored
-	//    file system.
+	//    file system. You can specify a key from another AWS account provided that
+	//    key it is properly shared with your account via AWS KMS.
 	//
 	//    * PerformanceMode: Specifies the throughput mode of the file system.
 	//
@@ -11949,6 +11954,10 @@ type StartRestoreJobInput struct {
 	//
 	//    * newFileSystem: A Boolean value that, if true, specifies that the recovery
 	//    point is restored to a new Amazon EFS file system.
+	//
+	//    * ItemsToRestore : A serialized list of up to five strings where each
+	//    string is a file path. Use ItemsToRestore to restore specific files or
+	//    directories rather than the entire file system. This parameter is optional.
 	//
 	// Metadata is a required field
 	Metadata map[string]*string `type:"map" required:"true" sensitive:"true"`
