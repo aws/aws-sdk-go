@@ -39031,6 +39031,10 @@ func (s *PatchBaselineIdentity) SetOperatingSystem(v string) *PatchBaselineIdent
 type PatchComplianceData struct {
 	_ struct{} `type:"structure"`
 
+	// The IDs of one or more Common Vulnerabilities and Exposure (CVE) issues that
+	// are resolved by the patch.
+	CVEIds *string `type:"string"`
+
 	// The classification of the patch (for example, SecurityUpdates, Updates, CriticalUpdates).
 	//
 	// Classification is a required field
@@ -39074,6 +39078,12 @@ func (s PatchComplianceData) String() string {
 // GoString returns the string representation
 func (s PatchComplianceData) GoString() string {
 	return s.String()
+}
+
+// SetCVEIds sets the CVEIds field's value.
+func (s *PatchComplianceData) SetCVEIds(v string) *PatchComplianceData {
+	s.CVEIds = &v
+	return s
 }
 
 // SetClassification sets the Classification field's value.
@@ -40155,8 +40165,7 @@ type PutParameterInput struct {
 
 	// The type of parameter that you want to add to the system.
 	//
-	// SecureString is not currently supported for AWS CloudFormation templates
-	// or in the China Regions.
+	// SecureString is not currently supported for AWS CloudFormation templates.
 	//
 	// Items in a StringList must be separated by a comma (,). You can't use other
 	// punctuation or special character to escape items in the list. If you have

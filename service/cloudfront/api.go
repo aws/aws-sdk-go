@@ -16535,15 +16535,14 @@ func (s *MonitoringSubscription) SetRealtimeMetricsSubscriptionConfig(v *Realtim
 // An origin is the location where content is stored, and from which CloudFront
 // gets content to serve to viewers. To specify an origin:
 //
-//    * Use the S3OriginConfig type to specify an Amazon S3 bucket that is not
-//    configured with static website hosting.
+//    * Use S3OriginConfig to specify an Amazon S3 bucket that is not configured
+//    with static website hosting.
 //
-//    * Use the CustomOriginConfig type to specify various other kinds of content
-//    containers or HTTP servers, including: An Amazon S3 bucket that is configured
-//    with static website hosting An Elastic Load Balancing load balancer An
-//    AWS Elemental MediaPackage origin An AWS Elemental MediaStore container
-//    Any other HTTP server, running on an Amazon EC2 instance or any other
-//    kind of host
+//    * Use CustomOriginConfig to specify all other kinds of origins, including:
+//    An Amazon S3 bucket that is configured with static website hosting An
+//    Elastic Load Balancing load balancer An AWS Elemental MediaPackage endpoint
+//    An AWS Elemental MediaStore container Any other HTTP server, running on
+//    an Amazon EC2 instance or any other kind of host
 //
 // For the current maximum number of origins that you can specify per distribution,
 // see General Quotas on Web Distributions (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html#limits-web-distributions)
@@ -16573,17 +16572,17 @@ type Origin struct {
 	// in the Amazon CloudFront Developer Guide.
 	ConnectionTimeout *int64 `type:"integer"`
 
-	// A list of HTTP header names and values that CloudFront adds to requests it
-	// sends to the origin.
+	// A list of HTTP header names and values that CloudFront adds to the requests
+	// that it sends to the origin.
 	//
 	// For more information, see Adding Custom Headers to Origin Requests (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/add-origin-custom-headers.html)
 	// in the Amazon CloudFront Developer Guide.
 	CustomHeaders *CustomHeaders `type:"structure"`
 
-	// Use this type to specify an origin that is a content container or HTTP server,
-	// including an Amazon S3 bucket that is configured with static website hosting.
-	// To specify an Amazon S3 bucket that is not configured with static website
-	// hosting, use the S3OriginConfig type instead.
+	// Use this type to specify an origin that is not an Amazon S3 bucket, with
+	// one exception. If the Amazon S3 bucket is configured with static website
+	// hosting, use this type. If the Amazon S3 bucket is not configured with static
+	// website hosting, use the S3OriginConfig type instead.
 	CustomOriginConfig *CustomOriginConfig `type:"structure"`
 
 	// The domain name for the origin.
@@ -16608,6 +16607,13 @@ type Origin struct {
 	// For more information, see Origin Path (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginPath)
 	// in the Amazon CloudFront Developer Guide.
 	OriginPath *string `type:"string"`
+
+	// CloudFront Origin Shield. Using Origin Shield can help reduce the load on
+	// your origin.
+	//
+	// For more information, see Using Origin Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html)
+	// in the Amazon CloudFront Developer Guide.
+	OriginShield *OriginShield `type:"structure"`
 
 	// Use this type to specify an origin that is an Amazon S3 bucket that is not
 	// configured with static website hosting. To specify any other type of origin,
@@ -16643,6 +16649,11 @@ func (s *Origin) Validate() error {
 	if s.CustomOriginConfig != nil {
 		if err := s.CustomOriginConfig.Validate(); err != nil {
 			invalidParams.AddNested("CustomOriginConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OriginShield != nil {
+		if err := s.OriginShield.Validate(); err != nil {
+			invalidParams.AddNested("OriginShield", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.S3OriginConfig != nil {
@@ -16696,6 +16707,12 @@ func (s *Origin) SetId(v string) *Origin {
 // SetOriginPath sets the OriginPath field's value.
 func (s *Origin) SetOriginPath(v string) *Origin {
 	s.OriginPath = &v
+	return s
+}
+
+// SetOriginShield sets the OriginShield field's value.
+func (s *Origin) SetOriginShield(v *OriginShield) *Origin {
+	s.OriginShield = v
 	return s
 }
 
@@ -17809,6 +17826,76 @@ func (s *OriginRequestPolicySummary) SetType(v string) *OriginRequestPolicySumma
 	return s
 }
 
+// CloudFront Origin Shield.
+//
+// Using Origin Shield can help reduce the load on your origin. For more information,
+// see Using Origin Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html)
+// in the Amazon CloudFront Developer Guide.
+type OriginShield struct {
+	_ struct{} `type:"structure"`
+
+	// A flag that specifies whether Origin Shield is enabled.
+	//
+	// When it’s enabled, CloudFront routes all requests through Origin Shield,
+	// which can help protect your origin. When it’s disabled, CloudFront might
+	// send requests directly to your origin from multiple edge locations or regional
+	// edge caches.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// The AWS Region for Origin Shield.
+	//
+	// Specify the AWS Region that has the lowest latency to your origin. To specify
+	// a region, use the region code, not the region name. For example, specify
+	// the US East (Ohio) region as us-east-2.
+	//
+	// When you enable CloudFront Origin Shield, you must specify the AWS Region
+	// for Origin Shield. For the list of AWS Regions that you can specify, and
+	// for help choosing the best Region for your origin, see Choosing the AWS Region
+	// for Origin Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region)
+	// in the Amazon CloudFront Developer Guide.
+	OriginShieldRegion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s OriginShield) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OriginShield) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OriginShield) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OriginShield"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.OriginShieldRegion != nil && len(*s.OriginShieldRegion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OriginShieldRegion", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *OriginShield) SetEnabled(v bool) *OriginShield {
+	s.Enabled = &v
+	return s
+}
+
+// SetOriginShieldRegion sets the OriginShieldRegion field's value.
+func (s *OriginShield) SetOriginShieldRegion(v string) *OriginShield {
+	s.OriginShieldRegion = &v
+	return s
+}
+
 // A complex type that contains information about the SSL/TLS protocols that
 // CloudFront can use when establishing an HTTPS connection with your origin.
 type OriginSslProtocols struct {
@@ -17864,17 +17951,16 @@ func (s *OriginSslProtocols) SetQuantity(v int64) *OriginSslProtocols {
 	return s
 }
 
-// A complex type that contains information about origins and origin groups
-// for this distribution.
+// Contains information about the origins for this distribution.
 type Origins struct {
 	_ struct{} `type:"structure"`
 
-	// A complex type that contains origins or origin groups for this distribution.
+	// A list of origins.
 	//
 	// Items is a required field
 	Items []*Origin `locationNameList:"Origin" min:"1" type:"list" required:"true"`
 
-	// The number of origins or origin groups for this distribution.
+	// The number of origins for this distribution.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -17965,7 +18051,7 @@ type ParametersInCacheKeyAndForwardedToOrigin struct {
 	//    * Includes the normalized header in the request to the origin, if a request
 	//    is necessary
 	//
-	// For more information, see Cache compressed objects (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects)
+	// For more information, see Compression support (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects)
 	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you set this value to true, and this cache behavior also has an origin
@@ -17995,7 +18081,7 @@ type ParametersInCacheKeyAndForwardedToOrigin struct {
 	//    * Includes the normalized header in the request to the origin, if a request
 	//    is necessary
 	//
-	// For more information, see Cache compressed objects (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects)
+	// For more information, see Compression support (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-policy-compressed-objects)
 	// in the Amazon CloudFront Developer Guide.
 	//
 	// If you set this value to true, and this cache behavior also has an origin
