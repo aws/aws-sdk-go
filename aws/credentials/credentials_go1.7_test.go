@@ -30,22 +30,22 @@ func TestCredentialsGetWithContext(t *testing.T) {
 	done1 := make(chan struct{})
 	go func() {
 		creds1, err1 = c.GetWithContext(ctx1)
-		done1 <- struct{}{}
+		close(done1)
 	}()
+	<-ctx1.waiting
+	<-ctx1.waiting
 
 	done2 := make(chan struct{})
 	go func() {
 		creds2, err2 = c.GetWithContext(ctx2)
-		done2 <- struct{}{}
+		close(done2)
 	}()
-
-	<-ctx1.waiting
 	<-ctx2.waiting
 
 	cancel1()
 	<-done1
 
-	stub.done <- struct{}{}
+	close(stub.done)
 	<-done2
 
 	if err1 == nil {
@@ -59,7 +59,7 @@ func TestCredentialsGetWithContext(t *testing.T) {
 		t.Errorf("expect second not to have error, %v", err2)
 	}
 	if !creds2.HasKeys() {
-		t.Errorf("Expect second to have keys")
+		t.Errorf("expect second to have keys")
 	}
 }
 

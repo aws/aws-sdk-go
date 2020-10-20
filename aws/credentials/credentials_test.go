@@ -10,12 +10,14 @@ import (
 )
 
 type stubProvider struct {
-	creds   Value
-	expired bool
-	err     error
+	creds          Value
+	retrievedCount int
+	expired        bool
+	err            error
 }
 
 func (s *stubProvider) Retrieve() (Value, error) {
+	s.retrievedCount++
 	s.expired = false
 	s.creds.ProviderName = "stubProvider"
 	return s.creds, s.err
@@ -222,7 +224,7 @@ func (s *stubProviderRefreshable) Retrieve() (Value, error) {
 			SessionToken:    "NEW_SESSION",
 		}
 		s.expired = false
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(10 * time.Millisecond)
 	}
 	return s.creds, nil
 }
@@ -255,14 +257,19 @@ func TestCredentialsGet_RefreshableProviderRace(t *testing.T) {
 	// Since stubProviderRefreshable considers its OLD_SESSION credentials
 	// expired, all subsequent calls to Get() should retrieve NEW_SESSION creds.
 	var wg sync.WaitGroup
-	wg.Add(5)
-	for i := 0; i < 5; i++ {
+	wg.Add(100)
+	for i := 0; i < 100; i++ {
 		go func() {
 			defer wg.Done()
 			creds, err := c.Get()
 			if err != nil {
 				t.Errorf("Expected no error, got %v", err)
 			}
+
+			if c.IsExpired() {
+				t.Errorf("not expect expired")
+			}
+
 			if e, a := "NEW_SESSION", creds.SessionToken; e != a {
 				t.Errorf("Expect session token to match, %v got %v", e, a)
 			}
