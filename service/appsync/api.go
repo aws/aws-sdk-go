@@ -3962,7 +3962,7 @@ type ApiCache struct {
 	//
 	//    * FULL_REQUEST_CACHING: All requests are fully cached.
 	//
-	//    * PER_RESOLVER_CACHING: Individual resovlers that you specify are cached.
+	//    * PER_RESOLVER_CACHING: Individual resolvers that you specify are cached.
 	ApiCachingBehavior *string `locationName:"apiCachingBehavior" type:"string" enum:"ApiCachingBehavior"`
 
 	// At rest encryption flag for cache. This setting cannot be updated after creation.
@@ -4012,7 +4012,7 @@ type ApiCache struct {
 	// July 2020, this is deprecated, and the generic identifiers above should be
 	// used.
 	//
-	// The following legacy instance types are avaible, but their use is discouraged:
+	// The following legacy instance types are available, but their use is discouraged:
 	//
 	//    * T2_SMALL: A t2.small instance type.
 	//
@@ -4647,7 +4647,7 @@ type CreateApiCacheInput struct {
 	//
 	//    * FULL_REQUEST_CACHING: All requests are fully cached.
 	//
-	//    * PER_RESOLVER_CACHING: Individual resovlers that you specify are cached.
+	//    * PER_RESOLVER_CACHING: Individual resolvers that you specify are cached.
 	//
 	// ApiCachingBehavior is a required field
 	ApiCachingBehavior *string `locationName:"apiCachingBehavior" type:"string" required:"true" enum:"ApiCachingBehavior"`
@@ -4693,7 +4693,7 @@ type CreateApiCacheInput struct {
 	// July 2020, this is deprecated, and the generic identifiers above should be
 	// used.
 	//
-	// The following legacy instance types are avaible, but their use is discouraged:
+	// The following legacy instance types are available, but their use is discouraged:
 	//
 	//    * T2_SMALL: A t2.small instance type.
 	//
@@ -7328,7 +7328,8 @@ type GraphqlApi struct {
 	// The Amazon Cognito user pool configuration.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
 
-	// The ARN of the AWS WAF ACL associated with this GraphqlApi if one exists.
+	// The ARN of the AWS Web Application Firewall (WAF) ACL associated with this
+	// GraphqlApi, if one exists.
 	WafWebAclArn *string `locationName:"wafWebAclArn" type:"string"`
 
 	// A flag representing whether X-Ray tracing is enabled for this GraphqlApi.
@@ -9250,7 +9251,7 @@ type UpdateApiCacheInput struct {
 	//
 	//    * FULL_REQUEST_CACHING: All requests are fully cached.
 	//
-	//    * PER_RESOLVER_CACHING: Individual resovlers that you specify are cached.
+	//    * PER_RESOLVER_CACHING: Individual resolvers that you specify are cached.
 	//
 	// ApiCachingBehavior is a required field
 	ApiCachingBehavior *string `locationName:"apiCachingBehavior" type:"string" required:"true" enum:"ApiCachingBehavior"`
@@ -9289,7 +9290,7 @@ type UpdateApiCacheInput struct {
 	// July 2020, this is deprecated, and the generic identifiers above should be
 	// used.
 	//
-	// The following legacy instance types are avaible, but their use is discouraged:
+	// The following legacy instance types are available, but their use is discouraged:
 	//
 	//    * T2_SMALL: A t2.small instance type.
 	//

@@ -703,6 +703,20 @@
       "type":"list",
       "member":{"shape":"KeyValuePair"}
     },
+    "EvaluateOnExit":{
+      "type":"structure",
+      "required":["action"],
+      "members":{
+        "onStatusReason":{"shape":"String"},
+        "onReason":{"shape":"String"},
+        "onExitCode":{"shape":"String"},
+        "action":{"shape":"RetryAction"}
+      }
+    },
+    "EvaluateOnExitList":{
+      "type":"list",
+      "member":{"shape":"EvaluateOnExit"}
+    },
     "Host":{
       "type":"structure",
       "members":{
@@ -1101,10 +1115,18 @@
       "type":"string",
       "enum":["GPU"]
     },
+    "RetryAction":{
+      "type":"string",
+      "enum":[
+        "RETRY",
+        "EXIT"
+      ]
+    },
     "RetryStrategy":{
       "type":"structure",
       "members":{
-        "attempts":{"shape":"Integer"}
+        "attempts":{"shape":"Integer"},
+        "evaluateOnExit":{"shape":"EvaluateOnExitList"}
       }
     },
     "Secret":{

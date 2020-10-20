@@ -1557,8 +1557,11 @@
     "EnvironmentStatus":{
       "type":"string",
       "enum":[
+        "Aborting",
         "Launching",
         "Updating",
+        "LinkingFrom",
+        "LinkingTo",
         "Ready",
         "Terminating",
         "Terminated"

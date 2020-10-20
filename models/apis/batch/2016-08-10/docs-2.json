@@ -108,7 +108,7 @@
     "CRAllocationStrategy": {
       "base": null,
       "refs": {
-        "ComputeResource$allocationStrategy": "<p>The allocation strategy to use for the compute resource in case not enough instances of the best fitting instance type can be allocated. This could be due to availability of the instance type in the region or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html\">Amazon EC2 service limits</a>. If this is not specified, the default is <code>BEST_FIT</code>, which will use only the best fitting instance type, waiting for additional capacity if it's not available. This allocation strategy keeps costs lower but can limit scaling. If you are using Spot Fleets with <code>BEST_FIT</code> then the Spot Fleet IAM Role must be specified. <code>BEST_FIT_PROGRESSIVE</code> will select additional instance types that are large enough to meet the requirements of the jobs in the queue, with a preference for instance types with a lower cost per vCPU. <code>SPOT_CAPACITY_OPTIMIZED</code> is only available for Spot Instance compute resources and will select additional instance types that are large enough to meet the requirements of the jobs in the queue, with a preference for instance types that are less likely to be interrupted. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/allocation-strategies.html \">Allocation Strategies</a> in the <i>AWS Batch User Guide</i>.</p>"
+        "ComputeResource$allocationStrategy": "<p>The allocation strategy to use for the compute resource in case not enough instances of the best fitting instance type can be allocated. This could be due to availability of the instance type in the region or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html\">Amazon EC2 service limits</a>. If this is not specified, the default is <code>BEST_FIT</code>, which will use only the best fitting instance type, waiting for additional capacity if it's not available. This allocation strategy keeps costs lower but can limit scaling. If you are using Spot Fleets with <code>BEST_FIT</code> then the Spot Fleet IAM Role must be specified. <code>BEST_FIT_PROGRESSIVE</code> will select additional instance types that are large enough to meet the requirements of the jobs in the queue, with a preference for instance types with a lower cost per vCPU. <code>SPOT_CAPACITY_OPTIMIZED</code> is only available for Spot Instance compute resources and will select additional instance types that are large enough to meet the requirements of the jobs in the queue, with a preference for instance types that are less likely to be interrupted. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/allocation-strategies.html\">Allocation Strategies</a> in the <i>AWS Batch User Guide</i>.</p>"
       }
     },
     "CRType": {
@@ -320,6 +320,18 @@
         "ContainerProperties$environment": "<p>The environment variables to pass to a container. This parameter maps to <code>Env</code> in the <a href=\"https://docs.docker.com/engine/api/v1.23/#create-a-container\">Create a container</a> section of the <a href=\"https://docs.docker.com/engine/api/v1.23/\">Docker Remote API</a> and the <code>--env</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p> <important> <p>We do not recommend using plaintext environment variables for sensitive information, such as credential data.</p> </important> <note> <p>Environment variables must not start with <code>AWS_BATCH</code>; this naming convention is reserved for variables that are set by the AWS Batch service.</p> </note>"
       }
     },
+    "EvaluateOnExit": {
+      "base": "<p>Specifies a set of conditions to be met, and an action to take (<code>RETRY</code> or <code>EXIT</code>) if all conditions are met.</p>",
+      "refs": {
+        "EvaluateOnExitList$member": null
+      }
+    },
+    "EvaluateOnExitList": {
+      "base": null,
+      "refs": {
+        "RetryStrategy$evaluateOnExit": "<p>Array of up to 5 objects that specify conditions under which the job should be retried or failed. If this parameter is specified, then the <code>attempts</code> parameter must also be specified.</p>"
+      }
+    },
     "Host": {
       "base": "<p>Determine whether your data volume persists on the host container instance and where it is stored. If this parameter is empty, then the Docker daemon assigns a host path for your data volume, but the data is not guaranteed to persist after the containers associated with it stop running.</p>",
       "refs": {
@@ -360,7 +372,7 @@
         "JobQueueDetail$priority": "<p>The priority of the job queue.</p>",
         "JobTimeout$attemptDurationSeconds": "<p>The time duration in seconds (measured from the job attempt's <code>startedAt</code> timestamp) after which AWS Batch terminates your jobs if they have not finished.</p>",
         "LinuxParameters$sharedMemorySize": "<p>The value for the size (in MiB) of the <code>/dev/shm</code> volume. This parameter maps to the <code>--shm-size</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>",
-        "LinuxParameters$maxSwap": "<p>The total amount of swap memory (in MiB) a container can use. This parameter will be translated to the <code>--memory-swap</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a> where the value would be the sum of the container memory plus the <code>maxSwap</code> value.</p> <p>If a <code>maxSwap</code> value of <code>0</code> is specified, the container will not use swap. Accepted values are <code>0</code> or any positive integer. If the <code>maxSwap</code> parameter is omitted, the container will use the swap configuration for the container instance it is running on. A <code>maxSwap</code> value must be set for the <code>swappiness</code> parameter to be used.</p>",
+        "LinuxParameters$maxSwap": "<p>The total amount of swap memory (in MiB) a container can use. This parameter will be translated to the <code>--memory-swap</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a> where the value would be the sum of the container memory plus the <code>maxSwap</code> value. For more information, see <a href=\"https://docs.docker.com/config/containers/resource_constraints/#--memory-swap-details\"> <code>--memory-swap</code> details</a> in the Docker documentation.</p> <p>If a <code>maxSwap</code> value of <code>0</code> is specified, the container will not use swap. Accepted values are <code>0</code> or any positive integer. If the <code>maxSwap</code> parameter is omitted, the container will use the swap configuration for the container instance it is running on. A <code>maxSwap</code> value must be set for the <code>swappiness</code> parameter to be used.</p>",
         "LinuxParameters$swappiness": "<p>This allows you to tune a container's memory swappiness behavior. A <code>swappiness</code> value of <code>0</code> will cause swapping to not happen unless absolutely necessary. A <code>swappiness</code> value of <code>100</code> will cause pages to be swapped very aggressively. Accepted values are whole numbers between <code>0</code> and <code>100</code>. If the <code>swappiness</code> parameter is not specified, a default value of <code>60</code> is used. If a value is not specified for <code>maxSwap</code> then this parameter is ignored. This parameter maps to the <code>--memory-swappiness</code> option to <a href=\"https://docs.docker.com/engine/reference/run/\">docker run</a>.</p>",
         "ListJobsRequest$maxResults": "<p>The maximum number of results returned by <code>ListJobs</code> in paginated output. When this parameter is used, <code>ListJobs</code> only returns <code>maxResults</code> results in a single page along with a <code>nextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>ListJobs</code> request with the returned <code>nextToken</code> value. This value can be between 1 and 100. If this parameter is not used, then <code>ListJobs</code> returns up to 100 results and a <code>nextToken</code> value if applicable.</p>",
         "NodeDetails$nodeIndex": "<p>The node index for the node. Node index numbering begins at zero. This index is also available on the node with the <code>AWS_BATCH_JOB_NODE_INDEX</code> environment variable.</p>",
@@ -661,6 +673,12 @@
         "ResourceRequirement$type": "<p>The type of resource to assign to a container. Currently, the only supported resource type is <code>GPU</code>.</p>"
       }
     },
+    "RetryAction": {
+      "base": null,
+      "refs": {
+        "EvaluateOnExit$action": "<p>Specifies the action to take if all of the specified conditions (<code>onStatusReason</code>, <code>onReason</code>, and <code>onExitCode</code>) are met.</p>"
+      }
+    },
     "RetryStrategy": {
       "base": "<p>The retry strategy associated with a job.</p>",
       "refs": {
@@ -748,6 +766,9 @@
         "DescribeJobQueuesResponse$nextToken": "<p>The <code>nextToken</code> value to include in a future <code>DescribeJobQueues</code> request. When the results of a <code>DescribeJobQueues</code> request exceed <code>maxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "Device$hostPath": "<p>The path for the device on the host container instance.</p>",
         "Device$containerPath": "<p>The path inside the container at which to expose the host device. By default the <code>hostPath</code> value is used.</p>",
+        "EvaluateOnExit$onStatusReason": "<p>Contains a glob pattern to match against the <code>StatusReason</code> returned for a job. The patten can be up to 512 characters long, can contain letters, numbers, periods (.), colons (:), and whitespace (spaces, tabs). and can optionally end with an asterisk (*) so that only the start of the string needs to be an exact match.</p>",
+        "EvaluateOnExit$onReason": "<p>Contains a glob pattern to match against the <code>Reason</code> returned for a job. The patten can be up to 512 characters long, can contain letters, numbers, periods (.), colons (:), and whitespace (spaces, tabs), and can optionally end with an asterisk (*) so that only the start of the string needs to be an exact match.</p>",
+        "EvaluateOnExit$onExitCode": "<p>Contains a glob pattern to match against the decimal representation of the <code>ExitCode</code> returned for a job. The patten can be up to 512 characters long, can contain only numbers, and can optionally end with an asterisk (*) so that only the start of the string needs to be an exact match.</p>",
         "Host$sourcePath": "<p>The path on the host container instance that is presented to the container. If this parameter is empty, then the Docker daemon has assigned a host path for you. If this parameter contains a file location, then the data volume persists at the specified location on the host container instance until you delete it manually. If the source path location does not exist on the host container instance, the Docker daemon creates it. If the location does exist, the contents of the source path folder are exported.</p>",
         "JobDefinition$jobDefinitionName": "<p>The name of the job definition.</p>",
         "JobDefinition$jobDefinitionArn": "<p>The Amazon Resource Name (ARN) for the job definition.</p>",

@@ -12767,11 +12767,20 @@ func EnvironmentInfoType_Values() []string {
 }
 
 const (
+	// EnvironmentStatusAborting is a EnvironmentStatus enum value
+	EnvironmentStatusAborting = "Aborting"
+
 	// EnvironmentStatusLaunching is a EnvironmentStatus enum value
 	EnvironmentStatusLaunching = "Launching"
 
 	// EnvironmentStatusUpdating is a EnvironmentStatus enum value
 	EnvironmentStatusUpdating = "Updating"
+
+	// EnvironmentStatusLinkingFrom is a EnvironmentStatus enum value
+	EnvironmentStatusLinkingFrom = "LinkingFrom"
+
+	// EnvironmentStatusLinkingTo is a EnvironmentStatus enum value
+	EnvironmentStatusLinkingTo = "LinkingTo"
 
 	// EnvironmentStatusReady is a EnvironmentStatus enum value
 	EnvironmentStatusReady = "Ready"
@@ -12786,8 +12795,11 @@ const (
 // EnvironmentStatus_Values returns all elements of the EnvironmentStatus enum
 func EnvironmentStatus_Values() []string {
 	return []string{
+		EnvironmentStatusAborting,
 		EnvironmentStatusLaunching,
 		EnvironmentStatusUpdating,
+		EnvironmentStatusLinkingFrom,
+		EnvironmentStatusLinkingTo,
 		EnvironmentStatusReady,
 		EnvironmentStatusTerminating,
 		EnvironmentStatusTerminated,
