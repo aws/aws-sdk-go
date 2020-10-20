@@ -289,6 +289,19 @@ output = json
 				newExprStatement(outputEQExpr),
 			},
 		},
+		{
+			name: "missing right hand expression in the last statement in the file",
+			r: bytes.NewBuffer([]byte(
+				`[default]
+region = us-west-2
+s3 =`)),
+			expectedStack: []AST{
+				newCompletedSectionStatement(
+					defaultProfileStmt,
+				),
+				newExprStatement(noQuotesRegionEQRegion),
+			},
+		},
 	}
 
 	for i, c := range cases {
