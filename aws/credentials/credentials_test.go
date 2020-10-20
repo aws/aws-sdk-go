@@ -10,12 +10,14 @@ import (
 )
 
 type stubProvider struct {
-	creds   Value
-	expired bool
-	err     error
+	creds          Value
+	retrievedCount int
+	expired        bool
+	err            error
 }
 
 func (s *stubProvider) Retrieve() (Value, error) {
+	s.retrievedCount++
 	s.expired = false
 	s.creds.ProviderName = "stubProvider"
 	return s.creds, s.err
@@ -201,4 +203,78 @@ func TestCredentialsGetConcurrent(t *testing.T) {
 	stub.done <- struct{}{}
 	<-done
 	<-done
+}
+
+type stubProviderRefreshable struct {
+	creds        Value
+	expired      bool
+	hasRetrieved bool
+}
+
+func (s *stubProviderRefreshable) Retrieve() (Value, error) {
+	// On first retrieval, return the creds that this provider was created with.
+	// On subsequent retrievals, return new refreshed credentials.
+	if !s.hasRetrieved {
+		s.expired = true
+		s.hasRetrieved = true
+	} else {
+		s.creds = Value{
+			AccessKeyID:     "AKID",
+			SecretAccessKey: "SECRET",
+			SessionToken:    "NEW_SESSION",
+		}
+		s.expired = false
+		time.Sleep(10 * time.Millisecond)
+	}
+	return s.creds, nil
+}
+
+func (s *stubProviderRefreshable) IsExpired() bool {
+	return s.expired
+}
+
+func TestCredentialsGet_RefreshableProviderRace(t *testing.T) {
+	stub := &stubProviderRefreshable{
+		creds: Value{
+			AccessKeyID:     "AKID",
+			SecretAccessKey: "SECRET",
+			SessionToken:    "OLD_SESSION",
+		},
+	}
+
+	c := NewCredentials(stub)
+
+	// The first Get() causes stubProviderRefreshable to consider its
+	// OLD_SESSION credentials expired on subsequent retrievals.
+	creds, err := c.Get()
+	if err != nil {
+		t.Errorf("Expected no error, got %v", err)
+	}
+	if e, a := "OLD_SESSION", creds.SessionToken; e != a {
+		t.Errorf("Expect session token to match, %v got %v", e, a)
+	}
+
+	// Since stubProviderRefreshable considers its OLD_SESSION credentials
+	// expired, all subsequent calls to Get() should retrieve NEW_SESSION creds.
+	var wg sync.WaitGroup
+	wg.Add(100)
+	for i := 0; i < 100; i++ {
+		go func() {
+			defer wg.Done()
+			creds, err := c.Get()
+			if err != nil {
+				t.Errorf("Expected no error, got %v", err)
+			}
+
+			if c.IsExpired() {
+				t.Errorf("not expect expired")
+			}
+
+			if e, a := "NEW_SESSION", creds.SessionToken; e != a {
+				t.Errorf("Expect session token to match, %v got %v", e, a)
+			}
+		}()
+	}
+
+	wg.Wait()
 }
