@@ -1,3 +1,13 @@
+Release v1.35.11 (2020-10-20)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service documentation
+* `service/batch`: Updates service API and documentation
+  * Adding evaluateOnExit to job retry strategies.
+* `service/elasticbeanstalk`: Updates service API
+  * EnvironmentStatus enum update to include Aborting, LinkingFrom and LinkingTo
+
 Release v1.35.10 (2020-10-19)
 ===
 

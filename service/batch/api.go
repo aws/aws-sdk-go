@@ -4387,6 +4387,85 @@ func (s *Device) SetPermissions(v []*string) *Device {
 	return s
 }
 
+// Specifies a set of conditions to be met, and an action to take (RETRY or
+// EXIT) if all conditions are met.
+type EvaluateOnExit struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the action to take if all of the specified conditions (onStatusReason,
+	// onReason, and onExitCode) are met.
+	//
+	// Action is a required field
+	Action *string `locationName:"action" type:"string" required:"true" enum:"RetryAction"`
+
+	// Contains a glob pattern to match against the decimal representation of the
+	// ExitCode returned for a job. The patten can be up to 512 characters long,
+	// can contain only numbers, and can optionally end with an asterisk (*) so
+	// that only the start of the string needs to be an exact match.
+	OnExitCode *string `locationName:"onExitCode" type:"string"`
+
+	// Contains a glob pattern to match against the Reason returned for a job. The
+	// patten can be up to 512 characters long, can contain letters, numbers, periods
+	// (.), colons (:), and whitespace (spaces, tabs), and can optionally end with
+	// an asterisk (*) so that only the start of the string needs to be an exact
+	// match.
+	OnReason *string `locationName:"onReason" type:"string"`
+
+	// Contains a glob pattern to match against the StatusReason returned for a
+	// job. The patten can be up to 512 characters long, can contain letters, numbers,
+	// periods (.), colons (:), and whitespace (spaces, tabs). and can optionally
+	// end with an asterisk (*) so that only the start of the string needs to be
+	// an exact match.
+	OnStatusReason *string `locationName:"onStatusReason" type:"string"`
+}
+
+// String returns the string representation
+func (s EvaluateOnExit) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EvaluateOnExit) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EvaluateOnExit) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EvaluateOnExit"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *EvaluateOnExit) SetAction(v string) *EvaluateOnExit {
+	s.Action = &v
+	return s
+}
+
+// SetOnExitCode sets the OnExitCode field's value.
+func (s *EvaluateOnExit) SetOnExitCode(v string) *EvaluateOnExit {
+	s.OnExitCode = &v
+	return s
+}
+
+// SetOnReason sets the OnReason field's value.
+func (s *EvaluateOnExit) SetOnReason(v string) *EvaluateOnExit {
+	s.OnReason = &v
+	return s
+}
+
+// SetOnStatusReason sets the OnStatusReason field's value.
+func (s *EvaluateOnExit) SetOnStatusReason(v string) *EvaluateOnExit {
+	s.OnStatusReason = &v
+	return s
+}
+
 // Determine whether your data volume persists on the host container instance
 // and where it is stored. If this parameter is empty, then the Docker daemon
 // assigns a host path for your data volume, but the data is not guaranteed
@@ -5165,7 +5244,8 @@ type LinuxParameters struct {
 	// The total amount of swap memory (in MiB) a container can use. This parameter
 	// will be translated to the --memory-swap option to docker run (https://docs.docker.com/engine/reference/run/)
 	// where the value would be the sum of the container memory plus the maxSwap
-	// value.
+	// value. For more information, see --memory-swap details (https://docs.docker.com/config/containers/resource_constraints/#--memory-swap-details)
+	// in the Docker documentation.
 	//
 	// If a maxSwap value of 0 is specified, the container will not use swap. Accepted
 	// values are 0 or any positive integer. If the maxSwap parameter is omitted,
@@ -6107,6 +6187,11 @@ func (s *RegisterJobDefinitionInput) Validate() error {
 			invalidParams.AddNested("NodeProperties", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RetryStrategy != nil {
+		if err := s.RetryStrategy.Validate(); err != nil {
+			invalidParams.AddNested("RetryStrategy", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6274,6 +6359,11 @@ type RetryStrategy struct {
 	// between 1 and 10 attempts. If the value of attempts is greater than one,
 	// the job is retried on failure the same number of attempts as the value.
 	Attempts *int64 `locationName:"attempts" type:"integer"`
+
+	// Array of up to 5 objects that specify conditions under which the job should
+	// be retried or failed. If this parameter is specified, then the attempts parameter
+	// must also be specified.
+	EvaluateOnExit []*EvaluateOnExit `locationName:"evaluateOnExit" type:"list"`
 }
 
 // String returns the string representation
@@ -6286,9 +6376,35 @@ func (s RetryStrategy) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryStrategy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryStrategy"}
+	if s.EvaluateOnExit != nil {
+		for i, v := range s.EvaluateOnExit {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EvaluateOnExit", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAttempts sets the Attempts field's value.
 func (s *RetryStrategy) SetAttempts(v int64) *RetryStrategy {
 	s.Attempts = &v
+	return s
+}
+
+// SetEvaluateOnExit sets the EvaluateOnExit field's value.
+func (s *RetryStrategy) SetEvaluateOnExit(v []*EvaluateOnExit) *RetryStrategy {
+	s.EvaluateOnExit = v
 	return s
 }
 
@@ -6531,6 +6647,11 @@ func (s *SubmitJobInput) Validate() error {
 	if s.NodeOverrides != nil {
 		if err := s.NodeOverrides.Validate(); err != nil {
 			invalidParams.AddNested("NodeOverrides", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RetryStrategy != nil {
+		if err := s.RetryStrategy.Validate(); err != nil {
+			invalidParams.AddNested("RetryStrategy", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7556,5 +7677,21 @@ const (
 func ResourceType_Values() []string {
 	return []string{
 		ResourceTypeGpu,
+	}
+}
+
+const (
+	// RetryActionRetry is a RetryAction enum value
+	RetryActionRetry = "RETRY"
+
+	// RetryActionExit is a RetryAction enum value
+	RetryActionExit = "EXIT"
+)
+
+// RetryAction_Values returns all elements of the RetryAction enum
+func RetryAction_Values() []string {
+	return []string{
+		RetryActionRetry,
+		RetryActionExit,
 	}
 }
