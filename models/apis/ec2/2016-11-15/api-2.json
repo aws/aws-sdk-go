@@ -14611,6 +14611,14 @@
         "locationName":"item"
       }
     },
+    "EphemeralNvmeSupport":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "supported",
+        "required"
+      ]
+    },
     "ErrorSet":{
       "type":"list",
       "member":{
@@ -18497,6 +18505,10 @@
         "Disks":{
           "shape":"DiskInfoList",
           "locationName":"disks"
+        },
+        "NvmeSupport":{
+          "shape":"EphemeralNvmeSupport",
+          "locationName":"nvmeSupport"
         }
       }
     },

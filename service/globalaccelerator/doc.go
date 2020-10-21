@@ -10,8 +10,15 @@
 //
 // AWS Global Accelerator is a service in which you create accelerators to improve
 // availability and performance of your applications for local and global users.
+// Global Accelerator directs traffic to optimal endpoints over the AWS global
+// network. This improves the availability and performance of your internet
+// applications that are used by a global audience. Global Accelerator is a
+// global service that supports endpoints in multiple AWS Regions, which are
+// listed in the AWS Region Table (https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/).
 //
-// You must specify the US West (Oregon) Region to create or update accelerators.
+// Global Accelerator is a global service that supports endpoints in multiple
+// AWS Regions but you must specify the US West (Oregon) Region to create or
+// update accelerators.
 //
 // By default, Global Accelerator provides you with static IP addresses that
 // you associate with your accelerator. (Instead of using the IP addresses that

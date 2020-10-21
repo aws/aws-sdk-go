@@ -88,6 +88,10 @@ type CloudFrontAPI interface {
 	CreateInvalidationWithContext(aws.Context, *cloudfront.CreateInvalidationInput, ...request.Option) (*cloudfront.CreateInvalidationOutput, error)
 	CreateInvalidationRequest(*cloudfront.CreateInvalidationInput) (*request.Request, *cloudfront.CreateInvalidationOutput)
 
+	CreateKeyGroup(*cloudfront.CreateKeyGroupInput) (*cloudfront.CreateKeyGroupOutput, error)
+	CreateKeyGroupWithContext(aws.Context, *cloudfront.CreateKeyGroupInput, ...request.Option) (*cloudfront.CreateKeyGroupOutput, error)
+	CreateKeyGroupRequest(*cloudfront.CreateKeyGroupInput) (*request.Request, *cloudfront.CreateKeyGroupOutput)
+
 	CreateMonitoringSubscription(*cloudfront.CreateMonitoringSubscriptionInput) (*cloudfront.CreateMonitoringSubscriptionOutput, error)
 	CreateMonitoringSubscriptionWithContext(aws.Context, *cloudfront.CreateMonitoringSubscriptionInput, ...request.Option) (*cloudfront.CreateMonitoringSubscriptionOutput, error)
 	CreateMonitoringSubscriptionRequest(*cloudfront.CreateMonitoringSubscriptionInput) (*request.Request, *cloudfront.CreateMonitoringSubscriptionOutput)
@@ -131,6 +135,10 @@ type CloudFrontAPI interface {
 	DeleteFieldLevelEncryptionProfile(*cloudfront.DeleteFieldLevelEncryptionProfileInput) (*cloudfront.DeleteFieldLevelEncryptionProfileOutput, error)
 	DeleteFieldLevelEncryptionProfileWithContext(aws.Context, *cloudfront.DeleteFieldLevelEncryptionProfileInput, ...request.Option) (*cloudfront.DeleteFieldLevelEncryptionProfileOutput, error)
 	DeleteFieldLevelEncryptionProfileRequest(*cloudfront.DeleteFieldLevelEncryptionProfileInput) (*request.Request, *cloudfront.DeleteFieldLevelEncryptionProfileOutput)
+
+	DeleteKeyGroup(*cloudfront.DeleteKeyGroupInput) (*cloudfront.DeleteKeyGroupOutput, error)
+	DeleteKeyGroupWithContext(aws.Context, *cloudfront.DeleteKeyGroupInput, ...request.Option) (*cloudfront.DeleteKeyGroupOutput, error)
+	DeleteKeyGroupRequest(*cloudfront.DeleteKeyGroupInput) (*request.Request, *cloudfront.DeleteKeyGroupOutput)
 
 	DeleteMonitoringSubscription(*cloudfront.DeleteMonitoringSubscriptionInput) (*cloudfront.DeleteMonitoringSubscriptionOutput, error)
 	DeleteMonitoringSubscriptionWithContext(aws.Context, *cloudfront.DeleteMonitoringSubscriptionInput, ...request.Option) (*cloudfront.DeleteMonitoringSubscriptionOutput, error)
@@ -196,6 +204,14 @@ type CloudFrontAPI interface {
 	GetInvalidationWithContext(aws.Context, *cloudfront.GetInvalidationInput, ...request.Option) (*cloudfront.GetInvalidationOutput, error)
 	GetInvalidationRequest(*cloudfront.GetInvalidationInput) (*request.Request, *cloudfront.GetInvalidationOutput)
 
+	GetKeyGroup(*cloudfront.GetKeyGroupInput) (*cloudfront.GetKeyGroupOutput, error)
+	GetKeyGroupWithContext(aws.Context, *cloudfront.GetKeyGroupInput, ...request.Option) (*cloudfront.GetKeyGroupOutput, error)
+	GetKeyGroupRequest(*cloudfront.GetKeyGroupInput) (*request.Request, *cloudfront.GetKeyGroupOutput)
+
+	GetKeyGroupConfig(*cloudfront.GetKeyGroupConfigInput) (*cloudfront.GetKeyGroupConfigOutput, error)
+	GetKeyGroupConfigWithContext(aws.Context, *cloudfront.GetKeyGroupConfigInput, ...request.Option) (*cloudfront.GetKeyGroupConfigOutput, error)
+	GetKeyGroupConfigRequest(*cloudfront.GetKeyGroupConfigInput) (*request.Request, *cloudfront.GetKeyGroupConfigOutput)
+
 	GetMonitoringSubscription(*cloudfront.GetMonitoringSubscriptionInput) (*cloudfront.GetMonitoringSubscriptionOutput, error)
 	GetMonitoringSubscriptionWithContext(aws.Context, *cloudfront.GetMonitoringSubscriptionInput, ...request.Option) (*cloudfront.GetMonitoringSubscriptionOutput, error)
 	GetMonitoringSubscriptionRequest(*cloudfront.GetMonitoringSubscriptionInput) (*request.Request, *cloudfront.GetMonitoringSubscriptionOutput)
@@ -250,6 +266,10 @@ type CloudFrontAPI interface {
 	ListDistributionsByCachePolicyIdWithContext(aws.Context, *cloudfront.ListDistributionsByCachePolicyIdInput, ...request.Option) (*cloudfront.ListDistributionsByCachePolicyIdOutput, error)
 	ListDistributionsByCachePolicyIdRequest(*cloudfront.ListDistributionsByCachePolicyIdInput) (*request.Request, *cloudfront.ListDistributionsByCachePolicyIdOutput)
 
+	ListDistributionsByKeyGroup(*cloudfront.ListDistributionsByKeyGroupInput) (*cloudfront.ListDistributionsByKeyGroupOutput, error)
+	ListDistributionsByKeyGroupWithContext(aws.Context, *cloudfront.ListDistributionsByKeyGroupInput, ...request.Option) (*cloudfront.ListDistributionsByKeyGroupOutput, error)
+	ListDistributionsByKeyGroupRequest(*cloudfront.ListDistributionsByKeyGroupInput) (*request.Request, *cloudfront.ListDistributionsByKeyGroupOutput)
+
 	ListDistributionsByOriginRequestPolicyId(*cloudfront.ListDistributionsByOriginRequestPolicyIdInput) (*cloudfront.ListDistributionsByOriginRequestPolicyIdOutput, error)
 	ListDistributionsByOriginRequestPolicyIdWithContext(aws.Context, *cloudfront.ListDistributionsByOriginRequestPolicyIdInput, ...request.Option) (*cloudfront.ListDistributionsByOriginRequestPolicyIdOutput, error)
 	ListDistributionsByOriginRequestPolicyIdRequest(*cloudfront.ListDistributionsByOriginRequestPolicyIdInput) (*request.Request, *cloudfront.ListDistributionsByOriginRequestPolicyIdOutput)
@@ -276,6 +296,10 @@ type CloudFrontAPI interface {
 
 	ListInvalidationsPages(*cloudfront.ListInvalidationsInput, func(*cloudfront.ListInvalidationsOutput, bool) bool) error
 	ListInvalidationsPagesWithContext(aws.Context, *cloudfront.ListInvalidationsInput, func(*cloudfront.ListInvalidationsOutput, bool) bool, ...request.Option) error
+
+	ListKeyGroups(*cloudfront.ListKeyGroupsInput) (*cloudfront.ListKeyGroupsOutput, error)
+	ListKeyGroupsWithContext(aws.Context, *cloudfront.ListKeyGroupsInput, ...request.Option) (*cloudfront.ListKeyGroupsOutput, error)
+	ListKeyGroupsRequest(*cloudfront.ListKeyGroupsInput) (*request.Request, *cloudfront.ListKeyGroupsOutput)
 
 	ListOriginRequestPolicies(*cloudfront.ListOriginRequestPoliciesInput) (*cloudfront.ListOriginRequestPoliciesOutput, error)
 	ListOriginRequestPoliciesWithContext(aws.Context, *cloudfront.ListOriginRequestPoliciesInput, ...request.Option) (*cloudfront.ListOriginRequestPoliciesOutput, error)
@@ -327,6 +351,10 @@ type CloudFrontAPI interface {
 	UpdateFieldLevelEncryptionProfile(*cloudfront.UpdateFieldLevelEncryptionProfileInput) (*cloudfront.UpdateFieldLevelEncryptionProfileOutput, error)
 	UpdateFieldLevelEncryptionProfileWithContext(aws.Context, *cloudfront.UpdateFieldLevelEncryptionProfileInput, ...request.Option) (*cloudfront.UpdateFieldLevelEncryptionProfileOutput, error)
 	UpdateFieldLevelEncryptionProfileRequest(*cloudfront.UpdateFieldLevelEncryptionProfileInput) (*request.Request, *cloudfront.UpdateFieldLevelEncryptionProfileOutput)
+
+	UpdateKeyGroup(*cloudfront.UpdateKeyGroupInput) (*cloudfront.UpdateKeyGroupOutput, error)
+	UpdateKeyGroupWithContext(aws.Context, *cloudfront.UpdateKeyGroupInput, ...request.Option) (*cloudfront.UpdateKeyGroupOutput, error)
+	UpdateKeyGroupRequest(*cloudfront.UpdateKeyGroupInput) (*request.Request, *cloudfront.UpdateKeyGroupOutput)
 
 	UpdateOriginRequestPolicy(*cloudfront.UpdateOriginRequestPolicyInput) (*cloudfront.UpdateOriginRequestPolicyOutput, error)
 	UpdateOriginRequestPolicyWithContext(aws.Context, *cloudfront.UpdateOriginRequestPolicyInput, ...request.Option) (*cloudfront.UpdateOriginRequestPolicyOutput, error)

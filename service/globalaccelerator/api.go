@@ -163,12 +163,9 @@ func (c *GlobalAccelerator) CreateAcceleratorRequest(input *CreateAcceleratorInp
 // each of which includes endpoints, such as Network Load Balancers. To see
 // an AWS CLI example of creating an accelerator, scroll down to Example.
 //
-// If you bring your own IP address ranges to AWS Global Accelerator (BYOIP),
-// you can assign IP addresses from your own pool to your accelerator as the
-// static IP address entry points. Only one IP address from each of your IP
-// address ranges can be used for each accelerator.
-//
-// You must specify the US West (Oregon) Region to create or update accelerators.
+// Global Accelerator is a global service that supports endpoints in multiple
+// AWS Regions but you must specify the US West (Oregon) Region to create or
+// update accelerators.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -255,8 +252,10 @@ func (c *GlobalAccelerator) CreateEndpointGroupRequest(input *CreateEndpointGrou
 // CreateEndpointGroup API operation for AWS Global Accelerator.
 //
 // Create an endpoint group for the specified listener. An endpoint group is
-// a collection of endpoints in one AWS Region. To see an AWS CLI example of
-// creating an endpoint group, scroll down to Example.
+// a collection of endpoints in one AWS Region. A resource must be valid and
+// active when you add it as an endpoint.
+//
+// To see an AWS CLI example of creating an endpoint group, scroll down to Example.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1919,7 +1918,9 @@ func (c *GlobalAccelerator) UpdateAcceleratorRequest(input *UpdateAcceleratorInp
 // Update an accelerator. To see an AWS CLI example of updating an accelerator,
 // scroll down to Example.
 //
-// You must specify the US West (Oregon) Region to create or update accelerators.
+// Global Accelerator is a global service that supports endpoints in multiple
+// AWS Regions but you must specify the US West (Oregon) Region to create or
+// update accelerators.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2093,8 +2094,10 @@ func (c *GlobalAccelerator) UpdateEndpointGroupRequest(input *UpdateEndpointGrou
 
 // UpdateEndpointGroup API operation for AWS Global Accelerator.
 //
-// Update an endpoint group. To see an AWS CLI example of updating an endpoint
-// group, scroll down to Example.
+// Update an endpoint group. A resource must be valid and active when you add
+// it as an endpoint.
+//
+// To see an AWS CLI example of updating an endpoint group, scroll down to Example.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2904,8 +2907,8 @@ type ByoipCidr struct {
 	// The address range, in CIDR notation.
 	Cidr *string `type:"string"`
 
-	// A history of status changes for an IP address range that that you bring to
-	// AWS Global Accelerator through bring your own IP address (BYOIP).
+	// A history of status changes for an IP address range that you bring to AWS
+	// Global Accelerator through bring your own IP address (BYOIP).
 	Events []*ByoipCidrEvent `type:"list"`
 
 	// The state of the address pool.
@@ -3108,14 +3111,18 @@ type CreateAcceleratorInput struct {
 	// The value for the address type must be IPv4.
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
-	// Optionally, if you've added your own IP address pool to Global Accelerator,
-	// you can choose IP addresses from your own pool to use for the accelerator's
-	// static IP addresses. You can specify one or two addresses, separated by a
-	// comma. Do not include the /32 suffix.
+	// Optionally, if you've added your own IP address pool to Global Accelerator
+	// (BYOIP), you can choose IP addresses from your own pool to use for the accelerator's
+	// static IP addresses when you create an accelerator. You can specify one or
+	// two addresses, separated by a comma. Do not include the /32 suffix.
 	//
-	// If you specify only one IP address from your IP address range, Global Accelerator
-	// assigns a second static IP address for the accelerator from the AWS IP address
-	// pool.
+	// Only one IP address from each of your IP address ranges can be used for each
+	// accelerator. If you specify only one IP address from your IP address range,
+	// Global Accelerator assigns a second static IP address for the accelerator
+	// from the AWS IP address pool.
+	//
+	// Note that you can't update IP addresses for an existing accelerator. To change
+	// them, you must create a new accelerator with the new addresses.
 	//
 	// For more information, see Bring Your Own IP Addresses (BYOIP) (https://docs.aws.amazon.com/global-accelerator/latest/dg/using-byoip.html)
 	// in the AWS Global Accelerator Developer Guide.
@@ -3234,8 +3241,8 @@ type CreateEndpointGroupInput struct {
 	// The list of endpoint objects.
 	EndpointConfigurations []*EndpointConfiguration `type:"list"`
 
-	// The name of the AWS Region where the endpoint group is located. A listener
-	// can have only one endpoint group in a specific Region.
+	// The AWS Region where the endpoint group is located. A listener can have only
+	// one endpoint group in a specific Region.
 	//
 	// EndpointGroupRegion is a required field
 	EndpointGroupRegion *string `type:"string" required:"true"`
@@ -3266,6 +3273,16 @@ type CreateEndpointGroupInput struct {
 	//
 	// ListenerArn is a required field
 	ListenerArn *string `type:"string" required:"true"`
+
+	// Override specific listener ports used to route traffic to endpoints that
+	// are part of this endpoint group. For example, you can create a port override
+	// in which the listener receives user traffic on ports 80 and 443, but your
+	// accelerator routes that traffic to ports 1080 and 1443, respectively, on
+	// the endpoints.
+	//
+	// For more information, see Port overrides (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups-port-override.html)
+	// in the AWS Global Accelerator Developer Guide.
+	PortOverrides []*PortOverride `type:"list"`
 
 	// The number of consecutive health checks required to set the state of a healthy
 	// endpoint to unhealthy, or to set an unhealthy endpoint to healthy. The default
@@ -3310,6 +3327,16 @@ func (s *CreateEndpointGroupInput) Validate() error {
 	}
 	if s.ThresholdCount != nil && *s.ThresholdCount < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ThresholdCount", 1))
+	}
+	if s.PortOverrides != nil {
+		for i, v := range s.PortOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PortOverrides", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -3366,6 +3393,12 @@ func (s *CreateEndpointGroupInput) SetListenerArn(v string) *CreateEndpointGroup
 	return s
 }
 
+// SetPortOverrides sets the PortOverrides field's value.
+func (s *CreateEndpointGroupInput) SetPortOverrides(v []*PortOverride) *CreateEndpointGroupInput {
+	s.PortOverrides = v
+	return s
+}
+
 // SetThresholdCount sets the ThresholdCount field's value.
 func (s *CreateEndpointGroupInput) SetThresholdCount(v int64) *CreateEndpointGroupInput {
 	s.ThresholdCount = &v
@@ -3411,7 +3444,7 @@ type CreateListenerInput struct {
 
 	// Client affinity lets you direct all requests from a user to the same endpoint,
 	// if you have stateful applications, regardless of the port and protocol of
-	// the client request. Clienty affinity gives you control over whether to always
+	// the client request. Client affinity gives you control over whether to always
 	// route each client to the same specific endpoint.
 	//
 	// AWS Global Accelerator uses a consistent-flow hashing algorithm to choose
@@ -4004,7 +4037,8 @@ func (s *DescribeListenerOutput) SetListener(v *Listener) *DescribeListenerOutpu
 	return s
 }
 
-// A complex type for endpoints.
+// A complex type for endpoints. A resource must be valid and active when you
+// add it as an endpoint.
 type EndpointConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4024,7 +4058,8 @@ type EndpointConfiguration struct {
 	// An ID for the endpoint. If the endpoint is a Network Load Balancer or Application
 	// Load Balancer, this is the Amazon Resource Name (ARN) of the resource. If
 	// the endpoint is an Elastic IP address, this is the Elastic IP address allocation
-	// ID. For EC2 instances, this is the EC2 instance ID.
+	// ID. For Amazon EC2 instances, this is the EC2 instance ID. A resource must
+	// be valid and active when you add it as an endpoint.
 	//
 	// An Application Load Balancer can be either internal or internet-facing.
 	EndpointId *string `type:"string"`
@@ -4181,7 +4216,7 @@ type EndpointGroup struct {
 	// The Amazon Resource Name (ARN) of the endpoint group.
 	EndpointGroupArn *string `type:"string"`
 
-	// The AWS Region that this endpoint group belongs.
+	// The AWS Region where the endpoint group is located.
 	EndpointGroupRegion *string `type:"string"`
 
 	// The time—10 seconds or 30 seconds—between health checks for each endpoint.
@@ -4204,6 +4239,12 @@ type EndpointGroup struct {
 	// The protocol that Global Accelerator uses to perform health checks on endpoints
 	// that are part of this endpoint group. The default value is TCP.
 	HealthCheckProtocol *string `type:"string" enum:"HealthCheckProtocol"`
+
+	// Allows you to override the destination ports used to route traffic to an
+	// endpoint. Using a port override lets you to map a list of external destination
+	// ports (that your users send traffic to) to a list of internal destination
+	// ports that you want an application endpoint to receive traffic on.
+	PortOverrides []*PortOverride `type:"list"`
 
 	// The number of consecutive health checks required to set the state of a healthy
 	// endpoint to unhealthy, or to set an unhealthy endpoint to healthy. The default
@@ -4270,6 +4311,12 @@ func (s *EndpointGroup) SetHealthCheckPort(v int64) *EndpointGroup {
 // SetHealthCheckProtocol sets the HealthCheckProtocol field's value.
 func (s *EndpointGroup) SetHealthCheckProtocol(v string) *EndpointGroup {
 	s.HealthCheckProtocol = &v
+	return s
+}
+
+// SetPortOverrides sets the PortOverrides field's value.
+func (s *EndpointGroup) SetPortOverrides(v []*PortOverride) *EndpointGroup {
+	s.PortOverrides = v
 	return s
 }
 
@@ -5188,7 +5235,7 @@ type Listener struct {
 
 	// Client affinity lets you direct all requests from a user to the same endpoint,
 	// if you have stateful applications, regardless of the port and protocol of
-	// the client request. Clienty affinity gives you control over whether to always
+	// the client request. Client affinity gives you control over whether to always
 	// route each client to the same specific endpoint.
 	//
 	// AWS Global Accelerator uses a consistent-flow hashing algorithm to choose
@@ -5306,6 +5353,65 @@ func (s *ListenerNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ListenerNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Override specific listener ports used to route traffic to endpoints that
+// are part of an endpoint group. For example, you can create a port override
+// in which the listener receives user traffic on ports 80 and 443, but your
+// accelerator routes that traffic to ports 1080 and 1443, respectively, on
+// the endpoints.
+//
+// For more information, see Port overrides (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups-port-override.html)
+// in the AWS Global Accelerator Developer Guide.
+type PortOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint port that you want a listener port to be mapped to. This is
+	// the port on the endpoint, such as the Application Load Balancer or Amazon
+	// EC2 instance.
+	EndpointPort *int64 `min:"1" type:"integer"`
+
+	// The listener port that you want to map to a specific endpoint port. This
+	// is the port that user traffic arrives to the Global Accelerator on.
+	ListenerPort *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s PortOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PortOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PortOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PortOverride"}
+	if s.EndpointPort != nil && *s.EndpointPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("EndpointPort", 1))
+	}
+	if s.ListenerPort != nil && *s.ListenerPort < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ListenerPort", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpointPort sets the EndpointPort field's value.
+func (s *PortOverride) SetEndpointPort(v int64) *PortOverride {
+	s.EndpointPort = &v
+	return s
+}
+
+// SetListenerPort sets the ListenerPort field's value.
+func (s *PortOverride) SetListenerPort(v int64) *PortOverride {
+	s.ListenerPort = &v
+	return s
 }
 
 // A complex type for a range of ports for a listener.
@@ -5845,7 +5951,8 @@ func (s *UpdateAcceleratorOutput) SetAccelerator(v *Accelerator) *UpdateAccelera
 type UpdateEndpointGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of endpoint objects.
+	// The list of endpoint objects. A resource must be valid and active when you
+	// add it as an endpoint.
 	EndpointConfigurations []*EndpointConfiguration `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the endpoint group.
@@ -5870,6 +5977,16 @@ type UpdateEndpointGroupInput struct {
 	// The protocol that AWS Global Accelerator uses to check the health of endpoints
 	// that are part of this endpoint group. The default value is TCP.
 	HealthCheckProtocol *string `type:"string" enum:"HealthCheckProtocol"`
+
+	// Override specific listener ports used to route traffic to endpoints that
+	// are part of this endpoint group. For example, you can create a port override
+	// in which the listener receives user traffic on ports 80 and 443, but your
+	// accelerator routes that traffic to ports 1080 and 1443, respectively, on
+	// the endpoints.
+	//
+	// For more information, see Port overrides (https://docs.aws.amazon.com/global-accelerator/latest/dg/about-endpoint-groups-port-override.html)
+	// in the AWS Global Accelerator Developer Guide.
+	PortOverrides []*PortOverride `type:"list"`
 
 	// The number of consecutive health checks required to set the state of a healthy
 	// endpoint to unhealthy, or to set an unhealthy endpoint to healthy. The default
@@ -5911,6 +6028,16 @@ func (s *UpdateEndpointGroupInput) Validate() error {
 	}
 	if s.ThresholdCount != nil && *s.ThresholdCount < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ThresholdCount", 1))
+	}
+	if s.PortOverrides != nil {
+		for i, v := range s.PortOverrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PortOverrides", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5955,6 +6082,12 @@ func (s *UpdateEndpointGroupInput) SetHealthCheckProtocol(v string) *UpdateEndpo
 	return s
 }
 
+// SetPortOverrides sets the PortOverrides field's value.
+func (s *UpdateEndpointGroupInput) SetPortOverrides(v []*PortOverride) *UpdateEndpointGroupInput {
+	s.PortOverrides = v
+	return s
+}
+
 // SetThresholdCount sets the ThresholdCount field's value.
 func (s *UpdateEndpointGroupInput) SetThresholdCount(v int64) *UpdateEndpointGroupInput {
 	s.ThresholdCount = &v
@@ -5995,7 +6128,7 @@ type UpdateListenerInput struct {
 
 	// Client affinity lets you direct all requests from a user to the same endpoint,
 	// if you have stateful applications, regardless of the port and protocol of
-	// the client request. Clienty affinity gives you control over whether to always
+	// the client request. Client affinity gives you control over whether to always
 	// route each client to the same specific endpoint.
 	//
 	// AWS Global Accelerator uses a consistent-flow hashing algorithm to choose

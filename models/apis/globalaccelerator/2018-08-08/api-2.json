@@ -576,7 +576,8 @@
         "IdempotencyToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
-        }
+        },
+        "PortOverrides":{"shape":"PortOverrides"}
       }
     },
     "CreateEndpointGroupResponse":{
@@ -735,7 +736,8 @@
         "HealthCheckProtocol":{"shape":"HealthCheckProtocol"},
         "HealthCheckPath":{"shape":"GenericString"},
         "HealthCheckIntervalSeconds":{"shape":"HealthCheckIntervalSeconds"},
-        "ThresholdCount":{"shape":"ThresholdCount"}
+        "ThresholdCount":{"shape":"ThresholdCount"},
+        "PortOverrides":{"shape":"PortOverrides"}
       }
     },
     "EndpointGroupAlreadyExistsException":{
@@ -964,6 +966,19 @@
       "max":65535,
       "min":1
     },
+    "PortOverride":{
+      "type":"structure",
+      "members":{
+        "ListenerPort":{"shape":"PortNumber"},
+        "EndpointPort":{"shape":"PortNumber"}
+      }
+    },
+    "PortOverrides":{
+      "type":"list",
+      "member":{"shape":"PortOverride"},
+      "max":10,
+      "min":0
+    },
     "PortRange":{
       "type":"structure",
       "members":{
@@ -1123,7 +1138,8 @@
         "HealthCheckProtocol":{"shape":"HealthCheckProtocol"},
         "HealthCheckPath":{"shape":"GenericString"},
         "HealthCheckIntervalSeconds":{"shape":"HealthCheckIntervalSeconds"},
-        "ThresholdCount":{"shape":"ThresholdCount"}
+        "ThresholdCount":{"shape":"ThresholdCount"},
+        "PortOverrides":{"shape":"PortOverrides"}
       }
     },
     "UpdateEndpointGroupResponse":{

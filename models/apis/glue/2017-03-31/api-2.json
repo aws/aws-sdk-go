@@ -2908,6 +2908,7 @@
         "DatabaseName":{"shape":"DatabaseName"},
         "Description":{"shape":"DescriptionString"},
         "Classifiers":{"shape":"ClassifierNameList"},
+        "RecrawlPolicy":{"shape":"RecrawlPolicy"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
         "State":{"shape":"CrawlerState"},
         "TablePrefix":{"shape":"TablePrefix"},
@@ -3043,6 +3044,7 @@
         "Classifiers":{"shape":"ClassifierNameList"},
         "TablePrefix":{"shape":"TablePrefix"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
+        "RecrawlPolicy":{"shape":"RecrawlPolicy"},
         "Configuration":{"shape":"CrawlerConfiguration"},
         "CrawlerSecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"},
         "Tags":{"shape":"TagsMap"}
@@ -5765,6 +5767,19 @@
       "type":"long",
       "box":true
     },
+    "RecrawlBehavior":{
+      "type":"string",
+      "enum":[
+        "CRAWL_EVERYTHING",
+        "CRAWL_NEW_FOLDERS_ONLY"
+      ]
+    },
+    "RecrawlPolicy":{
+      "type":"structure",
+      "members":{
+        "RecrawlBehavior":{"shape":"RecrawlBehavior"}
+      }
+    },
     "ReplaceBoolean":{"type":"boolean"},
     "ResetJobBookmarkRequest":{
       "type":"structure",
@@ -6733,6 +6748,7 @@
         "Classifiers":{"shape":"ClassifierNameList"},
         "TablePrefix":{"shape":"TablePrefix"},
         "SchemaChangePolicy":{"shape":"SchemaChangePolicy"},
+        "RecrawlPolicy":{"shape":"RecrawlPolicy"},
         "Configuration":{"shape":"CrawlerConfiguration"},
         "CrawlerSecurityConfiguration":{"shape":"CrawlerSecurityConfiguration"}
       }

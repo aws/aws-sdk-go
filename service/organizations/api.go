@@ -73,7 +73,7 @@ func (c *Organizations) AcceptHandshakeRequest(input *AcceptHandshakeInput) (req
 //    in the AWS Organizations User Guide.
 //
 //    * Enable all features final confirmation handshake: only a principal from
-//    the master account. For more information about invitations, see Inviting
+//    the management account. For more information about invitations, see Inviting
 //    an AWS Account to Join Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_invites.html)
 //    in the AWS Organizations User Guide. For more information about requests
 //    to enable all features in the organization, see Enabling All Features
@@ -329,7 +329,7 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //
 //    * TAG_POLICY (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_tag-policies.html)
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -365,9 +365,10 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -399,7 +400,7 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -424,10 +425,10 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -435,19 +436,19 @@ func (c *Organizations) AttachPolicyRequest(input *AttachPolicyInput) (req *requ
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -890,13 +891,13 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 // permission.
 //
 // AWS Organizations preconfigures the new member account with a role (named
-// OrganizationAccountAccessRole by default) that grants users in the master
+// OrganizationAccountAccessRole by default) that grants users in the management
 // account administrator permissions in the new member account. Principals in
-// the master account can assume the role. AWS Organizations clones the company
-// name and address information for the new account from the organization's
-// master account.
+// the management account can assume the role. AWS Organizations clones the
+// company name and address information for the new account from the organization's
+// management account.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // For more information about creating accounts, see Creating an AWS Account
 // in Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_create.html)
@@ -966,9 +967,10 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -1000,7 +1002,7 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -1025,10 +1027,10 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -1036,19 +1038,19 @@ func (c *Organizations) CreateAccountRequest(input *CreateAccountInput) (req *re
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -1263,10 +1265,11 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //    User Guide. (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/welcome.html)
 //
 //    * You already have an account in the AWS GovCloud (US) Region that is
-//    paired with a master account of an organization in the commercial Region.
+//    paired with a management account of an organization in the commercial
+//    Region.
 //
-//    * You call this action from the master account of your organization in
-//    the commercial Region.
+//    * You call this action from the management account of your organization
+//    in the commercial Region.
 //
 //    * You have the organizations:CreateGovCloudAccount permission.
 //
@@ -1290,9 +1293,9 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 // to the GovCloud account, call the TagResource operation in the GovCloud Region
 // after the new GovCloud account exists.
 //
-// You call this action from the master account of your organization in the
-// commercial Region to create a standalone AWS account in the AWS GovCloud
-// (US) Region. After the account is created, the master account of an organization
+// You call this action from the management account of your organization in
+// the commercial Region to create a standalone AWS account in the AWS GovCloud
+// (US) Region. After the account is created, the management account of an organization
 // in the AWS GovCloud (US) Region can invite it to that organization. For more
 // information on inviting standalone accounts in the AWS GovCloud (US) to join
 // an organization, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
@@ -1321,11 +1324,11 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 // email address.
 //
 // A role is created in the new account in the commercial Region that allows
-// the master account in the organization in the commercial Region to assume
+// the management account in the organization in the commercial Region to assume
 // it. An AWS GovCloud (US) account is then created and associated with the
 // commercial account that you just created. A role is also created in the new
 // AWS GovCloud (US) account that can be assumed by the AWS GovCloud (US) account
-// that is associated with the master account of the commercial organization.
+// that is associated with the management account of the commercial organization.
 // For more information and to view a diagram that explains how account access
 // works, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 // in the AWS GovCloud User Guide.
@@ -1399,9 +1402,10 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -1433,7 +1437,7 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -1458,10 +1462,10 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -1469,19 +1473,19 @@ func (c *Organizations) CreateGovCloudAccountRequest(input *CreateGovCloudAccoun
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -1690,11 +1694,11 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 // CreateOrganization API operation for AWS Organizations.
 //
 // Creates an AWS organization. The account whose user is calling the CreateOrganization
-// operation automatically becomes the master account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
+// operation automatically becomes the management account (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#account)
 // of the new organization.
 //
 // This operation must be called using credentials from the account that is
-// to become the new organization's master account. The principal must also
+// to become the new organization's management account. The principal must also
 // have the relevant IAM permissions.
 //
 // By default (or if you set the FeatureSet parameter to ALL), the new organization
@@ -1738,9 +1742,10 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -1772,7 +1777,7 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -1797,10 +1802,10 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -1808,19 +1813,19 @@ func (c *Organizations) CreateOrganizationRequest(input *CreateOrganizationInput
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -2036,7 +2041,7 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 // If the request includes tags, then the requester must have the organizations:TagResource
 // permission.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2072,9 +2077,10 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -2106,7 +2112,7 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -2131,10 +2137,10 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -2142,19 +2148,19 @@ func (c *Organizations) CreateOrganizationalUnitRequest(input *CreateOrganizatio
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -2368,7 +2374,7 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 // If the request includes tags, then the requester must have the organizations:TagResource
 // permission.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2404,9 +2410,10 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -2438,7 +2445,7 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -2463,10 +2470,10 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -2474,19 +2481,19 @@ func (c *Organizations) CreatePolicyRequest(input *CreatePolicyInput) (req *requ
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -2901,7 +2908,7 @@ func (c *Organizations) DeleteOrganizationRequest(input *DeleteOrganizationInput
 // DeleteOrganization API operation for AWS Organizations.
 //
 // Deletes the organization. You can delete an organization only by using credentials
-// from the master account. The organization must be empty of member accounts.
+// from the management account. The organization must be empty of member accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3003,7 +3010,8 @@ func (c *Organizations) DeleteOrganizationRequest(input *DeleteOrganizationInput
 //
 //   * OrganizationNotEmptyException
 //   The organization isn't empty. To delete an organization, you must first remove
-//   all accounts except the master account, delete all OUs, and delete all policies.
+//   all accounts except the management account, delete all OUs, and delete all
+//   policies.
 //
 //   * ServiceException
 //   AWS Organizations can't complete your request because of an internal service
@@ -3087,7 +3095,7 @@ func (c *Organizations) DeleteOrganizationalUnitRequest(input *DeleteOrganizatio
 // Deletes an organizational unit (OU) from a root or another OU. You must first
 // remove all accounts and child OUs from the OU that you want to delete.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3277,7 +3285,7 @@ func (c *Organizations) DeletePolicyRequest(input *DeletePolicyInput) (req *requ
 // operation, you must first detach the policy from all organizational units
 // (OUs), roots, and accounts.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3480,7 +3488,7 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 // (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html)
 // in the AWS Organizations User Guide.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3524,9 +3532,10 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -3558,7 +3567,7 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -3583,10 +3592,10 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -3594,19 +3603,19 @@ func (c *Organizations) DeregisterDelegatedAdministratorRequest(input *Deregiste
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -3810,7 +3819,7 @@ func (c *Organizations) DescribeAccountRequest(input *DescribeAccountInput) (req
 //
 // Retrieves AWS Organizations-related information about the specified account.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3992,7 +4001,7 @@ func (c *Organizations) DescribeCreateAccountStatusRequest(input *DescribeCreate
 //
 // Retrieves the current status of an asynchronous request to create an account.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4186,7 +4195,7 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 // Works (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies-inheritance.html)
 // in the AWS Organizations User Guide.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4219,9 +4228,10 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -4253,7 +4263,7 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -4278,10 +4288,10 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -4289,19 +4299,19 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -4363,10 +4373,10 @@ func (c *Organizations) DescribeEffectivePolicyRequest(input *DescribeEffectiveP
 //   We can't find a root, OU, account, or policy with the TargetId that you specified.
 //
 //   * EffectivePolicyNotFoundException
-//   If you ran this action on the master account, this policy type is not enabled.
-//   If you ran the action on a member account, the account doesn't have an effective
-//   policy of this type. Contact the administrator of your organization about
-//   attaching a policy of this type to the account.
+//   If you ran this action on the management account, this policy type is not
+//   enabled. If you ran the action on a member account, the account doesn't have
+//   an effective policy of this type. Contact the administrator of your organization
+//   about attaching a policy of this type to the account.
 //
 //   * InvalidInputException
 //   The requested operation failed because you provided invalid values for one
@@ -4809,7 +4819,7 @@ func (c *Organizations) DescribeOrganizationalUnitRequest(input *DescribeOrganiz
 //
 // Retrieves information about an organizational unit (OU).
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4989,7 +4999,7 @@ func (c *Organizations) DescribePolicyRequest(input *DescribePolicyInput) (req *
 //
 // Retrieves information about a policy.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5187,7 +5197,7 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 // "Effect": "Allow" in the FullAWSAccess policy (or any other attached SCP),
 // you're using the authorization strategy of a "deny list (https://docs.aws.amazon.com/organizations/latest/userguide/SCP_strategies.html#orgs_policies_denylist)".
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5223,9 +5233,10 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -5257,7 +5268,7 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -5282,10 +5293,10 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -5293,19 +5304,19 @@ func (c *Organizations) DetachPolicyRequest(input *DetachPolicyInput) (req *requ
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -5547,7 +5558,7 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 // AWS Organizations with Other AWS Services (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
 // in the AWS Organizations User Guide.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5583,9 +5594,10 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -5617,7 +5629,7 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -5642,10 +5654,10 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -5653,19 +5665,19 @@ func (c *Organizations) DisableAWSServiceAccessRequest(input *DisableAWSServiceA
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -5880,7 +5892,7 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 // to see the status of policy types for a specified root, and then use this
 // operation.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // To view the status of available policy types in the organization, use DescribeOrganization.
 //
@@ -5918,9 +5930,10 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -5952,7 +5965,7 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -5977,10 +5990,10 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -5988,19 +6001,19 @@ func (c *Organizations) DisablePolicyTypeRequest(input *DisablePolicyTypeInput) 
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -6235,7 +6248,7 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 // see Integrating AWS Organizations with Other AWS Services (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
 // in the AWS Organizations User Guide.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // and only if the organization has enabled all features (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org_support-all-features.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6272,9 +6285,10 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -6306,7 +6320,7 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -6331,10 +6345,10 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -6342,19 +6356,19 @@ func (c *Organizations) EnableAWSServiceAccessRequest(input *EnableAWSServiceAcc
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -6579,13 +6593,13 @@ func (c *Organizations) EnableAllFeaturesRequest(input *EnableAllFeaturesInput) 
 // feature set change by accepting the handshake that contains "Action": "ENABLE_ALL_FEATURES".
 // This completes the change.
 //
-// After you enable all features in your organization, the master account in
-// the organization can apply policies on all member accounts. These policies
+// After you enable all features in your organization, the management account
+// in the organization can apply policies on all member accounts. These policies
 // can restrict what users and even administrators in those accounts can do.
-// The master account can apply policies that prevent accounts from leaving
+// The management account can apply policies that prevent accounts from leaving
 // the organization. Ensure that your account administrators are aware of this.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6812,7 +6826,7 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 // recommends that you first use ListRoots to see the status of policy types
 // for a specified root, and then use this operation.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // You can enable a policy type in a root only if that policy type is available
 // in the organization. To view the status of available policy types in the
@@ -6852,9 +6866,10 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -6886,7 +6901,7 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -6911,10 +6926,10 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -6922,19 +6937,19 @@ func (c *Organizations) EnablePolicyTypeRequest(input *EnablePolicyTypeInput) (r
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -7158,8 +7173,8 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 // that is associated with the other account's owner. The invitation is implemented
 // as a Handshake whose details are in the response.
 //
-//    * You can invite AWS accounts only from the same seller as the master
-//    account. For example, if your organization's master account was created
+//    * You can invite AWS accounts only from the same seller as the management
+//    account. For example, if your organization's management account was created
 //    by Amazon Internet Services Pvt. Ltd (AISPL), an AWS seller in India,
 //    you can invite only other AISPL accounts to your organization. You can't
 //    combine accounts from AISPL and AWS or from any other AWS seller. For
@@ -7173,7 +7188,7 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 // If the request includes tags, then the requester must have the organizations:TagResource
 // permission.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7196,8 +7211,8 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //
 //   * AccountOwnerNotVerifiedException
 //   You can't invite an existing account to your organization until you verify
-//   that you own the email address associated with the master account. For more
-//   information, see Email Address Verification (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_create.html#about-email-verification)
+//   that you own the email address associated with the management account. For
+//   more information, see Email Address Verification (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_create.html#about-email-verification)
 //   in the AWS Organizations User Guide.
 //
 //   * ConcurrentModificationException
@@ -7262,9 +7277,10 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -7296,7 +7312,7 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -7321,10 +7337,10 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -7332,19 +7348,19 @@ func (c *Organizations) InviteAccountToOrganizationRequest(input *InviteAccountT
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -7552,13 +7568,13 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //
 // Removes a member account from its parent organization. This version of the
 // operation is performed by the account that wants to leave. To remove a member
-// account as a user in the master account, use RemoveAccountFromOrganization
+// account as a user in the management account, use RemoveAccountFromOrganization
 // instead.
 //
 // This operation can be called only from a member account in the organization.
 //
-//    * The master account in an organization with all features enabled can
-//    set service control policies (SCPs) that can restrict what administrators
+//    * The management account in an organization with all features enabled
+//    can set service control policies (SCPs) that can restrict what administrators
 //    of member accounts can do. This includes preventing them from successfully
 //    calling LeaveOrganization and leaving the organization.
 //
@@ -7624,9 +7640,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -7658,7 +7675,7 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -7683,10 +7700,10 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -7694,19 +7711,19 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -7828,9 +7845,9 @@ func (c *Organizations) LeaveOrganizationRequest(input *LeaveOrganizationInput) 
 //      isn't recognized.
 //
 //   * MasterCannotLeaveOrganizationException
-//   You can't remove a master account from an organization. If you want the master
-//   account to become a member account in another organization, you must first
-//   delete the current organization of the master account.
+//   You can't remove a management account from an organization. If you want the
+//   management account to become a member account in another organization, you
+//   must first delete the current organization of the management account.
 //
 //   * ServiceException
 //   AWS Organizations can't complete your request because of an internal service
@@ -7926,7 +7943,7 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 // Integrating AWS Organizations with Other AWS Services (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrate_services.html)
 // in the AWS Organizations User Guide.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7959,9 +7976,10 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -7993,7 +8011,7 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -8018,10 +8036,10 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -8029,19 +8047,19 @@ func (c *Organizations) ListAWSServiceAccessForOrganizationRequest(input *ListAW
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -8310,7 +8328,7 @@ func (c *Organizations) ListAccountsRequest(input *ListAccountsInput) (req *requ
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8554,7 +8572,7 @@ func (c *Organizations) ListAccountsForParentRequest(input *ListAccountsForParen
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8799,7 +8817,7 @@ func (c *Organizations) ListChildrenRequest(input *ListChildrenInput) (req *requ
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9043,7 +9061,7 @@ func (c *Organizations) ListCreateAccountStatusRequest(input *ListCreateAccountS
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9282,7 +9300,7 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 // Lists the AWS accounts that are designated as delegated administrators in
 // this organization.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9315,9 +9333,10 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -9349,7 +9368,7 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -9374,10 +9393,10 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -9385,19 +9404,19 @@ func (c *Organizations) ListDelegatedAdministratorsRequest(input *ListDelegatedA
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -9659,7 +9678,7 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //
 // List the AWS services for which the specified account is a delegated administrator.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9700,9 +9719,10 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -9734,7 +9754,7 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -9759,10 +9779,10 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -9770,19 +9790,19 @@ func (c *Organizations) ListDelegatedServicesForAccountRequest(input *ListDelega
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -10300,7 +10320,7 @@ func (c *Organizations) ListHandshakesForOrganizationRequest(input *ListHandshak
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10544,7 +10564,7 @@ func (c *Organizations) ListOrganizationalUnitsForParentRequest(input *ListOrgan
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10789,7 +10809,7 @@ func (c *Organizations) ListParentsRequest(input *ListParentsInput) (req *reques
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // In the current release, a child can have only a single parent.
@@ -11035,7 +11055,7 @@ func (c *Organizations) ListPoliciesRequest(input *ListPoliciesInput) (req *requ
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11280,7 +11300,7 @@ func (c *Organizations) ListPoliciesForTargetRequest(input *ListPoliciesForTarge
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11526,7 +11546,7 @@ func (c *Organizations) ListRootsRequest(input *ListRootsInput) (req *request.Re
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Policy types can be enabled and disabled in roots. This is distinct from
@@ -11777,7 +11797,7 @@ func (c *Organizations) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //
 //    * Policy (any type)
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -12021,7 +12041,7 @@ func (c *Organizations) ListTargetsForPolicyRequest(input *ListTargetsForPolicyI
 // of results even when there are more results available. The NextToken response
 // parameter value is null only when there are no more results to display.
 //
-// This operation can be called only from the organization's master account
+// This operation can be called only from the organization's management account
 // or by a member account that is a delegated administrator for an AWS service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -12258,7 +12278,7 @@ func (c *Organizations) MoveAccountRequest(input *MoveAccountInput) (req *reques
 // Moves an account from its current source parent root or organizational unit
 // (OU) to the specified destination parent root or OU.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12463,7 +12483,7 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 // (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_integrated-services-list.html)
 // in the AWS Organizations User Guide.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12507,9 +12527,10 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -12541,7 +12562,7 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -12566,10 +12587,10 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -12577,19 +12598,19 @@ func (c *Organizations) RegisterDelegatedAdministratorRequest(input *RegisterDel
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -12796,11 +12817,11 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //
 // The removed account becomes a standalone account that isn't a member of any
 // organization. It's no longer subject to any policies and is responsible for
-// its own bill payments. The organization's master account is no longer charged
-// for any expenses accrued by the member account after it's removed from the
-// organization.
+// its own bill payments. The organization's management account is no longer
+// charged for any expenses accrued by the member account after it's removed
+// from the organization.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 // Member accounts can remove themselves with LeaveOrganization instead.
 //
 //    * You can remove an account from your organization only if the account
@@ -12860,9 +12881,10 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -12894,7 +12916,7 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -12919,10 +12941,10 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -12930,19 +12952,19 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -13064,9 +13086,9 @@ func (c *Organizations) RemoveAccountFromOrganizationRequest(input *RemoveAccoun
 //      isn't recognized.
 //
 //   * MasterCannotLeaveOrganizationException
-//   You can't remove a master account from an organization. If you want the master
-//   account to become a member account in another organization, you must first
-//   delete the current organization of the master account.
+//   You can't remove a management account from an organization. If you want the
+//   management account to become a member account in another organization, you
+//   must first delete the current organization of the management account.
 //
 //   * ServiceException
 //   AWS Organizations can't complete your request because of an internal service
@@ -13159,7 +13181,7 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //
 //    * Policy (any type)
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13198,9 +13220,10 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -13232,7 +13255,7 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -13257,10 +13280,10 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -13268,19 +13291,19 @@ func (c *Organizations) TagResourceRequest(input *TagResourceInput) (req *reques
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -13492,7 +13515,7 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //
 //    * Policy (any type)
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13531,9 +13554,10 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -13565,7 +13589,7 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -13590,10 +13614,10 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -13601,19 +13625,19 @@ func (c *Organizations) UntagResourceRequest(input *UntagResourceInput) (req *re
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -13816,7 +13840,7 @@ func (c *Organizations) UpdateOrganizationalUnitRequest(input *UpdateOrganizatio
 // The child OUs and accounts remain in place, and any attached policies of
 // the OU remain attached.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14004,7 +14028,7 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 // don't supply any parameter, that value remains unchanged. You can't change
 // a policy's type.
 //
-// This operation can be called only from the organization's master account.
+// This operation can be called only from the organization's management account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14040,9 +14064,10 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //   Some of the reasons in the following list might not be applicable to this
 //   specific API or operation.
 //
-//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//      account from the organization. You can't remove the master account. Instead,
-//      after you remove all member accounts, delete the organization itself.
+//      * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//      account from the organization. You can't remove the management account.
+//      Instead, after you remove all member accounts, delete the organization
+//      itself.
 //
 //      * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //      from the organization that doesn't yet have enough information to exist
@@ -14074,7 +14099,7 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //      * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//      register the master account of the organization as a delegated administrator
+//      register the management account of the organization as a delegated administrator
 //      for an AWS service integrated with Organizations. You can designate only
 //      a member account as a delegated administrator.
 //
@@ -14099,10 +14124,10 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      handshakes that you can send in one day.
 //
 //      * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//      in this organization, you first must migrate the organization's master
-//      account to the marketplace that corresponds to the master account's address.
-//      For example, accounts with India addresses must be associated with the
-//      AISPL marketplace. All accounts in an organization must be associated
+//      in this organization, you first must migrate the organization's management
+//      account to the marketplace that corresponds to the management account's
+//      address. For example, accounts with India addresses must be associated
+//      with the AISPL marketplace. All accounts in an organization must be associated
 //      with the same marketplace.
 //
 //      * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -14110,19 +14135,19 @@ func (c *Organizations) UpdatePolicyRequest(input *UpdatePolicyInput) (req *requ
 //      license. For more information, contact customer support.
 //
 //      * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//      must first provide a valid contact address and phone number for the master
+//      must first provide a valid contact address and phone number for the management
 //      account. Then try the operation again.
 //
 //      * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//      master account must have an associated account in the AWS GovCloud (US-West)
-//      Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//      management account must have an associated account in the AWS GovCloud
+//      (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //      in the AWS GovCloud User Guide.
 //
 //      * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//      with this master account, you first must associate a valid payment instrument,
-//      such as a credit card, with the account. Follow the steps at To leave
-//      an organization when all required account information has not yet been
-//      provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//      with this management account, you first must associate a valid payment
+//      instrument, such as a credit card, with the account. Follow the steps
+//      at To leave an organization when all required account information has
+//      not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //      in the AWS Organizations User Guide.
 //
 //      * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -14800,8 +14825,8 @@ func (s *AccountNotRegisteredException) RequestID() string {
 }
 
 // You can't invite an existing account to your organization until you verify
-// that you own the email address associated with the master account. For more
-// information, see Email Address Verification (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_create.html#about-email-verification)
+// that you own the email address associated with the management account. For
+// more information, see Email Address Verification (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_create.html#about-email-verification)
 // in the AWS Organizations User Guide.
 type AccountOwnerNotVerifiedException struct {
 	_            struct{}                  `type:"structure"`
@@ -15233,9 +15258,10 @@ func (s *ConcurrentModificationException) RequestID() string {
 // Some of the reasons in the following list might not be applicable to this
 // specific API or operation.
 //
-//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the master
-//    account from the organization. You can't remove the master account. Instead,
-//    after you remove all member accounts, delete the organization itself.
+//    * ACCOUNT_CANNOT_LEAVE_ORGANIZAION: You attempted to remove the management
+//    account from the organization. You can't remove the management account.
+//    Instead, after you remove all member accounts, delete the organization
+//    itself.
 //
 //    * ACCOUNT_CANNOT_LEAVE_WITHOUT_EULA: You attempted to remove an account
 //    from the organization that doesn't yet have enough information to exist
@@ -15267,7 +15293,7 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    AWS Support (https://console.aws.amazon.com/support/home#/).
 //
 //    * CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR: You attempted to
-//    register the master account of the organization as a delegated administrator
+//    register the management account of the organization as a delegated administrator
 //    for an AWS service integrated with Organizations. You can designate only
 //    a member account as a delegated administrator.
 //
@@ -15292,10 +15318,10 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    handshakes that you can send in one day.
 //
 //    * MASTER_ACCOUNT_ADDRESS_DOES_NOT_MATCH_MARKETPLACE: To create an account
-//    in this organization, you first must migrate the organization's master
-//    account to the marketplace that corresponds to the master account's address.
-//    For example, accounts with India addresses must be associated with the
-//    AISPL marketplace. All accounts in an organization must be associated
+//    in this organization, you first must migrate the organization's management
+//    account to the marketplace that corresponds to the management account's
+//    address. For example, accounts with India addresses must be associated
+//    with the AISPL marketplace. All accounts in an organization must be associated
 //    with the same marketplace.
 //
 //    * MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE: Applies only to the AWS Regions
@@ -15303,19 +15329,19 @@ func (s *ConcurrentModificationException) RequestID() string {
 //    license. For more information, contact customer support.
 //
 //    * MASTER_ACCOUNT_MISSING_CONTACT_INFO: To complete this operation, you
-//    must first provide a valid contact address and phone number for the master
+//    must first provide a valid contact address and phone number for the management
 //    account. Then try the operation again.
 //
 //    * MASTER_ACCOUNT_NOT_GOVCLOUD_ENABLED: To complete this operation, the
-//    master account must have an associated account in the AWS GovCloud (US-West)
-//    Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
+//    management account must have an associated account in the AWS GovCloud
+//    (US-West) Region. For more information, see AWS Organizations (http://docs.aws.amazon.com/govcloud-us/latest/UserGuide/govcloud-organizations.html)
 //    in the AWS GovCloud User Guide.
 //
 //    * MASTER_ACCOUNT_PAYMENT_INSTRUMENT_REQUIRED: To create an organization
-//    with this master account, you first must associate a valid payment instrument,
-//    such as a credit card, with the account. Follow the steps at To leave
-//    an organization when all required account information has not yet been
-//    provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
+//    with this management account, you first must associate a valid payment
+//    instrument, such as a credit card, with the account. Follow the steps
+//    at To leave an organization when all required account information has
+//    not yet been provided (http://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts_remove.html#leave-without-all-info)
 //    in the AWS Organizations User Guide.
 //
 //    * MAX_DELEGATED_ADMINISTRATORS_FOR_SERVICE_LIMIT_EXCEEDED: You attempted
@@ -15449,8 +15475,8 @@ type CreateAccountInput struct {
 	// (Optional)
 	//
 	// The name of an IAM role that AWS Organizations automatically preconfigures
-	// in the new member account. This role trusts the master account, allowing
-	// users in the master account to assume the role, as permitted by the master
+	// in the new member account. This role trusts the management account, allowing
+	// users in the management account to assume the role, as permitted by the management
 	// account administrator. The role has administrator permissions in the new
 	// member account.
 	//
@@ -15631,8 +15657,8 @@ type CreateAccountStatus struct {
 	//    * MISSING_BUSINESS_VALIDATION: The AWS account that owns your organization
 	//    has not received Business Validation.
 	//
-	//    * MISSING_PAYMENT_INSTRUMENT: You must configure the master account with
-	//    a valid payment method, such as a credit card.
+	//    * MISSING_PAYMENT_INSTRUMENT: You must configure the management account
+	//    with a valid payment method, such as a credit card.
 	FailureReason *string `type:"string" enum:"CreateAccountFailureReason"`
 
 	// If the account was created successfully, the unique identifier (ID) of the
@@ -15805,9 +15831,10 @@ type CreateGovCloudAccountInput struct {
 	//
 	// The name of an IAM role that AWS Organizations automatically preconfigures
 	// in the new member accounts in both the AWS GovCloud (US) Region and in the
-	// commercial Region. This role trusts the master account, allowing users in
-	// the master account to assume the role, as permitted by the master account
-	// administrator. The role has administrator permissions in the new member account.
+	// commercial Region. This role trusts the management account, allowing users
+	// in the management account to assume the role, as permitted by the management
+	// account administrator. The role has administrator permissions in the new
+	// member account.
 	//
 	// If you don't specify this parameter, the role name defaults to OrganizationAccountAccessRole.
 	//
@@ -15943,15 +15970,15 @@ type CreateOrganizationInput struct {
 	// set supports different levels of functionality.
 	//
 	//    * CONSOLIDATED_BILLING: All member accounts have their bills consolidated
-	//    to and paid by the master account. For more information, see Consolidated
+	//    to and paid by the management account. For more information, see Consolidated
 	//    billing (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#feature-set-cb-only)
 	//    in the AWS Organizations User Guide. The consolidated billing feature
 	//    subset isn't available for organizations in the AWS GovCloud (US) Region.
 	//
 	//    * ALL: In addition to all the features supported by the consolidated billing
-	//    feature set, the master account can also apply any policy type to any
-	//    member account in the organization. For more information, see All features
-	//    (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#feature-set-all)
+	//    feature set, the management account can also apply any policy type to
+	//    any member account in the organization. For more information, see All
+	//    features (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#feature-set-all)
 	//    in the AWS Organizations User Guide.
 	FeatureSet *string `type:"string" enum:"OrganizationFeatureSet"`
 }
@@ -16815,7 +16842,7 @@ type DescribeEffectivePolicyInput struct {
 	// PolicyType is a required field
 	PolicyType *string `type:"string" required:"true" enum:"EffectivePolicyType"`
 
-	// When you're signed in as the master account, specify the ID of the account
+	// When you're signed in as the management account, specify the ID of the account
 	// that you want details about. Specifying an organization root or organizational
 	// unit (OU) as the target is not supported.
 	TargetId *string `type:"string"`
@@ -17745,10 +17772,10 @@ func (s *EffectivePolicy) SetTargetId(v string) *EffectivePolicy {
 	return s
 }
 
-// If you ran this action on the master account, this policy type is not enabled.
-// If you ran the action on a member account, the account doesn't have an effective
-// policy of this type. Contact the administrator of your organization about
-// attaching a policy of this type to the account.
+// If you ran this action on the management account, this policy type is not
+// enabled. If you ran the action on a member account, the account doesn't have
+// an effective policy of this type. Contact the administrator of your organization
+// about attaching a policy of this type to the account.
 type EffectivePolicyNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18084,8 +18111,8 @@ func (s *FinalizingOrganizationException) RequestID() string {
 
 // Contains information that must be exchanged to securely establish a relationship
 // between two accounts (an originator and a recipient). For example, when a
-// master account (the originator) invites another account (the recipient) to
-// join its organization, the two accounts exchange information as a series
+// management account (the originator) invites another account (the recipient)
+// to join its organization, the two accounts exchange information as a series
 // of handshake requests and responses.
 //
 // Note: Handshakes that are CANCELED, ACCEPTED, or DECLINED show up in lists
@@ -18097,18 +18124,18 @@ type Handshake struct {
 	// the handshake. The following handshake types are supported:
 	//
 	//    * INVITE: This type of handshake represents a request to join an organization.
-	//    It is always sent from the master account to only non-member accounts.
+	//    It is always sent from the management account to only non-member accounts.
 	//
 	//    * ENABLE_ALL_FEATURES: This type of handshake represents a request to
-	//    enable all features in an organization. It is always sent from the master
+	//    enable all features in an organization. It is always sent from the management
 	//    account to only invited member accounts. Created accounts do not receive
-	//    this because those accounts were created by the organization's master
+	//    this because those accounts were created by the organization's management
 	//    account and approval is inferred.
 	//
 	//    * APPROVE_ALL_FEATURES: This type of handshake is sent from the Organizations
 	//    service when all member accounts have approved the ENABLE_ALL_FEATURES
-	//    invitation. It is sent only to the master account and signals the master
-	//    that it can finalize the process to enable all features.
+	//    invitation. It is sent only to the management account and signals the
+	//    master that it can finalize the process to enable all features.
 	Action *string `type:"string" enum:"ActionType"`
 
 	// The Amazon Resource Name (ARN) of a handshake.
@@ -18549,10 +18576,10 @@ type HandshakeResource struct {
 	//    * EMAIL - Specifies the email address that is associated with the account
 	//    that receives the handshake.
 	//
-	//    * OWNER_EMAIL - Specifies the email address associated with the master
+	//    * OWNER_EMAIL - Specifies the email address associated with the management
 	//    account. Included as information about an organization.
 	//
-	//    * OWNER_NAME - Specifies the name associated with the master account.
+	//    * OWNER_NAME - Specifies the name associated with the management account.
 	//    Included as information about an organization.
 	//
 	//    * NOTES - Additional text provided by the handshake initiator and intended
@@ -20732,9 +20759,9 @@ func (s *MalformedPolicyDocumentException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// You can't remove a master account from an organization. If you want the master
-// account to become a member account in another organization, you must first
-// delete the current organization of the master account.
+// You can't remove a management account from an organization. If you want the
+// management account to become a member account in another organization, you
+// must first delete the current organization of the management account.
 type MasterCannotLeaveOrganizationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -20933,7 +20960,7 @@ type Organization struct {
 	// string requires "o-" followed by from 10 to 32 lowercase letters or digits.
 	Id *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the account that is designated as the master
+	// The Amazon Resource Name (ARN) of the account that is designated as the management
 	// account for the organization.
 	//
 	// For more information about ARNs in Organizations, see ARN Formats Supported
@@ -20942,10 +20969,10 @@ type Organization struct {
 	MasterAccountArn *string `type:"string"`
 
 	// The email address that is associated with the AWS account that is designated
-	// as the master account for the organization.
+	// as the management account for the organization.
 	MasterAccountEmail *string `min:"6" type:"string" sensitive:"true"`
 
-	// The unique identifier (ID) of the master account of an organization.
+	// The unique identifier (ID) of the management account of an organization.
 	//
 	// The regex pattern (http://wikipedia.org/wiki/regex) for an account ID string
 	// requires exactly 12 digits.
@@ -21005,7 +21032,8 @@ func (s *Organization) SetMasterAccountId(v string) *Organization {
 }
 
 // The organization isn't empty. To delete an organization, you must first remove
-// all accounts except the master account, delete all OUs, and delete all policies.
+// all accounts except the management account, delete all OUs, and delete all
+// policies.
 type OrganizationNotEmptyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
