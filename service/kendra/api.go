@@ -3456,14 +3456,21 @@ func (s *ConnectionConfiguration) SetTableName(v string) *ConnectionConfiguratio
 type CreateDataSourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The data source connector configuration information that is required to access
-	// the repository.
+	// A token that you provide to identify the request to create a data source.
+	// Multiple calls to the CreateDataSource operation with the same client token
+	// will create only one data source.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The connector configuration information that is required to access the repository.
 	//
-	// Configuration is a required field
-	Configuration *DataSourceConfiguration `type:"structure" required:"true"`
+	// You can't specify the Configuration parameter when the Type parameter is
+	// set to CUSTOM. If you do, you receive a ValidationException exception.
+	//
+	// The Configuration parameter is required for all other data sources.
+	Configuration *DataSourceConfiguration `type:"structure"`
 
 	// A description for the data source.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The identifier of the index that should be associated with this data source.
 	//
@@ -3479,13 +3486,19 @@ type CreateDataSourceInput struct {
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
 	// source. For more information, see IAM Roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html).
 	//
-	// RoleArn is a required field
-	RoleArn *string `min:"1" type:"string" required:"true"`
+	// You can't specify the RoleArn parameter when the Type parameter is set to
+	// CUSTOM. If you do, you receive a ValidationException exception.
+	//
+	// The RoleArn parameter is required for all other data sources.
+	RoleArn *string `min:"1" type:"string"`
 
 	// Sets the frequency that Amazon Kendra will check the documents in your repository
 	// and update the index. If you don't set a schedule Amazon Kendra will not
 	// periodically update the index. You can call the StartDataSourceSyncJob operation
 	// to update the index.
+	//
+	// You can't specify the Schedule parameter when the Type parameter is set to
+	// CUSTOM. If you do, you receive a ValidationException exception.
 	Schedule *string `type:"string"`
 
 	// A list of key-value pairs that identify the data source. You can use the
@@ -3511,11 +3524,8 @@ func (s CreateDataSourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDataSourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDataSourceInput"}
-	if s.Configuration == nil {
-		invalidParams.Add(request.NewErrParamRequired("Configuration"))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
 	if s.IndexId == nil {
 		invalidParams.Add(request.NewErrParamRequired("IndexId"))
@@ -3528,9 +3538,6 @@ func (s *CreateDataSourceInput) Validate() error {
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
-	}
-	if s.RoleArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
 	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
@@ -3558,6 +3565,12 @@ func (s *CreateDataSourceInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDataSourceInput) SetClientToken(v string) *CreateDataSourceInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetConfiguration sets the Configuration field's value.
@@ -3636,8 +3649,13 @@ func (s *CreateDataSourceOutput) SetId(v string) *CreateDataSourceOutput {
 type CreateFaqInput struct {
 	_ struct{} `type:"structure"`
 
+	// A token that you provide to identify the request to create a FAQ. Multiple
+	// calls to the CreateFaqRequest operation with the same client token will create
+	// only one FAQ.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
 	// A description of the FAQ.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The format of the input file. You can choose between a basic CSV format,
 	// a CSV format that includes customs attributes in a header, and a JSON format
@@ -3689,8 +3707,8 @@ func (s CreateFaqInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateFaqInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateFaqInput"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
 	}
 	if s.IndexId == nil {
 		invalidParams.Add(request.NewErrParamRequired("IndexId"))
@@ -3733,6 +3751,12 @@ func (s *CreateFaqInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateFaqInput) SetClientToken(v string) *CreateFaqInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3805,11 +3829,11 @@ type CreateIndexInput struct {
 
 	// A token that you provide to identify the request to create an index. Multiple
 	// calls to the CreateIndex operation with the same client token will create
-	// only one index.”
+	// only one index.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A description for the index.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The Amazon Kendra edition to use for the index. Choose DEVELOPER_EDITION
 	// for indexes intended for development, testing, or proof of concept. Use ENTERPRISE_EDITION
@@ -3825,9 +3849,10 @@ type CreateIndexInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// An IAM role that gives Amazon Kendra permissions to access your Amazon CloudWatch
-	// logs and metrics. This is also the role used when you use the BatchPutDocument
-	// operation to index documents from an Amazon S3 bucket.
+	// An AWS Identity and Access Management (IAM) role that gives Amazon Kendra
+	// permissions to access your Amazon CloudWatch logs and metrics. This is also
+	// the role used when you use the BatchPutDocument operation to index documents
+	// from an Amazon S3 bucket.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
@@ -3856,9 +3881,6 @@ func (s *CreateIndexInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateIndexInput"}
 	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
-	}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -4883,7 +4905,7 @@ type DescribeDataSourceOutput struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The description of the data source.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// When the Status field value is FAILED, the ErrorMessage field contains a
 	// description of the error that caused the data source to fail.
@@ -5064,7 +5086,7 @@ type DescribeFaqOutput struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The description of the FAQ that you provided when it was created.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// If the Status field is FAILED, the ErrorMessage field contains the reason
 	// why the FAQ failed.
@@ -5226,7 +5248,7 @@ type DescribeIndexOutput struct {
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// The description of the index.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// Configuration settings for any metadata applied to the documents in the index.
 	DocumentMetadataConfigurations []*DocumentMetadataConfiguration `type:"list"`
@@ -7651,12 +7673,20 @@ type S3DataSourceConfiguration struct {
 	DocumentsMetadataConfiguration *DocumentsMetadataConfiguration `type:"structure"`
 
 	// A list of glob patterns for documents that should not be indexed. If a document
-	// that matches an inclusion prefix also matches an exclusion pattern, the document
-	// is not indexed.
+	// that matches an inclusion prefix or inclusion pattern also matches an exclusion
+	// pattern, the document is not indexed.
 	//
 	// For more information about glob patterns, see glob (programming) (https://en.wikipedia.org/wiki/Glob_(programming))
 	// in Wikipedia.
 	ExclusionPatterns []*string `type:"list"`
+
+	// A list of glob patterns for documents that should be indexed. If a document
+	// that matches an inclusion pattern also matches an exclusion pattern, the
+	// document is not indexed.
+	//
+	// For more information about glob patterns, see glob (programming) (https://en.wikipedia.org/wiki/Glob_(programming))
+	// in Wikipedia.
+	InclusionPatterns []*string `type:"list"`
 
 	// A list of S3 prefixes for the documents that should be included in the index.
 	InclusionPrefixes []*string `type:"list"`
@@ -7719,6 +7749,12 @@ func (s *S3DataSourceConfiguration) SetDocumentsMetadataConfiguration(v *Documen
 // SetExclusionPatterns sets the ExclusionPatterns field's value.
 func (s *S3DataSourceConfiguration) SetExclusionPatterns(v []*string) *S3DataSourceConfiguration {
 	s.ExclusionPatterns = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *S3DataSourceConfiguration) SetInclusionPatterns(v []*string) *S3DataSourceConfiguration {
+	s.InclusionPatterns = v
 	return s
 }
 
@@ -9924,7 +9960,7 @@ type UpdateDataSourceInput struct {
 	Configuration *DataSourceConfiguration `type:"structure"`
 
 	// The new description for the data source.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The unique identifier of the data source to update.
 	//
@@ -9962,9 +9998,6 @@ func (s UpdateDataSourceInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateDataSourceInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateDataSourceInput"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -10063,7 +10096,7 @@ type UpdateIndexInput struct {
 	CapacityUnits *CapacityUnitsConfiguration `type:"structure"`
 
 	// A new description for the index.
-	Description *string `min:"1" type:"string"`
+	Description *string `type:"string"`
 
 	// The document metadata to update.
 	DocumentMetadataConfigurationUpdates []*DocumentMetadataConfiguration `type:"list"`
@@ -10094,9 +10127,6 @@ func (s UpdateIndexInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateIndexInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateIndexInput"}
-	if s.Description != nil && len(*s.Description) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
-	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -10358,6 +10388,9 @@ const (
 
 	// DataSourceTypeServicenow is a DataSourceType enum value
 	DataSourceTypeServicenow = "SERVICENOW"
+
+	// DataSourceTypeCustom is a DataSourceType enum value
+	DataSourceTypeCustom = "CUSTOM"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -10369,6 +10402,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeSalesforce,
 		DataSourceTypeOnedrive,
 		DataSourceTypeServicenow,
+		DataSourceTypeCustom,
 	}
 }
 

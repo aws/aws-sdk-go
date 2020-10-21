@@ -483,6 +483,19 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   origin request policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   * ErrCodeTooManyDistributionsAssociatedToKeyGroup "TooManyDistributionsAssociatedToKeyGroup"
+//   The number of distributions that reference this key group is more than the
+//   maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyKeyGroupsAssociatedToDistribution "TooManyKeyGroupsAssociatedToDistribution"
+//   The number of key groups referenced by this distribution is more than the
+//   maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
+//   The specified key group does not exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistribution
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
 	req, out := c.CreateDistributionRequest(input)
@@ -733,6 +746,19 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   The maximum number of distributions have been associated with the specified
 //   origin request policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyDistributionsAssociatedToKeyGroup "TooManyDistributionsAssociatedToKeyGroup"
+//   The number of distributions that reference this key group is more than the
+//   maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyKeyGroupsAssociatedToDistribution "TooManyKeyGroupsAssociatedToDistribution"
+//   The number of key groups referenced by this distribution is more than the
+//   maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
+//   The specified key group does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistributionWithTags
 func (c *CloudFront) CreateDistributionWithTags(input *CreateDistributionWithTagsInput) (*CreateDistributionWithTagsOutput, error) {
@@ -1060,6 +1086,110 @@ func (c *CloudFront) CreateInvalidationWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
+const opCreateKeyGroup = "CreateKeyGroup2020_05_31"
+
+// CreateKeyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateKeyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateKeyGroup for more information on using the CreateKeyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateKeyGroupRequest method.
+//    req, resp := client.CreateKeyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateKeyGroup
+func (c *CloudFront) CreateKeyGroupRequest(input *CreateKeyGroupInput) (req *request.Request, output *CreateKeyGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateKeyGroup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2020-05-31/key-group",
+	}
+
+	if input == nil {
+		input = &CreateKeyGroupInput{}
+	}
+
+	output = &CreateKeyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateKeyGroup API operation for Amazon CloudFront.
+//
+// Creates a key group that you can use with CloudFront signed URLs and signed
+// cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html).
+//
+// To create a key group, you must specify at least one public key for the key
+// group. After you create a key group, you can reference it from one or more
+// cache behaviors. When you reference a key group in a cache behavior, CloudFront
+// requires signed URLs or signed cookies for all requests that match the cache
+// behavior. The URLs or cookies must be signed with a private key whose corresponding
+// public key is in the key group. The signed URL or cookie contains information
+// about which public key CloudFront should use to verify the signature. For
+// more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+// in the Amazon CloudFront Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation CreateKeyGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeKeyGroupAlreadyExists "KeyGroupAlreadyExists"
+//   A key group with this name already exists. You must provide a unique name.
+//   To modify an existing key group, use UpdateKeyGroup.
+//
+//   * ErrCodeTooManyKeyGroups "TooManyKeyGroups"
+//   You have reached the maximum number of key groups for this AWS account. For
+//   more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyPublicKeysInKeyGroup "TooManyPublicKeysInKeyGroup"
+//   The number of public keys in this key group is more than the maximum allowed.
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateKeyGroup
+func (c *CloudFront) CreateKeyGroup(input *CreateKeyGroupInput) (*CreateKeyGroupOutput, error) {
+	req, out := c.CreateKeyGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateKeyGroupWithContext is the same as CreateKeyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateKeyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) CreateKeyGroupWithContext(ctx aws.Context, input *CreateKeyGroupInput, opts ...request.Option) (*CreateKeyGroupOutput, error) {
+	req, out := c.CreateKeyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMonitoringSubscription = "CreateMonitoringSubscription2020_05_31"
 
 // CreateMonitoringSubscriptionRequest generates a "aws/request.Request" representing the
@@ -1325,8 +1455,9 @@ func (c *CloudFront) CreatePublicKeyRequest(input *CreatePublicKeyInput) (req *r
 
 // CreatePublicKey API operation for Amazon CloudFront.
 //
-// Add a new public key to CloudFront to use, for example, for field-level encryption.
-// You can add a maximum of 10 public keys with one AWS account.
+// Uploads a public key to CloudFront that you can use with signed URLs and
+// signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
+// or with field-level encryption (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1441,6 +1572,9 @@ func (c *CloudFront) CreateRealtimeLogConfigRequest(input *CreateRealtimeLogConf
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
+//
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateRealtimeLogConfig
 func (c *CloudFront) CreateRealtimeLogConfig(input *CreateRealtimeLogConfigInput) (*CreateRealtimeLogConfigOutput, error) {
@@ -2203,6 +2337,104 @@ func (c *CloudFront) DeleteFieldLevelEncryptionProfileWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opDeleteKeyGroup = "DeleteKeyGroup2020_05_31"
+
+// DeleteKeyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteKeyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteKeyGroup for more information on using the DeleteKeyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteKeyGroupRequest method.
+//    req, resp := client.DeleteKeyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteKeyGroup
+func (c *CloudFront) DeleteKeyGroupRequest(input *DeleteKeyGroupInput) (req *request.Request, output *DeleteKeyGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteKeyGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2020-05-31/key-group/{Id}",
+	}
+
+	if input == nil {
+		input = &DeleteKeyGroupInput{}
+	}
+
+	output = &DeleteKeyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteKeyGroup API operation for Amazon CloudFront.
+//
+// Deletes a key group.
+//
+// You cannot delete a key group that is referenced in a cache behavior. First
+// update your distributions to remove the key group from all cache behaviors,
+// then delete the key group.
+//
+// To delete a key group, you must provide the key group’s identifier and
+// version. To get these values, use ListKeyGroups followed by GetKeyGroup or
+// GetKeyGroupConfig.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation DeleteKeyGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchResource "NoSuchResource"
+//   A resource that was specified is not valid.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition given in one or more of the request header fields evaluated
+//   to false.
+//
+//   * ErrCodeResourceInUse "ResourceInUse"
+//   Cannot delete this resource because it is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteKeyGroup
+func (c *CloudFront) DeleteKeyGroup(input *DeleteKeyGroupInput) (*DeleteKeyGroupOutput, error) {
+	req, out := c.DeleteKeyGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteKeyGroupWithContext is the same as DeleteKeyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteKeyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) DeleteKeyGroupWithContext(ctx aws.Context, input *DeleteKeyGroupInput, opts ...request.Option) (*DeleteKeyGroupOutput, error) {
+	req, out := c.DeleteKeyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteMonitoringSubscription = "DeleteMonitoringSubscription2020_05_31"
 
 // DeleteMonitoringSubscriptionRequest generates a "aws/request.Request" representing the
@@ -2557,6 +2789,9 @@ func (c *CloudFront) DeleteRealtimeLogConfigRequest(input *DeleteRealtimeLogConf
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
+//
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteRealtimeLogConfig
 func (c *CloudFront) DeleteRealtimeLogConfig(input *DeleteRealtimeLogConfigInput) (*DeleteRealtimeLogConfigOutput, error) {
@@ -3630,6 +3865,177 @@ func (c *CloudFront) GetInvalidationWithContext(ctx aws.Context, input *GetInval
 	return out, req.Send()
 }
 
+const opGetKeyGroup = "GetKeyGroup2020_05_31"
+
+// GetKeyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the GetKeyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetKeyGroup for more information on using the GetKeyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetKeyGroupRequest method.
+//    req, resp := client.GetKeyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetKeyGroup
+func (c *CloudFront) GetKeyGroupRequest(input *GetKeyGroupInput) (req *request.Request, output *GetKeyGroupOutput) {
+	op := &request.Operation{
+		Name:       opGetKeyGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/key-group/{Id}",
+	}
+
+	if input == nil {
+		input = &GetKeyGroupInput{}
+	}
+
+	output = &GetKeyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetKeyGroup API operation for Amazon CloudFront.
+//
+// Gets a key group, including the date and time when the key group was last
+// modified.
+//
+// To get a key group, you must provide the key group’s identifier. If the
+// key group is referenced in a distribution’s cache behavior, you can get
+// the key group’s identifier using ListDistributions or GetDistribution.
+// If the key group is not referenced in a cache behavior, you can get the identifier
+// using ListKeyGroups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetKeyGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchResource "NoSuchResource"
+//   A resource that was specified is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetKeyGroup
+func (c *CloudFront) GetKeyGroup(input *GetKeyGroupInput) (*GetKeyGroupOutput, error) {
+	req, out := c.GetKeyGroupRequest(input)
+	return out, req.Send()
+}
+
+// GetKeyGroupWithContext is the same as GetKeyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetKeyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetKeyGroupWithContext(ctx aws.Context, input *GetKeyGroupInput, opts ...request.Option) (*GetKeyGroupOutput, error) {
+	req, out := c.GetKeyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetKeyGroupConfig = "GetKeyGroupConfig2020_05_31"
+
+// GetKeyGroupConfigRequest generates a "aws/request.Request" representing the
+// client's request for the GetKeyGroupConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetKeyGroupConfig for more information on using the GetKeyGroupConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetKeyGroupConfigRequest method.
+//    req, resp := client.GetKeyGroupConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetKeyGroupConfig
+func (c *CloudFront) GetKeyGroupConfigRequest(input *GetKeyGroupConfigInput) (req *request.Request, output *GetKeyGroupConfigOutput) {
+	op := &request.Operation{
+		Name:       opGetKeyGroupConfig,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/key-group/{Id}/config",
+	}
+
+	if input == nil {
+		input = &GetKeyGroupConfigInput{}
+	}
+
+	output = &GetKeyGroupConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetKeyGroupConfig API operation for Amazon CloudFront.
+//
+// Gets a key group configuration.
+//
+// To get a key group configuration, you must provide the key group’s identifier.
+// If the key group is referenced in a distribution’s cache behavior, you
+// can get the key group’s identifier using ListDistributions or GetDistribution.
+// If the key group is not referenced in a cache behavior, you can get the identifier
+// using ListKeyGroups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation GetKeyGroupConfig for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchResource "NoSuchResource"
+//   A resource that was specified is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetKeyGroupConfig
+func (c *CloudFront) GetKeyGroupConfig(input *GetKeyGroupConfigInput) (*GetKeyGroupConfigOutput, error) {
+	req, out := c.GetKeyGroupConfigRequest(input)
+	return out, req.Send()
+}
+
+// GetKeyGroupConfigWithContext is the same as GetKeyGroupConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetKeyGroupConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) GetKeyGroupConfigWithContext(ctx aws.Context, input *GetKeyGroupConfigInput, opts ...request.Option) (*GetKeyGroupConfigOutput, error) {
+	req, out := c.GetKeyGroupConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetMonitoringSubscription = "GetMonitoringSubscription2020_05_31"
 
 // GetMonitoringSubscriptionRequest generates a "aws/request.Request" representing the
@@ -3937,7 +4343,7 @@ func (c *CloudFront) GetPublicKeyRequest(input *GetPublicKeyInput) (req *request
 
 // GetPublicKey API operation for Amazon CloudFront.
 //
-// Get the public key information.
+// Gets a public key.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4019,7 +4425,7 @@ func (c *CloudFront) GetPublicKeyConfigRequest(input *GetPublicKeyConfigInput) (
 
 // GetPublicKeyConfig API operation for Amazon CloudFront.
 //
-// Return public key configuration informaation
+// Gets a public key configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4121,6 +4527,9 @@ func (c *CloudFront) GetRealtimeLogConfigRequest(input *GetRealtimeLogConfigInpu
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
+//
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetRealtimeLogConfig
 func (c *CloudFront) GetRealtimeLogConfig(input *GetRealtimeLogConfigInput) (*GetRealtimeLogConfigOutput, error) {
@@ -4769,6 +5178,95 @@ func (c *CloudFront) ListDistributionsByCachePolicyIdWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opListDistributionsByKeyGroup = "ListDistributionsByKeyGroup2020_05_31"
+
+// ListDistributionsByKeyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the ListDistributionsByKeyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDistributionsByKeyGroup for more information on using the ListDistributionsByKeyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDistributionsByKeyGroupRequest method.
+//    req, resp := client.ListDistributionsByKeyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListDistributionsByKeyGroup
+func (c *CloudFront) ListDistributionsByKeyGroupRequest(input *ListDistributionsByKeyGroupInput) (req *request.Request, output *ListDistributionsByKeyGroupOutput) {
+	op := &request.Operation{
+		Name:       opListDistributionsByKeyGroup,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/distributionsByKeyGroupId/{KeyGroupId}",
+	}
+
+	if input == nil {
+		input = &ListDistributionsByKeyGroupInput{}
+	}
+
+	output = &ListDistributionsByKeyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDistributionsByKeyGroup API operation for Amazon CloudFront.
+//
+// Gets a list of distribution IDs for distributions that have a cache behavior
+// that references the specified key group.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListDistributionsByKeyGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeNoSuchResource "NoSuchResource"
+//   A resource that was specified is not valid.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListDistributionsByKeyGroup
+func (c *CloudFront) ListDistributionsByKeyGroup(input *ListDistributionsByKeyGroupInput) (*ListDistributionsByKeyGroupOutput, error) {
+	req, out := c.ListDistributionsByKeyGroupRequest(input)
+	return out, req.Send()
+}
+
+// ListDistributionsByKeyGroupWithContext is the same as ListDistributionsByKeyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDistributionsByKeyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListDistributionsByKeyGroupWithContext(ctx aws.Context, input *ListDistributionsByKeyGroupInput, opts ...request.Option) (*ListDistributionsByKeyGroupOutput, error) {
+	req, out := c.ListDistributionsByKeyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListDistributionsByOriginRequestPolicyId = "ListDistributionsByOriginRequestPolicyId2020_05_31"
 
 // ListDistributionsByOriginRequestPolicyIdRequest generates a "aws/request.Request" representing the
@@ -5340,6 +5838,91 @@ func (c *CloudFront) ListInvalidationsPagesWithContext(ctx aws.Context, input *L
 	return p.Err()
 }
 
+const opListKeyGroups = "ListKeyGroups2020_05_31"
+
+// ListKeyGroupsRequest generates a "aws/request.Request" representing the
+// client's request for the ListKeyGroups operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListKeyGroups for more information on using the ListKeyGroups
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListKeyGroupsRequest method.
+//    req, resp := client.ListKeyGroupsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListKeyGroups
+func (c *CloudFront) ListKeyGroupsRequest(input *ListKeyGroupsInput) (req *request.Request, output *ListKeyGroupsOutput) {
+	op := &request.Operation{
+		Name:       opListKeyGroups,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/key-group",
+	}
+
+	if input == nil {
+		input = &ListKeyGroupsInput{}
+	}
+
+	output = &ListKeyGroupsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListKeyGroups API operation for Amazon CloudFront.
+//
+// Gets a list of key groups.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListKeyGroups for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListKeyGroups
+func (c *CloudFront) ListKeyGroups(input *ListKeyGroupsInput) (*ListKeyGroupsOutput, error) {
+	req, out := c.ListKeyGroupsRequest(input)
+	return out, req.Send()
+}
+
+// ListKeyGroupsWithContext is the same as ListKeyGroups with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListKeyGroups for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListKeyGroupsWithContext(ctx aws.Context, input *ListKeyGroupsInput, opts ...request.Option) (*ListKeyGroupsOutput, error) {
+	req, out := c.ListKeyGroupsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListOriginRequestPolicies = "ListOriginRequestPolicies2020_05_31"
 
 // ListOriginRequestPoliciesRequest generates a "aws/request.Request" representing the
@@ -5571,6 +6154,17 @@ func (c *CloudFront) ListRealtimeLogConfigsRequest(input *ListRealtimeLogConfigs
 //
 // See the AWS API reference guide for Amazon CloudFront's
 // API operation ListRealtimeLogConfigs for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+//   * ErrCodeNoSuchRealtimeLogConfig "NoSuchRealtimeLogConfig"
+//   The real-time log configuration does not exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListRealtimeLogConfigs
 func (c *CloudFront) ListRealtimeLogConfigs(input *ListRealtimeLogConfigsInput) (*ListRealtimeLogConfigsOutput, error) {
 	req, out := c.ListRealtimeLogConfigsRequest(input)
@@ -6513,6 +7107,19 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   origin request policy. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
+//   * ErrCodeTooManyDistributionsAssociatedToKeyGroup "TooManyDistributionsAssociatedToKeyGroup"
+//   The number of distributions that reference this key group is more than the
+//   maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTooManyKeyGroupsAssociatedToDistribution "TooManyKeyGroupsAssociatedToDistribution"
+//   The number of key groups referenced by this distribution is more than the
+//   maximum allowed. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeTrustedKeyGroupDoesNotExist "TrustedKeyGroupDoesNotExist"
+//   The specified key group does not exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistribution
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
 	req, out := c.UpdateDistributionRequest(input)
@@ -6757,6 +7364,116 @@ func (c *CloudFront) UpdateFieldLevelEncryptionProfile(input *UpdateFieldLevelEn
 // for more information on using Contexts.
 func (c *CloudFront) UpdateFieldLevelEncryptionProfileWithContext(ctx aws.Context, input *UpdateFieldLevelEncryptionProfileInput, opts ...request.Option) (*UpdateFieldLevelEncryptionProfileOutput, error) {
 	req, out := c.UpdateFieldLevelEncryptionProfileRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateKeyGroup = "UpdateKeyGroup2020_05_31"
+
+// UpdateKeyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateKeyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateKeyGroup for more information on using the UpdateKeyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateKeyGroupRequest method.
+//    req, resp := client.UpdateKeyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateKeyGroup
+func (c *CloudFront) UpdateKeyGroupRequest(input *UpdateKeyGroupInput) (req *request.Request, output *UpdateKeyGroupOutput) {
+	op := &request.Operation{
+		Name:       opUpdateKeyGroup,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/key-group/{Id}",
+	}
+
+	if input == nil {
+		input = &UpdateKeyGroupInput{}
+	}
+
+	output = &UpdateKeyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateKeyGroup API operation for Amazon CloudFront.
+//
+// Updates a key group.
+//
+// When you update a key group, all the fields are updated with the values provided
+// in the request. You cannot update some fields independent of others. To update
+// a key group:
+//
+// Get the current key group with GetKeyGroup or GetKeyGroupConfig.
+//
+// Locally modify the fields in the key group that you want to update. For example,
+// add or remove public key IDs.
+//
+// Call UpdateKeyGroup with the entire key group object, including the fields
+// that you modified and those that you didn’t.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation UpdateKeyGroup for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidIfMatchVersion "InvalidIfMatchVersion"
+//   The If-Match version is missing or not valid.
+//
+//   * ErrCodeNoSuchResource "NoSuchResource"
+//   A resource that was specified is not valid.
+//
+//   * ErrCodePreconditionFailed "PreconditionFailed"
+//   The precondition given in one or more of the request header fields evaluated
+//   to false.
+//
+//   * ErrCodeKeyGroupAlreadyExists "KeyGroupAlreadyExists"
+//   A key group with this name already exists. You must provide a unique name.
+//   To modify an existing key group, use UpdateKeyGroup.
+//
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeTooManyPublicKeysInKeyGroup "TooManyPublicKeysInKeyGroup"
+//   The number of public keys in this key group is more than the maximum allowed.
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateKeyGroup
+func (c *CloudFront) UpdateKeyGroup(input *UpdateKeyGroupInput) (*UpdateKeyGroupOutput, error) {
+	req, out := c.UpdateKeyGroupRequest(input)
+	return out, req.Send()
+}
+
+// UpdateKeyGroupWithContext is the same as UpdateKeyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateKeyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) UpdateKeyGroupWithContext(ctx aws.Context, input *UpdateKeyGroupInput, opts ...request.Option) (*UpdateKeyGroupOutput, error) {
+	req, out := c.UpdateKeyGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7066,6 +7783,9 @@ func (c *CloudFront) UpdateRealtimeLogConfigRequest(input *UpdateRealtimeLogConf
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
 //
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateRealtimeLogConfig
 func (c *CloudFront) UpdateRealtimeLogConfig(input *UpdateRealtimeLogConfigInput) (*UpdateRealtimeLogConfigOutput, error) {
 	req, out := c.UpdateRealtimeLogConfigRequest(input)
@@ -7205,33 +7925,76 @@ func (c *CloudFront) UpdateStreamingDistributionWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
-// A complex type that lists the AWS accounts, if any, that you included in
-// the TrustedSigners complex type for this distribution. These are the accounts
-// that you want to allow to create signed URLs for private content.
-//
-// The Signer complex type lists the AWS account number of the trusted signer
-// or self if the signer is the AWS account that created the distribution. The
-// Signer element also includes the IDs of any active CloudFront key pairs that
-// are associated with the trusted signer's AWS account. If no KeyPairId element
-// appears for a Signer, that signer can't create signed URLs.
-//
-// For more information, see Serving Private Content through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
-// in the Amazon CloudFront Developer Guide.
-type ActiveTrustedSigners struct {
+// A list of key groups, and the public keys in each key group, that CloudFront
+// can use to verify the signatures of signed URLs and signed cookies.
+type ActiveTrustedKeyGroups struct {
 	_ struct{} `type:"structure"`
 
-	// Enabled is true if any of the AWS accounts listed in the TrustedSigners complex
-	// type for this distribution have active CloudFront key pairs. If not, Enabled
-	// is false.
+	// This field is true if any of the key groups have public keys that CloudFront
+	// can use to verify the signatures of signed URLs and signed cookies. If not,
+	// this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// A complex type that contains one Signer complex type for each trusted signer
-	// that is specified in the TrustedSigners complex type.
+	// A list of key groups, including the identifiers of the public keys in each
+	// key group that CloudFront can use to verify the signatures of signed URLs
+	// and signed cookies.
+	Items []*KGKeyPairIds `locationNameList:"KeyGroup" type:"list"`
+
+	// The number of key groups in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s ActiveTrustedKeyGroups) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActiveTrustedKeyGroups) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *ActiveTrustedKeyGroups) SetEnabled(v bool) *ActiveTrustedKeyGroups {
+	s.Enabled = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *ActiveTrustedKeyGroups) SetItems(v []*KGKeyPairIds) *ActiveTrustedKeyGroups {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ActiveTrustedKeyGroups) SetQuantity(v int64) *ActiveTrustedKeyGroups {
+	s.Quantity = &v
+	return s
+}
+
+// A list of AWS accounts and the active CloudFront key pairs in each account
+// that CloudFront can use to verify the signatures of signed URLs and signed
+// cookies.
+type ActiveTrustedSigners struct {
+	_ struct{} `type:"structure"`
+
+	// This field is true if any of the AWS accounts in the list have active CloudFront
+	// key pairs that CloudFront can use to verify the signatures of signed URLs
+	// and signed cookies. If not, this field is false.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A list of AWS accounts and the identifiers of active CloudFront key pairs
+	// in each account that CloudFront can use to verify the signatures of signed
+	// URLs and signed cookies.
 	Items []*Signer `locationNameList:"Signer" type:"list"`
 
-	// The number of trusted signers specified in the TrustedSigners complex type.
+	// The number of AWS accounts in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -7655,25 +8418,32 @@ type CacheBehavior struct {
 	// TargetOriginId is a required field
 	TargetOriginId *string `type:"string" required:"true"`
 
-	// A complex type that specifies the AWS accounts, if any, that you want to
-	// allow to create signed URLs for private content.
+	// A list of key groups that CloudFront can use to validate signed URLs or signed
+	// cookies.
 	//
-	// If you want to require signed URLs in requests for objects in the target
-	// origin that match the PathPattern for this cache behavior, specify true for
-	// Enabled, and specify the applicable values for Quantity and Items. For more
-	// information, see Serving Private Content with Signed URLs and Signed Cookies
-	// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// When a cache behavior contains trusted key groups, CloudFront requires signed
+	// URLs or signed cookies for all requests that match the cache behavior. The
+	// URLs or cookies must be signed with a private key whose corresponding public
+	// key is in the key group. The signed URL or cookie contains information about
+	// which public key CloudFront should use to verify the signature. For more
+	// information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
+	TrustedKeyGroups *TrustedKeyGroups `type:"structure"`
+
 	//
-	// If you don’t want to require signed URLs in requests for objects that match
-	// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items.
+	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// To add, change, or remove one or more trusted signers, change Enabled to
-	// true (if it’s currently false), change Quantity as applicable, and specify
-	// all of the trusted signers that you want to include in the updated distribution.
+	// A list of AWS account IDs whose public keys CloudFront can use to validate
+	// signed URLs or signed cookies.
 	//
-	// TrustedSigners is a required field
-	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
+	// When a cache behavior contains trusted signers, CloudFront requires signed
+	// URLs or signed cookies for all requests that match the cache behavior. The
+	// URLs or cookies must be signed with the private key of a CloudFront key pair
+	// in the trusted signer’s AWS account. The signed URL or cookie contains
+	// information about which public key CloudFront should use to verify the signature.
+	// For more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// in the Amazon CloudFront Developer Guide.
+	TrustedSigners *TrustedSigners `type:"structure"`
 
 	// The protocol that viewers can use to access the files in the origin specified
 	// by TargetOriginId when a request matches the path pattern in PathPattern.
@@ -7724,9 +8494,6 @@ func (s *CacheBehavior) Validate() error {
 	if s.TargetOriginId == nil {
 		invalidParams.Add(request.NewErrParamRequired("TargetOriginId"))
 	}
-	if s.TrustedSigners == nil {
-		invalidParams.Add(request.NewErrParamRequired("TrustedSigners"))
-	}
 	if s.ViewerProtocolPolicy == nil {
 		invalidParams.Add(request.NewErrParamRequired("ViewerProtocolPolicy"))
 	}
@@ -7743,6 +8510,11 @@ func (s *CacheBehavior) Validate() error {
 	if s.LambdaFunctionAssociations != nil {
 		if err := s.LambdaFunctionAssociations.Validate(); err != nil {
 			invalidParams.AddNested("LambdaFunctionAssociations", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TrustedKeyGroups != nil {
+		if err := s.TrustedKeyGroups.Validate(); err != nil {
+			invalidParams.AddNested("TrustedKeyGroups", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TrustedSigners != nil {
@@ -7838,6 +8610,12 @@ func (s *CacheBehavior) SetSmoothStreaming(v bool) *CacheBehavior {
 // SetTargetOriginId sets the TargetOriginId field's value.
 func (s *CacheBehavior) SetTargetOriginId(v string) *CacheBehavior {
 	s.TargetOriginId = &v
+	return s
+}
+
+// SetTrustedKeyGroups sets the TrustedKeyGroups field's value.
+func (s *CacheBehavior) SetTrustedKeyGroups(v *TrustedKeyGroups) *CacheBehavior {
+	s.TrustedKeyGroups = v
 	return s
 }
 
@@ -9433,6 +10211,90 @@ func (s *CreateInvalidationOutput) SetLocation(v string) *CreateInvalidationOutp
 	return s
 }
 
+type CreateKeyGroupInput struct {
+	_ struct{} `locationName:"CreateKeyGroupRequest" type:"structure" payload:"KeyGroupConfig"`
+
+	// A key group configuration.
+	//
+	// KeyGroupConfig is a required field
+	KeyGroupConfig *KeyGroupConfig `locationName:"KeyGroupConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation
+func (s CreateKeyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateKeyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateKeyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateKeyGroupInput"}
+	if s.KeyGroupConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyGroupConfig"))
+	}
+	if s.KeyGroupConfig != nil {
+		if err := s.KeyGroupConfig.Validate(); err != nil {
+			invalidParams.AddNested("KeyGroupConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyGroupConfig sets the KeyGroupConfig field's value.
+func (s *CreateKeyGroupInput) SetKeyGroupConfig(v *KeyGroupConfig) *CreateKeyGroupInput {
+	s.KeyGroupConfig = v
+	return s
+}
+
+type CreateKeyGroupOutput struct {
+	_ struct{} `type:"structure" payload:"KeyGroup"`
+
+	// The identifier for this version of the key group.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The key group that was just created.
+	KeyGroup *KeyGroup `type:"structure"`
+
+	// The URL of the key group.
+	Location *string `location:"header" locationName:"Location" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateKeyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateKeyGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *CreateKeyGroupOutput) SetETag(v string) *CreateKeyGroupOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetKeyGroup sets the KeyGroup field's value.
+func (s *CreateKeyGroupOutput) SetKeyGroup(v *KeyGroup) *CreateKeyGroupOutput {
+	s.KeyGroup = v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *CreateKeyGroupOutput) SetLocation(v string) *CreateKeyGroupOutput {
+	s.Location = &v
+	return s
+}
+
 type CreateMonitoringSubscriptionInput struct {
 	_ struct{} `locationName:"CreateMonitoringSubscriptionRequest" type:"structure" payload:"MonitoringSubscription"`
 
@@ -9605,7 +10467,7 @@ func (s *CreateOriginRequestPolicyOutput) SetOriginRequestPolicy(v *OriginReques
 type CreatePublicKeyInput struct {
 	_ struct{} `locationName:"CreatePublicKeyRequest" type:"structure" payload:"PublicKeyConfig"`
 
-	// The request to add a public key to CloudFront.
+	// A CloudFront public key configuration.
 	//
 	// PublicKeyConfig is a required field
 	PublicKeyConfig *PublicKeyConfig `locationName:"PublicKeyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
@@ -9648,13 +10510,13 @@ func (s *CreatePublicKeyInput) SetPublicKeyConfig(v *PublicKeyConfig) *CreatePub
 type CreatePublicKeyOutput struct {
 	_ struct{} `type:"structure" payload:"PublicKey"`
 
-	// The current version of the public key. For example: E2QWRUHAPOMQZL.
+	// The identifier for this version of the public key.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// The fully qualified URI of the new public key resource just created.
+	// The URL of the public key.
 	Location *string `location:"header" locationName:"Location" type:"string"`
 
-	// Returned when you add a public key.
+	// The public key.
 	PublicKey *PublicKey `type:"structure"`
 }
 
@@ -10503,25 +11365,32 @@ type DefaultCacheBehavior struct {
 	// TargetOriginId is a required field
 	TargetOriginId *string `type:"string" required:"true"`
 
-	// A complex type that specifies the AWS accounts, if any, that you want to
-	// allow to create signed URLs for private content.
+	// A list of key groups that CloudFront can use to validate signed URLs or signed
+	// cookies.
 	//
-	// If you want to require signed URLs in requests for objects in the target
-	// origin that match the PathPattern for this cache behavior, specify true for
-	// Enabled, and specify the applicable values for Quantity and Items. For more
-	// information, see Serving Private Content with Signed URLs and Signed Cookies
-	// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// When a cache behavior contains trusted key groups, CloudFront requires signed
+	// URLs or signed cookies for all requests that match the cache behavior. The
+	// URLs or cookies must be signed with a private key whose corresponding public
+	// key is in the key group. The signed URL or cookie contains information about
+	// which public key CloudFront should use to verify the signature. For more
+	// information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
+	TrustedKeyGroups *TrustedKeyGroups `type:"structure"`
+
 	//
-	// If you don’t want to require signed URLs in requests for objects that match
-	// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items.
+	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// To add, change, or remove one or more trusted signers, change Enabled to
-	// true (if it’s currently false), change Quantity as applicable, and specify
-	// all of the trusted signers that you want to include in the updated distribution.
+	// A list of AWS account IDs whose public keys CloudFront can use to validate
+	// signed URLs or signed cookies.
 	//
-	// TrustedSigners is a required field
-	TrustedSigners *TrustedSigners `type:"structure" required:"true"`
+	// When a cache behavior contains trusted signers, CloudFront requires signed
+	// URLs or signed cookies for all requests that match the cache behavior. The
+	// URLs or cookies must be signed with the private key of a CloudFront key pair
+	// in a trusted signer’s AWS account. The signed URL or cookie contains information
+	// about which public key CloudFront should use to verify the signature. For
+	// more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// in the Amazon CloudFront Developer Guide.
+	TrustedSigners *TrustedSigners `type:"structure"`
 
 	// The protocol that viewers can use to access the files in the origin specified
 	// by TargetOriginId when a request matches the path pattern in PathPattern.
@@ -10569,9 +11438,6 @@ func (s *DefaultCacheBehavior) Validate() error {
 	if s.TargetOriginId == nil {
 		invalidParams.Add(request.NewErrParamRequired("TargetOriginId"))
 	}
-	if s.TrustedSigners == nil {
-		invalidParams.Add(request.NewErrParamRequired("TrustedSigners"))
-	}
 	if s.ViewerProtocolPolicy == nil {
 		invalidParams.Add(request.NewErrParamRequired("ViewerProtocolPolicy"))
 	}
@@ -10588,6 +11454,11 @@ func (s *DefaultCacheBehavior) Validate() error {
 	if s.LambdaFunctionAssociations != nil {
 		if err := s.LambdaFunctionAssociations.Validate(); err != nil {
 			invalidParams.AddNested("LambdaFunctionAssociations", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TrustedKeyGroups != nil {
+		if err := s.TrustedKeyGroups.Validate(); err != nil {
+			invalidParams.AddNested("TrustedKeyGroups", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.TrustedSigners != nil {
@@ -10677,6 +11548,12 @@ func (s *DefaultCacheBehavior) SetSmoothStreaming(v bool) *DefaultCacheBehavior 
 // SetTargetOriginId sets the TargetOriginId field's value.
 func (s *DefaultCacheBehavior) SetTargetOriginId(v string) *DefaultCacheBehavior {
 	s.TargetOriginId = &v
+	return s
+}
+
+// SetTrustedKeyGroups sets the TrustedKeyGroups field's value.
+func (s *DefaultCacheBehavior) SetTrustedKeyGroups(v *TrustedKeyGroups) *DefaultCacheBehavior {
+	s.TrustedKeyGroups = v
 	return s
 }
 
@@ -11055,6 +11932,72 @@ func (s DeleteFieldLevelEncryptionProfileOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteKeyGroupInput struct {
+	_ struct{} `locationName:"DeleteKeyGroupRequest" type:"structure"`
+
+	// The identifier of the key group that you are deleting. To get the identifier,
+	// use ListKeyGroups.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The version of the key group that you are deleting. The version is the key
+	// group’s ETag value. To get the ETag, use GetKeyGroup or GetKeyGroupConfig.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteKeyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteKeyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteKeyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteKeyGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *DeleteKeyGroupInput) SetId(v string) *DeleteKeyGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *DeleteKeyGroupInput) SetIfMatch(v string) *DeleteKeyGroupInput {
+	s.IfMatch = &v
+	return s
+}
+
+type DeleteKeyGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteKeyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteKeyGroupOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteMonitoringSubscriptionInput struct {
 	_ struct{} `locationName:"DeleteMonitoringSubscriptionRequest" type:"structure"`
 
@@ -11365,17 +12308,22 @@ type Distribution struct {
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
 
-	// CloudFront automatically adds this element to the response only if you've
-	// set up the distribution to serve private content with signed URLs. The element
-	// lists the key pair IDs that CloudFront is aware of for each trusted signer.
-	// The Signer child element lists the AWS account number of the trusted signer
-	// (or an empty Self element if the signer is you). The Signer element also
-	// includes the IDs of any active key pairs associated with the trusted signer's
-	// AWS account. If no KeyPairId element appears for a Signer, that signer can't
-	// create working signed URLs.
+	// CloudFront automatically adds this field to the response if you’ve configured
+	// a cache behavior in this distribution to serve private content using key
+	// groups. This field contains a list of key groups and the public keys in each
+	// key group that CloudFront can use to verify the signatures of signed URLs
+	// or signed cookies.
+	ActiveTrustedKeyGroups *ActiveTrustedKeyGroups `type:"structure"`
+
 	//
-	// ActiveTrustedSigners is a required field
-	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure" required:"true"`
+	// We recommend using TrustedKeyGroups instead of TrustedSigners.
+	//
+	// CloudFront automatically adds this field to the response if you’ve configured
+	// a cache behavior in this distribution to serve private content using trusted
+	// signers. This field contains a list of AWS account IDs and the active CloudFront
+	// key pairs in each account that CloudFront can use to verify the signatures
+	// of signed URLs or signed cookies.
+	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure"`
 
 	// AWS services in China customers must file for an Internet Content Provider
 	// (ICP) recordal if they want to serve content publicly on an alternate domain
@@ -11434,6 +12382,12 @@ func (s Distribution) GoString() string {
 // SetARN sets the ARN field's value.
 func (s *Distribution) SetARN(v string) *Distribution {
 	s.ARN = &v
+	return s
+}
+
+// SetActiveTrustedKeyGroups sets the ActiveTrustedKeyGroups field's value.
+func (s *Distribution) SetActiveTrustedKeyGroups(v *ActiveTrustedKeyGroups) *Distribution {
+	s.ActiveTrustedKeyGroups = v
 	return s
 }
 
@@ -14187,6 +15141,154 @@ func (s *GetInvalidationOutput) SetInvalidation(v *Invalidation) *GetInvalidatio
 	return s
 }
 
+type GetKeyGroupConfigInput struct {
+	_ struct{} `locationName:"GetKeyGroupConfigRequest" type:"structure"`
+
+	// The identifier of the key group whose configuration you are getting. To get
+	// the identifier, use ListKeyGroups.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetKeyGroupConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetKeyGroupConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetKeyGroupConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetKeyGroupConfigInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetKeyGroupConfigInput) SetId(v string) *GetKeyGroupConfigInput {
+	s.Id = &v
+	return s
+}
+
+type GetKeyGroupConfigOutput struct {
+	_ struct{} `type:"structure" payload:"KeyGroupConfig"`
+
+	// The identifier for this version of the key group.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The key group configuration.
+	KeyGroupConfig *KeyGroupConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetKeyGroupConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetKeyGroupConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetKeyGroupConfigOutput) SetETag(v string) *GetKeyGroupConfigOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetKeyGroupConfig sets the KeyGroupConfig field's value.
+func (s *GetKeyGroupConfigOutput) SetKeyGroupConfig(v *KeyGroupConfig) *GetKeyGroupConfigOutput {
+	s.KeyGroupConfig = v
+	return s
+}
+
+type GetKeyGroupInput struct {
+	_ struct{} `locationName:"GetKeyGroupRequest" type:"structure"`
+
+	// The identifier of the key group that you are getting. To get the identifier,
+	// use ListKeyGroups.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetKeyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetKeyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetKeyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetKeyGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetKeyGroupInput) SetId(v string) *GetKeyGroupInput {
+	s.Id = &v
+	return s
+}
+
+type GetKeyGroupOutput struct {
+	_ struct{} `type:"structure" payload:"KeyGroup"`
+
+	// The identifier for this version of the key group.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The key group.
+	KeyGroup *KeyGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetKeyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetKeyGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *GetKeyGroupOutput) SetETag(v string) *GetKeyGroupOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetKeyGroup sets the KeyGroup field's value.
+func (s *GetKeyGroupOutput) SetKeyGroup(v *KeyGroup) *GetKeyGroupOutput {
+	s.KeyGroup = v
+	return s
+}
+
 type GetMonitoringSubscriptionInput struct {
 	_ struct{} `locationName:"GetMonitoringSubscriptionRequest" type:"structure"`
 
@@ -14409,7 +15511,7 @@ func (s *GetOriginRequestPolicyOutput) SetOriginRequestPolicy(v *OriginRequestPo
 type GetPublicKeyConfigInput struct {
 	_ struct{} `locationName:"GetPublicKeyConfigRequest" type:"structure"`
 
-	// Request the ID for the public key configuration.
+	// The identifier of the public key whose configuration you are getting.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -14450,10 +15552,10 @@ func (s *GetPublicKeyConfigInput) SetId(v string) *GetPublicKeyConfigInput {
 type GetPublicKeyConfigOutput struct {
 	_ struct{} `type:"structure" payload:"PublicKeyConfig"`
 
-	// The current version of the public key configuration. For example: E2QWRUHAPOMQZL.
+	// The identifier for this version of the public key configuration.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// Return the result for the public key configuration.
+	// A public key configuration.
 	PublicKeyConfig *PublicKeyConfig `type:"structure"`
 }
 
@@ -14482,7 +15584,7 @@ func (s *GetPublicKeyConfigOutput) SetPublicKeyConfig(v *PublicKeyConfig) *GetPu
 type GetPublicKeyInput struct {
 	_ struct{} `locationName:"GetPublicKeyRequest" type:"structure"`
 
-	// Request the ID for the public key.
+	// The identifier of the public key you are getting.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -14523,10 +15625,10 @@ func (s *GetPublicKeyInput) SetId(v string) *GetPublicKeyInput {
 type GetPublicKeyOutput struct {
 	_ struct{} `type:"structure" payload:"PublicKey"`
 
-	// The current version of the public key. For example: E2QWRUHAPOMQZL.
+	// The identifier for this version of the public key.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// Return the public key.
+	// The public key.
 	PublicKey *PublicKey `type:"structure"`
 }
 
@@ -15075,22 +16177,247 @@ func (s *InvalidationSummary) SetStatus(v string) *InvalidationSummary {
 	return s
 }
 
-// A complex type that lists the active CloudFront key pairs, if any, that are
-// associated with AwsAccountNumber.
+// A list of identifiers for the public keys that CloudFront can use to verify
+// the signatures of signed URLs and signed cookies.
+type KGKeyPairIds struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the key group that contains the public keys.
+	KeyGroupId *string `type:"string"`
+
+	// A list of CloudFront key pair identifiers.
+	KeyPairIds *KeyPairIds `type:"structure"`
+}
+
+// String returns the string representation
+func (s KGKeyPairIds) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KGKeyPairIds) GoString() string {
+	return s.String()
+}
+
+// SetKeyGroupId sets the KeyGroupId field's value.
+func (s *KGKeyPairIds) SetKeyGroupId(v string) *KGKeyPairIds {
+	s.KeyGroupId = &v
+	return s
+}
+
+// SetKeyPairIds sets the KeyPairIds field's value.
+func (s *KGKeyPairIds) SetKeyPairIds(v *KeyPairIds) *KGKeyPairIds {
+	s.KeyPairIds = v
+	return s
+}
+
+// A key group.
 //
-// For more information, see ActiveTrustedSigners (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ActiveTrustedSigners.html).
+// A key group contains a list of public keys that you can use with CloudFront
+// signed URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html).
+type KeyGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the key group.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The key group configuration.
+	//
+	// KeyGroupConfig is a required field
+	KeyGroupConfig *KeyGroupConfig `type:"structure" required:"true"`
+
+	// The date and time when the key group was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s KeyGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KeyGroup) GoString() string {
+	return s.String()
+}
+
+// SetId sets the Id field's value.
+func (s *KeyGroup) SetId(v string) *KeyGroup {
+	s.Id = &v
+	return s
+}
+
+// SetKeyGroupConfig sets the KeyGroupConfig field's value.
+func (s *KeyGroup) SetKeyGroupConfig(v *KeyGroupConfig) *KeyGroup {
+	s.KeyGroupConfig = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *KeyGroup) SetLastModifiedTime(v time.Time) *KeyGroup {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// A key group configuration.
+//
+// A key group contains a list of public keys that you can use with CloudFront
+// signed URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html).
+type KeyGroupConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A comment to describe the key group.
+	Comment *string `type:"string"`
+
+	// A list of the identifiers of the public keys in the key group.
+	//
+	// Items is a required field
+	Items []*string `locationNameList:"PublicKey" type:"list" required:"true"`
+
+	// A name to identify the key group.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s KeyGroupConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KeyGroupConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KeyGroupConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KeyGroupConfig"}
+	if s.Items == nil {
+		invalidParams.Add(request.NewErrParamRequired("Items"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComment sets the Comment field's value.
+func (s *KeyGroupConfig) SetComment(v string) *KeyGroupConfig {
+	s.Comment = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *KeyGroupConfig) SetItems(v []*string) *KeyGroupConfig {
+	s.Items = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *KeyGroupConfig) SetName(v string) *KeyGroupConfig {
+	s.Name = &v
+	return s
+}
+
+// A list of key groups.
+type KeyGroupList struct {
+	_ struct{} `type:"structure"`
+
+	// A list of key groups.
+	Items []*KeyGroupSummary `locationNameList:"KeyGroupSummary" type:"list"`
+
+	// The maximum number of key groups requested.
+	//
+	// MaxItems is a required field
+	MaxItems *int64 `type:"integer" required:"true"`
+
+	// If there are more items in the list than are in this response, this element
+	// is present. It contains the value that you should use in the Marker field
+	// of a subsequent request to continue listing key groups.
+	NextMarker *string `type:"string"`
+
+	// The number of key groups returned in the response.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s KeyGroupList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KeyGroupList) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *KeyGroupList) SetItems(v []*KeyGroupSummary) *KeyGroupList {
+	s.Items = v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *KeyGroupList) SetMaxItems(v int64) *KeyGroupList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *KeyGroupList) SetNextMarker(v string) *KeyGroupList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *KeyGroupList) SetQuantity(v int64) *KeyGroupList {
+	s.Quantity = &v
+	return s
+}
+
+// Contains information about a key group.
+type KeyGroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// A key group.
+	//
+	// KeyGroup is a required field
+	KeyGroup *KeyGroup `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s KeyGroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KeyGroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetKeyGroup sets the KeyGroup field's value.
+func (s *KeyGroupSummary) SetKeyGroup(v *KeyGroup) *KeyGroupSummary {
+	s.KeyGroup = v
+	return s
+}
+
+// A list of CloudFront key pair identifiers.
 type KeyPairIds struct {
 	_ struct{} `type:"structure"`
 
-	// A complex type that lists the active CloudFront key pairs, if any, that are
-	// associated with AwsAccountNumber.
-	//
-	// For more information, see ActiveTrustedSigners (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ActiveTrustedSigners.html).
+	// A list of CloudFront key pair identifiers.
 	Items []*string `locationNameList:"KeyPairId" type:"list"`
 
-	// The number of active CloudFront key pairs for AwsAccountNumber.
-	//
-	// For more information, see ActiveTrustedSigners (https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ActiveTrustedSigners.html).
+	// The number of key pair identifiers in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -15547,6 +16874,91 @@ func (s ListDistributionsByCachePolicyIdOutput) GoString() string {
 
 // SetDistributionIdList sets the DistributionIdList field's value.
 func (s *ListDistributionsByCachePolicyIdOutput) SetDistributionIdList(v *DistributionIdList) *ListDistributionsByCachePolicyIdOutput {
+	s.DistributionIdList = v
+	return s
+}
+
+type ListDistributionsByKeyGroupInput struct {
+	_ struct{} `locationName:"ListDistributionsByKeyGroupRequest" type:"structure"`
+
+	// The ID of the key group whose associated distribution IDs you are listing.
+	//
+	// KeyGroupId is a required field
+	KeyGroupId *string `location:"uri" locationName:"KeyGroupId" type:"string" required:"true"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of distribution IDs. The response includes distribution IDs in the list
+	// that occur after the marker. To get the next page of the list, set this field’s
+	// value to the value of NextMarker from the current page’s response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of distribution IDs that you want in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListDistributionsByKeyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDistributionsByKeyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDistributionsByKeyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDistributionsByKeyGroupInput"}
+	if s.KeyGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyGroupId"))
+	}
+	if s.KeyGroupId != nil && len(*s.KeyGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyGroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyGroupId sets the KeyGroupId field's value.
+func (s *ListDistributionsByKeyGroupInput) SetKeyGroupId(v string) *ListDistributionsByKeyGroupInput {
+	s.KeyGroupId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListDistributionsByKeyGroupInput) SetMarker(v string) *ListDistributionsByKeyGroupInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListDistributionsByKeyGroupInput) SetMaxItems(v int64) *ListDistributionsByKeyGroupInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListDistributionsByKeyGroupOutput struct {
+	_ struct{} `type:"structure" payload:"DistributionIdList"`
+
+	// A list of distribution IDs.
+	DistributionIdList *DistributionIdList `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListDistributionsByKeyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListDistributionsByKeyGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetDistributionIdList sets the DistributionIdList field's value.
+func (s *ListDistributionsByKeyGroupOutput) SetDistributionIdList(v *DistributionIdList) *ListDistributionsByKeyGroupOutput {
 	s.DistributionIdList = v
 	return s
 }
@@ -16079,6 +17491,64 @@ func (s ListInvalidationsOutput) GoString() string {
 // SetInvalidationList sets the InvalidationList field's value.
 func (s *ListInvalidationsOutput) SetInvalidationList(v *InvalidationList) *ListInvalidationsOutput {
 	s.InvalidationList = v
+	return s
+}
+
+type ListKeyGroupsInput struct {
+	_ struct{} `locationName:"ListKeyGroupsRequest" type:"structure"`
+
+	// Use this field when paginating results to indicate where to begin in your
+	// list of key groups. The response includes key groups in the list that occur
+	// after the marker. To get the next page of the list, set this field’s value
+	// to the value of NextMarker from the current page’s response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of key groups that you want in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListKeyGroupsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListKeyGroupsInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListKeyGroupsInput) SetMarker(v string) *ListKeyGroupsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListKeyGroupsInput) SetMaxItems(v int64) *ListKeyGroupsInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListKeyGroupsOutput struct {
+	_ struct{} `type:"structure" payload:"KeyGroupList"`
+
+	// A list of key groups.
+	KeyGroupList *KeyGroupList `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListKeyGroupsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListKeyGroupsOutput) GoString() string {
+	return s.String()
+}
+
+// SetKeyGroupList sets the KeyGroupList field's value.
+func (s *ListKeyGroupsOutput) SetKeyGroupList(v *KeyGroupList) *ListKeyGroupsOutput {
+	s.KeyGroupList = v
 	return s
 }
 
@@ -18243,23 +19713,24 @@ func (s *Paths) SetQuantity(v int64) *Paths {
 	return s
 }
 
-// A complex data type of public keys you add to CloudFront to use with features
-// like field-level encryption.
+// A public key that you can use with signed URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
+// or with field-level encryption (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 type PublicKey struct {
 	_ struct{} `type:"structure"`
 
-	// A time you added a public key to CloudFront.
+	// The date and time when the public key was uploaded.
 	//
 	// CreatedTime is a required field
 	CreatedTime *time.Time `type:"timestamp" required:"true"`
 
-	// A unique ID assigned to a public key you've added to CloudFront.
+	// The identifier of the public key.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// A complex data type for a public key you add to CloudFront to use with features
-	// like field-level encryption.
+	// Configuration information about a public key that you can use with signed
+	// URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
+	// or with field-level encryption (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 	//
 	// PublicKeyConfig is a required field
 	PublicKeyConfig *PublicKeyConfig `type:"structure" required:"true"`
@@ -18293,27 +19764,28 @@ func (s *PublicKey) SetPublicKeyConfig(v *PublicKeyConfig) *PublicKey {
 	return s
 }
 
-// Information about a public key you add to CloudFront to use with features
-// like field-level encryption.
+// Configuration information about a public key that you can use with signed
+// URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
+// or with field-level encryption (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 type PublicKeyConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A unique number that ensures that the request can't be replayed.
+	// A string included in the request to help make sure that the request can’t
+	// be replayed.
 	//
 	// CallerReference is a required field
 	CallerReference *string `type:"string" required:"true"`
 
-	// An optional comment about a public key.
+	// A comment to describe the public key.
 	Comment *string `type:"string"`
 
-	// The encoded public key that you want to add to CloudFront to use with features
-	// like field-level encryption.
+	// The public key that you can use with signed URLs and signed cookies (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
+	// or with field-level encryption (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 	//
 	// EncodedKey is a required field
 	EncodedKey *string `type:"string" required:"true"`
 
-	// The name for a public key you add to CloudFront to use with features like
-	// field-level encryption.
+	// A name to help identify the public key.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -18372,16 +19844,16 @@ func (s *PublicKeyConfig) SetName(v string) *PublicKeyConfig {
 	return s
 }
 
-// A list of public keys you've added to CloudFront to use with features like
-// field-level encryption.
+// A list of public keys that you can use with signed URLs and signed cookies
+// (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html),
+// or with field-level encryption (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html).
 type PublicKeyList struct {
 	_ struct{} `type:"structure"`
 
-	// An array of information about a public key you add to CloudFront to use with
-	// features like field-level encryption.
+	// A list of public keys.
 	Items []*PublicKeySummary `locationNameList:"PublicKeySummary" type:"list"`
 
-	// The maximum number of public keys you want in the response body.
+	// The maximum number of public keys you want in the response.
 	//
 	// MaxItems is a required field
 	MaxItems *int64 `type:"integer" required:"true"`
@@ -18391,8 +19863,7 @@ type PublicKeyList struct {
 	// your public keys where you left off.
 	NextMarker *string `type:"string"`
 
-	// The number of public keys you added to CloudFront to use with features like
-	// field-level encryption.
+	// The number of public keys in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -18432,29 +19903,29 @@ func (s *PublicKeyList) SetQuantity(v int64) *PublicKeyList {
 	return s
 }
 
-// A complex data type for public key information.
+// Contains information about a public key.
 type PublicKeySummary struct {
 	_ struct{} `type:"structure"`
 
-	// Comment for public key information summary.
+	// A comment to describe the public key.
 	Comment *string `type:"string"`
 
-	// Creation time for public key information summary.
+	// The date and time when the public key was uploaded.
 	//
 	// CreatedTime is a required field
 	CreatedTime *time.Time `type:"timestamp" required:"true"`
 
-	// Encoded key for public key information summary.
+	// The public key.
 	//
 	// EncodedKey is a required field
 	EncodedKey *string `type:"string" required:"true"`
 
-	// ID for public key information summary.
+	// The identifier of the public key.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
-	// Name for public key information summary.
+	// A name to help identify the public key.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -19144,21 +20615,19 @@ func (s *S3OriginConfig) SetOriginAccessIdentity(v string) *S3OriginConfig {
 	return s
 }
 
-// A complex type that lists the AWS accounts that were included in the TrustedSigners
-// complex type, as well as their active CloudFront key pair IDs, if any.
+// A list of AWS accounts and the active CloudFront key pairs in each account
+// that CloudFront can use to verify the signatures of signed URLs and signed
+// cookies.
 type Signer struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS account that is included in the TrustedSigners complex type for this
-	// distribution. Valid values include:
-	//
-	//    * self, which is the AWS account used to create the distribution.
-	//
-	//    * An AWS account number.
+	// An AWS account number that contains active CloudFront key pairs that CloudFront
+	// can use to verify the signatures of signed URLs and signed cookies. If the
+	// AWS account that owns the key pairs is the same account that owns the CloudFront
+	// distribution, the value of this field is self.
 	AwsAccountNumber *string `type:"string"`
 
-	// A complex type that lists the active CloudFront key pairs, if any, that are
-	// associated with AwsAccountNumber.
+	// A list of CloudFront key pair identifiers.
 	KeyPairIds *KeyPairIds `type:"structure"`
 }
 
@@ -20083,39 +21552,87 @@ func (s *Tags) SetItems(v []*Tag) *Tags {
 	return s
 }
 
-// A complex type that specifies the AWS accounts, if any, that you want to
-// allow to create signed URLs for private content.
-//
-// If you want to require signed URLs in requests for objects in the target
-// origin that match the PathPattern for this cache behavior, specify true for
-// Enabled, and specify the applicable values for Quantity and Items. For more
-// information, see Serving Private Content through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
-// in the Amazon CloudFront Developer Guide.
-//
-// If you don't want to require signed URLs in requests for objects that match
-// PathPattern, specify false for Enabled and 0 for Quantity. Omit Items.
-//
-// To add, change, or remove one or more trusted signers, change Enabled to
-// true (if it's currently false), change Quantity as applicable, and specify
-// all of the trusted signers that you want to include in the updated distribution.
-//
-// For more information about updating the distribution configuration, see DistributionConfig
-// (https://docs.aws.amazon.com/cloudfront/latest/APIReference/DistributionConfig.html)
-// in the Amazon CloudFront API Reference.
-type TrustedSigners struct {
+// A list of key groups whose public keys CloudFront can use to verify the signatures
+// of signed URLs and signed cookies.
+type TrustedKeyGroups struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether you want to require viewers to use signed URLs to access
-	// the files specified by PathPattern and TargetOriginId.
+	// This field is true if any of the key groups in the list have public keys
+	// that CloudFront can use to verify the signatures of signed URLs and signed
+	// cookies. If not, this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// Optional: A complex type that contains trusted signers for this cache behavior.
-	// If Quantity is 0, you can omit Items.
+	// A list of key groups identifiers.
+	Items []*string `locationNameList:"KeyGroup" type:"list"`
+
+	// The number of key groups in the list.
+	//
+	// Quantity is a required field
+	Quantity *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s TrustedKeyGroups) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TrustedKeyGroups) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TrustedKeyGroups) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TrustedKeyGroups"}
+	if s.Enabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enabled"))
+	}
+	if s.Quantity == nil {
+		invalidParams.Add(request.NewErrParamRequired("Quantity"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *TrustedKeyGroups) SetEnabled(v bool) *TrustedKeyGroups {
+	s.Enabled = &v
+	return s
+}
+
+// SetItems sets the Items field's value.
+func (s *TrustedKeyGroups) SetItems(v []*string) *TrustedKeyGroups {
+	s.Items = v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *TrustedKeyGroups) SetQuantity(v int64) *TrustedKeyGroups {
+	s.Quantity = &v
+	return s
+}
+
+// A list of AWS accounts whose public keys CloudFront can use to verify the
+// signatures of signed URLs and signed cookies.
+type TrustedSigners struct {
+	_ struct{} `type:"structure"`
+
+	// This field is true if any of the AWS accounts have public keys that CloudFront
+	// can use to verify the signatures of signed URLs and signed cookies. If not,
+	// this field is false.
+	//
+	// Enabled is a required field
+	Enabled *bool `type:"boolean" required:"true"`
+
+	// A list of AWS account identifiers.
 	Items []*string `locationNameList:"AwsAccountNumber" type:"list"`
 
-	// The number of trusted signers for this cache behavior.
+	// The number of AWS accounts in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -20749,6 +22266,108 @@ func (s *UpdateFieldLevelEncryptionProfileOutput) SetFieldLevelEncryptionProfile
 	return s
 }
 
+type UpdateKeyGroupInput struct {
+	_ struct{} `locationName:"UpdateKeyGroupRequest" type:"structure" payload:"KeyGroupConfig"`
+
+	// The identifier of the key group that you are updating.
+	//
+	// Id is a required field
+	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
+
+	// The version of the key group that you are updating. The version is the key
+	// group’s ETag value.
+	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
+
+	// The key group configuration.
+	//
+	// KeyGroupConfig is a required field
+	KeyGroupConfig *KeyGroupConfig `locationName:"KeyGroupConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
+}
+
+// String returns the string representation
+func (s UpdateKeyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateKeyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateKeyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateKeyGroupInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.KeyGroupConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyGroupConfig"))
+	}
+	if s.KeyGroupConfig != nil {
+		if err := s.KeyGroupConfig.Validate(); err != nil {
+			invalidParams.AddNested("KeyGroupConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateKeyGroupInput) SetId(v string) *UpdateKeyGroupInput {
+	s.Id = &v
+	return s
+}
+
+// SetIfMatch sets the IfMatch field's value.
+func (s *UpdateKeyGroupInput) SetIfMatch(v string) *UpdateKeyGroupInput {
+	s.IfMatch = &v
+	return s
+}
+
+// SetKeyGroupConfig sets the KeyGroupConfig field's value.
+func (s *UpdateKeyGroupInput) SetKeyGroupConfig(v *KeyGroupConfig) *UpdateKeyGroupInput {
+	s.KeyGroupConfig = v
+	return s
+}
+
+type UpdateKeyGroupOutput struct {
+	_ struct{} `type:"structure" payload:"KeyGroup"`
+
+	// The identifier for this version of the key group.
+	ETag *string `location:"header" locationName:"ETag" type:"string"`
+
+	// The key group that was just updated.
+	KeyGroup *KeyGroup `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateKeyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateKeyGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetETag sets the ETag field's value.
+func (s *UpdateKeyGroupOutput) SetETag(v string) *UpdateKeyGroupOutput {
+	s.ETag = &v
+	return s
+}
+
+// SetKeyGroup sets the KeyGroup field's value.
+func (s *UpdateKeyGroupOutput) SetKeyGroup(v *KeyGroup) *UpdateKeyGroupOutput {
+	s.KeyGroup = v
+	return s
+}
+
 type UpdateOriginRequestPolicyInput struct {
 	_ struct{} `locationName:"UpdateOriginRequestPolicyRequest" type:"structure" payload:"OriginRequestPolicyConfig"`
 
@@ -20857,7 +22476,7 @@ func (s *UpdateOriginRequestPolicyOutput) SetOriginRequestPolicy(v *OriginReques
 type UpdatePublicKeyInput struct {
 	_ struct{} `locationName:"UpdatePublicKeyRequest" type:"structure" payload:"PublicKeyConfig"`
 
-	// ID of the public key to be updated.
+	// The identifier of the public key that you are updating.
 	//
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
@@ -20866,7 +22485,7 @@ type UpdatePublicKeyInput struct {
 	// key to update. For example: E2QWRUHAPOMQZL.
 	IfMatch *string `location:"header" locationName:"If-Match" type:"string"`
 
-	// Request to update public key information.
+	// A public key configuration.
 	//
 	// PublicKeyConfig is a required field
 	PublicKeyConfig *PublicKeyConfig `locationName:"PublicKeyConfig" type:"structure" required:"true" xmlURI:"http://cloudfront.amazonaws.com/doc/2020-05-31/"`
@@ -20927,10 +22546,10 @@ func (s *UpdatePublicKeyInput) SetPublicKeyConfig(v *PublicKeyConfig) *UpdatePub
 type UpdatePublicKeyOutput struct {
 	_ struct{} `type:"structure" payload:"PublicKey"`
 
-	// The current version of the update public key result. For example: E2QWRUHAPOMQZL.
+	// The identifier of the current version of the public key.
 	ETag *string `location:"header" locationName:"ETag" type:"string"`
 
-	// Return the results of updating the public key.
+	// The public key.
 	PublicKey *PublicKey `type:"structure"`
 }
 

@@ -9,9 +9,10 @@
     "CreateFieldLevelEncryptionConfig": "<p>Create a new field-level encryption configuration.</p>",
     "CreateFieldLevelEncryptionProfile": "<p>Create a field-level encryption profile.</p>",
     "CreateInvalidation": "<p>Create a new invalidation. </p>",
+    "CreateKeyGroup": "<p>Creates a key group that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p> <p>To create a key group, you must specify at least one public key for the key group. After you create a key group, you can reference it from one or more cache behaviors. When you reference a key group in a cache behavior, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateMonitoringSubscription": "<p>Enables additional CloudWatch metrics for the specified CloudFront distribution. The additional metrics incur an additional cost.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/viewing-cloudfront-metrics.html#monitoring-console.distributions-additional\">Viewing additional CloudFront distribution metrics</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateOriginRequestPolicy": "<p>Creates an origin request policy.</p> <p>After you create an origin request policy, you can attach it to one or more cache behaviors. When it’s attached to a cache behavior, the origin request policy determines the values that CloudFront includes in requests that it sends to the origin. Each request that CloudFront sends to the origin includes the following:</p> <ul> <li> <p>The request body and the URL path (without the domain name) from the viewer request.</p> </li> <li> <p>The headers that CloudFront automatically includes in every origin request, including <code>Host</code>, <code>User-Agent</code>, and <code>X-Amz-Cf-Id</code>.</p> </li> <li> <p>All HTTP headers, cookies, and URL query strings that are specified in the cache policy or the origin request policy. These can include items from the viewer request and, in the case of headers, additional ones that are added by CloudFront.</p> </li> </ul> <p>CloudFront sends a request when it can’t find a valid object in its cache that matches the request. If you want to send values to the origin and also include them in the cache key, use <code>CachePolicy</code>.</p> <p>For more information about origin request policies, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html\">Controlling origin requests</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-    "CreatePublicKey": "<p>Add a new public key to CloudFront to use, for example, for field-level encryption. You can add a maximum of 10 public keys with one AWS account.</p>",
+    "CreatePublicKey": "<p>Uploads a public key to CloudFront that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
     "CreateRealtimeLogConfig": "<p>Creates a real-time log configuration.</p> <p>After you create a real-time log configuration, you can attach it to one or more cache behaviors to send real-time log data to the specified Amazon Kinesis data stream.</p> <p>For more information about real-time log configurations, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html\">Real-time logs</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
     "CreateStreamingDistribution": "<p>Creates a new RTMP distribution. An RTMP distribution is similar to a web distribution, but an RTMP distribution streams media files using the Adobe Real-Time Messaging Protocol (RTMP) instead of serving files using HTTP. </p> <p>To create a new distribution, submit a <code>POST</code> request to the <i>CloudFront API version</i>/distribution resource. The request body must include a document with a <i>StreamingDistributionConfig</i> element. The response echoes the <code>StreamingDistributionConfig</code> element and returns other information about the RTMP distribution.</p> <p>To get the status of your request, use the <i>GET StreamingDistribution</i> API action. When the value of <code>Enabled</code> is <code>true</code> and the value of <code>Status</code> is <code>Deployed</code>, your distribution is ready. A distribution usually deploys in less than 15 minutes.</p> <p>For more information about web distributions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-rtmp.html\">Working with RTMP Distributions</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <important> <p>Beginning with the 2012-05-05 version of the CloudFront API, we made substantial changes to the format of the XML document that you include in the request body when you create or update a web distribution or an RTMP distribution, and when you invalidate objects. With previous versions of the API, we discovered that it was too easy to accidentally delete one or more values for an element that accepts multiple values, for example, CNAMEs and trusted signers. Our changes for the 2012-05-05 release are intended to prevent these accidental deletions and to notify you when there's a mismatch between the number of values you say you're specifying in the <code>Quantity</code> element and the number of values specified.</p> </important>",
     "CreateStreamingDistributionWithTags": "<p>Create a new streaming distribution with tags.</p>",
@@ -20,6 +21,7 @@
     "DeleteDistribution": "<p>Delete a distribution. </p>",
     "DeleteFieldLevelEncryptionConfig": "<p>Remove a field-level encryption configuration.</p>",
     "DeleteFieldLevelEncryptionProfile": "<p>Remove a field-level encryption profile.</p>",
+    "DeleteKeyGroup": "<p>Deletes a key group.</p> <p>You cannot delete a key group that is referenced in a cache behavior. First update your distributions to remove the key group from all cache behaviors, then delete the key group.</p> <p>To delete a key group, you must provide the key group’s identifier and version. To get these values, use <code>ListKeyGroups</code> followed by <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
     "DeleteMonitoringSubscription": "<p>Disables additional CloudWatch metrics for the specified CloudFront distribution.</p>",
     "DeleteOriginRequestPolicy": "<p>Deletes an origin request policy.</p> <p>You cannot delete an origin request policy if it’s attached to any cache behaviors. First update your distributions to remove the origin request policy from all cache behaviors, then delete the origin request policy.</p> <p>To delete an origin request policy, you must provide the policy’s identifier and version. To get the identifier, you can use <code>ListOriginRequestPolicies</code> or <code>GetOriginRequestPolicy</code>.</p>",
     "DeletePublicKey": "<p>Remove a public key you previously added to CloudFront.</p>",
@@ -36,11 +38,13 @@
     "GetFieldLevelEncryptionProfile": "<p>Get the field-level encryption profile information.</p>",
     "GetFieldLevelEncryptionProfileConfig": "<p>Get the field-level encryption profile configuration information.</p>",
     "GetInvalidation": "<p>Get the information about an invalidation. </p>",
+    "GetKeyGroup": "<p>Gets a key group, including the date and time when the key group was last modified.</p> <p>To get a key group, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
+    "GetKeyGroupConfig": "<p>Gets a key group configuration.</p> <p>To get a key group configuration, you must provide the key group’s identifier. If the key group is referenced in a distribution’s cache behavior, you can get the key group’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the key group is not referenced in a cache behavior, you can get the identifier using <code>ListKeyGroups</code>.</p>",
     "GetMonitoringSubscription": "<p>Gets information about whether additional CloudWatch metrics are enabled for the specified CloudFront distribution.</p>",
     "GetOriginRequestPolicy": "<p>Gets an origin request policy, including the following metadata:</p> <ul> <li> <p>The policy’s identifier.</p> </li> <li> <p>The date and time when the policy was last modified.</p> </li> </ul> <p>To get an origin request policy, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
     "GetOriginRequestPolicyConfig": "<p>Gets an origin request policy configuration.</p> <p>To get an origin request policy configuration, you must provide the policy’s identifier. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
-    "GetPublicKey": "<p>Get the public key information.</p>",
-    "GetPublicKeyConfig": "<p>Return public key configuration informaation</p>",
+    "GetPublicKey": "<p>Gets a public key.</p>",
+    "GetPublicKeyConfig": "<p>Gets a public key configuration.</p>",
     "GetRealtimeLogConfig": "<p>Gets a real-time log configuration.</p> <p>To get a real-time log configuration, you can provide the configuration’s name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to get.</p>",
     "GetStreamingDistribution": "<p>Gets information about a specified RTMP distribution, including the distribution configuration.</p>",
     "GetStreamingDistributionConfig": "<p>Get the configuration information about a streaming distribution. </p>",
@@ -48,12 +52,14 @@
     "ListCloudFrontOriginAccessIdentities": "<p>Lists origin access identities.</p>",
     "ListDistributions": "<p>List CloudFront distributions.</p>",
     "ListDistributionsByCachePolicyId": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified cache policy.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
+    "ListDistributionsByKeyGroup": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that references the specified key group.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributionsByOriginRequestPolicyId": "<p>Gets a list of distribution IDs for distributions that have a cache behavior that’s associated with the specified origin request policy.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListDistributionsByRealtimeLogConfig": "<p>Gets a list of distributions that have a cache behavior that’s associated with the specified real-time log configuration.</p> <p>You can specify the real-time log configuration by its name or its Amazon Resource Name (ARN). You must provide at least one. If you provide both, CloudFront uses the name to identify the real-time log configuration to list distributions for.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
     "ListDistributionsByWebACLId": "<p>List the distributions that are associated with a specified AWS WAF web ACL. </p>",
     "ListFieldLevelEncryptionConfigs": "<p>List all field-level encryption configurations that have been created in CloudFront for this account.</p>",
     "ListFieldLevelEncryptionProfiles": "<p>Request a list of field-level encryption profiles that have been created in CloudFront for this account.</p>",
     "ListInvalidations": "<p>Lists invalidation batches. </p>",
+    "ListKeyGroups": "<p>Gets a list of key groups.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListOriginRequestPolicies": "<p>Gets a list of origin request policies.</p> <p>You can optionally apply a filter to return only the managed policies created by AWS, or only the custom policies created in your AWS account.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request.</p>",
     "ListPublicKeys": "<p>List all public keys that have been added to CloudFront for this account.</p>",
     "ListRealtimeLogConfigs": "<p>Gets a list of real-time log configurations.</p> <p>You can optionally specify the maximum number of items to receive in the response. If the total number of items in the list exceeds the maximum that you specify, or the default maximum, the response is paginated. To get the next page of items, send a subsequent request that specifies the <code>NextMarker</code> value from the current response as the <code>Marker</code> value in the subsequent request. </p>",
@@ -66,6 +72,7 @@
     "UpdateDistribution": "<p>Updates the configuration for a web distribution. </p> <important> <p>When you update a distribution, there are more required fields than when you create a distribution. When you update your distribution by using this API action, follow the steps here to get the current configuration and then make your updates, to make sure that you include all of the required fields. To view a summary, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-overview-required-fields.html\">Required Fields for Create Distribution and Update Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> </important> <p>The update process includes getting the current distribution configuration, updating the XML document that is returned to make your changes, and then submitting an <code>UpdateDistribution</code> request to make the updates.</p> <p>For information about updating a distribution using the CloudFront console instead, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-creating-console.html\">Creating a Distribution</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p> <b>To update a web distribution using the CloudFront API</b> </p> <ol> <li> <p>Submit a <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistributionConfig.html\">GetDistributionConfig</a> request to get the current configuration and an <code>Etag</code> header for the distribution.</p> <note> <p>If you update the distribution again, you must get a new <code>Etag</code> header.</p> </note> </li> <li> <p>Update the XML document that was returned in the response to your <code>GetDistributionConfig</code> request to include your changes. </p> <important> <p>When you edit the XML file, be aware of the following:</p> <ul> <li> <p>You must strip out the ETag parameter that is returned.</p> </li> <li> <p>Additional fields are required when you update a distribution. There may be fields included in the XML file for features that you haven't configured for your distribution. This is expected and required to successfully update the distribution.</p> </li> <li> <p>You can't change the value of <code>CallerReference</code>. If you try to change this value, CloudFront returns an <code>IllegalUpdate</code> error. </p> </li> <li> <p>The new configuration replaces the existing configuration; the values that you specify in an <code>UpdateDistribution</code> request are not merged into your existing configuration. When you add, delete, or replace values in an element that allows multiple values (for example, <code>CNAME</code>), you must specify all of the values that you want to appear in the updated distribution. In addition, you must update the corresponding <code>Quantity</code> element.</p> </li> </ul> </important> </li> <li> <p>Submit an <code>UpdateDistribution</code> request to update the configuration for your distribution:</p> <ul> <li> <p>In the request body, include the XML document that you updated in Step 2. The request body must include an XML document with a <code>DistributionConfig</code> element.</p> </li> <li> <p>Set the value of the HTTP <code>If-Match</code> header to the value of the <code>ETag</code> header that CloudFront returned when you submitted the <code>GetDistributionConfig</code> request in Step 1.</p> </li> </ul> </li> <li> <p>Review the response to the <code>UpdateDistribution</code> request to confirm that the configuration was successfully updated.</p> </li> <li> <p>Optional: Submit a <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_GetDistribution.html\">GetDistribution</a> request to confirm that your changes have propagated. When propagation is complete, the value of <code>Status</code> is <code>Deployed</code>.</p> </li> </ol>",
     "UpdateFieldLevelEncryptionConfig": "<p>Update a field-level encryption configuration. </p>",
     "UpdateFieldLevelEncryptionProfile": "<p>Update a field-level encryption profile. </p>",
+    "UpdateKeyGroup": "<p>Updates a key group.</p> <p>When you update a key group, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update a key group:</p> <ol> <li> <p>Get the current key group with <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p> </li> <li> <p>Locally modify the fields in the key group that you want to update. For example, add or remove public key IDs.</p> </li> <li> <p>Call <code>UpdateKeyGroup</code> with the entire key group object, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdateOriginRequestPolicy": "<p>Updates an origin request policy configuration.</p> <p>When you update an origin request policy configuration, all the fields are updated with the values provided in the request. You cannot update some fields independent of others. To update an origin request policy configuration:</p> <ol> <li> <p>Use <code>GetOriginRequestPolicyConfig</code> to get the current configuration.</p> </li> <li> <p>Locally modify the fields in the origin request policy configuration that you want to update.</p> </li> <li> <p>Call <code>UpdateOriginRequestPolicy</code> by providing the entire origin request policy configuration, including the fields that you modified and those that you didn’t.</p> </li> </ol>",
     "UpdatePublicKey": "<p>Update public key information. Note that the only value you can change is the comment.</p>",
     "UpdateRealtimeLogConfig": "<p>Updates a real-time log configuration.</p> <p>When you update a real-time log configuration, all the parameters are updated with the values provided in the request. You cannot update some parameters independent of others. To update a real-time log configuration:</p> <ol> <li> <p>Call <code>GetRealtimeLogConfig</code> to get the current real-time log configuration.</p> </li> <li> <p>Locally modify the parameters in the real-time log configuration that you want to update.</p> </li> <li> <p>Call this API (<code>UpdateRealtimeLogConfig</code>) by providing the entire real-time log configuration, including the parameters that you modified and those that you didn’t.</p> </li> </ol> <p>You cannot update a real-time log configuration’s <code>Name</code> or <code>ARN</code>.</p>",
@@ -77,10 +84,16 @@
       "refs": {
       }
     },
-    "ActiveTrustedSigners": {
-      "base": "<p>A complex type that lists the AWS accounts, if any, that you included in the <code>TrustedSigners</code> complex type for this distribution. These are the accounts that you want to allow to create signed URLs for private content.</p> <p>The <code>Signer</code> complex type lists the AWS account number of the trusted signer or <code>self</code> if the signer is the AWS account that created the distribution. The <code>Signer</code> element also includes the IDs of any active CloudFront key pairs that are associated with the trusted signer's AWS account. If no <code>KeyPairId</code> element appears for a <code>Signer</code>, that signer can't create signed URLs. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+    "ActiveTrustedKeyGroups": {
+      "base": "<p>A list of key groups, and the public keys in each key group, that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
       "refs": {
-        "Distribution$ActiveTrustedSigners": "<p>CloudFront automatically adds this element to the response only if you've set up the distribution to serve private content with signed URLs. The element lists the key pair IDs that CloudFront is aware of for each trusted signer. The <code>Signer</code> child element lists the AWS account number of the trusted signer (or an empty <code>Self</code> element if the signer is you). The <code>Signer</code> element also includes the IDs of any active key pairs associated with the trusted signer's AWS account. If no <code>KeyPairId</code> element appears for a <code>Signer</code>, that signer can't create working signed URLs.</p>",
+        "Distribution$ActiveTrustedKeyGroups": "<p>CloudFront automatically adds this field to the response if you’ve configured a cache behavior in this distribution to serve private content using key groups. This field contains a list of key groups and the public keys in each key group that CloudFront can use to verify the signatures of signed URLs or signed cookies.</p>"
+      }
+    },
+    "ActiveTrustedSigners": {
+      "base": "<p>A list of AWS accounts and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
+      "refs": {
+        "Distribution$ActiveTrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>CloudFront automatically adds this field to the response if you’ve configured a cache behavior in this distribution to serve private content using trusted signers. This field contains a list of AWS account IDs and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs or signed cookies.</p>",
         "StreamingDistribution$ActiveTrustedSigners": "<p>A complex type that lists the AWS accounts, if any, that you included in the <code>TrustedSigners</code> complex type for this distribution. These are the accounts that you want to allow to create signed URLs for private content.</p> <p>The <code>Signer</code> complex type lists the AWS account number of the trusted signer or <code>self</code> if the signer is the AWS account that created the distribution. The <code>Signer</code> element also includes the IDs of any active CloudFront key pairs that are associated with the trusted signer's AWS account. If no <code>KeyPairId</code> element appears for a <code>Signer</code>, that signer can't create signed URLs.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
       }
     },
@@ -122,7 +135,7 @@
     "AwsAccountNumberList": {
       "base": null,
       "refs": {
-        "TrustedSigners$Items": "<p> <b>Optional</b>: A complex type that contains trusted signers for this cache behavior. If <code>Quantity</code> is <code>0</code>, you can omit <code>Items</code>.</p>"
+        "TrustedSigners$Items": "<p>A list of AWS account identifiers.</p>"
       }
     },
     "BatchTooLarge": {
@@ -426,6 +439,16 @@
       "refs": {
       }
     },
+    "CreateKeyGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateKeyGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateMonitoringSubscriptionRequest": {
       "base": null,
       "refs": {
@@ -549,6 +572,11 @@
       "refs": {
       }
     },
+    "DeleteKeyGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteMonitoringSubscriptionRequest": {
       "base": null,
       "refs": {
@@ -613,6 +641,7 @@
       "base": "<p>A list of distribution IDs.</p>",
       "refs": {
         "ListDistributionsByCachePolicyIdResult$DistributionIdList": "<p>A list of distribution IDs.</p>",
+        "ListDistributionsByKeyGroupResult$DistributionIdList": null,
         "ListDistributionsByOriginRequestPolicyIdResult$DistributionIdList": "<p>A list of distribution IDs.</p>"
       }
     },
@@ -936,6 +965,26 @@
       "refs": {
       }
     },
+    "GetKeyGroupConfigRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKeyGroupConfigResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKeyGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetKeyGroupResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetMonitoringSubscriptionRequest": {
       "base": null,
       "refs": {
@@ -1216,16 +1265,70 @@
         "CookiePreference$Forward": "<p>This field is deprecated. We recommend that you use a cache policy or an origin request policy instead of this field.</p> <p>If you want to include cookies in the cache key, use a cache policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-the-cache-key.html#cache-key-create-cache-policy\">Creating cache policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you want to send cookies to the origin but not include them in the cache key, use origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/controlling-origin-requests.html#origin-request-create-origin-request-policy\">Creating origin request policies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>Specifies which cookies to forward to the origin for this cache behavior: all, none, or the list of cookies specified in the <code>WhitelistedNames</code> complex type.</p> <p>Amazon S3 doesn't process cookies. When the cache behavior is forwarding requests to an Amazon S3 origin, specify none for the <code>Forward</code> element.</p>"
       }
     },
+    "KGKeyPairIds": {
+      "base": "<p>A list of identifiers for the public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
+      "refs": {
+        "KGKeyPairIdsList$member": null
+      }
+    },
+    "KGKeyPairIdsList": {
+      "base": null,
+      "refs": {
+        "ActiveTrustedKeyGroups$Items": "<p>A list of key groups, including the identifiers of the public keys in each key group that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>"
+      }
+    },
+    "KeyGroup": {
+      "base": "<p>A key group.</p> <p>A key group contains a list of public keys that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p>",
+      "refs": {
+        "CreateKeyGroupResult$KeyGroup": "<p>The key group that was just created.</p>",
+        "GetKeyGroupResult$KeyGroup": "<p>The key group.</p>",
+        "KeyGroupSummary$KeyGroup": "<p>A key group.</p>",
+        "UpdateKeyGroupResult$KeyGroup": "<p>The key group that was just updated.</p>"
+      }
+    },
+    "KeyGroupAlreadyExists": {
+      "base": "<p>A key group with this name already exists. You must provide a unique name. To modify an existing key group, use <code>UpdateKeyGroup</code>.</p>",
+      "refs": {
+      }
+    },
+    "KeyGroupConfig": {
+      "base": "<p>A key group configuration.</p> <p>A key group contains a list of public keys that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">CloudFront signed URLs and signed cookies</a>.</p>",
+      "refs": {
+        "CreateKeyGroupRequest$KeyGroupConfig": "<p>A key group configuration.</p>",
+        "GetKeyGroupConfigResult$KeyGroupConfig": "<p>The key group configuration.</p>",
+        "KeyGroup$KeyGroupConfig": "<p>The key group configuration.</p>",
+        "UpdateKeyGroupRequest$KeyGroupConfig": "<p>The key group configuration.</p>"
+      }
+    },
+    "KeyGroupList": {
+      "base": "<p>A list of key groups.</p>",
+      "refs": {
+        "ListKeyGroupsResult$KeyGroupList": "<p>A list of key groups.</p>"
+      }
+    },
+    "KeyGroupSummary": {
+      "base": "<p>Contains information about a key group.</p>",
+      "refs": {
+        "KeyGroupSummaryList$member": null
+      }
+    },
+    "KeyGroupSummaryList": {
+      "base": null,
+      "refs": {
+        "KeyGroupList$Items": "<p>A list of key groups.</p>"
+      }
+    },
     "KeyPairIdList": {
       "base": null,
       "refs": {
-        "KeyPairIds$Items": "<p>A complex type that lists the active CloudFront key pairs, if any, that are associated with <code>AwsAccountNumber</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ActiveTrustedSigners.html\">ActiveTrustedSigners</a>.</p>"
+        "KeyPairIds$Items": "<p>A list of CloudFront key pair identifiers.</p>"
       }
     },
     "KeyPairIds": {
-      "base": "<p>A complex type that lists the active CloudFront key pairs, if any, that are associated with <code>AwsAccountNumber</code>. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ActiveTrustedSigners.html\">ActiveTrustedSigners</a>.</p>",
+      "base": "<p>A list of CloudFront key pair identifiers.</p>",
       "refs": {
-        "Signer$KeyPairIds": "<p>A complex type that lists the active CloudFront key pairs, if any, that are associated with <code>AwsAccountNumber</code>.</p>"
+        "KGKeyPairIds$KeyPairIds": null,
+        "Signer$KeyPairIds": "<p>A list of CloudFront key pair identifiers.</p>"
       }
     },
     "KinesisStreamConfig": {
@@ -1285,6 +1388,16 @@
       }
     },
     "ListDistributionsByCachePolicyIdResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDistributionsByKeyGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDistributionsByKeyGroupResult": {
       "base": null,
       "refs": {
       }
@@ -1356,6 +1469,16 @@
     },
     "ListInvalidationsResult": {
       "base": "<p>The returned result of the corresponding request. </p>",
+      "refs": {
+      }
+    },
+    "ListKeyGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListKeyGroupsResult": {
+      "base": null,
       "refs": {
       }
     },
@@ -1733,11 +1856,11 @@
       }
     },
     "PublicKey": {
-      "base": "<p>A complex data type of public keys you add to CloudFront to use with features like field-level encryption.</p>",
+      "base": "<p>A public key that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
       "refs": {
-        "CreatePublicKeyResult$PublicKey": "<p>Returned when you add a public key.</p>",
-        "GetPublicKeyResult$PublicKey": "<p>Return the public key.</p>",
-        "UpdatePublicKeyResult$PublicKey": "<p>Return the results of updating the public key.</p>"
+        "CreatePublicKeyResult$PublicKey": "<p>The public key.</p>",
+        "GetPublicKeyResult$PublicKey": "<p>The public key.</p>",
+        "UpdatePublicKeyResult$PublicKey": "<p>The public key.</p>"
       }
     },
     "PublicKeyAlreadyExists": {
@@ -1746,12 +1869,18 @@
       }
     },
     "PublicKeyConfig": {
-      "base": "<p>Information about a public key you add to CloudFront to use with features like field-level encryption.</p>",
+      "base": "<p>Configuration information about a public key that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
       "refs": {
-        "CreatePublicKeyRequest$PublicKeyConfig": "<p>The request to add a public key to CloudFront.</p>",
-        "GetPublicKeyConfigResult$PublicKeyConfig": "<p>Return the result for the public key configuration.</p>",
-        "PublicKey$PublicKeyConfig": "<p>A complex data type for a public key you add to CloudFront to use with features like field-level encryption.</p>",
-        "UpdatePublicKeyRequest$PublicKeyConfig": "<p>Request to update public key information.</p>"
+        "CreatePublicKeyRequest$PublicKeyConfig": "<p>A CloudFront public key configuration.</p>",
+        "GetPublicKeyConfigResult$PublicKeyConfig": "<p>A public key configuration.</p>",
+        "PublicKey$PublicKeyConfig": "<p>Configuration information about a public key that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
+        "UpdatePublicKeyRequest$PublicKeyConfig": "<p>A public key configuration.</p>"
+      }
+    },
+    "PublicKeyIdList": {
+      "base": null,
+      "refs": {
+        "KeyGroupConfig$Items": "<p>A list of the identifiers of the public keys in the key group.</p>"
       }
     },
     "PublicKeyInUse": {
@@ -1760,13 +1889,13 @@
       }
     },
     "PublicKeyList": {
-      "base": "<p>A list of public keys you've added to CloudFront to use with features like field-level encryption.</p>",
+      "base": "<p>A list of public keys that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
       "refs": {
         "ListPublicKeysResult$PublicKeyList": "<p>Returns a list of all public keys that have been added to CloudFront for this account.</p>"
       }
     },
     "PublicKeySummary": {
-      "base": "<p>A complex data type for public key information. </p>",
+      "base": "<p>Contains information about a public key.</p>",
       "refs": {
         "PublicKeySummaryList$member": null
       }
@@ -1774,7 +1903,7 @@
     "PublicKeySummaryList": {
       "base": null,
       "refs": {
-        "PublicKeyList$Items": "<p>An array of information about a public key you add to CloudFront to use with features like field-level encryption.</p>"
+        "PublicKeyList$Items": "<p>A list of public keys.</p>"
       }
     },
     "QueryArgProfile": {
@@ -1883,6 +2012,11 @@
         "UntagResourceRequest$Resource": "<p> An ARN of a CloudFront resource.</p>"
       }
     },
+    "ResourceInUse": {
+      "base": "<p>Cannot delete this resource because it is in use.</p>",
+      "refs": {
+      }
+    },
     "Restrictions": {
       "base": "<p>A complex type that identifies ways in which you want to restrict distribution of your content.</p>",
       "refs": {
@@ -1910,7 +2044,7 @@
       }
     },
     "Signer": {
-      "base": "<p>A complex type that lists the AWS accounts that were included in the <code>TrustedSigners</code> complex type, as well as their active CloudFront key pair IDs, if any. </p>",
+      "base": "<p>A list of AWS accounts and the active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
       "refs": {
         "SignerList$member": null
       }
@@ -1918,7 +2052,7 @@
     "SignerList": {
       "base": null,
       "refs": {
-        "ActiveTrustedSigners$Items": "<p>A complex type that contains one <code>Signer</code> complex type for each trusted signer that is specified in the <code>TrustedSigners</code> complex type.</p>"
+        "ActiveTrustedSigners$Items": "<p>A list of AWS accounts and the identifiers of active CloudFront key pairs in each account that CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>"
       }
     },
     "SslProtocol": {
@@ -2110,6 +2244,11 @@
       "refs": {
       }
     },
+    "TooManyDistributionsAssociatedToKeyGroup": {
+      "base": "<p>The number of distributions that reference this key group is more than the maximum allowed. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyDistributionsAssociatedToOriginRequestPolicy": {
       "base": "<p>The maximum number of distributions have been associated with the specified origin request policy. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
@@ -2175,6 +2314,16 @@
       "refs": {
       }
     },
+    "TooManyKeyGroups": {
+      "base": "<p>You have reached the maximum number of key groups for this AWS account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
+    "TooManyKeyGroupsAssociatedToDistribution": {
+      "base": "<p>The number of key groups referenced by this distribution is more than the maximum allowed. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+      "refs": {
+      }
+    },
     "TooManyLambdaFunctionAssociations": {
       "base": "<p>Your request contains more Lambda function associations than are allowed per distribution.</p>",
       "refs": {
@@ -2202,6 +2351,11 @@
     },
     "TooManyPublicKeys": {
       "base": "<p>The maximum number of public keys for field-level encryption have been created. To create a new public key, delete one of the existing keys.</p>",
+      "refs": {
+      }
+    },
+    "TooManyPublicKeysInKeyGroup": {
+      "base": "<p>The number of public keys in this key group is more than the maximum allowed. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html\">Quotas</a> (formerly known as limits) in the <i>Amazon CloudFront Developer Guide</i>.</p>",
       "refs": {
       }
     },
@@ -2240,16 +2394,34 @@
       "refs": {
       }
     },
+    "TrustedKeyGroupDoesNotExist": {
+      "base": "<p>The specified key group does not exist.</p>",
+      "refs": {
+      }
+    },
+    "TrustedKeyGroupIdList": {
+      "base": null,
+      "refs": {
+        "TrustedKeyGroups$Items": "<p>A list of key groups identifiers.</p>"
+      }
+    },
+    "TrustedKeyGroups": {
+      "base": "<p>A list of key groups whose public keys CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
+      "refs": {
+        "CacheBehavior$TrustedKeyGroups": "<p>A list of key groups that CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted key groups, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "DefaultCacheBehavior$TrustedKeyGroups": "<p>A list of key groups that CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted key groups, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with a private key whose corresponding public key is in the key group. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>"
+      }
+    },
     "TrustedSignerDoesNotExist": {
       "base": "<p>One or more of your trusted signers don't exist.</p>",
       "refs": {
       }
     },
     "TrustedSigners": {
-      "base": "<p>A complex type that specifies the AWS accounts, if any, that you want to allow to create signed URLs for private content.</p> <p>If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i> Amazon CloudFront Developer Guide</i>.</p> <p>If you don't want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>.</p> <p>To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it's currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p> <p>For more information about updating the distribution configuration, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/DistributionConfig.html\">DistributionConfig</a> in the <i>Amazon CloudFront API Reference</i>.</p>",
+      "base": "<p>A list of AWS accounts whose public keys CloudFront can use to verify the signatures of signed URLs and signed cookies.</p>",
       "refs": {
-        "CacheBehavior$TrustedSigners": "<p>A complex type that specifies the AWS accounts, if any, that you want to allow to create signed URLs for private content.</p> <p>If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content with Signed URLs and Signed Cookies</a> in the <i>Amazon CloudFront Developer Guide</i>. </p> <p>If you don’t want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>.</p> <p>To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it’s currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p>",
-        "DefaultCacheBehavior$TrustedSigners": "<p>A complex type that specifies the AWS accounts, if any, that you want to allow to create signed URLs for private content.</p> <p>If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content with Signed URLs and Signed Cookies</a> in the <i>Amazon CloudFront Developer Guide</i>.</p> <p>If you don’t want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>.</p> <p>To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it’s currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p>",
+        "CacheBehavior$TrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>A list of AWS account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in the trusted signer’s AWS account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
+        "DefaultCacheBehavior$TrustedSigners": "<important> <p>We recommend using <code>TrustedKeyGroups</code> instead of <code>TrustedSigners</code>.</p> </important> <p>A list of AWS account IDs whose public keys CloudFront can use to validate signed URLs or signed cookies.</p> <p>When a cache behavior contains trusted signers, CloudFront requires signed URLs or signed cookies for all requests that match the cache behavior. The URLs or cookies must be signed with the private key of a CloudFront key pair in a trusted signer’s AWS account. The signed URL or cookie contains information about which public key CloudFront should use to verify the signature. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving private content</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "StreamingDistributionConfig$TrustedSigners": "<p>A complex type that specifies any AWS accounts that you want to permit to create signed URLs for private content. If you want the distribution to use signed URLs, include this element; if you want the distribution to use public URLs, remove this element. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>",
         "StreamingDistributionSummary$TrustedSigners": "<p>A complex type that specifies the AWS accounts, if any, that you want to allow to create signed URLs for private content. If you want to require signed URLs in requests for objects in the target origin that match the <code>PathPattern</code> for this cache behavior, specify <code>true</code> for <code>Enabled</code>, and specify the applicable values for <code>Quantity</code> and <code>Items</code>.If you don't want to require signed URLs in requests for objects that match <code>PathPattern</code>, specify <code>false</code> for <code>Enabled</code> and <code>0</code> for <code>Quantity</code>. Omit <code>Items</code>. To add, change, or remove one or more trusted signers, change <code>Enabled</code> to <code>true</code> (if it's currently <code>false</code>), change <code>Quantity</code> as applicable, and specify all of the trusted signers that you want to include in the updated distribution.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>. </p>"
       }
@@ -2305,6 +2477,16 @@
       }
     },
     "UpdateFieldLevelEncryptionProfileResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKeyGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateKeyGroupResult": {
       "base": null,
       "refs": {
       }
@@ -2366,7 +2548,8 @@
     "boolean": {
       "base": null,
       "refs": {
-        "ActiveTrustedSigners$Enabled": "<p>Enabled is <code>true</code> if any of the AWS accounts listed in the <code>TrustedSigners</code> complex type for this distribution have active CloudFront key pairs. If not, <code>Enabled</code> is <code>false</code>.</p>",
+        "ActiveTrustedKeyGroups$Enabled": "<p>This field is <code>true</code> if any of the key groups have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
+        "ActiveTrustedSigners$Enabled": "<p>This field is <code>true</code> if any of the AWS accounts in the list have active CloudFront key pairs that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
         "CacheBehavior$SmoothStreaming": "<p>Indicates whether you want to distribute media files in the Microsoft Smooth Streaming format using the origin that is associated with this cache behavior. If so, specify <code>true</code>; if not, specify <code>false</code>. If you specify <code>true</code> for <code>SmoothStreaming</code>, you can still distribute other content using this cache behavior if the content matches the value of <code>PathPattern</code>. </p>",
         "CacheBehavior$Compress": "<p>Whether you want CloudFront to automatically compress certain files for this cache behavior. If so, specify true; if not, specify false. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/ServingCompressedFiles.html\">Serving Compressed Files</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "CloudFrontOriginAccessIdentityList$IsTruncated": "<p>A flag that indicates whether more origin access identities remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more items in the list.</p>",
@@ -2393,14 +2576,16 @@
         "StreamingDistributionList$IsTruncated": "<p>A flag that indicates whether more streaming distributions remain to be listed. If your results were truncated, you can make a follow-up pagination request using the <code>Marker</code> request parameter to retrieve more distributions in the list. </p>",
         "StreamingDistributionSummary$Enabled": "<p>Whether the distribution is enabled to accept end user requests for content.</p>",
         "StreamingLoggingConfig$Enabled": "<p>Specifies whether you want CloudFront to save access logs to an Amazon S3 bucket. If you don't want to enable logging when you create a streaming distribution or if you want to disable logging for an existing streaming distribution, specify <code>false</code> for <code>Enabled</code>, and specify <code>empty Bucket</code> and <code>Prefix</code> elements. If you specify <code>false</code> for <code>Enabled</code> but you specify values for <code>Bucket</code> and <code>Prefix</code>, the values are automatically deleted. </p>",
-        "TrustedSigners$Enabled": "<p>Specifies whether you want to require viewers to use signed URLs to access the files specified by <code>PathPattern</code> and <code>TargetOriginId</code>.</p>",
+        "TrustedKeyGroups$Enabled": "<p>This field is <code>true</code> if any of the key groups in the list have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
+        "TrustedSigners$Enabled": "<p>This field is <code>true</code> if any of the AWS accounts have public keys that CloudFront can use to verify the signatures of signed URLs and signed cookies. If not, this field is <code>false</code>.</p>",
         "ViewerCertificate$CloudFrontDefaultCertificate": "<p>If the distribution uses the CloudFront domain name such as <code>d111111abcdef8.cloudfront.net</code>, set this field to <code>true</code>.</p> <p>If the distribution uses <code>Aliases</code> (alternate domain names or CNAMEs), set this field to <code>false</code> and specify values for the following fields:</p> <ul> <li> <p> <code>ACMCertificateArn</code> or <code>IAMCertificateId</code> (specify a value for one, not both)</p> </li> <li> <p> <code>MinimumProtocolVersion</code> </p> </li> <li> <p> <code>SSLSupportMethod</code> </p> </li> </ul>"
       }
     },
     "integer": {
       "base": null,
       "refs": {
-        "ActiveTrustedSigners$Quantity": "<p>The number of trusted signers specified in the <code>TrustedSigners</code> complex type.</p>",
+        "ActiveTrustedKeyGroups$Quantity": "<p>The number of key groups in the list.</p>",
+        "ActiveTrustedSigners$Quantity": "<p>The number of AWS accounts in the list.</p>",
         "Aliases$Quantity": "<p>The number of CNAME aliases, if any, that you want to associate with this distribution.</p>",
         "AllowedMethods$Quantity": "<p>The number of HTTP methods that you want CloudFront to forward to your origin. Valid values are 2 (for <code>GET</code> and <code>HEAD</code> requests), 3 (for <code>GET</code>, <code>HEAD</code>, and <code>OPTIONS</code> requests) and 7 (for <code>GET, HEAD, OPTIONS, PUT, PATCH, POST</code>, and <code>DELETE</code> requests).</p>",
         "CacheBehaviors$Quantity": "<p>The number of cache behaviors for this distribution. </p>",
@@ -2433,7 +2618,9 @@
         "Headers$Quantity": "<p>The number of header names in the <code>Items</code> list.</p>",
         "InvalidationList$MaxItems": "<p>The value that you provided for the <code>MaxItems</code> request parameter.</p>",
         "InvalidationList$Quantity": "<p>The number of invalidation batches that were created by the current AWS account. </p>",
-        "KeyPairIds$Quantity": "<p>The number of active CloudFront key pairs for <code>AwsAccountNumber</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/cloudfront/latest/APIReference/API_ActiveTrustedSigners.html\">ActiveTrustedSigners</a>.</p>",
+        "KeyGroupList$MaxItems": "<p>The maximum number of key groups requested.</p>",
+        "KeyGroupList$Quantity": "<p>The number of key groups returned in the response.</p>",
+        "KeyPairIds$Quantity": "<p>The number of key pair identifiers in the list.</p>",
         "LambdaFunctionAssociations$Quantity": "<p>The number of Lambda function associations for this cache behavior.</p>",
         "Origin$ConnectionAttempts": "<p>The number of times that CloudFront attempts to connect to the origin. The minimum number is 1, the maximum is 3, and the default (if you don’t specify otherwise) is 3.</p> <p>For a custom origin (including an Amazon S3 bucket that’s configured with static website hosting), this value also specifies the number of times that CloudFront attempts to get a response from the origin, in the case of an <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValuesOriginResponseTimeout\">Origin Response Timeout</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-attempts\">Origin Connection Attempts</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "Origin$ConnectionTimeout": "<p>The number of seconds that CloudFront waits when trying to establish a connection to the origin. The minimum timeout is 1 second, the maximum is 10 seconds, and the default (if you don’t specify otherwise) is 10 seconds.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#origin-connection-timeout\">Origin Connection Timeout</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
@@ -2444,8 +2631,8 @@
         "OriginSslProtocols$Quantity": "<p>The number of SSL/TLS protocols that you want to allow CloudFront to use when establishing an HTTPS connection with this origin. </p>",
         "Origins$Quantity": "<p>The number of origins for this distribution.</p>",
         "Paths$Quantity": "<p>The number of invalidation paths specified for the objects that you want to invalidate.</p>",
-        "PublicKeyList$MaxItems": "<p>The maximum number of public keys you want in the response body. </p>",
-        "PublicKeyList$Quantity": "<p>The number of public keys you added to CloudFront to use with features like field-level encryption.</p>",
+        "PublicKeyList$MaxItems": "<p>The maximum number of public keys you want in the response.</p>",
+        "PublicKeyList$Quantity": "<p>The number of public keys in the list.</p>",
         "QueryArgProfiles$Quantity": "<p>Number of profiles for query argument-profile mapping for field-level encryption.</p>",
         "QueryStringCacheKeys$Quantity": "<p>The number of <code>whitelisted</code> query string parameters for a cache behavior.</p>",
         "QueryStringNames$Quantity": "<p>The number of query string names in the <code>Items</code> list.</p>",
@@ -2454,7 +2641,8 @@
         "StatusCodes$Quantity": "<p>The number of status codes.</p>",
         "StreamingDistributionList$MaxItems": "<p>The value you provided for the <code>MaxItems</code> request parameter. </p>",
         "StreamingDistributionList$Quantity": "<p>The number of streaming distributions that were created by the current AWS account. </p>",
-        "TrustedSigners$Quantity": "<p>The number of trusted signers for this cache behavior.</p>"
+        "TrustedKeyGroups$Quantity": "<p>The number of key groups in the list.</p>",
+        "TrustedSigners$Quantity": "<p>The number of AWS accounts in the list.</p>"
       }
     },
     "long": {
@@ -2525,11 +2713,13 @@
         "CreateFieldLevelEncryptionProfileResult$ETag": "<p>The current version of the field level encryption profile. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "CreateInvalidationRequest$DistributionId": "<p>The distribution's id.</p>",
         "CreateInvalidationResult$Location": "<p>The fully qualified URI of the distribution and invalidation batch request, including the <code>Invalidation ID</code>.</p>",
+        "CreateKeyGroupResult$Location": "<p>The URL of the key group.</p>",
+        "CreateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
         "CreateMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are enabling metrics for.</p>",
         "CreateOriginRequestPolicyResult$Location": "<p>The fully qualified URI of the origin request policy just created.</p>",
         "CreateOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",
-        "CreatePublicKeyResult$Location": "<p>The fully qualified URI of the new public key resource just created.</p>",
-        "CreatePublicKeyResult$ETag": "<p>The current version of the public key. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "CreatePublicKeyResult$Location": "<p>The URL of the public key.</p>",
+        "CreatePublicKeyResult$ETag": "<p>The identifier for this version of the public key.</p>",
         "CreateRealtimeLogConfigRequest$Name": "<p>A unique name to identify this real-time log configuration.</p>",
         "CreateStreamingDistributionResult$Location": "<p>The fully qualified URI of the new streaming distribution resource just created.</p>",
         "CreateStreamingDistributionResult$ETag": "<p>The current version of the streaming distribution created.</p>",
@@ -2552,6 +2742,8 @@
         "DeleteFieldLevelEncryptionConfigRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the configuration identity to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "DeleteFieldLevelEncryptionProfileRequest$Id": "<p>Request the ID of the profile you want to delete from CloudFront.</p>",
         "DeleteFieldLevelEncryptionProfileRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the profile to delete. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "DeleteKeyGroupRequest$Id": "<p>The identifier of the key group that you are deleting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
+        "DeleteKeyGroupRequest$IfMatch": "<p>The version of the key group that you are deleting. The version is the key group’s <code>ETag</code> value. To get the <code>ETag</code>, use <code>GetKeyGroup</code> or <code>GetKeyGroupConfig</code>.</p>",
         "DeleteMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are disabling metrics for.</p>",
         "DeleteOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy that you are deleting. To get the identifier, you can use <code>ListOriginRequestPolicies</code>.</p>",
         "DeleteOriginRequestPolicyRequest$IfMatch": "<p>The version of the origin request policy that you are deleting. The version is the origin request policy’s <code>ETag</code> value, which you can get using <code>ListOriginRequestPolicies</code>, <code>GetOriginRequestPolicy</code>, or <code>GetOriginRequestPolicyConfig</code>.</p>",
@@ -2627,15 +2819,19 @@
         "GetFieldLevelEncryptionResult$ETag": "<p>The current version of the field level encryption configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "GetInvalidationRequest$DistributionId": "<p>The distribution's ID.</p>",
         "GetInvalidationRequest$Id": "<p>The identifier for the invalidation request, for example, <code>IDFDVBD632BHDS5</code>.</p>",
+        "GetKeyGroupConfigRequest$Id": "<p>The identifier of the key group whose configuration you are getting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
+        "GetKeyGroupConfigResult$ETag": "<p>The identifier for this version of the key group.</p>",
+        "GetKeyGroupRequest$Id": "<p>The identifier of the key group that you are getting. To get the identifier, use <code>ListKeyGroups</code>.</p>",
+        "GetKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
         "GetMonitoringSubscriptionRequest$DistributionId": "<p>The ID of the distribution that you are getting metrics information for.</p>",
         "GetOriginRequestPolicyConfigRequest$Id": "<p>The unique identifier for the origin request policy. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
         "GetOriginRequestPolicyConfigResult$ETag": "<p>The current version of the origin request policy.</p>",
         "GetOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy. If the origin request policy is attached to a distribution’s cache behavior, you can get the policy’s identifier using <code>ListDistributions</code> or <code>GetDistribution</code>. If the origin request policy is not attached to a cache behavior, you can get the identifier using <code>ListOriginRequestPolicies</code>.</p>",
         "GetOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",
-        "GetPublicKeyConfigRequest$Id": "<p>Request the ID for the public key configuration.</p>",
-        "GetPublicKeyConfigResult$ETag": "<p>The current version of the public key configuration. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
-        "GetPublicKeyRequest$Id": "<p>Request the ID for the public key.</p>",
-        "GetPublicKeyResult$ETag": "<p>The current version of the public key. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "GetPublicKeyConfigRequest$Id": "<p>The identifier of the public key whose configuration you are getting.</p>",
+        "GetPublicKeyConfigResult$ETag": "<p>The identifier for this version of the public key configuration.</p>",
+        "GetPublicKeyRequest$Id": "<p>The identifier of the public key you are getting.</p>",
+        "GetPublicKeyResult$ETag": "<p>The identifier for this version of the public key.</p>",
         "GetRealtimeLogConfigRequest$Name": "<p>The name of the real-time log configuration to get.</p>",
         "GetRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) of the real-time log configuration to get.</p>",
         "GetStreamingDistributionConfigRequest$Id": "<p>The streaming distribution's ID.</p>",
@@ -2677,6 +2873,12 @@
         "InvalidationList$NextMarker": "<p>If <code>IsTruncated</code> is <code>true</code>, this element is present and contains the value that you can use for the <code>Marker</code> request parameter to continue listing your invalidation batches where they left off.</p>",
         "InvalidationSummary$Id": "<p>The unique ID for an invalidation request.</p>",
         "InvalidationSummary$Status": "<p>The status of an invalidation request.</p>",
+        "KGKeyPairIds$KeyGroupId": "<p>The identifier of the key group that contains the public keys.</p>",
+        "KeyGroup$Id": "<p>The identifier for the key group.</p>",
+        "KeyGroupAlreadyExists$Message": null,
+        "KeyGroupConfig$Name": "<p>A name to identify the key group.</p>",
+        "KeyGroupConfig$Comment": "<p>A comment to describe the key group.</p>",
+        "KeyGroupList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing key groups.</p>",
         "KeyPairIdList$member": null,
         "KinesisStreamConfig$RoleARN": "<p>The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that CloudFront can use to send real-time log data to your Kinesis data stream.</p> <p>For more information the IAM role, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/real-time-logs.html#understand-real-time-log-config-iam-role\">Real-time log configuration IAM role</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
         "KinesisStreamConfig$StreamARN": "<p>The Amazon Resource Name (ARN) of the Kinesis data stream where you are sending real-time log data.</p>",
@@ -2687,6 +2889,9 @@
         "ListDistributionsByCachePolicyIdRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of distribution IDs. The response includes distribution IDs in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListDistributionsByCachePolicyIdRequest$MaxItems": "<p>The maximum number of distribution IDs that you want in the response.</p>",
         "ListDistributionsByCachePolicyIdRequest$CachePolicyId": "<p>The ID of the cache policy whose associated distribution IDs you want to list.</p>",
+        "ListDistributionsByKeyGroupRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of distribution IDs. The response includes distribution IDs in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
+        "ListDistributionsByKeyGroupRequest$MaxItems": "<p>The maximum number of distribution IDs that you want in the response.</p>",
+        "ListDistributionsByKeyGroupRequest$KeyGroupId": "<p>The ID of the key group whose associated distribution IDs you are listing.</p>",
         "ListDistributionsByOriginRequestPolicyIdRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of distribution IDs. The response includes distribution IDs in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListDistributionsByOriginRequestPolicyIdRequest$MaxItems": "<p>The maximum number of distribution IDs that you want in the response.</p>",
         "ListDistributionsByOriginRequestPolicyIdRequest$OriginRequestPolicyId": "<p>The ID of the origin request policy whose associated distribution IDs you want to list.</p>",
@@ -2706,6 +2911,8 @@
         "ListInvalidationsRequest$DistributionId": "<p>The distribution's ID.</p>",
         "ListInvalidationsRequest$Marker": "<p>Use this parameter when paginating results to indicate where to begin in your list of invalidation batches. Because the results are returned in decreasing order from most recent to oldest, the most recent results are on the first page, the second page will contain earlier results, and so on. To get the next page of results, set <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response. This value is the same as the ID of the last invalidation batch on that page. </p>",
         "ListInvalidationsRequest$MaxItems": "<p>The maximum number of invalidation batches that you want in the response body.</p>",
+        "ListKeyGroupsRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of key groups. The response includes key groups in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
+        "ListKeyGroupsRequest$MaxItems": "<p>The maximum number of key groups that you want in the response.</p>",
         "ListOriginRequestPoliciesRequest$Marker": "<p>Use this field when paginating results to indicate where to begin in your list of origin request policies. The response includes origin request policies in the list that occur after the marker. To get the next page of the list, set this field’s value to the value of <code>NextMarker</code> from the current page’s response.</p>",
         "ListOriginRequestPoliciesRequest$MaxItems": "<p>The maximum number of origin request policies that you want in the response.</p>",
         "ListPublicKeysRequest$Marker": "<p>Use this when paginating results to indicate where to begin in your list of public keys. The results include public keys in the list that occur after the marker. To get the next page of results, set the <code>Marker</code> to the value of the <code>NextMarker</code> from the current page's response (which is also the ID of the last public key on that page). </p>",
@@ -2745,18 +2952,19 @@
         "OriginRequestPolicyList$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing origin request policies where you left off.</p>",
         "PathList$member": null,
         "PreconditionFailed$Message": null,
-        "PublicKey$Id": "<p>A unique ID assigned to a public key you've added to CloudFront.</p>",
+        "PublicKey$Id": "<p>The identifier of the public key.</p>",
         "PublicKeyAlreadyExists$Message": null,
-        "PublicKeyConfig$CallerReference": "<p>A unique number that ensures that the request can't be replayed.</p>",
-        "PublicKeyConfig$Name": "<p>The name for a public key you add to CloudFront to use with features like field-level encryption.</p>",
-        "PublicKeyConfig$EncodedKey": "<p>The encoded public key that you want to add to CloudFront to use with features like field-level encryption.</p>",
-        "PublicKeyConfig$Comment": "<p>An optional comment about a public key.</p>",
+        "PublicKeyConfig$CallerReference": "<p>A string included in the request to help make sure that the request can’t be replayed.</p>",
+        "PublicKeyConfig$Name": "<p>A name to help identify the public key.</p>",
+        "PublicKeyConfig$EncodedKey": "<p>The public key that you can use with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">signed URLs and signed cookies</a>, or with <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/field-level-encryption.html\">field-level encryption</a>.</p>",
+        "PublicKeyConfig$Comment": "<p>A comment to describe the public key.</p>",
+        "PublicKeyIdList$member": null,
         "PublicKeyInUse$Message": null,
         "PublicKeyList$NextMarker": "<p>If there are more elements to be listed, this element is present and contains the value that you can use for the <code>Marker</code> request parameter to continue listing your public keys where you left off.</p>",
-        "PublicKeySummary$Id": "<p> ID for public key information summary. </p>",
-        "PublicKeySummary$Name": "<p> Name for public key information summary. </p>",
-        "PublicKeySummary$EncodedKey": "<p> Encoded key for public key information summary. </p>",
-        "PublicKeySummary$Comment": "<p> Comment for public key information summary. </p>",
+        "PublicKeySummary$Id": "<p>The identifier of the public key.</p>",
+        "PublicKeySummary$Name": "<p>A name to help identify the public key.</p>",
+        "PublicKeySummary$EncodedKey": "<p>The public key.</p>",
+        "PublicKeySummary$Comment": "<p>A comment to describe the public key.</p>",
         "QueryArgProfile$QueryArg": "<p>Query argument for field-level encryption query argument-profile mapping.</p>",
         "QueryArgProfile$ProfileId": "<p>ID of profile to use for field-level encryption query argument-profile mapping</p>",
         "QueryArgProfileEmpty$Message": null,
@@ -2768,10 +2976,11 @@
         "RealtimeLogConfigInUse$Message": null,
         "RealtimeLogConfigs$Marker": "<p>This parameter indicates where this list of real-time log configurations begins. This list includes real-time log configurations that occur after the marker.</p>",
         "RealtimeLogConfigs$NextMarker": "<p>If there are more items in the list than are in this response, this element is present. It contains the value that you should use in the <code>Marker</code> field of a subsequent request to continue listing real-time log configurations where you left off. </p>",
+        "ResourceInUse$Message": null,
         "S3Origin$DomainName": "<p>The DNS name of the Amazon S3 origin. </p>",
         "S3Origin$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the distribution. Use an origin access identity to configure the distribution so that end users can only access objects in an Amazon S3 bucket through CloudFront.</p> <p>If you want end users to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-restricting-access-to-s3.html\">Using an Origin Access Identity to Restrict Access to Your Amazon S3 Content</a> in the <i> Amazon CloudFront Developer Guide</i>.</p>",
         "S3OriginConfig$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the origin. Use an origin access identity to configure the origin so that viewers can <i>only</i> access objects in an Amazon S3 bucket through CloudFront. The format of the value is:</p> <p>origin-access-identity/cloudfront/<i>ID-of-origin-access-identity</i> </p> <p>where <code> <i>ID-of-origin-access-identity</i> </code> is the value that CloudFront returned in the <code>ID</code> element when you created the origin access identity.</p> <p>If you want viewers to be able to access objects using either the CloudFront URL or the Amazon S3 URL, specify an empty <code>OriginAccessIdentity</code> element.</p> <p>To delete the origin access identity from an existing distribution, update the distribution configuration and include an empty <code>OriginAccessIdentity</code> element.</p> <p>To replace the origin access identity, update the distribution configuration and specify the new origin access identity.</p> <p>For more information about the origin access identity, see <a href=\"https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html\">Serving Private Content through CloudFront</a> in the <i>Amazon CloudFront Developer Guide</i>.</p>",
-        "Signer$AwsAccountNumber": "<p>An AWS account that is included in the <code>TrustedSigners</code> complex type for this distribution. Valid values include:</p> <ul> <li> <p> <code>self</code>, which is the AWS account used to create the distribution.</p> </li> <li> <p>An AWS account number.</p> </li> </ul>",
+        "Signer$AwsAccountNumber": "<p>An AWS account number that contains active CloudFront key pairs that CloudFront can use to verify the signatures of signed URLs and signed cookies. If the AWS account that owns the key pairs is the same account that owns the CloudFront distribution, the value of this field is <code>self</code>.</p>",
         "StreamingDistribution$Id": "<p>The identifier for the RTMP distribution. For example: <code>EGTXBD79EXAMPLE</code>.</p>",
         "StreamingDistribution$ARN": "<p>The ARN (Amazon Resource Name) for the distribution. For example: <code>arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5</code>, where <code>123456789012</code> is your AWS account ID.</p>",
         "StreamingDistribution$Status": "<p>The current status of the RTMP distribution. When the status is <code>Deployed</code>, the distribution's information is propagated to all CloudFront edge locations.</p>",
@@ -2800,6 +3009,7 @@
         "TooManyDistributions$Message": null,
         "TooManyDistributionsAssociatedToCachePolicy$Message": null,
         "TooManyDistributionsAssociatedToFieldLevelEncryptionConfig$Message": null,
+        "TooManyDistributionsAssociatedToKeyGroup$Message": null,
         "TooManyDistributionsAssociatedToOriginRequestPolicy$Message": null,
         "TooManyDistributionsWithLambdaAssociations$Message": null,
         "TooManyDistributionsWithSingleFunctionARN$Message": null,
@@ -2813,12 +3023,15 @@
         "TooManyHeadersInForwardedValues$Message": null,
         "TooManyHeadersInOriginRequestPolicy$Message": null,
         "TooManyInvalidationsInProgress$Message": null,
+        "TooManyKeyGroups$Message": null,
+        "TooManyKeyGroupsAssociatedToDistribution$Message": null,
         "TooManyLambdaFunctionAssociations$Message": null,
         "TooManyOriginCustomHeaders$Message": null,
         "TooManyOriginGroupsPerDistribution$Message": null,
         "TooManyOriginRequestPolicies$Message": null,
         "TooManyOrigins$Message": null,
         "TooManyPublicKeys$Message": null,
+        "TooManyPublicKeysInKeyGroup$Message": null,
         "TooManyQueryStringParameters$Message": null,
         "TooManyQueryStringsInCachePolicy$Message": null,
         "TooManyQueryStringsInOriginRequestPolicy$Message": null,
@@ -2826,6 +3039,8 @@
         "TooManyStreamingDistributionCNAMEs$Message": null,
         "TooManyStreamingDistributions$Message": null,
         "TooManyTrustedSigners$Message": null,
+        "TrustedKeyGroupDoesNotExist$Message": null,
+        "TrustedKeyGroupIdList$member": null,
         "TrustedSignerDoesNotExist$Message": null,
         "UpdateCachePolicyRequest$Id": "<p>The unique identifier for the cache policy that you are updating. The identifier is returned in a cache behavior’s <code>CachePolicyId</code> field in the response to <code>GetDistributionConfig</code>.</p>",
         "UpdateCachePolicyRequest$IfMatch": "<p>The version of the cache policy that you are updating. The version is returned in the cache policy’s <code>ETag</code> field in the response to <code>GetCachePolicyConfig</code>.</p>",
@@ -2842,12 +3057,15 @@
         "UpdateFieldLevelEncryptionProfileRequest$Id": "<p>The ID of the field-level encryption profile request. </p>",
         "UpdateFieldLevelEncryptionProfileRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the profile identity to update. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
         "UpdateFieldLevelEncryptionProfileResult$ETag": "<p>The result of the field-level encryption profile request. </p>",
+        "UpdateKeyGroupRequest$Id": "<p>The identifier of the key group that you are updating.</p>",
+        "UpdateKeyGroupRequest$IfMatch": "<p>The version of the key group that you are updating. The version is the key group’s <code>ETag</code> value.</p>",
+        "UpdateKeyGroupResult$ETag": "<p>The identifier for this version of the key group.</p>",
         "UpdateOriginRequestPolicyRequest$Id": "<p>The unique identifier for the origin request policy that you are updating. The identifier is returned in a cache behavior’s <code>OriginRequestPolicyId</code> field in the response to <code>GetDistributionConfig</code>.</p>",
         "UpdateOriginRequestPolicyRequest$IfMatch": "<p>The version of the origin request policy that you are updating. The version is returned in the origin request policy’s <code>ETag</code> field in the response to <code>GetOriginRequestPolicyConfig</code>.</p>",
         "UpdateOriginRequestPolicyResult$ETag": "<p>The current version of the origin request policy.</p>",
-        "UpdatePublicKeyRequest$Id": "<p>ID of the public key to be updated.</p>",
+        "UpdatePublicKeyRequest$Id": "<p>The identifier of the public key that you are updating.</p>",
         "UpdatePublicKeyRequest$IfMatch": "<p>The value of the <code>ETag</code> header that you received when retrieving the public key to update. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
-        "UpdatePublicKeyResult$ETag": "<p>The current version of the update public key result. For example: <code>E2QWRUHAPOMQZL</code>.</p>",
+        "UpdatePublicKeyResult$ETag": "<p>The identifier of the current version of the public key.</p>",
         "UpdateRealtimeLogConfigRequest$Name": "<p>The name for this real-time log configuration.</p>",
         "UpdateRealtimeLogConfigRequest$ARN": "<p>The Amazon Resource Name (ARN) for this real-time log configuration.</p>",
         "UpdateStreamingDistributionRequest$Id": "<p>The streaming distribution's id.</p>",
@@ -2870,9 +3088,10 @@
         "FieldLevelEncryptionSummary$LastModifiedTime": "<p>The last time that the summary of field-level encryption items was modified.</p>",
         "Invalidation$CreateTime": "<p>The date and time the invalidation request was first made. </p>",
         "InvalidationSummary$CreateTime": "<p>The time that an invalidation request was created.</p>",
+        "KeyGroup$LastModifiedTime": "<p>The date and time when the key group was last modified.</p>",
         "OriginRequestPolicy$LastModifiedTime": "<p>The date and time when the origin request policy was last modified.</p>",
-        "PublicKey$CreatedTime": "<p>A time you added a public key to CloudFront.</p>",
-        "PublicKeySummary$CreatedTime": "<p> Creation time for public key information summary. </p>",
+        "PublicKey$CreatedTime": "<p>The date and time when the public key was uploaded.</p>",
+        "PublicKeySummary$CreatedTime": "<p>The date and time when the public key was uploaded.</p>",
         "StreamingDistribution$LastModifiedTime": "<p>The date and time that the distribution was last modified. </p>",
         "StreamingDistributionSummary$LastModifiedTime": "<p>The date and time the distribution was last modified.</p>"
       }

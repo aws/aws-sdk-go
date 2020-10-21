@@ -644,9 +644,7 @@
       "required":[
         "Name",
         "IndexId",
-        "Type",
-        "Configuration",
-        "RoleArn"
+        "Type"
       ],
       "members":{
         "Name":{"shape":"DataSourceName"},
@@ -656,7 +654,11 @@
         "Description":{"shape":"Description"},
         "Schedule":{"shape":"ScanSchedule"},
         "RoleArn":{"shape":"RoleArn"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateDataSourceResponse":{
@@ -681,7 +683,11 @@
         "S3Path":{"shape":"S3Path"},
         "RoleArn":{"shape":"RoleArn"},
         "Tags":{"shape":"TagList"},
-        "FileFormat":{"shape":"FaqFileFormat"}
+        "FileFormat":{"shape":"FaqFileFormat"},
+        "ClientToken":{
+          "shape":"ClientTokenName",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateFaqResponse":{
@@ -752,7 +758,7 @@
     },
     "DataSourceInclusionsExclusionsStringsMember":{
       "type":"string",
-      "max":50,
+      "max":150,
       "min":1
     },
     "DataSourceName":{
@@ -868,7 +874,8 @@
         "DATABASE",
         "SALESFORCE",
         "ONEDRIVE",
-        "SERVICENOW"
+        "SERVICENOW",
+        "CUSTOM"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -1035,7 +1042,7 @@
     "Description":{
       "type":"string",
       "max":1000,
-      "min":1,
+      "min":0,
       "pattern":"^\\P{C}*$"
     },
     "Document":{
@@ -1720,6 +1727,7 @@
       "members":{
         "BucketName":{"shape":"S3BucketName"},
         "InclusionPrefixes":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
         "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
         "DocumentsMetadataConfiguration":{"shape":"DocumentsMetadataConfiguration"},
         "AccessControlListConfiguration":{"shape":"AccessControlListConfiguration"}

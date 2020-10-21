@@ -17275,6 +17275,10 @@ type Crawler struct {
 	// The name of the crawler.
 	Name *string `min:"1" type:"string"`
 
+	// A policy that specifies whether to crawl the entire dataset again, or to
+	// crawl only folders that were added since the last crawler run.
+	RecrawlPolicy *RecrawlPolicy `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of an IAM role that's used to access customer
 	// resources, such as Amazon Simple Storage Service (Amazon S3) data.
 	Role *string `type:"string"`
@@ -17365,6 +17369,12 @@ func (s *Crawler) SetLastUpdated(v time.Time) *Crawler {
 // SetName sets the Name field's value.
 func (s *Crawler) SetName(v string) *Crawler {
 	s.Name = &v
+	return s
+}
+
+// SetRecrawlPolicy sets the RecrawlPolicy field's value.
+func (s *Crawler) SetRecrawlPolicy(v *RecrawlPolicy) *Crawler {
+	s.RecrawlPolicy = v
 	return s
 }
 
@@ -17964,6 +17974,10 @@ type CreateCrawlerInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// A policy that specifies whether to crawl the entire dataset again, or to
+	// crawl only folders that were added since the last crawler run.
+	RecrawlPolicy *RecrawlPolicy `type:"structure"`
+
 	// The IAM role or Amazon Resource Name (ARN) of an IAM role used by the new
 	// crawler to access customer resources.
 	//
@@ -18064,6 +18078,12 @@ func (s *CreateCrawlerInput) SetDescription(v string) *CreateCrawlerInput {
 // SetName sets the Name field's value.
 func (s *CreateCrawlerInput) SetName(v string) *CreateCrawlerInput {
 	s.Name = &v
+	return s
+}
+
+// SetRecrawlPolicy sets the RecrawlPolicy field's value.
+func (s *CreateCrawlerInput) SetRecrawlPolicy(v *RecrawlPolicy) *CreateCrawlerInput {
+	s.RecrawlPolicy = v
 	return s
 }
 
@@ -31841,6 +31861,40 @@ func (s PutWorkflowRunPropertiesOutput) GoString() string {
 	return s.String()
 }
 
+// When crawling an Amazon S3 data source after the first crawl is complete,
+// specifies whether to crawl the entire dataset again or to crawl only folders
+// that were added since the last crawler run. For more information, see Incremental
+// Crawls in AWS Glue (https://docs.aws.amazon.com/glue/latest/dg/incremental-crawls.html)
+// in the developer guide.
+type RecrawlPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether to crawl the entire dataset again or to crawl only folders
+	// that were added since the last crawler run.
+	//
+	// A value of CRAWL_EVERYTHING specifies crawling the entire dataset again.
+	//
+	// A value of CRAWL_NEW_FOLDERS_ONLY specifies crawling only folders that were
+	// added since the last crawler run.
+	RecrawlBehavior *string `type:"string" enum:"RecrawlBehavior"`
+}
+
+// String returns the string representation
+func (s RecrawlPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecrawlPolicy) GoString() string {
+	return s.String()
+}
+
+// SetRecrawlBehavior sets the RecrawlBehavior field's value.
+func (s *RecrawlPolicy) SetRecrawlBehavior(v string) *RecrawlPolicy {
+	s.RecrawlBehavior = &v
+	return s
+}
+
 type ResetJobBookmarkInput struct {
 	_ struct{} `type:"structure"`
 
@@ -36079,6 +36133,10 @@ type UpdateCrawlerInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
+	// A policy that specifies whether to crawl the entire dataset again, or to
+	// crawl only folders that were added since the last crawler run.
+	RecrawlPolicy *RecrawlPolicy `type:"structure"`
+
 	// The IAM role or Amazon Resource Name (ARN) of an IAM role that is used by
 	// the new crawler to access customer resources.
 	Role *string `type:"string"`
@@ -36163,6 +36221,12 @@ func (s *UpdateCrawlerInput) SetDescription(v string) *UpdateCrawlerInput {
 // SetName sets the Name field's value.
 func (s *UpdateCrawlerInput) SetName(v string) *UpdateCrawlerInput {
 	s.Name = &v
+	return s
+}
+
+// SetRecrawlPolicy sets the RecrawlPolicy field's value.
+func (s *UpdateCrawlerInput) SetRecrawlPolicy(v *RecrawlPolicy) *UpdateCrawlerInput {
+	s.RecrawlPolicy = v
 	return s
 }
 
@@ -38790,6 +38854,22 @@ func PrincipalType_Values() []string {
 		PrincipalTypeUser,
 		PrincipalTypeRole,
 		PrincipalTypeGroup,
+	}
+}
+
+const (
+	// RecrawlBehaviorCrawlEverything is a RecrawlBehavior enum value
+	RecrawlBehaviorCrawlEverything = "CRAWL_EVERYTHING"
+
+	// RecrawlBehaviorCrawlNewFoldersOnly is a RecrawlBehavior enum value
+	RecrawlBehaviorCrawlNewFoldersOnly = "CRAWL_NEW_FOLDERS_ONLY"
+)
+
+// RecrawlBehavior_Values returns all elements of the RecrawlBehavior enum
+func RecrawlBehavior_Values() []string {
+	return []string{
+		RecrawlBehaviorCrawlEverything,
+		RecrawlBehaviorCrawlNewFoldersOnly,
 	}
 }
 

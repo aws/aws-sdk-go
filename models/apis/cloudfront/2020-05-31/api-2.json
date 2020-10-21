@@ -107,7 +107,10 @@
         {"shape":"NoSuchCachePolicy"},
         {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
         {"shape":"NoSuchOriginRequestPolicy"},
-        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"}
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"}
       ]
     },
     "CreateDistributionWithTags":{
@@ -169,7 +172,10 @@
         {"shape":"NoSuchCachePolicy"},
         {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
         {"shape":"NoSuchOriginRequestPolicy"},
-        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"}
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"}
       ]
     },
     "CreateFieldLevelEncryptionConfig":{
@@ -229,6 +235,22 @@
         {"shape":"BatchTooLarge"},
         {"shape":"TooManyInvalidationsInProgress"},
         {"shape":"InconsistentQuantities"}
+      ]
+    },
+    "CreateKeyGroup":{
+      "name":"CreateKeyGroup2020_05_31",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2020-05-31/key-group",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateKeyGroupRequest"},
+      "output":{"shape":"CreateKeyGroupResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"KeyGroupAlreadyExists"},
+        {"shape":"TooManyKeyGroups"},
+        {"shape":"TooManyPublicKeysInKeyGroup"}
       ]
     },
     "CreateMonitoringSubscription":{
@@ -295,7 +317,8 @@
       "errors":[
         {"shape":"RealtimeLogConfigAlreadyExists"},
         {"shape":"TooManyRealtimeLogConfigs"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"}
       ]
     },
     "CreateStreamingDistribution":{
@@ -428,6 +451,21 @@
         {"shape":"FieldLevelEncryptionProfileInUse"}
       ]
     },
+    "DeleteKeyGroup":{
+      "name":"DeleteKeyGroup2020_05_31",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2020-05-31/key-group/{Id}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteKeyGroupRequest"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchResource"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"ResourceInUse"}
+      ]
+    },
     "DeleteMonitoringSubscription":{
       "name":"DeleteMonitoringSubscription2020_05_31",
       "http":{
@@ -489,7 +527,8 @@
       "errors":[
         {"shape":"NoSuchRealtimeLogConfig"},
         {"shape":"RealtimeLogConfigInUse"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"}
       ]
     },
     "DeleteStreamingDistribution":{
@@ -652,6 +691,30 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "GetKeyGroup":{
+      "name":"GetKeyGroup2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-group/{Id}"
+      },
+      "input":{"shape":"GetKeyGroupRequest"},
+      "output":{"shape":"GetKeyGroupResult"},
+      "errors":[
+        {"shape":"NoSuchResource"}
+      ]
+    },
+    "GetKeyGroupConfig":{
+      "name":"GetKeyGroupConfig2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-group/{Id}/config"
+      },
+      "input":{"shape":"GetKeyGroupConfigRequest"},
+      "output":{"shape":"GetKeyGroupConfigResult"},
+      "errors":[
+        {"shape":"NoSuchResource"}
+      ]
+    },
     "GetMonitoringSubscription":{
       "name":"GetMonitoringSubscription2020_05_31",
       "http":{
@@ -731,7 +794,8 @@
       "output":{"shape":"GetRealtimeLogConfigResult"},
       "errors":[
         {"shape":"NoSuchRealtimeLogConfig"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"}
       ]
     },
     "GetStreamingDistribution":{
@@ -810,6 +874,19 @@
         {"shape":"NoSuchCachePolicy"},
         {"shape":"InvalidArgument"},
         {"shape":"AccessDenied"}
+      ]
+    },
+    "ListDistributionsByKeyGroup":{
+      "name":"ListDistributionsByKeyGroup2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/distributionsByKeyGroupId/{KeyGroupId}"
+      },
+      "input":{"shape":"ListDistributionsByKeyGroupRequest"},
+      "output":{"shape":"ListDistributionsByKeyGroupResult"},
+      "errors":[
+        {"shape":"NoSuchResource"},
+        {"shape":"InvalidArgument"}
       ]
     },
     "ListDistributionsByOriginRequestPolicyId":{
@@ -893,6 +970,18 @@
         {"shape":"AccessDenied"}
       ]
     },
+    "ListKeyGroups":{
+      "name":"ListKeyGroups2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/key-group"
+      },
+      "input":{"shape":"ListKeyGroupsRequest"},
+      "output":{"shape":"ListKeyGroupsResult"},
+      "errors":[
+        {"shape":"InvalidArgument"}
+      ]
+    },
     "ListOriginRequestPolicies":{
       "name":"ListOriginRequestPolicies2020_05_31",
       "http":{
@@ -926,7 +1015,12 @@
         "requestUri":"/2020-05-31/realtime-log-config"
       },
       "input":{"shape":"ListRealtimeLogConfigsRequest"},
-      "output":{"shape":"ListRealtimeLogConfigsResult"}
+      "output":{"shape":"ListRealtimeLogConfigsResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"},
+        {"shape":"NoSuchRealtimeLogConfig"}
+      ]
     },
     "ListStreamingDistributions":{
       "name":"ListStreamingDistributions2020_05_31",
@@ -1083,7 +1177,10 @@
         {"shape":"NoSuchCachePolicy"},
         {"shape":"TooManyDistributionsAssociatedToCachePolicy"},
         {"shape":"NoSuchOriginRequestPolicy"},
-        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"}
+        {"shape":"TooManyDistributionsAssociatedToOriginRequestPolicy"},
+        {"shape":"TooManyDistributionsAssociatedToKeyGroup"},
+        {"shape":"TooManyKeyGroupsAssociatedToDistribution"},
+        {"shape":"TrustedKeyGroupDoesNotExist"}
       ]
     },
     "UpdateFieldLevelEncryptionConfig":{
@@ -1129,6 +1226,23 @@
         {"shape":"FieldLevelEncryptionProfileSizeExceeded"},
         {"shape":"TooManyFieldLevelEncryptionEncryptionEntities"},
         {"shape":"TooManyFieldLevelEncryptionFieldPatterns"}
+      ]
+    },
+    "UpdateKeyGroup":{
+      "name":"UpdateKeyGroup2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/key-group/{Id}"
+      },
+      "input":{"shape":"UpdateKeyGroupRequest"},
+      "output":{"shape":"UpdateKeyGroupResult"},
+      "errors":[
+        {"shape":"InvalidIfMatchVersion"},
+        {"shape":"NoSuchResource"},
+        {"shape":"PreconditionFailed"},
+        {"shape":"KeyGroupAlreadyExists"},
+        {"shape":"InvalidArgument"},
+        {"shape":"TooManyPublicKeysInKeyGroup"}
       ]
     },
     "UpdateOriginRequestPolicy":{
@@ -1185,7 +1299,8 @@
       "output":{"shape":"UpdateRealtimeLogConfigResult"},
       "errors":[
         {"shape":"NoSuchRealtimeLogConfig"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"AccessDenied"}
       ]
     },
     "UpdateStreamingDistribution":{
@@ -1221,6 +1336,18 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "ActiveTrustedKeyGroups":{
+      "type":"structure",
+      "required":[
+        "Enabled",
+        "Quantity"
+      ],
+      "members":{
+        "Enabled":{"shape":"boolean"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"KGKeyPairIdsList"}
+      }
     },
     "ActiveTrustedSigners":{
       "type":"structure",
@@ -1303,13 +1430,13 @@
       "required":[
         "PathPattern",
         "TargetOriginId",
-        "TrustedSigners",
         "ViewerProtocolPolicy"
       ],
       "members":{
         "PathPattern":{"shape":"string"},
         "TargetOriginId":{"shape":"string"},
         "TrustedSigners":{"shape":"TrustedSigners"},
+        "TrustedKeyGroups":{"shape":"TrustedKeyGroups"},
         "ViewerProtocolPolicy":{"shape":"ViewerProtocolPolicy"},
         "AllowedMethods":{"shape":"AllowedMethods"},
         "SmoothStreaming":{"shape":"boolean"},
@@ -1854,6 +1981,35 @@
       },
       "payload":"Invalidation"
     },
+    "CreateKeyGroupRequest":{
+      "type":"structure",
+      "required":["KeyGroupConfig"],
+      "members":{
+        "KeyGroupConfig":{
+          "shape":"KeyGroupConfig",
+          "locationName":"KeyGroupConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        }
+      },
+      "payload":"KeyGroupConfig"
+    },
+    "CreateKeyGroupResult":{
+      "type":"structure",
+      "members":{
+        "KeyGroup":{"shape":"KeyGroup"},
+        "Location":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"Location"
+        },
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyGroup"
+    },
     "CreateMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":[
@@ -2071,12 +2227,12 @@
       "type":"structure",
       "required":[
         "TargetOriginId",
-        "TrustedSigners",
         "ViewerProtocolPolicy"
       ],
       "members":{
         "TargetOriginId":{"shape":"string"},
         "TrustedSigners":{"shape":"TrustedSigners"},
+        "TrustedKeyGroups":{"shape":"TrustedKeyGroups"},
         "ViewerProtocolPolicy":{"shape":"ViewerProtocolPolicy"},
         "AllowedMethods":{"shape":"AllowedMethods"},
         "SmoothStreaming":{"shape":"boolean"},
@@ -2184,6 +2340,22 @@
         }
       }
     },
+    "DeleteKeyGroupRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      }
+    },
     "DeleteMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":["DistributionId"],
@@ -2264,7 +2436,6 @@
         "LastModifiedTime",
         "InProgressInvalidationBatches",
         "DomainName",
-        "ActiveTrustedSigners",
         "DistributionConfig"
       ],
       "members":{
@@ -2275,6 +2446,7 @@
         "InProgressInvalidationBatches":{"shape":"integer"},
         "DomainName":{"shape":"string"},
         "ActiveTrustedSigners":{"shape":"ActiveTrustedSigners"},
+        "ActiveTrustedKeyGroups":{"shape":"ActiveTrustedKeyGroups"},
         "DistributionConfig":{"shape":"DistributionConfig"},
         "AliasICPRecordals":{"shape":"AliasICPRecordals"}
       }
@@ -2952,6 +3124,52 @@
       },
       "payload":"Invalidation"
     },
+    "GetKeyGroupConfigRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetKeyGroupConfigResult":{
+      "type":"structure",
+      "members":{
+        "KeyGroupConfig":{"shape":"KeyGroupConfig"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyGroupConfig"
+    },
+    "GetKeyGroupRequest":{
+      "type":"structure",
+      "required":["Id"],
+      "members":{
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetKeyGroupResult":{
+      "type":"structure",
+      "members":{
+        "KeyGroup":{"shape":"KeyGroup"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyGroup"
+    },
     "GetMonitoringSubscriptionRequest":{
       "type":"structure",
       "required":["DistributionId"],
@@ -3438,6 +3656,80 @@
         "all"
       ]
     },
+    "KGKeyPairIds":{
+      "type":"structure",
+      "members":{
+        "KeyGroupId":{"shape":"string"},
+        "KeyPairIds":{"shape":"KeyPairIds"}
+      }
+    },
+    "KGKeyPairIdsList":{
+      "type":"list",
+      "member":{
+        "shape":"KGKeyPairIds",
+        "locationName":"KeyGroup"
+      }
+    },
+    "KeyGroup":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "LastModifiedTime",
+        "KeyGroupConfig"
+      ],
+      "members":{
+        "Id":{"shape":"string"},
+        "LastModifiedTime":{"shape":"timestamp"},
+        "KeyGroupConfig":{"shape":"KeyGroupConfig"}
+      }
+    },
+    "KeyGroupAlreadyExists":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
+    "KeyGroupConfig":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Items"
+      ],
+      "members":{
+        "Name":{"shape":"string"},
+        "Items":{"shape":"PublicKeyIdList"},
+        "Comment":{"shape":"string"}
+      }
+    },
+    "KeyGroupList":{
+      "type":"structure",
+      "required":[
+        "MaxItems",
+        "Quantity"
+      ],
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"KeyGroupSummaryList"}
+      }
+    },
+    "KeyGroupSummary":{
+      "type":"structure",
+      "required":["KeyGroup"],
+      "members":{
+        "KeyGroup":{"shape":"KeyGroup"}
+      }
+    },
+    "KeyGroupSummaryList":{
+      "type":"list",
+      "member":{
+        "shape":"KeyGroupSummary",
+        "locationName":"KeyGroupSummary"
+      }
+    },
     "KeyPairIdList":{
       "type":"list",
       "member":{
@@ -3563,6 +3855,34 @@
       }
     },
     "ListDistributionsByCachePolicyIdResult":{
+      "type":"structure",
+      "members":{
+        "DistributionIdList":{"shape":"DistributionIdList"}
+      },
+      "payload":"DistributionIdList"
+    },
+    "ListDistributionsByKeyGroupRequest":{
+      "type":"structure",
+      "required":["KeyGroupId"],
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        },
+        "KeyGroupId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"KeyGroupId"
+        }
+      }
+    },
+    "ListDistributionsByKeyGroupResult":{
       "type":"structure",
       "members":{
         "DistributionIdList":{"shape":"DistributionIdList"}
@@ -3734,6 +4054,28 @@
         "InvalidationList":{"shape":"InvalidationList"}
       },
       "payload":"InvalidationList"
+    },
+    "ListKeyGroupsRequest":{
+      "type":"structure",
+      "members":{
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListKeyGroupsResult":{
+      "type":"structure",
+      "members":{
+        "KeyGroupList":{"shape":"KeyGroupList"}
+      },
+      "payload":"KeyGroupList"
     },
     "ListOriginRequestPoliciesRequest":{
       "type":"structure",
@@ -4373,6 +4715,13 @@
         "Comment":{"shape":"string"}
       }
     },
+    "PublicKeyIdList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"PublicKey"
+      }
+    },
     "PublicKeyInUse":{
       "type":"structure",
       "members":{
@@ -4558,6 +4907,14 @@
     "ResourceARN":{
       "type":"string",
       "pattern":"arn:aws(-cn)?:cloudfront::[0-9]+:.*"
+    },
+    "ResourceInUse":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
     },
     "Restrictions":{
       "type":"structure",
@@ -4928,6 +5285,14 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyDistributionsAssociatedToKeyGroup":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyDistributionsAssociatedToOriginRequestPolicy":{
       "type":"structure",
       "members":{
@@ -5032,6 +5397,22 @@
       "error":{"httpStatusCode":400},
       "exception":true
     },
+    "TooManyKeyGroups":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyKeyGroupsAssociatedToDistribution":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
     "TooManyLambdaFunctionAssociations":{
       "type":"structure",
       "members":{
@@ -5073,6 +5454,14 @@
       "exception":true
     },
     "TooManyPublicKeys":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TooManyPublicKeysInKeyGroup":{
       "type":"structure",
       "members":{
         "Message":{"shape":"string"}
@@ -5135,6 +5524,33 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "TrustedKeyGroupDoesNotExist":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"string"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "TrustedKeyGroupIdList":{
+      "type":"list",
+      "member":{
+        "shape":"string",
+        "locationName":"KeyGroup"
+      }
+    },
+    "TrustedKeyGroups":{
+      "type":"structure",
+      "required":[
+        "Enabled",
+        "Quantity"
+      ],
+      "members":{
+        "Enabled":{"shape":"boolean"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"TrustedKeyGroupIdList"}
+      }
     },
     "TrustedSignerDoesNotExist":{
       "type":"structure",
@@ -5360,6 +5776,43 @@
         }
       },
       "payload":"FieldLevelEncryptionProfile"
+    },
+    "UpdateKeyGroupRequest":{
+      "type":"structure",
+      "required":[
+        "KeyGroupConfig",
+        "Id"
+      ],
+      "members":{
+        "KeyGroupConfig":{
+          "shape":"KeyGroupConfig",
+          "locationName":"KeyGroupConfig",
+          "xmlNamespace":{"uri":"http://cloudfront.amazonaws.com/doc/2020-05-31/"}
+        },
+        "Id":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"Id"
+        },
+        "IfMatch":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"If-Match"
+        }
+      },
+      "payload":"KeyGroupConfig"
+    },
+    "UpdateKeyGroupResult":{
+      "type":"structure",
+      "members":{
+        "KeyGroup":{"shape":"KeyGroup"},
+        "ETag":{
+          "shape":"string",
+          "location":"header",
+          "locationName":"ETag"
+        }
+      },
+      "payload":"KeyGroup"
     },
     "UpdateOriginRequestPolicyRequest":{
       "type":"structure",

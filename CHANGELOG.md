@@ -1,3 +1,25 @@
+Release v1.35.12 (2020-10-21)
+===
+
+### Service Client Updates
+* `service/cloudfront`: Updates service API and documentation
+  * CloudFront adds support for managing the public keys for signed URLs and signed cookies directly in CloudFront (it no longer requires the AWS root account).
+* `service/ec2`: Updates service API and documentation
+  * instance-storage-info nvmeSupport added to DescribeInstanceTypes API
+* `service/globalaccelerator`: Updates service API and documentation
+* `service/glue`: Updates service API and documentation
+  * AWS Glue crawlers now support incremental crawls for the Amazon Simple Storage Service (Amazon S3) data source.
+* `service/kendra`: Updates service API and documentation
+  * This release adds custom data sources: a new data source type that gives you full control of the documents added, modified or deleted during a data source sync while providing run history metrics.
+* `service/organizations`: Updates service documentation
+  * AWS Organizations renamed the 'master account' to 'management account'.
+
+### SDK Bugs
+* `aws/credentials`: Fixed a race condition checking if credentials are expired. ([#3448](https://github.com/aws/aws-sdk-go/issues/3448))
+  * Fixes [#3524](https://github.com/aws/aws-sdk-go/issues/3524)
+* `internal/ini`: Fixes ini file parsing for cases when Right Hand Value is missed in the last statement of the ini file ([#3596](https://github.com/aws/aws-sdk-go/pull/3596)) 
+  * related to [#2800](https://github.com/aws/aws-sdk-go/issues/2800)
+
 Release v1.35.11 (2020-10-20)
 ===
 
