@@ -1159,13 +1159,16 @@
         "Message":{"shape":"message"},
         "Subject":{"shape":"subject"},
         "MessageStructure":{"shape":"messageStructure"},
-        "MessageAttributes":{"shape":"MessageAttributeMap"}
+        "MessageAttributes":{"shape":"MessageAttributeMap"},
+        "MessageDeduplicationId":{"shape":"String"},
+        "MessageGroupId":{"shape":"String"}
       }
     },
     "PublishResponse":{
       "type":"structure",
       "members":{
-        "MessageId":{"shape":"messageId"}
+        "MessageId":{"shape":"messageId"},
+        "SequenceNumber":{"shape":"String"}
       }
     },
     "RemovePermissionInput":{

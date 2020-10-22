@@ -140,6 +140,7 @@
         "DestinationFieldProperties$isCreatable": "<p> Specifies if the destination field can be created by the current user. </p>",
         "DestinationFieldProperties$isNullable": "<p> Specifies if the destination field can have a null value. </p>",
         "DestinationFieldProperties$isUpsertable": "<p> Specifies if the flow run can either insert new rows in the destination field if they do not already exist, or update them if they do. </p>",
+        "DestinationFieldProperties$isUpdatable": "<p> Specifies whether the field can be updated during an <code>UPDATE</code> or <code>UPSERT</code> write operation. </p>",
         "ErrorHandlingConfig$failOnFirstDestinationError": "<p> Specifies if the flow should fail after the first instance of a failure when attempting to place data in the destination. </p>",
         "SalesforceConnectorProfileProperties$isSandboxEnvironment": "<p> Indicates whether the connector profile applies to a sandbox or production environment. </p>",
         "SalesforceSourceProperties$enableDynamicFieldUpdate": "<p> The flag that enables dynamic fetching of new (recently added) fields in the Salesforce objects while running a flow. </p>",
@@ -172,6 +173,12 @@
         "SnowflakeDestinationProperties$bucketPrefix": "<p> The object key for the destination bucket in which Amazon AppFlow places the files. </p>"
       }
     },
+    "ClientCredentialsArn": {
+      "base": null,
+      "refs": {
+        "SalesforceConnectorProfileCredentials$clientCredentialsArn": "<p> The secret manager ARN, which contains the client ID and client secret of the connected app. </p>"
+      }
+    },
     "ClientId": {
       "base": null,
       "refs": {
@@ -184,10 +191,10 @@
     "ClientSecret": {
       "base": null,
       "refs": {
-        "GoogleAnalyticsConnectorProfileCredentials$clientSecret": "<p> The client secret used by the oauth client to authenticate to the authorization server. </p>",
-        "MarketoConnectorProfileCredentials$clientSecret": "<p> The client secret used by the oauth client to authenticate to the authorization server. </p>",
-        "SlackConnectorProfileCredentials$clientSecret": "<p> The client secret used by the oauth client to authenticate to the authorization server. </p>",
-        "ZendeskConnectorProfileCredentials$clientSecret": "<p> The client secret used by the oauth client to authenticate to the authorization server. </p>"
+        "GoogleAnalyticsConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
+        "MarketoConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
+        "SlackConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>",
+        "ZendeskConnectorProfileCredentials$clientSecret": "<p> The client secret used by the OAuth client to authenticate to the authorization server. </p>"
       }
     },
     "ConflictException": {
@@ -259,11 +266,11 @@
     "ConnectorOAuthRequest": {
       "base": "<p> Used by select connectors for which the OAuth workflow is supported, such as Salesforce, Google Analytics, Marketo, Zendesk, and Slack. </p>",
       "refs": {
-        "GoogleAnalyticsConnectorProfileCredentials$oAuthRequest": "<p> The oauth requirement needed to request security tokens from the connector endpoint. </p>",
-        "MarketoConnectorProfileCredentials$oAuthRequest": "<p> The oauth requirement needed to request security tokens from the connector endpoint. </p>",
-        "SalesforceConnectorProfileCredentials$oAuthRequest": "<p> The oauth requirement needed to request security tokens from the connector endpoint. </p>",
-        "SlackConnectorProfileCredentials$oAuthRequest": "<p> The oauth requirement needed to request security tokens from the connector endpoint. </p>",
-        "ZendeskConnectorProfileCredentials$oAuthRequest": "<p> The oauth requirement needed to request security tokens from the connector endpoint. </p>"
+        "GoogleAnalyticsConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "MarketoConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "SalesforceConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "SlackConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>",
+        "ZendeskConnectorProfileCredentials$oAuthRequest": "<p> The OAuth requirement needed to request security tokens from the connector endpoint. </p>"
       }
     },
     "ConnectorOperator": {
@@ -443,6 +450,12 @@
         "FlowDefinition$lastUpdatedAt": "<p> Specifies when the flow was last updated. </p>",
         "ScheduledTriggerProperties$scheduleStartTime": "<p> Specifies the scheduled start time for a schedule-triggered flow. </p>",
         "ScheduledTriggerProperties$scheduleEndTime": "<p> Specifies the scheduled end time for a schedule-triggered flow. </p>"
+      }
+    },
+    "DatetimeTypeFieldName": {
+      "base": null,
+      "refs": {
+        "IncrementalPullConfig$datetimeTypeFieldName": "<p> A field that specifies the date time or timestamp field as the criteria to use when importing incremental records from the source. </p>"
       }
     },
     "DeleteConnectorProfileRequest": {
@@ -639,7 +652,8 @@
     "ExecutionId": {
       "base": null,
       "refs": {
-        "ExecutionRecord$executionId": "<p> Specifies the identifier of the given flow run. </p>"
+        "ExecutionRecord$executionId": "<p> Specifies the identifier of the given flow run. </p>",
+        "StartFlowResponse$executionId": "<p> Returns the internal execution ID of an on-demand flow when the flow is started. For scheduled or event-triggered flows, this value is null. </p>"
       }
     },
     "ExecutionMessage": {
@@ -795,10 +809,22 @@
         "ConnectorEntityMap$key": null
       }
     },
+    "IdFieldNameList": {
+      "base": "<p> A list of field names that can be used as an ID field when performing a write operation. </p>",
+      "refs": {
+        "SalesforceDestinationProperties$idFieldNames": "<p> The name of the field that Amazon AppFlow uses as an ID when performing a write operation such as update or delete. </p>"
+      }
+    },
     "Identifier": {
       "base": null,
       "refs": {
         "ConnectorEntityField$identifier": "<p> The unique identifier of the connector field. </p>"
+      }
+    },
+    "IncrementalPullConfig": {
+      "base": "<p> Specifies the configuration used when importing incremental records from the source. </p>",
+      "refs": {
+        "SourceFlowConfig$incrementalPullConfig": "<p> Defines the configuration for a scheduled incremental data pull. If a valid configuration is provided, the fields specified in the configuration are used when querying for the incremental data pull. </p>"
       }
     },
     "InforNexusConnectorOperator": {
@@ -959,7 +985,8 @@
       "base": null,
       "refs": {
         "ConnectorEntity$name": "<p> The name of the connector entity. </p>",
-        "DescribeConnectorEntityRequest$connectorEntityName": "<p> The entity name for that connector. </p>"
+        "DescribeConnectorEntityRequest$connectorEntityName": "<p> The entity name for that connector. </p>",
+        "IdFieldNameList$member": null
       }
     },
     "NextToken": {
@@ -1409,6 +1436,12 @@
         "FieldTypeDetails$supportedValues": "<p> The list of values that a field can contain. For example, a Boolean <code>fieldType</code> can have two values: \"true\" and \"false\". </p>"
       }
     },
+    "SupportedWriteOperationList": {
+      "base": null,
+      "refs": {
+        "DestinationFieldProperties$supportedWriteOperations": "<p> A list of supported write operations. For each write operation listed, this field can be used in <code>idFieldNames</code> when that write operation is present as a destination option. </p>"
+      }
+    },
     "TagKey": {
       "base": null,
       "refs": {
@@ -1635,6 +1668,13 @@
       "base": null,
       "refs": {
         "SnowflakeConnectorProfileProperties$warehouse": "<p> The name of the Snowflake warehouse. </p>"
+      }
+    },
+    "WriteOperationType": {
+      "base": "<p> The possible write operations in the destination connector. When this value is not provided, this defaults to the <code>INSERT</code> operation. </p>",
+      "refs": {
+        "SalesforceDestinationProperties$writeOperationType": "<p> This specifies the type of write operation to be performed in Salesforce. When the value is <code>UPSERT</code>, then <code>idFieldNames</code> is required. </p>",
+        "SupportedWriteOperationList$member": null
       }
     },
     "ZendeskConnectorOperator": {
