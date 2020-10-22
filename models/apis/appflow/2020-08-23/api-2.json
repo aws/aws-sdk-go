@@ -385,6 +385,13 @@
       "max":512,
       "pattern":".*"
     },
+    "ClientCredentialsArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws:secretsmanager:.*:[0-9]+:.*",
+      "sensitive":true
+    },
     "ClientId":{
       "type":"string",
       "max":512,
@@ -756,6 +763,11 @@
       }
     },
     "Date":{"type":"timestamp"},
+    "DatetimeTypeFieldName":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
     "DeleteConnectorProfileRequest":{
       "type":"structure",
       "required":["connectorProfileName"],
@@ -897,7 +909,9 @@
       "members":{
         "isCreatable":{"shape":"Boolean"},
         "isNullable":{"shape":"Boolean"},
-        "isUpsertable":{"shape":"Boolean"}
+        "isUpsertable":{"shape":"Boolean"},
+        "isUpdatable":{"shape":"Boolean"},
+        "supportedWriteOperations":{"shape":"SupportedWriteOperationList"}
       }
     },
     "DestinationFlowConfig":{
@@ -1171,10 +1185,22 @@
       "max":128,
       "pattern":"\\S+"
     },
+    "IdFieldNameList":{
+      "type":"list",
+      "member":{"shape":"Name"},
+      "max":1,
+      "min":0
+    },
     "Identifier":{
       "type":"string",
       "max":128,
       "pattern":"\\S+"
+    },
+    "IncrementalPullConfig":{
+      "type":"structure",
+      "members":{
+        "datetimeTypeFieldName":{"shape":"DatetimeTypeFieldName"}
+      }
     },
     "InforNexusConnectorOperator":{
       "type":"string",
@@ -1640,7 +1666,8 @@
       "members":{
         "accessToken":{"shape":"AccessToken"},
         "refreshToken":{"shape":"RefreshToken"},
-        "oAuthRequest":{"shape":"ConnectorOAuthRequest"}
+        "oAuthRequest":{"shape":"ConnectorOAuthRequest"},
+        "clientCredentialsArn":{"shape":"ClientCredentialsArn"}
       }
     },
     "SalesforceConnectorProfileProperties":{
@@ -1655,7 +1682,9 @@
       "required":["object"],
       "members":{
         "object":{"shape":"Object"},
-        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"}
+        "idFieldNames":{"shape":"IdFieldNameList"},
+        "errorHandlingConfig":{"shape":"ErrorHandlingConfig"},
+        "writeOperationType":{"shape":"WriteOperationType"}
       }
     },
     "SalesforceMetadata":{
@@ -1960,7 +1989,8 @@
       "members":{
         "connectorType":{"shape":"ConnectorType"},
         "connectorProfileName":{"shape":"ConnectorProfileName"},
-        "sourceConnectorProperties":{"shape":"SourceConnectorProperties"}
+        "sourceConnectorProperties":{"shape":"SourceConnectorProperties"},
+        "incrementalPullConfig":{"shape":"IncrementalPullConfig"}
       }
     },
     "Stage":{
@@ -1979,7 +2009,8 @@
       "type":"structure",
       "members":{
         "flowArn":{"shape":"FlowArn"},
-        "flowStatus":{"shape":"FlowStatus"}
+        "flowStatus":{"shape":"FlowStatus"},
+        "executionId":{"shape":"ExecutionId"}
       }
     },
     "StopFlowRequest":{
@@ -2011,6 +2042,10 @@
     "SupportedValueList":{
       "type":"list",
       "member":{"shape":"Value"}
+    },
+    "SupportedWriteOperationList":{
+      "type":"list",
+      "member":{"shape":"WriteOperationType"}
     },
     "TagKey":{
       "type":"string",
@@ -2093,7 +2128,8 @@
     },
     "Timezone":{
       "type":"string",
-      "max":256
+      "max":256,
+      "pattern":".*"
     },
     "TrendmicroConnectorOperator":{
       "type":"string",
@@ -2321,6 +2357,14 @@
       "type":"string",
       "max":512,
       "pattern":"[\\s\\w/!@#+=.-]*"
+    },
+    "WriteOperationType":{
+      "type":"string",
+      "enum":[
+        "INSERT",
+        "UPSERT",
+        "UPDATE"
+      ]
     },
     "ZendeskConnectorOperator":{
       "type":"string",

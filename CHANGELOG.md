@@ -1,3 +1,14 @@
+Release v1.35.13 (2020-10-22)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service documentation
+* `service/appflow`: Updates service API and documentation
+* `service/servicecatalog`: Updates service documentation
+  * Documentation updates for servicecatalog
+* `service/sns`: Updates service API and documentation
+  * SNS now supports a new class of topics: FIFO (First-In-First-Out). FIFO topics provide strictly-ordered, deduplicated, filterable, encryptable, many-to-many messaging at scale.
+
 Release v1.35.12 (2020-10-21)
 ===
 

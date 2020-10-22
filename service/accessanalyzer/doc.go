@@ -10,7 +10,8 @@
 // a root user, an IAM user or role, a federated user, an AWS service, or an
 // anonymous user. This guide describes the AWS IAM Access Analyzer operations
 // that you can call programmatically. For general information about Access
-// Analyzer, see the AWS IAM Access Analyzer section of the IAM User Guide (https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html).
+// Analyzer, see AWS IAM Access Analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/what-is-access-analyzer.html)
+// in the IAM User Guide.
 //
 // To start using Access Analyzer, you first need to create an analyzer.
 //

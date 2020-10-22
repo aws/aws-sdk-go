@@ -2975,6 +2975,11 @@ func (s *ConnectorProfileCredentials) Validate() error {
 			invalidParams.AddNested("Redshift", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Salesforce != nil {
+		if err := s.Salesforce.Validate(); err != nil {
+			invalidParams.AddNested("Salesforce", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ServiceNow != nil {
 		if err := s.ServiceNow.Validate(); err != nil {
 			invalidParams.AddNested("ServiceNow", err.(request.ErrInvalidParams))
@@ -4618,9 +4623,18 @@ type DestinationFieldProperties struct {
 	// Specifies if the destination field can have a null value.
 	IsNullable *bool `locationName:"isNullable" type:"boolean"`
 
+	// Specifies whether the field can be updated during an UPDATE or UPSERT write
+	// operation.
+	IsUpdatable *bool `locationName:"isUpdatable" type:"boolean"`
+
 	// Specifies if the flow run can either insert new rows in the destination field
 	// if they do not already exist, or update them if they do.
 	IsUpsertable *bool `locationName:"isUpsertable" type:"boolean"`
+
+	// A list of supported write operations. For each write operation listed, this
+	// field can be used in idFieldNames when that write operation is present as
+	// a destination option.
+	SupportedWriteOperations []*string `locationName:"supportedWriteOperations" type:"list"`
 }
 
 // String returns the string representation
@@ -4645,9 +4659,21 @@ func (s *DestinationFieldProperties) SetIsNullable(v bool) *DestinationFieldProp
 	return s
 }
 
+// SetIsUpdatable sets the IsUpdatable field's value.
+func (s *DestinationFieldProperties) SetIsUpdatable(v bool) *DestinationFieldProperties {
+	s.IsUpdatable = &v
+	return s
+}
+
 // SetIsUpsertable sets the IsUpsertable field's value.
 func (s *DestinationFieldProperties) SetIsUpsertable(v bool) *DestinationFieldProperties {
 	s.IsUpsertable = &v
+	return s
+}
+
+// SetSupportedWriteOperations sets the SupportedWriteOperations field's value.
+func (s *DestinationFieldProperties) SetSupportedWriteOperations(v []*string) *DestinationFieldProperties {
+	s.SupportedWriteOperations = v
 	return s
 }
 
@@ -5370,13 +5396,13 @@ type GoogleAnalyticsConnectorProfileCredentials struct {
 	// ClientId is a required field
 	ClientId *string `locationName:"clientId" type:"string" required:"true"`
 
-	// The client secret used by the oauth client to authenticate to the authorization
+	// The client secret used by the OAuth client to authenticate to the authorization
 	// server.
 	//
 	// ClientSecret is a required field
 	ClientSecret *string `locationName:"clientSecret" type:"string" required:"true" sensitive:"true"`
 
-	// The oauth requirement needed to request security tokens from the connector
+	// The OAuth requirement needed to request security tokens from the connector
 	// endpoint.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
 
@@ -5517,6 +5543,32 @@ func (s *GoogleAnalyticsSourceProperties) Validate() error {
 // SetObject sets the Object field's value.
 func (s *GoogleAnalyticsSourceProperties) SetObject(v string) *GoogleAnalyticsSourceProperties {
 	s.Object = &v
+	return s
+}
+
+// Specifies the configuration used when importing incremental records from
+// the source.
+type IncrementalPullConfig struct {
+	_ struct{} `type:"structure"`
+
+	// A field that specifies the date time or timestamp field as the criteria to
+	// use when importing incremental records from the source.
+	DatetimeTypeFieldName *string `locationName:"datetimeTypeFieldName" type:"string"`
+}
+
+// String returns the string representation
+func (s IncrementalPullConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IncrementalPullConfig) GoString() string {
+	return s.String()
+}
+
+// SetDatetimeTypeFieldName sets the DatetimeTypeFieldName field's value.
+func (s *IncrementalPullConfig) SetDatetimeTypeFieldName(v string) *IncrementalPullConfig {
+	s.DatetimeTypeFieldName = &v
 	return s
 }
 
@@ -5979,13 +6031,13 @@ type MarketoConnectorProfileCredentials struct {
 	// ClientId is a required field
 	ClientId *string `locationName:"clientId" type:"string" required:"true"`
 
-	// The client secret used by the oauth client to authenticate to the authorization
+	// The client secret used by the OAuth client to authenticate to the authorization
 	// server.
 	//
 	// ClientSecret is a required field
 	ClientSecret *string `locationName:"clientSecret" type:"string" required:"true" sensitive:"true"`
 
-	// The oauth requirement needed to request security tokens from the connector
+	// The OAuth requirement needed to request security tokens from the connector
 	// endpoint.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
 }
@@ -6642,7 +6694,11 @@ type SalesforceConnectorProfileCredentials struct {
 	// The credentials used to access protected Salesforce resources.
 	AccessToken *string `locationName:"accessToken" type:"string" sensitive:"true"`
 
-	// The oauth requirement needed to request security tokens from the connector
+	// The secret manager ARN, which contains the client ID and client secret of
+	// the connected app.
+	ClientCredentialsArn *string `locationName:"clientCredentialsArn" min:"20" type:"string" sensitive:"true"`
+
+	// The OAuth requirement needed to request security tokens from the connector
 	// endpoint.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
 
@@ -6660,9 +6716,28 @@ func (s SalesforceConnectorProfileCredentials) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SalesforceConnectorProfileCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SalesforceConnectorProfileCredentials"}
+	if s.ClientCredentialsArn != nil && len(*s.ClientCredentialsArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientCredentialsArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
 // SetAccessToken sets the AccessToken field's value.
 func (s *SalesforceConnectorProfileCredentials) SetAccessToken(v string) *SalesforceConnectorProfileCredentials {
 	s.AccessToken = &v
+	return s
+}
+
+// SetClientCredentialsArn sets the ClientCredentialsArn field's value.
+func (s *SalesforceConnectorProfileCredentials) SetClientCredentialsArn(v string) *SalesforceConnectorProfileCredentials {
+	s.ClientCredentialsArn = &v
 	return s
 }
 
@@ -6723,10 +6798,18 @@ type SalesforceDestinationProperties struct {
 	// is a part of the destination connector details.
 	ErrorHandlingConfig *ErrorHandlingConfig `locationName:"errorHandlingConfig" type:"structure"`
 
+	// The name of the field that Amazon AppFlow uses as an ID when performing a
+	// write operation such as update or delete.
+	IdFieldNames []*string `locationName:"idFieldNames" type:"list"`
+
 	// The object specified in the Salesforce flow destination.
 	//
 	// Object is a required field
 	Object *string `locationName:"object" type:"string" required:"true"`
+
+	// This specifies the type of write operation to be performed in Salesforce.
+	// When the value is UPSERT, then idFieldNames is required.
+	WriteOperationType *string `locationName:"writeOperationType" type:"string" enum:"WriteOperationType"`
 }
 
 // String returns the string representation
@@ -6763,9 +6846,21 @@ func (s *SalesforceDestinationProperties) SetErrorHandlingConfig(v *ErrorHandlin
 	return s
 }
 
+// SetIdFieldNames sets the IdFieldNames field's value.
+func (s *SalesforceDestinationProperties) SetIdFieldNames(v []*string) *SalesforceDestinationProperties {
+	s.IdFieldNames = v
+	return s
+}
+
 // SetObject sets the Object field's value.
 func (s *SalesforceDestinationProperties) SetObject(v string) *SalesforceDestinationProperties {
 	s.Object = &v
+	return s
+}
+
+// SetWriteOperationType sets the WriteOperationType field's value.
+func (s *SalesforceDestinationProperties) SetWriteOperationType(v string) *SalesforceDestinationProperties {
+	s.WriteOperationType = &v
 	return s
 }
 
@@ -7254,13 +7349,13 @@ type SlackConnectorProfileCredentials struct {
 	// ClientId is a required field
 	ClientId *string `locationName:"clientId" type:"string" required:"true"`
 
-	// The client secret used by the oauth client to authenticate to the authorization
+	// The client secret used by the OAuth client to authenticate to the authorization
 	// server.
 	//
 	// ClientSecret is a required field
 	ClientSecret *string `locationName:"clientSecret" type:"string" required:"true" sensitive:"true"`
 
-	// The oauth requirement needed to request security tokens from the connector
+	// The OAuth requirement needed to request security tokens from the connector
 	// endpoint.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
 }
@@ -7955,6 +8050,11 @@ type SourceFlowConfig struct {
 	// ConnectorType is a required field
 	ConnectorType *string `locationName:"connectorType" type:"string" required:"true" enum:"ConnectorType"`
 
+	// Defines the configuration for a scheduled incremental data pull. If a valid
+	// configuration is provided, the fields specified in the configuration are
+	// used when querying for the incremental data pull.
+	IncrementalPullConfig *IncrementalPullConfig `locationName:"incrementalPullConfig" type:"structure"`
+
 	// Specifies the information that is required to query a particular source connector.
 	//
 	// SourceConnectorProperties is a required field
@@ -8001,6 +8101,12 @@ func (s *SourceFlowConfig) SetConnectorProfileName(v string) *SourceFlowConfig {
 // SetConnectorType sets the ConnectorType field's value.
 func (s *SourceFlowConfig) SetConnectorType(v string) *SourceFlowConfig {
 	s.ConnectorType = &v
+	return s
+}
+
+// SetIncrementalPullConfig sets the IncrementalPullConfig field's value.
+func (s *SourceFlowConfig) SetIncrementalPullConfig(v *IncrementalPullConfig) *SourceFlowConfig {
+	s.IncrementalPullConfig = v
 	return s
 }
 
@@ -8052,6 +8158,10 @@ func (s *StartFlowInput) SetFlowName(v string) *StartFlowInput {
 type StartFlowOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the internal execution ID of an on-demand flow when the flow is started.
+	// For scheduled or event-triggered flows, this value is null.
+	ExecutionId *string `locationName:"executionId" type:"string"`
+
 	// The flow's Amazon Resource Name (ARN).
 	FlowArn *string `locationName:"flowArn" type:"string"`
 
@@ -8067,6 +8177,12 @@ func (s StartFlowOutput) String() string {
 // GoString returns the string representation
 func (s StartFlowOutput) GoString() string {
 	return s.String()
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *StartFlowOutput) SetExecutionId(v string) *StartFlowOutput {
+	s.ExecutionId = &v
+	return s
 }
 
 // SetFlowArn sets the FlowArn field's value.
@@ -9126,13 +9242,13 @@ type ZendeskConnectorProfileCredentials struct {
 	// ClientId is a required field
 	ClientId *string `locationName:"clientId" type:"string" required:"true"`
 
-	// The client secret used by the oauth client to authenticate to the authorization
+	// The client secret used by the OAuth client to authenticate to the authorization
 	// server.
 	//
 	// ClientSecret is a required field
 	ClientSecret *string `locationName:"clientSecret" type:"string" required:"true" sensitive:"true"`
 
-	// The oauth requirement needed to request security tokens from the connector
+	// The OAuth requirement needed to request security tokens from the connector
 	// endpoint.
 	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
 }
@@ -10654,6 +10770,28 @@ func VeevaConnectorOperator_Values() []string {
 		VeevaConnectorOperatorValidateNonNegative,
 		VeevaConnectorOperatorValidateNumeric,
 		VeevaConnectorOperatorNoOp,
+	}
+}
+
+// The possible write operations in the destination connector. When this value
+// is not provided, this defaults to the INSERT operation.
+const (
+	// WriteOperationTypeInsert is a WriteOperationType enum value
+	WriteOperationTypeInsert = "INSERT"
+
+	// WriteOperationTypeUpsert is a WriteOperationType enum value
+	WriteOperationTypeUpsert = "UPSERT"
+
+	// WriteOperationTypeUpdate is a WriteOperationType enum value
+	WriteOperationTypeUpdate = "UPDATE"
+)
+
+// WriteOperationType_Values returns all elements of the WriteOperationType enum
+func WriteOperationType_Values() []string {
+	return []string{
+		WriteOperationTypeInsert,
+		WriteOperationTypeUpsert,
+		WriteOperationTypeUpdate,
 	}
 }
 
