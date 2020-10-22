@@ -25,6 +25,12 @@ const (
 	roleSessionNameKey     = `role_session_name` // optional
 	roleDurationSecondsKey = "duration_seconds"  // optional
 
+	// SSO Credentials group
+	ssoStartURLKey  = `sso_start_url`  // optional
+	ssoRegionKey    = `sso_region`     // optional
+	ssoAccountIDKey = `sso_account_id` // optional
+	ssoRoleNameKey  = `sso_role_name`  // optional
+
 	// CSM options
 	csmEnabledKey  = `csm_enabled`
 	csmHostKey     = `csm_host`
@@ -80,6 +86,11 @@ type sharedConfig struct {
 	ExternalID         string
 	MFASerial          string
 	AssumeRoleDuration *time.Duration
+
+	SSOStartURL  string
+	SSORegion    string
+	SSOAccountID string
+	SSORoleName  string
 
 	SourceProfileName string
 	SourceProfile     *sharedConfig
@@ -276,6 +287,12 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		updateString(&cfg.SourceProfileName, section, sourceProfileKey)
 		updateString(&cfg.CredentialSource, section, credentialSourceKey)
 		updateString(&cfg.Region, section, regionKey)
+
+		// SSO Parameters
+		updateString(&cfg.SSOAccountID, section, ssoAccountIDKey)
+		updateString(&cfg.SSORegion, section, ssoRegionKey)
+		updateString(&cfg.SSORoleName, section, ssoRoleNameKey)
+		updateString(&cfg.SSOStartURL, section, ssoStartURLKey)
 
 		if section.Has(roleDurationSecondsKey) {
 			d := time.Duration(section.Int(roleDurationSecondsKey)) * time.Second

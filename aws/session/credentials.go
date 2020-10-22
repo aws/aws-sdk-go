@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/credentials"
 	"github.com/aws/aws-sdk-go/aws/credentials/processcreds"
+	"github.com/aws/aws-sdk-go/aws/credentials/ssocreds"
 	"github.com/aws/aws-sdk-go/aws/credentials/stscreds"
 	"github.com/aws/aws-sdk-go/aws/defaults"
 	"github.com/aws/aws-sdk-go/aws/request"
@@ -117,6 +118,11 @@ func resolveCredsFromProfile(cfg *aws.Config,
 			sharedCfg.WebIdentityTokenFile,
 			sharedCfg.RoleARN,
 			sharedCfg.RoleSessionName,
+		)
+
+	case len(sharedCfg.SSORoleName) != 0:
+		return resolveCredsFromSSOToken(cfg, handlers,
+			sharedCfg,
 		)
 
 	default:
@@ -264,4 +270,24 @@ func (c credProviderError) Retrieve() (credentials.Value, error) {
 }
 func (c credProviderError) IsExpired() bool {
 	return true
+}
+
+func resolveCredsFromSSOToken(cfg *aws.Config,
+	handlers request.Handlers,
+	sharedCfg sharedConfig,
+) (*credentials.Credentials, error) {
+
+	creds, err := ssocreds.NewSSOCredentials(
+		&Session{
+			Config:   cfg.WithRegion(sharedCfg.SSORegion),
+			Handlers: handlers.Copy(),
+		},
+		sharedCfg.SSOAccountID, sharedCfg.SSORoleName,
+	)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return creds, nil
 }
