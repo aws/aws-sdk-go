@@ -19,11 +19,11 @@
     "DescribeClassificationJob" : "<p>Retrieves the status and settings for a classification job.</p>",
     "DescribeOrganizationConfiguration" : "<p>Retrieves the Amazon Macie configuration settings for an AWS organization.</p>",
     "DisableMacie" : "<p>Disables an Amazon Macie account and deletes Macie resources for the account.</p>",
-    "DisableOrganizationAdminAccount" : "<p>Disables an account as a delegated administrator of Amazon Macie for an AWS organization.</p>",
+    "DisableOrganizationAdminAccount" : "<p>Disables an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
     "DisassociateFromMasterAccount" : "<p>Disassociates a member account from its Amazon Macie master account.</p>",
     "DisassociateMember" : "<p>Disassociates an Amazon Macie master account from a member account.</p>",
     "EnableMacie" : "<p>Enables Amazon Macie and specifies the configuration settings for a Macie account.</p>",
-    "EnableOrganizationAdminAccount" : "<p>Enables an account as a delegated administrator of Amazon Macie for an AWS organization.</p>",
+    "EnableOrganizationAdminAccount" : "<p>Designates an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
     "GetBucketStatistics" : " <p>Retrieves (queries) aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes.</p>",
     "GetClassificationExportConfiguration" : "<p>Retrieves the configuration settings for storing data classification results.</p>",
     "GetCustomDataIdentifier" : "<p>Retrieves the criteria and other settings for a custom data identifier.</p>",
@@ -42,7 +42,7 @@
     "ListFindingsFilters" : "<p>Retrieves a subset of information about all the findings filters for an account.</p>",
     "ListInvitations" : "<p>Retrieves information about all the Amazon Macie membership invitations that were received by an account.</p>",
     "ListMembers" : "<p>Retrieves information about the accounts that are associated with an Amazon Macie master account.</p>",
-    "ListOrganizationAdminAccounts" : "<p>Retrieves information about the account that's designated as the delegated administrator of Amazon Macie for an AWS organization.</p>",
+    "ListOrganizationAdminAccounts" : "<p>Retrieves information about the delegated Amazon Macie administrator account for an AWS organization.</p>",
     "ListTagsForResource" : "<p>Retrieves the tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
     "PutClassificationExportConfiguration" : "<p>Creates or updates the configuration settings for storing data classification results.</p>",
     "TagResource" : "<p>Adds or updates one or more tags (keys and values) that are associated with a classification job, custom data identifier, findings filter, or member account.</p>",
@@ -52,7 +52,7 @@
     "UpdateFindingsFilter" : "<p>Updates the criteria and other settings for a findings filter.</p>",
     "UpdateMacieSession" : "<p>Suspends or re-enables an Amazon Macie account, or updates the configuration settings for a Macie account.</p>",
     "UpdateMemberSession" : " <p>Enables an Amazon Macie master account to suspend or re-enable a member account.</p>",
-    "UpdateOrganizationConfiguration" : "<p>Updates Amazon Macie configuration settings for an AWS organization.</p>"
+    "UpdateOrganizationConfiguration" : "<p>Updates the Amazon Macie configuration settings for an AWS organization.</p>"
   },
   "shapes" : {
     "AcceptInvitationRequest" : {
@@ -82,13 +82,13 @@
       }
     },
     "AdminAccount" : {
-      "base" : "<p>Provides information about an account that's designated as a delegated administrator of Amazon Macie for an AWS organization.</p>",
+      "base" : "<p>Provides information about the delegated Amazon Macie administrator account for an AWS organization.</p>",
       "refs" : {
         "__listOfAdminAccount$member" : null
       }
     },
     "AdminStatus" : {
-      "base" : "<p>The current status of an account as a delegated administrator of Amazon Macie for an AWS organization.</p>",
+      "base" : "<p>The current status of an account as the delegated Amazon Macie administrator account for an AWS organization.</p>",
       "refs" : {
         "AdminAccount$Status" : "<p>The current status of the account as a delegated administrator of Amazon Macie for the organization.</p>"
       }
@@ -317,7 +317,7 @@
       }
     },
     "CustomDataIdentifiers" : {
-      "base" : "<p>Provides information about the number of occurrences of the data that produced a sensitive data finding, and the custom data identifiers that detected the data for the finding.</p>",
+      "base" : "<p>Provides information about custom data identifiers that produced a sensitive data finding, and the number of occurrences of the data that they detected for the finding.</p>",
       "refs" : {
         "ClassificationResult$CustomDataIdentifiers" : "<p>The custom data identifiers that detected the sensitive data and the number of occurrences of the data that they detected.</p>"
       }
@@ -411,7 +411,7 @@
       "refs" : { }
     },
     "EnableOrganizationAdminAccountRequest" : {
-      "base" : "<p>Specifies an account to designate as a delegated administrator of Amazon Macie for an AWS organization. To submit this request, you must be a user of the master account for the AWS organization.</p>",
+      "base" : "<p>Specifies an account to designate as a delegated Amazon Macie administrator account for an AWS organization. To submit this request, you must be a user of the management account for the AWS organization.</p>",
       "refs" : { }
     },
     "EncryptionType" : {
@@ -666,7 +666,7 @@
       }
     },
     "JobStatus" : {
-      "base" : "<p>The current status of a classification job. Possible values are:</p>",
+      "base" : "<p>The status of a classification job. Possible values are:</p>",
       "refs" : {
         "DescribeClassificationJobResponse$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job and didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing all the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you don’t resume the job within 30 days of pausing it, the job will expire and be cancelled.</p></li></ul>",
         "JobSummary$JobStatus" : "<p>The current status of the job. Possible values are:</p> <ul><li><p>CANCELLED - You cancelled the job, or you paused the job and didn't resume it within 30 days of pausing it.</p></li> <li><p>COMPLETE - For a one-time job, Amazon Macie finished processing all the data specified for the job. This value doesn't apply to recurring jobs.</p></li> <li><p>IDLE - For a recurring job, the previous scheduled run is complete and the next scheduled run is pending. This value doesn't apply to one-time jobs.</p></li> <li><p>PAUSED - Amazon Macie started running the job but completion of the job would exceed one or more quotas for your account.</p></li> <li><p>RUNNING - For a one-time job, the job is in progress. For a recurring job, a scheduled run is in progress.</p></li> <li><p>USER_PAUSED - You paused the job. If you don’t resume the job within 30 days of pausing it, the job will expire and be cancelled.</p></li></ul>",
@@ -768,7 +768,7 @@
       "refs" : { }
     },
     "ListOrganizationAdminAccountsResponse" : {
-      "base" : "<p>Provides information about the accounts that are designated as delegated administrators of Amazon Macie for an AWS organization.</p>",
+      "base" : "<p>Provides information about the delegated Amazon Macie administrator accounts for an AWS organization.</p>",
       "refs" : { }
     },
     "ListTagsForResourceResponse" : {
@@ -858,7 +858,7 @@
       "base" : "<p>Provides details about the location of an occurrence of sensitive data in an Adobe Portable Document Format file, Apache Avro object container, Microsoft Word document, or non-binary text file.</p>",
       "refs" : {
         "Page$LineRange" : "<p>The line that contains the data, and the position of the data on that line.</p>",
-        "Page$OffsetRange" : "<p>The position of the data on the page, relative to the start and end of the page.</p>",
+        "Page$OffsetRange" : "<p>The position of the data on the page, relative to the beginning of the page.</p>",
         "Ranges$member" : null
       }
     },
@@ -866,7 +866,7 @@
       "base" : "<p>Provides details about the location of occurrences of sensitive data in an Adobe Portable Document Format file, Apache Avro object container, Microsoft Word document, or non-binary text file.</p>",
       "refs" : {
         "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in an Apache Avro object container, Microsoft Word document, or non-binary text file, such as an HTML, JSON, TXT, or XML file. Each object specifies the line that contains the data, and the position of the data on that line.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the locations of: full names and addresses in a Microsoft Excel workbook, CSV file, or TSV file; data in unstructured sections of an otherwise structured file, such as a comment in a file; and, data in a malformed file that Amazon Macie analyzes as plain text.</p>",
-        "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the start of the file.</p> <p>This value is typically null. For binary text files, Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
+        "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the beginning of the file.</p> <p>This value is typically null. For binary text files, Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
       }
     },
     "Record" : {
@@ -1254,7 +1254,7 @@
         "CreateInvitationsRequest$DisableEmailNotification" : "<p>Specifies whether to send an email notification to the root user of each account that the invitation will be sent to. This notification is in addition to an alert that the root user receives in AWS Personal Health Dashboard. To send an email notification to the root user of each account, set this value to true.</p>",
         "DescribeClassificationJobResponse$InitialRun" : "<p>Specifies whether the job is configured to analyze all existing, eligible objects immediately after it's created.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable" : "<p>Specifies whether Amazon Macie is enabled automatically for accounts that are added to the AWS organization.</p>",
-        "DescribeOrganizationConfigurationResponse$MaxAccountLimitReached" : "<p>Specifies whether the maximum number of Amazon Macie member accounts are already associated with the AWS organization.</p>",
+        "DescribeOrganizationConfigurationResponse$MaxAccountLimitReached" : "<p>Specifies whether the maximum number of Amazon Macie member accounts are part of the AWS organization.</p>",
         "Finding$Archived" : "<p>Specifies whether the finding is archived.</p>",
         "Finding$Sample" : "<p>Specifies whether the finding is a sample finding. A <i>sample finding</i> is a finding that uses example data to demonstrate what a finding might contain.</p>",
         "GetCustomDataIdentifierResponse$Deleted" : "<p>Specifies whether the custom data identifier was deleted. If you delete a custom data identifier, Amazon Macie doesn't delete it permanently. Instead, it soft deletes the identifier.</p>",
@@ -1299,7 +1299,7 @@
     "__listOfAdminAccount" : {
       "base" : null,
       "refs" : {
-        "ListOrganizationAdminAccountsResponse$AdminAccounts" : "<p>An array of objects, one for each account that's designated as a delegated administrator of Amazon Macie for the AWS organization. Of those accounts, only one can have a status of ENABLED.</p>"
+        "ListOrganizationAdminAccountsResponse$AdminAccounts" : "<p>An array of objects, one for each delegated Amazon Macie administrator account for the organization. Only one of these accounts can have a status of ENABLED.</p>"
       }
     },
     "__listOfBatchGetCustomDataIdentifierSummary" : {
@@ -1505,8 +1505,8 @@
         "ObjectLevelStatistics$StorageClass" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class.</p>",
         "ObjectLevelStatistics$Total" : "<p>The total storage size (in bytes) or number of objects that Amazon Macie can't analyze because the objects use an unsupported storage class or don’t have a file name extension for a supported file or storage format.</p>",
         "Page$PageNumber" : "<p>The page number of the page that contains the data.</p>",
-        "Range$End" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the end of the file.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the end of the file.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the end of the page.</p></li></ul>",
-        "Range$Start" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the start of the file.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the start of the file.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the start of the page.</p></li></ul>",
+        "Range$End" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the beginning of the file to the end of the sensitive data.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the beginning of the file to the end of the sensitive data.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the beginning of the page to the end of the sensitive data.</p></li></ul>",
+        "Range$Start" : "<p>Possible values are:</p> <ul><li><p>In an Occurrences.lineRanges array, the number of lines from the beginning of the file to the beginning of the sensitive data.</p></li> <li><p>In an Occurrences.offsetRanges array, the number of characters from the beginning of the file to the beginning of the sensitive data.</p></li> <li><p>In a Page object, the number of lines (lineRange) or characters (offsetRange) from the beginning of the page to the beginning of the sensitive data.</p></li></ul>",
         "Range$StartColumn" : "<p>The column number for the column that contains the data, if the file contains structured data.</p>",
         "Record$RecordIndex" : "<p>The row index, starting from 0, for the row that contains the data.</p>",
         "S3Object$Size" : "<p>The total storage size, in bytes, of the object.</p>",
@@ -1585,7 +1585,7 @@
         "DescribeClassificationJobResponse$Name" : "<p>The custom name of the job.</p>",
         "DomainDetails$DomainName" : "<p>The name of the domain.</p>",
         "EnableMacieRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
-        "EnableOrganizationAdminAccountRequest$AdminAccountId" : "<p>The AWS account ID for the account.</p>",
+        "EnableOrganizationAdminAccountRequest$AdminAccountId" : "<p>The AWS account ID for the account to designate as the delegated Amazon Macie administrator account for the organization.</p>",
         "EnableOrganizationAdminAccountRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
         "FederatedUser$AccessKeyId" : "<p>The AWS access key ID that identifies the credentials.</p>",
         "FederatedUser$AccountId" : "<p>The unique identifier for the AWS account that owns the entity that was used to get the credentials.</p>",

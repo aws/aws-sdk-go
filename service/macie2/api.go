@@ -1894,8 +1894,8 @@ func (c *Macie2) DisableOrganizationAdminAccountRequest(input *DisableOrganizati
 
 // DisableOrganizationAdminAccount API operation for Amazon Macie 2.
 //
-// Disables an account as a delegated administrator of Amazon Macie for an AWS
-// organization.
+// Disables an account as the delegated Amazon Macie administrator account for
+// an AWS organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2316,8 +2316,8 @@ func (c *Macie2) EnableOrganizationAdminAccountRequest(input *EnableOrganization
 
 // EnableOrganizationAdminAccount API operation for Amazon Macie 2.
 //
-// Enables an account as a delegated administrator of Amazon Macie for an AWS
-// organization.
+// Designates an account as the delegated Amazon Macie administrator account
+// for an AWS organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4712,8 +4712,8 @@ func (c *Macie2) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdm
 
 // ListOrganizationAdminAccounts API operation for Amazon Macie 2.
 //
-// Retrieves information about the account that's designated as the delegated
-// administrator of Amazon Macie for an AWS organization.
+// Retrieves information about the delegated Amazon Macie administrator account
+// for an AWS organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5727,7 +5727,7 @@ func (c *Macie2) UpdateOrganizationConfigurationRequest(input *UpdateOrganizatio
 
 // UpdateOrganizationConfiguration API operation for Amazon Macie 2.
 //
-// Updates Amazon Macie configuration settings for an AWS organization.
+// Updates the Amazon Macie configuration settings for an AWS organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6018,15 +6018,15 @@ func (s *AccountLevelPermissions) SetBlockPublicAccess(v *BlockPublicAccess) *Ac
 	return s
 }
 
-// Provides information about an account that's designated as a delegated administrator
-// of Amazon Macie for an AWS organization.
+// Provides information about the delegated Amazon Macie administrator account
+// for an AWS organization.
 type AdminAccount struct {
 	_ struct{} `type:"structure"`
 
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// The current status of an account as a delegated administrator of Amazon Macie
-	// for an AWS organization.
+	// The current status of an account as the delegated Amazon Macie administrator
+	// account for an AWS organization.
 	Status *string `locationName:"status" type:"string" enum:"AdminStatus"`
 }
 
@@ -7106,9 +7106,9 @@ type ClassificationResult struct {
 
 	AdditionalOccurrences *bool `locationName:"additionalOccurrences" type:"boolean"`
 
-	// Provides information about the number of occurrences of the data that produced
-	// a sensitive data finding, and the custom data identifiers that detected the
-	// data for the finding.
+	// Provides information about custom data identifiers that produced a sensitive
+	// data finding, and the number of occurrences of the data that they detected
+	// for the finding.
 	CustomDataIdentifiers *CustomDataIdentifiers `locationName:"customDataIdentifiers" type:"structure"`
 
 	MimeType *string `locationName:"mimeType" type:"string"`
@@ -7976,9 +7976,9 @@ func (s *CustomDataIdentifierSummary) SetName(v string) *CustomDataIdentifierSum
 	return s
 }
 
-// Provides information about the number of occurrences of the data that produced
-// a sensitive data finding, and the custom data identifiers that detected the
-// data for the finding.
+// Provides information about custom data identifiers that produced a sensitive
+// data finding, and the number of occurrences of the data that they detected
+// for the finding.
 type CustomDataIdentifiers struct {
 	_ struct{} `type:"structure"`
 
@@ -8547,7 +8547,7 @@ type DescribeClassificationJobOutput struct {
 
 	JobId *string `locationName:"jobId" type:"string"`
 
-	// The current status of a classification job. Possible values are:
+	// The status of a classification job. Possible values are:
 	JobStatus *string `locationName:"jobStatus" type:"string" enum:"JobStatus"`
 
 	// The schedule for running a classification job. Valid values are:
@@ -8980,9 +8980,9 @@ func (s EnableMacieOutput) GoString() string {
 	return s.String()
 }
 
-// Specifies an account to designate as a delegated administrator of Amazon
-// Macie for an AWS organization. To submit this request, you must be a user
-// of the master account for the AWS organization.
+// Specifies an account to designate as a delegated Amazon Macie administrator
+// account for an AWS organization. To submit this request, you must be a user
+// of the management account for the AWS organization.
 type EnableOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10988,7 +10988,7 @@ type JobSummary struct {
 
 	JobId *string `locationName:"jobId" type:"string"`
 
-	// The current status of a classification job. Possible values are:
+	// The status of a classification job. Possible values are:
 	JobStatus *string `locationName:"jobStatus" type:"string" enum:"JobStatus"`
 
 	// The schedule for running a classification job. Valid values are:
@@ -11699,8 +11699,8 @@ func (s *ListOrganizationAdminAccountsInput) SetNextToken(v string) *ListOrganiz
 	return s
 }
 
-// Provides information about the accounts that are designated as delegated
-// administrators of Amazon Macie for an AWS organization.
+// Provides information about the delegated Amazon Macie administrator accounts
+// for an AWS organization.
 type ListOrganizationAdminAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13668,7 +13668,7 @@ type UpdateClassificationJobInput struct {
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" type:"string" required:"true"`
 
-	// The current status of a classification job. Possible values are:
+	// The status of a classification job. Possible values are:
 	//
 	// JobStatus is a required field
 	JobStatus *string `locationName:"jobStatus" type:"string" required:"true" enum:"JobStatus"`
@@ -14483,8 +14483,8 @@ func (s *WeeklySchedule) SetDayOfWeek(v string) *WeeklySchedule {
 	return s
 }
 
-// The current status of an account as a delegated administrator of Amazon Macie
-// for an AWS organization.
+// The current status of an account as the delegated Amazon Macie administrator
+// account for an AWS organization.
 const (
 	// AdminStatusEnabled is a AdminStatus enum value
 	AdminStatusEnabled = "ENABLED"
@@ -14817,7 +14817,7 @@ func JobComparator_Values() []string {
 	}
 }
 
-// The current status of a classification job. Possible values are:
+// The status of a classification job. Possible values are:
 const (
 	// JobStatusRunning is a JobStatus enum value
 	JobStatusRunning = "RUNNING"

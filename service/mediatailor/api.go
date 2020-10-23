@@ -555,6 +555,28 @@ func (c *MediaTailor) UntagResourceWithContext(ctx aws.Context, input *UntagReso
 	return out, req.Send()
 }
 
+type AdMarkerPassthrough struct {
+	_ struct{} `type:"structure"`
+
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AdMarkerPassthrough) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdMarkerPassthrough) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AdMarkerPassthrough) SetEnabled(v bool) *AdMarkerPassthrough {
+	s.Enabled = &v
+	return s
+}
+
 type AvailSuppression struct {
 	_ struct{} `type:"structure"`
 
@@ -940,6 +962,10 @@ type GetPlaybackConfigurationOutput struct {
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
+	// The configuration for manifest processing rules. Manifest processing rules
+	// enable customization of the personalized manifests created by MediaTailor.
+	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
+
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
@@ -1027,6 +1053,12 @@ func (s *GetPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration
 // SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
 func (s *GetPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *GetPlaybackConfigurationOutput {
 	s.LivePreRollConfiguration = v
+	return s
+}
+
+// SetManifestProcessingRules sets the ManifestProcessingRules field's value.
+func (s *GetPlaybackConfigurationOutput) SetManifestProcessingRules(v *ManifestProcessingRules) *GetPlaybackConfigurationOutput {
+	s.ManifestProcessingRules = v
 	return s
 }
 
@@ -1287,6 +1319,37 @@ func (s *LivePreRollConfiguration) SetMaxDurationSeconds(v int64) *LivePreRollCo
 	return s
 }
 
+// The configuration for manifest processing rules. Manifest processing rules
+// enable customization of the personalized manifests created by MediaTailor.
+type ManifestProcessingRules struct {
+	_ struct{} `type:"structure"`
+
+	// For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT,
+	// and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor
+	// personalized manifest.
+	//
+	// No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has
+	// a value of 60, but no ads are filled for that ad break, MediaTailor will
+	// not set the value to 0.
+	AdMarkerPassthrough *AdMarkerPassthrough `type:"structure"`
+}
+
+// String returns the string representation
+func (s ManifestProcessingRules) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManifestProcessingRules) GoString() string {
+	return s.String()
+}
+
+// SetAdMarkerPassthrough sets the AdMarkerPassthrough field's value.
+func (s *ManifestProcessingRules) SetAdMarkerPassthrough(v *AdMarkerPassthrough) *ManifestProcessingRules {
+	s.AdMarkerPassthrough = v
+	return s
+}
+
 type PlaybackConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -1436,6 +1499,10 @@ type PutPlaybackConfigurationInput struct {
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
+	// The configuration for manifest processing rules. Manifest processing rules
+	// enable customization of the personalized manifests created by MediaTailor.
+	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
+
 	// The identifier for the playback configuration.
 	Name *string `type:"string"`
 
@@ -1522,6 +1589,12 @@ func (s *PutPlaybackConfigurationInput) SetLivePreRollConfiguration(v *LivePreRo
 	return s
 }
 
+// SetManifestProcessingRules sets the ManifestProcessingRules field's value.
+func (s *PutPlaybackConfigurationInput) SetManifestProcessingRules(v *ManifestProcessingRules) *PutPlaybackConfigurationInput {
+	s.ManifestProcessingRules = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *PutPlaybackConfigurationInput) SetName(v string) *PutPlaybackConfigurationInput {
 	s.Name = &v
@@ -1581,6 +1654,10 @@ type PutPlaybackConfigurationOutput struct {
 
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
+	// The configuration for manifest processing rules. Manifest processing rules
+	// enable customization of the personalized manifests created by MediaTailor.
+	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
 
 	Name *string `type:"string"`
 
@@ -1648,6 +1725,12 @@ func (s *PutPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration
 // SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
 func (s *PutPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PutPlaybackConfigurationOutput {
 	s.LivePreRollConfiguration = v
+	return s
+}
+
+// SetManifestProcessingRules sets the ManifestProcessingRules field's value.
+func (s *PutPlaybackConfigurationOutput) SetManifestProcessingRules(v *ManifestProcessingRules) *PutPlaybackConfigurationOutput {
+	s.ManifestProcessingRules = v
 	return s
 }
 

@@ -2070,6 +2070,17 @@
         "DATETIME"
       ]
     },
+    "ColumnDescription":{
+      "type":"structure",
+      "members":{
+        "Text":{"shape":"ColumnDescriptiveText"}
+      }
+    },
+    "ColumnDescriptiveText":{
+      "type":"string",
+      "max":500,
+      "min":0
+    },
     "ColumnGroup":{
       "type":"structure",
       "members":{
@@ -2142,7 +2153,8 @@
     "ColumnTag":{
       "type":"structure",
       "members":{
-        "ColumnGeographicRole":{"shape":"GeoSpatialDataRole"}
+        "ColumnGeographicRole":{"shape":"GeoSpatialDataRole"},
+        "ColumnDescription":{"shape":"ColumnDescription"}
       }
     },
     "ColumnTagList":{
@@ -5877,6 +5889,7 @@
       "type":"structure",
       "members":{
         "Name":{"shape":"ColumnName"},
+        "Description":{"shape":"ColumnDescriptiveText"},
         "Type":{"shape":"ColumnDataType"}
       }
     },

@@ -1,3 +1,12 @@
+Release v1.35.14 (2020-10-23)
+===
+
+### Service Client Updates
+* `service/macie2`: Updates service documentation
+* `service/mediatailor`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Support description on columns.
+
 Release v1.35.13 (2020-10-22)
 ===
 
