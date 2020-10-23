@@ -11946,6 +11946,30 @@ func (s *CastColumnTypeOperation) SetNewColumnType(v string) *CastColumnTypeOper
 	return s
 }
 
+// Metadata that contains a description for a column.
+type ColumnDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The text of a description for a column.
+	Text *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ColumnDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnDescription) GoString() string {
+	return s.String()
+}
+
+// SetText sets the Text field's value.
+func (s *ColumnDescription) SetText(v string) *ColumnDescription {
+	s.Text = &v
+	return s
+}
+
 // Groupings of columns that work together in certain Amazon QuickSight features.
 // This is a variant type structure. For this structure to be valid, only one
 // of the attributes can be non-null.
@@ -12092,6 +12116,9 @@ func (s *ColumnSchema) SetName(v string) *ColumnSchema {
 type ColumnTag struct {
 	_ struct{} `type:"structure"`
 
+	// A description for a column.
+	ColumnDescription *ColumnDescription `type:"structure"`
+
 	// A geospatial role for a column.
 	ColumnGeographicRole *string `type:"string" enum:"GeoSpatialDataRole"`
 }
@@ -12104,6 +12131,12 @@ func (s ColumnTag) String() string {
 // GoString returns the string representation
 func (s ColumnTag) GoString() string {
 	return s.String()
+}
+
+// SetColumnDescription sets the ColumnDescription field's value.
+func (s *ColumnTag) SetColumnDescription(v *ColumnDescription) *ColumnTag {
+	s.ColumnDescription = v
+	return s
 }
 
 // SetColumnGeographicRole sets the ColumnGeographicRole field's value.
@@ -15024,7 +15057,7 @@ type CredentialPair struct {
 	// credentials. The credentials are applied in tandem with the data source parameters
 	// when you copy a data source by using a create or update request. The API
 	// operation compares the DataSourceParameters structure that's in the request
-	// with the structures in the AlternateDataSourceParameters allowlist. If the
+	// with the structures in the AlternateDataSourceParameters allow list. If the
 	// structures are an exact match, the request is allowed to use the new data
 	// source with the existing credentials. If the AlternateDataSourceParameters
 	// list is null, the DataSourceParameters originally used with these Credentials
@@ -15773,7 +15806,7 @@ func (s *DashboardVersionSummary) SetVersionNumber(v int64) *DashboardVersionSum
 }
 
 // The theme colors that are used for data colors in charts. The colors description
-// is a hexidecimal color code that consists of six alphanumerical characters,
+// is a hexadecimal color code that consists of six alphanumerical characters,
 // prefixed with #, for example #37BFF5.
 type DataColorPalette struct {
 	_ struct{} `type:"structure"`
@@ -16150,8 +16183,8 @@ type DataSource struct {
 	// tandem with the data source parameters when you copy a data source by using
 	// a create or update request. The API operation compares the DataSourceParameters
 	// structure that's in the request with the structures in the AlternateDataSourceParameters
-	// allowlist. If the structures are an exact match, the request is allowed to
-	// use the credentials from this existing data source. If the AlternateDataSourceParameters
+	// allow list. If the structures are an exact match, the request is allowed
+	// to use the credentials from this existing data source. If the AlternateDataSourceParameters
 	// list is null, the Credentials originally used with this DataSourceParameters
 	// are automatically allowed.
 	AlternateDataSourceParameters []*DataSourceParameters `min:"1" type:"list"`
@@ -25321,6 +25354,9 @@ func (s *NamespaceInfoV2) SetNamespaceError(v *NamespaceError) *NamespaceInfoV2 
 type OutputColumn struct {
 	_ struct{} `type:"structure"`
 
+	// A description for a column.
+	Description *string `type:"string"`
+
 	// A display name for the dataset.
 	Name *string `min:"1" type:"string"`
 
@@ -25336,6 +25372,12 @@ func (s OutputColumn) String() string {
 // GoString returns the string representation
 func (s OutputColumn) GoString() string {
 	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *OutputColumn) SetDescription(v string) *OutputColumn {
+	s.Description = &v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -26478,8 +26520,11 @@ type ResourcePermission struct {
 
 	// The Amazon Resource Name (ARN) of the principal. This can be one of the following:
 	//
-	//    * The ARN of an Amazon QuickSight user, group, or namespace. (This is
-	//    most common.)
+	//    * The ARN of an Amazon QuickSight user or group associated with a data
+	//    source or dataset. (This is common.)
+	//
+	//    * The ARN of an Amazon QuickSight user, group, or namespace associated
+	//    with an analysis, dashboard, template, or theme. (This is common.)
 	//
 	//    * The ARN of an AWS account root: This is an IAM ARN rather than a QuickSight
 	//    ARN. Use this option only to share resources (templates) across AWS accounts.
@@ -27292,15 +27337,15 @@ func (s *SessionLifetimeInMinutesInvalidException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A sheet is an object that contains a set of visuals that are viewed together
-// on one page in the Amazon QuickSight console. Every analysis and dashboard
-// contains at least one sheet. Each sheet contains at least one visualization
+// A sheet, which is an object that contains a set of visuals that are viewed
+// together on one page in the Amazon QuickSight console. Every analysis and
+// dashboard contains at least one sheet. Each sheet contains at least one visualization
 // widget, for example a chart, pivot table, or narrative insight. Sheets can
 // be associated with other components, such as controls, filters, and so on.
 type Sheet struct {
 	_ struct{} `type:"structure"`
 
-	// The name of a sheet. This is displayed on the sheet's tab in the QuickSight
+	// The name of a sheet. This name is displayed on the sheet's tab in the QuickSight
 	// console.
 	Name *string `type:"string"`
 
@@ -29214,7 +29259,7 @@ func (s *TwitterParameters) SetQuery(v string) *TwitterParameters {
 }
 
 // The theme colors that apply to UI and to charts, excluding data colors. The
-// colors description is a hexidecimal color code that consists of six alphanumerical
+// colors description is a hexadecimal color code that consists of six alphanumerical
 // characters, prefixed with #, for example #37BFF5. For more information, see
 // Using Themes in Amazon QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html)
 // in the Amazon QuickSight User Guide.

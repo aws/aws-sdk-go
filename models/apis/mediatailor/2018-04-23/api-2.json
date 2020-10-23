@@ -125,6 +125,14 @@
         }
     }, 
     "shapes": {
+        "AdMarkerPassthrough" : {
+          "type" : "structure",
+           "members" : {
+            "Enabled" : {
+              "shape" : "__boolean"
+            }
+          }
+        },
         "AvailSuppression": {
           "type": "structure",
           "members": {
@@ -251,6 +259,9 @@
                 "LivePreRollConfiguration" : {
                     "shape" : "LivePreRollConfiguration"
                 },
+                "ManifestProcessingRules":{
+                    "shape" : "ManifestProcessingRules"
+                },
                 "Name": {
                     "shape": "__string"
                 }, 
@@ -342,6 +353,14 @@
             ], 
             "type": "string"
         }, 
+        "ManifestProcessingRules" : {
+          "type" : "structure",
+          "members" : {
+            "AdMarkerPassthrough" : {
+              "shape" : "AdMarkerPassthrough"
+            }
+          }
+        },
         "Mode": {
           "enum": [
             "OFF",
@@ -428,6 +447,9 @@
                 "LivePreRollConfiguration" : {
                     "shape" : "LivePreRollConfiguration"
                 },
+                "ManifestProcessingRules": {
+                    "shape": "ManifestProcessingRules"
+                },
                 "Name": {
                     "shape": "__string"
                 }, 
@@ -473,6 +495,9 @@
                 "Name": {
                     "shape": "__string"
                 }, 
+                "ManifestProcessingRules": {
+                    "shape": "ManifestProcessingRules"
+                },
                 "PlaybackConfigurationArn": {
                     "shape": "__string"
                 }, 

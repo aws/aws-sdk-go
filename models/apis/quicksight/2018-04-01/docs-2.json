@@ -575,6 +575,19 @@
         "OutputColumn$Type": "<p>Type.</p>"
       }
     },
+    "ColumnDescription": {
+      "base": "<p>Metadata that contains a description for a column.</p>",
+      "refs": {
+        "ColumnTag$ColumnDescription": "<p>A description for a column.</p>"
+      }
+    },
+    "ColumnDescriptiveText": {
+      "base": null,
+      "refs": {
+        "ColumnDescription$Text": "<p>The text of a description for a column.</p>",
+        "OutputColumn$Description": "<p>A description for a column.</p>"
+      }
+    },
     "ColumnGroup": {
       "base": "<p>Groupings of columns that work together in certain Amazon QuickSight features. This is a variant type structure. For this structure to be valid, only one of the attributes can be non-null.</p>",
       "refs": {
@@ -964,7 +977,7 @@
       }
     },
     "DataColorPalette": {
-      "base": "<p>The theme colors that are used for data colors in charts. The colors description is a hexidecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. </p>",
+      "base": "<p>The theme colors that are used for data colors in charts. The colors description is a hexadecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. </p>",
       "refs": {
         "ThemeConfiguration$DataColorPalette": "<p>Color properties that apply to chart data colors.</p>"
       }
@@ -1085,8 +1098,8 @@
     "DataSourceParametersList": {
       "base": null,
       "refs": {
-        "CredentialPair$AlternateDataSourceParameters": "<p>A set of alternate data source parameters that you want to share for these credentials. The credentials are applied in tandem with the data source parameters when you copy a data source by using a create or update request. The API operation compares the <code>DataSourceParameters</code> structure that's in the request with the structures in the <code>AlternateDataSourceParameters</code> allowlist. If the structures are an exact match, the request is allowed to use the new data source with the existing credentials. If the <code>AlternateDataSourceParameters</code> list is null, the <code>DataSourceParameters</code> originally used with these <code>Credentials</code> is automatically allowed.</p>",
-        "DataSource$AlternateDataSourceParameters": "<p>A set of alternate data source parameters that you want to share for the credentials stored with this data source. The credentials are applied in tandem with the data source parameters when you copy a data source by using a create or update request. The API operation compares the <code>DataSourceParameters</code> structure that's in the request with the structures in the <code>AlternateDataSourceParameters</code> allowlist. If the structures are an exact match, the request is allowed to use the credentials from this existing data source. If the <code>AlternateDataSourceParameters</code> list is null, the <code>Credentials</code> originally used with this <code>DataSourceParameters</code> are automatically allowed.</p>"
+        "CredentialPair$AlternateDataSourceParameters": "<p>A set of alternate data source parameters that you want to share for these credentials. The credentials are applied in tandem with the data source parameters when you copy a data source by using a create or update request. The API operation compares the <code>DataSourceParameters</code> structure that's in the request with the structures in the <code>AlternateDataSourceParameters</code> allow list. If the structures are an exact match, the request is allowed to use the new data source with the existing credentials. If the <code>AlternateDataSourceParameters</code> list is null, the <code>DataSourceParameters</code> originally used with these <code>Credentials</code> is automatically allowed.</p>",
+        "DataSource$AlternateDataSourceParameters": "<p>A set of alternate data source parameters that you want to share for the credentials stored with this data source. The credentials are applied in tandem with the data source parameters when you copy a data source by using a create or update request. The API operation compares the <code>DataSourceParameters</code> structure that's in the request with the structures in the <code>AlternateDataSourceParameters</code> allow list. If the structures are an exact match, the request is allowed to use the credentials from this existing data source. If the <code>AlternateDataSourceParameters</code> list is null, the <code>Credentials</code> originally used with this <code>DataSourceParameters</code> are automatically allowed.</p>"
       }
     },
     "DataSourceType": {
@@ -2316,7 +2329,7 @@
         "DateTimeParameter$Name": "<p>A display name for the date-time parameter.</p>",
         "DecimalParameter$Name": "<p>A display name for the decimal parameter.</p>",
         "IntegerParameter$Name": "<p>The name of the integer parameter.</p>",
-        "Sheet$Name": "<p>The name of a sheet. This is displayed on the sheet's tab in the QuickSight console.</p>",
+        "Sheet$Name": "<p>The name of a sheet. This name is displayed on the sheet's tab in the QuickSight console.</p>",
         "StringParameter$Name": "<p>A display name for a string parameter.</p>",
         "TemplateError$Message": "<p>Description of the error type.</p>",
         "ThemeError$Message": "<p>The error message.</p>"
@@ -2423,7 +2436,7 @@
     "Principal": {
       "base": null,
       "refs": {
-        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace. (This is most common.)</p> </li> <li> <p>The ARN of an AWS account root: This is an IAM ARN rather than a QuickSight ARN. Use this option only to share resources (templates) across AWS accounts. (This is less common.) </p> </li> </ul>"
+        "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p> </li> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p> </li> <li> <p>The ARN of an AWS account root: This is an IAM ARN rather than a QuickSight ARN. Use this option only to share resources (templates) across AWS accounts. (This is less common.) </p> </li> </ul>"
       }
     },
     "ProjectOperation": {
@@ -2811,7 +2824,7 @@
       }
     },
     "Sheet": {
-      "base": "<p>A sheet is an object that contains a set of visuals that are viewed together on one page in the Amazon QuickSight console. Every analysis and dashboard contains at least one sheet. Each sheet contains at least one visualization widget, for example a chart, pivot table, or narrative insight. Sheets can be associated with other components, such as controls, filters, and so on.</p>",
+      "base": "<p>A <i>sheet</i>, which is an object that contains a set of visuals that are viewed together on one page in the Amazon QuickSight console. Every analysis and dashboard contains at least one sheet. Each sheet contains at least one visualization widget, for example a chart, pivot table, or narrative insight. Sheets can be associated with other components, such as controls, filters, and so on.</p>",
       "refs": {
         "SheetList$member": null
       }
@@ -3544,7 +3557,7 @@
       }
     },
     "UIColorPalette": {
-      "base": "<p>The theme colors that apply to UI and to charts, excluding data colors. The colors description is a hexidecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p>",
+      "base": "<p>The theme colors that apply to UI and to charts, excluding data colors. The colors description is a hexadecimal color code that consists of six alphanumerical characters, prefixed with <code>#</code>, for example #37BFF5. For more information, see <a href=\"https://docs.aws.amazon.com/quicksight/latest/user/themes-in-quicksight.html\">Using Themes in Amazon QuickSight</a> in the <i>Amazon QuickSight User Guide.</i> </p>",
       "refs": {
         "ThemeConfiguration$UIColorPalette": "<p>Color properties that apply to the UI and to charts, excluding the colors that apply to data. </p>"
       }

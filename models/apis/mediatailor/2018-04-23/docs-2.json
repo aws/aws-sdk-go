@@ -10,6 +10,12 @@
     }, 
     "service": "<p>Use the AWS Elemental MediaTailor SDK to configure scalable ad insertion for your live and VOD content. With AWS Elemental MediaTailor, you can serve targeted ads to viewers while maintaining broadcast quality in over-the-top (OTT) video applications. For information about using the service, including detailed information about the settings covered in this guide, see the AWS Elemental MediaTailor User Guide.<p>Through the SDK, you manage AWS Elemental MediaTailor configurations the same as you do through the console. For example, you specify ad insertion behavior and mapping information for the origin server and the ad decision server (ADS).</p>", 
     "shapes": {
+        "AdMarkerPassthrough" : {
+          "base" : null,
+          "refs" : {
+            "ManifestProcessingRules$AdMarkerPassthrough" : "<p>For HLS, when set to <code>true</code>, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest.</p><p>No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of <code>60</code>, but no ads are filled for that ad break, MediaTailor will not set the value to 0.</p>"
+          }
+        },
         "AvailSuppression": {
           "base": null,
           "refs": {
@@ -71,6 +77,13 @@
                 "GetPlaybackConfigurationResponse$LivePreRollConfiguration" : "<p>The configuration for pre-roll ad insertion.</p>",
                 "PutPlaybackConfigurationRequest$LivePreRollConfiguration" : "<p>The configuration for pre-roll ad insertion.</p>"
             }
+        },
+        "ManifestProcessingRules" : {
+          "base" : "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor.",
+          "refs" : {
+            "GetPlaybackConfigurationResponse$ManifestProcessingRules" : "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor.",
+            "PutPlaybackConfigurationRequest$ManifestProcessingRules" : "The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor."
+          }
         },
         "OriginManifestType": {
             "base": null, 
