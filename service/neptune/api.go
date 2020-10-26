@@ -762,6 +762,101 @@ func (c *Neptune) CreateDBClusterWithContext(ctx aws.Context, input *CreateDBClu
 	return out, req.Send()
 }
 
+const opCreateDBClusterEndpoint = "CreateDBClusterEndpoint"
+
+// CreateDBClusterEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDBClusterEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDBClusterEndpoint for more information on using the CreateDBClusterEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDBClusterEndpointRequest method.
+//    req, resp := client.CreateDBClusterEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/CreateDBClusterEndpoint
+func (c *Neptune) CreateDBClusterEndpointRequest(input *CreateDBClusterEndpointInput) (req *request.Request, output *CreateDBClusterEndpointOutput) {
+	op := &request.Operation{
+		Name:       opCreateDBClusterEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateDBClusterEndpointInput{}
+	}
+
+	output = &CreateDBClusterEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDBClusterEndpoint API operation for Amazon Neptune.
+//
+// Creates a new custom endpoint and associates it with an Amazon Neptune DB
+// cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Neptune's
+// API operation CreateDBClusterEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBClusterEndpointQuotaExceededFault "DBClusterEndpointQuotaExceededFault"
+//   The cluster already has the maximum number of custom endpoints.
+//
+//   * ErrCodeDBClusterEndpointAlreadyExistsFault "DBClusterEndpointAlreadyExistsFault"
+//   The specified custom endpoint cannot be created because it already exists.
+//
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier does not refer to an existing DB cluster.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The DB cluster is not in a valid state.
+//
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier does not refer to an existing DB instance.
+//
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The specified DB instance is not in the available state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/CreateDBClusterEndpoint
+func (c *Neptune) CreateDBClusterEndpoint(input *CreateDBClusterEndpointInput) (*CreateDBClusterEndpointOutput, error) {
+	req, out := c.CreateDBClusterEndpointRequest(input)
+	return out, req.Send()
+}
+
+// CreateDBClusterEndpointWithContext is the same as CreateDBClusterEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDBClusterEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Neptune) CreateDBClusterEndpointWithContext(ctx aws.Context, input *CreateDBClusterEndpointInput, opts ...request.Option) (*CreateDBClusterEndpointOutput, error) {
+	req, out := c.CreateDBClusterEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDBClusterParameterGroup = "CreateDBClusterParameterGroup"
 
 // CreateDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
@@ -1510,6 +1605,92 @@ func (c *Neptune) DeleteDBClusterWithContext(ctx aws.Context, input *DeleteDBClu
 	return out, req.Send()
 }
 
+const opDeleteDBClusterEndpoint = "DeleteDBClusterEndpoint"
+
+// DeleteDBClusterEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDBClusterEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDBClusterEndpoint for more information on using the DeleteDBClusterEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDBClusterEndpointRequest method.
+//    req, resp := client.DeleteDBClusterEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/DeleteDBClusterEndpoint
+func (c *Neptune) DeleteDBClusterEndpointRequest(input *DeleteDBClusterEndpointInput) (req *request.Request, output *DeleteDBClusterEndpointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDBClusterEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteDBClusterEndpointInput{}
+	}
+
+	output = &DeleteDBClusterEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteDBClusterEndpoint API operation for Amazon Neptune.
+//
+// Deletes a custom endpoint and removes it from an Amazon Neptune DB cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Neptune's
+// API operation DeleteDBClusterEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDBClusterEndpointStateFault "InvalidDBClusterEndpointStateFault"
+//   The requested operation cannot be performed on the endpoint while the endpoint
+//   is in this state.
+//
+//   * ErrCodeDBClusterEndpointNotFoundFault "DBClusterEndpointNotFoundFault"
+//   The specified custom endpoint doesn't exist.
+//
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The DB cluster is not in a valid state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/DeleteDBClusterEndpoint
+func (c *Neptune) DeleteDBClusterEndpoint(input *DeleteDBClusterEndpointInput) (*DeleteDBClusterEndpointOutput, error) {
+	req, out := c.DeleteDBClusterEndpointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDBClusterEndpointWithContext is the same as DeleteDBClusterEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDBClusterEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Neptune) DeleteDBClusterEndpointWithContext(ctx aws.Context, input *DeleteDBClusterEndpointInput, opts ...request.Option) (*DeleteDBClusterEndpointOutput, error) {
+	req, out := c.DeleteDBClusterEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteDBClusterParameterGroup = "DeleteDBClusterParameterGroup"
 
 // DeleteDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
@@ -2041,6 +2222,146 @@ func (c *Neptune) DeleteEventSubscriptionWithContext(ctx aws.Context, input *Del
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opDescribeDBClusterEndpoints = "DescribeDBClusterEndpoints"
+
+// DescribeDBClusterEndpointsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDBClusterEndpoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDBClusterEndpoints for more information on using the DescribeDBClusterEndpoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDBClusterEndpointsRequest method.
+//    req, resp := client.DescribeDBClusterEndpointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/DescribeDBClusterEndpoints
+func (c *Neptune) DescribeDBClusterEndpointsRequest(input *DescribeDBClusterEndpointsInput) (req *request.Request, output *DescribeDBClusterEndpointsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDBClusterEndpoints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeDBClusterEndpointsInput{}
+	}
+
+	output = &DescribeDBClusterEndpointsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDBClusterEndpoints API operation for Amazon Neptune.
+//
+// Returns information about endpoints for an Amazon Neptune DB cluster.
+//
+// This operation can also return information for Amazon RDS clusters and Amazon
+// DocDB clusters.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Neptune's
+// API operation DescribeDBClusterEndpoints for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeDBClusterNotFoundFault "DBClusterNotFoundFault"
+//   DBClusterIdentifier does not refer to an existing DB cluster.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/DescribeDBClusterEndpoints
+func (c *Neptune) DescribeDBClusterEndpoints(input *DescribeDBClusterEndpointsInput) (*DescribeDBClusterEndpointsOutput, error) {
+	req, out := c.DescribeDBClusterEndpointsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDBClusterEndpointsWithContext is the same as DescribeDBClusterEndpoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDBClusterEndpoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Neptune) DescribeDBClusterEndpointsWithContext(ctx aws.Context, input *DescribeDBClusterEndpointsInput, opts ...request.Option) (*DescribeDBClusterEndpointsOutput, error) {
+	req, out := c.DescribeDBClusterEndpointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeDBClusterEndpointsPages iterates over the pages of a DescribeDBClusterEndpoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeDBClusterEndpoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeDBClusterEndpoints operation.
+//    pageNum := 0
+//    err := client.DescribeDBClusterEndpointsPages(params,
+//        func(page *neptune.DescribeDBClusterEndpointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Neptune) DescribeDBClusterEndpointsPages(input *DescribeDBClusterEndpointsInput, fn func(*DescribeDBClusterEndpointsOutput, bool) bool) error {
+	return c.DescribeDBClusterEndpointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeDBClusterEndpointsPagesWithContext same as DescribeDBClusterEndpointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Neptune) DescribeDBClusterEndpointsPagesWithContext(ctx aws.Context, input *DescribeDBClusterEndpointsInput, fn func(*DescribeDBClusterEndpointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeDBClusterEndpointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeDBClusterEndpointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeDBClusterEndpointsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeDBClusterParameterGroups = "DescribeDBClusterParameterGroups"
@@ -4294,6 +4615,98 @@ func (c *Neptune) ModifyDBClusterWithContext(ctx aws.Context, input *ModifyDBClu
 	return out, req.Send()
 }
 
+const opModifyDBClusterEndpoint = "ModifyDBClusterEndpoint"
+
+// ModifyDBClusterEndpointRequest generates a "aws/request.Request" representing the
+// client's request for the ModifyDBClusterEndpoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ModifyDBClusterEndpoint for more information on using the ModifyDBClusterEndpoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ModifyDBClusterEndpointRequest method.
+//    req, resp := client.ModifyDBClusterEndpointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/ModifyDBClusterEndpoint
+func (c *Neptune) ModifyDBClusterEndpointRequest(input *ModifyDBClusterEndpointInput) (req *request.Request, output *ModifyDBClusterEndpointOutput) {
+	op := &request.Operation{
+		Name:       opModifyDBClusterEndpoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ModifyDBClusterEndpointInput{}
+	}
+
+	output = &ModifyDBClusterEndpointOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ModifyDBClusterEndpoint API operation for Amazon Neptune.
+//
+// Modifies the properties of an endpoint in an Amazon Neptune DB cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Neptune's
+// API operation ModifyDBClusterEndpoint for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDBClusterStateFault "InvalidDBClusterStateFault"
+//   The DB cluster is not in a valid state.
+//
+//   * ErrCodeInvalidDBClusterEndpointStateFault "InvalidDBClusterEndpointStateFault"
+//   The requested operation cannot be performed on the endpoint while the endpoint
+//   is in this state.
+//
+//   * ErrCodeDBClusterEndpointNotFoundFault "DBClusterEndpointNotFoundFault"
+//   The specified custom endpoint doesn't exist.
+//
+//   * ErrCodeDBInstanceNotFoundFault "DBInstanceNotFound"
+//   DBInstanceIdentifier does not refer to an existing DB instance.
+//
+//   * ErrCodeInvalidDBInstanceStateFault "InvalidDBInstanceState"
+//   The specified DB instance is not in the available state.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/neptune-2014-10-31/ModifyDBClusterEndpoint
+func (c *Neptune) ModifyDBClusterEndpoint(input *ModifyDBClusterEndpointInput) (*ModifyDBClusterEndpointOutput, error) {
+	req, out := c.ModifyDBClusterEndpointRequest(input)
+	return out, req.Send()
+}
+
+// ModifyDBClusterEndpointWithContext is the same as ModifyDBClusterEndpoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ModifyDBClusterEndpoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Neptune) ModifyDBClusterEndpointWithContext(ctx aws.Context, input *ModifyDBClusterEndpointInput, opts ...request.Option) (*ModifyDBClusterEndpointOutput, error) {
+	req, out := c.ModifyDBClusterEndpointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opModifyDBClusterParameterGroup = "ModifyDBClusterParameterGroup"
 
 // ModifyDBClusterParameterGroupRequest generates a "aws/request.Request" representing the
@@ -6010,6 +6423,10 @@ type AddRoleToDBClusterInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
+	// The name of the feature for the Neptune DB cluster that the IAM role is to
+	// be associated with. For the list of supported feature names, see DBEngineVersion.
+	FeatureName *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM role to associate with the Neptune
 	// DB cluster, for example arn:aws:iam::123456789012:role/NeptuneAccessRole.
 	//
@@ -6046,6 +6463,12 @@ func (s *AddRoleToDBClusterInput) Validate() error {
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *AddRoleToDBClusterInput) SetDBClusterIdentifier(v string) *AddRoleToDBClusterInput {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *AddRoleToDBClusterInput) SetFeatureName(v string) *AddRoleToDBClusterInput {
+	s.FeatureName = &v
 	return s
 }
 
@@ -6827,6 +7250,229 @@ func (s *CopyDBParameterGroupOutput) SetDBParameterGroup(v *DBParameterGroup) *C
 	return s
 }
 
+type CreateDBClusterEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier to use for the new endpoint. This parameter is stored as a
+	// lowercase string.
+	//
+	// DBClusterEndpointIdentifier is a required field
+	DBClusterEndpointIdentifier *string `type:"string" required:"true"`
+
+	// The DB cluster identifier of the DB cluster associated with the endpoint.
+	// This parameter is stored as a lowercase string.
+	//
+	// DBClusterIdentifier is a required field
+	DBClusterIdentifier *string `type:"string" required:"true"`
+
+	// The type of the endpoint. One of: READER, WRITER, ANY.
+	//
+	// EndpointType is a required field
+	EndpointType *string `type:"string" required:"true"`
+
+	// List of DB instance identifiers that aren't part of the custom endpoint group.
+	// All other eligible instances are reachable through the custom endpoint. Only
+	// relevant if the list of static members is empty.
+	ExcludedMembers []*string `type:"list"`
+
+	// List of DB instance identifiers that are part of the custom endpoint group.
+	StaticMembers []*string `type:"list"`
+
+	// The tags to be assigned to the Amazon Neptune resource.
+	Tags []*Tag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDBClusterEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDBClusterEndpointInput"}
+	if s.DBClusterEndpointIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterEndpointIdentifier"))
+	}
+	if s.DBClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterIdentifier"))
+	}
+	if s.EndpointType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *CreateDBClusterEndpointInput) SetDBClusterEndpointIdentifier(v string) *CreateDBClusterEndpointInput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *CreateDBClusterEndpointInput) SetDBClusterIdentifier(v string) *CreateDBClusterEndpointInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *CreateDBClusterEndpointInput) SetEndpointType(v string) *CreateDBClusterEndpointInput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetExcludedMembers sets the ExcludedMembers field's value.
+func (s *CreateDBClusterEndpointInput) SetExcludedMembers(v []*string) *CreateDBClusterEndpointInput {
+	s.ExcludedMembers = v
+	return s
+}
+
+// SetStaticMembers sets the StaticMembers field's value.
+func (s *CreateDBClusterEndpointInput) SetStaticMembers(v []*string) *CreateDBClusterEndpointInput {
+	s.StaticMembers = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDBClusterEndpointInput) SetTags(v []*Tag) *CreateDBClusterEndpointInput {
+	s.Tags = v
+	return s
+}
+
+// This data type represents the information you need to connect to an Amazon
+// Neptune DB cluster. This data type is used as a response element in the following
+// actions:
+//
+//    * CreateDBClusterEndpoint
+//
+//    * DescribeDBClusterEndpoints
+//
+//    * ModifyDBClusterEndpoint
+//
+//    * DeleteDBClusterEndpoint
+//
+// For the data structure that represents Amazon Neptune DB instance endpoints,
+// see Endpoint.
+type CreateDBClusterEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The type associated with a custom endpoint. One of: READER, WRITER, ANY.
+	CustomEndpointType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the endpoint.
+	DBClusterEndpointArn *string `type:"string"`
+
+	// The identifier associated with the endpoint. This parameter is stored as
+	// a lowercase string.
+	DBClusterEndpointIdentifier *string `type:"string"`
+
+	// A unique system-generated identifier for an endpoint. It remains the same
+	// for the whole life of the endpoint.
+	DBClusterEndpointResourceIdentifier *string `type:"string"`
+
+	// The DB cluster identifier of the DB cluster associated with the endpoint.
+	// This parameter is stored as a lowercase string.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The DNS address of the endpoint.
+	Endpoint *string `type:"string"`
+
+	// The type of the endpoint. One of: READER, WRITER, CUSTOM.
+	EndpointType *string `type:"string"`
+
+	// List of DB instance identifiers that aren't part of the custom endpoint group.
+	// All other eligible instances are reachable through the custom endpoint. Only
+	// relevant if the list of static members is empty.
+	ExcludedMembers []*string `type:"list"`
+
+	// List of DB instance identifiers that are part of the custom endpoint group.
+	StaticMembers []*string `type:"list"`
+
+	// The current status of the endpoint. One of: creating, available, deleting,
+	// inactive, modifying. The inactive state applies to an endpoint that cannot
+	// be used for a certain kind of cluster, such as a writer endpoint for a read-only
+	// secondary cluster in a global database.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateDBClusterEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateDBClusterEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomEndpointType sets the CustomEndpointType field's value.
+func (s *CreateDBClusterEndpointOutput) SetCustomEndpointType(v string) *CreateDBClusterEndpointOutput {
+	s.CustomEndpointType = &v
+	return s
+}
+
+// SetDBClusterEndpointArn sets the DBClusterEndpointArn field's value.
+func (s *CreateDBClusterEndpointOutput) SetDBClusterEndpointArn(v string) *CreateDBClusterEndpointOutput {
+	s.DBClusterEndpointArn = &v
+	return s
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *CreateDBClusterEndpointOutput) SetDBClusterEndpointIdentifier(v string) *CreateDBClusterEndpointOutput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetDBClusterEndpointResourceIdentifier sets the DBClusterEndpointResourceIdentifier field's value.
+func (s *CreateDBClusterEndpointOutput) SetDBClusterEndpointResourceIdentifier(v string) *CreateDBClusterEndpointOutput {
+	s.DBClusterEndpointResourceIdentifier = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *CreateDBClusterEndpointOutput) SetDBClusterIdentifier(v string) *CreateDBClusterEndpointOutput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *CreateDBClusterEndpointOutput) SetEndpoint(v string) *CreateDBClusterEndpointOutput {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *CreateDBClusterEndpointOutput) SetEndpointType(v string) *CreateDBClusterEndpointOutput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetExcludedMembers sets the ExcludedMembers field's value.
+func (s *CreateDBClusterEndpointOutput) SetExcludedMembers(v []*string) *CreateDBClusterEndpointOutput {
+	s.ExcludedMembers = v
+	return s
+}
+
+// SetStaticMembers sets the StaticMembers field's value.
+func (s *CreateDBClusterEndpointOutput) SetStaticMembers(v []*string) *CreateDBClusterEndpointOutput {
+	s.StaticMembers = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateDBClusterEndpointOutput) SetStatus(v string) *CreateDBClusterEndpointOutput {
+	s.Status = &v
+	return s
+}
+
 type CreateDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6892,10 +7538,7 @@ type CreateDBClusterInput struct {
 	// Logs.
 	EnableCloudwatchLogsExports []*string `type:"list"`
 
-	// True to enable mapping of AWS Identity and Access Management (IAM) accounts
-	// to database accounts, and otherwise false.
-	//
-	// Default: false
+	// Not supported by Neptune.
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
 	// The name of the database engine to be used for this DB cluster.
@@ -6905,10 +7548,9 @@ type CreateDBClusterInput struct {
 	// Engine is a required field
 	Engine *string `type:"string" required:"true"`
 
-	// The version number of the database engine to use. Currently, setting this
-	// parameter has no effect.
+	// The version number of the database engine to use for the new DB cluster.
 	//
-	// Example: 1.0.1
+	// Example: 1.0.2.1
 	EngineVersion *string `type:"string"`
 
 	// The AWS KMS key identifier for an encrypted DB cluster.
@@ -8770,6 +9412,132 @@ func (s *DBCluster) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *DBClu
 	return s
 }
 
+// This data type represents the information you need to connect to an Amazon
+// Neptune DB cluster. This data type is used as a response element in the following
+// actions:
+//
+//    * CreateDBClusterEndpoint
+//
+//    * DescribeDBClusterEndpoints
+//
+//    * ModifyDBClusterEndpoint
+//
+//    * DeleteDBClusterEndpoint
+//
+// For the data structure that represents Amazon Neptune DB instance endpoints,
+// see Endpoint.
+type DBClusterEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The type associated with a custom endpoint. One of: READER, WRITER, ANY.
+	CustomEndpointType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the endpoint.
+	DBClusterEndpointArn *string `type:"string"`
+
+	// The identifier associated with the endpoint. This parameter is stored as
+	// a lowercase string.
+	DBClusterEndpointIdentifier *string `type:"string"`
+
+	// A unique system-generated identifier for an endpoint. It remains the same
+	// for the whole life of the endpoint.
+	DBClusterEndpointResourceIdentifier *string `type:"string"`
+
+	// The DB cluster identifier of the DB cluster associated with the endpoint.
+	// This parameter is stored as a lowercase string.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The DNS address of the endpoint.
+	Endpoint *string `type:"string"`
+
+	// The type of the endpoint. One of: READER, WRITER, CUSTOM.
+	EndpointType *string `type:"string"`
+
+	// List of DB instance identifiers that aren't part of the custom endpoint group.
+	// All other eligible instances are reachable through the custom endpoint. Only
+	// relevant if the list of static members is empty.
+	ExcludedMembers []*string `type:"list"`
+
+	// List of DB instance identifiers that are part of the custom endpoint group.
+	StaticMembers []*string `type:"list"`
+
+	// The current status of the endpoint. One of: creating, available, deleting,
+	// inactive, modifying. The inactive state applies to an endpoint that cannot
+	// be used for a certain kind of cluster, such as a writer endpoint for a read-only
+	// secondary cluster in a global database.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DBClusterEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DBClusterEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetCustomEndpointType sets the CustomEndpointType field's value.
+func (s *DBClusterEndpoint) SetCustomEndpointType(v string) *DBClusterEndpoint {
+	s.CustomEndpointType = &v
+	return s
+}
+
+// SetDBClusterEndpointArn sets the DBClusterEndpointArn field's value.
+func (s *DBClusterEndpoint) SetDBClusterEndpointArn(v string) *DBClusterEndpoint {
+	s.DBClusterEndpointArn = &v
+	return s
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *DBClusterEndpoint) SetDBClusterEndpointIdentifier(v string) *DBClusterEndpoint {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetDBClusterEndpointResourceIdentifier sets the DBClusterEndpointResourceIdentifier field's value.
+func (s *DBClusterEndpoint) SetDBClusterEndpointResourceIdentifier(v string) *DBClusterEndpoint {
+	s.DBClusterEndpointResourceIdentifier = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DBClusterEndpoint) SetDBClusterIdentifier(v string) *DBClusterEndpoint {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DBClusterEndpoint) SetEndpoint(v string) *DBClusterEndpoint {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *DBClusterEndpoint) SetEndpointType(v string) *DBClusterEndpoint {
+	s.EndpointType = &v
+	return s
+}
+
+// SetExcludedMembers sets the ExcludedMembers field's value.
+func (s *DBClusterEndpoint) SetExcludedMembers(v []*string) *DBClusterEndpoint {
+	s.ExcludedMembers = v
+	return s
+}
+
+// SetStaticMembers sets the StaticMembers field's value.
+func (s *DBClusterEndpoint) SetStaticMembers(v []*string) *DBClusterEndpoint {
+	s.StaticMembers = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DBClusterEndpoint) SetStatus(v string) *DBClusterEndpoint {
+	s.Status = &v
+	return s
+}
+
 // Contains information about an instance that is part of a DB cluster.
 type DBClusterMember struct {
 	_ struct{} `type:"structure"`
@@ -8918,6 +9686,10 @@ func (s *DBClusterParameterGroup) SetDescription(v string) *DBClusterParameterGr
 type DBClusterRole struct {
 	_ struct{} `type:"structure"`
 
+	// The name of the feature associated with the AWS Identity and Access Management
+	// (IAM) role. For the list of supported feature names, see DBEngineVersion.
+	FeatureName *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM role that is associated with the
 	// DB cluster.
 	RoleArn *string `type:"string"`
@@ -8944,6 +9716,12 @@ func (s DBClusterRole) String() string {
 // GoString returns the string representation
 func (s DBClusterRole) GoString() string {
 	return s.String()
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *DBClusterRole) SetFeatureName(v string) *DBClusterRole {
+	s.FeatureName = &v
+	return s
 }
 
 // SetRoleArn sets the RoleArn field's value.
@@ -10171,6 +10949,171 @@ func (s *DBSubnetGroup) SetVpcId(v string) *DBSubnetGroup {
 	return s
 }
 
+type DeleteDBClusterEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier associated with the custom endpoint. This parameter is stored
+	// as a lowercase string.
+	//
+	// DBClusterEndpointIdentifier is a required field
+	DBClusterEndpointIdentifier *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDBClusterEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDBClusterEndpointInput"}
+	if s.DBClusterEndpointIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterEndpointIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *DeleteDBClusterEndpointInput) SetDBClusterEndpointIdentifier(v string) *DeleteDBClusterEndpointInput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// This data type represents the information you need to connect to an Amazon
+// Neptune DB cluster. This data type is used as a response element in the following
+// actions:
+//
+//    * CreateDBClusterEndpoint
+//
+//    * DescribeDBClusterEndpoints
+//
+//    * ModifyDBClusterEndpoint
+//
+//    * DeleteDBClusterEndpoint
+//
+// For the data structure that represents Amazon RDS DB instance endpoints,
+// see Endpoint.
+type DeleteDBClusterEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The type associated with a custom endpoint. One of: READER, WRITER, ANY.
+	CustomEndpointType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the endpoint.
+	DBClusterEndpointArn *string `type:"string"`
+
+	// The identifier associated with the endpoint. This parameter is stored as
+	// a lowercase string.
+	DBClusterEndpointIdentifier *string `type:"string"`
+
+	// A unique system-generated identifier for an endpoint. It remains the same
+	// for the whole life of the endpoint.
+	DBClusterEndpointResourceIdentifier *string `type:"string"`
+
+	// The DB cluster identifier of the DB cluster associated with the endpoint.
+	// This parameter is stored as a lowercase string.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The DNS address of the endpoint.
+	Endpoint *string `type:"string"`
+
+	// The type of the endpoint. One of: READER, WRITER, CUSTOM.
+	EndpointType *string `type:"string"`
+
+	// List of DB instance identifiers that aren't part of the custom endpoint group.
+	// All other eligible instances are reachable through the custom endpoint. Only
+	// relevant if the list of static members is empty.
+	ExcludedMembers []*string `type:"list"`
+
+	// List of DB instance identifiers that are part of the custom endpoint group.
+	StaticMembers []*string `type:"list"`
+
+	// The current status of the endpoint. One of: creating, available, deleting,
+	// inactive, modifying. The inactive state applies to an endpoint that cannot
+	// be used for a certain kind of cluster, such as a writer endpoint for a read-only
+	// secondary cluster in a global database.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteDBClusterEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteDBClusterEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomEndpointType sets the CustomEndpointType field's value.
+func (s *DeleteDBClusterEndpointOutput) SetCustomEndpointType(v string) *DeleteDBClusterEndpointOutput {
+	s.CustomEndpointType = &v
+	return s
+}
+
+// SetDBClusterEndpointArn sets the DBClusterEndpointArn field's value.
+func (s *DeleteDBClusterEndpointOutput) SetDBClusterEndpointArn(v string) *DeleteDBClusterEndpointOutput {
+	s.DBClusterEndpointArn = &v
+	return s
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *DeleteDBClusterEndpointOutput) SetDBClusterEndpointIdentifier(v string) *DeleteDBClusterEndpointOutput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetDBClusterEndpointResourceIdentifier sets the DBClusterEndpointResourceIdentifier field's value.
+func (s *DeleteDBClusterEndpointOutput) SetDBClusterEndpointResourceIdentifier(v string) *DeleteDBClusterEndpointOutput {
+	s.DBClusterEndpointResourceIdentifier = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DeleteDBClusterEndpointOutput) SetDBClusterIdentifier(v string) *DeleteDBClusterEndpointOutput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *DeleteDBClusterEndpointOutput) SetEndpoint(v string) *DeleteDBClusterEndpointOutput {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *DeleteDBClusterEndpointOutput) SetEndpointType(v string) *DeleteDBClusterEndpointOutput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetExcludedMembers sets the ExcludedMembers field's value.
+func (s *DeleteDBClusterEndpointOutput) SetExcludedMembers(v []*string) *DeleteDBClusterEndpointOutput {
+	s.ExcludedMembers = v
+	return s
+}
+
+// SetStaticMembers sets the StaticMembers field's value.
+func (s *DeleteDBClusterEndpointOutput) SetStaticMembers(v []*string) *DeleteDBClusterEndpointOutput {
+	s.StaticMembers = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DeleteDBClusterEndpointOutput) SetStatus(v string) *DeleteDBClusterEndpointOutput {
+	s.Status = &v
+	return s
+}
+
 type DeleteDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10696,6 +11639,136 @@ func (s DeleteEventSubscriptionOutput) GoString() string {
 // SetEventSubscription sets the EventSubscription field's value.
 func (s *DeleteEventSubscriptionOutput) SetEventSubscription(v *EventSubscription) *DeleteEventSubscriptionOutput {
 	s.EventSubscription = v
+	return s
+}
+
+type DescribeDBClusterEndpointsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the endpoint to describe. This parameter is stored as a
+	// lowercase string.
+	DBClusterEndpointIdentifier *string `type:"string"`
+
+	// The DB cluster identifier of the DB cluster associated with the endpoint.
+	// This parameter is stored as a lowercase string.
+	DBClusterIdentifier *string `type:"string"`
+
+	// A set of name-value pairs that define which endpoints to include in the output.
+	// The filters are specified as name-value pairs, in the format Name=endpoint_type,Values=endpoint_type1,endpoint_type2,....
+	// Name can be one of: db-cluster-endpoint-type, db-cluster-endpoint-custom-type,
+	// db-cluster-endpoint-id, db-cluster-endpoint-status. Values for the db-cluster-endpoint-type
+	// filter can be one or more of: reader, writer, custom. Values for the db-cluster-endpoint-custom-type
+	// filter can be one or more of: reader, any. Values for the db-cluster-endpoint-status
+	// filter can be one or more of: available, creating, deleting, inactive, modifying.
+	Filters []*Filter `locationNameList:"Filter" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterEndpoints
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+
+	// The maximum number of records to include in the response. If more records
+	// exist than the specified MaxRecords value, a pagination token called a marker
+	// is included in the response so you can retrieve the remaining results.
+	//
+	// Default: 100
+	//
+	// Constraints: Minimum 20, maximum 100.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterEndpointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterEndpointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeDBClusterEndpointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeDBClusterEndpointsInput"}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *DescribeDBClusterEndpointsInput) SetDBClusterEndpointIdentifier(v string) *DescribeDBClusterEndpointsInput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *DescribeDBClusterEndpointsInput) SetDBClusterIdentifier(v string) *DescribeDBClusterEndpointsInput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeDBClusterEndpointsInput) SetFilters(v []*Filter) *DescribeDBClusterEndpointsInput {
+	s.Filters = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterEndpointsInput) SetMarker(v string) *DescribeDBClusterEndpointsInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDBClusterEndpointsInput) SetMaxRecords(v int64) *DescribeDBClusterEndpointsInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeDBClusterEndpointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the details of the endpoints associated with the cluster and matching
+	// any filter conditions.
+	DBClusterEndpoints []*DBClusterEndpoint `locationNameList:"DBClusterEndpointList" type:"list"`
+
+	// An optional pagination token provided by a previous DescribeDBClusterEndpoints
+	// request. If this parameter is specified, the response includes only records
+	// beyond the marker, up to the value specified by MaxRecords.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDBClusterEndpointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDBClusterEndpointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDBClusterEndpoints sets the DBClusterEndpoints field's value.
+func (s *DescribeDBClusterEndpointsOutput) SetDBClusterEndpoints(v []*DBClusterEndpoint) *DescribeDBClusterEndpointsOutput {
+	s.DBClusterEndpoints = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDBClusterEndpointsOutput) SetMarker(v string) *DescribeDBClusterEndpointsOutput {
+	s.Marker = &v
 	return s
 }
 
@@ -13019,6 +14092,9 @@ func (s *DoubleRange) SetTo(v float64) *DoubleRange {
 }
 
 // Specifies a connection endpoint.
+//
+// For the data structure that represents Amazon Neptune DB cluster endpoints,
+// see DBClusterEndpoint.
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
@@ -13524,6 +14600,200 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 	return s
 }
 
+type ModifyDBClusterEndpointInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the endpoint to modify. This parameter is stored as a lowercase
+	// string.
+	//
+	// DBClusterEndpointIdentifier is a required field
+	DBClusterEndpointIdentifier *string `type:"string" required:"true"`
+
+	// The type of the endpoint. One of: READER, WRITER, ANY.
+	EndpointType *string `type:"string"`
+
+	// List of DB instance identifiers that aren't part of the custom endpoint group.
+	// All other eligible instances are reachable through the custom endpoint. Only
+	// relevant if the list of static members is empty.
+	ExcludedMembers []*string `type:"list"`
+
+	// List of DB instance identifiers that are part of the custom endpoint group.
+	StaticMembers []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ModifyDBClusterEndpointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBClusterEndpointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ModifyDBClusterEndpointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ModifyDBClusterEndpointInput"}
+	if s.DBClusterEndpointIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DBClusterEndpointIdentifier"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *ModifyDBClusterEndpointInput) SetDBClusterEndpointIdentifier(v string) *ModifyDBClusterEndpointInput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *ModifyDBClusterEndpointInput) SetEndpointType(v string) *ModifyDBClusterEndpointInput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetExcludedMembers sets the ExcludedMembers field's value.
+func (s *ModifyDBClusterEndpointInput) SetExcludedMembers(v []*string) *ModifyDBClusterEndpointInput {
+	s.ExcludedMembers = v
+	return s
+}
+
+// SetStaticMembers sets the StaticMembers field's value.
+func (s *ModifyDBClusterEndpointInput) SetStaticMembers(v []*string) *ModifyDBClusterEndpointInput {
+	s.StaticMembers = v
+	return s
+}
+
+// This data type represents the information you need to connect to an Amazon
+// Aurora DB cluster. This data type is used as a response element in the following
+// actions:
+//
+//    * CreateDBClusterEndpoint
+//
+//    * DescribeDBClusterEndpoints
+//
+//    * ModifyDBClusterEndpoint
+//
+//    * DeleteDBClusterEndpoint
+//
+// For the data structure that represents Amazon RDS DB instance endpoints,
+// see Endpoint.
+type ModifyDBClusterEndpointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The type associated with a custom endpoint. One of: READER, WRITER, ANY.
+	CustomEndpointType *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) for the endpoint.
+	DBClusterEndpointArn *string `type:"string"`
+
+	// The identifier associated with the endpoint. This parameter is stored as
+	// a lowercase string.
+	DBClusterEndpointIdentifier *string `type:"string"`
+
+	// A unique system-generated identifier for an endpoint. It remains the same
+	// for the whole life of the endpoint.
+	DBClusterEndpointResourceIdentifier *string `type:"string"`
+
+	// The DB cluster identifier of the DB cluster associated with the endpoint.
+	// This parameter is stored as a lowercase string.
+	DBClusterIdentifier *string `type:"string"`
+
+	// The DNS address of the endpoint.
+	Endpoint *string `type:"string"`
+
+	// The type of the endpoint. One of: READER, WRITER, CUSTOM.
+	EndpointType *string `type:"string"`
+
+	// List of DB instance identifiers that aren't part of the custom endpoint group.
+	// All other eligible instances are reachable through the custom endpoint. Only
+	// relevant if the list of static members is empty.
+	ExcludedMembers []*string `type:"list"`
+
+	// List of DB instance identifiers that are part of the custom endpoint group.
+	StaticMembers []*string `type:"list"`
+
+	// The current status of the endpoint. One of: creating, available, deleting,
+	// inactive, modifying. The inactive state applies to an endpoint that cannot
+	// be used for a certain kind of cluster, such as a writer endpoint for a read-only
+	// secondary cluster in a global database.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ModifyDBClusterEndpointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ModifyDBClusterEndpointOutput) GoString() string {
+	return s.String()
+}
+
+// SetCustomEndpointType sets the CustomEndpointType field's value.
+func (s *ModifyDBClusterEndpointOutput) SetCustomEndpointType(v string) *ModifyDBClusterEndpointOutput {
+	s.CustomEndpointType = &v
+	return s
+}
+
+// SetDBClusterEndpointArn sets the DBClusterEndpointArn field's value.
+func (s *ModifyDBClusterEndpointOutput) SetDBClusterEndpointArn(v string) *ModifyDBClusterEndpointOutput {
+	s.DBClusterEndpointArn = &v
+	return s
+}
+
+// SetDBClusterEndpointIdentifier sets the DBClusterEndpointIdentifier field's value.
+func (s *ModifyDBClusterEndpointOutput) SetDBClusterEndpointIdentifier(v string) *ModifyDBClusterEndpointOutput {
+	s.DBClusterEndpointIdentifier = &v
+	return s
+}
+
+// SetDBClusterEndpointResourceIdentifier sets the DBClusterEndpointResourceIdentifier field's value.
+func (s *ModifyDBClusterEndpointOutput) SetDBClusterEndpointResourceIdentifier(v string) *ModifyDBClusterEndpointOutput {
+	s.DBClusterEndpointResourceIdentifier = &v
+	return s
+}
+
+// SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
+func (s *ModifyDBClusterEndpointOutput) SetDBClusterIdentifier(v string) *ModifyDBClusterEndpointOutput {
+	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *ModifyDBClusterEndpointOutput) SetEndpoint(v string) *ModifyDBClusterEndpointOutput {
+	s.Endpoint = &v
+	return s
+}
+
+// SetEndpointType sets the EndpointType field's value.
+func (s *ModifyDBClusterEndpointOutput) SetEndpointType(v string) *ModifyDBClusterEndpointOutput {
+	s.EndpointType = &v
+	return s
+}
+
+// SetExcludedMembers sets the ExcludedMembers field's value.
+func (s *ModifyDBClusterEndpointOutput) SetExcludedMembers(v []*string) *ModifyDBClusterEndpointOutput {
+	s.ExcludedMembers = v
+	return s
+}
+
+// SetStaticMembers sets the StaticMembers field's value.
+func (s *ModifyDBClusterEndpointOutput) SetStaticMembers(v []*string) *ModifyDBClusterEndpointOutput {
+	s.StaticMembers = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ModifyDBClusterEndpointOutput) SetStatus(v string) *ModifyDBClusterEndpointOutput {
+	s.Status = &v
+	return s
+}
+
 type ModifyDBClusterInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13581,11 +14851,13 @@ type ModifyDBClusterInput struct {
 	// Default: false
 	EnableIAMDatabaseAuthentication *bool `type:"boolean"`
 
-	// The version number of the database engine. Currently, setting this parameter
-	// has no effect. To upgrade your database engine to the most recent release,
-	// use the ApplyPendingMaintenanceAction API.
+	// The version number of the database engine to which you want to upgrade. Changing
+	// this parameter results in an outage. The change is applied during the next
+	// maintenance window unless the ApplyImmediately parameter is set to true.
 	//
-	// For a list of valid engine versions, see CreateDBInstance, or call DescribeDBEngineVersions.
+	// For a list of valid engine versions, see Engine Releases for Amazon Neptune
+	// (https://docs.aws.amazon.com/neptune/latest/userguide/engine-releases.html),
+	// or call DescribeDBEngineVersions (https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions).
 	EngineVersion *string `type:"string"`
 
 	// The new password for the master database user. This password can contain
@@ -15566,6 +16838,10 @@ type RemoveRoleFromDBClusterInput struct {
 	// DBClusterIdentifier is a required field
 	DBClusterIdentifier *string `type:"string" required:"true"`
 
+	// The name of the feature for the DB cluster that the IAM role is to be disassociated
+	// from. For the list of supported feature names, see DBEngineVersion.
+	FeatureName *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB
 	// cluster, for example arn:aws:iam::123456789012:role/NeptuneAccessRole.
 	//
@@ -15602,6 +16878,12 @@ func (s *RemoveRoleFromDBClusterInput) Validate() error {
 // SetDBClusterIdentifier sets the DBClusterIdentifier field's value.
 func (s *RemoveRoleFromDBClusterInput) SetDBClusterIdentifier(v string) *RemoveRoleFromDBClusterInput {
 	s.DBClusterIdentifier = &v
+	return s
+}
+
+// SetFeatureName sets the FeatureName field's value.
+func (s *RemoveRoleFromDBClusterInput) SetFeatureName(v string) *RemoveRoleFromDBClusterInput {
+	s.FeatureName = &v
 	return s
 }
 

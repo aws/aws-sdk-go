@@ -154,6 +154,26 @@
         {"shape":"DBSubnetGroupDoesNotCoverEnoughAZs"}
       ]
     },
+    "CreateDBClusterEndpoint":{
+      "name":"CreateDBClusterEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateDBClusterEndpointMessage"},
+      "output":{
+        "shape":"CreateDBClusterEndpointOutput",
+        "resultWrapper":"CreateDBClusterEndpointResult"
+      },
+      "errors":[
+        {"shape":"DBClusterEndpointQuotaExceededFault"},
+        {"shape":"DBClusterEndpointAlreadyExistsFault"},
+        {"shape":"DBClusterNotFoundFault"},
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
+      ]
+    },
     "CreateDBClusterParameterGroup":{
       "name":"CreateDBClusterParameterGroup",
       "http":{
@@ -296,6 +316,23 @@
         {"shape":"InvalidDBClusterSnapshotStateFault"}
       ]
     },
+    "DeleteDBClusterEndpoint":{
+      "name":"DeleteDBClusterEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteDBClusterEndpointMessage"},
+      "output":{
+        "shape":"DeleteDBClusterEndpointOutput",
+        "resultWrapper":"DeleteDBClusterEndpointResult"
+      },
+      "errors":[
+        {"shape":"InvalidDBClusterEndpointStateFault"},
+        {"shape":"DBClusterEndpointNotFoundFault"},
+        {"shape":"InvalidDBClusterStateFault"}
+      ]
+    },
     "DeleteDBClusterParameterGroup":{
       "name":"DeleteDBClusterParameterGroup",
       "http":{
@@ -382,6 +419,21 @@
       "errors":[
         {"shape":"SubscriptionNotFoundFault"},
         {"shape":"InvalidEventSubscriptionStateFault"}
+      ]
+    },
+    "DescribeDBClusterEndpoints":{
+      "name":"DescribeDBClusterEndpoints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeDBClusterEndpointsMessage"},
+      "output":{
+        "shape":"DBClusterEndpointMessage",
+        "resultWrapper":"DescribeDBClusterEndpointsResult"
+      },
+      "errors":[
+        {"shape":"DBClusterNotFoundFault"}
       ]
     },
     "DescribeDBClusterParameterGroups":{
@@ -694,6 +746,25 @@
         {"shape":"InvalidDBSecurityGroupStateFault"},
         {"shape":"InvalidDBInstanceStateFault"},
         {"shape":"DBClusterAlreadyExistsFault"}
+      ]
+    },
+    "ModifyDBClusterEndpoint":{
+      "name":"ModifyDBClusterEndpoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyDBClusterEndpointMessage"},
+      "output":{
+        "shape":"ModifyDBClusterEndpointOutput",
+        "resultWrapper":"ModifyDBClusterEndpointResult"
+      },
+      "errors":[
+        {"shape":"InvalidDBClusterStateFault"},
+        {"shape":"InvalidDBClusterEndpointStateFault"},
+        {"shape":"DBClusterEndpointNotFoundFault"},
+        {"shape":"DBInstanceNotFoundFault"},
+        {"shape":"InvalidDBInstanceStateFault"}
       ]
     },
     "ModifyDBClusterParameterGroup":{
@@ -1027,7 +1098,8 @@
       ],
       "members":{
         "DBClusterIdentifier":{"shape":"String"},
-        "RoleArn":{"shape":"String"}
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
       }
     },
     "AddSourceIdentifierToSubscriptionMessage":{
@@ -1209,6 +1281,37 @@
       "type":"structure",
       "members":{
         "DBParameterGroup":{"shape":"DBParameterGroup"}
+      }
+    },
+    "CreateDBClusterEndpointMessage":{
+      "type":"structure",
+      "required":[
+        "DBClusterIdentifier",
+        "DBClusterEndpointIdentifier",
+        "EndpointType"
+      ],
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "EndpointType":{"shape":"String"},
+        "StaticMembers":{"shape":"StringList"},
+        "ExcludedMembers":{"shape":"StringList"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateDBClusterEndpointOutput":{
+      "type":"structure",
+      "members":{
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterEndpointResourceIdentifier":{"shape":"String"},
+        "Endpoint":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "EndpointType":{"shape":"String"},
+        "CustomEndpointType":{"shape":"String"},
+        "StaticMembers":{"shape":"StringList"},
+        "ExcludedMembers":{"shape":"StringList"},
+        "DBClusterEndpointArn":{"shape":"String"}
       }
     },
     "CreateDBClusterMessage":{
@@ -1466,6 +1569,68 @@
       },
       "exception":true
     },
+    "DBClusterEndpoint":{
+      "type":"structure",
+      "members":{
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterEndpointResourceIdentifier":{"shape":"String"},
+        "Endpoint":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "EndpointType":{"shape":"String"},
+        "CustomEndpointType":{"shape":"String"},
+        "StaticMembers":{"shape":"StringList"},
+        "ExcludedMembers":{"shape":"StringList"},
+        "DBClusterEndpointArn":{"shape":"String"}
+      }
+    },
+    "DBClusterEndpointAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterEndpointAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBClusterEndpointList":{
+      "type":"list",
+      "member":{
+        "shape":"DBClusterEndpoint",
+        "locationName":"DBClusterEndpointList"
+      }
+    },
+    "DBClusterEndpointMessage":{
+      "type":"structure",
+      "members":{
+        "Marker":{"shape":"String"},
+        "DBClusterEndpoints":{"shape":"DBClusterEndpointList"}
+      }
+    },
+    "DBClusterEndpointNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterEndpointNotFoundFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "DBClusterEndpointQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"DBClusterEndpointQuotaExceededFault",
+        "httpStatusCode":403,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "DBClusterList":{
       "type":"list",
       "member":{
@@ -1585,7 +1750,8 @@
       "type":"structure",
       "members":{
         "RoleArn":{"shape":"String"},
-        "Status":{"shape":"String"}
+        "Status":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
       }
     },
     "DBClusterRoleAlreadyExistsFault":{
@@ -2087,6 +2253,28 @@
       },
       "exception":true
     },
+    "DeleteDBClusterEndpointMessage":{
+      "type":"structure",
+      "required":["DBClusterEndpointIdentifier"],
+      "members":{
+        "DBClusterEndpointIdentifier":{"shape":"String"}
+      }
+    },
+    "DeleteDBClusterEndpointOutput":{
+      "type":"structure",
+      "members":{
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterEndpointResourceIdentifier":{"shape":"String"},
+        "Endpoint":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "EndpointType":{"shape":"String"},
+        "CustomEndpointType":{"shape":"String"},
+        "StaticMembers":{"shape":"StringList"},
+        "ExcludedMembers":{"shape":"StringList"},
+        "DBClusterEndpointArn":{"shape":"String"}
+      }
+    },
     "DeleteDBClusterMessage":{
       "type":"structure",
       "required":["DBClusterIdentifier"],
@@ -2162,6 +2350,16 @@
       "type":"structure",
       "members":{
         "EventSubscription":{"shape":"EventSubscription"}
+      }
+    },
+    "DescribeDBClusterEndpointsMessage":{
+      "type":"structure",
+      "members":{
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "Filters":{"shape":"FilterList"},
+        "MaxRecords":{"shape":"IntegerOptional"},
+        "Marker":{"shape":"String"}
       }
     },
     "DescribeDBClusterParameterGroupsMessage":{
@@ -2607,6 +2805,17 @@
     },
     "Integer":{"type":"integer"},
     "IntegerOptional":{"type":"integer"},
+    "InvalidDBClusterEndpointStateFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidDBClusterEndpointStateFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidDBClusterSnapshotStateFault":{
       "type":"structure",
       "members":{
@@ -2765,6 +2974,31 @@
     "LogTypeList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "ModifyDBClusterEndpointMessage":{
+      "type":"structure",
+      "required":["DBClusterEndpointIdentifier"],
+      "members":{
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "EndpointType":{"shape":"String"},
+        "StaticMembers":{"shape":"StringList"},
+        "ExcludedMembers":{"shape":"StringList"}
+      }
+    },
+    "ModifyDBClusterEndpointOutput":{
+      "type":"structure",
+      "members":{
+        "DBClusterEndpointIdentifier":{"shape":"String"},
+        "DBClusterIdentifier":{"shape":"String"},
+        "DBClusterEndpointResourceIdentifier":{"shape":"String"},
+        "Endpoint":{"shape":"String"},
+        "Status":{"shape":"String"},
+        "EndpointType":{"shape":"String"},
+        "CustomEndpointType":{"shape":"String"},
+        "StaticMembers":{"shape":"StringList"},
+        "ExcludedMembers":{"shape":"StringList"},
+        "DBClusterEndpointArn":{"shape":"String"}
+      }
     },
     "ModifyDBClusterMessage":{
       "type":"structure",
@@ -3148,7 +3382,8 @@
       ],
       "members":{
         "DBClusterIdentifier":{"shape":"String"},
-        "RoleArn":{"shape":"String"}
+        "RoleArn":{"shape":"String"},
+        "FeatureName":{"shape":"String"}
       }
     },
     "RemoveSourceIdentifierFromSubscriptionMessage":{
@@ -3411,6 +3646,10 @@
       "exception":true
     },
     "String":{"type":"string"},
+    "StringList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "Subnet":{
       "type":"structure",
       "members":{

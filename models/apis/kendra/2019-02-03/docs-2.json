@@ -145,6 +145,9 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "ConfluenceAttachmentConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra indexes attachments to the pages and blogs in the Confluence data source. </p>",
+        "ConfluenceSpaceConfiguration$CrawlPersonalSpaces": "<p>Specifies whether Amazon Kendra should index personal spaces. Users can add restrictions to items in personal spaces. If personal spaces are indexed, queries without user context information may return restricted items from a personal space in their results. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p>",
+        "ConfluenceSpaceConfiguration$CrawlArchivedSpaces": "<p>Specifies whether Amazon Kendra should index archived spaces.</p>",
         "Highlight$TopAnswer": "<p>Indicates whether the response is the best response. True if this is the best response; otherwise, false.</p>",
         "SalesforceConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to Salesforce objects.</p>",
         "Search$Facetable": "<p>Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is <code>false</code> .</p>",
@@ -211,6 +214,127 @@
       "refs": {
       }
     },
+    "ConfluenceAttachmentConfiguration": {
+      "base": "<p>Specifies the attachment settings for the Confluence data source. Attachment settings are optional, if you don't specify settings attachments, Amazon Kendra won't index them.</p>",
+      "refs": {
+        "ConfluenceConfiguration$AttachmentConfiguration": "<p>Specifies configuration information for indexing attachments to Confluence blogs and pages.</p>"
+      }
+    },
+    "ConfluenceAttachmentFieldMappingsList": {
+      "base": null,
+      "refs": {
+        "ConfluenceAttachmentConfiguration$AttachmentFieldMappings": "<p>Defines how attachment metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> operation.</p> <p>If you specify the <code>AttachentFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+      }
+    },
+    "ConfluenceAttachmentFieldName": {
+      "base": null,
+      "refs": {
+        "ConfluenceAttachmentToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p> <p>You must first create the index field using the operation. </p>"
+      }
+    },
+    "ConfluenceAttachmentToIndexFieldMapping": {
+      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "refs": {
+        "ConfluenceAttachmentFieldMappingsList$member": null
+      }
+    },
+    "ConfluenceBlogConfiguration": {
+      "base": "<p>Specifies the blog settings for the Confluence data source. Blogs are always indexed unless filtered from the index by the <code>ExclusionPatterns</code> or <code>InclusionPatterns</code> fields in the data type.</p>",
+      "refs": {
+        "ConfluenceConfiguration$BlogConfiguration": "<p> Specifies configuration information for indexing Confluence blogs.</p>"
+      }
+    },
+    "ConfluenceBlogFieldMappingsList": {
+      "base": null,
+      "refs": {
+        "ConfluenceBlogConfiguration$BlogFieldMappings": "<p>Defines how blog metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> operation.</p> <p>If you specify the <code>BlogFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+      }
+    },
+    "ConfluenceBlogFieldName": {
+      "base": null,
+      "refs": {
+        "ConfluenceBlogToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p>"
+      }
+    },
+    "ConfluenceBlogToIndexFieldMapping": {
+      "base": "<p>Defines the mapping between a blog field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "refs": {
+        "ConfluenceBlogFieldMappingsList$member": null
+      }
+    },
+    "ConfluenceConfiguration": {
+      "base": "<p>Provides configuration information for data sources that connect to Confluence.</p>",
+      "refs": {
+        "DataSourceConfiguration$ConfluenceConfiguration": "<p>Provides configuration information for connecting to a Confluence data source.</p>"
+      }
+    },
+    "ConfluencePageConfiguration": {
+      "base": "<p>Specifies the page settings for the Confluence data source.</p>",
+      "refs": {
+        "ConfluenceConfiguration$PageConfiguration": "<p>Specifies configuration information for indexing Confluence pages.</p>"
+      }
+    },
+    "ConfluencePageFieldMappingsList": {
+      "base": null,
+      "refs": {
+        "ConfluencePageConfiguration$PageFieldMappings": "<p>Defines how page metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> operation.</p> <p>If you specify the <code>PageFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+      }
+    },
+    "ConfluencePageFieldName": {
+      "base": null,
+      "refs": {
+        "ConfluencePageToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p>"
+      }
+    },
+    "ConfluencePageToIndexFieldMapping": {
+      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "refs": {
+        "ConfluencePageFieldMappingsList$member": null
+      }
+    },
+    "ConfluenceSpaceConfiguration": {
+      "base": "<p>Specifies the configuration for indexing Confluence spaces.</p>",
+      "refs": {
+        "ConfluenceConfiguration$SpaceConfiguration": "<p>Specifies configuration information for indexing Confluence spaces.</p>"
+      }
+    },
+    "ConfluenceSpaceFieldMappingsList": {
+      "base": null,
+      "refs": {
+        "ConfluenceSpaceConfiguration$SpaceFieldMappings": "<p>Defines how space metadata fields should be mapped to index fields. Before you can map a field, you must first create an index field with a matching type using the console or the <code>UpdateIndex</code> operation.</p> <p>If you specify the <code>SpaceFieldMappings</code> parameter, you must specify at least one field mapping.</p>"
+      }
+    },
+    "ConfluenceSpaceFieldName": {
+      "base": null,
+      "refs": {
+        "ConfluenceSpaceToIndexFieldMapping$DataSourceFieldName": "<p>The name of the field in the data source. </p>"
+      }
+    },
+    "ConfluenceSpaceIdentifier": {
+      "base": null,
+      "refs": {
+        "ConfluenceSpaceList$member": null
+      }
+    },
+    "ConfluenceSpaceList": {
+      "base": null,
+      "refs": {
+        "ConfluenceSpaceConfiguration$IncludeSpaces": "<p>A list of space keys for Confluence spaces. If you include a key, the blogs, documents, and attachments in the space are indexed. Spaces that aren't in the list aren't indexed. A space in the list must exist. Otherwise, Amazon Kendra logs an error when the data source is synchronized. If a space is in both the <code>IncludeSpaces</code> and the <code>ExcludeSpaces</code> list, the space is excluded.</p>",
+        "ConfluenceSpaceConfiguration$ExcludeSpaces": "<p>A list of space keys of Confluence spaces. If you include a key, the blogs, documents, and attachments in the space are not indexed. If a space is in both the <code>ExcludeSpaces</code> and the <code>IncludeSpaces</code> list, the space is excluded.</p>"
+      }
+    },
+    "ConfluenceSpaceToIndexFieldMapping": {
+      "base": "<p>Defines the mapping between a field in the Confluence data source to a Amazon Kendra index field.</p> <p>You must first create the index field using the operation. </p>",
+      "refs": {
+        "ConfluenceSpaceFieldMappingsList$member": null
+      }
+    },
+    "ConfluenceVersion": {
+      "base": null,
+      "refs": {
+        "ConfluenceConfiguration$Version": "<p>Specifies the version of the Confluence installation that you are connecting to.</p>"
+      }
+    },
     "ConnectionConfiguration": {
       "base": "<p>Provides the information necessary to connect to a database.</p>",
       "refs": {
@@ -264,6 +388,10 @@
     "DataSourceDateFieldFormat": {
       "base": null,
       "refs": {
+        "ConfluenceAttachmentToIndexFieldMapping$DateFieldFormat": "<p>The format for date fields in the data source. If the field specified in <code>DataSourceFieldName</code> is a date field you must specify the date format. If the field is not a date field, an exception is thrown.</p>",
+        "ConfluenceBlogToIndexFieldMapping$DateFieldFormat": "<p>The format for date fields in the data source. If the field specified in <code>DataSourceFieldName</code> is a date field you must specify the date format. If the field is not a date field, an exception is thrown.</p>",
+        "ConfluencePageToIndexFieldMapping$DateFieldFormat": "<p>The format for date fields in the data source. If the field specified in <code>DataSourceFieldName</code> is a date field you must specify the date format. If the field is not a date field, an exception is thrown.</p>",
+        "ConfluenceSpaceToIndexFieldMapping$DateFieldFormat": "<p>The format for date fields in the data source. If the field specified in <code>DataSourceFieldName</code> is a date field you must specify the date format. If the field is not a date field, an exception is thrown.</p>",
         "DataSourceToIndexFieldMapping$DateFieldFormat": "<p>The type of data stored in the column or attribute.</p>"
       }
     },
@@ -305,6 +433,8 @@
     "DataSourceInclusionsExclusionsStrings": {
       "base": null,
       "refs": {
+        "ConfluenceConfiguration$InclusionPatterns": "<p>A list of regular expression patterns that apply to a URL on the Confluence server. An inclusion pattern can apply to a blog post, a page, a space, or an attachment. Items that match the patterns are included in the index. Items that don't match the pattern are excluded from the index. If an item matches both an inclusion pattern and an exclusion pattern, the item isn't included in the index.</p>",
+        "ConfluenceConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns that apply to a URL on the Confluence server. An exclusion pattern can apply to a blog post, a page, a space, or an attachment. Items that match the pattern are excluded from the index. Items that don't match the pattern are included in the index. If a item matches both an exclusion pattern and an inclusion pattern, the item isn't included in the index.</p>",
         "OneDriveConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the pattern are included in the index. Documents that don't match the pattern are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index. </p> <p>The exclusion pattern is applied to the file name.</p>",
         "OneDriveConfiguration$ExclusionPatterns": "<p>List of regular expressions applied to documents. Items that match the exclusion pattern are not indexed. If you provide both an inclusion pattern and an exclusion pattern, any item that matches the exclusion pattern isn't indexed. </p> <p>The exclusion pattern is applied to the file name.</p>",
         "S3DataSourceConfiguration$InclusionPrefixes": "<p>A list of S3 prefixes for the documents that should be included in the index.</p>",
@@ -423,6 +553,7 @@
     "DataSourceVpcConfiguration": {
       "base": "<p>Provides information for connecting to an Amazon VPC.</p>",
       "refs": {
+        "ConfluenceConfiguration$VpcConfiguration": "<p>Specifies the information for connecting to an Amazon VPC.</p>",
         "DatabaseConfiguration$VpcConfiguration": null,
         "SharePointConfiguration$VpcConfiguration": null
       }
@@ -800,6 +931,10 @@
     "IndexFieldName": {
       "base": null,
       "refs": {
+        "ConfluenceAttachmentToIndexFieldMapping$IndexFieldName": "<p>The name of the index field to map to the Confluence data source field. The index field type must match the Confluence field type.</p>",
+        "ConfluenceBlogToIndexFieldMapping$IndexFieldName": "<p>The name of the index field to map to the Confluence data source field. The index field type must match the Confluence field type.</p>",
+        "ConfluencePageToIndexFieldMapping$IndexFieldName": "<p>The name of the index field to map to the Confluence data source field. The index field type must match the Confluence field type.</p>",
+        "ConfluenceSpaceToIndexFieldMapping$IndexFieldName": "<p>The name of the index field to map to the Confluence data source field. The index field type must match the Confluence field type.</p>",
         "DataSourceToIndexFieldMapping$IndexFieldName": "<p>The name of the field in the index.</p>"
       }
     },
@@ -1326,6 +1461,7 @@
     "SecretArn": {
       "base": null,
       "refs": {
+        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i>AWS Secrets Manager</i> user guide.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
@@ -1600,6 +1736,7 @@
     "Url": {
       "base": null,
       "refs": {
+        "ConfluenceConfiguration$ServerUrl": "<p>The URL of your Confluence instance. Use the full URL of the server. For example, <code>https://server.example.com:port/</code>. You can also use an IP address, for example, <code>https://192.168.1.113/</code>.</p>",
         "QueryResultItem$DocumentURI": "<p>The URI of the original location of the document.</p>",
         "SalesforceConfiguration$ServerUrl": "<p>The instance URL for the Salesforce site that you want to index.</p>",
         "SharePointUrlList$member": null
