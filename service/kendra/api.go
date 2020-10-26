@@ -3337,6 +3337,721 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Specifies the attachment settings for the Confluence data source. Attachment
+// settings are optional, if you don't specify settings attachments, Amazon
+// Kendra won't index them.
+type ConfluenceAttachmentConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines how attachment metadata fields should be mapped to index fields.
+	// Before you can map a field, you must first create an index field with a matching
+	// type using the console or the UpdateIndex operation.
+	//
+	// If you specify the AttachentFieldMappings parameter, you must specify at
+	// least one field mapping.
+	AttachmentFieldMappings []*ConfluenceAttachmentToIndexFieldMapping `min:"1" type:"list"`
+
+	// Indicates whether Amazon Kendra indexes attachments to the pages and blogs
+	// in the Confluence data source.
+	CrawlAttachments *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s ConfluenceAttachmentConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceAttachmentConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceAttachmentConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceAttachmentConfiguration"}
+	if s.AttachmentFieldMappings != nil && len(s.AttachmentFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttachmentFieldMappings", 1))
+	}
+	if s.AttachmentFieldMappings != nil {
+		for i, v := range s.AttachmentFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "AttachmentFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentFieldMappings sets the AttachmentFieldMappings field's value.
+func (s *ConfluenceAttachmentConfiguration) SetAttachmentFieldMappings(v []*ConfluenceAttachmentToIndexFieldMapping) *ConfluenceAttachmentConfiguration {
+	s.AttachmentFieldMappings = v
+	return s
+}
+
+// SetCrawlAttachments sets the CrawlAttachments field's value.
+func (s *ConfluenceAttachmentConfiguration) SetCrawlAttachments(v bool) *ConfluenceAttachmentConfiguration {
+	s.CrawlAttachments = &v
+	return s
+}
+
+// Defines the mapping between a field in the Confluence data source to a Amazon
+// Kendra index field.
+//
+// You must first create the index field using the operation.
+type ConfluenceAttachmentToIndexFieldMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in the data source.
+	//
+	// You must first create the index field using the operation.
+	DataSourceFieldName *string `type:"string" enum:"ConfluenceAttachmentFieldName"`
+
+	// The format for date fields in the data source. If the field specified in
+	// DataSourceFieldName is a date field you must specify the date format. If
+	// the field is not a date field, an exception is thrown.
+	DateFieldFormat *string `min:"4" type:"string"`
+
+	// The name of the index field to map to the Confluence data source field. The
+	// index field type must match the Confluence field type.
+	IndexFieldName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConfluenceAttachmentToIndexFieldMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceAttachmentToIndexFieldMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceAttachmentToIndexFieldMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceAttachmentToIndexFieldMapping"}
+	if s.DateFieldFormat != nil && len(*s.DateFieldFormat) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("DateFieldFormat", 4))
+	}
+	if s.IndexFieldName != nil && len(*s.IndexFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexFieldName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceFieldName sets the DataSourceFieldName field's value.
+func (s *ConfluenceAttachmentToIndexFieldMapping) SetDataSourceFieldName(v string) *ConfluenceAttachmentToIndexFieldMapping {
+	s.DataSourceFieldName = &v
+	return s
+}
+
+// SetDateFieldFormat sets the DateFieldFormat field's value.
+func (s *ConfluenceAttachmentToIndexFieldMapping) SetDateFieldFormat(v string) *ConfluenceAttachmentToIndexFieldMapping {
+	s.DateFieldFormat = &v
+	return s
+}
+
+// SetIndexFieldName sets the IndexFieldName field's value.
+func (s *ConfluenceAttachmentToIndexFieldMapping) SetIndexFieldName(v string) *ConfluenceAttachmentToIndexFieldMapping {
+	s.IndexFieldName = &v
+	return s
+}
+
+// Specifies the blog settings for the Confluence data source. Blogs are always
+// indexed unless filtered from the index by the ExclusionPatterns or InclusionPatterns
+// fields in the data type.
+type ConfluenceBlogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines how blog metadata fields should be mapped to index fields. Before
+	// you can map a field, you must first create an index field with a matching
+	// type using the console or the UpdateIndex operation.
+	//
+	// If you specify the BlogFieldMappings parameter, you must specify at least
+	// one field mapping.
+	BlogFieldMappings []*ConfluenceBlogToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ConfluenceBlogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceBlogConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceBlogConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceBlogConfiguration"}
+	if s.BlogFieldMappings != nil && len(s.BlogFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlogFieldMappings", 1))
+	}
+	if s.BlogFieldMappings != nil {
+		for i, v := range s.BlogFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BlogFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlogFieldMappings sets the BlogFieldMappings field's value.
+func (s *ConfluenceBlogConfiguration) SetBlogFieldMappings(v []*ConfluenceBlogToIndexFieldMapping) *ConfluenceBlogConfiguration {
+	s.BlogFieldMappings = v
+	return s
+}
+
+// Defines the mapping between a blog field in the Confluence data source to
+// a Amazon Kendra index field.
+//
+// You must first create the index field using the operation.
+type ConfluenceBlogToIndexFieldMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in the data source.
+	DataSourceFieldName *string `type:"string" enum:"ConfluenceBlogFieldName"`
+
+	// The format for date fields in the data source. If the field specified in
+	// DataSourceFieldName is a date field you must specify the date format. If
+	// the field is not a date field, an exception is thrown.
+	DateFieldFormat *string `min:"4" type:"string"`
+
+	// The name of the index field to map to the Confluence data source field. The
+	// index field type must match the Confluence field type.
+	IndexFieldName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConfluenceBlogToIndexFieldMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceBlogToIndexFieldMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceBlogToIndexFieldMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceBlogToIndexFieldMapping"}
+	if s.DateFieldFormat != nil && len(*s.DateFieldFormat) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("DateFieldFormat", 4))
+	}
+	if s.IndexFieldName != nil && len(*s.IndexFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexFieldName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceFieldName sets the DataSourceFieldName field's value.
+func (s *ConfluenceBlogToIndexFieldMapping) SetDataSourceFieldName(v string) *ConfluenceBlogToIndexFieldMapping {
+	s.DataSourceFieldName = &v
+	return s
+}
+
+// SetDateFieldFormat sets the DateFieldFormat field's value.
+func (s *ConfluenceBlogToIndexFieldMapping) SetDateFieldFormat(v string) *ConfluenceBlogToIndexFieldMapping {
+	s.DateFieldFormat = &v
+	return s
+}
+
+// SetIndexFieldName sets the IndexFieldName field's value.
+func (s *ConfluenceBlogToIndexFieldMapping) SetIndexFieldName(v string) *ConfluenceBlogToIndexFieldMapping {
+	s.IndexFieldName = &v
+	return s
+}
+
+// Provides configuration information for data sources that connect to Confluence.
+type ConfluenceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies configuration information for indexing attachments to Confluence
+	// blogs and pages.
+	AttachmentConfiguration *ConfluenceAttachmentConfiguration `type:"structure"`
+
+	// Specifies configuration information for indexing Confluence blogs.
+	BlogConfiguration *ConfluenceBlogConfiguration `type:"structure"`
+
+	// A list of regular expression patterns that apply to a URL on the Confluence
+	// server. An exclusion pattern can apply to a blog post, a page, a space, or
+	// an attachment. Items that match the pattern are excluded from the index.
+	// Items that don't match the pattern are included in the index. If a item matches
+	// both an exclusion pattern and an inclusion pattern, the item isn't included
+	// in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of regular expression patterns that apply to a URL on the Confluence
+	// server. An inclusion pattern can apply to a blog post, a page, a space, or
+	// an attachment. Items that match the patterns are included in the index. Items
+	// that don't match the pattern are excluded from the index. If an item matches
+	// both an inclusion pattern and an exclusion pattern, the item isn't included
+	// in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// Specifies configuration information for indexing Confluence pages.
+	PageConfiguration *ConfluencePageConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
+	// the key/value pairs required to connect to your Confluence server. The secret
+	// must contain a JSON structure with the following keys:
+	//
+	//    * username - The user name of a user with administrative privileges for
+	//    the Confluence server.
+	//
+	//    * password - The password associated with the user logging in to the Confluence
+	//    server.
+	//
+	// SecretArn is a required field
+	SecretArn *string `min:"1" type:"string" required:"true"`
+
+	// The URL of your Confluence instance. Use the full URL of the server. For
+	// example, https://server.example.com:port/. You can also use an IP address,
+	// for example, https://192.168.1.113/.
+	//
+	// ServerUrl is a required field
+	ServerUrl *string `min:"1" type:"string" required:"true"`
+
+	// Specifies configuration information for indexing Confluence spaces.
+	SpaceConfiguration *ConfluenceSpaceConfiguration `type:"structure"`
+
+	// Specifies the version of the Confluence installation that you are connecting
+	// to.
+	//
+	// Version is a required field
+	Version *string `type:"string" required:"true" enum:"ConfluenceVersion"`
+
+	// Specifies the information for connecting to an Amazon VPC.
+	VpcConfiguration *DataSourceVpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s ConfluenceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceConfiguration"}
+	if s.SecretArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SecretArn"))
+	}
+	if s.SecretArn != nil && len(*s.SecretArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretArn", 1))
+	}
+	if s.ServerUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerUrl"))
+	}
+	if s.ServerUrl != nil && len(*s.ServerUrl) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServerUrl", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+	if s.AttachmentConfiguration != nil {
+		if err := s.AttachmentConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AttachmentConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.BlogConfiguration != nil {
+		if err := s.BlogConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("BlogConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PageConfiguration != nil {
+		if err := s.PageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("PageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SpaceConfiguration != nil {
+		if err := s.SpaceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SpaceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttachmentConfiguration sets the AttachmentConfiguration field's value.
+func (s *ConfluenceConfiguration) SetAttachmentConfiguration(v *ConfluenceAttachmentConfiguration) *ConfluenceConfiguration {
+	s.AttachmentConfiguration = v
+	return s
+}
+
+// SetBlogConfiguration sets the BlogConfiguration field's value.
+func (s *ConfluenceConfiguration) SetBlogConfiguration(v *ConfluenceBlogConfiguration) *ConfluenceConfiguration {
+	s.BlogConfiguration = v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *ConfluenceConfiguration) SetExclusionPatterns(v []*string) *ConfluenceConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *ConfluenceConfiguration) SetInclusionPatterns(v []*string) *ConfluenceConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetPageConfiguration sets the PageConfiguration field's value.
+func (s *ConfluenceConfiguration) SetPageConfiguration(v *ConfluencePageConfiguration) *ConfluenceConfiguration {
+	s.PageConfiguration = v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *ConfluenceConfiguration) SetSecretArn(v string) *ConfluenceConfiguration {
+	s.SecretArn = &v
+	return s
+}
+
+// SetServerUrl sets the ServerUrl field's value.
+func (s *ConfluenceConfiguration) SetServerUrl(v string) *ConfluenceConfiguration {
+	s.ServerUrl = &v
+	return s
+}
+
+// SetSpaceConfiguration sets the SpaceConfiguration field's value.
+func (s *ConfluenceConfiguration) SetSpaceConfiguration(v *ConfluenceSpaceConfiguration) *ConfluenceConfiguration {
+	s.SpaceConfiguration = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ConfluenceConfiguration) SetVersion(v string) *ConfluenceConfiguration {
+	s.Version = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *ConfluenceConfiguration) SetVpcConfiguration(v *DataSourceVpcConfiguration) *ConfluenceConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
+// Specifies the page settings for the Confluence data source.
+type ConfluencePageConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Defines how page metadata fields should be mapped to index fields. Before
+	// you can map a field, you must first create an index field with a matching
+	// type using the console or the UpdateIndex operation.
+	//
+	// If you specify the PageFieldMappings parameter, you must specify at least
+	// one field mapping.
+	PageFieldMappings []*ConfluencePageToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ConfluencePageConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluencePageConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluencePageConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluencePageConfiguration"}
+	if s.PageFieldMappings != nil && len(s.PageFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PageFieldMappings", 1))
+	}
+	if s.PageFieldMappings != nil {
+		for i, v := range s.PageFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PageFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPageFieldMappings sets the PageFieldMappings field's value.
+func (s *ConfluencePageConfiguration) SetPageFieldMappings(v []*ConfluencePageToIndexFieldMapping) *ConfluencePageConfiguration {
+	s.PageFieldMappings = v
+	return s
+}
+
+// Defines the mapping between a field in the Confluence data source to a Amazon
+// Kendra index field.
+//
+// You must first create the index field using the operation.
+type ConfluencePageToIndexFieldMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in the data source.
+	DataSourceFieldName *string `type:"string" enum:"ConfluencePageFieldName"`
+
+	// The format for date fields in the data source. If the field specified in
+	// DataSourceFieldName is a date field you must specify the date format. If
+	// the field is not a date field, an exception is thrown.
+	DateFieldFormat *string `min:"4" type:"string"`
+
+	// The name of the index field to map to the Confluence data source field. The
+	// index field type must match the Confluence field type.
+	IndexFieldName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConfluencePageToIndexFieldMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluencePageToIndexFieldMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluencePageToIndexFieldMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluencePageToIndexFieldMapping"}
+	if s.DateFieldFormat != nil && len(*s.DateFieldFormat) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("DateFieldFormat", 4))
+	}
+	if s.IndexFieldName != nil && len(*s.IndexFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexFieldName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceFieldName sets the DataSourceFieldName field's value.
+func (s *ConfluencePageToIndexFieldMapping) SetDataSourceFieldName(v string) *ConfluencePageToIndexFieldMapping {
+	s.DataSourceFieldName = &v
+	return s
+}
+
+// SetDateFieldFormat sets the DateFieldFormat field's value.
+func (s *ConfluencePageToIndexFieldMapping) SetDateFieldFormat(v string) *ConfluencePageToIndexFieldMapping {
+	s.DateFieldFormat = &v
+	return s
+}
+
+// SetIndexFieldName sets the IndexFieldName field's value.
+func (s *ConfluencePageToIndexFieldMapping) SetIndexFieldName(v string) *ConfluencePageToIndexFieldMapping {
+	s.IndexFieldName = &v
+	return s
+}
+
+// Specifies the configuration for indexing Confluence spaces.
+type ConfluenceSpaceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether Amazon Kendra should index archived spaces.
+	CrawlArchivedSpaces *bool `type:"boolean"`
+
+	// Specifies whether Amazon Kendra should index personal spaces. Users can add
+	// restrictions to items in personal spaces. If personal spaces are indexed,
+	// queries without user context information may return restricted items from
+	// a personal space in their results. For more information, see Filtering on
+	// user context (https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html).
+	CrawlPersonalSpaces *bool `type:"boolean"`
+
+	// A list of space keys of Confluence spaces. If you include a key, the blogs,
+	// documents, and attachments in the space are not indexed. If a space is in
+	// both the ExcludeSpaces and the IncludeSpaces list, the space is excluded.
+	ExcludeSpaces []*string `min:"1" type:"list"`
+
+	// A list of space keys for Confluence spaces. If you include a key, the blogs,
+	// documents, and attachments in the space are indexed. Spaces that aren't in
+	// the list aren't indexed. A space in the list must exist. Otherwise, Amazon
+	// Kendra logs an error when the data source is synchronized. If a space is
+	// in both the IncludeSpaces and the ExcludeSpaces list, the space is excluded.
+	IncludeSpaces []*string `min:"1" type:"list"`
+
+	// Defines how space metadata fields should be mapped to index fields. Before
+	// you can map a field, you must first create an index field with a matching
+	// type using the console or the UpdateIndex operation.
+	//
+	// If you specify the SpaceFieldMappings parameter, you must specify at least
+	// one field mapping.
+	SpaceFieldMappings []*ConfluenceSpaceToIndexFieldMapping `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ConfluenceSpaceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceSpaceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceSpaceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceSpaceConfiguration"}
+	if s.ExcludeSpaces != nil && len(s.ExcludeSpaces) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExcludeSpaces", 1))
+	}
+	if s.IncludeSpaces != nil && len(s.IncludeSpaces) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludeSpaces", 1))
+	}
+	if s.SpaceFieldMappings != nil && len(s.SpaceFieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SpaceFieldMappings", 1))
+	}
+	if s.SpaceFieldMappings != nil {
+		for i, v := range s.SpaceFieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SpaceFieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlArchivedSpaces sets the CrawlArchivedSpaces field's value.
+func (s *ConfluenceSpaceConfiguration) SetCrawlArchivedSpaces(v bool) *ConfluenceSpaceConfiguration {
+	s.CrawlArchivedSpaces = &v
+	return s
+}
+
+// SetCrawlPersonalSpaces sets the CrawlPersonalSpaces field's value.
+func (s *ConfluenceSpaceConfiguration) SetCrawlPersonalSpaces(v bool) *ConfluenceSpaceConfiguration {
+	s.CrawlPersonalSpaces = &v
+	return s
+}
+
+// SetExcludeSpaces sets the ExcludeSpaces field's value.
+func (s *ConfluenceSpaceConfiguration) SetExcludeSpaces(v []*string) *ConfluenceSpaceConfiguration {
+	s.ExcludeSpaces = v
+	return s
+}
+
+// SetIncludeSpaces sets the IncludeSpaces field's value.
+func (s *ConfluenceSpaceConfiguration) SetIncludeSpaces(v []*string) *ConfluenceSpaceConfiguration {
+	s.IncludeSpaces = v
+	return s
+}
+
+// SetSpaceFieldMappings sets the SpaceFieldMappings field's value.
+func (s *ConfluenceSpaceConfiguration) SetSpaceFieldMappings(v []*ConfluenceSpaceToIndexFieldMapping) *ConfluenceSpaceConfiguration {
+	s.SpaceFieldMappings = v
+	return s
+}
+
+// Defines the mapping between a field in the Confluence data source to a Amazon
+// Kendra index field.
+//
+// You must first create the index field using the operation.
+type ConfluenceSpaceToIndexFieldMapping struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field in the data source.
+	DataSourceFieldName *string `type:"string" enum:"ConfluenceSpaceFieldName"`
+
+	// The format for date fields in the data source. If the field specified in
+	// DataSourceFieldName is a date field you must specify the date format. If
+	// the field is not a date field, an exception is thrown.
+	DateFieldFormat *string `min:"4" type:"string"`
+
+	// The name of the index field to map to the Confluence data source field. The
+	// index field type must match the Confluence field type.
+	IndexFieldName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConfluenceSpaceToIndexFieldMapping) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConfluenceSpaceToIndexFieldMapping) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfluenceSpaceToIndexFieldMapping) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfluenceSpaceToIndexFieldMapping"}
+	if s.DateFieldFormat != nil && len(*s.DateFieldFormat) < 4 {
+		invalidParams.Add(request.NewErrParamMinLen("DateFieldFormat", 4))
+	}
+	if s.IndexFieldName != nil && len(*s.IndexFieldName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexFieldName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceFieldName sets the DataSourceFieldName field's value.
+func (s *ConfluenceSpaceToIndexFieldMapping) SetDataSourceFieldName(v string) *ConfluenceSpaceToIndexFieldMapping {
+	s.DataSourceFieldName = &v
+	return s
+}
+
+// SetDateFieldFormat sets the DateFieldFormat field's value.
+func (s *ConfluenceSpaceToIndexFieldMapping) SetDateFieldFormat(v string) *ConfluenceSpaceToIndexFieldMapping {
+	s.DateFieldFormat = &v
+	return s
+}
+
+// SetIndexFieldName sets the IndexFieldName field's value.
+func (s *ConfluenceSpaceToIndexFieldMapping) SetIndexFieldName(v string) *ConfluenceSpaceToIndexFieldMapping {
+	s.IndexFieldName = &v
+	return s
+}
+
 // Provides the information necessary to connect to a database.
 type ConnectionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -3986,6 +4701,9 @@ func (s *CreateIndexOutput) SetId(v string) *CreateIndexOutput {
 type DataSourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// Provides configuration information for connecting to a Confluence data source.
+	ConfluenceConfiguration *ConfluenceConfiguration `type:"structure"`
+
 	// Provides information necessary to create a data source connector for a database.
 	DatabaseConfiguration *DatabaseConfiguration `type:"structure"`
 
@@ -4021,6 +4739,11 @@ func (s DataSourceConfiguration) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DataSourceConfiguration) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DataSourceConfiguration"}
+	if s.ConfluenceConfiguration != nil {
+		if err := s.ConfluenceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ConfluenceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DatabaseConfiguration != nil {
 		if err := s.DatabaseConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("DatabaseConfiguration", err.(request.ErrInvalidParams))
@@ -4056,6 +4779,12 @@ func (s *DataSourceConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfluenceConfiguration sets the ConfluenceConfiguration field's value.
+func (s *DataSourceConfiguration) SetConfluenceConfiguration(v *ConfluenceConfiguration) *DataSourceConfiguration {
+	s.ConfluenceConfiguration = v
+	return s
 }
 
 // SetDatabaseConfiguration sets the DatabaseConfiguration field's value.
@@ -10279,6 +11008,194 @@ func AdditionalResultAttributeValueType_Values() []string {
 }
 
 const (
+	// ConfluenceAttachmentFieldNameAuthor is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameAuthor = "AUTHOR"
+
+	// ConfluenceAttachmentFieldNameContentType is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameContentType = "CONTENT_TYPE"
+
+	// ConfluenceAttachmentFieldNameCreatedDate is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameCreatedDate = "CREATED_DATE"
+
+	// ConfluenceAttachmentFieldNameDisplayUrl is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameDisplayUrl = "DISPLAY_URL"
+
+	// ConfluenceAttachmentFieldNameFileSize is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameFileSize = "FILE_SIZE"
+
+	// ConfluenceAttachmentFieldNameItemType is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameItemType = "ITEM_TYPE"
+
+	// ConfluenceAttachmentFieldNameParentId is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameParentId = "PARENT_ID"
+
+	// ConfluenceAttachmentFieldNameSpaceKey is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameSpaceKey = "SPACE_KEY"
+
+	// ConfluenceAttachmentFieldNameSpaceName is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameSpaceName = "SPACE_NAME"
+
+	// ConfluenceAttachmentFieldNameUrl is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameUrl = "URL"
+
+	// ConfluenceAttachmentFieldNameVersion is a ConfluenceAttachmentFieldName enum value
+	ConfluenceAttachmentFieldNameVersion = "VERSION"
+)
+
+// ConfluenceAttachmentFieldName_Values returns all elements of the ConfluenceAttachmentFieldName enum
+func ConfluenceAttachmentFieldName_Values() []string {
+	return []string{
+		ConfluenceAttachmentFieldNameAuthor,
+		ConfluenceAttachmentFieldNameContentType,
+		ConfluenceAttachmentFieldNameCreatedDate,
+		ConfluenceAttachmentFieldNameDisplayUrl,
+		ConfluenceAttachmentFieldNameFileSize,
+		ConfluenceAttachmentFieldNameItemType,
+		ConfluenceAttachmentFieldNameParentId,
+		ConfluenceAttachmentFieldNameSpaceKey,
+		ConfluenceAttachmentFieldNameSpaceName,
+		ConfluenceAttachmentFieldNameUrl,
+		ConfluenceAttachmentFieldNameVersion,
+	}
+}
+
+const (
+	// ConfluenceBlogFieldNameAuthor is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameAuthor = "AUTHOR"
+
+	// ConfluenceBlogFieldNameDisplayUrl is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameDisplayUrl = "DISPLAY_URL"
+
+	// ConfluenceBlogFieldNameItemType is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameItemType = "ITEM_TYPE"
+
+	// ConfluenceBlogFieldNameLabels is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameLabels = "LABELS"
+
+	// ConfluenceBlogFieldNamePublishDate is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNamePublishDate = "PUBLISH_DATE"
+
+	// ConfluenceBlogFieldNameSpaceKey is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameSpaceKey = "SPACE_KEY"
+
+	// ConfluenceBlogFieldNameSpaceName is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameSpaceName = "SPACE_NAME"
+
+	// ConfluenceBlogFieldNameUrl is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameUrl = "URL"
+
+	// ConfluenceBlogFieldNameVersion is a ConfluenceBlogFieldName enum value
+	ConfluenceBlogFieldNameVersion = "VERSION"
+)
+
+// ConfluenceBlogFieldName_Values returns all elements of the ConfluenceBlogFieldName enum
+func ConfluenceBlogFieldName_Values() []string {
+	return []string{
+		ConfluenceBlogFieldNameAuthor,
+		ConfluenceBlogFieldNameDisplayUrl,
+		ConfluenceBlogFieldNameItemType,
+		ConfluenceBlogFieldNameLabels,
+		ConfluenceBlogFieldNamePublishDate,
+		ConfluenceBlogFieldNameSpaceKey,
+		ConfluenceBlogFieldNameSpaceName,
+		ConfluenceBlogFieldNameUrl,
+		ConfluenceBlogFieldNameVersion,
+	}
+}
+
+const (
+	// ConfluencePageFieldNameAuthor is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameAuthor = "AUTHOR"
+
+	// ConfluencePageFieldNameContentStatus is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameContentStatus = "CONTENT_STATUS"
+
+	// ConfluencePageFieldNameCreatedDate is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameCreatedDate = "CREATED_DATE"
+
+	// ConfluencePageFieldNameDisplayUrl is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameDisplayUrl = "DISPLAY_URL"
+
+	// ConfluencePageFieldNameItemType is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameItemType = "ITEM_TYPE"
+
+	// ConfluencePageFieldNameLabels is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameLabels = "LABELS"
+
+	// ConfluencePageFieldNameModifiedDate is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameModifiedDate = "MODIFIED_DATE"
+
+	// ConfluencePageFieldNameParentId is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameParentId = "PARENT_ID"
+
+	// ConfluencePageFieldNameSpaceKey is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameSpaceKey = "SPACE_KEY"
+
+	// ConfluencePageFieldNameSpaceName is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameSpaceName = "SPACE_NAME"
+
+	// ConfluencePageFieldNameUrl is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameUrl = "URL"
+
+	// ConfluencePageFieldNameVersion is a ConfluencePageFieldName enum value
+	ConfluencePageFieldNameVersion = "VERSION"
+)
+
+// ConfluencePageFieldName_Values returns all elements of the ConfluencePageFieldName enum
+func ConfluencePageFieldName_Values() []string {
+	return []string{
+		ConfluencePageFieldNameAuthor,
+		ConfluencePageFieldNameContentStatus,
+		ConfluencePageFieldNameCreatedDate,
+		ConfluencePageFieldNameDisplayUrl,
+		ConfluencePageFieldNameItemType,
+		ConfluencePageFieldNameLabels,
+		ConfluencePageFieldNameModifiedDate,
+		ConfluencePageFieldNameParentId,
+		ConfluencePageFieldNameSpaceKey,
+		ConfluencePageFieldNameSpaceName,
+		ConfluencePageFieldNameUrl,
+		ConfluencePageFieldNameVersion,
+	}
+}
+
+const (
+	// ConfluenceSpaceFieldNameDisplayUrl is a ConfluenceSpaceFieldName enum value
+	ConfluenceSpaceFieldNameDisplayUrl = "DISPLAY_URL"
+
+	// ConfluenceSpaceFieldNameItemType is a ConfluenceSpaceFieldName enum value
+	ConfluenceSpaceFieldNameItemType = "ITEM_TYPE"
+
+	// ConfluenceSpaceFieldNameSpaceKey is a ConfluenceSpaceFieldName enum value
+	ConfluenceSpaceFieldNameSpaceKey = "SPACE_KEY"
+
+	// ConfluenceSpaceFieldNameUrl is a ConfluenceSpaceFieldName enum value
+	ConfluenceSpaceFieldNameUrl = "URL"
+)
+
+// ConfluenceSpaceFieldName_Values returns all elements of the ConfluenceSpaceFieldName enum
+func ConfluenceSpaceFieldName_Values() []string {
+	return []string{
+		ConfluenceSpaceFieldNameDisplayUrl,
+		ConfluenceSpaceFieldNameItemType,
+		ConfluenceSpaceFieldNameSpaceKey,
+		ConfluenceSpaceFieldNameUrl,
+	}
+}
+
+const (
+	// ConfluenceVersionServer is a ConfluenceVersion enum value
+	ConfluenceVersionServer = "SERVER"
+)
+
+// ConfluenceVersion_Values returns all elements of the ConfluenceVersion enum
+func ConfluenceVersion_Values() []string {
+	return []string{
+		ConfluenceVersionServer,
+	}
+}
+
+const (
 	// ContentTypePdf is a ContentType enum value
 	ContentTypePdf = "PDF"
 
@@ -10391,6 +11308,9 @@ const (
 
 	// DataSourceTypeCustom is a DataSourceType enum value
 	DataSourceTypeCustom = "CUSTOM"
+
+	// DataSourceTypeConfluence is a DataSourceType enum value
+	DataSourceTypeConfluence = "CONFLUENCE"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -10403,6 +11323,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeOnedrive,
 		DataSourceTypeServicenow,
 		DataSourceTypeCustom,
+		DataSourceTypeConfluence,
 	}
 }
 

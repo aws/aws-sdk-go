@@ -26,6 +26,24 @@ const (
 	// User already has a DB cluster with the given identifier.
 	ErrCodeDBClusterAlreadyExistsFault = "DBClusterAlreadyExistsFault"
 
+	// ErrCodeDBClusterEndpointAlreadyExistsFault for service response error code
+	// "DBClusterEndpointAlreadyExistsFault".
+	//
+	// The specified custom endpoint cannot be created because it already exists.
+	ErrCodeDBClusterEndpointAlreadyExistsFault = "DBClusterEndpointAlreadyExistsFault"
+
+	// ErrCodeDBClusterEndpointNotFoundFault for service response error code
+	// "DBClusterEndpointNotFoundFault".
+	//
+	// The specified custom endpoint doesn't exist.
+	ErrCodeDBClusterEndpointNotFoundFault = "DBClusterEndpointNotFoundFault"
+
+	// ErrCodeDBClusterEndpointQuotaExceededFault for service response error code
+	// "DBClusterEndpointQuotaExceededFault".
+	//
+	// The cluster already has the maximum number of custom endpoints.
+	ErrCodeDBClusterEndpointQuotaExceededFault = "DBClusterEndpointQuotaExceededFault"
+
 	// ErrCodeDBClusterNotFoundFault for service response error code
 	// "DBClusterNotFoundFault".
 	//
@@ -204,6 +222,13 @@ const (
 	// able to resolve this error by updating your subnet group to use different
 	// Availability Zones that have more storage available.
 	ErrCodeInsufficientStorageClusterCapacityFault = "InsufficientStorageClusterCapacity"
+
+	// ErrCodeInvalidDBClusterEndpointStateFault for service response error code
+	// "InvalidDBClusterEndpointStateFault".
+	//
+	// The requested operation cannot be performed on the endpoint while the endpoint
+	// is in this state.
+	ErrCodeInvalidDBClusterEndpointStateFault = "InvalidDBClusterEndpointStateFault"
 
 	// ErrCodeInvalidDBClusterSnapshotStateFault for service response error code
 	// "InvalidDBClusterSnapshotStateFault".

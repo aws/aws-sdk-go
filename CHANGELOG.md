@@ -1,3 +1,14 @@
+Release v1.35.15 (2020-10-26)
+===
+
+### Service Client Updates
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports indexing data from Confluence Server.
+* `service/neptune`: Updates service API, documentation, and paginators
+  * This feature enables custom endpoints for Amazon Neptune clusters. Custom endpoints simplify connection management when clusters contain instances with different capacities and configuration settings.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release enables customers to bring custom images for use with SageMaker Studio notebooks.
+
 Release v1.35.14 (2020-10-23)
 ===
 

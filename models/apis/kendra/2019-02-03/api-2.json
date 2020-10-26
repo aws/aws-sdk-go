@@ -612,6 +612,182 @@
       },
       "exception":true
     },
+    "ConfluenceAttachmentConfiguration":{
+      "type":"structure",
+      "members":{
+        "CrawlAttachments":{"shape":"Boolean"},
+        "AttachmentFieldMappings":{"shape":"ConfluenceAttachmentFieldMappingsList"}
+      }
+    },
+    "ConfluenceAttachmentFieldMappingsList":{
+      "type":"list",
+      "member":{"shape":"ConfluenceAttachmentToIndexFieldMapping"},
+      "max":11,
+      "min":1
+    },
+    "ConfluenceAttachmentFieldName":{
+      "type":"string",
+      "enum":[
+        "AUTHOR",
+        "CONTENT_TYPE",
+        "CREATED_DATE",
+        "DISPLAY_URL",
+        "FILE_SIZE",
+        "ITEM_TYPE",
+        "PARENT_ID",
+        "SPACE_KEY",
+        "SPACE_NAME",
+        "URL",
+        "VERSION"
+      ]
+    },
+    "ConfluenceAttachmentToIndexFieldMapping":{
+      "type":"structure",
+      "members":{
+        "DataSourceFieldName":{"shape":"ConfluenceAttachmentFieldName"},
+        "DateFieldFormat":{"shape":"DataSourceDateFieldFormat"},
+        "IndexFieldName":{"shape":"IndexFieldName"}
+      }
+    },
+    "ConfluenceBlogConfiguration":{
+      "type":"structure",
+      "members":{
+        "BlogFieldMappings":{"shape":"ConfluenceBlogFieldMappingsList"}
+      }
+    },
+    "ConfluenceBlogFieldMappingsList":{
+      "type":"list",
+      "member":{"shape":"ConfluenceBlogToIndexFieldMapping"},
+      "max":9,
+      "min":1
+    },
+    "ConfluenceBlogFieldName":{
+      "type":"string",
+      "enum":[
+        "AUTHOR",
+        "DISPLAY_URL",
+        "ITEM_TYPE",
+        "LABELS",
+        "PUBLISH_DATE",
+        "SPACE_KEY",
+        "SPACE_NAME",
+        "URL",
+        "VERSION"
+      ]
+    },
+    "ConfluenceBlogToIndexFieldMapping":{
+      "type":"structure",
+      "members":{
+        "DataSourceFieldName":{"shape":"ConfluenceBlogFieldName"},
+        "DateFieldFormat":{"shape":"DataSourceDateFieldFormat"},
+        "IndexFieldName":{"shape":"IndexFieldName"}
+      }
+    },
+    "ConfluenceConfiguration":{
+      "type":"structure",
+      "required":[
+        "ServerUrl",
+        "SecretArn",
+        "Version"
+      ],
+      "members":{
+        "ServerUrl":{"shape":"Url"},
+        "SecretArn":{"shape":"SecretArn"},
+        "Version":{"shape":"ConfluenceVersion"},
+        "SpaceConfiguration":{"shape":"ConfluenceSpaceConfiguration"},
+        "PageConfiguration":{"shape":"ConfluencePageConfiguration"},
+        "BlogConfiguration":{"shape":"ConfluenceBlogConfiguration"},
+        "AttachmentConfiguration":{"shape":"ConfluenceAttachmentConfiguration"},
+        "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"}
+      }
+    },
+    "ConfluencePageConfiguration":{
+      "type":"structure",
+      "members":{
+        "PageFieldMappings":{"shape":"ConfluencePageFieldMappingsList"}
+      }
+    },
+    "ConfluencePageFieldMappingsList":{
+      "type":"list",
+      "member":{"shape":"ConfluencePageToIndexFieldMapping"},
+      "max":12,
+      "min":1
+    },
+    "ConfluencePageFieldName":{
+      "type":"string",
+      "enum":[
+        "AUTHOR",
+        "CONTENT_STATUS",
+        "CREATED_DATE",
+        "DISPLAY_URL",
+        "ITEM_TYPE",
+        "LABELS",
+        "MODIFIED_DATE",
+        "PARENT_ID",
+        "SPACE_KEY",
+        "SPACE_NAME",
+        "URL",
+        "VERSION"
+      ]
+    },
+    "ConfluencePageToIndexFieldMapping":{
+      "type":"structure",
+      "members":{
+        "DataSourceFieldName":{"shape":"ConfluencePageFieldName"},
+        "DateFieldFormat":{"shape":"DataSourceDateFieldFormat"},
+        "IndexFieldName":{"shape":"IndexFieldName"}
+      }
+    },
+    "ConfluenceSpaceConfiguration":{
+      "type":"structure",
+      "members":{
+        "CrawlPersonalSpaces":{"shape":"Boolean"},
+        "CrawlArchivedSpaces":{"shape":"Boolean"},
+        "IncludeSpaces":{"shape":"ConfluenceSpaceList"},
+        "ExcludeSpaces":{"shape":"ConfluenceSpaceList"},
+        "SpaceFieldMappings":{"shape":"ConfluenceSpaceFieldMappingsList"}
+      }
+    },
+    "ConfluenceSpaceFieldMappingsList":{
+      "type":"list",
+      "member":{"shape":"ConfluenceSpaceToIndexFieldMapping"},
+      "max":4,
+      "min":1
+    },
+    "ConfluenceSpaceFieldName":{
+      "type":"string",
+      "enum":[
+        "DISPLAY_URL",
+        "ITEM_TYPE",
+        "SPACE_KEY",
+        "URL"
+      ]
+    },
+    "ConfluenceSpaceIdentifier":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
+    "ConfluenceSpaceList":{
+      "type":"list",
+      "member":{"shape":"ConfluenceSpaceIdentifier"},
+      "min":1
+    },
+    "ConfluenceSpaceToIndexFieldMapping":{
+      "type":"structure",
+      "members":{
+        "DataSourceFieldName":{"shape":"ConfluenceSpaceFieldName"},
+        "DateFieldFormat":{"shape":"DataSourceDateFieldFormat"},
+        "IndexFieldName":{"shape":"IndexFieldName"}
+      }
+    },
+    "ConfluenceVersion":{
+      "type":"string",
+      "enum":["SERVER"]
+    },
     "ConnectionConfiguration":{
       "type":"structure",
       "required":[
@@ -729,7 +905,8 @@
         "DatabaseConfiguration":{"shape":"DatabaseConfiguration"},
         "SalesforceConfiguration":{"shape":"SalesforceConfiguration"},
         "OneDriveConfiguration":{"shape":"OneDriveConfiguration"},
-        "ServiceNowConfiguration":{"shape":"ServiceNowConfiguration"}
+        "ServiceNowConfiguration":{"shape":"ServiceNowConfiguration"},
+        "ConfluenceConfiguration":{"shape":"ConfluenceConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -875,7 +1052,8 @@
         "SALESFORCE",
         "ONEDRIVE",
         "SERVICENOW",
-        "CUSTOM"
+        "CUSTOM",
+        "CONFLUENCE"
       ]
     },
     "DataSourceVpcConfiguration":{

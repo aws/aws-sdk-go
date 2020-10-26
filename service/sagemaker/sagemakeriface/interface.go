@@ -76,6 +76,10 @@ type SageMakerAPI interface {
 	CreateAppWithContext(aws.Context, *sagemaker.CreateAppInput, ...request.Option) (*sagemaker.CreateAppOutput, error)
 	CreateAppRequest(*sagemaker.CreateAppInput) (*request.Request, *sagemaker.CreateAppOutput)
 
+	CreateAppImageConfig(*sagemaker.CreateAppImageConfigInput) (*sagemaker.CreateAppImageConfigOutput, error)
+	CreateAppImageConfigWithContext(aws.Context, *sagemaker.CreateAppImageConfigInput, ...request.Option) (*sagemaker.CreateAppImageConfigOutput, error)
+	CreateAppImageConfigRequest(*sagemaker.CreateAppImageConfigInput) (*request.Request, *sagemaker.CreateAppImageConfigOutput)
+
 	CreateAutoMLJob(*sagemaker.CreateAutoMLJobInput) (*sagemaker.CreateAutoMLJobOutput, error)
 	CreateAutoMLJobWithContext(aws.Context, *sagemaker.CreateAutoMLJobInput, ...request.Option) (*sagemaker.CreateAutoMLJobOutput, error)
 	CreateAutoMLJobRequest(*sagemaker.CreateAutoMLJobInput) (*request.Request, *sagemaker.CreateAutoMLJobOutput)
@@ -115,6 +119,14 @@ type SageMakerAPI interface {
 	CreateHyperParameterTuningJob(*sagemaker.CreateHyperParameterTuningJobInput) (*sagemaker.CreateHyperParameterTuningJobOutput, error)
 	CreateHyperParameterTuningJobWithContext(aws.Context, *sagemaker.CreateHyperParameterTuningJobInput, ...request.Option) (*sagemaker.CreateHyperParameterTuningJobOutput, error)
 	CreateHyperParameterTuningJobRequest(*sagemaker.CreateHyperParameterTuningJobInput) (*request.Request, *sagemaker.CreateHyperParameterTuningJobOutput)
+
+	CreateImage(*sagemaker.CreateImageInput) (*sagemaker.CreateImageOutput, error)
+	CreateImageWithContext(aws.Context, *sagemaker.CreateImageInput, ...request.Option) (*sagemaker.CreateImageOutput, error)
+	CreateImageRequest(*sagemaker.CreateImageInput) (*request.Request, *sagemaker.CreateImageOutput)
+
+	CreateImageVersion(*sagemaker.CreateImageVersionInput) (*sagemaker.CreateImageVersionOutput, error)
+	CreateImageVersionWithContext(aws.Context, *sagemaker.CreateImageVersionInput, ...request.Option) (*sagemaker.CreateImageVersionOutput, error)
+	CreateImageVersionRequest(*sagemaker.CreateImageVersionInput) (*request.Request, *sagemaker.CreateImageVersionOutput)
 
 	CreateLabelingJob(*sagemaker.CreateLabelingJobInput) (*sagemaker.CreateLabelingJobOutput, error)
 	CreateLabelingJobWithContext(aws.Context, *sagemaker.CreateLabelingJobInput, ...request.Option) (*sagemaker.CreateLabelingJobOutput, error)
@@ -188,6 +200,10 @@ type SageMakerAPI interface {
 	DeleteAppWithContext(aws.Context, *sagemaker.DeleteAppInput, ...request.Option) (*sagemaker.DeleteAppOutput, error)
 	DeleteAppRequest(*sagemaker.DeleteAppInput) (*request.Request, *sagemaker.DeleteAppOutput)
 
+	DeleteAppImageConfig(*sagemaker.DeleteAppImageConfigInput) (*sagemaker.DeleteAppImageConfigOutput, error)
+	DeleteAppImageConfigWithContext(aws.Context, *sagemaker.DeleteAppImageConfigInput, ...request.Option) (*sagemaker.DeleteAppImageConfigOutput, error)
+	DeleteAppImageConfigRequest(*sagemaker.DeleteAppImageConfigInput) (*request.Request, *sagemaker.DeleteAppImageConfigOutput)
+
 	DeleteCodeRepository(*sagemaker.DeleteCodeRepositoryInput) (*sagemaker.DeleteCodeRepositoryOutput, error)
 	DeleteCodeRepositoryWithContext(aws.Context, *sagemaker.DeleteCodeRepositoryInput, ...request.Option) (*sagemaker.DeleteCodeRepositoryOutput, error)
 	DeleteCodeRepositoryRequest(*sagemaker.DeleteCodeRepositoryInput) (*request.Request, *sagemaker.DeleteCodeRepositoryOutput)
@@ -215,6 +231,14 @@ type SageMakerAPI interface {
 	DeleteHumanTaskUi(*sagemaker.DeleteHumanTaskUiInput) (*sagemaker.DeleteHumanTaskUiOutput, error)
 	DeleteHumanTaskUiWithContext(aws.Context, *sagemaker.DeleteHumanTaskUiInput, ...request.Option) (*sagemaker.DeleteHumanTaskUiOutput, error)
 	DeleteHumanTaskUiRequest(*sagemaker.DeleteHumanTaskUiInput) (*request.Request, *sagemaker.DeleteHumanTaskUiOutput)
+
+	DeleteImage(*sagemaker.DeleteImageInput) (*sagemaker.DeleteImageOutput, error)
+	DeleteImageWithContext(aws.Context, *sagemaker.DeleteImageInput, ...request.Option) (*sagemaker.DeleteImageOutput, error)
+	DeleteImageRequest(*sagemaker.DeleteImageInput) (*request.Request, *sagemaker.DeleteImageOutput)
+
+	DeleteImageVersion(*sagemaker.DeleteImageVersionInput) (*sagemaker.DeleteImageVersionOutput, error)
+	DeleteImageVersionWithContext(aws.Context, *sagemaker.DeleteImageVersionInput, ...request.Option) (*sagemaker.DeleteImageVersionOutput, error)
+	DeleteImageVersionRequest(*sagemaker.DeleteImageVersionInput) (*request.Request, *sagemaker.DeleteImageVersionOutput)
 
 	DeleteModel(*sagemaker.DeleteModelInput) (*sagemaker.DeleteModelOutput, error)
 	DeleteModelWithContext(aws.Context, *sagemaker.DeleteModelInput, ...request.Option) (*sagemaker.DeleteModelOutput, error)
@@ -268,6 +292,10 @@ type SageMakerAPI interface {
 	DescribeAppWithContext(aws.Context, *sagemaker.DescribeAppInput, ...request.Option) (*sagemaker.DescribeAppOutput, error)
 	DescribeAppRequest(*sagemaker.DescribeAppInput) (*request.Request, *sagemaker.DescribeAppOutput)
 
+	DescribeAppImageConfig(*sagemaker.DescribeAppImageConfigInput) (*sagemaker.DescribeAppImageConfigOutput, error)
+	DescribeAppImageConfigWithContext(aws.Context, *sagemaker.DescribeAppImageConfigInput, ...request.Option) (*sagemaker.DescribeAppImageConfigOutput, error)
+	DescribeAppImageConfigRequest(*sagemaker.DescribeAppImageConfigInput) (*request.Request, *sagemaker.DescribeAppImageConfigOutput)
+
 	DescribeAutoMLJob(*sagemaker.DescribeAutoMLJobInput) (*sagemaker.DescribeAutoMLJobOutput, error)
 	DescribeAutoMLJobWithContext(aws.Context, *sagemaker.DescribeAutoMLJobInput, ...request.Option) (*sagemaker.DescribeAutoMLJobOutput, error)
 	DescribeAutoMLJobRequest(*sagemaker.DescribeAutoMLJobInput) (*request.Request, *sagemaker.DescribeAutoMLJobOutput)
@@ -307,6 +335,14 @@ type SageMakerAPI interface {
 	DescribeHyperParameterTuningJob(*sagemaker.DescribeHyperParameterTuningJobInput) (*sagemaker.DescribeHyperParameterTuningJobOutput, error)
 	DescribeHyperParameterTuningJobWithContext(aws.Context, *sagemaker.DescribeHyperParameterTuningJobInput, ...request.Option) (*sagemaker.DescribeHyperParameterTuningJobOutput, error)
 	DescribeHyperParameterTuningJobRequest(*sagemaker.DescribeHyperParameterTuningJobInput) (*request.Request, *sagemaker.DescribeHyperParameterTuningJobOutput)
+
+	DescribeImage(*sagemaker.DescribeImageInput) (*sagemaker.DescribeImageOutput, error)
+	DescribeImageWithContext(aws.Context, *sagemaker.DescribeImageInput, ...request.Option) (*sagemaker.DescribeImageOutput, error)
+	DescribeImageRequest(*sagemaker.DescribeImageInput) (*request.Request, *sagemaker.DescribeImageOutput)
+
+	DescribeImageVersion(*sagemaker.DescribeImageVersionInput) (*sagemaker.DescribeImageVersionOutput, error)
+	DescribeImageVersionWithContext(aws.Context, *sagemaker.DescribeImageVersionInput, ...request.Option) (*sagemaker.DescribeImageVersionOutput, error)
+	DescribeImageVersionRequest(*sagemaker.DescribeImageVersionInput) (*request.Request, *sagemaker.DescribeImageVersionOutput)
 
 	DescribeLabelingJob(*sagemaker.DescribeLabelingJobInput) (*sagemaker.DescribeLabelingJobOutput, error)
 	DescribeLabelingJobWithContext(aws.Context, *sagemaker.DescribeLabelingJobInput, ...request.Option) (*sagemaker.DescribeLabelingJobOutput, error)
@@ -382,6 +418,10 @@ type SageMakerAPI interface {
 
 	ListAlgorithmsPages(*sagemaker.ListAlgorithmsInput, func(*sagemaker.ListAlgorithmsOutput, bool) bool) error
 	ListAlgorithmsPagesWithContext(aws.Context, *sagemaker.ListAlgorithmsInput, func(*sagemaker.ListAlgorithmsOutput, bool) bool, ...request.Option) error
+
+	ListAppImageConfigs(*sagemaker.ListAppImageConfigsInput) (*sagemaker.ListAppImageConfigsOutput, error)
+	ListAppImageConfigsWithContext(aws.Context, *sagemaker.ListAppImageConfigsInput, ...request.Option) (*sagemaker.ListAppImageConfigsOutput, error)
+	ListAppImageConfigsRequest(*sagemaker.ListAppImageConfigsInput) (*request.Request, *sagemaker.ListAppImageConfigsOutput)
 
 	ListApps(*sagemaker.ListAppsInput) (*sagemaker.ListAppsOutput, error)
 	ListAppsWithContext(aws.Context, *sagemaker.ListAppsInput, ...request.Option) (*sagemaker.ListAppsOutput, error)
@@ -466,6 +506,20 @@ type SageMakerAPI interface {
 
 	ListHyperParameterTuningJobsPages(*sagemaker.ListHyperParameterTuningJobsInput, func(*sagemaker.ListHyperParameterTuningJobsOutput, bool) bool) error
 	ListHyperParameterTuningJobsPagesWithContext(aws.Context, *sagemaker.ListHyperParameterTuningJobsInput, func(*sagemaker.ListHyperParameterTuningJobsOutput, bool) bool, ...request.Option) error
+
+	ListImageVersions(*sagemaker.ListImageVersionsInput) (*sagemaker.ListImageVersionsOutput, error)
+	ListImageVersionsWithContext(aws.Context, *sagemaker.ListImageVersionsInput, ...request.Option) (*sagemaker.ListImageVersionsOutput, error)
+	ListImageVersionsRequest(*sagemaker.ListImageVersionsInput) (*request.Request, *sagemaker.ListImageVersionsOutput)
+
+	ListImageVersionsPages(*sagemaker.ListImageVersionsInput, func(*sagemaker.ListImageVersionsOutput, bool) bool) error
+	ListImageVersionsPagesWithContext(aws.Context, *sagemaker.ListImageVersionsInput, func(*sagemaker.ListImageVersionsOutput, bool) bool, ...request.Option) error
+
+	ListImages(*sagemaker.ListImagesInput) (*sagemaker.ListImagesOutput, error)
+	ListImagesWithContext(aws.Context, *sagemaker.ListImagesInput, ...request.Option) (*sagemaker.ListImagesOutput, error)
+	ListImagesRequest(*sagemaker.ListImagesInput) (*request.Request, *sagemaker.ListImagesOutput)
+
+	ListImagesPages(*sagemaker.ListImagesInput, func(*sagemaker.ListImagesOutput, bool) bool) error
+	ListImagesPagesWithContext(aws.Context, *sagemaker.ListImagesInput, func(*sagemaker.ListImagesOutput, bool) bool, ...request.Option) error
 
 	ListLabelingJobs(*sagemaker.ListLabelingJobsInput) (*sagemaker.ListLabelingJobsOutput, error)
 	ListLabelingJobsWithContext(aws.Context, *sagemaker.ListLabelingJobsInput, ...request.Option) (*sagemaker.ListLabelingJobsOutput, error)
@@ -655,6 +709,10 @@ type SageMakerAPI interface {
 	StopTransformJobWithContext(aws.Context, *sagemaker.StopTransformJobInput, ...request.Option) (*sagemaker.StopTransformJobOutput, error)
 	StopTransformJobRequest(*sagemaker.StopTransformJobInput) (*request.Request, *sagemaker.StopTransformJobOutput)
 
+	UpdateAppImageConfig(*sagemaker.UpdateAppImageConfigInput) (*sagemaker.UpdateAppImageConfigOutput, error)
+	UpdateAppImageConfigWithContext(aws.Context, *sagemaker.UpdateAppImageConfigInput, ...request.Option) (*sagemaker.UpdateAppImageConfigOutput, error)
+	UpdateAppImageConfigRequest(*sagemaker.UpdateAppImageConfigInput) (*request.Request, *sagemaker.UpdateAppImageConfigOutput)
+
 	UpdateCodeRepository(*sagemaker.UpdateCodeRepositoryInput) (*sagemaker.UpdateCodeRepositoryOutput, error)
 	UpdateCodeRepositoryWithContext(aws.Context, *sagemaker.UpdateCodeRepositoryInput, ...request.Option) (*sagemaker.UpdateCodeRepositoryOutput, error)
 	UpdateCodeRepositoryRequest(*sagemaker.UpdateCodeRepositoryInput) (*request.Request, *sagemaker.UpdateCodeRepositoryOutput)
@@ -674,6 +732,10 @@ type SageMakerAPI interface {
 	UpdateExperiment(*sagemaker.UpdateExperimentInput) (*sagemaker.UpdateExperimentOutput, error)
 	UpdateExperimentWithContext(aws.Context, *sagemaker.UpdateExperimentInput, ...request.Option) (*sagemaker.UpdateExperimentOutput, error)
 	UpdateExperimentRequest(*sagemaker.UpdateExperimentInput) (*request.Request, *sagemaker.UpdateExperimentOutput)
+
+	UpdateImage(*sagemaker.UpdateImageInput) (*sagemaker.UpdateImageOutput, error)
+	UpdateImageWithContext(aws.Context, *sagemaker.UpdateImageInput, ...request.Option) (*sagemaker.UpdateImageOutput, error)
+	UpdateImageRequest(*sagemaker.UpdateImageInput) (*request.Request, *sagemaker.UpdateImageOutput)
 
 	UpdateMonitoringSchedule(*sagemaker.UpdateMonitoringScheduleInput) (*sagemaker.UpdateMonitoringScheduleOutput, error)
 	UpdateMonitoringScheduleWithContext(aws.Context, *sagemaker.UpdateMonitoringScheduleInput, ...request.Option) (*sagemaker.UpdateMonitoringScheduleOutput, error)

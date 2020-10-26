@@ -58,6 +58,18 @@
         {"shape":"ResourceInUse"}
       ]
     },
+    "CreateAppImageConfig":{
+      "name":"CreateAppImageConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAppImageConfigRequest"},
+      "output":{"shape":"CreateAppImageConfigResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"}
+      ]
+    },
     "CreateAutoMLJob":{
       "name":"CreateAutoMLJob",
       "http":{
@@ -181,6 +193,33 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "CreateImage":{
+      "name":"CreateImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateImageRequest"},
+      "output":{"shape":"CreateImageResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
+    },
+    "CreateImageVersion":{
+      "name":"CreateImageVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateImageVersionRequest"},
+      "output":{"shape":"CreateImageVersionResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "CreateLabelingJob":{
       "name":"CreateLabelingJob",
       "http":{
@@ -213,7 +252,11 @@
         "requestUri":"/"
       },
       "input":{"shape":"CreateModelPackageInput"},
-      "output":{"shape":"CreateModelPackageOutput"}
+      "output":{"shape":"CreateModelPackageOutput"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceLimitExceeded"}
+      ]
     },
     "CreateMonitoringSchedule":{
       "name":"CreateMonitoringSchedule",
@@ -395,6 +438,17 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DeleteAppImageConfig":{
+      "name":"DeleteAppImageConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAppImageConfigRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DeleteCodeRepository":{
       "name":"DeleteCodeRepository",
       "http":{
@@ -468,6 +522,32 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DeleteImage":{
+      "name":"DeleteImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteImageRequest"},
+      "output":{"shape":"DeleteImageResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DeleteImageVersion":{
+      "name":"DeleteImageVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteImageVersionRequest"},
+      "output":{"shape":"DeleteImageVersionResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DeleteModel":{
       "name":"DeleteModel",
       "http":{
@@ -482,7 +562,10 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"DeleteModelPackageInput"}
+      "input":{"shape":"DeleteModelPackageInput"},
+      "errors":[
+        {"shape":"ConflictException"}
+      ]
     },
     "DeleteMonitoringSchedule":{
       "name":"DeleteMonitoringSchedule",
@@ -598,6 +681,18 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "DescribeAppImageConfig":{
+      "name":"DescribeAppImageConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAppImageConfigRequest"},
+      "output":{"shape":"DescribeAppImageConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "DescribeAutoMLJob":{
       "name":"DescribeAutoMLJob",
       "http":{
@@ -705,6 +800,30 @@
       },
       "input":{"shape":"DescribeHyperParameterTuningJobRequest"},
       "output":{"shape":"DescribeHyperParameterTuningJobResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DescribeImage":{
+      "name":"DescribeImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImageRequest"},
+      "output":{"shape":"DescribeImageResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "DescribeImageVersion":{
+      "name":"DescribeImageVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImageVersionRequest"},
+      "output":{"shape":"DescribeImageVersionResponse"},
       "errors":[
         {"shape":"ResourceNotFound"}
       ]
@@ -898,6 +1017,15 @@
       "input":{"shape":"ListAlgorithmsInput"},
       "output":{"shape":"ListAlgorithmsOutput"}
     },
+    "ListAppImageConfigs":{
+      "name":"ListAppImageConfigs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAppImageConfigsRequest"},
+      "output":{"shape":"ListAppImageConfigsResponse"}
+    },
     "ListApps":{
       "name":"ListApps",
       "http":{
@@ -1008,6 +1136,27 @@
       },
       "input":{"shape":"ListHyperParameterTuningJobsRequest"},
       "output":{"shape":"ListHyperParameterTuningJobsResponse"}
+    },
+    "ListImageVersions":{
+      "name":"ListImageVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImageVersionsRequest"},
+      "output":{"shape":"ListImageVersionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "ListImages":{
+      "name":"ListImages",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListImagesRequest"},
+      "output":{"shape":"ListImagesResponse"}
     },
     "ListLabelingJobs":{
       "name":"ListLabelingJobs",
@@ -1331,6 +1480,18 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "UpdateAppImageConfig":{
+      "name":"UpdateAppImageConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateAppImageConfigRequest"},
+      "output":{"shape":"UpdateAppImageConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
+    },
     "UpdateCodeRepository":{
       "name":"UpdateCodeRepository",
       "http":{
@@ -1388,6 +1549,19 @@
       "output":{"shape":"UpdateExperimentResponse"},
       "errors":[
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFound"}
+      ]
+    },
+    "UpdateImage":{
+      "name":"UpdateImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateImageRequest"},
+      "output":{"shape":"UpdateImageResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"},
         {"shape":"ResourceNotFound"}
       ]
     },
@@ -1655,6 +1829,38 @@
         "Status":{"shape":"AppStatus"},
         "CreationTime":{"shape":"CreationTime"}
       }
+    },
+    "AppImageConfigArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:app-image-config/.*"
+    },
+    "AppImageConfigDetails":{
+      "type":"structure",
+      "members":{
+        "AppImageConfigArn":{"shape":"AppImageConfigArn"},
+        "AppImageConfigName":{"shape":"AppImageConfigName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+      }
+    },
+    "AppImageConfigList":{
+      "type":"list",
+      "member":{"shape":"AppImageConfigDetails"}
+    },
+    "AppImageConfigName":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+    },
+    "AppImageConfigSortKey":{
+      "type":"string",
+      "enum":[
+        "CreationTime",
+        "LastModifiedTime",
+        "Name"
+      ]
     },
     "AppInstanceType":{
       "type":"string",
@@ -2263,6 +2469,12 @@
       "pattern":"[\\w+=/-]+",
       "sensitive":true
     },
+    "ClientToken":{
+      "type":"string",
+      "max":36,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-]+$"
+    },
     "CodeRepositoryArn":{
       "type":"string",
       "max":2048,
@@ -2427,8 +2639,8 @@
     "CompilerOptions":{
       "type":"string",
       "max":1024,
-      "min":7,
-      "pattern":"^\\{.+\\}$"
+      "min":3,
+      "pattern":".*"
     },
     "CompressionType":{
       "type":"string",
@@ -2479,7 +2691,7 @@
         "Mode":{"shape":"ContainerMode"},
         "ModelDataUrl":{"shape":"Url"},
         "Environment":{"shape":"EnvironmentMap"},
-        "ModelPackageName":{"shape":"ArnOrName"}
+        "ModelPackageName":{"shape":"VersionedArnOrName"}
       }
     },
     "ContainerDefinitionList":{
@@ -2589,6 +2801,21 @@
         "AlgorithmArn":{"shape":"AlgorithmArn"}
       }
     },
+    "CreateAppImageConfigRequest":{
+      "type":"structure",
+      "required":["AppImageConfigName"],
+      "members":{
+        "AppImageConfigName":{"shape":"AppImageConfigName"},
+        "Tags":{"shape":"TagList"},
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+      }
+    },
+    "CreateAppImageConfigResponse":{
+      "type":"structure",
+      "members":{
+        "AppImageConfigArn":{"shape":"AppImageConfigArn"}
+      }
+    },
     "CreateAppRequest":{
       "type":"structure",
       "required":[
@@ -2671,7 +2898,8 @@
         "RoleArn":{"shape":"RoleArn"},
         "InputConfig":{"shape":"InputConfig"},
         "OutputConfig":{"shape":"OutputConfig"},
-        "StoppingCondition":{"shape":"StoppingCondition"}
+        "StoppingCondition":{"shape":"StoppingCondition"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateCompilationJobResponse":{
@@ -2697,8 +2925,8 @@
         "SubnetIds":{"shape":"Subnets"},
         "VpcId":{"shape":"VpcId"},
         "Tags":{"shape":"TagList"},
-        "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"},
-        "AppNetworkAccessType":{"shape":"AppNetworkAccessType"}
+        "AppNetworkAccessType":{"shape":"AppNetworkAccessType"},
+        "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateDomainResponse":{
@@ -2830,6 +3058,48 @@
         "HyperParameterTuningJobArn":{"shape":"HyperParameterTuningJobArn"}
       }
     },
+    "CreateImageRequest":{
+      "type":"structure",
+      "required":[
+        "ImageName",
+        "RoleArn"
+      ],
+      "members":{
+        "Description":{"shape":"ImageDescription"},
+        "DisplayName":{"shape":"ImageDisplayName"},
+        "ImageName":{"shape":"ImageName"},
+        "RoleArn":{"shape":"RoleArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateImageResponse":{
+      "type":"structure",
+      "members":{
+        "ImageArn":{"shape":"ImageArn"}
+      }
+    },
+    "CreateImageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "BaseImage",
+        "ClientToken",
+        "ImageName"
+      ],
+      "members":{
+        "BaseImage":{"shape":"ImageBaseImage"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "ImageName":{"shape":"ImageName"}
+      }
+    },
+    "CreateImageVersionResponse":{
+      "type":"structure",
+      "members":{
+        "ImageVersionArn":{"shape":"ImageVersionArn"}
+      }
+    },
     "CreateLabelingJobRequest":{
       "type":"structure",
       "required":[
@@ -2885,7 +3155,6 @@
     },
     "CreateModelPackageInput":{
       "type":"structure",
-      "required":["ModelPackageName"],
       "members":{
         "ModelPackageName":{"shape":"EntityName"},
         "ModelPackageDescription":{"shape":"EntityDescription"},
@@ -3211,6 +3480,26 @@
       "max":10,
       "min":1
     },
+    "CustomImage":{
+      "type":"structure",
+      "required":[
+        "ImageName",
+        "AppImageConfigName"
+      ],
+      "members":{
+        "ImageName":{"shape":"ImageName"},
+        "ImageVersionNumber":{
+          "shape":"ImageVersionNumber",
+          "box":true
+        },
+        "AppImageConfigName":{"shape":"AppImageConfigName"}
+      }
+    },
+    "CustomImages":{
+      "type":"list",
+      "member":{"shape":"CustomImage"},
+      "max":30
+    },
     "DataCaptureConfig":{
       "type":"structure",
       "required":[
@@ -3317,11 +3606,28 @@
       "max":20,
       "min":0
     },
+    "DefaultGid":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
+    "DefaultUid":{
+      "type":"integer",
+      "max":65535,
+      "min":0
+    },
     "DeleteAlgorithmInput":{
       "type":"structure",
       "required":["AlgorithmName"],
       "members":{
         "AlgorithmName":{"shape":"EntityName"}
+      }
+    },
+    "DeleteAppImageConfigRequest":{
+      "type":"structure",
+      "required":["AppImageConfigName"],
+      "members":{
+        "AppImageConfigName":{"shape":"AppImageConfigName"}
       }
     },
     "DeleteAppRequest":{
@@ -3405,6 +3711,34 @@
       "members":{
       }
     },
+    "DeleteImageRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "ImageName":{"shape":"ImageName"}
+      }
+    },
+    "DeleteImageResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteImageVersionRequest":{
+      "type":"structure",
+      "required":[
+        "ImageName",
+        "Version"
+      ],
+      "members":{
+        "ImageName":{"shape":"ImageName"},
+        "Version":{"shape":"ImageVersionNumber"}
+      }
+    },
+    "DeleteImageVersionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteModelInput":{
       "type":"structure",
       "required":["ModelName"],
@@ -3416,7 +3750,7 @@
       "type":"structure",
       "required":["ModelPackageName"],
       "members":{
-        "ModelPackageName":{"shape":"EntityName"}
+        "ModelPackageName":{"shape":"VersionedArnOrName"}
       }
     },
     "DeleteMonitoringScheduleRequest":{
@@ -3560,6 +3894,23 @@
         "AlgorithmStatusDetails":{"shape":"AlgorithmStatusDetails"},
         "ProductId":{"shape":"ProductId"},
         "CertifyForMarketplace":{"shape":"CertifyForMarketplace"}
+      }
+    },
+    "DescribeAppImageConfigRequest":{
+      "type":"structure",
+      "required":["AppImageConfigName"],
+      "members":{
+        "AppImageConfigName":{"shape":"AppImageConfigName"}
+      }
+    },
+    "DescribeAppImageConfigResponse":{
+      "type":"structure",
+      "members":{
+        "AppImageConfigArn":{"shape":"AppImageConfigArn"},
+        "AppImageConfigName":{"shape":"AppImageConfigName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
       }
     },
     "DescribeAppRequest":{
@@ -3716,11 +4067,11 @@
         "FailureReason":{"shape":"FailureReason"},
         "AuthMode":{"shape":"AuthMode"},
         "DefaultUserSettings":{"shape":"UserSettings"},
+        "AppNetworkAccessType":{"shape":"AppNetworkAccessType"},
         "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"},
         "SubnetIds":{"shape":"Subnets"},
         "Url":{"shape":"String1024"},
-        "VpcId":{"shape":"VpcId"},
-        "AppNetworkAccessType":{"shape":"AppNetworkAccessType"}
+        "VpcId":{"shape":"VpcId"}
       }
     },
     "DescribeEndpointConfigInput":{
@@ -3887,6 +4238,49 @@
         "FailureReason":{"shape":"FailureReason"}
       }
     },
+    "DescribeImageRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "ImageName":{"shape":"ImageName"}
+      }
+    },
+    "DescribeImageResponse":{
+      "type":"structure",
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "Description":{"shape":"ImageDescription"},
+        "DisplayName":{"shape":"ImageDisplayName"},
+        "FailureReason":{"shape":"FailureReason"},
+        "ImageArn":{"shape":"ImageArn"},
+        "ImageName":{"shape":"ImageName"},
+        "ImageStatus":{"shape":"ImageStatus"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "DescribeImageVersionRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "ImageName":{"shape":"ImageName"},
+        "Version":{"shape":"ImageVersionNumber"}
+      }
+    },
+    "DescribeImageVersionResponse":{
+      "type":"structure",
+      "members":{
+        "BaseImage":{"shape":"ImageBaseImage"},
+        "ContainerImage":{"shape":"ImageContainerImage"},
+        "CreationTime":{"shape":"Timestamp"},
+        "FailureReason":{"shape":"FailureReason"},
+        "ImageArn":{"shape":"ImageArn"},
+        "ImageVersionArn":{"shape":"ImageVersionArn"},
+        "ImageVersionStatus":{"shape":"ImageVersionStatus"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "Version":{"shape":"ImageVersionNumber"}
+      }
+    },
     "DescribeLabelingJobRequest":{
       "type":"structure",
       "required":["LabelingJobName"],
@@ -3960,7 +4354,7 @@
       "type":"structure",
       "required":["ModelPackageName"],
       "members":{
-        "ModelPackageName":{"shape":"ArnOrName"}
+        "ModelPackageName":{"shape":"VersionedArnOrName"}
       }
     },
     "DescribeModelPackageOutput":{
@@ -4432,7 +4826,10 @@
         "Deleting",
         "Failed",
         "InService",
-        "Pending"
+        "Pending",
+        "Updating",
+        "Update_Failed",
+        "Delete_Failed"
       ]
     },
     "DoubleParameterValue":{"type":"double"},
@@ -4632,7 +5029,7 @@
     },
     "ExperimentEntityName":{
       "type":"string",
-      "max":82,
+      "max":120,
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
@@ -4674,6 +5071,20 @@
         "rw",
         "ro"
       ]
+    },
+    "FileSystemConfig":{
+      "type":"structure",
+      "members":{
+        "MountPath":{"shape":"MountPath"},
+        "DefaultUid":{
+          "shape":"DefaultUid",
+          "box":true
+        },
+        "DefaultGid":{
+          "shape":"DefaultGid",
+          "box":true
+        }
+      }
     },
     "FileSystemDataSource":{
       "type":"structure",
@@ -4850,7 +5261,8 @@
         "ONNX",
         "PYTORCH",
         "XGBOOST",
-        "TFLITE"
+        "TFLITE",
+        "DARKNET"
       ]
     },
     "GenerateCandidateDefinitionsOnly":{"type":"boolean"},
@@ -5027,6 +5439,11 @@
         "MetricDefinitions":{"shape":"MetricDefinitionList"}
       }
     },
+    "HyperParameterKey":{
+      "type":"string",
+      "max":256,
+      "pattern":".*"
+    },
     "HyperParameterScalingType":{
       "type":"string",
       "enum":[
@@ -5049,7 +5466,7 @@
         "Range":{"shape":"ParameterRange"},
         "IsTunable":{"shape":"Boolean"},
         "IsRequired":{"shape":"Boolean"},
-        "DefaultValue":{"shape":"ParameterValue"}
+        "DefaultValue":{"shape":"HyperParameterValue"}
       }
     },
     "HyperParameterSpecifications":{
@@ -5244,17 +5661,48 @@
         "TransferLearning"
       ]
     },
+    "HyperParameterValue":{
+      "type":"string",
+      "max":2500,
+      "pattern":".*"
+    },
     "HyperParameters":{
       "type":"map",
-      "key":{"shape":"ParameterKey"},
-      "value":{"shape":"ParameterValue"},
+      "key":{"shape":"HyperParameterKey"},
+      "value":{"shape":"HyperParameterValue"},
       "max":100,
       "min":0
+    },
+    "Image":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "ImageArn",
+        "ImageName",
+        "ImageStatus",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "Description":{"shape":"ImageDescription"},
+        "DisplayName":{"shape":"ImageDisplayName"},
+        "FailureReason":{"shape":"FailureReason"},
+        "ImageArn":{"shape":"ImageArn"},
+        "ImageName":{"shape":"ImageName"},
+        "ImageStatus":{"shape":"ImageStatus"},
+        "LastModifiedTime":{"shape":"Timestamp"}
+      }
     },
     "ImageArn":{
       "type":"string",
       "max":256,
       "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:image/[a-z0-9]([-.]?[a-z0-9])*$"
+    },
+    "ImageBaseImage":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":".*"
     },
     "ImageConfig":{
       "type":"structure",
@@ -5263,15 +5711,143 @@
         "RepositoryAccessMode":{"shape":"RepositoryAccessMode"}
       }
     },
+    "ImageContainerImage":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "ImageDeleteProperty":{
+      "type":"string",
+      "max":11,
+      "min":1,
+      "pattern":"(^DisplayName$)|(^Description$)"
+    },
+    "ImageDeletePropertyList":{
+      "type":"list",
+      "member":{"shape":"ImageDeleteProperty"},
+      "max":2
+    },
+    "ImageDescription":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
     "ImageDigest":{
       "type":"string",
       "max":72,
       "pattern":"^[Ss][Hh][Aa]256:[0-9a-fA-F]{64}$"
     },
+    "ImageDisplayName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
+    "ImageName":{
+      "type":"string",
+      "max":63,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]([-.]?[a-zA-Z0-9])*$"
+    },
+    "ImageNameContains":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9\\-.]+$"
+    },
+    "ImageSortBy":{
+      "type":"string",
+      "enum":[
+        "CREATION_TIME",
+        "LAST_MODIFIED_TIME",
+        "IMAGE_NAME"
+      ]
+    },
+    "ImageSortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
+    "ImageStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "CREATE_FAILED",
+        "UPDATING",
+        "UPDATE_FAILED",
+        "DELETING",
+        "DELETE_FAILED"
+      ]
+    },
     "ImageUri":{
       "type":"string",
       "max":255,
       "pattern":".*"
+    },
+    "ImageVersion":{
+      "type":"structure",
+      "required":[
+        "CreationTime",
+        "ImageArn",
+        "ImageVersionArn",
+        "ImageVersionStatus",
+        "LastModifiedTime",
+        "Version"
+      ],
+      "members":{
+        "CreationTime":{"shape":"Timestamp"},
+        "FailureReason":{"shape":"FailureReason"},
+        "ImageArn":{"shape":"ImageArn"},
+        "ImageVersionArn":{"shape":"ImageVersionArn"},
+        "ImageVersionStatus":{"shape":"ImageVersionStatus"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "Version":{"shape":"ImageVersionNumber"}
+      }
+    },
+    "ImageVersionArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"^arn:aws(-[\\w]+)*:sagemaker:.+:[0-9]{12}:image-version/[a-z0-9]([-.]?[a-z0-9])*/[0-9]+$"
+    },
+    "ImageVersionNumber":{
+      "type":"integer",
+      "min":0
+    },
+    "ImageVersionSortBy":{
+      "type":"string",
+      "enum":[
+        "CREATION_TIME",
+        "LAST_MODIFIED_TIME",
+        "VERSION"
+      ]
+    },
+    "ImageVersionSortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
+    "ImageVersionStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "CREATE_FAILED",
+        "DELETING",
+        "DELETE_FAILED"
+      ]
+    },
+    "ImageVersions":{
+      "type":"list",
+      "member":{"shape":"ImageVersion"}
+    },
+    "Images":{
+      "type":"list",
+      "member":{"shape":"Image"}
     },
     "InferenceSpecification":{
       "type":"structure",
@@ -5439,11 +6015,42 @@
         "DefaultResourceSpec":{"shape":"ResourceSpec"}
       }
     },
+    "KernelDisplayName":{
+      "type":"string",
+      "max":1024
+    },
     "KernelGatewayAppSettings":{
       "type":"structure",
       "members":{
-        "DefaultResourceSpec":{"shape":"ResourceSpec"}
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "CustomImages":{"shape":"CustomImages"}
       }
+    },
+    "KernelGatewayImageConfig":{
+      "type":"structure",
+      "required":["KernelSpecs"],
+      "members":{
+        "KernelSpecs":{"shape":"KernelSpecs"},
+        "FileSystemConfig":{"shape":"FileSystemConfig"}
+      }
+    },
+    "KernelName":{
+      "type":"string",
+      "max":1024
+    },
+    "KernelSpec":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"KernelName"},
+        "DisplayName":{"shape":"KernelDisplayName"}
+      }
+    },
+    "KernelSpecs":{
+      "type":"list",
+      "member":{"shape":"KernelSpec"},
+      "max":1,
+      "min":1
     },
     "KmsKeyId":{
       "type":"string",
@@ -5654,6 +6261,27 @@
       "members":{
         "AlgorithmSummaryList":{"shape":"AlgorithmSummaryList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAppImageConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "NameContains":{"shape":"AppImageConfigName"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "ModifiedTimeBefore":{"shape":"Timestamp"},
+        "ModifiedTimeAfter":{"shape":"Timestamp"},
+        "SortBy":{"shape":"AppImageConfigSortKey"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListAppImageConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "AppImageConfigs":{"shape":"AppImageConfigList"}
       }
     },
     "ListAppsRequest":{
@@ -5920,6 +6548,49 @@
       "required":["HyperParameterTuningJobSummaries"],
       "members":{
         "HyperParameterTuningJobSummaries":{"shape":"HyperParameterTuningJobSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListImageVersionsRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "ImageName":{"shape":"ImageName"},
+        "LastModifiedTimeAfter":{"shape":"Timestamp"},
+        "LastModifiedTimeBefore":{"shape":"Timestamp"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "SortBy":{"shape":"ImageVersionSortBy"},
+        "SortOrder":{"shape":"ImageVersionSortOrder"}
+      }
+    },
+    "ListImageVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "ImageVersions":{"shape":"ImageVersions"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListImagesRequest":{
+      "type":"structure",
+      "members":{
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "LastModifiedTimeAfter":{"shape":"Timestamp"},
+        "LastModifiedTimeBefore":{"shape":"Timestamp"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NameContains":{"shape":"ImageNameContains"},
+        "NextToken":{"shape":"NextToken"},
+        "SortBy":{"shape":"ImageSortBy"},
+        "SortOrder":{"shape":"ImageSortOrder"}
+      }
+    },
+    "ListImagesResponse":{
+      "type":"structure",
+      "members":{
+        "Images":{"shape":"Images"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -6421,7 +7092,7 @@
     "MediaType":{
       "type":"string",
       "max":64,
-      "pattern":"^[\\w]+\\/[\\w+]+$"
+      "pattern":"^[-\\w]+\\/[-\\w+]+$"
     },
     "MemberDefinition":{
       "type":"structure",
@@ -6867,6 +7538,11 @@
       "members":{
         "MaxRuntimeInSeconds":{"shape":"MonitoringMaxRuntimeInSeconds"}
       }
+    },
+    "MountPath":{
+      "type":"string",
+      "max":1024,
+      "pattern":"^\\/.*"
     },
     "NameContains":{
       "type":"string",
@@ -7852,6 +8528,7 @@
       "type":"structure",
       "members":{
         "SageMakerImageArn":{"shape":"ImageArn"},
+        "SageMakerImageVersionArn":{"shape":"ImageVersionArn"},
         "InstanceType":{"shape":"AppInstanceType"}
       }
     },
@@ -8119,7 +8796,7 @@
     "SnsTopicArn":{
       "type":"string",
       "max":2048,
-      "pattern":"arn:aws[a-z\\-]*:sns:[a-z0-9\\-]*:[0-9]{12}:[a-zA-Z0-9_.-]*"
+      "pattern":"arn:aws[a-z\\-]*:sns:[a-z0-9\\-]*:[0-9]{12}:[a-zA-Z0-9_.-]+"
     },
     "SortBy":{
       "type":"string",
@@ -8572,6 +9249,7 @@
         "ml.p3.8xlarge",
         "ml.p3.16xlarge",
         "ml.p3dn.24xlarge",
+        "ml.p4d.24xlarge",
         "ml.c5.xlarge",
         "ml.c5.2xlarge",
         "ml.c5.4xlarge",
@@ -9183,6 +9861,20 @@
         "ContentSha256":{"shape":"TemplateContentSha256"}
       }
     },
+    "UpdateAppImageConfigRequest":{
+      "type":"structure",
+      "required":["AppImageConfigName"],
+      "members":{
+        "AppImageConfigName":{"shape":"AppImageConfigName"},
+        "KernelGatewayImageConfig":{"shape":"KernelGatewayImageConfig"}
+      }
+    },
+    "UpdateAppImageConfigResponse":{
+      "type":"structure",
+      "members":{
+        "AppImageConfigArn":{"shape":"AppImageConfigArn"}
+      }
+    },
     "UpdateCodeRepositoryInput":{
       "type":"structure",
       "required":["CodeRepositoryName"],
@@ -9263,6 +9955,23 @@
       "type":"structure",
       "members":{
         "ExperimentArn":{"shape":"ExperimentArn"}
+      }
+    },
+    "UpdateImageRequest":{
+      "type":"structure",
+      "required":["ImageName"],
+      "members":{
+        "DeleteProperties":{"shape":"ImageDeletePropertyList"},
+        "Description":{"shape":"ImageDescription"},
+        "DisplayName":{"shape":"ImageDisplayName"},
+        "ImageName":{"shape":"ImageName"},
+        "RoleArn":{"shape":"RoleArn"}
+      }
+    },
+    "UpdateImageResponse":{
+      "type":"structure",
+      "members":{
+        "ImageArn":{"shape":"ImageArn"}
       }
     },
     "UpdateMonitoringScheduleRequest":{
@@ -9459,7 +10168,10 @@
         "Deleting",
         "Failed",
         "InService",
-        "Pending"
+        "Pending",
+        "Updating",
+        "Update_Failed",
+        "Delete_Failed"
       ]
     },
     "UserSettings":{
@@ -9502,6 +10214,12 @@
     "VariantWeight":{
       "type":"float",
       "min":0
+    },
+    "VersionedArnOrName":{
+      "type":"string",
+      "max":176,
+      "min":1,
+      "pattern":"(arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:[a-z\\-]*\\/)?([a-zA-Z0-9]([a-zA-Z0-9-]){0,62})(?<!-)(\\/[0-9]{1,5})?$"
     },
     "VolumeSizeInGB":{
       "type":"integer",

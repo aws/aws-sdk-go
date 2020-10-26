@@ -10,6 +10,7 @@
     "CopyDBClusterSnapshot": "<p>Copies a snapshot of a DB cluster.</p> <p>To copy a DB cluster snapshot from a shared manual DB cluster snapshot, <code>SourceDBClusterSnapshotIdentifier</code> must be the Amazon Resource Name (ARN) of the shared DB cluster snapshot.</p>",
     "CopyDBParameterGroup": "<p>Copies the specified DB parameter group.</p>",
     "CreateDBCluster": "<p>Creates a new Amazon Neptune DB cluster.</p> <p>You can use the <code>ReplicationSourceIdentifier</code> parameter to create the DB cluster as a Read Replica of another DB cluster or Amazon Neptune DB instance.</p> <p>Note that when you create a new cluster using <code>CreateDBCluster</code> directly, deletion protection is disabled by default (when you create a new production cluster in the console, deletion protection is enabled by default). You can only delete a DB cluster if its <code>DeletionProtection</code> field is set to <code>false</code>.</p>",
+    "CreateDBClusterEndpoint": "<p>Creates a new custom endpoint and associates it with an Amazon Neptune DB cluster.</p>",
     "CreateDBClusterParameterGroup": "<p>Creates a new DB cluster parameter group.</p> <p>Parameters in a DB cluster parameter group apply to all of the instances in a DB cluster.</p> <p> A DB cluster parameter group is initially created with the default parameters for the database engine used by instances in the DB cluster. To provide custom values for any of the parameters, you must modify the group after creating it using <a>ModifyDBClusterParameterGroup</a>. Once you've created a DB cluster parameter group, you need to associate it with your DB cluster using <a>ModifyDBCluster</a>. When you associate a new DB cluster parameter group with a running DB cluster, you need to reboot the DB instances in the DB cluster without failover for the new DB cluster parameter group and associated settings to take effect.</p> <important> <p>After you create a DB cluster parameter group, you should wait at least 5 minutes before creating your first DB cluster that uses that DB cluster parameter group as the default parameter group. This allows Amazon Neptune to fully complete the create action before the DB cluster parameter group is used as the default for a new DB cluster. This is especially important for parameters that are critical when creating the default database for a DB cluster, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the <a href=\"https://console.aws.amazon.com/rds/\">Amazon Neptune console</a> or the <a>DescribeDBClusterParameters</a> command to verify that your DB cluster parameter group has been created or modified.</p> </important>",
     "CreateDBClusterSnapshot": "<p>Creates a snapshot of a DB cluster.</p>",
     "CreateDBInstance": "<p>Creates a new DB instance.</p>",
@@ -17,12 +18,14 @@
     "CreateDBSubnetGroup": "<p>Creates a new DB subnet group. DB subnet groups must contain at least one subnet in at least two AZs in the AWS Region.</p>",
     "CreateEventSubscription": "<p>Creates an event notification subscription. This action requires a topic ARN (Amazon Resource Name) created by either the Neptune console, the SNS console, or the SNS API. To obtain an ARN with SNS, you must create a topic in Amazon SNS and subscribe to the topic. The ARN is displayed in the SNS console.</p> <p>You can specify the type of source (SourceType) you want to be notified of, provide a list of Neptune sources (SourceIds) that triggers the events, and provide a list of event categories (EventCategories) for events you want to be notified of. For example, you can specify SourceType = db-instance, SourceIds = mydbinstance1, mydbinstance2 and EventCategories = Availability, Backup.</p> <p>If you specify both the SourceType and SourceIds, such as SourceType = db-instance and SourceIdentifier = myDBInstance1, you are notified of all the db-instance events for the specified source. If you specify a SourceType but do not specify a SourceIdentifier, you receive notice of the events for that source type for all your Neptune sources. If you do not specify either the SourceType nor the SourceIdentifier, you are notified of events generated from all Neptune sources belonging to your customer account.</p>",
     "DeleteDBCluster": "<p>The DeleteDBCluster action deletes a previously provisioned DB cluster. When you delete a DB cluster, all automated backups for that DB cluster are deleted and can't be recovered. Manual DB cluster snapshots of the specified DB cluster are not deleted.</p> <p>Note that the DB Cluster cannot be deleted if deletion protection is enabled. To delete it, you must first set its <code>DeletionProtection</code> field to <code>False</code>.</p>",
+    "DeleteDBClusterEndpoint": "<p>Deletes a custom endpoint and removes it from an Amazon Neptune DB cluster.</p>",
     "DeleteDBClusterParameterGroup": "<p>Deletes a specified DB cluster parameter group. The DB cluster parameter group to be deleted can't be associated with any DB clusters.</p>",
     "DeleteDBClusterSnapshot": "<p>Deletes a DB cluster snapshot. If the snapshot is being copied, the copy operation is terminated.</p> <note> <p>The DB cluster snapshot must be in the <code>available</code> state to be deleted.</p> </note>",
     "DeleteDBInstance": "<p>The DeleteDBInstance action deletes a previously provisioned DB instance. When you delete a DB instance, all automated backups for that instance are deleted and can't be recovered. Manual DB snapshots of the DB instance to be deleted by <code>DeleteDBInstance</code> are not deleted.</p> <p> If you request a final DB snapshot the status of the Amazon Neptune DB instance is <code>deleting</code> until the DB snapshot is created. The API action <code>DescribeDBInstance</code> is used to monitor the status of this operation. The action can't be canceled or reverted once submitted.</p> <p>Note that when a DB instance is in a failure state and has a status of <code>failed</code>, <code>incompatible-restore</code>, or <code>incompatible-network</code>, you can only delete it when the <code>SkipFinalSnapshot</code> parameter is set to <code>true</code>.</p> <p>You can't delete a DB instance if it is the only instance in the DB cluster, or if it has deletion protection enabled.</p>",
     "DeleteDBParameterGroup": "<p>Deletes a specified DBParameterGroup. The DBParameterGroup to be deleted can't be associated with any DB instances.</p>",
     "DeleteDBSubnetGroup": "<p>Deletes a DB subnet group.</p> <note> <p>The specified database subnet group must not be associated with any DB instances.</p> </note>",
     "DeleteEventSubscription": "<p>Deletes an event notification subscription.</p>",
+    "DescribeDBClusterEndpoints": "<p>Returns information about endpoints for an Amazon Neptune DB cluster.</p> <note> <p>This operation can also return information for Amazon RDS clusters and Amazon DocDB clusters.</p> </note>",
     "DescribeDBClusterParameterGroups": "<p> Returns a list of <code>DBClusterParameterGroup</code> descriptions. If a <code>DBClusterParameterGroupName</code> parameter is specified, the list will contain only the description of the specified DB cluster parameter group.</p>",
     "DescribeDBClusterParameters": "<p>Returns the detailed parameter list for a particular DB cluster parameter group.</p>",
     "DescribeDBClusterSnapshotAttributes": "<p>Returns a list of DB cluster snapshot attribute names and values for a manual DB cluster snapshot.</p> <p>When sharing snapshots with other AWS accounts, <code>DescribeDBClusterSnapshotAttributes</code> returns the <code>restore</code> attribute and a list of IDs for the AWS accounts that are authorized to copy or restore the manual DB cluster snapshot. If <code>all</code> is included in the list of values for the <code>restore</code> attribute, then the manual DB cluster snapshot is public and can be copied or restored by all AWS accounts.</p> <p>To add or remove access for an AWS account to copy or restore a manual DB cluster snapshot, or to make the manual DB cluster snapshot public or private, use the <a>ModifyDBClusterSnapshotAttribute</a> API action.</p>",
@@ -44,6 +47,7 @@
     "FailoverDBCluster": "<p>Forces a failover for a DB cluster.</p> <p>A failover for a DB cluster promotes one of the Read Replicas (read-only instances) in the DB cluster to be the primary instance (the cluster writer).</p> <p>Amazon Neptune will automatically fail over to a Read Replica, if one exists, when the primary instance fails. You can force a failover when you want to simulate a failure of a primary instance for testing. Because each instance in a DB cluster has its own endpoint address, you will need to clean up and re-establish any existing connections that use those endpoint addresses when the failover is complete.</p>",
     "ListTagsForResource": "<p>Lists all tags on an Amazon Neptune resource.</p>",
     "ModifyDBCluster": "<p>Modify a setting for a DB cluster. You can change one or more database configuration parameters by specifying these parameters and the new values in the request.</p>",
+    "ModifyDBClusterEndpoint": "<p>Modifies the properties of an endpoint in an Amazon Neptune DB cluster.</p>",
     "ModifyDBClusterParameterGroup": "<p> Modifies the parameters of a DB cluster parameter group. To modify more than one parameter, submit a list of the following: <code>ParameterName</code>, <code>ParameterValue</code>, and <code>ApplyMethod</code>. A maximum of 20 parameters can be modified in a single request.</p> <note> <p>Changes to dynamic parameters are applied immediately. Changes to static parameters require a reboot without failover to the DB cluster associated with the parameter group before the change can take effect.</p> </note> <important> <p>After you create a DB cluster parameter group, you should wait at least 5 minutes before creating your first DB cluster that uses that DB cluster parameter group as the default parameter group. This allows Amazon Neptune to fully complete the create action before the parameter group is used as the default for a new DB cluster. This is especially important for parameters that are critical when creating the default database for a DB cluster, such as the character set for the default database defined by the <code>character_set_database</code> parameter. You can use the <i>Parameter Groups</i> option of the Amazon Neptune console or the <a>DescribeDBClusterParameters</a> command to verify that your DB cluster parameter group has been created or modified.</p> </important>",
     "ModifyDBClusterSnapshotAttribute": "<p>Adds an attribute and values to, or removes an attribute and values from, a manual DB cluster snapshot.</p> <p>To share a manual DB cluster snapshot with other AWS accounts, specify <code>restore</code> as the <code>AttributeName</code> and use the <code>ValuesToAdd</code> parameter to add a list of IDs of the AWS accounts that are authorized to restore the manual DB cluster snapshot. Use the value <code>all</code> to make the manual DB cluster snapshot public, which means that it can be copied or restored by all AWS accounts. Do not add the <code>all</code> value for any manual DB cluster snapshots that contain private information that you don't want available to all AWS accounts. If a manual DB cluster snapshot is encrypted, it can be shared, but only by specifying a list of authorized AWS account IDs for the <code>ValuesToAdd</code> parameter. You can't use <code>all</code> as a value for that parameter in this case.</p> <p>To view which AWS accounts have access to copy or restore a manual DB cluster snapshot, or whether a manual DB cluster snapshot public or private, use the <a>DescribeDBClusterSnapshotAttributes</a> API action.</p>",
     "ModifyDBInstance": "<p>Modifies settings for a DB instance. You can change one or more database configuration parameters by specifying these parameters and the new values in the request. To learn what modifications you can make to your DB instance, call <a>DescribeValidDBInstanceModifications</a> before you call <a>ModifyDBInstance</a>.</p>",
@@ -182,7 +186,7 @@
       "refs": {
         "CopyDBClusterSnapshotMessage$CopyTags": "<p>True to copy all tags from the source DB cluster snapshot to the target DB cluster snapshot, and otherwise false. The default is false.</p>",
         "CreateDBClusterMessage$StorageEncrypted": "<p>Specifies whether the DB cluster is encrypted.</p>",
-        "CreateDBClusterMessage$EnableIAMDatabaseAuthentication": "<p>True to enable mapping of AWS Identity and Access Management (IAM) accounts to database accounts, and otherwise false.</p> <p>Default: <code>false</code> </p>",
+        "CreateDBClusterMessage$EnableIAMDatabaseAuthentication": "<p>Not supported by Neptune.</p>",
         "CreateDBClusterMessage$DeletionProtection": "<p>A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is enabled.</p>",
         "CreateDBInstanceMessage$MultiAZ": "<p>Specifies if the DB instance is a Multi-AZ deployment. You can't set the AvailabilityZone parameter if the MultiAZ parameter is set to true.</p>",
         "CreateDBInstanceMessage$AutoMinorVersionUpgrade": "<p>Indicates that minor engine upgrades are applied automatically to the DB instance during the maintenance window.</p> <p>Default: <code>true</code> </p>",
@@ -263,6 +267,16 @@
     },
     "CopyDBParameterGroupResult": {
       "base": null,
+      "refs": {
+      }
+    },
+    "CreateDBClusterEndpointMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDBClusterEndpointOutput": {
+      "base": "<p>This data type represents the information you need to connect to an Amazon Neptune DB cluster. This data type is used as a response element in the following actions:</p> <ul> <li> <p> <code>CreateDBClusterEndpoint</code> </p> </li> <li> <p> <code>DescribeDBClusterEndpoints</code> </p> </li> <li> <p> <code>ModifyDBClusterEndpoint</code> </p> </li> <li> <p> <code>DeleteDBClusterEndpoint</code> </p> </li> </ul> <p>For the data structure that represents Amazon Neptune DB instance endpoints, see <code>Endpoint</code>.</p>",
       "refs": {
       }
     },
@@ -353,6 +367,38 @@
     },
     "DBClusterAlreadyExistsFault": {
       "base": "<p>User already has a DB cluster with the given identifier.</p>",
+      "refs": {
+      }
+    },
+    "DBClusterEndpoint": {
+      "base": "<p>This data type represents the information you need to connect to an Amazon Neptune DB cluster. This data type is used as a response element in the following actions:</p> <ul> <li> <p> <code>CreateDBClusterEndpoint</code> </p> </li> <li> <p> <code>DescribeDBClusterEndpoints</code> </p> </li> <li> <p> <code>ModifyDBClusterEndpoint</code> </p> </li> <li> <p> <code>DeleteDBClusterEndpoint</code> </p> </li> </ul> <p>For the data structure that represents Amazon Neptune DB instance endpoints, see <code>Endpoint</code>.</p>",
+      "refs": {
+        "DBClusterEndpointList$member": null
+      }
+    },
+    "DBClusterEndpointAlreadyExistsFault": {
+      "base": "<p>The specified custom endpoint cannot be created because it already exists.</p>",
+      "refs": {
+      }
+    },
+    "DBClusterEndpointList": {
+      "base": null,
+      "refs": {
+        "DBClusterEndpointMessage$DBClusterEndpoints": "<p>Contains the details of the endpoints associated with the cluster and matching any filter conditions.</p>"
+      }
+    },
+    "DBClusterEndpointMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DBClusterEndpointNotFoundFault": {
+      "base": "<p>The specified custom endpoint doesn't exist.</p>",
+      "refs": {
+      }
+    },
+    "DBClusterEndpointQuotaExceededFault": {
+      "base": "<p>The cluster already has the maximum number of custom endpoints.</p>",
       "refs": {
       }
     },
@@ -711,6 +757,16 @@
       "refs": {
       }
     },
+    "DeleteDBClusterEndpointMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDBClusterEndpointOutput": {
+      "base": "<p>This data type represents the information you need to connect to an Amazon Neptune DB cluster. This data type is used as a response element in the following actions:</p> <ul> <li> <p> <code>CreateDBClusterEndpoint</code> </p> </li> <li> <p> <code>DescribeDBClusterEndpoints</code> </p> </li> <li> <p> <code>ModifyDBClusterEndpoint</code> </p> </li> <li> <p> <code>DeleteDBClusterEndpoint</code> </p> </li> </ul> <p>For the data structure that represents Amazon RDS DB instance endpoints, see <code>Endpoint</code>.</p>",
+      "refs": {
+      }
+    },
     "DeleteDBClusterMessage": {
       "base": null,
       "refs": {
@@ -762,6 +818,11 @@
       }
     },
     "DeleteEventSubscriptionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDBClusterEndpointsMessage": {
       "base": null,
       "refs": {
       }
@@ -920,7 +981,7 @@
       }
     },
     "Endpoint": {
-      "base": "<p>Specifies a connection endpoint.</p>",
+      "base": "<p>Specifies a connection endpoint.</p> <p>For the data structure that represents Amazon Neptune DB cluster endpoints, see <code>DBClusterEndpoint</code>.</p>",
       "refs": {
         "DBInstance$Endpoint": "<p>Specifies the connection endpoint.</p>"
       }
@@ -1023,6 +1084,7 @@
     "FilterList": {
       "base": null,
       "refs": {
+        "DescribeDBClusterEndpointsMessage$Filters": "<p>A set of name-value pairs that define which endpoints to include in the output. The filters are specified as name-value pairs, in the format <code>Name=<i>endpoint_type</i>,Values=<i>endpoint_type1</i>,<i>endpoint_type2</i>,...</code>. <code>Name</code> can be one of: <code>db-cluster-endpoint-type</code>, <code>db-cluster-endpoint-custom-type</code>, <code>db-cluster-endpoint-id</code>, <code>db-cluster-endpoint-status</code>. <code>Values</code> for the <code> db-cluster-endpoint-type</code> filter can be one or more of: <code>reader</code>, <code>writer</code>, <code>custom</code>. <code>Values</code> for the <code>db-cluster-endpoint-custom-type</code> filter can be one or more of: <code>reader</code>, <code>any</code>. <code>Values</code> for the <code>db-cluster-endpoint-status</code> filter can be one or more of: <code>available</code>, <code>creating</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>. </p>",
         "DescribeDBClusterParameterGroupsMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBClusterParametersMessage$Filters": "<p>This parameter is not currently supported.</p>",
         "DescribeDBClusterSnapshotsMessage$Filters": "<p>This parameter is not currently supported.</p>",
@@ -1100,6 +1162,7 @@
         "DBInstance$Iops": "<p>Specifies the Provisioned IOPS (I/O operations per second) value.</p>",
         "DBInstance$MonitoringInterval": "<p>The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance.</p>",
         "DBInstance$PromotionTier": "<p>A value that specifies the order in which a Read Replica is promoted to the primary instance after a failure of the existing primary instance. </p>",
+        "DescribeDBClusterEndpointsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so you can retrieve the remaining results. </p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBClusterParameterGroupsMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBClusterParametersMessage$MaxRecords": "<p> The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
         "DescribeDBClusterSnapshotsMessage$MaxRecords": "<p>The maximum number of records to include in the response. If more records exist than the specified <code>MaxRecords</code> value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.</p> <p>Default: 100</p> <p>Constraints: Minimum 20, maximum 100.</p>",
@@ -1135,6 +1198,11 @@
         "Range$Step": "<p>The step value for the range. For example, if you have a range of 5,000 to 10,000, with a step value of 1,000, the valid values start at 5,000 and step up by 1,000. Even though 7,500 is within the range, it isn't a valid value for the range. The valid values are 5,000, 6,000, 7,000, 8,000...</p>",
         "RestoreDBClusterFromSnapshotMessage$Port": "<p>The port number on which the new DB cluster accepts connections.</p> <p>Constraints: Value must be <code>1150-65535</code> </p> <p>Default: The same port as the original DB cluster.</p>",
         "RestoreDBClusterToPointInTimeMessage$Port": "<p>The port number on which the new DB cluster accepts connections.</p> <p>Constraints: Value must be <code>1150-65535</code> </p> <p>Default: The same port as the original DB cluster.</p>"
+      }
+    },
+    "InvalidDBClusterEndpointStateFault": {
+      "base": "<p>The requested operation cannot be performed on the endpoint while the endpoint is in this state.</p>",
+      "refs": {
       }
     },
     "InvalidDBClusterSnapshotStateFault": {
@@ -1227,6 +1295,16 @@
         "PendingCloudwatchLogsExports$LogTypesToDisable": "<p>Log types that are in the process of being enabled. After they are enabled, these log types are exported to CloudWatch Logs.</p>",
         "RestoreDBClusterFromSnapshotMessage$EnableCloudwatchLogsExports": "<p>The list of logs that the restored DB cluster is to export to Amazon CloudWatch Logs.</p>",
         "RestoreDBClusterToPointInTimeMessage$EnableCloudwatchLogsExports": "<p>The list of logs that the restored DB cluster is to export to CloudWatch Logs.</p>"
+      }
+    },
+    "ModifyDBClusterEndpointMessage": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyDBClusterEndpointOutput": {
+      "base": "<p>This data type represents the information you need to connect to an Amazon Aurora DB cluster. This data type is used as a response element in the following actions:</p> <ul> <li> <p> <code>CreateDBClusterEndpoint</code> </p> </li> <li> <p> <code>DescribeDBClusterEndpoints</code> </p> </li> <li> <p> <code>ModifyDBClusterEndpoint</code> </p> </li> <li> <p> <code>DeleteDBClusterEndpoint</code> </p> </li> </ul> <p>For the data structure that represents Amazon RDS DB instance endpoints, see <code>Endpoint</code>.</p>",
+      "refs": {
       }
     },
     "ModifyDBClusterMessage": {
@@ -1573,6 +1651,7 @@
       "refs": {
         "AddRoleToDBClusterMessage$DBClusterIdentifier": "<p>The name of the DB cluster to associate the IAM role with.</p>",
         "AddRoleToDBClusterMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to associate with the Neptune DB cluster, for example <code>arn:aws:iam::123456789012:role/NeptuneAccessRole</code>.</p>",
+        "AddRoleToDBClusterMessage$FeatureName": "<p>The name of the feature for the Neptune DB cluster that the IAM role is to be associated with. For the list of supported feature names, see <a>DBEngineVersion</a>.</p>",
         "AddSourceIdentifierToSubscriptionMessage$SubscriptionName": "<p>The name of the event notification subscription you want to add a source identifier to.</p>",
         "AddSourceIdentifierToSubscriptionMessage$SourceIdentifier": "<p>The identifier of the event source to be added.</p> <p>Constraints:</p> <ul> <li> <p>If the source type is a DB instance, then a <code>DBInstanceIdentifier</code> must be supplied.</p> </li> <li> <p>If the source type is a DB security group, a <code>DBSecurityGroupName</code> must be supplied.</p> </li> <li> <p>If the source type is a DB parameter group, a <code>DBParameterGroupName</code> must be supplied.</p> </li> <li> <p>If the source type is a DB snapshot, a <code>DBSnapshotIdentifier</code> must be supplied.</p> </li> </ul>",
         "AddTagsToResourceMessage$ResourceName": "<p>The Amazon Neptune resource that the tags are added to. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/neptune/latest/UserGuide/tagging.ARN.html#tagging.ARN.Constructing\"> Constructing an Amazon Resource Name (ARN)</a>.</p>",
@@ -1594,13 +1673,24 @@
         "CopyDBParameterGroupMessage$SourceDBParameterGroupIdentifier": "<p>The identifier or ARN for the source DB parameter group. For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/neptune/latest/UserGuide/tagging.ARN.html#tagging.ARN.Constructing\"> Constructing an Amazon Resource Name (ARN)</a>.</p> <p>Constraints:</p> <ul> <li> <p>Must specify a valid DB parameter group.</p> </li> <li> <p>Must specify a valid DB parameter group identifier, for example <code>my-db-param-group</code>, or a valid ARN.</p> </li> </ul>",
         "CopyDBParameterGroupMessage$TargetDBParameterGroupIdentifier": "<p>The identifier for the copied DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Cannot be null, empty, or blank.</p> </li> <li> <p>Must contain from 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>my-db-parameter-group</code> </p>",
         "CopyDBParameterGroupMessage$TargetDBParameterGroupDescription": "<p>A description for the copied DB parameter group.</p>",
+        "CreateDBClusterEndpointMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "CreateDBClusterEndpointMessage$DBClusterEndpointIdentifier": "<p>The identifier to use for the new endpoint. This parameter is stored as a lowercase string.</p>",
+        "CreateDBClusterEndpointMessage$EndpointType": "<p>The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>ANY</code>.</p>",
+        "CreateDBClusterEndpointOutput$DBClusterEndpointIdentifier": "<p>The identifier associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "CreateDBClusterEndpointOutput$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "CreateDBClusterEndpointOutput$DBClusterEndpointResourceIdentifier": "<p>A unique system-generated identifier for an endpoint. It remains the same for the whole life of the endpoint.</p>",
+        "CreateDBClusterEndpointOutput$Endpoint": "<p>The DNS address of the endpoint.</p>",
+        "CreateDBClusterEndpointOutput$Status": "<p>The current status of the endpoint. One of: <code>creating</code>, <code>available</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>. The <code>inactive</code> state applies to an endpoint that cannot be used for a certain kind of cluster, such as a <code>writer</code> endpoint for a read-only secondary cluster in a global database.</p>",
+        "CreateDBClusterEndpointOutput$EndpointType": "<p>The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>CUSTOM</code>.</p>",
+        "CreateDBClusterEndpointOutput$CustomEndpointType": "<p>The type associated with a custom endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>ANY</code>.</p>",
+        "CreateDBClusterEndpointOutput$DBClusterEndpointArn": "<p>The Amazon Resource Name (ARN) for the endpoint.</p>",
         "CreateDBClusterMessage$CharacterSetName": "<p> <i>(Not supported by Neptune)</i> </p>",
         "CreateDBClusterMessage$DatabaseName": "<p>The name for your database of up to 64 alpha-numeric characters. If you do not provide a name, Amazon Neptune will not create a database in the DB cluster you are creating.</p>",
         "CreateDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens.</p> </li> </ul> <p>Example: <code>my-cluster1</code> </p>",
         "CreateDBClusterMessage$DBClusterParameterGroupName": "<p> The name of the DB cluster parameter group to associate with this DB cluster. If this argument is omitted, the default is used.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>",
         "CreateDBClusterMessage$DBSubnetGroupName": "<p>A DB subnet group to associate with this DB cluster.</p> <p>Constraints: Must match the name of an existing DBSubnetGroup. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "CreateDBClusterMessage$Engine": "<p>The name of the database engine to be used for this DB cluster.</p> <p>Valid Values: <code>neptune</code> </p>",
-        "CreateDBClusterMessage$EngineVersion": "<p>The version number of the database engine to use. Currently, setting this parameter has no effect.</p> <p>Example: <code>1.0.1</code> </p>",
+        "CreateDBClusterMessage$EngineVersion": "<p>The version number of the database engine to use for the new DB cluster.</p> <p>Example: <code>1.0.2.1</code> </p>",
         "CreateDBClusterMessage$MasterUsername": "<p>The name of the master user for the DB cluster.</p> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 16 letters or numbers.</p> </li> <li> <p>First character must be a letter.</p> </li> <li> <p>Cannot be a reserved word for the chosen database engine.</p> </li> </ul>",
         "CreateDBClusterMessage$MasterUserPassword": "<p>The password for the master database user. This password can contain any printable ASCII character except \"/\", \"\"\", or \"@\".</p> <p>Constraints: Must contain from 8 to 41 characters.</p>",
         "CreateDBClusterMessage$OptionGroupName": "<p> <i>(Not supported by Neptune)</i> </p>",
@@ -1667,6 +1757,15 @@
         "DBCluster$DbClusterResourceId": "<p>The AWS Region-unique, immutable identifier for the DB cluster. This identifier is found in AWS CloudTrail log entries whenever the AWS KMS key for the DB cluster is accessed.</p>",
         "DBCluster$DBClusterArn": "<p>The Amazon Resource Name (ARN) for the DB cluster.</p>",
         "DBCluster$CloneGroupId": "<p>Identifies the clone group to which the DB cluster is associated.</p>",
+        "DBClusterEndpoint$DBClusterEndpointIdentifier": "<p>The identifier associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "DBClusterEndpoint$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "DBClusterEndpoint$DBClusterEndpointResourceIdentifier": "<p>A unique system-generated identifier for an endpoint. It remains the same for the whole life of the endpoint.</p>",
+        "DBClusterEndpoint$Endpoint": "<p>The DNS address of the endpoint.</p>",
+        "DBClusterEndpoint$Status": "<p>The current status of the endpoint. One of: <code>creating</code>, <code>available</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>. The <code>inactive</code> state applies to an endpoint that cannot be used for a certain kind of cluster, such as a <code>writer</code> endpoint for a read-only secondary cluster in a global database.</p>",
+        "DBClusterEndpoint$EndpointType": "<p>The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>CUSTOM</code>.</p>",
+        "DBClusterEndpoint$CustomEndpointType": "<p>The type associated with a custom endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>ANY</code>.</p>",
+        "DBClusterEndpoint$DBClusterEndpointArn": "<p>The Amazon Resource Name (ARN) for the endpoint.</p>",
+        "DBClusterEndpointMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBClusterEndpoints</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DBClusterMember$DBInstanceIdentifier": "<p>Specifies the instance identifier for this member of the DB cluster.</p>",
         "DBClusterMember$DBClusterParameterGroupStatus": "<p>Specifies the status of the DB cluster parameter group for this member of the DB cluster.</p>",
         "DBClusterMessage$Marker": "<p>A pagination token that can be used in a subsequent DescribeDBClusters request.</p>",
@@ -1681,6 +1780,7 @@
         "DBClusterParameterGroupsMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBClusterParameterGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DBClusterRole$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that is associated with the DB cluster.</p>",
         "DBClusterRole$Status": "<p>Describes the state of association between the IAM role and the DB cluster. The Status property returns one of the following values:</p> <ul> <li> <p> <code>ACTIVE</code> - the IAM role ARN is associated with the DB cluster and can be used to access other AWS services on your behalf.</p> </li> <li> <p> <code>PENDING</code> - the IAM role ARN is being associated with the DB cluster.</p> </li> <li> <p> <code>INVALID</code> - the IAM role ARN is associated with the DB cluster, but the DB cluster is unable to assume the IAM role in order to access other AWS services on your behalf.</p> </li> </ul>",
+        "DBClusterRole$FeatureName": "<p>The name of the feature associated with the AWS Identity and Access Management (IAM) role. For the list of supported feature names, see <a>DBEngineVersion</a>. </p>",
         "DBClusterSnapshot$DBClusterSnapshotIdentifier": "<p>Specifies the identifier for a DB cluster snapshot. Must match the identifier of an existing snapshot.</p> <p>After you restore a DB cluster using a <code>DBClusterSnapshotIdentifier</code>, you must specify the same <code>DBClusterSnapshotIdentifier</code> for any future updates to the DB cluster. When you specify this property for an update, the DB cluster is not restored from the snapshot again, and the data in the database is not changed.</p> <p>However, if you don't specify the <code>DBClusterSnapshotIdentifier</code>, an empty DB cluster is created, and the original DB cluster is deleted. If you specify a property that is different from the previous snapshot restore property, the DB cluster is restored from the snapshot specified by the <code>DBClusterSnapshotIdentifier</code>, and the original DB cluster is deleted.</p>",
         "DBClusterSnapshot$DBClusterIdentifier": "<p>Specifies the DB cluster identifier of the DB cluster that this DB cluster snapshot was created from.</p>",
         "DBClusterSnapshot$Engine": "<p>Specifies the name of the database engine.</p>",
@@ -1749,6 +1849,15 @@
         "DBSubnetGroup$SubnetGroupStatus": "<p>Provides the status of the DB subnet group.</p>",
         "DBSubnetGroup$DBSubnetGroupArn": "<p>The Amazon Resource Name (ARN) for the DB subnet group.</p>",
         "DBSubnetGroupMessage$Marker": "<p> An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
+        "DeleteDBClusterEndpointMessage$DBClusterEndpointIdentifier": "<p>The identifier associated with the custom endpoint. This parameter is stored as a lowercase string.</p>",
+        "DeleteDBClusterEndpointOutput$DBClusterEndpointIdentifier": "<p>The identifier associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "DeleteDBClusterEndpointOutput$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "DeleteDBClusterEndpointOutput$DBClusterEndpointResourceIdentifier": "<p>A unique system-generated identifier for an endpoint. It remains the same for the whole life of the endpoint.</p>",
+        "DeleteDBClusterEndpointOutput$Endpoint": "<p>The DNS address of the endpoint.</p>",
+        "DeleteDBClusterEndpointOutput$Status": "<p>The current status of the endpoint. One of: <code>creating</code>, <code>available</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>. The <code>inactive</code> state applies to an endpoint that cannot be used for a certain kind of cluster, such as a <code>writer</code> endpoint for a read-only secondary cluster in a global database.</p>",
+        "DeleteDBClusterEndpointOutput$EndpointType": "<p>The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>CUSTOM</code>.</p>",
+        "DeleteDBClusterEndpointOutput$CustomEndpointType": "<p>The type associated with a custom endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>ANY</code>.</p>",
+        "DeleteDBClusterEndpointOutput$DBClusterEndpointArn": "<p>The Amazon Resource Name (ARN) for the endpoint.</p>",
         "DeleteDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier for the DB cluster to be deleted. This parameter isn't case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match an existing DBClusterIdentifier.</p> </li> </ul>",
         "DeleteDBClusterMessage$FinalDBSnapshotIdentifier": "<p> The DB cluster snapshot identifier of the new DB cluster snapshot created when <code>SkipFinalSnapshot</code> is set to <code>false</code>.</p> <note> <p> Specifying this parameter and also setting the <code>SkipFinalShapshot</code> parameter to true results in an error.</p> </note> <p>Constraints:</p> <ul> <li> <p>Must be 1 to 255 letters, numbers, or hyphens.</p> </li> <li> <p>First character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul>",
         "DeleteDBClusterParameterGroupMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be the name of an existing DB cluster parameter group.</p> </li> <li> <p>You can't delete a default DB cluster parameter group.</p> </li> <li> <p>Cannot be associated with any DB clusters.</p> </li> </ul>",
@@ -1758,6 +1867,9 @@
         "DeleteDBParameterGroupMessage$DBParameterGroupName": "<p>The name of the DB parameter group.</p> <p>Constraints:</p> <ul> <li> <p>Must be the name of an existing DB parameter group</p> </li> <li> <p>You can't delete a default DB parameter group</p> </li> <li> <p>Cannot be associated with any DB instances</p> </li> </ul>",
         "DeleteDBSubnetGroupMessage$DBSubnetGroupName": "<p>The name of the database subnet group to delete.</p> <note> <p>You can't delete the default subnet group.</p> </note> <p>Constraints:</p> <p>Constraints: Must match the name of an existing DBSubnetGroup. Must not be default.</p> <p>Example: <code>mySubnetgroup</code> </p>",
         "DeleteEventSubscriptionMessage$SubscriptionName": "<p>The name of the event notification subscription you want to delete.</p>",
+        "DescribeDBClusterEndpointsMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "DescribeDBClusterEndpointsMessage$DBClusterEndpointIdentifier": "<p>The identifier of the endpoint to describe. This parameter is stored as a lowercase string.</p>",
+        "DescribeDBClusterEndpointsMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBClusterEndpoints</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>. </p>",
         "DescribeDBClusterParameterGroupsMessage$DBClusterParameterGroupName": "<p>The name of a specific DB cluster parameter group to return details for.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>",
         "DescribeDBClusterParameterGroupsMessage$Marker": "<p> An optional pagination token provided by a previous <code>DescribeDBClusterParameterGroups</code> request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by <code>MaxRecords</code>.</p>",
         "DescribeDBClusterParametersMessage$DBClusterParameterGroupName": "<p>The name of a specific DB cluster parameter group to return parameter details for.</p> <p>Constraints:</p> <ul> <li> <p>If supplied, must match the name of an existing DBClusterParameterGroup.</p> </li> </ul>",
@@ -1829,6 +1941,16 @@
         "KeyList$member": null,
         "ListTagsForResourceMessage$ResourceName": "<p>The Amazon Neptune resource with tags to be listed. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/neptune/latest/UserGuide/tagging.ARN.html#tagging.ARN.Constructing\"> Constructing an Amazon Resource Name (ARN)</a>.</p>",
         "LogTypeList$member": null,
+        "ModifyDBClusterEndpointMessage$DBClusterEndpointIdentifier": "<p>The identifier of the endpoint to modify. This parameter is stored as a lowercase string.</p>",
+        "ModifyDBClusterEndpointMessage$EndpointType": "<p>The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>ANY</code>.</p>",
+        "ModifyDBClusterEndpointOutput$DBClusterEndpointIdentifier": "<p>The identifier associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "ModifyDBClusterEndpointOutput$DBClusterIdentifier": "<p>The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.</p>",
+        "ModifyDBClusterEndpointOutput$DBClusterEndpointResourceIdentifier": "<p>A unique system-generated identifier for an endpoint. It remains the same for the whole life of the endpoint.</p>",
+        "ModifyDBClusterEndpointOutput$Endpoint": "<p>The DNS address of the endpoint.</p>",
+        "ModifyDBClusterEndpointOutput$Status": "<p>The current status of the endpoint. One of: <code>creating</code>, <code>available</code>, <code>deleting</code>, <code>inactive</code>, <code>modifying</code>. The <code>inactive</code> state applies to an endpoint that cannot be used for a certain kind of cluster, such as a <code>writer</code> endpoint for a read-only secondary cluster in a global database.</p>",
+        "ModifyDBClusterEndpointOutput$EndpointType": "<p>The type of the endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>CUSTOM</code>.</p>",
+        "ModifyDBClusterEndpointOutput$CustomEndpointType": "<p>The type associated with a custom endpoint. One of: <code>READER</code>, <code>WRITER</code>, <code>ANY</code>.</p>",
+        "ModifyDBClusterEndpointOutput$DBClusterEndpointArn": "<p>The Amazon Resource Name (ARN) for the endpoint.</p>",
         "ModifyDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier for the cluster being modified. This parameter is not case-sensitive.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBCluster.</p> </li> </ul>",
         "ModifyDBClusterMessage$NewDBClusterIdentifier": "<p>The new DB cluster identifier for the DB cluster when renaming a DB cluster. This value is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must contain from 1 to 63 letters, numbers, or hyphens</p> </li> <li> <p>The first character must be a letter</p> </li> <li> <p>Cannot end with a hyphen or contain two consecutive hyphens</p> </li> </ul> <p>Example: <code>my-cluster2</code> </p>",
         "ModifyDBClusterMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group to use for the DB cluster.</p>",
@@ -1836,7 +1958,7 @@
         "ModifyDBClusterMessage$OptionGroupName": "<p> <i>(Not supported by Neptune)</i> </p>",
         "ModifyDBClusterMessage$PreferredBackupWindow": "<p>The daily time range during which automated backups are created if automated backups are enabled, using the <code>BackupRetentionPeriod</code> parameter.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the format <code>hh24:mi-hh24:mi</code>.</p> </li> <li> <p>Must be in Universal Coordinated Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "ModifyDBClusterMessage$PreferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).</p> <p>Format: <code>ddd:hh24:mi-ddd:hh24:mi</code> </p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.</p> <p>Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p> <p>Constraints: Minimum 30-minute window.</p>",
-        "ModifyDBClusterMessage$EngineVersion": "<p>The version number of the database engine. Currently, setting this parameter has no effect. To upgrade your database engine to the most recent release, use the <a>ApplyPendingMaintenanceAction</a> API.</p> <p>For a list of valid engine versions, see <a>CreateDBInstance</a>, or call <a>DescribeDBEngineVersions</a>.</p>",
+        "ModifyDBClusterMessage$EngineVersion": "<p>The version number of the database engine to which you want to upgrade. Changing this parameter results in an outage. The change is applied during the next maintenance window unless the <code>ApplyImmediately</code> parameter is set to true.</p> <p>For a list of valid engine versions, see <a href=\"https://docs.aws.amazon.com/neptune/latest/userguide/engine-releases.html\">Engine Releases for Amazon Neptune</a>, or call <a href=\"https://docs.aws.amazon.com/neptune/latest/userguide/api-other-apis.html#DescribeDBEngineVersions\">DescribeDBEngineVersions</a>.</p>",
         "ModifyDBClusterParameterGroupMessage$DBClusterParameterGroupName": "<p>The name of the DB cluster parameter group to modify.</p>",
         "ModifyDBClusterSnapshotAttributeMessage$DBClusterSnapshotIdentifier": "<p>The identifier for the DB cluster snapshot to modify the attributes for.</p>",
         "ModifyDBClusterSnapshotAttributeMessage$AttributeName": "<p>The name of the DB cluster snapshot attribute to modify.</p> <p>To manage authorization for other AWS accounts to copy or restore a manual DB cluster snapshot, set this value to <code>restore</code>.</p>",
@@ -1900,6 +2022,7 @@
         "RebootDBInstanceMessage$DBInstanceIdentifier": "<p>The DB instance identifier. This parameter is stored as a lowercase string.</p> <p>Constraints:</p> <ul> <li> <p>Must match the identifier of an existing DBInstance.</p> </li> </ul>",
         "RemoveRoleFromDBClusterMessage$DBClusterIdentifier": "<p>The name of the DB cluster to disassociate the IAM role from.</p>",
         "RemoveRoleFromDBClusterMessage$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB cluster, for example <code>arn:aws:iam::123456789012:role/NeptuneAccessRole</code>.</p>",
+        "RemoveRoleFromDBClusterMessage$FeatureName": "<p>The name of the feature for the DB cluster that the IAM role is to be disassociated from. For the list of supported feature names, see <a>DBEngineVersion</a>.</p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SubscriptionName": "<p>The name of the event notification subscription you want to remove a source identifier from.</p>",
         "RemoveSourceIdentifierFromSubscriptionMessage$SourceIdentifier": "<p> The source identifier to be removed from the subscription, such as the <b>DB instance identifier</b> for a DB instance or the name of a security group.</p>",
         "RemoveTagsFromResourceMessage$ResourceName": "<p>The Amazon Neptune resource that the tags are removed from. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see <a href=\"https://docs.aws.amazon.com/neptune/latest/UserGuide/tagging.ARN.html#tagging.ARN.Constructing\"> Constructing an Amazon Resource Name (ARN)</a>.</p>",
@@ -1925,6 +2048,7 @@
         "SourceIdsList$member": null,
         "StartDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the Neptune DB cluster to be started. This parameter is stored as a lowercase string.</p>",
         "StopDBClusterMessage$DBClusterIdentifier": "<p>The DB cluster identifier of the Neptune DB cluster to be stopped. This parameter is stored as a lowercase string.</p>",
+        "StringList$member": null,
         "Subnet$SubnetIdentifier": "<p>Specifies the identifier of the subnet.</p>",
         "Subnet$SubnetStatus": "<p>Specifies the status of the subnet.</p>",
         "SubnetIdentifierList$member": null,
@@ -1938,6 +2062,23 @@
         "VpcSecurityGroupIdList$member": null,
         "VpcSecurityGroupMembership$VpcSecurityGroupId": "<p>The name of the VPC security group.</p>",
         "VpcSecurityGroupMembership$Status": "<p>The status of the VPC security group.</p>"
+      }
+    },
+    "StringList": {
+      "base": null,
+      "refs": {
+        "CreateDBClusterEndpointMessage$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
+        "CreateDBClusterEndpointMessage$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "CreateDBClusterEndpointOutput$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
+        "CreateDBClusterEndpointOutput$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "DBClusterEndpoint$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
+        "DBClusterEndpoint$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "DeleteDBClusterEndpointOutput$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
+        "DeleteDBClusterEndpointOutput$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "ModifyDBClusterEndpointMessage$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
+        "ModifyDBClusterEndpointMessage$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>",
+        "ModifyDBClusterEndpointOutput$StaticMembers": "<p>List of DB instance identifiers that are part of the custom endpoint group.</p>",
+        "ModifyDBClusterEndpointOutput$ExcludedMembers": "<p>List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.</p>"
       }
     },
     "Subnet": {
@@ -2023,6 +2164,7 @@
         "CopyDBClusterParameterGroupMessage$Tags": "<p>The tags to be assigned to the copied DB cluster parameter group.</p>",
         "CopyDBClusterSnapshotMessage$Tags": "<p>The tags to assign to the new DB cluster snapshot copy.</p>",
         "CopyDBParameterGroupMessage$Tags": "<p>The tags to be assigned to the copied DB parameter group.</p>",
+        "CreateDBClusterEndpointMessage$Tags": "<p>The tags to be assigned to the Amazon Neptune resource.</p>",
         "CreateDBClusterMessage$Tags": "<p>The tags to assign to the new DB cluster.</p>",
         "CreateDBClusterParameterGroupMessage$Tags": "<p>The tags to be assigned to the new DB cluster parameter group.</p>",
         "CreateDBClusterSnapshotMessage$Tags": "<p>The tags to be assigned to the DB cluster snapshot.</p>",

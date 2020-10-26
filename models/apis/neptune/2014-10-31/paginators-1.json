@@ -1,5 +1,11 @@
 {
   "pagination": {
+    "DescribeDBClusterEndpoints": {
+      "input_token": "Marker",
+      "limit_key": "MaxRecords",
+      "output_token": "Marker",
+      "result_key": "DBClusterEndpoints"
+    },
     "DescribeDBEngineVersions": {
       "input_token": "Marker",
       "limit_key": "MaxRecords",

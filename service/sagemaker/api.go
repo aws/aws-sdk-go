@@ -348,6 +348,86 @@ func (c *SageMaker) CreateAppWithContext(ctx aws.Context, input *CreateAppInput,
 	return out, req.Send()
 }
 
+const opCreateAppImageConfig = "CreateAppImageConfig"
+
+// CreateAppImageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAppImageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAppImageConfig for more information on using the CreateAppImageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAppImageConfigRequest method.
+//    req, resp := client.CreateAppImageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAppImageConfig
+func (c *SageMaker) CreateAppImageConfigRequest(input *CreateAppImageConfigInput) (req *request.Request, output *CreateAppImageConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateAppImageConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateAppImageConfigInput{}
+	}
+
+	output = &CreateAppImageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAppImageConfig API operation for Amazon SageMaker Service.
+//
+// Creates a configuration for running an Amazon SageMaker image as a KernelGateway
+// app.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateAppImageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateAppImageConfig
+func (c *SageMaker) CreateAppImageConfig(input *CreateAppImageConfigInput) (*CreateAppImageConfigOutput, error) {
+	req, out := c.CreateAppImageConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateAppImageConfigWithContext is the same as CreateAppImageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAppImageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateAppImageConfigWithContext(ctx aws.Context, input *CreateAppImageConfigInput, opts ...request.Option) (*CreateAppImageConfigOutput, error) {
+	req, out := c.CreateAppImageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateAutoMLJob = "CreateAutoMLJob"
 
 // CreateAutoMLJobRequest generates a "aws/request.Request" representing the
@@ -699,29 +779,12 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //    * VpcOnly - All Studio traffic is through the specified VPC and subnets.
 //    Internet access is disabled by default. To allow internet access, you
 //    must specify a NAT gateway. When internet access is disabled, you won't
-//    be able to train or host models unless your VPC has an interface endpoint
-//    (PrivateLink) or a NAT gateway and your security groups allow outbound
-//    connections.
+//    be able to run a Studio notebook or to train or host models unless your
+//    VPC has an interface endpoint to the SageMaker API and runtime or a NAT
+//    gateway and your security groups allow outbound connections.
 //
-//  VpcOnly network access type
-//
-// When you choose VpcOnly, you must specify the following:
-//
-//    * Security group inbound and outbound rules to allow NFS traffic over
-//    TCP on port 2049 between the domain and the EFS volume
-//
-//    * Security group inbound and outbound rules to allow traffic between the
-//    JupyterServer app and the KernelGateway apps
-//
-//    * Interface endpoints to access the SageMaker API and SageMaker runtime
-//
-// For more information, see:
-//
-//    * Security groups for your VPC (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_SecurityGroups.html)
-//
-//    * VPC with public and private subnets (NAT) (https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html)
-//
-//    * Connect to SageMaker through a VPC interface endpoint (https://docs.aws.amazon.com/sagemaker/latest/dg/interface-vpc-endpoint.html)
+// For more information, see Connect SageMaker Studio Notebooks to Resources
+// in a VPC (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-notebooks-and-internet-access.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1352,6 +1415,178 @@ func (c *SageMaker) CreateHyperParameterTuningJobWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opCreateImage = "CreateImage"
+
+// CreateImageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateImage for more information on using the CreateImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateImageRequest method.
+//    req, resp := client.CreateImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImage
+func (c *SageMaker) CreateImageRequest(input *CreateImageInput) (req *request.Request, output *CreateImageOutput) {
+	op := &request.Operation{
+		Name:       opCreateImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateImageInput{}
+	}
+
+	output = &CreateImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateImage API operation for Amazon SageMaker Service.
+//
+// Creates a SageMaker Image. A SageMaker image represents a set of container
+// images. Each of these container images is represented by a SageMaker ImageVersion.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateImage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImage
+func (c *SageMaker) CreateImage(input *CreateImageInput) (*CreateImageOutput, error) {
+	req, out := c.CreateImageRequest(input)
+	return out, req.Send()
+}
+
+// CreateImageWithContext is the same as CreateImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateImageWithContext(ctx aws.Context, input *CreateImageInput, opts ...request.Option) (*CreateImageOutput, error) {
+	req, out := c.CreateImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateImageVersion = "CreateImageVersion"
+
+// CreateImageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateImageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateImageVersion for more information on using the CreateImageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateImageVersionRequest method.
+//    req, resp := client.CreateImageVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImageVersion
+func (c *SageMaker) CreateImageVersionRequest(input *CreateImageVersionInput) (req *request.Request, output *CreateImageVersionOutput) {
+	op := &request.Operation{
+		Name:       opCreateImageVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateImageVersionInput{}
+	}
+
+	output = &CreateImageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateImageVersion API operation for Amazon SageMaker Service.
+//
+// Creates a version of the SageMaker image specified by ImageName. The version
+// represents the Amazon Container Registry (ECR) container image specified
+// by BaseImage.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateImageVersion for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateImageVersion
+func (c *SageMaker) CreateImageVersion(input *CreateImageVersionInput) (*CreateImageVersionOutput, error) {
+	req, out := c.CreateImageVersionRequest(input)
+	return out, req.Send()
+}
+
+// CreateImageVersionWithContext is the same as CreateImageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateImageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateImageVersionWithContext(ctx aws.Context, input *CreateImageVersionInput, opts ...request.Option) (*CreateImageVersionOutput, error) {
+	req, out := c.CreateImageVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLabelingJob = "CreateLabelingJob"
 
 // CreateLabelingJobRequest generates a "aws/request.Request" representing the
@@ -1632,6 +1867,16 @@ func (c *SageMaker) CreateModelPackageRequest(input *CreateModelPackageInput) (r
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation CreateModelPackage for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   There was a conflict when you attempted to modify an experiment, trial, or
+//   trial component.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateModelPackage
 func (c *SageMaker) CreateModelPackage(input *CreateModelPackageInput) (*CreateModelPackageOutput, error) {
 	req, out := c.CreateModelPackageRequest(input)
@@ -3077,6 +3322,86 @@ func (c *SageMaker) DeleteAppWithContext(ctx aws.Context, input *DeleteAppInput,
 	return out, req.Send()
 }
 
+const opDeleteAppImageConfig = "DeleteAppImageConfig"
+
+// DeleteAppImageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAppImageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAppImageConfig for more information on using the DeleteAppImageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAppImageConfigRequest method.
+//    req, resp := client.DeleteAppImageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAppImageConfig
+func (c *SageMaker) DeleteAppImageConfigRequest(input *DeleteAppImageConfigInput) (req *request.Request, output *DeleteAppImageConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAppImageConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteAppImageConfigInput{}
+	}
+
+	output = &DeleteAppImageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAppImageConfig API operation for Amazon SageMaker Service.
+//
+// Deletes an AppImageConfig.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteAppImageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteAppImageConfig
+func (c *SageMaker) DeleteAppImageConfig(input *DeleteAppImageConfigInput) (*DeleteAppImageConfigOutput, error) {
+	req, out := c.DeleteAppImageConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAppImageConfigWithContext is the same as DeleteAppImageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAppImageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteAppImageConfigWithContext(ctx aws.Context, input *DeleteAppImageConfigInput, opts ...request.Option) (*DeleteAppImageConfigOutput, error) {
+	req, out := c.DeleteAppImageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteCodeRepository = "DeleteCodeRepository"
 
 // DeleteCodeRepositoryRequest generates a "aws/request.Request" representing the
@@ -3650,6 +3975,174 @@ func (c *SageMaker) DeleteHumanTaskUiWithContext(ctx aws.Context, input *DeleteH
 	return out, req.Send()
 }
 
+const opDeleteImage = "DeleteImage"
+
+// DeleteImageRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteImage for more information on using the DeleteImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteImageRequest method.
+//    req, resp := client.DeleteImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImage
+func (c *SageMaker) DeleteImageRequest(input *DeleteImageInput) (req *request.Request, output *DeleteImageOutput) {
+	op := &request.Operation{
+		Name:       opDeleteImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteImageInput{}
+	}
+
+	output = &DeleteImageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteImage API operation for Amazon SageMaker Service.
+//
+// Deletes a SageMaker image and all versions of the image. The container images
+// aren't deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteImage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImage
+func (c *SageMaker) DeleteImage(input *DeleteImageInput) (*DeleteImageOutput, error) {
+	req, out := c.DeleteImageRequest(input)
+	return out, req.Send()
+}
+
+// DeleteImageWithContext is the same as DeleteImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteImageWithContext(ctx aws.Context, input *DeleteImageInput, opts ...request.Option) (*DeleteImageOutput, error) {
+	req, out := c.DeleteImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteImageVersion = "DeleteImageVersion"
+
+// DeleteImageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteImageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteImageVersion for more information on using the DeleteImageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteImageVersionRequest method.
+//    req, resp := client.DeleteImageVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImageVersion
+func (c *SageMaker) DeleteImageVersionRequest(input *DeleteImageVersionInput) (req *request.Request, output *DeleteImageVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteImageVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteImageVersionInput{}
+	}
+
+	output = &DeleteImageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteImageVersion API operation for Amazon SageMaker Service.
+//
+// Deletes a version of a SageMaker image. The container image the version represents
+// isn't deleted.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteImageVersion for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteImageVersion
+func (c *SageMaker) DeleteImageVersion(input *DeleteImageVersionInput) (*DeleteImageVersionOutput, error) {
+	req, out := c.DeleteImageVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteImageVersionWithContext is the same as DeleteImageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteImageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteImageVersionWithContext(ctx aws.Context, input *DeleteImageVersionInput, opts ...request.Option) (*DeleteImageVersionOutput, error) {
+	req, out := c.DeleteImageVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteModel = "DeleteModel"
 
 // DeleteModelRequest generates a "aws/request.Request" representing the
@@ -3785,6 +4278,12 @@ func (c *SageMaker) DeleteModelPackageRequest(input *DeleteModelPackageInput) (r
 //
 // See the AWS API reference guide for Amazon SageMaker Service's
 // API operation DeleteModelPackage for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   There was a conflict when you attempted to modify an experiment, trial, or
+//   trial component.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteModelPackage
 func (c *SageMaker) DeleteModelPackage(input *DeleteModelPackageInput) (*DeleteModelPackageOutput, error) {
 	req, out := c.DeleteModelPackageRequest(input)
@@ -4688,6 +5187,85 @@ func (c *SageMaker) DescribeAppWithContext(ctx aws.Context, input *DescribeAppIn
 	return out, req.Send()
 }
 
+const opDescribeAppImageConfig = "DescribeAppImageConfig"
+
+// DescribeAppImageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAppImageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAppImageConfig for more information on using the DescribeAppImageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAppImageConfigRequest method.
+//    req, resp := client.DescribeAppImageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAppImageConfig
+func (c *SageMaker) DescribeAppImageConfigRequest(input *DescribeAppImageConfigInput) (req *request.Request, output *DescribeAppImageConfigOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAppImageConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeAppImageConfigInput{}
+	}
+
+	output = &DescribeAppImageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAppImageConfig API operation for Amazon SageMaker Service.
+//
+// Describes an AppImageConfig.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeAppImageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeAppImageConfig
+func (c *SageMaker) DescribeAppImageConfig(input *DescribeAppImageConfigInput) (*DescribeAppImageConfigOutput, error) {
+	req, out := c.DescribeAppImageConfigRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAppImageConfigWithContext is the same as DescribeAppImageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAppImageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeAppImageConfigWithContext(ctx aws.Context, input *DescribeAppImageConfigInput, opts ...request.Option) (*DescribeAppImageConfigOutput, error) {
+	req, out := c.DescribeAppImageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAutoMLJob = "DescribeAutoMLJob"
 
 // DescribeAutoMLJobRequest generates a "aws/request.Request" representing the
@@ -5463,6 +6041,164 @@ func (c *SageMaker) DescribeHyperParameterTuningJob(input *DescribeHyperParamete
 // for more information on using Contexts.
 func (c *SageMaker) DescribeHyperParameterTuningJobWithContext(ctx aws.Context, input *DescribeHyperParameterTuningJobInput, opts ...request.Option) (*DescribeHyperParameterTuningJobOutput, error) {
 	req, out := c.DescribeHyperParameterTuningJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeImage = "DescribeImage"
+
+// DescribeImageRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeImage for more information on using the DescribeImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeImageRequest method.
+//    req, resp := client.DescribeImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImage
+func (c *SageMaker) DescribeImageRequest(input *DescribeImageInput) (req *request.Request, output *DescribeImageOutput) {
+	op := &request.Operation{
+		Name:       opDescribeImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeImageInput{}
+	}
+
+	output = &DescribeImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeImage API operation for Amazon SageMaker Service.
+//
+// Describes a SageMaker image.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeImage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImage
+func (c *SageMaker) DescribeImage(input *DescribeImageInput) (*DescribeImageOutput, error) {
+	req, out := c.DescribeImageRequest(input)
+	return out, req.Send()
+}
+
+// DescribeImageWithContext is the same as DescribeImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeImageWithContext(ctx aws.Context, input *DescribeImageInput, opts ...request.Option) (*DescribeImageOutput, error) {
+	req, out := c.DescribeImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeImageVersion = "DescribeImageVersion"
+
+// DescribeImageVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeImageVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeImageVersion for more information on using the DescribeImageVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeImageVersionRequest method.
+//    req, resp := client.DescribeImageVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImageVersion
+func (c *SageMaker) DescribeImageVersionRequest(input *DescribeImageVersionInput) (req *request.Request, output *DescribeImageVersionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeImageVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeImageVersionInput{}
+	}
+
+	output = &DescribeImageVersionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeImageVersion API operation for Amazon SageMaker Service.
+//
+// Describes a version of a SageMaker image.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeImageVersion for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeImageVersion
+func (c *SageMaker) DescribeImageVersion(input *DescribeImageVersionInput) (*DescribeImageVersionOutput, error) {
+	req, out := c.DescribeImageVersionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeImageVersionWithContext is the same as DescribeImageVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeImageVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeImageVersionWithContext(ctx aws.Context, input *DescribeImageVersionInput, opts ...request.Option) (*DescribeImageVersionOutput, error) {
+	req, out := c.DescribeImageVersionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6927,6 +7663,82 @@ func (c *SageMaker) ListAlgorithmsPagesWithContext(ctx aws.Context, input *ListA
 	}
 
 	return p.Err()
+}
+
+const opListAppImageConfigs = "ListAppImageConfigs"
+
+// ListAppImageConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAppImageConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAppImageConfigs for more information on using the ListAppImageConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAppImageConfigsRequest method.
+//    req, resp := client.ListAppImageConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAppImageConfigs
+func (c *SageMaker) ListAppImageConfigsRequest(input *ListAppImageConfigsInput) (req *request.Request, output *ListAppImageConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListAppImageConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListAppImageConfigsInput{}
+	}
+
+	output = &ListAppImageConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAppImageConfigs API operation for Amazon SageMaker Service.
+//
+// Lists the AppImageConfigs in your account and their properties. The list
+// can be filtered by creation time or modified time, and whether the AppImageConfig
+// name contains a specified string.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListAppImageConfigs for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListAppImageConfigs
+func (c *SageMaker) ListAppImageConfigs(input *ListAppImageConfigsInput) (*ListAppImageConfigsOutput, error) {
+	req, out := c.ListAppImageConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListAppImageConfigsWithContext is the same as ListAppImageConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAppImageConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListAppImageConfigsWithContext(ctx aws.Context, input *ListAppImageConfigsInput, opts ...request.Option) (*ListAppImageConfigsOutput, error) {
+	req, out := c.ListAppImageConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListApps = "ListApps"
@@ -8517,6 +9329,278 @@ func (c *SageMaker) ListHyperParameterTuningJobsPagesWithContext(ctx aws.Context
 
 	for p.Next() {
 		if !fn(p.Page().(*ListHyperParameterTuningJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImageVersions = "ListImageVersions"
+
+// ListImageVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListImageVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImageVersions for more information on using the ListImageVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListImageVersionsRequest method.
+//    req, resp := client.ListImageVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImageVersions
+func (c *SageMaker) ListImageVersionsRequest(input *ListImageVersionsInput) (req *request.Request, output *ListImageVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListImageVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImageVersionsInput{}
+	}
+
+	output = &ListImageVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImageVersions API operation for Amazon SageMaker Service.
+//
+// Lists the versions of a specified image and their properties. The list can
+// be filtered by creation time or modified time.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListImageVersions for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImageVersions
+func (c *SageMaker) ListImageVersions(input *ListImageVersionsInput) (*ListImageVersionsOutput, error) {
+	req, out := c.ListImageVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListImageVersionsWithContext is the same as ListImageVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImageVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListImageVersionsWithContext(ctx aws.Context, input *ListImageVersionsInput, opts ...request.Option) (*ListImageVersionsOutput, error) {
+	req, out := c.ListImageVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImageVersionsPages iterates over the pages of a ListImageVersions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImageVersions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListImageVersions operation.
+//    pageNum := 0
+//    err := client.ListImageVersionsPages(params,
+//        func(page *sagemaker.ListImageVersionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListImageVersionsPages(input *ListImageVersionsInput, fn func(*ListImageVersionsOutput, bool) bool) error {
+	return c.ListImageVersionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImageVersionsPagesWithContext same as ListImageVersionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListImageVersionsPagesWithContext(ctx aws.Context, input *ListImageVersionsInput, fn func(*ListImageVersionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImageVersionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImageVersionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImageVersionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListImages = "ListImages"
+
+// ListImagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListImages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListImages for more information on using the ListImages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListImagesRequest method.
+//    req, resp := client.ListImagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImages
+func (c *SageMaker) ListImagesRequest(input *ListImagesInput) (req *request.Request, output *ListImagesOutput) {
+	op := &request.Operation{
+		Name:       opListImages,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListImagesInput{}
+	}
+
+	output = &ListImagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListImages API operation for Amazon SageMaker Service.
+//
+// Lists the images in your account and their properties. The list can be filtered
+// by creation time or modified time, and whether the image name contains a
+// specified string.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListImages for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListImages
+func (c *SageMaker) ListImages(input *ListImagesInput) (*ListImagesOutput, error) {
+	req, out := c.ListImagesRequest(input)
+	return out, req.Send()
+}
+
+// ListImagesWithContext is the same as ListImages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListImages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListImagesWithContext(ctx aws.Context, input *ListImagesInput, opts ...request.Option) (*ListImagesOutput, error) {
+	req, out := c.ListImagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListImagesPages iterates over the pages of a ListImages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListImages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListImages operation.
+//    pageNum := 0
+//    err := client.ListImagesPages(params,
+//        func(page *sagemaker.ListImagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListImagesPages(input *ListImagesInput, fn func(*ListImagesOutput, bool) bool) error {
+	return c.ListImagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListImagesPagesWithContext same as ListImagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListImagesPagesWithContext(ctx aws.Context, input *ListImagesInput, fn func(*ListImagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListImagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListImagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListImagesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -12209,6 +13293,85 @@ func (c *SageMaker) StopTransformJobWithContext(ctx aws.Context, input *StopTran
 	return out, req.Send()
 }
 
+const opUpdateAppImageConfig = "UpdateAppImageConfig"
+
+// UpdateAppImageConfigRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAppImageConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAppImageConfig for more information on using the UpdateAppImageConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAppImageConfigRequest method.
+//    req, resp := client.UpdateAppImageConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateAppImageConfig
+func (c *SageMaker) UpdateAppImageConfigRequest(input *UpdateAppImageConfigInput) (req *request.Request, output *UpdateAppImageConfigOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAppImageConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateAppImageConfigInput{}
+	}
+
+	output = &UpdateAppImageConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateAppImageConfig API operation for Amazon SageMaker Service.
+//
+// Updates the properties of an AppImageConfig.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateAppImageConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateAppImageConfig
+func (c *SageMaker) UpdateAppImageConfig(input *UpdateAppImageConfigInput) (*UpdateAppImageConfigOutput, error) {
+	req, out := c.UpdateAppImageConfigRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAppImageConfigWithContext is the same as UpdateAppImageConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAppImageConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateAppImageConfigWithContext(ctx aws.Context, input *UpdateAppImageConfigInput, opts ...request.Option) (*UpdateAppImageConfigOutput, error) {
+	req, out := c.UpdateAppImageConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCodeRepository = "UpdateCodeRepository"
 
 // UpdateCodeRepositoryRequest generates a "aws/request.Request" representing the
@@ -12626,6 +13789,89 @@ func (c *SageMaker) UpdateExperiment(input *UpdateExperimentInput) (*UpdateExper
 // for more information on using Contexts.
 func (c *SageMaker) UpdateExperimentWithContext(ctx aws.Context, input *UpdateExperimentInput, opts ...request.Option) (*UpdateExperimentOutput, error) {
 	req, out := c.UpdateExperimentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateImage = "UpdateImage"
+
+// UpdateImageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateImage for more information on using the UpdateImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateImageRequest method.
+//    req, resp := client.UpdateImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateImage
+func (c *SageMaker) UpdateImageRequest(input *UpdateImageInput) (req *request.Request, output *UpdateImageOutput) {
+	op := &request.Operation{
+		Name:       opUpdateImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateImageInput{}
+	}
+
+	output = &UpdateImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateImage API operation for Amazon SageMaker Service.
+//
+// Updates the properties of a SageMaker image. To change the image's tags,
+// use the AddTags and DeleteTags APIs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation UpdateImage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/UpdateImage
+func (c *SageMaker) UpdateImage(input *UpdateImageInput) (*UpdateImageOutput, error) {
+	req, out := c.UpdateImageRequest(input)
+	return out, req.Send()
+}
+
+// UpdateImageWithContext is the same as UpdateImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) UpdateImageWithContext(ctx aws.Context, input *UpdateImageInput, opts ...request.Option) (*UpdateImageOutput, error) {
+	req, out := c.UpdateImageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14252,7 +15498,7 @@ func (s *AnnotationConsolidationConfig) SetAnnotationConsolidationLambdaArn(v st
 	return s
 }
 
-// The app's details.
+// Details about an Amazon SageMaker app.
 type AppDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -14318,6 +15564,67 @@ func (s *AppDetails) SetStatus(v string) *AppDetails {
 // SetUserProfileName sets the UserProfileName field's value.
 func (s *AppDetails) SetUserProfileName(v string) *AppDetails {
 	s.UserProfileName = &v
+	return s
+}
+
+// The configuration for running an Amazon SageMaker image as a KernelGateway
+// app.
+type AppImageConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AppImageConfig.
+	AppImageConfigArn *string `type:"string"`
+
+	// The name of the AppImageConfig.
+	AppImageConfigName *string `type:"string"`
+
+	// When the AppImageConfig was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The KernelGateway app.
+	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
+
+	// When the AppImageConfig was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s AppImageConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AppImageConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAppImageConfigArn sets the AppImageConfigArn field's value.
+func (s *AppImageConfigDetails) SetAppImageConfigArn(v string) *AppImageConfigDetails {
+	s.AppImageConfigArn = &v
+	return s
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *AppImageConfigDetails) SetAppImageConfigName(v string) *AppImageConfigDetails {
+	s.AppImageConfigName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *AppImageConfigDetails) SetCreationTime(v time.Time) *AppImageConfigDetails {
+	s.CreationTime = &v
+	return s
+}
+
+// SetKernelGatewayImageConfig sets the KernelGatewayImageConfig field's value.
+func (s *AppImageConfigDetails) SetKernelGatewayImageConfig(v *KernelGatewayImageConfig) *AppImageConfigDetails {
+	s.KernelGatewayImageConfig = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *AppImageConfigDetails) SetLastModifiedTime(v time.Time) *AppImageConfigDetails {
+	s.LastModifiedTime = &v
 	return s
 }
 
@@ -16700,6 +18007,100 @@ func (s *CreateAlgorithmOutput) SetAlgorithmArn(v string) *CreateAlgorithmOutput
 	return s
 }
 
+type CreateAppImageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AppImageConfig. Must be unique to your account.
+	//
+	// AppImageConfigName is a required field
+	AppImageConfigName *string `type:"string" required:"true"`
+
+	// The KernelGatewayImageConfig.
+	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
+
+	// A list of tags to apply to the AppImageConfig.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateAppImageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppImageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAppImageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAppImageConfigInput"}
+	if s.AppImageConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppImageConfigName"))
+	}
+	if s.KernelGatewayImageConfig != nil {
+		if err := s.KernelGatewayImageConfig.Validate(); err != nil {
+			invalidParams.AddNested("KernelGatewayImageConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *CreateAppImageConfigInput) SetAppImageConfigName(v string) *CreateAppImageConfigInput {
+	s.AppImageConfigName = &v
+	return s
+}
+
+// SetKernelGatewayImageConfig sets the KernelGatewayImageConfig field's value.
+func (s *CreateAppImageConfigInput) SetKernelGatewayImageConfig(v *KernelGatewayImageConfig) *CreateAppImageConfigInput {
+	s.KernelGatewayImageConfig = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAppImageConfigInput) SetTags(v []*Tag) *CreateAppImageConfigInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAppImageConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AppImageConfig.
+	AppImageConfigArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAppImageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAppImageConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppImageConfigArn sets the AppImageConfigArn field's value.
+func (s *CreateAppImageConfigOutput) SetAppImageConfigArn(v string) *CreateAppImageConfigOutput {
+	s.AppImageConfigArn = &v
+	return s
+}
+
 type CreateAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16813,7 +18214,7 @@ func (s *CreateAppInput) SetUserProfileName(v string) *CreateAppInput {
 type CreateAppOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The App's Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the app.
 	AppArn *string `type:"string"`
 }
 
@@ -17169,6 +18570,12 @@ type CreateCompilationJobInput struct {
 	//
 	// StoppingCondition is a required field
 	StoppingCondition *StoppingCondition `type:"structure" required:"true"`
+
+	// An array of key-value pairs that you want to use to organize and track your
+	// AWS resource costs. For more information, see Using Cost Allocation Tags
+	// (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html#allocation-what)
+	// in the AWS Billing and Cost Management User Guide.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -17220,6 +18627,16 @@ func (s *CreateCompilationJobInput) Validate() error {
 			invalidParams.AddNested("StoppingCondition", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17254,6 +18671,12 @@ func (s *CreateCompilationJobInput) SetRoleArn(v string) *CreateCompilationJobIn
 // SetStoppingCondition sets the StoppingCondition field's value.
 func (s *CreateCompilationJobInput) SetStoppingCondition(v *StoppingCondition) *CreateCompilationJobInput {
 	s.StoppingCondition = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateCompilationJobInput) SetTags(v []*Tag) *CreateCompilationJobInput {
+	s.Tags = v
 	return s
 }
 
@@ -17638,8 +19061,9 @@ type CreateEndpointInput struct {
 	// EndpointConfigName is a required field
 	EndpointConfigName *string `type:"string" required:"true"`
 
-	// The name of the endpoint. The name must be unique within an AWS Region in
-	// your AWS account.
+	// The name of the endpoint.The name must be unique within an AWS Region in
+	// your AWS account. The name is case-insensitive in CreateEndpoint, but the
+	// case is preserved and must be matched in .
 	//
 	// EndpointName is a required field
 	EndpointName *string `type:"string" required:"true"`
@@ -18130,7 +19554,7 @@ type CreateHyperParameterTuningJobInput struct {
 
 	// The name of the tuning job. This name is the prefix for the names of all
 	// training jobs that this tuning job launches. The name must be unique within
-	// the same AWS account and AWS Region. The name must have { } to { } characters.
+	// the same AWS account and AWS Region. The name must have 1 to 32 characters.
 	// Valid characters are a-z, A-Z, 0-9, and : + = @ _ % - (hyphen). The name
 	// is not case sensitive.
 	//
@@ -18303,6 +19727,230 @@ func (s *CreateHyperParameterTuningJobOutput) SetHyperParameterTuningJobArn(v st
 	return s
 }
 
+type CreateImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the image.
+	Description *string `min:"1" type:"string"`
+
+	// The display name of the image. When the image is added to a domain, DisplayName
+	// must be unique to the domain.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The name of the image. Must be unique to your account.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
+	// to perform tasks on your behalf.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"20" type:"string" required:"true"`
+
+	// A list of tags to apply to the image.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateImageInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateImageInput) SetDescription(v string) *CreateImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *CreateImageInput) SetDisplayName(v string) *CreateImageInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *CreateImageInput) SetImageName(v string) *CreateImageInput {
+	s.ImageName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CreateImageInput) SetRoleArn(v string) *CreateImageInput {
+	s.RoleArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateImageInput) SetTags(v []*Tag) *CreateImageInput {
+	s.Tags = v
+	return s
+}
+
+type CreateImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the image.
+	ImageArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *CreateImageOutput) SetImageArn(v string) *CreateImageOutput {
+	s.ImageArn = &v
+	return s
+}
+
+type CreateImageVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The registry path of the container image to use as the starting point for
+	// this version. The path is an Amazon Container Registry (ECR) URI in the following
+	// format:
+	//
+	// <acct-id>.dkr.ecr.<region>.amazonaws.com/<repo-name[:tag] or [@digest]>
+	//
+	// BaseImage is a required field
+	BaseImage *string `min:"1" type:"string" required:"true"`
+
+	// A unique ID. If not specified, the AWS CLI and AWS SDKs, such as the SDK
+	// for Python (Boto3), add a unique value to the call.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ImageName of the Image to create a version of.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateImageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateImageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateImageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateImageVersionInput"}
+	if s.BaseImage == nil {
+		invalidParams.Add(request.NewErrParamRequired("BaseImage"))
+	}
+	if s.BaseImage != nil && len(*s.BaseImage) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseImage", 1))
+	}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseImage sets the BaseImage field's value.
+func (s *CreateImageVersionInput) SetBaseImage(v string) *CreateImageVersionInput {
+	s.BaseImage = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateImageVersionInput) SetClientToken(v string) *CreateImageVersionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *CreateImageVersionInput) SetImageName(v string) *CreateImageVersionInput {
+	s.ImageName = &v
+	return s
+}
+
+type CreateImageVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the image version.
+	ImageVersionArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateImageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateImageVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetImageVersionArn sets the ImageVersionArn field's value.
+func (s *CreateImageVersionOutput) SetImageVersionArn(v string) *CreateImageVersionOutput {
+	s.ImageVersionArn = &v
+	return s
+}
+
 type CreateLabelingJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18328,7 +19976,7 @@ type CreateLabelingJobInput struct {
 	// LabelAttributeName is a required field
 	LabelAttributeName *string `min:"1" type:"string" required:"true"`
 
-	// The S3 URL of the file that defines the categories used to label the data
+	// The S3 URI of the file that defines the categories used to label the data
 	// objects.
 	//
 	// For 3D point cloud task types, see Create a Labeling Category Configuration
@@ -18768,9 +20416,7 @@ type CreateModelPackageInput struct {
 
 	// The name of the model package. The name must have 1 to 63 characters. Valid
 	// characters are a-z, A-Z, 0-9, and - (hyphen).
-	//
-	// ModelPackageName is a required field
-	ModelPackageName *string `min:"1" type:"string" required:"true"`
+	ModelPackageName *string `min:"1" type:"string"`
 
 	// Details about the algorithm that was used to create the model package.
 	SourceAlgorithmSpecification *SourceAlgorithmSpecification `type:"structure"`
@@ -18793,9 +20439,6 @@ func (s CreateModelPackageInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateModelPackageInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateModelPackageInput"}
-	if s.ModelPackageName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ModelPackageName"))
-	}
 	if s.ModelPackageName != nil && len(*s.ModelPackageName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelPackageName", 1))
 	}
@@ -21168,6 +22811,71 @@ func (s *CreateWorkteamOutput) SetWorkteamArn(v string) *CreateWorkteamOutput {
 	return s
 }
 
+// A custom image.
+type CustomImage struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AppImageConfig.
+	//
+	// AppImageConfigName is a required field
+	AppImageConfigName *string `type:"string" required:"true"`
+
+	// The name of the CustomImage. Must be unique to your account.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// The version number of the CustomImage.
+	ImageVersionNumber *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s CustomImage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomImage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomImage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomImage"}
+	if s.AppImageConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppImageConfigName"))
+	}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *CustomImage) SetAppImageConfigName(v string) *CustomImage {
+	s.AppImageConfigName = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *CustomImage) SetImageName(v string) *CustomImage {
+	s.ImageName = &v
+	return s
+}
+
+// SetImageVersionNumber sets the ImageVersionNumber field's value.
+func (s *CustomImage) SetImageVersionNumber(v int64) *CustomImage {
+	s.ImageVersionNumber = &v
+	return s
+}
+
 type DataCaptureConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -21753,6 +23461,58 @@ func (s DeleteAlgorithmOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteAppImageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AppImageConfig to delete.
+	//
+	// AppImageConfigName is a required field
+	AppImageConfigName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteAppImageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppImageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAppImageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAppImageConfigInput"}
+	if s.AppImageConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppImageConfigName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *DeleteAppImageConfigInput) SetAppImageConfigName(v string) *DeleteAppImageConfigInput {
+	s.AppImageConfigName = &v
+	return s
+}
+
+type DeleteAppImageConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteAppImageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteAppImageConfigOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -22241,6 +24001,130 @@ func (s DeleteHumanTaskUiOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteHumanTaskUiOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the image to delete.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteImageInput"}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *DeleteImageInput) SetImageName(v string) *DeleteImageInput {
+	s.ImageName = &v
+	return s
+}
+
+type DeleteImageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImageOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteImageVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the image.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// The version to delete.
+	//
+	// Version is a required field
+	Version *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteImageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteImageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteImageVersionInput"}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+	if s.Version == nil {
+		invalidParams.Add(request.NewErrParamRequired("Version"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *DeleteImageVersionInput) SetImageName(v string) *DeleteImageVersionInput {
+	s.ImageName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DeleteImageVersionInput) SetVersion(v int64) *DeleteImageVersionInput {
+	s.Version = &v
+	return s
+}
+
+type DeleteImageVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteImageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteImageVersionOutput) GoString() string {
 	return s.String()
 }
 
@@ -23113,6 +24997,103 @@ func (s *DescribeAlgorithmOutput) SetValidationSpecification(v *AlgorithmValidat
 	return s
 }
 
+type DescribeAppImageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AppImageConfig to describe.
+	//
+	// AppImageConfigName is a required field
+	AppImageConfigName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAppImageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppImageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAppImageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAppImageConfigInput"}
+	if s.AppImageConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppImageConfigName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *DescribeAppImageConfigInput) SetAppImageConfigName(v string) *DescribeAppImageConfigInput {
+	s.AppImageConfigName = &v
+	return s
+}
+
+type DescribeAppImageConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the AppImageConfig.
+	AppImageConfigArn *string `type:"string"`
+
+	// The name of the AppImageConfig.
+	AppImageConfigName *string `type:"string"`
+
+	// When the AppImageConfig was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The KernelGateway app.
+	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
+
+	// When the AppImageConfig was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DescribeAppImageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAppImageConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppImageConfigArn sets the AppImageConfigArn field's value.
+func (s *DescribeAppImageConfigOutput) SetAppImageConfigArn(v string) *DescribeAppImageConfigOutput {
+	s.AppImageConfigArn = &v
+	return s
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *DescribeAppImageConfigOutput) SetAppImageConfigName(v string) *DescribeAppImageConfigOutput {
+	s.AppImageConfigName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeAppImageConfigOutput) SetCreationTime(v time.Time) *DescribeAppImageConfigOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetKernelGatewayImageConfig sets the KernelGatewayImageConfig field's value.
+func (s *DescribeAppImageConfigOutput) SetKernelGatewayImageConfig(v *KernelGatewayImageConfig) *DescribeAppImageConfigOutput {
+	s.KernelGatewayImageConfig = v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeAppImageConfigOutput) SetLastModifiedTime(v time.Time) *DescribeAppImageConfigOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
 type DescribeAppInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23196,7 +25177,7 @@ func (s *DescribeAppInput) SetUserProfileName(v string) *DescribeAppInput {
 type DescribeAppOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The app's Amazon Resource Name (ARN).
+	// The Amazon Resource Name (ARN) of the app.
 	AppArn *string `type:"string"`
 
 	// The name of the app.
@@ -24981,6 +26962,288 @@ func (s *DescribeHyperParameterTuningJobOutput) SetTrainingJobStatusCounters(v *
 // SetWarmStartConfig sets the WarmStartConfig field's value.
 func (s *DescribeHyperParameterTuningJobOutput) SetWarmStartConfig(v *HyperParameterTuningJobWarmStartConfig) *DescribeHyperParameterTuningJobOutput {
 	s.WarmStartConfig = v
+	return s
+}
+
+type DescribeImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the image to describe.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImageInput"}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *DescribeImageInput) SetImageName(v string) *DescribeImageInput {
+	s.ImageName = &v
+	return s
+}
+
+type DescribeImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When the image was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The description of the image.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the image as displayed.
+	DisplayName *string `min:"1" type:"string"`
+
+	// When a create, update, or delete operation fails, the reason for the failure.
+	FailureReason *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the image.
+	ImageArn *string `type:"string"`
+
+	// The name of the image.
+	ImageName *string `min:"1" type:"string"`
+
+	// The status of the image.
+	ImageStatus *string `type:"string" enum:"ImageStatus"`
+
+	// When the image was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the IAM role that enables Amazon SageMaker
+	// to perform tasks on your behalf.
+	RoleArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeImageOutput) SetCreationTime(v time.Time) *DescribeImageOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeImageOutput) SetDescription(v string) *DescribeImageOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *DescribeImageOutput) SetDisplayName(v string) *DescribeImageOutput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DescribeImageOutput) SetFailureReason(v string) *DescribeImageOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *DescribeImageOutput) SetImageArn(v string) *DescribeImageOutput {
+	s.ImageArn = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *DescribeImageOutput) SetImageName(v string) *DescribeImageOutput {
+	s.ImageName = &v
+	return s
+}
+
+// SetImageStatus sets the ImageStatus field's value.
+func (s *DescribeImageOutput) SetImageStatus(v string) *DescribeImageOutput {
+	s.ImageStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeImageOutput) SetLastModifiedTime(v time.Time) *DescribeImageOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *DescribeImageOutput) SetRoleArn(v string) *DescribeImageOutput {
+	s.RoleArn = &v
+	return s
+}
+
+type DescribeImageVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the image.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the image. If not specified, the latest version is described.
+	Version *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeImageVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImageVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeImageVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeImageVersionInput"}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *DescribeImageVersionInput) SetImageName(v string) *DescribeImageVersionInput {
+	s.ImageName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DescribeImageVersionInput) SetVersion(v int64) *DescribeImageVersionInput {
+	s.Version = &v
+	return s
+}
+
+type DescribeImageVersionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The registry path of the container image on which this image version is based.
+	BaseImage *string `min:"1" type:"string"`
+
+	// The registry path of the container image that contains this image version.
+	ContainerImage *string `min:"1" type:"string"`
+
+	// When the version was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// When a create or delete operation fails, the reason for the failure.
+	FailureReason *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the image the version is based on.
+	ImageArn *string `type:"string"`
+
+	// The ARN of the version.
+	ImageVersionArn *string `type:"string"`
+
+	// The status of the version.
+	ImageVersionStatus *string `type:"string" enum:"ImageVersionStatus"`
+
+	// When the version was last modified.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The version number.
+	Version *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeImageVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeImageVersionOutput) GoString() string {
+	return s.String()
+}
+
+// SetBaseImage sets the BaseImage field's value.
+func (s *DescribeImageVersionOutput) SetBaseImage(v string) *DescribeImageVersionOutput {
+	s.BaseImage = &v
+	return s
+}
+
+// SetContainerImage sets the ContainerImage field's value.
+func (s *DescribeImageVersionOutput) SetContainerImage(v string) *DescribeImageVersionOutput {
+	s.ContainerImage = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeImageVersionOutput) SetCreationTime(v time.Time) *DescribeImageVersionOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *DescribeImageVersionOutput) SetFailureReason(v string) *DescribeImageVersionOutput {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *DescribeImageVersionOutput) SetImageArn(v string) *DescribeImageVersionOutput {
+	s.ImageArn = &v
+	return s
+}
+
+// SetImageVersionArn sets the ImageVersionArn field's value.
+func (s *DescribeImageVersionOutput) SetImageVersionArn(v string) *DescribeImageVersionOutput {
+	s.ImageVersionArn = &v
+	return s
+}
+
+// SetImageVersionStatus sets the ImageVersionStatus field's value.
+func (s *DescribeImageVersionOutput) SetImageVersionStatus(v string) *DescribeImageVersionOutput {
+	s.ImageVersionStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeImageVersionOutput) SetLastModifiedTime(v time.Time) *DescribeImageVersionOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DescribeImageVersionOutput) SetVersion(v int64) *DescribeImageVersionOutput {
+	s.Version = &v
 	return s
 }
 
@@ -28563,6 +30826,49 @@ func (s *ExperimentSummary) SetLastModifiedTime(v time.Time) *ExperimentSummary 
 	return s
 }
 
+// The Amazon Elastic File System (EFS) storage configuration for an image.
+type FileSystemConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The default POSIX group ID. If not specified, defaults to 100.
+	DefaultGid *int64 `type:"integer"`
+
+	// The default POSIX user ID. If not specified, defaults to 1000.
+	DefaultUid *int64 `type:"integer"`
+
+	// The path within the image to mount the user's EFS home directory. The directory
+	// should be empty. If not specified, defaults to /home/sagemaker-user.
+	MountPath *string `type:"string"`
+}
+
+// String returns the string representation
+func (s FileSystemConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemConfig) GoString() string {
+	return s.String()
+}
+
+// SetDefaultGid sets the DefaultGid field's value.
+func (s *FileSystemConfig) SetDefaultGid(v int64) *FileSystemConfig {
+	s.DefaultGid = &v
+	return s
+}
+
+// SetDefaultUid sets the DefaultUid field's value.
+func (s *FileSystemConfig) SetDefaultUid(v int64) *FileSystemConfig {
+	s.DefaultUid = &v
+	return s
+}
+
+// SetMountPath sets the MountPath field's value.
+func (s *FileSystemConfig) SetMountPath(v string) *FileSystemConfig {
+	s.MountPath = &v
+	return s
+}
+
 // Specifies a file system data source for a channel.
 type FileSystemDataSource struct {
 	_ struct{} `type:"structure"`
@@ -31672,6 +33978,105 @@ func (s *HyperParameterTuningJobWarmStartConfig) SetWarmStartType(v string) *Hyp
 	return s
 }
 
+// A SageMaker image. A SageMaker image represents a set of container images
+// that are derived from a common base container image. Each of these container
+// images is represented by a SageMaker ImageVersion.
+type Image struct {
+	_ struct{} `type:"structure"`
+
+	// When the image was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// The description of the image.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the image as displayed.
+	DisplayName *string `min:"1" type:"string"`
+
+	// When a create, update, or delete operation fails, the reason for the failure.
+	FailureReason *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the image.
+	//
+	// ImageArn is a required field
+	ImageArn *string `type:"string" required:"true"`
+
+	// The name of the image.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// The status of the image.
+	//
+	// ImageStatus is a required field
+	ImageStatus *string `type:"string" required:"true" enum:"ImageStatus"`
+
+	// When the image was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s Image) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Image) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Image) SetCreationTime(v time.Time) *Image {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Image) SetDescription(v string) *Image {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *Image) SetDisplayName(v string) *Image {
+	s.DisplayName = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *Image) SetFailureReason(v string) *Image {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *Image) SetImageArn(v string) *Image {
+	s.ImageArn = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *Image) SetImageName(v string) *Image {
+	s.ImageName = &v
+	return s
+}
+
+// SetImageStatus sets the ImageStatus field's value.
+func (s *Image) SetImageStatus(v string) *Image {
+	s.ImageStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Image) SetLastModifiedTime(v time.Time) *Image {
+	s.LastModifiedTime = &v
+	return s
+}
+
 // Specifies whether the model container is in Amazon ECR or a private Docker
 // registry accessible from your Amazon Virtual Private Cloud (VPC).
 type ImageConfig struct {
@@ -31714,6 +34119,97 @@ func (s *ImageConfig) Validate() error {
 // SetRepositoryAccessMode sets the RepositoryAccessMode field's value.
 func (s *ImageConfig) SetRepositoryAccessMode(v string) *ImageConfig {
 	s.RepositoryAccessMode = &v
+	return s
+}
+
+// A version of a SageMaker Image. A version represents an existing container
+// image.
+type ImageVersion struct {
+	_ struct{} `type:"structure"`
+
+	// When the version was created.
+	//
+	// CreationTime is a required field
+	CreationTime *time.Time `type:"timestamp" required:"true"`
+
+	// When a create or delete operation fails, the reason for the failure.
+	FailureReason *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the image the version is based on.
+	//
+	// ImageArn is a required field
+	ImageArn *string `type:"string" required:"true"`
+
+	// The ARN of the version.
+	//
+	// ImageVersionArn is a required field
+	ImageVersionArn *string `type:"string" required:"true"`
+
+	// The status of the version.
+	//
+	// ImageVersionStatus is a required field
+	ImageVersionStatus *string `type:"string" required:"true" enum:"ImageVersionStatus"`
+
+	// When the version was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" required:"true"`
+
+	// The version number.
+	//
+	// Version is a required field
+	Version *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s ImageVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImageVersion) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ImageVersion) SetCreationTime(v time.Time) *ImageVersion {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *ImageVersion) SetFailureReason(v string) *ImageVersion {
+	s.FailureReason = &v
+	return s
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *ImageVersion) SetImageArn(v string) *ImageVersion {
+	s.ImageArn = &v
+	return s
+}
+
+// SetImageVersionArn sets the ImageVersionArn field's value.
+func (s *ImageVersion) SetImageVersionArn(v string) *ImageVersion {
+	s.ImageVersionArn = &v
+	return s
+}
+
+// SetImageVersionStatus sets the ImageVersionStatus field's value.
+func (s *ImageVersion) SetImageVersionStatus(v string) *ImageVersion {
+	s.ImageVersionStatus = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *ImageVersion) SetLastModifiedTime(v time.Time) *ImageVersion {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ImageVersion) SetVersion(v int64) *ImageVersion {
+	s.Version = &v
 	return s
 }
 
@@ -32166,12 +34662,15 @@ func (s *JupyterServerAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *Jupy
 	return s
 }
 
-// The kernel gateway app settings.
+// The KernelGateway app settings.
 type KernelGatewayAppSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The default instance type and the Amazon Resource Name (ARN) of the SageMaker
-	// image created on the instance.
+	// A list of custom images that are configured to run as a KernelGateway app.
+	CustomImages []*CustomImage `type:"list"`
+
+	// The default instance type and the Amazon Resource Name (ARN) of the default
+	// SageMaker image used by the KernelGateway app.
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
 }
 
@@ -32185,9 +34684,146 @@ func (s KernelGatewayAppSettings) GoString() string {
 	return s.String()
 }
 
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KernelGatewayAppSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KernelGatewayAppSettings"}
+	if s.CustomImages != nil {
+		for i, v := range s.CustomImages {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "CustomImages", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomImages sets the CustomImages field's value.
+func (s *KernelGatewayAppSettings) SetCustomImages(v []*CustomImage) *KernelGatewayAppSettings {
+	s.CustomImages = v
+	return s
+}
+
 // SetDefaultResourceSpec sets the DefaultResourceSpec field's value.
 func (s *KernelGatewayAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *KernelGatewayAppSettings {
 	s.DefaultResourceSpec = v
+	return s
+}
+
+// The configuration for an Amazon SageMaker KernelGateway app.
+type KernelGatewayImageConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The file system configuration.
+	FileSystemConfig *FileSystemConfig `type:"structure"`
+
+	// Defines how a kernel is started and the arguments, environment variables,
+	// and metadata that are available to the kernel.
+	//
+	// KernelSpecs is a required field
+	KernelSpecs []*KernelSpec `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s KernelGatewayImageConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KernelGatewayImageConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KernelGatewayImageConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KernelGatewayImageConfig"}
+	if s.KernelSpecs == nil {
+		invalidParams.Add(request.NewErrParamRequired("KernelSpecs"))
+	}
+	if s.KernelSpecs != nil && len(s.KernelSpecs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KernelSpecs", 1))
+	}
+	if s.KernelSpecs != nil {
+		for i, v := range s.KernelSpecs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "KernelSpecs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemConfig sets the FileSystemConfig field's value.
+func (s *KernelGatewayImageConfig) SetFileSystemConfig(v *FileSystemConfig) *KernelGatewayImageConfig {
+	s.FileSystemConfig = v
+	return s
+}
+
+// SetKernelSpecs sets the KernelSpecs field's value.
+func (s *KernelGatewayImageConfig) SetKernelSpecs(v []*KernelSpec) *KernelGatewayImageConfig {
+	s.KernelSpecs = v
+	return s
+}
+
+// Defines how a kernel is started and the arguments, environment variables,
+// and metadata that are available to the kernel.
+type KernelSpec struct {
+	_ struct{} `type:"structure"`
+
+	// The display name of the kernel.
+	DisplayName *string `type:"string"`
+
+	// The name of the kernel. Must be unique to your account.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s KernelSpec) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KernelSpec) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KernelSpec) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KernelSpec"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *KernelSpec) SetDisplayName(v string) *KernelSpec {
+	s.DisplayName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *KernelSpec) SetName(v string) *KernelSpec {
+	s.Name = &v
 	return s
 }
 
@@ -33133,6 +35769,153 @@ func (s *ListAlgorithmsOutput) SetAlgorithmSummaryList(v []*AlgorithmSummary) *L
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListAlgorithmsOutput) SetNextToken(v string) *ListAlgorithmsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAppImageConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only AppImageConfigs created on or after the specified
+	// time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only AppImageConfigs created on or before the specified
+	// time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of AppImageConfigs to return in the response. The default
+	// value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A filter that returns only AppImageConfigs modified on or after the specified
+	// time.
+	ModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only AppImageConfigs modified on or before the specified
+	// time.
+	ModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// A filter that returns only AppImageConfigs whose name contains the specified
+	// string.
+	NameContains *string `type:"string"`
+
+	// If the previous call to ListImages didn't return the full set of AppImageConfigs,
+	// the call returns a token for getting the next set of AppImageConfigs.
+	NextToken *string `type:"string"`
+
+	// The property used to sort results. The default value is CreationTime.
+	SortBy *string `type:"string" enum:"AppImageConfigSortKey"`
+
+	// The sort order. The default value is Descending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListAppImageConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppImageConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAppImageConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAppImageConfigsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListAppImageConfigsInput) SetCreationTimeAfter(v time.Time) *ListAppImageConfigsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListAppImageConfigsInput) SetCreationTimeBefore(v time.Time) *ListAppImageConfigsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAppImageConfigsInput) SetMaxResults(v int64) *ListAppImageConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetModifiedTimeAfter sets the ModifiedTimeAfter field's value.
+func (s *ListAppImageConfigsInput) SetModifiedTimeAfter(v time.Time) *ListAppImageConfigsInput {
+	s.ModifiedTimeAfter = &v
+	return s
+}
+
+// SetModifiedTimeBefore sets the ModifiedTimeBefore field's value.
+func (s *ListAppImageConfigsInput) SetModifiedTimeBefore(v time.Time) *ListAppImageConfigsInput {
+	s.ModifiedTimeBefore = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListAppImageConfigsInput) SetNameContains(v string) *ListAppImageConfigsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppImageConfigsInput) SetNextToken(v string) *ListAppImageConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListAppImageConfigsInput) SetSortBy(v string) *ListAppImageConfigsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListAppImageConfigsInput) SetSortOrder(v string) *ListAppImageConfigsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListAppImageConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of AppImageConfigs and their properties.
+	AppImageConfigs []*AppImageConfigDetails `type:"list"`
+
+	// A token for getting the next set of AppImageConfigs, if there are any.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListAppImageConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAppImageConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppImageConfigs sets the AppImageConfigs field's value.
+func (s *ListAppImageConfigsOutput) SetAppImageConfigs(v []*AppImageConfigDetails) *ListAppImageConfigsOutput {
+	s.AppImageConfigs = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAppImageConfigsOutput) SetNextToken(v string) *ListAppImageConfigsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -34730,6 +37513,298 @@ func (s *ListHyperParameterTuningJobsOutput) SetHyperParameterTuningJobSummaries
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListHyperParameterTuningJobsOutput) SetNextToken(v string) *ListHyperParameterTuningJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImageVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only versions created on or after the specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only versions created on or before the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// The name of the image to list the versions of.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// A filter that returns only versions modified on or after the specified time.
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only versions modified on or before the specified time.
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of versions to return in the response. The default value
+	// is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If the previous call to ListImageVersions didn't return the full set of versions,
+	// the call returns a token for getting the next set of versions.
+	NextToken *string `type:"string"`
+
+	// The property used to sort results. The default value is CREATION_TIME.
+	SortBy *string `type:"string" enum:"ImageVersionSortBy"`
+
+	// The sort order. The default value is DESCENDING.
+	SortOrder *string `type:"string" enum:"ImageVersionSortOrder"`
+}
+
+// String returns the string representation
+func (s ListImageVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImageVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImageVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImageVersionsInput"}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListImageVersionsInput) SetCreationTimeAfter(v time.Time) *ListImageVersionsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListImageVersionsInput) SetCreationTimeBefore(v time.Time) *ListImageVersionsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *ListImageVersionsInput) SetImageName(v string) *ListImageVersionsInput {
+	s.ImageName = &v
+	return s
+}
+
+// SetLastModifiedTimeAfter sets the LastModifiedTimeAfter field's value.
+func (s *ListImageVersionsInput) SetLastModifiedTimeAfter(v time.Time) *ListImageVersionsInput {
+	s.LastModifiedTimeAfter = &v
+	return s
+}
+
+// SetLastModifiedTimeBefore sets the LastModifiedTimeBefore field's value.
+func (s *ListImageVersionsInput) SetLastModifiedTimeBefore(v time.Time) *ListImageVersionsInput {
+	s.LastModifiedTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImageVersionsInput) SetMaxResults(v int64) *ListImageVersionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImageVersionsInput) SetNextToken(v string) *ListImageVersionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListImageVersionsInput) SetSortBy(v string) *ListImageVersionsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListImageVersionsInput) SetSortOrder(v string) *ListImageVersionsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListImageVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of versions and their properties.
+	ImageVersions []*ImageVersion `type:"list"`
+
+	// A token for getting the next set of versions, if there are any.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListImageVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImageVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetImageVersions sets the ImageVersions field's value.
+func (s *ListImageVersionsOutput) SetImageVersions(v []*ImageVersion) *ListImageVersionsOutput {
+	s.ImageVersions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImageVersionsOutput) SetNextToken(v string) *ListImageVersionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListImagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// A filter that returns only images created on or after the specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only images created on or before the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// A filter that returns only images modified on or after the specified time.
+	LastModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only images modified on or before the specified time.
+	LastModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of images to return in the response. The default value
+	// is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A filter that returns only images whose name contains the specified string.
+	NameContains *string `type:"string"`
+
+	// If the previous call to ListImages didn't return the full set of images,
+	// the call returns a token for getting the next set of images.
+	NextToken *string `type:"string"`
+
+	// The property used to sort results. The default value is CREATION_TIME.
+	SortBy *string `type:"string" enum:"ImageSortBy"`
+
+	// The sort order. The default value is DESCENDING.
+	SortOrder *string `type:"string" enum:"ImageSortOrder"`
+}
+
+// String returns the string representation
+func (s ListImagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListImagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListImagesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListImagesInput) SetCreationTimeAfter(v time.Time) *ListImagesInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListImagesInput) SetCreationTimeBefore(v time.Time) *ListImagesInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetLastModifiedTimeAfter sets the LastModifiedTimeAfter field's value.
+func (s *ListImagesInput) SetLastModifiedTimeAfter(v time.Time) *ListImagesInput {
+	s.LastModifiedTimeAfter = &v
+	return s
+}
+
+// SetLastModifiedTimeBefore sets the LastModifiedTimeBefore field's value.
+func (s *ListImagesInput) SetLastModifiedTimeBefore(v time.Time) *ListImagesInput {
+	s.LastModifiedTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListImagesInput) SetMaxResults(v int64) *ListImagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListImagesInput) SetNameContains(v string) *ListImagesInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImagesInput) SetNextToken(v string) *ListImagesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListImagesInput) SetSortBy(v string) *ListImagesInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListImagesInput) SetSortOrder(v string) *ListImagesInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListImagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of images and their properties.
+	Images []*Image `type:"list"`
+
+	// A token for getting the next set of images, if there are any.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListImagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListImagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetImages sets the Images field's value.
+func (s *ListImagesOutput) SetImages(v []*Image) *ListImagesOutput {
+	s.Images = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListImagesOutput) SetNextToken(v string) *ListImagesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -39822,12 +42897,17 @@ type OutputConfig struct {
 	//    Add {'mattr': ['+neon']} to compiler options if compiling for ARM 32-bit
 	//    platform with NEON support.
 	//
+	//    * INFERENTIA: Compilation for target ml_inf1 uses compiler options passed
+	//    in as a JSON string. For example, "CompilerOptions": "\"--verbose 1 --num-neuroncores
+	//    2 -O2\"". For information about supported compiler options, see Neuron
+	//    Compiler CLI (https://github.com/aws/aws-neuron-sdk/blob/master/docs/neuron-cc/command-line-reference.md).
+	//
 	//    * CoreML: Compilation for the CoreML OutputConfig$TargetDevice supports
 	//    the following compiler options: class_labels: Specifies the classification
 	//    labels file name inside input tar.gz file. For example, {"class_labels":
 	//    "imagenet_labels_1000.txt"}. Labels inside the txt file should be separated
 	//    by newlines.
-	CompilerOptions *string `min:"7" type:"string"`
+	CompilerOptions *string `min:"3" type:"string"`
 
 	// Identifies the S3 bucket where you want Amazon SageMaker to store the model
 	// artifacts. For example, s3://bucket-name/key-name-prefix.
@@ -39882,8 +42962,8 @@ func (s OutputConfig) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *OutputConfig) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "OutputConfig"}
-	if s.CompilerOptions != nil && len(*s.CompilerOptions) < 7 {
-		invalidParams.Add(request.NewErrParamMinLen("CompilerOptions", 7))
+	if s.CompilerOptions != nil && len(*s.CompilerOptions) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("CompilerOptions", 3))
 	}
 	if s.S3OutputLocation == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3OutputLocation"))
@@ -42186,17 +45266,19 @@ func (s *ResourceNotFound) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The instance type and the Amazon Resource Name (ARN) of the SageMaker image
-// created on the instance. The ARN is stored as metadata in SageMaker Studio
-// notebooks.
+// Specifies the ARN's of a SageMaker image and SageMaker image version, and
+// the instance type that the version runs on.
 type ResourceSpec struct {
 	_ struct{} `type:"structure"`
 
-	// The instance type.
+	// The instance type that the image version runs on.
 	InstanceType *string `type:"string" enum:"AppInstanceType"`
 
-	// The Amazon Resource Name (ARN) of the SageMaker image created on the instance.
+	// The ARN of the SageMaker image that the image version belongs to.
 	SageMakerImageArn *string `type:"string"`
+
+	// The ARN of the image version created on the instance.
+	SageMakerImageVersionArn *string `type:"string"`
 }
 
 // String returns the string representation
@@ -42218,6 +45300,12 @@ func (s *ResourceSpec) SetInstanceType(v string) *ResourceSpec {
 // SetSageMakerImageArn sets the SageMakerImageArn field's value.
 func (s *ResourceSpec) SetSageMakerImageArn(v string) *ResourceSpec {
 	s.SageMakerImageArn = &v
+	return s
+}
+
+// SetSageMakerImageVersionArn sets the SageMakerImageVersionArn field's value.
+func (s *ResourceSpec) SetSageMakerImageVersionArn(v string) *ResourceSpec {
+	s.SageMakerImageVersionArn = &v
 	return s
 }
 
@@ -47042,6 +50130,81 @@ func (s *UiTemplateInfo) SetUrl(v string) *UiTemplateInfo {
 	return s
 }
 
+type UpdateAppImageConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the AppImageConfig to update.
+	//
+	// AppImageConfigName is a required field
+	AppImageConfigName *string `type:"string" required:"true"`
+
+	// The new KernelGateway app to run on the image.
+	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAppImageConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAppImageConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAppImageConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAppImageConfigInput"}
+	if s.AppImageConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("AppImageConfigName"))
+	}
+	if s.KernelGatewayImageConfig != nil {
+		if err := s.KernelGatewayImageConfig.Validate(); err != nil {
+			invalidParams.AddNested("KernelGatewayImageConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppImageConfigName sets the AppImageConfigName field's value.
+func (s *UpdateAppImageConfigInput) SetAppImageConfigName(v string) *UpdateAppImageConfigInput {
+	s.AppImageConfigName = &v
+	return s
+}
+
+// SetKernelGatewayImageConfig sets the KernelGatewayImageConfig field's value.
+func (s *UpdateAppImageConfigInput) SetKernelGatewayImageConfig(v *KernelGatewayImageConfig) *UpdateAppImageConfigInput {
+	s.KernelGatewayImageConfig = v
+	return s
+}
+
+type UpdateAppImageConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the AppImageConfig.
+	AppImageConfigArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateAppImageConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAppImageConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetAppImageConfigArn sets the AppImageConfigArn field's value.
+func (s *UpdateAppImageConfigOutput) SetAppImageConfigArn(v string) *UpdateAppImageConfigOutput {
+	s.AppImageConfigArn = &v
+	return s
+}
+
 type UpdateCodeRepositoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -47488,6 +50651,117 @@ func (s UpdateExperimentOutput) GoString() string {
 // SetExperimentArn sets the ExperimentArn field's value.
 func (s *UpdateExperimentOutput) SetExperimentArn(v string) *UpdateExperimentOutput {
 	s.ExperimentArn = &v
+	return s
+}
+
+type UpdateImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of properties to delete. Only the Description and DisplayName properties
+	// can be deleted.
+	DeleteProperties []*string `type:"list"`
+
+	// The new description for the image.
+	Description *string `min:"1" type:"string"`
+
+	// The new display name for the image.
+	DisplayName *string `min:"1" type:"string"`
+
+	// The name of the image to update.
+	//
+	// ImageName is a required field
+	ImageName *string `min:"1" type:"string" required:"true"`
+
+	// The new Amazon Resource Name (ARN) for the IAM role that enables Amazon SageMaker
+	// to perform tasks on your behalf.
+	RoleArn *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateImageInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayName != nil && len(*s.DisplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DisplayName", 1))
+	}
+	if s.ImageName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ImageName"))
+	}
+	if s.ImageName != nil && len(*s.ImageName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ImageName", 1))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeleteProperties sets the DeleteProperties field's value.
+func (s *UpdateImageInput) SetDeleteProperties(v []*string) *UpdateImageInput {
+	s.DeleteProperties = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateImageInput) SetDescription(v string) *UpdateImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *UpdateImageInput) SetDisplayName(v string) *UpdateImageInput {
+	s.DisplayName = &v
+	return s
+}
+
+// SetImageName sets the ImageName field's value.
+func (s *UpdateImageInput) SetImageName(v string) *UpdateImageInput {
+	s.ImageName = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *UpdateImageInput) SetRoleArn(v string) *UpdateImageInput {
+	s.RoleArn = &v
+	return s
+}
+
+type UpdateImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the image.
+	ImageArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetImageArn sets the ImageArn field's value.
+func (s *UpdateImageOutput) SetImageArn(v string) *UpdateImageOutput {
+	s.ImageArn = &v
 	return s
 }
 
@@ -48575,7 +51849,12 @@ type UserSettings struct {
 	// The kernel gateway app settings.
 	KernelGatewayAppSettings *KernelGatewayAppSettings `type:"structure"`
 
-	// The security groups.
+	// The security groups for the Amazon Virtual Private Cloud (VPC) that Studio
+	// uses for communication.
+	//
+	// Optional when the CreateDomain.AppNetworkAccessType parameter is set to PublicInternetOnly.
+	//
+	// Required when the CreateDomain.AppNetworkAccessType parameter is set to VpcOnly.
 	SecurityGroups []*string `type:"list"`
 
 	// The sharing settings.
@@ -48600,6 +51879,11 @@ func (s *UserSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UserSettings"}
 	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 20))
+	}
+	if s.KernelGatewayAppSettings != nil {
+		if err := s.KernelGatewayAppSettings.Validate(); err != nil {
+			invalidParams.AddNested("KernelGatewayAppSettings", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -49022,6 +52306,26 @@ func AlgorithmStatus_Values() []string {
 		AlgorithmStatusCompleted,
 		AlgorithmStatusFailed,
 		AlgorithmStatusDeleting,
+	}
+}
+
+const (
+	// AppImageConfigSortKeyCreationTime is a AppImageConfigSortKey enum value
+	AppImageConfigSortKeyCreationTime = "CreationTime"
+
+	// AppImageConfigSortKeyLastModifiedTime is a AppImageConfigSortKey enum value
+	AppImageConfigSortKeyLastModifiedTime = "LastModifiedTime"
+
+	// AppImageConfigSortKeyName is a AppImageConfigSortKey enum value
+	AppImageConfigSortKeyName = "Name"
+)
+
+// AppImageConfigSortKey_Values returns all elements of the AppImageConfigSortKey enum
+func AppImageConfigSortKey_Values() []string {
+	return []string{
+		AppImageConfigSortKeyCreationTime,
+		AppImageConfigSortKeyLastModifiedTime,
+		AppImageConfigSortKeyName,
 	}
 }
 
@@ -49781,6 +53085,15 @@ const (
 
 	// DomainStatusPending is a DomainStatus enum value
 	DomainStatusPending = "Pending"
+
+	// DomainStatusUpdating is a DomainStatus enum value
+	DomainStatusUpdating = "Updating"
+
+	// DomainStatusUpdateFailed is a DomainStatus enum value
+	DomainStatusUpdateFailed = "Update_Failed"
+
+	// DomainStatusDeleteFailed is a DomainStatus enum value
+	DomainStatusDeleteFailed = "Delete_Failed"
 )
 
 // DomainStatus_Values returns all elements of the DomainStatus enum
@@ -49790,6 +53103,9 @@ func DomainStatus_Values() []string {
 		DomainStatusFailed,
 		DomainStatusInService,
 		DomainStatusPending,
+		DomainStatusUpdating,
+		DomainStatusUpdateFailed,
+		DomainStatusDeleteFailed,
 	}
 }
 
@@ -49982,6 +53298,9 @@ const (
 
 	// FrameworkTflite is a Framework enum value
 	FrameworkTflite = "TFLITE"
+
+	// FrameworkDarknet is a Framework enum value
+	FrameworkDarknet = "DARKNET"
 )
 
 // Framework_Values returns all elements of the Framework enum
@@ -49994,6 +53313,7 @@ func Framework_Values() []string {
 		FrameworkPytorch,
 		FrameworkXgboost,
 		FrameworkTflite,
+		FrameworkDarknet,
 	}
 }
 
@@ -50132,6 +53452,142 @@ func HyperParameterTuningJobWarmStartType_Values() []string {
 	return []string{
 		HyperParameterTuningJobWarmStartTypeIdenticalDataAndAlgorithm,
 		HyperParameterTuningJobWarmStartTypeTransferLearning,
+	}
+}
+
+const (
+	// ImageSortByCreationTime is a ImageSortBy enum value
+	ImageSortByCreationTime = "CREATION_TIME"
+
+	// ImageSortByLastModifiedTime is a ImageSortBy enum value
+	ImageSortByLastModifiedTime = "LAST_MODIFIED_TIME"
+
+	// ImageSortByImageName is a ImageSortBy enum value
+	ImageSortByImageName = "IMAGE_NAME"
+)
+
+// ImageSortBy_Values returns all elements of the ImageSortBy enum
+func ImageSortBy_Values() []string {
+	return []string{
+		ImageSortByCreationTime,
+		ImageSortByLastModifiedTime,
+		ImageSortByImageName,
+	}
+}
+
+const (
+	// ImageSortOrderAscending is a ImageSortOrder enum value
+	ImageSortOrderAscending = "ASCENDING"
+
+	// ImageSortOrderDescending is a ImageSortOrder enum value
+	ImageSortOrderDescending = "DESCENDING"
+)
+
+// ImageSortOrder_Values returns all elements of the ImageSortOrder enum
+func ImageSortOrder_Values() []string {
+	return []string{
+		ImageSortOrderAscending,
+		ImageSortOrderDescending,
+	}
+}
+
+const (
+	// ImageStatusCreating is a ImageStatus enum value
+	ImageStatusCreating = "CREATING"
+
+	// ImageStatusCreated is a ImageStatus enum value
+	ImageStatusCreated = "CREATED"
+
+	// ImageStatusCreateFailed is a ImageStatus enum value
+	ImageStatusCreateFailed = "CREATE_FAILED"
+
+	// ImageStatusUpdating is a ImageStatus enum value
+	ImageStatusUpdating = "UPDATING"
+
+	// ImageStatusUpdateFailed is a ImageStatus enum value
+	ImageStatusUpdateFailed = "UPDATE_FAILED"
+
+	// ImageStatusDeleting is a ImageStatus enum value
+	ImageStatusDeleting = "DELETING"
+
+	// ImageStatusDeleteFailed is a ImageStatus enum value
+	ImageStatusDeleteFailed = "DELETE_FAILED"
+)
+
+// ImageStatus_Values returns all elements of the ImageStatus enum
+func ImageStatus_Values() []string {
+	return []string{
+		ImageStatusCreating,
+		ImageStatusCreated,
+		ImageStatusCreateFailed,
+		ImageStatusUpdating,
+		ImageStatusUpdateFailed,
+		ImageStatusDeleting,
+		ImageStatusDeleteFailed,
+	}
+}
+
+const (
+	// ImageVersionSortByCreationTime is a ImageVersionSortBy enum value
+	ImageVersionSortByCreationTime = "CREATION_TIME"
+
+	// ImageVersionSortByLastModifiedTime is a ImageVersionSortBy enum value
+	ImageVersionSortByLastModifiedTime = "LAST_MODIFIED_TIME"
+
+	// ImageVersionSortByVersion is a ImageVersionSortBy enum value
+	ImageVersionSortByVersion = "VERSION"
+)
+
+// ImageVersionSortBy_Values returns all elements of the ImageVersionSortBy enum
+func ImageVersionSortBy_Values() []string {
+	return []string{
+		ImageVersionSortByCreationTime,
+		ImageVersionSortByLastModifiedTime,
+		ImageVersionSortByVersion,
+	}
+}
+
+const (
+	// ImageVersionSortOrderAscending is a ImageVersionSortOrder enum value
+	ImageVersionSortOrderAscending = "ASCENDING"
+
+	// ImageVersionSortOrderDescending is a ImageVersionSortOrder enum value
+	ImageVersionSortOrderDescending = "DESCENDING"
+)
+
+// ImageVersionSortOrder_Values returns all elements of the ImageVersionSortOrder enum
+func ImageVersionSortOrder_Values() []string {
+	return []string{
+		ImageVersionSortOrderAscending,
+		ImageVersionSortOrderDescending,
+	}
+}
+
+const (
+	// ImageVersionStatusCreating is a ImageVersionStatus enum value
+	ImageVersionStatusCreating = "CREATING"
+
+	// ImageVersionStatusCreated is a ImageVersionStatus enum value
+	ImageVersionStatusCreated = "CREATED"
+
+	// ImageVersionStatusCreateFailed is a ImageVersionStatus enum value
+	ImageVersionStatusCreateFailed = "CREATE_FAILED"
+
+	// ImageVersionStatusDeleting is a ImageVersionStatus enum value
+	ImageVersionStatusDeleting = "DELETING"
+
+	// ImageVersionStatusDeleteFailed is a ImageVersionStatus enum value
+	ImageVersionStatusDeleteFailed = "DELETE_FAILED"
+)
+
+// ImageVersionStatus_Values returns all elements of the ImageVersionStatus enum
+func ImageVersionStatus_Values() []string {
+	return []string{
+		ImageVersionStatusCreating,
+		ImageVersionStatusCreated,
+		ImageVersionStatusCreateFailed,
+		ImageVersionStatusDeleting,
+		ImageVersionStatusDeleteFailed,
 	}
 }
 
@@ -52012,6 +55468,9 @@ const (
 	// TrainingInstanceTypeMlP3dn24xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlP3dn24xlarge = "ml.p3dn.24xlarge"
 
+	// TrainingInstanceTypeMlP4d24xlarge is a TrainingInstanceType enum value
+	TrainingInstanceTypeMlP4d24xlarge = "ml.p4d.24xlarge"
+
 	// TrainingInstanceTypeMlC5Xlarge is a TrainingInstanceType enum value
 	TrainingInstanceTypeMlC5Xlarge = "ml.c5.xlarge"
 
@@ -52074,6 +55533,7 @@ func TrainingInstanceType_Values() []string {
 		TrainingInstanceTypeMlP38xlarge,
 		TrainingInstanceTypeMlP316xlarge,
 		TrainingInstanceTypeMlP3dn24xlarge,
+		TrainingInstanceTypeMlP4d24xlarge,
 		TrainingInstanceTypeMlC5Xlarge,
 		TrainingInstanceTypeMlC52xlarge,
 		TrainingInstanceTypeMlC54xlarge,
@@ -52351,6 +55811,15 @@ const (
 
 	// UserProfileStatusPending is a UserProfileStatus enum value
 	UserProfileStatusPending = "Pending"
+
+	// UserProfileStatusUpdating is a UserProfileStatus enum value
+	UserProfileStatusUpdating = "Updating"
+
+	// UserProfileStatusUpdateFailed is a UserProfileStatus enum value
+	UserProfileStatusUpdateFailed = "Update_Failed"
+
+	// UserProfileStatusDeleteFailed is a UserProfileStatus enum value
+	UserProfileStatusDeleteFailed = "Delete_Failed"
 )
 
 // UserProfileStatus_Values returns all elements of the UserProfileStatus enum
@@ -52360,6 +55829,9 @@ func UserProfileStatus_Values() []string {
 		UserProfileStatusFailed,
 		UserProfileStatusInService,
 		UserProfileStatusPending,
+		UserProfileStatusUpdating,
+		UserProfileStatusUpdateFailed,
+		UserProfileStatusDeleteFailed,
 	}
 }
 
