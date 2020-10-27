@@ -31,8 +31,8 @@
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
     "CreateWorkflow": "<p>Creates a new workflow.</p>",
     "DeleteClassifier": "<p>Removes a classifier from the Data Catalog.</p>",
-    "DeleteColumnStatisticsForPartition": "<p>Delete the partition column statistics of a column.</p>",
-    "DeleteColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p>",
+    "DeleteColumnStatisticsForPartition": "<p>Delete the partition column statistics of a column.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>DeletePartition</code>.</p>",
+    "DeleteColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>DeleteTable</code>.</p>",
     "DeleteConnection": "<p>Deletes a connection from the Data Catalog.</p>",
     "DeleteCrawler": "<p>Removes a specified crawler from the AWS Glue Data Catalog, unless the crawler state is <code>RUNNING</code>.</p>",
     "DeleteDatabase": "<p>Removes a specified database from a Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the tables (and all table versions and partitions that might belong to the tables) and the user-defined functions in the deleted database. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteDatabase</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, <code>DeletePartition</code> or <code>BatchDeletePartition</code>, <code>DeleteUserDefinedFunction</code>, and <code>DeleteTable</code> or <code>BatchDeleteTable</code>, to delete any resources that belong to the database.</p> </note>",
@@ -50,8 +50,8 @@
     "GetCatalogImportStatus": "<p>Retrieves the status of a migration operation.</p>",
     "GetClassifier": "<p>Retrieve a classifier by name.</p>",
     "GetClassifiers": "<p>Lists all classifier objects in the Data Catalog.</p>",
-    "GetColumnStatisticsForPartition": "<p>Retrieves partition statistics of columns.</p>",
-    "GetColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p>",
+    "GetColumnStatisticsForPartition": "<p>Retrieves partition statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>GetPartition</code>.</p>",
+    "GetColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>GetTable</code>.</p>",
     "GetConnection": "<p>Retrieves a connection definition from the Data Catalog.</p>",
     "GetConnections": "<p>Retrieves a list of connection definitions from the Data Catalog.</p>",
     "GetCrawler": "<p>Retrieves metadata for a specified crawler.</p>",
@@ -123,8 +123,8 @@
     "TagResource": "<p>Adds tags to a resource. A tag is a label you can assign to an AWS resource. In AWS Glue, you can tag only certain resources. For information about what resources you can tag, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a>.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
     "UpdateClassifier": "<p>Modifies an existing classifier (a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field is present).</p>",
-    "UpdateColumnStatisticsForPartition": "<p>Creates or updates partition statistics of columns.</p>",
-    "UpdateColumnStatisticsForTable": "<p>Creates or updates table statistics of columns.</p>",
+    "UpdateColumnStatisticsForPartition": "<p>Creates or updates partition statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>UpdatePartition</code>.</p>",
+    "UpdateColumnStatisticsForTable": "<p>Creates or updates table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>UpdateTable</code>.</p>",
     "UpdateConnection": "<p>Updates a connection definition in the Data Catalog.</p>",
     "UpdateCrawler": "<p>Updates a crawler. If a crawler is running, you must stop it using <code>StopCrawler</code> before updating it.</p>",
     "UpdateCrawlerSchedule": "<p>Updates the schedule of a crawler using a <code>cron</code> expression. </p>",
@@ -385,9 +385,9 @@
       }
     },
     "BinaryColumnStatisticsData": {
-      "base": "<p>Defines a binary column statistics data.</p>",
+      "base": "<p>Defines column statistics supported for bit sequence data values.</p>",
       "refs": {
-        "ColumnStatisticsData$BinaryColumnStatisticsData": "<p>Binary Column Statistics Data.</p>"
+        "ColumnStatisticsData$BinaryColumnStatisticsData": "<p>Binary column statistics data.</p>"
       }
     },
     "Blob": {
@@ -411,9 +411,9 @@
       }
     },
     "BooleanColumnStatisticsData": {
-      "base": "<p>Defines a boolean column statistics.</p>",
+      "base": "<p>Defines column statistics supported for Boolean data columns.</p>",
       "refs": {
-        "ColumnStatisticsData$BooleanColumnStatisticsData": "<p>Boolean Column Statistics Data.</p>"
+        "ColumnStatisticsData$BooleanColumnStatisticsData": "<p>Boolean column statistics data.</p>"
       }
     },
     "BooleanNullable": {
@@ -656,7 +656,7 @@
       }
     },
     "ColumnError": {
-      "base": "<p>Defines a column containing error.</p>",
+      "base": "<p>Encapsulates a column name that failed and the reason for failure.</p>",
       "refs": {
         "ColumnErrors$member": null
       }
@@ -684,21 +684,21 @@
       }
     },
     "ColumnStatistics": {
-      "base": "<p>Defines a column statistics.</p>",
+      "base": "<p>Represents the generated column-level statistics for a table or partition.</p>",
       "refs": {
-        "ColumnStatisticsError$ColumnStatistics": "<p>The ColumnStatistics of the column.</p>",
+        "ColumnStatisticsError$ColumnStatistics": "<p>The <code>ColumnStatistics</code> of the column.</p>",
         "ColumnStatisticsList$member": null,
         "UpdateColumnStatisticsList$member": null
       }
     },
     "ColumnStatisticsData": {
-      "base": "<p>Defines a column statistics data.</p>",
+      "base": "<p>Contains the individual types of column statistics data. Only one data object should be set and indicated by the <code>Type</code> attribute.</p>",
       "refs": {
-        "ColumnStatistics$StatisticsData": "<p>The statistics of the column.</p>"
+        "ColumnStatistics$StatisticsData": "<p>A <code>ColumnStatisticData</code> object that contains the statistics data values.</p>"
       }
     },
     "ColumnStatisticsError": {
-      "base": "<p>Defines a column containing error.</p>",
+      "base": "<p>Encapsulates a <code>ColumnStatistics</code> object that failed and the reason for failure.</p>",
       "refs": {
         "ColumnStatisticsErrors$member": null
       }
@@ -720,7 +720,7 @@
     "ColumnStatisticsType": {
       "base": null,
       "refs": {
-        "ColumnStatisticsData$Type": "<p>The name of the column.</p>"
+        "ColumnStatisticsData$Type": "<p>The type of column statistics data.</p>"
       }
     },
     "ColumnTypeString": {
@@ -1251,22 +1251,22 @@
       }
     },
     "DateColumnStatisticsData": {
-      "base": "<p>Defines a date column statistics data.</p>",
+      "base": "<p>Defines column statistics supported for timestamp data columns.</p>",
       "refs": {
-        "ColumnStatisticsData$DateColumnStatisticsData": "<p>Date Column Statistics Data.</p>"
+        "ColumnStatisticsData$DateColumnStatisticsData": "<p>Date column statistics data.</p>"
       }
     },
     "DecimalColumnStatisticsData": {
-      "base": "<p>Defines a decimal column statistics data.</p>",
+      "base": "<p>Defines column statistics supported for fixed-point number data columns.</p>",
       "refs": {
-        "ColumnStatisticsData$DecimalColumnStatisticsData": "<p>Decimal Column Statistics Data.</p>"
+        "ColumnStatisticsData$DecimalColumnStatisticsData": "<p>Decimal column statistics data.</p>"
       }
     },
     "DecimalNumber": {
       "base": "<p>Contains a numeric value in decimal format.</p>",
       "refs": {
-        "DecimalColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
-        "DecimalColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>"
+        "DecimalColumnStatisticsData$MinimumValue": "<p>The lowest value in the column.</p>",
+        "DecimalColumnStatisticsData$MaximumValue": "<p>The highest value in the column.</p>"
       }
     },
     "DeleteBehavior": {
@@ -1519,14 +1519,14 @@
     "Double": {
       "base": null,
       "refs": {
-        "DoubleColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
-        "DoubleColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>"
+        "DoubleColumnStatisticsData$MinimumValue": "<p>The lowest value in the column.</p>",
+        "DoubleColumnStatisticsData$MaximumValue": "<p>The highest value in the column.</p>"
       }
     },
     "DoubleColumnStatisticsData": {
-      "base": "<p>Defines a double column statistics data.</p>",
+      "base": "<p>Defines column statistics supported for floating-point number data columns.</p>",
       "refs": {
-        "ColumnStatisticsData$DoubleColumnStatisticsData": "<p>Double Column Statistics Data.</p>"
+        "ColumnStatisticsData$DoubleColumnStatisticsData": "<p>Double column statistics data.</p>"
       }
     },
     "DynamoDBTarget": {
@@ -1588,8 +1588,8 @@
       "refs": {
         "BatchStopJobRunError$ErrorDetail": "<p>Specifies details about the error that was encountered.</p>",
         "BatchUpdatePartitionFailureEntry$ErrorDetail": "<p>The details about the batch update partition error.</p>",
-        "ColumnError$Error": "<p>The error message occurred during operation.</p>",
-        "ColumnStatisticsError$Error": "<p>The error message occurred during operation.</p>",
+        "ColumnError$Error": "<p>An error message with the reason for the failure of an operation.</p>",
+        "ColumnStatisticsError$Error": "<p>An error message with the reason for the failure of an operation.</p>",
         "ErrorByName$value": null,
         "PartitionError$ErrorDetail": "<p>The details about the partition error.</p>",
         "TableError$ErrorDetail": "<p>The details about the error.</p>",
@@ -2777,14 +2777,14 @@
     "Long": {
       "base": null,
       "refs": {
-        "LongColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
-        "LongColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>"
+        "LongColumnStatisticsData$MinimumValue": "<p>The lowest value in the column.</p>",
+        "LongColumnStatisticsData$MaximumValue": "<p>The highest value in the column.</p>"
       }
     },
     "LongColumnStatisticsData": {
-      "base": "<p>Defines a long column statistics data.</p>",
+      "base": "<p>Defines column statistics supported for integer data columns.</p>",
       "refs": {
-        "ColumnStatisticsData$LongColumnStatisticsData": "<p>Long Column Statistics Data.</p>"
+        "ColumnStatisticsData$LongColumnStatisticsData": "<p>Long column statistics data.</p>"
       }
     },
     "MLTransform": {
@@ -2796,6 +2796,18 @@
     "MLTransformNotReadyException": {
       "base": "<p>The machine learning transform is not ready to run.</p>",
       "refs": {
+      }
+    },
+    "MLUserDataEncryption": {
+      "base": "<p>The encryption-at-rest settings of the transform that apply to accessing user data.</p>",
+      "refs": {
+        "TransformEncryption$MlUserDataEncryption": "<p>An <code>MLUserDataEncryption</code> object containing the encryption mode and customer-provided KMS key ID.</p>"
+      }
+    },
+    "MLUserDataEncryptionModeString": {
+      "base": null,
+      "refs": {
+        "MLUserDataEncryption$MlUserDataEncryptionMode": "<p>The encryption mode applied to user data. Valid values are:</p> <ul> <li> <p>DISABLED: encryption is disabled</p> </li> <li> <p>SSEKMS: use of server-side encryption with AWS Key Management Service (SSE-KMS) for user data stored in Amazon S3.</p> </li> </ul>"
       }
     },
     "MapValue": {
@@ -2923,8 +2935,8 @@
         "CatalogTarget$DatabaseName": "<p>The name of the database to be synchronized.</p>",
         "ClassifierNameList$member": null,
         "Column$Name": "<p>The name of the <code>Column</code>.</p>",
-        "ColumnError$ColumnName": "<p>The name of the column.</p>",
-        "ColumnStatistics$ColumnName": "<p>The name of the column.</p>",
+        "ColumnError$ColumnName": "<p>The name of the column that failed.</p>",
+        "ColumnStatistics$ColumnName": "<p>Name of column which statistics belong to.</p>",
         "Condition$JobName": "<p>The name of the job whose <code>JobRuns</code> this condition applies to, and on which this trigger waits.</p>",
         "Condition$CrawlerName": "<p>The name of the crawler to which this condition applies.</p>",
         "Connection$Name": "<p>The name of the connection definition.</p>",
@@ -3049,6 +3061,7 @@
         "KeySchemaElement$Name": "<p>The name of a partition key.</p>",
         "ListTriggersRequest$DependentJobName": "<p> The name of the job for which to retrieve triggers. The trigger that can start this job is returned. If there is no such trigger, all triggers are returned.</p>",
         "MLTransform$Name": "<p>A user-defined name for the machine learning transform. Names are not guaranteed unique and can be changed at any time.</p>",
+        "MLUserDataEncryption$KmsKeyId": "<p>The ID for the customer-provided KMS key.</p>",
         "MatchCriteria$member": null,
         "NameStringList$member": null,
         "Node$Name": "<p>The name of the AWS Glue component represented by the node.</p>",
@@ -3090,6 +3103,7 @@
         "TableInput$Name": "<p>The table name. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "TableInput$Owner": "<p>The table owner.</p>",
         "TableVersionError$TableName": "<p>The name of the table in question.</p>",
+        "TransformEncryption$TaskRunSecurityConfigurationName": "<p>The name of the security configuration.</p>",
         "TransformFilterCriteria$Name": "<p>A unique transform name that is used to filter the machine learning transforms.</p>",
         "Trigger$Name": "<p>The name of the trigger.</p>",
         "Trigger$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
@@ -3172,11 +3186,11 @@
     "NonNegativeDouble": {
       "base": null,
       "refs": {
-        "BinaryColumnStatisticsData$AverageLength": "<p>Average length of the column.</p>",
+        "BinaryColumnStatisticsData$AverageLength": "<p>The average bit sequence length in the column.</p>",
         "CrawlerMetrics$TimeLeftSeconds": "<p>The estimated time left to complete a running crawl.</p>",
         "CrawlerMetrics$LastRuntimeSeconds": "<p>The duration of the crawler's most recent run, in seconds.</p>",
         "CrawlerMetrics$MedianRuntimeSeconds": "<p>The median duration of this crawler's runs, in seconds.</p>",
-        "StringColumnStatisticsData$AverageLength": "<p>Average value of the column.</p>"
+        "StringColumnStatisticsData$AverageLength": "<p>The average string length in the column.</p>"
       }
     },
     "NonNegativeInteger": {
@@ -3193,22 +3207,22 @@
     "NonNegativeLong": {
       "base": null,
       "refs": {
-        "BinaryColumnStatisticsData$MaximumLength": "<p>Maximum length of the column.</p>",
-        "BinaryColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "BooleanColumnStatisticsData$NumberOfTrues": "<p>Number of true value.</p>",
-        "BooleanColumnStatisticsData$NumberOfFalses": "<p>Number of false value.</p>",
-        "BooleanColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "DateColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "DateColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
-        "DecimalColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "DecimalColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
-        "DoubleColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "DoubleColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
-        "LongColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "LongColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>",
-        "StringColumnStatisticsData$MaximumLength": "<p>Maximum value of the column.</p>",
-        "StringColumnStatisticsData$NumberOfNulls": "<p>Number of nulls.</p>",
-        "StringColumnStatisticsData$NumberOfDistinctValues": "<p>Number of distinct values.</p>"
+        "BinaryColumnStatisticsData$MaximumLength": "<p>The size of the longest bit sequence in the column.</p>",
+        "BinaryColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "BooleanColumnStatisticsData$NumberOfTrues": "<p>The number of true values in the column.</p>",
+        "BooleanColumnStatisticsData$NumberOfFalses": "<p>The number of false values in the column.</p>",
+        "BooleanColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "DateColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "DateColumnStatisticsData$NumberOfDistinctValues": "<p>The number of distinct values in a column.</p>",
+        "DecimalColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "DecimalColumnStatisticsData$NumberOfDistinctValues": "<p>The number of distinct values in a column.</p>",
+        "DoubleColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "DoubleColumnStatisticsData$NumberOfDistinctValues": "<p>The number of distinct values in a column.</p>",
+        "LongColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "LongColumnStatisticsData$NumberOfDistinctValues": "<p>The number of distinct values in a column.</p>",
+        "StringColumnStatisticsData$MaximumLength": "<p>The size of the longest string in the column.</p>",
+        "StringColumnStatisticsData$NumberOfNulls": "<p>The number of null values in the column.</p>",
+        "StringColumnStatisticsData$NumberOfDistinctValues": "<p>The number of distinct values in a column.</p>"
       }
     },
     "NotificationProperty": {
@@ -4032,9 +4046,9 @@
       }
     },
     "StringColumnStatisticsData": {
-      "base": "<p>Defines a string column statistics data.</p>",
+      "base": "<p>Defines column statistics supported for character sequence data values.</p>",
       "refs": {
-        "ColumnStatisticsData$StringColumnStatisticsData": "<p>String Column Statistics Data.</p>"
+        "ColumnStatisticsData$StringColumnStatisticsData": "<p>String column statistics data.</p>"
       }
     },
     "StringList": {
@@ -4247,7 +4261,7 @@
       "base": null,
       "refs": {
         "CatalogImportStatus$ImportTime": "<p>The time that the migration was started.</p>",
-        "ColumnStatistics$AnalyzedTime": "<p>The analyzed time of the column statistics.</p>",
+        "ColumnStatistics$AnalyzedTime": "<p>The timestamp of when column statistics were generated.</p>",
         "Connection$CreationTime": "<p>The time that this connection definition was created.</p>",
         "Connection$LastUpdatedTime": "<p>The last time that this connection definition was updated.</p>",
         "Crawler$CreationTime": "<p>The time that the crawler was created.</p>",
@@ -4255,8 +4269,8 @@
         "CsvClassifier$CreationTime": "<p>The time that this classifier was registered.</p>",
         "CsvClassifier$LastUpdated": "<p>The time that this classifier was last updated.</p>",
         "Database$CreateTime": "<p>The time at which the metadata database was created in the catalog.</p>",
-        "DateColumnStatisticsData$MinimumValue": "<p>Minimum value of the column.</p>",
-        "DateColumnStatisticsData$MaximumValue": "<p>Maximum value of the column.</p>",
+        "DateColumnStatisticsData$MinimumValue": "<p>The lowest value in the column.</p>",
+        "DateColumnStatisticsData$MaximumValue": "<p>The highest value in the column.</p>",
         "GetMLTaskRunResponse$StartedOn": "<p>The date and time when this task run started.</p>",
         "GetMLTaskRunResponse$LastModifiedOn": "<p>The date and time when this task run was last modified.</p>",
         "GetMLTaskRunResponse$CompletedOn": "<p>The date and time when this task run was completed.</p>",
@@ -4356,6 +4370,14 @@
         "Segment$TotalSegments": "<p>The total number of segments.</p>"
       }
     },
+    "TransformEncryption": {
+      "base": "<p>The encryption-at-rest settings of the transform that apply to accessing user data. Machine learning transforms can access user data encrypted in Amazon S3 using KMS.</p> <p>Additionally, imported labels and trained transforms can now be encrypted using a customer provided KMS key.</p>",
+      "refs": {
+        "CreateMLTransformRequest$TransformEncryption": "<p>The encryption-at-rest settings of the transform that apply to accessing user data. Machine learning transforms can access user data encrypted in Amazon S3 using KMS.</p>",
+        "GetMLTransformResponse$TransformEncryption": "<p>The encryption-at-rest settings of the transform that apply to accessing user data. Machine learning transforms can access user data encrypted in Amazon S3 using KMS.</p>",
+        "MLTransform$TransformEncryption": "<p>The encryption-at-rest settings of the transform that apply to accessing user data. Machine learning transforms can access user data encrypted in Amazon S3 using KMS.</p>"
+      }
+    },
     "TransformFilterCriteria": {
       "base": "<p>The criteria used to filter the machine learning transforms.</p>",
       "refs": {
@@ -4418,7 +4440,7 @@
       "refs": {
         "EvaluationMetrics$TransformType": "<p>The type of machine learning transform.</p>",
         "TransformFilterCriteria$TransformType": "<p>The type of machine learning transform that is used to filter the machine learning transforms.</p>",
-        "TransformParameters$TransformType": "<p>The type of machine learning transform.</p> <p>For information about the types of machine learning transforms, see <a href=\"http://docs.aws.amazon.com/glue/latest/dg/add-job-machine-learning-transform.html\">Creating Machine Learning Transforms</a>.</p>"
+        "TransformParameters$TransformType": "<p>The type of machine learning transform.</p> <p>For information about the types of machine learning transforms, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/add-job-machine-learning-transform.html\">Creating Machine Learning Transforms</a>.</p>"
       }
     },
     "Trigger": {
@@ -4473,7 +4495,7 @@
     "TypeString": {
       "base": null,
       "refs": {
-        "ColumnStatistics$ColumnType": "<p>The type of the column.</p>"
+        "ColumnStatistics$ColumnType": "<p>The data type of the column.</p>"
       }
     },
     "URI": {

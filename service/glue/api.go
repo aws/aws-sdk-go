@@ -2733,6 +2733,9 @@ func (c *Glue) DeleteColumnStatisticsForPartitionRequest(input *DeleteColumnStat
 //
 // Delete the partition column statistics of a column.
 //
+// The Identity and Access Management (IAM) permission required for this operation
+// is DeletePartition.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2824,6 +2827,9 @@ func (c *Glue) DeleteColumnStatisticsForTableRequest(input *DeleteColumnStatisti
 // DeleteColumnStatisticsForTable API operation for AWS Glue.
 //
 // Retrieves table statistics of columns.
+//
+// The Identity and Access Management (IAM) permission required for this operation
+// is DeleteTable.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4481,6 +4487,9 @@ func (c *Glue) GetColumnStatisticsForPartitionRequest(input *GetColumnStatistics
 //
 // Retrieves partition statistics of columns.
 //
+// The Identity and Access Management (IAM) permission required for this operation
+// is GetPartition.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4571,6 +4580,9 @@ func (c *Glue) GetColumnStatisticsForTableRequest(input *GetColumnStatisticsForT
 // GetColumnStatisticsForTable API operation for AWS Glue.
 //
 // Retrieves table statistics of columns.
+//
+// The Identity and Access Management (IAM) permission required for this operation
+// is GetTable.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12483,6 +12495,9 @@ func (c *Glue) UpdateColumnStatisticsForPartitionRequest(input *UpdateColumnStat
 //
 // Creates or updates partition statistics of columns.
 //
+// The Identity and Access Management (IAM) permission required for this operation
+// is UpdatePartition.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12573,6 +12588,9 @@ func (c *Glue) UpdateColumnStatisticsForTableRequest(input *UpdateColumnStatisti
 // UpdateColumnStatisticsForTable API operation for AWS Glue.
 //
 // Creates or updates table statistics of columns.
+//
+// The Identity and Access Management (IAM) permission required for this operation
+// is UpdateTable.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15356,21 +15374,21 @@ func (s *BatchUpdatePartitionRequestEntry) SetPartitionValueList(v []*string) *B
 	return s
 }
 
-// Defines a binary column statistics data.
+// Defines column statistics supported for bit sequence data values.
 type BinaryColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Average length of the column.
+	// The average bit sequence length in the column.
 	//
 	// AverageLength is a required field
 	AverageLength *float64 `type:"double" required:"true"`
 
-	// Maximum length of the column.
+	// The size of the longest bit sequence in the column.
 	//
 	// MaximumLength is a required field
 	MaximumLength *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
@@ -15423,21 +15441,21 @@ func (s *BinaryColumnStatisticsData) SetNumberOfNulls(v int64) *BinaryColumnStat
 	return s
 }
 
-// Defines a boolean column statistics.
+// Defines column statistics supported for Boolean data columns.
 type BooleanColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Number of false value.
+	// The number of false values in the column.
 	//
 	// NumberOfFalses is a required field
 	NumberOfFalses *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
 
-	// Number of true value.
+	// The number of true values in the column.
 	//
 	// NumberOfTrues is a required field
 	NumberOfTrues *int64 `type:"long" required:"true"`
@@ -16129,14 +16147,14 @@ func (s *Column) SetType(v string) *Column {
 	return s
 }
 
-// Defines a column containing error.
+// Encapsulates a column name that failed and the reason for failure.
 type ColumnError struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the column.
+	// The name of the column that failed.
 	ColumnName *string `min:"1" type:"string"`
 
-	// The error message occurred during operation.
+	// An error message with the reason for the failure of an operation.
 	Error *ErrorDetail `type:"structure"`
 }
 
@@ -16162,26 +16180,26 @@ func (s *ColumnError) SetError(v *ErrorDetail) *ColumnError {
 	return s
 }
 
-// Defines a column statistics.
+// Represents the generated column-level statistics for a table or partition.
 type ColumnStatistics struct {
 	_ struct{} `type:"structure"`
 
-	// The analyzed time of the column statistics.
+	// The timestamp of when column statistics were generated.
 	//
 	// AnalyzedTime is a required field
 	AnalyzedTime *time.Time `type:"timestamp" required:"true"`
 
-	// The name of the column.
+	// Name of column which statistics belong to.
 	//
 	// ColumnName is a required field
 	ColumnName *string `min:"1" type:"string" required:"true"`
 
-	// The type of the column.
+	// The data type of the column.
 	//
 	// ColumnType is a required field
 	ColumnType *string `type:"string" required:"true"`
 
-	// The statistics of the column.
+	// A ColumnStatisticData object that contains the statistics data values.
 	//
 	// StatisticsData is a required field
 	StatisticsData *ColumnStatisticsData `type:"structure" required:"true"`
@@ -16251,32 +16269,33 @@ func (s *ColumnStatistics) SetStatisticsData(v *ColumnStatisticsData) *ColumnSta
 	return s
 }
 
-// Defines a column statistics data.
+// Contains the individual types of column statistics data. Only one data object
+// should be set and indicated by the Type attribute.
 type ColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Binary Column Statistics Data.
+	// Binary column statistics data.
 	BinaryColumnStatisticsData *BinaryColumnStatisticsData `type:"structure"`
 
-	// Boolean Column Statistics Data.
+	// Boolean column statistics data.
 	BooleanColumnStatisticsData *BooleanColumnStatisticsData `type:"structure"`
 
-	// Date Column Statistics Data.
+	// Date column statistics data.
 	DateColumnStatisticsData *DateColumnStatisticsData `type:"structure"`
 
-	// Decimal Column Statistics Data.
+	// Decimal column statistics data.
 	DecimalColumnStatisticsData *DecimalColumnStatisticsData `type:"structure"`
 
-	// Double Column Statistics Data.
+	// Double column statistics data.
 	DoubleColumnStatisticsData *DoubleColumnStatisticsData `type:"structure"`
 
-	// Long Column Statistics Data.
+	// Long column statistics data.
 	LongColumnStatisticsData *LongColumnStatisticsData `type:"structure"`
 
-	// String Column Statistics Data.
+	// String column statistics data.
 	StringColumnStatisticsData *StringColumnStatisticsData `type:"structure"`
 
-	// The name of the column.
+	// The type of column statistics data.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ColumnStatisticsType"`
@@ -16388,14 +16407,14 @@ func (s *ColumnStatisticsData) SetType(v string) *ColumnStatisticsData {
 	return s
 }
 
-// Defines a column containing error.
+// Encapsulates a ColumnStatistics object that failed and the reason for failure.
 type ColumnStatisticsError struct {
 	_ struct{} `type:"structure"`
 
 	// The ColumnStatistics of the column.
 	ColumnStatistics *ColumnStatistics `type:"structure"`
 
-	// The error message occurred during operation.
+	// An error message with the reason for the failure of an operation.
 	Error *ErrorDetail `type:"structure"`
 }
 
@@ -19289,6 +19308,11 @@ type CreateMLTransformInput struct {
 	// terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
 	Timeout *int64 `min:"1" type:"integer"`
 
+	// The encryption-at-rest settings of the transform that apply to accessing
+	// user data. Machine learning transforms can access user data encrypted in
+	// Amazon S3 using KMS.
+	TransformEncryption *TransformEncryption `type:"structure"`
+
 	// The type of predefined worker that is allocated when this task runs. Accepts
 	// a value of Standard, G.1X, or G.2X.
 	//
@@ -19364,6 +19388,11 @@ func (s *CreateMLTransformInput) Validate() error {
 			invalidParams.AddNested("Parameters", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.TransformEncryption != nil {
+		if err := s.TransformEncryption.Validate(); err != nil {
+			invalidParams.AddNested("TransformEncryption", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -19434,6 +19463,12 @@ func (s *CreateMLTransformInput) SetTags(v map[string]*string) *CreateMLTransfor
 // SetTimeout sets the Timeout field's value.
 func (s *CreateMLTransformInput) SetTimeout(v int64) *CreateMLTransformInput {
 	s.Timeout = &v
+	return s
+}
+
+// SetTransformEncryption sets the TransformEncryption field's value.
+func (s *CreateMLTransformInput) SetTransformEncryption(v *TransformEncryption) *CreateMLTransformInput {
+	s.TransformEncryption = v
 	return s
 }
 
@@ -20754,22 +20789,22 @@ func (s *DatabaseInput) SetTargetDatabase(v *DatabaseIdentifier) *DatabaseInput 
 	return s
 }
 
-// Defines a date column statistics data.
+// Defines column statistics supported for timestamp data columns.
 type DateColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum value of the column.
+	// The highest value in the column.
 	MaximumValue *time.Time `type:"timestamp"`
 
-	// Minimum value of the column.
+	// The lowest value in the column.
 	MinimumValue *time.Time `type:"timestamp"`
 
-	// Number of distinct values.
+	// The number of distinct values in a column.
 	//
 	// NumberOfDistinctValues is a required field
 	NumberOfDistinctValues *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
@@ -20825,22 +20860,22 @@ func (s *DateColumnStatisticsData) SetNumberOfNulls(v int64) *DateColumnStatisti
 	return s
 }
 
-// Defines a decimal column statistics data.
+// Defines column statistics supported for fixed-point number data columns.
 type DecimalColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum value of the column.
+	// The highest value in the column.
 	MaximumValue *DecimalNumber `type:"structure"`
 
-	// Minimum value of the column.
+	// The lowest value in the column.
 	MinimumValue *DecimalNumber `type:"structure"`
 
-	// Number of distinct values.
+	// The number of distinct values in a column.
 	//
 	// NumberOfDistinctValues is a required field
 	NumberOfDistinctValues *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
@@ -22575,22 +22610,22 @@ func (s *DevEndpointCustomLibraries) SetExtraPythonLibsS3Path(v string) *DevEndp
 	return s
 }
 
-// Defines a double column statistics data.
+// Defines column statistics supported for floating-point number data columns.
 type DoubleColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum value of the column.
+	// The highest value in the column.
 	MaximumValue *float64 `type:"double"`
 
-	// Minimum value of the column.
+	// The lowest value in the column.
 	MinimumValue *float64 `type:"double"`
 
-	// Number of distinct values.
+	// The number of distinct values in a column.
 	//
 	// NumberOfDistinctValues is a required field
 	NumberOfDistinctValues *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
@@ -25429,6 +25464,11 @@ type GetMLTransformOutput struct {
 	// terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
 	Timeout *int64 `min:"1" type:"integer"`
 
+	// The encryption-at-rest settings of the transform that apply to accessing
+	// user data. Machine learning transforms can access user data encrypted in
+	// Amazon S3 using KMS.
+	TransformEncryption *TransformEncryption `type:"structure"`
+
 	// The unique identifier of the transform, generated at the time that the transform
 	// was created.
 	TransformId *string `min:"1" type:"string"`
@@ -25550,6 +25590,12 @@ func (s *GetMLTransformOutput) SetStatus(v string) *GetMLTransformOutput {
 // SetTimeout sets the Timeout field's value.
 func (s *GetMLTransformOutput) SetTimeout(v int64) *GetMLTransformOutput {
 	s.Timeout = &v
+	return s
+}
+
+// SetTransformEncryption sets the TransformEncryption field's value.
+func (s *GetMLTransformOutput) SetTransformEncryption(v *TransformEncryption) *GetMLTransformOutput {
+	s.TransformEncryption = v
 	return s
 }
 
@@ -30219,22 +30265,22 @@ func (s *Location) SetS3(v []*CodeGenNodeArg) *Location {
 	return s
 }
 
-// Defines a long column statistics data.
+// Defines column statistics supported for integer data columns.
 type LongColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Maximum value of the column.
+	// The highest value in the column.
 	MaximumValue *int64 `type:"long"`
 
-	// Minimum value of the column.
+	// The lowest value in the column.
 	MinimumValue *int64 `type:"long"`
 
-	// Number of distinct values.
+	// The number of distinct values in a column.
 	//
 	// NumberOfDistinctValues is a required field
 	NumberOfDistinctValues *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
@@ -30390,6 +30436,11 @@ type MLTransform struct {
 	// The timeout in minutes of the machine learning transform.
 	Timeout *int64 `min:"1" type:"integer"`
 
+	// The encryption-at-rest settings of the transform that apply to accessing
+	// user data. Machine learning transforms can access user data encrypted in
+	// Amazon S3 using KMS.
+	TransformEncryption *TransformEncryption `type:"structure"`
+
 	// The unique transform ID that is generated for the machine learning transform.
 	// The ID is guaranteed to be unique and does not change.
 	TransformId *string `min:"1" type:"string"`
@@ -30526,6 +30577,12 @@ func (s *MLTransform) SetTimeout(v int64) *MLTransform {
 	return s
 }
 
+// SetTransformEncryption sets the TransformEncryption field's value.
+func (s *MLTransform) SetTransformEncryption(v *TransformEncryption) *MLTransform {
+	s.TransformEncryption = v
+	return s
+}
+
 // SetTransformId sets the TransformId field's value.
 func (s *MLTransform) SetTransformId(v string) *MLTransform {
 	s.TransformId = &v
@@ -30593,6 +30650,63 @@ func (s *MLTransformNotReadyException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *MLTransformNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The encryption-at-rest settings of the transform that apply to accessing
+// user data.
+type MLUserDataEncryption struct {
+	_ struct{} `type:"structure"`
+
+	// The ID for the customer-provided KMS key.
+	KmsKeyId *string `min:"1" type:"string"`
+
+	// The encryption mode applied to user data. Valid values are:
+	//
+	//    * DISABLED: encryption is disabled
+	//
+	//    * SSEKMS: use of server-side encryption with AWS Key Management Service
+	//    (SSE-KMS) for user data stored in Amazon S3.
+	//
+	// MlUserDataEncryptionMode is a required field
+	MlUserDataEncryptionMode *string `type:"string" required:"true" enum:"MLUserDataEncryptionModeString"`
+}
+
+// String returns the string representation
+func (s MLUserDataEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MLUserDataEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MLUserDataEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MLUserDataEncryption"}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.MlUserDataEncryptionMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("MlUserDataEncryptionMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *MLUserDataEncryption) SetKmsKeyId(v string) *MLUserDataEncryption {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetMlUserDataEncryptionMode sets the MlUserDataEncryptionMode field's value.
+func (s *MLUserDataEncryption) SetMlUserDataEncryptionMode(v string) *MLUserDataEncryption {
+	s.MlUserDataEncryptionMode = &v
+	return s
 }
 
 // Defines a mapping.
@@ -34087,26 +34201,26 @@ func (s *StorageDescriptor) SetStoredAsSubDirectories(v bool) *StorageDescriptor
 	return s
 }
 
-// Defines a string column statistics data.
+// Defines column statistics supported for character sequence data values.
 type StringColumnStatisticsData struct {
 	_ struct{} `type:"structure"`
 
-	// Average value of the column.
+	// The average string length in the column.
 	//
 	// AverageLength is a required field
 	AverageLength *float64 `type:"double" required:"true"`
 
-	// Maximum value of the column.
+	// The size of the longest string in the column.
 	//
 	// MaximumLength is a required field
 	MaximumLength *int64 `type:"long" required:"true"`
 
-	// Number of distinct values.
+	// The number of distinct values in a column.
 	//
 	// NumberOfDistinctValues is a required field
 	NumberOfDistinctValues *int64 `type:"long" required:"true"`
 
-	// Number of nulls.
+	// The number of null values in the column.
 	//
 	// NumberOfNulls is a required field
 	NumberOfNulls *int64 `type:"long" required:"true"`
@@ -35147,6 +35261,63 @@ func (s *TaskRunSortCriteria) SetSortDirection(v string) *TaskRunSortCriteria {
 	return s
 }
 
+// The encryption-at-rest settings of the transform that apply to accessing
+// user data. Machine learning transforms can access user data encrypted in
+// Amazon S3 using KMS.
+//
+// Additionally, imported labels and trained transforms can now be encrypted
+// using a customer provided KMS key.
+type TransformEncryption struct {
+	_ struct{} `type:"structure"`
+
+	// An MLUserDataEncryption object containing the encryption mode and customer-provided
+	// KMS key ID.
+	MlUserDataEncryption *MLUserDataEncryption `type:"structure"`
+
+	// The name of the security configuration.
+	TaskRunSecurityConfigurationName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s TransformEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TransformEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransformEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransformEncryption"}
+	if s.TaskRunSecurityConfigurationName != nil && len(*s.TaskRunSecurityConfigurationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TaskRunSecurityConfigurationName", 1))
+	}
+	if s.MlUserDataEncryption != nil {
+		if err := s.MlUserDataEncryption.Validate(); err != nil {
+			invalidParams.AddNested("MlUserDataEncryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMlUserDataEncryption sets the MlUserDataEncryption field's value.
+func (s *TransformEncryption) SetMlUserDataEncryption(v *MLUserDataEncryption) *TransformEncryption {
+	s.MlUserDataEncryption = v
+	return s
+}
+
+// SetTaskRunSecurityConfigurationName sets the TaskRunSecurityConfigurationName field's value.
+func (s *TransformEncryption) SetTaskRunSecurityConfigurationName(v string) *TransformEncryption {
+	s.TaskRunSecurityConfigurationName = &v
+	return s
+}
+
 // The criteria used to filter the machine learning transforms.
 type TransformFilterCriteria struct {
 	_ struct{} `type:"structure"`
@@ -35290,7 +35461,7 @@ type TransformParameters struct {
 	// The type of machine learning transform.
 	//
 	// For information about the types of machine learning transforms, see Creating
-	// Machine Learning Transforms (http://docs.aws.amazon.com/glue/latest/dg/add-job-machine-learning-transform.html).
+	// Machine Learning Transforms (https://docs.aws.amazon.com/glue/latest/dg/add-job-machine-learning-transform.html).
 	//
 	// TransformType is a required field
 	TransformType *string `type:"string" required:"true" enum:"TransformType"`
@@ -38758,6 +38929,22 @@ const (
 func LogicalOperator_Values() []string {
 	return []string{
 		LogicalOperatorEquals,
+	}
+}
+
+const (
+	// MLUserDataEncryptionModeStringDisabled is a MLUserDataEncryptionModeString enum value
+	MLUserDataEncryptionModeStringDisabled = "DISABLED"
+
+	// MLUserDataEncryptionModeStringSseKms is a MLUserDataEncryptionModeString enum value
+	MLUserDataEncryptionModeStringSseKms = "SSE-KMS"
+)
+
+// MLUserDataEncryptionModeString_Values returns all elements of the MLUserDataEncryptionModeString enum
+func MLUserDataEncryptionModeString_Values() []string {
+	return []string{
+		MLUserDataEncryptionModeStringDisabled,
+		MLUserDataEncryptionModeStringSseKms,
 	}
 }
 
