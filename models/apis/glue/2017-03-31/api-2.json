@@ -3213,7 +3213,8 @@
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "Timeout":{"shape":"Timeout"},
         "MaxRetries":{"shape":"NullableInteger"},
-        "Tags":{"shape":"TagsMap"}
+        "Tags":{"shape":"TagsMap"},
+        "TransformEncryption":{"shape":"TransformEncryption"}
       }
     },
     "CreateMLTransformResponse":{
@@ -4397,7 +4398,8 @@
         "WorkerType":{"shape":"WorkerType"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "Timeout":{"shape":"Timeout"},
-        "MaxRetries":{"shape":"NullableInteger"}
+        "MaxRetries":{"shape":"NullableInteger"},
+        "TransformEncryption":{"shape":"TransformEncryption"}
       }
     },
     "GetMLTransformsRequest":{
@@ -5348,7 +5350,8 @@
         "WorkerType":{"shape":"WorkerType"},
         "NumberOfWorkers":{"shape":"NullableInteger"},
         "Timeout":{"shape":"Timeout"},
-        "MaxRetries":{"shape":"NullableInteger"}
+        "MaxRetries":{"shape":"NullableInteger"},
+        "TransformEncryption":{"shape":"TransformEncryption"}
       }
     },
     "MLTransformNotReadyException":{
@@ -5357,6 +5360,21 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "MLUserDataEncryption":{
+      "type":"structure",
+      "required":["MlUserDataEncryptionMode"],
+      "members":{
+        "MlUserDataEncryptionMode":{"shape":"MLUserDataEncryptionModeString"},
+        "KmsKeyId":{"shape":"NameString"}
+      }
+    },
+    "MLUserDataEncryptionModeString":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "SSE-KMS"
+      ]
     },
     "MapValue":{
       "type":"map",
@@ -6493,6 +6511,13 @@
       "type":"integer",
       "max":10,
       "min":1
+    },
+    "TransformEncryption":{
+      "type":"structure",
+      "members":{
+        "MlUserDataEncryption":{"shape":"MLUserDataEncryption"},
+        "TaskRunSecurityConfigurationName":{"shape":"NameString"}
+      }
     },
     "TransformFilterCriteria":{
       "type":"structure",

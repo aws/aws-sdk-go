@@ -1,3 +1,10 @@
+Release v1.35.16 (2020-10-27)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * AWS Glue machine learning transforms now support encryption-at-rest for labels and trained models.
+
 Release v1.35.15 (2020-10-26)
 ===
 
