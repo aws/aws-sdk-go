@@ -1,3 +1,14 @@
+Release v1.35.17 (2020-10-28)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * AWS Nitro Enclaves general availability. Added support to RunInstances for creating enclave-enabled EC2 instances. New APIs to associate an ACM certificate with an IAM role, for enclave consumption.
+* `service/iot`: Updates service API and documentation
+  * This release adds support for GG-Managed Job Namespace
+* `service/workmail`: Updates service documentation
+  * Documentation update for Amazon WorkMail
+
 Release v1.35.16 (2020-10-27)
 ===
 

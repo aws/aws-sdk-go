@@ -5237,6 +5237,12 @@
           "eu-west-3" : { },
           "me-south-1" : { },
           "sa-east-1" : { },
+          "servicediscovery-fips" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "servicediscovery-fips.ca-central-1.amazonaws.com"
+          },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-1" : { },

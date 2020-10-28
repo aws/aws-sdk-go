@@ -6058,8 +6058,8 @@ type CreateUserInput struct {
 	// DisplayName is a required field
 	DisplayName *string `type:"string" required:"true"`
 
-	// The name for the new user. Simple AD or AD Connector user names have a maximum
-	// length of 20. All others have a maximum length of 64.
+	// The name for the new user. WorkMail directory user names have a maximum length
+	// of 64. All others have a maximum length of 20.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`

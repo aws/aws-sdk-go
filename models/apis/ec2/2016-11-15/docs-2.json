@@ -16,6 +16,7 @@
     "AssociateAddress": "<p>Associates an Elastic IP address, or carrier IP address (for instances that are in subnets in Wavelength Zones) with an instance or a network interface. Before you can use an Elastic IP address, you must allocate it to your account.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>[EC2-Classic, VPC in an EC2-VPC-only account] If the Elastic IP address is already associated with a different instance, it is disassociated from that instance and associated with the specified instance. If you associate an Elastic IP address with an instance that has an existing Elastic IP address, the existing address is disassociated from the instance, but remains allocated to your account.</p> <p>[VPC in an EC2-Classic account] If you don't specify a private IP address, the Elastic IP address is associated with the primary IP address. If the Elastic IP address is already associated with a different instance or a network interface, you get an error unless you allow reassociation. You cannot associate an Elastic IP address with an instance or network interface that has an existing Elastic IP address.</p> <p>[Subnets in Wavelength Zones] You can associate an IP address from the telecommunication carrier to the instance or network interface. </p> <p>You cannot associate an Elastic IP address with an interface in a different network border group.</p> <important> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error, and you may be charged for each time the Elastic IP address is remapped to the same instance. For more information, see the <i>Elastic IP Addresses</i> section of <a href=\"http://aws.amazon.com/ec2/pricing/\">Amazon EC2 Pricing</a>.</p> </important>",
     "AssociateClientVpnTargetNetwork": "<p>Associates a target network with a Client VPN endpoint. A target network is a subnet in a VPC. You can associate multiple subnets from the same VPC with a Client VPN endpoint. You can associate only one subnet in each Availability Zone. We recommend that you associate at least two subnets to provide Availability Zone redundancy.</p> <p>If you specified a VPC when you created the Client VPN endpoint or if you have previous subnet associations, the specified subnet must be in the same VPC. To specify a subnet that's in a different VPC, you must first modify the Client VPN endpoint (<a>ModifyClientVpnEndpoint</a>) and change the VPC that's associated with it.</p>",
     "AssociateDhcpOptions": "<p>Associates a set of DHCP options (that you've previously created) with the specified VPC, or associates no DHCP options with the VPC.</p> <p>After you associate the options with the VPC, any existing instances and all new instances that you launch in that VPC use the options. You don't need to restart or relaunch the instances. They automatically pick up the changes within a few hours, depending on how frequently the instance renews its DHCP lease. You can explicitly renew the lease using the operating system on the instance.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\">DHCP Options Sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
+    "AssociateEnclaveCertificateIamRole": "<p>Associates an AWS Identity and Access Management (IAM) role with an AWS Certificate Manager (ACM) certificate. This enables the certificate to be used by the ACM for Nitro Enclaves application inside an enclave. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html\">AWS Certificate Manager for Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When the IAM role is associated with the ACM certificate, places the certificate, certificate chain, and encrypted private key in an Amazon S3 bucket that only the associated IAM role can access. The private key of the certificate is encrypted with an AWS-managed KMS key that has an attached attestation-based key policy.</p> <p>To enable the IAM role to access the Amazon S3 object, you must grant it permission to call <code>s3:GetObject</code> on the Amazon S3 bucket returned by the command. To enable the IAM role to access the AWS KMS key, you must grant it permission to call <code>kms:Decrypt</code> on AWS KMS key returned by the command. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave-refapp.html#add-policy\"> Grant the role permission to access the certificate and encryption key</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "AssociateIamInstanceProfile": "<p>Associates an IAM instance profile with a running or stopped instance. You cannot associate more than one IAM instance profile with an instance.</p>",
     "AssociateRouteTable": "<p>Associates a subnet in your VPC or an internet gateway or virtual private gateway attached to your VPC with a route table in your VPC. This association causes traffic from the subnet or gateway to be routed according to the routes in the route table. The action returns an association ID, which you need in order to disassociate the route table later. A route table can be associated with multiple subnets.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "AssociateSubnetCidrBlock": "<p>Associates a CIDR block with your subnet. You can only associate a single IPv6 CIDR block with your subnet. An IPv6 CIDR block must have a prefix length of /64.</p>",
@@ -282,6 +283,7 @@
     "DisableVpcClassicLinkDnsSupport": "<p>Disables ClassicLink DNS support for a VPC. If disabled, DNS hostnames resolve to public IP addresses when addressed between a linked EC2-Classic instance and instances in the VPC to which it's linked. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-classiclink.html\">ClassicLink</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You must specify a VPC ID in the request.</p>",
     "DisassociateAddress": "<p>Disassociates an Elastic IP address from the instance or network interface it's associated with.</p> <p>An Elastic IP address is for use in either the EC2-Classic platform or in a VPC. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>This is an idempotent operation. If you perform the operation more than once, Amazon EC2 doesn't return an error.</p>",
     "DisassociateClientVpnTargetNetwork": "<p>Disassociates a target network from the specified Client VPN endpoint. When you disassociate the last target network from a Client VPN, the following happens:</p> <ul> <li> <p>The route that was automatically added for the VPC is deleted</p> </li> <li> <p>All active client connections are terminated</p> </li> <li> <p>New client connections are disallowed</p> </li> <li> <p>The Client VPN endpoint's status changes to <code>pending-associate</code> </p> </li> </ul>",
+    "DisassociateEnclaveCertificateIamRole": "<p>Disassociates an IAM role from an AWS Certificate Manager (ACM) certificate. Disassociating an IAM role from an ACM certificate removes the Amazon S3 object that contains the certificate, certificate chain, and encrypted private key from the Amazon S3 bucket. It also revokes the IAM role's permission to use the AWS Key Management Service (KMS) key used to encrypt the private key. This effectively revokes the role's permission to use the certificate. </p>",
     "DisassociateIamInstanceProfile": "<p>Disassociates an IAM instance profile from a running or stopped instance.</p> <p>Use <a>DescribeIamInstanceProfileAssociations</a> to get the association ID.</p>",
     "DisassociateRouteTable": "<p>Disassociates a subnet or gateway from a route table.</p> <p>After you perform this action, the subnet no longer uses the routes in the route table. Instead, it uses the routes in the VPC's main route table. For more information about route tables, see <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Route_Tables.html\">Route Tables</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>",
     "DisassociateSubnetCidrBlock": "<p>Disassociates a CIDR block from a subnet. Currently, you can disassociate an IPv6 CIDR block only. You must detach or delete all gateways and resources that are associated with the CIDR block before you can disassociate it. </p>",
@@ -299,6 +301,7 @@
     "ExportClientVpnClientConfiguration": "<p>Downloads the contents of the Client VPN endpoint configuration file for the specified Client VPN endpoint. The Client VPN endpoint configuration file includes the Client VPN endpoint and certificate information clients need to establish a connection with the Client VPN endpoint.</p>",
     "ExportImage": "<p>Exports an Amazon Machine Image (AMI) to a VM file. For more information, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmexport_image.html\">Exporting a VM Directory from an Amazon Machine Image (AMI)</a> in the <i>VM Import/Export User Guide</i>.</p>",
     "ExportTransitGatewayRoutes": "<p>Exports routes from the specified transit gateway route table to the specified S3 bucket. By default, all routes are exported. Alternatively, you can filter by CIDR range.</p> <p>The routes are saved to the specified bucket in a JSON file. For more information, see <a href=\"https://docs.aws.amazon.com/vpc/latest/tgw/tgw-route-tables.html#tgw-export-route-tables\">Export Route Tables to Amazon S3</a> in <i>Transit Gateways</i>.</p>",
+    "GetAssociatedEnclaveCertificateIamRoles": "<p>Returns the IAM roles that are associated with the specified AWS Certificate Manager (ACM) certificate. It also returns the name of the Amazon S3 bucket and the Amazon S3 object key where the certificate, certificate chain, and encrypted private key bundle are stored, and the ARN of the AWS Key Management Service (KMS) key that's used to encrypt the private key.</p>",
     "GetAssociatedIpv6PoolCidrs": "<p>Gets information about the IPv6 CIDR block associations for a specified IPv6 address pool.</p>",
     "GetCapacityReservationUsage": "<p>Gets usage information about a Capacity Reservation. If the Capacity Reservation is shared, it shows usage information for the Capacity Reservation owner and each AWS account that is currently using the shared capacity. If the Capacity Reservation is not shared, it shows only the Capacity Reservation owner's usage.</p>",
     "GetCoipPoolUsage": "<p>Describes the allocations from the specified customer-owned address pool.</p>",
@@ -723,6 +726,16 @@
       "refs": {
       }
     },
+    "AssociateEnclaveCertificateIamRoleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateEnclaveCertificateIamRoleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "AssociateIamInstanceProfileRequest": {
       "base": null,
       "refs": {
@@ -787,6 +800,18 @@
       "base": null,
       "refs": {
         "AssociatedTargetNetwork$NetworkType": "<p>The target network type.</p>"
+      }
+    },
+    "AssociatedRole": {
+      "base": "<p>Information about the associated IAM roles.</p>",
+      "refs": {
+        "AssociatedRolesList$member": null
+      }
+    },
+    "AssociatedRolesList": {
+      "base": null,
+      "refs": {
+        "GetAssociatedEnclaveCertificateIamRolesResult$AssociatedRoles": "<p>Information about the associated IAM roles.</p>"
       }
     },
     "AssociatedTargetNetwork": {
@@ -1122,6 +1147,7 @@
         "AssociateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateDhcpOptionsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "AssociateEnclaveCertificateIamRoleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTransitGatewayMulticastDomainRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "AssociateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1416,6 +1442,8 @@
         "DisableVpcClassicLinkResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DisassociateAddressRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateClientVpnTargetNetworkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisassociateEnclaveCertificateIamRoleRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DisassociateEnclaveCertificateIamRoleResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "DisassociateRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateTransitGatewayMulticastDomainRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DisassociateTransitGatewayRouteTableRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1433,6 +1461,8 @@
         "EnableVpcClassicLinkDnsSupportResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "EnableVpcClassicLinkRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "EnableVpcClassicLinkResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
+        "EnclaveOptions$Enabled": "<p>If this parameter is set to <code>true</code>, the instance is enabled for AWS Nitro Enclaves; otherwise, it is not enabled for AWS Nitro Enclaves.</p>",
+        "EnclaveOptionsRequest$Enabled": "<p>To enable the instance for AWS Nitro Enclaves, set this parameter to <code>true</code>.</p>",
         "ExportClientVpnClientCertificateRevocationListRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ExportClientVpnClientConfigurationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ExportImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1441,6 +1471,7 @@
         "FleetData$ReplaceUnhealthyInstances": "<p>Indicates whether EC2 Fleet should replace unhealthy instances.</p>",
         "FpgaImage$Public": "<p>Indicates whether the AFI is public.</p>",
         "FpgaImage$DataRetentionSupport": "<p>Indicates whether data retention support is enabled for the AFI.</p>",
+        "GetAssociatedEnclaveCertificateIamRolesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetAssociatedIpv6PoolCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetCapacityReservationUsageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "GetCoipPoolUsageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1498,6 +1529,8 @@
         "LaunchTemplateEbsBlockDevice$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$Encrypted": "<p>Indicates whether the EBS volume is encrypted. Encrypted volumes can only be attached to instances that support Amazon EBS encryption. If you are creating a volume from a snapshot, you can't specify an encryption value.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$DeleteOnTermination": "<p>Indicates whether the EBS volume is deleted on instance termination.</p>",
+        "LaunchTemplateEnclaveOptions$Enabled": "<p>If this parameter is set to <code>true</code>, the instance is enabled for AWS Nitro Enclaves; otherwise, it is not enabled for AWS Nitro Enclaves.</p>",
+        "LaunchTemplateEnclaveOptionsRequest$Enabled": "<p>To enable the instance for AWS Nitro Enclaves, set this parameter to <code>true</code>.</p>",
         "LaunchTemplateHibernationOptions$Configured": "<p>If this parameter is set to <code>true</code>, the instance is enabled for hibernation; otherwise, it is not enabled for hibernation.</p>",
         "LaunchTemplateHibernationOptionsRequest$Configured": "<p>If you set this parameter to <code>true</code>, the instance is enabled for hibernation.</p> <p>Default: <code>false</code> </p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$AssociateCarrierIpAddress": "<p>Indicates whether to associate a Carrier IP address with eth0 for a new network interface.</p> <p>Use this option when you launch an instance in a Wavelength Zone and want to associate a Carrier IP address with the network interface. For more information about Carrier IP addresses, see <a href=\"https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#provider-owned-ip\">Carrier IP addresses</a> in the <i>AWS Wavelength Developer Guide</i>.</p>",
@@ -5466,6 +5499,16 @@
       "refs": {
       }
     },
+    "DisassociateEnclaveCertificateIamRoleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateEnclaveCertificateIamRoleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DisassociateIamInstanceProfileRequest": {
       "base": null,
       "refs": {
@@ -5975,6 +6018,19 @@
     "EnableVpcClassicLinkResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "EnclaveOptions": {
+      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves.</p>",
+      "refs": {
+        "Instance$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves.</p>",
+        "InstanceAttribute$EnclaveOptions": "<p>To enable the instance for AWS Nitro Enclaves, set this parameter to <code>true</code>; otherwise, set it to <code>false</code>.</p>"
+      }
+    },
+    "EnclaveOptionsRequest": {
+      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "RunInstancesRequest$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can't enable AWS Nitro Enclaves and hibernation on the same instance. For more information about AWS Nitro Enclaves requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html#nitro-enclave-reqs\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "EndDateType": {
@@ -6626,6 +6682,16 @@
         "VpnGateway$Type": "<p>The type of VPN connection the virtual private gateway supports.</p>"
       }
     },
+    "GetAssociatedEnclaveCertificateIamRolesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAssociatedEnclaveCertificateIamRolesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetAssociatedIpv6PoolCidrsRequest": {
       "base": null,
       "refs": {
@@ -6955,7 +7021,7 @@
     "HibernationOptionsRequest": {
       "base": "<p>Indicates whether your instance is configured for hibernation. This parameter is valid only if the instance meets the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html#hibernating-prerequisites\">hibernation prerequisites</a>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate your instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
-        "RunInstancesRequest$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate your instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+        "RunInstancesRequest$HibernationOptions": "<p>Indicates whether an instance is enabled for hibernation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html\">Hibernate your instance</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can't enable hibernation and AWS Nitro Enclaves on the same instance.</p>"
       }
     },
     "HistoryRecord": {
@@ -8633,6 +8699,18 @@
       "base": null,
       "refs": {
         "ResponseLaunchTemplateData$ElasticInferenceAccelerators": "<p> The elastic inference accelerator for the instance. </p>"
+      }
+    },
+    "LaunchTemplateEnclaveOptions": {
+      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves.</p>",
+      "refs": {
+        "ResponseLaunchTemplateData$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves.</p>"
+      }
+    },
+    "LaunchTemplateEnclaveOptionsRequest": {
+      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "RequestLaunchTemplateData$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can't enable AWS Nitro Enclaves and hibernation on the same instance. For more information about AWS Nitro Enclaves requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html#nitro-enclave-reqs\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
       }
     },
     "LaunchTemplateErrorCode": {
@@ -11452,7 +11530,13 @@
     "ResourceArn": {
       "base": null,
       "refs": {
+        "AssociateEnclaveCertificateIamRoleRequest$CertificateArn": "<p>The ARN of the ACM certificate with which to associate the IAM role.</p>",
+        "AssociateEnclaveCertificateIamRoleRequest$RoleArn": "<p>The ARN of the IAM role to associate with the ACM certificate. You can associate up to 16 IAM roles with an ACM certificate.</p>",
+        "AssociatedRole$AssociatedRoleArn": "<p>The ARN of the associated IAM role.</p>",
         "CoipPool$PoolArn": "<p>The ARN of the address pool.</p>",
+        "DisassociateEnclaveCertificateIamRoleRequest$CertificateArn": "<p>The ARN of the ACM certificate from which to disassociate the IAM role.</p>",
+        "DisassociateEnclaveCertificateIamRoleRequest$RoleArn": "<p>The ARN of the IAM role to disassociate.</p>",
+        "GetAssociatedEnclaveCertificateIamRolesRequest$CertificateArn": "<p>The ARN of the ACM certificate for which to view the associated IAM roles, encryption keys, and Amazon S3 object information.</p>",
         "LocalGatewayRoute$LocalGatewayRouteTableArn": "<p>The Amazon Resource Name (ARN) of the local gateway route table.</p>",
         "LocalGatewayRouteTable$LocalGatewayRouteTableArn": "<p>The Amazon Resource Name (ARN) of the local gateway route table.</p>",
         "LocalGatewayRouteTableVirtualInterfaceGroupAssociation$LocalGatewayRouteTableArn": "<p>The Amazon Resource Name (ARN) of the local gateway route table for the virtual interface group.</p>",
@@ -12448,6 +12532,9 @@
         "AssociateAddressResult$AssociationId": "<p>[EC2-VPC] The ID that represents the association of the Elastic IP address with an instance.</p>",
         "AssociateClientVpnTargetNetworkRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a>.</p>",
         "AssociateClientVpnTargetNetworkResult$AssociationId": "<p>The unique ID of the target network association.</p>",
+        "AssociateEnclaveCertificateIamRoleResult$CertificateS3BucketName": "<p>The name of the Amazon S3 bucket to which the certificate was uploaded.</p>",
+        "AssociateEnclaveCertificateIamRoleResult$CertificateS3ObjectKey": "<p>The Amazon S3 object key where the certificate, certificate chain, and encrypted private key bundle are stored. The object key is formatted as follows: <code>certificate_arn</code>/<code>role_arn</code>.</p>",
+        "AssociateEnclaveCertificateIamRoleResult$EncryptionKmsKeyId": "<p>The ID of the AWS Key Management Service (KMS) key used to encrypt the private key of the certificate.</p>",
         "AssociateRouteTableResult$AssociationId": "<p>The route table association ID. This ID is required for disassociating the route table.</p>",
         "AssociateSubnetCidrBlockRequest$Ipv6CidrBlock": "<p>The IPv6 CIDR block for your subnet. The subnet must have a /64 prefix length.</p>",
         "AssociateSubnetCidrBlockResult$SubnetId": "<p>The ID of the subnet.</p>",
@@ -12455,6 +12542,9 @@
         "AssociateVpcCidrBlockRequest$Ipv6CidrBlockNetworkBorderGroup": "<p>The name of the location from which we advertise the IPV6 CIDR block. Use this parameter to limit the CIDR block to this location.</p> <p> You must set <code>AmazonProvidedIpv6CidrBlock</code> to <code>true</code> to use this parameter.</p> <p> You can have one IPv6 CIDR block association per network border group.</p>",
         "AssociateVpcCidrBlockRequest$Ipv6CidrBlock": "<p>An IPv6 CIDR block from the IPv6 address pool. You must also specify <code>Ipv6Pool</code> in the request.</p> <p>To let Amazon choose the IPv6 CIDR block for you, omit this parameter.</p>",
         "AssociateVpcCidrBlockResult$VpcId": "<p>The ID of the VPC.</p>",
+        "AssociatedRole$CertificateS3BucketName": "<p>The name of the Amazon S3 bucket in which the Amazon S3 object is stored.</p>",
+        "AssociatedRole$CertificateS3ObjectKey": "<p>The key of the Amazon S3 object ey where the certificate, certificate chain, and encrypted private key bundle is stored. The object key is formated as follows: <code>certificate_arn</code>/<code>role_arn</code>. </p>",
+        "AssociatedRole$EncryptionKmsKeyId": "<p>The ID of the KMS key used to encrypt the private key.</p>",
         "AssociatedTargetNetwork$NetworkId": "<p>The ID of the subnet.</p>",
         "AssociationStatus$Message": "<p>A message about the status of the target network association, if applicable.</p>",
         "AttachNetworkInterfaceResult$AttachmentId": "<p>The ID of the network interface attachment.</p>",
