@@ -23041,6 +23041,16 @@ type AssociateTargetsWithJobInput struct {
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+
 	// A list of thing group ARNs that define the targets of the job.
 	//
 	// Targets is a required field
@@ -23066,6 +23076,9 @@ func (s *AssociateTargetsWithJobInput) Validate() error {
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
 	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
+	}
 	if s.Targets == nil {
 		invalidParams.Add(request.NewErrParamRequired("Targets"))
 	}
@@ -23088,6 +23101,12 @@ func (s *AssociateTargetsWithJobInput) SetComment(v string) *AssociateTargetsWit
 // SetJobId sets the JobId field's value.
 func (s *AssociateTargetsWithJobInput) SetJobId(v string) *AssociateTargetsWithJobInput {
 	s.JobId = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *AssociateTargetsWithJobInput) SetNamespaceId(v string) *AssociateTargetsWithJobInput {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -27436,6 +27455,16 @@ type CreateJobInput struct {
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `locationName:"namespaceId" min:"1" type:"string"`
+
 	// Configuration information for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
@@ -27483,6 +27512,9 @@ func (s *CreateJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.Targets == nil {
 		invalidParams.Add(request.NewErrParamRequired("Targets"))
@@ -27555,6 +27587,12 @@ func (s *CreateJobInput) SetJobExecutionsRolloutConfig(v *JobExecutionsRolloutCo
 // SetJobId sets the JobId field's value.
 func (s *CreateJobInput) SetJobId(v string) *CreateJobInput {
 	s.JobId = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *CreateJobInput) SetNamespaceId(v string) *CreateJobInput {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -30528,6 +30566,16 @@ type DeleteJobExecutionInput struct {
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+
 	// The name of the thing whose job execution will be deleted.
 	//
 	// ThingName is a required field
@@ -30555,6 +30603,9 @@ func (s *DeleteJobExecutionInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
@@ -30584,6 +30635,12 @@ func (s *DeleteJobExecutionInput) SetForce(v bool) *DeleteJobExecutionInput {
 // SetJobId sets the JobId field's value.
 func (s *DeleteJobExecutionInput) SetJobId(v string) *DeleteJobExecutionInput {
 	s.JobId = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *DeleteJobExecutionInput) SetNamespaceId(v string) *DeleteJobExecutionInput {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -30628,6 +30685,16 @@ type DeleteJobInput struct {
 	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
+
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -30649,6 +30716,9 @@ func (s *DeleteJobInput) Validate() error {
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
 	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -30665,6 +30735,12 @@ func (s *DeleteJobInput) SetForce(v bool) *DeleteJobInput {
 // SetJobId sets the JobId field's value.
 func (s *DeleteJobInput) SetJobId(v string) *DeleteJobInput {
 	s.JobId = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *DeleteJobInput) SetNamespaceId(v string) *DeleteJobInput {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -37924,6 +38000,16 @@ type Job struct {
 	// The time, in seconds since the epoch, when the job was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `locationName:"namespaceId" min:"1" type:"string"`
+
 	// Configuration for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
@@ -38025,6 +38111,12 @@ func (s *Job) SetJobProcessDetails(v *JobProcessDetails) *Job {
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *Job) SetLastUpdatedAt(v time.Time) *Job {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *Job) SetNamespaceId(v string) *Job {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -40462,6 +40554,16 @@ type ListJobExecutionsForThingInput struct {
 	// The maximum number of results to be returned per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+
 	// The token to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
@@ -40491,6 +40593,9 @@ func (s *ListJobExecutionsForThingInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
@@ -40507,6 +40612,12 @@ func (s *ListJobExecutionsForThingInput) Validate() error {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListJobExecutionsForThingInput) SetMaxResults(v int64) *ListJobExecutionsForThingInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *ListJobExecutionsForThingInput) SetNamespaceId(v string) *ListJobExecutionsForThingInput {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -40567,6 +40678,16 @@ type ListJobsInput struct {
 	// The maximum number of results to return per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+
 	// The token to retrieve the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
@@ -40605,6 +40726,9 @@ func (s *ListJobsInput) Validate() error {
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
+	}
 	if s.ThingGroupId != nil && len(*s.ThingGroupId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingGroupId", 1))
 	}
@@ -40621,6 +40745,12 @@ func (s *ListJobsInput) Validate() error {
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListJobsInput) SetMaxResults(v int64) *ListJobsInput {
 	s.MaxResults = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *ListJobsInput) SetNamespaceId(v string) *ListJobsInput {
+	s.NamespaceId = &v
 	return s
 }
 
@@ -52202,6 +52332,16 @@ type UpdateJobInput struct {
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
 
+	// The namespace used to indicate that a job is a customer-managed job.
+	//
+	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
+	// to MQTT topics that contain the value in the following format.
+	//
+	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
+	//
+	// The namespaceId feature is in public preview.
+	NamespaceId *string `location:"querystring" locationName:"namespaceId" min:"1" type:"string"`
+
 	// Configuration information for pre-signed S3 URLs.
 	PresignedUrlConfig *PresignedUrlConfig `locationName:"presignedUrlConfig" type:"structure"`
 
@@ -52230,6 +52370,9 @@ func (s *UpdateJobInput) Validate() error {
 	}
 	if s.JobId != nil && len(*s.JobId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobId", 1))
+	}
+	if s.NamespaceId != nil && len(*s.NamespaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamespaceId", 1))
 	}
 	if s.AbortConfig != nil {
 		if err := s.AbortConfig.Validate(); err != nil {
@@ -52274,6 +52417,12 @@ func (s *UpdateJobInput) SetJobExecutionsRolloutConfig(v *JobExecutionsRolloutCo
 // SetJobId sets the JobId field's value.
 func (s *UpdateJobInput) SetJobId(v string) *UpdateJobInput {
 	s.JobId = &v
+	return s
+}
+
+// SetNamespaceId sets the NamespaceId field's value.
+func (s *UpdateJobInput) SetNamespaceId(v string) *UpdateJobInput {
+	s.NamespaceId = &v
 	return s
 }
 

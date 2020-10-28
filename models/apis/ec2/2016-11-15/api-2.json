@@ -137,6 +137,15 @@
       },
       "input":{"shape":"AssociateDhcpOptionsRequest"}
     },
+    "AssociateEnclaveCertificateIamRole":{
+      "name":"AssociateEnclaveCertificateIamRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateEnclaveCertificateIamRoleRequest"},
+      "output":{"shape":"AssociateEnclaveCertificateIamRoleResult"}
+    },
     "AssociateIamInstanceProfile":{
       "name":"AssociateIamInstanceProfile",
       "http":{
@@ -2497,6 +2506,15 @@
       "input":{"shape":"DisassociateClientVpnTargetNetworkRequest"},
       "output":{"shape":"DisassociateClientVpnTargetNetworkResult"}
     },
+    "DisassociateEnclaveCertificateIamRole":{
+      "name":"DisassociateEnclaveCertificateIamRole",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateEnclaveCertificateIamRoleRequest"},
+      "output":{"shape":"DisassociateEnclaveCertificateIamRoleResult"}
+    },
     "DisassociateIamInstanceProfile":{
       "name":"DisassociateIamInstanceProfile",
       "http":{
@@ -2646,6 +2664,15 @@
       },
       "input":{"shape":"ExportTransitGatewayRoutesRequest"},
       "output":{"shape":"ExportTransitGatewayRoutesResult"}
+    },
+    "GetAssociatedEnclaveCertificateIamRoles":{
+      "name":"GetAssociatedEnclaveCertificateIamRoles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAssociatedEnclaveCertificateIamRolesRequest"},
+      "output":{"shape":"GetAssociatedEnclaveCertificateIamRolesResult"}
     },
     "GetAssociatedIpv6PoolCidrs":{
       "name":"GetAssociatedIpv6PoolCidrs",
@@ -4390,6 +4417,31 @@
         }
       }
     },
+    "AssociateEnclaveCertificateIamRoleRequest":{
+      "type":"structure",
+      "members":{
+        "CertificateArn":{"shape":"ResourceArn"},
+        "RoleArn":{"shape":"ResourceArn"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "AssociateEnclaveCertificateIamRoleResult":{
+      "type":"structure",
+      "members":{
+        "CertificateS3BucketName":{
+          "shape":"String",
+          "locationName":"certificateS3BucketName"
+        },
+        "CertificateS3ObjectKey":{
+          "shape":"String",
+          "locationName":"certificateS3ObjectKey"
+        },
+        "EncryptionKmsKeyId":{
+          "shape":"String",
+          "locationName":"encryptionKmsKeyId"
+        }
+      }
+    },
     "AssociateIamInstanceProfileRequest":{
       "type":"structure",
       "required":[
@@ -4549,6 +4601,34 @@
     "AssociatedNetworkType":{
       "type":"string",
       "enum":["vpc"]
+    },
+    "AssociatedRole":{
+      "type":"structure",
+      "members":{
+        "AssociatedRoleArn":{
+          "shape":"ResourceArn",
+          "locationName":"associatedRoleArn"
+        },
+        "CertificateS3BucketName":{
+          "shape":"String",
+          "locationName":"certificateS3BucketName"
+        },
+        "CertificateS3ObjectKey":{
+          "shape":"String",
+          "locationName":"certificateS3ObjectKey"
+        },
+        "EncryptionKmsKeyId":{
+          "shape":"String",
+          "locationName":"encryptionKmsKeyId"
+        }
+      }
+    },
+    "AssociatedRolesList":{
+      "type":"list",
+      "member":{
+        "shape":"AssociatedRole",
+        "locationName":"item"
+      }
     },
     "AssociatedTargetNetwork":{
       "type":"structure",
@@ -13720,6 +13800,23 @@
         }
       }
     },
+    "DisassociateEnclaveCertificateIamRoleRequest":{
+      "type":"structure",
+      "members":{
+        "CertificateArn":{"shape":"ResourceArn"},
+        "RoleArn":{"shape":"ResourceArn"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DisassociateEnclaveCertificateIamRoleResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "DisassociateIamInstanceProfileRequest":{
       "type":"structure",
       "required":["AssociationId"],
@@ -14595,6 +14692,21 @@
           "shape":"Boolean",
           "locationName":"return"
         }
+      }
+    },
+    "EnclaveOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "locationName":"enabled"
+        }
+      }
+    },
+    "EnclaveOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "EndDateType":{
@@ -15609,6 +15721,22 @@
     "GatewayType":{
       "type":"string",
       "enum":["ipsec.1"]
+    },
+    "GetAssociatedEnclaveCertificateIamRolesRequest":{
+      "type":"structure",
+      "members":{
+        "CertificateArn":{"shape":"ResourceArn"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetAssociatedEnclaveCertificateIamRolesResult":{
+      "type":"structure",
+      "members":{
+        "AssociatedRoles":{
+          "shape":"AssociatedRolesList",
+          "locationName":"associatedRoleSet"
+        }
+      }
     },
     "GetAssociatedIpv6PoolCidrsRequest":{
       "type":"structure",
@@ -17715,6 +17843,10 @@
         "MetadataOptions":{
           "shape":"InstanceMetadataOptionsResponse",
           "locationName":"metadataOptions"
+        },
+        "EnclaveOptions":{
+          "shape":"EnclaveOptions",
+          "locationName":"enclaveOptions"
         }
       }
     },
@@ -17736,6 +17868,10 @@
         "EnaSupport":{
           "shape":"AttributeBooleanValue",
           "locationName":"enaSupport"
+        },
+        "EnclaveOptions":{
+          "shape":"EnclaveOptions",
+          "locationName":"enclaveOptions"
         },
         "EbsOptimized":{
           "shape":"AttributeBooleanValue",
@@ -17799,7 +17935,8 @@
         "groupSet",
         "ebsOptimized",
         "sriovNetSupport",
-        "enaSupport"
+        "enaSupport",
+        "enclaveOptions"
       ]
     },
     "InstanceBlockDeviceMapping":{
@@ -19705,6 +19842,21 @@
       "member":{
         "shape":"LaunchTemplateElasticInferenceAcceleratorResponse",
         "locationName":"item"
+      }
+    },
+    "LaunchTemplateEnclaveOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "locationName":"enabled"
+        }
+      }
+    },
+    "LaunchTemplateEnclaveOptionsRequest":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "LaunchTemplateErrorCode":{
@@ -24420,7 +24572,8 @@
           "locationName":"LicenseSpecification"
         },
         "HibernationOptions":{"shape":"LaunchTemplateHibernationOptionsRequest"},
-        "MetadataOptions":{"shape":"LaunchTemplateInstanceMetadataOptionsRequest"}
+        "MetadataOptions":{"shape":"LaunchTemplateInstanceMetadataOptionsRequest"},
+        "EnclaveOptions":{"shape":"LaunchTemplateEnclaveOptionsRequest"}
       }
     },
     "RequestSpotFleetRequest":{
@@ -25352,6 +25505,10 @@
         "MetadataOptions":{
           "shape":"LaunchTemplateInstanceMetadataOptions",
           "locationName":"metadataOptions"
+        },
+        "EnclaveOptions":{
+          "shape":"LaunchTemplateEnclaveOptions",
+          "locationName":"enclaveOptions"
         }
       }
     },
@@ -25836,7 +25993,8 @@
           "shape":"LicenseSpecificationListRequest",
           "locationName":"LicenseSpecification"
         },
-        "MetadataOptions":{"shape":"InstanceMetadataOptionsRequest"}
+        "MetadataOptions":{"shape":"InstanceMetadataOptionsRequest"},
+        "EnclaveOptions":{"shape":"EnclaveOptionsRequest"}
       }
     },
     "RunScheduledInstancesRequest":{
