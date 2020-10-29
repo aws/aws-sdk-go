@@ -638,6 +638,14 @@
         "Host$AllowsMultipleInstanceTypes": "<p>Indicates whether the Dedicated Host supports multiple instance types of the same instance family, or a specific instance type only. <code>one</code> indicates that the Dedicated Host supports multiple instance types in the instance family. <code>off</code> indicates that the Dedicated Host supports a single instance type only.</p>"
       }
     },
+    "ApplianceModeSupportValue": {
+      "base": null,
+      "refs": {
+        "CreateTransitGatewayVpcAttachmentRequestOptions$ApplianceModeSupport": "<p>Enable or disable support for appliance mode. If enabled, a traffic flow between a source and destination uses the same Availability Zone for the VPC attachment for the lifetime of that flow. The default is <code>disable</code>.</p>",
+        "ModifyTransitGatewayVpcAttachmentRequestOptions$ApplianceModeSupport": "<p>Enable or disable support for appliance mode. If enabled, a traffic flow between a source and destination uses the same Availability Zone for the VPC attachment for the lifetime of that flow. The default is <code>disable</code>.</p>",
+        "TransitGatewayVpcAttachmentOptions$ApplianceModeSupport": "<p>Indicates whether appliance mode support is enabled.</p>"
+      }
+    },
     "ApplySecurityGroupsToClientVpnTargetNetworkRequest": {
       "base": null,
       "refs": {
@@ -2196,7 +2204,7 @@
       }
     },
     "ClientVpnAuthentication": {
-      "base": "<p>Describes the authentication methods used by a Client VPN endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/authentication-authrization.html#client-authentication\">Authentication</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>",
+      "base": "<p>Describes the authentication methods used by a Client VPN endpoint. For more information, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/client-authentication.html\">Authentication</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>",
       "refs": {
         "ClientVpnAuthenticationList$member": null
       }
@@ -6246,7 +6254,7 @@
       }
     },
     "FederatedAuthentication": {
-      "base": "<p>Describes the IAM SAML identity provider used for federated authentication.</p>",
+      "base": "<p>Describes the IAM SAML identity providers used for federated authentication.</p>",
       "refs": {
         "ClientVpnAuthentication$FederatedAuthentication": "<p>Information about the IAM SAML identity provider, if applicable.</p>"
       }
@@ -12040,6 +12048,13 @@
         "RunInstancesRequest$SecurityGroups": "<p>[EC2-Classic, default VPC] The names of the security groups. For a nondefault VPC, you must use security group IDs instead.</p> <p>If you specify a network interface, you must specify any security groups as part of the network interface.</p> <p>Default: Amazon EC2 uses the default security group.</p>"
       }
     },
+    "SelfServicePortal": {
+      "base": null,
+      "refs": {
+        "CreateClientVpnEndpointRequest$SelfServicePortal": "<p>Specify whether to enable the self-service portal for the Client VPN endpoint.</p> <p>Default Value: <code>enabled</code> </p>",
+        "ModifyClientVpnEndpointRequest$SelfServicePortal": "<p>Specify whether to enable the self-service portal for the Client VPN endpoint.</p>"
+      }
+    },
     "SendDiagnosticInterruptRequest": {
       "base": null,
       "refs": {
@@ -12641,6 +12656,7 @@
         "ClientVpnEndpoint$DnsName": "<p>The DNS name to be used by clients when connecting to the Client VPN endpoint.</p>",
         "ClientVpnEndpoint$ClientCidrBlock": "<p>The IPv4 address range, in CIDR notation, from which client IP addresses are assigned.</p>",
         "ClientVpnEndpoint$ServerCertificateArn": "<p>The ARN of the server certificate.</p>",
+        "ClientVpnEndpoint$SelfServicePortalUrl": "<p>The URL of the self-service portal.</p>",
         "ClientVpnEndpointStatus$Message": "<p>A message about the status of the Client VPN endpoint.</p>",
         "ClientVpnRoute$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the route is associated.</p>",
         "ClientVpnRoute$DestinationCidr": "<p>The IPv4 address range, in CIDR notation, of the route destination.</p>",
@@ -13072,7 +13088,9 @@
         "ExportTransitGatewayRoutesResult$S3Location": "<p>The URL of the exported file in Amazon S3. For example, s3://<i>bucket_name</i>/VPCTransitGateway/TransitGatewayRouteTables/<i>file_name</i>.</p>",
         "FailedQueuedPurchaseDeletion$ReservedInstancesId": "<p>The ID of the Reserved Instance.</p>",
         "FederatedAuthentication$SamlProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
+        "FederatedAuthentication$SelfServiceSamlProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal.</p>",
         "FederatedAuthenticationRequest$SAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
+        "FederatedAuthenticationRequest$SelfServiceSAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal.</p>",
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
         "FleetData$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
         "FleetLaunchTemplateOverrides$MaxPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance.</p>",

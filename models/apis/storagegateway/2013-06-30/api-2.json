@@ -1028,6 +1028,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateSMBFileShareVisibility":{
+      "name":"UpdateSMBFileShareVisibility",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSMBFileShareVisibilityInput"},
+      "output":{"shape":"UpdateSMBFileShareVisibilityOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateSMBSecurityStrategy":{
       "name":"UpdateSMBSecurityStrategy",
       "http":{
@@ -1435,7 +1448,8 @@
         "RequesterPays":{"shape":"Boolean"},
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "NotificationPolicy":{"shape":"NotificationPolicy"}
       }
     },
     "CreateNFSFileShareOutput":{
@@ -1465,6 +1479,7 @@
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
         "RequesterPays":{"shape":"Boolean"},
         "SMBACLEnabled":{"shape":"Boolean"},
+        "AccessBasedEnumeration":{"shape":"Boolean"},
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
@@ -1473,7 +1488,8 @@
         "CaseSensitivity":{"shape":"CaseSensitivity"},
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "NotificationPolicy":{"shape":"NotificationPolicy"}
       }
     },
     "CreateSMBFileShareOutput":{
@@ -1947,7 +1963,8 @@
         "DomainName":{"shape":"DomainName"},
         "ActiveDirectoryStatus":{"shape":"ActiveDirectoryStatus"},
         "SMBGuestPasswordSet":{"shape":"Boolean"},
-        "SMBSecurityStrategy":{"shape":"SMBSecurityStrategy"}
+        "SMBSecurityStrategy":{"shape":"SMBSecurityStrategy"},
+        "FileSharesVisible":{"shape":"Boolean"}
       }
     },
     "DescribeSnapshotScheduleInput":{
@@ -2698,7 +2715,8 @@
         "RequesterPays":{"shape":"Boolean"},
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "NotificationPolicy":{"shape":"NotificationPolicy"}
       }
     },
     "NFSFileShareInfoList":{
@@ -2726,6 +2744,12 @@
       "type":"string",
       "max":2048,
       "min":1
+    },
+    "NotificationPolicy":{
+      "type":"string",
+      "max":100,
+      "min":2,
+      "pattern":"^\\{[\\w\\s:\\{\\}\\[\\]\"]*}$"
     },
     "NotifyWhenUploadedInput":{
       "type":"structure",
@@ -2953,6 +2977,7 @@
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
         "RequesterPays":{"shape":"Boolean"},
         "SMBACLEnabled":{"shape":"Boolean"},
+        "AccessBasedEnumeration":{"shape":"Boolean"},
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
@@ -2961,7 +2986,8 @@
         "CaseSensitivity":{"shape":"CaseSensitivity"},
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "NotificationPolicy":{"shape":"NotificationPolicy"}
       }
     },
     "SMBFileShareInfoList":{
@@ -3398,7 +3424,8 @@
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
         "RequesterPays":{"shape":"Boolean"},
         "FileShareName":{"shape":"FileShareName"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "NotificationPolicy":{"shape":"NotificationPolicy"}
       }
     },
     "UpdateNFSFileShareOutput":{
@@ -3420,19 +3447,38 @@
         "GuessMIMETypeEnabled":{"shape":"Boolean"},
         "RequesterPays":{"shape":"Boolean"},
         "SMBACLEnabled":{"shape":"Boolean"},
+        "AccessBasedEnumeration":{"shape":"Boolean"},
         "AdminUserList":{"shape":"FileShareUserList"},
         "ValidUserList":{"shape":"FileShareUserList"},
         "InvalidUserList":{"shape":"FileShareUserList"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "CaseSensitivity":{"shape":"CaseSensitivity"},
         "FileShareName":{"shape":"FileShareName"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "NotificationPolicy":{"shape":"NotificationPolicy"}
       }
     },
     "UpdateSMBFileShareOutput":{
       "type":"structure",
       "members":{
         "FileShareARN":{"shape":"FileShareARN"}
+      }
+    },
+    "UpdateSMBFileShareVisibilityInput":{
+      "type":"structure",
+      "required":[
+        "GatewayARN",
+        "FileSharesVisible"
+      ],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "FileSharesVisible":{"shape":"Boolean"}
+      }
+    },
+    "UpdateSMBFileShareVisibilityOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
       }
     },
     "UpdateSMBSecurityStrategyInput":{

@@ -186,6 +186,10 @@ type CodeArtifactAPI interface {
 	ListRepositoriesInDomainPages(*codeartifact.ListRepositoriesInDomainInput, func(*codeartifact.ListRepositoriesInDomainOutput, bool) bool) error
 	ListRepositoriesInDomainPagesWithContext(aws.Context, *codeartifact.ListRepositoriesInDomainInput, func(*codeartifact.ListRepositoriesInDomainOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*codeartifact.ListTagsForResourceInput) (*codeartifact.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *codeartifact.ListTagsForResourceInput, ...request.Option) (*codeartifact.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*codeartifact.ListTagsForResourceInput) (*request.Request, *codeartifact.ListTagsForResourceOutput)
+
 	PutDomainPermissionsPolicy(*codeartifact.PutDomainPermissionsPolicyInput) (*codeartifact.PutDomainPermissionsPolicyOutput, error)
 	PutDomainPermissionsPolicyWithContext(aws.Context, *codeartifact.PutDomainPermissionsPolicyInput, ...request.Option) (*codeartifact.PutDomainPermissionsPolicyOutput, error)
 	PutDomainPermissionsPolicyRequest(*codeartifact.PutDomainPermissionsPolicyInput) (*request.Request, *codeartifact.PutDomainPermissionsPolicyOutput)
@@ -193,6 +197,14 @@ type CodeArtifactAPI interface {
 	PutRepositoryPermissionsPolicy(*codeartifact.PutRepositoryPermissionsPolicyInput) (*codeartifact.PutRepositoryPermissionsPolicyOutput, error)
 	PutRepositoryPermissionsPolicyWithContext(aws.Context, *codeartifact.PutRepositoryPermissionsPolicyInput, ...request.Option) (*codeartifact.PutRepositoryPermissionsPolicyOutput, error)
 	PutRepositoryPermissionsPolicyRequest(*codeartifact.PutRepositoryPermissionsPolicyInput) (*request.Request, *codeartifact.PutRepositoryPermissionsPolicyOutput)
+
+	TagResource(*codeartifact.TagResourceInput) (*codeartifact.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *codeartifact.TagResourceInput, ...request.Option) (*codeartifact.TagResourceOutput, error)
+	TagResourceRequest(*codeartifact.TagResourceInput) (*request.Request, *codeartifact.TagResourceOutput)
+
+	UntagResource(*codeartifact.UntagResourceInput) (*codeartifact.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *codeartifact.UntagResourceInput, ...request.Option) (*codeartifact.UntagResourceOutput, error)
+	UntagResourceRequest(*codeartifact.UntagResourceInput) (*request.Request, *codeartifact.UntagResourceOutput)
 
 	UpdatePackageVersionsStatus(*codeartifact.UpdatePackageVersionsStatusInput) (*codeartifact.UpdatePackageVersionsStatusOutput, error)
 	UpdatePackageVersionsStatusWithContext(aws.Context, *codeartifact.UpdatePackageVersionsStatusInput, ...request.Option) (*codeartifact.UpdatePackageVersionsStatusOutput, error)

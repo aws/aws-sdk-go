@@ -68,6 +68,14 @@ type SESV2API interface {
 	CreateConfigurationSetEventDestinationWithContext(aws.Context, *sesv2.CreateConfigurationSetEventDestinationInput, ...request.Option) (*sesv2.CreateConfigurationSetEventDestinationOutput, error)
 	CreateConfigurationSetEventDestinationRequest(*sesv2.CreateConfigurationSetEventDestinationInput) (*request.Request, *sesv2.CreateConfigurationSetEventDestinationOutput)
 
+	CreateContact(*sesv2.CreateContactInput) (*sesv2.CreateContactOutput, error)
+	CreateContactWithContext(aws.Context, *sesv2.CreateContactInput, ...request.Option) (*sesv2.CreateContactOutput, error)
+	CreateContactRequest(*sesv2.CreateContactInput) (*request.Request, *sesv2.CreateContactOutput)
+
+	CreateContactList(*sesv2.CreateContactListInput) (*sesv2.CreateContactListOutput, error)
+	CreateContactListWithContext(aws.Context, *sesv2.CreateContactListInput, ...request.Option) (*sesv2.CreateContactListOutput, error)
+	CreateContactListRequest(*sesv2.CreateContactListInput) (*request.Request, *sesv2.CreateContactListOutput)
+
 	CreateCustomVerificationEmailTemplate(*sesv2.CreateCustomVerificationEmailTemplateInput) (*sesv2.CreateCustomVerificationEmailTemplateOutput, error)
 	CreateCustomVerificationEmailTemplateWithContext(aws.Context, *sesv2.CreateCustomVerificationEmailTemplateInput, ...request.Option) (*sesv2.CreateCustomVerificationEmailTemplateOutput, error)
 	CreateCustomVerificationEmailTemplateRequest(*sesv2.CreateCustomVerificationEmailTemplateInput) (*request.Request, *sesv2.CreateCustomVerificationEmailTemplateOutput)
@@ -103,6 +111,14 @@ type SESV2API interface {
 	DeleteConfigurationSetEventDestination(*sesv2.DeleteConfigurationSetEventDestinationInput) (*sesv2.DeleteConfigurationSetEventDestinationOutput, error)
 	DeleteConfigurationSetEventDestinationWithContext(aws.Context, *sesv2.DeleteConfigurationSetEventDestinationInput, ...request.Option) (*sesv2.DeleteConfigurationSetEventDestinationOutput, error)
 	DeleteConfigurationSetEventDestinationRequest(*sesv2.DeleteConfigurationSetEventDestinationInput) (*request.Request, *sesv2.DeleteConfigurationSetEventDestinationOutput)
+
+	DeleteContact(*sesv2.DeleteContactInput) (*sesv2.DeleteContactOutput, error)
+	DeleteContactWithContext(aws.Context, *sesv2.DeleteContactInput, ...request.Option) (*sesv2.DeleteContactOutput, error)
+	DeleteContactRequest(*sesv2.DeleteContactInput) (*request.Request, *sesv2.DeleteContactOutput)
+
+	DeleteContactList(*sesv2.DeleteContactListInput) (*sesv2.DeleteContactListOutput, error)
+	DeleteContactListWithContext(aws.Context, *sesv2.DeleteContactListInput, ...request.Option) (*sesv2.DeleteContactListOutput, error)
+	DeleteContactListRequest(*sesv2.DeleteContactListInput) (*request.Request, *sesv2.DeleteContactListOutput)
 
 	DeleteCustomVerificationEmailTemplate(*sesv2.DeleteCustomVerificationEmailTemplateInput) (*sesv2.DeleteCustomVerificationEmailTemplateOutput, error)
 	DeleteCustomVerificationEmailTemplateWithContext(aws.Context, *sesv2.DeleteCustomVerificationEmailTemplateInput, ...request.Option) (*sesv2.DeleteCustomVerificationEmailTemplateOutput, error)
@@ -143,6 +159,14 @@ type SESV2API interface {
 	GetConfigurationSetEventDestinations(*sesv2.GetConfigurationSetEventDestinationsInput) (*sesv2.GetConfigurationSetEventDestinationsOutput, error)
 	GetConfigurationSetEventDestinationsWithContext(aws.Context, *sesv2.GetConfigurationSetEventDestinationsInput, ...request.Option) (*sesv2.GetConfigurationSetEventDestinationsOutput, error)
 	GetConfigurationSetEventDestinationsRequest(*sesv2.GetConfigurationSetEventDestinationsInput) (*request.Request, *sesv2.GetConfigurationSetEventDestinationsOutput)
+
+	GetContact(*sesv2.GetContactInput) (*sesv2.GetContactOutput, error)
+	GetContactWithContext(aws.Context, *sesv2.GetContactInput, ...request.Option) (*sesv2.GetContactOutput, error)
+	GetContactRequest(*sesv2.GetContactInput) (*request.Request, *sesv2.GetContactOutput)
+
+	GetContactList(*sesv2.GetContactListInput) (*sesv2.GetContactListOutput, error)
+	GetContactListWithContext(aws.Context, *sesv2.GetContactListInput, ...request.Option) (*sesv2.GetContactListOutput, error)
+	GetContactListRequest(*sesv2.GetContactListInput) (*request.Request, *sesv2.GetContactListOutput)
 
 	GetCustomVerificationEmailTemplate(*sesv2.GetCustomVerificationEmailTemplateInput) (*sesv2.GetCustomVerificationEmailTemplateOutput, error)
 	GetCustomVerificationEmailTemplateWithContext(aws.Context, *sesv2.GetCustomVerificationEmailTemplateInput, ...request.Option) (*sesv2.GetCustomVerificationEmailTemplateOutput, error)
@@ -201,6 +225,20 @@ type SESV2API interface {
 
 	ListConfigurationSetsPages(*sesv2.ListConfigurationSetsInput, func(*sesv2.ListConfigurationSetsOutput, bool) bool) error
 	ListConfigurationSetsPagesWithContext(aws.Context, *sesv2.ListConfigurationSetsInput, func(*sesv2.ListConfigurationSetsOutput, bool) bool, ...request.Option) error
+
+	ListContactLists(*sesv2.ListContactListsInput) (*sesv2.ListContactListsOutput, error)
+	ListContactListsWithContext(aws.Context, *sesv2.ListContactListsInput, ...request.Option) (*sesv2.ListContactListsOutput, error)
+	ListContactListsRequest(*sesv2.ListContactListsInput) (*request.Request, *sesv2.ListContactListsOutput)
+
+	ListContactListsPages(*sesv2.ListContactListsInput, func(*sesv2.ListContactListsOutput, bool) bool) error
+	ListContactListsPagesWithContext(aws.Context, *sesv2.ListContactListsInput, func(*sesv2.ListContactListsOutput, bool) bool, ...request.Option) error
+
+	ListContacts(*sesv2.ListContactsInput) (*sesv2.ListContactsOutput, error)
+	ListContactsWithContext(aws.Context, *sesv2.ListContactsInput, ...request.Option) (*sesv2.ListContactsOutput, error)
+	ListContactsRequest(*sesv2.ListContactsInput) (*request.Request, *sesv2.ListContactsOutput)
+
+	ListContactsPages(*sesv2.ListContactsInput, func(*sesv2.ListContactsOutput, bool) bool) error
+	ListContactsPagesWithContext(aws.Context, *sesv2.ListContactsInput, func(*sesv2.ListContactsOutput, bool) bool, ...request.Option) error
 
 	ListCustomVerificationEmailTemplates(*sesv2.ListCustomVerificationEmailTemplatesInput) (*sesv2.ListCustomVerificationEmailTemplatesOutput, error)
 	ListCustomVerificationEmailTemplatesWithContext(aws.Context, *sesv2.ListCustomVerificationEmailTemplatesInput, ...request.Option) (*sesv2.ListCustomVerificationEmailTemplatesOutput, error)
@@ -357,6 +395,14 @@ type SESV2API interface {
 	UpdateConfigurationSetEventDestination(*sesv2.UpdateConfigurationSetEventDestinationInput) (*sesv2.UpdateConfigurationSetEventDestinationOutput, error)
 	UpdateConfigurationSetEventDestinationWithContext(aws.Context, *sesv2.UpdateConfigurationSetEventDestinationInput, ...request.Option) (*sesv2.UpdateConfigurationSetEventDestinationOutput, error)
 	UpdateConfigurationSetEventDestinationRequest(*sesv2.UpdateConfigurationSetEventDestinationInput) (*request.Request, *sesv2.UpdateConfigurationSetEventDestinationOutput)
+
+	UpdateContact(*sesv2.UpdateContactInput) (*sesv2.UpdateContactOutput, error)
+	UpdateContactWithContext(aws.Context, *sesv2.UpdateContactInput, ...request.Option) (*sesv2.UpdateContactOutput, error)
+	UpdateContactRequest(*sesv2.UpdateContactInput) (*request.Request, *sesv2.UpdateContactOutput)
+
+	UpdateContactList(*sesv2.UpdateContactListInput) (*sesv2.UpdateContactListOutput, error)
+	UpdateContactListWithContext(aws.Context, *sesv2.UpdateContactListInput, ...request.Option) (*sesv2.UpdateContactListOutput, error)
+	UpdateContactListRequest(*sesv2.UpdateContactListInput) (*request.Request, *sesv2.UpdateContactListOutput)
 
 	UpdateCustomVerificationEmailTemplate(*sesv2.UpdateCustomVerificationEmailTemplateInput) (*sesv2.UpdateCustomVerificationEmailTemplateOutput, error)
 	UpdateCustomVerificationEmailTemplateWithContext(aws.Context, *sesv2.UpdateCustomVerificationEmailTemplateInput, ...request.Option) (*sesv2.UpdateCustomVerificationEmailTemplateOutput, error)

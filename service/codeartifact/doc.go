@@ -21,8 +21,7 @@
 //    each of which maps to a set of assets, or files. Repositories are polyglot,
 //    so a single repository can contain packages of any supported type. Each
 //    repository exposes endpoints for fetching and publishing packages using
-//    tools like the npm CLI, the Maven CLI ( mvn ), and pip . You can create
-//    up to 100 repositories per AWS account.
+//    tools like the npm CLI, the Maven CLI ( mvn ), and pip .
 //
 //    * Domain: Repositories are aggregated into a higher-level entity known
 //    as a domain. All package assets and metadata are stored in the domain,

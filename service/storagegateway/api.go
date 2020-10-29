@@ -7486,7 +7486,7 @@ func (c *StorageGateway) UpdateNFSFileShareRequest(input *UpdateNFSFileShareInpu
 // To leave a file share field unchanged, set the corresponding input field
 // to null.
 //
-// Updates the following file share setting:
+// Updates the following file share settings:
 //
 //    * Default storage class for your S3 bucket
 //
@@ -7497,9 +7497,6 @@ func (c *StorageGateway) UpdateNFSFileShareRequest(input *UpdateNFSFileShareInpu
 //    * Squash settings
 //
 //    * Write status of your file share
-//
-// To leave a file share field unchanged, set the corresponding input field
-// to null. This operation is only supported in file gateways.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7583,10 +7580,11 @@ func (c *StorageGateway) UpdateSMBFileShareRequest(input *UpdateSMBFileShareInpu
 
 // UpdateSMBFileShare API operation for AWS Storage Gateway.
 //
-// Updates a Server Message Block (SMB) file share.
+// Updates a Server Message Block (SMB) file share. This operation is only supported
+// for file gateways.
 //
 // To leave a file share field unchanged, set the corresponding input field
-// to null. This operation is only supported for file gateways.
+// to null.
 //
 // File gateways require AWS Security Token Service (AWS STS) to be activated
 // to enable you to create a file share. Make sure that AWS STS is activated
@@ -7630,6 +7628,91 @@ func (c *StorageGateway) UpdateSMBFileShare(input *UpdateSMBFileShareInput) (*Up
 // for more information on using Contexts.
 func (c *StorageGateway) UpdateSMBFileShareWithContext(ctx aws.Context, input *UpdateSMBFileShareInput, opts ...request.Option) (*UpdateSMBFileShareOutput, error) {
 	req, out := c.UpdateSMBFileShareRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSMBFileShareVisibility = "UpdateSMBFileShareVisibility"
+
+// UpdateSMBFileShareVisibilityRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSMBFileShareVisibility operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSMBFileShareVisibility for more information on using the UpdateSMBFileShareVisibility
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSMBFileShareVisibilityRequest method.
+//    req, resp := client.UpdateSMBFileShareVisibilityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateSMBFileShareVisibility
+func (c *StorageGateway) UpdateSMBFileShareVisibilityRequest(input *UpdateSMBFileShareVisibilityInput) (req *request.Request, output *UpdateSMBFileShareVisibilityOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSMBFileShareVisibility,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateSMBFileShareVisibilityInput{}
+	}
+
+	output = &UpdateSMBFileShareVisibilityOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSMBFileShareVisibility API operation for AWS Storage Gateway.
+//
+// Controls whether the shares on a gateway are visible in a net view or browse
+// list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Storage Gateway's
+// API operation UpdateSMBFileShareVisibility for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidGatewayRequestException
+//   An exception occurred because an invalid gateway request was issued to the
+//   service. For more information, see the error and message fields.
+//
+//   * InternalServerError
+//   An internal server error has occurred during the request. For more information,
+//   see the error and message fields.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/storagegateway-2013-06-30/UpdateSMBFileShareVisibility
+func (c *StorageGateway) UpdateSMBFileShareVisibility(input *UpdateSMBFileShareVisibilityInput) (*UpdateSMBFileShareVisibilityOutput, error) {
+	req, out := c.UpdateSMBFileShareVisibilityRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSMBFileShareVisibilityWithContext is the same as UpdateSMBFileShareVisibility with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSMBFileShareVisibility for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *StorageGateway) UpdateSMBFileShareVisibilityWithContext(ctx aws.Context, input *UpdateSMBFileShareVisibilityInput, opts ...request.Option) (*UpdateSMBFileShareVisibilityOutput, error) {
+	req, out := c.UpdateSMBFileShareVisibilityRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9585,6 +9668,9 @@ type CreateNFSFileShareInput struct {
 	// File share default values. Optional.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
+	// The notification policy of the file share.
+	NotificationPolicy *string `min:"2" type:"string"`
+
 	// A value that sets the access control list (ACL) permission for objects in
 	// the S3 bucket that a file gateway puts objects into. The default value is
 	// private.
@@ -9677,6 +9763,9 @@ func (s *CreateNFSFileShareInput) Validate() error {
 	}
 	if s.LocationARN != nil && len(*s.LocationARN) < 16 {
 		invalidParams.Add(request.NewErrParamMinLen("LocationARN", 16))
+	}
+	if s.NotificationPolicy != nil && len(*s.NotificationPolicy) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationPolicy", 2))
 	}
 	if s.Role == nil {
 		invalidParams.Add(request.NewErrParamRequired("Role"))
@@ -9775,6 +9864,12 @@ func (s *CreateNFSFileShareInput) SetNFSFileShareDefaults(v *NFSFileShareDefault
 	return s
 }
 
+// SetNotificationPolicy sets the NotificationPolicy field's value.
+func (s *CreateNFSFileShareInput) SetNotificationPolicy(v string) *CreateNFSFileShareInput {
+	s.NotificationPolicy = &v
+	return s
+}
+
 // SetObjectACL sets the ObjectACL field's value.
 func (s *CreateNFSFileShareInput) SetObjectACL(v string) *CreateNFSFileShareInput {
 	s.ObjectACL = &v
@@ -9838,6 +9933,10 @@ func (s *CreateNFSFileShareOutput) SetFileShareARN(v string) *CreateNFSFileShare
 // CreateSMBFileShareInput
 type CreateSMBFileShareInput struct {
 	_ struct{} `type:"structure"`
+
+	// The files and folders on this share will only be visible to users with read
+	// access.
+	AccessBasedEnumeration *bool `type:"boolean"`
 
 	// A list of users or groups in the Active Directory that will be granted administrator
 	// privileges on the file share. These users can do all file operations as the
@@ -9916,6 +10015,9 @@ type CreateSMBFileShareInput struct {
 	//
 	// LocationARN is a required field
 	LocationARN *string `min:"16" type:"string" required:"true"`
+
+	// The notification policy of the file share.
+	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
 	// the S3 bucket that a file gateway puts objects into. The default value is
@@ -10016,6 +10118,9 @@ func (s *CreateSMBFileShareInput) Validate() error {
 	if s.LocationARN != nil && len(*s.LocationARN) < 16 {
 		invalidParams.Add(request.NewErrParamMinLen("LocationARN", 16))
 	}
+	if s.NotificationPolicy != nil && len(*s.NotificationPolicy) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationPolicy", 2))
+	}
 	if s.Role == nil {
 		invalidParams.Add(request.NewErrParamRequired("Role"))
 	}
@@ -10037,6 +10142,12 @@ func (s *CreateSMBFileShareInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccessBasedEnumeration sets the AccessBasedEnumeration field's value.
+func (s *CreateSMBFileShareInput) SetAccessBasedEnumeration(v bool) *CreateSMBFileShareInput {
+	s.AccessBasedEnumeration = &v
+	return s
 }
 
 // SetAdminUserList sets the AdminUserList field's value.
@@ -10120,6 +10231,12 @@ func (s *CreateSMBFileShareInput) SetKMSKey(v string) *CreateSMBFileShareInput {
 // SetLocationARN sets the LocationARN field's value.
 func (s *CreateSMBFileShareInput) SetLocationARN(v string) *CreateSMBFileShareInput {
 	s.LocationARN = &v
+	return s
+}
+
+// SetNotificationPolicy sets the NotificationPolicy field's value.
+func (s *CreateSMBFileShareInput) SetNotificationPolicy(v string) *CreateSMBFileShareInput {
+	s.NotificationPolicy = &v
 	return s
 }
 
@@ -13013,6 +13130,9 @@ type DescribeSMBSettingsOutput struct {
 	// The name of the domain that the gateway is joined to.
 	DomainName *string `min:"1" type:"string"`
 
+	// The shares on this gateway appear when listing shares.
+	FileSharesVisible *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
 	// to return a list of gateways for your account and AWS Region.
 	GatewayARN *string `min:"50" type:"string"`
@@ -13060,6 +13180,12 @@ func (s *DescribeSMBSettingsOutput) SetActiveDirectoryStatus(v string) *Describe
 // SetDomainName sets the DomainName field's value.
 func (s *DescribeSMBSettingsOutput) SetDomainName(v string) *DescribeSMBSettingsOutput {
 	s.DomainName = &v
+	return s
+}
+
+// SetFileSharesVisible sets the FileSharesVisible field's value.
+func (s *DescribeSMBSettingsOutput) SetFileSharesVisible(v bool) *DescribeSMBSettingsOutput {
+	s.FileSharesVisible = &v
 	return s
 }
 
@@ -15819,6 +15945,9 @@ type NFSFileShareInfo struct {
 	// gateways.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
+	// The notification policy of the file share.
+	NotificationPolicy *string `min:"2" type:"string"`
+
 	// A value that sets the access control list (ACL) permission for objects in
 	// the S3 bucket that a file gateway puts objects into. The default value is
 	// private.
@@ -15949,6 +16078,12 @@ func (s *NFSFileShareInfo) SetLocationARN(v string) *NFSFileShareInfo {
 // SetNFSFileShareDefaults sets the NFSFileShareDefaults field's value.
 func (s *NFSFileShareInfo) SetNFSFileShareDefaults(v *NFSFileShareDefaults) *NFSFileShareInfo {
 	s.NFSFileShareDefaults = v
+	return s
+}
+
+// SetNotificationPolicy sets the NotificationPolicy field's value.
+func (s *NFSFileShareInfo) SetNotificationPolicy(v string) *NFSFileShareInfo {
+	s.NotificationPolicy = &v
 	return s
 }
 
@@ -16631,6 +16766,9 @@ func (s *RetrieveTapeRecoveryPointOutput) SetTapeARN(v string) *RetrieveTapeReco
 type SMBFileShareInfo struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether AccessBasedEnumeration is enabled.
+	AccessBasedEnumeration *bool `type:"boolean"`
+
 	// A list of users or groups in the Active Directory that have administrator
 	// rights to the file share. A group must be prefixed with the @ character.
 	// Acceptable formats include: DOMAIN\User1, user1, @group1, and @DOMAIN\group1.
@@ -16707,6 +16845,9 @@ type SMBFileShareInfo struct {
 	// can be added to the S3 bucket name. It must end with a "/".
 	LocationARN *string `min:"16" type:"string"`
 
+	// The notification policy of the file share.
+	NotificationPolicy *string `min:"2" type:"string"`
+
 	// A value that sets the access control list (ACL) permission for objects in
 	// the S3 bucket that a file gateway puts objects into. The default value is
 	// private.
@@ -16766,6 +16907,12 @@ func (s SMBFileShareInfo) String() string {
 // GoString returns the string representation
 func (s SMBFileShareInfo) GoString() string {
 	return s.String()
+}
+
+// SetAccessBasedEnumeration sets the AccessBasedEnumeration field's value.
+func (s *SMBFileShareInfo) SetAccessBasedEnumeration(v bool) *SMBFileShareInfo {
+	s.AccessBasedEnumeration = &v
+	return s
 }
 
 // SetAdminUserList sets the AdminUserList field's value.
@@ -16861,6 +17008,12 @@ func (s *SMBFileShareInfo) SetKMSKey(v string) *SMBFileShareInfo {
 // SetLocationARN sets the LocationARN field's value.
 func (s *SMBFileShareInfo) SetLocationARN(v string) *SMBFileShareInfo {
 	s.LocationARN = &v
+	return s
+}
+
+// SetNotificationPolicy sets the NotificationPolicy field's value.
+func (s *SMBFileShareInfo) SetNotificationPolicy(v string) *SMBFileShareInfo {
+	s.NotificationPolicy = &v
 	return s
 }
 
@@ -18723,6 +18876,9 @@ type UpdateNFSFileShareInput struct {
 	// The default values for the file share. Optional.
 	NFSFileShareDefaults *NFSFileShareDefaults `type:"structure"`
 
+	// The notification policy of the file share.
+	NotificationPolicy *string `min:"2" type:"string"`
+
 	// A value that sets the access control list (ACL) permission for objects in
 	// the S3 bucket that a file gateway puts objects into. The default value is
 	// private.
@@ -18788,6 +18944,9 @@ func (s *UpdateNFSFileShareInput) Validate() error {
 	}
 	if s.KMSKey != nil && len(*s.KMSKey) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("KMSKey", 7))
+	}
+	if s.NotificationPolicy != nil && len(*s.NotificationPolicy) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationPolicy", 2))
 	}
 	if s.Squash != nil && len(*s.Squash) < 5 {
 		invalidParams.Add(request.NewErrParamMinLen("Squash", 5))
@@ -18858,6 +19017,12 @@ func (s *UpdateNFSFileShareInput) SetNFSFileShareDefaults(v *NFSFileShareDefault
 	return s
 }
 
+// SetNotificationPolicy sets the NotificationPolicy field's value.
+func (s *UpdateNFSFileShareInput) SetNotificationPolicy(v string) *UpdateNFSFileShareInput {
+	s.NotificationPolicy = &v
+	return s
+}
+
 // SetObjectACL sets the ObjectACL field's value.
 func (s *UpdateNFSFileShareInput) SetObjectACL(v string) *UpdateNFSFileShareInput {
 	s.ObjectACL = &v
@@ -18909,6 +19074,10 @@ func (s *UpdateNFSFileShareOutput) SetFileShareARN(v string) *UpdateNFSFileShare
 // UpdateSMBFileShareInput
 type UpdateSMBFileShareInput struct {
 	_ struct{} `type:"structure"`
+
+	// The files and folders on this share will only be visible to users with read
+	// access.
+	AccessBasedEnumeration *bool `type:"boolean"`
 
 	// A list of users or groups in the Active Directory that have administrator
 	// rights to the file share. A group must be prefixed with the @ character.
@@ -18966,6 +19135,9 @@ type UpdateSMBFileShareInput struct {
 	// for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric
 	// CMKs. This value can only be set when KMSEncrypted is true. Optional.
 	KMSKey *string `min:"7" type:"string"`
+
+	// The notification policy of the file share.
+	NotificationPolicy *string `min:"2" type:"string"`
 
 	// A value that sets the access control list (ACL) permission for objects in
 	// the S3 bucket that a file gateway puts objects into. The default value is
@@ -19036,11 +19208,20 @@ func (s *UpdateSMBFileShareInput) Validate() error {
 	if s.KMSKey != nil && len(*s.KMSKey) < 7 {
 		invalidParams.Add(request.NewErrParamMinLen("KMSKey", 7))
 	}
+	if s.NotificationPolicy != nil && len(*s.NotificationPolicy) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("NotificationPolicy", 2))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccessBasedEnumeration sets the AccessBasedEnumeration field's value.
+func (s *UpdateSMBFileShareInput) SetAccessBasedEnumeration(v bool) *UpdateSMBFileShareInput {
+	s.AccessBasedEnumeration = &v
+	return s
 }
 
 // SetAdminUserList sets the AdminUserList field's value.
@@ -19109,6 +19290,12 @@ func (s *UpdateSMBFileShareInput) SetKMSKey(v string) *UpdateSMBFileShareInput {
 	return s
 }
 
+// SetNotificationPolicy sets the NotificationPolicy field's value.
+func (s *UpdateSMBFileShareInput) SetNotificationPolicy(v string) *UpdateSMBFileShareInput {
+	s.NotificationPolicy = &v
+	return s
+}
+
 // SetObjectACL sets the ObjectACL field's value.
 func (s *UpdateSMBFileShareInput) SetObjectACL(v string) *UpdateSMBFileShareInput {
 	s.ObjectACL = &v
@@ -19160,6 +19347,86 @@ func (s UpdateSMBFileShareOutput) GoString() string {
 // SetFileShareARN sets the FileShareARN field's value.
 func (s *UpdateSMBFileShareOutput) SetFileShareARN(v string) *UpdateSMBFileShareOutput {
 	s.FileShareARN = &v
+	return s
+}
+
+type UpdateSMBFileShareVisibilityInput struct {
+	_ struct{} `type:"structure"`
+
+	// The shares on this gateway appear when listing shares.
+	//
+	// FileSharesVisible is a required field
+	FileSharesVisible *bool `type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and AWS Region.
+	//
+	// GatewayARN is a required field
+	GatewayARN *string `min:"50" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateSMBFileShareVisibilityInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSMBFileShareVisibilityInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSMBFileShareVisibilityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSMBFileShareVisibilityInput"}
+	if s.FileSharesVisible == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSharesVisible"))
+	}
+	if s.GatewayARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("GatewayARN"))
+	}
+	if s.GatewayARN != nil && len(*s.GatewayARN) < 50 {
+		invalidParams.Add(request.NewErrParamMinLen("GatewayARN", 50))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSharesVisible sets the FileSharesVisible field's value.
+func (s *UpdateSMBFileShareVisibilityInput) SetFileSharesVisible(v bool) *UpdateSMBFileShareVisibilityInput {
+	s.FileSharesVisible = &v
+	return s
+}
+
+// SetGatewayARN sets the GatewayARN field's value.
+func (s *UpdateSMBFileShareVisibilityInput) SetGatewayARN(v string) *UpdateSMBFileShareVisibilityInput {
+	s.GatewayARN = &v
+	return s
+}
+
+type UpdateSMBFileShareVisibilityOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
+	// to return a list of gateways for your account and AWS Region.
+	GatewayARN *string `min:"50" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateSMBFileShareVisibilityOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSMBFileShareVisibilityOutput) GoString() string {
+	return s.String()
+}
+
+// SetGatewayARN sets the GatewayARN field's value.
+func (s *UpdateSMBFileShareVisibilityOutput) SetGatewayARN(v string) *UpdateSMBFileShareVisibilityOutput {
+	s.GatewayARN = &v
 	return s
 }
 
