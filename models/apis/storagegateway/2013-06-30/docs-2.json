@@ -78,8 +78,9 @@
     "UpdateGatewayInformation": "<p>Updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p> <note> <p>For gateways activated after September 2, 2015, the gateway's ARN contains the gateway ID rather than the gateway name. However, changing the name of the gateway has no effect on the gateway's ARN.</p> </note>",
     "UpdateGatewaySoftwareNow": "<p>Updates the gateway virtual machine (VM) software. The request immediately triggers the software update.</p> <note> <p>When you make this request, you get a <code>200 OK</code> success response immediately. However, it might take some time for the update to complete. You can call <a>DescribeGatewayInformation</a> to verify the gateway is in the <code>STATE_RUNNING</code> state.</p> </note> <important> <p>A software update forces a system restart of your gateway. You can minimize the chance of any disruption to your applications by increasing your iSCSI Initiators' timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and Linux, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings\">Customizing your Windows iSCSI settings</a> and <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings\">Customizing your Linux iSCSI settings</a>, respectively.</p> </important>",
     "UpdateMaintenanceStartTime": "<p>Updates a gateway's weekly maintenance start time information, including day and time of the week. The maintenance time is the time in your gateway's time zone.</p>",
-    "UpdateNFSFileShare": "<p>Updates a Network File System (NFS) file share. This operation is only supported in the file gateway type.</p> <note> <p>To leave a file share field unchanged, set the corresponding input field to null.</p> </note> <p>Updates the following file share setting:</p> <ul> <li> <p>Default storage class for your S3 bucket</p> </li> <li> <p>Metadata defaults for your S3 bucket</p> </li> <li> <p>Allowed NFS clients for your file share</p> </li> <li> <p>Squash settings</p> </li> <li> <p>Write status of your file share</p> </li> </ul> <note> <p>To leave a file share field unchanged, set the corresponding input field to null. This operation is only supported in file gateways.</p> </note>",
-    "UpdateSMBFileShare": "<p>Updates a Server Message Block (SMB) file share.</p> <note> <p>To leave a file share field unchanged, set the corresponding input field to null. This operation is only supported for file gateways.</p> </note> <important> <p>File gateways require AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure that AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in this AWS Region, activate it. For information about how to activate AWS STS, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p> <p>File gateways don't support creating hard or symbolic links on a file share.</p> </important>",
+    "UpdateNFSFileShare": "<p>Updates a Network File System (NFS) file share. This operation is only supported in the file gateway type.</p> <note> <p>To leave a file share field unchanged, set the corresponding input field to null.</p> </note> <p>Updates the following file share settings:</p> <ul> <li> <p>Default storage class for your S3 bucket</p> </li> <li> <p>Metadata defaults for your S3 bucket</p> </li> <li> <p>Allowed NFS clients for your file share</p> </li> <li> <p>Squash settings</p> </li> <li> <p>Write status of your file share</p> </li> </ul>",
+    "UpdateSMBFileShare": "<p>Updates a Server Message Block (SMB) file share. This operation is only supported for file gateways.</p> <note> <p>To leave a file share field unchanged, set the corresponding input field to null.</p> </note> <important> <p>File gateways require AWS Security Token Service (AWS STS) to be activated to enable you to create a file share. Make sure that AWS STS is activated in the AWS Region you are creating your file gateway in. If AWS STS is not activated in this AWS Region, activate it. For information about how to activate AWS STS, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html\">Activating and deactivating AWS STS in an AWS Region</a> in the <i>AWS Identity and Access Management User Guide</i>.</p> <p>File gateways don't support creating hard or symbolic links on a file share.</p> </important>",
+    "UpdateSMBFileShareVisibility": "<p>Controls whether the shares on a gateway are visible in a net view or browse list.</p>",
     "UpdateSMBSecurityStrategy": "<p>Updates the SMB security strategy on a file gateway. This action is only supported in file gateways.</p> <note> <p>This API is called Security level in the User Guide.</p> <p>A higher security level can affect performance of the gateway.</p> </note>",
     "UpdateSnapshotSchedule": "<p>Updates a snapshot schedule configured for a gateway volume. This operation is only supported in the cached volume and stored volume gateway types.</p> <p>The default snapshot schedule for volume is once every 24 hours, starting at the creation time of the volume. You can use this API to change the snapshot schedule configured for the volume.</p> <p>In the request you must identify the gateway volume whose snapshot schedule you want to update, and the schedule information, including when you want the snapshot to begin on a day and the frequency (in hours) of snapshots.</p>",
     "UpdateVTLDeviceType": "<p>Updates the type of medium changer in a tape gateway. When you activate a tape gateway, you select a medium changer type for the tape gateway. This operation enables you to select a different type of medium changer after a tape gateway is activated. This operation is only supported in the tape gateway type.</p>"
@@ -247,10 +248,12 @@
         "CreateSMBFileShareInput$GuessMIMETypeEnabled": "<p>A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to <code>true</code> to enable MIME type guessing, otherwise set to <code>false</code>. The default value is <code>true</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "CreateSMBFileShareInput$RequesterPays": "<p>A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to <code>true</code>, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.</p> <note> <p> <code>RequesterPays</code> is a configuration for the S3 bucket that backs the file share, so make sure that the configuration on the file share is the same as the S3 bucket configuration.</p> </note> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "CreateSMBFileShareInput$SMBACLEnabled": "<p>Set this value to <code>true</code> to enable access control list (ACL) on the SMB file share. Set it to <code>false</code> to map file and directory permissions to the POSIX permissions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html\">Using Microsoft Windows ACLs to control access to an SMB file share</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
+        "CreateSMBFileShareInput$AccessBasedEnumeration": "<p>The files and folders on this share will only be visible to users with read access.</p>",
         "CreateStorediSCSIVolumeInput$KMSEncrypted": "<p>Set to <code>true</code> to use Amazon S3 server-side encryption with your own AWS KMS key, or <code>false</code> to use a key managed by Amazon S3. Optional.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "CreateTapeWithBarcodeInput$KMSEncrypted": "<p>Set to <code>true</code> to use Amazon S3 server-side encryption with your own AWS KMS key, or <code>false</code> to use a key managed by Amazon S3. Optional.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "CreateTapesInput$KMSEncrypted": "<p>Set to <code>true</code> to use Amazon S3 server-side encryption with your own AWS KMS key, or <code>false</code> to use a key managed by Amazon S3. Optional.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "DescribeSMBSettingsOutput$SMBGuestPasswordSet": "<p>This value is <code>true</code> if a password for the guest user <code>smbguest</code> is set, otherwise <code>false</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
+        "DescribeSMBSettingsOutput$FileSharesVisible": "<p>The shares on this gateway appear when listing shares.</p>",
         "DetachVolumeInput$ForceDetach": "<p>Set to <code>true</code> to forcibly remove the iSCSI connection of the target volume and detach the volume. The default is <code>false</code>. If this value is set to <code>false</code>, you must manually disconnect the iSCSI connection from the target volume.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "NFSFileShareInfo$ReadOnly": "<p>A value that sets the write status of a file share. Set this value to <code>true</code> to set the write status to read-only, otherwise set to <code>false</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "NFSFileShareInfo$GuessMIMETypeEnabled": "<p>A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to <code>true</code> to enable MIME type guessing, otherwise set to <code>false</code>. The default value is <code>true</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
@@ -260,6 +263,7 @@
         "SMBFileShareInfo$GuessMIMETypeEnabled": "<p>A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to <code>true</code> to enable MIME type guessing, otherwise set to <code>false</code>. The default value is <code>true</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "SMBFileShareInfo$RequesterPays": "<p>A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to <code>true</code>, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.</p> <note> <p> <code>RequesterPays</code> is a configuration for the S3 bucket that backs the file share, so make sure that the configuration on the file share is the same as the S3 bucket configuration.</p> </note> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "SMBFileShareInfo$SMBACLEnabled": "<p>If this value is set to <code>true</code>, it indicates that access control list (ACL) is enabled on the SMB file share. If it is set to <code>false</code>, it indicates that file and directory permissions are mapped to the POSIX permission.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html\">Using Microsoft Windows ACLs to control access to an SMB file share</a> in the <i>AWS Storage Gateway User Guide</i>.</p>",
+        "SMBFileShareInfo$AccessBasedEnumeration": "<p>Indicates whether <code>AccessBasedEnumeration</code> is enabled.</p>",
         "UpdateNFSFileShareInput$KMSEncrypted": "<p>Set to <code>true</code> to use Amazon S3 server-side encryption with your own AWS KMS key, or <code>false</code> to use a key managed by Amazon S3. Optional.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "UpdateNFSFileShareInput$ReadOnly": "<p>A value that sets the write status of a file share. Set this value to <code>true</code> to set the write status to read-only, otherwise set to <code>false</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "UpdateNFSFileShareInput$GuessMIMETypeEnabled": "<p>A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to <code>true</code> to enable MIME type guessing, otherwise set to <code>false</code>. The default value is <code>true</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
@@ -268,7 +272,9 @@
         "UpdateSMBFileShareInput$ReadOnly": "<p>A value that sets the write status of a file share. Set this value to <code>true</code> to set write status to read-only, otherwise set to <code>false</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "UpdateSMBFileShareInput$GuessMIMETypeEnabled": "<p>A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to <code>true</code> to enable MIME type guessing, otherwise set to <code>false</code>. The default value is <code>true</code>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
         "UpdateSMBFileShareInput$RequesterPays": "<p>A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to <code>true</code>, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.</p> <note> <p> <code>RequesterPays</code> is a configuration for the S3 bucket that backs the file share, so make sure that the configuration on the file share is the same as the S3 bucket configuration.</p> </note> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
-        "UpdateSMBFileShareInput$SMBACLEnabled": "<p>Set this value to <code>true</code> to enable access control list (ACL) on the SMB file share. Set it to <code>false</code> to map file and directory permissions to the POSIX permissions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html\">Using Microsoft Windows ACLs to control access to an SMB file share</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>"
+        "UpdateSMBFileShareInput$SMBACLEnabled": "<p>Set this value to <code>true</code> to enable access control list (ACL) on the SMB file share. Set it to <code>false</code> to map file and directory permissions to the POSIX permissions.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/smb-acl.html\">Using Microsoft Windows ACLs to control access to an SMB file share</a> in the <i>AWS Storage Gateway User Guide</i>.</p> <p>Valid Values: <code>true</code> | <code>false</code> </p>",
+        "UpdateSMBFileShareInput$AccessBasedEnumeration": "<p>The files and folders on this share will only be visible to users with read access.</p>",
+        "UpdateSMBFileShareVisibilityInput$FileSharesVisible": "<p>The shares on this gateway appear when listing shares.</p>"
       }
     },
     "CacheAttributes": {
@@ -1108,6 +1114,8 @@
         "UpdateGatewaySoftwareNowOutput$GatewayARN": null,
         "UpdateMaintenanceStartTimeInput$GatewayARN": null,
         "UpdateMaintenanceStartTimeOutput$GatewayARN": null,
+        "UpdateSMBFileShareVisibilityInput$GatewayARN": null,
+        "UpdateSMBFileShareVisibilityOutput$GatewayARN": null,
         "UpdateSMBSecurityStrategyInput$GatewayARN": null,
         "UpdateSMBSecurityStrategyOutput$GatewayARN": null,
         "VolumeInfo$GatewayARN": null
@@ -1483,6 +1491,17 @@
       "refs": {
         "NotifyWhenUploadedOutput$NotificationId": null,
         "RefreshCacheOutput$NotificationId": null
+      }
+    },
+    "NotificationPolicy": {
+      "base": null,
+      "refs": {
+        "CreateNFSFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>",
+        "CreateSMBFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>",
+        "NFSFileShareInfo$NotificationPolicy": "<p>The notification policy of the file share.</p>",
+        "SMBFileShareInfo$NotificationPolicy": "<p>The notification policy of the file share.</p>",
+        "UpdateNFSFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>",
+        "UpdateSMBFileShareInput$NotificationPolicy": "<p>The notification policy of the file share.</p>"
       }
     },
     "NotifyWhenUploadedInput": {
@@ -2169,6 +2188,16 @@
     },
     "UpdateSMBFileShareOutput": {
       "base": "<p>UpdateSMBFileShareOutput</p>",
+      "refs": {
+      }
+    },
+    "UpdateSMBFileShareVisibilityInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSMBFileShareVisibilityOutput": {
+      "base": null,
       "refs": {
       }
     },

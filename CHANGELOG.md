@@ -1,3 +1,19 @@
+Release v1.35.18 (2020-10-29)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Support disabling the default execute-api endpoint for REST APIs.
+* `service/codeartifact`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Support for Appliance mode on Transit Gateway that simplifies deployment of stateful network appliances. Added support for AWS Client VPN Self-Service Portal.
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/marketplacecommerceanalytics`: Updates service documentation
+  * Documentation updates for marketplacecommerceanalytics to specify four data sets which are deprecated.
+* `service/sesv2`: Updates service API, documentation, and paginators
+* `service/storagegateway`: Updates service API and documentation
+  * Adding support for access based enumeration on SMB file shares, file share visibility on SMB file shares, and file upload notifications for all file shares
+
 Release v1.35.17 (2020-10-28)
 ===
 

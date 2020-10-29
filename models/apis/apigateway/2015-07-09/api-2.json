@@ -2276,7 +2276,8 @@
         "apiKeySource":{"shape":"ApiKeySourceType"},
         "endpointConfiguration":{"shape":"EndpointConfiguration"},
         "policy":{"shape":"String"},
-        "tags":{"shape":"MapOfStringToString"}
+        "tags":{"shape":"MapOfStringToString"},
+        "disableExecuteApiEndpoint":{"shape":"Boolean"}
       }
     },
     "CreateStageRequest":{
@@ -4618,7 +4619,8 @@
         "apiKeySource":{"shape":"ApiKeySourceType"},
         "endpointConfiguration":{"shape":"EndpointConfiguration"},
         "policy":{"shape":"String"},
-        "tags":{"shape":"MapOfStringToString"}
+        "tags":{"shape":"MapOfStringToString"},
+        "disableExecuteApiEndpoint":{"shape":"Boolean"}
       }
     },
     "RestApis":{

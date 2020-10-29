@@ -955,6 +955,7 @@
       "members":{
         "Name":{"shape":"TargetGroupName"},
         "Protocol":{"shape":"ProtocolEnum"},
+        "ProtocolVersion":{"shape":"ProtocolVersion"},
         "Port":{"shape":"Port"},
         "VpcId":{"shape":"VpcId"},
         "HealthCheckProtocol":{"shape":"ProtocolEnum"},
@@ -1286,6 +1287,7 @@
         "TargetGroupStickinessConfig":{"shape":"TargetGroupStickinessConfig"}
       }
     },
+    "GrpcCode":{"type":"string"},
     "HealthCheckEnabled":{"type":"boolean"},
     "HealthCheckIntervalSeconds":{
       "type":"integer",
@@ -1577,9 +1579,9 @@
     "Marker":{"type":"string"},
     "Matcher":{
       "type":"structure",
-      "required":["HttpCode"],
       "members":{
-        "HttpCode":{"shape":"HttpCode"}
+        "HttpCode":{"shape":"HttpCode"},
+        "GrpcCode":{"shape":"GrpcCode"}
       }
     },
     "Max":{"type":"string"},
@@ -1730,6 +1732,7 @@
         "TCP_UDP"
       ]
     },
+    "ProtocolVersion":{"type":"string"},
     "QueryStringConditionConfig":{
       "type":"structure",
       "members":{
@@ -2121,7 +2124,8 @@
         "HealthCheckPath":{"shape":"Path"},
         "Matcher":{"shape":"Matcher"},
         "LoadBalancerArns":{"shape":"LoadBalancerArns"},
-        "TargetType":{"shape":"TargetTypeEnum"}
+        "TargetType":{"shape":"TargetTypeEnum"},
+        "ProtocolVersion":{"shape":"ProtocolVersion"}
       }
     },
     "TargetGroupArn":{"type":"string"},

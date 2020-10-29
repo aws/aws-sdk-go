@@ -46,6 +46,36 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "CreateContact":{
+      "name":"CreateContact",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}/contacts"
+      },
+      "input":{"shape":"CreateContactRequest"},
+      "output":{"shape":"CreateContactResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AlreadyExistsException"}
+      ]
+    },
+    "CreateContactList":{
+      "name":"CreateContactList",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v2/email/contact-lists"
+      },
+      "input":{"shape":"CreateContactListRequest"},
+      "output":{"shape":"CreateContactListResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"LimitExceededException"}
+      ]
+    },
     "CreateCustomVerificationEmailTemplate":{
       "name":"CreateCustomVerificationEmailTemplate",
       "http":{
@@ -188,6 +218,35 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "DeleteContact":{
+      "name":"DeleteContact",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}"
+      },
+      "input":{"shape":"DeleteContactRequest"},
+      "output":{"shape":"DeleteContactResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "DeleteContactList":{
+      "name":"DeleteContactList",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}"
+      },
+      "input":{"shape":"DeleteContactListRequest"},
+      "output":{"shape":"DeleteContactListResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "DeleteCustomVerificationEmailTemplate":{
       "name":"DeleteCustomVerificationEmailTemplate",
       "http":{
@@ -326,6 +385,34 @@
       "errors":[
         {"shape":"NotFoundException"},
         {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
+    "GetContact":{
+      "name":"GetContact",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}"
+      },
+      "input":{"shape":"GetContactRequest"},
+      "output":{"shape":"GetContactResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetContactList":{
+      "name":"GetContactList",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}"
+      },
+      "input":{"shape":"GetContactListRequest"},
+      "output":{"shape":"GetContactListResponse"},
+      "errors":[
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"}
       ]
     },
@@ -508,6 +595,33 @@
       "errors":[
         {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"}
+      ]
+    },
+    "ListContactLists":{
+      "name":"ListContactLists",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/contact-lists"
+      },
+      "input":{"shape":"ListContactListsRequest"},
+      "output":{"shape":"ListContactListsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"}
+      ]
+    },
+    "ListContacts":{
+      "name":"ListContacts",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}/contacts"
+      },
+      "input":{"shape":"ListContactsRequest"},
+      "output":{"shape":"ListContactsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "ListCustomVerificationEmailTemplates":{
@@ -981,6 +1095,36 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "UpdateContact":{
+      "name":"UpdateContact",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}"
+      },
+      "input":{"shape":"UpdateContactRequest"},
+      "output":{"shape":"UpdateContactResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "UpdateContactList":{
+      "name":"UpdateContactList",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/v2/email/contact-lists/{ContactListName}"
+      },
+      "input":{"shape":"UpdateContactListRequest"},
+      "output":{"shape":"UpdateContactListResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "UpdateCustomVerificationEmailTemplate":{
       "name":"UpdateCustomVerificationEmailTemplate",
       "http":{
@@ -1065,6 +1209,7 @@
       "exception":true
     },
     "AmazonResourceName":{"type":"string"},
+    "AttributesData":{"type":"string"},
     "BadRequestException":{
       "type":"structure",
       "members":{
@@ -1206,6 +1351,16 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "Contact":{
+      "type":"structure",
+      "members":{
+        "EmailAddress":{"shape":"EmailAddress"},
+        "TopicPreferences":{"shape":"TopicPreferenceList"},
+        "TopicDefaultPreferences":{"shape":"TopicPreferenceList"},
+        "UnsubscribeAll":{"shape":"UnsubscribeAll"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"}
+      }
+    },
     "ContactLanguage":{
       "type":"string",
       "enum":[
@@ -1213,6 +1368,32 @@
         "JA"
       ]
     },
+    "ContactList":{
+      "type":"structure",
+      "members":{
+        "ContactListName":{"shape":"ContactListName"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ContactListDestination":{
+      "type":"structure",
+      "required":[
+        "ContactListName",
+        "ContactListImportAction"
+      ],
+      "members":{
+        "ContactListName":{"shape":"ContactListName"},
+        "ContactListImportAction":{"shape":"ContactListImportAction"}
+      }
+    },
+    "ContactListImportAction":{
+      "type":"string",
+      "enum":[
+        "DELETE",
+        "PUT"
+      ]
+    },
+    "ContactListName":{"type":"string"},
     "Content":{
       "type":"structure",
       "required":["Data"],
@@ -1257,6 +1438,44 @@
       }
     },
     "CreateConfigurationSetResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateContactListRequest":{
+      "type":"structure",
+      "required":["ContactListName"],
+      "members":{
+        "ContactListName":{"shape":"ContactListName"},
+        "Topics":{"shape":"Topics"},
+        "Description":{"shape":"Description"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateContactListResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "CreateContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactListName",
+        "EmailAddress"
+      ],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        },
+        "EmailAddress":{"shape":"EmailAddress"},
+        "TopicPreferences":{"shape":"TopicPreferenceList"},
+        "UnsubscribeAll":{"shape":"UnsubscribeAll"},
+        "AttributesData":{"shape":"AttributesData"}
+      }
+    },
+    "CreateContactResponse":{
       "type":"structure",
       "members":{
       }
@@ -1491,6 +1710,46 @@
       "members":{
       }
     },
+    "DeleteContactListRequest":{
+      "type":"structure",
+      "required":["ContactListName"],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        }
+      }
+    },
+    "DeleteContactListResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactListName",
+        "EmailAddress"
+      ],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        },
+        "EmailAddress":{
+          "shape":"EmailAddress",
+          "location":"uri",
+          "locationName":"EmailAddress"
+        }
+      }
+    },
+    "DeleteContactResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteCustomVerificationEmailTemplateRequest":{
       "type":"structure",
       "required":["TemplateName"],
@@ -1633,6 +1892,7 @@
         "SendingPoolName":{"shape":"PoolName"}
       }
     },
+    "Description":{"type":"string"},
     "Destination":{
       "type":"structure",
       "members":{
@@ -1650,6 +1910,7 @@
         "LINK_TAG"
       ]
     },
+    "DisplayName":{"type":"string"},
     "DkimAttributes":{
       "type":"structure",
       "members":{
@@ -1836,7 +2097,8 @@
         "OPEN",
         "CLICK",
         "RENDERING_FAILURE",
-        "DELIVERY_DELAY"
+        "DELIVERY_DELAY",
+        "SUBSCRIPTION"
       ]
     },
     "EventTypes":{
@@ -1928,6 +2190,60 @@
         "SendingOptions":{"shape":"SendingOptions"},
         "Tags":{"shape":"TagList"},
         "SuppressionOptions":{"shape":"SuppressionOptions"}
+      }
+    },
+    "GetContactListRequest":{
+      "type":"structure",
+      "required":["ContactListName"],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        }
+      }
+    },
+    "GetContactListResponse":{
+      "type":"structure",
+      "members":{
+        "ContactListName":{"shape":"ContactListName"},
+        "Topics":{"shape":"Topics"},
+        "Description":{"shape":"Description"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "GetContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactListName",
+        "EmailAddress"
+      ],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        },
+        "EmailAddress":{
+          "shape":"EmailAddress",
+          "location":"uri",
+          "locationName":"EmailAddress"
+        }
+      }
+    },
+    "GetContactResponse":{
+      "type":"structure",
+      "members":{
+        "ContactListName":{"shape":"ContactListName"},
+        "EmailAddress":{"shape":"EmailAddress"},
+        "TopicPreferences":{"shape":"TopicPreferenceList"},
+        "TopicDefaultPreferences":{"shape":"TopicPreferenceList"},
+        "UnsubscribeAll":{"shape":"UnsubscribeAll"},
+        "AttributesData":{"shape":"AttributesData"},
+        "CreatedTimestamp":{"shape":"Timestamp"},
+        "LastUpdatedTimestamp":{"shape":"Timestamp"}
       }
     },
     "GetCustomVerificationEmailTemplateRequest":{
@@ -2235,14 +2551,17 @@
     },
     "ImportDestination":{
       "type":"structure",
-      "required":["SuppressionListDestination"],
       "members":{
-        "SuppressionListDestination":{"shape":"SuppressionListDestination"}
+        "SuppressionListDestination":{"shape":"SuppressionListDestination"},
+        "ContactListDestination":{"shape":"ContactListDestination"}
       }
     },
     "ImportDestinationType":{
       "type":"string",
-      "enum":["SUPPRESSION_LIST"]
+      "enum":[
+        "SUPPRESSION_LIST",
+        "CONTACT_LIST"
+      ]
     },
     "ImportJobSummary":{
       "type":"structure",
@@ -2343,6 +2662,64 @@
       "type":"structure",
       "members":{
         "ConfigurationSets":{"shape":"ConfigurationSetNameList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListContactListsRequest":{
+      "type":"structure",
+      "members":{
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListContactListsResponse":{
+      "type":"structure",
+      "members":{
+        "ContactLists":{"shape":"ListOfContactLists"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListContactsFilter":{
+      "type":"structure",
+      "members":{
+        "FilteredStatus":{"shape":"SubscriptionStatus"},
+        "TopicFilter":{"shape":"TopicFilter"}
+      }
+    },
+    "ListContactsRequest":{
+      "type":"structure",
+      "required":["ContactListName"],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        },
+        "Filter":{"shape":"ListContactsFilter"},
+        "PageSize":{
+          "shape":"MaxItems",
+          "location":"querystring",
+          "locationName":"PageSize"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"NextToken"
+        }
+      }
+    },
+    "ListContactsResponse":{
+      "type":"structure",
+      "members":{
+        "Contacts":{"shape":"ListOfContacts"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -2522,6 +2899,22 @@
         "ImportJobs":{"shape":"ImportJobSummaryList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListManagementOptions":{
+      "type":"structure",
+      "required":["ContactListName"],
+      "members":{
+        "ContactListName":{"shape":"ContactListName"},
+        "TopicName":{"shape":"TopicName"}
+      }
+    },
+    "ListOfContactLists":{
+      "type":"list",
+      "member":{"shape":"ContactList"}
+    },
+    "ListOfContacts":{
+      "type":"list",
+      "member":{"shape":"Contact"}
     },
     "ListOfDedicatedIpPools":{
       "type":"list",
@@ -3113,7 +3506,8 @@
         "FeedbackForwardingEmailAddressIdentityArn":{"shape":"AmazonResourceName"},
         "Content":{"shape":"EmailContent"},
         "EmailTags":{"shape":"MessageTagList"},
-        "ConfigurationSetName":{"shape":"ConfigurationSetName"}
+        "ConfigurationSetName":{"shape":"ConfigurationSetName"},
+        "ListManagementOptions":{"shape":"ListManagementOptions"}
       }
     },
     "SendEmailResponse":{
@@ -3153,6 +3547,13 @@
       }
     },
     "Subject":{"type":"string"},
+    "SubscriptionStatus":{
+      "type":"string",
+      "enum":[
+        "OPT_IN",
+        "OPT_OUT"
+      ]
+    },
     "SuccessRedirectionURL":{"type":"string"},
     "SuppressedDestination":{
       "type":"structure",
@@ -3312,6 +3713,47 @@
       "error":{"httpStatusCode":429},
       "exception":true
     },
+    "Topic":{
+      "type":"structure",
+      "required":[
+        "TopicName",
+        "DisplayName",
+        "DefaultSubscriptionStatus"
+      ],
+      "members":{
+        "TopicName":{"shape":"TopicName"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Description":{"shape":"Description"},
+        "DefaultSubscriptionStatus":{"shape":"SubscriptionStatus"}
+      }
+    },
+    "TopicFilter":{
+      "type":"structure",
+      "members":{
+        "TopicName":{"shape":"TopicName"},
+        "UseDefaultIfPreferenceUnavailable":{"shape":"UseDefaultIfPreferenceUnavailable"}
+      }
+    },
+    "TopicName":{"type":"string"},
+    "TopicPreference":{
+      "type":"structure",
+      "required":[
+        "TopicName",
+        "SubscriptionStatus"
+      ],
+      "members":{
+        "TopicName":{"shape":"TopicName"},
+        "SubscriptionStatus":{"shape":"SubscriptionStatus"}
+      }
+    },
+    "TopicPreferenceList":{
+      "type":"list",
+      "member":{"shape":"TopicPreference"}
+    },
+    "Topics":{
+      "type":"list",
+      "member":{"shape":"Topic"}
+    },
     "TrackingOptions":{
       "type":"structure",
       "required":["CustomRedirectDomain"],
@@ -3319,6 +3761,7 @@
         "CustomRedirectDomain":{"shape":"CustomRedirectDomain"}
       }
     },
+    "UnsubscribeAll":{"type":"boolean"},
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -3365,6 +3808,51 @@
       }
     },
     "UpdateConfigurationSetEventDestinationResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateContactListRequest":{
+      "type":"structure",
+      "required":["ContactListName"],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        },
+        "Topics":{"shape":"Topics"},
+        "Description":{"shape":"Description"}
+      }
+    },
+    "UpdateContactListResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateContactRequest":{
+      "type":"structure",
+      "required":[
+        "ContactListName",
+        "EmailAddress"
+      ],
+      "members":{
+        "ContactListName":{
+          "shape":"ContactListName",
+          "location":"uri",
+          "locationName":"ContactListName"
+        },
+        "EmailAddress":{
+          "shape":"EmailAddress",
+          "location":"uri",
+          "locationName":"EmailAddress"
+        },
+        "TopicPreferences":{"shape":"TopicPreferenceList"},
+        "UnsubscribeAll":{"shape":"UnsubscribeAll"},
+        "AttributesData":{"shape":"AttributesData"}
+      }
+    },
+    "UpdateContactResponse":{
       "type":"structure",
       "members":{
       }
@@ -3449,6 +3937,7 @@
       "min":1,
       "sensitive":true
     },
+    "UseDefaultIfPreferenceUnavailable":{"type":"boolean"},
     "Volume":{"type":"long"},
     "VolumeStatistics":{
       "type":"structure",

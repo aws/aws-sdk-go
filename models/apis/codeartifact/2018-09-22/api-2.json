@@ -96,7 +96,6 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ]
@@ -298,7 +297,8 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ValidationException"}
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetPackageVersionReadme":{
@@ -459,6 +459,21 @@
         {"shape":"ValidationException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/tags"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "PutDomainPermissionsPolicy":{
       "name":"PutDomainPermissionsPolicy",
       "http":{
@@ -491,6 +506,37 @@
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/tag"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v1/untag"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ]
@@ -549,7 +595,7 @@
     },
     "Arn":{
       "type":"string",
-      "max":2048,
+      "max":1011,
       "min":1,
       "pattern":"\\S+"
     },
@@ -701,7 +747,8 @@
           "location":"querystring",
           "locationName":"domain"
         },
-        "encryptionKey":{"shape":"Arn"}
+        "encryptionKey":{"shape":"Arn"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateDomainResult":{
@@ -733,7 +780,8 @@
           "locationName":"repository"
         },
         "description":{"shape":"Description"},
-        "upstreams":{"shape":"UpstreamRepositoryList"}
+        "upstreams":{"shape":"UpstreamRepositoryList"},
+        "tags":{"shape":"TagList"}
       }
     },
     "CreateRepositoryResult":{
@@ -1116,7 +1164,8 @@
         "createdTime":{"shape":"Timestamp"},
         "encryptionKey":{"shape":"Arn"},
         "repositoryCount":{"shape":"Integer"},
-        "assetSizeBytes":{"shape":"Long"}
+        "assetSizeBytes":{"shape":"Long"},
+        "s3BucketArn":{"shape":"Arn"}
       }
     },
     "DomainName":{
@@ -1822,6 +1871,23 @@
         "nextToken":{"shape":"PaginationToken"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResult":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagList"}
+      }
+    },
     "Long":{"type":"long"},
     "LongOptional":{"type":"long"},
     "PackageDependency":{
@@ -2135,6 +2201,59 @@
       "key":{"shape":"PackageVersion"},
       "value":{"shape":"SuccessfulPackageVersionInfo"}
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "key",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"TagKey"},
+        "value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["message"],
@@ -2150,6 +2269,26 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"Arn",
+          "location":"querystring",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdatePackageVersionsStatusRequest":{
       "type":"structure",
       "required":[

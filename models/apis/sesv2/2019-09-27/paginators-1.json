@@ -10,6 +10,16 @@
       "output_token": "NextToken",
       "limit_key": "PageSize"
     },
+    "ListContactLists": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "PageSize"
+    },
+    "ListContacts": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "PageSize"
+    },
     "ListCustomVerificationEmailTemplates": {
       "input_token": "NextToken",
       "output_token": "NextToken",

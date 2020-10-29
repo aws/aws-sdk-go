@@ -4209,6 +4209,13 @@
         "off"
       ]
     },
+    "ApplianceModeSupportValue":{
+      "type":"string",
+      "enum":[
+        "enable",
+        "disable"
+      ]
+    },
     "ApplySecurityGroupsToClientVpnTargetNetworkRequest":{
       "type":"structure",
       "required":[
@@ -6210,6 +6217,10 @@
         "VpcId":{
           "shape":"VpcId",
           "locationName":"vpcId"
+        },
+        "SelfServicePortalUrl":{
+          "shape":"String",
+          "locationName":"selfServicePortalUrl"
         }
       }
     },
@@ -6775,7 +6786,8 @@
           "shape":"ClientVpnSecurityGroupIdSet",
           "locationName":"SecurityGroupId"
         },
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "SelfServicePortal":{"shape":"SelfServicePortal"}
       }
     },
     "CreateClientVpnEndpointResult":{
@@ -8165,7 +8177,8 @@
       "type":"structure",
       "members":{
         "DnsSupport":{"shape":"DnsSupportValue"},
-        "Ipv6Support":{"shape":"Ipv6SupportValue"}
+        "Ipv6Support":{"shape":"Ipv6SupportValue"},
+        "ApplianceModeSupport":{"shape":"ApplianceModeSupportValue"}
       }
     },
     "CreateTransitGatewayVpcAttachmentResult":{
@@ -15137,13 +15150,18 @@
         "SamlProviderArn":{
           "shape":"String",
           "locationName":"samlProviderArn"
+        },
+        "SelfServiceSamlProviderArn":{
+          "shape":"String",
+          "locationName":"selfServiceSamlProviderArn"
         }
       }
     },
     "FederatedAuthenticationRequest":{
       "type":"structure",
       "members":{
-        "SAMLProviderArn":{"shape":"String"}
+        "SAMLProviderArn":{"shape":"String"},
+        "SelfServiceSAMLProviderArn":{"shape":"String"}
       }
     },
     "Filter":{
@@ -20967,7 +20985,8 @@
           "shape":"ClientVpnSecurityGroupIdSet",
           "locationName":"SecurityGroupId"
         },
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "SelfServicePortal":{"shape":"SelfServicePortal"}
       }
     },
     "ModifyClientVpnEndpointResult":{
@@ -21690,7 +21709,8 @@
       "type":"structure",
       "members":{
         "DnsSupport":{"shape":"DnsSupportValue"},
-        "Ipv6Support":{"shape":"Ipv6SupportValue"}
+        "Ipv6Support":{"shape":"Ipv6SupportValue"},
+        "ApplianceModeSupport":{"shape":"ApplianceModeSupportValue"}
       }
     },
     "ModifyTransitGatewayVpcAttachmentResult":{
@@ -26545,6 +26565,13 @@
         "locationName":"SecurityGroup"
       }
     },
+    "SelfServicePortal":{
+      "type":"string",
+      "enum":[
+        "enabled",
+        "disabled"
+      ]
+    },
     "SendDiagnosticInterruptRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -29443,6 +29470,10 @@
         "Ipv6Support":{
           "shape":"Ipv6SupportValue",
           "locationName":"ipv6Support"
+        },
+        "ApplianceModeSupport":{
+          "shape":"ApplianceModeSupportValue",
+          "locationName":"applianceModeSupport"
         }
       }
     },

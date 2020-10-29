@@ -4,6 +4,8 @@
   "operations": {
     "CreateConfigurationSet": "<p>Create a configuration set. <i>Configuration sets</i> are groups of rules that you can apply to the emails that you send. You apply a configuration set to an email by specifying the name of the configuration set when you call the Amazon SES API v2. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email. </p>",
     "CreateConfigurationSetEventDestination": "<p>Create an event destination. <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p> <p>A single configuration set can include more than one event destination.</p>",
+    "CreateContact": "<p>Creates a contact, which is an end-user who is receiving the email, and adds them to a contact list.</p>",
+    "CreateContactList": "<p>Creates a contact list.</p>",
     "CreateCustomVerificationEmailTemplate": "<p>Creates a new custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
     "CreateDedicatedIpPool": "<p>Create a new pool of dedicated IP addresses. A pool can include one or more dedicated IP addresses that are associated with your AWS account. You can associate a pool with a configuration set. When you send an email that uses that configuration set, the message is sent from one of the addresses in the associated pool.</p>",
     "CreateDeliverabilityTestReport": "<p>Create a new predictive inbox placement test. Predictive inbox placement tests can help you predict how your messages will be handled by various email providers around the world. When you perform a predictive inbox placement test, you provide a sample message that contains the content that you plan to send to your customers. Amazon SES then sends that message to special email addresses spread across several major email providers. After about 24 hours, the test is complete, and you can use the <code>GetDeliverabilityTestReport</code> operation to view the results of the test.</p>",
@@ -13,6 +15,8 @@
     "CreateImportJob": "<p>Creates an import job for a data destination.</p>",
     "DeleteConfigurationSet": "<p>Delete an existing configuration set.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "DeleteConfigurationSetEventDestination": "<p>Delete an event destination.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
+    "DeleteContact": "<p>Removes a contact from a contact list.</p>",
+    "DeleteContactList": "<p>Deletes a contact list and all of the contacts on that list.</p>",
     "DeleteCustomVerificationEmailTemplate": "<p>Deletes an existing custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/es/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
     "DeleteDedicatedIpPool": "<p>Delete a dedicated IP pool.</p>",
     "DeleteEmailIdentity": "<p>Deletes an email identity. An identity can be either an email address or a domain name.</p>",
@@ -23,6 +27,8 @@
     "GetBlacklistReports": "<p>Retrieve a list of the blacklists that your dedicated IP addresses appear on.</p>",
     "GetConfigurationSet": "<p>Get information about an existing configuration set, including the dedicated IP pool that it's associated with, whether or not it's enabled for sending email, and more.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
     "GetConfigurationSetEventDestinations": "<p>Retrieve a list of event destinations that are associated with a configuration set.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
+    "GetContact": "<p>Returns a contact from a contact list.</p>",
+    "GetContactList": "<p>Returns contact list metadata. It does not return any information about the contacts present in the list.</p>",
     "GetCustomVerificationEmailTemplate": "<p>Returns the custom email verification template for the template name you specify.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
     "GetDedicatedIp": "<p>Get information about a dedicated IP address, including the name of the dedicated IP pool that it's associated with, as well information about the automatic warm-up process for the address.</p>",
     "GetDedicatedIps": "<p>List the dedicated IP addresses that are associated with your AWS account.</p>",
@@ -36,6 +42,8 @@
     "GetImportJob": "<p>Provides information about an import job.</p>",
     "GetSuppressedDestination": "<p>Retrieves information about a specific email address that's on the suppression list for your account.</p>",
     "ListConfigurationSets": "<p>List all of the configuration sets associated with your account in the current region.</p> <p> <i>Configuration sets</i> are groups of rules that you can apply to the emails you send. You apply a configuration set to an email by including a reference to the configuration set in the headers of the email. When you apply a configuration set to an email, all of the rules in that configuration set are applied to the email.</p>",
+    "ListContactLists": "<p>Lists all of the contact lists available.</p>",
+    "ListContacts": "<p>Lists the contacts present in a specific contact list.</p>",
     "ListCustomVerificationEmailTemplates": "<p>Lists the existing custom verification email templates for your account in the current AWS Region.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
     "ListDedicatedIpPools": "<p>List all of the dedicated IP pools that exist in your AWS account in the current Region.</p>",
     "ListDeliverabilityTestReports": "<p>Show a list of the predictive inbox placement tests that you've performed, regardless of their statuses. For predictive inbox placement tests that are complete, you can use the <code>GetDeliverabilityTestReport</code> operation to view the results.</p>",
@@ -69,6 +77,8 @@
     "TestRenderEmailTemplate": "<p>Creates a preview of the MIME content of an email when provided with a template and a set of replacement data.</p> <p>You can execute this operation no more than once per second.</p>",
     "UntagResource": "<p>Remove one or more tags (keys and values) from a specified resource.</p>",
     "UpdateConfigurationSetEventDestination": "<p>Update the configuration of an event destination for a configuration set.</p> <p> <i>Events</i> include message sends, deliveries, opens, clicks, bounces, and complaints. <i>Event destinations</i> are places that you can send information about these events to. For example, you can send event data to Amazon SNS to receive notifications when you receive bounces or complaints, or you can use Amazon Kinesis Data Firehose to stream data to Amazon S3 for long-term storage.</p>",
+    "UpdateContact": "<p>Updates a contact's preferences for a list. It is not necessary to specify all existing topic preferences in the TopicPreferences object, just the ones that need updating.</p>",
+    "UpdateContactList": "<p>Updates contact list metadata. This operation does a complete replacement.</p>",
     "UpdateCustomVerificationEmailTemplate": "<p>Updates an existing custom verification email template.</p> <p>For more information about custom verification email templates, see <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html\">Using Custom Verification Email Templates</a> in the <i>Amazon SES Developer Guide</i>.</p> <p>You can execute this operation no more than once per second.</p>",
     "UpdateEmailIdentityPolicy": "<p>Updates the specified sending authorization policy for the given identity (an email address or a domain). This API returns successfully even if a policy with the specified name does not exist.</p> <note> <p>This API is for the identity owner only. If you have not verified the identity, this API will return an error.</p> </note> <p>Sending authorization is a feature that enables an identity owner to authorize other senders to use its identities. For information about using sending authorization, see the <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>",
     "UpdateEmailTemplate": "<p>Updates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation. For more information, see the <a href=\"https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html\">Amazon SES Developer Guide</a>.</p> <p>You can execute this operation no more than once per second.</p>"
@@ -118,6 +128,14 @@
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to add one or more tags to.</p>",
         "Template$TemplateArn": "<p>The Amazon Resource Name (ARN) of the template.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource that you want to remove one or more tags from.</p>"
+      }
+    },
+    "AttributesData": {
+      "base": null,
+      "refs": {
+        "CreateContactRequest$AttributesData": "<p>The attribute data attached to a contact.</p>",
+        "GetContactResponse$AttributesData": "<p>The attribute data attached to a contact.</p>",
+        "UpdateContactRequest$AttributesData": "<p>The attribute data attached to a contact.</p>"
       }
     },
     "BadRequestException": {
@@ -287,11 +305,54 @@
       "refs": {
       }
     },
+    "Contact": {
+      "base": "<p>A contact is the end-user who is receiving the email.</p>",
+      "refs": {
+        "ListOfContacts$member": null
+      }
+    },
     "ContactLanguage": {
       "base": null,
       "refs": {
         "AccountDetails$ContactLanguage": "<p>The language you would prefer for the case. The contact language can be one of <code>ENGLISH</code> or <code>JAPANESE</code>.</p>",
         "PutAccountDetailsRequest$ContactLanguage": "<p>The language you would prefer to be contacted with.</p>"
+      }
+    },
+    "ContactList": {
+      "base": "<p>A list that contains contacts that have subscribed to a particular topic or topics.</p>",
+      "refs": {
+        "ListOfContactLists$member": null
+      }
+    },
+    "ContactListDestination": {
+      "base": "<p>An object that contains details about the action of a contact list.</p>",
+      "refs": {
+        "ImportDestination$ContactListDestination": "<p>An object that contains the action of the import job towards a contact list.</p>"
+      }
+    },
+    "ContactListImportAction": {
+      "base": null,
+      "refs": {
+        "ContactListDestination$ContactListImportAction": "<p>&gt;The type of action that you want to perform on the addresses. Acceptable values:</p> <ul> <li> <p>PUT: add the addresses to the contact list. If the record already exists, it will override it with the new value.</p> </li> <li> <p>DELETE: remove the addresses from the contact list.</p> </li> </ul>"
+      }
+    },
+    "ContactListName": {
+      "base": null,
+      "refs": {
+        "ContactList$ContactListName": "<p>The name of the contact list.</p>",
+        "ContactListDestination$ContactListName": "<p>The name of the contact list.</p>",
+        "CreateContactListRequest$ContactListName": "<p>The name of the contact list.</p>",
+        "CreateContactRequest$ContactListName": "<p>The name of the contact list to which the contact should be added.</p>",
+        "DeleteContactListRequest$ContactListName": "<p>The name of the contact list.</p>",
+        "DeleteContactRequest$ContactListName": "<p>The name of the contact list from which the contact should be removed.</p>",
+        "GetContactListRequest$ContactListName": "<p>The name of the contact list.</p>",
+        "GetContactListResponse$ContactListName": "<p>The name of the contact list.</p>",
+        "GetContactRequest$ContactListName": "<p>The name of the contact list to which the contact belongs.</p>",
+        "GetContactResponse$ContactListName": "<p>The name of the contact list to which the contact belongs.</p>",
+        "ListContactsRequest$ContactListName": "<p>The name of the contact list.</p>",
+        "ListManagementOptions$ContactListName": "<p>The name of the contact list.</p>",
+        "UpdateContactListRequest$ContactListName": "<p>The name of the contact list.</p>",
+        "UpdateContactRequest$ContactListName": "<p>The name of the contact list.</p>"
       }
     },
     "Content": {
@@ -319,6 +380,26 @@
     },
     "CreateConfigurationSetResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
+    "CreateContactListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContactListResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContactResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -468,6 +549,26 @@
       "refs": {
       }
     },
+    "DeleteContactListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContactListResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContactResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteCustomVerificationEmailTemplateRequest": {
       "base": "<p>Represents a request to delete an existing custom verification email template.</p>",
       "refs": {
@@ -567,6 +668,15 @@
         "GetConfigurationSetResponse$DeliveryOptions": "<p>An object that defines the dedicated IP pool that is used to send emails that you send using the configuration set.</p>"
       }
     },
+    "Description": {
+      "base": null,
+      "refs": {
+        "CreateContactListRequest$Description": "<p>A description of what the contact list is about.</p>",
+        "GetContactListResponse$Description": "<p>A description of what the contact list is about.</p>",
+        "Topic$Description": "<p>A description of what the topic is about, which the contact will see.</p>",
+        "UpdateContactListRequest$Description": "<p>A description of what the contact list is about.</p>"
+      }
+    },
     "Destination": {
       "base": "<p>An object that describes the recipients for an email.</p>",
       "refs": {
@@ -584,6 +694,12 @@
       "base": "<p>The location where the Amazon SES API v2 finds the value of a dimension to publish to Amazon CloudWatch. If you want to use the message tags that you specify using an <code>X-SES-MESSAGE-TAGS</code> header or a parameter to the <code>SendEmail</code> or <code>SendRawEmail</code> API, choose <code>messageTag</code>. If you want to use your own email headers, choose <code>emailHeader</code>. If you want to use link tags, choose <code>linkTags</code>.</p>",
       "refs": {
         "CloudWatchDimensionConfiguration$DimensionValueSource": "<p>The location where the Amazon SES API v2 finds the value of a dimension to publish to Amazon CloudWatch. If you want to use the message tags that you specify using an <code>X-SES-MESSAGE-TAGS</code> header or a parameter to the <code>SendEmail</code> or <code>SendRawEmail</code> API, choose <code>messageTag</code>. If you want to use your own email headers, choose <code>emailHeader</code>. If you want to use link tags, choose <code>linkTags</code>.</p>"
+      }
+    },
+    "DisplayName": {
+      "base": null,
+      "refs": {
+        "Topic$DisplayName": "<p>The name of the topic the contact will see.</p>"
       }
     },
     "DkimAttributes": {
@@ -677,12 +793,17 @@
     "EmailAddress": {
       "base": null,
       "refs": {
+        "Contact$EmailAddress": "<p>The contact's email address.</p>",
+        "CreateContactRequest$EmailAddress": "<p>The contact's email address.</p>",
         "CreateCustomVerificationEmailTemplateRequest$FromEmailAddress": "<p>The email address that the custom verification email is sent from.</p>",
         "CreateDeliverabilityTestReportRequest$FromEmailAddress": "<p>The email address that the predictive inbox placement test email was sent from.</p>",
         "CustomVerificationEmailTemplateMetadata$FromEmailAddress": "<p>The email address that the custom verification email is sent from.</p>",
+        "DeleteContactRequest$EmailAddress": "<p>The contact's email address.</p>",
         "DeleteSuppressedDestinationRequest$EmailAddress": "<p>The suppressed email destination to remove from the account suppression list.</p>",
         "DeliverabilityTestReport$FromEmailAddress": "<p>The sender address that you specified for the predictive inbox placement test.</p>",
         "EmailAddressList$member": null,
+        "GetContactRequest$EmailAddress": "<p>The contact's email addres.</p>",
+        "GetContactResponse$EmailAddress": "<p>The contact's email addres.</p>",
         "GetCustomVerificationEmailTemplateResponse$FromEmailAddress": "<p>The email address that the custom verification email is sent from.</p>",
         "GetSuppressedDestinationRequest$EmailAddress": "<p>The email address that's on the account suppression list.</p>",
         "PutSuppressedDestinationRequest$EmailAddress": "<p>The email address that should be added to the suppression list for your account.</p>",
@@ -693,6 +814,7 @@
         "SendEmailRequest$FeedbackForwardingEmailAddress": "<p>The address that you want bounce and complaint notifications to be sent to.</p>",
         "SuppressedDestination$EmailAddress": "<p>The email address that is on the suppression list for your account.</p>",
         "SuppressedDestinationSummary$EmailAddress": "<p>The email address that's on the suppression list for your account.</p>",
+        "UpdateContactRequest$EmailAddress": "<p>The contact's email addres.</p>",
         "UpdateCustomVerificationEmailTemplateRequest$FromEmailAddress": "<p>The email address that the custom verification email is sent from.</p>"
       }
     },
@@ -951,6 +1073,26 @@
     },
     "GetConfigurationSetResponse": {
       "base": "<p>Information about a configuration set.</p>",
+      "refs": {
+      }
+    },
+    "GetContactListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContactListResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContactResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -1249,6 +1391,32 @@
       "refs": {
       }
     },
+    "ListContactListsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContactListsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContactsFilter": {
+      "base": "<p>A filter that can be applied to a list of contacts.</p>",
+      "refs": {
+        "ListContactsRequest$Filter": "<p>A filter that can be applied to a list of contacts.</p>"
+      }
+    },
+    "ListContactsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListContactsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListCustomVerificationEmailTemplatesRequest": {
       "base": "<p>Represents a request to list the existing custom verification email templates for your account.</p>",
       "refs": {
@@ -1319,6 +1487,24 @@
       "refs": {
       }
     },
+    "ListManagementOptions": {
+      "base": "<p>An object used to specify a list or topic to which an email belongs, which will be used when a contact chooses to unsubscribe.</p>",
+      "refs": {
+        "SendEmailRequest$ListManagementOptions": "<p>An object used to specify a list or topic to which an email belongs, which will be used when a contact chooses to unsubscribe.</p>"
+      }
+    },
+    "ListOfContactLists": {
+      "base": null,
+      "refs": {
+        "ListContactListsResponse$ContactLists": "<p>The available contact lists.</p>"
+      }
+    },
+    "ListOfContacts": {
+      "base": null,
+      "refs": {
+        "ListContactsResponse$Contacts": "<p>The contacts present in a specific contact list.</p>"
+      }
+    },
     "ListOfDedicatedIpPools": {
       "base": "<p>A list of dedicated IP pools that are associated with your AWS account.</p>",
       "refs": {
@@ -1387,6 +1573,8 @@
       "refs": {
         "GetDedicatedIpsRequest$PageSize": "<p>The number of results to show in a single call to <code>GetDedicatedIpsRequest</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListConfigurationSetsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListConfigurationSets</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
+        "ListContactListsRequest$PageSize": "<p>Maximum number of contact lists to return at once. Use this parameter to paginate results. If additional contact lists exist beyond the specified limit, the <code>NextToken</code> element is sent in the response. Use the <code>NextToken</code> value in subsequent requests to retrieve additional lists.</p>",
+        "ListContactsRequest$PageSize": "<p>The number of contacts that may be returned at once, which is dependent on if there are more or less contacts than the value of the PageSize. Use this parameter to paginate results. If additional contacts exist beyond the specified limit, the <code>NextToken</code> element is sent in the response. Use the <code>NextToken</code> value in subsequent requests to retrieve additional contacts.</p>",
         "ListCustomVerificationEmailTemplatesRequest$PageSize": "<p>The number of results to show in a single call to <code>ListCustomVerificationEmailTemplates</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 1, and can be no more than 50.</p>",
         "ListDedicatedIpPoolsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDedicatedIpPools</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p>",
         "ListDeliverabilityTestReportsRequest$PageSize": "<p>The number of results to show in a single call to <code>ListDeliverabilityTestReports</code>. If the number of results is larger than the number you specified in this parameter, then the response includes a <code>NextToken</code> element, which you can use to obtain additional results.</p> <p>The value you specify has to be at least 0, and can be no more than 1000.</p>",
@@ -1459,6 +1647,10 @@
         "GetDedicatedIpsResponse$NextToken": "<p>A token that indicates that there are additional dedicated IP addresses to list. To view additional addresses, issue another request to <code>GetDedicatedIps</code>, passing this token in the <code>NextToken</code> parameter.</p>",
         "ListConfigurationSetsRequest$NextToken": "<p>A token returned from a previous call to <code>ListConfigurationSets</code> to indicate the position in the list of configuration sets.</p>",
         "ListConfigurationSetsResponse$NextToken": "<p>A token that indicates that there are additional configuration sets to list. To view additional configuration sets, issue another request to <code>ListConfigurationSets</code>, and pass this token in the <code>NextToken</code> parameter.</p>",
+        "ListContactListsRequest$NextToken": "<p>A string token indicating that there might be additional contact lists available to be listed. Use the token provided in the Response to use in the subsequent call to ListContactLists with the same parameters to retrieve the next page of contact lists.</p>",
+        "ListContactListsResponse$NextToken": "<p>A string token indicating that there might be additional contact lists available to be listed. Copy this token to a subsequent call to <code>ListContactLists</code> with the same parameters to retrieve the next page of contact lists.</p>",
+        "ListContactsRequest$NextToken": "<p>A string token indicating that there might be additional contacts available to be listed. Use the token provided in the Response to use in the subsequent call to ListContacts with the same parameters to retrieve the next page of contacts.</p>",
+        "ListContactsResponse$NextToken": "<p>A string token indicating that there might be additional contacts available to be listed. Copy this token to a subsequent call to <code>ListContacts</code> with the same parameters to retrieve the next page of contacts.</p>",
         "ListCustomVerificationEmailTemplatesRequest$NextToken": "<p>A token returned from a previous call to <code>ListCustomVerificationEmailTemplates</code> to indicate the position in the list of custom verification email templates.</p>",
         "ListCustomVerificationEmailTemplatesResponse$NextToken": "<p>A token indicating that there are additional custom verification email templates available to be listed. Pass this token to a subsequent call to <code>ListCustomVerificationEmailTemplates</code> to retrieve the next 50 custom verification email templates.</p>",
         "ListDedicatedIpPoolsRequest$NextToken": "<p>A token returned from a previous call to <code>ListDedicatedIpPools</code> to indicate the position in the list of dedicated IP pools.</p>",
@@ -1907,6 +2099,14 @@
         "DomainDeliverabilityCampaign$Subject": "<p>The subject line, or title, of the email message.</p>"
       }
     },
+    "SubscriptionStatus": {
+      "base": null,
+      "refs": {
+        "ListContactsFilter$FilteredStatus": "<p>The status by which you are filtering: <code>OPT_IN</code> or <code>OPT_OUT</code>.</p>",
+        "Topic$DefaultSubscriptionStatus": "<p>The default subscription status to be applied to a contact if the contact has not noted their preference for subscribing to a topic.</p>",
+        "TopicPreference$SubscriptionStatus": "<p>The contact's subscription status to a topic which is either <code>OPT_IN</code> or <code>OPT_OUT</code>.</p>"
+      }
+    },
     "SuccessRedirectionURL": {
       "base": "<p>The URL that the recipient of the verification email is sent to if his or her address is successfully verified.</p>",
       "refs": {
@@ -2007,10 +2207,12 @@
       "base": null,
       "refs": {
         "CreateConfigurationSetRequest$Tags": "<p>An array of objects that define the tags (keys and values) that you want to associate with the configuration set.</p>",
+        "CreateContactListRequest$Tags": "<p>The tags associated with a contact list.</p>",
         "CreateDedicatedIpPoolRequest$Tags": "<p>An object that defines the tags (keys and values) that you want to associate with the pool.</p>",
         "CreateDeliverabilityTestReportRequest$Tags": "<p>An array of objects that define the tags (keys and values) that you want to associate with the predictive inbox placement test.</p>",
         "CreateEmailIdentityRequest$Tags": "<p>An array of objects that define the tags (keys and values) that you want to associate with the email identity.</p>",
         "GetConfigurationSetResponse$Tags": "<p>An array of objects that define the tags (keys and values) that are associated with the configuration set.</p>",
+        "GetContactListResponse$Tags": "<p>The tags associated with a contact list.</p>",
         "GetDeliverabilityTestReportResponse$Tags": "<p>An array of objects that define the tags (keys and values) that are associated with the predictive inbox placement test.</p>",
         "GetEmailIdentityResponse$Tags": "<p>An array of objects that define the tags (keys and values) that are associated with the email identity.</p>",
         "ListTagsForResourceResponse$Tags": "<p>An array that lists all the tags that are associated with the resource. Each tag consists of a required tag key (<code>Key</code>) and an associated tag value (<code>Value</code>)</p>",
@@ -2062,18 +2264,24 @@
       "base": null,
       "refs": {
         "BlacklistEntry$ListingTime": "<p>The time when the blacklisting event occurred, shown in Unix time format.</p>",
+        "Contact$LastUpdatedTimestamp": "<p>A timestamp noting the last time the contact's information was updated.</p>",
+        "ContactList$LastUpdatedTimestamp": "<p>A timestamp noting the last time the contact list was updated.</p>",
         "DailyVolume$StartDate": "<p>The date that the DailyVolume metrics apply to, in Unix time.</p>",
         "DeliverabilityTestReport$CreateDate": "<p>The date and time when the predictive inbox placement test was created, in Unix time format.</p>",
         "DomainDeliverabilityCampaign$FirstSeenDateTime": "<p>The first time, in Unix time format, when the email message was delivered to any recipient's inbox. This value can help you determine how long it took for a campaign to deliver an email message.</p>",
         "DomainDeliverabilityCampaign$LastSeenDateTime": "<p>The last time, in Unix time format, when the email message was delivered to any recipient's inbox. This value can help you determine how long it took for a campaign to deliver an email message.</p>",
         "DomainDeliverabilityTrackingOption$SubscriptionStartDate": "<p>The date, in Unix time format, when you enabled the Deliverability dashboard for the domain.</p>",
         "EmailTemplateMetadata$CreatedTimestamp": "<p>The time and date the template was created.</p>",
+        "GetContactListResponse$CreatedTimestamp": "<p>A timestamp noting when the contact list was created.</p>",
+        "GetContactListResponse$LastUpdatedTimestamp": "<p>A timestamp noting the last time the contact list was updated.</p>",
+        "GetContactResponse$CreatedTimestamp": "<p>A timestamp noting when the contact was created.</p>",
+        "GetContactResponse$LastUpdatedTimestamp": "<p>A timestamp noting the last time the contact's information was updated.</p>",
         "GetDeliverabilityDashboardOptionsResponse$SubscriptionExpiryDate": "<p>The date, in Unix time format, when your current subscription to the Deliverability dashboard is scheduled to expire, if your subscription is scheduled to expire at the end of the current calendar month. This value is null if you have an active subscription that isn’t due to expire at the end of the month.</p>",
         "GetDomainStatisticsReportRequest$StartDate": "<p>The first day (in Unix time) that you want to obtain domain deliverability metrics for.</p>",
         "GetDomainStatisticsReportRequest$EndDate": "<p>The last day (in Unix time) that you want to obtain domain deliverability metrics for. The <code>EndDate</code> that you specify has to be less than or equal to 30 days after the <code>StartDate</code>.</p>",
         "GetImportJobResponse$CreatedTimestamp": "<p>The time stamp of when the import job was created.</p>",
         "GetImportJobResponse$CompletedTimestamp": "<p>The time stamp of when the import job was completed.</p>",
-        "ImportJobSummary$CreatedTimestamp": null,
+        "ImportJobSummary$CreatedTimestamp": "<p>The date and time when the import job was created.</p>",
         "ListDomainDeliverabilityCampaignsRequest$StartDate": "<p>The first day, in Unix time format, that you want to obtain deliverability data for.</p>",
         "ListDomainDeliverabilityCampaignsRequest$EndDate": "<p>The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the <code>StartDate</code> parameter.</p>",
         "ListSuppressedDestinationsRequest$StartDate": "<p>Used to filter the list of suppressed email destinations so that it only includes addresses that were added to the list after a specific date. The date that you specify should be in Unix time format.</p>",
@@ -2094,11 +2302,66 @@
       "refs": {
       }
     },
+    "Topic": {
+      "base": "<p>An interest group, theme, or label within a list. Lists can have multiple topics.</p>",
+      "refs": {
+        "Topics$member": null
+      }
+    },
+    "TopicFilter": {
+      "base": "<p>Used for filtering by a specific topic preference.</p>",
+      "refs": {
+        "ListContactsFilter$TopicFilter": "<p>Used for filtering by a specific topic preference.</p>"
+      }
+    },
+    "TopicName": {
+      "base": null,
+      "refs": {
+        "ListManagementOptions$TopicName": "<p>The name of the topic.</p>",
+        "Topic$TopicName": "<p>The name of the topic.</p>",
+        "TopicFilter$TopicName": "<p>The name of a topic on which you wish to apply the filter.</p>",
+        "TopicPreference$TopicName": "<p>The name of the topic.</p>"
+      }
+    },
+    "TopicPreference": {
+      "base": "<p>The contact's preference for being opted-in to or opted-out of a topic.</p>",
+      "refs": {
+        "TopicPreferenceList$member": null
+      }
+    },
+    "TopicPreferenceList": {
+      "base": null,
+      "refs": {
+        "Contact$TopicPreferences": "<p>The contact's preference for being opted-in to or opted-out of a topic.</p>",
+        "Contact$TopicDefaultPreferences": "<p>The default topic preferences applied to the contact.</p>",
+        "CreateContactRequest$TopicPreferences": "<p>The contact's preferences for being opted-in to or opted-out of topics.</p>",
+        "GetContactResponse$TopicPreferences": "<p>The contact's preference for being opted-in to or opted-out of a topic.&gt;</p>",
+        "GetContactResponse$TopicDefaultPreferences": "<p>The default topic preferences applied to the contact.</p>",
+        "UpdateContactRequest$TopicPreferences": "<p>The contact's preference for being opted-in to or opted-out of a topic.</p>"
+      }
+    },
+    "Topics": {
+      "base": null,
+      "refs": {
+        "CreateContactListRequest$Topics": "<p>An interest group, theme, or label within a list. A contact list can have multiple topics.</p>",
+        "GetContactListResponse$Topics": "<p>An interest group, theme, or label within a list. A contact list can have multiple topics.</p>",
+        "UpdateContactListRequest$Topics": "<p>An interest group, theme, or label within a list. A contact list can have multiple topics.</p>"
+      }
+    },
     "TrackingOptions": {
       "base": "<p>An object that defines the tracking options for a configuration set. When you use the Amazon SES API v2 to send an email, it contains an invisible image that's used to track when recipients open your email. If your email contains links, those links are changed slightly in order to track when recipients click them.</p> <p>These images and links include references to a domain operated by AWS. You can optionally configure the Amazon SES to use a domain that you operate for these images and links.</p>",
       "refs": {
         "CreateConfigurationSetRequest$TrackingOptions": "<p>An object that defines the open and click tracking options for emails that you send using the configuration set.</p>",
         "GetConfigurationSetResponse$TrackingOptions": "<p>An object that defines the open and click tracking options for emails that you send using the configuration set.</p>"
+      }
+    },
+    "UnsubscribeAll": {
+      "base": null,
+      "refs": {
+        "Contact$UnsubscribeAll": "<p>A boolean value status noting if the contact is unsubscribed from all contact list topics.</p>",
+        "CreateContactRequest$UnsubscribeAll": "<p>A boolean value status noting if the contact is unsubscribed from all contact list topics.</p>",
+        "GetContactResponse$UnsubscribeAll": "<p>A boolean value status noting if the contact is unsubscribed from all contact list topics.</p>",
+        "UpdateContactRequest$UnsubscribeAll": "<p>A boolean value status noting if the contact is unsubscribed from all contact list topics.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -2118,6 +2381,26 @@
     },
     "UpdateConfigurationSetEventDestinationResponse": {
       "base": "<p>An HTTP 200 response if the request succeeds, or an error message if the request fails.</p>",
+      "refs": {
+      }
+    },
+    "UpdateContactListRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactListResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContactResponse": {
+      "base": null,
       "refs": {
       }
     },
@@ -2156,6 +2439,12 @@
       "refs": {
         "AccountDetails$UseCaseDescription": "<p>A description of the types of email that you plan to send.</p>",
         "PutAccountDetailsRequest$UseCaseDescription": "<p>A description of the types of email that you plan to send.</p>"
+      }
+    },
+    "UseDefaultIfPreferenceUnavailable": {
+      "base": null,
+      "refs": {
+        "TopicFilter$UseDefaultIfPreferenceUnavailable": "<p>Notes that the default subscription status should be applied to a contact because the contact has not noted their preference for subscribing to a topic.</p>"
       }
     },
     "Volume": {

@@ -211,6 +211,185 @@ func (c *SESV2) CreateConfigurationSetEventDestinationWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opCreateContact = "CreateContact"
+
+// CreateContactRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContact for more information on using the CreateContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContactRequest method.
+//    req, resp := client.CreateContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateContact
+func (c *SESV2) CreateContactRequest(input *CreateContactInput) (req *request.Request, output *CreateContactOutput) {
+	op := &request.Operation{
+		Name:       opCreateContact,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts",
+	}
+
+	if input == nil {
+		input = &CreateContactInput{}
+	}
+
+	output = &CreateContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateContact API operation for Amazon Simple Email Service.
+//
+// Creates a contact, which is an end-user who is receiving the email, and adds
+// them to a contact list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateContact for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * AlreadyExistsException
+//   The resource specified in your request already exists.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateContact
+func (c *SESV2) CreateContact(input *CreateContactInput) (*CreateContactOutput, error) {
+	req, out := c.CreateContactRequest(input)
+	return out, req.Send()
+}
+
+// CreateContactWithContext is the same as CreateContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) CreateContactWithContext(ctx aws.Context, input *CreateContactInput, opts ...request.Option) (*CreateContactOutput, error) {
+	req, out := c.CreateContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateContactList = "CreateContactList"
+
+// CreateContactListRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContactList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContactList for more information on using the CreateContactList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContactListRequest method.
+//    req, resp := client.CreateContactListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateContactList
+func (c *SESV2) CreateContactListRequest(input *CreateContactListInput) (req *request.Request, output *CreateContactListOutput) {
+	op := &request.Operation{
+		Name:       opCreateContactList,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v2/email/contact-lists",
+	}
+
+	if input == nil {
+		input = &CreateContactListInput{}
+	}
+
+	output = &CreateContactListOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// CreateContactList API operation for Amazon Simple Email Service.
+//
+// Creates a contact list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation CreateContactList for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * AlreadyExistsException
+//   The resource specified in your request already exists.
+//
+//   * LimitExceededException
+//   There are too many instances of the specified resource type.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/CreateContactList
+func (c *SESV2) CreateContactList(input *CreateContactListInput) (*CreateContactListOutput, error) {
+	req, out := c.CreateContactListRequest(input)
+	return out, req.Send()
+}
+
+// CreateContactListWithContext is the same as CreateContactList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContactList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) CreateContactListWithContext(ctx aws.Context, input *CreateContactListInput, opts ...request.Option) (*CreateContactListOutput, error) {
+	req, out := c.CreateContactListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCustomVerificationEmailTemplate = "CreateCustomVerificationEmailTemplate"
 
 // CreateCustomVerificationEmailTemplateRequest generates a "aws/request.Request" representing the
@@ -1093,6 +1272,181 @@ func (c *SESV2) DeleteConfigurationSetEventDestination(input *DeleteConfiguratio
 // for more information on using Contexts.
 func (c *SESV2) DeleteConfigurationSetEventDestinationWithContext(ctx aws.Context, input *DeleteConfigurationSetEventDestinationInput, opts ...request.Option) (*DeleteConfigurationSetEventDestinationOutput, error) {
 	req, out := c.DeleteConfigurationSetEventDestinationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContact = "DeleteContact"
+
+// DeleteContactRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContact for more information on using the DeleteContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContactRequest method.
+//    req, resp := client.DeleteContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteContact
+func (c *SESV2) DeleteContactRequest(input *DeleteContactInput) (req *request.Request, output *DeleteContactOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContact,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}",
+	}
+
+	if input == nil {
+		input = &DeleteContactInput{}
+	}
+
+	output = &DeleteContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContact API operation for Amazon Simple Email Service.
+//
+// Removes a contact from a contact list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteContact for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteContact
+func (c *SESV2) DeleteContact(input *DeleteContactInput) (*DeleteContactOutput, error) {
+	req, out := c.DeleteContactRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactWithContext is the same as DeleteContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) DeleteContactWithContext(ctx aws.Context, input *DeleteContactInput, opts ...request.Option) (*DeleteContactOutput, error) {
+	req, out := c.DeleteContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContactList = "DeleteContactList"
+
+// DeleteContactListRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContactList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContactList for more information on using the DeleteContactList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContactListRequest method.
+//    req, resp := client.DeleteContactListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteContactList
+func (c *SESV2) DeleteContactListRequest(input *DeleteContactListInput) (req *request.Request, output *DeleteContactListOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContactList,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}",
+	}
+
+	if input == nil {
+		input = &DeleteContactListInput{}
+	}
+
+	output = &DeleteContactListOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContactList API operation for Amazon Simple Email Service.
+//
+// Deletes a contact list and all of the contacts on that list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation DeleteContactList for usage and error information.
+//
+// Returned Error Types:
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * ConcurrentModificationException
+//   The resource is being modified by another operation or thread.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/DeleteContactList
+func (c *SESV2) DeleteContactList(input *DeleteContactListInput) (*DeleteContactListOutput, error) {
+	req, out := c.DeleteContactListRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContactListWithContext is the same as DeleteContactList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContactList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) DeleteContactListWithContext(ctx aws.Context, input *DeleteContactListInput, opts ...request.Option) (*DeleteContactListOutput, error) {
+	req, out := c.DeleteContactListRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1989,6 +2343,177 @@ func (c *SESV2) GetConfigurationSetEventDestinations(input *GetConfigurationSetE
 // for more information on using Contexts.
 func (c *SESV2) GetConfigurationSetEventDestinationsWithContext(ctx aws.Context, input *GetConfigurationSetEventDestinationsInput, opts ...request.Option) (*GetConfigurationSetEventDestinationsOutput, error) {
 	req, out := c.GetConfigurationSetEventDestinationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContact = "GetContact"
+
+// GetContactRequest generates a "aws/request.Request" representing the
+// client's request for the GetContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContact for more information on using the GetContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContactRequest method.
+//    req, resp := client.GetContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetContact
+func (c *SESV2) GetContactRequest(input *GetContactInput) (req *request.Request, output *GetContactOutput) {
+	op := &request.Operation{
+		Name:       opGetContact,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}",
+	}
+
+	if input == nil {
+		input = &GetContactInput{}
+	}
+
+	output = &GetContactOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContact API operation for Amazon Simple Email Service.
+//
+// Returns a contact from a contact list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetContact for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetContact
+func (c *SESV2) GetContact(input *GetContactInput) (*GetContactOutput, error) {
+	req, out := c.GetContactRequest(input)
+	return out, req.Send()
+}
+
+// GetContactWithContext is the same as GetContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetContactWithContext(ctx aws.Context, input *GetContactInput, opts ...request.Option) (*GetContactOutput, error) {
+	req, out := c.GetContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContactList = "GetContactList"
+
+// GetContactListRequest generates a "aws/request.Request" representing the
+// client's request for the GetContactList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContactList for more information on using the GetContactList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContactListRequest method.
+//    req, resp := client.GetContactListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetContactList
+func (c *SESV2) GetContactListRequest(input *GetContactListInput) (req *request.Request, output *GetContactListOutput) {
+	op := &request.Operation{
+		Name:       opGetContactList,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}",
+	}
+
+	if input == nil {
+		input = &GetContactListInput{}
+	}
+
+	output = &GetContactListOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContactList API operation for Amazon Simple Email Service.
+//
+// Returns contact list metadata. It does not return any information about the
+// contacts present in the list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation GetContactList for usage and error information.
+//
+// Returned Error Types:
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/GetContactList
+func (c *SESV2) GetContactList(input *GetContactListInput) (*GetContactListOutput, error) {
+	req, out := c.GetContactListRequest(input)
+	return out, req.Send()
+}
+
+// GetContactListWithContext is the same as GetContactList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContactList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) GetContactListWithContext(ctx aws.Context, input *GetContactListInput, opts ...request.Option) (*GetContactListOutput, error) {
+	req, out := c.GetContactListRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3251,6 +3776,289 @@ func (c *SESV2) ListConfigurationSetsPagesWithContext(ctx aws.Context, input *Li
 
 	for p.Next() {
 		if !fn(p.Page().(*ListConfigurationSetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListContactLists = "ListContactLists"
+
+// ListContactListsRequest generates a "aws/request.Request" representing the
+// client's request for the ListContactLists operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContactLists for more information on using the ListContactLists
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListContactListsRequest method.
+//    req, resp := client.ListContactListsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListContactLists
+func (c *SESV2) ListContactListsRequest(input *ListContactListsInput) (req *request.Request, output *ListContactListsOutput) {
+	op := &request.Operation{
+		Name:       opListContactLists,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/contact-lists",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContactListsInput{}
+	}
+
+	output = &ListContactListsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContactLists API operation for Amazon Simple Email Service.
+//
+// Lists all of the contact lists available.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListContactLists for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListContactLists
+func (c *SESV2) ListContactLists(input *ListContactListsInput) (*ListContactListsOutput, error) {
+	req, out := c.ListContactListsRequest(input)
+	return out, req.Send()
+}
+
+// ListContactListsWithContext is the same as ListContactLists with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContactLists for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListContactListsWithContext(ctx aws.Context, input *ListContactListsInput, opts ...request.Option) (*ListContactListsOutput, error) {
+	req, out := c.ListContactListsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContactListsPages iterates over the pages of a ListContactLists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContactLists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContactLists operation.
+//    pageNum := 0
+//    err := client.ListContactListsPages(params,
+//        func(page *sesv2.ListContactListsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SESV2) ListContactListsPages(input *ListContactListsInput, fn func(*ListContactListsOutput, bool) bool) error {
+	return c.ListContactListsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContactListsPagesWithContext same as ListContactListsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListContactListsPagesWithContext(ctx aws.Context, input *ListContactListsInput, fn func(*ListContactListsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContactListsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContactListsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContactListsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListContacts = "ListContacts"
+
+// ListContactsRequest generates a "aws/request.Request" representing the
+// client's request for the ListContacts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListContacts for more information on using the ListContacts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListContactsRequest method.
+//    req, resp := client.ListContactsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListContacts
+func (c *SESV2) ListContactsRequest(input *ListContactsInput) (req *request.Request, output *ListContactsOutput) {
+	op := &request.Operation{
+		Name:       opListContacts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "PageSize",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListContactsInput{}
+	}
+
+	output = &ListContactsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListContacts API operation for Amazon Simple Email Service.
+//
+// Lists the contacts present in a specific contact list.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation ListContacts for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/ListContacts
+func (c *SESV2) ListContacts(input *ListContactsInput) (*ListContactsOutput, error) {
+	req, out := c.ListContactsRequest(input)
+	return out, req.Send()
+}
+
+// ListContactsWithContext is the same as ListContacts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListContacts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListContactsWithContext(ctx aws.Context, input *ListContactsInput, opts ...request.Option) (*ListContactsOutput, error) {
+	req, out := c.ListContactsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListContactsPages iterates over the pages of a ListContacts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListContacts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListContacts operation.
+//    pageNum := 0
+//    err := client.ListContactsPages(params,
+//        func(page *sesv2.ListContactsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SESV2) ListContactsPages(input *ListContactsInput, fn func(*ListContactsOutput, bool) bool) error {
+	return c.ListContactsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListContactsPagesWithContext same as ListContactsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) ListContactsPagesWithContext(ctx aws.Context, input *ListContactsInput, fn func(*ListContactsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListContactsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListContactsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListContactsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6687,6 +7495,186 @@ func (c *SESV2) UpdateConfigurationSetEventDestinationWithContext(ctx aws.Contex
 	return out, req.Send()
 }
 
+const opUpdateContact = "UpdateContact"
+
+// UpdateContactRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContact operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContact for more information on using the UpdateContact
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactRequest method.
+//    req, resp := client.UpdateContactRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/UpdateContact
+func (c *SESV2) UpdateContactRequest(input *UpdateContactInput) (req *request.Request, output *UpdateContactOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContact,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}/contacts/{EmailAddress}",
+	}
+
+	if input == nil {
+		input = &UpdateContactInput{}
+	}
+
+	output = &UpdateContactOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContact API operation for Amazon Simple Email Service.
+//
+// Updates a contact's preferences for a list. It is not necessary to specify
+// all existing topic preferences in the TopicPreferences object, just the ones
+// that need updating.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation UpdateContact for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * ConcurrentModificationException
+//   The resource is being modified by another operation or thread.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/UpdateContact
+func (c *SESV2) UpdateContact(input *UpdateContactInput) (*UpdateContactOutput, error) {
+	req, out := c.UpdateContactRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactWithContext is the same as UpdateContact with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContact for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) UpdateContactWithContext(ctx aws.Context, input *UpdateContactInput, opts ...request.Option) (*UpdateContactOutput, error) {
+	req, out := c.UpdateContactRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContactList = "UpdateContactList"
+
+// UpdateContactListRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContactList operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContactList for more information on using the UpdateContactList
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContactListRequest method.
+//    req, resp := client.UpdateContactListRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/UpdateContactList
+func (c *SESV2) UpdateContactListRequest(input *UpdateContactListInput) (req *request.Request, output *UpdateContactListOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContactList,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v2/email/contact-lists/{ContactListName}",
+	}
+
+	if input == nil {
+		input = &UpdateContactListInput{}
+	}
+
+	output = &UpdateContactListOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateContactList API operation for Amazon Simple Email Service.
+//
+// Updates contact list metadata. This operation does a complete replacement.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Simple Email Service's
+// API operation UpdateContactList for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input you provided is invalid.
+//
+//   * TooManyRequestsException
+//   Too many requests have been made to the operation.
+//
+//   * NotFoundException
+//   The resource you attempted to access doesn't exist.
+//
+//   * ConcurrentModificationException
+//   The resource is being modified by another operation or thread.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sesv2-2019-09-27/UpdateContactList
+func (c *SESV2) UpdateContactList(input *UpdateContactListInput) (*UpdateContactListOutput, error) {
+	req, out := c.UpdateContactListRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContactListWithContext is the same as UpdateContactList with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContactList for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SESV2) UpdateContactListWithContext(ctx aws.Context, input *UpdateContactListInput, opts ...request.Option) (*UpdateContactListOutput, error) {
+	req, out := c.UpdateContactListRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCustomVerificationEmailTemplate = "UpdateCustomVerificationEmailTemplate"
 
 // UpdateCustomVerificationEmailTemplateRequest generates a "aws/request.Request" representing the
@@ -7769,6 +8757,160 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A contact is the end-user who is receiving the email.
+type Contact struct {
+	_ struct{} `type:"structure"`
+
+	// The contact's email address.
+	EmailAddress *string `type:"string"`
+
+	// A timestamp noting the last time the contact's information was updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The default topic preferences applied to the contact.
+	TopicDefaultPreferences []*TopicPreference `type:"list"`
+
+	// The contact's preference for being opted-in to or opted-out of a topic.
+	TopicPreferences []*TopicPreference `type:"list"`
+
+	// A boolean value status noting if the contact is unsubscribed from all contact
+	// list topics.
+	UnsubscribeAll *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s Contact) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Contact) GoString() string {
+	return s.String()
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *Contact) SetEmailAddress(v string) *Contact {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *Contact) SetLastUpdatedTimestamp(v time.Time) *Contact {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetTopicDefaultPreferences sets the TopicDefaultPreferences field's value.
+func (s *Contact) SetTopicDefaultPreferences(v []*TopicPreference) *Contact {
+	s.TopicDefaultPreferences = v
+	return s
+}
+
+// SetTopicPreferences sets the TopicPreferences field's value.
+func (s *Contact) SetTopicPreferences(v []*TopicPreference) *Contact {
+	s.TopicPreferences = v
+	return s
+}
+
+// SetUnsubscribeAll sets the UnsubscribeAll field's value.
+func (s *Contact) SetUnsubscribeAll(v bool) *Contact {
+	s.UnsubscribeAll = &v
+	return s
+}
+
+// A list that contains contacts that have subscribed to a particular topic
+// or topics.
+type ContactList struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	ContactListName *string `type:"string"`
+
+	// A timestamp noting the last time the contact list was updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ContactList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContactList) GoString() string {
+	return s.String()
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *ContactList) SetContactListName(v string) *ContactList {
+	s.ContactListName = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *ContactList) SetLastUpdatedTimestamp(v time.Time) *ContactList {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// An object that contains details about the action of a contact list.
+type ContactListDestination struct {
+	_ struct{} `type:"structure"`
+
+	// >The type of action that you want to perform on the addresses. Acceptable
+	// values:
+	//
+	//    * PUT: add the addresses to the contact list. If the record already exists,
+	//    it will override it with the new value.
+	//
+	//    * DELETE: remove the addresses from the contact list.
+	//
+	// ContactListImportAction is a required field
+	ContactListImportAction *string `type:"string" required:"true" enum:"ContactListImportAction"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ContactListDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContactListDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContactListDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContactListDestination"}
+	if s.ContactListImportAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListImportAction"))
+	}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListImportAction sets the ContactListImportAction field's value.
+func (s *ContactListDestination) SetContactListImportAction(v string) *ContactListDestination {
+	s.ContactListImportAction = &v
+	return s
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *ContactListDestination) SetContactListName(v string) *ContactListDestination {
+	s.ContactListName = &v
+	return s
+}
+
 // An object that represents the content of the email, and optionally a character
 // set specification.
 type Content struct {
@@ -8040,6 +9182,213 @@ func (s CreateConfigurationSetOutput) String() string {
 
 // GoString returns the string representation
 func (s CreateConfigurationSetOutput) GoString() string {
+	return s.String()
+}
+
+type CreateContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute data attached to a contact.
+	AttributesData *string `type:"string"`
+
+	// The name of the contact list to which the contact should be added.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+
+	// The contact's email address.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `type:"string" required:"true"`
+
+	// The contact's preferences for being opted-in to or opted-out of topics.
+	TopicPreferences []*TopicPreference `type:"list"`
+
+	// A boolean value status noting if the contact is unsubscribed from all contact
+	// list topics.
+	UnsubscribeAll *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s CreateContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContactInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.TopicPreferences != nil {
+		for i, v := range s.TopicPreferences {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TopicPreferences", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributesData sets the AttributesData field's value.
+func (s *CreateContactInput) SetAttributesData(v string) *CreateContactInput {
+	s.AttributesData = &v
+	return s
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *CreateContactInput) SetContactListName(v string) *CreateContactInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *CreateContactInput) SetEmailAddress(v string) *CreateContactInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetTopicPreferences sets the TopicPreferences field's value.
+func (s *CreateContactInput) SetTopicPreferences(v []*TopicPreference) *CreateContactInput {
+	s.TopicPreferences = v
+	return s
+}
+
+// SetUnsubscribeAll sets the UnsubscribeAll field's value.
+func (s *CreateContactInput) SetUnsubscribeAll(v bool) *CreateContactInput {
+	s.UnsubscribeAll = &v
+	return s
+}
+
+type CreateContactListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `type:"string" required:"true"`
+
+	// A description of what the contact list is about.
+	Description *string `type:"string"`
+
+	// The tags associated with a contact list.
+	Tags []*Tag `type:"list"`
+
+	// An interest group, theme, or label within a list. A contact list can have
+	// multiple topics.
+	Topics []*Topic `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateContactListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContactListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContactListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContactListInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Topics != nil {
+		for i, v := range s.Topics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Topics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *CreateContactListInput) SetContactListName(v string) *CreateContactListInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateContactListInput) SetDescription(v string) *CreateContactListInput {
+	s.Description = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContactListInput) SetTags(v []*Tag) *CreateContactListInput {
+	s.Tags = v
+	return s
+}
+
+// SetTopics sets the Topics field's value.
+func (s *CreateContactListInput) SetTopics(v []*Topic) *CreateContactListInput {
+	s.Topics = v
+	return s
+}
+
+type CreateContactListOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateContactListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContactListOutput) GoString() string {
+	return s.String()
+}
+
+type CreateContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContactOutput) GoString() string {
 	return s.String()
 }
 
@@ -9093,6 +10442,133 @@ func (s DeleteConfigurationSetOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteConfigurationSetOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list from which the contact should be removed.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+
+	// The contact's email address.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *DeleteContactInput) SetContactListName(v string) *DeleteContactInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *DeleteContactInput) SetEmailAddress(v string) *DeleteContactInput {
+	s.EmailAddress = &v
+	return s
+}
+
+type DeleteContactListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteContactListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContactListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContactListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContactListInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *DeleteContactListInput) SetContactListName(v string) *DeleteContactListInput {
+	s.ContactListName = &v
+	return s
+}
+
+type DeleteContactListOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteContactListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContactListOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContactOutput) GoString() string {
 	return s.String()
 }
 
@@ -10866,6 +12342,261 @@ func (s *GetConfigurationSetOutput) SetTrackingOptions(v *TrackingOptions) *GetC
 	return s
 }
 
+type GetContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list to which the contact belongs.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+
+	// The contact's email addres.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContactInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *GetContactInput) SetContactListName(v string) *GetContactInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *GetContactInput) SetEmailAddress(v string) *GetContactInput {
+	s.EmailAddress = &v
+	return s
+}
+
+type GetContactListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContactListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContactListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContactListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContactListInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *GetContactListInput) SetContactListName(v string) *GetContactListInput {
+	s.ContactListName = &v
+	return s
+}
+
+type GetContactListOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	ContactListName *string `type:"string"`
+
+	// A timestamp noting when the contact list was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// A description of what the contact list is about.
+	Description *string `type:"string"`
+
+	// A timestamp noting the last time the contact list was updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The tags associated with a contact list.
+	Tags []*Tag `type:"list"`
+
+	// An interest group, theme, or label within a list. A contact list can have
+	// multiple topics.
+	Topics []*Topic `type:"list"`
+}
+
+// String returns the string representation
+func (s GetContactListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContactListOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *GetContactListOutput) SetContactListName(v string) *GetContactListOutput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *GetContactListOutput) SetCreatedTimestamp(v time.Time) *GetContactListOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetContactListOutput) SetDescription(v string) *GetContactListOutput {
+	s.Description = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *GetContactListOutput) SetLastUpdatedTimestamp(v time.Time) *GetContactListOutput {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetContactListOutput) SetTags(v []*Tag) *GetContactListOutput {
+	s.Tags = v
+	return s
+}
+
+// SetTopics sets the Topics field's value.
+func (s *GetContactListOutput) SetTopics(v []*Topic) *GetContactListOutput {
+	s.Topics = v
+	return s
+}
+
+type GetContactOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute data attached to a contact.
+	AttributesData *string `type:"string"`
+
+	// The name of the contact list to which the contact belongs.
+	ContactListName *string `type:"string"`
+
+	// A timestamp noting when the contact was created.
+	CreatedTimestamp *time.Time `type:"timestamp"`
+
+	// The contact's email addres.
+	EmailAddress *string `type:"string"`
+
+	// A timestamp noting the last time the contact's information was updated.
+	LastUpdatedTimestamp *time.Time `type:"timestamp"`
+
+	// The default topic preferences applied to the contact.
+	TopicDefaultPreferences []*TopicPreference `type:"list"`
+
+	// The contact's preference for being opted-in to or opted-out of a topic.>
+	TopicPreferences []*TopicPreference `type:"list"`
+
+	// A boolean value status noting if the contact is unsubscribed from all contact
+	// list topics.
+	UnsubscribeAll *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s GetContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContactOutput) GoString() string {
+	return s.String()
+}
+
+// SetAttributesData sets the AttributesData field's value.
+func (s *GetContactOutput) SetAttributesData(v string) *GetContactOutput {
+	s.AttributesData = &v
+	return s
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *GetContactOutput) SetContactListName(v string) *GetContactOutput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *GetContactOutput) SetCreatedTimestamp(v time.Time) *GetContactOutput {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *GetContactOutput) SetEmailAddress(v string) *GetContactOutput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *GetContactOutput) SetLastUpdatedTimestamp(v time.Time) *GetContactOutput {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetTopicDefaultPreferences sets the TopicDefaultPreferences field's value.
+func (s *GetContactOutput) SetTopicDefaultPreferences(v []*TopicPreference) *GetContactOutput {
+	s.TopicDefaultPreferences = v
+	return s
+}
+
+// SetTopicPreferences sets the TopicPreferences field's value.
+func (s *GetContactOutput) SetTopicPreferences(v []*TopicPreference) *GetContactOutput {
+	s.TopicPreferences = v
+	return s
+}
+
+// SetUnsubscribeAll sets the UnsubscribeAll field's value.
+func (s *GetContactOutput) SetUnsubscribeAll(v bool) *GetContactOutput {
+	s.UnsubscribeAll = &v
+	return s
+}
+
 // Represents a request to retrieve an existing custom verification email template.
 type GetCustomVerificationEmailTemplateInput struct {
 	_ struct{} `type:"structure"`
@@ -12126,11 +13857,12 @@ func (s *ImportDataSource) SetS3Url(v string) *ImportDataSource {
 type ImportDestination struct {
 	_ struct{} `type:"structure"`
 
+	// An object that contains the action of the import job towards a contact list.
+	ContactListDestination *ContactListDestination `type:"structure"`
+
 	// An object that contains the action of the import job towards suppression
 	// list.
-	//
-	// SuppressionListDestination is a required field
-	SuppressionListDestination *SuppressionListDestination `type:"structure" required:"true"`
+	SuppressionListDestination *SuppressionListDestination `type:"structure"`
 }
 
 // String returns the string representation
@@ -12146,8 +13878,10 @@ func (s ImportDestination) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ImportDestination) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ImportDestination"}
-	if s.SuppressionListDestination == nil {
-		invalidParams.Add(request.NewErrParamRequired("SuppressionListDestination"))
+	if s.ContactListDestination != nil {
+		if err := s.ContactListDestination.Validate(); err != nil {
+			invalidParams.AddNested("ContactListDestination", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.SuppressionListDestination != nil {
 		if err := s.SuppressionListDestination.Validate(); err != nil {
@@ -12161,6 +13895,12 @@ func (s *ImportDestination) Validate() error {
 	return nil
 }
 
+// SetContactListDestination sets the ContactListDestination field's value.
+func (s *ImportDestination) SetContactListDestination(v *ContactListDestination) *ImportDestination {
+	s.ContactListDestination = v
+	return s
+}
+
 // SetSuppressionListDestination sets the SuppressionListDestination field's value.
 func (s *ImportDestination) SetSuppressionListDestination(v *SuppressionListDestination) *ImportDestination {
 	s.SuppressionListDestination = v
@@ -12171,6 +13911,7 @@ func (s *ImportDestination) SetSuppressionListDestination(v *SuppressionListDest
 type ImportJobSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The date and time when the import job was created.
 	CreatedTimestamp *time.Time `type:"timestamp"`
 
 	// An object that contains details about the resource destination the import
@@ -12528,6 +14269,220 @@ func (s *ListConfigurationSetsOutput) SetConfigurationSets(v []*string) *ListCon
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListConfigurationSetsOutput) SetNextToken(v string) *ListConfigurationSetsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListContactListsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A string token indicating that there might be additional contact lists available
+	// to be listed. Use the token provided in the Response to use in the subsequent
+	// call to ListContactLists with the same parameters to retrieve the next page
+	// of contact lists.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// Maximum number of contact lists to return at once. Use this parameter to
+	// paginate results. If additional contact lists exist beyond the specified
+	// limit, the NextToken element is sent in the response. Use the NextToken value
+	// in subsequent requests to retrieve additional lists.
+	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListContactListsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContactListsInput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactListsInput) SetNextToken(v string) *ListContactListsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListContactListsInput) SetPageSize(v int64) *ListContactListsInput {
+	s.PageSize = &v
+	return s
+}
+
+type ListContactListsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The available contact lists.
+	ContactLists []*ContactList `type:"list"`
+
+	// A string token indicating that there might be additional contact lists available
+	// to be listed. Copy this token to a subsequent call to ListContactLists with
+	// the same parameters to retrieve the next page of contact lists.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListContactListsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContactListsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContactLists sets the ContactLists field's value.
+func (s *ListContactListsOutput) SetContactLists(v []*ContactList) *ListContactListsOutput {
+	s.ContactLists = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactListsOutput) SetNextToken(v string) *ListContactListsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// A filter that can be applied to a list of contacts.
+type ListContactsFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The status by which you are filtering: OPT_IN or OPT_OUT.
+	FilteredStatus *string `type:"string" enum:"SubscriptionStatus"`
+
+	// Used for filtering by a specific topic preference.
+	TopicFilter *TopicFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListContactsFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContactsFilter) GoString() string {
+	return s.String()
+}
+
+// SetFilteredStatus sets the FilteredStatus field's value.
+func (s *ListContactsFilter) SetFilteredStatus(v string) *ListContactsFilter {
+	s.FilteredStatus = &v
+	return s
+}
+
+// SetTopicFilter sets the TopicFilter field's value.
+func (s *ListContactsFilter) SetTopicFilter(v *TopicFilter) *ListContactsFilter {
+	s.TopicFilter = v
+	return s
+}
+
+type ListContactsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+
+	// A filter that can be applied to a list of contacts.
+	Filter *ListContactsFilter `type:"structure"`
+
+	// A string token indicating that there might be additional contacts available
+	// to be listed. Use the token provided in the Response to use in the subsequent
+	// call to ListContacts with the same parameters to retrieve the next page of
+	// contacts.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+
+	// The number of contacts that may be returned at once, which is dependent on
+	// if there are more or less contacts than the value of the PageSize. Use this
+	// parameter to paginate results. If additional contacts exist beyond the specified
+	// limit, the NextToken element is sent in the response. Use the NextToken value
+	// in subsequent requests to retrieve additional contacts.
+	PageSize *int64 `location:"querystring" locationName:"PageSize" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListContactsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContactsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListContactsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListContactsInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *ListContactsInput) SetContactListName(v string) *ListContactsInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *ListContactsInput) SetFilter(v *ListContactsFilter) *ListContactsInput {
+	s.Filter = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactsInput) SetNextToken(v string) *ListContactsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPageSize sets the PageSize field's value.
+func (s *ListContactsInput) SetPageSize(v int64) *ListContactsInput {
+	s.PageSize = &v
+	return s
+}
+
+type ListContactsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The contacts present in a specific contact list.
+	Contacts []*Contact `type:"list"`
+
+	// A string token indicating that there might be additional contacts available
+	// to be listed. Copy this token to a subsequent call to ListContacts with the
+	// same parameters to retrieve the next page of contacts.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListContactsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListContactsOutput) GoString() string {
+	return s.String()
+}
+
+// SetContacts sets the Contacts field's value.
+func (s *ListContactsOutput) SetContacts(v []*Contact) *ListContactsOutput {
+	s.Contacts = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListContactsOutput) SetNextToken(v string) *ListContactsOutput {
 	s.NextToken = &v
 	return s
 }
@@ -13137,6 +15092,55 @@ func (s *ListImportJobsOutput) SetImportJobs(v []*ImportJobSummary) *ListImportJ
 // SetNextToken sets the NextToken field's value.
 func (s *ListImportJobsOutput) SetNextToken(v string) *ListImportJobsOutput {
 	s.NextToken = &v
+	return s
+}
+
+// An object used to specify a list or topic to which an email belongs, which
+// will be used when a contact chooses to unsubscribe.
+type ListManagementOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `type:"string" required:"true"`
+
+	// The name of the topic.
+	TopicName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListManagementOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListManagementOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListManagementOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListManagementOptions"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *ListManagementOptions) SetContactListName(v string) *ListManagementOptions {
+	s.ContactListName = &v
+	return s
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *ListManagementOptions) SetTopicName(v string) *ListManagementOptions {
+	s.TopicName = &v
 	return s
 }
 
@@ -15682,6 +17686,10 @@ type SendEmailInput struct {
 	// and X-SES-FROM-ARN headers specified in raw email message content.
 	FromEmailAddressIdentityArn *string `type:"string"`
 
+	// An object used to specify a list or topic to which an email belongs, which
+	// will be used when a contact chooses to unsubscribe.
+	ListManagementOptions *ListManagementOptions `type:"structure"`
+
 	// The "Reply-to" email addresses for the message. When the recipient replies
 	// to the message, each Reply-to address receives the reply.
 	ReplyToAddresses []*string `type:"list"`
@@ -15716,6 +17724,11 @@ func (s *SendEmailInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "EmailTags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.ListManagementOptions != nil {
+		if err := s.ListManagementOptions.Validate(); err != nil {
+			invalidParams.AddNested("ListManagementOptions", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -15770,6 +17783,12 @@ func (s *SendEmailInput) SetFromEmailAddress(v string) *SendEmailInput {
 // SetFromEmailAddressIdentityArn sets the FromEmailAddressIdentityArn field's value.
 func (s *SendEmailInput) SetFromEmailAddressIdentityArn(v string) *SendEmailInput {
 	s.FromEmailAddressIdentityArn = &v
+	return s
+}
+
+// SetListManagementOptions sets the ListManagementOptions field's value.
+func (s *SendEmailInput) SetListManagementOptions(v *ListManagementOptions) *SendEmailInput {
+	s.ListManagementOptions = v
 	return s
 }
 
@@ -16607,6 +18626,171 @@ func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An interest group, theme, or label within a list. Lists can have multiple
+// topics.
+type Topic struct {
+	_ struct{} `type:"structure"`
+
+	// The default subscription status to be applied to a contact if the contact
+	// has not noted their preference for subscribing to a topic.
+	//
+	// DefaultSubscriptionStatus is a required field
+	DefaultSubscriptionStatus *string `type:"string" required:"true" enum:"SubscriptionStatus"`
+
+	// A description of what the topic is about, which the contact will see.
+	Description *string `type:"string"`
+
+	// The name of the topic the contact will see.
+	//
+	// DisplayName is a required field
+	DisplayName *string `type:"string" required:"true"`
+
+	// The name of the topic.
+	//
+	// TopicName is a required field
+	TopicName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Topic) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Topic) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Topic) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Topic"}
+	if s.DefaultSubscriptionStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("DefaultSubscriptionStatus"))
+	}
+	if s.DisplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("DisplayName"))
+	}
+	if s.TopicName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDefaultSubscriptionStatus sets the DefaultSubscriptionStatus field's value.
+func (s *Topic) SetDefaultSubscriptionStatus(v string) *Topic {
+	s.DefaultSubscriptionStatus = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Topic) SetDescription(v string) *Topic {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayName sets the DisplayName field's value.
+func (s *Topic) SetDisplayName(v string) *Topic {
+	s.DisplayName = &v
+	return s
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *Topic) SetTopicName(v string) *Topic {
+	s.TopicName = &v
+	return s
+}
+
+// Used for filtering by a specific topic preference.
+type TopicFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a topic on which you wish to apply the filter.
+	TopicName *string `type:"string"`
+
+	// Notes that the default subscription status should be applied to a contact
+	// because the contact has not noted their preference for subscribing to a topic.
+	UseDefaultIfPreferenceUnavailable *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s TopicFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TopicFilter) GoString() string {
+	return s.String()
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *TopicFilter) SetTopicName(v string) *TopicFilter {
+	s.TopicName = &v
+	return s
+}
+
+// SetUseDefaultIfPreferenceUnavailable sets the UseDefaultIfPreferenceUnavailable field's value.
+func (s *TopicFilter) SetUseDefaultIfPreferenceUnavailable(v bool) *TopicFilter {
+	s.UseDefaultIfPreferenceUnavailable = &v
+	return s
+}
+
+// The contact's preference for being opted-in to or opted-out of a topic.
+type TopicPreference struct {
+	_ struct{} `type:"structure"`
+
+	// The contact's subscription status to a topic which is either OPT_IN or OPT_OUT.
+	//
+	// SubscriptionStatus is a required field
+	SubscriptionStatus *string `type:"string" required:"true" enum:"SubscriptionStatus"`
+
+	// The name of the topic.
+	//
+	// TopicName is a required field
+	TopicName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s TopicPreference) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TopicPreference) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TopicPreference) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TopicPreference"}
+	if s.SubscriptionStatus == nil {
+		invalidParams.Add(request.NewErrParamRequired("SubscriptionStatus"))
+	}
+	if s.TopicName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TopicName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSubscriptionStatus sets the SubscriptionStatus field's value.
+func (s *TopicPreference) SetSubscriptionStatus(v string) *TopicPreference {
+	s.SubscriptionStatus = &v
+	return s
+}
+
+// SetTopicName sets the TopicName field's value.
+func (s *TopicPreference) SetTopicName(v string) *TopicPreference {
+	s.TopicName = &v
+	return s
+}
+
 // An object that defines the tracking options for a configuration set. When
 // you use the Amazon SES API v2 to send an email, it contains an invisible
 // image that's used to track when recipients open your email. If your email
@@ -16819,6 +19003,200 @@ func (s UpdateConfigurationSetEventDestinationOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateConfigurationSetEventDestinationOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactInput struct {
+	_ struct{} `type:"structure"`
+
+	// The attribute data attached to a contact.
+	AttributesData *string `type:"string"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+
+	// The contact's email addres.
+	//
+	// EmailAddress is a required field
+	EmailAddress *string `location:"uri" locationName:"EmailAddress" type:"string" required:"true"`
+
+	// The contact's preference for being opted-in to or opted-out of a topic.
+	TopicPreferences []*TopicPreference `type:"list"`
+
+	// A boolean value status noting if the contact is unsubscribed from all contact
+	// list topics.
+	UnsubscribeAll *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s UpdateContactInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+	if s.EmailAddress == nil {
+		invalidParams.Add(request.NewErrParamRequired("EmailAddress"))
+	}
+	if s.EmailAddress != nil && len(*s.EmailAddress) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EmailAddress", 1))
+	}
+	if s.TopicPreferences != nil {
+		for i, v := range s.TopicPreferences {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TopicPreferences", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttributesData sets the AttributesData field's value.
+func (s *UpdateContactInput) SetAttributesData(v string) *UpdateContactInput {
+	s.AttributesData = &v
+	return s
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *UpdateContactInput) SetContactListName(v string) *UpdateContactInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetEmailAddress sets the EmailAddress field's value.
+func (s *UpdateContactInput) SetEmailAddress(v string) *UpdateContactInput {
+	s.EmailAddress = &v
+	return s
+}
+
+// SetTopicPreferences sets the TopicPreferences field's value.
+func (s *UpdateContactInput) SetTopicPreferences(v []*TopicPreference) *UpdateContactInput {
+	s.TopicPreferences = v
+	return s
+}
+
+// SetUnsubscribeAll sets the UnsubscribeAll field's value.
+func (s *UpdateContactInput) SetUnsubscribeAll(v bool) *UpdateContactInput {
+	s.UnsubscribeAll = &v
+	return s
+}
+
+type UpdateContactListInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the contact list.
+	//
+	// ContactListName is a required field
+	ContactListName *string `location:"uri" locationName:"ContactListName" type:"string" required:"true"`
+
+	// A description of what the contact list is about.
+	Description *string `type:"string"`
+
+	// An interest group, theme, or label within a list. A contact list can have
+	// multiple topics.
+	Topics []*Topic `type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateContactListInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactListInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContactListInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContactListInput"}
+	if s.ContactListName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContactListName"))
+	}
+	if s.ContactListName != nil && len(*s.ContactListName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ContactListName", 1))
+	}
+	if s.Topics != nil {
+		for i, v := range s.Topics {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Topics", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContactListName sets the ContactListName field's value.
+func (s *UpdateContactListInput) SetContactListName(v string) *UpdateContactListInput {
+	s.ContactListName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateContactListInput) SetDescription(v string) *UpdateContactListInput {
+	s.Description = &v
+	return s
+}
+
+// SetTopics sets the Topics field's value.
+func (s *UpdateContactListInput) SetTopics(v []*Topic) *UpdateContactListInput {
+	s.Topics = v
+	return s
+}
+
+type UpdateContactListOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContactListOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactListOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateContactOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContactOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContactOutput) GoString() string {
 	return s.String()
 }
 
@@ -17290,6 +19668,22 @@ func ContactLanguage_Values() []string {
 	}
 }
 
+const (
+	// ContactListImportActionDelete is a ContactListImportAction enum value
+	ContactListImportActionDelete = "DELETE"
+
+	// ContactListImportActionPut is a ContactListImportAction enum value
+	ContactListImportActionPut = "PUT"
+)
+
+// ContactListImportAction_Values returns all elements of the ContactListImportAction enum
+func ContactListImportAction_Values() []string {
+	return []string{
+		ContactListImportActionDelete,
+		ContactListImportActionPut,
+	}
+}
+
 // The data format of the import job's data source.
 const (
 	// DataFormatCsv is a DataFormat enum value
@@ -17466,6 +19860,9 @@ const (
 
 	// EventTypeDeliveryDelay is a EventType enum value
 	EventTypeDeliveryDelay = "DELIVERY_DELAY"
+
+	// EventTypeSubscription is a EventType enum value
+	EventTypeSubscription = "SUBSCRIPTION"
 )
 
 // EventType_Values returns all elements of the EventType enum
@@ -17480,6 +19877,7 @@ func EventType_Values() []string {
 		EventTypeClick,
 		EventTypeRenderingFailure,
 		EventTypeDeliveryDelay,
+		EventTypeSubscription,
 	}
 }
 
@@ -17513,12 +19911,16 @@ func IdentityType_Values() []string {
 const (
 	// ImportDestinationTypeSuppressionList is a ImportDestinationType enum value
 	ImportDestinationTypeSuppressionList = "SUPPRESSION_LIST"
+
+	// ImportDestinationTypeContactList is a ImportDestinationType enum value
+	ImportDestinationTypeContactList = "CONTACT_LIST"
 )
 
 // ImportDestinationType_Values returns all elements of the ImportDestinationType enum
 func ImportDestinationType_Values() []string {
 	return []string{
 		ImportDestinationTypeSuppressionList,
+		ImportDestinationTypeContactList,
 	}
 }
 
@@ -17620,6 +20022,22 @@ func ReviewStatus_Values() []string {
 		ReviewStatusFailed,
 		ReviewStatusGranted,
 		ReviewStatusDenied,
+	}
+}
+
+const (
+	// SubscriptionStatusOptIn is a SubscriptionStatus enum value
+	SubscriptionStatusOptIn = "OPT_IN"
+
+	// SubscriptionStatusOptOut is a SubscriptionStatus enum value
+	SubscriptionStatusOptOut = "OPT_OUT"
+)
+
+// SubscriptionStatus_Values returns all elements of the SubscriptionStatus enum
+func SubscriptionStatus_Values() []string {
+	return []string{
+		SubscriptionStatusOptIn,
+		SubscriptionStatusOptOut,
 	}
 }
 
