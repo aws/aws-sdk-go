@@ -6823,6 +6823,17 @@ func (s *AudioTrackSelection) SetTracks(v []*AudioTrack) *AudioTrackSelection {
 type AutomaticInputFailoverSettings struct {
 	_ struct{} `type:"structure"`
 
+	// This clear time defines the requirement a recovered input must meet to be
+	// considered healthy. The input must have no failover conditions for this length
+	// of time. Enter a time in milliseconds. This value is particularly important
+	// if the input_preference for the failover pair is set to PRIMARY_INPUT_PREFERRED,
+	// because after this time, MediaLive will switch back to the primary input.
+	ErrorClearTimeMsec *int64 `locationName:"errorClearTimeMsec" min:"1" type:"integer"`
+
+	// A list of failover conditions. If any of these conditions occur, MediaLive
+	// will perform a failover to the other input.
+	FailoverConditions []*FailoverCondition `locationName:"failoverConditions" type:"list"`
+
 	// Input preference when deciding which input to make active when a previously
 	// failed input has recovered.
 	InputPreference *string `locationName:"inputPreference" type:"string" enum:"InputPreference"`
@@ -6846,14 +6857,39 @@ func (s AutomaticInputFailoverSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AutomaticInputFailoverSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AutomaticInputFailoverSettings"}
+	if s.ErrorClearTimeMsec != nil && *s.ErrorClearTimeMsec < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ErrorClearTimeMsec", 1))
+	}
 	if s.SecondaryInputId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecondaryInputId"))
+	}
+	if s.FailoverConditions != nil {
+		for i, v := range s.FailoverConditions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FailoverConditions", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetErrorClearTimeMsec sets the ErrorClearTimeMsec field's value.
+func (s *AutomaticInputFailoverSettings) SetErrorClearTimeMsec(v int64) *AutomaticInputFailoverSettings {
+	s.ErrorClearTimeMsec = &v
+	return s
+}
+
+// SetFailoverConditions sets the FailoverConditions field's value.
+func (s *AutomaticInputFailoverSettings) SetFailoverConditions(v []*FailoverCondition) *AutomaticInputFailoverSettings {
+	s.FailoverConditions = v
+	return s
 }
 
 // SetInputPreference sets the InputPreference field's value.
@@ -12867,6 +12903,86 @@ func (s *EncoderSettings) SetVideoDescriptions(v []*VideoDescription) *EncoderSe
 	return s
 }
 
+// Failover Condition settings. There can be multiple failover conditions inside
+// AutomaticInputFailoverSettings.
+type FailoverCondition struct {
+	_ struct{} `type:"structure"`
+
+	// Failover condition type-specific settings.
+	FailoverConditionSettings *FailoverConditionSettings `locationName:"failoverConditionSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s FailoverCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FailoverCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FailoverCondition"}
+	if s.FailoverConditionSettings != nil {
+		if err := s.FailoverConditionSettings.Validate(); err != nil {
+			invalidParams.AddNested("FailoverConditionSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailoverConditionSettings sets the FailoverConditionSettings field's value.
+func (s *FailoverCondition) SetFailoverConditionSettings(v *FailoverConditionSettings) *FailoverCondition {
+	s.FailoverConditionSettings = v
+	return s
+}
+
+// Settings for one failover condition.
+type FailoverConditionSettings struct {
+	_ struct{} `type:"structure"`
+
+	// MediaLive will perform a failover if content is not detected in this input
+	// for the specified period.
+	InputLossSettings *InputLossFailoverSettings `locationName:"inputLossSettings" type:"structure"`
+}
+
+// String returns the string representation
+func (s FailoverConditionSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FailoverConditionSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FailoverConditionSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FailoverConditionSettings"}
+	if s.InputLossSettings != nil {
+		if err := s.InputLossSettings.Validate(); err != nil {
+			invalidParams.AddNested("InputLossSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputLossSettings sets the InputLossSettings field's value.
+func (s *FailoverConditionSettings) SetInputLossSettings(v *InputLossFailoverSettings) *FailoverConditionSettings {
+	s.InputLossSettings = v
+	return s
+}
+
 // Feature Activations
 type FeatureActivations struct {
 	_ struct{} `type:"structure"`
@@ -14721,6 +14837,14 @@ type HlsGroupSettings struct {
 	// Place segments in subdirectories.
 	DirectoryStructure *string `locationName:"directoryStructure" type:"string" enum:"HlsDirectoryStructure"`
 
+	// Specifies whether to insert EXT-X-DISCONTINUITY tags in the HLS child manifests
+	// for this output group.Typically, choose Insert because these tags are required
+	// in the manifest (according to the HLS specification) and serve an important
+	// purpose.Choose Never Insert only if the downstream system is doing real-time
+	// failover (without using the MediaLive automatic failover feature) and only
+	// if that downstream system has advised you to exclude the tags.
+	DiscontinuityTags *string `locationName:"discontinuityTags" type:"string" enum:"HlsDiscontinuityTags"`
+
 	// Encrypts the segments with the given encryption scheme. Exclude this parameter
 	// if no encryption is desired.
 	EncryptionType *string `locationName:"encryptionType" type:"string" enum:"HlsEncryptionType"`
@@ -14739,6 +14863,14 @@ type HlsGroupSettings struct {
 	// and one or more #EXT-X-BYTERANGE entries identifying the I-frame position.
 	// For example, #EXT-X-BYTERANGE:160364@1461888"
 	IFrameOnlyPlaylists *string `locationName:"iFrameOnlyPlaylists" type:"string" enum:"IFrameOnlyPlaylistType"`
+
+	// Specifies whether to include the final (incomplete) segment in the media
+	// output when the pipeline stops producing output because of a channel stop,
+	// a channel pause or a loss of input to the pipeline.Auto means that MediaLive
+	// decides whether to include the final segment, depending on the channel class
+	// and the types of output groups.Suppress means to never include the incomplete
+	// segment. We recommend you choose Auto and let MediaLive control the behavior.
+	IncompleteSegmentBehavior *string `locationName:"incompleteSegmentBehavior" type:"string" enum:"HlsIncompleteSegmentBehavior"`
 
 	// Applies only if Mode field is LIVE.Specifies the maximum number of segments
 	// in the media manifest file. After this maximum, older segments are removed
@@ -14992,6 +15124,12 @@ func (s *HlsGroupSettings) SetDirectoryStructure(v string) *HlsGroupSettings {
 	return s
 }
 
+// SetDiscontinuityTags sets the DiscontinuityTags field's value.
+func (s *HlsGroupSettings) SetDiscontinuityTags(v string) *HlsGroupSettings {
+	s.DiscontinuityTags = &v
+	return s
+}
+
 // SetEncryptionType sets the EncryptionType field's value.
 func (s *HlsGroupSettings) SetEncryptionType(v string) *HlsGroupSettings {
 	s.EncryptionType = &v
@@ -15013,6 +15151,12 @@ func (s *HlsGroupSettings) SetHlsId3SegmentTagging(v string) *HlsGroupSettings {
 // SetIFrameOnlyPlaylists sets the IFrameOnlyPlaylists field's value.
 func (s *HlsGroupSettings) SetIFrameOnlyPlaylists(v string) *HlsGroupSettings {
 	s.IFrameOnlyPlaylists = &v
+	return s
+}
+
+// SetIncompleteSegmentBehavior sets the IncompleteSegmentBehavior field's value.
+func (s *HlsGroupSettings) SetIncompleteSegmentBehavior(v string) *HlsGroupSettings {
+	s.IncompleteSegmentBehavior = &v
 	return s
 }
 
@@ -16523,6 +16667,45 @@ func (s *InputLossBehavior) SetInputLossImageType(v string) *InputLossBehavior {
 // SetRepeatFrameMsec sets the RepeatFrameMsec field's value.
 func (s *InputLossBehavior) SetRepeatFrameMsec(v int64) *InputLossBehavior {
 	s.RepeatFrameMsec = &v
+	return s
+}
+
+// MediaLive will perform a failover if content is not detected in this input
+// for the specified period.
+type InputLossFailoverSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The amount of time (in milliseconds) that no input is detected. After that
+	// time, an input failover will occur.
+	InputLossThresholdMsec *int64 `locationName:"inputLossThresholdMsec" min:"100" type:"integer"`
+}
+
+// String returns the string representation
+func (s InputLossFailoverSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InputLossFailoverSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputLossFailoverSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputLossFailoverSettings"}
+	if s.InputLossThresholdMsec != nil && *s.InputLossThresholdMsec < 100 {
+		invalidParams.Add(request.NewErrParamMinValue("InputLossThresholdMsec", 100))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInputLossThresholdMsec sets the InputLossThresholdMsec field's value.
+func (s *InputLossFailoverSettings) SetInputLossThresholdMsec(v int64) *InputLossFailoverSettings {
+	s.InputLossThresholdMsec = &v
 	return s
 }
 
@@ -28418,6 +28601,23 @@ func HlsDirectoryStructure_Values() []string {
 	}
 }
 
+// Hls Discontinuity Tags
+const (
+	// HlsDiscontinuityTagsInsert is a HlsDiscontinuityTags enum value
+	HlsDiscontinuityTagsInsert = "INSERT"
+
+	// HlsDiscontinuityTagsNeverInsert is a HlsDiscontinuityTags enum value
+	HlsDiscontinuityTagsNeverInsert = "NEVER_INSERT"
+)
+
+// HlsDiscontinuityTags_Values returns all elements of the HlsDiscontinuityTags enum
+func HlsDiscontinuityTags_Values() []string {
+	return []string{
+		HlsDiscontinuityTagsInsert,
+		HlsDiscontinuityTagsNeverInsert,
+	}
+}
+
 // Hls Encryption Type
 const (
 	// HlsEncryptionTypeAes128 is a HlsEncryptionType enum value
@@ -28466,6 +28666,23 @@ func HlsId3SegmentTaggingState_Values() []string {
 	return []string{
 		HlsId3SegmentTaggingStateDisabled,
 		HlsId3SegmentTaggingStateEnabled,
+	}
+}
+
+// Hls Incomplete Segment Behavior
+const (
+	// HlsIncompleteSegmentBehaviorAuto is a HlsIncompleteSegmentBehavior enum value
+	HlsIncompleteSegmentBehaviorAuto = "AUTO"
+
+	// HlsIncompleteSegmentBehaviorSuppress is a HlsIncompleteSegmentBehavior enum value
+	HlsIncompleteSegmentBehaviorSuppress = "SUPPRESS"
+)
+
+// HlsIncompleteSegmentBehavior_Values returns all elements of the HlsIncompleteSegmentBehavior enum
+func HlsIncompleteSegmentBehavior_Values() []string {
+	return []string{
+		HlsIncompleteSegmentBehaviorAuto,
+		HlsIncompleteSegmentBehaviorSuppress,
 	}
 }
 

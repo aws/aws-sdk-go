@@ -861,6 +861,18 @@
         "UpdateChannel$EncoderSettings": "The encoder settings for this channel."
       }
     },
+    "FailoverCondition": {
+      "base": "Failover Condition settings. There can be multiple failover conditions inside AutomaticInputFailoverSettings.",
+      "refs": {
+        "__listOfFailoverCondition$member": null
+      }
+    },
+    "FailoverConditionSettings": {
+      "base": "Settings for one failover condition.",
+      "refs": {
+        "FailoverCondition$FailoverConditionSettings": "Failover condition type-specific settings."
+      }
+    },
     "FeatureActivations": {
       "base": "Feature Activations",
       "refs": {
@@ -1293,6 +1305,12 @@
         "HlsGroupSettings$DirectoryStructure": "Place segments in subdirectories."
       }
     },
+    "HlsDiscontinuityTags": {
+      "base": "Hls Discontinuity Tags",
+      "refs": {
+        "HlsGroupSettings$DiscontinuityTags": "Specifies whether to insert EXT-X-DISCONTINUITY tags in the HLS child manifests for this output group.\nTypically, choose Insert because these tags are required in the manifest (according to the HLS specification) and serve an important purpose.\nChoose Never Insert only if the downstream system is doing real-time failover (without using the MediaLive automatic failover feature) and only if that downstream system has advised you to exclude the tags."
+      }
+    },
     "HlsEncryptionType": {
       "base": "Hls Encryption Type",
       "refs": {
@@ -1321,6 +1339,12 @@
       "base": "State of HLS ID3 Segment Tagging",
       "refs": {
         "HlsGroupSettings$HlsId3SegmentTagging": "State of HLS ID3 Segment Tagging"
+      }
+    },
+    "HlsIncompleteSegmentBehavior": {
+      "base": "Hls Incomplete Segment Behavior",
+      "refs": {
+        "HlsGroupSettings$IncompleteSegmentBehavior": "Specifies whether to include the final (incomplete) segment in the media output when the pipeline stops producing output because of a channel stop, a channel pause or a loss of input to the pipeline.\nAuto means that MediaLive decides whether to include the final segment, depending on the channel class and the types of output groups.\nSuppress means to never include the incomplete segment. We recommend you choose Auto and let MediaLive control the behavior."
       }
     },
     "HlsInputSettings": {
@@ -1671,6 +1695,12 @@
       "base": "Input Loss Behavior",
       "refs": {
         "GlobalConfiguration$InputLossBehavior": "Settings for system actions when input is lost."
+      }
+    },
+    "InputLossFailoverSettings": {
+      "base": "MediaLive will perform a failover if content is not detected in this input for the specified period.",
+      "refs": {
+        "FailoverConditionSettings$InputLossSettings": "MediaLive will perform a failover if content is not detected in this input for the specified period."
       }
     },
     "InputLossImageType": {
@@ -3381,6 +3411,7 @@
       "refs": {
         "ArchiveGroupSettings$RolloverInterval": "Number of seconds to write to archive file before closing and starting a new one.",
         "AudioTrack$Track": "1-based integer value that maps to a specific audio track",
+        "AutomaticInputFailoverSettings$ErrorClearTimeMsec": "This clear time defines the requirement a recovered input must meet to be considered healthy. The input must have no failover conditions for this length of time. Enter a time in milliseconds. This value is particularly important if the input_preference for the failover pair is set to PRIMARY_INPUT_PREFERRED, because after this time, MediaLive will switch back to the primary input.",
         "DvbSubSourceSettings$Pid": "When using DVB-Sub with Burn-In or SMPTE-TT, use this PID for the source content. Unused for DVB-Sub passthrough. All DVB-Sub content is passed through, regardless of selectors.",
         "H264Settings$FramerateDenominator": "Framerate denominator.",
         "H264Settings$FramerateNumerator": "Framerate numerator - framerate is a fraction, e.g. 24000 / 1001 = 23.976 fps.",
@@ -3400,6 +3431,12 @@
         "Scte27SourceSettings$Pid": "The pid field is used in conjunction with the caption selector languageCode field as follows:\n  - Specify PID and Language: Extracts captions from that PID; the language is \"informational\".\n  - Specify PID and omit Language: Extracts the specified PID.\n  - Omit PID and specify Language: Extracts the specified language, whichever PID that happens to be.\n  - Omit PID and omit Language: Valid only if source is DVB-Sub that is being passed through; all languages will be passed through.",
         "StaticImageActivateScheduleActionSettings$Height": "The height of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified height. Leave blank to use the native height of the overlay.",
         "StaticImageActivateScheduleActionSettings$Width": "The width of the image when inserted into the video, in pixels. The overlay will be scaled up or down to the specified width. Leave blank to use the native width of the overlay."
+      }
+    },
+    "__integerMin100": {
+      "base": null,
+      "refs": {
+        "InputLossFailoverSettings$InputLossThresholdMsec": "The amount of time (in milliseconds) that no input is detected. After that time, an input failover will occur."
       }
     },
     "__integerMin1000": {
@@ -3659,6 +3696,12 @@
       "base": null,
       "refs": {
         "ListChannelsResultModel$Channels": null
+      }
+    },
+    "__listOfFailoverCondition": {
+      "base": null,
+      "refs": {
+        "AutomaticInputFailoverSettings$FailoverConditions": "A list of failover conditions. If any of these conditions occur, MediaLive will perform a failover to the other input."
       }
     },
     "__listOfHlsAdMarkers": {

@@ -76,6 +76,10 @@ type BraketAPI interface {
 	GetQuantumTaskWithContext(aws.Context, *braket.GetQuantumTaskInput, ...request.Option) (*braket.GetQuantumTaskOutput, error)
 	GetQuantumTaskRequest(*braket.GetQuantumTaskInput) (*request.Request, *braket.GetQuantumTaskOutput)
 
+	ListTagsForResource(*braket.ListTagsForResourceInput) (*braket.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *braket.ListTagsForResourceInput, ...request.Option) (*braket.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*braket.ListTagsForResourceInput) (*request.Request, *braket.ListTagsForResourceOutput)
+
 	SearchDevices(*braket.SearchDevicesInput) (*braket.SearchDevicesOutput, error)
 	SearchDevicesWithContext(aws.Context, *braket.SearchDevicesInput, ...request.Option) (*braket.SearchDevicesOutput, error)
 	SearchDevicesRequest(*braket.SearchDevicesInput) (*request.Request, *braket.SearchDevicesOutput)
@@ -89,6 +93,14 @@ type BraketAPI interface {
 
 	SearchQuantumTasksPages(*braket.SearchQuantumTasksInput, func(*braket.SearchQuantumTasksOutput, bool) bool) error
 	SearchQuantumTasksPagesWithContext(aws.Context, *braket.SearchQuantumTasksInput, func(*braket.SearchQuantumTasksOutput, bool) bool, ...request.Option) error
+
+	TagResource(*braket.TagResourceInput) (*braket.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *braket.TagResourceInput, ...request.Option) (*braket.TagResourceOutput, error)
+	TagResourceRequest(*braket.TagResourceInput) (*request.Request, *braket.TagResourceOutput)
+
+	UntagResource(*braket.UntagResourceInput) (*braket.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *braket.UntagResourceInput, ...request.Option) (*braket.UntagResourceOutput, error)
+	UntagResourceRequest(*braket.UntagResourceInput) (*request.Request, *braket.UntagResourceOutput)
 }
 
 var _ BraketAPI = (*braket.Braket)(nil)

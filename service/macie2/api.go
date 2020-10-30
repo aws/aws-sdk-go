@@ -7864,6 +7864,8 @@ type CriterionAdditionalProperties struct {
 
 	Eq []*string `locationName:"eq" type:"list"`
 
+	EqExactMatch []*string `locationName:"eqExactMatch" type:"list"`
+
 	Gt *int64 `locationName:"gt" type:"long"`
 
 	Gte *int64 `locationName:"gte" type:"long"`
@@ -7888,6 +7890,12 @@ func (s CriterionAdditionalProperties) GoString() string {
 // SetEq sets the Eq field's value.
 func (s *CriterionAdditionalProperties) SetEq(v []*string) *CriterionAdditionalProperties {
 	s.Eq = v
+	return s
+}
+
+// SetEqExactMatch sets the EqExactMatch field's value.
+func (s *CriterionAdditionalProperties) SetEqExactMatch(v []*string) *CriterionAdditionalProperties {
+	s.EqExactMatch = v
 	return s
 }
 

@@ -6291,6 +6291,9 @@ type CreateEndpointInput struct {
 	// "BucketName": "string", "CompressionType": "none"|"gzip" }
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
 
+	// Provides information that defines a DocumentDB endpoint.
+	DocDbSettings *DocDbSettings `type:"structure"`
+
 	// Settings in JSON format for the target Amazon DynamoDB endpoint. For information
 	// about other available settings, see Using Object Mapping to Migrate Data
 	// to DynamoDB (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html)
@@ -6516,6 +6519,12 @@ func (s *CreateEndpointInput) SetDatabaseName(v string) *CreateEndpointInput {
 // SetDmsTransferSettings sets the DmsTransferSettings field's value.
 func (s *CreateEndpointInput) SetDmsTransferSettings(v *DmsTransferSettings) *CreateEndpointInput {
 	s.DmsTransferSettings = v
+	return s
+}
+
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *CreateEndpointInput) SetDocDbSettings(v *DocDbSettings) *CreateEndpointInput {
+	s.DocDbSettings = v
 	return s
 }
 
@@ -10129,6 +10138,115 @@ func (s *DmsTransferSettings) SetServiceAccessRoleArn(v string) *DmsTransferSett
 	return s
 }
 
+// Provides information that defines a DocumentDB endpoint.
+type DocDbSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The database name on the DocumentDB source endpoint.
+	DatabaseName *string `type:"string"`
+
+	// Indicates the number of documents to preview to determine the document organization.
+	// Use this setting when NestingLevel is set to "one".
+	//
+	// Must be a positive value greater than 0. Default value is 1000.
+	DocsToInvestigate *int64 `type:"integer"`
+
+	// Specifies the document ID. Use this setting when NestingLevel is set to "none".
+	//
+	// Default value is "false".
+	ExtractDocId *bool `type:"boolean"`
+
+	// The AWS KMS key identifier that is used to encrypt the content on the replication
+	// instance. If you don't specify a value for the KmsKeyId parameter, then AWS
+	// DMS uses your default encryption key. AWS KMS creates the default encryption
+	// key for your AWS account. Your AWS account has a different default encryption
+	// key for each AWS Region.
+	KmsKeyId *string `type:"string"`
+
+	// Specifies either document or table mode.
+	//
+	// Default value is "none". Specify "none" to use document mode. Specify "one"
+	// to use table mode.
+	NestingLevel *string `type:"string" enum:"NestingLevelValue"`
+
+	// The password for the user account you use to access the DocumentDB source
+	// endpoint.
+	Password *string `type:"string" sensitive:"true"`
+
+	// The port value for the DocumentDB source endpoint.
+	Port *int64 `type:"integer"`
+
+	// The name of the server on the DocumentDB source endpoint.
+	ServerName *string `type:"string"`
+
+	// The user name you use to access the DocumentDB source endpoint.
+	Username *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DocDbSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocDbSettings) GoString() string {
+	return s.String()
+}
+
+// SetDatabaseName sets the DatabaseName field's value.
+func (s *DocDbSettings) SetDatabaseName(v string) *DocDbSettings {
+	s.DatabaseName = &v
+	return s
+}
+
+// SetDocsToInvestigate sets the DocsToInvestigate field's value.
+func (s *DocDbSettings) SetDocsToInvestigate(v int64) *DocDbSettings {
+	s.DocsToInvestigate = &v
+	return s
+}
+
+// SetExtractDocId sets the ExtractDocId field's value.
+func (s *DocDbSettings) SetExtractDocId(v bool) *DocDbSettings {
+	s.ExtractDocId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DocDbSettings) SetKmsKeyId(v string) *DocDbSettings {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetNestingLevel sets the NestingLevel field's value.
+func (s *DocDbSettings) SetNestingLevel(v string) *DocDbSettings {
+	s.NestingLevel = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *DocDbSettings) SetPassword(v string) *DocDbSettings {
+	s.Password = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *DocDbSettings) SetPort(v int64) *DocDbSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *DocDbSettings) SetServerName(v string) *DocDbSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *DocDbSettings) SetUsername(v string) *DocDbSettings {
+	s.Username = &v
+	return s
+}
+
 // Provides the Amazon Resource Name (ARN) of the AWS Identity and Access Management
 // (IAM) role used to define an Amazon DynamoDB target endpoint.
 type DynamoDbSettings struct {
@@ -10286,6 +10404,9 @@ type Endpoint struct {
 	// "BucketName": "string", "CompressionType": "none"|"gzip" }
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
 
+	// Provides information that defines a DocumentDB endpoint.
+	DocDbSettings *DocDbSettings `type:"structure"`
+
 	// The settings for the DynamoDB target endpoint. For more information, see
 	// the DynamoDBSettings structure.
 	DynamoDbSettings *DynamoDbSettings `type:"structure"`
@@ -10427,6 +10548,12 @@ func (s *Endpoint) SetDatabaseName(v string) *Endpoint {
 // SetDmsTransferSettings sets the DmsTransferSettings field's value.
 func (s *Endpoint) SetDmsTransferSettings(v *DmsTransferSettings) *Endpoint {
 	s.DmsTransferSettings = v
+	return s
+}
+
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *Endpoint) SetDocDbSettings(v *DocDbSettings) *Endpoint {
+	s.DocDbSettings = v
 	return s
 }
 
@@ -12131,6 +12258,12 @@ type ModifyEndpointInput struct {
 	// "BucketName": "string", "CompressionType": "none"|"gzip" }
 	DmsTransferSettings *DmsTransferSettings `type:"structure"`
 
+	// Settings in JSON format for the source DocumentDB endpoint. For more information
+	// about the available settings, see the configuration properties section in
+	// Using DocumentDB as a Target for AWS Database Migration Service (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.DocumentDB.html)
+	// in the AWS Database Migration Service User Guide.
+	DocDbSettings *DocDbSettings `type:"structure"`
+
 	// Settings in JSON format for the target Amazon DynamoDB endpoint. For information
 	// about other available settings, see Using Object Mapping to Migrate Data
 	// to DynamoDB (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.DynamoDB.html)
@@ -12321,6 +12454,12 @@ func (s *ModifyEndpointInput) SetDatabaseName(v string) *ModifyEndpointInput {
 // SetDmsTransferSettings sets the DmsTransferSettings field's value.
 func (s *ModifyEndpointInput) SetDmsTransferSettings(v *DmsTransferSettings) *ModifyEndpointInput {
 	s.DmsTransferSettings = v
+	return s
+}
+
+// SetDocDbSettings sets the DocDbSettings field's value.
+func (s *ModifyEndpointInput) SetDocDbSettings(v *DocDbSettings) *ModifyEndpointInput {
+	s.DocDbSettings = v
 	return s
 }
 
@@ -16498,7 +16637,7 @@ type S3Settings struct {
 
 	// When set to true, this parameter partitions S3 bucket folders based on transaction
 	// commit dates. The default value is false. For more information about date-based
-	// folder partitoning, see Using date-based folder partitioning (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.PostgreSQL.html#CHAP_Source.PostgreSQL.ConnectionAttrib)
+	// folder partitoning, see Using date-based folder partitioning (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.DatePartitioning).
 	DatePartitionEnabled *bool `type:"boolean"`
 
 	// Identifies the sequence of the date format to use during folder partitioning.

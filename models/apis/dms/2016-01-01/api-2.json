@@ -919,7 +919,8 @@
         "SybaseSettings":{"shape":"SybaseSettings"},
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
-        "ResourceIdentifier":{"shape":"String"}
+        "ResourceIdentifier":{"shape":"String"},
+        "DocDbSettings":{"shape":"DocDbSettings"}
       }
     },
     "CreateEndpointResponse":{
@@ -1508,6 +1509,20 @@
         "BucketName":{"shape":"String"}
       }
     },
+    "DocDbSettings":{
+      "type":"structure",
+      "members":{
+        "Username":{"shape":"String"},
+        "Password":{"shape":"SecretString"},
+        "ServerName":{"shape":"String"},
+        "Port":{"shape":"IntegerOptional"},
+        "DatabaseName":{"shape":"String"},
+        "NestingLevel":{"shape":"NestingLevelValue"},
+        "ExtractDocId":{"shape":"BooleanOptional"},
+        "DocsToInvestigate":{"shape":"IntegerOptional"},
+        "KmsKeyId":{"shape":"String"}
+      }
+    },
     "DynamoDbSettings":{
       "type":"structure",
       "required":["ServiceAccessRoleArn"],
@@ -1577,7 +1592,8 @@
         "OracleSettings":{"shape":"OracleSettings"},
         "SybaseSettings":{"shape":"SybaseSettings"},
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
-        "IBMDb2Settings":{"shape":"IBMDb2Settings"}
+        "IBMDb2Settings":{"shape":"IBMDb2Settings"},
+        "DocDbSettings":{"shape":"DocDbSettings"}
       }
     },
     "EndpointList":{
@@ -1880,7 +1896,8 @@
         "OracleSettings":{"shape":"OracleSettings"},
         "SybaseSettings":{"shape":"SybaseSettings"},
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
-        "IBMDb2Settings":{"shape":"IBMDb2Settings"}
+        "IBMDb2Settings":{"shape":"IBMDb2Settings"},
+        "DocDbSettings":{"shape":"DocDbSettings"}
       }
     },
     "ModifyEndpointResponse":{

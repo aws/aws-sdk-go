@@ -791,7 +791,7 @@
     "AccountList":{
       "type":"list",
       "member":{"shape":"AccountId"},
-      "max":50,
+      "max":1536,
       "min":1
     },
     "Ami":{
@@ -1899,7 +1899,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListComponentBuildVersionsResponse":{
@@ -1907,7 +1907,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "componentSummaryList":{"shape":"ComponentSummaryList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListComponentsRequest":{
@@ -1919,7 +1919,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListComponentsResponse":{
@@ -1927,7 +1927,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "componentVersionList":{"shape":"ComponentVersionList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListDistributionConfigurationsRequest":{
@@ -1938,7 +1938,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListDistributionConfigurationsResponse":{
@@ -1946,7 +1946,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "distributionConfigurationSummaryList":{"shape":"DistributionConfigurationSummaryList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImageBuildVersionsRequest":{
@@ -1959,7 +1959,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImageBuildVersionsResponse":{
@@ -1967,7 +1967,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "imageSummaryList":{"shape":"ImageSummaryList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImagePipelineImagesRequest":{
@@ -1980,7 +1980,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImagePipelineImagesResponse":{
@@ -1988,7 +1988,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "imageSummaryList":{"shape":"ImageSummaryList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImagePipelinesRequest":{
@@ -1999,7 +1999,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImagePipelinesResponse":{
@@ -2007,7 +2007,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "imagePipelineList":{"shape":"ImagePipelineList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImageRecipesRequest":{
@@ -2019,7 +2019,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImageRecipesResponse":{
@@ -2027,7 +2027,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "imageRecipeSummaryList":{"shape":"ImageRecipeSummaryList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImagesRequest":{
@@ -2039,7 +2039,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListImagesResponse":{
@@ -2047,7 +2047,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "imageVersionList":{"shape":"ImageVersionList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListInfrastructureConfigurationsRequest":{
@@ -2058,7 +2058,7 @@
           "shape":"RestrictedInteger",
           "box":true
         },
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListInfrastructureConfigurationsResponse":{
@@ -2066,7 +2066,7 @@
       "members":{
         "requestId":{"shape":"NonEmptyString"},
         "infrastructureConfigurationSummaryList":{"shape":"InfrastructureConfigurationSummaryList"},
-        "nextToken":{"shape":"NonEmptyString"}
+        "nextToken":{"shape":"PaginationToken"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -2121,6 +2121,11 @@
         "Shared",
         "Amazon"
       ]
+    },
+    "PaginationToken":{
+      "type":"string",
+      "max":65535,
+      "min":1
     },
     "PipelineExecutionStartCondition":{
       "type":"string",

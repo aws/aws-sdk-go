@@ -1,3 +1,19 @@
+Release v1.35.19 (2020-10-30)
+===
+
+### Service Client Updates
+* `service/braket`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Adding DocDbSettings to support DocumentDB as a source.
+* `service/elasticache`: Updates service documentation
+  * Documentation updates for AWS ElastiCache
+* `service/imagebuilder`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * Support for HLS discontinuity tags in the child manifests. Support for incomplete segment behavior in the media output. Support for automatic input failover condition settings.
+* `service/sns`: Updates service documentation
+  * Documentation updates for Amazon SNS
+
 Release v1.35.18 (2020-10-29)
 ===
 

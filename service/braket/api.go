@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
 const opCancelQuantumTask = "CancelQuantumTask"
@@ -79,7 +80,7 @@ func (c *Braket) CancelQuantumTaskRequest(input *CancelQuantumTaskInput) (req *r
 //   The throttling rate limit is met.
 //
 //   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception
+//   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
 //   * ValidationException
@@ -171,11 +172,11 @@ func (c *Braket) CreateQuantumTaskRequest(input *CreateQuantumTaskInput) (req *r
 //   The specified device is currently offline.
 //
 //   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception
+//   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
 //   * ServiceQuotaExceededException
-//   The request failed because a service quota is met.
+//   The request failed because a service quota is exceeded.
 //
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by an AWS service.
@@ -266,7 +267,7 @@ func (c *Braket) GetDeviceRequest(input *GetDeviceInput) (req *request.Request, 
 //   The throttling rate limit is met.
 //
 //   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception
+//   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
 //   * ValidationException
@@ -358,7 +359,7 @@ func (c *Braket) GetQuantumTaskRequest(input *GetQuantumTaskInput) (req *request
 //   The throttling rate limit is met.
 //
 //   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception
+//   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
 //   * ValidationException
@@ -381,6 +382,92 @@ func (c *Braket) GetQuantumTask(input *GetQuantumTaskInput) (*GetQuantumTaskOutp
 // for more information on using Contexts.
 func (c *Braket) GetQuantumTaskWithContext(ctx aws.Context, input *GetQuantumTaskInput, opts ...request.Option) (*GetQuantumTaskOutput, error) {
 	req, out := c.GetQuantumTaskRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/ListTagsForResource
+func (c *Braket) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Braket.
+//
+// Shows the tags associated with this resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/ListTagsForResource
+func (c *Braket) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -453,7 +540,7 @@ func (c *Braket) SearchDevicesRequest(input *SearchDevicesInput) (req *request.R
 //   The throttling rate limit is met.
 //
 //   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception
+//   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
 //   * ValidationException
@@ -600,7 +687,7 @@ func (c *Braket) SearchQuantumTasksRequest(input *SearchQuantumTasksInput) (req 
 //   The throttling rate limit is met.
 //
 //   * InternalServiceException
-//   The request processing has failed because of an unknown error, exception
+//   The request processing has failed because of an unknown error, exception,
 //   or failure.
 //
 //   * ValidationException
@@ -678,6 +765,180 @@ func (c *Braket) SearchQuantumTasksPagesWithContext(ctx aws.Context, input *Sear
 	}
 
 	return p.Err()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/TagResource
+func (c *Braket) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Braket.
+//
+// Add a tag to the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/TagResource
+func (c *Braket) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/UntagResource
+func (c *Braket) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Braket.
+//
+// Remove tags from a resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Braket's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InternalServiceException
+//   The request processing has failed because of an unknown error, exception,
+//   or failure.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/braket-2019-09-01/UntagResource
+func (c *Braket) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Braket) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 // You do not have sufficient access to perform this action.
@@ -914,6 +1175,9 @@ type CreateQuantumTaskInput struct {
 	//
 	// Shots is a required field
 	Shots *int64 `locationName:"shots" type:"long" required:"true"`
+
+	// Tags to be added to the quantum task you're creating.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -1002,6 +1266,12 @@ func (s *CreateQuantumTaskInput) SetOutputS3KeyPrefix(v string) *CreateQuantumTa
 // SetShots sets the Shots field's value.
 func (s *CreateQuantumTaskInput) SetShots(v int64) *CreateQuantumTaskInput {
 	s.Shots = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateQuantumTaskInput) SetTags(v map[string]*string) *CreateQuantumTaskInput {
+	s.Tags = v
 	return s
 }
 
@@ -1366,6 +1636,9 @@ type GetQuantumTaskOutput struct {
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"QuantumTaskStatus"`
+
+	// The tags that belong to this task.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -1438,7 +1711,13 @@ func (s *GetQuantumTaskOutput) SetStatus(v string) *GetQuantumTaskOutput {
 	return s
 }
 
-// The request processing has failed because of an unknown error, exception
+// SetTags sets the Tags field's value.
+func (s *GetQuantumTaskOutput) SetTags(v map[string]*string) *GetQuantumTaskOutput {
+	s.Tags = v
+	return s
+}
+
+// The request processing has failed because of an unknown error, exception,
 // or failure.
 type InternalServiceException struct {
 	_            struct{}                  `type:"structure"`
@@ -1495,6 +1774,70 @@ func (s *InternalServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the resourceArn for the resource whose tags to display.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Displays the key, value pairs of tags associated with this resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // Includes information about a quantum task.
 type QuantumTaskSummary struct {
 	_ struct{} `type:"structure"`
@@ -1536,6 +1879,9 @@ type QuantumTaskSummary struct {
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"QuantumTaskStatus"`
+
+	// Displays the key, value pairs of tags associated with this quantum task.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -1593,6 +1939,12 @@ func (s *QuantumTaskSummary) SetShots(v int64) *QuantumTaskSummary {
 // SetStatus sets the Status field's value.
 func (s *QuantumTaskSummary) SetStatus(v string) *QuantumTaskSummary {
 	s.Status = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *QuantumTaskSummary) SetTags(v map[string]*string) *QuantumTaskSummary {
+	s.Tags = v
 	return s
 }
 
@@ -2000,7 +2352,7 @@ func (s *SearchQuantumTasksOutput) SetQuantumTasks(v []*QuantumTaskSummary) *Sea
 	return s
 }
 
-// The request failed because a service quota is met.
+// The request failed because a service quota is exceeded.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -2054,6 +2406,75 @@ func (s *ServiceQuotaExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the resourceArn of the resource to which a tag will be added.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// Specify the tags to add to the resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The throttling rate limit is met.
@@ -2110,6 +2531,75 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the resourceArn for the resource from which to remove the tags.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// pecify the keys for the tags to remove from the resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The input fails to satisfy the constraints specified by an AWS service.
@@ -2169,34 +2659,34 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
-	// CancellationStatusCancelled is a CancellationStatus enum value
-	CancellationStatusCancelled = "CANCELLED"
-
 	// CancellationStatusCancelling is a CancellationStatus enum value
 	CancellationStatusCancelling = "CANCELLING"
+
+	// CancellationStatusCancelled is a CancellationStatus enum value
+	CancellationStatusCancelled = "CANCELLED"
 )
 
 // CancellationStatus_Values returns all elements of the CancellationStatus enum
 func CancellationStatus_Values() []string {
 	return []string{
-		CancellationStatusCancelled,
 		CancellationStatusCancelling,
+		CancellationStatusCancelled,
 	}
 }
 
 const (
-	// DeviceStatusOffline is a DeviceStatus enum value
-	DeviceStatusOffline = "OFFLINE"
-
 	// DeviceStatusOnline is a DeviceStatus enum value
 	DeviceStatusOnline = "ONLINE"
+
+	// DeviceStatusOffline is a DeviceStatus enum value
+	DeviceStatusOffline = "OFFLINE"
 )
 
 // DeviceStatus_Values returns all elements of the DeviceStatus enum
 func DeviceStatus_Values() []string {
 	return []string{
-		DeviceStatusOffline,
 		DeviceStatusOnline,
+		DeviceStatusOffline,
 	}
 }
 
@@ -2217,44 +2707,47 @@ func DeviceType_Values() []string {
 }
 
 const (
-	// QuantumTaskStatusCancelled is a QuantumTaskStatus enum value
-	QuantumTaskStatusCancelled = "CANCELLED"
-
-	// QuantumTaskStatusCancelling is a QuantumTaskStatus enum value
-	QuantumTaskStatusCancelling = "CANCELLING"
-
-	// QuantumTaskStatusCompleted is a QuantumTaskStatus enum value
-	QuantumTaskStatusCompleted = "COMPLETED"
-
 	// QuantumTaskStatusCreated is a QuantumTaskStatus enum value
 	QuantumTaskStatusCreated = "CREATED"
-
-	// QuantumTaskStatusFailed is a QuantumTaskStatus enum value
-	QuantumTaskStatusFailed = "FAILED"
 
 	// QuantumTaskStatusQueued is a QuantumTaskStatus enum value
 	QuantumTaskStatusQueued = "QUEUED"
 
 	// QuantumTaskStatusRunning is a QuantumTaskStatus enum value
 	QuantumTaskStatusRunning = "RUNNING"
+
+	// QuantumTaskStatusCompleted is a QuantumTaskStatus enum value
+	QuantumTaskStatusCompleted = "COMPLETED"
+
+	// QuantumTaskStatusFailed is a QuantumTaskStatus enum value
+	QuantumTaskStatusFailed = "FAILED"
+
+	// QuantumTaskStatusCancelling is a QuantumTaskStatus enum value
+	QuantumTaskStatusCancelling = "CANCELLING"
+
+	// QuantumTaskStatusCancelled is a QuantumTaskStatus enum value
+	QuantumTaskStatusCancelled = "CANCELLED"
 )
 
 // QuantumTaskStatus_Values returns all elements of the QuantumTaskStatus enum
 func QuantumTaskStatus_Values() []string {
 	return []string{
-		QuantumTaskStatusCancelled,
-		QuantumTaskStatusCancelling,
-		QuantumTaskStatusCompleted,
 		QuantumTaskStatusCreated,
-		QuantumTaskStatusFailed,
 		QuantumTaskStatusQueued,
 		QuantumTaskStatusRunning,
+		QuantumTaskStatusCompleted,
+		QuantumTaskStatusFailed,
+		QuantumTaskStatusCancelling,
+		QuantumTaskStatusCancelled,
 	}
 }
 
 const (
-	// SearchQuantumTasksFilterOperatorBetween is a SearchQuantumTasksFilterOperator enum value
-	SearchQuantumTasksFilterOperatorBetween = "BETWEEN"
+	// SearchQuantumTasksFilterOperatorLt is a SearchQuantumTasksFilterOperator enum value
+	SearchQuantumTasksFilterOperatorLt = "LT"
+
+	// SearchQuantumTasksFilterOperatorLte is a SearchQuantumTasksFilterOperator enum value
+	SearchQuantumTasksFilterOperatorLte = "LTE"
 
 	// SearchQuantumTasksFilterOperatorEqual is a SearchQuantumTasksFilterOperator enum value
 	SearchQuantumTasksFilterOperatorEqual = "EQUAL"
@@ -2265,21 +2758,18 @@ const (
 	// SearchQuantumTasksFilterOperatorGte is a SearchQuantumTasksFilterOperator enum value
 	SearchQuantumTasksFilterOperatorGte = "GTE"
 
-	// SearchQuantumTasksFilterOperatorLt is a SearchQuantumTasksFilterOperator enum value
-	SearchQuantumTasksFilterOperatorLt = "LT"
-
-	// SearchQuantumTasksFilterOperatorLte is a SearchQuantumTasksFilterOperator enum value
-	SearchQuantumTasksFilterOperatorLte = "LTE"
+	// SearchQuantumTasksFilterOperatorBetween is a SearchQuantumTasksFilterOperator enum value
+	SearchQuantumTasksFilterOperatorBetween = "BETWEEN"
 )
 
 // SearchQuantumTasksFilterOperator_Values returns all elements of the SearchQuantumTasksFilterOperator enum
 func SearchQuantumTasksFilterOperator_Values() []string {
 	return []string{
-		SearchQuantumTasksFilterOperatorBetween,
+		SearchQuantumTasksFilterOperatorLt,
+		SearchQuantumTasksFilterOperatorLte,
 		SearchQuantumTasksFilterOperatorEqual,
 		SearchQuantumTasksFilterOperatorGt,
 		SearchQuantumTasksFilterOperatorGte,
-		SearchQuantumTasksFilterOperatorLt,
-		SearchQuantumTasksFilterOperatorLte,
+		SearchQuantumTasksFilterOperatorBetween,
 	}
 }
