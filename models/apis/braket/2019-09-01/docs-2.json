@@ -6,8 +6,11 @@
     "CreateQuantumTask": "<p>Creates a quantum task.</p>",
     "GetDevice": "<p>Retrieves the devices available in Amazon Braket.</p>",
     "GetQuantumTask": "<p>Retrieves the specified quantum task.</p>",
+    "ListTagsForResource": "<p>Shows the tags associated with this resource.</p>",
     "SearchDevices": "<p>Searches for devices using the specified filters.</p>",
-    "SearchQuantumTasks": "<p>Searches for tasks that match the specified filter values.</p>"
+    "SearchQuantumTasks": "<p>Searches for tasks that match the specified filter values.</p>",
+    "TagResource": "<p>Add a tag to the specified resource.</p>",
+    "UntagResource": "<p>Remove tags from a resource.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
@@ -41,25 +44,25 @@
       "refs": {
       }
     },
-    "CreateQuantumTaskRequestdeviceParametersJsonValue": {
+    "CreateQuantumTaskRequestDeviceParametersString": {
       "base": null,
       "refs": {
         "CreateQuantumTaskRequest$deviceParameters": "<p>The parameters for the device to run the task on.</p>"
       }
     },
-    "CreateQuantumTaskRequestoutputS3BucketString": {
+    "CreateQuantumTaskRequestOutputS3BucketString": {
       "base": null,
       "refs": {
         "CreateQuantumTaskRequest$outputS3Bucket": "<p>The S3 bucket to store task result files in.</p>"
       }
     },
-    "CreateQuantumTaskRequestoutputS3KeyPrefixString": {
+    "CreateQuantumTaskRequestOutputS3KeyPrefixString": {
       "base": null,
       "refs": {
         "CreateQuantumTaskRequest$outputS3KeyPrefix": "<p>The key prefix for the location in the S3 bucket to store task results in.</p>"
       }
     },
-    "CreateQuantumTaskRequestshotsLong": {
+    "CreateQuantumTaskRequestShotsLong": {
       "base": null,
       "refs": {
         "CreateQuantumTaskRequest$shots": "<p>The number of shots to use for the task.</p>"
@@ -133,7 +136,7 @@
       }
     },
     "InternalServiceException": {
-      "base": "<p>The request processing has failed because of an unknown error, exception or failure.</p>",
+      "base": "<p>The request processing has failed because of an unknown error, exception, or failure.</p>",
       "refs": {
       }
     },
@@ -143,6 +146,16 @@
         "CreateQuantumTaskRequest$action": "<p>The action associated with the task.</p>",
         "GetDeviceResponse$deviceCapabilities": "<p>Details about the capabilities of the device.</p>",
         "GetQuantumTaskResponse$deviceParameters": "<p>The parameters for the device on which the task ran.</p>"
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "Long": {
@@ -190,16 +203,16 @@
     "SearchDevicesFilter": {
       "base": "<p>The filter to use for searching devices.</p>",
       "refs": {
-        "SearchDevicesRequestfiltersSearchDevicesFilterList$member": null
+        "SearchDevicesRequestFiltersList$member": null
       }
     },
-    "SearchDevicesFilternameString": {
+    "SearchDevicesFilterNameString": {
       "base": null,
       "refs": {
         "SearchDevicesFilter$name": "<p>The name to use to filter results.</p>"
       }
     },
-    "SearchDevicesFiltervaluesString256List": {
+    "SearchDevicesFilterValuesList": {
       "base": null,
       "refs": {
         "SearchDevicesFilter$values": "<p>The values to use to filter results.</p>"
@@ -210,13 +223,13 @@
       "refs": {
       }
     },
-    "SearchDevicesRequestfiltersSearchDevicesFilterList": {
+    "SearchDevicesRequestFiltersList": {
       "base": null,
       "refs": {
         "SearchDevicesRequest$filters": "<p>The filter values to use to search for a device.</p>"
       }
     },
-    "SearchDevicesRequestmaxResultsInteger": {
+    "SearchDevicesRequestMaxResultsInteger": {
       "base": null,
       "refs": {
         "SearchDevicesRequest$maxResults": "<p>The maximum number of results to return in the response.</p>"
@@ -230,7 +243,7 @@
     "SearchQuantumTasksFilter": {
       "base": "<p>A filter to use to search for tasks.</p>",
       "refs": {
-        "SearchQuantumTasksRequestfiltersSearchQuantumTasksFilterList$member": null
+        "SearchQuantumTasksRequestFiltersList$member": null
       }
     },
     "SearchQuantumTasksFilterOperator": {
@@ -239,7 +252,7 @@
         "SearchQuantumTasksFilter$operator": "<p>An operator to use in the filter.</p>"
       }
     },
-    "SearchQuantumTasksFiltervaluesString256List": {
+    "SearchQuantumTasksFilterValuesList": {
       "base": null,
       "refs": {
         "SearchQuantumTasksFilter$values": "<p>The values to use for the filter.</p>"
@@ -250,13 +263,13 @@
       "refs": {
       }
     },
-    "SearchQuantumTasksRequestfiltersSearchQuantumTasksFilterList": {
+    "SearchQuantumTasksRequestFiltersList": {
       "base": null,
       "refs": {
         "SearchQuantumTasksRequest$filters": "<p>Array of <code>SearchQuantumTasksFilter</code> objects.</p>"
       }
     },
-    "SearchQuantumTasksRequestmaxResultsInteger": {
+    "SearchQuantumTasksRequestMaxResultsInteger": {
       "base": null,
       "refs": {
         "SearchQuantumTasksRequest$maxResults": "<p>Maximum number of results to return in the response.</p>"
@@ -268,7 +281,7 @@
       }
     },
     "ServiceQuotaExceededException": {
-      "base": "<p>The request failed because a service quota is met.</p>",
+      "base": "<p>The request failed because a service quota is exceeded.</p>",
       "refs": {
       }
     },
@@ -286,6 +299,7 @@
         "GetQuantumTaskResponse$outputS3Bucket": "<p>The S3 bucket where task results are stored.</p>",
         "GetQuantumTaskResponse$outputS3Directory": "<p>The folder in the S3 bucket where task results are stored.</p>",
         "InternalServiceException$message": null,
+        "ListTagsForResourceRequest$resourceArn": "<p>Specify the <code>resourceArn</code> for the resource whose tags to display.</p>",
         "QuantumTaskSummary$outputS3Bucket": "<p>The S3 bucket where the task result file is stored..</p>",
         "QuantumTaskSummary$outputS3Directory": "<p>The folder in the S3 bucket where the task result file is stored.</p>",
         "ResourceNotFoundException$message": null,
@@ -294,15 +308,20 @@
         "SearchQuantumTasksRequest$nextToken": "<p>A token used for pagination of results returned in the response. Use the token returned from the previous request continue results where the previous request ended.</p>",
         "SearchQuantumTasksResponse$nextToken": "<p>A token used for pagination of results, or null if there are no additional results. Use the token value in a subsequent request to continue results where the previous request ended.</p>",
         "ServiceQuotaExceededException$message": null,
+        "TagKeys$member": null,
+        "TagResourceRequest$resourceArn": "<p>Specify the <code>resourceArn</code> of the resource to which a tag will be added.</p>",
+        "TagsMap$key": null,
+        "TagsMap$value": null,
         "ThrottlingException$message": null,
+        "UntagResourceRequest$resourceArn": "<p>Specify the <code>resourceArn</code> for the resource from which to remove the tags.</p>",
         "ValidationException$message": null
       }
     },
     "String256": {
       "base": null,
       "refs": {
-        "SearchDevicesFiltervaluesString256List$member": null,
-        "SearchQuantumTasksFiltervaluesString256List$member": null
+        "SearchDevicesFilterValuesList$member": null,
+        "SearchQuantumTasksFilterValuesList$member": null
       }
     },
     "String64": {
@@ -322,8 +341,44 @@
         "QuantumTaskSummary$endedAt": "<p>The time at which the task finished.</p>"
       }
     },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>pecify the keys for the tags to remove from the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagsMap": {
+      "base": null,
+      "refs": {
+        "CreateQuantumTaskRequest$tags": "<p>Tags to be added to the quantum task you're creating.</p>",
+        "GetQuantumTaskResponse$tags": "<p>The tags that belong to this task.</p>",
+        "ListTagsForResourceResponse$tags": "<p>Displays the key, value pairs of tags associated with this resource.</p>",
+        "QuantumTaskSummary$tags": "<p>Displays the key, value pairs of tags associated with this quantum task.</p>",
+        "TagResourceRequest$tags": "<p>Specify the tags to add to the resource.</p>"
+      }
+    },
     "ThrottlingException": {
       "base": "<p>The throttling rate limit is met.</p>",
+      "refs": {
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
       "refs": {
       }
     },

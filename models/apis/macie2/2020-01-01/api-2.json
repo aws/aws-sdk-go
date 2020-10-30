@@ -2677,6 +2677,10 @@
           "shape": "__listOf__string",
           "locationName": "eq"
         },
+        "eqExactMatch": {
+          "shape": "__listOf__string",
+          "locationName": "eqExactMatch"
+        },
         "gt": {
           "shape": "__long",
           "locationName": "gt"

@@ -2644,6 +2644,14 @@
     "AutomaticInputFailoverSettings": {
       "type": "structure",
       "members": {
+        "ErrorClearTimeMsec": {
+          "shape": "__integerMin1",
+          "locationName": "errorClearTimeMsec"
+        },
+        "FailoverConditions": {
+          "shape": "__listOfFailoverCondition",
+          "locationName": "failoverConditions"
+        },
         "InputPreference": {
           "shape": "InputPreference",
           "locationName": "inputPreference"
@@ -5514,6 +5522,24 @@
         "TimecodeConfig"
       ]
     },
+    "FailoverCondition": {
+      "type": "structure",
+      "members": {
+        "FailoverConditionSettings": {
+          "shape": "FailoverConditionSettings",
+          "locationName": "failoverConditionSettings"
+        }
+      }
+    },
+    "FailoverConditionSettings": {
+      "type": "structure",
+      "members": {
+        "InputLossSettings": {
+          "shape": "InputLossFailoverSettings",
+          "locationName": "inputLossSettings"
+        }
+      }
+    },
     "FeatureActivations": {
       "type": "structure",
       "members": {
@@ -6528,6 +6554,13 @@
         "SUBDIRECTORY_PER_STREAM"
       ]
     },
+    "HlsDiscontinuityTags": {
+      "type": "string",
+      "enum": [
+        "INSERT",
+        "NEVER_INSERT"
+      ]
+    },
     "HlsEncryptionType": {
       "type": "string",
       "enum": [
@@ -6586,6 +6619,10 @@
           "shape": "HlsDirectoryStructure",
           "locationName": "directoryStructure"
         },
+        "DiscontinuityTags": {
+          "shape": "HlsDiscontinuityTags",
+          "locationName": "discontinuityTags"
+        },
         "EncryptionType": {
           "shape": "HlsEncryptionType",
           "locationName": "encryptionType"
@@ -6601,6 +6638,10 @@
         "IFrameOnlyPlaylists": {
           "shape": "IFrameOnlyPlaylistType",
           "locationName": "iFrameOnlyPlaylists"
+        },
+        "IncompleteSegmentBehavior": {
+          "shape": "HlsIncompleteSegmentBehavior",
+          "locationName": "incompleteSegmentBehavior"
         },
         "IndexNSegments": {
           "shape": "__integerMin3",
@@ -6727,6 +6768,13 @@
       "enum": [
         "DISABLED",
         "ENABLED"
+      ]
+    },
+    "HlsIncompleteSegmentBehavior": {
+      "type": "string",
+      "enum": [
+        "AUTO",
+        "SUPPRESS"
       ]
     },
     "HlsInputSettings": {
@@ -7490,6 +7538,15 @@
         "RepeatFrameMsec": {
           "shape": "__integerMin0Max1000000",
           "locationName": "repeatFrameMsec"
+        }
+      }
+    },
+    "InputLossFailoverSettings": {
+      "type": "structure",
+      "members": {
+        "InputLossThresholdMsec": {
+          "shape": "__integerMin100",
+          "locationName": "inputLossThresholdMsec"
         }
       }
     },
@@ -12155,6 +12212,10 @@
       "type": "integer",
       "min": 1
     },
+    "__integerMin100": {
+      "type": "integer",
+      "min": 100
+    },
     "__integerMin1000": {
       "type": "integer",
       "min": 1000
@@ -12361,6 +12422,12 @@
       "type": "list",
       "member": {
         "shape": "ChannelSummary"
+      }
+    },
+    "__listOfFailoverCondition": {
+      "type": "list",
+      "member": {
+        "shape": "FailoverCondition"
       }
     },
     "__listOfHlsAdMarkers": {

@@ -29,7 +29,7 @@ const (
 	// ErrCodeInternalServiceException for service response error code
 	// "InternalServiceException".
 	//
-	// The request processing has failed because of an unknown error, exception
+	// The request processing has failed because of an unknown error, exception,
 	// or failure.
 	ErrCodeInternalServiceException = "InternalServiceException"
 
@@ -42,7 +42,7 @@ const (
 	// ErrCodeServiceQuotaExceededException for service response error code
 	// "ServiceQuotaExceededException".
 	//
-	// The request failed because a service quota is met.
+	// The request failed because a service quota is exceeded.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code
