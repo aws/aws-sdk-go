@@ -21,7 +21,7 @@ const opCancelJournalKinesisStream = "CancelJournalKinesisStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelJournalKinesisStream for more information on using the CancelJournalKinesisStream
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opCreateLedger = "CreateLedger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLedger for more information on using the CreateLedger
 // API call, and error handling.
@@ -199,7 +199,7 @@ const opDeleteLedger = "DeleteLedger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLedger for more information on using the DeleteLedger
 // API call, and error handling.
@@ -294,7 +294,7 @@ const opDescribeJournalKinesisStream = "DescribeJournalKinesisStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJournalKinesisStream for more information on using the DescribeJournalKinesisStream
 // API call, and error handling.
@@ -381,7 +381,7 @@ const opDescribeJournalS3Export = "DescribeJournalS3Export"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJournalS3Export for more information on using the DescribeJournalS3Export
 // API call, and error handling.
@@ -470,7 +470,7 @@ const opDescribeLedger = "DescribeLedger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLedger for more information on using the DescribeLedger
 // API call, and error handling.
@@ -552,7 +552,7 @@ const opExportJournalToS3 = "ExportJournalToS3"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportJournalToS3 for more information on using the ExportJournalToS3
 // API call, and error handling.
@@ -643,7 +643,7 @@ const opGetBlock = "GetBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBlock for more information on using the GetBlock
 // API call, and error handling.
@@ -740,7 +740,7 @@ const opGetDigest = "GetDigest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDigest for more information on using the GetDigest
 // API call, and error handling.
@@ -826,7 +826,7 @@ const opGetRevision = "GetRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRevision for more information on using the GetRevision
 // API call, and error handling.
@@ -913,7 +913,7 @@ const opListJournalKinesisStreamsForLedger = "ListJournalKinesisStreamsForLedger
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJournalKinesisStreamsForLedger for more information on using the ListJournalKinesisStreamsForLedger
 // API call, and error handling.
@@ -1062,7 +1062,7 @@ const opListJournalS3Exports = "ListJournalS3Exports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJournalS3Exports for more information on using the ListJournalS3Exports
 // API call, and error handling.
@@ -1202,7 +1202,7 @@ const opListJournalS3ExportsForLedger = "ListJournalS3ExportsForLedger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJournalS3ExportsForLedger for more information on using the ListJournalS3ExportsForLedger
 // API call, and error handling.
@@ -1342,7 +1342,7 @@ const opListLedgers = "ListLedgers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLedgers for more information on using the ListLedgers
 // API call, and error handling.
@@ -1478,7 +1478,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1560,7 +1560,7 @@ const opStreamJournalToKinesis = "StreamJournalToKinesis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StreamJournalToKinesis for more information on using the StreamJournalToKinesis
 // API call, and error handling.
@@ -1647,7 +1647,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1733,7 +1733,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1817,7 +1817,7 @@ const opUpdateLedger = "UpdateLedger"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLedger for more information on using the UpdateLedger
 // API call, and error handling.

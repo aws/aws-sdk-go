@@ -21,7 +21,7 @@ const opCreateCluster = "CreateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCluster for more information on using the CreateCluster
 // API call, and error handling.
@@ -164,7 +164,7 @@ const opCreateFargateProfile = "CreateFargateProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFargateProfile for more information on using the CreateFargateProfile
 // API call, and error handling.
@@ -296,7 +296,7 @@ const opCreateNodegroup = "CreateNodegroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNodegroup for more information on using the CreateNodegroup
 // API call, and error handling.
@@ -408,7 +408,7 @@ const opDeleteCluster = "DeleteCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCluster for more information on using the DeleteCluster
 // API call, and error handling.
@@ -514,7 +514,7 @@ const opDeleteFargateProfile = "DeleteFargateProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFargateProfile for more information on using the DeleteFargateProfile
 // API call, and error handling.
@@ -617,7 +617,7 @@ const opDeleteNodegroup = "DeleteNodegroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNodegroup for more information on using the DeleteNodegroup
 // API call, and error handling.
@@ -716,7 +716,7 @@ const opDescribeCluster = "DescribeCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCluster for more information on using the DescribeCluster
 // API call, and error handling.
@@ -816,7 +816,7 @@ const opDescribeFargateProfile = "DescribeFargateProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFargateProfile for more information on using the DescribeFargateProfile
 // API call, and error handling.
@@ -909,7 +909,7 @@ const opDescribeNodegroup = "DescribeNodegroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNodegroup for more information on using the DescribeNodegroup
 // API call, and error handling.
@@ -1005,7 +1005,7 @@ const opDescribeUpdate = "DescribeUpdate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUpdate for more information on using the DescribeUpdate
 // API call, and error handling.
@@ -1103,7 +1103,7 @@ const opListClusters = "ListClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusters for more information on using the ListClusters
 // API call, and error handling.
@@ -1252,7 +1252,7 @@ const opListFargateProfiles = "ListFargateProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFargateProfiles for more information on using the ListFargateProfiles
 // API call, and error handling.
@@ -1404,7 +1404,7 @@ const opListNodegroups = "ListNodegroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNodegroups for more information on using the ListNodegroups
 // API call, and error handling.
@@ -1560,7 +1560,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1644,7 +1644,7 @@ const opListUpdates = "ListUpdates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUpdates for more information on using the ListUpdates
 // API call, and error handling.
@@ -1796,7 +1796,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1887,7 +1887,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1972,7 +1972,7 @@ const opUpdateClusterConfig = "UpdateClusterConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClusterConfig for more information on using the UpdateClusterConfig
 // API call, and error handling.
@@ -2099,7 +2099,7 @@ const opUpdateClusterVersion = "UpdateClusterVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClusterVersion for more information on using the UpdateClusterVersion
 // API call, and error handling.
@@ -2211,7 +2211,7 @@ const opUpdateNodegroupConfig = "UpdateNodegroupConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNodegroupConfig for more information on using the UpdateNodegroupConfig
 // API call, and error handling.
@@ -2315,7 +2315,7 @@ const opUpdateNodegroupVersion = "UpdateNodegroupVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNodegroupVersion for more information on using the UpdateNodegroupVersion
 // API call, and error handling.

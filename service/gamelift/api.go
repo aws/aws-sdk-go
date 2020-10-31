@@ -21,7 +21,7 @@ const opAcceptMatch = "AcceptMatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptMatch for more information on using the AcceptMatch
 // API call, and error handling.
@@ -153,7 +153,7 @@ const opClaimGameServer = "ClaimGameServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ClaimGameServer for more information on using the ClaimGameServer
 // API call, and error handling.
@@ -305,7 +305,7 @@ const opCreateAlias = "CreateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAlias for more information on using the CreateAlias
 // API call, and error handling.
@@ -435,7 +435,7 @@ const opCreateBuild = "CreateBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBuild for more information on using the CreateBuild
 // API call, and error handling.
@@ -580,7 +580,7 @@ const opCreateFleet = "CreateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFleet for more information on using the CreateFleet
 // API call, and error handling.
@@ -738,7 +738,7 @@ const opCreateGameServerGroup = "CreateGameServerGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGameServerGroup for more information on using the CreateGameServerGroup
 // API call, and error handling.
@@ -891,7 +891,7 @@ const opCreateGameSession = "CreateGameSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGameSession for more information on using the CreateGameSession
 // API call, and error handling.
@@ -1056,7 +1056,7 @@ const opCreateGameSessionQueue = "CreateGameSessionQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGameSessionQueue for more information on using the CreateGameSessionQueue
 // API call, and error handling.
@@ -1198,7 +1198,7 @@ const opCreateMatchmakingConfiguration = "CreateMatchmakingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMatchmakingConfiguration for more information on using the CreateMatchmakingConfiguration
 // API call, and error handling.
@@ -1340,7 +1340,7 @@ const opCreateMatchmakingRuleSet = "CreateMatchmakingRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMatchmakingRuleSet for more information on using the CreateMatchmakingRuleSet
 // API call, and error handling.
@@ -1470,7 +1470,7 @@ const opCreatePlayerSession = "CreatePlayerSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePlayerSession for more information on using the CreatePlayerSession
 // API call, and error handling.
@@ -1600,7 +1600,7 @@ const opCreatePlayerSessions = "CreatePlayerSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePlayerSessions for more information on using the CreatePlayerSessions
 // API call, and error handling.
@@ -1730,7 +1730,7 @@ const opCreateScript = "CreateScript"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateScript for more information on using the CreateScript
 // API call, and error handling.
@@ -1867,7 +1867,7 @@ const opCreateVpcPeeringAuthorization = "CreateVpcPeeringAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVpcPeeringAuthorization for more information on using the CreateVpcPeeringAuthorization
 // API call, and error handling.
@@ -1998,7 +1998,7 @@ const opCreateVpcPeeringConnection = "CreateVpcPeeringConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVpcPeeringConnection for more information on using the CreateVpcPeeringConnection
 // API call, and error handling.
@@ -2125,7 +2125,7 @@ const opDeleteAlias = "DeleteAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAlias for more information on using the DeleteAlias
 // API call, and error handling.
@@ -2237,7 +2237,7 @@ const opDeleteBuild = "DeleteBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBuild for more information on using the DeleteBuild
 // API call, and error handling.
@@ -2356,7 +2356,7 @@ const opDeleteFleet = "DeleteFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFleet for more information on using the DeleteFleet
 // API call, and error handling.
@@ -2486,7 +2486,7 @@ const opDeleteGameServerGroup = "DeleteGameServerGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGameServerGroup for more information on using the DeleteGameServerGroup
 // API call, and error handling.
@@ -2625,7 +2625,7 @@ const opDeleteGameSessionQueue = "DeleteGameSessionQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGameSessionQueue for more information on using the DeleteGameSessionQueue
 // API call, and error handling.
@@ -2739,7 +2739,7 @@ const opDeleteMatchmakingConfiguration = "DeleteMatchmakingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMatchmakingConfiguration for more information on using the DeleteMatchmakingConfiguration
 // API call, and error handling.
@@ -2857,7 +2857,7 @@ const opDeleteMatchmakingRuleSet = "DeleteMatchmakingRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMatchmakingRuleSet for more information on using the DeleteMatchmakingRuleSet
 // API call, and error handling.
@@ -2979,7 +2979,7 @@ const opDeleteScalingPolicy = "DeleteScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteScalingPolicy for more information on using the DeleteScalingPolicy
 // API call, and error handling.
@@ -3088,7 +3088,7 @@ const opDeleteScript = "DeleteScript"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteScript for more information on using the DeleteScript
 // API call, and error handling.
@@ -3210,7 +3210,7 @@ const opDeleteVpcPeeringAuthorization = "DeleteVpcPeeringAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVpcPeeringAuthorization for more information on using the DeleteVpcPeeringAuthorization
 // API call, and error handling.
@@ -3316,7 +3316,7 @@ const opDeleteVpcPeeringConnection = "DeleteVpcPeeringConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVpcPeeringConnection for more information on using the DeleteVpcPeeringConnection
 // API call, and error handling.
@@ -3429,7 +3429,7 @@ const opDeregisterGameServer = "DeregisterGameServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterGameServer for more information on using the DeregisterGameServer
 // API call, and error handling.
@@ -3549,7 +3549,7 @@ const opDescribeAlias = "DescribeAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAlias for more information on using the DescribeAlias
 // API call, and error handling.
@@ -3657,7 +3657,7 @@ const opDescribeBuild = "DescribeBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBuild for more information on using the DescribeBuild
 // API call, and error handling.
@@ -3767,7 +3767,7 @@ const opDescribeEC2InstanceLimits = "DescribeEC2InstanceLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEC2InstanceLimits for more information on using the DescribeEC2InstanceLimits
 // API call, and error handling.
@@ -3881,7 +3881,7 @@ const opDescribeFleetAttributes = "DescribeFleetAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleetAttributes for more information on using the DescribeFleetAttributes
 // API call, and error handling.
@@ -4063,7 +4063,7 @@ const opDescribeFleetCapacity = "DescribeFleetCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleetCapacity for more information on using the DescribeFleetCapacity
 // API call, and error handling.
@@ -4249,7 +4249,7 @@ const opDescribeFleetEvents = "DescribeFleetEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleetEvents for more information on using the DescribeFleetEvents
 // API call, and error handling.
@@ -4422,7 +4422,7 @@ const opDescribeFleetPortSettings = "DescribeFleetPortSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleetPortSettings for more information on using the DescribeFleetPortSettings
 // API call, and error handling.
@@ -4542,7 +4542,7 @@ const opDescribeFleetUtilization = "DescribeFleetUtilization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleetUtilization for more information on using the DescribeFleetUtilization
 // API call, and error handling.
@@ -4726,7 +4726,7 @@ const opDescribeGameServer = "DescribeGameServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameServer for more information on using the DescribeGameServer
 // API call, and error handling.
@@ -4844,7 +4844,7 @@ const opDescribeGameServerGroup = "DescribeGameServerGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameServerGroup for more information on using the DescribeGameServerGroup
 // API call, and error handling.
@@ -4967,7 +4967,7 @@ const opDescribeGameServerInstances = "DescribeGameServerInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameServerInstances for more information on using the DescribeGameServerInstances
 // API call, and error handling.
@@ -5157,7 +5157,7 @@ const opDescribeGameSessionDetails = "DescribeGameSessionDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameSessionDetails for more information on using the DescribeGameSessionDetails
 // API call, and error handling.
@@ -5339,7 +5339,7 @@ const opDescribeGameSessionPlacement = "DescribeGameSessionPlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameSessionPlacement for more information on using the DescribeGameSessionPlacement
 // API call, and error handling.
@@ -5448,7 +5448,7 @@ const opDescribeGameSessionQueues = "DescribeGameSessionQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameSessionQueues for more information on using the DescribeGameSessionQueues
 // API call, and error handling.
@@ -5616,7 +5616,7 @@ const opDescribeGameSessions = "DescribeGameSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGameSessions for more information on using the DescribeGameSessions
 // API call, and error handling.
@@ -5799,7 +5799,7 @@ const opDescribeInstances = "DescribeInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstances for more information on using the DescribeInstances
 // API call, and error handling.
@@ -5968,7 +5968,7 @@ const opDescribeMatchmaking = "DescribeMatchmaking"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMatchmaking for more information on using the DescribeMatchmaking
 // API call, and error handling.
@@ -6087,7 +6087,7 @@ const opDescribeMatchmakingConfigurations = "DescribeMatchmakingConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMatchmakingConfigurations for more information on using the DescribeMatchmakingConfigurations
 // API call, and error handling.
@@ -6265,7 +6265,7 @@ const opDescribeMatchmakingRuleSets = "DescribeMatchmakingRuleSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMatchmakingRuleSets for more information on using the DescribeMatchmakingRuleSets
 // API call, and error handling.
@@ -6441,7 +6441,7 @@ const opDescribePlayerSessions = "DescribePlayerSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePlayerSessions for more information on using the DescribePlayerSessions
 // API call, and error handling.
@@ -6612,7 +6612,7 @@ const opDescribeRuntimeConfiguration = "DescribeRuntimeConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRuntimeConfiguration for more information on using the DescribeRuntimeConfiguration
 // API call, and error handling.
@@ -6732,7 +6732,7 @@ const opDescribeScalingPolicies = "DescribeScalingPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingPolicies for more information on using the DescribeScalingPolicies
 // API call, and error handling.
@@ -6903,7 +6903,7 @@ const opDescribeScript = "DescribeScript"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScript for more information on using the DescribeScript
 // API call, and error handling.
@@ -7014,7 +7014,7 @@ const opDescribeVpcPeeringAuthorizations = "DescribeVpcPeeringAuthorizations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVpcPeeringAuthorizations for more information on using the DescribeVpcPeeringAuthorizations
 // API call, and error handling.
@@ -7116,7 +7116,7 @@ const opDescribeVpcPeeringConnections = "DescribeVpcPeeringConnections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVpcPeeringConnections for more information on using the DescribeVpcPeeringConnections
 // API call, and error handling.
@@ -7227,7 +7227,7 @@ const opGetGameSessionLogUrl = "GetGameSessionLogUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGameSessionLogUrl for more information on using the GetGameSessionLogUrl
 // API call, and error handling.
@@ -7341,7 +7341,7 @@ const opGetInstanceAccess = "GetInstanceAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceAccess for more information on using the GetInstanceAccess
 // API call, and error handling.
@@ -7461,7 +7461,7 @@ const opListAliases = "ListAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAliases for more information on using the ListAliases
 // API call, and error handling.
@@ -7623,7 +7623,7 @@ const opListBuilds = "ListBuilds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBuilds for more information on using the ListBuilds
 // API call, and error handling.
@@ -7790,7 +7790,7 @@ const opListFleets = "ListFleets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFleets for more information on using the ListFleets
 // API call, and error handling.
@@ -7963,7 +7963,7 @@ const opListGameServerGroups = "ListGameServerGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGameServerGroups for more information on using the ListGameServerGroups
 // API call, and error handling.
@@ -8136,7 +8136,7 @@ const opListGameServers = "ListGameServers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGameServers for more information on using the ListGameServers
 // API call, and error handling.
@@ -8306,7 +8306,7 @@ const opListScripts = "ListScripts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListScripts for more information on using the ListScripts
 // API call, and error handling.
@@ -8469,7 +8469,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -8597,7 +8597,7 @@ const opPutScalingPolicy = "PutScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutScalingPolicy for more information on using the PutScalingPolicy
 // API call, and error handling.
@@ -8773,7 +8773,7 @@ const opRegisterGameServer = "RegisterGameServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterGameServer for more information on using the RegisterGameServer
 // API call, and error handling.
@@ -8907,7 +8907,7 @@ const opRequestUploadCredentials = "RequestUploadCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RequestUploadCredentials for more information on using the RequestUploadCredentials
 // API call, and error handling.
@@ -9021,7 +9021,7 @@ const opResolveAlias = "ResolveAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResolveAlias for more information on using the ResolveAlias
 // API call, and error handling.
@@ -9132,7 +9132,7 @@ const opResumeGameServerGroup = "ResumeGameServerGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResumeGameServerGroup for more information on using the ResumeGameServerGroup
 // API call, and error handling.
@@ -9258,7 +9258,7 @@ const opSearchGameSessions = "SearchGameSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchGameSessions for more information on using the SearchGameSessions
 // API call, and error handling.
@@ -9478,7 +9478,7 @@ const opStartFleetActions = "StartFleetActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartFleetActions for more information on using the StartFleetActions
 // API call, and error handling.
@@ -9596,7 +9596,7 @@ const opStartGameSessionPlacement = "StartGameSessionPlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartGameSessionPlacement for more information on using the StartGameSessionPlacement
 // API call, and error handling.
@@ -9744,7 +9744,7 @@ const opStartMatchBackfill = "StartMatchBackfill"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMatchBackfill for more information on using the StartMatchBackfill
 // API call, and error handling.
@@ -9877,7 +9877,7 @@ const opStartMatchmaking = "StartMatchmaking"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMatchmaking for more information on using the StartMatchmaking
 // API call, and error handling.
@@ -10036,7 +10036,7 @@ const opStopFleetActions = "StopFleetActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopFleetActions for more information on using the StopFleetActions
 // API call, and error handling.
@@ -10155,7 +10155,7 @@ const opStopGameSessionPlacement = "StopGameSessionPlacement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopGameSessionPlacement for more information on using the StopGameSessionPlacement
 // API call, and error handling.
@@ -10264,7 +10264,7 @@ const opStopMatchmaking = "StopMatchmaking"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopMatchmaking for more information on using the StopMatchmaking
 // API call, and error handling.
@@ -10383,7 +10383,7 @@ const opSuspendGameServerGroup = "SuspendGameServerGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SuspendGameServerGroup for more information on using the SuspendGameServerGroup
 // API call, and error handling.
@@ -10515,7 +10515,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -10648,7 +10648,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -10780,7 +10780,7 @@ const opUpdateAlias = "UpdateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAlias for more information on using the UpdateAlias
 // API call, and error handling.
@@ -10887,7 +10887,7 @@ const opUpdateBuild = "UpdateBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBuild for more information on using the UpdateBuild
 // API call, and error handling.
@@ -10998,7 +10998,7 @@ const opUpdateFleetAttributes = "UpdateFleetAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFleetAttributes for more information on using the UpdateFleetAttributes
 // API call, and error handling.
@@ -11125,7 +11125,7 @@ const opUpdateFleetCapacity = "UpdateFleetCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFleetCapacity for more information on using the UpdateFleetCapacity
 // API call, and error handling.
@@ -11265,7 +11265,7 @@ const opUpdateFleetPortSettings = "UpdateFleetPortSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFleetPortSettings for more information on using the UpdateFleetPortSettings
 // API call, and error handling.
@@ -11395,7 +11395,7 @@ const opUpdateGameServer = "UpdateGameServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGameServer for more information on using the UpdateGameServer
 // API call, and error handling.
@@ -11530,7 +11530,7 @@ const opUpdateGameServerGroup = "UpdateGameServerGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGameServerGroup for more information on using the UpdateGameServerGroup
 // API call, and error handling.
@@ -11655,7 +11655,7 @@ const opUpdateGameSession = "UpdateGameSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGameSession for more information on using the UpdateGameSession
 // API call, and error handling.
@@ -11778,7 +11778,7 @@ const opUpdateGameSessionQueue = "UpdateGameSessionQueue"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGameSessionQueue for more information on using the UpdateGameSessionQueue
 // API call, and error handling.
@@ -11887,7 +11887,7 @@ const opUpdateMatchmakingConfiguration = "UpdateMatchmakingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMatchmakingConfiguration for more information on using the UpdateMatchmakingConfiguration
 // API call, and error handling.
@@ -12004,7 +12004,7 @@ const opUpdateRuntimeConfiguration = "UpdateRuntimeConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRuntimeConfiguration for more information on using the UpdateRuntimeConfiguration
 // API call, and error handling.
@@ -12133,7 +12133,7 @@ const opUpdateScript = "UpdateScript"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateScript for more information on using the UpdateScript
 // API call, and error handling.
@@ -12254,7 +12254,7 @@ const opValidateMatchmakingRuleSet = "ValidateMatchmakingRuleSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ValidateMatchmakingRuleSet for more information on using the ValidateMatchmakingRuleSet
 // API call, and error handling.

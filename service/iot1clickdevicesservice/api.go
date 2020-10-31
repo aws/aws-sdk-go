@@ -21,7 +21,7 @@ const opClaimDevicesByClaimCode = "ClaimDevicesByClaimCode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ClaimDevicesByClaimCode for more information on using the ClaimDevicesByClaimCode
 // API call, and error handling.
@@ -104,7 +104,7 @@ const opDescribeDevice = "DescribeDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDevice for more information on using the DescribeDevice
 // API call, and error handling.
@@ -187,7 +187,7 @@ const opFinalizeDeviceClaim = "FinalizeDeviceClaim"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See FinalizeDeviceClaim for more information on using the FinalizeDeviceClaim
 // API call, and error handling.
@@ -277,7 +277,7 @@ const opGetDeviceMethods = "GetDeviceMethods"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeviceMethods for more information on using the GetDeviceMethods
 // API call, and error handling.
@@ -359,7 +359,7 @@ const opInitiateDeviceClaim = "InitiateDeviceClaim"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateDeviceClaim for more information on using the InitiateDeviceClaim
 // API call, and error handling.
@@ -447,7 +447,7 @@ const opInvokeDeviceMethod = "InvokeDeviceMethod"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InvokeDeviceMethod for more information on using the InvokeDeviceMethod
 // API call, and error handling.
@@ -536,7 +536,7 @@ const opListDeviceEvents = "ListDeviceEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeviceEvents for more information on using the ListDeviceEvents
 // API call, and error handling.
@@ -621,7 +621,7 @@ const opListDevices = "ListDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevices for more information on using the ListDevices
 // API call, and error handling.
@@ -703,7 +703,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -783,7 +783,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -868,7 +868,7 @@ const opUnclaimDevice = "UnclaimDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnclaimDevice for more information on using the UnclaimDevice
 // API call, and error handling.
@@ -950,7 +950,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1034,7 +1034,7 @@ const opUpdateDeviceState = "UpdateDeviceState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDeviceState for more information on using the UpdateDeviceState
 // API call, and error handling.

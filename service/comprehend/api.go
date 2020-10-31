@@ -21,7 +21,7 @@ const opBatchDetectDominantLanguage = "BatchDetectDominantLanguage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDetectDominantLanguage for more information on using the BatchDetectDominantLanguage
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opBatchDetectEntities = "BatchDetectEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDetectEntities for more information on using the BatchDetectEntities
 // API call, and error handling.
@@ -209,7 +209,7 @@ const opBatchDetectKeyPhrases = "BatchDetectKeyPhrases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDetectKeyPhrases for more information on using the BatchDetectKeyPhrases
 // API call, and error handling.
@@ -305,7 +305,7 @@ const opBatchDetectSentiment = "BatchDetectSentiment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDetectSentiment for more information on using the BatchDetectSentiment
 // API call, and error handling.
@@ -402,7 +402,7 @@ const opBatchDetectSyntax = "BatchDetectSyntax"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDetectSyntax for more information on using the BatchDetectSyntax
 // API call, and error handling.
@@ -500,7 +500,7 @@ const opClassifyDocument = "ClassifyDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ClassifyDocument for more information on using the ClassifyDocument
 // API call, and error handling.
@@ -591,7 +591,7 @@ const opCreateDocumentClassifier = "CreateDocumentClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDocumentClassifier for more information on using the CreateDocumentClassifier
 // API call, and error handling.
@@ -704,7 +704,7 @@ const opCreateEndpoint = "CreateEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEndpoint for more information on using the CreateEndpoint
 // API call, and error handling.
@@ -811,7 +811,7 @@ const opCreateEntityRecognizer = "CreateEntityRecognizer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEntityRecognizer for more information on using the CreateEntityRecognizer
 // API call, and error handling.
@@ -921,7 +921,7 @@ const opDeleteDocumentClassifier = "DeleteDocumentClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDocumentClassifier for more information on using the DeleteDocumentClassifier
 // API call, and error handling.
@@ -1027,7 +1027,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpoint for more information on using the DeleteEndpoint
 // API call, and error handling.
@@ -1122,7 +1122,7 @@ const opDeleteEntityRecognizer = "DeleteEntityRecognizer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEntityRecognizer for more information on using the DeleteEntityRecognizer
 // API call, and error handling.
@@ -1228,7 +1228,7 @@ const opDescribeDocumentClassificationJob = "DescribeDocumentClassificationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDocumentClassificationJob for more information on using the DescribeDocumentClassificationJob
 // API call, and error handling.
@@ -1317,7 +1317,7 @@ const opDescribeDocumentClassifier = "DescribeDocumentClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDocumentClassifier for more information on using the DescribeDocumentClassifier
 // API call, and error handling.
@@ -1406,7 +1406,7 @@ const opDescribeDominantLanguageDetectionJob = "DescribeDominantLanguageDetectio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDominantLanguageDetectionJob for more information on using the DescribeDominantLanguageDetectionJob
 // API call, and error handling.
@@ -1495,7 +1495,7 @@ const opDescribeEndpoint = "DescribeEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoint for more information on using the DescribeEndpoint
 // API call, and error handling.
@@ -1585,7 +1585,7 @@ const opDescribeEntitiesDetectionJob = "DescribeEntitiesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEntitiesDetectionJob for more information on using the DescribeEntitiesDetectionJob
 // API call, and error handling.
@@ -1674,7 +1674,7 @@ const opDescribeEntityRecognizer = "DescribeEntityRecognizer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEntityRecognizer for more information on using the DescribeEntityRecognizer
 // API call, and error handling.
@@ -1764,7 +1764,7 @@ const opDescribeKeyPhrasesDetectionJob = "DescribeKeyPhrasesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeKeyPhrasesDetectionJob for more information on using the DescribeKeyPhrasesDetectionJob
 // API call, and error handling.
@@ -1853,7 +1853,7 @@ const opDescribePiiEntitiesDetectionJob = "DescribePiiEntitiesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePiiEntitiesDetectionJob for more information on using the DescribePiiEntitiesDetectionJob
 // API call, and error handling.
@@ -1942,7 +1942,7 @@ const opDescribeSentimentDetectionJob = "DescribeSentimentDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSentimentDetectionJob for more information on using the DescribeSentimentDetectionJob
 // API call, and error handling.
@@ -2031,7 +2031,7 @@ const opDescribeTopicsDetectionJob = "DescribeTopicsDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTopicsDetectionJob for more information on using the DescribeTopicsDetectionJob
 // API call, and error handling.
@@ -2120,7 +2120,7 @@ const opDetectDominantLanguage = "DetectDominantLanguage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectDominantLanguage for more information on using the DetectDominantLanguage
 // API call, and error handling.
@@ -2207,7 +2207,7 @@ const opDetectEntities = "DetectEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectEntities for more information on using the DetectEntities
 // API call, and error handling.
@@ -2304,7 +2304,7 @@ const opDetectKeyPhrases = "DetectKeyPhrases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectKeyPhrases for more information on using the DetectKeyPhrases
 // API call, and error handling.
@@ -2396,7 +2396,7 @@ const opDetectPiiEntities = "DetectPiiEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectPiiEntities for more information on using the DetectPiiEntities
 // API call, and error handling.
@@ -2489,7 +2489,7 @@ const opDetectSentiment = "DetectSentiment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectSentiment for more information on using the DetectSentiment
 // API call, and error handling.
@@ -2582,7 +2582,7 @@ const opDetectSyntax = "DetectSyntax"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectSyntax for more information on using the DetectSyntax
 // API call, and error handling.
@@ -2675,7 +2675,7 @@ const opListDocumentClassificationJobs = "ListDocumentClassificationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDocumentClassificationJobs for more information on using the ListDocumentClassificationJobs
 // API call, and error handling.
@@ -2821,7 +2821,7 @@ const opListDocumentClassifiers = "ListDocumentClassifiers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDocumentClassifiers for more information on using the ListDocumentClassifiers
 // API call, and error handling.
@@ -2967,7 +2967,7 @@ const opListDominantLanguageDetectionJobs = "ListDominantLanguageDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDominantLanguageDetectionJobs for more information on using the ListDominantLanguageDetectionJobs
 // API call, and error handling.
@@ -3113,7 +3113,7 @@ const opListEndpoints = "ListEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEndpoints for more information on using the ListEndpoints
 // API call, and error handling.
@@ -3198,7 +3198,7 @@ const opListEntitiesDetectionJobs = "ListEntitiesDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEntitiesDetectionJobs for more information on using the ListEntitiesDetectionJobs
 // API call, and error handling.
@@ -3344,7 +3344,7 @@ const opListEntityRecognizers = "ListEntityRecognizers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEntityRecognizers for more information on using the ListEntityRecognizers
 // API call, and error handling.
@@ -3497,7 +3497,7 @@ const opListKeyPhrasesDetectionJobs = "ListKeyPhrasesDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListKeyPhrasesDetectionJobs for more information on using the ListKeyPhrasesDetectionJobs
 // API call, and error handling.
@@ -3643,7 +3643,7 @@ const opListPiiEntitiesDetectionJobs = "ListPiiEntitiesDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPiiEntitiesDetectionJobs for more information on using the ListPiiEntitiesDetectionJobs
 // API call, and error handling.
@@ -3731,7 +3731,7 @@ const opListSentimentDetectionJobs = "ListSentimentDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSentimentDetectionJobs for more information on using the ListSentimentDetectionJobs
 // API call, and error handling.
@@ -3877,7 +3877,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3963,7 +3963,7 @@ const opListTopicsDetectionJobs = "ListTopicsDetectionJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTopicsDetectionJobs for more information on using the ListTopicsDetectionJobs
 // API call, and error handling.
@@ -4109,7 +4109,7 @@ const opStartDocumentClassificationJob = "StartDocumentClassificationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDocumentClassificationJob for more information on using the StartDocumentClassificationJob
 // API call, and error handling.
@@ -4207,7 +4207,7 @@ const opStartDominantLanguageDetectionJob = "StartDominantLanguageDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDominantLanguageDetectionJob for more information on using the StartDominantLanguageDetectionJob
 // API call, and error handling.
@@ -4297,7 +4297,7 @@ const opStartEntitiesDetectionJob = "StartEntitiesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartEntitiesDetectionJob for more information on using the StartEntitiesDetectionJob
 // API call, and error handling.
@@ -4400,7 +4400,7 @@ const opStartKeyPhrasesDetectionJob = "StartKeyPhrasesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartKeyPhrasesDetectionJob for more information on using the StartKeyPhrasesDetectionJob
 // API call, and error handling.
@@ -4490,7 +4490,7 @@ const opStartPiiEntitiesDetectionJob = "StartPiiEntitiesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartPiiEntitiesDetectionJob for more information on using the StartPiiEntitiesDetectionJob
 // API call, and error handling.
@@ -4579,7 +4579,7 @@ const opStartSentimentDetectionJob = "StartSentimentDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSentimentDetectionJob for more information on using the StartSentimentDetectionJob
 // API call, and error handling.
@@ -4669,7 +4669,7 @@ const opStartTopicsDetectionJob = "StartTopicsDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTopicsDetectionJob for more information on using the StartTopicsDetectionJob
 // API call, and error handling.
@@ -4759,7 +4759,7 @@ const opStopDominantLanguageDetectionJob = "StopDominantLanguageDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDominantLanguageDetectionJob for more information on using the StopDominantLanguageDetectionJob
 // API call, and error handling.
@@ -4855,7 +4855,7 @@ const opStopEntitiesDetectionJob = "StopEntitiesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopEntitiesDetectionJob for more information on using the StopEntitiesDetectionJob
 // API call, and error handling.
@@ -4951,7 +4951,7 @@ const opStopKeyPhrasesDetectionJob = "StopKeyPhrasesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopKeyPhrasesDetectionJob for more information on using the StopKeyPhrasesDetectionJob
 // API call, and error handling.
@@ -5047,7 +5047,7 @@ const opStopPiiEntitiesDetectionJob = "StopPiiEntitiesDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopPiiEntitiesDetectionJob for more information on using the StopPiiEntitiesDetectionJob
 // API call, and error handling.
@@ -5132,7 +5132,7 @@ const opStopSentimentDetectionJob = "StopSentimentDetectionJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopSentimentDetectionJob for more information on using the StopSentimentDetectionJob
 // API call, and error handling.
@@ -5228,7 +5228,7 @@ const opStopTrainingDocumentClassifier = "StopTrainingDocumentClassifier"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTrainingDocumentClassifier for more information on using the StopTrainingDocumentClassifier
 // API call, and error handling.
@@ -5324,7 +5324,7 @@ const opStopTrainingEntityRecognizer = "StopTrainingEntityRecognizer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTrainingEntityRecognizer for more information on using the StopTrainingEntityRecognizer
 // API call, and error handling.
@@ -5420,7 +5420,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5519,7 +5519,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -5614,7 +5614,7 @@ const opUpdateEndpoint = "UpdateEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEndpoint for more information on using the UpdateEndpoint
 // API call, and error handling.

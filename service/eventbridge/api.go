@@ -21,7 +21,7 @@ const opActivateEventSource = "ActivateEventSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ActivateEventSource for more information on using the ActivateEventSource
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opCreateEventBus = "CreateEventBus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEventBus for more information on using the CreateEventBus
 // API call, and error handling.
@@ -214,7 +214,7 @@ const opCreatePartnerEventSource = "CreatePartnerEventSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePartnerEventSource for more information on using the CreatePartnerEventSource
 // API call, and error handling.
@@ -329,7 +329,7 @@ const opDeactivateEventSource = "DeactivateEventSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeactivateEventSource for more information on using the DeactivateEventSource
 // API call, and error handling.
@@ -427,7 +427,7 @@ const opDeleteEventBus = "DeleteEventBus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventBus for more information on using the DeleteEventBus
 // API call, and error handling.
@@ -512,7 +512,7 @@ const opDeletePartnerEventSource = "DeletePartnerEventSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePartnerEventSource for more information on using the DeletePartnerEventSource
 // API call, and error handling.
@@ -602,7 +602,7 @@ const opDeleteRule = "DeleteRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRule for more information on using the DeleteRule
 // API call, and error handling.
@@ -707,7 +707,7 @@ const opDescribeEventBus = "DescribeEventBus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventBus for more information on using the DescribeEventBus
 // API call, and error handling.
@@ -797,7 +797,7 @@ const opDescribeEventSource = "DescribeEventSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventSource for more information on using the DescribeEventSource
 // API call, and error handling.
@@ -883,7 +883,7 @@ const opDescribePartnerEventSource = "DescribePartnerEventSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePartnerEventSource for more information on using the DescribePartnerEventSource
 // API call, and error handling.
@@ -971,7 +971,7 @@ const opDescribeRule = "DescribeRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRule for more information on using the DescribeRule
 // API call, and error handling.
@@ -1056,7 +1056,7 @@ const opDisableRule = "DisableRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableRule for more information on using the DisableRule
 // API call, and error handling.
@@ -1154,7 +1154,7 @@ const opEnableRule = "EnableRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableRule for more information on using the EnableRule
 // API call, and error handling.
@@ -1252,7 +1252,7 @@ const opListEventBuses = "ListEventBuses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEventBuses for more information on using the ListEventBuses
 // API call, and error handling.
@@ -1332,7 +1332,7 @@ const opListEventSources = "ListEventSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEventSources for more information on using the ListEventSources
 // API call, and error handling.
@@ -1416,7 +1416,7 @@ const opListPartnerEventSourceAccounts = "ListPartnerEventSourceAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPartnerEventSourceAccounts for more information on using the ListPartnerEventSourceAccounts
 // API call, and error handling.
@@ -1503,7 +1503,7 @@ const opListPartnerEventSources = "ListPartnerEventSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPartnerEventSources for more information on using the ListPartnerEventSources
 // API call, and error handling.
@@ -1586,7 +1586,7 @@ const opListRuleNamesByTarget = "ListRuleNamesByTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRuleNamesByTarget for more information on using the ListRuleNamesByTarget
 // API call, and error handling.
@@ -1669,7 +1669,7 @@ const opListRules = "ListRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRules for more information on using the ListRules
 // API call, and error handling.
@@ -1755,7 +1755,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1838,7 +1838,7 @@ const opListTargetsByRule = "ListTargetsByRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTargetsByRule for more information on using the ListTargetsByRule
 // API call, and error handling.
@@ -1920,7 +1920,7 @@ const opPutEvents = "PutEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEvents for more information on using the PutEvents
 // API call, and error handling.
@@ -2000,7 +2000,7 @@ const opPutPartnerEvents = "PutPartnerEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPartnerEvents for more information on using the PutPartnerEvents
 // API call, and error handling.
@@ -2083,7 +2083,7 @@ const opPutPermission = "PutPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPermission for more information on using the PutPermission
 // API call, and error handling.
@@ -2192,7 +2192,7 @@ const opPutRule = "PutRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRule for more information on using the PutRule
 // API call, and error handling.
@@ -2344,7 +2344,7 @@ const opPutTargets = "PutTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutTargets for more information on using the PutTargets
 // API call, and error handling.
@@ -2551,7 +2551,7 @@ const opRemovePermission = "RemovePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemovePermission for more information on using the RemovePermission
 // API call, and error handling.
@@ -2640,7 +2640,7 @@ const opRemoveTargets = "RemoveTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTargets for more information on using the RemoveTargets
 // API call, and error handling.
@@ -2743,7 +2743,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2852,7 +2852,7 @@ const opTestEventPattern = "TestEventPattern"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestEventPattern for more information on using the TestEventPattern
 // API call, and error handling.
@@ -2939,7 +2939,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opCreateConnectorProfile = "CreateConnectorProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConnectorProfile for more information on using the CreateConnectorProfile
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opCreateFlow = "CreateFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFlow for more information on using the CreateFlow
 // API call, and error handling.
@@ -225,7 +225,7 @@ const opDeleteConnectorProfile = "DeleteConnectorProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnectorProfile for more information on using the DeleteConnectorProfile
 // API call, and error handling.
@@ -315,7 +315,7 @@ const opDeleteFlow = "DeleteFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFlow for more information on using the DeleteFlow
 // API call, and error handling.
@@ -407,7 +407,7 @@ const opDescribeConnectorEntity = "DescribeConnectorEntity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectorEntity for more information on using the DescribeConnectorEntity
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opDescribeConnectorProfiles = "DescribeConnectorProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectorProfiles for more information on using the DescribeConnectorProfiles
 // API call, and error handling.
@@ -648,7 +648,7 @@ const opDescribeConnectors = "DescribeConnectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectors for more information on using the DescribeConnectors
 // API call, and error handling.
@@ -794,7 +794,7 @@ const opDescribeFlow = "DescribeFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFlow for more information on using the DescribeFlow
 // API call, and error handling.
@@ -878,7 +878,7 @@ const opDescribeFlowExecutionRecords = "DescribeFlowExecutionRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFlowExecutionRecords for more information on using the DescribeFlowExecutionRecords
 // API call, and error handling.
@@ -1023,7 +1023,7 @@ const opListConnectorEntities = "ListConnectorEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConnectorEntities for more information on using the ListConnectorEntities
 // API call, and error handling.
@@ -1118,7 +1118,7 @@ const opListFlows = "ListFlows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFlows for more information on using the ListFlows
 // API call, and error handling.
@@ -1259,7 +1259,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1346,7 +1346,7 @@ const opStartFlow = "StartFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartFlow for more information on using the StartFlow
 // API call, and error handling.
@@ -1441,7 +1441,7 @@ const opStopFlow = "StopFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopFlow for more information on using the StopFlow
 // API call, and error handling.
@@ -1535,7 +1535,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1623,7 +1623,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1711,7 +1711,7 @@ const opUpdateConnectorProfile = "UpdateConnectorProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConnectorProfile for more information on using the UpdateConnectorProfile
 // API call, and error handling.
@@ -1806,7 +1806,7 @@ const opUpdateFlow = "UpdateFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFlow for more information on using the UpdateFlow
 // API call, and error handling.

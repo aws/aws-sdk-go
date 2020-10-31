@@ -21,7 +21,7 @@ const opAbortMultipartUpload = "AbortMultipartUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AbortMultipartUpload for more information on using the AbortMultipartUpload
 // API call, and error handling.
@@ -127,7 +127,7 @@ const opAbortVaultLock = "AbortVaultLock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AbortVaultLock for more information on using the AbortVaultLock
 // API call, and error handling.
@@ -229,7 +229,7 @@ const opAddTagsToVault = "AddTagsToVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToVault for more information on using the AddTagsToVault
 // API call, and error handling.
@@ -324,7 +324,7 @@ const opCompleteMultipartUpload = "CompleteMultipartUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteMultipartUpload for more information on using the CompleteMultipartUpload
 // API call, and error handling.
@@ -453,7 +453,7 @@ const opCompleteVaultLock = "CompleteVaultLock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteVaultLock for more information on using the CompleteVaultLock
 // API call, and error handling.
@@ -554,7 +554,7 @@ const opCreateVault = "CreateVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVault for more information on using the CreateVault
 // API call, and error handling.
@@ -662,7 +662,7 @@ const opDeleteArchive = "DeleteArchive"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteArchive for more information on using the DeleteArchive
 // API call, and error handling.
@@ -773,7 +773,7 @@ const opDeleteVault = "DeleteVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVault for more information on using the DeleteVault
 // API call, and error handling.
@@ -882,7 +882,7 @@ const opDeleteVaultAccessPolicy = "DeleteVaultAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVaultAccessPolicy for more information on using the DeleteVaultAccessPolicy
 // API call, and error handling.
@@ -978,7 +978,7 @@ const opDeleteVaultNotifications = "DeleteVaultNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVaultNotifications for more information on using the DeleteVaultNotifications
 // API call, and error handling.
@@ -1079,7 +1079,7 @@ const opDescribeJob = "DescribeJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJob for more information on using the DescribeJob
 // API call, and error handling.
@@ -1187,7 +1187,7 @@ const opDescribeVault = "DescribeVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVault for more information on using the DescribeVault
 // API call, and error handling.
@@ -1292,7 +1292,7 @@ const opGetDataRetrievalPolicy = "GetDataRetrievalPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataRetrievalPolicy for more information on using the GetDataRetrievalPolicy
 // API call, and error handling.
@@ -1376,7 +1376,7 @@ const opGetJobOutput = "GetJobOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobOutput for more information on using the GetJobOutput
 // API call, and error handling.
@@ -1505,7 +1505,7 @@ const opGetVaultAccessPolicy = "GetVaultAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVaultAccessPolicy for more information on using the GetVaultAccessPolicy
 // API call, and error handling.
@@ -1596,7 +1596,7 @@ const opGetVaultLock = "GetVaultLock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVaultLock for more information on using the GetVaultLock
 // API call, and error handling.
@@ -1701,7 +1701,7 @@ const opGetVaultNotifications = "GetVaultNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVaultNotifications for more information on using the GetVaultNotifications
 // API call, and error handling.
@@ -1805,7 +1805,7 @@ const opInitiateJob = "InitiateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateJob for more information on using the InitiateJob
 // API call, and error handling.
@@ -1903,7 +1903,7 @@ const opInitiateMultipartUpload = "InitiateMultipartUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateMultipartUpload for more information on using the InitiateMultipartUpload
 // API call, and error handling.
@@ -2024,7 +2024,7 @@ const opInitiateVaultLock = "InitiateVaultLock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateVaultLock for more information on using the InitiateVaultLock
 // API call, and error handling.
@@ -2138,7 +2138,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -2317,7 +2317,7 @@ const opListMultipartUploads = "ListMultipartUploads"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMultipartUploads for more information on using the ListMultipartUploads
 // API call, and error handling.
@@ -2490,7 +2490,7 @@ const opListParts = "ListParts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListParts for more information on using the ListParts
 // API call, and error handling.
@@ -2657,7 +2657,7 @@ const opListProvisionedCapacity = "ListProvisionedCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProvisionedCapacity for more information on using the ListProvisionedCapacity
 // API call, and error handling.
@@ -2740,7 +2740,7 @@ const opListTagsForVault = "ListTagsForVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForVault for more information on using the ListTagsForVault
 // API call, and error handling.
@@ -2828,7 +2828,7 @@ const opListVaults = "ListVaults"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVaults for more information on using the ListVaults
 // API call, and error handling.
@@ -2992,7 +2992,7 @@ const opPurchaseProvisionedCapacity = "PurchaseProvisionedCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurchaseProvisionedCapacity for more information on using the PurchaseProvisionedCapacity
 // API call, and error handling.
@@ -3077,7 +3077,7 @@ const opRemoveTagsFromVault = "RemoveTagsFromVault"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromVault for more information on using the RemoveTagsFromVault
 // API call, and error handling.
@@ -3168,7 +3168,7 @@ const opSetDataRetrievalPolicy = "SetDataRetrievalPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetDataRetrievalPolicy for more information on using the SetDataRetrievalPolicy
 // API call, and error handling.
@@ -3257,7 +3257,7 @@ const opSetVaultAccessPolicy = "SetVaultAccessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetVaultAccessPolicy for more information on using the SetVaultAccessPolicy
 // API call, and error handling.
@@ -3350,7 +3350,7 @@ const opSetVaultNotifications = "SetVaultNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetVaultNotifications for more information on using the SetVaultNotifications
 // API call, and error handling.
@@ -3468,7 +3468,7 @@ const opUploadArchive = "UploadArchive"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadArchive for more information on using the UploadArchive
 // API call, and error handling.
@@ -3593,7 +3593,7 @@ const opUploadMultipartPart = "UploadMultipartPart"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadMultipartPart for more information on using the UploadMultipartPart
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opCreateNotificationRule = "CreateNotificationRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNotificationRule for more information on using the CreateNotificationRule
 // API call, and error handling.
@@ -122,7 +122,7 @@ const opDeleteNotificationRule = "DeleteNotificationRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotificationRule for more information on using the DeleteNotificationRule
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opDeleteTarget = "DeleteTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTarget for more information on using the DeleteTarget
 // API call, and error handling.
@@ -290,7 +290,7 @@ const opDescribeNotificationRule = "DescribeNotificationRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotificationRule for more information on using the DescribeNotificationRule
 // API call, and error handling.
@@ -373,7 +373,7 @@ const opListEventTypes = "ListEventTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEventTypes for more information on using the ListEventTypes
 // API call, and error handling.
@@ -514,7 +514,7 @@ const opListNotificationRules = "ListNotificationRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNotificationRules for more information on using the ListNotificationRules
 // API call, and error handling.
@@ -655,7 +655,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -738,7 +738,7 @@ const opListTargets = "ListTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTargets for more information on using the ListTargets
 // API call, and error handling.
@@ -879,7 +879,7 @@ const opSubscribe = "Subscribe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Subscribe for more information on using the Subscribe
 // API call, and error handling.
@@ -964,7 +964,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1051,7 +1051,7 @@ const opUnsubscribe = "Unsubscribe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Unsubscribe for more information on using the Unsubscribe
 // API call, and error handling.
@@ -1132,7 +1132,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1221,7 +1221,7 @@ const opUpdateNotificationRule = "UpdateNotificationRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNotificationRule for more information on using the UpdateNotificationRule
 // API call, and error handling.

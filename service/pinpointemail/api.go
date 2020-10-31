@@ -21,7 +21,7 @@ const opCreateConfigurationSet = "CreateConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSet for more information on using the CreateConfigurationSet
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opCreateConfigurationSetEventDestination = "CreateConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfigurationSetEventDestination for more information on using the CreateConfigurationSetEventDestination
 // API call, and error handling.
@@ -219,7 +219,7 @@ const opCreateDedicatedIpPool = "CreateDedicatedIpPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDedicatedIpPool for more information on using the CreateDedicatedIpPool
 // API call, and error handling.
@@ -315,7 +315,7 @@ const opCreateDeliverabilityTestReport = "CreateDeliverabilityTestReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeliverabilityTestReport for more information on using the CreateDeliverabilityTestReport
 // API call, and error handling.
@@ -427,7 +427,7 @@ const opCreateEmailIdentity = "CreateEmailIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEmailIdentity for more information on using the CreateEmailIdentity
 // API call, and error handling.
@@ -530,7 +530,7 @@ const opDeleteConfigurationSet = "DeleteConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSet for more information on using the DeleteConfigurationSet
 // API call, and error handling.
@@ -625,7 +625,7 @@ const opDeleteConfigurationSetEventDestination = "DeleteConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationSetEventDestination for more information on using the DeleteConfigurationSetEventDestination
 // API call, and error handling.
@@ -718,7 +718,7 @@ const opDeleteDedicatedIpPool = "DeleteDedicatedIpPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDedicatedIpPool for more information on using the DeleteDedicatedIpPool
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opDeleteEmailIdentity = "DeleteEmailIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEmailIdentity for more information on using the DeleteEmailIdentity
 // API call, and error handling.
@@ -897,7 +897,7 @@ const opGetAccount = "GetAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccount for more information on using the GetAccount
 // API call, and error handling.
@@ -980,7 +980,7 @@ const opGetBlacklistReports = "GetBlacklistReports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBlacklistReports for more information on using the GetBlacklistReports
 // API call, and error handling.
@@ -1066,7 +1066,7 @@ const opGetConfigurationSet = "GetConfigurationSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConfigurationSet for more information on using the GetConfigurationSet
 // API call, and error handling.
@@ -1159,7 +1159,7 @@ const opGetConfigurationSetEventDestinations = "GetConfigurationSetEventDestinat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConfigurationSetEventDestinations for more information on using the GetConfigurationSetEventDestinations
 // API call, and error handling.
@@ -1252,7 +1252,7 @@ const opGetDedicatedIp = "GetDedicatedIp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDedicatedIp for more information on using the GetDedicatedIp
 // API call, and error handling.
@@ -1339,7 +1339,7 @@ const opGetDedicatedIps = "GetDedicatedIps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDedicatedIps for more information on using the GetDedicatedIps
 // API call, and error handling.
@@ -1483,7 +1483,7 @@ const opGetDeliverabilityDashboardOptions = "GetDeliverabilityDashboardOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeliverabilityDashboardOptions for more information on using the GetDeliverabilityDashboardOptions
 // API call, and error handling.
@@ -1577,7 +1577,7 @@ const opGetDeliverabilityTestReport = "GetDeliverabilityTestReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeliverabilityTestReport for more information on using the GetDeliverabilityTestReport
 // API call, and error handling.
@@ -1662,7 +1662,7 @@ const opGetDomainDeliverabilityCampaign = "GetDomainDeliverabilityCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomainDeliverabilityCampaign for more information on using the GetDomainDeliverabilityCampaign
 // API call, and error handling.
@@ -1750,7 +1750,7 @@ const opGetDomainStatisticsReport = "GetDomainStatisticsReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDomainStatisticsReport for more information on using the GetDomainStatisticsReport
 // API call, and error handling.
@@ -1836,7 +1836,7 @@ const opGetEmailIdentity = "GetEmailIdentity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEmailIdentity for more information on using the GetEmailIdentity
 // API call, and error handling.
@@ -1923,7 +1923,7 @@ const opListConfigurationSets = "ListConfigurationSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurationSets for more information on using the ListConfigurationSets
 // API call, and error handling.
@@ -2070,7 +2070,7 @@ const opListDedicatedIpPools = "ListDedicatedIpPools"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDedicatedIpPools for more information on using the ListDedicatedIpPools
 // API call, and error handling.
@@ -2211,7 +2211,7 @@ const opListDeliverabilityTestReports = "ListDeliverabilityTestReports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeliverabilityTestReports for more information on using the ListDeliverabilityTestReports
 // API call, and error handling.
@@ -2357,7 +2357,7 @@ const opListDomainDeliverabilityCampaigns = "ListDomainDeliverabilityCampaigns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomainDeliverabilityCampaigns for more information on using the ListDomainDeliverabilityCampaigns
 // API call, and error handling.
@@ -2503,7 +2503,7 @@ const opListEmailIdentities = "ListEmailIdentities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEmailIdentities for more information on using the ListEmailIdentities
 // API call, and error handling.
@@ -2646,7 +2646,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2736,7 +2736,7 @@ const opPutAccountDedicatedIpWarmupAttributes = "PutAccountDedicatedIpWarmupAttr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAccountDedicatedIpWarmupAttributes for more information on using the PutAccountDedicatedIpWarmupAttributes
 // API call, and error handling.
@@ -2819,7 +2819,7 @@ const opPutAccountSendingAttributes = "PutAccountSendingAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAccountSendingAttributes for more information on using the PutAccountSendingAttributes
 // API call, and error handling.
@@ -2902,7 +2902,7 @@ const opPutConfigurationSetDeliveryOptions = "PutConfigurationSetDeliveryOptions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationSetDeliveryOptions for more information on using the PutConfigurationSetDeliveryOptions
 // API call, and error handling.
@@ -2990,7 +2990,7 @@ const opPutConfigurationSetReputationOptions = "PutConfigurationSetReputationOpt
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationSetReputationOptions for more information on using the PutConfigurationSetReputationOptions
 // API call, and error handling.
@@ -3077,7 +3077,7 @@ const opPutConfigurationSetSendingOptions = "PutConfigurationSetSendingOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationSetSendingOptions for more information on using the PutConfigurationSetSendingOptions
 // API call, and error handling.
@@ -3164,7 +3164,7 @@ const opPutConfigurationSetTrackingOptions = "PutConfigurationSetTrackingOptions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationSetTrackingOptions for more information on using the PutConfigurationSetTrackingOptions
 // API call, and error handling.
@@ -3251,7 +3251,7 @@ const opPutDedicatedIpInPool = "PutDedicatedIpInPool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDedicatedIpInPool for more information on using the PutDedicatedIpInPool
 // API call, and error handling.
@@ -3343,7 +3343,7 @@ const opPutDedicatedIpWarmupAttributes = "PutDedicatedIpWarmupAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDedicatedIpWarmupAttributes for more information on using the PutDedicatedIpWarmupAttributes
 // API call, and error handling.
@@ -3427,7 +3427,7 @@ const opPutDeliverabilityDashboardOption = "PutDeliverabilityDashboardOption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDeliverabilityDashboardOption for more information on using the PutDeliverabilityDashboardOption
 // API call, and error handling.
@@ -3528,7 +3528,7 @@ const opPutEmailIdentityDkimAttributes = "PutEmailIdentityDkimAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEmailIdentityDkimAttributes for more information on using the PutEmailIdentityDkimAttributes
 // API call, and error handling.
@@ -3614,7 +3614,7 @@ const opPutEmailIdentityFeedbackAttributes = "PutEmailIdentityFeedbackAttributes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEmailIdentityFeedbackAttributes for more information on using the PutEmailIdentityFeedbackAttributes
 // API call, and error handling.
@@ -3714,7 +3714,7 @@ const opPutEmailIdentityMailFromAttributes = "PutEmailIdentityMailFromAttributes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEmailIdentityMailFromAttributes for more information on using the PutEmailIdentityMailFromAttributes
 // API call, and error handling.
@@ -3801,7 +3801,7 @@ const opSendEmail = "SendEmail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendEmail for more information on using the SendEmail
 // API call, and error handling.
@@ -3913,7 +3913,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4011,7 +4011,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4100,7 +4100,7 @@ const opUpdateConfigurationSetEventDestination = "UpdateConfigurationSetEventDes
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfigurationSetEventDestination for more information on using the UpdateConfigurationSetEventDestination
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opCreateDiscoverer = "CreateDiscoverer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDiscoverer for more information on using the CreateDiscoverer
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opCreateRegistry = "CreateRegistry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRegistry for more information on using the CreateRegistry
 // API call, and error handling.
@@ -197,7 +197,7 @@ const opCreateSchema = "CreateSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSchema for more information on using the CreateSchema
 // API call, and error handling.
@@ -283,7 +283,7 @@ const opDeleteDiscoverer = "DeleteDiscoverer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDiscoverer for more information on using the DeleteDiscoverer
 // API call, and error handling.
@@ -372,7 +372,7 @@ const opDeleteRegistry = "DeleteRegistry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRegistry for more information on using the DeleteRegistry
 // API call, and error handling.
@@ -461,7 +461,7 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
 // API call, and error handling.
@@ -550,7 +550,7 @@ const opDeleteSchema = "DeleteSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSchema for more information on using the DeleteSchema
 // API call, and error handling.
@@ -639,7 +639,7 @@ const opDeleteSchemaVersion = "DeleteSchemaVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSchemaVersion for more information on using the DeleteSchemaVersion
 // API call, and error handling.
@@ -728,7 +728,7 @@ const opDescribeCodeBinding = "DescribeCodeBinding"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCodeBinding for more information on using the DescribeCodeBinding
 // API call, and error handling.
@@ -816,7 +816,7 @@ const opDescribeDiscoverer = "DescribeDiscoverer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDiscoverer for more information on using the DescribeDiscoverer
 // API call, and error handling.
@@ -904,7 +904,7 @@ const opDescribeRegistry = "DescribeRegistry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRegistry for more information on using the DescribeRegistry
 // API call, and error handling.
@@ -992,7 +992,7 @@ const opDescribeSchema = "DescribeSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSchema for more information on using the DescribeSchema
 // API call, and error handling.
@@ -1080,7 +1080,7 @@ const opExportSchema = "ExportSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportSchema for more information on using the ExportSchema
 // API call, and error handling.
@@ -1170,7 +1170,7 @@ const opGetCodeBindingSource = "GetCodeBindingSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCodeBindingSource for more information on using the GetCodeBindingSource
 // API call, and error handling.
@@ -1258,7 +1258,7 @@ const opGetDiscoveredSchema = "GetDiscoveredSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDiscoveredSchema for more information on using the GetDiscoveredSchema
 // API call, and error handling.
@@ -1344,7 +1344,7 @@ const opGetResourcePolicy = "GetResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourcePolicy for more information on using the GetResourcePolicy
 // API call, and error handling.
@@ -1432,7 +1432,7 @@ const opListDiscoverers = "ListDiscoverers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDiscoverers for more information on using the ListDiscoverers
 // API call, and error handling.
@@ -1576,7 +1576,7 @@ const opListRegistries = "ListRegistries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRegistries for more information on using the ListRegistries
 // API call, and error handling.
@@ -1720,7 +1720,7 @@ const opListSchemaVersions = "ListSchemaVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSchemaVersions for more information on using the ListSchemaVersions
 // API call, and error handling.
@@ -1866,7 +1866,7 @@ const opListSchemas = "ListSchemas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSchemas for more information on using the ListSchemas
 // API call, and error handling.
@@ -2010,7 +2010,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2094,7 +2094,7 @@ const opPutCodeBinding = "PutCodeBinding"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutCodeBinding for more information on using the PutCodeBinding
 // API call, and error handling.
@@ -2184,7 +2184,7 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourcePolicy for more information on using the PutResourcePolicy
 // API call, and error handling.
@@ -2274,7 +2274,7 @@ const opSearchSchemas = "SearchSchemas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchSchemas for more information on using the SearchSchemas
 // API call, and error handling.
@@ -2418,7 +2418,7 @@ const opStartDiscoverer = "StartDiscoverer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDiscoverer for more information on using the StartDiscoverer
 // API call, and error handling.
@@ -2506,7 +2506,7 @@ const opStopDiscoverer = "StopDiscoverer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDiscoverer for more information on using the StopDiscoverer
 // API call, and error handling.
@@ -2594,7 +2594,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2679,7 +2679,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2764,7 +2764,7 @@ const opUpdateDiscoverer = "UpdateDiscoverer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDiscoverer for more information on using the UpdateDiscoverer
 // API call, and error handling.
@@ -2852,7 +2852,7 @@ const opUpdateRegistry = "UpdateRegistry"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRegistry for more information on using the UpdateRegistry
 // API call, and error handling.
@@ -2940,7 +2940,7 @@ const opUpdateSchema = "UpdateSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSchema for more information on using the UpdateSchema
 // API call, and error handling.

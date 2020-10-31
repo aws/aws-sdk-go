@@ -22,7 +22,7 @@ const opAddLayerVersionPermission = "AddLayerVersionPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddLayerVersionPermission for more information on using the AddLayerVersionPermission
 // API call, and error handling.
@@ -128,7 +128,7 @@ const opAddPermission = "AddPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddPermission for more information on using the AddPermission
 // API call, and error handling.
@@ -243,7 +243,7 @@ const opCreateAlias = "CreateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAlias for more information on using the CreateAlias
 // API call, and error handling.
@@ -340,7 +340,7 @@ const opCreateEventSourceMapping = "CreateEventSourceMapping"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEventSourceMapping for more information on using the CreateEventSourceMapping
 // API call, and error handling.
@@ -460,7 +460,7 @@ const opCreateFunction = "CreateFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFunction for more information on using the CreateFunction
 // API call, and error handling.
@@ -589,7 +589,7 @@ const opDeleteAlias = "DeleteAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAlias for more information on using the DeleteAlias
 // API call, and error handling.
@@ -678,7 +678,7 @@ const opDeleteEventSourceMapping = "DeleteEventSourceMapping"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventSourceMapping for more information on using the DeleteEventSourceMapping
 // API call, and error handling.
@@ -775,7 +775,7 @@ const opDeleteFunction = "DeleteFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFunction for more information on using the DeleteFunction
 // API call, and error handling.
@@ -872,7 +872,7 @@ const opDeleteFunctionConcurrency = "DeleteFunctionConcurrency"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFunctionConcurrency for more information on using the DeleteFunctionConcurrency
 // API call, and error handling.
@@ -964,7 +964,7 @@ const opDeleteFunctionEventInvokeConfig = "DeleteFunctionEventInvokeConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFunctionEventInvokeConfig for more information on using the DeleteFunctionEventInvokeConfig
 // API call, and error handling.
@@ -1056,7 +1056,7 @@ const opDeleteLayerVersion = "DeleteLayerVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLayerVersion for more information on using the DeleteLayerVersion
 // API call, and error handling.
@@ -1142,7 +1142,7 @@ const opDeleteProvisionedConcurrencyConfig = "DeleteProvisionedConcurrencyConfig
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProvisionedConcurrencyConfig for more information on using the DeleteProvisionedConcurrencyConfig
 // API call, and error handling.
@@ -1234,7 +1234,7 @@ const opGetAccountSettings = "GetAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountSettings for more information on using the GetAccountSettings
 // API call, and error handling.
@@ -1317,7 +1317,7 @@ const opGetAlias = "GetAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAlias for more information on using the GetAlias
 // API call, and error handling.
@@ -1405,7 +1405,7 @@ const opGetEventSourceMapping = "GetEventSourceMapping"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventSourceMapping for more information on using the GetEventSourceMapping
 // API call, and error handling.
@@ -1494,7 +1494,7 @@ const opGetFunction = "GetFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunction for more information on using the GetFunction
 // API call, and error handling.
@@ -1584,7 +1584,7 @@ const opGetFunctionConcurrency = "GetFunctionConcurrency"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunctionConcurrency for more information on using the GetFunctionConcurrency
 // API call, and error handling.
@@ -1673,7 +1673,7 @@ const opGetFunctionConfiguration = "GetFunctionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunctionConfiguration for more information on using the GetFunctionConfiguration
 // API call, and error handling.
@@ -1766,7 +1766,7 @@ const opGetFunctionEventInvokeConfig = "GetFunctionEventInvokeConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunctionEventInvokeConfig for more information on using the GetFunctionEventInvokeConfig
 // API call, and error handling.
@@ -1857,7 +1857,7 @@ const opGetLayerVersion = "GetLayerVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLayerVersion for more information on using the GetLayerVersion
 // API call, and error handling.
@@ -1946,7 +1946,7 @@ const opGetLayerVersionByArn = "GetLayerVersionByArn"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLayerVersionByArn for more information on using the GetLayerVersionByArn
 // API call, and error handling.
@@ -2035,7 +2035,7 @@ const opGetLayerVersionPolicy = "GetLayerVersionPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLayerVersionPolicy for more information on using the GetLayerVersionPolicy
 // API call, and error handling.
@@ -2124,7 +2124,7 @@ const opGetPolicy = "GetPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPolicy for more information on using the GetPolicy
 // API call, and error handling.
@@ -2213,7 +2213,7 @@ const opGetProvisionedConcurrencyConfig = "GetProvisionedConcurrencyConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProvisionedConcurrencyConfig for more information on using the GetProvisionedConcurrencyConfig
 // API call, and error handling.
@@ -2305,7 +2305,7 @@ const opInvoke = "Invoke"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Invoke for more information on using the Invoke
 // API call, and error handling.
@@ -2510,7 +2510,7 @@ const opInvokeAsync = "InvokeAsync"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InvokeAsync for more information on using the InvokeAsync
 // API call, and error handling.
@@ -2613,7 +2613,7 @@ const opListAliases = "ListAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAliases for more information on using the ListAliases
 // API call, and error handling.
@@ -2760,7 +2760,7 @@ const opListEventSourceMappings = "ListEventSourceMappings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEventSourceMappings for more information on using the ListEventSourceMappings
 // API call, and error handling.
@@ -2907,7 +2907,7 @@ const opListFunctionEventInvokeConfigs = "ListFunctionEventInvokeConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFunctionEventInvokeConfigs for more information on using the ListFunctionEventInvokeConfigs
 // API call, and error handling.
@@ -3055,7 +3055,7 @@ const opListFunctions = "ListFunctions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFunctions for more information on using the ListFunctions
 // API call, and error handling.
@@ -3203,7 +3203,7 @@ const opListLayerVersions = "ListLayerVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLayerVersions for more information on using the ListLayerVersions
 // API call, and error handling.
@@ -3352,7 +3352,7 @@ const opListLayers = "ListLayers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLayers for more information on using the ListLayers
 // API call, and error handling.
@@ -3498,7 +3498,7 @@ const opListProvisionedConcurrencyConfigs = "ListProvisionedConcurrencyConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProvisionedConcurrencyConfigs for more information on using the ListProvisionedConcurrencyConfigs
 // API call, and error handling.
@@ -3644,7 +3644,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -3733,7 +3733,7 @@ const opListVersionsByFunction = "ListVersionsByFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVersionsByFunction for more information on using the ListVersionsByFunction
 // API call, and error handling.
@@ -3881,7 +3881,7 @@ const opPublishLayerVersion = "PublishLayerVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PublishLayerVersion for more information on using the PublishLayerVersion
 // API call, and error handling.
@@ -3976,7 +3976,7 @@ const opPublishVersion = "PublishVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PublishVersion for more information on using the PublishVersion
 // API call, and error handling.
@@ -4084,7 +4084,7 @@ const opPutFunctionConcurrency = "PutFunctionConcurrency"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutFunctionConcurrency for more information on using the PutFunctionConcurrency
 // API call, and error handling.
@@ -4188,7 +4188,7 @@ const opPutFunctionEventInvokeConfig = "PutFunctionEventInvokeConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutFunctionEventInvokeConfig for more information on using the PutFunctionEventInvokeConfig
 // API call, and error handling.
@@ -4292,7 +4292,7 @@ const opPutProvisionedConcurrencyConfig = "PutProvisionedConcurrencyConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutProvisionedConcurrencyConfig for more information on using the PutProvisionedConcurrencyConfig
 // API call, and error handling.
@@ -4383,7 +4383,7 @@ const opRemoveLayerVersionPermission = "RemoveLayerVersionPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveLayerVersionPermission for more information on using the RemoveLayerVersionPermission
 // API call, and error handling.
@@ -4479,7 +4479,7 @@ const opRemovePermission = "RemovePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemovePermission for more information on using the RemovePermission
 // API call, and error handling.
@@ -4574,7 +4574,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4667,7 +4667,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4760,7 +4760,7 @@ const opUpdateAlias = "UpdateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAlias for more information on using the UpdateAlias
 // API call, and error handling.
@@ -4856,7 +4856,7 @@ const opUpdateEventSourceMapping = "UpdateEventSourceMapping"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEventSourceMapping for more information on using the UpdateEventSourceMapping
 // API call, and error handling.
@@ -4971,7 +4971,7 @@ const opUpdateFunctionCode = "UpdateFunctionCode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFunctionCode for more information on using the UpdateFunctionCode
 // API call, and error handling.
@@ -5073,7 +5073,7 @@ const opUpdateFunctionConfiguration = "UpdateFunctionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFunctionConfiguration for more information on using the UpdateFunctionConfiguration
 // API call, and error handling.
@@ -5184,7 +5184,7 @@ const opUpdateFunctionEventInvokeConfig = "UpdateFunctionEventInvokeConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFunctionEventInvokeConfig for more information on using the UpdateFunctionEventInvokeConfig
 // API call, and error handling.

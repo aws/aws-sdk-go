@@ -20,7 +20,7 @@ const opAssociateResolverEndpointIpAddress = "AssociateResolverEndpointIpAddress
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateResolverEndpointIpAddress for more information on using the AssociateResolverEndpointIpAddress
 // API call, and error handling.
@@ -122,7 +122,7 @@ const opAssociateResolverQueryLogConfig = "AssociateResolverQueryLogConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateResolverQueryLogConfig for more information on using the AssociateResolverQueryLogConfig
 // API call, and error handling.
@@ -233,7 +233,7 @@ const opAssociateResolverRule = "AssociateResolverRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateResolverRule for more information on using the AssociateResolverRule
 // API call, and error handling.
@@ -337,7 +337,7 @@ const opCreateResolverEndpoint = "CreateResolverEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResolverEndpoint for more information on using the CreateResolverEndpoint
 // API call, and error handling.
@@ -441,7 +441,7 @@ const opCreateResolverQueryLogConfig = "CreateResolverQueryLogConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResolverQueryLogConfig for more information on using the CreateResolverQueryLogConfig
 // API call, and error handling.
@@ -554,7 +554,7 @@ const opCreateResolverRule = "CreateResolverRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResolverRule for more information on using the CreateResolverRule
 // API call, and error handling.
@@ -656,7 +656,7 @@ const opDeleteResolverEndpoint = "DeleteResolverEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResolverEndpoint for more information on using the DeleteResolverEndpoint
 // API call, and error handling.
@@ -753,7 +753,7 @@ const opDeleteResolverQueryLogConfig = "DeleteResolverQueryLogConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResolverQueryLogConfig for more information on using the DeleteResolverQueryLogConfig
 // API call, and error handling.
@@ -862,7 +862,7 @@ const opDeleteResolverRule = "DeleteResolverRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResolverRule for more information on using the DeleteResolverRule
 // API call, and error handling.
@@ -955,7 +955,7 @@ const opDisassociateResolverEndpointIpAddress = "DisassociateResolverEndpointIpA
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateResolverEndpointIpAddress for more information on using the DisassociateResolverEndpointIpAddress
 // API call, and error handling.
@@ -1054,7 +1054,7 @@ const opDisassociateResolverQueryLogConfig = "DisassociateResolverQueryLogConfig
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateResolverQueryLogConfig for more information on using the DisassociateResolverQueryLogConfig
 // API call, and error handling.
@@ -1159,7 +1159,7 @@ const opDisassociateResolverRule = "DisassociateResolverRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateResolverRule for more information on using the DisassociateResolverRule
 // API call, and error handling.
@@ -1251,7 +1251,7 @@ const opGetResolverEndpoint = "GetResolverEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverEndpoint for more information on using the GetResolverEndpoint
 // API call, and error handling.
@@ -1341,7 +1341,7 @@ const opGetResolverQueryLogConfig = "GetResolverQueryLogConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverQueryLogConfig for more information on using the GetResolverQueryLogConfig
 // API call, and error handling.
@@ -1438,7 +1438,7 @@ const opGetResolverQueryLogConfigAssociation = "GetResolverQueryLogConfigAssocia
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverQueryLogConfigAssociation for more information on using the GetResolverQueryLogConfigAssociation
 // API call, and error handling.
@@ -1535,7 +1535,7 @@ const opGetResolverQueryLogConfigPolicy = "GetResolverQueryLogConfigPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverQueryLogConfigPolicy for more information on using the GetResolverQueryLogConfigPolicy
 // API call, and error handling.
@@ -1629,7 +1629,7 @@ const opGetResolverRule = "GetResolverRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverRule for more information on using the GetResolverRule
 // API call, and error handling.
@@ -1719,7 +1719,7 @@ const opGetResolverRuleAssociation = "GetResolverRuleAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverRuleAssociation for more information on using the GetResolverRuleAssociation
 // API call, and error handling.
@@ -1809,7 +1809,7 @@ const opGetResolverRulePolicy = "GetResolverRulePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolverRulePolicy for more information on using the GetResolverRulePolicy
 // API call, and error handling.
@@ -1896,7 +1896,7 @@ const opListResolverEndpointIpAddresses = "ListResolverEndpointIpAddresses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolverEndpointIpAddresses for more information on using the ListResolverEndpointIpAddresses
 // API call, and error handling.
@@ -2045,7 +2045,7 @@ const opListResolverEndpoints = "ListResolverEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolverEndpoints for more information on using the ListResolverEndpoints
 // API call, and error handling.
@@ -2195,7 +2195,7 @@ const opListResolverQueryLogConfigAssociations = "ListResolverQueryLogConfigAsso
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolverQueryLogConfigAssociations for more information on using the ListResolverQueryLogConfigAssociations
 // API call, and error handling.
@@ -2349,7 +2349,7 @@ const opListResolverQueryLogConfigs = "ListResolverQueryLogConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolverQueryLogConfigs for more information on using the ListResolverQueryLogConfigs
 // API call, and error handling.
@@ -2504,7 +2504,7 @@ const opListResolverRuleAssociations = "ListResolverRuleAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolverRuleAssociations for more information on using the ListResolverRuleAssociations
 // API call, and error handling.
@@ -2654,7 +2654,7 @@ const opListResolverRules = "ListResolverRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolverRules for more information on using the ListResolverRules
 // API call, and error handling.
@@ -2803,7 +2803,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2955,7 +2955,7 @@ const opPutResolverQueryLogConfigPolicy = "PutResolverQueryLogConfigPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResolverQueryLogConfigPolicy for more information on using the PutResolverQueryLogConfigPolicy
 // API call, and error handling.
@@ -3052,7 +3052,7 @@ const opPutResolverRulePolicy = "PutResolverRulePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResolverRulePolicy for more information on using the PutResolverRulePolicy
 // API call, and error handling.
@@ -3142,7 +3142,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3240,7 +3240,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3332,7 +3332,7 @@ const opUpdateResolverEndpoint = "UpdateResolverEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResolverEndpoint for more information on using the UpdateResolverEndpoint
 // API call, and error handling.
@@ -3423,7 +3423,7 @@ const opUpdateResolverRule = "UpdateResolverRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResolverRule for more information on using the UpdateResolverRule
 // API call, and error handling.

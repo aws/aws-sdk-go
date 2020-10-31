@@ -22,7 +22,7 @@ const opDeleteLexicon = "DeleteLexicon"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLexicon for more information on using the DeleteLexicon
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opDescribeVoices = "DescribeVoices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVoices for more information on using the DescribeVoices
 // API call, and error handling.
@@ -213,7 +213,7 @@ const opGetLexicon = "GetLexicon"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLexicon for more information on using the GetLexicon
 // API call, and error handling.
@@ -301,7 +301,7 @@ const opGetSpeechSynthesisTask = "GetSpeechSynthesisTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSpeechSynthesisTask for more information on using the GetSpeechSynthesisTask
 // API call, and error handling.
@@ -390,7 +390,7 @@ const opListLexicons = "ListLexicons"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLexicons for more information on using the ListLexicons
 // API call, and error handling.
@@ -474,7 +474,7 @@ const opListSpeechSynthesisTasks = "ListSpeechSynthesisTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSpeechSynthesisTasks for more information on using the ListSpeechSynthesisTasks
 // API call, and error handling.
@@ -617,7 +617,7 @@ const opPutLexicon = "PutLexicon"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLexicon for more information on using the PutLexicon
 // API call, and error handling.
@@ -723,7 +723,7 @@ const opStartSpeechSynthesisTask = "StartSpeechSynthesisTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSpeechSynthesisTask for more information on using the StartSpeechSynthesisTask
 // API call, and error handling.
@@ -858,7 +858,7 @@ const opSynthesizeSpeech = "SynthesizeSpeech"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SynthesizeSpeech for more information on using the SynthesizeSpeech
 // API call, and error handling.

@@ -23,7 +23,7 @@ const opDeleteObject = "DeleteObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteObject for more information on using the DeleteObject
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opDescribeObject = "DescribeObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeObject for more information on using the DescribeObject
 // API call, and error handling.
@@ -194,7 +194,7 @@ const opGetObject = "GetObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetObject for more information on using the GetObject
 // API call, and error handling.
@@ -284,7 +284,7 @@ const opListItems = "ListItems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListItems for more information on using the ListItems
 // API call, and error handling.
@@ -425,7 +425,7 @@ const opPutObject = "PutObject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutObject for more information on using the PutObject
 // API call, and error handling.

@@ -20,7 +20,7 @@ const opCreateApplication = "CreateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplication for more information on using the CreateApplication
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opCreateApplicationVersion = "CreateApplicationVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplicationVersion for more information on using the CreateApplicationVersion
 // API call, and error handling.
@@ -207,7 +207,7 @@ const opCreateCloudFormationChangeSet = "CreateCloudFormationChangeSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCloudFormationChangeSet for more information on using the CreateCloudFormationChangeSet
 // API call, and error handling.
@@ -297,7 +297,7 @@ const opCreateCloudFormationTemplate = "CreateCloudFormationTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCloudFormationTemplate for more information on using the CreateCloudFormationTemplate
 // API call, and error handling.
@@ -391,7 +391,7 @@ const opDeleteApplication = "DeleteApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplication for more information on using the DeleteApplication
 // API call, and error handling.
@@ -489,7 +489,7 @@ const opGetApplication = "GetApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApplication for more information on using the GetApplication
 // API call, and error handling.
@@ -583,7 +583,7 @@ const opGetApplicationPolicy = "GetApplicationPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApplicationPolicy for more information on using the GetApplicationPolicy
 // API call, and error handling.
@@ -677,7 +677,7 @@ const opGetCloudFormationTemplate = "GetCloudFormationTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCloudFormationTemplate for more information on using the GetCloudFormationTemplate
 // API call, and error handling.
@@ -771,7 +771,7 @@ const opListApplicationDependencies = "ListApplicationDependencies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplicationDependencies for more information on using the ListApplicationDependencies
 // API call, and error handling.
@@ -923,7 +923,7 @@ const opListApplicationVersions = "ListApplicationVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplicationVersions for more information on using the ListApplicationVersions
 // API call, and error handling.
@@ -1075,7 +1075,7 @@ const opListApplications = "ListApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplications for more information on using the ListApplications
 // API call, and error handling.
@@ -1223,7 +1223,7 @@ const opPutApplicationPolicy = "PutApplicationPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutApplicationPolicy for more information on using the PutApplicationPolicy
 // API call, and error handling.
@@ -1318,7 +1318,7 @@ const opUnshareApplication = "UnshareApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnshareApplication for more information on using the UnshareApplication
 // API call, and error handling.
@@ -1415,7 +1415,7 @@ const opUpdateApplication = "UpdateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplication for more information on using the UpdateApplication
 // API call, and error handling.

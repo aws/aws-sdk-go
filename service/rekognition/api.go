@@ -21,7 +21,7 @@ const opCompareFaces = "CompareFaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompareFaces for more information on using the CompareFaces
 // API call, and error handling.
@@ -170,7 +170,7 @@ const opCreateCollection = "CreateCollection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCollection for more information on using the CreateCollection
 // API call, and error handling.
@@ -278,7 +278,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -384,7 +384,7 @@ const opCreateProjectVersion = "CreateProjectVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProjectVersion for more information on using the CreateProjectVersion
 // API call, and error handling.
@@ -502,7 +502,7 @@ const opCreateStreamProcessor = "CreateStreamProcessor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStreamProcessor for more information on using the CreateStreamProcessor
 // API call, and error handling.
@@ -618,7 +618,7 @@ const opDeleteCollection = "DeleteCollection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCollection for more information on using the DeleteCollection
 // API call, and error handling.
@@ -716,7 +716,7 @@ const opDeleteFaces = "DeleteFaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFaces for more information on using the DeleteFaces
 // API call, and error handling.
@@ -814,7 +814,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -916,7 +916,7 @@ const opDeleteProjectVersion = "DeleteProjectVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProjectVersion for more information on using the DeleteProjectVersion
 // API call, and error handling.
@@ -1021,7 +1021,7 @@ const opDeleteStreamProcessor = "DeleteStreamProcessor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStreamProcessor for more information on using the DeleteStreamProcessor
 // API call, and error handling.
@@ -1122,7 +1122,7 @@ const opDescribeCollection = "DescribeCollection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCollection for more information on using the DescribeCollection
 // API call, and error handling.
@@ -1221,7 +1221,7 @@ const opDescribeProjectVersions = "DescribeProjectVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProjectVersions for more information on using the DescribeProjectVersions
 // API call, and error handling.
@@ -1381,7 +1381,7 @@ const opDescribeProjects = "DescribeProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProjects for more information on using the DescribeProjects
 // API call, and error handling.
@@ -1536,7 +1536,7 @@ const opDescribeStreamProcessor = "DescribeStreamProcessor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStreamProcessor for more information on using the DescribeStreamProcessor
 // API call, and error handling.
@@ -1633,7 +1633,7 @@ const opDetectCustomLabels = "DetectCustomLabels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectCustomLabels for more information on using the DetectCustomLabels
 // API call, and error handling.
@@ -1780,7 +1780,7 @@ const opDetectFaces = "DetectFaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectFaces for more information on using the DetectFaces
 // API call, and error handling.
@@ -1902,7 +1902,7 @@ const opDetectLabels = "DetectLabels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectLabels for more information on using the DetectLabels
 // API call, and error handling.
@@ -2071,7 +2071,7 @@ const opDetectModerationLabels = "DetectModerationLabels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectModerationLabels for more information on using the DetectModerationLabels
 // API call, and error handling.
@@ -2327,7 +2327,7 @@ const opDetectText = "DetectText"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectText for more information on using the DetectText
 // API call, and error handling.
@@ -2459,7 +2459,7 @@ const opGetCelebrityInfo = "GetCelebrityInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCelebrityInfo for more information on using the GetCelebrityInfo
 // API call, and error handling.
@@ -2562,7 +2562,7 @@ const opGetCelebrityRecognition = "GetCelebrityRecognition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCelebrityRecognition for more information on using the GetCelebrityRecognition
 // API call, and error handling.
@@ -2757,7 +2757,7 @@ const opGetContentModeration = "GetContentModeration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContentModeration for more information on using the GetContentModeration
 // API call, and error handling.
@@ -2944,7 +2944,7 @@ const opGetFaceDetection = "GetFaceDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFaceDetection for more information on using the GetFaceDetection
 // API call, and error handling.
@@ -3119,7 +3119,7 @@ const opGetFaceSearch = "GetFaceSearch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFaceSearch for more information on using the GetFaceSearch
 // API call, and error handling.
@@ -3304,7 +3304,7 @@ const opGetLabelDetection = "GetLabelDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLabelDetection for more information on using the GetLabelDetection
 // API call, and error handling.
@@ -3488,7 +3488,7 @@ const opGetPersonTracking = "GetPersonTracking"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPersonTracking for more information on using the GetPersonTracking
 // API call, and error handling.
@@ -3675,7 +3675,7 @@ const opGetSegmentDetection = "GetSegmentDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSegmentDetection for more information on using the GetSegmentDetection
 // API call, and error handling.
@@ -3861,7 +3861,7 @@ const opGetTextDetection = "GetTextDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTextDetection for more information on using the GetTextDetection
 // API call, and error handling.
@@ -4041,7 +4041,7 @@ const opIndexFaces = "IndexFaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IndexFaces for more information on using the IndexFaces
 // API call, and error handling.
@@ -4243,7 +4243,7 @@ const opListCollections = "ListCollections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCollections for more information on using the ListCollections
 // API call, and error handling.
@@ -4406,7 +4406,7 @@ const opListFaces = "ListFaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFaces for more information on using the ListFaces
 // API call, and error handling.
@@ -4567,7 +4567,7 @@ const opListStreamProcessors = "ListStreamProcessors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStreamProcessors for more information on using the ListStreamProcessors
 // API call, and error handling.
@@ -4719,7 +4719,7 @@ const opRecognizeCelebrities = "RecognizeCelebrities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RecognizeCelebrities for more information on using the RecognizeCelebrities
 // API call, and error handling.
@@ -4852,7 +4852,7 @@ const opSearchFaces = "SearchFaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchFaces for more information on using the SearchFaces
 // API call, and error handling.
@@ -4964,7 +4964,7 @@ const opSearchFacesByImage = "SearchFacesByImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchFacesByImage for more information on using the SearchFacesByImage
 // API call, and error handling.
@@ -5107,7 +5107,7 @@ const opStartCelebrityRecognition = "StartCelebrityRecognition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartCelebrityRecognition for more information on using the StartCelebrityRecognition
 // API call, and error handling.
@@ -5231,7 +5231,7 @@ const opStartContentModeration = "StartContentModeration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartContentModeration for more information on using the StartContentModeration
 // API call, and error handling.
@@ -5355,7 +5355,7 @@ const opStartFaceDetection = "StartFaceDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartFaceDetection for more information on using the StartFaceDetection
 // API call, and error handling.
@@ -5478,7 +5478,7 @@ const opStartFaceSearch = "StartFaceSearch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartFaceSearch for more information on using the StartFaceSearch
 // API call, and error handling.
@@ -5602,7 +5602,7 @@ const opStartLabelDetection = "StartLabelDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartLabelDetection for more information on using the StartLabelDetection
 // API call, and error handling.
@@ -5730,7 +5730,7 @@ const opStartPersonTracking = "StartPersonTracking"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartPersonTracking for more information on using the StartPersonTracking
 // API call, and error handling.
@@ -5852,7 +5852,7 @@ const opStartProjectVersion = "StartProjectVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartProjectVersion for more information on using the StartProjectVersion
 // API call, and error handling.
@@ -5966,7 +5966,7 @@ const opStartSegmentDetection = "StartSegmentDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSegmentDetection for more information on using the StartSegmentDetection
 // API call, and error handling.
@@ -6097,7 +6097,7 @@ const opStartStreamProcessor = "StartStreamProcessor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartStreamProcessor for more information on using the StartStreamProcessor
 // API call, and error handling.
@@ -6197,7 +6197,7 @@ const opStartTextDetection = "StartTextDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTextDetection for more information on using the StartTextDetection
 // API call, and error handling.
@@ -6319,7 +6319,7 @@ const opStopProjectVersion = "StopProjectVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopProjectVersion for more information on using the StopProjectVersion
 // API call, and error handling.
@@ -6417,7 +6417,7 @@ const opStopStreamProcessor = "StopStreamProcessor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopStreamProcessor for more information on using the StopStreamProcessor
 // API call, and error handling.

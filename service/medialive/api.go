@@ -118,7 +118,7 @@ const opBatchDelete = "BatchDelete"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDelete for more information on using the BatchDelete
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opBatchStart = "BatchStart"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchStart for more information on using the BatchStart
 // API call, and error handling.
@@ -302,7 +302,7 @@ const opBatchStop = "BatchStop"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchStop for more information on using the BatchStop
 // API call, and error handling.
@@ -394,7 +394,7 @@ const opBatchUpdateSchedule = "BatchUpdateSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchUpdateSchedule for more information on using the BatchUpdateSchedule
 // API call, and error handling.
@@ -581,7 +581,7 @@ const opCreateChannel = "CreateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateChannel for more information on using the CreateChannel
 // API call, and error handling.
@@ -673,7 +673,7 @@ const opCreateInput = "CreateInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInput for more information on using the CreateInput
 // API call, and error handling.
@@ -761,7 +761,7 @@ const opCreateInputSecurityGroup = "CreateInputSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInputSecurityGroup for more information on using the CreateInputSecurityGroup
 // API call, and error handling.
@@ -849,7 +849,7 @@ const opCreateMultiplex = "CreateMultiplex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMultiplex for more information on using the CreateMultiplex
 // API call, and error handling.
@@ -941,7 +941,7 @@ const opCreateMultiplexProgram = "CreateMultiplexProgram"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMultiplexProgram for more information on using the CreateMultiplexProgram
 // API call, and error handling.
@@ -1033,7 +1033,7 @@ const opCreateTags = "CreateTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTags for more information on using the CreateTags
 // API call, and error handling.
@@ -1118,7 +1118,7 @@ const opDeleteChannel = "DeleteChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteChannel for more information on using the DeleteChannel
 // API call, and error handling.
@@ -1210,7 +1210,7 @@ const opDeleteInput = "DeleteInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInput for more information on using the DeleteInput
 // API call, and error handling.
@@ -1303,7 +1303,7 @@ const opDeleteInputSecurityGroup = "DeleteInputSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInputSecurityGroup for more information on using the DeleteInputSecurityGroup
 // API call, and error handling.
@@ -1394,7 +1394,7 @@ const opDeleteMultiplex = "DeleteMultiplex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMultiplex for more information on using the DeleteMultiplex
 // API call, and error handling.
@@ -1486,7 +1486,7 @@ const opDeleteMultiplexProgram = "DeleteMultiplexProgram"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMultiplexProgram for more information on using the DeleteMultiplexProgram
 // API call, and error handling.
@@ -1578,7 +1578,7 @@ const opDeleteReservation = "DeleteReservation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReservation for more information on using the DeleteReservation
 // API call, and error handling.
@@ -1670,7 +1670,7 @@ const opDeleteSchedule = "DeleteSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSchedule for more information on using the DeleteSchedule
 // API call, and error handling.
@@ -1761,7 +1761,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -1846,7 +1846,7 @@ const opDescribeChannel = "DescribeChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeChannel for more information on using the DescribeChannel
 // API call, and error handling.
@@ -1936,7 +1936,7 @@ const opDescribeInput = "DescribeInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInput for more information on using the DescribeInput
 // API call, and error handling.
@@ -2026,7 +2026,7 @@ const opDescribeInputDevice = "DescribeInputDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInputDevice for more information on using the DescribeInputDevice
 // API call, and error handling.
@@ -2116,7 +2116,7 @@ const opDescribeInputDeviceThumbnail = "DescribeInputDeviceThumbnail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInputDeviceThumbnail for more information on using the DescribeInputDeviceThumbnail
 // API call, and error handling.
@@ -2206,7 +2206,7 @@ const opDescribeInputSecurityGroup = "DescribeInputSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInputSecurityGroup for more information on using the DescribeInputSecurityGroup
 // API call, and error handling.
@@ -2296,7 +2296,7 @@ const opDescribeMultiplex = "DescribeMultiplex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMultiplex for more information on using the DescribeMultiplex
 // API call, and error handling.
@@ -2386,7 +2386,7 @@ const opDescribeMultiplexProgram = "DescribeMultiplexProgram"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMultiplexProgram for more information on using the DescribeMultiplexProgram
 // API call, and error handling.
@@ -2476,7 +2476,7 @@ const opDescribeOffering = "DescribeOffering"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOffering for more information on using the DescribeOffering
 // API call, and error handling.
@@ -2566,7 +2566,7 @@ const opDescribeReservation = "DescribeReservation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReservation for more information on using the DescribeReservation
 // API call, and error handling.
@@ -2656,7 +2656,7 @@ const opDescribeSchedule = "DescribeSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSchedule for more information on using the DescribeSchedule
 // API call, and error handling.
@@ -2804,7 +2804,7 @@ const opListChannels = "ListChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChannels for more information on using the ListChannels
 // API call, and error handling.
@@ -3100,7 +3100,7 @@ const opListInputDevices = "ListInputDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInputDevices for more information on using the ListInputDevices
 // API call, and error handling.
@@ -3246,7 +3246,7 @@ const opListInputSecurityGroups = "ListInputSecurityGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInputSecurityGroups for more information on using the ListInputSecurityGroups
 // API call, and error handling.
@@ -3392,7 +3392,7 @@ const opListInputs = "ListInputs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInputs for more information on using the ListInputs
 // API call, and error handling.
@@ -3538,7 +3538,7 @@ const opListMultiplexPrograms = "ListMultiplexPrograms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMultiplexPrograms for more information on using the ListMultiplexPrograms
 // API call, and error handling.
@@ -3686,7 +3686,7 @@ const opListMultiplexes = "ListMultiplexes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMultiplexes for more information on using the ListMultiplexes
 // API call, and error handling.
@@ -3832,7 +3832,7 @@ const opListOfferings = "ListOfferings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOfferings for more information on using the ListOfferings
 // API call, and error handling.
@@ -3978,7 +3978,7 @@ const opListReservations = "ListReservations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReservations for more information on using the ListReservations
 // API call, and error handling.
@@ -4124,7 +4124,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4208,7 +4208,7 @@ const opPurchaseOffering = "PurchaseOffering"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurchaseOffering for more information on using the PurchaseOffering
 // API call, and error handling.
@@ -4395,7 +4395,7 @@ const opStartChannel = "StartChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartChannel for more information on using the StartChannel
 // API call, and error handling.
@@ -4487,7 +4487,7 @@ const opStartMultiplex = "StartMultiplex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMultiplex for more information on using the StartMultiplex
 // API call, and error handling.
@@ -4580,7 +4580,7 @@ const opStopChannel = "StopChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopChannel for more information on using the StopChannel
 // API call, and error handling.
@@ -4672,7 +4672,7 @@ const opStopMultiplex = "StopMultiplex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopMultiplex for more information on using the StopMultiplex
 // API call, and error handling.
@@ -4861,7 +4861,7 @@ const opUpdateChannel = "UpdateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateChannel for more information on using the UpdateChannel
 // API call, and error handling.
@@ -4951,7 +4951,7 @@ const opUpdateChannelClass = "UpdateChannelClass"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateChannelClass for more information on using the UpdateChannelClass
 // API call, and error handling.
@@ -5045,7 +5045,7 @@ const opUpdateInput = "UpdateInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInput for more information on using the UpdateInput
 // API call, and error handling.
@@ -5135,7 +5135,7 @@ const opUpdateInputDevice = "UpdateInputDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInputDevice for more information on using the UpdateInputDevice
 // API call, and error handling.
@@ -5227,7 +5227,7 @@ const opUpdateInputSecurityGroup = "UpdateInputSecurityGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInputSecurityGroup for more information on using the UpdateInputSecurityGroup
 // API call, and error handling.
@@ -5317,7 +5317,7 @@ const opUpdateMultiplex = "UpdateMultiplex"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMultiplex for more information on using the UpdateMultiplex
 // API call, and error handling.
@@ -5409,7 +5409,7 @@ const opUpdateMultiplexProgram = "UpdateMultiplexProgram"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMultiplexProgram for more information on using the UpdateMultiplexProgram
 // API call, and error handling.
@@ -5501,7 +5501,7 @@ const opUpdateReservation = "UpdateReservation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateReservation for more information on using the UpdateReservation
 // API call, and error handling.

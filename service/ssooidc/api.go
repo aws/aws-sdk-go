@@ -20,7 +20,7 @@ const opCreateToken = "CreateToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateToken for more information on using the CreateToken
 // API call, and error handling.
@@ -141,7 +141,7 @@ const opRegisterClient = "RegisterClient"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterClient for more information on using the RegisterClient
 // API call, and error handling.
@@ -234,7 +234,7 @@ const opStartDeviceAuthorization = "StartDeviceAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDeviceAuthorization for more information on using the StartDeviceAuthorization
 // API call, and error handling.

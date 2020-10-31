@@ -21,7 +21,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -106,7 +106,7 @@ const opApplyPendingMaintenanceAction = "ApplyPendingMaintenanceAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApplyPendingMaintenanceAction for more information on using the ApplyPendingMaintenanceAction
 // API call, and error handling.
@@ -186,7 +186,7 @@ const opCancelReplicationTaskAssessmentRun = "CancelReplicationTaskAssessmentRun
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelReplicationTaskAssessmentRun for more information on using the CancelReplicationTaskAssessmentRun
 // API call, and error handling.
@@ -277,7 +277,7 @@ const opCreateEndpoint = "CreateEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEndpoint for more information on using the CreateEndpoint
 // API call, and error handling.
@@ -373,7 +373,7 @@ const opCreateEventSubscription = "CreateEventSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEventSubscription for more information on using the CreateEventSubscription
 // API call, and error handling.
@@ -496,7 +496,7 @@ const opCreateReplicationInstance = "CreateReplicationInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReplicationInstance for more information on using the CreateReplicationInstance
 // API call, and error handling.
@@ -612,7 +612,7 @@ const opCreateReplicationSubnetGroup = "CreateReplicationSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReplicationSubnetGroup for more information on using the CreateReplicationSubnetGroup
 // API call, and error handling.
@@ -708,7 +708,7 @@ const opCreateReplicationTask = "CreateReplicationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReplicationTask for more information on using the CreateReplicationTask
 // API call, and error handling.
@@ -804,7 +804,7 @@ const opDeleteCertificate = "DeleteCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCertificate for more information on using the DeleteCertificate
 // API call, and error handling.
@@ -887,7 +887,7 @@ const opDeleteConnection = "DeleteConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnection for more information on using the DeleteConnection
 // API call, and error handling.
@@ -974,7 +974,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpoint for more information on using the DeleteEndpoint
 // API call, and error handling.
@@ -1060,7 +1060,7 @@ const opDeleteEventSubscription = "DeleteEventSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventSubscription for more information on using the DeleteEventSubscription
 // API call, and error handling.
@@ -1143,7 +1143,7 @@ const opDeleteReplicationInstance = "DeleteReplicationInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReplicationInstance for more information on using the DeleteReplicationInstance
 // API call, and error handling.
@@ -1229,7 +1229,7 @@ const opDeleteReplicationSubnetGroup = "DeleteReplicationSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReplicationSubnetGroup for more information on using the DeleteReplicationSubnetGroup
 // API call, and error handling.
@@ -1313,7 +1313,7 @@ const opDeleteReplicationTask = "DeleteReplicationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReplicationTask for more information on using the DeleteReplicationTask
 // API call, and error handling.
@@ -1396,7 +1396,7 @@ const opDeleteReplicationTaskAssessmentRun = "DeleteReplicationTaskAssessmentRun
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReplicationTaskAssessmentRun for more information on using the DeleteReplicationTaskAssessmentRun
 // API call, and error handling.
@@ -1487,7 +1487,7 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountAttributes for more information on using the DescribeAccountAttributes
 // API call, and error handling.
@@ -1569,7 +1569,7 @@ const opDescribeApplicableIndividualAssessments = "DescribeApplicableIndividualA
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApplicableIndividualAssessments for more information on using the DescribeApplicableIndividualAssessments
 // API call, and error handling.
@@ -1734,7 +1734,7 @@ const opDescribeCertificates = "DescribeCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCertificates for more information on using the DescribeCertificates
 // API call, and error handling.
@@ -1871,7 +1871,7 @@ const opDescribeConnections = "DescribeConnections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnections for more information on using the DescribeConnections
 // API call, and error handling.
@@ -2009,7 +2009,7 @@ const opDescribeEndpointTypes = "DescribeEndpointTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpointTypes for more information on using the DescribeEndpointTypes
 // API call, and error handling.
@@ -2141,7 +2141,7 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoints for more information on using the DescribeEndpoints
 // API call, and error handling.
@@ -2278,7 +2278,7 @@ const opDescribeEventCategories = "DescribeEventCategories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventCategories for more information on using the DescribeEventCategories
 // API call, and error handling.
@@ -2355,7 +2355,7 @@ const opDescribeEventSubscriptions = "DescribeEventSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventSubscriptions for more information on using the DescribeEventSubscriptions
 // API call, and error handling.
@@ -2497,7 +2497,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -2632,7 +2632,7 @@ const opDescribeOrderableReplicationInstances = "DescribeOrderableReplicationIns
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrderableReplicationInstances for more information on using the DescribeOrderableReplicationInstances
 // API call, and error handling.
@@ -2765,7 +2765,7 @@ const opDescribePendingMaintenanceActions = "DescribePendingMaintenanceActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePendingMaintenanceActions for more information on using the DescribePendingMaintenanceActions
 // API call, and error handling.
@@ -2902,7 +2902,7 @@ const opDescribeRefreshSchemasStatus = "DescribeRefreshSchemasStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRefreshSchemasStatus for more information on using the DescribeRefreshSchemasStatus
 // API call, and error handling.
@@ -2985,7 +2985,7 @@ const opDescribeReplicationInstanceTaskLogs = "DescribeReplicationInstanceTaskLo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationInstanceTaskLogs for more information on using the DescribeReplicationInstanceTaskLogs
 // API call, and error handling.
@@ -3126,7 +3126,7 @@ const opDescribeReplicationInstances = "DescribeReplicationInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationInstances for more information on using the DescribeReplicationInstances
 // API call, and error handling.
@@ -3264,7 +3264,7 @@ const opDescribeReplicationSubnetGroups = "DescribeReplicationSubnetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationSubnetGroups for more information on using the DescribeReplicationSubnetGroups
 // API call, and error handling.
@@ -3401,7 +3401,7 @@ const opDescribeReplicationTaskAssessmentResults = "DescribeReplicationTaskAsses
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationTaskAssessmentResults for more information on using the DescribeReplicationTaskAssessmentResults
 // API call, and error handling.
@@ -3539,7 +3539,7 @@ const opDescribeReplicationTaskAssessmentRuns = "DescribeReplicationTaskAssessme
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationTaskAssessmentRuns for more information on using the DescribeReplicationTaskAssessmentRuns
 // API call, and error handling.
@@ -3683,7 +3683,7 @@ const opDescribeReplicationTaskIndividualAssessments = "DescribeReplicationTaskI
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationTaskIndividualAssessments for more information on using the DescribeReplicationTaskIndividualAssessments
 // API call, and error handling.
@@ -3823,7 +3823,7 @@ const opDescribeReplicationTasks = "DescribeReplicationTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeReplicationTasks for more information on using the DescribeReplicationTasks
 // API call, and error handling.
@@ -3961,7 +3961,7 @@ const opDescribeSchemas = "DescribeSchemas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSchemas for more information on using the DescribeSchemas
 // API call, and error handling.
@@ -4102,7 +4102,7 @@ const opDescribeTableStatistics = "DescribeTableStatistics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTableStatistics for more information on using the DescribeTableStatistics
 // API call, and error handling.
@@ -4248,7 +4248,7 @@ const opImportCertificate = "ImportCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportCertificate for more information on using the ImportCertificate
 // API call, and error handling.
@@ -4333,7 +4333,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4415,7 +4415,7 @@ const opModifyEndpoint = "ModifyEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyEndpoint for more information on using the ModifyEndpoint
 // API call, and error handling.
@@ -4508,7 +4508,7 @@ const opModifyEventSubscription = "ModifyEventSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyEventSubscription for more information on using the ModifyEventSubscription
 // API call, and error handling.
@@ -4612,7 +4612,7 @@ const opModifyReplicationInstance = "ModifyReplicationInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyReplicationInstance for more information on using the ModifyReplicationInstance
 // API call, and error handling.
@@ -4715,7 +4715,7 @@ const opModifyReplicationSubnetGroup = "ModifyReplicationSubnetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyReplicationSubnetGroup for more information on using the ModifyReplicationSubnetGroup
 // API call, and error handling.
@@ -4811,7 +4811,7 @@ const opModifyReplicationTask = "ModifyReplicationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyReplicationTask for more information on using the ModifyReplicationTask
 // API call, and error handling.
@@ -4907,7 +4907,7 @@ const opRebootReplicationInstance = "RebootReplicationInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootReplicationInstance for more information on using the RebootReplicationInstance
 // API call, and error handling.
@@ -4991,7 +4991,7 @@ const opRefreshSchemas = "RefreshSchemas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RefreshSchemas for more information on using the RefreshSchemas
 // API call, and error handling.
@@ -5082,7 +5082,7 @@ const opReloadTables = "ReloadTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReloadTables for more information on using the ReloadTables
 // API call, and error handling.
@@ -5165,7 +5165,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.
@@ -5248,7 +5248,7 @@ const opStartReplicationTask = "StartReplicationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartReplicationTask for more information on using the StartReplicationTask
 // API call, and error handling.
@@ -5339,7 +5339,7 @@ const opStartReplicationTaskAssessment = "StartReplicationTaskAssessment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartReplicationTaskAssessment for more information on using the StartReplicationTaskAssessment
 // API call, and error handling.
@@ -5423,7 +5423,7 @@ const opStartReplicationTaskAssessmentRun = "StartReplicationTaskAssessmentRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartReplicationTaskAssessmentRun for more information on using the StartReplicationTaskAssessmentRun
 // API call, and error handling.
@@ -5547,7 +5547,7 @@ const opStopReplicationTask = "StopReplicationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopReplicationTask for more information on using the StopReplicationTask
 // API call, and error handling.
@@ -5630,7 +5630,7 @@ const opTestConnection = "TestConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestConnection for more information on using the TestConnection
 // API call, and error handling.

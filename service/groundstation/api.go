@@ -21,7 +21,7 @@ const opCancelContact = "CancelContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelContact for more information on using the CancelContact
 // API call, and error handling.
@@ -106,7 +106,7 @@ const opCreateConfig = "CreateConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfig for more information on using the CreateConfig
 // API call, and error handling.
@@ -196,7 +196,7 @@ const opCreateDataflowEndpointGroup = "CreateDataflowEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataflowEndpointGroup for more information on using the CreateDataflowEndpointGroup
 // API call, and error handling.
@@ -288,7 +288,7 @@ const opCreateMissionProfile = "CreateMissionProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMissionProfile for more information on using the CreateMissionProfile
 // API call, and error handling.
@@ -376,7 +376,7 @@ const opDeleteConfig = "DeleteConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfig for more information on using the DeleteConfig
 // API call, and error handling.
@@ -461,7 +461,7 @@ const opDeleteDataflowEndpointGroup = "DeleteDataflowEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataflowEndpointGroup for more information on using the DeleteDataflowEndpointGroup
 // API call, and error handling.
@@ -546,7 +546,7 @@ const opDeleteMissionProfile = "DeleteMissionProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMissionProfile for more information on using the DeleteMissionProfile
 // API call, and error handling.
@@ -631,7 +631,7 @@ const opDescribeContact = "DescribeContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContact for more information on using the DescribeContact
 // API call, and error handling.
@@ -716,7 +716,7 @@ const opGetConfig = "GetConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConfig for more information on using the GetConfig
 // API call, and error handling.
@@ -803,7 +803,7 @@ const opGetDataflowEndpointGroup = "GetDataflowEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataflowEndpointGroup for more information on using the GetDataflowEndpointGroup
 // API call, and error handling.
@@ -888,7 +888,7 @@ const opGetMinuteUsage = "GetMinuteUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMinuteUsage for more information on using the GetMinuteUsage
 // API call, and error handling.
@@ -973,7 +973,7 @@ const opGetMissionProfile = "GetMissionProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMissionProfile for more information on using the GetMissionProfile
 // API call, and error handling.
@@ -1058,7 +1058,7 @@ const opGetSatellite = "GetSatellite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSatellite for more information on using the GetSatellite
 // API call, and error handling.
@@ -1143,7 +1143,7 @@ const opListConfigs = "ListConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigs for more information on using the ListConfigs
 // API call, and error handling.
@@ -1286,7 +1286,7 @@ const opListContacts = "ListContacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListContacts for more information on using the ListContacts
 // API call, and error handling.
@@ -1432,7 +1432,7 @@ const opListDataflowEndpointGroups = "ListDataflowEndpointGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataflowEndpointGroups for more information on using the ListDataflowEndpointGroups
 // API call, and error handling.
@@ -1575,7 +1575,7 @@ const opListGroundStations = "ListGroundStations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroundStations for more information on using the ListGroundStations
 // API call, and error handling.
@@ -1718,7 +1718,7 @@ const opListMissionProfiles = "ListMissionProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMissionProfiles for more information on using the ListMissionProfiles
 // API call, and error handling.
@@ -1861,7 +1861,7 @@ const opListSatellites = "ListSatellites"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSatellites for more information on using the ListSatellites
 // API call, and error handling.
@@ -2004,7 +2004,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2089,7 +2089,7 @@ const opReserveContact = "ReserveContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReserveContact for more information on using the ReserveContact
 // API call, and error handling.
@@ -2174,7 +2174,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2260,7 +2260,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2346,7 +2346,7 @@ const opUpdateConfig = "UpdateConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfig for more information on using the UpdateConfig
 // API call, and error handling.
@@ -2434,7 +2434,7 @@ const opUpdateMissionProfile = "UpdateMissionProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMissionProfile for more information on using the UpdateMissionProfile
 // API call, and error handling.

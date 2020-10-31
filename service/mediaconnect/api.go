@@ -20,7 +20,7 @@ const opAddFlowOutputs = "AddFlowOutputs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddFlowOutputs for more information on using the AddFlowOutputs
 // API call, and error handling.
@@ -131,7 +131,7 @@ const opAddFlowSources = "AddFlowSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddFlowSources for more information on using the AddFlowSources
 // API call, and error handling.
@@ -237,7 +237,7 @@ const opAddFlowVpcInterfaces = "AddFlowVpcInterfaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddFlowVpcInterfaces for more information on using the AddFlowVpcInterfaces
 // API call, and error handling.
@@ -343,7 +343,7 @@ const opCreateFlow = "CreateFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFlow for more information on using the CreateFlow
 // API call, and error handling.
@@ -450,7 +450,7 @@ const opDeleteFlow = "DeleteFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFlow for more information on using the DeleteFlow
 // API call, and error handling.
@@ -556,7 +556,7 @@ const opDescribeFlow = "DescribeFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFlow for more information on using the DescribeFlow
 // API call, and error handling.
@@ -869,7 +869,7 @@ const opGrantFlowEntitlements = "GrantFlowEntitlements"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GrantFlowEntitlements for more information on using the GrantFlowEntitlements
 // API call, and error handling.
@@ -980,7 +980,7 @@ const opListEntitlements = "ListEntitlements"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEntitlements for more information on using the ListEntitlements
 // API call, and error handling.
@@ -1135,7 +1135,7 @@ const opListFlows = "ListFlows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFlows for more information on using the ListFlows
 // API call, and error handling.
@@ -1603,7 +1603,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1801,7 +1801,7 @@ const opRemoveFlowOutput = "RemoveFlowOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveFlowOutput for more information on using the RemoveFlowOutput
 // API call, and error handling.
@@ -1911,7 +1911,7 @@ const opRemoveFlowSource = "RemoveFlowSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveFlowSource for more information on using the RemoveFlowSource
 // API call, and error handling.
@@ -2018,7 +2018,7 @@ const opRemoveFlowVpcInterface = "RemoveFlowVpcInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveFlowVpcInterface for more information on using the RemoveFlowVpcInterface
 // API call, and error handling.
@@ -2127,7 +2127,7 @@ const opRevokeFlowEntitlement = "RevokeFlowEntitlement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeFlowEntitlement for more information on using the RevokeFlowEntitlement
 // API call, and error handling.
@@ -2234,7 +2234,7 @@ const opStartFlow = "StartFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartFlow for more information on using the StartFlow
 // API call, and error handling.
@@ -2340,7 +2340,7 @@ const opStopFlow = "StopFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopFlow for more information on using the StopFlow
 // API call, and error handling.
@@ -2446,7 +2446,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2541,7 +2541,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2633,7 +2633,7 @@ const opUpdateFlow = "UpdateFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFlow for more information on using the UpdateFlow
 // API call, and error handling.
@@ -2739,7 +2739,7 @@ const opUpdateFlowEntitlement = "UpdateFlowEntitlement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFlowEntitlement for more information on using the UpdateFlowEntitlement
 // API call, and error handling.
@@ -2847,7 +2847,7 @@ const opUpdateFlowOutput = "UpdateFlowOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFlowOutput for more information on using the UpdateFlowOutput
 // API call, and error handling.
@@ -2953,7 +2953,7 @@ const opUpdateFlowSource = "UpdateFlowSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFlowSource for more information on using the UpdateFlowSource
 // API call, and error handling.

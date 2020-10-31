@@ -21,7 +21,7 @@ const opCountClosedWorkflowExecutions = "CountClosedWorkflowExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CountClosedWorkflowExecutions for more information on using the CountClosedWorkflowExecutions
 // API call, and error handling.
@@ -129,7 +129,7 @@ const opCountOpenWorkflowExecutions = "CountOpenWorkflowExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CountOpenWorkflowExecutions for more information on using the CountOpenWorkflowExecutions
 // API call, and error handling.
@@ -237,7 +237,7 @@ const opCountPendingActivityTasks = "CountPendingActivityTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CountPendingActivityTasks for more information on using the CountPendingActivityTasks
 // API call, and error handling.
@@ -343,7 +343,7 @@ const opCountPendingDecisionTasks = "CountPendingDecisionTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CountPendingDecisionTasks for more information on using the CountPendingDecisionTasks
 // API call, and error handling.
@@ -449,7 +449,7 @@ const opDeprecateActivityType = "DeprecateActivityType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeprecateActivityType for more information on using the DeprecateActivityType
 // API call, and error handling.
@@ -562,7 +562,7 @@ const opDeprecateDomain = "DeprecateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeprecateDomain for more information on using the DeprecateDomain
 // API call, and error handling.
@@ -675,7 +675,7 @@ const opDeprecateWorkflowType = "DeprecateWorkflowType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeprecateWorkflowType for more information on using the DeprecateWorkflowType
 // API call, and error handling.
@@ -789,7 +789,7 @@ const opDescribeActivityType = "DescribeActivityType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeActivityType for more information on using the DescribeActivityType
 // API call, and error handling.
@@ -895,7 +895,7 @@ const opDescribeDomain = "DescribeDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomain for more information on using the DescribeDomain
 // API call, and error handling.
@@ -997,7 +997,7 @@ const opDescribeWorkflowExecution = "DescribeWorkflowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkflowExecution for more information on using the DescribeWorkflowExecution
 // API call, and error handling.
@@ -1102,7 +1102,7 @@ const opDescribeWorkflowType = "DescribeWorkflowType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkflowType for more information on using the DescribeWorkflowType
 // API call, and error handling.
@@ -1208,7 +1208,7 @@ const opGetWorkflowExecutionHistory = "GetWorkflowExecutionHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorkflowExecutionHistory for more information on using the GetWorkflowExecutionHistory
 // API call, and error handling.
@@ -1372,7 +1372,7 @@ const opListActivityTypes = "ListActivityTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListActivityTypes for more information on using the ListActivityTypes
 // API call, and error handling.
@@ -1535,7 +1535,7 @@ const opListClosedWorkflowExecutions = "ListClosedWorkflowExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClosedWorkflowExecutions for more information on using the ListClosedWorkflowExecutions
 // API call, and error handling.
@@ -1703,7 +1703,7 @@ const opListDomains = "ListDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomains for more information on using the ListDomains
 // API call, and error handling.
@@ -1863,7 +1863,7 @@ const opListOpenWorkflowExecutions = "ListOpenWorkflowExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOpenWorkflowExecutions for more information on using the ListOpenWorkflowExecutions
 // API call, and error handling.
@@ -2031,7 +2031,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2118,7 +2118,7 @@ const opListWorkflowTypes = "ListWorkflowTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkflowTypes for more information on using the ListWorkflowTypes
 // API call, and error handling.
@@ -2279,7 +2279,7 @@ const opPollForActivityTask = "PollForActivityTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PollForActivityTask for more information on using the PollForActivityTask
 // API call, and error handling.
@@ -2397,7 +2397,7 @@ const opPollForDecisionTask = "PollForDecisionTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PollForDecisionTask for more information on using the PollForDecisionTask
 // API call, and error handling.
@@ -2583,7 +2583,7 @@ const opRecordActivityTaskHeartbeat = "RecordActivityTaskHeartbeat"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RecordActivityTaskHeartbeat for more information on using the RecordActivityTaskHeartbeat
 // API call, and error handling.
@@ -2709,7 +2709,7 @@ const opRegisterActivityType = "RegisterActivityType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterActivityType for more information on using the RegisterActivityType
 // API call, and error handling.
@@ -2829,7 +2829,7 @@ const opRegisterDomain = "RegisterDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterDomain for more information on using the RegisterDomain
 // API call, and error handling.
@@ -2940,7 +2940,7 @@ const opRegisterWorkflowType = "RegisterWorkflowType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterWorkflowType for more information on using the RegisterWorkflowType
 // API call, and error handling.
@@ -3063,7 +3063,7 @@ const opRequestCancelWorkflowExecution = "RequestCancelWorkflowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RequestCancelWorkflowExecution for more information on using the RequestCancelWorkflowExecution
 // API call, and error handling.
@@ -3176,7 +3176,7 @@ const opRespondActivityTaskCanceled = "RespondActivityTaskCanceled"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RespondActivityTaskCanceled for more information on using the RespondActivityTaskCanceled
 // API call, and error handling.
@@ -3292,7 +3292,7 @@ const opRespondActivityTaskCompleted = "RespondActivityTaskCompleted"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RespondActivityTaskCompleted for more information on using the RespondActivityTaskCompleted
 // API call, and error handling.
@@ -3407,7 +3407,7 @@ const opRespondActivityTaskFailed = "RespondActivityTaskFailed"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RespondActivityTaskFailed for more information on using the RespondActivityTaskFailed
 // API call, and error handling.
@@ -3517,7 +3517,7 @@ const opRespondDecisionTaskCompleted = "RespondDecisionTaskCompleted"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RespondDecisionTaskCompleted for more information on using the RespondDecisionTaskCompleted
 // API call, and error handling.
@@ -3616,7 +3616,7 @@ const opSignalWorkflowExecution = "SignalWorkflowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SignalWorkflowExecution for more information on using the SignalWorkflowExecution
 // API call, and error handling.
@@ -3727,7 +3727,7 @@ const opStartWorkflowExecution = "StartWorkflowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartWorkflowExecution for more information on using the StartWorkflowExecution
 // API call, and error handling.
@@ -3863,7 +3863,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3956,7 +3956,7 @@ const opTerminateWorkflowExecution = "TerminateWorkflowExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateWorkflowExecution for more information on using the TerminateWorkflowExecution
 // API call, and error handling.
@@ -4072,7 +4072,7 @@ const opUndeprecateActivityType = "UndeprecateActivityType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UndeprecateActivityType for more information on using the UndeprecateActivityType
 // API call, and error handling.
@@ -4186,7 +4186,7 @@ const opUndeprecateDomain = "UndeprecateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UndeprecateDomain for more information on using the UndeprecateDomain
 // API call, and error handling.
@@ -4297,7 +4297,7 @@ const opUndeprecateWorkflowType = "UndeprecateWorkflowType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UndeprecateWorkflowType for more information on using the UndeprecateWorkflowType
 // API call, and error handling.
@@ -4411,7 +4411,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

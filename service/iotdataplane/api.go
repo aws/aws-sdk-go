@@ -20,7 +20,7 @@ const opDeleteThingShadow = "DeleteThingShadow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteThingShadow for more information on using the DeleteThingShadow
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opGetThingShadow = "GetThingShadow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetThingShadow for more information on using the GetThingShadow
 // API call, and error handling.
@@ -220,7 +220,7 @@ const opListNamedShadowsForThing = "ListNamedShadowsForThing"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNamedShadowsForThing for more information on using the ListNamedShadowsForThing
 // API call, and error handling.
@@ -314,7 +314,7 @@ const opPublish = "Publish"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Publish for more information on using the Publish
 // API call, and error handling.
@@ -403,7 +403,7 @@ const opUpdateThingShadow = "UpdateThingShadow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateThingShadow for more information on using the UpdateThingShadow
 // API call, and error handling.

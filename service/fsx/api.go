@@ -21,7 +21,7 @@ const opCancelDataRepositoryTask = "CancelDataRepositoryTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelDataRepositoryTask for more information on using the CancelDataRepositoryTask
 // API call, and error handling.
@@ -122,7 +122,7 @@ const opCreateBackup = "CreateBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackup for more information on using the CreateBackup
 // API call, and error handling.
@@ -260,7 +260,7 @@ const opCreateDataRepositoryTask = "CreateDataRepositoryTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataRepositoryTask for more information on using the CreateDataRepositoryTask
 // API call, and error handling.
@@ -370,7 +370,7 @@ const opCreateFileSystem = "CreateFileSystem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFileSystem for more information on using the CreateFileSystem
 // API call, and error handling.
@@ -513,7 +513,7 @@ const opCreateFileSystemFromBackup = "CreateFileSystemFromBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFileSystemFromBackup for more information on using the CreateFileSystemFromBackup
 // API call, and error handling.
@@ -654,7 +654,7 @@ const opDeleteBackup = "DeleteBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackup for more information on using the DeleteBackup
 // API call, and error handling.
@@ -758,7 +758,7 @@ const opDeleteFileSystem = "DeleteFileSystem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFileSystem for more information on using the DeleteFileSystem
 // API call, and error handling.
@@ -870,7 +870,7 @@ const opDescribeBackups = "DescribeBackups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBackups for more information on using the DescribeBackups
 // API call, and error handling.
@@ -1038,7 +1038,7 @@ const opDescribeDataRepositoryTasks = "DescribeDataRepositoryTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataRepositoryTasks for more information on using the DescribeDataRepositoryTasks
 // API call, and error handling.
@@ -1195,7 +1195,7 @@ const opDescribeFileSystems = "DescribeFileSystems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFileSystems for more information on using the DescribeFileSystems
 // API call, and error handling.
@@ -1361,7 +1361,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1474,7 +1474,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1567,7 +1567,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1660,7 +1660,7 @@ const opUpdateFileSystem = "UpdateFileSystem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFileSystem for more information on using the UpdateFileSystem
 // API call, and error handling.

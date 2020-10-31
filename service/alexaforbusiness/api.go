@@ -21,7 +21,7 @@ const opApproveSkill = "ApproveSkill"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApproveSkill for more information on using the ApproveSkill
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opAssociateContactWithAddressBook = "AssociateContactWithAddressBook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateContactWithAddressBook for more information on using the AssociateContactWithAddressBook
 // API call, and error handling.
@@ -189,7 +189,7 @@ const opAssociateDeviceWithNetworkProfile = "AssociateDeviceWithNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDeviceWithNetworkProfile for more information on using the AssociateDeviceWithNetworkProfile
 // API call, and error handling.
@@ -276,7 +276,7 @@ const opAssociateDeviceWithRoom = "AssociateDeviceWithRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDeviceWithRoom for more information on using the AssociateDeviceWithRoom
 // API call, and error handling.
@@ -366,7 +366,7 @@ const opAssociateSkillGroupWithRoom = "AssociateSkillGroupWithRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateSkillGroupWithRoom for more information on using the AssociateSkillGroupWithRoom
 // API call, and error handling.
@@ -447,7 +447,7 @@ const opAssociateSkillWithSkillGroup = "AssociateSkillWithSkillGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateSkillWithSkillGroup for more information on using the AssociateSkillWithSkillGroup
 // API call, and error handling.
@@ -533,7 +533,7 @@ const opAssociateSkillWithUsers = "AssociateSkillWithUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateSkillWithUsers for more information on using the AssociateSkillWithUsers
 // API call, and error handling.
@@ -616,7 +616,7 @@ const opCreateAddressBook = "CreateAddressBook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAddressBook for more information on using the CreateAddressBook
 // API call, and error handling.
@@ -698,7 +698,7 @@ const opCreateBusinessReportSchedule = "CreateBusinessReportSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBusinessReportSchedule for more information on using the CreateBusinessReportSchedule
 // API call, and error handling.
@@ -778,7 +778,7 @@ const opCreateConferenceProvider = "CreateConferenceProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConferenceProvider for more information on using the CreateConferenceProvider
 // API call, and error handling.
@@ -857,7 +857,7 @@ const opCreateContact = "CreateContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateContact for more information on using the CreateContact
 // API call, and error handling.
@@ -939,7 +939,7 @@ const opCreateGatewayGroup = "CreateGatewayGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGatewayGroup for more information on using the CreateGatewayGroup
 // API call, and error handling.
@@ -1021,7 +1021,7 @@ const opCreateNetworkProfile = "CreateNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNetworkProfile for more information on using the CreateNetworkProfile
 // API call, and error handling.
@@ -1112,7 +1112,7 @@ const opCreateProfile = "CreateProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProfile for more information on using the CreateProfile
 // API call, and error handling.
@@ -1197,7 +1197,7 @@ const opCreateRoom = "CreateRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRoom for more information on using the CreateRoom
 // API call, and error handling.
@@ -1279,7 +1279,7 @@ const opCreateSkillGroup = "CreateSkillGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSkillGroup for more information on using the CreateSkillGroup
 // API call, and error handling.
@@ -1364,7 +1364,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -1449,7 +1449,7 @@ const opDeleteAddressBook = "DeleteAddressBook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAddressBook for more information on using the DeleteAddressBook
 // API call, and error handling.
@@ -1532,7 +1532,7 @@ const opDeleteBusinessReportSchedule = "DeleteBusinessReportSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBusinessReportSchedule for more information on using the DeleteBusinessReportSchedule
 // API call, and error handling.
@@ -1616,7 +1616,7 @@ const opDeleteConferenceProvider = "DeleteConferenceProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConferenceProvider for more information on using the DeleteConferenceProvider
 // API call, and error handling.
@@ -1696,7 +1696,7 @@ const opDeleteContact = "DeleteContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteContact for more information on using the DeleteContact
 // API call, and error handling.
@@ -1779,7 +1779,7 @@ const opDeleteDevice = "DeleteDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDevice for more information on using the DeleteDevice
 // API call, and error handling.
@@ -1865,7 +1865,7 @@ const opDeleteDeviceUsageData = "DeleteDeviceUsageData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDeviceUsageData for more information on using the DeleteDeviceUsageData
 // API call, and error handling.
@@ -1955,7 +1955,7 @@ const opDeleteGatewayGroup = "DeleteGatewayGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGatewayGroup for more information on using the DeleteGatewayGroup
 // API call, and error handling.
@@ -2035,7 +2035,7 @@ const opDeleteNetworkProfile = "DeleteNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNetworkProfile for more information on using the DeleteNetworkProfile
 // API call, and error handling.
@@ -2121,7 +2121,7 @@ const opDeleteProfile = "DeleteProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProfile for more information on using the DeleteProfile
 // API call, and error handling.
@@ -2204,7 +2204,7 @@ const opDeleteRoom = "DeleteRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRoom for more information on using the DeleteRoom
 // API call, and error handling.
@@ -2287,7 +2287,7 @@ const opDeleteRoomSkillParameter = "DeleteRoomSkillParameter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRoomSkillParameter for more information on using the DeleteRoomSkillParameter
 // API call, and error handling.
@@ -2367,7 +2367,7 @@ const opDeleteSkillAuthorization = "DeleteSkillAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSkillAuthorization for more information on using the DeleteSkillAuthorization
 // API call, and error handling.
@@ -2450,7 +2450,7 @@ const opDeleteSkillGroup = "DeleteSkillGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSkillGroup for more information on using the DeleteSkillGroup
 // API call, and error handling.
@@ -2533,7 +2533,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -2616,7 +2616,7 @@ const opDisassociateContactFromAddressBook = "DisassociateContactFromAddressBook
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateContactFromAddressBook for more information on using the DisassociateContactFromAddressBook
 // API call, and error handling.
@@ -2691,7 +2691,7 @@ const opDisassociateDeviceFromRoom = "DisassociateDeviceFromRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateDeviceFromRoom for more information on using the DisassociateDeviceFromRoom
 // API call, and error handling.
@@ -2777,7 +2777,7 @@ const opDisassociateSkillFromSkillGroup = "DisassociateSkillFromSkillGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateSkillFromSkillGroup for more information on using the DisassociateSkillFromSkillGroup
 // API call, and error handling.
@@ -2860,7 +2860,7 @@ const opDisassociateSkillFromUsers = "DisassociateSkillFromUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateSkillFromUsers for more information on using the DisassociateSkillFromUsers
 // API call, and error handling.
@@ -2944,7 +2944,7 @@ const opDisassociateSkillGroupFromRoom = "DisassociateSkillGroupFromRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateSkillGroupFromRoom for more information on using the DisassociateSkillGroupFromRoom
 // API call, and error handling.
@@ -3025,7 +3025,7 @@ const opForgetSmartHomeAppliances = "ForgetSmartHomeAppliances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ForgetSmartHomeAppliances for more information on using the ForgetSmartHomeAppliances
 // API call, and error handling.
@@ -3105,7 +3105,7 @@ const opGetAddressBook = "GetAddressBook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAddressBook for more information on using the GetAddressBook
 // API call, and error handling.
@@ -3184,7 +3184,7 @@ const opGetConferencePreference = "GetConferencePreference"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConferencePreference for more information on using the GetConferencePreference
 // API call, and error handling.
@@ -3263,7 +3263,7 @@ const opGetConferenceProvider = "GetConferenceProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConferenceProvider for more information on using the GetConferenceProvider
 // API call, and error handling.
@@ -3342,7 +3342,7 @@ const opGetContact = "GetContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContact for more information on using the GetContact
 // API call, and error handling.
@@ -3421,7 +3421,7 @@ const opGetDevice = "GetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevice for more information on using the GetDevice
 // API call, and error handling.
@@ -3500,7 +3500,7 @@ const opGetGateway = "GetGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGateway for more information on using the GetGateway
 // API call, and error handling.
@@ -3579,7 +3579,7 @@ const opGetGatewayGroup = "GetGatewayGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGatewayGroup for more information on using the GetGatewayGroup
 // API call, and error handling.
@@ -3658,7 +3658,7 @@ const opGetInvitationConfiguration = "GetInvitationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInvitationConfiguration for more information on using the GetInvitationConfiguration
 // API call, and error handling.
@@ -3738,7 +3738,7 @@ const opGetNetworkProfile = "GetNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNetworkProfile for more information on using the GetNetworkProfile
 // API call, and error handling.
@@ -3820,7 +3820,7 @@ const opGetProfile = "GetProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProfile for more information on using the GetProfile
 // API call, and error handling.
@@ -3899,7 +3899,7 @@ const opGetRoom = "GetRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRoom for more information on using the GetRoom
 // API call, and error handling.
@@ -3978,7 +3978,7 @@ const opGetRoomSkillParameter = "GetRoomSkillParameter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRoomSkillParameter for more information on using the GetRoomSkillParameter
 // API call, and error handling.
@@ -4057,7 +4057,7 @@ const opGetSkillGroup = "GetSkillGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSkillGroup for more information on using the GetSkillGroup
 // API call, and error handling.
@@ -4136,7 +4136,7 @@ const opListBusinessReportSchedules = "ListBusinessReportSchedules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBusinessReportSchedules for more information on using the ListBusinessReportSchedules
 // API call, and error handling.
@@ -4271,7 +4271,7 @@ const opListConferenceProviders = "ListConferenceProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConferenceProviders for more information on using the ListConferenceProviders
 // API call, and error handling.
@@ -4403,7 +4403,7 @@ const opListDeviceEvents = "ListDeviceEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeviceEvents for more information on using the ListDeviceEvents
 // API call, and error handling.
@@ -4541,7 +4541,7 @@ const opListGatewayGroups = "ListGatewayGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGatewayGroups for more information on using the ListGatewayGroups
 // API call, and error handling.
@@ -4674,7 +4674,7 @@ const opListGateways = "ListGateways"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGateways for more information on using the ListGateways
 // API call, and error handling.
@@ -4809,7 +4809,7 @@ const opListSkills = "ListSkills"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSkills for more information on using the ListSkills
 // API call, and error handling.
@@ -4941,7 +4941,7 @@ const opListSkillsStoreCategories = "ListSkillsStoreCategories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSkillsStoreCategories for more information on using the ListSkillsStoreCategories
 // API call, and error handling.
@@ -5073,7 +5073,7 @@ const opListSkillsStoreSkillsByCategory = "ListSkillsStoreSkillsByCategory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSkillsStoreSkillsByCategory for more information on using the ListSkillsStoreSkillsByCategory
 // API call, and error handling.
@@ -5205,7 +5205,7 @@ const opListSmartHomeAppliances = "ListSmartHomeAppliances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSmartHomeAppliances for more information on using the ListSmartHomeAppliances
 // API call, and error handling.
@@ -5342,7 +5342,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -5479,7 +5479,7 @@ const opPutConferencePreference = "PutConferencePreference"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConferencePreference for more information on using the PutConferencePreference
 // API call, and error handling.
@@ -5560,7 +5560,7 @@ const opPutInvitationConfiguration = "PutInvitationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutInvitationConfiguration for more information on using the PutInvitationConfiguration
 // API call, and error handling.
@@ -5644,7 +5644,7 @@ const opPutRoomSkillParameter = "PutRoomSkillParameter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRoomSkillParameter for more information on using the PutRoomSkillParameter
 // API call, and error handling.
@@ -5725,7 +5725,7 @@ const opPutSkillAuthorization = "PutSkillAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSkillAuthorization for more information on using the PutSkillAuthorization
 // API call, and error handling.
@@ -5812,7 +5812,7 @@ const opRegisterAVSDevice = "RegisterAVSDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterAVSDevice for more information on using the RegisterAVSDevice
 // API call, and error handling.
@@ -5901,7 +5901,7 @@ const opRejectSkill = "RejectSkill"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectSkill for more information on using the RejectSkill
 // API call, and error handling.
@@ -5987,7 +5987,7 @@ const opResolveRoom = "ResolveRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResolveRoom for more information on using the ResolveRoom
 // API call, and error handling.
@@ -6067,7 +6067,7 @@ const opRevokeInvitation = "RevokeInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeInvitation for more information on using the RevokeInvitation
 // API call, and error handling.
@@ -6150,7 +6150,7 @@ const opSearchAddressBooks = "SearchAddressBooks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchAddressBooks for more information on using the SearchAddressBooks
 // API call, and error handling.
@@ -6283,7 +6283,7 @@ const opSearchContacts = "SearchContacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchContacts for more information on using the SearchContacts
 // API call, and error handling.
@@ -6415,7 +6415,7 @@ const opSearchDevices = "SearchDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchDevices for more information on using the SearchDevices
 // API call, and error handling.
@@ -6547,7 +6547,7 @@ const opSearchNetworkProfiles = "SearchNetworkProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchNetworkProfiles for more information on using the SearchNetworkProfiles
 // API call, and error handling.
@@ -6680,7 +6680,7 @@ const opSearchProfiles = "SearchProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchProfiles for more information on using the SearchProfiles
 // API call, and error handling.
@@ -6812,7 +6812,7 @@ const opSearchRooms = "SearchRooms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchRooms for more information on using the SearchRooms
 // API call, and error handling.
@@ -6944,7 +6944,7 @@ const opSearchSkillGroups = "SearchSkillGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchSkillGroups for more information on using the SearchSkillGroups
 // API call, and error handling.
@@ -7077,7 +7077,7 @@ const opSearchUsers = "SearchUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchUsers for more information on using the SearchUsers
 // API call, and error handling.
@@ -7209,7 +7209,7 @@ const opSendAnnouncement = "SendAnnouncement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendAnnouncement for more information on using the SendAnnouncement
 // API call, and error handling.
@@ -7292,7 +7292,7 @@ const opSendInvitation = "SendInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendInvitation for more information on using the SendInvitation
 // API call, and error handling.
@@ -7379,7 +7379,7 @@ const opStartDeviceSync = "StartDeviceSync"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDeviceSync for more information on using the StartDeviceSync
 // API call, and error handling.
@@ -7474,7 +7474,7 @@ const opStartSmartHomeApplianceDiscovery = "StartSmartHomeApplianceDiscovery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSmartHomeApplianceDiscovery for more information on using the StartSmartHomeApplianceDiscovery
 // API call, and error handling.
@@ -7555,7 +7555,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -7635,7 +7635,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -7715,7 +7715,7 @@ const opUpdateAddressBook = "UpdateAddressBook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAddressBook for more information on using the UpdateAddressBook
 // API call, and error handling.
@@ -7801,7 +7801,7 @@ const opUpdateBusinessReportSchedule = "UpdateBusinessReportSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBusinessReportSchedule for more information on using the UpdateBusinessReportSchedule
 // API call, and error handling.
@@ -7885,7 +7885,7 @@ const opUpdateConferenceProvider = "UpdateConferenceProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConferenceProvider for more information on using the UpdateConferenceProvider
 // API call, and error handling.
@@ -7965,7 +7965,7 @@ const opUpdateContact = "UpdateContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContact for more information on using the UpdateContact
 // API call, and error handling.
@@ -8048,7 +8048,7 @@ const opUpdateDevice = "UpdateDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDevice for more information on using the UpdateDevice
 // API call, and error handling.
@@ -8135,7 +8135,7 @@ const opUpdateGateway = "UpdateGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGateway for more information on using the UpdateGateway
 // API call, and error handling.
@@ -8219,7 +8219,7 @@ const opUpdateGatewayGroup = "UpdateGatewayGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGatewayGroup for more information on using the UpdateGatewayGroup
 // API call, and error handling.
@@ -8303,7 +8303,7 @@ const opUpdateNetworkProfile = "UpdateNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNetworkProfile for more information on using the UpdateNetworkProfile
 // API call, and error handling.
@@ -8395,7 +8395,7 @@ const opUpdateProfile = "UpdateProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProfile for more information on using the UpdateProfile
 // API call, and error handling.
@@ -8481,7 +8481,7 @@ const opUpdateRoom = "UpdateRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoom for more information on using the UpdateRoom
 // API call, and error handling.
@@ -8564,7 +8564,7 @@ const opUpdateSkillGroup = "UpdateSkillGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSkillGroup for more information on using the UpdateSkillGroup
 // API call, and error handling.

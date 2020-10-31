@@ -21,7 +21,7 @@ const opCreateCertificateAuthority = "CreateCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCertificateAuthority for more information on using the CreateCertificateAuthority
 // API call, and error handling.
@@ -130,7 +130,7 @@ const opCreateCertificateAuthorityAuditReport = "CreateCertificateAuthorityAudit
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCertificateAuthorityAuditReport for more information on using the CreateCertificateAuthorityAuditReport
 // API call, and error handling.
@@ -237,7 +237,7 @@ const opCreatePermission = "CreatePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePermission for more information on using the CreatePermission
 // API call, and error handling.
@@ -356,7 +356,7 @@ const opDeleteCertificateAuthority = "DeleteCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCertificateAuthority for more information on using the DeleteCertificateAuthority
 // API call, and error handling.
@@ -472,7 +472,7 @@ const opDeletePermission = "DeletePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePermission for more information on using the DeletePermission
 // API call, and error handling.
@@ -586,7 +586,7 @@ const opDeletePolicy = "DeletePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePolicy for more information on using the DeletePolicy
 // API call, and error handling.
@@ -715,7 +715,7 @@ const opDescribeCertificateAuthority = "DescribeCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCertificateAuthority for more information on using the DescribeCertificateAuthority
 // API call, and error handling.
@@ -821,7 +821,7 @@ const opDescribeCertificateAuthorityAuditReport = "DescribeCertificateAuthorityA
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCertificateAuthorityAuditReport for more information on using the DescribeCertificateAuthorityAuditReport
 // API call, and error handling.
@@ -913,7 +913,7 @@ const opGetCertificate = "GetCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCertificate for more information on using the GetCertificate
 // API call, and error handling.
@@ -1013,7 +1013,7 @@ const opGetCertificateAuthorityCertificate = "GetCertificateAuthorityCertificate
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCertificateAuthorityCertificate for more information on using the GetCertificateAuthorityCertificate
 // API call, and error handling.
@@ -1102,7 +1102,7 @@ const opGetCertificateAuthorityCsr = "GetCertificateAuthorityCsr"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCertificateAuthorityCsr for more information on using the GetCertificateAuthorityCsr
 // API call, and error handling.
@@ -1200,7 +1200,7 @@ const opGetPolicy = "GetPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPolicy for more information on using the GetPolicy
 // API call, and error handling.
@@ -1314,7 +1314,7 @@ const opImportCertificateAuthorityCertificate = "ImportCertificateAuthorityCerti
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportCertificateAuthorityCertificate for more information on using the ImportCertificateAuthorityCertificate
 // API call, and error handling.
@@ -1502,7 +1502,7 @@ const opIssueCertificate = "IssueCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See IssueCertificate for more information on using the IssueCertificate
 // API call, and error handling.
@@ -1605,7 +1605,7 @@ const opListCertificateAuthorities = "ListCertificateAuthorities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCertificateAuthorities for more information on using the ListCertificateAuthorities
 // API call, and error handling.
@@ -1745,7 +1745,7 @@ const opListPermissions = "ListPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPermissions for more information on using the ListPermissions
 // API call, and error handling.
@@ -1919,7 +1919,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -2069,7 +2069,7 @@ const opPutPolicy = "PutPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPolicy for more information on using the PutPolicy
 // API call, and error handling.
@@ -2198,7 +2198,7 @@ const opRestoreCertificateAuthority = "RestoreCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreCertificateAuthority for more information on using the RestoreCertificateAuthority
 // API call, and error handling.
@@ -2300,7 +2300,7 @@ const opRevokeCertificate = "RevokeCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeCertificate for more information on using the RevokeCertificate
 // API call, and error handling.
@@ -2424,7 +2424,7 @@ const opTagCertificateAuthority = "TagCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagCertificateAuthority for more information on using the TagCertificateAuthority
 // API call, and error handling.
@@ -2528,7 +2528,7 @@ const opUntagCertificateAuthority = "UntagCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagCertificateAuthority for more information on using the UntagCertificateAuthority
 // API call, and error handling.
@@ -2625,7 +2625,7 @@ const opUpdateCertificateAuthority = "UpdateCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCertificateAuthority for more information on using the UpdateCertificateAuthority
 // API call, and error handling.

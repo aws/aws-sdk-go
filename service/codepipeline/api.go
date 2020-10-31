@@ -21,7 +21,7 @@ const opAcknowledgeJob = "AcknowledgeJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcknowledgeJob for more information on using the AcknowledgeJob
 // API call, and error handling.
@@ -107,7 +107,7 @@ const opAcknowledgeThirdPartyJob = "AcknowledgeThirdPartyJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcknowledgeThirdPartyJob for more information on using the AcknowledgeThirdPartyJob
 // API call, and error handling.
@@ -196,7 +196,7 @@ const opCreateCustomActionType = "CreateCustomActionType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCustomActionType for more information on using the CreateCustomActionType
 // API call, and error handling.
@@ -289,7 +289,7 @@ const opCreatePipeline = "CreatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePipeline for more information on using the CreatePipeline
 // API call, and error handling.
@@ -400,7 +400,7 @@ const opDeleteCustomActionType = "DeleteCustomActionType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCustomActionType for more information on using the DeleteCustomActionType
 // API call, and error handling.
@@ -490,7 +490,7 @@ const opDeletePipeline = "DeletePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePipeline for more information on using the DeletePipeline
 // API call, and error handling.
@@ -573,7 +573,7 @@ const opDeleteWebhook = "DeleteWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWebhook for more information on using the DeleteWebhook
 // API call, and error handling.
@@ -660,7 +660,7 @@ const opDeregisterWebhookWithThirdParty = "DeregisterWebhookWithThirdParty"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterWebhookWithThirdParty for more information on using the DeregisterWebhookWithThirdParty
 // API call, and error handling.
@@ -745,7 +745,7 @@ const opDisableStageTransition = "DisableStageTransition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableStageTransition for more information on using the DisableStageTransition
 // API call, and error handling.
@@ -832,7 +832,7 @@ const opEnableStageTransition = "EnableStageTransition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableStageTransition for more information on using the EnableStageTransition
 // API call, and error handling.
@@ -918,7 +918,7 @@ const opGetJobDetails = "GetJobDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobDetails for more information on using the GetJobDetails
 // API call, and error handling.
@@ -1005,7 +1005,7 @@ const opGetPipeline = "GetPipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPipeline for more information on using the GetPipeline
 // API call, and error handling.
@@ -1092,7 +1092,7 @@ const opGetPipelineExecution = "GetPipelineExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPipelineExecution for more information on using the GetPipelineExecution
 // API call, and error handling.
@@ -1180,7 +1180,7 @@ const opGetPipelineState = "GetPipelineState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPipelineState for more information on using the GetPipelineState
 // API call, and error handling.
@@ -1266,7 +1266,7 @@ const opGetThirdPartyJobDetails = "GetThirdPartyJobDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetThirdPartyJobDetails for more information on using the GetThirdPartyJobDetails
 // API call, and error handling.
@@ -1360,7 +1360,7 @@ const opListActionExecutions = "ListActionExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListActionExecutions for more information on using the ListActionExecutions
 // API call, and error handling.
@@ -1508,7 +1508,7 @@ const opListActionTypes = "ListActionTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListActionTypes for more information on using the ListActionTypes
 // API call, and error handling.
@@ -1650,7 +1650,7 @@ const opListPipelineExecutions = "ListPipelineExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPipelineExecutions for more information on using the ListPipelineExecutions
 // API call, and error handling.
@@ -1794,7 +1794,7 @@ const opListPipelines = "ListPipelines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPipelines for more information on using the ListPipelines
 // API call, and error handling.
@@ -1935,7 +1935,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2082,7 +2082,7 @@ const opListWebhooks = "ListWebhooks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWebhooks for more information on using the ListWebhooks
 // API call, and error handling.
@@ -2225,7 +2225,7 @@ const opPollForJobs = "PollForJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PollForJobs for more information on using the PollForJobs
 // API call, and error handling.
@@ -2315,7 +2315,7 @@ const opPollForThirdPartyJobs = "PollForThirdPartyJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PollForThirdPartyJobs for more information on using the PollForThirdPartyJobs
 // API call, and error handling.
@@ -2402,7 +2402,7 @@ const opPutActionRevision = "PutActionRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutActionRevision for more information on using the PutActionRevision
 // API call, and error handling.
@@ -2490,7 +2490,7 @@ const opPutApprovalResult = "PutApprovalResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutApprovalResult for more information on using the PutApprovalResult
 // API call, and error handling.
@@ -2585,7 +2585,7 @@ const opPutJobFailureResult = "PutJobFailureResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutJobFailureResult for more information on using the PutJobFailureResult
 // API call, and error handling.
@@ -2672,7 +2672,7 @@ const opPutJobSuccessResult = "PutJobSuccessResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutJobSuccessResult for more information on using the PutJobSuccessResult
 // API call, and error handling.
@@ -2762,7 +2762,7 @@ const opPutThirdPartyJobFailureResult = "PutThirdPartyJobFailureResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutThirdPartyJobFailureResult for more information on using the PutThirdPartyJobFailureResult
 // API call, and error handling.
@@ -2852,7 +2852,7 @@ const opPutThirdPartyJobSuccessResult = "PutThirdPartyJobSuccessResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutThirdPartyJobSuccessResult for more information on using the PutThirdPartyJobSuccessResult
 // API call, and error handling.
@@ -2942,7 +2942,7 @@ const opPutWebhook = "PutWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutWebhook for more information on using the PutWebhook
 // API call, and error handling.
@@ -3050,7 +3050,7 @@ const opRegisterWebhookWithThirdParty = "RegisterWebhookWithThirdParty"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterWebhookWithThirdParty for more information on using the RegisterWebhookWithThirdParty
 // API call, and error handling.
@@ -3134,7 +3134,7 @@ const opRetryStageExecution = "RetryStageExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetryStageExecution for more information on using the RetryStageExecution
 // API call, and error handling.
@@ -3230,7 +3230,7 @@ const opStartPipelineExecution = "StartPipelineExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartPipelineExecution for more information on using the StartPipelineExecution
 // API call, and error handling.
@@ -3313,7 +3313,7 @@ const opStopPipelineExecution = "StopPipelineExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopPipelineExecution for more information on using the StopPipelineExecution
 // API call, and error handling.
@@ -3411,7 +3411,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3507,7 +3507,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3599,7 +3599,7 @@ const opUpdatePipeline = "UpdatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePipeline for more information on using the UpdatePipeline
 // API call, and error handling.

@@ -20,7 +20,7 @@ const opCreateAnomalyMonitor = "CreateAnomalyMonitor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAnomalyMonitor for more information on using the CreateAnomalyMonitor
 // API call, and error handling.
@@ -100,7 +100,7 @@ const opCreateAnomalySubscription = "CreateAnomalySubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAnomalySubscription for more information on using the CreateAnomalySubscription
 // API call, and error handling.
@@ -185,7 +185,7 @@ const opCreateCostCategoryDefinition = "CreateCostCategoryDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCostCategoryDefinition for more information on using the CreateCostCategoryDefinition
 // API call, and error handling.
@@ -268,7 +268,7 @@ const opDeleteAnomalyMonitor = "DeleteAnomalyMonitor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAnomalyMonitor for more information on using the DeleteAnomalyMonitor
 // API call, and error handling.
@@ -351,7 +351,7 @@ const opDeleteAnomalySubscription = "DeleteAnomalySubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAnomalySubscription for more information on using the DeleteAnomalySubscription
 // API call, and error handling.
@@ -434,7 +434,7 @@ const opDeleteCostCategoryDefinition = "DeleteCostCategoryDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCostCategoryDefinition for more information on using the DeleteCostCategoryDefinition
 // API call, and error handling.
@@ -517,7 +517,7 @@ const opDescribeCostCategoryDefinition = "DescribeCostCategoryDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCostCategoryDefinition for more information on using the DescribeCostCategoryDefinition
 // API call, and error handling.
@@ -605,7 +605,7 @@ const opGetAnomalies = "GetAnomalies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAnomalies for more information on using the GetAnomalies
 // API call, and error handling.
@@ -688,7 +688,7 @@ const opGetAnomalyMonitors = "GetAnomalyMonitors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAnomalyMonitors for more information on using the GetAnomalyMonitors
 // API call, and error handling.
@@ -774,7 +774,7 @@ const opGetAnomalySubscriptions = "GetAnomalySubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAnomalySubscriptions for more information on using the GetAnomalySubscriptions
 // API call, and error handling.
@@ -860,7 +860,7 @@ const opGetCostAndUsage = "GetCostAndUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCostAndUsage for more information on using the GetCostAndUsage
 // API call, and error handling.
@@ -958,7 +958,7 @@ const opGetCostAndUsageWithResources = "GetCostAndUsageWithResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCostAndUsageWithResources for more information on using the GetCostAndUsageWithResources
 // API call, and error handling.
@@ -1062,7 +1062,7 @@ const opGetCostForecast = "GetCostForecast"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCostForecast for more information on using the GetCostForecast
 // API call, and error handling.
@@ -1145,7 +1145,7 @@ const opGetDimensionValues = "GetDimensionValues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDimensionValues for more information on using the GetDimensionValues
 // API call, and error handling.
@@ -1238,7 +1238,7 @@ const opGetReservationCoverage = "GetReservationCoverage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReservationCoverage for more information on using the GetReservationCoverage
 // API call, and error handling.
@@ -1355,7 +1355,7 @@ const opGetReservationPurchaseRecommendation = "GetReservationPurchaseRecommenda
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReservationPurchaseRecommendation for more information on using the GetReservationPurchaseRecommendation
 // API call, and error handling.
@@ -1457,7 +1457,7 @@ const opGetReservationUtilization = "GetReservationUtilization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReservationUtilization for more information on using the GetReservationUtilization
 // API call, and error handling.
@@ -1545,7 +1545,7 @@ const opGetRightsizingRecommendation = "GetRightsizingRecommendation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRightsizingRecommendation for more information on using the GetRightsizingRecommendation
 // API call, and error handling.
@@ -1633,7 +1633,7 @@ const opGetSavingsPlansCoverage = "GetSavingsPlansCoverage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSavingsPlansCoverage for more information on using the GetSavingsPlansCoverage
 // API call, and error handling.
@@ -1790,7 +1790,7 @@ const opGetSavingsPlansPurchaseRecommendation = "GetSavingsPlansPurchaseRecommen
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSavingsPlansPurchaseRecommendation for more information on using the GetSavingsPlansPurchaseRecommendation
 // API call, and error handling.
@@ -1873,7 +1873,7 @@ const opGetSavingsPlansUtilization = "GetSavingsPlansUtilization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSavingsPlansUtilization for more information on using the GetSavingsPlansUtilization
 // API call, and error handling.
@@ -1960,7 +1960,7 @@ const opGetSavingsPlansUtilizationDetails = "GetSavingsPlansUtilizationDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSavingsPlansUtilizationDetails for more information on using the GetSavingsPlansUtilizationDetails
 // API call, and error handling.
@@ -2111,7 +2111,7 @@ const opGetTags = "GetTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTags for more information on using the GetTags
 // API call, and error handling.
@@ -2204,7 +2204,7 @@ const opGetUsageForecast = "GetUsageForecast"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUsageForecast for more information on using the GetUsageForecast
 // API call, and error handling.
@@ -2291,7 +2291,7 @@ const opListCostCategoryDefinitions = "ListCostCategoryDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCostCategoryDefinitions for more information on using the ListCostCategoryDefinitions
 // API call, and error handling.
@@ -2434,7 +2434,7 @@ const opProvideAnomalyFeedback = "ProvideAnomalyFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ProvideAnomalyFeedback for more information on using the ProvideAnomalyFeedback
 // API call, and error handling.
@@ -2513,7 +2513,7 @@ const opUpdateAnomalyMonitor = "UpdateAnomalyMonitor"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAnomalyMonitor for more information on using the UpdateAnomalyMonitor
 // API call, and error handling.
@@ -2596,7 +2596,7 @@ const opUpdateAnomalySubscription = "UpdateAnomalySubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAnomalySubscription for more information on using the UpdateAnomalySubscription
 // API call, and error handling.
@@ -2681,7 +2681,7 @@ const opUpdateCostCategoryDefinition = "UpdateCostCategoryDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCostCategoryDefinition for more information on using the UpdateCostCategoryDefinition
 // API call, and error handling.

@@ -20,7 +20,7 @@ const opAddPermission = "AddPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddPermission for more information on using the AddPermission
 // API call, and error handling.
@@ -110,7 +110,7 @@ const opCheckIfPhoneNumberIsOptedOut = "CheckIfPhoneNumberIsOptedOut"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CheckIfPhoneNumberIsOptedOut for more information on using the CheckIfPhoneNumberIsOptedOut
 // API call, and error handling.
@@ -204,7 +204,7 @@ const opConfirmSubscription = "ConfirmSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmSubscription for more information on using the ConfirmSubscription
 // API call, and error handling.
@@ -304,7 +304,7 @@ const opCreatePlatformApplication = "CreatePlatformApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePlatformApplication for more information on using the CreatePlatformApplication
 // API call, and error handling.
@@ -416,7 +416,7 @@ const opCreatePlatformEndpoint = "CreatePlatformEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePlatformEndpoint for more information on using the CreatePlatformEndpoint
 // API call, and error handling.
@@ -516,7 +516,7 @@ const opCreateTopic = "CreateTopic"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTopic for more information on using the CreateTopic
 // API call, and error handling.
@@ -627,7 +627,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpoint for more information on using the DeleteEndpoint
 // API call, and error handling.
@@ -718,7 +718,7 @@ const opDeletePlatformApplication = "DeletePlatformApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePlatformApplication for more information on using the DeletePlatformApplication
 // API call, and error handling.
@@ -806,7 +806,7 @@ const opDeleteTopic = "DeleteTopic"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTopic for more information on using the DeleteTopic
 // API call, and error handling.
@@ -910,7 +910,7 @@ const opGetEndpointAttributes = "GetEndpointAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEndpointAttributes for more information on using the GetEndpointAttributes
 // API call, and error handling.
@@ -1000,7 +1000,7 @@ const opGetPlatformApplicationAttributes = "GetPlatformApplicationAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPlatformApplicationAttributes for more information on using the GetPlatformApplicationAttributes
 // API call, and error handling.
@@ -1090,7 +1090,7 @@ const opGetSMSAttributes = "GetSMSAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSMSAttributes for more information on using the GetSMSAttributes
 // API call, and error handling.
@@ -1181,7 +1181,7 @@ const opGetSubscriptionAttributes = "GetSubscriptionAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSubscriptionAttributes for more information on using the GetSubscriptionAttributes
 // API call, and error handling.
@@ -1269,7 +1269,7 @@ const opGetTopicAttributes = "GetTopicAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTopicAttributes for more information on using the GetTopicAttributes
 // API call, and error handling.
@@ -1362,7 +1362,7 @@ const opListEndpointsByPlatformApplication = "ListEndpointsByPlatformApplication
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEndpointsByPlatformApplication for more information on using the ListEndpointsByPlatformApplication
 // API call, and error handling.
@@ -1518,7 +1518,7 @@ const opListPhoneNumbersOptedOut = "ListPhoneNumbersOptedOut"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPhoneNumbersOptedOut for more information on using the ListPhoneNumbersOptedOut
 // API call, and error handling.
@@ -1615,7 +1615,7 @@ const opListPlatformApplications = "ListPlatformApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPlatformApplications for more information on using the ListPlatformApplications
 // API call, and error handling.
@@ -1767,7 +1767,7 @@ const opListSubscriptions = "ListSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSubscriptions for more information on using the ListSubscriptions
 // API call, and error handling.
@@ -1915,7 +1915,7 @@ const opListSubscriptionsByTopic = "ListSubscriptionsByTopic"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSubscriptionsByTopic for more information on using the ListSubscriptionsByTopic
 // API call, and error handling.
@@ -2066,7 +2066,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2161,7 +2161,7 @@ const opListTopics = "ListTopics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTopics for more information on using the ListTopics
 // API call, and error handling.
@@ -2308,7 +2308,7 @@ const opOptInPhoneNumber = "OptInPhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OptInPhoneNumber for more information on using the OptInPhoneNumber
 // API call, and error handling.
@@ -2401,7 +2401,7 @@ const opPublish = "Publish"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Publish for more information on using the Publish
 // API call, and error handling.
@@ -2547,7 +2547,7 @@ const opRemovePermission = "RemovePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemovePermission for more information on using the RemovePermission
 // API call, and error handling.
@@ -2636,7 +2636,7 @@ const opSetEndpointAttributes = "SetEndpointAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetEndpointAttributes for more information on using the SetEndpointAttributes
 // API call, and error handling.
@@ -2727,7 +2727,7 @@ const opSetPlatformApplicationAttributes = "SetPlatformApplicationAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetPlatformApplicationAttributes for more information on using the SetPlatformApplicationAttributes
 // API call, and error handling.
@@ -2820,7 +2820,7 @@ const opSetSMSAttributes = "SetSMSAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetSMSAttributes for more information on using the SetSMSAttributes
 // API call, and error handling.
@@ -2916,7 +2916,7 @@ const opSetSubscriptionAttributes = "SetSubscriptionAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetSubscriptionAttributes for more information on using the SetSubscriptionAttributes
 // API call, and error handling.
@@ -3011,7 +3011,7 @@ const opSetTopicAttributes = "SetTopicAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetTopicAttributes for more information on using the SetTopicAttributes
 // API call, and error handling.
@@ -3104,7 +3104,7 @@ const opSubscribe = "Subscribe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Subscribe for more information on using the Subscribe
 // API call, and error handling.
@@ -3211,7 +3211,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3330,7 +3330,7 @@ const opUnsubscribe = "Unsubscribe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Unsubscribe for more information on using the Unsubscribe
 // API call, and error handling.
@@ -3430,7 +3430,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

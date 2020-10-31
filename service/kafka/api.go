@@ -21,7 +21,7 @@ const opBatchAssociateScramSecret = "BatchAssociateScramSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchAssociateScramSecret for more information on using the BatchAssociateScramSecret
 // API call, and error handling.
@@ -118,7 +118,7 @@ const opBatchDisassociateScramSecret = "BatchDisassociateScramSecret"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDisassociateScramSecret for more information on using the BatchDisassociateScramSecret
 // API call, and error handling.
@@ -215,7 +215,7 @@ const opCreateCluster = "CreateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCluster for more information on using the CreateCluster
 // API call, and error handling.
@@ -312,7 +312,7 @@ const opCreateConfiguration = "CreateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfiguration for more information on using the CreateConfiguration
 // API call, and error handling.
@@ -409,7 +409,7 @@ const opDeleteCluster = "DeleteCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCluster for more information on using the DeleteCluster
 // API call, and error handling.
@@ -498,7 +498,7 @@ const opDeleteConfiguration = "DeleteConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfiguration for more information on using the DeleteConfiguration
 // API call, and error handling.
@@ -587,7 +587,7 @@ const opDescribeCluster = "DescribeCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCluster for more information on using the DescribeCluster
 // API call, and error handling.
@@ -679,7 +679,7 @@ const opDescribeClusterOperation = "DescribeClusterOperation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeClusterOperation for more information on using the DescribeClusterOperation
 // API call, and error handling.
@@ -770,7 +770,7 @@ const opDescribeConfiguration = "DescribeConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfiguration for more information on using the DescribeConfiguration
 // API call, and error handling.
@@ -864,7 +864,7 @@ const opDescribeConfigurationRevision = "DescribeConfigurationRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationRevision for more information on using the DescribeConfigurationRevision
 // API call, and error handling.
@@ -958,7 +958,7 @@ const opGetBootstrapBrokers = "GetBootstrapBrokers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBootstrapBrokers for more information on using the GetBootstrapBrokers
 // API call, and error handling.
@@ -1049,7 +1049,7 @@ const opGetCompatibleKafkaVersions = "GetCompatibleKafkaVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCompatibleKafkaVersions for more information on using the GetCompatibleKafkaVersions
 // API call, and error handling.
@@ -1146,7 +1146,7 @@ const opListClusterOperations = "ListClusterOperations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusterOperations for more information on using the ListClusterOperations
 // API call, and error handling.
@@ -1293,7 +1293,7 @@ const opListClusters = "ListClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusters for more information on using the ListClusters
 // API call, and error handling.
@@ -1439,7 +1439,7 @@ const opListConfigurationRevisions = "ListConfigurationRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurationRevisions for more information on using the ListConfigurationRevisions
 // API call, and error handling.
@@ -1591,7 +1591,7 @@ const opListConfigurations = "ListConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurations for more information on using the ListConfigurations
 // API call, and error handling.
@@ -1740,7 +1740,7 @@ const opListKafkaVersions = "ListKafkaVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListKafkaVersions for more information on using the ListKafkaVersions
 // API call, and error handling.
@@ -1886,7 +1886,7 @@ const opListNodes = "ListNodes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNodes for more information on using the ListNodes
 // API call, and error handling.
@@ -2032,7 +2032,7 @@ const opListScramSecrets = "ListScramSecrets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListScramSecrets for more information on using the ListScramSecrets
 // API call, and error handling.
@@ -2187,7 +2187,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2272,7 +2272,7 @@ const opRebootBroker = "RebootBroker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootBroker for more information on using the RebootBroker
 // API call, and error handling.
@@ -2369,7 +2369,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2455,7 +2455,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2541,7 +2541,7 @@ const opUpdateBrokerCount = "UpdateBrokerCount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBrokerCount for more information on using the UpdateBrokerCount
 // API call, and error handling.
@@ -2634,7 +2634,7 @@ const opUpdateBrokerStorage = "UpdateBrokerStorage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBrokerStorage for more information on using the UpdateBrokerStorage
 // API call, and error handling.
@@ -2725,7 +2725,7 @@ const opUpdateClusterConfiguration = "UpdateClusterConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClusterConfiguration for more information on using the UpdateClusterConfiguration
 // API call, and error handling.
@@ -2820,7 +2820,7 @@ const opUpdateClusterKafkaVersion = "UpdateClusterKafkaVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateClusterKafkaVersion for more information on using the UpdateClusterKafkaVersion
 // API call, and error handling.
@@ -2917,7 +2917,7 @@ const opUpdateConfiguration = "UpdateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfiguration for more information on using the UpdateConfiguration
 // API call, and error handling.
@@ -3009,7 +3009,7 @@ const opUpdateMonitoring = "UpdateMonitoring"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMonitoring for more information on using the UpdateMonitoring
 // API call, and error handling.

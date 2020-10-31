@@ -21,7 +21,7 @@ const opCreateLicenseConfiguration = "CreateLicenseConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLicenseConfiguration for more information on using the CreateLicenseConfiguration
 // API call, and error handling.
@@ -123,7 +123,7 @@ const opDeleteLicenseConfiguration = "DeleteLicenseConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLicenseConfiguration for more information on using the DeleteLicenseConfiguration
 // API call, and error handling.
@@ -218,7 +218,7 @@ const opGetLicenseConfiguration = "GetLicenseConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLicenseConfiguration for more information on using the GetLicenseConfiguration
 // API call, and error handling.
@@ -310,7 +310,7 @@ const opGetServiceSettings = "GetServiceSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceSettings for more information on using the GetServiceSettings
 // API call, and error handling.
@@ -399,7 +399,7 @@ const opListAssociationsForLicenseConfiguration = "ListAssociationsForLicenseCon
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociationsForLicenseConfiguration for more information on using the ListAssociationsForLicenseConfiguration
 // API call, and error handling.
@@ -498,7 +498,7 @@ const opListFailuresForLicenseConfigurationOperations = "ListFailuresForLicenseC
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFailuresForLicenseConfigurationOperations for more information on using the ListFailuresForLicenseConfigurationOperations
 // API call, and error handling.
@@ -590,7 +590,7 @@ const opListLicenseConfigurations = "ListLicenseConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLicenseConfigurations for more information on using the ListLicenseConfigurations
 // API call, and error handling.
@@ -685,7 +685,7 @@ const opListLicenseSpecificationsForResource = "ListLicenseSpecificationsForReso
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLicenseSpecificationsForResource for more information on using the ListLicenseSpecificationsForResource
 // API call, and error handling.
@@ -777,7 +777,7 @@ const opListResourceInventory = "ListResourceInventory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceInventory for more information on using the ListResourceInventory
 // API call, and error handling.
@@ -875,7 +875,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -967,7 +967,7 @@ const opListUsageForLicenseConfiguration = "ListUsageForLicenseConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsageForLicenseConfiguration for more information on using the ListUsageForLicenseConfiguration
 // API call, and error handling.
@@ -1064,7 +1064,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1157,7 +1157,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1250,7 +1250,7 @@ const opUpdateLicenseConfiguration = "UpdateLicenseConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLicenseConfiguration for more information on using the UpdateLicenseConfiguration
 // API call, and error handling.
@@ -1343,7 +1343,7 @@ const opUpdateLicenseSpecificationsForResource = "UpdateLicenseSpecificationsFor
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLicenseSpecificationsForResource for more information on using the UpdateLicenseSpecificationsForResource
 // API call, and error handling.
@@ -1451,7 +1451,7 @@ const opUpdateServiceSettings = "UpdateServiceSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServiceSettings for more information on using the UpdateServiceSettings
 // API call, and error handling.

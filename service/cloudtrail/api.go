@@ -21,7 +21,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -153,7 +153,7 @@ const opCreateTrail = "CreateTrail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrail for more information on using the CreateTrail
 // API call, and error handling.
@@ -343,7 +343,7 @@ const opDeleteTrail = "DeleteTrail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrail for more information on using the DeleteTrail
 // API call, and error handling.
@@ -463,7 +463,7 @@ const opDescribeTrails = "DescribeTrails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrails for more information on using the DescribeTrails
 // API call, and error handling.
@@ -562,7 +562,7 @@ const opGetEventSelectors = "GetEventSelectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventSelectors for more information on using the GetEventSelectors
 // API call, and error handling.
@@ -675,7 +675,7 @@ const opGetInsightSelectors = "GetInsightSelectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInsightSelectors for more information on using the GetInsightSelectors
 // API call, and error handling.
@@ -787,7 +787,7 @@ const opGetTrail = "GetTrail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTrail for more information on using the GetTrail
 // API call, and error handling.
@@ -888,7 +888,7 @@ const opGetTrailStatus = "GetTrailStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTrailStatus for more information on using the GetTrailStatus
 // API call, and error handling.
@@ -993,7 +993,7 @@ const opListPublicKeys = "ListPublicKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPublicKeys for more information on using the ListPublicKeys
 // API call, and error handling.
@@ -1147,7 +1147,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -1319,7 +1319,7 @@ const opListTrails = "ListTrails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrails for more information on using the ListTrails
 // API call, and error handling.
@@ -1459,7 +1459,7 @@ const opLookupEvents = "LookupEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LookupEvents for more information on using the LookupEvents
 // API call, and error handling.
@@ -1652,7 +1652,7 @@ const opPutEventSelectors = "PutEventSelectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEventSelectors for more information on using the PutEventSelectors
 // API call, and error handling.
@@ -1821,7 +1821,7 @@ const opPutInsightSelectors = "PutInsightSelectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutInsightSelectors for more information on using the PutInsightSelectors
 // API call, and error handling.
@@ -1947,7 +1947,7 @@ const opRemoveTags = "RemoveTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTags for more information on using the RemoveTags
 // API call, and error handling.
@@ -2069,7 +2069,7 @@ const opStartLogging = "StartLogging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartLogging for more information on using the StartLogging
 // API call, and error handling.
@@ -2191,7 +2191,7 @@ const opStopLogging = "StopLogging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopLogging for more information on using the StopLogging
 // API call, and error handling.
@@ -2315,7 +2315,7 @@ const opUpdateTrail = "UpdateTrail"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrail for more information on using the UpdateTrail
 // API call, and error handling.

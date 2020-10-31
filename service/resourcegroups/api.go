@@ -19,7 +19,7 @@ const opCreateGroup = "CreateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroup for more information on using the CreateGroup
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opDeleteGroup = "DeleteGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroup for more information on using the DeleteGroup
 // API call, and error handling.
@@ -209,7 +209,7 @@ const opGetGroup = "GetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroup for more information on using the GetGroup
 // API call, and error handling.
@@ -304,7 +304,7 @@ const opGetGroupConfiguration = "GetGroupConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroupConfiguration for more information on using the GetGroupConfiguration
 // API call, and error handling.
@@ -406,7 +406,7 @@ const opGetGroupQuery = "GetGroupQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroupQuery for more information on using the GetGroupQuery
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opGetTags = "GetTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTags for more information on using the GetTags
 // API call, and error handling.
@@ -597,7 +597,7 @@ const opGroupResources = "GroupResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GroupResources for more information on using the GroupResources
 // API call, and error handling.
@@ -692,7 +692,7 @@ const opListGroupResources = "ListGroupResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroupResources for more information on using the ListGroupResources
 // API call, and error handling.
@@ -850,7 +850,7 @@ const opListGroups = "ListGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroups for more information on using the ListGroups
 // API call, and error handling.
@@ -1000,7 +1000,7 @@ const opSearchResources = "SearchResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchResources for more information on using the SearchResources
 // API call, and error handling.
@@ -1156,7 +1156,7 @@ const opTag = "Tag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Tag for more information on using the Tag
 // API call, and error handling.
@@ -1257,7 +1257,7 @@ const opUngroupResources = "UngroupResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UngroupResources for more information on using the UngroupResources
 // API call, and error handling.
@@ -1352,7 +1352,7 @@ const opUntag = "Untag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Untag for more information on using the Untag
 // API call, and error handling.
@@ -1447,7 +1447,7 @@ const opUpdateGroup = "UpdateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroup for more information on using the UpdateGroup
 // API call, and error handling.
@@ -1543,7 +1543,7 @@ const opUpdateGroupQuery = "UpdateGroupQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroupQuery for more information on using the UpdateGroupQuery
 // API call, and error handling.

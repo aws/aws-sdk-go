@@ -21,7 +21,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -110,7 +110,7 @@ const opAssociateTrialComponent = "AssociateTrialComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateTrialComponent for more information on using the AssociateTrialComponent
 // API call, and error handling.
@@ -195,7 +195,7 @@ const opCreateAlgorithm = "CreateAlgorithm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAlgorithm for more information on using the CreateAlgorithm
 // API call, and error handling.
@@ -270,7 +270,7 @@ const opCreateApp = "CreateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApp for more information on using the CreateApp
 // API call, and error handling.
@@ -436,7 +436,7 @@ const opCreateAutoMLJob = "CreateAutoMLJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAutoMLJob for more information on using the CreateAutoMLJob
 // API call, and error handling.
@@ -526,7 +526,7 @@ const opCreateCodeRepository = "CreateCodeRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCodeRepository for more information on using the CreateCodeRepository
 // API call, and error handling.
@@ -608,7 +608,7 @@ const opCreateCompilationJob = "CreateCompilationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCompilationJob for more information on using the CreateCompilationJob
 // API call, and error handling.
@@ -718,7 +718,7 @@ const opCreateDomain = "CreateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDomain for more information on using the CreateDomain
 // API call, and error handling.
@@ -831,7 +831,7 @@ const opCreateEndpoint = "CreateEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEndpoint for more information on using the CreateEndpoint
 // API call, and error handling.
@@ -952,7 +952,7 @@ const opCreateEndpointConfig = "CreateEndpointConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEndpointConfig for more information on using the CreateEndpointConfig
 // API call, and error handling.
@@ -1064,7 +1064,7 @@ const opCreateExperiment = "CreateExperiment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateExperiment for more information on using the CreateExperiment
 // API call, and error handling.
@@ -1168,7 +1168,7 @@ const opCreateFlowDefinition = "CreateFlowDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFlowDefinition for more information on using the CreateFlowDefinition
 // API call, and error handling.
@@ -1251,7 +1251,7 @@ const opCreateHumanTaskUi = "CreateHumanTaskUi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHumanTaskUi for more information on using the CreateHumanTaskUi
 // API call, and error handling.
@@ -1336,7 +1336,7 @@ const opCreateHyperParameterTuningJob = "CreateHyperParameterTuningJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHyperParameterTuningJob for more information on using the CreateHyperParameterTuningJob
 // API call, and error handling.
@@ -1595,7 +1595,7 @@ const opCreateLabelingJob = "CreateLabelingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLabelingJob for more information on using the CreateLabelingJob
 // API call, and error handling.
@@ -1705,7 +1705,7 @@ const opCreateModel = "CreateModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateModel for more information on using the CreateModel
 // API call, and error handling.
@@ -1815,7 +1815,7 @@ const opCreateModelPackage = "CreateModelPackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateModelPackage for more information on using the CreateModelPackage
 // API call, and error handling.
@@ -1907,7 +1907,7 @@ const opCreateMonitoringSchedule = "CreateMonitoringSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMonitoringSchedule for more information on using the CreateMonitoringSchedule
 // API call, and error handling.
@@ -1991,7 +1991,7 @@ const opCreateNotebookInstance = "CreateNotebookInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNotebookInstance for more information on using the CreateNotebookInstance
 // API call, and error handling.
@@ -2108,7 +2108,7 @@ const opCreateNotebookInstanceLifecycleConfig = "CreateNotebookInstanceLifecycle
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNotebookInstanceLifecycleConfig for more information on using the CreateNotebookInstanceLifecycleConfig
 // API call, and error handling.
@@ -2205,7 +2205,7 @@ const opCreatePresignedDomainUrl = "CreatePresignedDomainUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePresignedDomainUrl for more information on using the CreatePresignedDomainUrl
 // API call, and error handling.
@@ -2292,7 +2292,7 @@ const opCreatePresignedNotebookInstanceUrl = "CreatePresignedNotebookInstanceUrl
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePresignedNotebookInstanceUrl for more information on using the CreatePresignedNotebookInstanceUrl
 // API call, and error handling.
@@ -2386,7 +2386,7 @@ const opCreateProcessingJob = "CreateProcessingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProcessingJob for more information on using the CreateProcessingJob
 // API call, and error handling.
@@ -2472,7 +2472,7 @@ const opCreateTrainingJob = "CreateTrainingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrainingJob for more information on using the CreateTrainingJob
 // API call, and error handling.
@@ -2599,7 +2599,7 @@ const opCreateTransformJob = "CreateTransformJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTransformJob for more information on using the CreateTransformJob
 // API call, and error handling.
@@ -2710,7 +2710,7 @@ const opCreateTrial = "CreateTrial"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrial for more information on using the CreateTrial
 // API call, and error handling.
@@ -2807,7 +2807,7 @@ const opCreateTrialComponent = "CreateTrialComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrialComponent for more information on using the CreateTrialComponent
 // API call, and error handling.
@@ -2905,7 +2905,7 @@ const opCreateUserProfile = "CreateUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUserProfile for more information on using the CreateUserProfile
 // API call, and error handling.
@@ -2995,7 +2995,7 @@ const opCreateWorkforce = "CreateWorkforce"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorkforce for more information on using the CreateWorkforce
 // API call, and error handling.
@@ -3085,7 +3085,7 @@ const opCreateWorkteam = "CreateWorkteam"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorkteam for more information on using the CreateWorkteam
 // API call, and error handling.
@@ -3172,7 +3172,7 @@ const opDeleteAlgorithm = "DeleteAlgorithm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAlgorithm for more information on using the DeleteAlgorithm
 // API call, and error handling.
@@ -3247,7 +3247,7 @@ const opDeleteApp = "DeleteApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApp for more information on using the DeleteApp
 // API call, and error handling.
@@ -3410,7 +3410,7 @@ const opDeleteCodeRepository = "DeleteCodeRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCodeRepository for more information on using the DeleteCodeRepository
 // API call, and error handling.
@@ -3485,7 +3485,7 @@ const opDeleteDomain = "DeleteDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDomain for more information on using the DeleteDomain
 // API call, and error handling.
@@ -3571,7 +3571,7 @@ const opDeleteEndpoint = "DeleteEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpoint for more information on using the DeleteEndpoint
 // API call, and error handling.
@@ -3651,7 +3651,7 @@ const opDeleteEndpointConfig = "DeleteEndpointConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpointConfig for more information on using the DeleteEndpointConfig
 // API call, and error handling.
@@ -3735,7 +3735,7 @@ const opDeleteExperiment = "DeleteExperiment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteExperiment for more information on using the DeleteExperiment
 // API call, and error handling.
@@ -3816,7 +3816,7 @@ const opDeleteFlowDefinition = "DeleteFlowDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFlowDefinition for more information on using the DeleteFlowDefinition
 // API call, and error handling.
@@ -3899,7 +3899,7 @@ const opDeleteHumanTaskUi = "DeleteHumanTaskUi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHumanTaskUi for more information on using the DeleteHumanTaskUi
 // API call, and error handling.
@@ -4151,7 +4151,7 @@ const opDeleteModel = "DeleteModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteModel for more information on using the DeleteModel
 // API call, and error handling.
@@ -4229,7 +4229,7 @@ const opDeleteModelPackage = "DeleteModelPackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteModelPackage for more information on using the DeleteModelPackage
 // API call, and error handling.
@@ -4314,7 +4314,7 @@ const opDeleteMonitoringSchedule = "DeleteMonitoringSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMonitoringSchedule for more information on using the DeleteMonitoringSchedule
 // API call, and error handling.
@@ -4396,7 +4396,7 @@ const opDeleteNotebookInstance = "DeleteNotebookInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotebookInstance for more information on using the DeleteNotebookInstance
 // API call, and error handling.
@@ -4476,7 +4476,7 @@ const opDeleteNotebookInstanceLifecycleConfig = "DeleteNotebookInstanceLifecycle
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotebookInstanceLifecycleConfig for more information on using the DeleteNotebookInstanceLifecycleConfig
 // API call, and error handling.
@@ -4551,7 +4551,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -4632,7 +4632,7 @@ const opDeleteTrial = "DeleteTrial"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrial for more information on using the DeleteTrial
 // API call, and error handling.
@@ -4713,7 +4713,7 @@ const opDeleteTrialComponent = "DeleteTrialComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrialComponent for more information on using the DeleteTrialComponent
 // API call, and error handling.
@@ -4794,7 +4794,7 @@ const opDeleteUserProfile = "DeleteUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserProfile for more information on using the DeleteUserProfile
 // API call, and error handling.
@@ -4878,7 +4878,7 @@ const opDeleteWorkforce = "DeleteWorkforce"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorkforce for more information on using the DeleteWorkforce
 // API call, and error handling.
@@ -4962,7 +4962,7 @@ const opDeleteWorkteam = "DeleteWorkteam"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorkteam for more information on using the DeleteWorkteam
 // API call, and error handling.
@@ -5042,7 +5042,7 @@ const opDescribeAlgorithm = "DescribeAlgorithm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAlgorithm for more information on using the DescribeAlgorithm
 // API call, and error handling.
@@ -5116,7 +5116,7 @@ const opDescribeApp = "DescribeApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApp for more information on using the DescribeApp
 // API call, and error handling.
@@ -5274,7 +5274,7 @@ const opDescribeAutoMLJob = "DescribeAutoMLJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAutoMLJob for more information on using the DescribeAutoMLJob
 // API call, and error handling.
@@ -5353,7 +5353,7 @@ const opDescribeCodeRepository = "DescribeCodeRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCodeRepository for more information on using the DescribeCodeRepository
 // API call, and error handling.
@@ -5427,7 +5427,7 @@ const opDescribeCompilationJob = "DescribeCompilationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCompilationJob for more information on using the DescribeCompilationJob
 // API call, and error handling.
@@ -5509,7 +5509,7 @@ const opDescribeDomain = "DescribeDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomain for more information on using the DescribeDomain
 // API call, and error handling.
@@ -5588,7 +5588,7 @@ const opDescribeEndpoint = "DescribeEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoint for more information on using the DescribeEndpoint
 // API call, and error handling.
@@ -5662,7 +5662,7 @@ const opDescribeEndpointConfig = "DescribeEndpointConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpointConfig for more information on using the DescribeEndpointConfig
 // API call, and error handling.
@@ -5737,7 +5737,7 @@ const opDescribeExperiment = "DescribeExperiment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExperiment for more information on using the DescribeExperiment
 // API call, and error handling.
@@ -5816,7 +5816,7 @@ const opDescribeFlowDefinition = "DescribeFlowDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFlowDefinition for more information on using the DescribeFlowDefinition
 // API call, and error handling.
@@ -5895,7 +5895,7 @@ const opDescribeHumanTaskUi = "DescribeHumanTaskUi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHumanTaskUi for more information on using the DescribeHumanTaskUi
 // API call, and error handling.
@@ -5975,7 +5975,7 @@ const opDescribeHyperParameterTuningJob = "DescribeHyperParameterTuningJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHyperParameterTuningJob for more information on using the DescribeHyperParameterTuningJob
 // API call, and error handling.
@@ -6212,7 +6212,7 @@ const opDescribeLabelingJob = "DescribeLabelingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLabelingJob for more information on using the DescribeLabelingJob
 // API call, and error handling.
@@ -6291,7 +6291,7 @@ const opDescribeModel = "DescribeModel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeModel for more information on using the DescribeModel
 // API call, and error handling.
@@ -6365,7 +6365,7 @@ const opDescribeModelPackage = "DescribeModelPackage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeModelPackage for more information on using the DescribeModelPackage
 // API call, and error handling.
@@ -6443,7 +6443,7 @@ const opDescribeMonitoringSchedule = "DescribeMonitoringSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMonitoringSchedule for more information on using the DescribeMonitoringSchedule
 // API call, and error handling.
@@ -6522,7 +6522,7 @@ const opDescribeNotebookInstance = "DescribeNotebookInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotebookInstance for more information on using the DescribeNotebookInstance
 // API call, and error handling.
@@ -6596,7 +6596,7 @@ const opDescribeNotebookInstanceLifecycleConfig = "DescribeNotebookInstanceLifec
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotebookInstanceLifecycleConfig for more information on using the DescribeNotebookInstanceLifecycleConfig
 // API call, and error handling.
@@ -6673,7 +6673,7 @@ const opDescribeProcessingJob = "DescribeProcessingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProcessingJob for more information on using the DescribeProcessingJob
 // API call, and error handling.
@@ -6752,7 +6752,7 @@ const opDescribeSubscribedWorkteam = "DescribeSubscribedWorkteam"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSubscribedWorkteam for more information on using the DescribeSubscribedWorkteam
 // API call, and error handling.
@@ -6827,7 +6827,7 @@ const opDescribeTrainingJob = "DescribeTrainingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrainingJob for more information on using the DescribeTrainingJob
 // API call, and error handling.
@@ -6906,7 +6906,7 @@ const opDescribeTransformJob = "DescribeTransformJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTransformJob for more information on using the DescribeTransformJob
 // API call, and error handling.
@@ -6985,7 +6985,7 @@ const opDescribeTrial = "DescribeTrial"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrial for more information on using the DescribeTrial
 // API call, and error handling.
@@ -7064,7 +7064,7 @@ const opDescribeTrialComponent = "DescribeTrialComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrialComponent for more information on using the DescribeTrialComponent
 // API call, and error handling.
@@ -7143,7 +7143,7 @@ const opDescribeUserProfile = "DescribeUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserProfile for more information on using the DescribeUserProfile
 // API call, and error handling.
@@ -7222,7 +7222,7 @@ const opDescribeWorkforce = "DescribeWorkforce"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkforce for more information on using the DescribeWorkforce
 // API call, and error handling.
@@ -7301,7 +7301,7 @@ const opDescribeWorkteam = "DescribeWorkteam"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkteam for more information on using the DescribeWorkteam
 // API call, and error handling.
@@ -7377,7 +7377,7 @@ const opDisassociateTrialComponent = "DisassociateTrialComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateTrialComponent for more information on using the DisassociateTrialComponent
 // API call, and error handling.
@@ -7464,7 +7464,7 @@ const opGetSearchSuggestions = "GetSearchSuggestions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSearchSuggestions for more information on using the GetSearchSuggestions
 // API call, and error handling.
@@ -7541,7 +7541,7 @@ const opListAlgorithms = "ListAlgorithms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAlgorithms for more information on using the ListAlgorithms
 // API call, and error handling.
@@ -7749,7 +7749,7 @@ const opListApps = "ListApps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApps for more information on using the ListApps
 // API call, and error handling.
@@ -7881,7 +7881,7 @@ const opListAutoMLJobs = "ListAutoMLJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAutoMLJobs for more information on using the ListAutoMLJobs
 // API call, and error handling.
@@ -8013,7 +8013,7 @@ const opListCandidatesForAutoMLJob = "ListCandidatesForAutoMLJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCandidatesForAutoMLJob for more information on using the ListCandidatesForAutoMLJob
 // API call, and error handling.
@@ -8150,7 +8150,7 @@ const opListCodeRepositories = "ListCodeRepositories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCodeRepositories for more information on using the ListCodeRepositories
 // API call, and error handling.
@@ -8282,7 +8282,7 @@ const opListCompilationJobs = "ListCompilationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCompilationJobs for more information on using the ListCompilationJobs
 // API call, and error handling.
@@ -8417,7 +8417,7 @@ const opListDomains = "ListDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomains for more information on using the ListDomains
 // API call, and error handling.
@@ -8549,7 +8549,7 @@ const opListEndpointConfigs = "ListEndpointConfigs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEndpointConfigs for more information on using the ListEndpointConfigs
 // API call, and error handling.
@@ -8681,7 +8681,7 @@ const opListEndpoints = "ListEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEndpoints for more information on using the ListEndpoints
 // API call, and error handling.
@@ -8813,7 +8813,7 @@ const opListExperiments = "ListExperiments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListExperiments for more information on using the ListExperiments
 // API call, and error handling.
@@ -8947,7 +8947,7 @@ const opListFlowDefinitions = "ListFlowDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFlowDefinitions for more information on using the ListFlowDefinitions
 // API call, and error handling.
@@ -9079,7 +9079,7 @@ const opListHumanTaskUis = "ListHumanTaskUis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHumanTaskUis for more information on using the ListHumanTaskUis
 // API call, and error handling.
@@ -9211,7 +9211,7 @@ const opListHyperParameterTuningJobs = "ListHyperParameterTuningJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHyperParameterTuningJobs for more information on using the ListHyperParameterTuningJobs
 // API call, and error handling.
@@ -9616,7 +9616,7 @@ const opListLabelingJobs = "ListLabelingJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLabelingJobs for more information on using the ListLabelingJobs
 // API call, and error handling.
@@ -9748,7 +9748,7 @@ const opListLabelingJobsForWorkteam = "ListLabelingJobsForWorkteam"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLabelingJobsForWorkteam for more information on using the ListLabelingJobsForWorkteam
 // API call, and error handling.
@@ -9885,7 +9885,7 @@ const opListModelPackages = "ListModelPackages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListModelPackages for more information on using the ListModelPackages
 // API call, and error handling.
@@ -10017,7 +10017,7 @@ const opListModels = "ListModels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListModels for more information on using the ListModels
 // API call, and error handling.
@@ -10149,7 +10149,7 @@ const opListMonitoringExecutions = "ListMonitoringExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMonitoringExecutions for more information on using the ListMonitoringExecutions
 // API call, and error handling.
@@ -10281,7 +10281,7 @@ const opListMonitoringSchedules = "ListMonitoringSchedules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMonitoringSchedules for more information on using the ListMonitoringSchedules
 // API call, and error handling.
@@ -10413,7 +10413,7 @@ const opListNotebookInstanceLifecycleConfigs = "ListNotebookInstanceLifecycleCon
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNotebookInstanceLifecycleConfigs for more information on using the ListNotebookInstanceLifecycleConfigs
 // API call, and error handling.
@@ -10546,7 +10546,7 @@ const opListNotebookInstances = "ListNotebookInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNotebookInstances for more information on using the ListNotebookInstances
 // API call, and error handling.
@@ -10679,7 +10679,7 @@ const opListProcessingJobs = "ListProcessingJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProcessingJobs for more information on using the ListProcessingJobs
 // API call, and error handling.
@@ -10811,7 +10811,7 @@ const opListSubscribedWorkteams = "ListSubscribedWorkteams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSubscribedWorkteams for more information on using the ListSubscribedWorkteams
 // API call, and error handling.
@@ -10945,7 +10945,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -11077,7 +11077,7 @@ const opListTrainingJobs = "ListTrainingJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrainingJobs for more information on using the ListTrainingJobs
 // API call, and error handling.
@@ -11209,7 +11209,7 @@ const opListTrainingJobsForHyperParameterTuningJob = "ListTrainingJobsForHyperPa
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrainingJobsForHyperParameterTuningJob for more information on using the ListTrainingJobsForHyperParameterTuningJob
 // API call, and error handling.
@@ -11347,7 +11347,7 @@ const opListTransformJobs = "ListTransformJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTransformJobs for more information on using the ListTransformJobs
 // API call, and error handling.
@@ -11479,7 +11479,7 @@ const opListTrialComponents = "ListTrialComponents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrialComponents for more information on using the ListTrialComponents
 // API call, and error handling.
@@ -11625,7 +11625,7 @@ const opListTrials = "ListTrials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTrials for more information on using the ListTrials
 // API call, and error handling.
@@ -11766,7 +11766,7 @@ const opListUserProfiles = "ListUserProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserProfiles for more information on using the ListUserProfiles
 // API call, and error handling.
@@ -11898,7 +11898,7 @@ const opListWorkforces = "ListWorkforces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkforces for more information on using the ListWorkforces
 // API call, and error handling.
@@ -12031,7 +12031,7 @@ const opListWorkteams = "ListWorkteams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkteams for more information on using the ListWorkteams
 // API call, and error handling.
@@ -12165,7 +12165,7 @@ const opRenderUiTemplate = "RenderUiTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RenderUiTemplate for more information on using the RenderUiTemplate
 // API call, and error handling.
@@ -12244,7 +12244,7 @@ const opSearch = "Search"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Search for more information on using the Search
 // API call, and error handling.
@@ -12382,7 +12382,7 @@ const opStartMonitoringSchedule = "StartMonitoringSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMonitoringSchedule for more information on using the StartMonitoringSchedule
 // API call, and error handling.
@@ -12464,7 +12464,7 @@ const opStartNotebookInstance = "StartNotebookInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartNotebookInstance for more information on using the StartNotebookInstance
 // API call, and error handling.
@@ -12549,7 +12549,7 @@ const opStopAutoMLJob = "StopAutoMLJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopAutoMLJob for more information on using the StopAutoMLJob
 // API call, and error handling.
@@ -12629,7 +12629,7 @@ const opStopCompilationJob = "StopCompilationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopCompilationJob for more information on using the StopCompilationJob
 // API call, and error handling.
@@ -12718,7 +12718,7 @@ const opStopHyperParameterTuningJob = "StopHyperParameterTuningJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopHyperParameterTuningJob for more information on using the StopHyperParameterTuningJob
 // API call, and error handling.
@@ -12804,7 +12804,7 @@ const opStopLabelingJob = "StopLabelingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopLabelingJob for more information on using the StopLabelingJob
 // API call, and error handling.
@@ -12886,7 +12886,7 @@ const opStopMonitoringSchedule = "StopMonitoringSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopMonitoringSchedule for more information on using the StopMonitoringSchedule
 // API call, and error handling.
@@ -12966,7 +12966,7 @@ const opStopNotebookInstance = "StopNotebookInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopNotebookInstance for more information on using the StopNotebookInstance
 // API call, and error handling.
@@ -13049,7 +13049,7 @@ const opStopProcessingJob = "StopProcessingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopProcessingJob for more information on using the StopProcessingJob
 // API call, and error handling.
@@ -13129,7 +13129,7 @@ const opStopTrainingJob = "StopTrainingJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTrainingJob for more information on using the StopTrainingJob
 // API call, and error handling.
@@ -13216,7 +13216,7 @@ const opStopTransformJob = "StopTransformJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTransformJob for more information on using the StopTransformJob
 // API call, and error handling.
@@ -13380,7 +13380,7 @@ const opUpdateCodeRepository = "UpdateCodeRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCodeRepository for more information on using the UpdateCodeRepository
 // API call, and error handling.
@@ -13454,7 +13454,7 @@ const opUpdateDomain = "UpdateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomain for more information on using the UpdateDomain
 // API call, and error handling.
@@ -13540,7 +13540,7 @@ const opUpdateEndpoint = "UpdateEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEndpoint for more information on using the UpdateEndpoint
 // API call, and error handling.
@@ -13634,7 +13634,7 @@ const opUpdateEndpointWeightsAndCapacities = "UpdateEndpointWeightsAndCapacities
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEndpointWeightsAndCapacities for more information on using the UpdateEndpointWeightsAndCapacities
 // API call, and error handling.
@@ -13718,7 +13718,7 @@ const opUpdateExperiment = "UpdateExperiment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateExperiment for more information on using the UpdateExperiment
 // API call, and error handling.
@@ -13885,7 +13885,7 @@ const opUpdateMonitoringSchedule = "UpdateMonitoringSchedule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMonitoringSchedule for more information on using the UpdateMonitoringSchedule
 // API call, and error handling.
@@ -13968,7 +13968,7 @@ const opUpdateNotebookInstance = "UpdateNotebookInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNotebookInstance for more information on using the UpdateNotebookInstance
 // API call, and error handling.
@@ -14051,7 +14051,7 @@ const opUpdateNotebookInstanceLifecycleConfig = "UpdateNotebookInstanceLifecycle
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNotebookInstanceLifecycleConfig for more information on using the UpdateNotebookInstanceLifecycleConfig
 // API call, and error handling.
@@ -14133,7 +14133,7 @@ const opUpdateTrial = "UpdateTrial"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrial for more information on using the UpdateTrial
 // API call, and error handling.
@@ -14216,7 +14216,7 @@ const opUpdateTrialComponent = "UpdateTrialComponent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrialComponent for more information on using the UpdateTrialComponent
 // API call, and error handling.
@@ -14299,7 +14299,7 @@ const opUpdateUserProfile = "UpdateUserProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserProfile for more information on using the UpdateUserProfile
 // API call, and error handling.
@@ -14385,7 +14385,7 @@ const opUpdateWorkforce = "UpdateWorkforce"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWorkforce for more information on using the UpdateWorkforce
 // API call, and error handling.
@@ -14481,7 +14481,7 @@ const opUpdateWorkteam = "UpdateWorkteam"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWorkteam for more information on using the UpdateWorkteam
 // API call, and error handling.

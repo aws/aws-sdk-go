@@ -20,7 +20,7 @@ const opAssociateRoleToGroup = "AssociateRoleToGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateRoleToGroup for more information on using the AssociateRoleToGroup
 // API call, and error handling.
@@ -104,7 +104,7 @@ const opAssociateServiceRoleToAccount = "AssociateServiceRoleToAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateServiceRoleToAccount for more information on using the AssociateServiceRoleToAccount
 // API call, and error handling.
@@ -189,7 +189,7 @@ const opCreateConnectorDefinition = "CreateConnectorDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConnectorDefinition for more information on using the CreateConnectorDefinition
 // API call, and error handling.
@@ -270,7 +270,7 @@ const opCreateConnectorDefinitionVersion = "CreateConnectorDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConnectorDefinitionVersion for more information on using the CreateConnectorDefinitionVersion
 // API call, and error handling.
@@ -349,7 +349,7 @@ const opCreateCoreDefinition = "CreateCoreDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCoreDefinition for more information on using the CreateCoreDefinition
 // API call, and error handling.
@@ -430,7 +430,7 @@ const opCreateCoreDefinitionVersion = "CreateCoreDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCoreDefinitionVersion for more information on using the CreateCoreDefinitionVersion
 // API call, and error handling.
@@ -510,7 +510,7 @@ const opCreateDeployment = "CreateDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeployment for more information on using the CreateDeployment
 // API call, and error handling.
@@ -590,7 +590,7 @@ const opCreateDeviceDefinition = "CreateDeviceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeviceDefinition for more information on using the CreateDeviceDefinition
 // API call, and error handling.
@@ -670,7 +670,7 @@ const opCreateDeviceDefinitionVersion = "CreateDeviceDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeviceDefinitionVersion for more information on using the CreateDeviceDefinitionVersion
 // API call, and error handling.
@@ -749,7 +749,7 @@ const opCreateFunctionDefinition = "CreateFunctionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFunctionDefinition for more information on using the CreateFunctionDefinition
 // API call, and error handling.
@@ -831,7 +831,7 @@ const opCreateFunctionDefinitionVersion = "CreateFunctionDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFunctionDefinitionVersion for more information on using the CreateFunctionDefinitionVersion
 // API call, and error handling.
@@ -910,7 +910,7 @@ const opCreateGroup = "CreateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroup for more information on using the CreateGroup
 // API call, and error handling.
@@ -992,7 +992,7 @@ const opCreateGroupCertificateAuthority = "CreateGroupCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroupCertificateAuthority for more information on using the CreateGroupCertificateAuthority
 // API call, and error handling.
@@ -1075,7 +1075,7 @@ const opCreateGroupVersion = "CreateGroupVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroupVersion for more information on using the CreateGroupVersion
 // API call, and error handling.
@@ -1154,7 +1154,7 @@ const opCreateLoggerDefinition = "CreateLoggerDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoggerDefinition for more information on using the CreateLoggerDefinition
 // API call, and error handling.
@@ -1234,7 +1234,7 @@ const opCreateLoggerDefinitionVersion = "CreateLoggerDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoggerDefinitionVersion for more information on using the CreateLoggerDefinitionVersion
 // API call, and error handling.
@@ -1313,7 +1313,7 @@ const opCreateResourceDefinition = "CreateResourceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResourceDefinition for more information on using the CreateResourceDefinition
 // API call, and error handling.
@@ -1394,7 +1394,7 @@ const opCreateResourceDefinitionVersion = "CreateResourceDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResourceDefinitionVersion for more information on using the CreateResourceDefinitionVersion
 // API call, and error handling.
@@ -1473,7 +1473,7 @@ const opCreateSoftwareUpdateJob = "CreateSoftwareUpdateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSoftwareUpdateJob for more information on using the CreateSoftwareUpdateJob
 // API call, and error handling.
@@ -1558,7 +1558,7 @@ const opCreateSubscriptionDefinition = "CreateSubscriptionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSubscriptionDefinition for more information on using the CreateSubscriptionDefinition
 // API call, and error handling.
@@ -1639,7 +1639,7 @@ const opCreateSubscriptionDefinitionVersion = "CreateSubscriptionDefinitionVersi
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSubscriptionDefinitionVersion for more information on using the CreateSubscriptionDefinitionVersion
 // API call, and error handling.
@@ -1718,7 +1718,7 @@ const opDeleteConnectorDefinition = "DeleteConnectorDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnectorDefinition for more information on using the DeleteConnectorDefinition
 // API call, and error handling.
@@ -1798,7 +1798,7 @@ const opDeleteCoreDefinition = "DeleteCoreDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCoreDefinition for more information on using the DeleteCoreDefinition
 // API call, and error handling.
@@ -1878,7 +1878,7 @@ const opDeleteDeviceDefinition = "DeleteDeviceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDeviceDefinition for more information on using the DeleteDeviceDefinition
 // API call, and error handling.
@@ -1958,7 +1958,7 @@ const opDeleteFunctionDefinition = "DeleteFunctionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFunctionDefinition for more information on using the DeleteFunctionDefinition
 // API call, and error handling.
@@ -2038,7 +2038,7 @@ const opDeleteGroup = "DeleteGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroup for more information on using the DeleteGroup
 // API call, and error handling.
@@ -2118,7 +2118,7 @@ const opDeleteLoggerDefinition = "DeleteLoggerDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoggerDefinition for more information on using the DeleteLoggerDefinition
 // API call, and error handling.
@@ -2198,7 +2198,7 @@ const opDeleteResourceDefinition = "DeleteResourceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourceDefinition for more information on using the DeleteResourceDefinition
 // API call, and error handling.
@@ -2278,7 +2278,7 @@ const opDeleteSubscriptionDefinition = "DeleteSubscriptionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSubscriptionDefinition for more information on using the DeleteSubscriptionDefinition
 // API call, and error handling.
@@ -2358,7 +2358,7 @@ const opDisassociateRoleFromGroup = "DisassociateRoleFromGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateRoleFromGroup for more information on using the DisassociateRoleFromGroup
 // API call, and error handling.
@@ -2440,7 +2440,7 @@ const opDisassociateServiceRoleFromAccount = "DisassociateServiceRoleFromAccount
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateServiceRoleFromAccount for more information on using the DisassociateServiceRoleFromAccount
 // API call, and error handling.
@@ -2520,7 +2520,7 @@ const opGetAssociatedRole = "GetAssociatedRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssociatedRole for more information on using the GetAssociatedRole
 // API call, and error handling.
@@ -2602,7 +2602,7 @@ const opGetBulkDeploymentStatus = "GetBulkDeploymentStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBulkDeploymentStatus for more information on using the GetBulkDeploymentStatus
 // API call, and error handling.
@@ -2681,7 +2681,7 @@ const opGetConnectivityInfo = "GetConnectivityInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnectivityInfo for more information on using the GetConnectivityInfo
 // API call, and error handling.
@@ -2763,7 +2763,7 @@ const opGetConnectorDefinition = "GetConnectorDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnectorDefinition for more information on using the GetConnectorDefinition
 // API call, and error handling.
@@ -2842,7 +2842,7 @@ const opGetConnectorDefinitionVersion = "GetConnectorDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnectorDefinitionVersion for more information on using the GetConnectorDefinitionVersion
 // API call, and error handling.
@@ -2924,7 +2924,7 @@ const opGetCoreDefinition = "GetCoreDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCoreDefinition for more information on using the GetCoreDefinition
 // API call, and error handling.
@@ -3003,7 +3003,7 @@ const opGetCoreDefinitionVersion = "GetCoreDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCoreDefinitionVersion for more information on using the GetCoreDefinitionVersion
 // API call, and error handling.
@@ -3082,7 +3082,7 @@ const opGetDeploymentStatus = "GetDeploymentStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeploymentStatus for more information on using the GetDeploymentStatus
 // API call, and error handling.
@@ -3161,7 +3161,7 @@ const opGetDeviceDefinition = "GetDeviceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeviceDefinition for more information on using the GetDeviceDefinition
 // API call, and error handling.
@@ -3240,7 +3240,7 @@ const opGetDeviceDefinitionVersion = "GetDeviceDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeviceDefinitionVersion for more information on using the GetDeviceDefinitionVersion
 // API call, and error handling.
@@ -3319,7 +3319,7 @@ const opGetFunctionDefinition = "GetFunctionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunctionDefinition for more information on using the GetFunctionDefinition
 // API call, and error handling.
@@ -3399,7 +3399,7 @@ const opGetFunctionDefinitionVersion = "GetFunctionDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunctionDefinitionVersion for more information on using the GetFunctionDefinitionVersion
 // API call, and error handling.
@@ -3479,7 +3479,7 @@ const opGetGroup = "GetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroup for more information on using the GetGroup
 // API call, and error handling.
@@ -3558,7 +3558,7 @@ const opGetGroupCertificateAuthority = "GetGroupCertificateAuthority"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroupCertificateAuthority for more information on using the GetGroupCertificateAuthority
 // API call, and error handling.
@@ -3640,7 +3640,7 @@ const opGetGroupCertificateConfiguration = "GetGroupCertificateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroupCertificateConfiguration for more information on using the GetGroupCertificateConfiguration
 // API call, and error handling.
@@ -3722,7 +3722,7 @@ const opGetGroupVersion = "GetGroupVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroupVersion for more information on using the GetGroupVersion
 // API call, and error handling.
@@ -3801,7 +3801,7 @@ const opGetLoggerDefinition = "GetLoggerDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoggerDefinition for more information on using the GetLoggerDefinition
 // API call, and error handling.
@@ -3880,7 +3880,7 @@ const opGetLoggerDefinitionVersion = "GetLoggerDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoggerDefinitionVersion for more information on using the GetLoggerDefinitionVersion
 // API call, and error handling.
@@ -3959,7 +3959,7 @@ const opGetResourceDefinition = "GetResourceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceDefinition for more information on using the GetResourceDefinition
 // API call, and error handling.
@@ -4039,7 +4039,7 @@ const opGetResourceDefinitionVersion = "GetResourceDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceDefinitionVersion for more information on using the GetResourceDefinitionVersion
 // API call, and error handling.
@@ -4119,7 +4119,7 @@ const opGetServiceRoleForAccount = "GetServiceRoleForAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceRoleForAccount for more information on using the GetServiceRoleForAccount
 // API call, and error handling.
@@ -4198,7 +4198,7 @@ const opGetSubscriptionDefinition = "GetSubscriptionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSubscriptionDefinition for more information on using the GetSubscriptionDefinition
 // API call, and error handling.
@@ -4277,7 +4277,7 @@ const opGetSubscriptionDefinitionVersion = "GetSubscriptionDefinitionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSubscriptionDefinitionVersion for more information on using the GetSubscriptionDefinitionVersion
 // API call, and error handling.
@@ -4356,7 +4356,7 @@ const opGetThingRuntimeConfiguration = "GetThingRuntimeConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetThingRuntimeConfiguration for more information on using the GetThingRuntimeConfiguration
 // API call, and error handling.
@@ -4438,7 +4438,7 @@ const opListBulkDeploymentDetailedReports = "ListBulkDeploymentDetailedReports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBulkDeploymentDetailedReports for more information on using the ListBulkDeploymentDetailedReports
 // API call, and error handling.
@@ -4518,7 +4518,7 @@ const opListBulkDeployments = "ListBulkDeployments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBulkDeployments for more information on using the ListBulkDeployments
 // API call, and error handling.
@@ -4597,7 +4597,7 @@ const opListConnectorDefinitionVersions = "ListConnectorDefinitionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConnectorDefinitionVersions for more information on using the ListConnectorDefinitionVersions
 // API call, and error handling.
@@ -4678,7 +4678,7 @@ const opListConnectorDefinitions = "ListConnectorDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConnectorDefinitions for more information on using the ListConnectorDefinitions
 // API call, and error handling.
@@ -4752,7 +4752,7 @@ const opListCoreDefinitionVersions = "ListCoreDefinitionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCoreDefinitionVersions for more information on using the ListCoreDefinitionVersions
 // API call, and error handling.
@@ -4831,7 +4831,7 @@ const opListCoreDefinitions = "ListCoreDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCoreDefinitions for more information on using the ListCoreDefinitions
 // API call, and error handling.
@@ -4905,7 +4905,7 @@ const opListDeployments = "ListDeployments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeployments for more information on using the ListDeployments
 // API call, and error handling.
@@ -4984,7 +4984,7 @@ const opListDeviceDefinitionVersions = "ListDeviceDefinitionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeviceDefinitionVersions for more information on using the ListDeviceDefinitionVersions
 // API call, and error handling.
@@ -5063,7 +5063,7 @@ const opListDeviceDefinitions = "ListDeviceDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeviceDefinitions for more information on using the ListDeviceDefinitions
 // API call, and error handling.
@@ -5137,7 +5137,7 @@ const opListFunctionDefinitionVersions = "ListFunctionDefinitionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFunctionDefinitionVersions for more information on using the ListFunctionDefinitionVersions
 // API call, and error handling.
@@ -5216,7 +5216,7 @@ const opListFunctionDefinitions = "ListFunctionDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFunctionDefinitions for more information on using the ListFunctionDefinitions
 // API call, and error handling.
@@ -5290,7 +5290,7 @@ const opListGroupCertificateAuthorities = "ListGroupCertificateAuthorities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroupCertificateAuthorities for more information on using the ListGroupCertificateAuthorities
 // API call, and error handling.
@@ -5372,7 +5372,7 @@ const opListGroupVersions = "ListGroupVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroupVersions for more information on using the ListGroupVersions
 // API call, and error handling.
@@ -5451,7 +5451,7 @@ const opListGroups = "ListGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroups for more information on using the ListGroups
 // API call, and error handling.
@@ -5525,7 +5525,7 @@ const opListLoggerDefinitionVersions = "ListLoggerDefinitionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLoggerDefinitionVersions for more information on using the ListLoggerDefinitionVersions
 // API call, and error handling.
@@ -5604,7 +5604,7 @@ const opListLoggerDefinitions = "ListLoggerDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLoggerDefinitions for more information on using the ListLoggerDefinitions
 // API call, and error handling.
@@ -5678,7 +5678,7 @@ const opListResourceDefinitionVersions = "ListResourceDefinitionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceDefinitionVersions for more information on using the ListResourceDefinitionVersions
 // API call, and error handling.
@@ -5757,7 +5757,7 @@ const opListResourceDefinitions = "ListResourceDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceDefinitions for more information on using the ListResourceDefinitions
 // API call, and error handling.
@@ -5831,7 +5831,7 @@ const opListSubscriptionDefinitionVersions = "ListSubscriptionDefinitionVersions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSubscriptionDefinitionVersions for more information on using the ListSubscriptionDefinitionVersions
 // API call, and error handling.
@@ -5910,7 +5910,7 @@ const opListSubscriptionDefinitions = "ListSubscriptionDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSubscriptionDefinitions for more information on using the ListSubscriptionDefinitions
 // API call, and error handling.
@@ -5984,7 +5984,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -6063,7 +6063,7 @@ const opResetDeployments = "ResetDeployments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetDeployments for more information on using the ResetDeployments
 // API call, and error handling.
@@ -6142,7 +6142,7 @@ const opStartBulkDeployment = "StartBulkDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartBulkDeployment for more information on using the StartBulkDeployment
 // API call, and error handling.
@@ -6226,7 +6226,7 @@ const opStopBulkDeployment = "StopBulkDeployment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopBulkDeployment for more information on using the StopBulkDeployment
 // API call, and error handling.
@@ -6309,7 +6309,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -6391,7 +6391,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -6471,7 +6471,7 @@ const opUpdateConnectivityInfo = "UpdateConnectivityInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConnectivityInfo for more information on using the UpdateConnectivityInfo
 // API call, and error handling.
@@ -6555,7 +6555,7 @@ const opUpdateConnectorDefinition = "UpdateConnectorDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConnectorDefinition for more information on using the UpdateConnectorDefinition
 // API call, and error handling.
@@ -6635,7 +6635,7 @@ const opUpdateCoreDefinition = "UpdateCoreDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCoreDefinition for more information on using the UpdateCoreDefinition
 // API call, and error handling.
@@ -6715,7 +6715,7 @@ const opUpdateDeviceDefinition = "UpdateDeviceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDeviceDefinition for more information on using the UpdateDeviceDefinition
 // API call, and error handling.
@@ -6795,7 +6795,7 @@ const opUpdateFunctionDefinition = "UpdateFunctionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFunctionDefinition for more information on using the UpdateFunctionDefinition
 // API call, and error handling.
@@ -6875,7 +6875,7 @@ const opUpdateGroup = "UpdateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroup for more information on using the UpdateGroup
 // API call, and error handling.
@@ -6955,7 +6955,7 @@ const opUpdateGroupCertificateConfiguration = "UpdateGroupCertificateConfigurati
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroupCertificateConfiguration for more information on using the UpdateGroupCertificateConfiguration
 // API call, and error handling.
@@ -7037,7 +7037,7 @@ const opUpdateLoggerDefinition = "UpdateLoggerDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLoggerDefinition for more information on using the UpdateLoggerDefinition
 // API call, and error handling.
@@ -7117,7 +7117,7 @@ const opUpdateResourceDefinition = "UpdateResourceDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResourceDefinition for more information on using the UpdateResourceDefinition
 // API call, and error handling.
@@ -7197,7 +7197,7 @@ const opUpdateSubscriptionDefinition = "UpdateSubscriptionDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSubscriptionDefinition for more information on using the UpdateSubscriptionDefinition
 // API call, and error handling.
@@ -7277,7 +7277,7 @@ const opUpdateThingRuntimeConfiguration = "UpdateThingRuntimeConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateThingRuntimeConfiguration for more information on using the UpdateThingRuntimeConfiguration
 // API call, and error handling.

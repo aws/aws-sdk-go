@@ -21,7 +21,7 @@ const opCreateApp = "CreateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApp for more information on using the CreateApp
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opCreateReplicationJob = "CreateReplicationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReplicationJob for more information on using the CreateReplicationJob
 // API call, and error handling.
@@ -220,7 +220,7 @@ const opDeleteApp = "DeleteApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApp for more information on using the DeleteApp
 // API call, and error handling.
@@ -315,7 +315,7 @@ const opDeleteAppLaunchConfiguration = "DeleteAppLaunchConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAppLaunchConfiguration for more information on using the DeleteAppLaunchConfiguration
 // API call, and error handling.
@@ -408,7 +408,7 @@ const opDeleteAppReplicationConfiguration = "DeleteAppReplicationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAppReplicationConfiguration for more information on using the DeleteAppReplicationConfiguration
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opDeleteAppValidationConfiguration = "DeleteAppValidationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAppValidationConfiguration for more information on using the DeleteAppValidationConfiguration
 // API call, and error handling.
@@ -594,7 +594,7 @@ const opDeleteReplicationJob = "DeleteReplicationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReplicationJob for more information on using the DeleteReplicationJob
 // API call, and error handling.
@@ -691,7 +691,7 @@ const opDeleteServerCatalog = "DeleteServerCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServerCatalog for more information on using the DeleteServerCatalog
 // API call, and error handling.
@@ -781,7 +781,7 @@ const opDisassociateConnector = "DisassociateConnector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateConnector for more information on using the DisassociateConnector
 // API call, and error handling.
@@ -874,7 +874,7 @@ const opGenerateChangeSet = "GenerateChangeSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateChangeSet for more information on using the GenerateChangeSet
 // API call, and error handling.
@@ -967,7 +967,7 @@ const opGenerateTemplate = "GenerateTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateTemplate for more information on using the GenerateTemplate
 // API call, and error handling.
@@ -1060,7 +1060,7 @@ const opGetApp = "GetApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApp for more information on using the GetApp
 // API call, and error handling.
@@ -1152,7 +1152,7 @@ const opGetAppLaunchConfiguration = "GetAppLaunchConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAppLaunchConfiguration for more information on using the GetAppLaunchConfiguration
 // API call, and error handling.
@@ -1245,7 +1245,7 @@ const opGetAppReplicationConfiguration = "GetAppReplicationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAppReplicationConfiguration for more information on using the GetAppReplicationConfiguration
 // API call, and error handling.
@@ -1338,7 +1338,7 @@ const opGetAppValidationConfiguration = "GetAppValidationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAppValidationConfiguration for more information on using the GetAppValidationConfiguration
 // API call, and error handling.
@@ -1430,7 +1430,7 @@ const opGetAppValidationOutput = "GetAppValidationOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAppValidationOutput for more information on using the GetAppValidationOutput
 // API call, and error handling.
@@ -1522,7 +1522,7 @@ const opGetConnectors = "GetConnectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnectors for more information on using the GetConnectors
 // API call, and error handling.
@@ -1660,7 +1660,7 @@ const opGetReplicationJobs = "GetReplicationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReplicationJobs for more information on using the GetReplicationJobs
 // API call, and error handling.
@@ -1804,7 +1804,7 @@ const opGetReplicationRuns = "GetReplicationRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetReplicationRuns for more information on using the GetReplicationRuns
 // API call, and error handling.
@@ -1948,7 +1948,7 @@ const opGetServers = "GetServers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServers for more information on using the GetServers
 // API call, and error handling.
@@ -2097,7 +2097,7 @@ const opImportAppCatalog = "ImportAppCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportAppCatalog for more information on using the ImportAppCatalog
 // API call, and error handling.
@@ -2190,7 +2190,7 @@ const opImportServerCatalog = "ImportServerCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportServerCatalog for more information on using the ImportServerCatalog
 // API call, and error handling.
@@ -2287,7 +2287,7 @@ const opLaunchApp = "LaunchApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LaunchApp for more information on using the LaunchApp
 // API call, and error handling.
@@ -2380,7 +2380,7 @@ const opListApps = "ListApps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApps for more information on using the ListApps
 // API call, and error handling.
@@ -2472,7 +2472,7 @@ const opNotifyAppValidationOutput = "NotifyAppValidationOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See NotifyAppValidationOutput for more information on using the NotifyAppValidationOutput
 // API call, and error handling.
@@ -2565,7 +2565,7 @@ const opPutAppLaunchConfiguration = "PutAppLaunchConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAppLaunchConfiguration for more information on using the PutAppLaunchConfiguration
 // API call, and error handling.
@@ -2658,7 +2658,7 @@ const opPutAppReplicationConfiguration = "PutAppReplicationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAppReplicationConfiguration for more information on using the PutAppReplicationConfiguration
 // API call, and error handling.
@@ -2751,7 +2751,7 @@ const opPutAppValidationConfiguration = "PutAppValidationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAppValidationConfiguration for more information on using the PutAppValidationConfiguration
 // API call, and error handling.
@@ -2844,7 +2844,7 @@ const opStartAppReplication = "StartAppReplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartAppReplication for more information on using the StartAppReplication
 // API call, and error handling.
@@ -2938,7 +2938,7 @@ const opStartOnDemandAppReplication = "StartOnDemandAppReplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartOnDemandAppReplication for more information on using the StartOnDemandAppReplication
 // API call, and error handling.
@@ -3031,7 +3031,7 @@ const opStartOnDemandReplicationRun = "StartOnDemandReplicationRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartOnDemandReplicationRun for more information on using the StartOnDemandReplicationRun
 // API call, and error handling.
@@ -3133,7 +3133,7 @@ const opStopAppReplication = "StopAppReplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopAppReplication for more information on using the StopAppReplication
 // API call, and error handling.
@@ -3227,7 +3227,7 @@ const opTerminateApp = "TerminateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateApp for more information on using the TerminateApp
 // API call, and error handling.
@@ -3320,7 +3320,7 @@ const opUpdateApp = "UpdateApp"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApp for more information on using the UpdateApp
 // API call, and error handling.
@@ -3412,7 +3412,7 @@ const opUpdateReplicationJob = "UpdateReplicationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateReplicationJob for more information on using the UpdateReplicationJob
 // API call, and error handling.

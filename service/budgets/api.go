@@ -21,7 +21,7 @@ const opCreateBudget = "CreateBudget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBudget for more information on using the CreateBudget
 // API call, and error handling.
@@ -210,7 +210,7 @@ const opCreateNotification = "CreateNotification"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNotification for more information on using the CreateNotification
 // API call, and error handling.
@@ -305,7 +305,7 @@ const opCreateSubscriber = "CreateSubscriber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSubscriber for more information on using the CreateSubscriber
 // API call, and error handling.
@@ -400,7 +400,7 @@ const opDeleteBudget = "DeleteBudget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBudget for more information on using the DeleteBudget
 // API call, and error handling.
@@ -582,7 +582,7 @@ const opDeleteNotification = "DeleteNotification"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotification for more information on using the DeleteNotification
 // API call, and error handling.
@@ -673,7 +673,7 @@ const opDeleteSubscriber = "DeleteSubscriber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSubscriber for more information on using the DeleteSubscriber
 // API call, and error handling.
@@ -763,7 +763,7 @@ const opDescribeBudget = "DescribeBudget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudget for more information on using the DescribeBudget
 // API call, and error handling.
@@ -854,7 +854,7 @@ const opDescribeBudgetAction = "DescribeBudgetAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudgetAction for more information on using the DescribeBudgetAction
 // API call, and error handling.
@@ -941,7 +941,7 @@ const opDescribeBudgetActionHistories = "DescribeBudgetActionHistories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudgetActionHistories for more information on using the DescribeBudgetActionHistories
 // API call, and error handling.
@@ -1089,7 +1089,7 @@ const opDescribeBudgetActionsForAccount = "DescribeBudgetActionsForAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudgetActionsForAccount for more information on using the DescribeBudgetActionsForAccount
 // API call, and error handling.
@@ -1234,7 +1234,7 @@ const opDescribeBudgetActionsForBudget = "DescribeBudgetActionsForBudget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudgetActionsForBudget for more information on using the DescribeBudgetActionsForBudget
 // API call, and error handling.
@@ -1382,7 +1382,7 @@ const opDescribeBudgetPerformanceHistory = "DescribeBudgetPerformanceHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudgetPerformanceHistory for more information on using the DescribeBudgetPerformanceHistory
 // API call, and error handling.
@@ -1534,7 +1534,7 @@ const opDescribeBudgets = "DescribeBudgets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBudgets for more information on using the DescribeBudgets
 // API call, and error handling.
@@ -1689,7 +1689,7 @@ const opDescribeNotificationsForBudget = "DescribeNotificationsForBudget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotificationsForBudget for more information on using the DescribeNotificationsForBudget
 // API call, and error handling.

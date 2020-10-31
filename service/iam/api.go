@@ -21,7 +21,7 @@ const opAddClientIDToOpenIDConnectProvider = "AddClientIDToOpenIDConnectProvider
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddClientIDToOpenIDConnectProvider for more information on using the AddClientIDToOpenIDConnectProvider
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opAddRoleToInstanceProfile = "AddRoleToInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddRoleToInstanceProfile for more information on using the AddRoleToInstanceProfile
 // API call, and error handling.
@@ -235,7 +235,7 @@ const opAddUserToGroup = "AddUserToGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddUserToGroup for more information on using the AddUserToGroup
 // API call, and error handling.
@@ -325,7 +325,7 @@ const opAttachGroupPolicy = "AttachGroupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachGroupPolicy for more information on using the AttachGroupPolicy
 // API call, and error handling.
@@ -430,7 +430,7 @@ const opAttachRolePolicy = "AttachRolePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachRolePolicy for more information on using the AttachRolePolicy
 // API call, and error handling.
@@ -545,7 +545,7 @@ const opAttachUserPolicy = "AttachUserPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachUserPolicy for more information on using the AttachUserPolicy
 // API call, and error handling.
@@ -650,7 +650,7 @@ const opChangePassword = "ChangePassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ChangePassword for more information on using the ChangePassword
 // API call, and error handling.
@@ -759,7 +759,7 @@ const opCreateAccessKey = "CreateAccessKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccessKey for more information on using the CreateAccessKey
 // API call, and error handling.
@@ -865,7 +865,7 @@ const opCreateAccountAlias = "CreateAccountAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccountAlias for more information on using the CreateAccountAlias
 // API call, and error handling.
@@ -957,7 +957,7 @@ const opCreateGroup = "CreateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGroup for more information on using the CreateGroup
 // API call, and error handling.
@@ -1054,7 +1054,7 @@ const opCreateInstanceProfile = "CreateInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInstanceProfile for more information on using the CreateInstanceProfile
 // API call, and error handling.
@@ -1148,7 +1148,7 @@ const opCreateLoginProfile = "CreateLoginProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoginProfile for more information on using the CreateLoginProfile
 // API call, and error handling.
@@ -1248,7 +1248,7 @@ const opCreateOpenIDConnectProvider = "CreateOpenIDConnectProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOpenIDConnectProvider for more information on using the CreateOpenIDConnectProvider
 // API call, and error handling.
@@ -1363,7 +1363,7 @@ const opCreatePolicy = "CreatePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePolicy for more information on using the CreatePolicy
 // API call, and error handling.
@@ -1469,7 +1469,7 @@ const opCreatePolicyVersion = "CreatePolicyVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePolicyVersion for more information on using the CreatePolicyVersion
 // API call, and error handling.
@@ -1577,7 +1577,7 @@ const opCreateRole = "CreateRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRole for more information on using the CreateRole
 // API call, and error handling.
@@ -1683,7 +1683,7 @@ const opCreateSAMLProvider = "CreateSAMLProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSAMLProvider for more information on using the CreateSAMLProvider
 // API call, and error handling.
@@ -1797,7 +1797,7 @@ const opCreateServiceLinkedRole = "CreateServiceLinkedRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateServiceLinkedRole for more information on using the CreateServiceLinkedRole
 // API call, and error handling.
@@ -1900,7 +1900,7 @@ const opCreateServiceSpecificCredential = "CreateServiceSpecificCredential"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateServiceSpecificCredential for more information on using the CreateServiceSpecificCredential
 // API call, and error handling.
@@ -2001,7 +2001,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -2107,7 +2107,7 @@ const opCreateVirtualMFADevice = "CreateVirtualMFADevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVirtualMFADevice for more information on using the CreateVirtualMFADevice
 // API call, and error handling.
@@ -2210,7 +2210,7 @@ const opDeactivateMFADevice = "DeactivateMFADevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeactivateMFADevice for more information on using the DeactivateMFADevice
 // API call, and error handling.
@@ -2311,7 +2311,7 @@ const opDeleteAccessKey = "DeleteAccessKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccessKey for more information on using the DeleteAccessKey
 // API call, and error handling.
@@ -2407,7 +2407,7 @@ const opDeleteAccountAlias = "DeleteAccountAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccountAlias for more information on using the DeleteAccountAlias
 // API call, and error handling.
@@ -2499,7 +2499,7 @@ const opDeleteAccountPasswordPolicy = "DeleteAccountPasswordPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccountPasswordPolicy for more information on using the DeleteAccountPasswordPolicy
 // API call, and error handling.
@@ -2589,7 +2589,7 @@ const opDeleteGroup = "DeleteGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroup for more information on using the DeleteGroup
 // API call, and error handling.
@@ -2684,7 +2684,7 @@ const opDeleteGroupPolicy = "DeleteGroupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGroupPolicy for more information on using the DeleteGroupPolicy
 // API call, and error handling.
@@ -2780,7 +2780,7 @@ const opDeleteInstanceProfile = "DeleteInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInstanceProfile for more information on using the DeleteInstanceProfile
 // API call, and error handling.
@@ -2883,7 +2883,7 @@ const opDeleteLoginProfile = "DeleteLoginProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoginProfile for more information on using the DeleteLoginProfile
 // API call, and error handling.
@@ -2985,7 +2985,7 @@ const opDeleteOpenIDConnectProvider = "DeleteOpenIDConnectProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOpenIDConnectProvider for more information on using the DeleteOpenIDConnectProvider
 // API call, and error handling.
@@ -3081,7 +3081,7 @@ const opDeletePolicy = "DeletePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePolicy for more information on using the DeletePolicy
 // API call, and error handling.
@@ -3201,7 +3201,7 @@ const opDeletePolicyVersion = "DeletePolicyVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePolicyVersion for more information on using the DeletePolicyVersion
 // API call, and error handling.
@@ -3307,7 +3307,7 @@ const opDeleteRole = "DeleteRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRole for more information on using the DeleteRole
 // API call, and error handling.
@@ -3418,7 +3418,7 @@ const opDeleteRolePermissionsBoundary = "DeleteRolePermissionsBoundary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRolePermissionsBoundary for more information on using the DeleteRolePermissionsBoundary
 // API call, and error handling.
@@ -3513,7 +3513,7 @@ const opDeleteRolePolicy = "DeleteRolePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRolePolicy for more information on using the DeleteRolePolicy
 // API call, and error handling.
@@ -3615,7 +3615,7 @@ const opDeleteSAMLProvider = "DeleteSAMLProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSAMLProvider for more information on using the DeleteSAMLProvider
 // API call, and error handling.
@@ -3716,7 +3716,7 @@ const opDeleteSSHPublicKey = "DeleteSSHPublicKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSSHPublicKey for more information on using the DeleteSSHPublicKey
 // API call, and error handling.
@@ -3803,7 +3803,7 @@ const opDeleteServerCertificate = "DeleteServerCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServerCertificate for more information on using the DeleteServerCertificate
 // API call, and error handling.
@@ -3912,7 +3912,7 @@ const opDeleteServiceLinkedRole = "DeleteServiceLinkedRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServiceLinkedRole for more information on using the DeleteServiceLinkedRole
 // API call, and error handling.
@@ -4020,7 +4020,7 @@ const opDeleteServiceSpecificCredential = "DeleteServiceSpecificCredential"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServiceSpecificCredential for more information on using the DeleteServiceSpecificCredential
 // API call, and error handling.
@@ -4101,7 +4101,7 @@ const opDeleteSigningCertificate = "DeleteSigningCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSigningCertificate for more information on using the DeleteSigningCertificate
 // API call, and error handling.
@@ -4197,7 +4197,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -4318,7 +4318,7 @@ const opDeleteUserPermissionsBoundary = "DeleteUserPermissionsBoundary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserPermissionsBoundary for more information on using the DeleteUserPermissionsBoundary
 // API call, and error handling.
@@ -4407,7 +4407,7 @@ const opDeleteUserPolicy = "DeleteUserPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUserPolicy for more information on using the DeleteUserPolicy
 // API call, and error handling.
@@ -4503,7 +4503,7 @@ const opDeleteVirtualMFADevice = "DeleteVirtualMFADevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVirtualMFADevice for more information on using the DeleteVirtualMFADevice
 // API call, and error handling.
@@ -4600,7 +4600,7 @@ const opDetachGroupPolicy = "DetachGroupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachGroupPolicy for more information on using the DetachGroupPolicy
 // API call, and error handling.
@@ -4699,7 +4699,7 @@ const opDetachRolePolicy = "DetachRolePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachRolePolicy for more information on using the DetachRolePolicy
 // API call, and error handling.
@@ -4804,7 +4804,7 @@ const opDetachUserPolicy = "DetachUserPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachUserPolicy for more information on using the DetachUserPolicy
 // API call, and error handling.
@@ -4903,7 +4903,7 @@ const opEnableMFADevice = "EnableMFADevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableMFADevice for more information on using the EnableMFADevice
 // API call, and error handling.
@@ -5009,7 +5009,7 @@ const opGenerateCredentialReport = "GenerateCredentialReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateCredentialReport for more information on using the GenerateCredentialReport
 // API call, and error handling.
@@ -5096,7 +5096,7 @@ const opGenerateOrganizationsAccessReport = "GenerateOrganizationsAccessReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateOrganizationsAccessReport for more information on using the GenerateOrganizationsAccessReport
 // API call, and error handling.
@@ -5289,7 +5289,7 @@ const opGenerateServiceLastAccessedDetails = "GenerateServiceLastAccessedDetails
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateServiceLastAccessedDetails for more information on using the GenerateServiceLastAccessedDetails
 // API call, and error handling.
@@ -5423,7 +5423,7 @@ const opGetAccessKeyLastUsed = "GetAccessKeyLastUsed"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccessKeyLastUsed for more information on using the GetAccessKeyLastUsed
 // API call, and error handling.
@@ -5500,7 +5500,7 @@ const opGetAccountAuthorizationDetails = "GetAccountAuthorizationDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountAuthorizationDetails for more information on using the GetAccountAuthorizationDetails
 // API call, and error handling.
@@ -5650,7 +5650,7 @@ const opGetAccountPasswordPolicy = "GetAccountPasswordPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountPasswordPolicy for more information on using the GetAccountPasswordPolicy
 // API call, and error handling.
@@ -5735,7 +5735,7 @@ const opGetAccountSummary = "GetAccountSummary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountSummary for more information on using the GetAccountSummary
 // API call, and error handling.
@@ -5819,7 +5819,7 @@ const opGetContextKeysForCustomPolicy = "GetContextKeysForCustomPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContextKeysForCustomPolicy for more information on using the GetContextKeysForCustomPolicy
 // API call, and error handling.
@@ -5908,7 +5908,7 @@ const opGetContextKeysForPrincipalPolicy = "GetContextKeysForPrincipalPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContextKeysForPrincipalPolicy for more information on using the GetContextKeysForPrincipalPolicy
 // API call, and error handling.
@@ -6008,7 +6008,7 @@ const opGetCredentialReport = "GetCredentialReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCredentialReport for more information on using the GetCredentialReport
 // API call, and error handling.
@@ -6104,7 +6104,7 @@ const opGetGroup = "GetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroup for more information on using the GetGroup
 // API call, and error handling.
@@ -6247,7 +6247,7 @@ const opGetGroupPolicy = "GetGroupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGroupPolicy for more information on using the GetGroupPolicy
 // API call, and error handling.
@@ -6347,7 +6347,7 @@ const opGetInstanceProfile = "GetInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceProfile for more information on using the GetInstanceProfile
 // API call, and error handling.
@@ -6434,7 +6434,7 @@ const opGetLoginProfile = "GetLoginProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoginProfile for more information on using the GetLoginProfile
 // API call, and error handling.
@@ -6520,7 +6520,7 @@ const opGetOpenIDConnectProvider = "GetOpenIDConnectProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOpenIDConnectProvider for more information on using the GetOpenIDConnectProvider
 // API call, and error handling.
@@ -6609,7 +6609,7 @@ const opGetOrganizationsAccessReport = "GetOrganizationsAccessReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOrganizationsAccessReport for more information on using the GetOrganizationsAccessReport
 // API call, and error handling.
@@ -6708,7 +6708,7 @@ const opGetPolicy = "GetPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPolicy for more information on using the GetPolicy
 // API call, and error handling.
@@ -6809,7 +6809,7 @@ const opGetPolicyVersion = "GetPolicyVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPolicyVersion for more information on using the GetPolicyVersion
 // API call, and error handling.
@@ -6918,7 +6918,7 @@ const opGetRole = "GetRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRole for more information on using the GetRole
 // API call, and error handling.
@@ -7010,7 +7010,7 @@ const opGetRolePolicy = "GetRolePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRolePolicy for more information on using the GetRolePolicy
 // API call, and error handling.
@@ -7113,7 +7113,7 @@ const opGetSAMLProvider = "GetSAMLProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSAMLProvider for more information on using the GetSAMLProvider
 // API call, and error handling.
@@ -7204,7 +7204,7 @@ const opGetSSHPublicKey = "GetSSHPublicKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSSHPublicKey for more information on using the GetSSHPublicKey
 // API call, and error handling.
@@ -7294,7 +7294,7 @@ const opGetServerCertificate = "GetServerCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServerCertificate for more information on using the GetServerCertificate
 // API call, and error handling.
@@ -7383,7 +7383,7 @@ const opGetServiceLastAccessedDetails = "GetServiceLastAccessedDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceLastAccessedDetails for more information on using the GetServiceLastAccessedDetails
 // API call, and error handling.
@@ -7512,7 +7512,7 @@ const opGetServiceLastAccessedDetailsWithEntities = "GetServiceLastAccessedDetai
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceLastAccessedDetailsWithEntities for more information on using the GetServiceLastAccessedDetailsWithEntities
 // API call, and error handling.
@@ -7617,7 +7617,7 @@ const opGetServiceLinkedRoleDeletionStatus = "GetServiceLinkedRoleDeletionStatus
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceLinkedRoleDeletionStatus for more information on using the GetServiceLinkedRoleDeletionStatus
 // API call, and error handling.
@@ -7710,7 +7710,7 @@ const opGetUser = "GetUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUser for more information on using the GetUser
 // API call, and error handling.
@@ -7798,7 +7798,7 @@ const opGetUserPolicy = "GetUserPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserPolicy for more information on using the GetUserPolicy
 // API call, and error handling.
@@ -7898,7 +7898,7 @@ const opListAccessKeys = "ListAccessKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccessKeys for more information on using the ListAccessKeys
 // API call, and error handling.
@@ -8053,7 +8053,7 @@ const opListAccountAliases = "ListAccountAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountAliases for more information on using the ListAccountAliases
 // API call, and error handling.
@@ -8194,7 +8194,7 @@ const opListAttachedGroupPolicies = "ListAttachedGroupPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttachedGroupPolicies for more information on using the ListAttachedGroupPolicies
 // API call, and error handling.
@@ -8351,7 +8351,7 @@ const opListAttachedRolePolicies = "ListAttachedRolePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttachedRolePolicies for more information on using the ListAttachedRolePolicies
 // API call, and error handling.
@@ -8508,7 +8508,7 @@ const opListAttachedUserPolicies = "ListAttachedUserPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttachedUserPolicies for more information on using the ListAttachedUserPolicies
 // API call, and error handling.
@@ -8665,7 +8665,7 @@ const opListEntitiesForPolicy = "ListEntitiesForPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEntitiesForPolicy for more information on using the ListEntitiesForPolicy
 // API call, and error handling.
@@ -8819,7 +8819,7 @@ const opListGroupPolicies = "ListGroupPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroupPolicies for more information on using the ListGroupPolicies
 // API call, and error handling.
@@ -8972,7 +8972,7 @@ const opListGroups = "ListGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroups for more information on using the ListGroups
 // API call, and error handling.
@@ -9112,7 +9112,7 @@ const opListGroupsForUser = "ListGroupsForUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGroupsForUser for more information on using the ListGroupsForUser
 // API call, and error handling.
@@ -9256,7 +9256,7 @@ const opListInstanceProfiles = "ListInstanceProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstanceProfiles for more information on using the ListInstanceProfiles
 // API call, and error handling.
@@ -9398,7 +9398,7 @@ const opListInstanceProfilesForRole = "ListInstanceProfilesForRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstanceProfilesForRole for more information on using the ListInstanceProfilesForRole
 // API call, and error handling.
@@ -9544,7 +9544,7 @@ const opListMFADevices = "ListMFADevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMFADevices for more information on using the ListMFADevices
 // API call, and error handling.
@@ -9691,7 +9691,7 @@ const opListOpenIDConnectProviders = "ListOpenIDConnectProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOpenIDConnectProviders for more information on using the ListOpenIDConnectProviders
 // API call, and error handling.
@@ -9772,7 +9772,7 @@ const opListPolicies = "ListPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPolicies for more information on using the ListPolicies
 // API call, and error handling.
@@ -9922,7 +9922,7 @@ const opListPoliciesGrantingServiceAccess = "ListPoliciesGrantingServiceAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPoliciesGrantingServiceAccess for more information on using the ListPoliciesGrantingServiceAccess
 // API call, and error handling.
@@ -10040,7 +10040,7 @@ const opListPolicyVersions = "ListPolicyVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPolicyVersions for more information on using the ListPolicyVersions
 // API call, and error handling.
@@ -10191,7 +10191,7 @@ const opListRolePolicies = "ListRolePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRolePolicies for more information on using the ListRolePolicies
 // API call, and error handling.
@@ -10343,7 +10343,7 @@ const opListRoleTags = "ListRoleTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoleTags for more information on using the ListRoleTags
 // API call, and error handling.
@@ -10430,7 +10430,7 @@ const opListRoles = "ListRoles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoles for more information on using the ListRoles
 // API call, and error handling.
@@ -10572,7 +10572,7 @@ const opListSAMLProviders = "ListSAMLProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSAMLProviders for more information on using the ListSAMLProviders
 // API call, and error handling.
@@ -10654,7 +10654,7 @@ const opListSSHPublicKeys = "ListSSHPublicKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSSHPublicKeys for more information on using the ListSSHPublicKeys
 // API call, and error handling.
@@ -10802,7 +10802,7 @@ const opListServerCertificates = "ListServerCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServerCertificates for more information on using the ListServerCertificates
 // API call, and error handling.
@@ -10948,7 +10948,7 @@ const opListServiceSpecificCredentials = "ListServiceSpecificCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServiceSpecificCredentials for more information on using the ListServiceSpecificCredentials
 // API call, and error handling.
@@ -11037,7 +11037,7 @@ const opListSigningCertificates = "ListSigningCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSigningCertificates for more information on using the ListSigningCertificates
 // API call, and error handling.
@@ -11189,7 +11189,7 @@ const opListUserPolicies = "ListUserPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserPolicies for more information on using the ListUserPolicies
 // API call, and error handling.
@@ -11340,7 +11340,7 @@ const opListUserTags = "ListUserTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserTags for more information on using the ListUserTags
 // API call, and error handling.
@@ -11427,7 +11427,7 @@ const opListUsers = "ListUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsers for more information on using the ListUsers
 // API call, and error handling.
@@ -11569,7 +11569,7 @@ const opListVirtualMFADevices = "ListVirtualMFADevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVirtualMFADevices for more information on using the ListVirtualMFADevices
 // API call, and error handling.
@@ -11706,7 +11706,7 @@ const opPutGroupPolicy = "PutGroupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutGroupPolicy for more information on using the PutGroupPolicy
 // API call, and error handling.
@@ -11816,7 +11816,7 @@ const opPutRolePermissionsBoundary = "PutRolePermissionsBoundary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRolePermissionsBoundary for more information on using the PutRolePermissionsBoundary
 // API call, and error handling.
@@ -11927,7 +11927,7 @@ const opPutRolePolicy = "PutRolePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRolePolicy for more information on using the PutRolePolicy
 // API call, and error handling.
@@ -12049,7 +12049,7 @@ const opPutUserPermissionsBoundary = "PutUserPermissionsBoundary"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutUserPermissionsBoundary for more information on using the PutUserPermissionsBoundary
 // API call, and error handling.
@@ -12152,7 +12152,7 @@ const opPutUserPolicy = "PutUserPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutUserPolicy for more information on using the PutUserPolicy
 // API call, and error handling.
@@ -12262,7 +12262,7 @@ const opRemoveClientIDFromOpenIDConnectProvider = "RemoveClientIDFromOpenIDConne
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveClientIDFromOpenIDConnectProvider for more information on using the RemoveClientIDFromOpenIDConnectProvider
 // API call, and error handling.
@@ -12356,7 +12356,7 @@ const opRemoveRoleFromInstanceProfile = "RemoveRoleFromInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveRoleFromInstanceProfile for more information on using the RemoveRoleFromInstanceProfile
 // API call, and error handling.
@@ -12461,7 +12461,7 @@ const opRemoveUserFromGroup = "RemoveUserFromGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveUserFromGroup for more information on using the RemoveUserFromGroup
 // API call, and error handling.
@@ -12551,7 +12551,7 @@ const opResetServiceSpecificCredential = "ResetServiceSpecificCredential"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetServiceSpecificCredential for more information on using the ResetServiceSpecificCredential
 // API call, and error handling.
@@ -12634,7 +12634,7 @@ const opResyncMFADevice = "ResyncMFADevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResyncMFADevice for more information on using the ResyncMFADevice
 // API call, and error handling.
@@ -12733,7 +12733,7 @@ const opSetDefaultPolicyVersion = "SetDefaultPolicyVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetDefaultPolicyVersion for more information on using the SetDefaultPolicyVersion
 // API call, and error handling.
@@ -12836,7 +12836,7 @@ const opSetSecurityTokenServicePreferences = "SetSecurityTokenServicePreferences
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetSecurityTokenServicePreferences for more information on using the SetSecurityTokenServicePreferences
 // API call, and error handling.
@@ -12938,7 +12938,7 @@ const opSimulateCustomPolicy = "SimulateCustomPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SimulateCustomPolicy for more information on using the SimulateCustomPolicy
 // API call, and error handling.
@@ -13097,7 +13097,7 @@ const opSimulatePrincipalPolicy = "SimulatePrincipalPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SimulatePrincipalPolicy for more information on using the SimulatePrincipalPolicy
 // API call, and error handling.
@@ -13269,7 +13269,7 @@ const opTagRole = "TagRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagRole for more information on using the TagRole
 // API call, and error handling.
@@ -13401,7 +13401,7 @@ const opTagUser = "TagUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagUser for more information on using the TagUser
 // API call, and error handling.
@@ -13532,7 +13532,7 @@ const opUntagRole = "UntagRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagRole for more information on using the UntagRole
 // API call, and error handling.
@@ -13624,7 +13624,7 @@ const opUntagUser = "UntagUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagUser for more information on using the UntagUser
 // API call, and error handling.
@@ -13716,7 +13716,7 @@ const opUpdateAccessKey = "UpdateAccessKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccessKey for more information on using the UpdateAccessKey
 // API call, and error handling.
@@ -13817,7 +13817,7 @@ const opUpdateAccountPasswordPolicy = "UpdateAccountPasswordPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccountPasswordPolicy for more information on using the UpdateAccountPasswordPolicy
 // API call, and error handling.
@@ -13922,7 +13922,7 @@ const opUpdateAssumeRolePolicy = "UpdateAssumeRolePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAssumeRolePolicy for more information on using the UpdateAssumeRolePolicy
 // API call, and error handling.
@@ -14025,7 +14025,7 @@ const opUpdateGroup = "UpdateGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGroup for more information on using the UpdateGroup
 // API call, and error handling.
@@ -14130,7 +14130,7 @@ const opUpdateLoginProfile = "UpdateLoginProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLoginProfile for more information on using the UpdateLoginProfile
 // API call, and error handling.
@@ -14234,7 +14234,7 @@ const opUpdateOpenIDConnectProviderThumbprint = "UpdateOpenIDConnectProviderThum
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOpenIDConnectProviderThumbprint for more information on using the UpdateOpenIDConnectProviderThumbprint
 // API call, and error handling.
@@ -14337,7 +14337,7 @@ const opUpdateRole = "UpdateRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRole for more information on using the UpdateRole
 // API call, and error handling.
@@ -14428,7 +14428,7 @@ const opUpdateRoleDescription = "UpdateRoleDescription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoleDescription for more information on using the UpdateRoleDescription
 // API call, and error handling.
@@ -14521,7 +14521,7 @@ const opUpdateSAMLProvider = "UpdateSAMLProvider"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSAMLProvider for more information on using the UpdateSAMLProvider
 // API call, and error handling.
@@ -14616,7 +14616,7 @@ const opUpdateSSHPublicKey = "UpdateSSHPublicKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSSHPublicKey for more information on using the UpdateSSHPublicKey
 // API call, and error handling.
@@ -14706,7 +14706,7 @@ const opUpdateServerCertificate = "UpdateServerCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServerCertificate for more information on using the UpdateServerCertificate
 // API call, and error handling.
@@ -14819,7 +14819,7 @@ const opUpdateServiceSpecificCredential = "UpdateServiceSpecificCredential"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServiceSpecificCredential for more information on using the UpdateServiceSpecificCredential
 // API call, and error handling.
@@ -14903,7 +14903,7 @@ const opUpdateSigningCertificate = "UpdateSigningCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSigningCertificate for more information on using the UpdateSigningCertificate
 // API call, and error handling.
@@ -15001,7 +15001,7 @@ const opUpdateUser = "UpdateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUser for more information on using the UpdateUser
 // API call, and error handling.
@@ -15117,7 +15117,7 @@ const opUploadSSHPublicKey = "UploadSSHPublicKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadSSHPublicKey for more information on using the UploadSSHPublicKey
 // API call, and error handling.
@@ -15220,7 +15220,7 @@ const opUploadServerCertificate = "UploadServerCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadServerCertificate for more information on using the UploadServerCertificate
 // API call, and error handling.
@@ -15342,7 +15342,7 @@ const opUploadSigningCertificate = "UploadSigningCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadSigningCertificate for more information on using the UploadSigningCertificate
 // API call, and error handling.

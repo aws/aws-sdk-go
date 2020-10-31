@@ -117,7 +117,7 @@ const opOutputService1TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService1TestCaseOperation1 for more information on using the OutputService1TestCaseOperation1
 // API call, and error handling.
@@ -370,7 +370,7 @@ const opOutputService2TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService2TestCaseOperation1 for more information on using the OutputService2TestCaseOperation1
 // API call, and error handling.
@@ -539,7 +539,7 @@ const opOutputService3TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService3TestCaseOperation1 for more information on using the OutputService3TestCaseOperation1
 // API call, and error handling.
@@ -754,7 +754,7 @@ const opOutputService4TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService4TestCaseOperation1 for more information on using the OutputService4TestCaseOperation1
 // API call, and error handling.
@@ -901,7 +901,7 @@ const opOutputService5TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService5TestCaseOperation1 for more information on using the OutputService5TestCaseOperation1
 // API call, and error handling.
@@ -1060,7 +1060,7 @@ const opOutputService6TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService6TestCaseOperation1 for more information on using the OutputService6TestCaseOperation1
 // API call, and error handling.
@@ -1207,7 +1207,7 @@ const opOutputService7TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService7TestCaseOperation1 for more information on using the OutputService7TestCaseOperation1
 // API call, and error handling.
@@ -1354,7 +1354,7 @@ const opOutputService8TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService8TestCaseOperation1 for more information on using the OutputService8TestCaseOperation1
 // API call, and error handling.
@@ -1501,7 +1501,7 @@ const opOutputService9TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService9TestCaseOperation1 for more information on using the OutputService9TestCaseOperation1
 // API call, and error handling.
@@ -1641,7 +1641,7 @@ const opOutputService10TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService10TestCaseOperation1 for more information on using the OutputService10TestCaseOperation1
 // API call, and error handling.
@@ -1802,7 +1802,7 @@ const opOutputService11TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService11TestCaseOperation1 for more information on using the OutputService11TestCaseOperation1
 // API call, and error handling.
@@ -1969,7 +1969,7 @@ const opOutputService12TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService12TestCaseOperation1 for more information on using the OutputService12TestCaseOperation1
 // API call, and error handling.
@@ -2116,7 +2116,7 @@ const opOutputService13TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService13TestCaseOperation1 for more information on using the OutputService13TestCaseOperation1
 // API call, and error handling.
@@ -2184,7 +2184,7 @@ const opOutputService13TestCaseOperation2 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService13TestCaseOperation2 for more information on using the OutputService13TestCaseOperation2
 // API call, and error handling.
@@ -2379,7 +2379,7 @@ const opOutputService14TestCaseOperation1 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService14TestCaseOperation1 for more information on using the OutputService14TestCaseOperation1
 // API call, and error handling.
@@ -2448,7 +2448,7 @@ const opOutputService14TestCaseOperation2 = "OperationName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OutputService14TestCaseOperation2 for more information on using the OutputService14TestCaseOperation2
 // API call, and error handling.

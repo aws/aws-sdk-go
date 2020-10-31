@@ -21,7 +21,7 @@ const opAssociateWebACL = "AssociateWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateWebACL for more information on using the AssociateWebACL
 // API call, and error handling.
@@ -139,7 +139,7 @@ const opCheckCapacity = "CheckCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CheckCapacity for more information on using the CheckCapacity
 // API call, and error handling.
@@ -268,7 +268,7 @@ const opCreateIPSet = "CreateIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIPSet for more information on using the CreateIPSet
 // API call, and error handling.
@@ -397,7 +397,7 @@ const opCreateRegexPatternSet = "CreateRegexPatternSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRegexPatternSet for more information on using the CreateRegexPatternSet
 // API call, and error handling.
@@ -524,7 +524,7 @@ const opCreateRuleGroup = "CreateRuleGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRuleGroup for more information on using the CreateRuleGroup
 // API call, and error handling.
@@ -665,7 +665,7 @@ const opCreateWebACL = "CreateWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWebACL for more information on using the CreateWebACL
 // API call, and error handling.
@@ -814,7 +814,7 @@ const opDeleteFirewallManagerRuleGroups = "DeleteFirewallManagerRuleGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFirewallManagerRuleGroups for more information on using the DeleteFirewallManagerRuleGroups
 // API call, and error handling.
@@ -926,7 +926,7 @@ const opDeleteIPSet = "DeleteIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIPSet for more information on using the DeleteIPSet
 // API call, and error handling.
@@ -1051,7 +1051,7 @@ const opDeleteLoggingConfiguration = "DeleteLoggingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoggingConfiguration for more information on using the DeleteLoggingConfiguration
 // API call, and error handling.
@@ -1165,7 +1165,7 @@ const opDeletePermissionPolicy = "DeletePermissionPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePermissionPolicy for more information on using the DeletePermissionPolicy
 // API call, and error handling.
@@ -1267,7 +1267,7 @@ const opDeleteRegexPatternSet = "DeleteRegexPatternSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRegexPatternSet for more information on using the DeleteRegexPatternSet
 // API call, and error handling.
@@ -1392,7 +1392,7 @@ const opDeleteRuleGroup = "DeleteRuleGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRuleGroup for more information on using the DeleteRuleGroup
 // API call, and error handling.
@@ -1517,7 +1517,7 @@ const opDeleteWebACL = "DeleteWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWebACL for more information on using the DeleteWebACL
 // API call, and error handling.
@@ -1645,7 +1645,7 @@ const opDescribeManagedRuleGroup = "DescribeManagedRuleGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeManagedRuleGroup for more information on using the DescribeManagedRuleGroup
 // API call, and error handling.
@@ -1757,7 +1757,7 @@ const opDisassociateWebACL = "DisassociateWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateWebACL for more information on using the DisassociateWebACL
 // API call, and error handling.
@@ -1872,7 +1872,7 @@ const opGetIPSet = "GetIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIPSet for more information on using the GetIPSet
 // API call, and error handling.
@@ -1979,7 +1979,7 @@ const opGetLoggingConfiguration = "GetLoggingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLoggingConfiguration for more information on using the GetLoggingConfiguration
 // API call, and error handling.
@@ -2086,7 +2086,7 @@ const opGetPermissionPolicy = "GetPermissionPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPermissionPolicy for more information on using the GetPermissionPolicy
 // API call, and error handling.
@@ -2187,7 +2187,7 @@ const opGetRateBasedStatementManagedKeys = "GetRateBasedStatementManagedKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRateBasedStatementManagedKeys for more information on using the GetRateBasedStatementManagedKeys
 // API call, and error handling.
@@ -2297,7 +2297,7 @@ const opGetRegexPatternSet = "GetRegexPatternSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRegexPatternSet for more information on using the GetRegexPatternSet
 // API call, and error handling.
@@ -2404,7 +2404,7 @@ const opGetRuleGroup = "GetRuleGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRuleGroup for more information on using the GetRuleGroup
 // API call, and error handling.
@@ -2511,7 +2511,7 @@ const opGetSampledRequests = "GetSampledRequests"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSampledRequests for more information on using the GetSampledRequests
 // API call, and error handling.
@@ -2625,7 +2625,7 @@ const opGetWebACL = "GetWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWebACL for more information on using the GetWebACL
 // API call, and error handling.
@@ -2732,7 +2732,7 @@ const opGetWebACLForResource = "GetWebACLForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWebACLForResource for more information on using the GetWebACLForResource
 // API call, and error handling.
@@ -2842,7 +2842,7 @@ const opListAvailableManagedRuleGroups = "ListAvailableManagedRuleGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAvailableManagedRuleGroups for more information on using the ListAvailableManagedRuleGroups
 // API call, and error handling.
@@ -2947,7 +2947,7 @@ const opListIPSets = "ListIPSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIPSets for more information on using the ListIPSets
 // API call, and error handling.
@@ -3050,7 +3050,7 @@ const opListLoggingConfigurations = "ListLoggingConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLoggingConfigurations for more information on using the ListLoggingConfigurations
 // API call, and error handling.
@@ -3153,7 +3153,7 @@ const opListRegexPatternSets = "ListRegexPatternSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRegexPatternSets for more information on using the ListRegexPatternSets
 // API call, and error handling.
@@ -3257,7 +3257,7 @@ const opListResourcesForWebACL = "ListResourcesForWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourcesForWebACL for more information on using the ListResourcesForWebACL
 // API call, and error handling.
@@ -3366,7 +3366,7 @@ const opListRuleGroups = "ListRuleGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRuleGroups for more information on using the ListRuleGroups
 // API call, and error handling.
@@ -3470,7 +3470,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -3592,7 +3592,7 @@ const opListWebACLs = "ListWebACLs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWebACLs for more information on using the ListWebACLs
 // API call, and error handling.
@@ -3695,7 +3695,7 @@ const opPutLoggingConfiguration = "PutLoggingConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLoggingConfiguration for more information on using the PutLoggingConfiguration
 // API call, and error handling.
@@ -3847,7 +3847,7 @@ const opPutPermissionPolicy = "PutPermissionPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutPermissionPolicy for more information on using the PutPermissionPolicy
 // API call, and error handling.
@@ -3978,7 +3978,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4107,7 +4107,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4225,7 +4225,7 @@ const opUpdateIPSet = "UpdateIPSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIPSet for more information on using the UpdateIPSet
 // API call, and error handling.
@@ -4348,7 +4348,7 @@ const opUpdateRegexPatternSet = "UpdateRegexPatternSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRegexPatternSet for more information on using the UpdateRegexPatternSet
 // API call, and error handling.
@@ -4471,7 +4471,7 @@ const opUpdateRuleGroup = "UpdateRuleGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRuleGroup for more information on using the UpdateRuleGroup
 // API call, and error handling.
@@ -4605,7 +4605,7 @@ const opUpdateWebACL = "UpdateWebACL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWebACL for more information on using the UpdateWebACL
 // API call, and error handling.

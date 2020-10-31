@@ -21,7 +21,7 @@ const opAssociateDomain = "AssociateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDomain for more information on using the AssociateDomain
 // API call, and error handling.
@@ -116,7 +116,7 @@ const opAssociateWebsiteAuthorizationProvider = "AssociateWebsiteAuthorizationPr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateWebsiteAuthorizationProvider for more information on using the AssociateWebsiteAuthorizationProvider
 // API call, and error handling.
@@ -211,7 +211,7 @@ const opAssociateWebsiteCertificateAuthority = "AssociateWebsiteCertificateAutho
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateWebsiteCertificateAuthority for more information on using the AssociateWebsiteCertificateAuthority
 // API call, and error handling.
@@ -306,7 +306,7 @@ const opCreateFleet = "CreateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFleet for more information on using the CreateFleet
 // API call, and error handling.
@@ -402,7 +402,7 @@ const opDeleteFleet = "DeleteFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFleet for more information on using the DeleteFleet
 // API call, and error handling.
@@ -494,7 +494,7 @@ const opDescribeAuditStreamConfiguration = "DescribeAuditStreamConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAuditStreamConfiguration for more information on using the DescribeAuditStreamConfiguration
 // API call, and error handling.
@@ -586,7 +586,7 @@ const opDescribeCompanyNetworkConfiguration = "DescribeCompanyNetworkConfigurati
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCompanyNetworkConfiguration for more information on using the DescribeCompanyNetworkConfiguration
 // API call, and error handling.
@@ -678,7 +678,7 @@ const opDescribeDevice = "DescribeDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDevice for more information on using the DescribeDevice
 // API call, and error handling.
@@ -769,7 +769,7 @@ const opDescribeDevicePolicyConfiguration = "DescribeDevicePolicyConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDevicePolicyConfiguration for more information on using the DescribeDevicePolicyConfiguration
 // API call, and error handling.
@@ -860,7 +860,7 @@ const opDescribeDomain = "DescribeDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomain for more information on using the DescribeDomain
 // API call, and error handling.
@@ -951,7 +951,7 @@ const opDescribeFleetMetadata = "DescribeFleetMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleetMetadata for more information on using the DescribeFleetMetadata
 // API call, and error handling.
@@ -1043,7 +1043,7 @@ const opDescribeIdentityProviderConfiguration = "DescribeIdentityProviderConfigu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIdentityProviderConfiguration for more information on using the DescribeIdentityProviderConfiguration
 // API call, and error handling.
@@ -1134,7 +1134,7 @@ const opDescribeWebsiteCertificateAuthority = "DescribeWebsiteCertificateAuthori
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWebsiteCertificateAuthority for more information on using the DescribeWebsiteCertificateAuthority
 // API call, and error handling.
@@ -1225,7 +1225,7 @@ const opDisassociateDomain = "DisassociateDomain"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateDomain for more information on using the DisassociateDomain
 // API call, and error handling.
@@ -1318,7 +1318,7 @@ const opDisassociateWebsiteAuthorizationProvider = "DisassociateWebsiteAuthoriza
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateWebsiteAuthorizationProvider for more information on using the DisassociateWebsiteAuthorizationProvider
 // API call, and error handling.
@@ -1415,7 +1415,7 @@ const opDisassociateWebsiteCertificateAuthority = "DisassociateWebsiteCertificat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateWebsiteCertificateAuthority for more information on using the DisassociateWebsiteCertificateAuthority
 // API call, and error handling.
@@ -1507,7 +1507,7 @@ const opListDevices = "ListDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevices for more information on using the ListDevices
 // API call, and error handling.
@@ -1656,7 +1656,7 @@ const opListDomains = "ListDomains"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDomains for more information on using the ListDomains
 // API call, and error handling.
@@ -1805,7 +1805,7 @@ const opListFleets = "ListFleets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFleets for more information on using the ListFleets
 // API call, and error handling.
@@ -1951,7 +1951,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2030,7 +2030,7 @@ const opListWebsiteAuthorizationProviders = "ListWebsiteAuthorizationProviders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWebsiteAuthorizationProviders for more information on using the ListWebsiteAuthorizationProviders
 // API call, and error handling.
@@ -2180,7 +2180,7 @@ const opListWebsiteCertificateAuthorities = "ListWebsiteCertificateAuthorities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWebsiteCertificateAuthorities for more information on using the ListWebsiteCertificateAuthorities
 // API call, and error handling.
@@ -2327,7 +2327,7 @@ const opRestoreDomainAccess = "RestoreDomainAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreDomainAccess for more information on using the RestoreDomainAccess
 // API call, and error handling.
@@ -2419,7 +2419,7 @@ const opRevokeDomainAccess = "RevokeDomainAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeDomainAccess for more information on using the RevokeDomainAccess
 // API call, and error handling.
@@ -2511,7 +2511,7 @@ const opSignOutUser = "SignOutUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SignOutUser for more information on using the SignOutUser
 // API call, and error handling.
@@ -2604,7 +2604,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2686,7 +2686,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2766,7 +2766,7 @@ const opUpdateAuditStreamConfiguration = "UpdateAuditStreamConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAuditStreamConfiguration for more information on using the UpdateAuditStreamConfiguration
 // API call, and error handling.
@@ -2858,7 +2858,7 @@ const opUpdateCompanyNetworkConfiguration = "UpdateCompanyNetworkConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCompanyNetworkConfiguration for more information on using the UpdateCompanyNetworkConfiguration
 // API call, and error handling.
@@ -2950,7 +2950,7 @@ const opUpdateDevicePolicyConfiguration = "UpdateDevicePolicyConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDevicePolicyConfiguration for more information on using the UpdateDevicePolicyConfiguration
 // API call, and error handling.
@@ -3042,7 +3042,7 @@ const opUpdateDomainMetadata = "UpdateDomainMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDomainMetadata for more information on using the UpdateDomainMetadata
 // API call, and error handling.
@@ -3134,7 +3134,7 @@ const opUpdateFleetMetadata = "UpdateFleetMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFleetMetadata for more information on using the UpdateFleetMetadata
 // API call, and error handling.
@@ -3226,7 +3226,7 @@ const opUpdateIdentityProviderConfiguration = "UpdateIdentityProviderConfigurati
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateIdentityProviderConfiguration for more information on using the UpdateIdentityProviderConfiguration
 // API call, and error handling.

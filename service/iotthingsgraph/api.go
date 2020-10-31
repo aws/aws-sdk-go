@@ -21,7 +21,7 @@ const opAssociateEntityToThing = "AssociateEntityToThing"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateEntityToThing for more information on using the AssociateEntityToThing
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opCreateFlowTemplate = "CreateFlowTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFlowTemplate for more information on using the CreateFlowTemplate
 // API call, and error handling.
@@ -199,7 +199,7 @@ const opCreateSystemInstance = "CreateSystemInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSystemInstance for more information on using the CreateSystemInstance
 // API call, and error handling.
@@ -303,7 +303,7 @@ const opCreateSystemTemplate = "CreateSystemTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSystemTemplate for more information on using the CreateSystemTemplate
 // API call, and error handling.
@@ -389,7 +389,7 @@ const opDeleteFlowTemplate = "DeleteFlowTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFlowTemplate for more information on using the DeleteFlowTemplate
 // API call, and error handling.
@@ -477,7 +477,7 @@ const opDeleteNamespace = "DeleteNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNamespace for more information on using the DeleteNamespace
 // API call, and error handling.
@@ -559,7 +559,7 @@ const opDeleteSystemInstance = "DeleteSystemInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSystemInstance for more information on using the DeleteSystemInstance
 // API call, and error handling.
@@ -648,7 +648,7 @@ const opDeleteSystemTemplate = "DeleteSystemTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSystemTemplate for more information on using the DeleteSystemTemplate
 // API call, and error handling.
@@ -735,7 +735,7 @@ const opDeploySystemInstance = "DeploySystemInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeploySystemInstance for more information on using the DeploySystemInstance
 // API call, and error handling.
@@ -837,7 +837,7 @@ const opDeprecateFlowTemplate = "DeprecateFlowTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeprecateFlowTemplate for more information on using the DeprecateFlowTemplate
 // API call, and error handling.
@@ -924,7 +924,7 @@ const opDeprecateSystemTemplate = "DeprecateSystemTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeprecateSystemTemplate for more information on using the DeprecateSystemTemplate
 // API call, and error handling.
@@ -1009,7 +1009,7 @@ const opDescribeNamespace = "DescribeNamespace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNamespace for more information on using the DescribeNamespace
 // API call, and error handling.
@@ -1094,7 +1094,7 @@ const opDissociateEntityFromThing = "DissociateEntityFromThing"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DissociateEntityFromThing for more information on using the DissociateEntityFromThing
 // API call, and error handling.
@@ -1181,7 +1181,7 @@ const opGetEntities = "GetEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEntities for more information on using the GetEntities
 // API call, and error handling.
@@ -1286,7 +1286,7 @@ const opGetFlowTemplate = "GetFlowTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFlowTemplate for more information on using the GetFlowTemplate
 // API call, and error handling.
@@ -1371,7 +1371,7 @@ const opGetFlowTemplateRevisions = "GetFlowTemplateRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFlowTemplateRevisions for more information on using the GetFlowTemplateRevisions
 // API call, and error handling.
@@ -1516,7 +1516,7 @@ const opGetNamespaceDeletionStatus = "GetNamespaceDeletionStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNamespaceDeletionStatus for more information on using the GetNamespaceDeletionStatus
 // API call, and error handling.
@@ -1598,7 +1598,7 @@ const opGetSystemInstance = "GetSystemInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSystemInstance for more information on using the GetSystemInstance
 // API call, and error handling.
@@ -1682,7 +1682,7 @@ const opGetSystemTemplate = "GetSystemTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSystemTemplate for more information on using the GetSystemTemplate
 // API call, and error handling.
@@ -1766,7 +1766,7 @@ const opGetSystemTemplateRevisions = "GetSystemTemplateRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSystemTemplateRevisions for more information on using the GetSystemTemplateRevisions
 // API call, and error handling.
@@ -1911,7 +1911,7 @@ const opGetUploadStatus = "GetUploadStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUploadStatus for more information on using the GetUploadStatus
 // API call, and error handling.
@@ -1995,7 +1995,7 @@ const opListFlowExecutionMessages = "ListFlowExecutionMessages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFlowExecutionMessages for more information on using the ListFlowExecutionMessages
 // API call, and error handling.
@@ -2138,7 +2138,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2280,7 +2280,7 @@ const opSearchEntities = "SearchEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchEntities for more information on using the SearchEntities
 // API call, and error handling.
@@ -2421,7 +2421,7 @@ const opSearchFlowExecutions = "SearchFlowExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchFlowExecutions for more information on using the SearchFlowExecutions
 // API call, and error handling.
@@ -2563,7 +2563,7 @@ const opSearchFlowTemplates = "SearchFlowTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchFlowTemplates for more information on using the SearchFlowTemplates
 // API call, and error handling.
@@ -2703,7 +2703,7 @@ const opSearchSystemInstances = "SearchSystemInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchSystemInstances for more information on using the SearchSystemInstances
 // API call, and error handling.
@@ -2843,7 +2843,7 @@ const opSearchSystemTemplates = "SearchSystemTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchSystemTemplates for more information on using the SearchSystemTemplates
 // API call, and error handling.
@@ -2985,7 +2985,7 @@ const opSearchThings = "SearchThings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchThings for more information on using the SearchThings
 // API call, and error handling.
@@ -3135,7 +3135,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3220,7 +3220,7 @@ const opUndeploySystemInstance = "UndeploySystemInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UndeploySystemInstance for more information on using the UndeploySystemInstance
 // API call, and error handling.
@@ -3306,7 +3306,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3391,7 +3391,7 @@ const opUpdateFlowTemplate = "UpdateFlowTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFlowTemplate for more information on using the UpdateFlowTemplate
 // API call, and error handling.
@@ -3479,7 +3479,7 @@ const opUpdateSystemTemplate = "UpdateSystemTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSystemTemplate for more information on using the UpdateSystemTemplate
 // API call, and error handling.
@@ -3565,7 +3565,7 @@ const opUploadEntityDefinitions = "UploadEntityDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UploadEntityDefinitions for more information on using the UploadEntityDefinitions
 // API call, and error handling.

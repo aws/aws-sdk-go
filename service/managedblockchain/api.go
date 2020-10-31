@@ -21,7 +21,7 @@ const opCreateMember = "CreateMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMember for more information on using the CreateMember
 // API call, and error handling.
@@ -130,7 +130,7 @@ const opCreateNetwork = "CreateNetwork"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNetwork for more information on using the CreateNetwork
 // API call, and error handling.
@@ -231,7 +231,7 @@ const opCreateNode = "CreateNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNode for more information on using the CreateNode
 // API call, and error handling.
@@ -340,7 +340,7 @@ const opCreateProposal = "CreateProposal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProposal for more information on using the CreateProposal
 // API call, and error handling.
@@ -443,7 +443,7 @@ const opDeleteMember = "DeleteMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMember for more information on using the DeleteMember
 // API call, and error handling.
@@ -551,7 +551,7 @@ const opDeleteNode = "DeleteNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNode for more information on using the DeleteNode
 // API call, and error handling.
@@ -654,7 +654,7 @@ const opGetMember = "GetMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMember for more information on using the GetMember
 // API call, and error handling.
@@ -751,7 +751,7 @@ const opGetNetwork = "GetNetwork"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNetwork for more information on using the GetNetwork
 // API call, and error handling.
@@ -848,7 +848,7 @@ const opGetNode = "GetNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNode for more information on using the GetNode
 // API call, and error handling.
@@ -945,7 +945,7 @@ const opGetProposal = "GetProposal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProposal for more information on using the GetProposal
 // API call, and error handling.
@@ -1042,7 +1042,7 @@ const opListInvitations = "ListInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInvitations for more information on using the ListInvitations
 // API call, and error handling.
@@ -1202,7 +1202,7 @@ const opListMembers = "ListMembers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMembers for more information on using the ListMembers
 // API call, and error handling.
@@ -1353,7 +1353,7 @@ const opListNetworks = "ListNetworks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNetworks for more information on using the ListNetworks
 // API call, and error handling.
@@ -1505,7 +1505,7 @@ const opListNodes = "ListNodes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNodes for more information on using the ListNodes
 // API call, and error handling.
@@ -1656,7 +1656,7 @@ const opListProposalVotes = "ListProposalVotes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProposalVotes for more information on using the ListProposalVotes
 // API call, and error handling.
@@ -1808,7 +1808,7 @@ const opListProposals = "ListProposals"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProposals for more information on using the ListProposals
 // API call, and error handling.
@@ -1963,7 +1963,7 @@ const opRejectInvitation = "RejectInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectInvitation for more information on using the RejectInvitation
 // API call, and error handling.
@@ -2065,7 +2065,7 @@ const opUpdateMember = "UpdateMember"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateMember for more information on using the UpdateMember
 // API call, and error handling.
@@ -2163,7 +2163,7 @@ const opUpdateNode = "UpdateNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNode for more information on using the UpdateNode
 // API call, and error handling.
@@ -2261,7 +2261,7 @@ const opVoteOnProposal = "VoteOnProposal"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VoteOnProposal for more information on using the VoteOnProposal
 // API call, and error handling.

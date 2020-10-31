@@ -21,7 +21,7 @@ const opGetRoleCredentials = "GetRoleCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRoleCredentials for more information on using the GetRoleCredentials
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opListAccountRoles = "ListAccountRoles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountRoles for more information on using the ListAccountRoles
 // API call, and error handling.
@@ -264,7 +264,7 @@ const opListAccounts = "ListAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccounts for more information on using the ListAccounts
 // API call, and error handling.
@@ -417,7 +417,7 @@ const opLogout = "Logout"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Logout for more information on using the Logout
 // API call, and error handling.

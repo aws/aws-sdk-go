@@ -20,7 +20,7 @@ const opBatchPutMessage = "BatchPutMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchPutMessage for more information on using the BatchPutMessage
 // API call, and error handling.
@@ -113,7 +113,7 @@ const opBatchUpdateDetector = "BatchUpdateDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchUpdateDetector for more information on using the BatchUpdateDetector
 // API call, and error handling.
@@ -202,7 +202,7 @@ const opDescribeDetector = "DescribeDetector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDetector for more information on using the DescribeDetector
 // API call, and error handling.
@@ -293,7 +293,7 @@ const opListDetectors = "ListDetectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDetectors for more information on using the ListDetectors
 // API call, and error handling.

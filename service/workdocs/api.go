@@ -21,7 +21,7 @@ const opAbortDocumentVersionUpload = "AbortDocumentVersionUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AbortDocumentVersionUpload for more information on using the AbortDocumentVersionUpload
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opActivateUser = "ActivateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ActivateUser for more information on using the ActivateUser
 // API call, and error handling.
@@ -213,7 +213,7 @@ const opAddResourcePermissions = "AddResourcePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddResourcePermissions for more information on using the AddResourcePermissions
 // API call, and error handling.
@@ -304,7 +304,7 @@ const opCreateComment = "CreateComment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateComment for more information on using the CreateComment
 // API call, and error handling.
@@ -407,7 +407,7 @@ const opCreateCustomMetadata = "CreateCustomMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCustomMetadata for more information on using the CreateCustomMetadata
 // API call, and error handling.
@@ -509,7 +509,7 @@ const opCreateFolder = "CreateFolder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFolder for more information on using the CreateFolder
 // API call, and error handling.
@@ -615,7 +615,7 @@ const opCreateLabels = "CreateLabels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLabels for more information on using the CreateLabels
 // API call, and error handling.
@@ -712,7 +712,7 @@ const opCreateNotificationSubscription = "CreateNotificationSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNotificationSubscription for more information on using the CreateNotificationSubscription
 // API call, and error handling.
@@ -802,7 +802,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -896,7 +896,7 @@ const opDeactivateUser = "DeactivateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeactivateUser for more information on using the DeactivateUser
 // API call, and error handling.
@@ -991,7 +991,7 @@ const opDeleteComment = "DeleteComment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteComment for more information on using the DeleteComment
 // API call, and error handling.
@@ -1092,7 +1092,7 @@ const opDeleteCustomMetadata = "DeleteCustomMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCustomMetadata for more information on using the DeleteCustomMetadata
 // API call, and error handling.
@@ -1189,7 +1189,7 @@ const opDeleteDocument = "DeleteDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDocument for more information on using the DeleteDocument
 // API call, and error handling.
@@ -1293,7 +1293,7 @@ const opDeleteFolder = "DeleteFolder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFolder for more information on using the DeleteFolder
 // API call, and error handling.
@@ -1397,7 +1397,7 @@ const opDeleteFolderContents = "DeleteFolderContents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFolderContents for more information on using the DeleteFolderContents
 // API call, and error handling.
@@ -1498,7 +1498,7 @@ const opDeleteLabels = "DeleteLabels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLabels for more information on using the DeleteLabels
 // API call, and error handling.
@@ -1592,7 +1592,7 @@ const opDeleteNotificationSubscription = "DeleteNotificationSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotificationSubscription for more information on using the DeleteNotificationSubscription
 // API call, and error handling.
@@ -1681,7 +1681,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -1775,7 +1775,7 @@ const opDescribeActivities = "DescribeActivities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeActivities for more information on using the DescribeActivities
 // API call, and error handling.
@@ -1868,7 +1868,7 @@ const opDescribeComments = "DescribeComments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComments for more information on using the DescribeComments
 // API call, and error handling.
@@ -1964,7 +1964,7 @@ const opDescribeDocumentVersions = "DescribeDocumentVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDocumentVersions for more information on using the DescribeDocumentVersions
 // API call, and error handling.
@@ -2123,7 +2123,7 @@ const opDescribeFolderContents = "DescribeFolderContents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFolderContents for more information on using the DescribeFolderContents
 // API call, and error handling.
@@ -2283,7 +2283,7 @@ const opDescribeGroups = "DescribeGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGroups for more information on using the DescribeGroups
 // API call, and error handling.
@@ -2374,7 +2374,7 @@ const opDescribeNotificationSubscriptions = "DescribeNotificationSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotificationSubscriptions for more information on using the DescribeNotificationSubscriptions
 // API call, and error handling.
@@ -2459,7 +2459,7 @@ const opDescribeResourcePermissions = "DescribeResourcePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeResourcePermissions for more information on using the DescribeResourcePermissions
 // API call, and error handling.
@@ -2549,7 +2549,7 @@ const opDescribeRootFolders = "DescribeRootFolders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRootFolders for more information on using the DescribeRootFolders
 // API call, and error handling.
@@ -2650,7 +2650,7 @@ const opDescribeUsers = "DescribeUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUsers for more information on using the DescribeUsers
 // API call, and error handling.
@@ -2813,7 +2813,7 @@ const opGetCurrentUser = "GetCurrentUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCurrentUser for more information on using the GetCurrentUser
 // API call, and error handling.
@@ -2912,7 +2912,7 @@ const opGetDocument = "GetDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDocument for more information on using the GetDocument
 // API call, and error handling.
@@ -3011,7 +3011,7 @@ const opGetDocumentPath = "GetDocumentPath"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDocumentPath for more information on using the GetDocumentPath
 // API call, and error handling.
@@ -3110,7 +3110,7 @@ const opGetDocumentVersion = "GetDocumentVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDocumentVersion for more information on using the GetDocumentVersion
 // API call, and error handling.
@@ -3209,7 +3209,7 @@ const opGetFolder = "GetFolder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFolder for more information on using the GetFolder
 // API call, and error handling.
@@ -3308,7 +3308,7 @@ const opGetFolderPath = "GetFolderPath"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFolderPath for more information on using the GetFolderPath
 // API call, and error handling.
@@ -3407,7 +3407,7 @@ const opGetResources = "GetResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResources for more information on using the GetResources
 // API call, and error handling.
@@ -3501,7 +3501,7 @@ const opInitiateDocumentVersionUpload = "InitiateDocumentVersionUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InitiateDocumentVersionUpload for more information on using the InitiateDocumentVersionUpload
 // API call, and error handling.
@@ -3620,7 +3620,7 @@ const opRemoveAllResourcePermissions = "RemoveAllResourcePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveAllResourcePermissions for more information on using the RemoveAllResourcePermissions
 // API call, and error handling.
@@ -3711,7 +3711,7 @@ const opRemoveResourcePermission = "RemoveResourcePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveResourcePermission for more information on using the RemoveResourcePermission
 // API call, and error handling.
@@ -3802,7 +3802,7 @@ const opUpdateDocument = "UpdateDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDocument for more information on using the UpdateDocument
 // API call, and error handling.
@@ -3913,7 +3913,7 @@ const opUpdateDocumentVersion = "UpdateDocumentVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDocumentVersion for more information on using the UpdateDocumentVersion
 // API call, and error handling.
@@ -4020,7 +4020,7 @@ const opUpdateFolder = "UpdateFolder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFolder for more information on using the UpdateFolder
 // API call, and error handling.
@@ -4131,7 +4131,7 @@ const opUpdateUser = "UpdateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUser for more information on using the UpdateUser
 // API call, and error handling.

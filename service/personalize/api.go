@@ -21,7 +21,7 @@ const opCreateBatchInferenceJob = "CreateBatchInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBatchInferenceJob for more information on using the CreateBatchInferenceJob
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opCreateCampaign = "CreateCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCampaign for more information on using the CreateCampaign
 // API call, and error handling.
@@ -244,7 +244,7 @@ const opCreateDataset = "CreateDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataset for more information on using the CreateDataset
 // API call, and error handling.
@@ -366,7 +366,7 @@ const opCreateDatasetGroup = "CreateDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatasetGroup for more information on using the CreateDatasetGroup
 // API call, and error handling.
@@ -495,7 +495,7 @@ const opCreateDatasetImportJob = "CreateDatasetImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDatasetImportJob for more information on using the CreateDatasetImportJob
 // API call, and error handling.
@@ -614,7 +614,7 @@ const opCreateEventTracker = "CreateEventTracker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEventTracker for more information on using the CreateEventTracker
 // API call, and error handling.
@@ -737,7 +737,7 @@ const opCreateFilter = "CreateFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFilter for more information on using the CreateFilter
 // API call, and error handling.
@@ -826,7 +826,7 @@ const opCreateSchema = "CreateSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSchema for more information on using the CreateSchema
 // API call, and error handling.
@@ -924,7 +924,7 @@ const opCreateSolution = "CreateSolution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSolution for more information on using the CreateSolution
 // API call, and error handling.
@@ -1057,7 +1057,7 @@ const opCreateSolutionVersion = "CreateSolutionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSolutionVersion for more information on using the CreateSolutionVersion
 // API call, and error handling.
@@ -1173,7 +1173,7 @@ const opDeleteCampaign = "DeleteCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCampaign for more information on using the DeleteCampaign
 // API call, and error handling.
@@ -1262,7 +1262,7 @@ const opDeleteDataset = "DeleteDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataset for more information on using the DeleteDataset
 // API call, and error handling.
@@ -1350,7 +1350,7 @@ const opDeleteDatasetGroup = "DeleteDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDatasetGroup for more information on using the DeleteDatasetGroup
 // API call, and error handling.
@@ -1443,7 +1443,7 @@ const opDeleteEventTracker = "DeleteEventTracker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventTracker for more information on using the DeleteEventTracker
 // API call, and error handling.
@@ -1531,7 +1531,7 @@ const opDeleteFilter = "DeleteFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFilter for more information on using the DeleteFilter
 // API call, and error handling.
@@ -1617,7 +1617,7 @@ const opDeleteSchema = "DeleteSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSchema for more information on using the DeleteSchema
 // API call, and error handling.
@@ -1704,7 +1704,7 @@ const opDeleteSolution = "DeleteSolution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSolution for more information on using the DeleteSolution
 // API call, and error handling.
@@ -1795,7 +1795,7 @@ const opDescribeAlgorithm = "DescribeAlgorithm"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAlgorithm for more information on using the DescribeAlgorithm
 // API call, and error handling.
@@ -1877,7 +1877,7 @@ const opDescribeBatchInferenceJob = "DescribeBatchInferenceJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBatchInferenceJob for more information on using the DescribeBatchInferenceJob
 // API call, and error handling.
@@ -1961,7 +1961,7 @@ const opDescribeCampaign = "DescribeCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCampaign for more information on using the DescribeCampaign
 // API call, and error handling.
@@ -2054,7 +2054,7 @@ const opDescribeDataset = "DescribeDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataset for more information on using the DescribeDataset
 // API call, and error handling.
@@ -2136,7 +2136,7 @@ const opDescribeDatasetGroup = "DescribeDatasetGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDatasetGroup for more information on using the DescribeDatasetGroup
 // API call, and error handling.
@@ -2219,7 +2219,7 @@ const opDescribeDatasetImportJob = "DescribeDatasetImportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDatasetImportJob for more information on using the DescribeDatasetImportJob
 // API call, and error handling.
@@ -2302,7 +2302,7 @@ const opDescribeEventTracker = "DescribeEventTracker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventTracker for more information on using the DescribeEventTracker
 // API call, and error handling.
@@ -2385,7 +2385,7 @@ const opDescribeFeatureTransformation = "DescribeFeatureTransformation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFeatureTransformation for more information on using the DescribeFeatureTransformation
 // API call, and error handling.
@@ -2467,7 +2467,7 @@ const opDescribeFilter = "DescribeFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFilter for more information on using the DescribeFilter
 // API call, and error handling.
@@ -2549,7 +2549,7 @@ const opDescribeRecipe = "DescribeRecipe"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRecipe for more information on using the DescribeRecipe
 // API call, and error handling.
@@ -2647,7 +2647,7 @@ const opDescribeSchema = "DescribeSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSchema for more information on using the DescribeSchema
 // API call, and error handling.
@@ -2729,7 +2729,7 @@ const opDescribeSolution = "DescribeSolution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSolution for more information on using the DescribeSolution
 // API call, and error handling.
@@ -2811,7 +2811,7 @@ const opDescribeSolutionVersion = "DescribeSolutionVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSolutionVersion for more information on using the DescribeSolutionVersion
 // API call, and error handling.
@@ -2894,7 +2894,7 @@ const opGetSolutionMetrics = "GetSolutionMetrics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSolutionMetrics for more information on using the GetSolutionMetrics
 // API call, and error handling.
@@ -2979,7 +2979,7 @@ const opListBatchInferenceJobs = "ListBatchInferenceJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBatchInferenceJobs for more information on using the ListBatchInferenceJobs
 // API call, and error handling.
@@ -3120,7 +3120,7 @@ const opListCampaigns = "ListCampaigns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCampaigns for more information on using the ListCampaigns
 // API call, and error handling.
@@ -3263,7 +3263,7 @@ const opListDatasetGroups = "ListDatasetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasetGroups for more information on using the ListDatasetGroups
 // API call, and error handling.
@@ -3402,7 +3402,7 @@ const opListDatasetImportJobs = "ListDatasetImportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasetImportJobs for more information on using the ListDatasetImportJobs
 // API call, and error handling.
@@ -3547,7 +3547,7 @@ const opListDatasets = "ListDatasets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasets for more information on using the ListDatasets
 // API call, and error handling.
@@ -3689,7 +3689,7 @@ const opListEventTrackers = "ListEventTrackers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEventTrackers for more information on using the ListEventTrackers
 // API call, and error handling.
@@ -3831,7 +3831,7 @@ const opListFilters = "ListFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFilters for more information on using the ListFilters
 // API call, and error handling.
@@ -3913,7 +3913,7 @@ const opListRecipes = "ListRecipes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecipes for more information on using the ListRecipes
 // API call, and error handling.
@@ -4051,7 +4051,7 @@ const opListSchemas = "ListSchemas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSchemas for more information on using the ListSchemas
 // API call, and error handling.
@@ -4190,7 +4190,7 @@ const opListSolutionVersions = "ListSolutionVersions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSolutionVersions for more information on using the ListSolutionVersions
 // API call, and error handling.
@@ -4336,7 +4336,7 @@ const opListSolutions = "ListSolutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSolutions for more information on using the ListSolutions
 // API call, and error handling.
@@ -4479,7 +4479,7 @@ const opUpdateCampaign = "UpdateCampaign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCampaign for more information on using the UpdateCampaign
 // API call, and error handling.

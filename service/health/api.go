@@ -21,7 +21,7 @@ const opDescribeAffectedAccountsForOrganization = "DescribeAffectedAccountsForOr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAffectedAccountsForOrganization for more information on using the DescribeAffectedAccountsForOrganization
 // API call, and error handling.
@@ -168,7 +168,7 @@ const opDescribeAffectedEntities = "DescribeAffectedEntities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAffectedEntities for more information on using the DescribeAffectedEntities
 // API call, and error handling.
@@ -319,7 +319,7 @@ const opDescribeAffectedEntitiesForOrganization = "DescribeAffectedEntitiesForOr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAffectedEntitiesForOrganization for more information on using the DescribeAffectedEntitiesForOrganization
 // API call, and error handling.
@@ -475,7 +475,7 @@ const opDescribeEntityAggregates = "DescribeEntityAggregates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEntityAggregates for more information on using the DescribeEntityAggregates
 // API call, and error handling.
@@ -551,7 +551,7 @@ const opDescribeEventAggregates = "DescribeEventAggregates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventAggregates for more information on using the DescribeEventAggregates
 // API call, and error handling.
@@ -693,7 +693,7 @@ const opDescribeEventDetails = "DescribeEventDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventDetails for more information on using the DescribeEventDetails
 // API call, and error handling.
@@ -781,7 +781,7 @@ const opDescribeEventDetailsForOrganization = "DescribeEventDetailsForOrganizati
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventDetailsForOrganization for more information on using the DescribeEventDetailsForOrganization
 // API call, and error handling.
@@ -888,7 +888,7 @@ const opDescribeEventTypes = "DescribeEventTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventTypes for more information on using the DescribeEventTypes
 // API call, and error handling.
@@ -1032,7 +1032,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -1191,7 +1191,7 @@ const opDescribeEventsForOrganization = "DescribeEventsForOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventsForOrganization for more information on using the DescribeEventsForOrganization
 // API call, and error handling.
@@ -1357,7 +1357,7 @@ const opDescribeHealthServiceStatusForOrganization = "DescribeHealthServiceStatu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHealthServiceStatusForOrganization for more information on using the DescribeHealthServiceStatusForOrganization
 // API call, and error handling.
@@ -1434,7 +1434,7 @@ const opDisableHealthServiceAccessForOrganization = "DisableHealthServiceAccessF
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableHealthServiceAccessForOrganization for more information on using the DisableHealthServiceAccessForOrganization
 // API call, and error handling.
@@ -1536,7 +1536,7 @@ const opEnableHealthServiceAccessForOrganization = "EnableHealthServiceAccessFor
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableHealthServiceAccessForOrganization for more information on using the EnableHealthServiceAccessForOrganization
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opAcceptHandshake = "AcceptHandshake"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptHandshake for more information on using the AcceptHandshake
 // API call, and error handling.
@@ -280,7 +280,7 @@ const opAttachPolicy = "AttachPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachPolicy for more information on using the AttachPolicy
 // API call, and error handling.
@@ -634,7 +634,7 @@ const opCancelHandshake = "CancelHandshake"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelHandshake for more information on using the CancelHandshake
 // API call, and error handling.
@@ -828,7 +828,7 @@ const opCreateAccount = "CreateAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccount for more information on using the CreateAccount
 // API call, and error handling.
@@ -1222,7 +1222,7 @@ const opCreateGovCloudAccount = "CreateGovCloudAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGovCloudAccount for more information on using the CreateGovCloudAccount
 // API call, and error handling.
@@ -1657,7 +1657,7 @@ const opCreateOrganization = "CreateOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOrganization for more information on using the CreateOrganization
 // API call, and error handling.
@@ -1993,7 +1993,7 @@ const opCreateOrganizationalUnit = "CreateOrganizationalUnit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOrganizationalUnit for more information on using the CreateOrganizationalUnit
 // API call, and error handling.
@@ -2329,7 +2329,7 @@ const opCreatePolicy = "CreatePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePolicy for more information on using the CreatePolicy
 // API call, and error handling.
@@ -2675,7 +2675,7 @@ const opDeclineHandshake = "DeclineHandshake"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeclineHandshake for more information on using the DeclineHandshake
 // API call, and error handling.
@@ -2870,7 +2870,7 @@ const opDeleteOrganization = "DeleteOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOrganization for more information on using the DeleteOrganization
 // API call, and error handling.
@@ -3055,7 +3055,7 @@ const opDeleteOrganizationalUnit = "DeleteOrganizationalUnit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOrganizationalUnit for more information on using the DeleteOrganizationalUnit
 // API call, and error handling.
@@ -3244,7 +3244,7 @@ const opDeletePolicy = "DeletePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePolicy for more information on using the DeletePolicy
 // API call, and error handling.
@@ -3437,7 +3437,7 @@ const opDeregisterDelegatedAdministrator = "DeregisterDelegatedAdministrator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterDelegatedAdministrator for more information on using the DeregisterDelegatedAdministrator
 // API call, and error handling.
@@ -3781,7 +3781,7 @@ const opDescribeAccount = "DescribeAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccount for more information on using the DescribeAccount
 // API call, and error handling.
@@ -3963,7 +3963,7 @@ const opDescribeCreateAccountStatus = "DescribeCreateAccountStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCreateAccountStatus for more information on using the DescribeCreateAccountStatus
 // API call, and error handling.
@@ -4147,7 +4147,7 @@ const opDescribeEffectivePolicy = "DescribeEffectivePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEffectivePolicy for more information on using the DescribeEffectivePolicy
 // API call, and error handling.
@@ -4486,7 +4486,7 @@ const opDescribeHandshake = "DescribeHandshake"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHandshake for more information on using the DescribeHandshake
 // API call, and error handling.
@@ -4671,7 +4671,7 @@ const opDescribeOrganization = "DescribeOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganization for more information on using the DescribeOrganization
 // API call, and error handling.
@@ -4781,7 +4781,7 @@ const opDescribeOrganizationalUnit = "DescribeOrganizationalUnit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationalUnit for more information on using the DescribeOrganizationalUnit
 // API call, and error handling.
@@ -4961,7 +4961,7 @@ const opDescribePolicy = "DescribePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePolicy for more information on using the DescribePolicy
 // API call, and error handling.
@@ -5144,7 +5144,7 @@ const opDetachPolicy = "DetachPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachPolicy for more information on using the DetachPolicy
 // API call, and error handling.
@@ -5495,7 +5495,7 @@ const opDisableAWSServiceAccess = "DisableAWSServiceAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableAWSServiceAccess for more information on using the DisableAWSServiceAccess
 // API call, and error handling.
@@ -5843,7 +5843,7 @@ const opDisablePolicyType = "DisablePolicyType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisablePolicyType for more information on using the DisablePolicyType
 // API call, and error handling.
@@ -6193,7 +6193,7 @@ const opEnableAWSServiceAccess = "EnableAWSServiceAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableAWSServiceAccess for more information on using the EnableAWSServiceAccess
 // API call, and error handling.
@@ -6534,7 +6534,7 @@ const opEnableAllFeatures = "EnableAllFeatures"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableAllFeatures for more information on using the EnableAllFeatures
 // API call, and error handling.
@@ -6781,7 +6781,7 @@ const opEnablePolicyType = "EnablePolicyType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnablePolicyType for more information on using the EnablePolicyType
 // API call, and error handling.
@@ -7132,7 +7132,7 @@ const opInviteAccountToOrganization = "InviteAccountToOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InviteAccountToOrganization for more information on using the InviteAccountToOrganization
 // API call, and error handling.
@@ -7529,7 +7529,7 @@ const opLeaveOrganization = "LeaveOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LeaveOrganization for more information on using the LeaveOrganization
 // API call, and error handling.
@@ -7891,7 +7891,7 @@ const opListAWSServiceAccessForOrganization = "ListAWSServiceAccessForOrganizati
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAWSServiceAccessForOrganization for more information on using the ListAWSServiceAccessForOrganization
 // API call, and error handling.
@@ -8277,7 +8277,7 @@ const opListAccounts = "ListAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccounts for more information on using the ListAccounts
 // API call, and error handling.
@@ -8519,7 +8519,7 @@ const opListAccountsForParent = "ListAccountsForParent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccountsForParent for more information on using the ListAccountsForParent
 // API call, and error handling.
@@ -8766,7 +8766,7 @@ const opListChildren = "ListChildren"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChildren for more information on using the ListChildren
 // API call, and error handling.
@@ -9011,7 +9011,7 @@ const opListCreateAccountStatus = "ListCreateAccountStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCreateAccountStatus for more information on using the ListCreateAccountStatus
 // API call, and error handling.
@@ -9255,7 +9255,7 @@ const opListDelegatedAdministrators = "ListDelegatedAdministrators"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDelegatedAdministrators for more information on using the ListDelegatedAdministrators
 // API call, and error handling.
@@ -9634,7 +9634,7 @@ const opListDelegatedServicesForAccount = "ListDelegatedServicesForAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDelegatedServicesForAccount for more information on using the ListDelegatedServicesForAccount
 // API call, and error handling.
@@ -10020,7 +10020,7 @@ const opListHandshakesForAccount = "ListHandshakesForAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHandshakesForAccount for more information on using the ListHandshakesForAccount
 // API call, and error handling.
@@ -10264,7 +10264,7 @@ const opListHandshakesForOrganization = "ListHandshakesForOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHandshakesForOrganization for more information on using the ListHandshakesForOrganization
 // API call, and error handling.
@@ -10515,7 +10515,7 @@ const opListOrganizationalUnitsForParent = "ListOrganizationalUnitsForParent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOrganizationalUnitsForParent for more information on using the ListOrganizationalUnitsForParent
 // API call, and error handling.
@@ -10758,7 +10758,7 @@ const opListParents = "ListParents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListParents for more information on using the ListParents
 // API call, and error handling.
@@ -11006,7 +11006,7 @@ const opListPolicies = "ListPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPolicies for more information on using the ListPolicies
 // API call, and error handling.
@@ -11249,7 +11249,7 @@ const opListPoliciesForTarget = "ListPoliciesForTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPoliciesForTarget for more information on using the ListPoliciesForTarget
 // API call, and error handling.
@@ -11497,7 +11497,7 @@ const opListRoots = "ListRoots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoots for more information on using the ListRoots
 // API call, and error handling.
@@ -11743,7 +11743,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -11991,7 +11991,7 @@ const opListTargetsForPolicy = "ListTargetsForPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTargetsForPolicy for more information on using the ListTargetsForPolicy
 // API call, and error handling.
@@ -12238,7 +12238,7 @@ const opMoveAccount = "MoveAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MoveAccount for more information on using the MoveAccount
 // API call, and error handling.
@@ -12435,7 +12435,7 @@ const opRegisterDelegatedAdministrator = "RegisterDelegatedAdministrator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterDelegatedAdministrator for more information on using the RegisterDelegatedAdministrator
 // API call, and error handling.
@@ -12776,7 +12776,7 @@ const opRemoveAccountFromOrganization = "RemoveAccountFromOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveAccountFromOrganization for more information on using the RemoveAccountFromOrganization
 // API call, and error handling.
@@ -13132,7 +13132,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -13466,7 +13466,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -13800,7 +13800,7 @@ const opUpdateOrganizationalUnit = "UpdateOrganizationalUnit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOrganizationalUnit for more information on using the UpdateOrganizationalUnit
 // API call, and error handling.
@@ -13988,7 +13988,7 @@ const opUpdatePolicy = "UpdatePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePolicy for more information on using the UpdatePolicy
 // API call, and error handling.

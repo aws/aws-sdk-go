@@ -21,7 +21,7 @@ const opCancelJob = "CancelJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelJob for more information on using the CancelJob
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opCreateDataSet = "CreateDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSet for more information on using the CreateDataSet
 // API call, and error handling.
@@ -206,7 +206,7 @@ const opCreateJob = "CreateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJob for more information on using the CreateJob
 // API call, and error handling.
@@ -297,7 +297,7 @@ const opCreateRevision = "CreateRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRevision for more information on using the CreateRevision
 // API call, and error handling.
@@ -388,7 +388,7 @@ const opDeleteAsset = "DeleteAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAsset for more information on using the DeleteAsset
 // API call, and error handling.
@@ -484,7 +484,7 @@ const opDeleteDataSet = "DeleteDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataSet for more information on using the DeleteDataSet
 // API call, and error handling.
@@ -580,7 +580,7 @@ const opDeleteRevision = "DeleteRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRevision for more information on using the DeleteRevision
 // API call, and error handling.
@@ -676,7 +676,7 @@ const opGetAsset = "GetAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAsset for more information on using the GetAsset
 // API call, and error handling.
@@ -764,7 +764,7 @@ const opGetDataSet = "GetDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataSet for more information on using the GetDataSet
 // API call, and error handling.
@@ -852,7 +852,7 @@ const opGetJob = "GetJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJob for more information on using the GetJob
 // API call, and error handling.
@@ -940,7 +940,7 @@ const opGetRevision = "GetRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRevision for more information on using the GetRevision
 // API call, and error handling.
@@ -1028,7 +1028,7 @@ const opListDataSetRevisions = "ListDataSetRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSetRevisions for more information on using the ListDataSetRevisions
 // API call, and error handling.
@@ -1175,7 +1175,7 @@ const opListDataSets = "ListDataSets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSets for more information on using the ListDataSets
 // API call, and error handling.
@@ -1323,7 +1323,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -1469,7 +1469,7 @@ const opListRevisionAssets = "ListRevisionAssets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRevisionAssets for more information on using the ListRevisionAssets
 // API call, and error handling.
@@ -1616,7 +1616,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1690,7 +1690,7 @@ const opStartJob = "StartJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartJob for more information on using the StartJob
 // API call, and error handling.
@@ -1786,7 +1786,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1861,7 +1861,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1936,7 +1936,7 @@ const opUpdateAsset = "UpdateAsset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAsset for more information on using the UpdateAsset
 // API call, and error handling.
@@ -2031,7 +2031,7 @@ const opUpdateDataSet = "UpdateDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSet for more information on using the UpdateDataSet
 // API call, and error handling.
@@ -2122,7 +2122,7 @@ const opUpdateRevision = "UpdateRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRevision for more information on using the UpdateRevision
 // API call, and error handling.

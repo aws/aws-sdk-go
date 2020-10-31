@@ -21,7 +21,7 @@ const opCancelCluster = "CancelCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelCluster for more information on using the CancelCluster
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opCancelJob = "CancelJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelJob for more information on using the CancelJob
 // API call, and error handling.
@@ -203,7 +203,7 @@ const opCreateAddress = "CreateAddress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAddress for more information on using the CreateAddress
 // API call, and error handling.
@@ -291,7 +291,7 @@ const opCreateCluster = "CreateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCluster for more information on using the CreateCluster
 // API call, and error handling.
@@ -386,7 +386,7 @@ const opCreateJob = "CreateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJob for more information on using the CreateJob
 // API call, and error handling.
@@ -587,7 +587,7 @@ const opDescribeAddress = "DescribeAddress"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAddress for more information on using the DescribeAddress
 // API call, and error handling.
@@ -668,7 +668,7 @@ const opDescribeAddresses = "DescribeAddresses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAddresses for more information on using the DescribeAddresses
 // API call, and error handling.
@@ -812,7 +812,7 @@ const opDescribeCluster = "DescribeCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCluster for more information on using the DescribeCluster
 // API call, and error handling.
@@ -893,7 +893,7 @@ const opDescribeJob = "DescribeJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJob for more information on using the DescribeJob
 // API call, and error handling.
@@ -1063,7 +1063,7 @@ const opGetJobManifest = "GetJobManifest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobManifest for more information on using the GetJobManifest
 // API call, and error handling.
@@ -1164,7 +1164,7 @@ const opGetJobUnlockCode = "GetJobUnlockCode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJobUnlockCode for more information on using the GetJobUnlockCode
 // API call, and error handling.
@@ -1260,7 +1260,7 @@ const opGetSnowballUsage = "GetSnowballUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSnowballUsage for more information on using the GetSnowballUsage
 // API call, and error handling.
@@ -1339,7 +1339,7 @@ const opGetSoftwareUpdates = "GetSoftwareUpdates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSoftwareUpdates for more information on using the GetSoftwareUpdates
 // API call, and error handling.
@@ -1424,7 +1424,7 @@ const opListClusterJobs = "ListClusterJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusterJobs for more information on using the ListClusterJobs
 // API call, and error handling.
@@ -1510,7 +1510,7 @@ const opListClusters = "ListClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusters for more information on using the ListClusters
 // API call, and error handling.
@@ -1592,7 +1592,7 @@ const opListCompatibleImages = "ListCompatibleImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCompatibleImages for more information on using the ListCompatibleImages
 // API call, and error handling.
@@ -1680,7 +1680,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -1822,7 +1822,7 @@ const opUpdateCluster = "UpdateCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCluster for more information on using the UpdateCluster
 // API call, and error handling.
@@ -1923,7 +1923,7 @@ const opUpdateJob = "UpdateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJob for more information on using the UpdateJob
 // API call, and error handling.

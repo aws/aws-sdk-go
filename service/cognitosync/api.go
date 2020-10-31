@@ -21,7 +21,7 @@ const opBulkPublish = "BulkPublish"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BulkPublish for more information on using the BulkPublish
 // API call, and error handling.
@@ -123,7 +123,7 @@ const opDeleteDataset = "DeleteDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataset for more information on using the DeleteDataset
 // API call, and error handling.
@@ -224,7 +224,7 @@ const opDescribeDataset = "DescribeDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDataset for more information on using the DescribeDataset
 // API call, and error handling.
@@ -321,7 +321,7 @@ const opDescribeIdentityPoolUsage = "DescribeIdentityPoolUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIdentityPoolUsage for more information on using the DescribeIdentityPoolUsage
 // API call, and error handling.
@@ -416,7 +416,7 @@ const opDescribeIdentityUsage = "DescribeIdentityUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIdentityUsage for more information on using the DescribeIdentityUsage
 // API call, and error handling.
@@ -511,7 +511,7 @@ const opGetBulkPublishDetails = "GetBulkPublishDetails"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBulkPublishDetails for more information on using the GetBulkPublishDetails
 // API call, and error handling.
@@ -602,7 +602,7 @@ const opGetCognitoEvents = "GetCognitoEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCognitoEvents for more information on using the GetCognitoEvents
 // API call, and error handling.
@@ -697,7 +697,7 @@ const opGetIdentityPoolConfiguration = "GetIdentityPoolConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIdentityPoolConfiguration for more information on using the GetIdentityPoolConfiguration
 // API call, and error handling.
@@ -791,7 +791,7 @@ const opListDatasets = "ListDatasets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatasets for more information on using the ListDatasets
 // API call, and error handling.
@@ -885,7 +885,7 @@ const opListIdentityPoolUsage = "ListIdentityPoolUsage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIdentityPoolUsage for more information on using the ListIdentityPoolUsage
 // API call, and error handling.
@@ -977,7 +977,7 @@ const opListRecords = "ListRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecords for more information on using the ListRecords
 // API call, and error handling.
@@ -1072,7 +1072,7 @@ const opRegisterDevice = "RegisterDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterDevice for more information on using the RegisterDevice
 // API call, and error handling.
@@ -1168,7 +1168,7 @@ const opSetCognitoEvents = "SetCognitoEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetCognitoEvents for more information on using the SetCognitoEvents
 // API call, and error handling.
@@ -1266,7 +1266,7 @@ const opSetIdentityPoolConfiguration = "SetIdentityPoolConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetIdentityPoolConfiguration for more information on using the SetIdentityPoolConfiguration
 // API call, and error handling.
@@ -1363,7 +1363,7 @@ const opSubscribeToDataset = "SubscribeToDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SubscribeToDataset for more information on using the SubscribeToDataset
 // API call, and error handling.
@@ -1461,7 +1461,7 @@ const opUnsubscribeFromDataset = "UnsubscribeFromDataset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnsubscribeFromDataset for more information on using the UnsubscribeFromDataset
 // API call, and error handling.
@@ -1559,7 +1559,7 @@ const opUpdateRecords = "UpdateRecords"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRecords for more information on using the UpdateRecords
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opBatchDeleteBuilds = "BatchDeleteBuilds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteBuilds for more information on using the BatchDeleteBuilds
 // API call, and error handling.
@@ -100,7 +100,7 @@ const opBatchGetBuildBatches = "BatchGetBuildBatches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetBuildBatches for more information on using the BatchGetBuildBatches
 // API call, and error handling.
@@ -179,7 +179,7 @@ const opBatchGetBuilds = "BatchGetBuilds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetBuilds for more information on using the BatchGetBuilds
 // API call, and error handling.
@@ -258,7 +258,7 @@ const opBatchGetProjects = "BatchGetProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetProjects for more information on using the BatchGetProjects
 // API call, and error handling.
@@ -337,7 +337,7 @@ const opBatchGetReportGroups = "BatchGetReportGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetReportGroups for more information on using the BatchGetReportGroups
 // API call, and error handling.
@@ -416,7 +416,7 @@ const opBatchGetReports = "BatchGetReports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetReports for more information on using the BatchGetReports
 // API call, and error handling.
@@ -495,7 +495,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -581,7 +581,7 @@ const opCreateReportGroup = "CreateReportGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateReportGroup for more information on using the CreateReportGroup
 // API call, and error handling.
@@ -667,7 +667,7 @@ const opCreateWebhook = "CreateWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWebhook for more information on using the CreateWebhook
 // API call, and error handling.
@@ -767,7 +767,7 @@ const opDeleteBuildBatch = "DeleteBuildBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBuildBatch for more information on using the DeleteBuildBatch
 // API call, and error handling.
@@ -846,7 +846,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -926,7 +926,7 @@ const opDeleteReport = "DeleteReport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReport for more information on using the DeleteReport
 // API call, and error handling.
@@ -1006,7 +1006,7 @@ const opDeleteReportGroup = "DeleteReportGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteReportGroup for more information on using the DeleteReportGroup
 // API call, and error handling.
@@ -1087,7 +1087,7 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
 // API call, and error handling.
@@ -1167,7 +1167,7 @@ const opDeleteSourceCredentials = "DeleteSourceCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSourceCredentials for more information on using the DeleteSourceCredentials
 // API call, and error handling.
@@ -1249,7 +1249,7 @@ const opDeleteWebhook = "DeleteWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWebhook for more information on using the DeleteWebhook
 // API call, and error handling.
@@ -1337,7 +1337,7 @@ const opDescribeCodeCoverages = "DescribeCodeCoverages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCodeCoverages for more information on using the DescribeCodeCoverages
 // API call, and error handling.
@@ -1474,7 +1474,7 @@ const opDescribeTestCases = "DescribeTestCases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTestCases for more information on using the DescribeTestCases
 // API call, and error handling.
@@ -1614,7 +1614,7 @@ const opGetResourcePolicy = "GetResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourcePolicy for more information on using the GetResourcePolicy
 // API call, and error handling.
@@ -1696,7 +1696,7 @@ const opImportSourceCredentials = "ImportSourceCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportSourceCredentials for more information on using the ImportSourceCredentials
 // API call, and error handling.
@@ -1783,7 +1783,7 @@ const opInvalidateProjectCache = "InvalidateProjectCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InvalidateProjectCache for more information on using the InvalidateProjectCache
 // API call, and error handling.
@@ -1866,7 +1866,7 @@ const opListBuildBatches = "ListBuildBatches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBuildBatches for more information on using the ListBuildBatches
 // API call, and error handling.
@@ -2003,7 +2003,7 @@ const opListBuildBatchesForProject = "ListBuildBatchesForProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBuildBatchesForProject for more information on using the ListBuildBatchesForProject
 // API call, and error handling.
@@ -2143,7 +2143,7 @@ const opListBuilds = "ListBuilds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBuilds for more information on using the ListBuilds
 // API call, and error handling.
@@ -2280,7 +2280,7 @@ const opListBuildsForProject = "ListBuildsForProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBuildsForProject for more information on using the ListBuildsForProject
 // API call, and error handling.
@@ -2421,7 +2421,7 @@ const opListCuratedEnvironmentImages = "ListCuratedEnvironmentImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCuratedEnvironmentImages for more information on using the ListCuratedEnvironmentImages
 // API call, and error handling.
@@ -2495,7 +2495,7 @@ const opListProjects = "ListProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjects for more information on using the ListProjects
 // API call, and error handling.
@@ -2633,7 +2633,7 @@ const opListReportGroups = "ListReportGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReportGroups for more information on using the ListReportGroups
 // API call, and error handling.
@@ -2770,7 +2770,7 @@ const opListReports = "ListReports"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReports for more information on using the ListReports
 // API call, and error handling.
@@ -2907,7 +2907,7 @@ const opListReportsForReportGroup = "ListReportsForReportGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReportsForReportGroup for more information on using the ListReportsForReportGroup
 // API call, and error handling.
@@ -3047,7 +3047,7 @@ const opListSharedProjects = "ListSharedProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSharedProjects for more information on using the ListSharedProjects
 // API call, and error handling.
@@ -3184,7 +3184,7 @@ const opListSharedReportGroups = "ListSharedReportGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSharedReportGroups for more information on using the ListSharedReportGroups
 // API call, and error handling.
@@ -3321,7 +3321,7 @@ const opListSourceCredentials = "ListSourceCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSourceCredentials for more information on using the ListSourceCredentials
 // API call, and error handling.
@@ -3400,7 +3400,7 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourcePolicy for more information on using the PutResourcePolicy
 // API call, and error handling.
@@ -3482,7 +3482,7 @@ const opRetryBuild = "RetryBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetryBuild for more information on using the RetryBuild
 // API call, and error handling.
@@ -3567,7 +3567,7 @@ const opRetryBuildBatch = "RetryBuildBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetryBuildBatch for more information on using the RetryBuildBatch
 // API call, and error handling.
@@ -3649,7 +3649,7 @@ const opStartBuild = "StartBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartBuild for more information on using the StartBuild
 // API call, and error handling.
@@ -3734,7 +3734,7 @@ const opStartBuildBatch = "StartBuildBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartBuildBatch for more information on using the StartBuildBatch
 // API call, and error handling.
@@ -3816,7 +3816,7 @@ const opStopBuild = "StopBuild"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopBuild for more information on using the StopBuild
 // API call, and error handling.
@@ -3898,7 +3898,7 @@ const opStopBuildBatch = "StopBuildBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopBuildBatch for more information on using the StopBuildBatch
 // API call, and error handling.
@@ -3980,7 +3980,7 @@ const opUpdateProject = "UpdateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProject for more information on using the UpdateProject
 // API call, and error handling.
@@ -4062,7 +4062,7 @@ const opUpdateReportGroup = "UpdateReportGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateReportGroup for more information on using the UpdateReportGroup
 // API call, and error handling.
@@ -4144,7 +4144,7 @@ const opUpdateWebhook = "UpdateWebhook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWebhook for more information on using the UpdateWebhook
 // API call, and error handling.

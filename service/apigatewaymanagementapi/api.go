@@ -21,7 +21,7 @@ const opDeleteConnection = "DeleteConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnection for more information on using the DeleteConnection
 // API call, and error handling.
@@ -108,7 +108,7 @@ const opGetConnection = "GetConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConnection for more information on using the GetConnection
 // API call, and error handling.
@@ -194,7 +194,7 @@ const opPostToConnection = "PostToConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostToConnection for more information on using the PostToConnection
 // API call, and error handling.

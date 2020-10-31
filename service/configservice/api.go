@@ -21,7 +21,7 @@ const opBatchGetAggregateResourceConfig = "BatchGetAggregateResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetAggregateResourceConfig for more information on using the BatchGetAggregateResourceConfig
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opBatchGetResourceConfig = "BatchGetResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetResourceConfig for more information on using the BatchGetResourceConfig
 // API call, and error handling.
@@ -202,7 +202,7 @@ const opDeleteAggregationAuthorization = "DeleteAggregationAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAggregationAuthorization for more information on using the DeleteAggregationAuthorization
 // API call, and error handling.
@@ -284,7 +284,7 @@ const opDeleteConfigRule = "DeleteConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigRule for more information on using the DeleteConfigRule
 // API call, and error handling.
@@ -398,7 +398,7 @@ const opDeleteConfigurationAggregator = "DeleteConfigurationAggregator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationAggregator for more information on using the DeleteConfigurationAggregator
 // API call, and error handling.
@@ -479,7 +479,7 @@ const opDeleteConfigurationRecorder = "DeleteConfigurationRecorder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConfigurationRecorder for more information on using the DeleteConfigurationRecorder
 // API call, and error handling.
@@ -568,7 +568,7 @@ const opDeleteConformancePack = "DeleteConformancePack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConformancePack for more information on using the DeleteConformancePack
 // API call, and error handling.
@@ -679,7 +679,7 @@ const opDeleteDeliveryChannel = "DeleteDeliveryChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDeliveryChannel for more information on using the DeleteDeliveryChannel
 // API call, and error handling.
@@ -766,7 +766,7 @@ const opDeleteEvaluationResults = "DeleteEvaluationResults"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEvaluationResults for more information on using the DeleteEvaluationResults
 // API call, and error handling.
@@ -877,7 +877,7 @@ const opDeleteOrganizationConfigRule = "DeleteOrganizationConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOrganizationConfigRule for more information on using the DeleteOrganizationConfigRule
 // API call, and error handling.
@@ -1001,7 +1001,7 @@ const opDeleteOrganizationConformancePack = "DeleteOrganizationConformancePack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOrganizationConformancePack for more information on using the DeleteOrganizationConformancePack
 // API call, and error handling.
@@ -1130,7 +1130,7 @@ const opDeletePendingAggregationRequest = "DeletePendingAggregationRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePendingAggregationRequest for more information on using the DeletePendingAggregationRequest
 // API call, and error handling.
@@ -1212,7 +1212,7 @@ const opDeleteRemediationConfiguration = "DeleteRemediationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRemediationConfiguration for more information on using the DeleteRemediationConfiguration
 // API call, and error handling.
@@ -1313,7 +1313,7 @@ const opDeleteRemediationExceptions = "DeleteRemediationExceptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRemediationExceptions for more information on using the DeleteRemediationExceptions
 // API call, and error handling.
@@ -1396,7 +1396,7 @@ const opDeleteResourceConfig = "DeleteResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourceConfig for more information on using the DeleteResourceConfig
 // API call, and error handling.
@@ -1482,7 +1482,7 @@ const opDeleteRetentionConfiguration = "DeleteRetentionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRetentionConfiguration for more information on using the DeleteRetentionConfiguration
 // API call, and error handling.
@@ -1566,7 +1566,7 @@ const opDeliverConfigSnapshot = "DeliverConfigSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeliverConfigSnapshot for more information on using the DeliverConfigSnapshot
 // API call, and error handling.
@@ -1662,7 +1662,7 @@ const opDescribeAggregateComplianceByConfigRules = "DescribeAggregateComplianceB
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAggregateComplianceByConfigRules for more information on using the DescribeAggregateComplianceByConfigRules
 // API call, and error handling.
@@ -1755,7 +1755,7 @@ const opDescribeAggregationAuthorizations = "DescribeAggregationAuthorizations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAggregationAuthorizations for more information on using the DescribeAggregationAuthorizations
 // API call, and error handling.
@@ -1843,7 +1843,7 @@ const opDescribeComplianceByConfigRule = "DescribeComplianceByConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComplianceByConfigRule for more information on using the DescribeComplianceByConfigRule
 // API call, and error handling.
@@ -1953,7 +1953,7 @@ const opDescribeComplianceByResource = "DescribeComplianceByResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeComplianceByResource for more information on using the DescribeComplianceByResource
 // API call, and error handling.
@@ -2061,7 +2061,7 @@ const opDescribeConfigRuleEvaluationStatus = "DescribeConfigRuleEvaluationStatus
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigRuleEvaluationStatus for more information on using the DescribeConfigRuleEvaluationStatus
 // API call, and error handling.
@@ -2152,7 +2152,7 @@ const opDescribeConfigRules = "DescribeConfigRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigRules for more information on using the DescribeConfigRules
 // API call, and error handling.
@@ -2236,7 +2236,7 @@ const opDescribeConfigurationAggregatorSourcesStatus = "DescribeConfigurationAgg
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationAggregatorSourcesStatus for more information on using the DescribeConfigurationAggregatorSourcesStatus
 // API call, and error handling.
@@ -2329,7 +2329,7 @@ const opDescribeConfigurationAggregators = "DescribeConfigurationAggregators"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationAggregators for more information on using the DescribeConfigurationAggregators
 // API call, and error handling.
@@ -2421,7 +2421,7 @@ const opDescribeConfigurationRecorderStatus = "DescribeConfigurationRecorderStat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationRecorderStatus for more information on using the DescribeConfigurationRecorderStatus
 // API call, and error handling.
@@ -2505,7 +2505,7 @@ const opDescribeConfigurationRecorders = "DescribeConfigurationRecorders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationRecorders for more information on using the DescribeConfigurationRecorders
 // API call, and error handling.
@@ -2589,7 +2589,7 @@ const opDescribeConformancePackCompliance = "DescribeConformancePackCompliance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConformancePackCompliance for more information on using the DescribeConformancePackCompliance
 // API call, and error handling.
@@ -2684,7 +2684,7 @@ const opDescribeConformancePackStatus = "DescribeConformancePackStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConformancePackStatus for more information on using the DescribeConformancePackStatus
 // API call, and error handling.
@@ -2773,7 +2773,7 @@ const opDescribeConformancePacks = "DescribeConformancePacks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConformancePacks for more information on using the DescribeConformancePacks
 // API call, and error handling.
@@ -2863,7 +2863,7 @@ const opDescribeDeliveryChannelStatus = "DescribeDeliveryChannelStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDeliveryChannelStatus for more information on using the DescribeDeliveryChannelStatus
 // API call, and error handling.
@@ -2946,7 +2946,7 @@ const opDescribeDeliveryChannels = "DescribeDeliveryChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDeliveryChannels for more information on using the DescribeDeliveryChannels
 // API call, and error handling.
@@ -3029,7 +3029,7 @@ const opDescribeOrganizationConfigRuleStatuses = "DescribeOrganizationConfigRule
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationConfigRuleStatuses for more information on using the DescribeOrganizationConfigRuleStatuses
 // API call, and error handling.
@@ -3136,7 +3136,7 @@ const opDescribeOrganizationConfigRules = "DescribeOrganizationConfigRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationConfigRules for more information on using the DescribeOrganizationConfigRules
 // API call, and error handling.
@@ -3239,7 +3239,7 @@ const opDescribeOrganizationConformancePackStatuses = "DescribeOrganizationConfo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationConformancePackStatuses for more information on using the DescribeOrganizationConformancePackStatuses
 // API call, and error handling.
@@ -3350,7 +3350,7 @@ const opDescribeOrganizationConformancePacks = "DescribeOrganizationConformanceP
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOrganizationConformancePacks for more information on using the DescribeOrganizationConformancePacks
 // API call, and error handling.
@@ -3458,7 +3458,7 @@ const opDescribePendingAggregationRequests = "DescribePendingAggregationRequests
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePendingAggregationRequests for more information on using the DescribePendingAggregationRequests
 // API call, and error handling.
@@ -3545,7 +3545,7 @@ const opDescribeRemediationConfigurations = "DescribeRemediationConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRemediationConfigurations for more information on using the DescribeRemediationConfigurations
 // API call, and error handling.
@@ -3619,7 +3619,7 @@ const opDescribeRemediationExceptions = "DescribeRemediationExceptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRemediationExceptions for more information on using the DescribeRemediationExceptions
 // API call, and error handling.
@@ -3773,7 +3773,7 @@ const opDescribeRemediationExecutionStatus = "DescribeRemediationExecutionStatus
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRemediationExecutionStatus for more information on using the DescribeRemediationExecutionStatus
 // API call, and error handling.
@@ -3917,7 +3917,7 @@ const opDescribeRetentionConfigurations = "DescribeRetentionConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRetentionConfigurations for more information on using the DescribeRetentionConfigurations
 // API call, and error handling.
@@ -4009,7 +4009,7 @@ const opGetAggregateComplianceDetailsByConfigRule = "GetAggregateComplianceDetai
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAggregateComplianceDetailsByConfigRule for more information on using the GetAggregateComplianceDetailsByConfigRule
 // API call, and error handling.
@@ -4104,7 +4104,7 @@ const opGetAggregateConfigRuleComplianceSummary = "GetAggregateConfigRuleComplia
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAggregateConfigRuleComplianceSummary for more information on using the GetAggregateConfigRuleComplianceSummary
 // API call, and error handling.
@@ -4197,7 +4197,7 @@ const opGetAggregateDiscoveredResourceCounts = "GetAggregateDiscoveredResourceCo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAggregateDiscoveredResourceCounts for more information on using the GetAggregateDiscoveredResourceCounts
 // API call, and error handling.
@@ -4294,7 +4294,7 @@ const opGetAggregateResourceConfig = "GetAggregateResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAggregateResourceConfig for more information on using the GetAggregateResourceConfig
 // API call, and error handling.
@@ -4383,7 +4383,7 @@ const opGetComplianceDetailsByConfigRule = "GetComplianceDetailsByConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComplianceDetailsByConfigRule for more information on using the GetComplianceDetailsByConfigRule
 // API call, and error handling.
@@ -4473,7 +4473,7 @@ const opGetComplianceDetailsByResource = "GetComplianceDetailsByResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComplianceDetailsByResource for more information on using the GetComplianceDetailsByResource
 // API call, and error handling.
@@ -4555,7 +4555,7 @@ const opGetComplianceSummaryByConfigRule = "GetComplianceSummaryByConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComplianceSummaryByConfigRule for more information on using the GetComplianceSummaryByConfigRule
 // API call, and error handling.
@@ -4630,7 +4630,7 @@ const opGetComplianceSummaryByResourceType = "GetComplianceSummaryByResourceType
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComplianceSummaryByResourceType for more information on using the GetComplianceSummaryByResourceType
 // API call, and error handling.
@@ -4712,7 +4712,7 @@ const opGetConformancePackComplianceDetails = "GetConformancePackComplianceDetai
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConformancePackComplianceDetails for more information on using the GetConformancePackComplianceDetails
 // API call, and error handling.
@@ -4806,7 +4806,7 @@ const opGetConformancePackComplianceSummary = "GetConformancePackComplianceSumma
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetConformancePackComplianceSummary for more information on using the GetConformancePackComplianceSummary
 // API call, and error handling.
@@ -4893,7 +4893,7 @@ const opGetDiscoveredResourceCounts = "GetDiscoveredResourceCounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDiscoveredResourceCounts for more information on using the GetDiscoveredResourceCounts
 // API call, and error handling.
@@ -5012,7 +5012,7 @@ const opGetOrganizationConfigRuleDetailedStatus = "GetOrganizationConfigRuleDeta
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOrganizationConfigRuleDetailedStatus for more information on using the GetOrganizationConfigRuleDetailedStatus
 // API call, and error handling.
@@ -5111,7 +5111,7 @@ const opGetOrganizationConformancePackDetailedStatus = "GetOrganizationConforman
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOrganizationConformancePackDetailedStatus for more information on using the GetOrganizationConformancePackDetailedStatus
 // API call, and error handling.
@@ -5214,7 +5214,7 @@ const opGetResourceConfigHistory = "GetResourceConfigHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceConfigHistory for more information on using the GetResourceConfigHistory
 // API call, and error handling.
@@ -5382,7 +5382,7 @@ const opListAggregateDiscoveredResources = "ListAggregateDiscoveredResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAggregateDiscoveredResources for more information on using the ListAggregateDiscoveredResources
 // API call, and error handling.
@@ -5480,7 +5480,7 @@ const opListDiscoveredResources = "ListDiscoveredResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDiscoveredResources for more information on using the ListDiscoveredResources
 // API call, and error handling.
@@ -5583,7 +5583,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -5672,7 +5672,7 @@ const opPutAggregationAuthorization = "PutAggregationAuthorization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAggregationAuthorization for more information on using the PutAggregationAuthorization
 // API call, and error handling.
@@ -5753,7 +5753,7 @@ const opPutConfigRule = "PutConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigRule for more information on using the PutConfigRule
 // API call, and error handling.
@@ -5922,7 +5922,7 @@ const opPutConfigurationAggregator = "PutConfigurationAggregator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationAggregator for more information on using the PutConfigurationAggregator
 // API call, and error handling.
@@ -6037,7 +6037,7 @@ const opPutConfigurationRecorder = "PutConfigurationRecorder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConfigurationRecorder for more information on using the PutConfigurationRecorder
 // API call, and error handling.
@@ -6137,7 +6137,7 @@ const opPutConformancePack = "PutConformancePack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutConformancePack for more information on using the PutConformancePack
 // API call, and error handling.
@@ -6278,7 +6278,7 @@ const opPutDeliveryChannel = "PutDeliveryChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDeliveryChannel for more information on using the PutDeliveryChannel
 // API call, and error handling.
@@ -6390,7 +6390,7 @@ const opPutEvaluations = "PutEvaluations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEvaluations for more information on using the PutEvaluations
 // API call, and error handling.
@@ -6479,7 +6479,7 @@ const opPutOrganizationConfigRule = "PutOrganizationConfigRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutOrganizationConfigRule for more information on using the PutOrganizationConfigRule
 // API call, and error handling.
@@ -6657,7 +6657,7 @@ const opPutOrganizationConformancePack = "PutOrganizationConformancePack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutOrganizationConformancePack for more information on using the PutOrganizationConformancePack
 // API call, and error handling.
@@ -6829,7 +6829,7 @@ const opPutRemediationConfigurations = "PutRemediationConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRemediationConfigurations for more information on using the PutRemediationConfigurations
 // API call, and error handling.
@@ -6933,7 +6933,7 @@ const opPutRemediationExceptions = "PutRemediationExceptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRemediationExceptions for more information on using the PutRemediationExceptions
 // API call, and error handling.
@@ -7036,7 +7036,7 @@ const opPutResourceConfig = "PutResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourceConfig for more information on using the PutResourceConfig
 // API call, and error handling.
@@ -7154,7 +7154,7 @@ const opPutRetentionConfiguration = "PutRetentionConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRetentionConfiguration for more information on using the PutRetentionConfiguration
 // API call, and error handling.
@@ -7245,7 +7245,7 @@ const opSelectAggregateResourceConfig = "SelectAggregateResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SelectAggregateResourceConfig for more information on using the SelectAggregateResourceConfig
 // API call, and error handling.
@@ -7398,7 +7398,7 @@ const opSelectResourceConfig = "SelectResourceConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SelectResourceConfig for more information on using the SelectResourceConfig
 // API call, and error handling.
@@ -7488,7 +7488,7 @@ const opStartConfigRulesEvaluation = "StartConfigRulesEvaluation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartConfigRulesEvaluation for more information on using the StartConfigRulesEvaluation
 // API call, and error handling.
@@ -7637,7 +7637,7 @@ const opStartConfigurationRecorder = "StartConfigurationRecorder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartConfigurationRecorder for more information on using the StartConfigurationRecorder
 // API call, and error handling.
@@ -7724,7 +7724,7 @@ const opStartRemediationExecution = "StartRemediationExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartRemediationExecution for more information on using the StartRemediationExecution
 // API call, and error handling.
@@ -7830,7 +7830,7 @@ const opStopConfigurationRecorder = "StopConfigurationRecorder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopConfigurationRecorder for more information on using the StopConfigurationRecorder
 // API call, and error handling.
@@ -7911,7 +7911,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -8001,7 +8001,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

@@ -19,7 +19,7 @@ const opAddAttachmentsToSet = "AddAttachmentsToSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddAttachmentsToSet for more information on using the AddAttachmentsToSet
 // API call, and error handling.
@@ -125,7 +125,7 @@ const opAddCommunicationToCase = "AddCommunicationToCase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddCommunicationToCase for more information on using the AddCommunicationToCase
 // API call, and error handling.
@@ -225,7 +225,7 @@ const opCreateCase = "CreateCase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCase for more information on using the CreateCase
 // API call, and error handling.
@@ -342,7 +342,7 @@ const opDescribeAttachment = "DescribeAttachment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAttachment for more information on using the DescribeAttachment
 // API call, and error handling.
@@ -440,7 +440,7 @@ const opDescribeCases = "DescribeCases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCases for more information on using the DescribeCases
 // API call, and error handling.
@@ -602,7 +602,7 @@ const opDescribeCommunications = "DescribeCommunications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCommunications for more information on using the DescribeCommunications
 // API call, and error handling.
@@ -759,7 +759,7 @@ const opDescribeServices = "DescribeServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServices for more information on using the DescribeServices
 // API call, and error handling.
@@ -855,7 +855,7 @@ const opDescribeSeverityLevels = "DescribeSeverityLevels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSeverityLevels for more information on using the DescribeSeverityLevels
 // API call, and error handling.
@@ -944,7 +944,7 @@ const opDescribeTrustedAdvisorCheckRefreshStatuses = "DescribeTrustedAdvisorChec
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrustedAdvisorCheckRefreshStatuses for more information on using the DescribeTrustedAdvisorCheckRefreshStatuses
 // API call, and error handling.
@@ -1038,7 +1038,7 @@ const opDescribeTrustedAdvisorCheckResult = "DescribeTrustedAdvisorCheckResult"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrustedAdvisorCheckResult for more information on using the DescribeTrustedAdvisorCheckResult
 // API call, and error handling.
@@ -1145,7 +1145,7 @@ const opDescribeTrustedAdvisorCheckSummaries = "DescribeTrustedAdvisorCheckSumma
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrustedAdvisorCheckSummaries for more information on using the DescribeTrustedAdvisorCheckSummaries
 // API call, and error handling.
@@ -1236,7 +1236,7 @@ const opDescribeTrustedAdvisorChecks = "DescribeTrustedAdvisorChecks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrustedAdvisorChecks for more information on using the DescribeTrustedAdvisorChecks
 // API call, and error handling.
@@ -1327,7 +1327,7 @@ const opRefreshTrustedAdvisorCheck = "RefreshTrustedAdvisorCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RefreshTrustedAdvisorCheck for more information on using the RefreshTrustedAdvisorCheck
 // API call, and error handling.
@@ -1421,7 +1421,7 @@ const opResolveCase = "ResolveCase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResolveCase for more information on using the ResolveCase
 // API call, and error handling.

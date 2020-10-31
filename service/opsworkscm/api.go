@@ -21,7 +21,7 @@ const opAssociateNode = "AssociateNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateNode for more information on using the AssociateNode
 // API call, and error handling.
@@ -127,7 +127,7 @@ const opCreateBackup = "CreateBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackup for more information on using the CreateBackup
 // API call, and error handling.
@@ -229,7 +229,7 @@ const opCreateServer = "CreateServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateServer for more information on using the CreateServer
 // API call, and error handling.
@@ -347,7 +347,7 @@ const opDeleteBackup = "DeleteBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackup for more information on using the DeleteBackup
 // API call, and error handling.
@@ -439,7 +439,7 @@ const opDeleteServer = "DeleteServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServer for more information on using the DeleteServer
 // API call, and error handling.
@@ -536,7 +536,7 @@ const opDescribeAccountAttributes = "DescribeAccountAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountAttributes for more information on using the DescribeAccountAttributes
 // API call, and error handling.
@@ -612,7 +612,7 @@ const opDescribeBackups = "DescribeBackups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBackups for more information on using the DescribeBackups
 // API call, and error handling.
@@ -761,7 +761,7 @@ const opDescribeEvents = "DescribeEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEvents for more information on using the DescribeEvents
 // API call, and error handling.
@@ -910,7 +910,7 @@ const opDescribeNodeAssociationStatus = "DescribeNodeAssociationStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNodeAssociationStatus for more information on using the DescribeNodeAssociationStatus
 // API call, and error handling.
@@ -996,7 +996,7 @@ const opDescribeServers = "DescribeServers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeServers for more information on using the DescribeServers
 // API call, and error handling.
@@ -1146,7 +1146,7 @@ const opDisassociateNode = "DisassociateNode"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateNode for more information on using the DisassociateNode
 // API call, and error handling.
@@ -1240,7 +1240,7 @@ const opExportServerEngineAttribute = "ExportServerEngineAttribute"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExportServerEngineAttribute for more information on using the ExportServerEngineAttribute
 // API call, and error handling.
@@ -1335,7 +1335,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1476,7 +1476,7 @@ const opRestoreServer = "RestoreServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreServer for more information on using the RestoreServer
 // API call, and error handling.
@@ -1579,7 +1579,7 @@ const opStartMaintenance = "StartMaintenance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartMaintenance for more information on using the StartMaintenance
 // API call, and error handling.
@@ -1673,7 +1673,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1761,7 +1761,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1848,7 +1848,7 @@ const opUpdateServer = "UpdateServer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServer for more information on using the UpdateServer
 // API call, and error handling.
@@ -1936,7 +1936,7 @@ const opUpdateServerEngineAttributes = "UpdateServerEngineAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateServerEngineAttributes for more information on using the UpdateServerEngineAttributes
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opCreateDevicePool = "CreateDevicePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDevicePool for more information on using the CreateDevicePool
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opCreateInstanceProfile = "CreateInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInstanceProfile for more information on using the CreateInstanceProfile
 // API call, and error handling.
@@ -198,7 +198,7 @@ const opCreateNetworkProfile = "CreateNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNetworkProfile for more information on using the CreateNetworkProfile
 // API call, and error handling.
@@ -286,7 +286,7 @@ const opCreateProject = "CreateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProject for more information on using the CreateProject
 // API call, and error handling.
@@ -377,7 +377,7 @@ const opCreateRemoteAccessSession = "CreateRemoteAccessSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRemoteAccessSession for more information on using the CreateRemoteAccessSession
 // API call, and error handling.
@@ -465,7 +465,7 @@ const opCreateTestGridProject = "CreateTestGridProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTestGridProject for more information on using the CreateTestGridProject
 // API call, and error handling.
@@ -546,7 +546,7 @@ const opCreateTestGridUrl = "CreateTestGridUrl"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTestGridUrl for more information on using the CreateTestGridUrl
 // API call, and error handling.
@@ -633,7 +633,7 @@ const opCreateUpload = "CreateUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUpload for more information on using the CreateUpload
 // API call, and error handling.
@@ -721,7 +721,7 @@ const opCreateVPCEConfiguration = "CreateVPCEConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVPCEConfiguration for more information on using the CreateVPCEConfiguration
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opDeleteDevicePool = "DeleteDevicePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDevicePool for more information on using the DeleteDevicePool
 // API call, and error handling.
@@ -897,7 +897,7 @@ const opDeleteInstanceProfile = "DeleteInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInstanceProfile for more information on using the DeleteInstanceProfile
 // API call, and error handling.
@@ -986,7 +986,7 @@ const opDeleteNetworkProfile = "DeleteNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNetworkProfile for more information on using the DeleteNetworkProfile
 // API call, and error handling.
@@ -1075,7 +1075,7 @@ const opDeleteProject = "DeleteProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProject for more information on using the DeleteProject
 // API call, and error handling.
@@ -1166,7 +1166,7 @@ const opDeleteRemoteAccessSession = "DeleteRemoteAccessSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRemoteAccessSession for more information on using the DeleteRemoteAccessSession
 // API call, and error handling.
@@ -1255,7 +1255,7 @@ const opDeleteRun = "DeleteRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRun for more information on using the DeleteRun
 // API call, and error handling.
@@ -1346,7 +1346,7 @@ const opDeleteTestGridProject = "DeleteTestGridProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTestGridProject for more information on using the DeleteTestGridProject
 // API call, and error handling.
@@ -1440,7 +1440,7 @@ const opDeleteUpload = "DeleteUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUpload for more information on using the DeleteUpload
 // API call, and error handling.
@@ -1529,7 +1529,7 @@ const opDeleteVPCEConfiguration = "DeleteVPCEConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVPCEConfiguration for more information on using the DeleteVPCEConfiguration
 // API call, and error handling.
@@ -1619,7 +1619,7 @@ const opGetAccountSettings = "GetAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountSettings for more information on using the GetAccountSettings
 // API call, and error handling.
@@ -1708,7 +1708,7 @@ const opGetDevice = "GetDevice"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevice for more information on using the GetDevice
 // API call, and error handling.
@@ -1796,7 +1796,7 @@ const opGetDeviceInstance = "GetDeviceInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDeviceInstance for more information on using the GetDeviceInstance
 // API call, and error handling.
@@ -1885,7 +1885,7 @@ const opGetDevicePool = "GetDevicePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevicePool for more information on using the GetDevicePool
 // API call, and error handling.
@@ -1973,7 +1973,7 @@ const opGetDevicePoolCompatibility = "GetDevicePoolCompatibility"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDevicePoolCompatibility for more information on using the GetDevicePoolCompatibility
 // API call, and error handling.
@@ -2061,7 +2061,7 @@ const opGetInstanceProfile = "GetInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetInstanceProfile for more information on using the GetInstanceProfile
 // API call, and error handling.
@@ -2149,7 +2149,7 @@ const opGetJob = "GetJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetJob for more information on using the GetJob
 // API call, and error handling.
@@ -2237,7 +2237,7 @@ const opGetNetworkProfile = "GetNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNetworkProfile for more information on using the GetNetworkProfile
 // API call, and error handling.
@@ -2325,7 +2325,7 @@ const opGetOfferingStatus = "GetOfferingStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetOfferingStatus for more information on using the GetOfferingStatus
 // API call, and error handling.
@@ -2480,7 +2480,7 @@ const opGetProject = "GetProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProject for more information on using the GetProject
 // API call, and error handling.
@@ -2568,7 +2568,7 @@ const opGetRemoteAccessSession = "GetRemoteAccessSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRemoteAccessSession for more information on using the GetRemoteAccessSession
 // API call, and error handling.
@@ -2656,7 +2656,7 @@ const opGetRun = "GetRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRun for more information on using the GetRun
 // API call, and error handling.
@@ -2744,7 +2744,7 @@ const opGetSuite = "GetSuite"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSuite for more information on using the GetSuite
 // API call, and error handling.
@@ -2832,7 +2832,7 @@ const opGetTest = "GetTest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTest for more information on using the GetTest
 // API call, and error handling.
@@ -2920,7 +2920,7 @@ const opGetTestGridProject = "GetTestGridProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTestGridProject for more information on using the GetTestGridProject
 // API call, and error handling.
@@ -3006,7 +3006,7 @@ const opGetTestGridSession = "GetTestGridSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTestGridSession for more information on using the GetTestGridSession
 // API call, and error handling.
@@ -3099,7 +3099,7 @@ const opGetUpload = "GetUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUpload for more information on using the GetUpload
 // API call, and error handling.
@@ -3187,7 +3187,7 @@ const opGetVPCEConfiguration = "GetVPCEConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVPCEConfiguration for more information on using the GetVPCEConfiguration
 // API call, and error handling.
@@ -3273,7 +3273,7 @@ const opInstallToRemoteAccessSession = "InstallToRemoteAccessSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InstallToRemoteAccessSession for more information on using the InstallToRemoteAccessSession
 // API call, and error handling.
@@ -3363,7 +3363,7 @@ const opListArtifacts = "ListArtifacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListArtifacts for more information on using the ListArtifacts
 // API call, and error handling.
@@ -3509,7 +3509,7 @@ const opListDeviceInstances = "ListDeviceInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeviceInstances for more information on using the ListDeviceInstances
 // API call, and error handling.
@@ -3598,7 +3598,7 @@ const opListDevicePools = "ListDevicePools"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevicePools for more information on using the ListDevicePools
 // API call, and error handling.
@@ -3744,7 +3744,7 @@ const opListDevices = "ListDevices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDevices for more information on using the ListDevices
 // API call, and error handling.
@@ -3890,7 +3890,7 @@ const opListInstanceProfiles = "ListInstanceProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstanceProfiles for more information on using the ListInstanceProfiles
 // API call, and error handling.
@@ -3978,7 +3978,7 @@ const opListJobs = "ListJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobs for more information on using the ListJobs
 // API call, and error handling.
@@ -4124,7 +4124,7 @@ const opListNetworkProfiles = "ListNetworkProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNetworkProfiles for more information on using the ListNetworkProfiles
 // API call, and error handling.
@@ -4212,7 +4212,7 @@ const opListOfferingPromotions = "ListOfferingPromotions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOfferingPromotions for more information on using the ListOfferingPromotions
 // API call, and error handling.
@@ -4308,7 +4308,7 @@ const opListOfferingTransactions = "ListOfferingTransactions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOfferingTransactions for more information on using the ListOfferingTransactions
 // API call, and error handling.
@@ -4463,7 +4463,7 @@ const opListOfferings = "ListOfferings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOfferings for more information on using the ListOfferings
 // API call, and error handling.
@@ -4617,7 +4617,7 @@ const opListProjects = "ListProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProjects for more information on using the ListProjects
 // API call, and error handling.
@@ -4763,7 +4763,7 @@ const opListRemoteAccessSessions = "ListRemoteAccessSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRemoteAccessSessions for more information on using the ListRemoteAccessSessions
 // API call, and error handling.
@@ -4851,7 +4851,7 @@ const opListRuns = "ListRuns"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRuns for more information on using the ListRuns
 // API call, and error handling.
@@ -4997,7 +4997,7 @@ const opListSamples = "ListSamples"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSamples for more information on using the ListSamples
 // API call, and error handling.
@@ -5143,7 +5143,7 @@ const opListSuites = "ListSuites"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSuites for more information on using the ListSuites
 // API call, and error handling.
@@ -5289,7 +5289,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -5374,7 +5374,7 @@ const opListTestGridProjects = "ListTestGridProjects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTestGridProjects for more information on using the ListTestGridProjects
 // API call, and error handling.
@@ -5515,7 +5515,7 @@ const opListTestGridSessionActions = "ListTestGridSessionActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTestGridSessionActions for more information on using the ListTestGridSessionActions
 // API call, and error handling.
@@ -5659,7 +5659,7 @@ const opListTestGridSessionArtifacts = "ListTestGridSessionArtifacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTestGridSessionArtifacts for more information on using the ListTestGridSessionArtifacts
 // API call, and error handling.
@@ -5803,7 +5803,7 @@ const opListTestGridSessions = "ListTestGridSessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTestGridSessions for more information on using the ListTestGridSessions
 // API call, and error handling.
@@ -5947,7 +5947,7 @@ const opListTests = "ListTests"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTests for more information on using the ListTests
 // API call, and error handling.
@@ -6093,7 +6093,7 @@ const opListUniqueProblems = "ListUniqueProblems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUniqueProblems for more information on using the ListUniqueProblems
 // API call, and error handling.
@@ -6244,7 +6244,7 @@ const opListUploads = "ListUploads"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUploads for more information on using the ListUploads
 // API call, and error handling.
@@ -6390,7 +6390,7 @@ const opListVPCEConfigurations = "ListVPCEConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVPCEConfigurations for more information on using the ListVPCEConfigurations
 // API call, and error handling.
@@ -6473,7 +6473,7 @@ const opPurchaseOffering = "PurchaseOffering"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PurchaseOffering for more information on using the PurchaseOffering
 // API call, and error handling.
@@ -6569,7 +6569,7 @@ const opRenewOffering = "RenewOffering"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RenewOffering for more information on using the RenewOffering
 // API call, and error handling.
@@ -6665,7 +6665,7 @@ const opScheduleRun = "ScheduleRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ScheduleRun for more information on using the ScheduleRun
 // API call, and error handling.
@@ -6756,7 +6756,7 @@ const opStopJob = "StopJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopJob for more information on using the StopJob
 // API call, and error handling.
@@ -6848,7 +6848,7 @@ const opStopRemoteAccessSession = "StopRemoteAccessSession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopRemoteAccessSession for more information on using the StopRemoteAccessSession
 // API call, and error handling.
@@ -6936,7 +6936,7 @@ const opStopRun = "StopRun"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopRun for more information on using the StopRun
 // API call, and error handling.
@@ -7028,7 +7028,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -7125,7 +7125,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -7211,7 +7211,7 @@ const opUpdateDeviceInstance = "UpdateDeviceInstance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDeviceInstance for more information on using the UpdateDeviceInstance
 // API call, and error handling.
@@ -7299,7 +7299,7 @@ const opUpdateDevicePool = "UpdateDevicePool"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDevicePool for more information on using the UpdateDevicePool
 // API call, and error handling.
@@ -7389,7 +7389,7 @@ const opUpdateInstanceProfile = "UpdateInstanceProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateInstanceProfile for more information on using the UpdateInstanceProfile
 // API call, and error handling.
@@ -7477,7 +7477,7 @@ const opUpdateNetworkProfile = "UpdateNetworkProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNetworkProfile for more information on using the UpdateNetworkProfile
 // API call, and error handling.
@@ -7565,7 +7565,7 @@ const opUpdateProject = "UpdateProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProject for more information on using the UpdateProject
 // API call, and error handling.
@@ -7653,7 +7653,7 @@ const opUpdateTestGridProject = "UpdateTestGridProject"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTestGridProject for more information on using the UpdateTestGridProject
 // API call, and error handling.
@@ -7739,7 +7739,7 @@ const opUpdateUpload = "UpdateUpload"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUpload for more information on using the UpdateUpload
 // API call, and error handling.
@@ -7827,7 +7827,7 @@ const opUpdateVPCEConfiguration = "UpdateVPCEConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVPCEConfiguration for more information on using the UpdateVPCEConfiguration
 // API call, and error handling.

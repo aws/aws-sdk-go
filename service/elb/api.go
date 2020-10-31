@@ -21,7 +21,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opApplySecurityGroupsToLoadBalancer = "ApplySecurityGroupsToLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApplySecurityGroupsToLoadBalancer for more information on using the ApplySecurityGroupsToLoadBalancer
 // API call, and error handling.
@@ -205,7 +205,7 @@ const opAttachLoadBalancerToSubnets = "AttachLoadBalancerToSubnets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachLoadBalancerToSubnets for more information on using the AttachLoadBalancerToSubnets
 // API call, and error handling.
@@ -299,7 +299,7 @@ const opConfigureHealthCheck = "ConfigureHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfigureHealthCheck for more information on using the ConfigureHealthCheck
 // API call, and error handling.
@@ -383,7 +383,7 @@ const opCreateAppCookieStickinessPolicy = "CreateAppCookieStickinessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAppCookieStickinessPolicy for more information on using the CreateAppCookieStickinessPolicy
 // API call, and error handling.
@@ -486,7 +486,7 @@ const opCreateLBCookieStickinessPolicy = "CreateLBCookieStickinessPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLBCookieStickinessPolicy for more information on using the CreateLBCookieStickinessPolicy
 // API call, and error handling.
@@ -591,7 +591,7 @@ const opCreateLoadBalancer = "CreateLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoadBalancer for more information on using the CreateLoadBalancer
 // API call, and error handling.
@@ -720,7 +720,7 @@ const opCreateLoadBalancerListeners = "CreateLoadBalancerListeners"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoadBalancerListeners for more information on using the CreateLoadBalancerListeners
 // API call, and error handling.
@@ -822,7 +822,7 @@ const opCreateLoadBalancerPolicy = "CreateLoadBalancerPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLoadBalancerPolicy for more information on using the CreateLoadBalancerPolicy
 // API call, and error handling.
@@ -918,7 +918,7 @@ const opDeleteLoadBalancer = "DeleteLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoadBalancer for more information on using the DeleteLoadBalancer
 // API call, and error handling.
@@ -1002,7 +1002,7 @@ const opDeleteLoadBalancerListeners = "DeleteLoadBalancerListeners"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoadBalancerListeners for more information on using the DeleteLoadBalancerListeners
 // API call, and error handling.
@@ -1082,7 +1082,7 @@ const opDeleteLoadBalancerPolicy = "DeleteLoadBalancerPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLoadBalancerPolicy for more information on using the DeleteLoadBalancerPolicy
 // API call, and error handling.
@@ -1166,7 +1166,7 @@ const opDeregisterInstancesFromLoadBalancer = "DeregisterInstancesFromLoadBalanc
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterInstancesFromLoadBalancer for more information on using the DeregisterInstancesFromLoadBalancer
 // API call, and error handling.
@@ -1256,7 +1256,7 @@ const opDescribeAccountLimits = "DescribeAccountLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountLimits for more information on using the DescribeAccountLimits
 // API call, and error handling.
@@ -1334,7 +1334,7 @@ const opDescribeInstanceHealth = "DescribeInstanceHealth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstanceHealth for more information on using the DescribeInstanceHealth
 // API call, and error handling.
@@ -1421,7 +1421,7 @@ const opDescribeLoadBalancerAttributes = "DescribeLoadBalancerAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancerAttributes for more information on using the DescribeLoadBalancerAttributes
 // API call, and error handling.
@@ -1503,7 +1503,7 @@ const opDescribeLoadBalancerPolicies = "DescribeLoadBalancerPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancerPolicies for more information on using the DescribeLoadBalancerPolicies
 // API call, and error handling.
@@ -1592,7 +1592,7 @@ const opDescribeLoadBalancerPolicyTypes = "DescribeLoadBalancerPolicyTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancerPolicyTypes for more information on using the DescribeLoadBalancerPolicyTypes
 // API call, and error handling.
@@ -1682,7 +1682,7 @@ const opDescribeLoadBalancers = "DescribeLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancers for more information on using the DescribeLoadBalancers
 // API call, and error handling.
@@ -1824,7 +1824,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -1903,7 +1903,7 @@ const opDetachLoadBalancerFromSubnets = "DetachLoadBalancerFromSubnets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachLoadBalancerFromSubnets for more information on using the DetachLoadBalancerFromSubnets
 // API call, and error handling.
@@ -1990,7 +1990,7 @@ const opDisableAvailabilityZonesForLoadBalancer = "DisableAvailabilityZonesForLo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableAvailabilityZonesForLoadBalancer for more information on using the DisableAvailabilityZonesForLoadBalancer
 // API call, and error handling.
@@ -2084,7 +2084,7 @@ const opEnableAvailabilityZonesForLoadBalancer = "EnableAvailabilityZonesForLoad
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableAvailabilityZonesForLoadBalancer for more information on using the EnableAvailabilityZonesForLoadBalancer
 // API call, and error handling.
@@ -2171,7 +2171,7 @@ const opModifyLoadBalancerAttributes = "ModifyLoadBalancerAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyLoadBalancerAttributes for more information on using the ModifyLoadBalancerAttributes
 // API call, and error handling.
@@ -2271,7 +2271,7 @@ const opRegisterInstancesWithLoadBalancer = "RegisterInstancesWithLoadBalancer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterInstancesWithLoadBalancer for more information on using the RegisterInstancesWithLoadBalancer
 // API call, and error handling.
@@ -2375,7 +2375,7 @@ const opRemoveTags = "RemoveTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTags for more information on using the RemoveTags
 // API call, and error handling.
@@ -2455,7 +2455,7 @@ const opSetLoadBalancerListenerSSLCertificate = "SetLoadBalancerListenerSSLCerti
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetLoadBalancerListenerSSLCertificate for more information on using the SetLoadBalancerListenerSSLCertificate
 // API call, and error handling.
@@ -2556,7 +2556,7 @@ const opSetLoadBalancerPoliciesForBackendServer = "SetLoadBalancerPoliciesForBac
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetLoadBalancerPoliciesForBackendServer for more information on using the SetLoadBalancerPoliciesForBackendServer
 // API call, and error handling.
@@ -2657,7 +2657,7 @@ const opSetLoadBalancerPoliciesOfListener = "SetLoadBalancerPoliciesOfListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetLoadBalancerPoliciesOfListener for more information on using the SetLoadBalancerPoliciesOfListener
 // API call, and error handling.

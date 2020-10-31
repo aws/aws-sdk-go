@@ -21,7 +21,7 @@ const opCreateAccessPoint = "CreateAccessPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccessPoint for more information on using the CreateAccessPoint
 // API call, and error handling.
@@ -129,7 +129,7 @@ const opCreateFileSystem = "CreateFileSystem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFileSystem for more information on using the CreateFileSystem
 // API call, and error handling.
@@ -277,7 +277,7 @@ const opCreateMountTarget = "CreateMountTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMountTarget for more information on using the CreateMountTarget
 // API call, and error handling.
@@ -488,7 +488,7 @@ const opCreateTags = "CreateTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTags for more information on using the CreateTags
 // API call, and error handling.
@@ -591,7 +591,7 @@ const opDeleteAccessPoint = "DeleteAccessPoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccessPoint for more information on using the DeleteAccessPoint
 // API call, and error handling.
@@ -685,7 +685,7 @@ const opDeleteFileSystem = "DeleteFileSystem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFileSystem for more information on using the DeleteFileSystem
 // API call, and error handling.
@@ -791,7 +791,7 @@ const opDeleteFileSystemPolicy = "DeleteFileSystemPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFileSystemPolicy for more information on using the DeleteFileSystemPolicy
 // API call, and error handling.
@@ -884,7 +884,7 @@ const opDeleteMountTarget = "DeleteMountTarget"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMountTarget for more information on using the DeleteMountTarget
 // API call, and error handling.
@@ -1000,7 +1000,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -1104,7 +1104,7 @@ const opDescribeAccessPoints = "DescribeAccessPoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccessPoints for more information on using the DescribeAccessPoints
 // API call, and error handling.
@@ -1259,7 +1259,7 @@ const opDescribeBackupPolicy = "DescribeBackupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBackupPolicy for more information on using the DescribeBackupPolicy
 // API call, and error handling.
@@ -1354,7 +1354,7 @@ const opDescribeFileSystemPolicy = "DescribeFileSystemPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFileSystemPolicy for more information on using the DescribeFileSystemPolicy
 // API call, and error handling.
@@ -1444,7 +1444,7 @@ const opDescribeFileSystems = "DescribeFileSystems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFileSystems for more information on using the DescribeFileSystems
 // API call, and error handling.
@@ -1612,7 +1612,7 @@ const opDescribeLifecycleConfiguration = "DescribeLifecycleConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLifecycleConfiguration for more information on using the DescribeLifecycleConfiguration
 // API call, and error handling.
@@ -1706,7 +1706,7 @@ const opDescribeMountTargetSecurityGroups = "DescribeMountTargetSecurityGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMountTargetSecurityGroups for more information on using the DescribeMountTargetSecurityGroups
 // API call, and error handling.
@@ -1806,7 +1806,7 @@ const opDescribeMountTargets = "DescribeMountTargets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMountTargets for more information on using the DescribeMountTargets
 // API call, and error handling.
@@ -1907,7 +1907,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -2070,7 +2070,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2223,7 +2223,7 @@ const opModifyMountTargetSecurityGroups = "ModifyMountTargetSecurityGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyMountTargetSecurityGroups for more information on using the ModifyMountTargetSecurityGroups
 // API call, and error handling.
@@ -2337,7 +2337,7 @@ const opPutBackupPolicy = "PutBackupPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBackupPolicy for more information on using the PutBackupPolicy
 // API call, and error handling.
@@ -2432,7 +2432,7 @@ const opPutFileSystemPolicy = "PutFileSystemPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutFileSystemPolicy for more information on using the PutFileSystemPolicy
 // API call, and error handling.
@@ -2532,7 +2532,7 @@ const opPutLifecycleConfiguration = "PutLifecycleConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLifecycleConfiguration for more information on using the PutLifecycleConfiguration
 // API call, and error handling.
@@ -2649,7 +2649,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2745,7 +2745,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2841,7 +2841,7 @@ const opUpdateFileSystem = "UpdateFileSystem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFileSystem for more information on using the UpdateFileSystem
 // API call, and error handling.

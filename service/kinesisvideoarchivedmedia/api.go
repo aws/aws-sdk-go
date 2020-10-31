@@ -21,7 +21,7 @@ const opGetClip = "GetClip"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetClip for more information on using the GetClip
 // API call, and error handling.
@@ -174,7 +174,7 @@ const opGetDASHStreamingSessionURL = "GetDASHStreamingSessionURL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDASHStreamingSessionURL for more information on using the GetDASHStreamingSessionURL
 // API call, and error handling.
@@ -412,7 +412,7 @@ const opGetHLSStreamingSessionURL = "GetHLSStreamingSessionURL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHLSStreamingSessionURL for more information on using the GetHLSStreamingSessionURL
 // API call, and error handling.
@@ -672,7 +672,7 @@ const opGetMediaForFragmentList = "GetMediaForFragmentList"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMediaForFragmentList for more information on using the GetMediaForFragmentList
 // API call, and error handling.
@@ -803,7 +803,7 @@ const opListFragments = "ListFragments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFragments for more information on using the ListFragments
 // API call, and error handling.

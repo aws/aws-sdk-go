@@ -21,7 +21,7 @@ const opAddApplicationCloudWatchLoggingOption = "AddApplicationCloudWatchLogging
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddApplicationCloudWatchLoggingOption for more information on using the AddApplicationCloudWatchLoggingOption
 // API call, and error handling.
@@ -124,7 +124,7 @@ const opAddApplicationInput = "AddApplicationInput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddApplicationInput for more information on using the AddApplicationInput
 // API call, and error handling.
@@ -242,7 +242,7 @@ const opAddApplicationInputProcessingConfiguration = "AddApplicationInputProcess
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddApplicationInputProcessingConfiguration for more information on using the AddApplicationInputProcessingConfiguration
 // API call, and error handling.
@@ -346,7 +346,7 @@ const opAddApplicationOutput = "AddApplicationOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddApplicationOutput for more information on using the AddApplicationOutput
 // API call, and error handling.
@@ -470,7 +470,7 @@ const opAddApplicationReferenceDataSource = "AddApplicationReferenceDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddApplicationReferenceDataSource for more information on using the AddApplicationReferenceDataSource
 // API call, and error handling.
@@ -585,7 +585,7 @@ const opCreateApplication = "CreateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApplication for more information on using the CreateApplication
 // API call, and error handling.
@@ -714,7 +714,7 @@ const opDeleteApplication = "DeleteApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplication for more information on using the DeleteApplication
 // API call, and error handling.
@@ -817,7 +817,7 @@ const opDeleteApplicationCloudWatchLoggingOption = "DeleteApplicationCloudWatchL
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplicationCloudWatchLoggingOption for more information on using the DeleteApplicationCloudWatchLoggingOption
 // API call, and error handling.
@@ -920,7 +920,7 @@ const opDeleteApplicationInputProcessingConfiguration = "DeleteApplicationInputP
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplicationInputProcessingConfiguration for more information on using the DeleteApplicationInputProcessingConfiguration
 // API call, and error handling.
@@ -1022,7 +1022,7 @@ const opDeleteApplicationOutput = "DeleteApplicationOutput"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplicationOutput for more information on using the DeleteApplicationOutput
 // API call, and error handling.
@@ -1128,7 +1128,7 @@ const opDeleteApplicationReferenceDataSource = "DeleteApplicationReferenceDataSo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApplicationReferenceDataSource for more information on using the DeleteApplicationReferenceDataSource
 // API call, and error handling.
@@ -1238,7 +1238,7 @@ const opDescribeApplication = "DescribeApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApplication for more information on using the DescribeApplication
 // API call, and error handling.
@@ -1335,7 +1335,7 @@ const opDiscoverInputSchema = "DiscoverInputSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DiscoverInputSchema for more information on using the DiscoverInputSchema
 // API call, and error handling.
@@ -1446,7 +1446,7 @@ const opListApplications = "ListApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplications for more information on using the ListApplications
 // API call, and error handling.
@@ -1537,7 +1537,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1625,7 +1625,7 @@ const opStartApplication = "StartApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartApplication for more information on using the StartApplication
 // API call, and error handling.
@@ -1740,7 +1740,7 @@ const opStopApplication = "StopApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopApplication for more information on using the StopApplication
 // API call, and error handling.
@@ -1840,7 +1840,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1939,7 +1939,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2036,7 +2036,7 @@ const opUpdateApplication = "UpdateApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApplication for more information on using the UpdateApplication
 // API call, and error handling.

@@ -29,7 +29,7 @@ const opEmptyStream = "EmptyStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EmptyStream for more information on using the EmptyStream
 // API call, and error handling.
@@ -256,7 +256,7 @@ const opGetEventStream = "GetEventStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventStream for more information on using the GetEventStream
 // API call, and error handling.
@@ -490,7 +490,7 @@ const opOtherOperation = "OtherOperation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OtherOperation for more information on using the OtherOperation
 // API call, and error handling.

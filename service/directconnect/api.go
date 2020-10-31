@@ -21,7 +21,7 @@ const opAcceptDirectConnectGatewayAssociationProposal = "AcceptDirectConnectGate
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptDirectConnectGatewayAssociationProposal for more information on using the AcceptDirectConnectGatewayAssociationProposal
 // API call, and error handling.
@@ -104,7 +104,7 @@ const opAllocateConnectionOnInterconnect = "AllocateConnectionOnInterconnect"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AllocateConnectionOnInterconnect for more information on using the AllocateConnectionOnInterconnect
 // API call, and error handling.
@@ -202,7 +202,7 @@ const opAllocateHostedConnection = "AllocateHostedConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AllocateHostedConnection for more information on using the AllocateHostedConnection
 // API call, and error handling.
@@ -299,7 +299,7 @@ const opAllocatePrivateVirtualInterface = "AllocatePrivateVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AllocatePrivateVirtualInterface for more information on using the AllocatePrivateVirtualInterface
 // API call, and error handling.
@@ -391,7 +391,7 @@ const opAllocatePublicVirtualInterface = "AllocatePublicVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AllocatePublicVirtualInterface for more information on using the AllocatePublicVirtualInterface
 // API call, and error handling.
@@ -491,7 +491,7 @@ const opAllocateTransitVirtualInterface = "AllocateTransitVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AllocateTransitVirtualInterface for more information on using the AllocateTransitVirtualInterface
 // API call, and error handling.
@@ -589,7 +589,7 @@ const opAssociateConnectionWithLag = "AssociateConnectionWithLag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateConnectionWithLag for more information on using the AssociateConnectionWithLag
 // API call, and error handling.
@@ -687,7 +687,7 @@ const opAssociateHostedConnection = "AssociateHostedConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateHostedConnection for more information on using the AssociateHostedConnection
 // API call, and error handling.
@@ -775,7 +775,7 @@ const opAssociateVirtualInterface = "AssociateVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateVirtualInterface for more information on using the AssociateVirtualInterface
 // API call, and error handling.
@@ -870,7 +870,7 @@ const opConfirmConnection = "ConfirmConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmConnection for more information on using the ConfirmConnection
 // API call, and error handling.
@@ -956,7 +956,7 @@ const opConfirmPrivateVirtualInterface = "ConfirmPrivateVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmPrivateVirtualInterface for more information on using the ConfirmPrivateVirtualInterface
 // API call, and error handling.
@@ -1042,7 +1042,7 @@ const opConfirmPublicVirtualInterface = "ConfirmPublicVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmPublicVirtualInterface for more information on using the ConfirmPublicVirtualInterface
 // API call, and error handling.
@@ -1127,7 +1127,7 @@ const opConfirmTransitVirtualInterface = "ConfirmTransitVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConfirmTransitVirtualInterface for more information on using the ConfirmTransitVirtualInterface
 // API call, and error handling.
@@ -1212,7 +1212,7 @@ const opCreateBGPPeer = "CreateBGPPeer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBGPPeer for more information on using the CreateBGPPeer
 // API call, and error handling.
@@ -1308,7 +1308,7 @@ const opCreateConnection = "CreateConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConnection for more information on using the CreateConnection
 // API call, and error handling.
@@ -1409,7 +1409,7 @@ const opCreateDirectConnectGateway = "CreateDirectConnectGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDirectConnectGateway for more information on using the CreateDirectConnectGateway
 // API call, and error handling.
@@ -1497,7 +1497,7 @@ const opCreateDirectConnectGatewayAssociation = "CreateDirectConnectGatewayAssoc
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDirectConnectGatewayAssociation for more information on using the CreateDirectConnectGatewayAssociation
 // API call, and error handling.
@@ -1581,7 +1581,7 @@ const opCreateDirectConnectGatewayAssociationProposal = "CreateDirectConnectGate
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDirectConnectGatewayAssociationProposal for more information on using the CreateDirectConnectGatewayAssociationProposal
 // API call, and error handling.
@@ -1667,7 +1667,7 @@ const opCreateInterconnect = "CreateInterconnect"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateInterconnect for more information on using the CreateInterconnect
 // API call, and error handling.
@@ -1777,7 +1777,7 @@ const opCreateLag = "CreateLag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLag for more information on using the CreateLag
 // API call, and error handling.
@@ -1889,7 +1889,7 @@ const opCreatePrivateVirtualInterface = "CreatePrivateVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePrivateVirtualInterface for more information on using the CreatePrivateVirtualInterface
 // API call, and error handling.
@@ -1990,7 +1990,7 @@ const opCreatePublicVirtualInterface = "CreatePublicVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePublicVirtualInterface for more information on using the CreatePublicVirtualInterface
 // API call, and error handling.
@@ -2084,7 +2084,7 @@ const opCreateTransitVirtualInterface = "CreateTransitVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTransitVirtualInterface for more information on using the CreateTransitVirtualInterface
 // API call, and error handling.
@@ -2188,7 +2188,7 @@ const opDeleteBGPPeer = "DeleteBGPPeer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBGPPeer for more information on using the DeleteBGPPeer
 // API call, and error handling.
@@ -2273,7 +2273,7 @@ const opDeleteConnection = "DeleteConnection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnection for more information on using the DeleteConnection
 // API call, and error handling.
@@ -2360,7 +2360,7 @@ const opDeleteDirectConnectGateway = "DeleteDirectConnectGateway"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDirectConnectGateway for more information on using the DeleteDirectConnectGateway
 // API call, and error handling.
@@ -2444,7 +2444,7 @@ const opDeleteDirectConnectGatewayAssociation = "DeleteDirectConnectGatewayAssoc
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDirectConnectGatewayAssociation for more information on using the DeleteDirectConnectGatewayAssociation
 // API call, and error handling.
@@ -2532,7 +2532,7 @@ const opDeleteDirectConnectGatewayAssociationProposal = "DeleteDirectConnectGate
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDirectConnectGatewayAssociationProposal for more information on using the DeleteDirectConnectGatewayAssociationProposal
 // API call, and error handling.
@@ -2615,7 +2615,7 @@ const opDeleteInterconnect = "DeleteInterconnect"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteInterconnect for more information on using the DeleteInterconnect
 // API call, and error handling.
@@ -2699,7 +2699,7 @@ const opDeleteLag = "DeleteLag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLag for more information on using the DeleteLag
 // API call, and error handling.
@@ -2782,7 +2782,7 @@ const opDeleteVirtualInterface = "DeleteVirtualInterface"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVirtualInterface for more information on using the DeleteVirtualInterface
 // API call, and error handling.
@@ -2864,7 +2864,7 @@ const opDescribeConnectionLoa = "DescribeConnectionLoa"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectionLoa for more information on using the DescribeConnectionLoa
 // API call, and error handling.
@@ -2963,7 +2963,7 @@ const opDescribeConnections = "DescribeConnections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnections for more information on using the DescribeConnections
 // API call, and error handling.
@@ -3045,7 +3045,7 @@ const opDescribeConnectionsOnInterconnect = "DescribeConnectionsOnInterconnect"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectionsOnInterconnect for more information on using the DescribeConnectionsOnInterconnect
 // API call, and error handling.
@@ -3140,7 +3140,7 @@ const opDescribeDirectConnectGatewayAssociationProposals = "DescribeDirectConnec
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDirectConnectGatewayAssociationProposals for more information on using the DescribeDirectConnectGatewayAssociationProposals
 // API call, and error handling.
@@ -3223,7 +3223,7 @@ const opDescribeDirectConnectGatewayAssociations = "DescribeDirectConnectGateway
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDirectConnectGatewayAssociations for more information on using the DescribeDirectConnectGatewayAssociations
 // API call, and error handling.
@@ -3312,7 +3312,7 @@ const opDescribeDirectConnectGatewayAttachments = "DescribeDirectConnectGatewayA
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDirectConnectGatewayAttachments for more information on using the DescribeDirectConnectGatewayAttachments
 // API call, and error handling.
@@ -3400,7 +3400,7 @@ const opDescribeDirectConnectGateways = "DescribeDirectConnectGateways"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDirectConnectGateways for more information on using the DescribeDirectConnectGateways
 // API call, and error handling.
@@ -3483,7 +3483,7 @@ const opDescribeHostedConnections = "DescribeHostedConnections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHostedConnections for more information on using the DescribeHostedConnections
 // API call, and error handling.
@@ -3568,7 +3568,7 @@ const opDescribeInterconnectLoa = "DescribeInterconnectLoa"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInterconnectLoa for more information on using the DescribeInterconnectLoa
 // API call, and error handling.
@@ -3667,7 +3667,7 @@ const opDescribeInterconnects = "DescribeInterconnects"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInterconnects for more information on using the DescribeInterconnects
 // API call, and error handling.
@@ -3749,7 +3749,7 @@ const opDescribeLags = "DescribeLags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLags for more information on using the DescribeLags
 // API call, and error handling.
@@ -3831,7 +3831,7 @@ const opDescribeLoa = "DescribeLoa"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoa for more information on using the DescribeLoa
 // API call, and error handling.
@@ -3920,7 +3920,7 @@ const opDescribeLocations = "DescribeLocations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLocations for more information on using the DescribeLocations
 // API call, and error handling.
@@ -4003,7 +4003,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -4085,7 +4085,7 @@ const opDescribeVirtualGateways = "DescribeVirtualGateways"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVirtualGateways for more information on using the DescribeVirtualGateways
 // API call, and error handling.
@@ -4170,7 +4170,7 @@ const opDescribeVirtualInterfaces = "DescribeVirtualInterfaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeVirtualInterfaces for more information on using the DescribeVirtualInterfaces
 // API call, and error handling.
@@ -4259,7 +4259,7 @@ const opDisassociateConnectionFromLag = "DisassociateConnectionFromLag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateConnectionFromLag for more information on using the DisassociateConnectionFromLag
 // API call, and error handling.
@@ -4351,7 +4351,7 @@ const opListVirtualInterfaceTestHistory = "ListVirtualInterfaceTestHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVirtualInterfaceTestHistory for more information on using the ListVirtualInterfaceTestHistory
 // API call, and error handling.
@@ -4433,7 +4433,7 @@ const opStartBgpFailoverTest = "StartBgpFailoverTest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartBgpFailoverTest for more information on using the StartBgpFailoverTest
 // API call, and error handling.
@@ -4525,7 +4525,7 @@ const opStopBgpFailoverTest = "StopBgpFailoverTest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopBgpFailoverTest for more information on using the StopBgpFailoverTest
 // API call, and error handling.
@@ -4607,7 +4607,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4700,7 +4700,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4783,7 +4783,7 @@ const opUpdateDirectConnectGatewayAssociation = "UpdateDirectConnectGatewayAssoc
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDirectConnectGatewayAssociation for more information on using the UpdateDirectConnectGatewayAssociation
 // API call, and error handling.
@@ -4867,7 +4867,7 @@ const opUpdateLag = "UpdateLag"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateLag for more information on using the UpdateLag
 // API call, and error handling.
@@ -4963,7 +4963,7 @@ const opUpdateVirtualInterfaceAttributes = "UpdateVirtualInterfaceAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVirtualInterfaceAttributes for more information on using the UpdateVirtualInterfaceAttributes
 // API call, and error handling.

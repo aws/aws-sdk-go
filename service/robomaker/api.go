@@ -21,7 +21,7 @@ const opBatchDeleteWorlds = "BatchDeleteWorlds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteWorlds for more information on using the BatchDeleteWorlds
 // API call, and error handling.
@@ -108,7 +108,7 @@ const opBatchDescribeSimulationJob = "BatchDescribeSimulationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDescribeSimulationJob for more information on using the BatchDescribeSimulationJob
 // API call, and error handling.
@@ -198,7 +198,7 @@ const opCancelDeploymentJob = "CancelDeploymentJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelDeploymentJob for more information on using the CancelDeploymentJob
 // API call, and error handling.
@@ -289,7 +289,7 @@ const opCancelSimulationJob = "CancelSimulationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelSimulationJob for more information on using the CancelSimulationJob
 // API call, and error handling.
@@ -380,7 +380,7 @@ const opCancelSimulationJobBatch = "CancelSimulationJobBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelSimulationJobBatch for more information on using the CancelSimulationJobBatch
 // API call, and error handling.
@@ -473,7 +473,7 @@ const opCancelWorldExportJob = "CancelWorldExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelWorldExportJob for more information on using the CancelWorldExportJob
 // API call, and error handling.
@@ -564,7 +564,7 @@ const opCancelWorldGenerationJob = "CancelWorldGenerationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelWorldGenerationJob for more information on using the CancelWorldGenerationJob
 // API call, and error handling.
@@ -655,7 +655,7 @@ const opCreateDeploymentJob = "CreateDeploymentJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeploymentJob for more information on using the CreateDeploymentJob
 // API call, and error handling.
@@ -764,7 +764,7 @@ const opCreateFleet = "CreateFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFleet for more information on using the CreateFleet
 // API call, and error handling.
@@ -855,7 +855,7 @@ const opCreateRobot = "CreateRobot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRobot for more information on using the CreateRobot
 // API call, and error handling.
@@ -949,7 +949,7 @@ const opCreateRobotApplication = "CreateRobotApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRobotApplication for more information on using the CreateRobotApplication
 // API call, and error handling.
@@ -1048,7 +1048,7 @@ const opCreateRobotApplicationVersion = "CreateRobotApplicationVersion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRobotApplicationVersion for more information on using the CreateRobotApplicationVersion
 // API call, and error handling.
@@ -1144,7 +1144,7 @@ const opCreateSimulationApplication = "CreateSimulationApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSimulationApplication for more information on using the CreateSimulationApplication
 // API call, and error handling.
@@ -1243,7 +1243,7 @@ const opCreateSimulationApplicationVersion = "CreateSimulationApplicationVersion
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSimulationApplicationVersion for more information on using the CreateSimulationApplicationVersion
 // API call, and error handling.
@@ -1339,7 +1339,7 @@ const opCreateSimulationJob = "CreateSimulationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSimulationJob for more information on using the CreateSimulationJob
 // API call, and error handling.
@@ -1444,7 +1444,7 @@ const opCreateWorldExportJob = "CreateWorldExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorldExportJob for more information on using the CreateWorldExportJob
 // API call, and error handling.
@@ -1542,7 +1542,7 @@ const opCreateWorldGenerationJob = "CreateWorldGenerationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorldGenerationJob for more information on using the CreateWorldGenerationJob
 // API call, and error handling.
@@ -1644,7 +1644,7 @@ const opCreateWorldTemplate = "CreateWorldTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorldTemplate for more information on using the CreateWorldTemplate
 // API call, and error handling.
@@ -1741,7 +1741,7 @@ const opDeleteFleet = "DeleteFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFleet for more information on using the DeleteFleet
 // API call, and error handling.
@@ -1829,7 +1829,7 @@ const opDeleteRobot = "DeleteRobot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRobot for more information on using the DeleteRobot
 // API call, and error handling.
@@ -1917,7 +1917,7 @@ const opDeleteRobotApplication = "DeleteRobotApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRobotApplication for more information on using the DeleteRobotApplication
 // API call, and error handling.
@@ -2005,7 +2005,7 @@ const opDeleteSimulationApplication = "DeleteSimulationApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSimulationApplication for more information on using the DeleteSimulationApplication
 // API call, and error handling.
@@ -2093,7 +2093,7 @@ const opDeleteWorldTemplate = "DeleteWorldTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorldTemplate for more information on using the DeleteWorldTemplate
 // API call, and error handling.
@@ -2184,7 +2184,7 @@ const opDeregisterRobot = "DeregisterRobot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterRobot for more information on using the DeregisterRobot
 // API call, and error handling.
@@ -2274,7 +2274,7 @@ const opDescribeDeploymentJob = "DescribeDeploymentJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDeploymentJob for more information on using the DescribeDeploymentJob
 // API call, and error handling.
@@ -2364,7 +2364,7 @@ const opDescribeFleet = "DescribeFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeFleet for more information on using the DescribeFleet
 // API call, and error handling.
@@ -2454,7 +2454,7 @@ const opDescribeRobot = "DescribeRobot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRobot for more information on using the DescribeRobot
 // API call, and error handling.
@@ -2544,7 +2544,7 @@ const opDescribeRobotApplication = "DescribeRobotApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRobotApplication for more information on using the DescribeRobotApplication
 // API call, and error handling.
@@ -2634,7 +2634,7 @@ const opDescribeSimulationApplication = "DescribeSimulationApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSimulationApplication for more information on using the DescribeSimulationApplication
 // API call, and error handling.
@@ -2724,7 +2724,7 @@ const opDescribeSimulationJob = "DescribeSimulationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSimulationJob for more information on using the DescribeSimulationJob
 // API call, and error handling.
@@ -2814,7 +2814,7 @@ const opDescribeSimulationJobBatch = "DescribeSimulationJobBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSimulationJobBatch for more information on using the DescribeSimulationJobBatch
 // API call, and error handling.
@@ -2900,7 +2900,7 @@ const opDescribeWorld = "DescribeWorld"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorld for more information on using the DescribeWorld
 // API call, and error handling.
@@ -2990,7 +2990,7 @@ const opDescribeWorldExportJob = "DescribeWorldExportJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorldExportJob for more information on using the DescribeWorldExportJob
 // API call, and error handling.
@@ -3080,7 +3080,7 @@ const opDescribeWorldGenerationJob = "DescribeWorldGenerationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorldGenerationJob for more information on using the DescribeWorldGenerationJob
 // API call, and error handling.
@@ -3170,7 +3170,7 @@ const opDescribeWorldTemplate = "DescribeWorldTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorldTemplate for more information on using the DescribeWorldTemplate
 // API call, and error handling.
@@ -3260,7 +3260,7 @@ const opGetWorldTemplateBody = "GetWorldTemplateBody"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorldTemplateBody for more information on using the GetWorldTemplateBody
 // API call, and error handling.
@@ -3350,7 +3350,7 @@ const opListDeploymentJobs = "ListDeploymentJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeploymentJobs for more information on using the ListDeploymentJobs
 // API call, and error handling.
@@ -3499,7 +3499,7 @@ const opListFleets = "ListFleets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFleets for more information on using the ListFleets
 // API call, and error handling.
@@ -3648,7 +3648,7 @@ const opListRobotApplications = "ListRobotApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRobotApplications for more information on using the ListRobotApplications
 // API call, and error handling.
@@ -3794,7 +3794,7 @@ const opListRobots = "ListRobots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRobots for more information on using the ListRobots
 // API call, and error handling.
@@ -3943,7 +3943,7 @@ const opListSimulationApplications = "ListSimulationApplications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSimulationApplications for more information on using the ListSimulationApplications
 // API call, and error handling.
@@ -4089,7 +4089,7 @@ const opListSimulationJobBatches = "ListSimulationJobBatches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSimulationJobBatches for more information on using the ListSimulationJobBatches
 // API call, and error handling.
@@ -4231,7 +4231,7 @@ const opListSimulationJobs = "ListSimulationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSimulationJobs for more information on using the ListSimulationJobs
 // API call, and error handling.
@@ -4377,7 +4377,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4467,7 +4467,7 @@ const opListWorldExportJobs = "ListWorldExportJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorldExportJobs for more information on using the ListWorldExportJobs
 // API call, and error handling.
@@ -4612,7 +4612,7 @@ const opListWorldGenerationJobs = "ListWorldGenerationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorldGenerationJobs for more information on using the ListWorldGenerationJobs
 // API call, and error handling.
@@ -4757,7 +4757,7 @@ const opListWorldTemplates = "ListWorldTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorldTemplates for more information on using the ListWorldTemplates
 // API call, and error handling.
@@ -4902,7 +4902,7 @@ const opListWorlds = "ListWorlds"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorlds for more information on using the ListWorlds
 // API call, and error handling.
@@ -5047,7 +5047,7 @@ const opRegisterRobot = "RegisterRobot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterRobot for more information on using the RegisterRobot
 // API call, and error handling.
@@ -5141,7 +5141,7 @@ const opRestartSimulationJob = "RestartSimulationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestartSimulationJob for more information on using the RestartSimulationJob
 // API call, and error handling.
@@ -5236,7 +5236,7 @@ const opStartSimulationJobBatch = "StartSimulationJobBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSimulationJobBatch for more information on using the StartSimulationJobBatch
 // API call, and error handling.
@@ -5333,7 +5333,7 @@ const opSyncDeploymentJob = "SyncDeploymentJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SyncDeploymentJob for more information on using the SyncDeploymentJob
 // API call, and error handling.
@@ -5436,7 +5436,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5534,7 +5534,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -5628,7 +5628,7 @@ const opUpdateRobotApplication = "UpdateRobotApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRobotApplication for more information on using the UpdateRobotApplication
 // API call, and error handling.
@@ -5722,7 +5722,7 @@ const opUpdateSimulationApplication = "UpdateSimulationApplication"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSimulationApplication for more information on using the UpdateSimulationApplication
 // API call, and error handling.
@@ -5816,7 +5816,7 @@ const opUpdateWorldTemplate = "UpdateWorldTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWorldTemplate for more information on using the UpdateWorldTemplate
 // API call, and error handling.

@@ -24,7 +24,7 @@ const opBatchGetItem = "BatchGetItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetItem for more information on using the BatchGetItem
 // API call, and error handling.
@@ -251,7 +251,7 @@ const opBatchWriteItem = "BatchWriteItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchWriteItem for more information on using the BatchWriteItem
 // API call, and error handling.
@@ -445,7 +445,7 @@ const opCreateBackup = "CreateBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBackup for more information on using the CreateBackup
 // API call, and error handling.
@@ -605,7 +605,7 @@ const opCreateGlobalTable = "CreateGlobalTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGlobalTable for more information on using the CreateGlobalTable
 // API call, and error handling.
@@ -773,7 +773,7 @@ const opCreateTable = "CreateTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTable for more information on using the CreateTable
 // API call, and error handling.
@@ -910,7 +910,7 @@ const opDeleteBackup = "DeleteBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBackup for more information on using the DeleteBackup
 // API call, and error handling.
@@ -1037,7 +1037,7 @@ const opDeleteItem = "DeleteItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteItem for more information on using the DeleteItem
 // API call, and error handling.
@@ -1181,7 +1181,7 @@ const opDeleteTable = "DeleteTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTable for more information on using the DeleteTable
 // API call, and error handling.
@@ -1325,7 +1325,7 @@ const opDescribeBackup = "DescribeBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBackup for more information on using the DescribeBackup
 // API call, and error handling.
@@ -1434,7 +1434,7 @@ const opDescribeContinuousBackups = "DescribeContinuousBackups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContinuousBackups for more information on using the DescribeContinuousBackups
 // API call, and error handling.
@@ -1554,7 +1554,7 @@ const opDescribeContributorInsights = "DescribeContributorInsights"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContributorInsights for more information on using the DescribeContributorInsights
 // API call, and error handling.
@@ -1638,7 +1638,7 @@ const opDescribeEndpoints = "DescribeEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpoints for more information on using the DescribeEndpoints
 // API call, and error handling.
@@ -1784,7 +1784,7 @@ const opDescribeGlobalTable = "DescribeGlobalTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGlobalTable for more information on using the DescribeGlobalTable
 // API call, and error handling.
@@ -1896,7 +1896,7 @@ const opDescribeGlobalTableSettings = "DescribeGlobalTableSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeGlobalTableSettings for more information on using the DescribeGlobalTableSettings
 // API call, and error handling.
@@ -2006,7 +2006,7 @@ const opDescribeLimits = "DescribeLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLimits for more information on using the DescribeLimits
 // API call, and error handling.
@@ -2167,7 +2167,7 @@ const opDescribeTable = "DescribeTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTable for more information on using the DescribeTable
 // API call, and error handling.
@@ -2283,7 +2283,7 @@ const opDescribeTableReplicaAutoScaling = "DescribeTableReplicaAutoScaling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTableReplicaAutoScaling for more information on using the DescribeTableReplicaAutoScaling
 // API call, and error handling.
@@ -2369,7 +2369,7 @@ const opDescribeTimeToLive = "DescribeTimeToLive"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTimeToLive for more information on using the DescribeTimeToLive
 // API call, and error handling.
@@ -2477,7 +2477,7 @@ const opGetItem = "GetItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetItem for more information on using the GetItem
 // API call, and error handling.
@@ -2605,7 +2605,7 @@ const opListBackups = "ListBackups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBackups for more information on using the ListBackups
 // API call, and error handling.
@@ -2717,7 +2717,7 @@ const opListContributorInsights = "ListContributorInsights"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListContributorInsights for more information on using the ListContributorInsights
 // API call, and error handling.
@@ -2859,7 +2859,7 @@ const opListGlobalTables = "ListGlobalTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGlobalTables for more information on using the ListGlobalTables
 // API call, and error handling.
@@ -2966,7 +2966,7 @@ const opListTables = "ListTables"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTables for more information on using the ListTables
 // API call, and error handling.
@@ -3130,7 +3130,7 @@ const opListTagsOfResource = "ListTagsOfResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsOfResource for more information on using the ListTagsOfResource
 // API call, and error handling.
@@ -3242,7 +3242,7 @@ const opPutItem = "PutItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutItem for more information on using the PutItem
 // API call, and error handling.
@@ -3422,7 +3422,7 @@ const opQuery = "Query"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Query for more information on using the Query
 // API call, and error handling.
@@ -3648,7 +3648,7 @@ const opRestoreTableFromBackup = "RestoreTableFromBackup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreTableFromBackup for more information on using the RestoreTableFromBackup
 // API call, and error handling.
@@ -3796,7 +3796,7 @@ const opRestoreTableToPointInTime = "RestoreTableToPointInTime"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreTableToPointInTime for more information on using the RestoreTableToPointInTime
 // API call, and error handling.
@@ -3966,7 +3966,7 @@ const opScan = "Scan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Scan for more information on using the Scan
 // API call, and error handling.
@@ -4172,7 +4172,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -4306,7 +4306,7 @@ const opTransactGetItems = "TransactGetItems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TransactGetItems for more information on using the TransactGetItems
 // API call, and error handling.
@@ -4533,7 +4533,7 @@ const opTransactWriteItems = "TransactWriteItems"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TransactWriteItems for more information on using the TransactWriteItems
 // API call, and error handling.
@@ -4801,7 +4801,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4933,7 +4933,7 @@ const opUpdateContinuousBackups = "UpdateContinuousBackups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContinuousBackups for more information on using the UpdateContinuousBackups
 // API call, and error handling.
@@ -5054,7 +5054,7 @@ const opUpdateContributorInsights = "UpdateContributorInsights"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContributorInsights for more information on using the UpdateContributorInsights
 // API call, and error handling.
@@ -5137,7 +5137,7 @@ const opUpdateGlobalTable = "UpdateGlobalTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGlobalTable for more information on using the UpdateGlobalTable
 // API call, and error handling.
@@ -5273,7 +5273,7 @@ const opUpdateGlobalTableSettings = "UpdateGlobalTableSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGlobalTableSettings for more information on using the UpdateGlobalTableSettings
 // API call, and error handling.
@@ -5405,7 +5405,7 @@ const opUpdateItem = "UpdateItem"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateItem for more information on using the UpdateItem
 // API call, and error handling.
@@ -5543,7 +5543,7 @@ const opUpdateTable = "UpdateTable"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTable for more information on using the UpdateTable
 // API call, and error handling.
@@ -5687,7 +5687,7 @@ const opUpdateTableReplicaAutoScaling = "UpdateTableReplicaAutoScaling"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTableReplicaAutoScaling for more information on using the UpdateTableReplicaAutoScaling
 // API call, and error handling.
@@ -5792,7 +5792,7 @@ const opUpdateTimeToLive = "UpdateTimeToLive"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTimeToLive for more information on using the UpdateTimeToLive
 // API call, and error handling.

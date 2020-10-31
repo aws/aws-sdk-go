@@ -21,7 +21,7 @@ const opCreateScalingPlan = "CreateScalingPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateScalingPlan for more information on using the CreateScalingPlan
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opDeleteScalingPlan = "DeleteScalingPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteScalingPlan for more information on using the DeleteScalingPlan
 // API call, and error handling.
@@ -207,7 +207,7 @@ const opDescribeScalingPlanResources = "DescribeScalingPlanResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingPlanResources for more information on using the DescribeScalingPlanResources
 // API call, and error handling.
@@ -296,7 +296,7 @@ const opDescribeScalingPlans = "DescribeScalingPlans"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingPlans for more information on using the DescribeScalingPlans
 // API call, and error handling.
@@ -385,7 +385,7 @@ const opGetScalingPlanResourceForecastData = "GetScalingPlanResourceForecastData
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetScalingPlanResourceForecastData for more information on using the GetScalingPlanResourceForecastData
 // API call, and error handling.
@@ -471,7 +471,7 @@ const opUpdateScalingPlan = "UpdateScalingPlan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateScalingPlan for more information on using the UpdateScalingPlan
 // API call, and error handling.

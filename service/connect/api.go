@@ -21,7 +21,7 @@ const opAssociateRoutingProfileQueues = "AssociateRoutingProfileQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateRoutingProfileQueues for more information on using the AssociateRoutingProfileQueues
 // API call, and error handling.
@@ -113,7 +113,7 @@ const opCreateContactFlow = "CreateContactFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateContactFlow for more information on using the CreateContactFlow
 // API call, and error handling.
@@ -216,7 +216,7 @@ const opCreateRoutingProfile = "CreateRoutingProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRoutingProfile for more information on using the CreateRoutingProfile
 // API call, and error handling.
@@ -313,7 +313,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -414,7 +414,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -510,7 +510,7 @@ const opDescribeContactFlow = "DescribeContactFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContactFlow for more information on using the DescribeContactFlow
 // API call, and error handling.
@@ -607,7 +607,7 @@ const opDescribeRoutingProfile = "DescribeRoutingProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRoutingProfile for more information on using the DescribeRoutingProfile
 // API call, and error handling.
@@ -698,7 +698,7 @@ const opDescribeUser = "DescribeUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUser for more information on using the DescribeUser
 // API call, and error handling.
@@ -791,7 +791,7 @@ const opDescribeUserHierarchyGroup = "DescribeUserHierarchyGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserHierarchyGroup for more information on using the DescribeUserHierarchyGroup
 // API call, and error handling.
@@ -882,7 +882,7 @@ const opDescribeUserHierarchyStructure = "DescribeUserHierarchyStructure"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUserHierarchyStructure for more information on using the DescribeUserHierarchyStructure
 // API call, and error handling.
@@ -973,7 +973,7 @@ const opDisassociateRoutingProfileQueues = "DisassociateRoutingProfileQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateRoutingProfileQueues for more information on using the DisassociateRoutingProfileQueues
 // API call, and error handling.
@@ -1065,7 +1065,7 @@ const opGetContactAttributes = "GetContactAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContactAttributes for more information on using the GetContactAttributes
 // API call, and error handling.
@@ -1150,7 +1150,7 @@ const opGetCurrentMetricData = "GetCurrentMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCurrentMetricData for more information on using the GetCurrentMetricData
 // API call, and error handling.
@@ -1302,7 +1302,7 @@ const opGetFederationToken = "GetFederationToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFederationToken for more information on using the GetFederationToken
 // API call, and error handling.
@@ -1396,7 +1396,7 @@ const opGetMetricData = "GetMetricData"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMetricData for more information on using the GetMetricData
 // API call, and error handling.
@@ -1549,7 +1549,7 @@ const opListContactFlows = "ListContactFlows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListContactFlows for more information on using the ListContactFlows
 // API call, and error handling.
@@ -1705,7 +1705,7 @@ const opListHoursOfOperations = "ListHoursOfOperations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHoursOfOperations for more information on using the ListHoursOfOperations
 // API call, and error handling.
@@ -1859,7 +1859,7 @@ const opListPhoneNumbers = "ListPhoneNumbers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPhoneNumbers for more information on using the ListPhoneNumbers
 // API call, and error handling.
@@ -2013,7 +2013,7 @@ const opListPrompts = "ListPrompts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPrompts for more information on using the ListPrompts
 // API call, and error handling.
@@ -2162,7 +2162,7 @@ const opListQueues = "ListQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQueues for more information on using the ListQueues
 // API call, and error handling.
@@ -2314,7 +2314,7 @@ const opListRoutingProfileQueues = "ListRoutingProfileQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoutingProfileQueues for more information on using the ListRoutingProfileQueues
 // API call, and error handling.
@@ -2463,7 +2463,7 @@ const opListRoutingProfiles = "ListRoutingProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoutingProfiles for more information on using the ListRoutingProfiles
 // API call, and error handling.
@@ -2617,7 +2617,7 @@ const opListSecurityProfiles = "ListSecurityProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSecurityProfiles for more information on using the ListSecurityProfiles
 // API call, and error handling.
@@ -2770,7 +2770,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2865,7 +2865,7 @@ const opListUserHierarchyGroups = "ListUserHierarchyGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUserHierarchyGroups for more information on using the ListUserHierarchyGroups
 // API call, and error handling.
@@ -3019,7 +3019,7 @@ const opListUsers = "ListUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsers for more information on using the ListUsers
 // API call, and error handling.
@@ -3169,7 +3169,7 @@ const opResumeContactRecording = "ResumeContactRecording"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResumeContactRecording for more information on using the ResumeContactRecording
 // API call, and error handling.
@@ -3258,7 +3258,7 @@ const opStartChatContact = "StartChatContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartChatContact for more information on using the StartChatContact
 // API call, and error handling.
@@ -3368,7 +3368,7 @@ const opStartContactRecording = "StartContactRecording"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartContactRecording for more information on using the StartContactRecording
 // API call, and error handling.
@@ -3468,7 +3468,7 @@ const opStartOutboundVoiceContact = "StartOutboundVoiceContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartOutboundVoiceContact for more information on using the StartOutboundVoiceContact
 // API call, and error handling.
@@ -3579,7 +3579,7 @@ const opStopContact = "StopContact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopContact for more information on using the StopContact
 // API call, and error handling.
@@ -3671,7 +3671,7 @@ const opStopContactRecording = "StopContactRecording"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopContactRecording for more information on using the StopContactRecording
 // API call, and error handling.
@@ -3764,7 +3764,7 @@ const opSuspendContactRecording = "SuspendContactRecording"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SuspendContactRecording for more information on using the SuspendContactRecording
 // API call, and error handling.
@@ -3858,7 +3858,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3956,7 +3956,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -4048,7 +4048,7 @@ const opUpdateContactAttributes = "UpdateContactAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContactAttributes for more information on using the UpdateContactAttributes
 // API call, and error handling.
@@ -4160,7 +4160,7 @@ const opUpdateContactFlowContent = "UpdateContactFlowContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContactFlowContent for more information on using the UpdateContactFlowContent
 // API call, and error handling.
@@ -4258,7 +4258,7 @@ const opUpdateContactFlowName = "UpdateContactFlowName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateContactFlowName for more information on using the UpdateContactFlowName
 // API call, and error handling.
@@ -4353,7 +4353,7 @@ const opUpdateRoutingProfileConcurrency = "UpdateRoutingProfileConcurrency"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoutingProfileConcurrency for more information on using the UpdateRoutingProfileConcurrency
 // API call, and error handling.
@@ -4446,7 +4446,7 @@ const opUpdateRoutingProfileDefaultOutboundQueue = "UpdateRoutingProfileDefaultO
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoutingProfileDefaultOutboundQueue for more information on using the UpdateRoutingProfileDefaultOutboundQueue
 // API call, and error handling.
@@ -4538,7 +4538,7 @@ const opUpdateRoutingProfileName = "UpdateRoutingProfileName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoutingProfileName for more information on using the UpdateRoutingProfileName
 // API call, and error handling.
@@ -4634,7 +4634,7 @@ const opUpdateRoutingProfileQueues = "UpdateRoutingProfileQueues"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoutingProfileQueues for more information on using the UpdateRoutingProfileQueues
 // API call, and error handling.
@@ -4726,7 +4726,7 @@ const opUpdateUserHierarchy = "UpdateUserHierarchy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserHierarchy for more information on using the UpdateUserHierarchy
 // API call, and error handling.
@@ -4818,7 +4818,7 @@ const opUpdateUserIdentityInfo = "UpdateUserIdentityInfo"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserIdentityInfo for more information on using the UpdateUserIdentityInfo
 // API call, and error handling.
@@ -4918,7 +4918,7 @@ const opUpdateUserPhoneConfig = "UpdateUserPhoneConfig"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserPhoneConfig for more information on using the UpdateUserPhoneConfig
 // API call, and error handling.
@@ -5010,7 +5010,7 @@ const opUpdateUserRoutingProfile = "UpdateUserRoutingProfile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserRoutingProfile for more information on using the UpdateUserRoutingProfile
 // API call, and error handling.
@@ -5102,7 +5102,7 @@ const opUpdateUserSecurityProfiles = "UpdateUserSecurityProfiles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserSecurityProfiles for more information on using the UpdateUserSecurityProfiles
 // API call, and error handling.

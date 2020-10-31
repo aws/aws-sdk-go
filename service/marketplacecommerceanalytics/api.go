@@ -20,7 +20,7 @@ const opGenerateDataSet = "GenerateDataSet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateDataSet for more information on using the GenerateDataSet
 // API call, and error handling.
@@ -108,7 +108,7 @@ const opStartSupportDataExport = "StartSupportDataExport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSupportDataExport for more information on using the StartSupportDataExport
 // API call, and error handling.

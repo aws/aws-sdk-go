@@ -21,7 +21,7 @@ const opCancelKeyDeletion = "CancelKeyDeletion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelKeyDeletion for more information on using the CancelKeyDeletion
 // API call, and error handling.
@@ -131,7 +131,7 @@ const opConnectCustomKeyStore = "ConnectCustomKeyStore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConnectCustomKeyStore for more information on using the ConnectCustomKeyStore
 // API call, and error handling.
@@ -312,7 +312,7 @@ const opCreateAlias = "CreateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAlias for more information on using the CreateAlias
 // API call, and error handling.
@@ -485,7 +485,7 @@ const opCreateCustomKeyStore = "CreateCustomKeyStore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCustomKeyStore for more information on using the CreateCustomKeyStore
 // API call, and error handling.
@@ -654,7 +654,7 @@ const opCreateGrant = "CreateGrant"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGrant for more information on using the CreateGrant
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opCreateKey = "CreateKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateKey for more information on using the CreateKey
 // API call, and error handling.
@@ -1027,7 +1027,7 @@ const opDecrypt = "Decrypt"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Decrypt for more information on using the Decrypt
 // API call, and error handling.
@@ -1207,7 +1207,7 @@ const opDeleteAlias = "DeleteAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAlias for more information on using the DeleteAlias
 // API call, and error handling.
@@ -1314,7 +1314,7 @@ const opDeleteCustomKeyStore = "DeleteCustomKeyStore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCustomKeyStore for more information on using the DeleteCustomKeyStore
 // API call, and error handling.
@@ -1452,7 +1452,7 @@ const opDeleteImportedKeyMaterial = "DeleteImportedKeyMaterial"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteImportedKeyMaterial for more information on using the DeleteImportedKeyMaterial
 // API call, and error handling.
@@ -1571,7 +1571,7 @@ const opDescribeCustomKeyStores = "DescribeCustomKeyStores"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCustomKeyStores for more information on using the DescribeCustomKeyStores
 // API call, and error handling.
@@ -1681,7 +1681,7 @@ const opDescribeKey = "DescribeKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeKey for more information on using the DescribeKey
 // API call, and error handling.
@@ -1807,7 +1807,7 @@ const opDisableKey = "DisableKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableKey for more information on using the DisableKey
 // API call, and error handling.
@@ -1918,7 +1918,7 @@ const opDisableKeyRotation = "DisableKeyRotation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableKeyRotation for more information on using the DisableKeyRotation
 // API call, and error handling.
@@ -2035,7 +2035,7 @@ const opDisconnectCustomKeyStore = "DisconnectCustomKeyStore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisconnectCustomKeyStore for more information on using the DisconnectCustomKeyStore
 // API call, and error handling.
@@ -2159,7 +2159,7 @@ const opEnableKey = "EnableKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableKey for more information on using the EnableKey
 // API call, and error handling.
@@ -2271,7 +2271,7 @@ const opEnableKeyRotation = "EnableKeyRotation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableKeyRotation for more information on using the EnableKeyRotation
 // API call, and error handling.
@@ -2388,7 +2388,7 @@ const opEncrypt = "Encrypt"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Encrypt for more information on using the Encrypt
 // API call, and error handling.
@@ -2570,7 +2570,7 @@ const opGenerateDataKey = "GenerateDataKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateDataKey for more information on using the GenerateDataKey
 // API call, and error handling.
@@ -2746,7 +2746,7 @@ const opGenerateDataKeyPair = "GenerateDataKeyPair"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateDataKeyPair for more information on using the GenerateDataKeyPair
 // API call, and error handling.
@@ -2907,7 +2907,7 @@ const opGenerateDataKeyPairWithoutPlaintext = "GenerateDataKeyPairWithoutPlainte
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateDataKeyPairWithoutPlaintext for more information on using the GenerateDataKeyPairWithoutPlaintext
 // API call, and error handling.
@@ -3061,7 +3061,7 @@ const opGenerateDataKeyWithoutPlaintext = "GenerateDataKeyWithoutPlaintext"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateDataKeyWithoutPlaintext for more information on using the GenerateDataKeyWithoutPlaintext
 // API call, and error handling.
@@ -3223,7 +3223,7 @@ const opGenerateRandom = "GenerateRandom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GenerateRandom for more information on using the GenerateRandom
 // API call, and error handling.
@@ -3339,7 +3339,7 @@ const opGetKeyPolicy = "GetKeyPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetKeyPolicy for more information on using the GetKeyPolicy
 // API call, and error handling.
@@ -3440,7 +3440,7 @@ const opGetKeyRotationStatus = "GetKeyRotationStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetKeyRotationStatus for more information on using the GetKeyRotationStatus
 // API call, and error handling.
@@ -3565,7 +3565,7 @@ const opGetParametersForImport = "GetParametersForImport"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetParametersForImport for more information on using the GetParametersForImport
 // API call, and error handling.
@@ -3692,7 +3692,7 @@ const opGetPublicKey = "GetPublicKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPublicKey for more information on using the GetPublicKey
 // API call, and error handling.
@@ -3861,7 +3861,7 @@ const opImportKeyMaterial = "ImportKeyMaterial"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportKeyMaterial for more information on using the ImportKeyMaterial
 // API call, and error handling.
@@ -4034,7 +4034,7 @@ const opListAliases = "ListAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAliases for more information on using the ListAliases
 // API call, and error handling.
@@ -4203,7 +4203,7 @@ const opListGrants = "ListGrants"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGrants for more information on using the ListGrants
 // API call, and error handling.
@@ -4374,7 +4374,7 @@ const opListKeyPolicies = "ListKeyPolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListKeyPolicies for more information on using the ListKeyPolicies
 // API call, and error handling.
@@ -4535,7 +4535,7 @@ const opListKeys = "ListKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListKeys for more information on using the ListKeys
 // API call, and error handling.
@@ -4682,7 +4682,7 @@ const opListResourceTags = "ListResourceTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceTags for more information on using the ListResourceTags
 // API call, and error handling.
@@ -4776,7 +4776,7 @@ const opListRetirableGrants = "ListRetirableGrants"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRetirableGrants for more information on using the ListRetirableGrants
 // API call, and error handling.
@@ -4876,7 +4876,7 @@ const opPutKeyPolicy = "PutKeyPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutKeyPolicy for more information on using the PutKeyPolicy
 // API call, and error handling.
@@ -4994,7 +4994,7 @@ const opReEncrypt = "ReEncrypt"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReEncrypt for more information on using the ReEncrypt
 // API call, and error handling.
@@ -5190,7 +5190,7 @@ const opRetireGrant = "RetireGrant"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RetireGrant for more information on using the RetireGrant
 // API call, and error handling.
@@ -5312,7 +5312,7 @@ const opRevokeGrant = "RevokeGrant"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeGrant for more information on using the RevokeGrant
 // API call, and error handling.
@@ -5420,7 +5420,7 @@ const opScheduleKeyDeletion = "ScheduleKeyDeletion"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ScheduleKeyDeletion for more information on using the ScheduleKeyDeletion
 // API call, and error handling.
@@ -5548,7 +5548,7 @@ const opSign = "Sign"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Sign for more information on using the Sign
 // API call, and error handling.
@@ -5706,7 +5706,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -5826,7 +5826,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -5934,7 +5934,7 @@ const opUpdateAlias = "UpdateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAlias for more information on using the UpdateAlias
 // API call, and error handling.
@@ -6058,7 +6058,7 @@ const opUpdateCustomKeyStore = "UpdateCustomKeyStore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateCustomKeyStore for more information on using the UpdateCustomKeyStore
 // API call, and error handling.
@@ -6258,7 +6258,7 @@ const opUpdateKeyDescription = "UpdateKeyDescription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateKeyDescription for more information on using the UpdateKeyDescription
 // API call, and error handling.
@@ -6366,7 +6366,7 @@ const opVerify = "Verify"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Verify for more information on using the Verify
 // API call, and error handling.

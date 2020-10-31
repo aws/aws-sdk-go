@@ -21,7 +21,7 @@ const opCreateBroker = "CreateBroker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBroker for more information on using the CreateBroker
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opCreateConfiguration = "CreateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConfiguration for more information on using the CreateConfiguration
 // API call, and error handling.
@@ -201,7 +201,7 @@ const opCreateTags = "CreateTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTags for more information on using the CreateTags
 // API call, and error handling.
@@ -290,7 +290,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -382,7 +382,7 @@ const opDeleteBroker = "DeleteBroker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBroker for more information on using the DeleteBroker
 // API call, and error handling.
@@ -470,7 +470,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -559,7 +559,7 @@ const opDeleteUser = "DeleteUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteUser for more information on using the DeleteUser
 // API call, and error handling.
@@ -648,7 +648,7 @@ const opDescribeBroker = "DescribeBroker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBroker for more information on using the DescribeBroker
 // API call, and error handling.
@@ -736,7 +736,7 @@ const opDescribeBrokerEngineTypes = "DescribeBrokerEngineTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBrokerEngineTypes for more information on using the DescribeBrokerEngineTypes
 // API call, and error handling.
@@ -821,7 +821,7 @@ const opDescribeBrokerInstanceOptions = "DescribeBrokerInstanceOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeBrokerInstanceOptions for more information on using the DescribeBrokerInstanceOptions
 // API call, and error handling.
@@ -906,7 +906,7 @@ const opDescribeConfiguration = "DescribeConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfiguration for more information on using the DescribeConfiguration
 // API call, and error handling.
@@ -994,7 +994,7 @@ const opDescribeConfigurationRevision = "DescribeConfigurationRevision"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConfigurationRevision for more information on using the DescribeConfigurationRevision
 // API call, and error handling.
@@ -1082,7 +1082,7 @@ const opDescribeUser = "DescribeUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeUser for more information on using the DescribeUser
 // API call, and error handling.
@@ -1170,7 +1170,7 @@ const opListBrokers = "ListBrokers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBrokers for more information on using the ListBrokers
 // API call, and error handling.
@@ -1313,7 +1313,7 @@ const opListConfigurationRevisions = "ListConfigurationRevisions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurationRevisions for more information on using the ListConfigurationRevisions
 // API call, and error handling.
@@ -1401,7 +1401,7 @@ const opListConfigurations = "ListConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListConfigurations for more information on using the ListConfigurations
 // API call, and error handling.
@@ -1486,7 +1486,7 @@ const opListTags = "ListTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTags for more information on using the ListTags
 // API call, and error handling.
@@ -1574,7 +1574,7 @@ const opListUsers = "ListUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsers for more information on using the ListUsers
 // API call, and error handling.
@@ -1662,7 +1662,7 @@ const opRebootBroker = "RebootBroker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootBroker for more information on using the RebootBroker
 // API call, and error handling.
@@ -1751,7 +1751,7 @@ const opUpdateBroker = "UpdateBroker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBroker for more information on using the UpdateBroker
 // API call, and error handling.
@@ -1842,7 +1842,7 @@ const opUpdateConfiguration = "UpdateConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConfiguration for more information on using the UpdateConfiguration
 // API call, and error handling.
@@ -1933,7 +1933,7 @@ const opUpdateUser = "UpdateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUser for more information on using the UpdateUser
 // API call, and error handling.

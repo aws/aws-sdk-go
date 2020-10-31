@@ -108,7 +108,7 @@ const opCreateChannel = "CreateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateChannel for more information on using the CreateChannel
 // API call, and error handling.
@@ -196,7 +196,7 @@ const opCreateHarvestJob = "CreateHarvestJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHarvestJob for more information on using the CreateHarvestJob
 // API call, and error handling.
@@ -284,7 +284,7 @@ const opCreateOriginEndpoint = "CreateOriginEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOriginEndpoint for more information on using the CreateOriginEndpoint
 // API call, and error handling.
@@ -372,7 +372,7 @@ const opDeleteChannel = "DeleteChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteChannel for more information on using the DeleteChannel
 // API call, and error handling.
@@ -461,7 +461,7 @@ const opDeleteOriginEndpoint = "DeleteOriginEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteOriginEndpoint for more information on using the DeleteOriginEndpoint
 // API call, and error handling.
@@ -550,7 +550,7 @@ const opDescribeChannel = "DescribeChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeChannel for more information on using the DescribeChannel
 // API call, and error handling.
@@ -638,7 +638,7 @@ const opDescribeHarvestJob = "DescribeHarvestJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHarvestJob for more information on using the DescribeHarvestJob
 // API call, and error handling.
@@ -726,7 +726,7 @@ const opDescribeOriginEndpoint = "DescribeOriginEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeOriginEndpoint for more information on using the DescribeOriginEndpoint
 // API call, and error handling.
@@ -814,7 +814,7 @@ const opListChannels = "ListChannels"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChannels for more information on using the ListChannels
 // API call, and error handling.
@@ -960,7 +960,7 @@ const opListHarvestJobs = "ListHarvestJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHarvestJobs for more information on using the ListHarvestJobs
 // API call, and error handling.
@@ -1106,7 +1106,7 @@ const opListOriginEndpoints = "ListOriginEndpoints"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListOriginEndpoints for more information on using the ListOriginEndpoints
 // API call, and error handling.
@@ -1252,7 +1252,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1324,7 +1324,7 @@ const opRotateChannelCredentials = "RotateChannelCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RotateChannelCredentials for more information on using the RotateChannelCredentials
 // API call, and error handling.
@@ -1422,7 +1422,7 @@ const opRotateIngestEndpointCredentials = "RotateIngestEndpointCredentials"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RotateIngestEndpointCredentials for more information on using the RotateIngestEndpointCredentials
 // API call, and error handling.
@@ -1511,7 +1511,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1584,7 +1584,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1657,7 +1657,7 @@ const opUpdateChannel = "UpdateChannel"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateChannel for more information on using the UpdateChannel
 // API call, and error handling.
@@ -1745,7 +1745,7 @@ const opUpdateOriginEndpoint = "UpdateOriginEndpoint"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateOriginEndpoint for more information on using the UpdateOriginEndpoint
 // API call, and error handling.

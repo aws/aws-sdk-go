@@ -20,7 +20,7 @@ const opCreateApiCache = "CreateApiCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApiCache for more information on using the CreateApiCache
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opCreateApiKey = "CreateApiKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApiKey for more information on using the CreateApiKey
 // API call, and error handling.
@@ -218,7 +218,7 @@ const opCreateDataSource = "CreateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataSource for more information on using the CreateDataSource
 // API call, and error handling.
@@ -312,7 +312,7 @@ const opCreateFunction = "CreateFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateFunction for more information on using the CreateFunction
 // API call, and error handling.
@@ -405,7 +405,7 @@ const opCreateGraphqlApi = "CreateGraphqlApi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateGraphqlApi for more information on using the CreateGraphqlApi
 // API call, and error handling.
@@ -501,7 +501,7 @@ const opCreateResolver = "CreateResolver"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResolver for more information on using the CreateResolver
 // API call, and error handling.
@@ -594,7 +594,7 @@ const opCreateType = "CreateType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateType for more information on using the CreateType
 // API call, and error handling.
@@ -688,7 +688,7 @@ const opDeleteApiCache = "DeleteApiCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApiCache for more information on using the DeleteApiCache
 // API call, and error handling.
@@ -783,7 +783,7 @@ const opDeleteApiKey = "DeleteApiKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApiKey for more information on using the DeleteApiKey
 // API call, and error handling.
@@ -874,7 +874,7 @@ const opDeleteDataSource = "DeleteDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataSource for more information on using the DeleteDataSource
 // API call, and error handling.
@@ -969,7 +969,7 @@ const opDeleteFunction = "DeleteFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFunction for more information on using the DeleteFunction
 // API call, and error handling.
@@ -1060,7 +1060,7 @@ const opDeleteGraphqlApi = "DeleteGraphqlApi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteGraphqlApi for more information on using the DeleteGraphqlApi
 // API call, and error handling.
@@ -1158,7 +1158,7 @@ const opDeleteResolver = "DeleteResolver"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResolver for more information on using the DeleteResolver
 // API call, and error handling.
@@ -1249,7 +1249,7 @@ const opDeleteType = "DeleteType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteType for more information on using the DeleteType
 // API call, and error handling.
@@ -1344,7 +1344,7 @@ const opFlushApiCache = "FlushApiCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See FlushApiCache for more information on using the FlushApiCache
 // API call, and error handling.
@@ -1439,7 +1439,7 @@ const opGetApiCache = "GetApiCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApiCache for more information on using the GetApiCache
 // API call, and error handling.
@@ -1533,7 +1533,7 @@ const opGetDataSource = "GetDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataSource for more information on using the GetDataSource
 // API call, and error handling.
@@ -1627,7 +1627,7 @@ const opGetFunction = "GetFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFunction for more information on using the GetFunction
 // API call, and error handling.
@@ -1714,7 +1714,7 @@ const opGetGraphqlApi = "GetGraphqlApi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGraphqlApi for more information on using the GetGraphqlApi
 // API call, and error handling.
@@ -1807,7 +1807,7 @@ const opGetIntrospectionSchema = "GetIntrospectionSchema"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetIntrospectionSchema for more information on using the GetIntrospectionSchema
 // API call, and error handling.
@@ -1896,7 +1896,7 @@ const opGetResolver = "GetResolver"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResolver for more information on using the GetResolver
 // API call, and error handling.
@@ -1983,7 +1983,7 @@ const opGetSchemaCreationStatus = "GetSchemaCreationStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSchemaCreationStatus for more information on using the GetSchemaCreationStatus
 // API call, and error handling.
@@ -2073,7 +2073,7 @@ const opGetType = "GetType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetType for more information on using the GetType
 // API call, and error handling.
@@ -2167,7 +2167,7 @@ const opListApiKeys = "ListApiKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApiKeys for more information on using the ListApiKeys
 // API call, and error handling.
@@ -2262,7 +2262,7 @@ const opListDataSources = "ListDataSources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataSources for more information on using the ListDataSources
 // API call, and error handling.
@@ -2352,7 +2352,7 @@ const opListFunctions = "ListFunctions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFunctions for more information on using the ListFunctions
 // API call, and error handling.
@@ -2442,7 +2442,7 @@ const opListGraphqlApis = "ListGraphqlApis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListGraphqlApis for more information on using the ListGraphqlApis
 // API call, and error handling.
@@ -2528,7 +2528,7 @@ const opListResolvers = "ListResolvers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolvers for more information on using the ListResolvers
 // API call, and error handling.
@@ -2618,7 +2618,7 @@ const opListResolversByFunction = "ListResolversByFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResolversByFunction for more information on using the ListResolversByFunction
 // API call, and error handling.
@@ -2708,7 +2708,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2804,7 +2804,7 @@ const opListTypes = "ListTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTypes for more information on using the ListTypes
 // API call, and error handling.
@@ -2898,7 +2898,7 @@ const opStartSchemaCreation = "StartSchemaCreation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSchemaCreation for more information on using the StartSchemaCreation
 // API call, and error handling.
@@ -2994,7 +2994,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -3091,7 +3091,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -3188,7 +3188,7 @@ const opUpdateApiCache = "UpdateApiCache"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApiCache for more information on using the UpdateApiCache
 // API call, and error handling.
@@ -3282,7 +3282,7 @@ const opUpdateApiKey = "UpdateApiKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApiKey for more information on using the UpdateApiKey
 // API call, and error handling.
@@ -3379,7 +3379,7 @@ const opUpdateDataSource = "UpdateDataSource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataSource for more information on using the UpdateDataSource
 // API call, and error handling.
@@ -3473,7 +3473,7 @@ const opUpdateFunction = "UpdateFunction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFunction for more information on using the UpdateFunction
 // API call, and error handling.
@@ -3563,7 +3563,7 @@ const opUpdateGraphqlApi = "UpdateGraphqlApi"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGraphqlApi for more information on using the UpdateGraphqlApi
 // API call, and error handling.
@@ -3660,7 +3660,7 @@ const opUpdateResolver = "UpdateResolver"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResolver for more information on using the UpdateResolver
 // API call, and error handling.
@@ -3750,7 +3750,7 @@ const opUpdateType = "UpdateType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateType for more information on using the UpdateType
 // API call, and error handling.

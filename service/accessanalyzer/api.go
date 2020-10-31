@@ -114,7 +114,7 @@ const opCreateAnalyzer = "CreateAnalyzer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAnalyzer for more information on using the CreateAnalyzer
 // API call, and error handling.
@@ -208,7 +208,7 @@ const opCreateArchiveRule = "CreateArchiveRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateArchiveRule for more information on using the CreateArchiveRule
 // API call, and error handling.
@@ -308,7 +308,7 @@ const opDeleteAnalyzer = "DeleteAnalyzer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAnalyzer for more information on using the DeleteAnalyzer
 // API call, and error handling.
@@ -402,7 +402,7 @@ const opDeleteArchiveRule = "DeleteArchiveRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteArchiveRule for more information on using the DeleteArchiveRule
 // API call, and error handling.
@@ -494,7 +494,7 @@ const opGetAnalyzedResource = "GetAnalyzedResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAnalyzedResource for more information on using the GetAnalyzedResource
 // API call, and error handling.
@@ -585,7 +585,7 @@ const opGetAnalyzer = "GetAnalyzer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAnalyzer for more information on using the GetAnalyzer
 // API call, and error handling.
@@ -676,7 +676,7 @@ const opGetArchiveRule = "GetArchiveRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetArchiveRule for more information on using the GetArchiveRule
 // API call, and error handling.
@@ -771,7 +771,7 @@ const opGetFinding = "GetFinding"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFinding for more information on using the GetFinding
 // API call, and error handling.
@@ -862,7 +862,7 @@ const opListAnalyzedResources = "ListAnalyzedResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAnalyzedResources for more information on using the ListAnalyzedResources
 // API call, and error handling.
@@ -1012,7 +1012,7 @@ const opListAnalyzers = "ListAnalyzers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAnalyzers for more information on using the ListAnalyzers
 // API call, and error handling.
@@ -1158,7 +1158,7 @@ const opListArchiveRules = "ListArchiveRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListArchiveRules for more information on using the ListArchiveRules
 // API call, and error handling.
@@ -1304,7 +1304,7 @@ const opListFindings = "ListFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListFindings for more information on using the ListFindings
 // API call, and error handling.
@@ -1457,7 +1457,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1548,7 +1548,7 @@ const opStartResourceScan = "StartResourceScan"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartResourceScan for more information on using the StartResourceScan
 // API call, and error handling.
@@ -1640,7 +1640,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1732,7 +1732,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1824,7 +1824,7 @@ const opUpdateArchiveRule = "UpdateArchiveRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateArchiveRule for more information on using the UpdateArchiveRule
 // API call, and error handling.
@@ -1916,7 +1916,7 @@ const opUpdateFindings = "UpdateFindings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateFindings for more information on using the UpdateFindings
 // API call, and error handling.

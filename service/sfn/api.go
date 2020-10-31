@@ -21,7 +21,7 @@ const opCreateActivity = "CreateActivity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateActivity for more information on using the CreateActivity
 // API call, and error handling.
@@ -124,7 +124,7 @@ const opCreateStateMachine = "CreateStateMachine"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateStateMachine for more information on using the CreateStateMachine
 // API call, and error handling.
@@ -249,7 +249,7 @@ const opDeleteActivity = "DeleteActivity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteActivity for more information on using the DeleteActivity
 // API call, and error handling.
@@ -329,7 +329,7 @@ const opDeleteStateMachine = "DeleteStateMachine"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteStateMachine for more information on using the DeleteStateMachine
 // API call, and error handling.
@@ -414,7 +414,7 @@ const opDescribeActivity = "DescribeActivity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeActivity for more information on using the DescribeActivity
 // API call, and error handling.
@@ -499,7 +499,7 @@ const opDescribeExecution = "DescribeExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExecution for more information on using the DescribeExecution
 // API call, and error handling.
@@ -586,7 +586,7 @@ const opDescribeStateMachine = "DescribeStateMachine"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStateMachine for more information on using the DescribeStateMachine
 // API call, and error handling.
@@ -671,7 +671,7 @@ const opDescribeStateMachineForExecution = "DescribeStateMachineForExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStateMachineForExecution for more information on using the DescribeStateMachineForExecution
 // API call, and error handling.
@@ -758,7 +758,7 @@ const opGetActivityTask = "GetActivityTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetActivityTask for more information on using the GetActivityTask
 // API call, and error handling.
@@ -857,7 +857,7 @@ const opGetExecutionHistory = "GetExecutionHistory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetExecutionHistory for more information on using the GetExecutionHistory
 // API call, and error handling.
@@ -1010,7 +1010,7 @@ const opListActivities = "ListActivities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListActivities for more information on using the ListActivities
 // API call, and error handling.
@@ -1156,7 +1156,7 @@ const opListExecutions = "ListExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListExecutions for more information on using the ListExecutions
 // API call, and error handling.
@@ -1313,7 +1313,7 @@ const opListStateMachines = "ListStateMachines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListStateMachines for more information on using the ListStateMachines
 // API call, and error handling.
@@ -1459,7 +1459,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1545,7 +1545,7 @@ const opSendTaskFailure = "SendTaskFailure"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendTaskFailure for more information on using the SendTaskFailure
 // API call, and error handling.
@@ -1630,7 +1630,7 @@ const opSendTaskHeartbeat = "SendTaskHeartbeat"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendTaskHeartbeat for more information on using the SendTaskHeartbeat
 // API call, and error handling.
@@ -1728,7 +1728,7 @@ const opSendTaskSuccess = "SendTaskSuccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendTaskSuccess for more information on using the SendTaskSuccess
 // API call, and error handling.
@@ -1816,7 +1816,7 @@ const opStartExecution = "StartExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartExecution for more information on using the StartExecution
 // API call, and error handling.
@@ -1922,7 +1922,7 @@ const opStopExecution = "StopExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopExecution for more information on using the StopExecution
 // API call, and error handling.
@@ -2006,7 +2006,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2103,7 +2103,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2187,7 +2187,7 @@ const opUpdateStateMachine = "UpdateStateMachine"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateStateMachine for more information on using the UpdateStateMachine
 // API call, and error handling.

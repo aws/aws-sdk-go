@@ -21,7 +21,7 @@ const opCreateEnvironmentEC2 = "CreateEnvironmentEC2"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEnvironmentEC2 for more information on using the CreateEnvironmentEC2
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opCreateEnvironmentMembership = "CreateEnvironmentMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEnvironmentMembership for more information on using the CreateEnvironmentMembership
 // API call, and error handling.
@@ -217,7 +217,7 @@ const opDeleteEnvironment = "DeleteEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEnvironment for more information on using the DeleteEnvironment
 // API call, and error handling.
@@ -316,7 +316,7 @@ const opDeleteEnvironmentMembership = "DeleteEnvironmentMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEnvironmentMembership for more information on using the DeleteEnvironmentMembership
 // API call, and error handling.
@@ -414,7 +414,7 @@ const opDescribeEnvironmentMemberships = "DescribeEnvironmentMemberships"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironmentMemberships for more information on using the DescribeEnvironmentMemberships
 // API call, and error handling.
@@ -570,7 +570,7 @@ const opDescribeEnvironmentStatus = "DescribeEnvironmentStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironmentStatus for more information on using the DescribeEnvironmentStatus
 // API call, and error handling.
@@ -667,7 +667,7 @@ const opDescribeEnvironments = "DescribeEnvironments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEnvironments for more information on using the DescribeEnvironments
 // API call, and error handling.
@@ -764,7 +764,7 @@ const opListEnvironments = "ListEnvironments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEnvironments for more information on using the ListEnvironments
 // API call, and error handling.
@@ -919,7 +919,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1004,7 +1004,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1096,7 +1096,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1185,7 +1185,7 @@ const opUpdateEnvironment = "UpdateEnvironment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEnvironment for more information on using the UpdateEnvironment
 // API call, and error handling.
@@ -1283,7 +1283,7 @@ const opUpdateEnvironmentMembership = "UpdateEnvironmentMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEnvironmentMembership for more information on using the UpdateEnvironmentMembership
 // API call, and error handling.

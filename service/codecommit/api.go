@@ -21,7 +21,7 @@ const opAssociateApprovalRuleTemplateWithRepository = "AssociateApprovalRuleTemp
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateApprovalRuleTemplateWithRepository for more information on using the AssociateApprovalRuleTemplateWithRepository
 // API call, and error handling.
@@ -149,7 +149,7 @@ const opBatchAssociateApprovalRuleTemplateWithRepositories = "BatchAssociateAppr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchAssociateApprovalRuleTemplateWithRepositories for more information on using the BatchAssociateApprovalRuleTemplateWithRepositories
 // API call, and error handling.
@@ -261,7 +261,7 @@ const opBatchDescribeMergeConflicts = "BatchDescribeMergeConflicts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDescribeMergeConflicts for more information on using the BatchDescribeMergeConflicts
 // API call, and error handling.
@@ -410,7 +410,7 @@ const opBatchDisassociateApprovalRuleTemplateFromRepositories = "BatchDisassocia
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDisassociateApprovalRuleTemplateFromRepositories for more information on using the BatchDisassociateApprovalRuleTemplateFromRepositories
 // API call, and error handling.
@@ -522,7 +522,7 @@ const opBatchGetCommits = "BatchGetCommits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetCommits for more information on using the BatchGetCommits
 // API call, and error handling.
@@ -635,7 +635,7 @@ const opBatchGetRepositories = "BatchGetRepositories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetRepositories for more information on using the BatchGetRepositories
 // API call, and error handling.
@@ -746,7 +746,7 @@ const opCreateApprovalRuleTemplate = "CreateApprovalRuleTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateApprovalRuleTemplate for more information on using the CreateApprovalRuleTemplate
 // API call, and error handling.
@@ -855,7 +855,7 @@ const opCreateBranch = "CreateBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBranch for more information on using the CreateBranch
 // API call, and error handling.
@@ -983,7 +983,7 @@ const opCreateCommit = "CreateCommit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCommit for more information on using the CreateCommit
 // API call, and error handling.
@@ -1217,7 +1217,7 @@ const opCreatePullRequest = "CreatePullRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePullRequest for more information on using the CreatePullRequest
 // API call, and error handling.
@@ -1394,7 +1394,7 @@ const opCreatePullRequestApprovalRule = "CreatePullRequestApprovalRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePullRequestApprovalRule for more information on using the CreatePullRequestApprovalRule
 // API call, and error handling.
@@ -1521,7 +1521,7 @@ const opCreateRepository = "CreateRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRepository for more information on using the CreateRepository
 // API call, and error handling.
@@ -1643,7 +1643,7 @@ const opCreateUnreferencedMergeCommit = "CreateUnreferencedMergeCommit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUnreferencedMergeCommit for more information on using the CreateUnreferencedMergeCommit
 // API call, and error handling.
@@ -1859,7 +1859,7 @@ const opDeleteApprovalRuleTemplate = "DeleteApprovalRuleTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteApprovalRuleTemplate for more information on using the DeleteApprovalRuleTemplate
 // API call, and error handling.
@@ -1949,7 +1949,7 @@ const opDeleteBranch = "DeleteBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteBranch for more information on using the DeleteBranch
 // API call, and error handling.
@@ -2065,7 +2065,7 @@ const opDeleteCommentContent = "DeleteCommentContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCommentContent for more information on using the DeleteCommentContent
 // API call, and error handling.
@@ -2156,7 +2156,7 @@ const opDeleteFile = "DeleteFile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteFile for more information on using the DeleteFile
 // API call, and error handling.
@@ -2317,7 +2317,7 @@ const opDeletePullRequestApprovalRule = "DeletePullRequestApprovalRule"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePullRequestApprovalRule for more information on using the DeletePullRequestApprovalRule
 // API call, and error handling.
@@ -2438,7 +2438,7 @@ const opDeleteRepository = "DeleteRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRepository for more information on using the DeleteRepository
 // API call, and error handling.
@@ -2544,7 +2544,7 @@ const opDescribeMergeConflicts = "DescribeMergeConflicts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMergeConflicts for more information on using the DescribeMergeConflicts
 // API call, and error handling.
@@ -2760,7 +2760,7 @@ const opDescribePullRequestEvents = "DescribePullRequestEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePullRequestEvents for more information on using the DescribePullRequestEvents
 // API call, and error handling.
@@ -2938,7 +2938,7 @@ const opDisassociateApprovalRuleTemplateFromRepository = "DisassociateApprovalRu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateApprovalRuleTemplateFromRepository for more information on using the DisassociateApprovalRuleTemplateFromRepository
 // API call, and error handling.
@@ -3059,7 +3059,7 @@ const opEvaluatePullRequestApprovalRules = "EvaluatePullRequestApprovalRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EvaluatePullRequestApprovalRules for more information on using the EvaluatePullRequestApprovalRules
 // API call, and error handling.
@@ -3173,7 +3173,7 @@ const opGetApprovalRuleTemplate = "GetApprovalRuleTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetApprovalRuleTemplate for more information on using the GetApprovalRuleTemplate
 // API call, and error handling.
@@ -3262,7 +3262,7 @@ const opGetBlob = "GetBlob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBlob for more information on using the GetBlob
 // API call, and error handling.
@@ -3380,7 +3380,7 @@ const opGetBranch = "GetBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBranch for more information on using the GetBranch
 // API call, and error handling.
@@ -3494,7 +3494,7 @@ const opGetComment = "GetComment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetComment for more information on using the GetComment
 // API call, and error handling.
@@ -3604,7 +3604,7 @@ const opGetCommentReactions = "GetCommentReactions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCommentReactions for more information on using the GetCommentReactions
 // API call, and error handling.
@@ -3763,7 +3763,7 @@ const opGetCommentsForComparedCommit = "GetCommentsForComparedCommit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCommentsForComparedCommit for more information on using the GetCommentsForComparedCommit
 // API call, and error handling.
@@ -3945,7 +3945,7 @@ const opGetCommentsForPullRequest = "GetCommentsForPullRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCommentsForPullRequest for more information on using the GetCommentsForPullRequest
 // API call, and error handling.
@@ -4144,7 +4144,7 @@ const opGetCommit = "GetCommit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCommit for more information on using the GetCommit
 // API call, and error handling.
@@ -4258,7 +4258,7 @@ const opGetDifferences = "GetDifferences"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDifferences for more information on using the GetDifferences
 // API call, and error handling.
@@ -4447,7 +4447,7 @@ const opGetFile = "GetFile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFile for more information on using the GetFile
 // API call, and error handling.
@@ -4573,7 +4573,7 @@ const opGetFolder = "GetFolder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFolder for more information on using the GetFolder
 // API call, and error handling.
@@ -4694,7 +4694,7 @@ const opGetMergeCommit = "GetMergeCommit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMergeCommit for more information on using the GetMergeCommit
 // API call, and error handling.
@@ -4814,7 +4814,7 @@ const opGetMergeConflicts = "GetMergeConflicts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMergeConflicts for more information on using the GetMergeConflicts
 // API call, and error handling.
@@ -5026,7 +5026,7 @@ const opGetMergeOptions = "GetMergeOptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMergeOptions for more information on using the GetMergeOptions
 // API call, and error handling.
@@ -5160,7 +5160,7 @@ const opGetPullRequest = "GetPullRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPullRequest for more information on using the GetPullRequest
 // API call, and error handling.
@@ -5263,7 +5263,7 @@ const opGetPullRequestApprovalStates = "GetPullRequestApprovalStates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPullRequestApprovalStates for more information on using the GetPullRequestApprovalStates
 // API call, and error handling.
@@ -5374,7 +5374,7 @@ const opGetPullRequestOverrideState = "GetPullRequestOverrideState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPullRequestOverrideState for more information on using the GetPullRequestOverrideState
 // API call, and error handling.
@@ -5485,7 +5485,7 @@ const opGetRepository = "GetRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRepository for more information on using the GetRepository
 // API call, and error handling.
@@ -5595,7 +5595,7 @@ const opGetRepositoryTriggers = "GetRepositoryTriggers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRepositoryTriggers for more information on using the GetRepositoryTriggers
 // API call, and error handling.
@@ -5699,7 +5699,7 @@ const opListApprovalRuleTemplates = "ListApprovalRuleTemplates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApprovalRuleTemplates for more information on using the ListApprovalRuleTemplates
 // API call, and error handling.
@@ -5841,7 +5841,7 @@ const opListAssociatedApprovalRuleTemplatesForRepository = "ListAssociatedApprov
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssociatedApprovalRuleTemplatesForRepository for more information on using the ListAssociatedApprovalRuleTemplatesForRepository
 // API call, and error handling.
@@ -6009,7 +6009,7 @@ const opListBranches = "ListBranches"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBranches for more information on using the ListBranches
 // API call, and error handling.
@@ -6174,7 +6174,7 @@ const opListPullRequests = "ListPullRequests"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPullRequests for more information on using the ListPullRequests
 // API call, and error handling.
@@ -6354,7 +6354,7 @@ const opListRepositories = "ListRepositories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRepositories for more information on using the ListRepositories
 // API call, and error handling.
@@ -6497,7 +6497,7 @@ const opListRepositoriesForApprovalRuleTemplate = "ListRepositoriesForApprovalRu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRepositoriesForApprovalRuleTemplate for more information on using the ListRepositoriesForApprovalRuleTemplate
 // API call, and error handling.
@@ -6665,7 +6665,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -6765,7 +6765,7 @@ const opMergeBranchesByFastForward = "MergeBranchesByFastForward"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergeBranchesByFastForward for more information on using the MergeBranchesByFastForward
 // API call, and error handling.
@@ -6910,7 +6910,7 @@ const opMergeBranchesBySquash = "MergeBranchesBySquash"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergeBranchesBySquash for more information on using the MergeBranchesBySquash
 // API call, and error handling.
@@ -7129,7 +7129,7 @@ const opMergeBranchesByThreeWay = "MergeBranchesByThreeWay"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergeBranchesByThreeWay for more information on using the MergeBranchesByThreeWay
 // API call, and error handling.
@@ -7348,7 +7348,7 @@ const opMergePullRequestByFastForward = "MergePullRequestByFastForward"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergePullRequestByFastForward for more information on using the MergePullRequestByFastForward
 // API call, and error handling.
@@ -7499,7 +7499,7 @@ const opMergePullRequestBySquash = "MergePullRequestBySquash"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergePullRequestBySquash for more information on using the MergePullRequestBySquash
 // API call, and error handling.
@@ -7721,7 +7721,7 @@ const opMergePullRequestByThreeWay = "MergePullRequestByThreeWay"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MergePullRequestByThreeWay for more information on using the MergePullRequestByThreeWay
 // API call, and error handling.
@@ -7944,7 +7944,7 @@ const opOverridePullRequestApprovalRules = "OverridePullRequestApprovalRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See OverridePullRequestApprovalRules for more information on using the OverridePullRequestApprovalRules
 // API call, and error handling.
@@ -8072,7 +8072,7 @@ const opPostCommentForComparedCommit = "PostCommentForComparedCommit"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostCommentForComparedCommit for more information on using the PostCommentForComparedCommit
 // API call, and error handling.
@@ -8235,7 +8235,7 @@ const opPostCommentForPullRequest = "PostCommentForPullRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostCommentForPullRequest for more information on using the PostCommentForPullRequest
 // API call, and error handling.
@@ -8415,7 +8415,7 @@ const opPostCommentReply = "PostCommentReply"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PostCommentReply for more information on using the PostCommentReply
 // API call, and error handling.
@@ -8524,7 +8524,7 @@ const opPutCommentReaction = "PutCommentReaction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutCommentReaction for more information on using the PutCommentReaction
 // API call, and error handling.
@@ -8629,7 +8629,7 @@ const opPutFile = "PutFile"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutFile for more information on using the PutFile
 // API call, and error handling.
@@ -8829,7 +8829,7 @@ const opPutRepositoryTriggers = "PutRepositoryTriggers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRepositoryTriggers for more information on using the PutRepositoryTriggers
 // API call, and error handling.
@@ -8979,7 +8979,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -9094,7 +9094,7 @@ const opTestRepositoryTriggers = "TestRepositoryTriggers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestRepositoryTriggers for more information on using the TestRepositoryTriggers
 // API call, and error handling.
@@ -9247,7 +9247,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -9362,7 +9362,7 @@ const opUpdateApprovalRuleTemplateContent = "UpdateApprovalRuleTemplateContent"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApprovalRuleTemplateContent for more information on using the UpdateApprovalRuleTemplateContent
 // API call, and error handling.
@@ -9463,7 +9463,7 @@ const opUpdateApprovalRuleTemplateDescription = "UpdateApprovalRuleTemplateDescr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApprovalRuleTemplateDescription for more information on using the UpdateApprovalRuleTemplateDescription
 // API call, and error handling.
@@ -9557,7 +9557,7 @@ const opUpdateApprovalRuleTemplateName = "UpdateApprovalRuleTemplateName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateApprovalRuleTemplateName for more information on using the UpdateApprovalRuleTemplateName
 // API call, and error handling.
@@ -9651,7 +9651,7 @@ const opUpdateComment = "UpdateComment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateComment for more information on using the UpdateComment
 // API call, and error handling.
@@ -9753,7 +9753,7 @@ const opUpdateDefaultBranch = "UpdateDefaultBranch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDefaultBranch for more information on using the UpdateDefaultBranch
 // API call, and error handling.
@@ -9871,7 +9871,7 @@ const opUpdatePullRequestApprovalRuleContent = "UpdatePullRequestApprovalRuleCon
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePullRequestApprovalRuleContent for more information on using the UpdatePullRequestApprovalRuleContent
 // API call, and error handling.
@@ -10002,7 +10002,7 @@ const opUpdatePullRequestApprovalState = "UpdatePullRequestApprovalState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePullRequestApprovalState for more information on using the UpdatePullRequestApprovalState
 // API call, and error handling.
@@ -10136,7 +10136,7 @@ const opUpdatePullRequestDescription = "UpdatePullRequestDescription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePullRequestDescription for more information on using the UpdatePullRequestDescription
 // API call, and error handling.
@@ -10231,7 +10231,7 @@ const opUpdatePullRequestStatus = "UpdatePullRequestStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePullRequestStatus for more information on using the UpdatePullRequestStatus
 // API call, and error handling.
@@ -10345,7 +10345,7 @@ const opUpdatePullRequestTitle = "UpdatePullRequestTitle"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePullRequestTitle for more information on using the UpdatePullRequestTitle
 // API call, and error handling.
@@ -10443,7 +10443,7 @@ const opUpdateRepositoryDescription = "UpdateRepositoryDescription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRepositoryDescription for more information on using the UpdateRepositoryDescription
 // API call, and error handling.
@@ -10557,7 +10557,7 @@ const opUpdateRepositoryName = "UpdateRepositoryName"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRepositoryName for more information on using the UpdateRepositoryName
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opAdvertiseByoipCidr = "AdvertiseByoipCidr"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AdvertiseByoipCidr for more information on using the AdvertiseByoipCidr
 // API call, and error handling.
@@ -122,7 +122,7 @@ const opCreateAccelerator = "CreateAccelerator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccelerator for more information on using the CreateAccelerator
 // API call, and error handling.
@@ -215,7 +215,7 @@ const opCreateEndpointGroup = "CreateEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateEndpointGroup for more information on using the CreateEndpointGroup
 // API call, and error handling.
@@ -317,7 +317,7 @@ const opCreateListener = "CreateListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateListener for more information on using the CreateListener
 // API call, and error handling.
@@ -413,7 +413,7 @@ const opDeleteAccelerator = "DeleteAccelerator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccelerator for more information on using the DeleteAccelerator
 // API call, and error handling.
@@ -524,7 +524,7 @@ const opDeleteEndpointGroup = "DeleteEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEndpointGroup for more information on using the DeleteEndpointGroup
 // API call, and error handling.
@@ -610,7 +610,7 @@ const opDeleteListener = "DeleteListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteListener for more information on using the DeleteListener
 // API call, and error handling.
@@ -701,7 +701,7 @@ const opDeprovisionByoipCidr = "DeprovisionByoipCidr"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeprovisionByoipCidr for more information on using the DeprovisionByoipCidr
 // API call, and error handling.
@@ -804,7 +804,7 @@ const opDescribeAccelerator = "DescribeAccelerator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccelerator for more information on using the DescribeAccelerator
 // API call, and error handling.
@@ -890,7 +890,7 @@ const opDescribeAcceleratorAttributes = "DescribeAcceleratorAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAcceleratorAttributes for more information on using the DescribeAcceleratorAttributes
 // API call, and error handling.
@@ -976,7 +976,7 @@ const opDescribeEndpointGroup = "DescribeEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEndpointGroup for more information on using the DescribeEndpointGroup
 // API call, and error handling.
@@ -1062,7 +1062,7 @@ const opDescribeListener = "DescribeListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeListener for more information on using the DescribeListener
 // API call, and error handling.
@@ -1148,7 +1148,7 @@ const opListAccelerators = "ListAccelerators"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccelerators for more information on using the ListAccelerators
 // API call, and error handling.
@@ -1234,7 +1234,7 @@ const opListByoipCidrs = "ListByoipCidrs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListByoipCidrs for more information on using the ListByoipCidrs
 // API call, and error handling.
@@ -1327,7 +1327,7 @@ const opListEndpointGroups = "ListEndpointGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListEndpointGroups for more information on using the ListEndpointGroups
 // API call, and error handling.
@@ -1416,7 +1416,7 @@ const opListListeners = "ListListeners"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListListeners for more information on using the ListListeners
 // API call, and error handling.
@@ -1505,7 +1505,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1594,7 +1594,7 @@ const opProvisionByoipCidr = "ProvisionByoipCidr"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ProvisionByoipCidr for more information on using the ProvisionByoipCidr
 // API call, and error handling.
@@ -1696,7 +1696,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1786,7 +1786,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -1879,7 +1879,7 @@ const opUpdateAccelerator = "UpdateAccelerator"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccelerator for more information on using the UpdateAccelerator
 // API call, and error handling.
@@ -1969,7 +1969,7 @@ const opUpdateAcceleratorAttributes = "UpdateAcceleratorAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAcceleratorAttributes for more information on using the UpdateAcceleratorAttributes
 // API call, and error handling.
@@ -2058,7 +2058,7 @@ const opUpdateEndpointGroup = "UpdateEndpointGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEndpointGroup for more information on using the UpdateEndpointGroup
 // API call, and error handling.
@@ -2153,7 +2153,7 @@ const opUpdateListener = "UpdateListener"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateListener for more information on using the UpdateListener
 // API call, and error handling.
@@ -2247,7 +2247,7 @@ const opWithdrawByoipCidr = "WithdrawByoipCidr"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See WithdrawByoipCidr for more information on using the WithdrawByoipCidr
 // API call, and error handling.

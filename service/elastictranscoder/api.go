@@ -20,7 +20,7 @@ const opCancelJob = "CancelJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelJob for more information on using the CancelJob
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opCreateJob = "CreateJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateJob for more information on using the CreateJob
 // API call, and error handling.
@@ -219,7 +219,7 @@ const opCreatePipeline = "CreatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePipeline for more information on using the CreatePipeline
 // API call, and error handling.
@@ -313,7 +313,7 @@ const opCreatePreset = "CreatePreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePreset for more information on using the CreatePreset
 // API call, and error handling.
@@ -416,7 +416,7 @@ const opDeletePipeline = "DeletePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePipeline for more information on using the DeletePipeline
 // API call, and error handling.
@@ -515,7 +515,7 @@ const opDeletePreset = "DeletePreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePreset for more information on using the DeletePreset
 // API call, and error handling.
@@ -608,7 +608,7 @@ const opListJobsByPipeline = "ListJobsByPipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobsByPipeline for more information on using the ListJobsByPipeline
 // API call, and error handling.
@@ -760,7 +760,7 @@ const opListJobsByStatus = "ListJobsByStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListJobsByStatus for more information on using the ListJobsByStatus
 // API call, and error handling.
@@ -910,7 +910,7 @@ const opListPipelines = "ListPipelines"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPipelines for more information on using the ListPipelines
 // API call, and error handling.
@@ -1054,7 +1054,7 @@ const opListPresets = "ListPresets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPresets for more information on using the ListPresets
 // API call, and error handling.
@@ -1198,7 +1198,7 @@ const opReadJob = "ReadJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReadJob for more information on using the ReadJob
 // API call, and error handling.
@@ -1288,7 +1288,7 @@ const opReadPipeline = "ReadPipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReadPipeline for more information on using the ReadPipeline
 // API call, and error handling.
@@ -1378,7 +1378,7 @@ const opReadPreset = "ReadPreset"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ReadPreset for more information on using the ReadPreset
 // API call, and error handling.
@@ -1468,7 +1468,7 @@ const opTestRole = "TestRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestRole for more information on using the TestRole
 // API call, and error handling.
@@ -1573,7 +1573,7 @@ const opUpdatePipeline = "UpdatePipeline"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePipeline for more information on using the UpdatePipeline
 // API call, and error handling.
@@ -1672,7 +1672,7 @@ const opUpdatePipelineNotifications = "UpdatePipelineNotifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePipelineNotifications for more information on using the UpdatePipelineNotifications
 // API call, and error handling.
@@ -1770,7 +1770,7 @@ const opUpdatePipelineStatus = "UpdatePipelineStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePipelineStatus for more information on using the UpdatePipelineStatus
 // API call, and error handling.

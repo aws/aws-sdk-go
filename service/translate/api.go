@@ -21,7 +21,7 @@ const opDeleteTerminology = "DeleteTerminology"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTerminology for more information on using the DeleteTerminology
 // API call, and error handling.
@@ -114,7 +114,7 @@ const opDescribeTextTranslationJob = "DescribeTextTranslationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTextTranslationJob for more information on using the DescribeTextTranslationJob
 // API call, and error handling.
@@ -204,7 +204,7 @@ const opGetTerminology = "GetTerminology"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTerminology for more information on using the GetTerminology
 // API call, and error handling.
@@ -296,7 +296,7 @@ const opImportTerminology = "ImportTerminology"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportTerminology for more information on using the ImportTerminology
 // API call, and error handling.
@@ -396,7 +396,7 @@ const opListTerminologies = "ListTerminologies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTerminologies for more information on using the ListTerminologies
 // API call, and error handling.
@@ -541,7 +541,7 @@ const opListTextTranslationJobs = "ListTextTranslationJobs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTextTranslationJobs for more information on using the ListTextTranslationJobs
 // API call, and error handling.
@@ -689,7 +689,7 @@ const opStartTextTranslationJob = "StartTextTranslationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartTextTranslationJob for more information on using the StartTextTranslationJob
 // API call, and error handling.
@@ -794,7 +794,7 @@ const opStopTextTranslationJob = "StopTextTranslationJob"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopTextTranslationJob for more information on using the StopTextTranslationJob
 // API call, and error handling.
@@ -891,7 +891,7 @@ const opText = "TranslateText"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See Text for more information on using the Text
 // API call, and error handling.

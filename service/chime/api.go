@@ -21,7 +21,7 @@ const opAssociatePhoneNumberWithUser = "AssociatePhoneNumberWithUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociatePhoneNumberWithUser for more information on using the AssociatePhoneNumberWithUser
 // API call, and error handling.
@@ -123,7 +123,7 @@ const opAssociatePhoneNumbersWithVoiceConnector = "AssociatePhoneNumbersWithVoic
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociatePhoneNumbersWithVoiceConnector for more information on using the AssociatePhoneNumbersWithVoiceConnector
 // API call, and error handling.
@@ -224,7 +224,7 @@ const opAssociatePhoneNumbersWithVoiceConnectorGroup = "AssociatePhoneNumbersWit
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociatePhoneNumbersWithVoiceConnectorGroup for more information on using the AssociatePhoneNumbersWithVoiceConnectorGroup
 // API call, and error handling.
@@ -326,7 +326,7 @@ const opAssociateSigninDelegateGroupsWithAccount = "AssociateSigninDelegateGroup
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateSigninDelegateGroupsWithAccount for more information on using the AssociateSigninDelegateGroupsWithAccount
 // API call, and error handling.
@@ -426,7 +426,7 @@ const opBatchCreateAttendee = "BatchCreateAttendee"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchCreateAttendee for more information on using the BatchCreateAttendee
 // API call, and error handling.
@@ -530,7 +530,7 @@ const opBatchCreateRoomMembership = "BatchCreateRoomMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchCreateRoomMembership for more information on using the BatchCreateRoomMembership
 // API call, and error handling.
@@ -630,7 +630,7 @@ const opBatchDeletePhoneNumber = "BatchDeletePhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeletePhoneNumber for more information on using the BatchDeletePhoneNumber
 // API call, and error handling.
@@ -732,7 +732,7 @@ const opBatchSuspendUser = "BatchSuspendUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchSuspendUser for more information on using the BatchSuspendUser
 // API call, and error handling.
@@ -844,7 +844,7 @@ const opBatchUnsuspendUser = "BatchUnsuspendUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchUnsuspendUser for more information on using the BatchUnsuspendUser
 // API call, and error handling.
@@ -949,7 +949,7 @@ const opBatchUpdatePhoneNumber = "BatchUpdatePhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchUpdatePhoneNumber for more information on using the BatchUpdatePhoneNumber
 // API call, and error handling.
@@ -1057,7 +1057,7 @@ const opBatchUpdateUser = "BatchUpdateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchUpdateUser for more information on using the BatchUpdateUser
 // API call, and error handling.
@@ -1157,7 +1157,7 @@ const opCreateAccount = "CreateAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAccount for more information on using the CreateAccount
 // API call, and error handling.
@@ -1258,7 +1258,7 @@ const opCreateAttendee = "CreateAttendee"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAttendee for more information on using the CreateAttendee
 // API call, and error handling.
@@ -1361,7 +1361,7 @@ const opCreateBot = "CreateBot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateBot for more information on using the CreateBot
 // API call, and error handling.
@@ -1462,7 +1462,7 @@ const opCreateMeeting = "CreateMeeting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMeeting for more information on using the CreateMeeting
 // API call, and error handling.
@@ -1565,7 +1565,7 @@ const opCreateMeetingWithAttendees = "CreateMeetingWithAttendees"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMeetingWithAttendees for more information on using the CreateMeetingWithAttendees
 // API call, and error handling.
@@ -1668,7 +1668,7 @@ const opCreatePhoneNumberOrder = "CreatePhoneNumberOrder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreatePhoneNumberOrder for more information on using the CreatePhoneNumberOrder
 // API call, and error handling.
@@ -1772,7 +1772,7 @@ const opCreateProxySession = "CreateProxySession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProxySession for more information on using the CreateProxySession
 // API call, and error handling.
@@ -1871,7 +1871,7 @@ const opCreateRoom = "CreateRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRoom for more information on using the CreateRoom
 // API call, and error handling.
@@ -1972,7 +1972,7 @@ const opCreateRoomMembership = "CreateRoomMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateRoomMembership for more information on using the CreateRoomMembership
 // API call, and error handling.
@@ -2079,7 +2079,7 @@ const opCreateUser = "CreateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateUser for more information on using the CreateUser
 // API call, and error handling.
@@ -2181,7 +2181,7 @@ const opCreateVoiceConnector = "CreateVoiceConnector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVoiceConnector for more information on using the CreateVoiceConnector
 // API call, and error handling.
@@ -2289,7 +2289,7 @@ const opCreateVoiceConnectorGroup = "CreateVoiceConnectorGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateVoiceConnectorGroup for more information on using the CreateVoiceConnectorGroup
 // API call, and error handling.
@@ -2396,7 +2396,7 @@ const opDeleteAccount = "DeleteAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAccount for more information on using the DeleteAccount
 // API call, and error handling.
@@ -2511,7 +2511,7 @@ const opDeleteAttendee = "DeleteAttendee"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAttendee for more information on using the DeleteAttendee
 // API call, and error handling.
@@ -2614,7 +2614,7 @@ const opDeleteEventsConfiguration = "DeleteEventsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteEventsConfiguration for more information on using the DeleteEventsConfiguration
 // API call, and error handling.
@@ -2710,7 +2710,7 @@ const opDeleteMeeting = "DeleteMeeting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMeeting for more information on using the DeleteMeeting
 // API call, and error handling.
@@ -2812,7 +2812,7 @@ const opDeletePhoneNumber = "DeletePhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePhoneNumber for more information on using the DeletePhoneNumber
 // API call, and error handling.
@@ -2916,7 +2916,7 @@ const opDeleteProxySession = "DeleteProxySession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProxySession for more information on using the DeleteProxySession
 // API call, and error handling.
@@ -3016,7 +3016,7 @@ const opDeleteRoom = "DeleteRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRoom for more information on using the DeleteRoom
 // API call, and error handling.
@@ -3115,7 +3115,7 @@ const opDeleteRoomMembership = "DeleteRoomMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRoomMembership for more information on using the DeleteRoomMembership
 // API call, and error handling.
@@ -3214,7 +3214,7 @@ const opDeleteVoiceConnector = "DeleteVoiceConnector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnector for more information on using the DeleteVoiceConnector
 // API call, and error handling.
@@ -3319,7 +3319,7 @@ const opDeleteVoiceConnectorEmergencyCallingConfiguration = "DeleteVoiceConnecto
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorEmergencyCallingConfiguration for more information on using the DeleteVoiceConnectorEmergencyCallingConfiguration
 // API call, and error handling.
@@ -3419,7 +3419,7 @@ const opDeleteVoiceConnectorGroup = "DeleteVoiceConnectorGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorGroup for more information on using the DeleteVoiceConnectorGroup
 // API call, and error handling.
@@ -3524,7 +3524,7 @@ const opDeleteVoiceConnectorOrigination = "DeleteVoiceConnectorOrigination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorOrigination for more information on using the DeleteVoiceConnectorOrigination
 // API call, and error handling.
@@ -3626,7 +3626,7 @@ const opDeleteVoiceConnectorProxy = "DeleteVoiceConnectorProxy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorProxy for more information on using the DeleteVoiceConnectorProxy
 // API call, and error handling.
@@ -3725,7 +3725,7 @@ const opDeleteVoiceConnectorStreamingConfiguration = "DeleteVoiceConnectorStream
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorStreamingConfiguration for more information on using the DeleteVoiceConnectorStreamingConfiguration
 // API call, and error handling.
@@ -3825,7 +3825,7 @@ const opDeleteVoiceConnectorTermination = "DeleteVoiceConnectorTermination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorTermination for more information on using the DeleteVoiceConnectorTermination
 // API call, and error handling.
@@ -3927,7 +3927,7 @@ const opDeleteVoiceConnectorTerminationCredentials = "DeleteVoiceConnectorTermin
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteVoiceConnectorTerminationCredentials for more information on using the DeleteVoiceConnectorTerminationCredentials
 // API call, and error handling.
@@ -4027,7 +4027,7 @@ const opDisassociatePhoneNumberFromUser = "DisassociatePhoneNumberFromUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociatePhoneNumberFromUser for more information on using the DisassociatePhoneNumberFromUser
 // API call, and error handling.
@@ -4127,7 +4127,7 @@ const opDisassociatePhoneNumbersFromVoiceConnector = "DisassociatePhoneNumbersFr
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociatePhoneNumbersFromVoiceConnector for more information on using the DisassociatePhoneNumbersFromVoiceConnector
 // API call, and error handling.
@@ -4226,7 +4226,7 @@ const opDisassociatePhoneNumbersFromVoiceConnectorGroup = "DisassociatePhoneNumb
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociatePhoneNumbersFromVoiceConnectorGroup for more information on using the DisassociatePhoneNumbersFromVoiceConnectorGroup
 // API call, and error handling.
@@ -4325,7 +4325,7 @@ const opDisassociateSigninDelegateGroupsFromAccount = "DisassociateSigninDelegat
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateSigninDelegateGroupsFromAccount for more information on using the DisassociateSigninDelegateGroupsFromAccount
 // API call, and error handling.
@@ -4425,7 +4425,7 @@ const opGetAccount = "GetAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccount for more information on using the GetAccount
 // API call, and error handling.
@@ -4524,7 +4524,7 @@ const opGetAccountSettings = "GetAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountSettings for more information on using the GetAccountSettings
 // API call, and error handling.
@@ -4625,7 +4625,7 @@ const opGetAttendee = "GetAttendee"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAttendee for more information on using the GetAttendee
 // API call, and error handling.
@@ -4726,7 +4726,7 @@ const opGetBot = "GetBot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBot for more information on using the GetBot
 // API call, and error handling.
@@ -4825,7 +4825,7 @@ const opGetEventsConfiguration = "GetEventsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetEventsConfiguration for more information on using the GetEventsConfiguration
 // API call, and error handling.
@@ -4924,7 +4924,7 @@ const opGetGlobalSettings = "GetGlobalSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetGlobalSettings for more information on using the GetGlobalSettings
 // API call, and error handling.
@@ -5020,7 +5020,7 @@ const opGetMeeting = "GetMeeting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMeeting for more information on using the GetMeeting
 // API call, and error handling.
@@ -5121,7 +5121,7 @@ const opGetPhoneNumber = "GetPhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPhoneNumber for more information on using the GetPhoneNumber
 // API call, and error handling.
@@ -5220,7 +5220,7 @@ const opGetPhoneNumberOrder = "GetPhoneNumberOrder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPhoneNumberOrder for more information on using the GetPhoneNumberOrder
 // API call, and error handling.
@@ -5319,7 +5319,7 @@ const opGetPhoneNumberSettings = "GetPhoneNumberSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPhoneNumberSettings for more information on using the GetPhoneNumberSettings
 // API call, and error handling.
@@ -5415,7 +5415,7 @@ const opGetProxySession = "GetProxySession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetProxySession for more information on using the GetProxySession
 // API call, and error handling.
@@ -5514,7 +5514,7 @@ const opGetRetentionSettings = "GetRetentionSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRetentionSettings for more information on using the GetRetentionSettings
 // API call, and error handling.
@@ -5615,7 +5615,7 @@ const opGetRoom = "GetRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRoom for more information on using the GetRoom
 // API call, and error handling.
@@ -5714,7 +5714,7 @@ const opGetUser = "GetUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUser for more information on using the GetUser
 // API call, and error handling.
@@ -5816,7 +5816,7 @@ const opGetUserSettings = "GetUserSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetUserSettings for more information on using the GetUserSettings
 // API call, and error handling.
@@ -5915,7 +5915,7 @@ const opGetVoiceConnector = "GetVoiceConnector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnector for more information on using the GetVoiceConnector
 // API call, and error handling.
@@ -6014,7 +6014,7 @@ const opGetVoiceConnectorEmergencyCallingConfiguration = "GetVoiceConnectorEmerg
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorEmergencyCallingConfiguration for more information on using the GetVoiceConnectorEmergencyCallingConfiguration
 // API call, and error handling.
@@ -6113,7 +6113,7 @@ const opGetVoiceConnectorGroup = "GetVoiceConnectorGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorGroup for more information on using the GetVoiceConnectorGroup
 // API call, and error handling.
@@ -6212,7 +6212,7 @@ const opGetVoiceConnectorLoggingConfiguration = "GetVoiceConnectorLoggingConfigu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorLoggingConfiguration for more information on using the GetVoiceConnectorLoggingConfiguration
 // API call, and error handling.
@@ -6312,7 +6312,7 @@ const opGetVoiceConnectorOrigination = "GetVoiceConnectorOrigination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorOrigination for more information on using the GetVoiceConnectorOrigination
 // API call, and error handling.
@@ -6411,7 +6411,7 @@ const opGetVoiceConnectorProxy = "GetVoiceConnectorProxy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorProxy for more information on using the GetVoiceConnectorProxy
 // API call, and error handling.
@@ -6510,7 +6510,7 @@ const opGetVoiceConnectorStreamingConfiguration = "GetVoiceConnectorStreamingCon
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorStreamingConfiguration for more information on using the GetVoiceConnectorStreamingConfiguration
 // API call, and error handling.
@@ -6611,7 +6611,7 @@ const opGetVoiceConnectorTermination = "GetVoiceConnectorTermination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorTermination for more information on using the GetVoiceConnectorTermination
 // API call, and error handling.
@@ -6710,7 +6710,7 @@ const opGetVoiceConnectorTerminationHealth = "GetVoiceConnectorTerminationHealth
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetVoiceConnectorTerminationHealth for more information on using the GetVoiceConnectorTerminationHealth
 // API call, and error handling.
@@ -6809,7 +6809,7 @@ const opInviteUsers = "InviteUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See InviteUsers for more information on using the InviteUsers
 // API call, and error handling.
@@ -6909,7 +6909,7 @@ const opListAccounts = "ListAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAccounts for more information on using the ListAccounts
 // API call, and error handling.
@@ -7068,7 +7068,7 @@ const opListAttendeeTags = "ListAttendeeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttendeeTags for more information on using the ListAttendeeTags
 // API call, and error handling.
@@ -7166,7 +7166,7 @@ const opListAttendees = "ListAttendees"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttendees for more information on using the ListAttendees
 // API call, and error handling.
@@ -7324,7 +7324,7 @@ const opListBots = "ListBots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBots for more information on using the ListBots
 // API call, and error handling.
@@ -7481,7 +7481,7 @@ const opListMeetingTags = "ListMeetingTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMeetingTags for more information on using the ListMeetingTags
 // API call, and error handling.
@@ -7579,7 +7579,7 @@ const opListMeetings = "ListMeetings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMeetings for more information on using the ListMeetings
 // API call, and error handling.
@@ -7734,7 +7734,7 @@ const opListPhoneNumberOrders = "ListPhoneNumberOrders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPhoneNumberOrders for more information on using the ListPhoneNumberOrders
 // API call, and error handling.
@@ -7887,7 +7887,7 @@ const opListPhoneNumbers = "ListPhoneNumbers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPhoneNumbers for more information on using the ListPhoneNumbers
 // API call, and error handling.
@@ -8041,7 +8041,7 @@ const opListProxySessions = "ListProxySessions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProxySessions for more information on using the ListProxySessions
 // API call, and error handling.
@@ -8197,7 +8197,7 @@ const opListRoomMemberships = "ListRoomMemberships"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRoomMemberships for more information on using the ListRoomMemberships
 // API call, and error handling.
@@ -8354,7 +8354,7 @@ const opListRooms = "ListRooms"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRooms for more information on using the ListRooms
 // API call, and error handling.
@@ -8512,7 +8512,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -8607,7 +8607,7 @@ const opListUsers = "ListUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListUsers for more information on using the ListUsers
 // API call, and error handling.
@@ -8765,7 +8765,7 @@ const opListVoiceConnectorGroups = "ListVoiceConnectorGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVoiceConnectorGroups for more information on using the ListVoiceConnectorGroups
 // API call, and error handling.
@@ -8919,7 +8919,7 @@ const opListVoiceConnectorTerminationCredentials = "ListVoiceConnectorTerminatio
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVoiceConnectorTerminationCredentials for more information on using the ListVoiceConnectorTerminationCredentials
 // API call, and error handling.
@@ -9017,7 +9017,7 @@ const opListVoiceConnectors = "ListVoiceConnectors"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListVoiceConnectors for more information on using the ListVoiceConnectors
 // API call, and error handling.
@@ -9170,7 +9170,7 @@ const opLogoutUser = "LogoutUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See LogoutUser for more information on using the LogoutUser
 // API call, and error handling.
@@ -9270,7 +9270,7 @@ const opPutEventsConfiguration = "PutEventsConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutEventsConfiguration for more information on using the PutEventsConfiguration
 // API call, and error handling.
@@ -9370,7 +9370,7 @@ const opPutRetentionSettings = "PutRetentionSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRetentionSettings for more information on using the PutRetentionSettings
 // API call, and error handling.
@@ -9482,7 +9482,7 @@ const opPutVoiceConnectorEmergencyCallingConfiguration = "PutVoiceConnectorEmerg
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorEmergencyCallingConfiguration for more information on using the PutVoiceConnectorEmergencyCallingConfiguration
 // API call, and error handling.
@@ -9583,7 +9583,7 @@ const opPutVoiceConnectorLoggingConfiguration = "PutVoiceConnectorLoggingConfigu
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorLoggingConfiguration for more information on using the PutVoiceConnectorLoggingConfiguration
 // API call, and error handling.
@@ -9683,7 +9683,7 @@ const opPutVoiceConnectorOrigination = "PutVoiceConnectorOrigination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorOrigination for more information on using the PutVoiceConnectorOrigination
 // API call, and error handling.
@@ -9784,7 +9784,7 @@ const opPutVoiceConnectorProxy = "PutVoiceConnectorProxy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorProxy for more information on using the PutVoiceConnectorProxy
 // API call, and error handling.
@@ -9886,7 +9886,7 @@ const opPutVoiceConnectorStreamingConfiguration = "PutVoiceConnectorStreamingCon
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorStreamingConfiguration for more information on using the PutVoiceConnectorStreamingConfiguration
 // API call, and error handling.
@@ -9987,7 +9987,7 @@ const opPutVoiceConnectorTermination = "PutVoiceConnectorTermination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorTermination for more information on using the PutVoiceConnectorTermination
 // API call, and error handling.
@@ -10091,7 +10091,7 @@ const opPutVoiceConnectorTerminationCredentials = "PutVoiceConnectorTerminationC
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutVoiceConnectorTerminationCredentials for more information on using the PutVoiceConnectorTerminationCredentials
 // API call, and error handling.
@@ -10190,7 +10190,7 @@ const opRedactConversationMessage = "RedactConversationMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RedactConversationMessage for more information on using the RedactConversationMessage
 // API call, and error handling.
@@ -10289,7 +10289,7 @@ const opRedactRoomMessage = "RedactRoomMessage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RedactRoomMessage for more information on using the RedactRoomMessage
 // API call, and error handling.
@@ -10388,7 +10388,7 @@ const opRegenerateSecurityToken = "RegenerateSecurityToken"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegenerateSecurityToken for more information on using the RegenerateSecurityToken
 // API call, and error handling.
@@ -10486,7 +10486,7 @@ const opResetPersonalPIN = "ResetPersonalPIN"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetPersonalPIN for more information on using the ResetPersonalPIN
 // API call, and error handling.
@@ -10585,7 +10585,7 @@ const opRestorePhoneNumber = "RestorePhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestorePhoneNumber for more information on using the RestorePhoneNumber
 // API call, and error handling.
@@ -10686,7 +10686,7 @@ const opSearchAvailablePhoneNumbers = "SearchAvailablePhoneNumbers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SearchAvailablePhoneNumbers for more information on using the SearchAvailablePhoneNumbers
 // API call, and error handling.
@@ -10784,7 +10784,7 @@ const opTagAttendee = "TagAttendee"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagAttendee for more information on using the TagAttendee
 // API call, and error handling.
@@ -10886,7 +10886,7 @@ const opTagMeeting = "TagMeeting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagMeeting for more information on using the TagMeeting
 // API call, and error handling.
@@ -10988,7 +10988,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -11084,7 +11084,7 @@ const opUntagAttendee = "UntagAttendee"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagAttendee for more information on using the UntagAttendee
 // API call, and error handling.
@@ -11183,7 +11183,7 @@ const opUntagMeeting = "UntagMeeting"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagMeeting for more information on using the UntagMeeting
 // API call, and error handling.
@@ -11282,7 +11282,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -11378,7 +11378,7 @@ const opUpdateAccount = "UpdateAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccount for more information on using the UpdateAccount
 // API call, and error handling.
@@ -11477,7 +11477,7 @@ const opUpdateAccountSettings = "UpdateAccountSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAccountSettings for more information on using the UpdateAccountSettings
 // API call, and error handling.
@@ -11583,7 +11583,7 @@ const opUpdateBot = "UpdateBot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateBot for more information on using the UpdateBot
 // API call, and error handling.
@@ -11682,7 +11682,7 @@ const opUpdateGlobalSettings = "UpdateGlobalSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateGlobalSettings for more information on using the UpdateGlobalSettings
 // API call, and error handling.
@@ -11779,7 +11779,7 @@ const opUpdatePhoneNumber = "UpdatePhoneNumber"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePhoneNumber for more information on using the UpdatePhoneNumber
 // API call, and error handling.
@@ -11887,7 +11887,7 @@ const opUpdatePhoneNumberSettings = "UpdatePhoneNumberSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdatePhoneNumberSettings for more information on using the UpdatePhoneNumberSettings
 // API call, and error handling.
@@ -11986,7 +11986,7 @@ const opUpdateProxySession = "UpdateProxySession"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateProxySession for more information on using the UpdateProxySession
 // API call, and error handling.
@@ -12084,7 +12084,7 @@ const opUpdateRoom = "UpdateRoom"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoom for more information on using the UpdateRoom
 // API call, and error handling.
@@ -12183,7 +12183,7 @@ const opUpdateRoomMembership = "UpdateRoomMembership"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRoomMembership for more information on using the UpdateRoomMembership
 // API call, and error handling.
@@ -12284,7 +12284,7 @@ const opUpdateUser = "UpdateUser"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUser for more information on using the UpdateUser
 // API call, and error handling.
@@ -12383,7 +12383,7 @@ const opUpdateUserSettings = "UpdateUserSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateUserSettings for more information on using the UpdateUserSettings
 // API call, and error handling.
@@ -12482,7 +12482,7 @@ const opUpdateVoiceConnector = "UpdateVoiceConnector"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVoiceConnector for more information on using the UpdateVoiceConnector
 // API call, and error handling.
@@ -12580,7 +12580,7 @@ const opUpdateVoiceConnectorGroup = "UpdateVoiceConnectorGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateVoiceConnectorGroup for more information on using the UpdateVoiceConnectorGroup
 // API call, and error handling.

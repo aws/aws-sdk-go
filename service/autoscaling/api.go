@@ -21,7 +21,7 @@ const opAttachInstances = "AttachInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachInstances for more information on using the AttachInstances
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opAttachLoadBalancerTargetGroups = "AttachLoadBalancerTargetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachLoadBalancerTargetGroups for more information on using the AttachLoadBalancerTargetGroups
 // API call, and error handling.
@@ -213,7 +213,7 @@ const opAttachLoadBalancers = "AttachLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AttachLoadBalancers for more information on using the AttachLoadBalancers
 // API call, and error handling.
@@ -311,7 +311,7 @@ const opBatchDeleteScheduledAction = "BatchDeleteScheduledAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchDeleteScheduledAction for more information on using the BatchDeleteScheduledAction
 // API call, and error handling.
@@ -391,7 +391,7 @@ const opBatchPutScheduledUpdateGroupAction = "BatchPutScheduledUpdateGroupAction
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchPutScheduledUpdateGroupAction for more information on using the BatchPutScheduledUpdateGroupAction
 // API call, and error handling.
@@ -483,7 +483,7 @@ const opCancelInstanceRefresh = "CancelInstanceRefresh"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelInstanceRefresh for more information on using the CancelInstanceRefresh
 // API call, and error handling.
@@ -578,7 +578,7 @@ const opCompleteLifecycleAction = "CompleteLifecycleAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteLifecycleAction for more information on using the CompleteLifecycleAction
 // API call, and error handling.
@@ -682,7 +682,7 @@ const opCreateAutoScalingGroup = "CreateAutoScalingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAutoScalingGroup for more information on using the CreateAutoScalingGroup
 // API call, and error handling.
@@ -794,7 +794,7 @@ const opCreateLaunchConfiguration = "CreateLaunchConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLaunchConfiguration for more information on using the CreateLaunchConfiguration
 // API call, and error handling.
@@ -893,7 +893,7 @@ const opCreateOrUpdateTags = "CreateOrUpdateTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateOrUpdateTags for more information on using the CreateOrUpdateTags
 // API call, and error handling.
@@ -993,7 +993,7 @@ const opDeleteAutoScalingGroup = "DeleteAutoScalingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteAutoScalingGroup for more information on using the DeleteAutoScalingGroup
 // API call, and error handling.
@@ -1096,7 +1096,7 @@ const opDeleteLaunchConfiguration = "DeleteLaunchConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLaunchConfiguration for more information on using the DeleteLaunchConfiguration
 // API call, and error handling.
@@ -1184,7 +1184,7 @@ const opDeleteLifecycleHook = "DeleteLifecycleHook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLifecycleHook for more information on using the DeleteLifecycleHook
 // API call, and error handling.
@@ -1268,7 +1268,7 @@ const opDeleteNotificationConfiguration = "DeleteNotificationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNotificationConfiguration for more information on using the DeleteNotificationConfiguration
 // API call, and error handling.
@@ -1349,7 +1349,7 @@ const opDeletePolicy = "DeletePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeletePolicy for more information on using the DeletePolicy
 // API call, and error handling.
@@ -1440,7 +1440,7 @@ const opDeleteScheduledAction = "DeleteScheduledAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteScheduledAction for more information on using the DeleteScheduledAction
 // API call, and error handling.
@@ -1521,7 +1521,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -1605,7 +1605,7 @@ const opDescribeAccountLimits = "DescribeAccountLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountLimits for more information on using the DescribeAccountLimits
 // API call, and error handling.
@@ -1690,7 +1690,7 @@ const opDescribeAdjustmentTypes = "DescribeAdjustmentTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAdjustmentTypes for more information on using the DescribeAdjustmentTypes
 // API call, and error handling.
@@ -1780,7 +1780,7 @@ const opDescribeAutoScalingGroups = "DescribeAutoScalingGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAutoScalingGroups for more information on using the DescribeAutoScalingGroups
 // API call, and error handling.
@@ -1921,7 +1921,7 @@ const opDescribeAutoScalingInstances = "DescribeAutoScalingInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAutoScalingInstances for more information on using the DescribeAutoScalingInstances
 // API call, and error handling.
@@ -2062,7 +2062,7 @@ const opDescribeAutoScalingNotificationTypes = "DescribeAutoScalingNotificationT
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAutoScalingNotificationTypes for more information on using the DescribeAutoScalingNotificationTypes
 // API call, and error handling.
@@ -2142,7 +2142,7 @@ const opDescribeInstanceRefreshes = "DescribeInstanceRefreshes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeInstanceRefreshes for more information on using the DescribeInstanceRefreshes
 // API call, and error handling.
@@ -2246,7 +2246,7 @@ const opDescribeLaunchConfigurations = "DescribeLaunchConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLaunchConfigurations for more information on using the DescribeLaunchConfigurations
 // API call, and error handling.
@@ -2387,7 +2387,7 @@ const opDescribeLifecycleHookTypes = "DescribeLifecycleHookTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLifecycleHookTypes for more information on using the DescribeLifecycleHookTypes
 // API call, and error handling.
@@ -2473,7 +2473,7 @@ const opDescribeLifecycleHooks = "DescribeLifecycleHooks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLifecycleHooks for more information on using the DescribeLifecycleHooks
 // API call, and error handling.
@@ -2553,7 +2553,7 @@ const opDescribeLoadBalancerTargetGroups = "DescribeLoadBalancerTargetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancerTargetGroups for more information on using the DescribeLoadBalancerTargetGroups
 // API call, and error handling.
@@ -2633,7 +2633,7 @@ const opDescribeLoadBalancers = "DescribeLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLoadBalancers for more information on using the DescribeLoadBalancers
 // API call, and error handling.
@@ -2717,7 +2717,7 @@ const opDescribeMetricCollectionTypes = "DescribeMetricCollectionTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMetricCollectionTypes for more information on using the DescribeMetricCollectionTypes
 // API call, and error handling.
@@ -2800,7 +2800,7 @@ const opDescribeNotificationConfigurations = "DescribeNotificationConfigurations
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotificationConfigurations for more information on using the DescribeNotificationConfigurations
 // API call, and error handling.
@@ -2942,7 +2942,7 @@ const opDescribePolicies = "DescribePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribePolicies for more information on using the DescribePolicies
 // API call, and error handling.
@@ -3086,7 +3086,7 @@ const opDescribeScalingActivities = "DescribeScalingActivities"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingActivities for more information on using the DescribeScalingActivities
 // API call, and error handling.
@@ -3227,7 +3227,7 @@ const opDescribeScalingProcessTypes = "DescribeScalingProcessTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScalingProcessTypes for more information on using the DescribeScalingProcessTypes
 // API call, and error handling.
@@ -3308,7 +3308,7 @@ const opDescribeScheduledActions = "DescribeScheduledActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeScheduledActions for more information on using the DescribeScheduledActions
 // API call, and error handling.
@@ -3451,7 +3451,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -3604,7 +3604,7 @@ const opDescribeTerminationPolicyTypes = "DescribeTerminationPolicyTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTerminationPolicyTypes for more information on using the DescribeTerminationPolicyTypes
 // API call, and error handling.
@@ -3688,7 +3688,7 @@ const opDetachInstances = "DetachInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachInstances for more information on using the DetachInstances
 // API call, and error handling.
@@ -3783,7 +3783,7 @@ const opDetachLoadBalancerTargetGroups = "DetachLoadBalancerTargetGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachLoadBalancerTargetGroups for more information on using the DetachLoadBalancerTargetGroups
 // API call, and error handling.
@@ -3864,7 +3864,7 @@ const opDetachLoadBalancers = "DetachLoadBalancers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetachLoadBalancers for more information on using the DetachLoadBalancers
 // API call, and error handling.
@@ -3955,7 +3955,7 @@ const opDisableMetricsCollection = "DisableMetricsCollection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableMetricsCollection for more information on using the DisableMetricsCollection
 // API call, and error handling.
@@ -4036,7 +4036,7 @@ const opEnableMetricsCollection = "EnableMetricsCollection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableMetricsCollection for more information on using the EnableMetricsCollection
 // API call, and error handling.
@@ -4119,7 +4119,7 @@ const opEnterStandby = "EnterStandby"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnterStandby for more information on using the EnterStandby
 // API call, and error handling.
@@ -4212,7 +4212,7 @@ const opExecutePolicy = "ExecutePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExecutePolicy for more information on using the ExecutePolicy
 // API call, and error handling.
@@ -4298,7 +4298,7 @@ const opExitStandby = "ExitStandby"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ExitStandby for more information on using the ExitStandby
 // API call, and error handling.
@@ -4384,7 +4384,7 @@ const opPutLifecycleHook = "PutLifecycleHook"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLifecycleHook for more information on using the PutLifecycleHook
 // API call, and error handling.
@@ -4506,7 +4506,7 @@ const opPutNotificationConfiguration = "PutNotificationConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutNotificationConfiguration for more information on using the PutNotificationConfiguration
 // API call, and error handling.
@@ -4604,7 +4604,7 @@ const opPutScalingPolicy = "PutScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutScalingPolicy for more information on using the PutScalingPolicy
 // API call, and error handling.
@@ -4698,7 +4698,7 @@ const opPutScheduledUpdateGroupAction = "PutScheduledUpdateGroupAction"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutScheduledUpdateGroupAction for more information on using the PutScheduledUpdateGroupAction
 // API call, and error handling.
@@ -4794,7 +4794,7 @@ const opRecordLifecycleActionHeartbeat = "RecordLifecycleActionHeartbeat"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RecordLifecycleActionHeartbeat for more information on using the RecordLifecycleActionHeartbeat
 // API call, and error handling.
@@ -4899,7 +4899,7 @@ const opResumeProcesses = "ResumeProcesses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResumeProcesses for more information on using the ResumeProcesses
 // API call, and error handling.
@@ -4987,7 +4987,7 @@ const opSetDesiredCapacity = "SetDesiredCapacity"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetDesiredCapacity for more information on using the SetDesiredCapacity
 // API call, and error handling.
@@ -5079,7 +5079,7 @@ const opSetInstanceHealth = "SetInstanceHealth"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetInstanceHealth for more information on using the SetInstanceHealth
 // API call, and error handling.
@@ -5163,7 +5163,7 @@ const opSetInstanceProtection = "SetInstanceProtection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetInstanceProtection for more information on using the SetInstanceProtection
 // API call, and error handling.
@@ -5254,7 +5254,7 @@ const opStartInstanceRefresh = "StartInstanceRefresh"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartInstanceRefresh for more information on using the StartInstanceRefresh
 // API call, and error handling.
@@ -5355,7 +5355,7 @@ const opSuspendProcesses = "SuspendProcesses"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SuspendProcesses for more information on using the SuspendProcesses
 // API call, and error handling.
@@ -5447,7 +5447,7 @@ const opTerminateInstanceInAutoScalingGroup = "TerminateInstanceInAutoScalingGro
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateInstanceInAutoScalingGroup for more information on using the TerminateInstanceInAutoScalingGroup
 // API call, and error handling.
@@ -5547,7 +5547,7 @@ const opUpdateAutoScalingGroup = "UpdateAutoScalingGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateAutoScalingGroup for more information on using the UpdateAutoScalingGroup
 // API call, and error handling.

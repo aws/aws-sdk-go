@@ -20,7 +20,7 @@ const opAssociateMemberAccount = "AssociateMemberAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateMemberAccount for more information on using the AssociateMemberAccount
 // API call, and error handling.
@@ -109,7 +109,7 @@ const opAssociateS3Resources = "AssociateS3Resources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateS3Resources for more information on using the AssociateS3Resources
 // API call, and error handling.
@@ -203,7 +203,7 @@ const opDisassociateMemberAccount = "DisassociateMemberAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateMemberAccount for more information on using the DisassociateMemberAccount
 // API call, and error handling.
@@ -287,7 +287,7 @@ const opDisassociateS3Resources = "DisassociateS3Resources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateS3Resources for more information on using the DisassociateS3Resources
 // API call, and error handling.
@@ -377,7 +377,7 @@ const opListMemberAccounts = "ListMemberAccounts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMemberAccounts for more information on using the ListMemberAccounts
 // API call, and error handling.
@@ -519,7 +519,7 @@ const opListS3Resources = "ListS3Resources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListS3Resources for more information on using the ListS3Resources
 // API call, and error handling.
@@ -667,7 +667,7 @@ const opUpdateS3Resources = "UpdateS3Resources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateS3Resources for more information on using the UpdateS3Resources
 // API call, and error handling.

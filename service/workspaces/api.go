@@ -21,7 +21,7 @@ const opAssociateConnectionAlias = "AssociateConnectionAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateConnectionAlias for more information on using the AssociateConnectionAlias
 // API call, and error handling.
@@ -120,7 +120,7 @@ const opAssociateIpGroups = "AssociateIpGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateIpGroups for more information on using the AssociateIpGroups
 // API call, and error handling.
@@ -215,7 +215,7 @@ const opAuthorizeIpRules = "AuthorizeIpRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AuthorizeIpRules for more information on using the AuthorizeIpRules
 // API call, and error handling.
@@ -310,7 +310,7 @@ const opCopyWorkspaceImage = "CopyWorkspaceImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CopyWorkspaceImage for more information on using the CopyWorkspaceImage
 // API call, and error handling.
@@ -416,7 +416,7 @@ const opCreateConnectionAlias = "CreateConnectionAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConnectionAlias for more information on using the CreateConnectionAlias
 // API call, and error handling.
@@ -512,7 +512,7 @@ const opCreateIpGroup = "CreateIpGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateIpGroup for more information on using the CreateIpGroup
 // API call, and error handling.
@@ -615,7 +615,7 @@ const opCreateTags = "CreateTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTags for more information on using the CreateTags
 // API call, and error handling.
@@ -701,7 +701,7 @@ const opCreateWorkspaces = "CreateWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorkspaces for more information on using the CreateWorkspaces
 // API call, and error handling.
@@ -785,7 +785,7 @@ const opDeleteConnectionAlias = "DeleteConnectionAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConnectionAlias for more information on using the DeleteConnectionAlias
 // API call, and error handling.
@@ -892,7 +892,7 @@ const opDeleteIpGroup = "DeleteIpGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteIpGroup for more information on using the DeleteIpGroup
 // API call, and error handling.
@@ -983,7 +983,7 @@ const opDeleteTags = "DeleteTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTags for more information on using the DeleteTags
 // API call, and error handling.
@@ -1066,7 +1066,7 @@ const opDeleteWorkspaceImage = "DeleteWorkspaceImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorkspaceImage for more information on using the DeleteWorkspaceImage
 // API call, and error handling.
@@ -1154,7 +1154,7 @@ const opDeregisterWorkspaceDirectory = "DeregisterWorkspaceDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterWorkspaceDirectory for more information on using the DeregisterWorkspaceDirectory
 // API call, and error handling.
@@ -1248,7 +1248,7 @@ const opDescribeAccount = "DescribeAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccount for more information on using the DescribeAccount
 // API call, and error handling.
@@ -1328,7 +1328,7 @@ const opDescribeAccountModifications = "DescribeAccountModifications"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAccountModifications for more information on using the DescribeAccountModifications
 // API call, and error handling.
@@ -1408,7 +1408,7 @@ const opDescribeClientProperties = "DescribeClientProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeClientProperties for more information on using the DescribeClientProperties
 // API call, and error handling.
@@ -1493,7 +1493,7 @@ const opDescribeConnectionAliasPermissions = "DescribeConnectionAliasPermissions
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectionAliasPermissions for more information on using the DescribeConnectionAliasPermissions
 // API call, and error handling.
@@ -1583,7 +1583,7 @@ const opDescribeConnectionAliases = "DescribeConnectionAliases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConnectionAliases for more information on using the DescribeConnectionAliases
 // API call, and error handling.
@@ -1670,7 +1670,7 @@ const opDescribeIpGroups = "DescribeIpGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeIpGroups for more information on using the DescribeIpGroups
 // API call, and error handling.
@@ -1752,7 +1752,7 @@ const opDescribeTags = "DescribeTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTags for more information on using the DescribeTags
 // API call, and error handling.
@@ -1831,7 +1831,7 @@ const opDescribeWorkspaceBundles = "DescribeWorkspaceBundles"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspaceBundles for more information on using the DescribeWorkspaceBundles
 // API call, and error handling.
@@ -1970,7 +1970,7 @@ const opDescribeWorkspaceDirectories = "DescribeWorkspaceDirectories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspaceDirectories for more information on using the DescribeWorkspaceDirectories
 // API call, and error handling.
@@ -2107,7 +2107,7 @@ const opDescribeWorkspaceImagePermissions = "DescribeWorkspaceImagePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspaceImagePermissions for more information on using the DescribeWorkspaceImagePermissions
 // API call, and error handling.
@@ -2193,7 +2193,7 @@ const opDescribeWorkspaceImages = "DescribeWorkspaceImages"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspaceImages for more information on using the DescribeWorkspaceImages
 // API call, and error handling.
@@ -2273,7 +2273,7 @@ const opDescribeWorkspaceSnapshots = "DescribeWorkspaceSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspaceSnapshots for more information on using the DescribeWorkspaceSnapshots
 // API call, and error handling.
@@ -2358,7 +2358,7 @@ const opDescribeWorkspaces = "DescribeWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspaces for more information on using the DescribeWorkspaces
 // API call, and error handling.
@@ -2501,7 +2501,7 @@ const opDescribeWorkspacesConnectionStatus = "DescribeWorkspacesConnectionStatus
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeWorkspacesConnectionStatus for more information on using the DescribeWorkspacesConnectionStatus
 // API call, and error handling.
@@ -2580,7 +2580,7 @@ const opDisassociateConnectionAlias = "DisassociateConnectionAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateConnectionAlias for more information on using the DisassociateConnectionAlias
 // API call, and error handling.
@@ -2678,7 +2678,7 @@ const opDisassociateIpGroups = "DisassociateIpGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateIpGroups for more information on using the DisassociateIpGroups
 // API call, and error handling.
@@ -2767,7 +2767,7 @@ const opImportWorkspaceImage = "ImportWorkspaceImage"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportWorkspaceImage for more information on using the ImportWorkspaceImage
 // API call, and error handling.
@@ -2864,7 +2864,7 @@ const opListAvailableManagementCidrRanges = "ListAvailableManagementCidrRanges"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAvailableManagementCidrRanges for more information on using the ListAvailableManagementCidrRanges
 // API call, and error handling.
@@ -2957,7 +2957,7 @@ const opMigrateWorkspace = "MigrateWorkspace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See MigrateWorkspace for more information on using the MigrateWorkspace
 // API call, and error handling.
@@ -3063,7 +3063,7 @@ const opModifyAccount = "ModifyAccount"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyAccount for more information on using the ModifyAccount
 // API call, and error handling.
@@ -3156,7 +3156,7 @@ const opModifyClientProperties = "ModifyClientProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyClientProperties for more information on using the ModifyClientProperties
 // API call, and error handling.
@@ -3242,7 +3242,7 @@ const opModifySelfservicePermissions = "ModifySelfservicePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifySelfservicePermissions for more information on using the ModifySelfservicePermissions
 // API call, and error handling.
@@ -3330,7 +3330,7 @@ const opModifyWorkspaceAccessProperties = "ModifyWorkspaceAccessProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyWorkspaceAccessProperties for more information on using the ModifyWorkspaceAccessProperties
 // API call, and error handling.
@@ -3414,7 +3414,7 @@ const opModifyWorkspaceCreationProperties = "ModifyWorkspaceCreationProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyWorkspaceCreationProperties for more information on using the ModifyWorkspaceCreationProperties
 // API call, and error handling.
@@ -3503,7 +3503,7 @@ const opModifyWorkspaceProperties = "ModifyWorkspaceProperties"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyWorkspaceProperties for more information on using the ModifyWorkspaceProperties
 // API call, and error handling.
@@ -3606,7 +3606,7 @@ const opModifyWorkspaceState = "ModifyWorkspaceState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyWorkspaceState for more information on using the ModifyWorkspaceState
 // API call, and error handling.
@@ -3698,7 +3698,7 @@ const opRebootWorkspaces = "RebootWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebootWorkspaces for more information on using the RebootWorkspaces
 // API call, and error handling.
@@ -3776,7 +3776,7 @@ const opRebuildWorkspaces = "RebuildWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RebuildWorkspaces for more information on using the RebuildWorkspaces
 // API call, and error handling.
@@ -3859,7 +3859,7 @@ const opRegisterWorkspaceDirectory = "RegisterWorkspaceDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterWorkspaceDirectory for more information on using the RegisterWorkspaceDirectory
 // API call, and error handling.
@@ -3970,7 +3970,7 @@ const opRestoreWorkspace = "RestoreWorkspace"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreWorkspace for more information on using the RestoreWorkspace
 // API call, and error handling.
@@ -4065,7 +4065,7 @@ const opRevokeIpRules = "RevokeIpRules"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RevokeIpRules for more information on using the RevokeIpRules
 // API call, and error handling.
@@ -4154,7 +4154,7 @@ const opStartWorkspaces = "StartWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartWorkspaces for more information on using the StartWorkspaces
 // API call, and error handling.
@@ -4231,7 +4231,7 @@ const opStopWorkspaces = "StopWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopWorkspaces for more information on using the StopWorkspaces
 // API call, and error handling.
@@ -4308,7 +4308,7 @@ const opTerminateWorkspaces = "TerminateWorkspaces"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateWorkspaces for more information on using the TerminateWorkspaces
 // API call, and error handling.
@@ -4396,7 +4396,7 @@ const opUpdateConnectionAliasPermission = "UpdateConnectionAliasPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConnectionAliasPermission for more information on using the UpdateConnectionAliasPermission
 // API call, and error handling.
@@ -4509,7 +4509,7 @@ const opUpdateRulesOfIpGroup = "UpdateRulesOfIpGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRulesOfIpGroup for more information on using the UpdateRulesOfIpGroup
 // API call, and error handling.
@@ -4602,7 +4602,7 @@ const opUpdateWorkspaceImagePermission = "UpdateWorkspaceImagePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWorkspaceImagePermission for more information on using the UpdateWorkspaceImagePermission
 // API call, and error handling.

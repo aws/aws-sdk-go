@@ -21,7 +21,7 @@ const opBatchGetNamedQuery = "BatchGetNamedQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetNamedQuery for more information on using the BatchGetNamedQuery
 // API call, and error handling.
@@ -113,7 +113,7 @@ const opBatchGetQueryExecution = "BatchGetQueryExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See BatchGetQueryExecution for more information on using the BatchGetQueryExecution
 // API call, and error handling.
@@ -202,7 +202,7 @@ const opCreateDataCatalog = "CreateDataCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDataCatalog for more information on using the CreateDataCatalog
 // API call, and error handling.
@@ -288,7 +288,7 @@ const opCreateNamedQuery = "CreateNamedQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateNamedQuery for more information on using the CreateNamedQuery
 // API call, and error handling.
@@ -377,7 +377,7 @@ const opCreateWorkGroup = "CreateWorkGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorkGroup for more information on using the CreateWorkGroup
 // API call, and error handling.
@@ -462,7 +462,7 @@ const opDeleteDataCatalog = "DeleteDataCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDataCatalog for more information on using the DeleteDataCatalog
 // API call, and error handling.
@@ -547,7 +547,7 @@ const opDeleteNamedQuery = "DeleteNamedQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteNamedQuery for more information on using the DeleteNamedQuery
 // API call, and error handling.
@@ -637,7 +637,7 @@ const opDeleteWorkGroup = "DeleteWorkGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorkGroup for more information on using the DeleteWorkGroup
 // API call, and error handling.
@@ -723,7 +723,7 @@ const opGetDataCatalog = "GetDataCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDataCatalog for more information on using the GetDataCatalog
 // API call, and error handling.
@@ -807,7 +807,7 @@ const opGetDatabase = "GetDatabase"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDatabase for more information on using the GetDatabase
 // API call, and error handling.
@@ -898,7 +898,7 @@ const opGetNamedQuery = "GetNamedQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetNamedQuery for more information on using the GetNamedQuery
 // API call, and error handling.
@@ -983,7 +983,7 @@ const opGetQueryExecution = "GetQueryExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueryExecution for more information on using the GetQueryExecution
 // API call, and error handling.
@@ -1069,7 +1069,7 @@ const opGetQueryResults = "GetQueryResults"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueryResults for more information on using the GetQueryResults
 // API call, and error handling.
@@ -1225,7 +1225,7 @@ const opGetTableMetadata = "GetTableMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetTableMetadata for more information on using the GetTableMetadata
 // API call, and error handling.
@@ -1316,7 +1316,7 @@ const opGetWorkGroup = "GetWorkGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetWorkGroup for more information on using the GetWorkGroup
 // API call, and error handling.
@@ -1400,7 +1400,7 @@ const opListDataCatalogs = "ListDataCatalogs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDataCatalogs for more information on using the ListDataCatalogs
 // API call, and error handling.
@@ -1542,7 +1542,7 @@ const opListDatabases = "ListDatabases"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDatabases for more information on using the ListDatabases
 // API call, and error handling.
@@ -1691,7 +1691,7 @@ const opListNamedQueries = "ListNamedQueries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNamedQueries for more information on using the ListNamedQueries
 // API call, and error handling.
@@ -1839,7 +1839,7 @@ const opListQueryExecutions = "ListQueryExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQueryExecutions for more information on using the ListQueryExecutions
 // API call, and error handling.
@@ -1988,7 +1988,7 @@ const opListTableMetadata = "ListTableMetadata"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTableMetadata for more information on using the ListTableMetadata
 // API call, and error handling.
@@ -2137,7 +2137,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -2282,7 +2282,7 @@ const opListWorkGroups = "ListWorkGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkGroups for more information on using the ListWorkGroups
 // API call, and error handling.
@@ -2424,7 +2424,7 @@ const opStartQueryExecution = "StartQueryExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartQueryExecution for more information on using the StartQueryExecution
 // API call, and error handling.
@@ -2515,7 +2515,7 @@ const opStopQueryExecution = "StopQueryExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopQueryExecution for more information on using the StopQueryExecution
 // API call, and error handling.
@@ -2605,7 +2605,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2704,7 +2704,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2792,7 +2792,7 @@ const opUpdateDataCatalog = "UpdateDataCatalog"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDataCatalog for more information on using the UpdateDataCatalog
 // API call, and error handling.
@@ -2877,7 +2877,7 @@ const opUpdateWorkGroup = "UpdateWorkGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateWorkGroup for more information on using the UpdateWorkGroup
 // API call, and error handling.

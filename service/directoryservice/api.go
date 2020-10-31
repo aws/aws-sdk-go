@@ -21,7 +21,7 @@ const opAcceptSharedDirectory = "AcceptSharedDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptSharedDirectory for more information on using the AcceptSharedDirectory
 // API call, and error handling.
@@ -113,7 +113,7 @@ const opAddIpRoutes = "AddIpRoutes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddIpRoutes for more information on using the AddIpRoutes
 // API call, and error handling.
@@ -221,7 +221,7 @@ const opAddTagsToResource = "AddTagsToResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTagsToResource for more information on using the AddTagsToResource
 // API call, and error handling.
@@ -315,7 +315,7 @@ const opCancelSchemaExtension = "CancelSchemaExtension"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelSchemaExtension for more information on using the CancelSchemaExtension
 // API call, and error handling.
@@ -404,7 +404,7 @@ const opConnectDirectory = "ConnectDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ConnectDirectory for more information on using the ConnectDirectory
 // API call, and error handling.
@@ -499,7 +499,7 @@ const opCreateAlias = "CreateAlias"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAlias for more information on using the CreateAlias
 // API call, and error handling.
@@ -595,7 +595,7 @@ const opCreateComputer = "CreateComputer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateComputer for more information on using the CreateComputer
 // API call, and error handling.
@@ -696,7 +696,7 @@ const opCreateConditionalForwarder = "CreateConditionalForwarder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateConditionalForwarder for more information on using the CreateConditionalForwarder
 // API call, and error handling.
@@ -796,7 +796,7 @@ const opCreateDirectory = "CreateDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDirectory for more information on using the CreateDirectory
 // API call, and error handling.
@@ -893,7 +893,7 @@ const opCreateLogSubscription = "CreateLogSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLogSubscription for more information on using the CreateLogSubscription
 // API call, and error handling.
@@ -989,7 +989,7 @@ const opCreateMicrosoftAD = "CreateMicrosoftAD"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateMicrosoftAD for more information on using the CreateMicrosoftAD
 // API call, and error handling.
@@ -1089,7 +1089,7 @@ const opCreateSnapshot = "CreateSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSnapshot for more information on using the CreateSnapshot
 // API call, and error handling.
@@ -1184,7 +1184,7 @@ const opCreateTrust = "CreateTrust"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateTrust for more information on using the CreateTrust
 // API call, and error handling.
@@ -1286,7 +1286,7 @@ const opDeleteConditionalForwarder = "DeleteConditionalForwarder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteConditionalForwarder for more information on using the DeleteConditionalForwarder
 // API call, and error handling.
@@ -1381,7 +1381,7 @@ const opDeleteDirectory = "DeleteDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDirectory for more information on using the DeleteDirectory
 // API call, and error handling.
@@ -1471,7 +1471,7 @@ const opDeleteLogSubscription = "DeleteLogSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLogSubscription for more information on using the DeleteLogSubscription
 // API call, and error handling.
@@ -1560,7 +1560,7 @@ const opDeleteSnapshot = "DeleteSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSnapshot for more information on using the DeleteSnapshot
 // API call, and error handling.
@@ -1648,7 +1648,7 @@ const opDeleteTrust = "DeleteTrust"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteTrust for more information on using the DeleteTrust
 // API call, and error handling.
@@ -1740,7 +1740,7 @@ const opDeregisterCertificate = "DeregisterCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterCertificate for more information on using the DeregisterCertificate
 // API call, and error handling.
@@ -1843,7 +1843,7 @@ const opDeregisterEventTopic = "DeregisterEventTopic"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeregisterEventTopic for more information on using the DeregisterEventTopic
 // API call, and error handling.
@@ -1932,7 +1932,7 @@ const opDescribeCertificate = "DescribeCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCertificate for more information on using the DescribeCertificate
 // API call, and error handling.
@@ -2027,7 +2027,7 @@ const opDescribeConditionalForwarders = "DescribeConditionalForwarders"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeConditionalForwarders for more information on using the DescribeConditionalForwarders
 // API call, and error handling.
@@ -2124,7 +2124,7 @@ const opDescribeDirectories = "DescribeDirectories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDirectories for more information on using the DescribeDirectories
 // API call, and error handling.
@@ -2226,7 +2226,7 @@ const opDescribeDomainControllers = "DescribeDomainControllers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDomainControllers for more information on using the DescribeDomainControllers
 // API call, and error handling.
@@ -2378,7 +2378,7 @@ const opDescribeEventTopics = "DescribeEventTopics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEventTopics for more information on using the DescribeEventTopics
 // API call, and error handling.
@@ -2470,7 +2470,7 @@ const opDescribeLDAPSSettings = "DescribeLDAPSSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLDAPSSettings for more information on using the DescribeLDAPSSettings
 // API call, and error handling.
@@ -2564,7 +2564,7 @@ const opDescribeSharedDirectories = "DescribeSharedDirectories"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSharedDirectories for more information on using the DescribeSharedDirectories
 // API call, and error handling.
@@ -2658,7 +2658,7 @@ const opDescribeSnapshots = "DescribeSnapshots"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSnapshots for more information on using the DescribeSnapshots
 // API call, and error handling.
@@ -2756,7 +2756,7 @@ const opDescribeTrusts = "DescribeTrusts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeTrusts for more information on using the DescribeTrusts
 // API call, and error handling.
@@ -2853,7 +2853,7 @@ const opDisableLDAPS = "DisableLDAPS"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableLDAPS for more information on using the DisableLDAPS
 // API call, and error handling.
@@ -2952,7 +2952,7 @@ const opDisableRadius = "DisableRadius"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableRadius for more information on using the DisableRadius
 // API call, and error handling.
@@ -3040,7 +3040,7 @@ const opDisableSso = "DisableSso"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableSso for more information on using the DisableSso
 // API call, and error handling.
@@ -3132,7 +3132,7 @@ const opEnableLDAPS = "EnableLDAPS"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableLDAPS for more information on using the EnableLDAPS
 // API call, and error handling.
@@ -3236,7 +3236,7 @@ const opEnableRadius = "EnableRadius"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableRadius for more information on using the EnableRadius
 // API call, and error handling.
@@ -3330,7 +3330,7 @@ const opEnableSso = "EnableSso"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableSso for more information on using the EnableSso
 // API call, and error handling.
@@ -3424,7 +3424,7 @@ const opGetDirectoryLimits = "GetDirectoryLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDirectoryLimits for more information on using the GetDirectoryLimits
 // API call, and error handling.
@@ -3509,7 +3509,7 @@ const opGetSnapshotLimits = "GetSnapshotLimits"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSnapshotLimits for more information on using the GetSnapshotLimits
 // API call, and error handling.
@@ -3594,7 +3594,7 @@ const opListCertificates = "ListCertificates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCertificates for more information on using the ListCertificates
 // API call, and error handling.
@@ -3689,7 +3689,7 @@ const opListIpRoutes = "ListIpRoutes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListIpRoutes for more information on using the ListIpRoutes
 // API call, and error handling.
@@ -3780,7 +3780,7 @@ const opListLogSubscriptions = "ListLogSubscriptions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListLogSubscriptions for more information on using the ListLogSubscriptions
 // API call, and error handling.
@@ -3868,7 +3868,7 @@ const opListSchemaExtensions = "ListSchemaExtensions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSchemaExtensions for more information on using the ListSchemaExtensions
 // API call, and error handling.
@@ -3956,7 +3956,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -4047,7 +4047,7 @@ const opRegisterCertificate = "RegisterCertificate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterCertificate for more information on using the RegisterCertificate
 // API call, and error handling.
@@ -4151,7 +4151,7 @@ const opRegisterEventTopic = "RegisterEventTopic"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RegisterEventTopic for more information on using the RegisterEventTopic
 // API call, and error handling.
@@ -4245,7 +4245,7 @@ const opRejectSharedDirectory = "RejectSharedDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectSharedDirectory for more information on using the RejectSharedDirectory
 // API call, and error handling.
@@ -4337,7 +4337,7 @@ const opRemoveIpRoutes = "RemoveIpRoutes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveIpRoutes for more information on using the RemoveIpRoutes
 // API call, and error handling.
@@ -4429,7 +4429,7 @@ const opRemoveTagsFromResource = "RemoveTagsFromResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTagsFromResource for more information on using the RemoveTagsFromResource
 // API call, and error handling.
@@ -4518,7 +4518,7 @@ const opResetUserPassword = "ResetUserPassword"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ResetUserPassword for more information on using the ResetUserPassword
 // API call, and error handling.
@@ -4632,7 +4632,7 @@ const opRestoreFromSnapshot = "RestoreFromSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RestoreFromSnapshot for more information on using the RestoreFromSnapshot
 // API call, and error handling.
@@ -4729,7 +4729,7 @@ const opShareDirectory = "ShareDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ShareDirectory for more information on using the ShareDirectory
 // API call, and error handling.
@@ -4853,7 +4853,7 @@ const opStartSchemaExtension = "StartSchemaExtension"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSchemaExtension for more information on using the StartSchemaExtension
 // API call, and error handling.
@@ -4949,7 +4949,7 @@ const opUnshareDirectory = "UnshareDirectory"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UnshareDirectory for more information on using the UnshareDirectory
 // API call, and error handling.
@@ -5040,7 +5040,7 @@ const opUpdateConditionalForwarder = "UpdateConditionalForwarder"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateConditionalForwarder for more information on using the UpdateConditionalForwarder
 // API call, and error handling.
@@ -5135,7 +5135,7 @@ const opUpdateNumberOfDomainControllers = "UpdateNumberOfDomainControllers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNumberOfDomainControllers for more information on using the UpdateNumberOfDomainControllers
 // API call, and error handling.
@@ -5239,7 +5239,7 @@ const opUpdateRadius = "UpdateRadius"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateRadius for more information on using the UpdateRadius
 // API call, and error handling.
@@ -5329,7 +5329,7 @@ const opUpdateTrust = "UpdateTrust"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateTrust for more information on using the UpdateTrust
 // API call, and error handling.
@@ -5418,7 +5418,7 @@ const opVerifyTrust = "VerifyTrust"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See VerifyTrust for more information on using the VerifyTrust
 // API call, and error handling.

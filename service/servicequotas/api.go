@@ -21,7 +21,7 @@ const opAssociateServiceQuotaTemplate = "AssociateServiceQuotaTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateServiceQuotaTemplate for more information on using the AssociateServiceQuotaTemplate
 // API call, and error handling.
@@ -131,7 +131,7 @@ const opDeleteServiceQuotaIncreaseRequestFromTemplate = "DeleteServiceQuotaIncre
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteServiceQuotaIncreaseRequestFromTemplate for more information on using the DeleteServiceQuotaIncreaseRequestFromTemplate
 // API call, and error handling.
@@ -238,7 +238,7 @@ const opDisassociateServiceQuotaTemplate = "DisassociateServiceQuotaTemplate"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateServiceQuotaTemplate for more information on using the DisassociateServiceQuotaTemplate
 // API call, and error handling.
@@ -352,7 +352,7 @@ const opGetAWSDefaultServiceQuota = "GetAWSDefaultServiceQuota"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAWSDefaultServiceQuota for more information on using the GetAWSDefaultServiceQuota
 // API call, and error handling.
@@ -445,7 +445,7 @@ const opGetAssociationForServiceQuotaTemplate = "GetAssociationForServiceQuotaTe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssociationForServiceQuotaTemplate for more information on using the GetAssociationForServiceQuotaTemplate
 // API call, and error handling.
@@ -552,7 +552,7 @@ const opGetRequestedServiceQuotaChange = "GetRequestedServiceQuotaChange"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetRequestedServiceQuotaChange for more information on using the GetRequestedServiceQuotaChange
 // API call, and error handling.
@@ -644,7 +644,7 @@ const opGetServiceQuota = "GetServiceQuota"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceQuota for more information on using the GetServiceQuota
 // API call, and error handling.
@@ -739,7 +739,7 @@ const opGetServiceQuotaIncreaseRequestFromTemplate = "GetServiceQuotaIncreaseReq
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetServiceQuotaIncreaseRequestFromTemplate for more information on using the GetServiceQuotaIncreaseRequestFromTemplate
 // API call, and error handling.
@@ -845,7 +845,7 @@ const opListAWSDefaultServiceQuotas = "ListAWSDefaultServiceQuotas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAWSDefaultServiceQuotas for more information on using the ListAWSDefaultServiceQuotas
 // API call, and error handling.
@@ -1009,7 +1009,7 @@ const opListRequestedServiceQuotaChangeHistory = "ListRequestedServiceQuotaChang
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRequestedServiceQuotaChangeHistory for more information on using the ListRequestedServiceQuotaChangeHistory
 // API call, and error handling.
@@ -1162,7 +1162,7 @@ const opListRequestedServiceQuotaChangeHistoryByQuota = "ListRequestedServiceQuo
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRequestedServiceQuotaChangeHistoryByQuota for more information on using the ListRequestedServiceQuotaChangeHistoryByQuota
 // API call, and error handling.
@@ -1318,7 +1318,7 @@ const opListServiceQuotaIncreaseRequestsInTemplate = "ListServiceQuotaIncreaseRe
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServiceQuotaIncreaseRequestsInTemplate for more information on using the ListServiceQuotaIncreaseRequestsInTemplate
 // API call, and error handling.
@@ -1479,7 +1479,7 @@ const opListServiceQuotas = "ListServiceQuotas"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServiceQuotas for more information on using the ListServiceQuotas
 // API call, and error handling.
@@ -1640,7 +1640,7 @@ const opListServices = "ListServices"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListServices for more information on using the ListServices
 // API call, and error handling.
@@ -1792,7 +1792,7 @@ const opPutServiceQuotaIncreaseRequestIntoTemplate = "PutServiceQuotaIncreaseReq
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutServiceQuotaIncreaseRequestIntoTemplate for more information on using the PutServiceQuotaIncreaseRequestIntoTemplate
 // API call, and error handling.
@@ -1906,7 +1906,7 @@ const opRequestServiceQuotaIncrease = "RequestServiceQuotaIncrease"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RequestServiceQuotaIncrease for more information on using the RequestServiceQuotaIncrease
 // API call, and error handling.

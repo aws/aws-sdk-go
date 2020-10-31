@@ -21,7 +21,7 @@ const opCreateContainer = "CreateContainer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateContainer for more information on using the CreateContainer
 // API call, and error handling.
@@ -108,7 +108,7 @@ const opDeleteContainer = "DeleteContainer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteContainer for more information on using the DeleteContainer
 // API call, and error handling.
@@ -197,7 +197,7 @@ const opDeleteContainerPolicy = "DeleteContainerPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteContainerPolicy for more information on using the DeleteContainerPolicy
 // API call, and error handling.
@@ -287,7 +287,7 @@ const opDeleteCorsPolicy = "DeleteCorsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteCorsPolicy for more information on using the DeleteCorsPolicy
 // API call, and error handling.
@@ -382,7 +382,7 @@ const opDeleteLifecyclePolicy = "DeleteLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLifecyclePolicy for more information on using the DeleteLifecyclePolicy
 // API call, and error handling.
@@ -473,7 +473,7 @@ const opDeleteMetricPolicy = "DeleteMetricPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMetricPolicy for more information on using the DeleteMetricPolicy
 // API call, and error handling.
@@ -565,7 +565,7 @@ const opDescribeContainer = "DescribeContainer"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeContainer for more information on using the DescribeContainer
 // API call, and error handling.
@@ -652,7 +652,7 @@ const opGetContainerPolicy = "GetContainerPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetContainerPolicy for more information on using the GetContainerPolicy
 // API call, and error handling.
@@ -743,7 +743,7 @@ const opGetCorsPolicy = "GetCorsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetCorsPolicy for more information on using the GetCorsPolicy
 // API call, and error handling.
@@ -837,7 +837,7 @@ const opGetLifecyclePolicy = "GetLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLifecyclePolicy for more information on using the GetLifecyclePolicy
 // API call, and error handling.
@@ -926,7 +926,7 @@ const opGetMetricPolicy = "GetMetricPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetMetricPolicy for more information on using the GetMetricPolicy
 // API call, and error handling.
@@ -1015,7 +1015,7 @@ const opListContainers = "ListContainers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListContainers for more information on using the ListContainers
 // API call, and error handling.
@@ -1161,7 +1161,7 @@ const opListTagsForResource = "ListTagsForResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForResource for more information on using the ListTagsForResource
 // API call, and error handling.
@@ -1247,7 +1247,7 @@ const opPutContainerPolicy = "PutContainerPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutContainerPolicy for more information on using the PutContainerPolicy
 // API call, and error handling.
@@ -1341,7 +1341,7 @@ const opPutCorsPolicy = "PutCorsPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutCorsPolicy for more information on using the PutCorsPolicy
 // API call, and error handling.
@@ -1441,7 +1441,7 @@ const opPutLifecyclePolicy = "PutLifecyclePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLifecyclePolicy for more information on using the PutLifecyclePolicy
 // API call, and error handling.
@@ -1533,7 +1533,7 @@ const opPutMetricPolicy = "PutMetricPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutMetricPolicy for more information on using the PutMetricPolicy
 // API call, and error handling.
@@ -1622,7 +1622,7 @@ const opStartAccessLogging = "StartAccessLogging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartAccessLogging for more information on using the StartAccessLogging
 // API call, and error handling.
@@ -1711,7 +1711,7 @@ const opStopAccessLogging = "StopAccessLogging"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopAccessLogging for more information on using the StopAccessLogging
 // API call, and error handling.
@@ -1800,7 +1800,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -1892,7 +1892,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opAcceptQualificationRequest = "AcceptQualificationRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptQualificationRequest for more information on using the AcceptQualificationRequest
 // API call, and error handling.
@@ -112,7 +112,7 @@ const opApproveAssignment = "ApproveAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ApproveAssignment for more information on using the ApproveAssignment
 // API call, and error handling.
@@ -214,7 +214,7 @@ const opAssociateQualificationWithWorker = "AssociateQualificationWithWorker"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateQualificationWithWorker for more information on using the AssociateQualificationWithWorker
 // API call, and error handling.
@@ -310,7 +310,7 @@ const opCreateAdditionalAssignmentsForHIT = "CreateAdditionalAssignmentsForHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateAdditionalAssignmentsForHIT for more information on using the CreateAdditionalAssignmentsForHIT
 // API call, and error handling.
@@ -408,7 +408,7 @@ const opCreateHIT = "CreateHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHIT for more information on using the CreateHIT
 // API call, and error handling.
@@ -512,7 +512,7 @@ const opCreateHITType = "CreateHITType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHITType for more information on using the CreateHITType
 // API call, and error handling.
@@ -598,7 +598,7 @@ const opCreateHITWithHITType = "CreateHITWithHITType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateHITWithHITType for more information on using the CreateHITWithHITType
 // API call, and error handling.
@@ -693,7 +693,7 @@ const opCreateQualificationType = "CreateQualificationType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateQualificationType for more information on using the CreateQualificationType
 // API call, and error handling.
@@ -777,7 +777,7 @@ const opCreateWorkerBlock = "CreateWorkerBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateWorkerBlock for more information on using the CreateWorkerBlock
 // API call, and error handling.
@@ -863,7 +863,7 @@ const opDeleteHIT = "DeleteHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHIT for more information on using the DeleteHIT
 // API call, and error handling.
@@ -965,7 +965,7 @@ const opDeleteQualificationType = "DeleteQualificationType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteQualificationType for more information on using the DeleteQualificationType
 // API call, and error handling.
@@ -1061,7 +1061,7 @@ const opDeleteWorkerBlock = "DeleteWorkerBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteWorkerBlock for more information on using the DeleteWorkerBlock
 // API call, and error handling.
@@ -1150,7 +1150,7 @@ const opDisassociateQualificationFromWorker = "DisassociateQualificationFromWork
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateQualificationFromWorker for more information on using the DisassociateQualificationFromWorker
 // API call, and error handling.
@@ -1238,7 +1238,7 @@ const opGetAccountBalance = "GetAccountBalance"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAccountBalance for more information on using the GetAccountBalance
 // API call, and error handling.
@@ -1322,7 +1322,7 @@ const opGetAssignment = "GetAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetAssignment for more information on using the GetAssignment
 // API call, and error handling.
@@ -1405,7 +1405,7 @@ const opGetFileUploadURL = "GetFileUploadURL"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetFileUploadURL for more information on using the GetFileUploadURL
 // API call, and error handling.
@@ -1498,7 +1498,7 @@ const opGetHIT = "GetHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetHIT for more information on using the GetHIT
 // API call, and error handling.
@@ -1581,7 +1581,7 @@ const opGetQualificationScore = "GetQualificationScore"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQualificationScore for more information on using the GetQualificationScore
 // API call, and error handling.
@@ -1672,7 +1672,7 @@ const opGetQualificationType = "GetQualificationType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQualificationType for more information on using the GetQualificationType
 // API call, and error handling.
@@ -1756,7 +1756,7 @@ const opListAssignmentsForHIT = "ListAssignmentsForHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAssignmentsForHIT for more information on using the ListAssignmentsForHIT
 // API call, and error handling.
@@ -1917,7 +1917,7 @@ const opListBonusPayments = "ListBonusPayments"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBonusPayments for more information on using the ListBonusPayments
 // API call, and error handling.
@@ -2059,7 +2059,7 @@ const opListHITs = "ListHITs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHITs for more information on using the ListHITs
 // API call, and error handling.
@@ -2202,7 +2202,7 @@ const opListHITsForQualificationType = "ListHITsForQualificationType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHITsForQualificationType for more information on using the ListHITsForQualificationType
 // API call, and error handling.
@@ -2346,7 +2346,7 @@ const opListQualificationRequests = "ListQualificationRequests"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQualificationRequests for more information on using the ListQualificationRequests
 // API call, and error handling.
@@ -2490,7 +2490,7 @@ const opListQualificationTypes = "ListQualificationTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListQualificationTypes for more information on using the ListQualificationTypes
 // API call, and error handling.
@@ -2632,7 +2632,7 @@ const opListReviewPolicyResultsForHIT = "ListReviewPolicyResultsForHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReviewPolicyResultsForHIT for more information on using the ListReviewPolicyResultsForHIT
 // API call, and error handling.
@@ -2777,7 +2777,7 @@ const opListReviewableHITs = "ListReviewableHITs"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListReviewableHITs for more information on using the ListReviewableHITs
 // API call, and error handling.
@@ -2920,7 +2920,7 @@ const opListWorkerBlocks = "ListWorkerBlocks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkerBlocks for more information on using the ListWorkerBlocks
 // API call, and error handling.
@@ -3062,7 +3062,7 @@ const opListWorkersWithQualificationType = "ListWorkersWithQualificationType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListWorkersWithQualificationType for more information on using the ListWorkersWithQualificationType
 // API call, and error handling.
@@ -3204,7 +3204,7 @@ const opNotifyWorkers = "NotifyWorkers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See NotifyWorkers for more information on using the NotifyWorkers
 // API call, and error handling.
@@ -3291,7 +3291,7 @@ const opRejectAssignment = "RejectAssignment"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectAssignment for more information on using the RejectAssignment
 // API call, and error handling.
@@ -3383,7 +3383,7 @@ const opRejectQualificationRequest = "RejectQualificationRequest"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectQualificationRequest for more information on using the RejectQualificationRequest
 // API call, and error handling.
@@ -3470,7 +3470,7 @@ const opSendBonus = "SendBonus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendBonus for more information on using the SendBonus
 // API call, and error handling.
@@ -3562,7 +3562,7 @@ const opSendTestEventNotification = "SendTestEventNotification"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SendTestEventNotification for more information on using the SendTestEventNotification
 // API call, and error handling.
@@ -3651,7 +3651,7 @@ const opUpdateExpirationForHIT = "UpdateExpirationForHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateExpirationForHIT for more information on using the UpdateExpirationForHIT
 // API call, and error handling.
@@ -3737,7 +3737,7 @@ const opUpdateHITReviewStatus = "UpdateHITReviewStatus"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateHITReviewStatus for more information on using the UpdateHITReviewStatus
 // API call, and error handling.
@@ -3823,7 +3823,7 @@ const opUpdateHITTypeOfHIT = "UpdateHITTypeOfHIT"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateHITTypeOfHIT for more information on using the UpdateHITTypeOfHIT
 // API call, and error handling.
@@ -3910,7 +3910,7 @@ const opUpdateNotificationSettings = "UpdateNotificationSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateNotificationSettings for more information on using the UpdateNotificationSettings
 // API call, and error handling.
@@ -4003,7 +4003,7 @@ const opUpdateQualificationType = "UpdateQualificationType"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateQualificationType for more information on using the UpdateQualificationType
 // API call, and error handling.

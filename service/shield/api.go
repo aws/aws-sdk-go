@@ -21,7 +21,7 @@ const opAssociateDRTLogBucket = "AssociateDRTLogBucket"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDRTLogBucket for more information on using the AssociateDRTLogBucket
 // API call, and error handling.
@@ -138,7 +138,7 @@ const opAssociateDRTRole = "AssociateDRTRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDRTRole for more information on using the AssociateDRTRole
 // API call, and error handling.
@@ -266,7 +266,7 @@ const opAssociateHealthCheck = "AssociateHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateHealthCheck for more information on using the AssociateHealthCheck
 // API call, and error handling.
@@ -371,7 +371,7 @@ const opAssociateProactiveEngagementDetails = "AssociateProactiveEngagementDetai
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateProactiveEngagementDetails for more information on using the AssociateProactiveEngagementDetails
 // API call, and error handling.
@@ -481,7 +481,7 @@ const opCreateProtection = "CreateProtection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProtection for more information on using the CreateProtection
 // API call, and error handling.
@@ -595,7 +595,7 @@ const opCreateSubscription = "CreateSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSubscription for more information on using the CreateSubscription
 // API call, and error handling.
@@ -683,7 +683,7 @@ const opDeleteProtection = "DeleteProtection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProtection for more information on using the DeleteProtection
 // API call, and error handling.
@@ -771,7 +771,7 @@ const opDeleteSubscription = "DeleteSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSubscription for more information on using the DeleteSubscription
 // API call, and error handling.
@@ -872,7 +872,7 @@ const opDescribeAttack = "DescribeAttack"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeAttack for more information on using the DescribeAttack
 // API call, and error handling.
@@ -956,7 +956,7 @@ const opDescribeDRTAccess = "DescribeDRTAccess"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDRTAccess for more information on using the DescribeDRTAccess
 // API call, and error handling.
@@ -1041,7 +1041,7 @@ const opDescribeEmergencyContactSettings = "DescribeEmergencyContactSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeEmergencyContactSettings for more information on using the DescribeEmergencyContactSettings
 // API call, and error handling.
@@ -1126,7 +1126,7 @@ const opDescribeProtection = "DescribeProtection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeProtection for more information on using the DescribeProtection
 // API call, and error handling.
@@ -1212,7 +1212,7 @@ const opDescribeSubscription = "DescribeSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSubscription for more information on using the DescribeSubscription
 // API call, and error handling.
@@ -1295,7 +1295,7 @@ const opDisableProactiveEngagement = "DisableProactiveEngagement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisableProactiveEngagement for more information on using the DisableProactiveEngagement
 // API call, and error handling.
@@ -1391,7 +1391,7 @@ const opDisassociateDRTLogBucket = "DisassociateDRTLogBucket"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateDRTLogBucket for more information on using the DisassociateDRTLogBucket
 // API call, and error handling.
@@ -1500,7 +1500,7 @@ const opDisassociateDRTRole = "DisassociateDRTRole"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateDRTRole for more information on using the DisassociateDRTRole
 // API call, and error handling.
@@ -1599,7 +1599,7 @@ const opDisassociateHealthCheck = "DisassociateHealthCheck"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateHealthCheck for more information on using the DisassociateHealthCheck
 // API call, and error handling.
@@ -1698,7 +1698,7 @@ const opEnableProactiveEngagement = "EnableProactiveEngagement"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableProactiveEngagement for more information on using the EnableProactiveEngagement
 // API call, and error handling.
@@ -1795,7 +1795,7 @@ const opGetSubscriptionState = "GetSubscriptionState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSubscriptionState for more information on using the GetSubscriptionState
 // API call, and error handling.
@@ -1875,7 +1875,7 @@ const opListAttacks = "ListAttacks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListAttacks for more information on using the ListAttacks
 // API call, and error handling.
@@ -2021,7 +2021,7 @@ const opListProtections = "ListProtections"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProtections for more information on using the ListProtections
 // API call, and error handling.
@@ -2166,7 +2166,7 @@ const opUpdateEmergencyContactSettings = "UpdateEmergencyContactSettings"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateEmergencyContactSettings for more information on using the UpdateEmergencyContactSettings
 // API call, and error handling.
@@ -2260,7 +2260,7 @@ const opUpdateSubscription = "UpdateSubscription"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateSubscription for more information on using the UpdateSubscription
 // API call, and error handling.

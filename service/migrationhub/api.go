@@ -21,7 +21,7 @@ const opAssociateCreatedArtifact = "AssociateCreatedArtifact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateCreatedArtifact for more information on using the AssociateCreatedArtifact
 // API call, and error handling.
@@ -145,7 +145,7 @@ const opAssociateDiscoveredResource = "AssociateDiscoveredResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateDiscoveredResource for more information on using the AssociateDiscoveredResource
 // API call, and error handling.
@@ -263,7 +263,7 @@ const opCreateProgressUpdateStream = "CreateProgressUpdateStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateProgressUpdateStream for more information on using the CreateProgressUpdateStream
 // API call, and error handling.
@@ -373,7 +373,7 @@ const opDeleteProgressUpdateStream = "DeleteProgressUpdateStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteProgressUpdateStream for more information on using the DeleteProgressUpdateStream
 // API call, and error handling.
@@ -507,7 +507,7 @@ const opDescribeApplicationState = "DescribeApplicationState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeApplicationState for more information on using the DescribeApplicationState
 // API call, and error handling.
@@ -615,7 +615,7 @@ const opDescribeMigrationTask = "DescribeMigrationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMigrationTask for more information on using the DescribeMigrationTask
 // API call, and error handling.
@@ -718,7 +718,7 @@ const opDisassociateCreatedArtifact = "DisassociateCreatedArtifact"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateCreatedArtifact for more information on using the DisassociateCreatedArtifact
 // API call, and error handling.
@@ -842,7 +842,7 @@ const opDisassociateDiscoveredResource = "DisassociateDiscoveredResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateDiscoveredResource for more information on using the DisassociateDiscoveredResource
 // API call, and error handling.
@@ -955,7 +955,7 @@ const opImportMigrationTask = "ImportMigrationTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ImportMigrationTask for more information on using the ImportMigrationTask
 // API call, and error handling.
@@ -1072,7 +1072,7 @@ const opListApplicationStates = "ListApplicationStates"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListApplicationStates for more information on using the ListApplicationStates
 // API call, and error handling.
@@ -1229,7 +1229,7 @@ const opListCreatedArtifacts = "ListCreatedArtifacts"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCreatedArtifacts for more information on using the ListCreatedArtifacts
 // API call, and error handling.
@@ -1398,7 +1398,7 @@ const opListDiscoveredResources = "ListDiscoveredResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDiscoveredResources for more information on using the ListDiscoveredResources
 // API call, and error handling.
@@ -1559,7 +1559,7 @@ const opListMigrationTasks = "ListMigrationTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListMigrationTasks for more information on using the ListMigrationTasks
 // API call, and error handling.
@@ -1733,7 +1733,7 @@ const opListProgressUpdateStreams = "ListProgressUpdateStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListProgressUpdateStreams for more information on using the ListProgressUpdateStreams
 // API call, and error handling.
@@ -1889,7 +1889,7 @@ const opNotifyApplicationState = "NotifyApplicationState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See NotifyApplicationState for more information on using the NotifyApplicationState
 // API call, and error handling.
@@ -2008,7 +2008,7 @@ const opNotifyMigrationTaskState = "NotifyMigrationTaskState"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See NotifyMigrationTaskState for more information on using the NotifyMigrationTaskState
 // API call, and error handling.
@@ -2129,7 +2129,7 @@ const opPutResourceAttributes = "PutResourceAttributes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourceAttributes for more information on using the PutResourceAttributes
 // API call, and error handling.

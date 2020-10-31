@@ -21,7 +21,7 @@ const opAssociateRepository = "AssociateRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateRepository for more information on using the AssociateRepository
 // API call, and error handling.
@@ -134,7 +134,7 @@ const opCreateCodeReview = "CreateCodeReview"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateCodeReview for more information on using the CreateCodeReview
 // API call, and error handling.
@@ -230,7 +230,7 @@ const opDescribeCodeReview = "DescribeCodeReview"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCodeReview for more information on using the DescribeCodeReview
 // API call, and error handling.
@@ -321,7 +321,7 @@ const opDescribeRecommendationFeedback = "DescribeRecommendationFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRecommendationFeedback for more information on using the DescribeRecommendationFeedback
 // API call, and error handling.
@@ -412,7 +412,7 @@ const opDescribeRepositoryAssociation = "DescribeRepositoryAssociation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeRepositoryAssociation for more information on using the DescribeRepositoryAssociation
 // API call, and error handling.
@@ -504,7 +504,7 @@ const opDisassociateRepository = "DisassociateRepository"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateRepository for more information on using the DisassociateRepository
 // API call, and error handling.
@@ -600,7 +600,7 @@ const opListCodeReviews = "ListCodeReviews"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListCodeReviews for more information on using the ListCodeReviews
 // API call, and error handling.
@@ -746,7 +746,7 @@ const opListRecommendationFeedback = "ListRecommendationFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecommendationFeedback for more information on using the ListRecommendationFeedback
 // API call, and error handling.
@@ -897,7 +897,7 @@ const opListRecommendations = "ListRecommendations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRecommendations for more information on using the ListRecommendations
 // API call, and error handling.
@@ -1046,7 +1046,7 @@ const opListRepositoryAssociations = "ListRepositoryAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListRepositoryAssociations for more information on using the ListRepositoryAssociations
 // API call, and error handling.
@@ -1194,7 +1194,7 @@ const opPutRecommendationFeedback = "PutRecommendationFeedback"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRecommendationFeedback for more information on using the PutRecommendationFeedback
 // API call, and error handling.

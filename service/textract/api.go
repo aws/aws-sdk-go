@@ -19,7 +19,7 @@ const opAnalyzeDocument = "AnalyzeDocument"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AnalyzeDocument for more information on using the AnalyzeDocument
 // API call, and error handling.
@@ -169,7 +169,7 @@ const opDetectDocumentText = "DetectDocumentText"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DetectDocumentText for more information on using the DetectDocumentText
 // API call, and error handling.
@@ -298,7 +298,7 @@ const opGetDocumentAnalysis = "GetDocumentAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDocumentAnalysis for more information on using the GetDocumentAnalysis
 // API call, and error handling.
@@ -443,7 +443,7 @@ const opGetDocumentTextDetection = "GetDocumentTextDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetDocumentTextDetection for more information on using the GetDocumentTextDetection
 // API call, and error handling.
@@ -575,7 +575,7 @@ const opStartDocumentAnalysis = "StartDocumentAnalysis"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDocumentAnalysis for more information on using the StartDocumentAnalysis
 // API call, and error handling.
@@ -718,7 +718,7 @@ const opStartDocumentTextDetection = "StartDocumentTextDetection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDocumentTextDetection for more information on using the StartDocumentTextDetection
 // API call, and error handling.

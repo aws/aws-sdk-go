@@ -19,7 +19,7 @@ const opDescribeJobExecution = "DescribeJobExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJobExecution for more information on using the DescribeJobExecution
 // API call, and error handling.
@@ -115,7 +115,7 @@ const opGetPendingJobExecutions = "GetPendingJobExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPendingJobExecutions for more information on using the GetPendingJobExecutions
 // API call, and error handling.
@@ -208,7 +208,7 @@ const opStartNextPendingJobExecution = "StartNextPendingJobExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartNextPendingJobExecution for more information on using the StartNextPendingJobExecution
 // API call, and error handling.
@@ -302,7 +302,7 @@ const opUpdateJobExecution = "UpdateJobExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateJobExecution for more information on using the UpdateJobExecution
 // API call, and error handling.

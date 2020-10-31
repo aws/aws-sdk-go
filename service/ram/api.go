@@ -21,7 +21,7 @@ const opAcceptResourceShareInvitation = "AcceptResourceShareInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AcceptResourceShareInvitation for more information on using the AcceptResourceShareInvitation
 // API call, and error handling.
@@ -129,7 +129,7 @@ const opAssociateResourceShare = "AssociateResourceShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateResourceShare for more information on using the AssociateResourceShare
 // API call, and error handling.
@@ -244,7 +244,7 @@ const opAssociateResourceSharePermission = "AssociateResourceSharePermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateResourceSharePermission for more information on using the AssociateResourceSharePermission
 // API call, and error handling.
@@ -341,7 +341,7 @@ const opCreateResourceShare = "CreateResourceShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateResourceShare for more information on using the CreateResourceShare
 // API call, and error handling.
@@ -452,7 +452,7 @@ const opDeleteResourceShare = "DeleteResourceShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourceShare for more information on using the DeleteResourceShare
 // API call, and error handling.
@@ -557,7 +557,7 @@ const opDisassociateResourceShare = "DisassociateResourceShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateResourceShare for more information on using the DisassociateResourceShare
 // API call, and error handling.
@@ -666,7 +666,7 @@ const opDisassociateResourceSharePermission = "DisassociateResourceSharePermissi
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateResourceSharePermission for more information on using the DisassociateResourceSharePermission
 // API call, and error handling.
@@ -763,7 +763,7 @@ const opEnableSharingWithAwsOrganization = "EnableSharingWithAwsOrganization"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See EnableSharingWithAwsOrganization for more information on using the EnableSharingWithAwsOrganization
 // API call, and error handling.
@@ -850,7 +850,7 @@ const opGetPermission = "GetPermission"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetPermission for more information on using the GetPermission
 // API call, and error handling.
@@ -944,7 +944,7 @@ const opGetResourcePolicies = "GetResourcePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourcePolicies for more information on using the GetResourcePolicies
 // API call, and error handling.
@@ -1096,7 +1096,7 @@ const opGetResourceShareAssociations = "GetResourceShareAssociations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceShareAssociations for more information on using the GetResourceShareAssociations
 // API call, and error handling.
@@ -1251,7 +1251,7 @@ const opGetResourceShareInvitations = "GetResourceShareInvitations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceShareInvitations for more information on using the GetResourceShareInvitations
 // API call, and error handling.
@@ -1409,7 +1409,7 @@ const opGetResourceShares = "GetResourceShares"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceShares for more information on using the GetResourceShares
 // API call, and error handling.
@@ -1562,7 +1562,7 @@ const opListPendingInvitationResources = "ListPendingInvitationResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPendingInvitationResources for more information on using the ListPendingInvitationResources
 // API call, and error handling.
@@ -1724,7 +1724,7 @@ const opListPermissions = "ListPermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPermissions for more information on using the ListPermissions
 // API call, and error handling.
@@ -1815,7 +1815,7 @@ const opListPrincipals = "ListPrincipals"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListPrincipals for more information on using the ListPrincipals
 // API call, and error handling.
@@ -1968,7 +1968,7 @@ const opListResourceSharePermissions = "ListResourceSharePermissions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceSharePermissions for more information on using the ListResourceSharePermissions
 // API call, and error handling.
@@ -2065,7 +2065,7 @@ const opListResourceTypes = "ListResourceTypes"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResourceTypes for more information on using the ListResourceTypes
 // API call, and error handling.
@@ -2153,7 +2153,7 @@ const opListResources = "ListResources"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListResources for more information on using the ListResources
 // API call, and error handling.
@@ -2309,7 +2309,7 @@ const opPromoteResourceShareCreatedFromPolicy = "PromoteResourceShareCreatedFrom
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PromoteResourceShareCreatedFromPolicy for more information on using the PromoteResourceShareCreatedFromPolicy
 // API call, and error handling.
@@ -2415,7 +2415,7 @@ const opRejectResourceShareInvitation = "RejectResourceShareInvitation"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RejectResourceShareInvitation for more information on using the RejectResourceShareInvitation
 // API call, and error handling.
@@ -2523,7 +2523,7 @@ const opTagResource = "TagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagResource for more information on using the TagResource
 // API call, and error handling.
@@ -2621,7 +2621,7 @@ const opUntagResource = "UntagResource"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagResource for more information on using the UntagResource
 // API call, and error handling.
@@ -2707,7 +2707,7 @@ const opUpdateResourceShare = "UpdateResourceShare"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateResourceShare for more information on using the UpdateResourceShare
 // API call, and error handling.

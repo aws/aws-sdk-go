@@ -21,7 +21,7 @@ const opDeleteHumanLoop = "DeleteHumanLoop"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteHumanLoop for more information on using the DeleteHumanLoop
 // API call, and error handling.
@@ -111,7 +111,7 @@ const opDescribeHumanLoop = "DescribeHumanLoop"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeHumanLoop for more information on using the DescribeHumanLoop
 // API call, and error handling.
@@ -200,7 +200,7 @@ const opListHumanLoops = "ListHumanLoops"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListHumanLoops for more information on using the ListHumanLoops
 // API call, and error handling.
@@ -348,7 +348,7 @@ const opStartHumanLoop = "StartHumanLoop"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartHumanLoop for more information on using the StartHumanLoop
 // API call, and error handling.
@@ -443,7 +443,7 @@ const opStopHumanLoop = "StopHumanLoop"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopHumanLoop for more information on using the StopHumanLoop
 // API call, and error handling.

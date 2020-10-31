@@ -21,7 +21,7 @@ const opAddInstanceFleet = "AddInstanceFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddInstanceFleet for more information on using the AddInstanceFleet
 // API call, and error handling.
@@ -106,7 +106,7 @@ const opAddInstanceGroups = "AddInstanceGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddInstanceGroups for more information on using the AddInstanceGroups
 // API call, and error handling.
@@ -186,7 +186,7 @@ const opAddJobFlowSteps = "AddJobFlowSteps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddJobFlowSteps for more information on using the AddJobFlowSteps
 // API call, and error handling.
@@ -288,7 +288,7 @@ const opAddTags = "AddTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AddTags for more information on using the AddTags
 // API call, and error handling.
@@ -373,7 +373,7 @@ const opCancelSteps = "CancelSteps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelSteps for more information on using the CancelSteps
 // API call, and error handling.
@@ -460,7 +460,7 @@ const opCreateSecurityConfiguration = "CreateSecurityConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateSecurityConfiguration for more information on using the CreateSecurityConfiguration
 // API call, and error handling.
@@ -543,7 +543,7 @@ const opDeleteSecurityConfiguration = "DeleteSecurityConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSecurityConfiguration for more information on using the DeleteSecurityConfiguration
 // API call, and error handling.
@@ -626,7 +626,7 @@ const opDescribeCluster = "DescribeCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeCluster for more information on using the DescribeCluster
 // API call, and error handling.
@@ -709,7 +709,7 @@ const opDescribeJobFlows = "DescribeJobFlows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeJobFlows for more information on using the DescribeJobFlows
 // API call, and error handling.
@@ -817,7 +817,7 @@ const opDescribeNotebookExecution = "DescribeNotebookExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeNotebookExecution for more information on using the DescribeNotebookExecution
 // API call, and error handling.
@@ -900,7 +900,7 @@ const opDescribeSecurityConfiguration = "DescribeSecurityConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSecurityConfiguration for more information on using the DescribeSecurityConfiguration
 // API call, and error handling.
@@ -983,7 +983,7 @@ const opDescribeStep = "DescribeStep"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeStep for more information on using the DescribeStep
 // API call, and error handling.
@@ -1065,7 +1065,7 @@ const opGetBlockPublicAccessConfiguration = "GetBlockPublicAccessConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetBlockPublicAccessConfiguration for more information on using the GetBlockPublicAccessConfiguration
 // API call, and error handling.
@@ -1150,7 +1150,7 @@ const opGetManagedScalingPolicy = "GetManagedScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetManagedScalingPolicy for more information on using the GetManagedScalingPolicy
 // API call, and error handling.
@@ -1224,7 +1224,7 @@ const opListBootstrapActions = "ListBootstrapActions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListBootstrapActions for more information on using the ListBootstrapActions
 // API call, and error handling.
@@ -1364,7 +1364,7 @@ const opListClusters = "ListClusters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListClusters for more information on using the ListClusters
 // API call, and error handling.
@@ -1508,7 +1508,7 @@ const opListInstanceFleets = "ListInstanceFleets"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstanceFleets for more information on using the ListInstanceFleets
 // API call, and error handling.
@@ -1651,7 +1651,7 @@ const opListInstanceGroups = "ListInstanceGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstanceGroups for more information on using the ListInstanceGroups
 // API call, and error handling.
@@ -1791,7 +1791,7 @@ const opListInstances = "ListInstances"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListInstances for more information on using the ListInstances
 // API call, and error handling.
@@ -1934,7 +1934,7 @@ const opListNotebookExecutions = "ListNotebookExecutions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListNotebookExecutions for more information on using the ListNotebookExecutions
 // API call, and error handling.
@@ -2078,7 +2078,7 @@ const opListSecurityConfigurations = "ListSecurityConfigurations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSecurityConfigurations for more information on using the ListSecurityConfigurations
 // API call, and error handling.
@@ -2221,7 +2221,7 @@ const opListSteps = "ListSteps"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSteps for more information on using the ListSteps
 // API call, and error handling.
@@ -2363,7 +2363,7 @@ const opModifyCluster = "ModifyCluster"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyCluster for more information on using the ModifyCluster
 // API call, and error handling.
@@ -2447,7 +2447,7 @@ const opModifyInstanceFleet = "ModifyInstanceFleet"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyInstanceFleet for more information on using the ModifyInstanceFleet
 // API call, and error handling.
@@ -2535,7 +2535,7 @@ const opModifyInstanceGroups = "ModifyInstanceGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ModifyInstanceGroups for more information on using the ModifyInstanceGroups
 // API call, and error handling.
@@ -2619,7 +2619,7 @@ const opPutAutoScalingPolicy = "PutAutoScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutAutoScalingPolicy for more information on using the PutAutoScalingPolicy
 // API call, and error handling.
@@ -2696,7 +2696,7 @@ const opPutBlockPublicAccessConfiguration = "PutBlockPublicAccessConfiguration"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutBlockPublicAccessConfiguration for more information on using the PutBlockPublicAccessConfiguration
 // API call, and error handling.
@@ -2782,7 +2782,7 @@ const opPutManagedScalingPolicy = "PutManagedScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutManagedScalingPolicy for more information on using the PutManagedScalingPolicy
 // API call, and error handling.
@@ -2860,7 +2860,7 @@ const opRemoveAutoScalingPolicy = "RemoveAutoScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveAutoScalingPolicy for more information on using the RemoveAutoScalingPolicy
 // API call, and error handling.
@@ -2936,7 +2936,7 @@ const opRemoveManagedScalingPolicy = "RemoveManagedScalingPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveManagedScalingPolicy for more information on using the RemoveManagedScalingPolicy
 // API call, and error handling.
@@ -3011,7 +3011,7 @@ const opRemoveTags = "RemoveTags"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RemoveTags for more information on using the RemoveTags
 // API call, and error handling.
@@ -3098,7 +3098,7 @@ const opRunJobFlow = "RunJobFlow"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See RunJobFlow for more information on using the RunJobFlow
 // API call, and error handling.
@@ -3204,7 +3204,7 @@ const opSetTerminationProtection = "SetTerminationProtection"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetTerminationProtection for more information on using the SetTerminationProtection
 // API call, and error handling.
@@ -3301,7 +3301,7 @@ const opSetVisibleToAllUsers = "SetVisibleToAllUsers"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See SetVisibleToAllUsers for more information on using the SetVisibleToAllUsers
 // API call, and error handling.
@@ -3390,7 +3390,7 @@ const opStartNotebookExecution = "StartNotebookExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartNotebookExecution for more information on using the StartNotebookExecution
 // API call, and error handling.
@@ -3472,7 +3472,7 @@ const opStopNotebookExecution = "StopNotebookExecution"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopNotebookExecution for more information on using the StopNotebookExecution
 // API call, and error handling.
@@ -3556,7 +3556,7 @@ const opTerminateJobFlows = "TerminateJobFlows"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TerminateJobFlows for more information on using the TerminateJobFlows
 // API call, and error handling.

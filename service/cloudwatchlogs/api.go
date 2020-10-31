@@ -20,7 +20,7 @@ const opAssociateKmsKey = "AssociateKmsKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See AssociateKmsKey for more information on using the AssociateKmsKey
 // API call, and error handling.
@@ -126,7 +126,7 @@ const opCancelExportTask = "CancelExportTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CancelExportTask for more information on using the CancelExportTask
 // API call, and error handling.
@@ -217,7 +217,7 @@ const opCreateExportTask = "CreateExportTask"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateExportTask for more information on using the CreateExportTask
 // API call, and error handling.
@@ -328,7 +328,7 @@ const opCreateLogGroup = "CreateLogGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLogGroup for more information on using the CreateLogGroup
 // API call, and error handling.
@@ -448,7 +448,7 @@ const opCreateLogStream = "CreateLogStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateLogStream for more information on using the CreateLogStream
 // API call, and error handling.
@@ -551,7 +551,7 @@ const opDeleteDestination = "DeleteDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDestination for more information on using the DeleteDestination
 // API call, and error handling.
@@ -642,7 +642,7 @@ const opDeleteLogGroup = "DeleteLogGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLogGroup for more information on using the DeleteLogGroup
 // API call, and error handling.
@@ -732,7 +732,7 @@ const opDeleteLogStream = "DeleteLogStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteLogStream for more information on using the DeleteLogStream
 // API call, and error handling.
@@ -822,7 +822,7 @@ const opDeleteMetricFilter = "DeleteMetricFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteMetricFilter for more information on using the DeleteMetricFilter
 // API call, and error handling.
@@ -911,7 +911,7 @@ const opDeleteQueryDefinition = "DeleteQueryDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteQueryDefinition for more information on using the DeleteQueryDefinition
 // API call, and error handling.
@@ -1002,7 +1002,7 @@ const opDeleteResourcePolicy = "DeleteResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteResourcePolicy for more information on using the DeleteResourcePolicy
 // API call, and error handling.
@@ -1089,7 +1089,7 @@ const opDeleteRetentionPolicy = "DeleteRetentionPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteRetentionPolicy for more information on using the DeleteRetentionPolicy
 // API call, and error handling.
@@ -1181,7 +1181,7 @@ const opDeleteSubscriptionFilter = "DeleteSubscriptionFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteSubscriptionFilter for more information on using the DeleteSubscriptionFilter
 // API call, and error handling.
@@ -1270,7 +1270,7 @@ const opDescribeDestinations = "DescribeDestinations"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDestinations for more information on using the DescribeDestinations
 // API call, and error handling.
@@ -1412,7 +1412,7 @@ const opDescribeExportTasks = "DescribeExportTasks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeExportTasks for more information on using the DescribeExportTasks
 // API call, and error handling.
@@ -1495,7 +1495,7 @@ const opDescribeLogGroups = "DescribeLogGroups"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLogGroups for more information on using the DescribeLogGroups
 // API call, and error handling.
@@ -1637,7 +1637,7 @@ const opDescribeLogStreams = "DescribeLogStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeLogStreams for more information on using the DescribeLogStreams
 // API call, and error handling.
@@ -1786,7 +1786,7 @@ const opDescribeMetricFilters = "DescribeMetricFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeMetricFilters for more information on using the DescribeMetricFilters
 // API call, and error handling.
@@ -1932,7 +1932,7 @@ const opDescribeQueries = "DescribeQueries"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeQueries for more information on using the DescribeQueries
 // API call, and error handling.
@@ -2020,7 +2020,7 @@ const opDescribeQueryDefinitions = "DescribeQueryDefinitions"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeQueryDefinitions for more information on using the DescribeQueryDefinitions
 // API call, and error handling.
@@ -2106,7 +2106,7 @@ const opDescribeResourcePolicies = "DescribeResourcePolicies"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeResourcePolicies for more information on using the DescribeResourcePolicies
 // API call, and error handling.
@@ -2188,7 +2188,7 @@ const opDescribeSubscriptionFilters = "DescribeSubscriptionFilters"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeSubscriptionFilters for more information on using the DescribeSubscriptionFilters
 // API call, and error handling.
@@ -2334,7 +2334,7 @@ const opDisassociateKmsKey = "DisassociateKmsKey"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DisassociateKmsKey for more information on using the DisassociateKmsKey
 // API call, and error handling.
@@ -2431,7 +2431,7 @@ const opFilterLogEvents = "FilterLogEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See FilterLogEvents for more information on using the FilterLogEvents
 // API call, and error handling.
@@ -2588,7 +2588,7 @@ const opGetLogEvents = "GetLogEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLogEvents for more information on using the GetLogEvents
 // API call, and error handling.
@@ -2739,7 +2739,7 @@ const opGetLogGroupFields = "GetLogGroupFields"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLogGroupFields for more information on using the GetLogGroupFields
 // API call, and error handling.
@@ -2837,7 +2837,7 @@ const opGetLogRecord = "GetLogRecord"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetLogRecord for more information on using the GetLogRecord
 // API call, and error handling.
@@ -2930,7 +2930,7 @@ const opGetQueryResults = "GetQueryResults"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetQueryResults for more information on using the GetQueryResults
 // API call, and error handling.
@@ -3027,7 +3027,7 @@ const opListTagsLogGroup = "ListTagsLogGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsLogGroup for more information on using the ListTagsLogGroup
 // API call, and error handling.
@@ -3109,7 +3109,7 @@ const opPutDestination = "PutDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDestination for more information on using the PutDestination
 // API call, and error handling.
@@ -3209,7 +3209,7 @@ const opPutDestinationPolicy = "PutDestinationPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutDestinationPolicy for more information on using the PutDestinationPolicy
 // API call, and error handling.
@@ -3298,7 +3298,7 @@ const opPutLogEvents = "PutLogEvents"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutLogEvents for more information on using the PutLogEvents
 // API call, and error handling.
@@ -3428,7 +3428,7 @@ const opPutMetricFilter = "PutMetricFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutMetricFilter for more information on using the PutMetricFilter
 // API call, and error handling.
@@ -3525,7 +3525,7 @@ const opPutQueryDefinition = "PutQueryDefinition"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutQueryDefinition for more information on using the PutQueryDefinition
 // API call, and error handling.
@@ -3622,7 +3622,7 @@ const opPutResourcePolicy = "PutResourcePolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutResourcePolicy for more information on using the PutResourcePolicy
 // API call, and error handling.
@@ -3709,7 +3709,7 @@ const opPutRetentionPolicy = "PutRetentionPolicy"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRetentionPolicy for more information on using the PutRetentionPolicy
 // API call, and error handling.
@@ -3800,7 +3800,7 @@ const opPutSubscriptionFilter = "PutSubscriptionFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSubscriptionFilter for more information on using the PutSubscriptionFilter
 // API call, and error handling.
@@ -3919,7 +3919,7 @@ const opStartQuery = "StartQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartQuery for more information on using the StartQuery
 // API call, and error handling.
@@ -4021,7 +4021,7 @@ const opStopQuery = "StopQuery"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopQuery for more information on using the StopQuery
 // API call, and error handling.
@@ -4108,7 +4108,7 @@ const opTagLogGroup = "TagLogGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagLogGroup for more information on using the TagLogGroup
 // API call, and error handling.
@@ -4198,7 +4198,7 @@ const opTestMetricFilter = "TestMetricFilter"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TestMetricFilter for more information on using the TestMetricFilter
 // API call, and error handling.
@@ -4282,7 +4282,7 @@ const opUntagLogGroup = "UntagLogGroup"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagLogGroup for more information on using the UntagLogGroup
 // API call, and error handling.

@@ -21,7 +21,7 @@ const opCreateDeliveryStream = "CreateDeliveryStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CreateDeliveryStream for more information on using the CreateDeliveryStream
 // API call, and error handling.
@@ -175,7 +175,7 @@ const opDeleteDeliveryStream = "DeleteDeliveryStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DeleteDeliveryStream for more information on using the DeleteDeliveryStream
 // API call, and error handling.
@@ -269,7 +269,7 @@ const opDescribeDeliveryStream = "DescribeDeliveryStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDeliveryStream for more information on using the DescribeDeliveryStream
 // API call, and error handling.
@@ -357,7 +357,7 @@ const opListDeliveryStreams = "ListDeliveryStreams"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListDeliveryStreams for more information on using the ListDeliveryStreams
 // API call, and error handling.
@@ -439,7 +439,7 @@ const opListTagsForDeliveryStream = "ListTagsForDeliveryStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListTagsForDeliveryStream for more information on using the ListTagsForDeliveryStream
 // API call, and error handling.
@@ -525,7 +525,7 @@ const opPutRecord = "PutRecord"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRecord for more information on using the PutRecord
 // API call, and error handling.
@@ -655,7 +655,7 @@ const opPutRecordBatch = "PutRecordBatch"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutRecordBatch for more information on using the PutRecordBatch
 // API call, and error handling.
@@ -808,7 +808,7 @@ const opStartDeliveryStreamEncryption = "StartDeliveryStreamEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartDeliveryStreamEncryption for more information on using the StartDeliveryStreamEncryption
 // API call, and error handling.
@@ -944,7 +944,7 @@ const opStopDeliveryStreamEncryption = "StopDeliveryStreamEncryption"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StopDeliveryStreamEncryption for more information on using the StopDeliveryStreamEncryption
 // API call, and error handling.
@@ -1055,7 +1055,7 @@ const opTagDeliveryStream = "TagDeliveryStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See TagDeliveryStream for more information on using the TagDeliveryStream
 // API call, and error handling.
@@ -1155,7 +1155,7 @@ const opUntagDeliveryStream = "UntagDeliveryStream"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UntagDeliveryStream for more information on using the UntagDeliveryStream
 // API call, and error handling.
@@ -1249,7 +1249,7 @@ const opUpdateDestination = "UpdateDestination"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See UpdateDestination for more information on using the UpdateDestination
 // API call, and error handling.

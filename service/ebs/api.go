@@ -22,7 +22,7 @@ const opCompleteSnapshot = "CompleteSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See CompleteSnapshot for more information on using the CompleteSnapshot
 // API call, and error handling.
@@ -119,7 +119,7 @@ const opGetSnapshotBlock = "GetSnapshotBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetSnapshotBlock for more information on using the GetSnapshotBlock
 // API call, and error handling.
@@ -214,7 +214,7 @@ const opListChangedBlocks = "ListChangedBlocks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListChangedBlocks for more information on using the ListChangedBlocks
 // API call, and error handling.
@@ -368,7 +368,7 @@ const opListSnapshotBlocks = "ListSnapshotBlocks"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See ListSnapshotBlocks for more information on using the ListSnapshotBlocks
 // API call, and error handling.
@@ -521,7 +521,7 @@ const opPutSnapshotBlock = "PutSnapshotBlock"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See PutSnapshotBlock for more information on using the PutSnapshotBlock
 // API call, and error handling.
@@ -623,7 +623,7 @@ const opStartSnapshot = "StartSnapshot"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See StartSnapshot for more information on using the StartSnapshot
 // API call, and error handling.

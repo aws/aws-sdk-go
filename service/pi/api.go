@@ -20,7 +20,7 @@ const opDescribeDimensionKeys = "DescribeDimensionKeys"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See DescribeDimensionKeys for more information on using the DescribeDimensionKeys
 // API call, and error handling.
@@ -105,7 +105,7 @@ const opGetResourceMetrics = "GetResourceMetrics"
 // successfully.
 //
 // Use "Send" method on the returned Request to send the API call to the service.
-// the "output" return value is not valid until after Send returns without error.
+// The "output" return value is not valid until after Send returns without error.
 //
 // See GetResourceMetrics for more information on using the GetResourceMetrics
 // API call, and error handling.
