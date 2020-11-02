@@ -1,3 +1,10 @@
+Release v1.35.20 (2020-11-02)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for the following features: 1. P4d instances based on NVIDIA A100 GPUs.  2. NetworkCardIndex attribute to support multiple network cards.
+
 Release v1.35.19 (2020-10-30)
 ===
 
