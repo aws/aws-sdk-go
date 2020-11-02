@@ -4766,7 +4766,8 @@
         "NetworkInterfaceId":{
           "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
-        }
+        },
+        "NetworkCardIndex":{"shape":"Integer"}
       }
     },
     "AttachNetworkInterfaceResult":{
@@ -4775,6 +4776,10 @@
         "AttachmentId":{
           "shape":"String",
           "locationName":"attachmentId"
+        },
+        "NetworkCardIndex":{
+          "shape":"Integer",
+          "locationName":"networkCardIndex"
         }
       }
     },
@@ -18379,6 +18384,10 @@
         "Status":{
           "shape":"AttachmentStatus",
           "locationName":"status"
+        },
+        "NetworkCardIndex":{
+          "shape":"Integer",
+          "locationName":"networkCardIndex"
         }
       }
     },
@@ -18443,7 +18452,8 @@
           "locationName":"subnetId"
         },
         "AssociateCarrierIpAddress":{"shape":"Boolean"},
-        "InterfaceType":{"shape":"String"}
+        "InterfaceType":{"shape":"String"},
+        "NetworkCardIndex":{"shape":"Integer"}
       }
     },
     "InstanceNetworkInterfaceSpecificationList":{
@@ -18922,6 +18932,7 @@
         "p3.8xlarge",
         "p3.16xlarge",
         "p3dn.24xlarge",
+        "p4d.24xlarge",
         "d2.xlarge",
         "d2.2xlarge",
         "d2.4xlarge",
@@ -20059,6 +20070,10 @@
         "SubnetId":{
           "shape":"SubnetId",
           "locationName":"subnetId"
+        },
+        "NetworkCardIndex":{
+          "shape":"Integer",
+          "locationName":"networkCardIndex"
         }
       }
     },
@@ -20088,7 +20103,8 @@
         "PrivateIpAddress":{"shape":"String"},
         "PrivateIpAddresses":{"shape":"PrivateIpAddressSpecificationList"},
         "SecondaryPrivateIpAddressCount":{"shape":"Integer"},
-        "SubnetId":{"shape":"SubnetId"}
+        "SubnetId":{"shape":"SubnetId"},
+        "NetworkCardIndex":{"shape":"Integer"}
       }
     },
     "LaunchTemplateInstanceNetworkInterfaceSpecificationRequestList":{
@@ -22543,6 +22559,10 @@
         "DeviceIndex":{
           "shape":"Integer",
           "locationName":"deviceIndex"
+        },
+        "NetworkCardIndex":{
+          "shape":"Integer",
+          "locationName":"networkCardIndex"
         },
         "InstanceId":{
           "shape":"String",

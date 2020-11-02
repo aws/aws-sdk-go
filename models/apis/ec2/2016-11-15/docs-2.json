@@ -8050,6 +8050,8 @@
         "AssignIpv6AddressesRequest$Ipv6AddressCount": "<p>The number of IPv6 addresses to assign to the network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses.</p>",
         "AssignPrivateIpAddressesRequest$SecondaryPrivateIpAddressCount": "<p>The number of secondary IP addresses to assign to the network interface. You can't specify this parameter when also specifying private IP addresses.</p>",
         "AttachNetworkInterfaceRequest$DeviceIndex": "<p>The index of the device for the network interface attachment.</p>",
+        "AttachNetworkInterfaceRequest$NetworkCardIndex": "<p>The index of the network card. Some instance types support multiple network cards. The primary network interface must be assigned to network card index 0. The default is network card index 0.</p>",
+        "AttachNetworkInterfaceResult$NetworkCardIndex": "<p>The index of the network card.</p>",
         "AuthorizeSecurityGroupEgressRequest$FromPort": "<p>Not supported. Use a set of IP permissions to specify the port.</p>",
         "AuthorizeSecurityGroupEgressRequest$ToPort": "<p>Not supported. Use a set of IP permissions to specify the port.</p>",
         "AuthorizeSecurityGroupIngressRequest$FromPort": "<p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all types. If you specify all ICMP types, you must specify all codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>",
@@ -8134,9 +8136,11 @@
         "InstanceMetadataOptionsRequest$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p> <p>Default: 1</p> <p>Possible values: Integers from 1 to 64</p>",
         "InstanceMetadataOptionsResponse$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel.</p> <p>Default: 1</p> <p>Possible values: Integers from 1 to 64</p>",
         "InstanceNetworkInterfaceAttachment$DeviceIndex": "<p>The index of the device on the instance for the network interface attachment.</p>",
+        "InstanceNetworkInterfaceAttachment$NetworkCardIndex": "<p>The index of the network card.</p>",
         "InstanceNetworkInterfaceSpecification$DeviceIndex": "<p>The position of the network interface in the attachment order. A primary network interface has a device index of 0.</p> <p>If you specify a network interface when launching an instance, you must specify the device index.</p>",
         "InstanceNetworkInterfaceSpecification$Ipv6AddressCount": "<p>A number of IPv6 addresses to assign to the network interface. Amazon EC2 chooses the IPv6 addresses from the range of the subnet. You cannot specify this option and the option to assign specific IPv6 addresses in the same request. You can specify this option if you've specified a minimum number of instances to launch.</p>",
         "InstanceNetworkInterfaceSpecification$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses. You can't specify this option and specify more than one private IP address using the private IP addresses option. You cannot specify this option if you're launching more than one instance in a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a> request.</p>",
+        "InstanceNetworkInterfaceSpecification$NetworkCardIndex": "<p>The index of the network card. Some instance types support multiple network cards. The primary network interface must be assigned to network card index 0. The default is network card index 0.</p>",
         "InstanceState$Code": "<p>The state of the instance as a 16-bit unsigned integer. </p> <p>The high byte is all of the bits between 2^8 and (2^16)-1, which equals decimal values between 256 and 65,535. These numerical values are used for internal purposes and should be ignored.</p> <p>The low byte is all of the bits between 2^0 and (2^8)-1, which equals decimal values between 0 and 255. </p> <p>The valid values for instance-state-code will all be in the range of the low byte and they are:</p> <ul> <li> <p> <code>0</code> : <code>pending</code> </p> </li> <li> <p> <code>16</code> : <code>running</code> </p> </li> <li> <p> <code>32</code> : <code>shutting-down</code> </p> </li> <li> <p> <code>48</code> : <code>terminated</code> </p> </li> <li> <p> <code>64</code> : <code>stopping</code> </p> </li> <li> <p> <code>80</code> : <code>stopped</code> </p> </li> </ul> <p>You can ignore the high byte value by zeroing out all of the bits above 2^8 or 256 in decimal.</p>",
         "InstanceUsage$UsedInstanceCount": "<p>The number of instances the AWS account currently has in the Capacity Reservation.</p>",
         "IpPermission$FromPort": "<p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of <code>-1</code> indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
@@ -8155,9 +8159,11 @@
         "LaunchTemplateInstanceNetworkInterfaceSpecification$DeviceIndex": "<p>The device index for the network interface attachment.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6AddressCount": "<p>The number of IPv6 addresses for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses for the network interface.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecification$NetworkCardIndex": "<p>The index of the network card.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$DeviceIndex": "<p>The device index for the network interface attachment.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv6AddressCount": "<p>The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses to assign to a network interface.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$NetworkCardIndex": "<p>The index of the network card. Some instance types support multiple network cards. The primary network interface must be assigned to network card index 0. The default is network card index 0.</p>",
         "LaunchTemplatePlacement$PartitionNumber": "<p>The number of the partition the instance should launch in. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "LaunchTemplatePlacementRequest$PartitionNumber": "<p>The number of the partition the instance should launch in. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "LaunchTemplateSpotMarketOptions$BlockDurationMinutes": "<p>The required duration for the Spot Instances (also known as Spot blocks), in minutes. This value must be a multiple of 60 (60, 120, 180, 240, 300, or 360).</p>",
@@ -8187,6 +8193,7 @@
         "ModifyVpnTunnelOptionsSpecification$DPDTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p> <p>Constraints: A value between 0 and 30.</p> <p>Default: <code>30</code> </p>",
         "NetworkAclEntry$RuleNumber": "<p>The rule number for the entry. ACL entries are processed in ascending order by rule number.</p>",
         "NetworkInterfaceAttachment$DeviceIndex": "<p>The device index of the network interface attachment on the instance.</p>",
+        "NetworkInterfaceAttachment$NetworkCardIndex": "<p>The index of the network card.</p>",
         "OccurrenceDayRequestSet$member": null,
         "OccurrenceDaySet$member": null,
         "OnDemandOptions$MinTargetCapacity": "<p>The minimum target capacity for On-Demand Instances in the fleet. If the minimum target capacity is not reached, the fleet launches no instances.</p>",
@@ -8716,9 +8723,9 @@
       }
     },
     "LaunchTemplateEnclaveOptionsRequest": {
-      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html\"> What is AWS Nitro Enclaves?</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p>",
       "refs": {
-        "RequestLaunchTemplateData$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can't enable AWS Nitro Enclaves and hibernation on the same instance. For more information about AWS Nitro Enclaves requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html#nitro-enclave-reqs\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+        "RequestLaunchTemplateData$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html\"> What is AWS Nitro Enclaves?</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p> <p>You can't enable AWS Nitro Enclaves and hibernation on the same instance.</p>"
       }
     },
     "LaunchTemplateErrorCode": {
@@ -13308,7 +13315,7 @@
         "InstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p> <p>If you are creating a Spot Fleet, omit this parameter because you can’t specify a network interface ID in a launch specification.</p>",
         "InstanceNetworkInterfaceSpecification$PrivateIpAddress": "<p>The private IPv4 address of the network interface. Applies only if creating a network interface when launching an instance. You cannot specify this option if you're launching more than one instance in a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a> request.</p>",
         "InstanceNetworkInterfaceSpecification$SubnetId": "<p>The ID of the subnet associated with the network interface. Applies only if creating a network interface when launching an instance.</p>",
-        "InstanceNetworkInterfaceSpecification$InterfaceType": "<p>The type of network interface. To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p> <p>Valid values: <code>interface</code> | <code>efa</code> </p>",
+        "InstanceNetworkInterfaceSpecification$InterfaceType": "<p>The type of network interface.</p> <p>To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>If you are not creating an EFA, specify <code>interface</code> or omit this parameter.</p> <p>Valid values: <code>interface</code> | <code>efa</code> </p>",
         "InstancePrivateIpAddress$PrivateDnsName": "<p>The private IPv4 DNS name.</p>",
         "InstancePrivateIpAddress$PrivateIpAddress": "<p>The private IPv4 address of the network interface.</p>",
         "InstanceStateChange$InstanceId": "<p>The ID of the instance.</p>",
@@ -13500,7 +13507,7 @@
         "NetworkInterfaceAssociation$AssociationId": "<p>The association ID.</p>",
         "NetworkInterfaceAssociation$IpOwnerId": "<p>The ID of the Elastic IP address owner.</p>",
         "NetworkInterfaceAssociation$PublicDnsName": "<p>The public DNS name.</p>",
-        "NetworkInterfaceAssociation$PublicIp": "<p>The address of the Elastic IP address or Carrier IP address bound to the network interface.</p>",
+        "NetworkInterfaceAssociation$PublicIp": "<p>The address of the Elastic IP address bound to the network interface.</p>",
         "NetworkInterfaceAssociation$CustomerOwnedIp": "<p>The customer-owned IP address associated with the network interface.</p>",
         "NetworkInterfaceAssociation$CarrierIp": "<p>The carrier IP address associated with the network interface.</p> <p>This option is only available when the network interface is in a subnet which is associated with a Wavelength Zone.</p>",
         "NetworkInterfaceAttachment$AttachmentId": "<p>The ID of the network interface attachment.</p>",
