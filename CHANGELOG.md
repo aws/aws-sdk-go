@@ -1,3 +1,27 @@
+Release v1.35.21 (2020-11-04)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * Capacity Rebalance helps you manage and maintain workload availability during Spot interruptions by proactively augmenting your Auto Scaling group with a new instance before interrupting an old one.
+* `service/ec2`: Updates service API and documentation
+  * Added support for Client Connect Handler for AWS Client VPN. Fleet supports launching replacement instances in response to Capacity Rebalance recommendation.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now supports native SAML authentication that seamlessly integrates with the customers' existing SAML 2.0 Identity Provider (IdP).
+* `service/iot`: Updates service API, documentation, and paginators
+  * Updated API documentation and added paginator for AWS Iot Registry ListThingPrincipals API.
+* `service/meteringmarketplace`: Updates service API and documentation
+  * Adding Vendor Tagging Support in MeterUsage and BatchMeterUsage API.
+* `service/monitoring`: Updates service documentation
+  * Documentation updates for monitoring
+* `service/mq`: Updates service API and documentation
+  * Amazon MQ introduces support for RabbitMQ, a popular message-broker with native support for AMQP 0.9.1. You can now create fully-managed RabbitMQ brokers in the cloud.
+* `service/servicecatalog`: Updates service API and documentation
+  * Service Catalog API ListPortfolioAccess can now support a maximum PageSize of 100.
+* `service/transcribe-streaming`: Updates service API
+* `service/xray`: Updates service API, documentation, and paginators
+  * Releasing new APIs GetInsightSummaries, GetInsightEvents, GetInsight, GetInsightImpactGraph and updating GetTimeSeriesServiceStatistics API for AWS X-Ray Insights feature
+
 Release v1.35.20 (2020-11-02)
 ===
 

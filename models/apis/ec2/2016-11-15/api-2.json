@@ -5975,6 +5975,30 @@
         "active"
       ]
     },
+    "ClientConnectOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "LambdaFunctionArn":{"shape":"String"}
+      }
+    },
+    "ClientConnectResponseOptions":{
+      "type":"structure",
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "locationName":"enabled"
+        },
+        "LambdaFunctionArn":{
+          "shape":"String",
+          "locationName":"lambdaFunctionArn"
+        },
+        "Status":{
+          "shape":"ClientVpnEndpointAttributeStatus",
+          "locationName":"status"
+        }
+      }
+    },
     "ClientData":{
       "type":"structure",
       "members":{
@@ -6110,6 +6134,10 @@
         "ConnectionEndTime":{
           "shape":"String",
           "locationName":"connectionEndTime"
+        },
+        "PostureComplianceStatuses":{
+          "shape":"ValueStringList",
+          "locationName":"postureComplianceStatusSet"
         }
       }
     },
@@ -6226,8 +6254,32 @@
         "SelfServicePortalUrl":{
           "shape":"String",
           "locationName":"selfServicePortalUrl"
+        },
+        "ClientConnectOptions":{
+          "shape":"ClientConnectResponseOptions",
+          "locationName":"clientConnectOptions"
         }
       }
+    },
+    "ClientVpnEndpointAttributeStatus":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"ClientVpnEndpointAttributeStatusCode",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      }
+    },
+    "ClientVpnEndpointAttributeStatusCode":{
+      "type":"string",
+      "enum":[
+        "applying",
+        "applied"
+      ]
     },
     "ClientVpnEndpointId":{"type":"string"},
     "ClientVpnEndpointIdList":{
@@ -6792,7 +6844,8 @@
           "locationName":"SecurityGroupId"
         },
         "VpcId":{"shape":"VpcId"},
-        "SelfServicePortal":{"shape":"SelfServicePortal"}
+        "SelfServicePortal":{"shape":"SelfServicePortal"},
+        "ClientConnectOptions":{"shape":"ClientConnectOptions"}
       }
     },
     "CreateClientVpnEndpointResult":{
@@ -15431,11 +15484,45 @@
         "prioritized"
       ]
     },
+    "FleetReplacementStrategy":{
+      "type":"string",
+      "enum":["launch"]
+    },
     "FleetSet":{
       "type":"list",
       "member":{
         "shape":"FleetData",
         "locationName":"item"
+      }
+    },
+    "FleetSpotCapacityRebalance":{
+      "type":"structure",
+      "members":{
+        "ReplacementStrategy":{
+          "shape":"FleetReplacementStrategy",
+          "locationName":"replacementStrategy"
+        }
+      }
+    },
+    "FleetSpotCapacityRebalanceRequest":{
+      "type":"structure",
+      "members":{
+        "ReplacementStrategy":{"shape":"FleetReplacementStrategy"}
+      }
+    },
+    "FleetSpotMaintenanceStrategies":{
+      "type":"structure",
+      "members":{
+        "CapacityRebalance":{
+          "shape":"FleetSpotCapacityRebalance",
+          "locationName":"capacityRebalance"
+        }
+      }
+    },
+    "FleetSpotMaintenanceStrategiesRequest":{
+      "type":"structure",
+      "members":{
+        "CapacityRebalance":{"shape":"FleetSpotCapacityRebalanceRequest"}
       }
     },
     "FleetStateCode":{
@@ -21002,7 +21089,8 @@
           "locationName":"SecurityGroupId"
         },
         "VpcId":{"shape":"VpcId"},
-        "SelfServicePortal":{"shape":"SelfServicePortal"}
+        "SelfServicePortal":{"shape":"SelfServicePortal"},
+        "ClientConnectOptions":{"shape":"ClientConnectOptions"}
       }
     },
     "ModifyClientVpnEndpointResult":{
@@ -21054,10 +21142,7 @@
     },
     "ModifyFleetRequest":{
       "type":"structure",
-      "required":[
-        "FleetId",
-        "TargetCapacitySpecification"
-      ],
+      "required":["FleetId"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "ExcessCapacityTerminationPolicy":{"shape":"FleetExcessCapacityTerminationPolicy"},
@@ -24481,6 +24566,10 @@
         }
       }
     },
+    "ReplacementStrategy":{
+      "type":"string",
+      "enum":["launch"]
+    },
     "ReportInstanceReasonCodes":{
       "type":"string",
       "enum":[
@@ -27043,6 +27132,15 @@
         "capacity-optimized"
       ]
     },
+    "SpotCapacityRebalance":{
+      "type":"structure",
+      "members":{
+        "ReplacementStrategy":{
+          "shape":"ReplacementStrategy",
+          "locationName":"replacementStrategy"
+        }
+      }
+    },
     "SpotDatafeedSubscription":{
       "type":"structure",
       "members":{
@@ -27197,6 +27295,10 @@
         "OnDemandAllocationStrategy":{
           "shape":"OnDemandAllocationStrategy",
           "locationName":"onDemandAllocationStrategy"
+        },
+        "SpotMaintenanceStrategies":{
+          "shape":"SpotMaintenanceStrategies",
+          "locationName":"spotMaintenanceStrategies"
         },
         "ClientToken":{
           "shape":"String",
@@ -27470,6 +27572,15 @@
         "persistent"
       ]
     },
+    "SpotMaintenanceStrategies":{
+      "type":"structure",
+      "members":{
+        "CapacityRebalance":{
+          "shape":"SpotCapacityRebalance",
+          "locationName":"capacityRebalance"
+        }
+      }
+    },
     "SpotMarketOptions":{
       "type":"structure",
       "members":{
@@ -27486,6 +27597,10 @@
         "AllocationStrategy":{
           "shape":"SpotAllocationStrategy",
           "locationName":"allocationStrategy"
+        },
+        "MaintenanceStrategies":{
+          "shape":"FleetSpotMaintenanceStrategies",
+          "locationName":"maintenanceStrategies"
         },
         "InstanceInterruptionBehavior":{
           "shape":"SpotInstanceInterruptionBehavior",
@@ -27517,6 +27632,7 @@
       "type":"structure",
       "members":{
         "AllocationStrategy":{"shape":"SpotAllocationStrategy"},
+        "MaintenanceStrategies":{"shape":"FleetSpotMaintenanceStrategiesRequest"},
         "InstanceInterruptionBehavior":{"shape":"SpotInstanceInterruptionBehavior"},
         "InstancePoolsToUseCount":{"shape":"Integer"},
         "SingleInstanceType":{"shape":"Boolean"},

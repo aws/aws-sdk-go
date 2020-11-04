@@ -673,6 +673,10 @@
           "shape" : "DeploymentMode",
           "locationName" : "deploymentMode"
         },
+        "EngineType" : {
+          "shape" : "EngineType",
+          "locationName" : "engineType"
+        },
         "HostInstanceType" : {
           "shape" : "__string",
           "locationName" : "hostInstanceType"
@@ -1225,7 +1229,7 @@
     },
     "DeploymentMode" : {
       "type" : "string",
-      "enum" : [ "SINGLE_INSTANCE", "ACTIVE_STANDBY_MULTI_AZ" ]
+      "enum" : [ "SINGLE_INSTANCE", "ACTIVE_STANDBY_MULTI_AZ", "CLUSTER_MULTI_AZ" ]
     },
     "DescribeBrokerEngineTypesRequest" : {
       "type" : "structure",
@@ -1752,7 +1756,7 @@
     },
     "EngineType" : {
       "type" : "string",
-      "enum" : [ "ACTIVEMQ" ]
+      "enum" : [ "ACTIVEMQ", "RABBITMQ" ]
     },
     "EngineVersion" : {
       "type" : "structure",

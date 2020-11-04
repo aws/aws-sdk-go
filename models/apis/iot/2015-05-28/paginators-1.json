@@ -221,6 +221,12 @@
       "output_token": "nextToken",
       "result_key": "thingGroups"
     },
+    "ListThingPrincipals": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "principals"
+    },
     "ListThingRegistrationTaskReports": {
       "input_token": "nextToken",
       "limit_key": "maxResults",

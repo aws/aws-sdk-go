@@ -4305,6 +4305,9 @@ type AdvancedSecurityOptions struct {
 
 	// True if the internal user database is enabled.
 	InternalUserDatabaseEnabled *bool `type:"boolean"`
+
+	// Describes the SAML application configured for a domain.
+	SAMLOptions *SAMLOptionsOutput `type:"structure"`
 }
 
 // String returns the string representation
@@ -4329,6 +4332,12 @@ func (s *AdvancedSecurityOptions) SetInternalUserDatabaseEnabled(v bool) *Advanc
 	return s
 }
 
+// SetSAMLOptions sets the SAMLOptions field's value.
+func (s *AdvancedSecurityOptions) SetSAMLOptions(v *SAMLOptionsOutput) *AdvancedSecurityOptions {
+	s.SAMLOptions = v
+	return s
+}
+
 // Specifies the advanced security configuration: whether advanced security
 // is enabled, whether the internal database option is enabled, master username
 // and password (if internal database is enabled), and master user ARN (if IAM
@@ -4344,6 +4353,9 @@ type AdvancedSecurityOptionsInput struct {
 
 	// Credentials for the master user: username and password, ARN, or both.
 	MasterUserOptions *MasterUserOptions `type:"structure"`
+
+	// Specifies the SAML application configuration for the domain.
+	SAMLOptions *SAMLOptionsInput `type:"structure"`
 }
 
 // String returns the string representation
@@ -4362,6 +4374,11 @@ func (s *AdvancedSecurityOptionsInput) Validate() error {
 	if s.MasterUserOptions != nil {
 		if err := s.MasterUserOptions.Validate(); err != nil {
 			invalidParams.AddNested("MasterUserOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SAMLOptions != nil {
+		if err := s.SAMLOptions.Validate(); err != nil {
+			invalidParams.AddNested("SAMLOptions", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -4386,6 +4403,12 @@ func (s *AdvancedSecurityOptionsInput) SetInternalUserDatabaseEnabled(v bool) *A
 // SetMasterUserOptions sets the MasterUserOptions field's value.
 func (s *AdvancedSecurityOptionsInput) SetMasterUserOptions(v *MasterUserOptions) *AdvancedSecurityOptionsInput {
 	s.MasterUserOptions = v
+	return s
+}
+
+// SetSAMLOptions sets the SAMLOptions field's value.
+func (s *AdvancedSecurityOptionsInput) SetSAMLOptions(v *SAMLOptionsInput) *AdvancedSecurityOptionsInput {
+	s.SAMLOptions = v
 	return s
 }
 
@@ -9919,6 +9942,226 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Specifies the SAML Identity Provider's information.
+type SAMLIdp struct {
+	_ struct{} `type:"structure"`
+
+	// The unique Entity ID of the application in SAML Identity Provider.
+	//
+	// EntityId is a required field
+	EntityId *string `min:"8" type:"string" required:"true"`
+
+	// The Metadata of the SAML application in xml format.
+	//
+	// MetadataContent is a required field
+	MetadataContent *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SAMLIdp) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAMLIdp) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAMLIdp) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAMLIdp"}
+	if s.EntityId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EntityId"))
+	}
+	if s.EntityId != nil && len(*s.EntityId) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("EntityId", 8))
+	}
+	if s.MetadataContent == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetadataContent"))
+	}
+	if s.MetadataContent != nil && len(*s.MetadataContent) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetadataContent", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEntityId sets the EntityId field's value.
+func (s *SAMLIdp) SetEntityId(v string) *SAMLIdp {
+	s.EntityId = &v
+	return s
+}
+
+// SetMetadataContent sets the MetadataContent field's value.
+func (s *SAMLIdp) SetMetadataContent(v string) *SAMLIdp {
+	s.MetadataContent = &v
+	return s
+}
+
+// Specifies the SAML application configuration for the domain.
+type SAMLOptionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// True if SAML is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// Specifies the SAML Identity Provider's information.
+	Idp *SAMLIdp `type:"structure"`
+
+	// The backend role to which the SAML master user is mapped to.
+	MasterBackendRole *string `min:"1" type:"string"`
+
+	// The SAML master username, which is stored in the Amazon Elasticsearch Service
+	// domain's internal database.
+	MasterUserName *string `min:"1" type:"string" sensitive:"true"`
+
+	// The key to use for matching the SAML Roles attribute.
+	RolesKey *string `type:"string"`
+
+	// The duration, in minutes, after which a user session becomes inactive. Acceptable
+	// values are between 1 and 1440, and the default value is 60.
+	SessionTimeoutMinutes *int64 `type:"integer"`
+
+	// The key to use for matching the SAML Subject attribute.
+	SubjectKey *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SAMLOptionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAMLOptionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAMLOptionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAMLOptionsInput"}
+	if s.MasterBackendRole != nil && len(*s.MasterBackendRole) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MasterBackendRole", 1))
+	}
+	if s.MasterUserName != nil && len(*s.MasterUserName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MasterUserName", 1))
+	}
+	if s.Idp != nil {
+		if err := s.Idp.Validate(); err != nil {
+			invalidParams.AddNested("Idp", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *SAMLOptionsInput) SetEnabled(v bool) *SAMLOptionsInput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIdp sets the Idp field's value.
+func (s *SAMLOptionsInput) SetIdp(v *SAMLIdp) *SAMLOptionsInput {
+	s.Idp = v
+	return s
+}
+
+// SetMasterBackendRole sets the MasterBackendRole field's value.
+func (s *SAMLOptionsInput) SetMasterBackendRole(v string) *SAMLOptionsInput {
+	s.MasterBackendRole = &v
+	return s
+}
+
+// SetMasterUserName sets the MasterUserName field's value.
+func (s *SAMLOptionsInput) SetMasterUserName(v string) *SAMLOptionsInput {
+	s.MasterUserName = &v
+	return s
+}
+
+// SetRolesKey sets the RolesKey field's value.
+func (s *SAMLOptionsInput) SetRolesKey(v string) *SAMLOptionsInput {
+	s.RolesKey = &v
+	return s
+}
+
+// SetSessionTimeoutMinutes sets the SessionTimeoutMinutes field's value.
+func (s *SAMLOptionsInput) SetSessionTimeoutMinutes(v int64) *SAMLOptionsInput {
+	s.SessionTimeoutMinutes = &v
+	return s
+}
+
+// SetSubjectKey sets the SubjectKey field's value.
+func (s *SAMLOptionsInput) SetSubjectKey(v string) *SAMLOptionsInput {
+	s.SubjectKey = &v
+	return s
+}
+
+// Describes the SAML application configured for the domain.
+type SAMLOptionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// True if SAML is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// Describes the SAML Identity Provider's information.
+	Idp *SAMLIdp `type:"structure"`
+
+	// The key used for matching the SAML Roles attribute.
+	RolesKey *string `type:"string"`
+
+	// The duration, in minutes, after which a user session becomes inactive.
+	SessionTimeoutMinutes *int64 `type:"integer"`
+
+	// The key used for matching the SAML Subject attribute.
+	SubjectKey *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SAMLOptionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAMLOptionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *SAMLOptionsOutput) SetEnabled(v bool) *SAMLOptionsOutput {
+	s.Enabled = &v
+	return s
+}
+
+// SetIdp sets the Idp field's value.
+func (s *SAMLOptionsOutput) SetIdp(v *SAMLIdp) *SAMLOptionsOutput {
+	s.Idp = v
+	return s
+}
+
+// SetRolesKey sets the RolesKey field's value.
+func (s *SAMLOptionsOutput) SetRolesKey(v string) *SAMLOptionsOutput {
+	s.RolesKey = &v
+	return s
+}
+
+// SetSessionTimeoutMinutes sets the SessionTimeoutMinutes field's value.
+func (s *SAMLOptionsOutput) SetSessionTimeoutMinutes(v int64) *SAMLOptionsOutput {
+	s.SessionTimeoutMinutes = &v
+	return s
+}
+
+// SetSubjectKey sets the SubjectKey field's value.
+func (s *SAMLOptionsOutput) SetSubjectKey(v string) *SAMLOptionsOutput {
+	s.SubjectKey = &v
+	return s
 }
 
 // The current options of an Elasticsearch domain service software options.

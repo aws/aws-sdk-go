@@ -2488,7 +2488,8 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalFailureException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListThingGroupsForThing":{
@@ -2502,7 +2503,8 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalFailureException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListThingPrincipals":{
@@ -2610,7 +2612,8 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalFailureException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "ListTopicRuleDestinations":{
@@ -8797,6 +8800,16 @@
       "type":"structure",
       "required":["thingName"],
       "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"RegistryMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
         "thingName":{
           "shape":"ThingName",
           "location":"uri",
@@ -8807,7 +8820,8 @@
     "ListThingPrincipalsResponse":{
       "type":"structure",
       "members":{
-        "principals":{"shape":"Principals"}
+        "principals":{"shape":"Principals"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListThingRegistrationTaskReportsRequest":{

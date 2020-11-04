@@ -10,6 +10,10 @@
     "GetEncryptionConfig": "<p>Retrieves the current encryption configuration for X-Ray data.</p>",
     "GetGroup": "<p>Retrieves group resource details.</p>",
     "GetGroups": "<p>Retrieves all active group details.</p>",
+    "GetInsight": "<p>Retrieves the summary information of an insight. This includes impact to clients and root cause services, the top anomalous services, the category, the state of the insight, and the start and end time of the insight.</p>",
+    "GetInsightEvents": "<p>X-Ray reevaluates insights periodically until they're resolved, and records each intermediate state as an event. You can review an insight's events in the Impact Timeline on the Inspect page in the X-Ray console.</p>",
+    "GetInsightImpactGraph": "<p>Retrieves a service graph structure filtered by the specified insight. The service graph is limited to only structural information. For a complete service graph, use this API with the GetServiceGraph API.</p>",
+    "GetInsightSummaries": "<p>Retrieves the summaries of all insights in the specified group matching the provided filter values.</p>",
     "GetSamplingRules": "<p>Retrieves all sampling rules.</p>",
     "GetSamplingStatisticSummaries": "<p>Retrieves information about recent sampling results for all sampling rules.</p>",
     "GetSamplingTargets": "<p>Requests a sampling quota for rules that the service is using to sample requests. </p>",
@@ -71,6 +75,20 @@
       "base": null,
       "refs": {
         "TraceSummary$Annotations": "<p>Annotations from the trace's segment documents.</p>"
+      }
+    },
+    "AnomalousService": {
+      "base": "<p>The service within the service graph that has anomalously high fault rates. </p>",
+      "refs": {
+        "AnomalousServiceList$member": null
+      }
+    },
+    "AnomalousServiceList": {
+      "base": null,
+      "refs": {
+        "Insight$TopAnomalousServices": "<p>The service within the insight that is most impacted by the incident.</p>",
+        "InsightEvent$TopAnomalousServices": "<p>The service during the event that is most impacted by the incident.</p>",
+        "InsightSummary$TopAnomalousServices": "<p>The service within the insight that is most impacted by the incident.</p>"
       }
     },
     "AttributeKey": {
@@ -290,6 +308,12 @@
         "ServiceStatistics$ErrorStatistics": "<p>Information about requests that failed with a 4xx Client Error status code.</p>"
       }
     },
+    "EventSummaryText": {
+      "base": null,
+      "refs": {
+        "InsightEvent$Summary": "<p>A brief description of the event.</p>"
+      }
+    },
     "FaultRootCause": {
       "base": "<p>The root cause information for a trace summary fault.</p>",
       "refs": {
@@ -347,6 +371,12 @@
         "SamplingRule$FixedRate": "<p>The percentage of matching requests to instrument, after the reservoir is exhausted.</p>"
       }
     },
+    "ForecastStatistics": {
+      "base": "<p>The predicted high and low fault count. This is used to determine if a service has become anomalous and if an insight should be created.</p>",
+      "refs": {
+        "TimeSeriesServiceStatistics$ServiceForecastStatistics": "<p>The forecasted high and low fault count values.</p>"
+      }
+    },
     "GetEncryptionConfigRequest": {
       "base": null,
       "refs": {
@@ -379,6 +409,58 @@
       }
     },
     "GetGroupsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightEventsMaxResults": {
+      "base": null,
+      "refs": {
+        "GetInsightEventsRequest$MaxResults": "<p>Used to retrieve at most the specified value of events.</p>"
+      }
+    },
+    "GetInsightEventsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightEventsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightImpactGraphRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightImpactGraphResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightSummariesMaxResults": {
+      "base": null,
+      "refs": {
+        "GetInsightSummariesRequest$MaxResults": "<p>The maximum number of results to display.</p>"
+      }
+    },
+    "GetInsightSummariesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetInsightSummariesResult": {
       "base": null,
       "refs": {
       }
@@ -466,8 +548,11 @@
       "refs": {
         "DeleteGroupRequest$GroupARN": "<p>The ARN of the group that was generated on creation.</p>",
         "GetGroupRequest$GroupARN": "<p>The ARN of the group that was generated on creation.</p>",
+        "GetInsightSummariesRequest$GroupARN": "<p>The Amazon Resource Name (ARN) of the group. Required if the GroupName isn't provided.</p>",
         "GetServiceGraphRequest$GroupARN": "<p>The Amazon Resource Name (ARN) of a group based on which you want to generate a graph.</p>",
         "GetTimeSeriesServiceStatisticsRequest$GroupARN": "<p>The Amazon Resource Name (ARN) of the group for which to pull statistics from.</p>",
+        "Insight$GroupARN": "<p>The Amazon Resource Name (ARN) of the group that the insight belongs to.</p>",
+        "InsightSummary$GroupARN": "<p>The Amazon Resource Name (ARN) of the group that the insight belongs to.</p>",
         "UpdateGroupRequest$GroupARN": "<p>The ARN that was generated upon creation.</p>"
       }
     },
@@ -477,8 +562,11 @@
         "CreateGroupRequest$GroupName": "<p>The case-sensitive name of the new group. Default is a reserved name and names must be unique.</p>",
         "DeleteGroupRequest$GroupName": "<p>The case-sensitive name of the group.</p>",
         "GetGroupRequest$GroupName": "<p>The case-sensitive name of the group.</p>",
+        "GetInsightSummariesRequest$GroupName": "<p>The name of the group. Required if the GroupARN isn't provided.</p>",
         "GetServiceGraphRequest$GroupName": "<p>The name of a group based on which you want to generate a graph.</p>",
         "GetTimeSeriesServiceStatisticsRequest$GroupName": "<p>The case-sensitive name of the group for which to pull statistics from.</p>",
+        "Insight$GroupName": "<p>The name of the group that the insight belongs to.</p>",
+        "InsightSummary$GroupName": "<p>The name of the group that the insight belongs to.</p>",
         "UpdateGroupRequest$GroupName": "<p>The case-sensitive name of the group.</p>"
       }
     },
@@ -535,6 +623,105 @@
         "TraceSummary$Http": "<p>Information about the HTTP request served by the trace.</p>"
       }
     },
+    "Insight": {
+      "base": "<p>When fault rates go outside of the expected range, X-Ray creates an insight. Insights tracks emergent issues within your applications.</p>",
+      "refs": {
+        "GetInsightResult$Insight": "<p>The summary information of an insight.</p>"
+      }
+    },
+    "InsightCategory": {
+      "base": null,
+      "refs": {
+        "InsightCategoryList$member": null
+      }
+    },
+    "InsightCategoryList": {
+      "base": null,
+      "refs": {
+        "Insight$Categories": "<p>The categories that label and describe the type of insight.</p>",
+        "InsightSummary$Categories": "<p> Categories The categories that label and describe the type of insight.</p>"
+      }
+    },
+    "InsightEvent": {
+      "base": "<p>X-Ray reevaluates insights periodically until they are resolved, and records each intermediate state in an event. You can review incident events in the Impact Timeline on the Inspect page in the X-Ray console.</p>",
+      "refs": {
+        "InsightEventList$member": null
+      }
+    },
+    "InsightEventList": {
+      "base": null,
+      "refs": {
+        "GetInsightEventsResult$InsightEvents": "<p>A detailed description of the event. This includes the time of the event, client and root cause impact statistics, and the top anomalous service at the time of the event.</p>"
+      }
+    },
+    "InsightId": {
+      "base": null,
+      "refs": {
+        "GetInsightEventsRequest$InsightId": "<p>The insight's unique identifier. Use the GetInsightSummaries action to retrieve an InsightId.</p>",
+        "GetInsightImpactGraphRequest$InsightId": "<p>The insight's unique identifier. Use the GetInsightSummaries action to retrieve an InsightId.</p>",
+        "GetInsightImpactGraphResult$InsightId": "<p>The insight's unique identifier.</p>",
+        "GetInsightRequest$InsightId": "<p>The insight's unique identifier. Use the GetInsightSummaries action to retrieve an InsightId.</p>",
+        "Insight$InsightId": "<p>The insights unique identifier. </p>",
+        "InsightSummary$InsightId": "<p>The insights unique identifier. </p>"
+      }
+    },
+    "InsightImpactGraphEdge": {
+      "base": "<p>The connection between two service in an insight impact graph.</p>",
+      "refs": {
+        "InsightImpactGraphEdgeList$member": null
+      }
+    },
+    "InsightImpactGraphEdgeList": {
+      "base": null,
+      "refs": {
+        "InsightImpactGraphService$Edges": "<p>Connections to downstream services.</p>"
+      }
+    },
+    "InsightImpactGraphService": {
+      "base": "<p>Information about an application that processed requests, users that made requests, or downstream services, resources, and applications that an application used. </p>",
+      "refs": {
+        "InsightImpactGraphServiceList$member": null
+      }
+    },
+    "InsightImpactGraphServiceList": {
+      "base": null,
+      "refs": {
+        "GetInsightImpactGraphResult$Services": "<p>The AWS instrumented services related to the insight.</p>"
+      }
+    },
+    "InsightState": {
+      "base": null,
+      "refs": {
+        "Insight$State": "<p>The current state of the insight.</p>",
+        "InsightStateList$member": null,
+        "InsightSummary$State": "<p>The current state of the insight.</p>"
+      }
+    },
+    "InsightStateList": {
+      "base": null,
+      "refs": {
+        "GetInsightSummariesRequest$States": "<p>The list of insight states. </p>"
+      }
+    },
+    "InsightSummary": {
+      "base": "<p>Information that describes an insight.</p>",
+      "refs": {
+        "InsightSummaryList$member": null
+      }
+    },
+    "InsightSummaryList": {
+      "base": null,
+      "refs": {
+        "GetInsightSummariesResult$InsightSummaries": "<p>The summary of each insight within the group matching the provided filters. The summary contains the InsightID, start and end time, the root cause service, the root cause and client impact statistics, the top anomalous services, and the status of the insight.</p>"
+      }
+    },
+    "InsightSummaryText": {
+      "base": null,
+      "refs": {
+        "Insight$Summary": "<p>A brief description of the insight.</p>",
+        "InsightSummary$Summary": "<p>A brief description of the insight.</p>"
+      }
+    },
     "InsightsConfiguration": {
       "base": "<p>The structure containing configurations related to insights.</p>",
       "refs": {
@@ -585,6 +772,7 @@
         "FaultRootCause$ClientImpacting": "<p>A flag that denotes that the root cause impacts the trace client.</p>",
         "FaultRootCauseEntity$Remote": "<p>A flag that denotes a remote subsegment.</p>",
         "FaultRootCauseService$Inferred": "<p>A Boolean value indicating if the service is inferred from the trace.</p>",
+        "GetTimeSeriesServiceStatisticsRequest$ForecastStatistics": "<p>The forecasted high and low fault count values. Forecast enabled requests require the EntitySelectorExpression ID be provided.</p>",
         "GetTraceSummariesRequest$Sampling": "<p>Set to <code>true</code> to get summaries for only a subset of available traces.</p>",
         "InsightsConfiguration$InsightsEnabled": "<p>Set the InsightsEnabled value to true to enable insights or false to disable insights.</p>",
         "InsightsConfiguration$NotificationsEnabled": "<p>Set the NotificationsEnabled value to true to enable insights notifications. Notifications can only be enabled on a group with InsightsEnabled set to true.</p>",
@@ -625,6 +813,8 @@
         "Edge$ReferenceId": "<p>Identifier of the edge. Unique within a service map.</p>",
         "GetTimeSeriesServiceStatisticsRequest$Period": "<p>Aggregation period in seconds.</p>",
         "Http$HttpStatus": "<p>The response status.</p>",
+        "InsightImpactGraphEdge$ReferenceId": "<p>Identifier of the edge. Unique within a service map.</p>",
+        "InsightImpactGraphService$ReferenceId": "<p>Identifier for the service. Unique within the service map.</p>",
         "SamplingRuleUpdate$Priority": "<p>The priority of the sampling rule.</p>",
         "SamplingRuleUpdate$ReservoirSize": "<p>A fixed number of matching requests to instrument per second, prior to applying the fixed rate. The reservoir is not used directly by services, but applies to all services using the rule collectively.</p>",
         "SamplingTargetDocument$ReservoirQuota": "<p>The number of requests per second that X-Ray allocated for this service.</p>",
@@ -646,7 +836,12 @@
         "ErrorStatistics$TotalCount": "<p>The total number of requests that failed with a 4xx Client Error status code.</p>",
         "FaultStatistics$OtherCount": "<p>The number of requests that failed with untracked 5xx Server Error status codes.</p>",
         "FaultStatistics$TotalCount": "<p>The total number of requests that failed with a 5xx Server Error status code.</p>",
+        "ForecastStatistics$FaultCountHigh": "<p>The upper limit of fault counts for a service.</p>",
+        "ForecastStatistics$FaultCountLow": "<p>The lower limit of fault counts for a service.</p>",
         "GetTraceSummariesResult$TracesProcessedCount": "<p>The total number of traces processed, including traces that did not match the specified filter expression.</p>",
+        "RequestImpactStatistics$FaultCount": "<p>The number of requests that have resulted in a fault,</p>",
+        "RequestImpactStatistics$OkCount": "<p>The number of successful requests.</p>",
+        "RequestImpactStatistics$TotalCount": "<p>The total number of requests to the service.</p>",
         "ServiceStatistics$OkCount": "<p>The number of requests that completed with a 2xx Success status code.</p>",
         "ServiceStatistics$TotalCount": "<p>The total number of completed requests.</p>"
       }
@@ -691,6 +886,17 @@
       "base": null,
       "refs": {
         "SamplingStatisticsDocument$RequestCount": "<p>The number of requests that matched the rule.</p>"
+      }
+    },
+    "RequestImpactStatistics": {
+      "base": "<p>Statistics that describe how the incident has impacted a service.</p>",
+      "refs": {
+        "Insight$ClientRequestImpactStatistics": "<p>The impact statistics of the client side service. This includes the number of requests to the client service and whether the requests were faults or okay.</p>",
+        "Insight$RootCauseServiceRequestImpactStatistics": "<p>The impact statistics of the root cause service. This includes the number of requests to the client service and whether the requests were faults or okay.</p>",
+        "InsightEvent$ClientRequestImpactStatistics": "<p>The impact statistics of the client side service. This includes the number of requests to the client service and whether the requests were faults or okay.</p>",
+        "InsightEvent$RootCauseServiceRequestImpactStatistics": "<p>The impact statistics of the root cause service. This includes the number of requests to the client service and whether the requests were faults or okay.</p>",
+        "InsightSummary$ClientRequestImpactStatistics": "<p>The impact statistics of the client side service. This includes the number of requests to the client service and whether the requests were faults or okay. </p>",
+        "InsightSummary$RootCauseServiceRequestImpactStatistics": "<p>The impact statistics of the root cause service. This includes the number of requests to the client service and whether the requests were faults or okay. </p>"
       }
     },
     "ReservoirSize": {
@@ -895,6 +1101,9 @@
     "ServiceId": {
       "base": "<p/>",
       "refs": {
+        "AnomalousService$ServiceId": null,
+        "Insight$RootCauseServiceId": null,
+        "InsightSummary$RootCauseServiceId": null,
         "ServiceIds$member": null,
         "TraceSummary$EntryPoint": "<p>The root of a trace.</p>"
       }
@@ -926,6 +1135,7 @@
       "refs": {
         "ErrorRootCauseService$Names": "<p>A collection of associated service names.</p>",
         "FaultRootCauseService$Names": "<p>A collection of associated service names.</p>",
+        "InsightImpactGraphService$Names": "<p>A list of names for the service, including the canonical name.</p>",
         "ResponseTimeRootCauseService$Names": "<p>A collection of associated service names.</p>",
         "Service$Names": "<p>A list of names for the service, including the canonical name.</p>",
         "ServiceId$Names": "<p/>"
@@ -989,6 +1199,9 @@
         "Http$HttpMethod": "<p>The request method.</p>",
         "Http$UserAgent": "<p>The request's user agent string.</p>",
         "Http$ClientIp": "<p>The IP address of the requestor.</p>",
+        "InsightImpactGraphService$Type": "<p>Identifier for the service. Unique within the service map.</p> <ul> <li> <p>AWS Resource - The type of an AWS resource. For example, AWS::EC2::Instance for an application running on Amazon EC2 or AWS::DynamoDB::Table for an Amazon DynamoDB table that the application used. </p> </li> <li> <p>AWS Service - The type of an AWS service. For example, AWS::DynamoDB for downstream calls to Amazon DynamoDB that didn't target a specific table. </p> </li> <li> <p>AWS Service - The type of an AWS service. For example, AWS::DynamoDB for downstream calls to Amazon DynamoDB that didn't target a specific table. </p> </li> <li> <p>remote - A downstream service of indeterminate type.</p> </li> </ul>",
+        "InsightImpactGraphService$Name": "<p>The canonical name of the service.</p>",
+        "InsightImpactGraphService$AccountId": "<p>Identifier of the AWS account in which the service runs.</p>",
         "InstanceIdDetail$Id": "<p>The ID of a corresponding EC2 instance.</p>",
         "ListTagsForResourceRequest$NextToken": "<p>A pagination token. If multiple pages of results are returned, use the <code>NextToken</code> value returned with the current page of results as the value of this parameter to get the next page of results.</p>",
         "ListTagsForResourceResponse$NextToken": "<p>A pagination token. If multiple pages of results are returned, use the <code>NextToken</code> value returned with the current page of results to get the next page of results.</p>",
@@ -1104,6 +1317,14 @@
       "refs": {
         "Edge$StartTime": "<p>The start time of the first segment on the edge.</p>",
         "Edge$EndTime": "<p>The end time of the last segment on the edge.</p>",
+        "GetInsightImpactGraphRequest$StartTime": "<p>The estimated start time of the insight, in Unix time seconds. The StartTime is inclusive of the value provided and can't be more than 30 days old.</p>",
+        "GetInsightImpactGraphRequest$EndTime": "<p>The estimated end time of the insight, in Unix time seconds. The EndTime is exclusive of the value provided. The time range between the start time and end time can't be more than six hours. </p>",
+        "GetInsightImpactGraphResult$StartTime": "<p>The provided start time.</p>",
+        "GetInsightImpactGraphResult$EndTime": "<p>The provided end time. </p>",
+        "GetInsightImpactGraphResult$ServiceGraphStartTime": "<p>The time, in Unix seconds, at which the service graph started.</p>",
+        "GetInsightImpactGraphResult$ServiceGraphEndTime": "<p>The time, in Unix seconds, at which the service graph ended.</p>",
+        "GetInsightSummariesRequest$StartTime": "<p>The beginning of the time frame in which the insights started. The start time can't be more than 30 days old.</p>",
+        "GetInsightSummariesRequest$EndTime": "<p>The end of the time frame in which the insights ended. The end time can't be more than 30 days old.</p>",
         "GetSamplingTargetsResult$LastRuleModification": "<p>The last time a user changed the sampling rule configuration. If the sampling rule configuration changed since the service last retrieved it, the service should call <a>GetSamplingRules</a> to get the latest version.</p>",
         "GetServiceGraphRequest$StartTime": "<p>The start of the time frame for which to generate a graph.</p>",
         "GetServiceGraphRequest$EndTime": "<p>The end of the timeframe for which to generate a graph.</p>",
@@ -1114,6 +1335,12 @@
         "GetTraceSummariesRequest$StartTime": "<p>The start of the time frame for which to retrieve traces.</p>",
         "GetTraceSummariesRequest$EndTime": "<p>The end of the time frame for which to retrieve traces.</p>",
         "GetTraceSummariesResult$ApproximateTime": "<p>The start time of this page of results.</p>",
+        "Insight$StartTime": "<p>The time, in Unix seconds, at which the insight began.</p>",
+        "Insight$EndTime": "<p>The time, in Unix seconds, at which the insight ended.</p>",
+        "InsightEvent$EventTime": "<p>The time, in Unix seconds, at which the event was recorded.</p>",
+        "InsightSummary$StartTime": "<p>The time, in Unix seconds, at which the insight began.</p>",
+        "InsightSummary$EndTime": "<p>The time, in Unix seconds, at which the insight ended.</p>",
+        "InsightSummary$LastUpdateTime": "<p>The time, in Unix seconds, that the insight was last updated.</p>",
         "SamplingRuleRecord$CreatedAt": "<p>When the rule was created.</p>",
         "SamplingRuleRecord$ModifiedAt": "<p>When the rule was last modified.</p>",
         "SamplingStatisticSummary$Timestamp": "<p>The start time of the reporting window.</p>",
@@ -1124,6 +1351,17 @@
         "TelemetryRecord$Timestamp": "<p/>",
         "TimeSeriesServiceStatistics$Timestamp": "<p>Timestamp of the window for which statistics are aggregated.</p>",
         "TraceSummary$MatchedEventTime": "<p>The matched time stamp of a defined event.</p>"
+      }
+    },
+    "Token": {
+      "base": null,
+      "refs": {
+        "GetInsightEventsRequest$NextToken": "<p>Specify the pagination token returned by a previous request to retrieve the next page of events. </p>",
+        "GetInsightEventsResult$NextToken": "<p>Use this token to retrieve the next page of insight events.</p>",
+        "GetInsightImpactGraphRequest$NextToken": "<p>Specify the pagination token returned by a previous request to retrieve the next page of results. </p>",
+        "GetInsightImpactGraphResult$NextToken": "<p>Pagination token.</p>",
+        "GetInsightSummariesRequest$NextToken": "<p>Pagination token.</p>",
+        "GetInsightSummariesResult$NextToken": "<p>Pagination token.</p>"
       }
     },
     "TooManyTagsException": {

@@ -795,6 +795,9 @@ type IoTAPI interface {
 	ListThingPrincipalsWithContext(aws.Context, *iot.ListThingPrincipalsInput, ...request.Option) (*iot.ListThingPrincipalsOutput, error)
 	ListThingPrincipalsRequest(*iot.ListThingPrincipalsInput) (*request.Request, *iot.ListThingPrincipalsOutput)
 
+	ListThingPrincipalsPages(*iot.ListThingPrincipalsInput, func(*iot.ListThingPrincipalsOutput, bool) bool) error
+	ListThingPrincipalsPagesWithContext(aws.Context, *iot.ListThingPrincipalsInput, func(*iot.ListThingPrincipalsOutput, bool) bool, ...request.Option) error
+
 	ListThingRegistrationTaskReports(*iot.ListThingRegistrationTaskReportsInput) (*iot.ListThingRegistrationTaskReportsOutput, error)
 	ListThingRegistrationTaskReportsWithContext(aws.Context, *iot.ListThingRegistrationTaskReportsInput, ...request.Option) (*iot.ListThingRegistrationTaskReportsOutput, error)
 	ListThingRegistrationTaskReportsRequest(*iot.ListThingRegistrationTaskReportsInput) (*request.Request, *iot.ListThingRegistrationTaskReportsOutput)

@@ -3,10 +3,11 @@
 // Package mq provides the client and types for making API
 // requests to AmazonMQ.
 //
-// Amazon MQ is a managed message broker service for Apache ActiveMQ that makes
-// it easy to set up and operate message brokers in the cloud. A message broker
-// allows software applications and components to communicate using various
-// programming languages, operating systems, and formal messaging protocols.
+// Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ
+// that makes it easy to set up and operate message brokers in the cloud. A
+// message broker allows software applications and components to communicate
+// using various programming languages, operating systems, and formal messaging
+// protocols.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/mq-2017-11-27 for more information on this service.
 //

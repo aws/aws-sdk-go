@@ -2136,13 +2136,14 @@ func (s *BrokerEngineType) SetEngineVersions(v []*EngineVersion) *BrokerEngineTy
 type BrokerInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the broker's ActiveMQ Web Console.
+	// The URL of the broker's Web Console.
 	ConsoleURL *string `locationName:"consoleURL" type:"string"`
 
 	// The broker's wire-level protocol endpoints.
 	Endpoints []*string `locationName:"endpoints" type:"list"`
 
 	// The IP address of the Elastic Network Interface (ENI) attached to the broker.
+	// Does not apply to RabbitMQ brokers
 	IpAddress *string `locationName:"ipAddress" type:"string"`
 }
 
@@ -2268,6 +2269,9 @@ type BrokerSummary struct {
 	// Required. The deployment mode of the broker.
 	DeploymentMode *string `locationName:"deploymentMode" type:"string" enum:"DeploymentMode"`
 
+	// Required. The type of broker engine.
+	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
+
 	// The broker's instance type.
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 }
@@ -2318,6 +2322,12 @@ func (s *BrokerSummary) SetDeploymentMode(v string) *BrokerSummary {
 	return s
 }
 
+// SetEngineType sets the EngineType field's value.
+func (s *BrokerSummary) SetEngineType(v string) *BrokerSummary {
+	s.EngineType = &v
+	return s
+}
+
 // SetHostInstanceType sets the HostInstanceType field's value.
 func (s *BrokerSummary) SetHostInstanceType(v string) *BrokerSummary {
 	s.HostInstanceType = &v
@@ -2341,7 +2351,7 @@ type Configuration struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// Required. The type of broker engine. Note: Currently, Amazon MQ supports
-	// only ACTIVEMQ.
+	// ACTIVEMQ and RABBITMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	// Required. The version of the broker engine. For a list of supported engine
@@ -2433,7 +2443,8 @@ func (s *Configuration) SetTags(v map[string]*string) *Configuration {
 	return s
 }
 
-// A list of information about the configuration.
+// A list of information about the configuration. Does not apply to RabbitMQ
+// brokers.
 type ConfigurationId struct {
 	_ struct{} `type:"structure"`
 
@@ -2618,7 +2629,8 @@ type CreateBrokerRequest struct {
 
 	BrokerName *string `locationName:"brokerName" type:"string"`
 
-	// A list of information about the configuration.
+	// A list of information about the configuration. Does not apply to RabbitMQ
+	// brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	CreatorRequestId *string `locationName:"creatorRequestId" type:"string" idempotencyToken:"true"`
@@ -2629,7 +2641,8 @@ type CreateBrokerRequest struct {
 	// Encryption options for the broker.
 	EncryptionOptions *EncryptionOptions `locationName:"encryptionOptions" type:"structure"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.
+	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
+	// RabbitMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -2637,7 +2650,7 @@ type CreateBrokerRequest struct {
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 
 	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker.
+	// to the broker. Currently not supported for RabbitMQ engine type.
 	LdapServerMetadata *LdapServerMetadataInput `locationName:"ldapServerMetadata" type:"structure"`
 
 	// The list of information about logs to be enabled for the specified broker.
@@ -2651,7 +2664,8 @@ type CreateBrokerRequest struct {
 
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 
-	// The storage type of the broker.
+	// The storage type of the broker. EFS is currently not Supported for RabbitMQ
+	// engine type.
 	StorageType *string `locationName:"storageType" type:"string" enum:"BrokerStorageType"`
 
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
@@ -2836,7 +2850,8 @@ type CreateConfigurationRequest struct {
 	// The authentication strategy used to secure the broker.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.
+	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
+	// RabbitMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -3560,7 +3575,8 @@ type DescribeBrokerResponse struct {
 	// Encryption options for the broker.
 	EncryptionOptions *EncryptionOptions `locationName:"encryptionOptions" type:"structure"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.
+	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
+	// RabbitMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -3596,7 +3612,8 @@ type DescribeBrokerResponse struct {
 
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 
-	// The storage type of the broker.
+	// The storage type of the broker. EFS is currently not Supported for RabbitMQ
+	// engine type.
 	StorageType *string `locationName:"storageType" type:"string" enum:"BrokerStorageType"`
 
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
@@ -3835,7 +3852,8 @@ type DescribeConfigurationOutput struct {
 
 	Description *string `locationName:"description" type:"string"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.
+	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
+	// RabbitMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -4321,7 +4339,7 @@ func (s *InternalServerErrorException) RequestID() string {
 }
 
 // The metadata of the LDAP server used to authenticate and authorize connections
-// to the broker.
+// to the broker. Currently not supported for RabbitMQ engine type.
 type LdapServerMetadataInput struct {
 	_ struct{} `type:"structure"`
 
@@ -4975,7 +4993,7 @@ type Logs struct {
 	_ struct{} `type:"structure"`
 
 	// Enables audit logging. Every user management action made using JMX or the
-	// ActiveMQ Web Console is logged.
+	// ActiveMQ Web Console is logged. Does not apply to RabbitMQ brokers.
 	Audit *bool `locationName:"audit" type:"boolean"`
 
 	// Enables general logging.
@@ -5324,7 +5342,8 @@ type UpdateBrokerRequest struct {
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
 
-	// A list of information about the configuration.
+	// A list of information about the configuration. Does not apply to RabbitMQ
+	// brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -5332,7 +5351,7 @@ type UpdateBrokerRequest struct {
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 
 	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker.
+	// to the broker. Currently not supported for RabbitMQ engine type.
 	LdapServerMetadata *LdapServerMetadataInput `locationName:"ldapServerMetadata" type:"structure"`
 
 	// The list of information about logs to be enabled for the specified broker.
@@ -5431,7 +5450,8 @@ type UpdateBrokerResponse struct {
 
 	BrokerId *string `locationName:"brokerId" type:"string"`
 
-	// A list of information about the configuration.
+	// A list of information about the configuration. Does not apply to RabbitMQ
+	// brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -5722,11 +5742,12 @@ func (s *UpdateUserRequest) SetUsername(v string) *UpdateUserRequest {
 	return s
 }
 
-// An ActiveMQ user associated with the broker.
+// A user associated with the broker.
 type User struct {
 	_ struct{} `type:"structure"`
 
-	// Enables access to the the ActiveMQ Web Console for the ActiveMQ user.
+	// Enables access to the ActiveMQ Web Console for the ActiveMQ user (Does not
+	// apply to RabbitMQ brokers).
 	ConsoleAccess *bool `locationName:"consoleAccess" type:"boolean"`
 
 	// The list of groups (20 maximum) to which the ActiveMQ user belongs. This
@@ -5734,14 +5755,14 @@ type User struct {
 	// and tildes (- . _ ~). This value must be 2-100 characters long.
 	Groups []*string `locationName:"groups" type:"list"`
 
-	// Required. The password of the ActiveMQ user. This value must be at least
-	// 12 characters long, must contain at least 4 unique characters, and must not
+	// Required. The password of the broker user. This value must be at least 12
+	// characters long, must contain at least 4 unique characters, and must not
 	// contain commas.
 	Password *string `locationName:"password" type:"string"`
 
-	// Required. The username of the ActiveMQ user. This value can contain only
-	// alphanumeric characters, dashes, periods, underscores, and tildes (- . _
-	// ~). This value must be 2-100 characters long.
+	// Required. The username of the broker user. This value can contain only alphanumeric
+	// characters, dashes, periods, underscores, and tildes (- . _ ~). This value
+	// must be 2-100 characters long.
 	Username *string `locationName:"username" type:"string"`
 }
 
@@ -5824,16 +5845,16 @@ func (s *UserPendingChanges) SetPendingChange(v string) *UserPendingChanges {
 	return s
 }
 
-// Returns a list of all ActiveMQ users.
+// Returns a list of all broker users.
 type UserSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The type of change pending for the ActiveMQ user.
+	// The type of change pending for the broker user.
 	PendingChange *string `locationName:"pendingChange" type:"string" enum:"ChangeType"`
 
-	// Required. The username of the ActiveMQ user. This value can contain only
-	// alphanumeric characters, dashes, periods, underscores, and tildes (- . _
-	// ~). This value must be 2-100 characters long.
+	// Required. The username of the broker user. This value can contain only alphanumeric
+	// characters, dashes, periods, underscores, and tildes (- . _ ~). This value
+	// must be 2-100 characters long.
 	Username *string `locationName:"username" type:"string"`
 }
 
@@ -5949,7 +5970,8 @@ func BrokerState_Values() []string {
 	}
 }
 
-// The storage type of the broker.
+// The storage type of the broker. EFS is currently not Supported for RabbitMQ
+// engine type.
 const (
 	// BrokerStorageTypeEbs is a BrokerStorageType enum value
 	BrokerStorageTypeEbs = "EBS"
@@ -6030,6 +6052,9 @@ const (
 
 	// DeploymentModeActiveStandbyMultiAz is a DeploymentMode enum value
 	DeploymentModeActiveStandbyMultiAz = "ACTIVE_STANDBY_MULTI_AZ"
+
+	// DeploymentModeClusterMultiAz is a DeploymentMode enum value
+	DeploymentModeClusterMultiAz = "CLUSTER_MULTI_AZ"
 )
 
 // DeploymentMode_Values returns all elements of the DeploymentMode enum
@@ -6037,19 +6062,25 @@ func DeploymentMode_Values() []string {
 	return []string{
 		DeploymentModeSingleInstance,
 		DeploymentModeActiveStandbyMultiAz,
+		DeploymentModeClusterMultiAz,
 	}
 }
 
-// The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.
+// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
+// RabbitMQ.
 const (
 	// EngineTypeActivemq is a EngineType enum value
 	EngineTypeActivemq = "ACTIVEMQ"
+
+	// EngineTypeRabbitmq is a EngineType enum value
+	EngineTypeRabbitmq = "RABBITMQ"
 )
 
 // EngineType_Values returns all elements of the EngineType enum
 func EngineType_Values() []string {
 	return []string{
 		EngineTypeActivemq,
+		EngineTypeRabbitmq,
 	}
 }
 

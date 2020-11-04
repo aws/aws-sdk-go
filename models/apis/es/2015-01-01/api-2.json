@@ -650,7 +650,8 @@
       "type":"structure",
       "members":{
         "Enabled":{"shape":"Boolean"},
-        "InternalUserDatabaseEnabled":{"shape":"Boolean"}
+        "InternalUserDatabaseEnabled":{"shape":"Boolean"},
+        "SAMLOptions":{"shape":"SAMLOptionsOutput"}
       }
     },
     "AdvancedSecurityOptionsInput":{
@@ -658,7 +659,8 @@
       "members":{
         "Enabled":{"shape":"Boolean"},
         "InternalUserDatabaseEnabled":{"shape":"Boolean"},
-        "MasterUserOptions":{"shape":"MasterUserOptions"}
+        "MasterUserOptions":{"shape":"MasterUserOptions"},
+        "SAMLOptions":{"shape":"SAMLOptionsInput"}
       }
     },
     "AdvancedSecurityOptionsStatus":{
@@ -696,6 +698,11 @@
       "members":{
         "DomainPackageDetails":{"shape":"DomainPackageDetails"}
       }
+    },
+    "BackendRole":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "BaseException":{
       "type":"structure",
@@ -2101,6 +2108,49 @@
       "min":3
     },
     "S3Key":{"type":"string"},
+    "SAMLEntityId":{
+      "type":"string",
+      "max":512,
+      "min":8
+    },
+    "SAMLIdp":{
+      "type":"structure",
+      "required":[
+        "MetadataContent",
+        "EntityId"
+      ],
+      "members":{
+        "MetadataContent":{"shape":"SAMLMetadata"},
+        "EntityId":{"shape":"SAMLEntityId"}
+      }
+    },
+    "SAMLMetadata":{
+      "type":"string",
+      "max":1048576,
+      "min":1
+    },
+    "SAMLOptionsInput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "Idp":{"shape":"SAMLIdp"},
+        "MasterUserName":{"shape":"Username"},
+        "MasterBackendRole":{"shape":"BackendRole"},
+        "SubjectKey":{"shape":"String"},
+        "RolesKey":{"shape":"String"},
+        "SessionTimeoutMinutes":{"shape":"IntegerClass"}
+      }
+    },
+    "SAMLOptionsOutput":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"},
+        "Idp":{"shape":"SAMLIdp"},
+        "SubjectKey":{"shape":"String"},
+        "RolesKey":{"shape":"String"},
+        "SessionTimeoutMinutes":{"shape":"IntegerClass"}
+      }
+    },
     "ServiceSoftwareOptions":{
       "type":"structure",
       "members":{

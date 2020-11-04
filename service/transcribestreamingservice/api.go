@@ -1673,6 +1673,12 @@ const (
 
 	// LanguageCodeEnAu is a LanguageCode enum value
 	LanguageCodeEnAu = "en-AU"
+
+	// LanguageCodeItIt is a LanguageCode enum value
+	LanguageCodeItIt = "it-IT"
+
+	// LanguageCodeDeDe is a LanguageCode enum value
+	LanguageCodeDeDe = "de-DE"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -1684,6 +1690,8 @@ func LanguageCode_Values() []string {
 		LanguageCodeFrCa,
 		LanguageCodeFrFr,
 		LanguageCodeEnAu,
+		LanguageCodeItIt,
+		LanguageCodeDeDe,
 	}
 }
 

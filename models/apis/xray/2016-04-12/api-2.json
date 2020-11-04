@@ -115,6 +115,58 @@
         {"shape":"ThrottledException"}
       ]
     },
+    "GetInsight":{
+      "name":"GetInsight",
+      "http":{
+        "method":"POST",
+        "requestUri":"/Insight"
+      },
+      "input":{"shape":"GetInsightRequest"},
+      "output":{"shape":"GetInsightResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
+    "GetInsightEvents":{
+      "name":"GetInsightEvents",
+      "http":{
+        "method":"POST",
+        "requestUri":"/InsightEvents"
+      },
+      "input":{"shape":"GetInsightEventsRequest"},
+      "output":{"shape":"GetInsightEventsResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
+    "GetInsightImpactGraph":{
+      "name":"GetInsightImpactGraph",
+      "http":{
+        "method":"POST",
+        "requestUri":"/InsightImpactGraph"
+      },
+      "input":{"shape":"GetInsightImpactGraphRequest"},
+      "output":{"shape":"GetInsightImpactGraphResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
+    "GetInsightSummaries":{
+      "name":"GetInsightSummaries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/InsightSummaries"
+      },
+      "input":{"shape":"GetInsightSummariesRequest"},
+      "output":{"shape":"GetInsightSummariesResult"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottledException"}
+      ]
+    },
     "GetSamplingRules":{
       "name":"GetSamplingRules",
       "http":{
@@ -351,6 +403,16 @@
       "key":{"shape":"AnnotationKey"},
       "value":{"shape":"ValuesWithServiceIds"}
     },
+    "AnomalousService":{
+      "type":"structure",
+      "members":{
+        "ServiceId":{"shape":"ServiceId"}
+      }
+    },
+    "AnomalousServiceList":{
+      "type":"list",
+      "member":{"shape":"AnomalousService"}
+    },
     "AttributeKey":{
       "type":"string",
       "max":32,
@@ -574,6 +636,7 @@
         "TotalCount":{"shape":"NullableLong"}
       }
     },
+    "EventSummaryText":{"type":"string"},
     "FaultRootCause":{
       "type":"structure",
       "members":{
@@ -625,6 +688,13 @@
       "max":1,
       "min":0
     },
+    "ForecastStatistics":{
+      "type":"structure",
+      "members":{
+        "FaultCountHigh":{"shape":"NullableLong"},
+        "FaultCountLow":{"shape":"NullableLong"}
+      }
+    },
     "GetEncryptionConfigRequest":{
       "type":"structure",
       "members":{
@@ -665,6 +735,94 @@
       "members":{
         "Groups":{"shape":"GroupSummaryList"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "GetInsightEventsMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "GetInsightEventsRequest":{
+      "type":"structure",
+      "required":["InsightId"],
+      "members":{
+        "InsightId":{"shape":"InsightId"},
+        "MaxResults":{"shape":"GetInsightEventsMaxResults"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetInsightEventsResult":{
+      "type":"structure",
+      "members":{
+        "InsightEvents":{"shape":"InsightEventList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetInsightImpactGraphRequest":{
+      "type":"structure",
+      "required":[
+        "InsightId",
+        "StartTime",
+        "EndTime"
+      ],
+      "members":{
+        "InsightId":{"shape":"InsightId"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetInsightImpactGraphResult":{
+      "type":"structure",
+      "members":{
+        "InsightId":{"shape":"InsightId"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "ServiceGraphStartTime":{"shape":"Timestamp"},
+        "ServiceGraphEndTime":{"shape":"Timestamp"},
+        "Services":{"shape":"InsightImpactGraphServiceList"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetInsightRequest":{
+      "type":"structure",
+      "required":["InsightId"],
+      "members":{
+        "InsightId":{"shape":"InsightId"}
+      }
+    },
+    "GetInsightResult":{
+      "type":"structure",
+      "members":{
+        "Insight":{"shape":"Insight"}
+      }
+    },
+    "GetInsightSummariesMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "GetInsightSummariesRequest":{
+      "type":"structure",
+      "required":[
+        "StartTime",
+        "EndTime"
+      ],
+      "members":{
+        "States":{"shape":"InsightStateList"},
+        "GroupARN":{"shape":"GroupARN"},
+        "GroupName":{"shape":"GroupName"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "MaxResults":{"shape":"GetInsightSummariesMaxResults"},
+        "NextToken":{"shape":"Token"}
+      }
+    },
+    "GetInsightSummariesResult":{
+      "type":"structure",
+      "members":{
+        "InsightSummaries":{"shape":"InsightSummaryList"},
+        "NextToken":{"shape":"Token"}
       }
     },
     "GetSamplingRulesRequest":{
@@ -745,6 +903,7 @@
         "GroupARN":{"shape":"GroupARN"},
         "EntitySelectorExpression":{"shape":"EntitySelectorExpression"},
         "Period":{"shape":"NullableInteger"},
+        "ForecastStatistics":{"shape":"NullableBoolean"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -861,6 +1020,110 @@
         "ClientIp":{"shape":"String"}
       }
     },
+    "Insight":{
+      "type":"structure",
+      "members":{
+        "InsightId":{"shape":"InsightId"},
+        "GroupARN":{"shape":"GroupARN"},
+        "GroupName":{"shape":"GroupName"},
+        "RootCauseServiceId":{"shape":"ServiceId"},
+        "Categories":{"shape":"InsightCategoryList"},
+        "State":{"shape":"InsightState"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Summary":{"shape":"InsightSummaryText"},
+        "ClientRequestImpactStatistics":{"shape":"RequestImpactStatistics"},
+        "RootCauseServiceRequestImpactStatistics":{"shape":"RequestImpactStatistics"},
+        "TopAnomalousServices":{"shape":"AnomalousServiceList"}
+      }
+    },
+    "InsightCategory":{
+      "type":"string",
+      "enum":["FAULT"]
+    },
+    "InsightCategoryList":{
+      "type":"list",
+      "member":{"shape":"InsightCategory"}
+    },
+    "InsightEvent":{
+      "type":"structure",
+      "members":{
+        "Summary":{"shape":"EventSummaryText"},
+        "EventTime":{"shape":"Timestamp"},
+        "ClientRequestImpactStatistics":{"shape":"RequestImpactStatistics"},
+        "RootCauseServiceRequestImpactStatistics":{"shape":"RequestImpactStatistics"},
+        "TopAnomalousServices":{"shape":"AnomalousServiceList"}
+      }
+    },
+    "InsightEventList":{
+      "type":"list",
+      "member":{"shape":"InsightEvent"}
+    },
+    "InsightId":{
+      "type":"string",
+      "pattern":"[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-5][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}"
+    },
+    "InsightImpactGraphEdge":{
+      "type":"structure",
+      "members":{
+        "ReferenceId":{"shape":"NullableInteger"}
+      }
+    },
+    "InsightImpactGraphEdgeList":{
+      "type":"list",
+      "member":{"shape":"InsightImpactGraphEdge"}
+    },
+    "InsightImpactGraphService":{
+      "type":"structure",
+      "members":{
+        "ReferenceId":{"shape":"NullableInteger"},
+        "Type":{"shape":"String"},
+        "Name":{"shape":"String"},
+        "Names":{"shape":"ServiceNames"},
+        "AccountId":{"shape":"String"},
+        "Edges":{"shape":"InsightImpactGraphEdgeList"}
+      }
+    },
+    "InsightImpactGraphServiceList":{
+      "type":"list",
+      "member":{"shape":"InsightImpactGraphService"}
+    },
+    "InsightState":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CLOSED"
+      ]
+    },
+    "InsightStateList":{
+      "type":"list",
+      "member":{"shape":"InsightState"},
+      "max":1,
+      "min":0
+    },
+    "InsightSummary":{
+      "type":"structure",
+      "members":{
+        "InsightId":{"shape":"InsightId"},
+        "GroupARN":{"shape":"GroupARN"},
+        "GroupName":{"shape":"GroupName"},
+        "RootCauseServiceId":{"shape":"ServiceId"},
+        "Categories":{"shape":"InsightCategoryList"},
+        "State":{"shape":"InsightState"},
+        "StartTime":{"shape":"Timestamp"},
+        "EndTime":{"shape":"Timestamp"},
+        "Summary":{"shape":"InsightSummaryText"},
+        "ClientRequestImpactStatistics":{"shape":"RequestImpactStatistics"},
+        "RootCauseServiceRequestImpactStatistics":{"shape":"RequestImpactStatistics"},
+        "TopAnomalousServices":{"shape":"AnomalousServiceList"},
+        "LastUpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "InsightSummaryList":{
+      "type":"list",
+      "member":{"shape":"InsightSummary"}
+    },
+    "InsightSummaryText":{"type":"string"},
     "InsightsConfiguration":{
       "type":"structure",
       "members":{
@@ -951,6 +1214,14 @@
     "RequestCount":{
       "type":"integer",
       "min":0
+    },
+    "RequestImpactStatistics":{
+      "type":"structure",
+      "members":{
+        "FaultCount":{"shape":"NullableLong"},
+        "OkCount":{"shape":"NullableLong"},
+        "TotalCount":{"shape":"NullableLong"}
+      }
     },
     "ReservoirSize":{
       "type":"integer",
@@ -1324,6 +1595,7 @@
         "Timestamp":{"shape":"Timestamp"},
         "EdgeSummaryStatistics":{"shape":"EdgeStatistics"},
         "ServiceSummaryStatistics":{"shape":"ServiceStatistics"},
+        "ServiceForecastStatistics":{"shape":"ForecastStatistics"},
         "ResponseTimeHistogram":{"shape":"Histogram"}
       }
     },
@@ -1332,6 +1604,11 @@
       "member":{"shape":"TimeSeriesServiceStatistics"}
     },
     "Timestamp":{"type":"timestamp"},
+    "Token":{
+      "type":"string",
+      "max":2000,
+      "min":1
+    },
     "TooManyTagsException":{
       "type":"structure",
       "members":{
