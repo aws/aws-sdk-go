@@ -246,7 +246,9 @@ type AssumeRoleProvider struct {
 
 // NewCredentials returns a pointer to a new Credentials object wrapping the
 // AssumeRoleProvider. The credentials will expire every 15 minutes and the
-// role will be named after a nanosecond timestamp of this operation.
+// role will be named after a nanosecond timestamp of this operation. The
+// object will then attempt to refresh the credentials using the provider
+// when this object is next used.
 //
 // Takes a Config provider to create the STS client. The ConfigProvider is
 // satisfied by the session.Session type.
@@ -270,7 +272,9 @@ func NewCredentials(c client.ConfigProvider, roleARN string, options ...func(*As
 
 // NewCredentialsWithClient returns a pointer to a new Credentials object wrapping the
 // AssumeRoleProvider. The credentials will expire every 15 minutes and the
-// role will be named after a nanosecond timestamp of this operation.
+// role will be named after a nanosecond timestamp of this operation. The
+// object will then attempt to refresh the credentials using the provider
+// when this object is next used.
 //
 // Takes an AssumeRoler which can be satisfied by the STS client.
 //
