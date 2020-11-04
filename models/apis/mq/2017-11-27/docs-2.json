@@ -1,6 +1,6 @@
 {
   "version" : "2.0",
-  "service" : "Amazon MQ is a managed message broker service for Apache ActiveMQ that makes it easy to set up and operate message brokers in the cloud. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols.",
+  "service" : "Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers in the cloud. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols.",
   "operations" : {
     "CreateBroker" : "Creates a broker. Note: This API is asynchronous.",
     "CreateConfiguration" : "Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).",
@@ -83,7 +83,7 @@
       }
     },
     "BrokerStorageType" : {
-      "base" : "The storage type of the broker.",
+      "base" : "The storage type of the broker. <important>EFS is currently not Supported for RabbitMQ engine type.</important>",
       "refs" : {
         "BrokerInstanceOption$StorageType" : "The broker's storage type.",
         "CreateBrokerInput$StorageType" : "The broker's storage type.",
@@ -100,7 +100,7 @@
       "base" : "The type of change pending for the ActiveMQ user.",
       "refs" : {
         "UserPendingChanges$PendingChange" : "Required. The type of change pending for the ActiveMQ user.",
-        "UserSummary$PendingChange" : "The type of change pending for the ActiveMQ user."
+        "UserSummary$PendingChange" : "The type of change pending for the broker user."
       }
     },
     "Configuration" : {
@@ -110,7 +110,7 @@
       }
     },
     "ConfigurationId" : {
-      "base" : "A list of information about the configuration.",
+      "base" : "A list of information about the configuration. <important>Does not apply to RabbitMQ brokers.</important>",
       "refs" : {
         "Configurations$Current" : "The current configuration of the broker.",
         "Configurations$Pending" : "The pending configuration of the broker.",
@@ -198,14 +198,15 @@
       }
     },
     "EngineType" : {
-      "base" : "The type of broker engine. Note: Currently, Amazon MQ supports only ActiveMQ.",
+      "base" : "The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and RabbitMQ.",
       "refs" : {
         "BrokerEngineType$EngineType" : "The type of broker engine.",
         "BrokerInstanceOption$EngineType" : "The type of broker engine.",
-        "Configuration$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.",
-        "CreateBrokerInput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.",
-        "CreateConfigurationInput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ.",
-        "DescribeBrokerOutput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports only ACTIVEMQ."
+        "BrokerSummary$EngineType" : "Required. The type of broker engine.",
+        "Configuration$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
+        "CreateBrokerInput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
+        "CreateConfigurationInput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
+        "DescribeBrokerOutput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ."
       }
     },
     "EngineVersion" : {
@@ -227,7 +228,7 @@
       "refs" : { }
     },
     "LdapServerMetadataInput" : {
-      "base" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker.",
+      "base" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker. <important>Currently not supported for RabbitMQ engine type.</important>",
       "refs" : {
         "CreateBrokerInput$LdapServerMetadata" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker.",
         "UpdateBrokerInput$LdapServerMetadata" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker."
@@ -322,7 +323,7 @@
       "refs" : { }
     },
     "User" : {
-      "base" : "An ActiveMQ user associated with the broker.",
+      "base" : "A user associated with the broker.",
       "refs" : {
         "__listOfUser$member" : null
       }
@@ -334,7 +335,7 @@
       }
     },
     "UserSummary" : {
-      "base" : "Returns a list of all ActiveMQ users.",
+      "base" : "Returns a list of all broker users.",
       "refs" : {
         "__listOfUserSummary$member" : null
       }
@@ -351,7 +352,7 @@
       "refs" : {
         "CreateBrokerInput$AutoMinorVersionUpgrade" : "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
         "CreateBrokerInput$PubliclyAccessible" : "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets.",
-        "CreateUserInput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
+        "CreateUserInput$ConsoleAccess" : "Enables access to the ActiveMQ Web Console for the ActiveMQ user.",
         "DescribeBrokerOutput$AutoMinorVersionUpgrade" : "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
         "DescribeBrokerOutput$PubliclyAccessible" : "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets.",
         "DescribeUserOutput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
@@ -360,7 +361,7 @@
         "LdapServerMetadataInput$UserSearchSubtree" : "The directory search scope for the user. If set to true, scope is to search the entire sub-tree.",
         "LdapServerMetadataOutput$RoleSearchSubtree" : "The directory search scope for the role. If set to true, scope is to search the entire sub-tree.",
         "LdapServerMetadataOutput$UserSearchSubtree" : "The directory search scope for the user. If set to true, scope is to search the entire sub-tree.",
-        "Logs$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
+        "Logs$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged. Does not apply to RabbitMQ brokers.",
         "Logs$General" : "Enables general logging.",
         "LogsSummary$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
         "LogsSummary$General" : "Enables general logging.",
@@ -369,7 +370,7 @@
         "UpdateBrokerInput$AutoMinorVersionUpgrade" : "Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
         "UpdateBrokerOutput$AutoMinorVersionUpgrade" : "The new value of automatic upgrades to new minor version for brokers.",
         "UpdateUserInput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
-        "User$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
+        "User$ConsoleAccess" : "Enables access to the ActiveMQ Web Console for the ActiveMQ user (Does not apply to RabbitMQ brokers).",
         "UserPendingChanges$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user."
       }
     },
@@ -459,13 +460,13 @@
     "__listOfUser" : {
       "base" : null,
       "refs" : {
-        "CreateBrokerInput$Users" : "Required. The list of ActiveMQ users (persons or applications) who can access queues and topics. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
+        "CreateBrokerInput$Users" : "Required. The list of broker users (persons or applications) who can access queues and topics. For RabbitMQ brokers, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ Web Console. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
       }
     },
     "__listOfUserSummary" : {
       "base" : null,
       "refs" : {
-        "DescribeBrokerOutput$Users" : "The list of all ActiveMQ usernames for the specified broker.",
+        "DescribeBrokerOutput$Users" : "The list of all broker usernames for the specified broker.",
         "ListUsersOutput$Users" : "Required. The list of all ActiveMQ usernames for the specified broker."
       }
     },
@@ -475,11 +476,11 @@
         "BrokerInstance$Endpoints" : "The broker's wire-level protocol endpoints.",
         "BrokerInstanceOption$SupportedEngineVersions" : "The list of supported engine versions.",
         "CreateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
-        "CreateBrokerInput$SubnetIds" : "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
+        "CreateBrokerInput$SubnetIds" : "The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment (ACTIVEMQ) requires two subnets. A CLUSTER_MULTI_AZ deployment (RABBITMQ) has no subnet requirements when deployed with public accessibility, deployment without public accessibility requires at least one subnet.",
         "CreateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "DescribeBrokerOutput$PendingSecurityGroups" : "The list of pending security groups to authorize connections to brokers.",
         "DescribeBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
-        "DescribeBrokerOutput$SubnetIds" : "The list of groups (2 maximum) that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment requires two subnets.",
+        "DescribeBrokerOutput$SubnetIds" : "The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment (ACTIVEMQ) requires two subnets. A CLUSTER_MULTI_AZ deployment (RABBITMQ) has no subnet requirements when deployed with public accessibility, deployment without public accessibility requires at least one subnet.",
         "DescribeUserOutput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "LdapServerMetadataInput$Hosts" : "Fully qualified domain name of the LDAP server. Optional failover server.",
         "LdapServerMetadataOutput$Hosts" : "Fully qualified domain name of the LDAP server. Optional failover server.",
@@ -505,8 +506,8 @@
       "refs" : {
         "AvailabilityZone$Name" : "Id for the availability zone.",
         "BrokerEngineTypeOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "BrokerInstance$ConsoleURL" : "The URL of the broker's ActiveMQ Web Console.",
-        "BrokerInstance$IpAddress" : "The IP address of the Elastic Network Interface (ENI) attached to the broker.",
+        "BrokerInstance$ConsoleURL" : "The URL of the broker's Web Console.",
+        "BrokerInstance$IpAddress" : "The IP address of the Elastic Network Interface (ENI) attached to the broker. Does not apply to RabbitMQ brokers",
         "BrokerInstanceOption$HostInstanceType" : "The type of broker instance.",
         "BrokerInstanceOptionsOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
         "BrokerSummary$BrokerArn" : "The Amazon Resource Name (ARN) of the broker.",
@@ -585,9 +586,9 @@
         "UpdateConfigurationOutput$Id" : "Required. The unique ID that Amazon MQ generates for the configuration.",
         "UpdateConfigurationOutput$Name" : "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.",
         "UpdateUserInput$Password" : "The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
-        "User$Password" : "Required. The password of the ActiveMQ user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
-        "User$Username" : "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "UserSummary$Username" : "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
+        "User$Password" : "Required. The password of the broker user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
+        "User$Username" : "Required. The username of the broker user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
+        "UserSummary$Username" : "Required. The username of the broker user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
         "WeeklyStartTime$TimeOfDay" : "Required. The time, in 24-hour format.",
         "WeeklyStartTime$TimeZone" : "The time zone, UTC by default, in either the Country/City format, or the UTC offset format.",
         "__listOf__string$member" : null,

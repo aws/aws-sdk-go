@@ -699,6 +699,10 @@ func (c *CloudWatch) DescribeAlarmsForMetricRequest(input *DescribeAlarmsForMetr
 // Retrieves the alarms for the specified metric. To filter the results, specify
 // a statistic, period, or unit.
 //
+// This operation retrieves only standard alarms that are based on the specified
+// metric. It does not return alarms based on math expressions that use the
+// specified metric, or composite alarms that use the specified metric.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -864,8 +868,7 @@ func (c *CloudWatch) DescribeInsightRulesRequest(input *DescribeInsightRulesInpu
 
 // DescribeInsightRules API operation for Amazon CloudWatch.
 //
-// Returns a list of all the Contributor Insights rules in your account. All
-// rules in your account are returned with a single operation.
+// Returns a list of all the Contributor Insights rules in your account.
 //
 // For more information about Contributor Insights, see Using Contributor Insights
 // to Analyze High-Cardinality Data (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/ContributorInsights.html).
@@ -2868,6 +2871,10 @@ func (c *CloudWatch) PutMetricDataRequest(input *PutMetricDataInput) (req *reque
 // information about specifying dimensions, see Publishing Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/publishingMetrics.html)
 // in the Amazon CloudWatch User Guide.
 //
+// You specify the time stamp to be associated with each data point. You can
+// specify time stamps that are as much as two weeks before the current date,
+// and as much as 2 hours after the current day and time.
+//
 // Data points with time stamps from 24 hours ago or longer can take at least
 // 48 hours to become available for GetMetricData (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricData.html)
 // or GetMetricStatistics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html)
@@ -4625,11 +4632,12 @@ func (s *DescribeAnomalyDetectorsOutput) SetNextToken(v string) *DescribeAnomaly
 type DescribeInsightRulesInput struct {
 	_ struct{} `type:"structure"`
 
-	// This parameter is not currently used. Reserved for future use. If it is used
-	// in the future, the maximum value might be different.
+	// The maximum number of results to return in one operation. If you omit this
+	// parameter, the default of 500 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Reserved for future use.
+	// Include this value, if it was returned by the previous operation, to get
+	// the next set of rules.
 	NextToken *string `type:"string"`
 }
 
@@ -4674,7 +4682,8 @@ type DescribeInsightRulesOutput struct {
 	// The rules returned by the operation.
 	InsightRules []*InsightRule `type:"list"`
 
-	// Reserved for future use.
+	// If this parameter is present, it is a token that marks the start of the next
+	// batch of returned results.
 	NextToken *string `type:"string"`
 }
 
@@ -4713,7 +4722,8 @@ type Dimension struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The value of the dimension.
+	// The value of the dimension. Dimension values cannot contain blank spaces
+	// or non-ASCII characters.
 	//
 	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true"`
@@ -5379,8 +5389,8 @@ type GetMetricDataInput struct {
 	// MetricDataQueries is a required field
 	MetricDataQueries []*MetricDataQuery `type:"list" required:"true"`
 
-	// Include this value, if it was returned by the previous call, to get the next
-	// set of data points.
+	// Include this value, if it was returned by the previous GetMetricData operation,
+	// to get the next set of data points.
 	NextToken *string `type:"string"`
 
 	// The order in which data points should be returned. TimestampDescending returns
@@ -6257,13 +6267,16 @@ func (s *ListDashboardsOutput) SetNextToken(v string) *ListDashboardsOutput {
 type ListMetricsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The dimensions to filter against.
+	// The dimensions to filter against. Only the dimensions that match exactly
+	// will be returned.
 	Dimensions []*DimensionFilter `type:"list"`
 
-	// The name of the metric to filter against.
+	// The name of the metric to filter against. Only the metrics with names that
+	// match exactly will be returned.
 	MetricName *string `min:"1" type:"string"`
 
-	// The namespace to filter against.
+	// The metric namespace to filter against. Only the namespace that matches exactly
+	// will be returned.
 	Namespace *string `min:"1" type:"string"`
 
 	// The token returned by a previous call to indicate that there is more data
@@ -6610,7 +6623,7 @@ type MetricAlarm struct {
 	// An array of MetricDataQuery structures, used in an alarm based on a metric
 	// math expression. Each structure either retrieves a metric or performs a math
 	// expression. One item in the Metrics array is the math expression that the
-	// alarm watches. This expression by designated by having ReturnValue set to
+	// alarm watches. This expression by designated by having ReturnData set to
 	// true.
 	Metrics []*MetricDataQuery `type:"list"`
 
@@ -7400,8 +7413,6 @@ type PutAnomalyDetectorInput struct {
 	// the model. You can specify as many as 10 time ranges.
 	//
 	// The configuration can also include the time zone to use for the metric.
-	//
-	// You can in
 	Configuration *AnomalyDetectorConfiguration `type:"structure"`
 
 	// The metric dimensions to create the anomaly detection model for.
@@ -8029,8 +8040,8 @@ type PutMetricAlarmInput struct {
 	// expression.
 	//
 	// One item in the Metrics array is the expression that the alarm watches. You
-	// designate this expression by setting ReturnValue to true for this object
-	// in the array. For more information, see MetricDataQuery (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDataQuery.html).
+	// designate this expression by setting ReturnData to true for this object in
+	// the array. For more information, see MetricDataQuery (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDataQuery.html).
 	//
 	// If you use the Metrics parameter, you cannot include the MetricName, Dimensions,
 	// Period, Namespace, Statistic, or ExtendedStatistic parameters of PutMetricAlarm

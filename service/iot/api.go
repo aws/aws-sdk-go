@@ -15990,6 +15990,9 @@ func (c *IoT) ListThingGroupsRequest(input *ListThingGroupsInput) (req *request.
 //   * ResourceNotFoundException
 //   The specified resource does not exist.
 //
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
 func (c *IoT) ListThingGroups(input *ListThingGroupsInput) (*ListThingGroupsOutput, error) {
 	req, out := c.ListThingGroupsRequest(input)
 	return out, req.Send()
@@ -16130,6 +16133,9 @@ func (c *IoT) ListThingGroupsForThingRequest(input *ListThingGroupsForThingInput
 //   * ResourceNotFoundException
 //   The specified resource does not exist.
 //
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
 func (c *IoT) ListThingGroupsForThing(input *ListThingGroupsForThingInput) (*ListThingGroupsForThingOutput, error) {
 	req, out := c.ListThingGroupsForThingRequest(input)
 	return out, req.Send()
@@ -16232,6 +16238,12 @@ func (c *IoT) ListThingPrincipalsRequest(input *ListThingPrincipalsInput) (req *
 		Name:       opListThingPrincipals,
 		HTTPMethod: "GET",
 		HTTPPath:   "/things/{thingName}/principals",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -16294,6 +16306,58 @@ func (c *IoT) ListThingPrincipalsWithContext(ctx aws.Context, input *ListThingPr
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListThingPrincipalsPages iterates over the pages of a ListThingPrincipals operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListThingPrincipals method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListThingPrincipals operation.
+//    pageNum := 0
+//    err := client.ListThingPrincipalsPages(params,
+//        func(page *iot.ListThingPrincipalsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListThingPrincipalsPages(input *ListThingPrincipalsInput, fn func(*ListThingPrincipalsOutput, bool) bool) error {
+	return c.ListThingPrincipalsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListThingPrincipalsPagesWithContext same as ListThingPrincipalsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListThingPrincipalsPagesWithContext(ctx aws.Context, input *ListThingPrincipalsInput, fn func(*ListThingPrincipalsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListThingPrincipalsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListThingPrincipalsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListThingPrincipalsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListThingRegistrationTaskReports = "ListThingRegistrationTaskReports"
@@ -17090,6 +17154,9 @@ func (c *IoT) ListThingsInThingGroupRequest(input *ListThingsInThingGroupInput) 
 //
 //   * ResourceNotFoundException
 //   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
 //
 func (c *IoT) ListThingsInThingGroup(input *ListThingsInThingGroupInput) (*ListThingsInThingGroupOutput, error) {
 	req, out := c.ListThingsInThingGroupRequest(input)
@@ -39832,7 +39899,8 @@ type ListBillingGroupsInput struct {
 	// Limit the results to billing groups whose names have the given prefix.
 	NamePrefixFilter *string `location:"querystring" locationName:"namePrefixFilter" min:"1" type:"string"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -39886,8 +39954,8 @@ type ListBillingGroupsOutput struct {
 	// The list of billing groups.
 	BillingGroups []*GroupNameAndArn `locationName:"billingGroups" type:"list"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -41455,7 +41523,8 @@ type ListPrincipalThingsInput struct {
 	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The principal.
@@ -41512,8 +41581,8 @@ func (s *ListPrincipalThingsInput) SetPrincipal(v string) *ListPrincipalThingsIn
 type ListPrincipalThingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The things.
@@ -42158,7 +42227,8 @@ func (s *ListStreamsOutput) SetStreams(v []*StreamSummary) *ListStreamsOutput {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The ARN of the resource.
@@ -42205,8 +42275,8 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The list of tags assigned to the resource.
@@ -42430,7 +42500,8 @@ type ListThingGroupsForThingInput struct {
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The thing name.
@@ -42489,8 +42560,8 @@ func (s *ListThingGroupsForThingInput) SetThingName(v string) *ListThingGroupsFo
 type ListThingGroupsForThingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The thing groups.
@@ -42528,7 +42599,8 @@ type ListThingGroupsInput struct {
 	// A filter that limits the results to those with the specified name prefix.
 	NamePrefixFilter *string `location:"querystring" locationName:"namePrefixFilter" min:"1" type:"string"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// A filter that limits the results to those with the specified parent group.
@@ -42600,8 +42672,8 @@ func (s *ListThingGroupsInput) SetRecursive(v bool) *ListThingGroupsInput {
 type ListThingGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results. Will not be returned if operation
-	// has returned all results.
+	// The token to use to get the next set of results. Will not be returned if
+	// operation has returned all results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The thing groups.
@@ -42634,6 +42706,13 @@ func (s *ListThingGroupsOutput) SetThingGroups(v []*GroupNameAndArn) *ListThingG
 type ListThingPrincipalsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
 	// The name of the thing.
 	//
 	// ThingName is a required field
@@ -42653,6 +42732,9 @@ func (s ListThingPrincipalsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListThingPrincipalsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListThingPrincipalsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
 	if s.ThingName == nil {
 		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
@@ -42666,6 +42748,18 @@ func (s *ListThingPrincipalsInput) Validate() error {
 	return nil
 }
 
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListThingPrincipalsInput) SetMaxResults(v int64) *ListThingPrincipalsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListThingPrincipalsInput) SetNextToken(v string) *ListThingPrincipalsInput {
+	s.NextToken = &v
+	return s
+}
+
 // SetThingName sets the ThingName field's value.
 func (s *ListThingPrincipalsInput) SetThingName(v string) *ListThingPrincipalsInput {
 	s.ThingName = &v
@@ -42675,6 +42769,10 @@ func (s *ListThingPrincipalsInput) SetThingName(v string) *ListThingPrincipalsIn
 // The output from the ListThingPrincipals operation.
 type ListThingPrincipalsOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
+	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The principals associated with the thing.
 	Principals []*string `locationName:"principals" type:"list"`
@@ -42690,6 +42788,12 @@ func (s ListThingPrincipalsOutput) GoString() string {
 	return s.String()
 }
 
+// SetNextToken sets the NextToken field's value.
+func (s *ListThingPrincipalsOutput) SetNextToken(v string) *ListThingPrincipalsOutput {
+	s.NextToken = &v
+	return s
+}
+
 // SetPrincipals sets the Principals field's value.
 func (s *ListThingPrincipalsOutput) SetPrincipals(v []*string) *ListThingPrincipalsOutput {
 	s.Principals = v
@@ -42702,7 +42806,8 @@ type ListThingRegistrationTaskReportsInput struct {
 	// The maximum number of results to return per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The type of task report.
@@ -42775,8 +42880,8 @@ func (s *ListThingRegistrationTaskReportsInput) SetTaskId(v string) *ListThingRe
 type ListThingRegistrationTaskReportsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The type of task report.
@@ -42820,7 +42925,8 @@ type ListThingRegistrationTasksInput struct {
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The status of the bulk thing provisioning task.
@@ -42871,8 +42977,8 @@ func (s *ListThingRegistrationTasksInput) SetStatus(v string) *ListThingRegistra
 type ListThingRegistrationTasksOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of bulk thing provisioning task IDs.
@@ -42908,7 +43014,8 @@ type ListThingTypesInput struct {
 	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The name of the thing type.
@@ -43004,7 +43111,8 @@ type ListThingsInBillingGroupInput struct {
 	// The maximum number of results to return per request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -43058,8 +43166,8 @@ func (s *ListThingsInBillingGroupInput) SetNextToken(v string) *ListThingsInBill
 type ListThingsInBillingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results. Will not be returned if operation
-	// has returned all results.
+	// The token to use to get the next set of results. Will not be returned if
+	// operation has returned all results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// A list of things in the billing group.
@@ -43094,7 +43202,8 @@ type ListThingsInThingGroupInput struct {
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// When true, list things in this thing group and in all child groups as well.
@@ -43162,8 +43271,8 @@ func (s *ListThingsInThingGroupInput) SetThingGroupName(v string) *ListThingsInT
 type ListThingsInThingGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The things in the specified thing group.
@@ -43205,7 +43314,8 @@ type ListThingsInput struct {
 	// The maximum number of results to return in this operation.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The name of the thing type used to search for things.
@@ -43272,8 +43382,8 @@ func (s *ListThingsInput) SetThingTypeName(v string) *ListThingsInput {
 type ListThingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token used to get the next set of results. Will not be returned if operation
-	// has returned all results.
+	// The token to use to get the next set of results. Will not be returned if
+	// operation has returned all results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The things.
@@ -43308,7 +43418,8 @@ type ListTopicRuleDestinationsInput struct {
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
 
@@ -43353,7 +43464,8 @@ type ListTopicRuleDestinationsOutput struct {
 	// Information about a topic rule destination.
 	DestinationSummaries []*TopicRuleDestinationSummary `locationName:"destinationSummaries" type:"list"`
 
-	// The token to retrieve the next set of results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 
@@ -43386,7 +43498,8 @@ type ListTopicRulesInput struct {
 	// The maximum number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// A token used to retrieve the next value.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// Specifies whether the rule is disabled.
@@ -43447,7 +43560,8 @@ func (s *ListTopicRulesInput) SetTopic(v string) *ListTopicRulesInput {
 type ListTopicRulesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A token used to retrieve the next value.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The rules.
@@ -43482,8 +43596,8 @@ type ListV2LoggingLevelsInput struct {
 	// The maximum number of results to return at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The type of resource for which you are configuring logging. Must be THING_Group.
@@ -43537,8 +43651,8 @@ type ListV2LoggingLevelsOutput struct {
 	// The logging configuration for a target.
 	LogTargetConfigurations []*LogTargetConfiguration `locationName:"logTargetConfigurations" type:"list"`
 
-	// The token used to get the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 }
 

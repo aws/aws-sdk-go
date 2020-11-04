@@ -116,7 +116,9 @@
         "es-US",
         "fr-CA",
         "fr-FR",
-        "en-AU"
+        "en-AU",
+        "it-IT",
+        "de-DE"
       ]
     },
     "LimitExceededException":{

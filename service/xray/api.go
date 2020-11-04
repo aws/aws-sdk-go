@@ -797,6 +797,457 @@ func (c *XRay) GetGroupsPagesWithContext(ctx aws.Context, input *GetGroupsInput,
 	return p.Err()
 }
 
+const opGetInsight = "GetInsight"
+
+// GetInsightRequest generates a "aws/request.Request" representing the
+// client's request for the GetInsight operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInsight for more information on using the GetInsight
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInsightRequest method.
+//    req, resp := client.GetInsightRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsight
+func (c *XRay) GetInsightRequest(input *GetInsightInput) (req *request.Request, output *GetInsightOutput) {
+	op := &request.Operation{
+		Name:       opGetInsight,
+		HTTPMethod: "POST",
+		HTTPPath:   "/Insight",
+	}
+
+	if input == nil {
+		input = &GetInsightInput{}
+	}
+
+	output = &GetInsightOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInsight API operation for AWS X-Ray.
+//
+// Retrieves the summary information of an insight. This includes impact to
+// clients and root cause services, the top anomalous services, the category,
+// the state of the insight, and the start and end time of the insight.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetInsight for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ThrottledException
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsight
+func (c *XRay) GetInsight(input *GetInsightInput) (*GetInsightOutput, error) {
+	req, out := c.GetInsightRequest(input)
+	return out, req.Send()
+}
+
+// GetInsightWithContext is the same as GetInsight with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInsight for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetInsightWithContext(ctx aws.Context, input *GetInsightInput, opts ...request.Option) (*GetInsightOutput, error) {
+	req, out := c.GetInsightRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetInsightEvents = "GetInsightEvents"
+
+// GetInsightEventsRequest generates a "aws/request.Request" representing the
+// client's request for the GetInsightEvents operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInsightEvents for more information on using the GetInsightEvents
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInsightEventsRequest method.
+//    req, resp := client.GetInsightEventsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightEvents
+func (c *XRay) GetInsightEventsRequest(input *GetInsightEventsInput) (req *request.Request, output *GetInsightEventsOutput) {
+	op := &request.Operation{
+		Name:       opGetInsightEvents,
+		HTTPMethod: "POST",
+		HTTPPath:   "/InsightEvents",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetInsightEventsInput{}
+	}
+
+	output = &GetInsightEventsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInsightEvents API operation for AWS X-Ray.
+//
+// X-Ray reevaluates insights periodically until they're resolved, and records
+// each intermediate state as an event. You can review an insight's events in
+// the Impact Timeline on the Inspect page in the X-Ray console.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetInsightEvents for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ThrottledException
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightEvents
+func (c *XRay) GetInsightEvents(input *GetInsightEventsInput) (*GetInsightEventsOutput, error) {
+	req, out := c.GetInsightEventsRequest(input)
+	return out, req.Send()
+}
+
+// GetInsightEventsWithContext is the same as GetInsightEvents with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInsightEvents for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetInsightEventsWithContext(ctx aws.Context, input *GetInsightEventsInput, opts ...request.Option) (*GetInsightEventsOutput, error) {
+	req, out := c.GetInsightEventsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetInsightEventsPages iterates over the pages of a GetInsightEvents operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetInsightEvents method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetInsightEvents operation.
+//    pageNum := 0
+//    err := client.GetInsightEventsPages(params,
+//        func(page *xray.GetInsightEventsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetInsightEventsPages(input *GetInsightEventsInput, fn func(*GetInsightEventsOutput, bool) bool) error {
+	return c.GetInsightEventsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetInsightEventsPagesWithContext same as GetInsightEventsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetInsightEventsPagesWithContext(ctx aws.Context, input *GetInsightEventsInput, fn func(*GetInsightEventsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetInsightEventsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetInsightEventsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetInsightEventsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opGetInsightImpactGraph = "GetInsightImpactGraph"
+
+// GetInsightImpactGraphRequest generates a "aws/request.Request" representing the
+// client's request for the GetInsightImpactGraph operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInsightImpactGraph for more information on using the GetInsightImpactGraph
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInsightImpactGraphRequest method.
+//    req, resp := client.GetInsightImpactGraphRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightImpactGraph
+func (c *XRay) GetInsightImpactGraphRequest(input *GetInsightImpactGraphInput) (req *request.Request, output *GetInsightImpactGraphOutput) {
+	op := &request.Operation{
+		Name:       opGetInsightImpactGraph,
+		HTTPMethod: "POST",
+		HTTPPath:   "/InsightImpactGraph",
+	}
+
+	if input == nil {
+		input = &GetInsightImpactGraphInput{}
+	}
+
+	output = &GetInsightImpactGraphOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInsightImpactGraph API operation for AWS X-Ray.
+//
+// Retrieves a service graph structure filtered by the specified insight. The
+// service graph is limited to only structural information. For a complete service
+// graph, use this API with the GetServiceGraph API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetInsightImpactGraph for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ThrottledException
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightImpactGraph
+func (c *XRay) GetInsightImpactGraph(input *GetInsightImpactGraphInput) (*GetInsightImpactGraphOutput, error) {
+	req, out := c.GetInsightImpactGraphRequest(input)
+	return out, req.Send()
+}
+
+// GetInsightImpactGraphWithContext is the same as GetInsightImpactGraph with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInsightImpactGraph for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetInsightImpactGraphWithContext(ctx aws.Context, input *GetInsightImpactGraphInput, opts ...request.Option) (*GetInsightImpactGraphOutput, error) {
+	req, out := c.GetInsightImpactGraphRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetInsightSummaries = "GetInsightSummaries"
+
+// GetInsightSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the GetInsightSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInsightSummaries for more information on using the GetInsightSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInsightSummariesRequest method.
+//    req, resp := client.GetInsightSummariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightSummaries
+func (c *XRay) GetInsightSummariesRequest(input *GetInsightSummariesInput) (req *request.Request, output *GetInsightSummariesOutput) {
+	op := &request.Operation{
+		Name:       opGetInsightSummaries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/InsightSummaries",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetInsightSummariesInput{}
+	}
+
+	output = &GetInsightSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInsightSummaries API operation for AWS X-Ray.
+//
+// Retrieves the summaries of all insights in the specified group matching the
+// provided filter values.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS X-Ray's
+// API operation GetInsightSummaries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is missing required parameters or has invalid parameters.
+//
+//   * ThrottledException
+//   The request exceeds the maximum number of requests per second.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12/GetInsightSummaries
+func (c *XRay) GetInsightSummaries(input *GetInsightSummariesInput) (*GetInsightSummariesOutput, error) {
+	req, out := c.GetInsightSummariesRequest(input)
+	return out, req.Send()
+}
+
+// GetInsightSummariesWithContext is the same as GetInsightSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInsightSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetInsightSummariesWithContext(ctx aws.Context, input *GetInsightSummariesInput, opts ...request.Option) (*GetInsightSummariesOutput, error) {
+	req, out := c.GetInsightSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetInsightSummariesPages iterates over the pages of a GetInsightSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetInsightSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetInsightSummaries operation.
+//    pageNum := 0
+//    err := client.GetInsightSummariesPages(params,
+//        func(page *xray.GetInsightSummariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *XRay) GetInsightSummariesPages(input *GetInsightSummariesInput, fn func(*GetInsightSummariesOutput, bool) bool) error {
+	return c.GetInsightSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetInsightSummariesPagesWithContext same as GetInsightSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *XRay) GetInsightSummariesPagesWithContext(ctx aws.Context, input *GetInsightSummariesInput, fn func(*GetInsightSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetInsightSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetInsightSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetInsightSummariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetSamplingRules = "GetSamplingRules"
 
 // GetSamplingRulesRequest generates a "aws/request.Request" representing the
@@ -2545,6 +2996,29 @@ func (s *AnnotationValue) SetStringValue(v string) *AnnotationValue {
 	return s
 }
 
+// The service within the service graph that has anomalously high fault rates.
+type AnomalousService struct {
+	_ struct{} `type:"structure"`
+
+	ServiceId *ServiceId `type:"structure"`
+}
+
+// String returns the string representation
+func (s AnomalousService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AnomalousService) GoString() string {
+	return s.String()
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *AnomalousService) SetServiceId(v *ServiceId) *AnomalousService {
+	s.ServiceId = v
+	return s
+}
+
 // A list of Availability Zones corresponding to the segments in a trace.
 type AvailabilityZoneDetail struct {
 	_ struct{} `type:"structure"`
@@ -3613,6 +4087,40 @@ func (s *FaultStatistics) SetTotalCount(v int64) *FaultStatistics {
 	return s
 }
 
+// The predicted high and low fault count. This is used to determine if a service
+// has become anomalous and if an insight should be created.
+type ForecastStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The upper limit of fault counts for a service.
+	FaultCountHigh *int64 `type:"long"`
+
+	// The lower limit of fault counts for a service.
+	FaultCountLow *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s ForecastStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForecastStatistics) GoString() string {
+	return s.String()
+}
+
+// SetFaultCountHigh sets the FaultCountHigh field's value.
+func (s *ForecastStatistics) SetFaultCountHigh(v int64) *ForecastStatistics {
+	s.FaultCountHigh = &v
+	return s
+}
+
+// SetFaultCountLow sets the FaultCountLow field's value.
+func (s *ForecastStatistics) SetFaultCountLow(v int64) *ForecastStatistics {
+	s.FaultCountLow = &v
+	return s
+}
+
 type GetEncryptionConfigInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3787,6 +4295,473 @@ func (s *GetGroupsOutput) SetGroups(v []*GroupSummary) *GetGroupsOutput {
 
 // SetNextToken sets the NextToken field's value.
 func (s *GetGroupsOutput) SetNextToken(v string) *GetGroupsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetInsightEventsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The insight's unique identifier. Use the GetInsightSummaries action to retrieve
+	// an InsightId.
+	//
+	// InsightId is a required field
+	InsightId *string `type:"string" required:"true"`
+
+	// Used to retrieve at most the specified value of events.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Specify the pagination token returned by a previous request to retrieve the
+	// next page of events.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetInsightEventsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightEventsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInsightEventsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInsightEventsInput"}
+	if s.InsightId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsightId"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *GetInsightEventsInput) SetInsightId(v string) *GetInsightEventsInput {
+	s.InsightId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetInsightEventsInput) SetMaxResults(v int64) *GetInsightEventsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInsightEventsInput) SetNextToken(v string) *GetInsightEventsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetInsightEventsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A detailed description of the event. This includes the time of the event,
+	// client and root cause impact statistics, and the top anomalous service at
+	// the time of the event.
+	InsightEvents []*InsightEvent `type:"list"`
+
+	// Use this token to retrieve the next page of insight events.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetInsightEventsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightEventsOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsightEvents sets the InsightEvents field's value.
+func (s *GetInsightEventsOutput) SetInsightEvents(v []*InsightEvent) *GetInsightEventsOutput {
+	s.InsightEvents = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInsightEventsOutput) SetNextToken(v string) *GetInsightEventsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type GetInsightImpactGraphInput struct {
+	_ struct{} `type:"structure"`
+
+	// The estimated end time of the insight, in Unix time seconds. The EndTime
+	// is exclusive of the value provided. The time range between the start time
+	// and end time can't be more than six hours.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// The insight's unique identifier. Use the GetInsightSummaries action to retrieve
+	// an InsightId.
+	//
+	// InsightId is a required field
+	InsightId *string `type:"string" required:"true"`
+
+	// Specify the pagination token returned by a previous request to retrieve the
+	// next page of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The estimated start time of the insight, in Unix time seconds. The StartTime
+	// is inclusive of the value provided and can't be more than 30 days old.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s GetInsightImpactGraphInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightImpactGraphInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInsightImpactGraphInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInsightImpactGraphInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.InsightId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsightId"))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetInsightImpactGraphInput) SetEndTime(v time.Time) *GetInsightImpactGraphInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *GetInsightImpactGraphInput) SetInsightId(v string) *GetInsightImpactGraphInput {
+	s.InsightId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInsightImpactGraphInput) SetNextToken(v string) *GetInsightImpactGraphInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetInsightImpactGraphInput) SetStartTime(v time.Time) *GetInsightImpactGraphInput {
+	s.StartTime = &v
+	return s
+}
+
+type GetInsightImpactGraphOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The provided end time.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The insight's unique identifier.
+	InsightId *string `type:"string"`
+
+	// Pagination token.
+	NextToken *string `min:"1" type:"string"`
+
+	// The time, in Unix seconds, at which the service graph ended.
+	ServiceGraphEndTime *time.Time `type:"timestamp"`
+
+	// The time, in Unix seconds, at which the service graph started.
+	ServiceGraphStartTime *time.Time `type:"timestamp"`
+
+	// The AWS instrumented services related to the insight.
+	Services []*InsightImpactGraphService `type:"list"`
+
+	// The provided start time.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s GetInsightImpactGraphOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightImpactGraphOutput) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetInsightImpactGraphOutput) SetEndTime(v time.Time) *GetInsightImpactGraphOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *GetInsightImpactGraphOutput) SetInsightId(v string) *GetInsightImpactGraphOutput {
+	s.InsightId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInsightImpactGraphOutput) SetNextToken(v string) *GetInsightImpactGraphOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetServiceGraphEndTime sets the ServiceGraphEndTime field's value.
+func (s *GetInsightImpactGraphOutput) SetServiceGraphEndTime(v time.Time) *GetInsightImpactGraphOutput {
+	s.ServiceGraphEndTime = &v
+	return s
+}
+
+// SetServiceGraphStartTime sets the ServiceGraphStartTime field's value.
+func (s *GetInsightImpactGraphOutput) SetServiceGraphStartTime(v time.Time) *GetInsightImpactGraphOutput {
+	s.ServiceGraphStartTime = &v
+	return s
+}
+
+// SetServices sets the Services field's value.
+func (s *GetInsightImpactGraphOutput) SetServices(v []*InsightImpactGraphService) *GetInsightImpactGraphOutput {
+	s.Services = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetInsightImpactGraphOutput) SetStartTime(v time.Time) *GetInsightImpactGraphOutput {
+	s.StartTime = &v
+	return s
+}
+
+type GetInsightInput struct {
+	_ struct{} `type:"structure"`
+
+	// The insight's unique identifier. Use the GetInsightSummaries action to retrieve
+	// an InsightId.
+	//
+	// InsightId is a required field
+	InsightId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetInsightInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInsightInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInsightInput"}
+	if s.InsightId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InsightId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *GetInsightInput) SetInsightId(v string) *GetInsightInput {
+	s.InsightId = &v
+	return s
+}
+
+type GetInsightOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The summary information of an insight.
+	Insight *Insight `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetInsightOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsight sets the Insight field's value.
+func (s *GetInsightOutput) SetInsight(v *Insight) *GetInsightOutput {
+	s.Insight = v
+	return s
+}
+
+type GetInsightSummariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end of the time frame in which the insights ended. The end time can't
+	// be more than 30 days old.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `type:"timestamp" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the group. Required if the GroupName isn't
+	// provided.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The name of the group. Required if the GroupARN isn't provided.
+	GroupName *string `min:"1" type:"string"`
+
+	// The maximum number of results to display.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Pagination token.
+	NextToken *string `min:"1" type:"string"`
+
+	// The beginning of the time frame in which the insights started. The start
+	// time can't be more than 30 days old.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `type:"timestamp" required:"true"`
+
+	// The list of insight states.
+	States []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s GetInsightSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInsightSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInsightSummariesInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.GroupARN != nil && len(*s.GroupARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupARN", 1))
+	}
+	if s.GroupName != nil && len(*s.GroupName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetInsightSummariesInput) SetEndTime(v time.Time) *GetInsightSummariesInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *GetInsightSummariesInput) SetGroupARN(v string) *GetInsightSummariesInput {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *GetInsightSummariesInput) SetGroupName(v string) *GetInsightSummariesInput {
+	s.GroupName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetInsightSummariesInput) SetMaxResults(v int64) *GetInsightSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInsightSummariesInput) SetNextToken(v string) *GetInsightSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetInsightSummariesInput) SetStartTime(v time.Time) *GetInsightSummariesInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStates sets the States field's value.
+func (s *GetInsightSummariesInput) SetStates(v []*string) *GetInsightSummariesInput {
+	s.States = v
+	return s
+}
+
+type GetInsightSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The summary of each insight within the group matching the provided filters.
+	// The summary contains the InsightID, start and end time, the root cause service,
+	// the root cause and client impact statistics, the top anomalous services,
+	// and the status of the insight.
+	InsightSummaries []*InsightSummary `type:"list"`
+
+	// Pagination token.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetInsightSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetInsightSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInsightSummaries sets the InsightSummaries field's value.
+func (s *GetInsightSummariesOutput) SetInsightSummaries(v []*InsightSummary) *GetInsightSummariesOutput {
+	s.InsightSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetInsightSummariesOutput) SetNextToken(v string) *GetInsightSummariesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -4153,6 +5128,10 @@ type GetTimeSeriesServiceStatisticsInput struct {
 	// edge statistics are returned.
 	EntitySelectorExpression *string `min:"1" type:"string"`
 
+	// The forecasted high and low fault count values. Forecast enabled requests
+	// require the EntitySelectorExpression ID be provided.
+	ForecastStatistics *bool `type:"boolean"`
+
 	// The Amazon Resource Name (ARN) of the group for which to pull statistics
 	// from.
 	GroupARN *string `min:"1" type:"string"`
@@ -4216,6 +5195,12 @@ func (s *GetTimeSeriesServiceStatisticsInput) SetEndTime(v time.Time) *GetTimeSe
 // SetEntitySelectorExpression sets the EntitySelectorExpression field's value.
 func (s *GetTimeSeriesServiceStatisticsInput) SetEntitySelectorExpression(v string) *GetTimeSeriesServiceStatisticsInput {
 	s.EntitySelectorExpression = &v
+	return s
+}
+
+// SetForecastStatistics sets the ForecastStatistics field's value.
+func (s *GetTimeSeriesServiceStatisticsInput) SetForecastStatistics(v bool) *GetTimeSeriesServiceStatisticsInput {
+	s.ForecastStatistics = &v
 	return s
 }
 
@@ -4735,6 +5720,443 @@ func (s *Http) SetUserAgent(v string) *Http {
 	return s
 }
 
+// When fault rates go outside of the expected range, X-Ray creates an insight.
+// Insights tracks emergent issues within your applications.
+type Insight struct {
+	_ struct{} `type:"structure"`
+
+	// The categories that label and describe the type of insight.
+	Categories []*string `type:"list"`
+
+	// The impact statistics of the client side service. This includes the number
+	// of requests to the client service and whether the requests were faults or
+	// okay.
+	ClientRequestImpactStatistics *RequestImpactStatistics `type:"structure"`
+
+	// The time, in Unix seconds, at which the insight ended.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the group that the insight belongs to.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The name of the group that the insight belongs to.
+	GroupName *string `min:"1" type:"string"`
+
+	// The insights unique identifier.
+	InsightId *string `type:"string"`
+
+	RootCauseServiceId *ServiceId `type:"structure"`
+
+	// The impact statistics of the root cause service. This includes the number
+	// of requests to the client service and whether the requests were faults or
+	// okay.
+	RootCauseServiceRequestImpactStatistics *RequestImpactStatistics `type:"structure"`
+
+	// The time, in Unix seconds, at which the insight began.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The current state of the insight.
+	State *string `type:"string" enum:"InsightState"`
+
+	// A brief description of the insight.
+	Summary *string `type:"string"`
+
+	// The service within the insight that is most impacted by the incident.
+	TopAnomalousServices []*AnomalousService `type:"list"`
+}
+
+// String returns the string representation
+func (s Insight) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Insight) GoString() string {
+	return s.String()
+}
+
+// SetCategories sets the Categories field's value.
+func (s *Insight) SetCategories(v []*string) *Insight {
+	s.Categories = v
+	return s
+}
+
+// SetClientRequestImpactStatistics sets the ClientRequestImpactStatistics field's value.
+func (s *Insight) SetClientRequestImpactStatistics(v *RequestImpactStatistics) *Insight {
+	s.ClientRequestImpactStatistics = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *Insight) SetEndTime(v time.Time) *Insight {
+	s.EndTime = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *Insight) SetGroupARN(v string) *Insight {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *Insight) SetGroupName(v string) *Insight {
+	s.GroupName = &v
+	return s
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *Insight) SetInsightId(v string) *Insight {
+	s.InsightId = &v
+	return s
+}
+
+// SetRootCauseServiceId sets the RootCauseServiceId field's value.
+func (s *Insight) SetRootCauseServiceId(v *ServiceId) *Insight {
+	s.RootCauseServiceId = v
+	return s
+}
+
+// SetRootCauseServiceRequestImpactStatistics sets the RootCauseServiceRequestImpactStatistics field's value.
+func (s *Insight) SetRootCauseServiceRequestImpactStatistics(v *RequestImpactStatistics) *Insight {
+	s.RootCauseServiceRequestImpactStatistics = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Insight) SetStartTime(v time.Time) *Insight {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Insight) SetState(v string) *Insight {
+	s.State = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *Insight) SetSummary(v string) *Insight {
+	s.Summary = &v
+	return s
+}
+
+// SetTopAnomalousServices sets the TopAnomalousServices field's value.
+func (s *Insight) SetTopAnomalousServices(v []*AnomalousService) *Insight {
+	s.TopAnomalousServices = v
+	return s
+}
+
+// X-Ray reevaluates insights periodically until they are resolved, and records
+// each intermediate state in an event. You can review incident events in the
+// Impact Timeline on the Inspect page in the X-Ray console.
+type InsightEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The impact statistics of the client side service. This includes the number
+	// of requests to the client service and whether the requests were faults or
+	// okay.
+	ClientRequestImpactStatistics *RequestImpactStatistics `type:"structure"`
+
+	// The time, in Unix seconds, at which the event was recorded.
+	EventTime *time.Time `type:"timestamp"`
+
+	// The impact statistics of the root cause service. This includes the number
+	// of requests to the client service and whether the requests were faults or
+	// okay.
+	RootCauseServiceRequestImpactStatistics *RequestImpactStatistics `type:"structure"`
+
+	// A brief description of the event.
+	Summary *string `type:"string"`
+
+	// The service during the event that is most impacted by the incident.
+	TopAnomalousServices []*AnomalousService `type:"list"`
+}
+
+// String returns the string representation
+func (s InsightEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InsightEvent) GoString() string {
+	return s.String()
+}
+
+// SetClientRequestImpactStatistics sets the ClientRequestImpactStatistics field's value.
+func (s *InsightEvent) SetClientRequestImpactStatistics(v *RequestImpactStatistics) *InsightEvent {
+	s.ClientRequestImpactStatistics = v
+	return s
+}
+
+// SetEventTime sets the EventTime field's value.
+func (s *InsightEvent) SetEventTime(v time.Time) *InsightEvent {
+	s.EventTime = &v
+	return s
+}
+
+// SetRootCauseServiceRequestImpactStatistics sets the RootCauseServiceRequestImpactStatistics field's value.
+func (s *InsightEvent) SetRootCauseServiceRequestImpactStatistics(v *RequestImpactStatistics) *InsightEvent {
+	s.RootCauseServiceRequestImpactStatistics = v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *InsightEvent) SetSummary(v string) *InsightEvent {
+	s.Summary = &v
+	return s
+}
+
+// SetTopAnomalousServices sets the TopAnomalousServices field's value.
+func (s *InsightEvent) SetTopAnomalousServices(v []*AnomalousService) *InsightEvent {
+	s.TopAnomalousServices = v
+	return s
+}
+
+// The connection between two service in an insight impact graph.
+type InsightImpactGraphEdge struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the edge. Unique within a service map.
+	ReferenceId *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s InsightImpactGraphEdge) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InsightImpactGraphEdge) GoString() string {
+	return s.String()
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *InsightImpactGraphEdge) SetReferenceId(v int64) *InsightImpactGraphEdge {
+	s.ReferenceId = &v
+	return s
+}
+
+// Information about an application that processed requests, users that made
+// requests, or downstream services, resources, and applications that an application
+// used.
+type InsightImpactGraphService struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier of the AWS account in which the service runs.
+	AccountId *string `type:"string"`
+
+	// Connections to downstream services.
+	Edges []*InsightImpactGraphEdge `type:"list"`
+
+	// The canonical name of the service.
+	Name *string `type:"string"`
+
+	// A list of names for the service, including the canonical name.
+	Names []*string `type:"list"`
+
+	// Identifier for the service. Unique within the service map.
+	ReferenceId *int64 `type:"integer"`
+
+	// Identifier for the service. Unique within the service map.
+	//
+	//    * AWS Resource - The type of an AWS resource. For example, AWS::EC2::Instance
+	//    for an application running on Amazon EC2 or AWS::DynamoDB::Table for an
+	//    Amazon DynamoDB table that the application used.
+	//
+	//    * AWS Service - The type of an AWS service. For example, AWS::DynamoDB
+	//    for downstream calls to Amazon DynamoDB that didn't target a specific
+	//    table.
+	//
+	//    * AWS Service - The type of an AWS service. For example, AWS::DynamoDB
+	//    for downstream calls to Amazon DynamoDB that didn't target a specific
+	//    table.
+	//
+	//    * remote - A downstream service of indeterminate type.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s InsightImpactGraphService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InsightImpactGraphService) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *InsightImpactGraphService) SetAccountId(v string) *InsightImpactGraphService {
+	s.AccountId = &v
+	return s
+}
+
+// SetEdges sets the Edges field's value.
+func (s *InsightImpactGraphService) SetEdges(v []*InsightImpactGraphEdge) *InsightImpactGraphService {
+	s.Edges = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *InsightImpactGraphService) SetName(v string) *InsightImpactGraphService {
+	s.Name = &v
+	return s
+}
+
+// SetNames sets the Names field's value.
+func (s *InsightImpactGraphService) SetNames(v []*string) *InsightImpactGraphService {
+	s.Names = v
+	return s
+}
+
+// SetReferenceId sets the ReferenceId field's value.
+func (s *InsightImpactGraphService) SetReferenceId(v int64) *InsightImpactGraphService {
+	s.ReferenceId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *InsightImpactGraphService) SetType(v string) *InsightImpactGraphService {
+	s.Type = &v
+	return s
+}
+
+// Information that describes an insight.
+type InsightSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Categories The categories that label and describe the type of insight.
+	Categories []*string `type:"list"`
+
+	// The impact statistics of the client side service. This includes the number
+	// of requests to the client service and whether the requests were faults or
+	// okay.
+	ClientRequestImpactStatistics *RequestImpactStatistics `type:"structure"`
+
+	// The time, in Unix seconds, at which the insight ended.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the group that the insight belongs to.
+	GroupARN *string `min:"1" type:"string"`
+
+	// The name of the group that the insight belongs to.
+	GroupName *string `min:"1" type:"string"`
+
+	// The insights unique identifier.
+	InsightId *string `type:"string"`
+
+	// The time, in Unix seconds, that the insight was last updated.
+	LastUpdateTime *time.Time `type:"timestamp"`
+
+	RootCauseServiceId *ServiceId `type:"structure"`
+
+	// The impact statistics of the root cause service. This includes the number
+	// of requests to the client service and whether the requests were faults or
+	// okay.
+	RootCauseServiceRequestImpactStatistics *RequestImpactStatistics `type:"structure"`
+
+	// The time, in Unix seconds, at which the insight began.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The current state of the insight.
+	State *string `type:"string" enum:"InsightState"`
+
+	// A brief description of the insight.
+	Summary *string `type:"string"`
+
+	// The service within the insight that is most impacted by the incident.
+	TopAnomalousServices []*AnomalousService `type:"list"`
+}
+
+// String returns the string representation
+func (s InsightSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InsightSummary) GoString() string {
+	return s.String()
+}
+
+// SetCategories sets the Categories field's value.
+func (s *InsightSummary) SetCategories(v []*string) *InsightSummary {
+	s.Categories = v
+	return s
+}
+
+// SetClientRequestImpactStatistics sets the ClientRequestImpactStatistics field's value.
+func (s *InsightSummary) SetClientRequestImpactStatistics(v *RequestImpactStatistics) *InsightSummary {
+	s.ClientRequestImpactStatistics = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *InsightSummary) SetEndTime(v time.Time) *InsightSummary {
+	s.EndTime = &v
+	return s
+}
+
+// SetGroupARN sets the GroupARN field's value.
+func (s *InsightSummary) SetGroupARN(v string) *InsightSummary {
+	s.GroupARN = &v
+	return s
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *InsightSummary) SetGroupName(v string) *InsightSummary {
+	s.GroupName = &v
+	return s
+}
+
+// SetInsightId sets the InsightId field's value.
+func (s *InsightSummary) SetInsightId(v string) *InsightSummary {
+	s.InsightId = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *InsightSummary) SetLastUpdateTime(v time.Time) *InsightSummary {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetRootCauseServiceId sets the RootCauseServiceId field's value.
+func (s *InsightSummary) SetRootCauseServiceId(v *ServiceId) *InsightSummary {
+	s.RootCauseServiceId = v
+	return s
+}
+
+// SetRootCauseServiceRequestImpactStatistics sets the RootCauseServiceRequestImpactStatistics field's value.
+func (s *InsightSummary) SetRootCauseServiceRequestImpactStatistics(v *RequestImpactStatistics) *InsightSummary {
+	s.RootCauseServiceRequestImpactStatistics = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *InsightSummary) SetStartTime(v time.Time) *InsightSummary {
+	s.StartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *InsightSummary) SetState(v string) *InsightSummary {
+	s.State = &v
+	return s
+}
+
+// SetSummary sets the Summary field's value.
+func (s *InsightSummary) SetSummary(v string) *InsightSummary {
+	s.Summary = &v
+	return s
+}
+
+// SetTopAnomalousServices sets the TopAnomalousServices field's value.
+func (s *InsightSummary) SetTopAnomalousServices(v []*AnomalousService) *InsightSummary {
+	s.TopAnomalousServices = v
+	return s
+}
+
 // The structure containing configurations related to insights.
 type InsightsConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5164,6 +6586,48 @@ func (s PutTraceSegmentsOutput) GoString() string {
 // SetUnprocessedTraceSegments sets the UnprocessedTraceSegments field's value.
 func (s *PutTraceSegmentsOutput) SetUnprocessedTraceSegments(v []*UnprocessedTraceSegment) *PutTraceSegmentsOutput {
 	s.UnprocessedTraceSegments = v
+	return s
+}
+
+// Statistics that describe how the incident has impacted a service.
+type RequestImpactStatistics struct {
+	_ struct{} `type:"structure"`
+
+	// The number of requests that have resulted in a fault,
+	FaultCount *int64 `type:"long"`
+
+	// The number of successful requests.
+	OkCount *int64 `type:"long"`
+
+	// The total number of requests to the service.
+	TotalCount *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s RequestImpactStatistics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequestImpactStatistics) GoString() string {
+	return s.String()
+}
+
+// SetFaultCount sets the FaultCount field's value.
+func (s *RequestImpactStatistics) SetFaultCount(v int64) *RequestImpactStatistics {
+	s.FaultCount = &v
+	return s
+}
+
+// SetOkCount sets the OkCount field's value.
+func (s *RequestImpactStatistics) SetOkCount(v int64) *RequestImpactStatistics {
+	s.OkCount = &v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *RequestImpactStatistics) SetTotalCount(v int64) *RequestImpactStatistics {
+	s.TotalCount = &v
 	return s
 }
 
@@ -6749,6 +8213,9 @@ type TimeSeriesServiceStatistics struct {
 	// The response time histogram for the selected entities.
 	ResponseTimeHistogram []*HistogramEntry `type:"list"`
 
+	// The forecasted high and low fault count values.
+	ServiceForecastStatistics *ForecastStatistics `type:"structure"`
+
 	// Response statistics for a service.
 	ServiceSummaryStatistics *ServiceStatistics `type:"structure"`
 
@@ -6775,6 +8242,12 @@ func (s *TimeSeriesServiceStatistics) SetEdgeSummaryStatistics(v *EdgeStatistics
 // SetResponseTimeHistogram sets the ResponseTimeHistogram field's value.
 func (s *TimeSeriesServiceStatistics) SetResponseTimeHistogram(v []*HistogramEntry) *TimeSeriesServiceStatistics {
 	s.ResponseTimeHistogram = v
+	return s
+}
+
+// SetServiceForecastStatistics sets the ServiceForecastStatistics field's value.
+func (s *TimeSeriesServiceStatistics) SetServiceForecastStatistics(v *ForecastStatistics) *TimeSeriesServiceStatistics {
+	s.ServiceForecastStatistics = v
 	return s
 }
 
@@ -7518,6 +8991,34 @@ func EncryptionType_Values() []string {
 	return []string{
 		EncryptionTypeNone,
 		EncryptionTypeKms,
+	}
+}
+
+const (
+	// InsightCategoryFault is a InsightCategory enum value
+	InsightCategoryFault = "FAULT"
+)
+
+// InsightCategory_Values returns all elements of the InsightCategory enum
+func InsightCategory_Values() []string {
+	return []string{
+		InsightCategoryFault,
+	}
+}
+
+const (
+	// InsightStateActive is a InsightState enum value
+	InsightStateActive = "ACTIVE"
+
+	// InsightStateClosed is a InsightState enum value
+	InsightStateClosed = "CLOSED"
+)
+
+// InsightState_Values returns all elements of the InsightState enum
+func InsightState_Values() []string {
+	return []string{
+		InsightStateActive,
+		InsightStateClosed,
 	}
 }
 

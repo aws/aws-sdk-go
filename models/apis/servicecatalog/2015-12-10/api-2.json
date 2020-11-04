@@ -2410,7 +2410,7 @@
         "PortfolioId":{"shape":"Id"},
         "OrganizationParentId":{"shape":"Id"},
         "PageToken":{"shape":"PageToken"},
-        "PageSize":{"shape":"PageSize"}
+        "PageSize":{"shape":"PageSizeMax100"}
       }
     },
     "ListPortfolioAccessOutput":{
@@ -2696,6 +2696,11 @@
     "PageSize":{
       "type":"integer",
       "max":20,
+      "min":0
+    },
+    "PageSizeMax100":{
+      "type":"integer",
+      "max":100,
       "min":0
     },
     "PageToken":{

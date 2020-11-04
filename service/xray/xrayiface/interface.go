@@ -98,6 +98,28 @@ type XRayAPI interface {
 	GetGroupsPages(*xray.GetGroupsInput, func(*xray.GetGroupsOutput, bool) bool) error
 	GetGroupsPagesWithContext(aws.Context, *xray.GetGroupsInput, func(*xray.GetGroupsOutput, bool) bool, ...request.Option) error
 
+	GetInsight(*xray.GetInsightInput) (*xray.GetInsightOutput, error)
+	GetInsightWithContext(aws.Context, *xray.GetInsightInput, ...request.Option) (*xray.GetInsightOutput, error)
+	GetInsightRequest(*xray.GetInsightInput) (*request.Request, *xray.GetInsightOutput)
+
+	GetInsightEvents(*xray.GetInsightEventsInput) (*xray.GetInsightEventsOutput, error)
+	GetInsightEventsWithContext(aws.Context, *xray.GetInsightEventsInput, ...request.Option) (*xray.GetInsightEventsOutput, error)
+	GetInsightEventsRequest(*xray.GetInsightEventsInput) (*request.Request, *xray.GetInsightEventsOutput)
+
+	GetInsightEventsPages(*xray.GetInsightEventsInput, func(*xray.GetInsightEventsOutput, bool) bool) error
+	GetInsightEventsPagesWithContext(aws.Context, *xray.GetInsightEventsInput, func(*xray.GetInsightEventsOutput, bool) bool, ...request.Option) error
+
+	GetInsightImpactGraph(*xray.GetInsightImpactGraphInput) (*xray.GetInsightImpactGraphOutput, error)
+	GetInsightImpactGraphWithContext(aws.Context, *xray.GetInsightImpactGraphInput, ...request.Option) (*xray.GetInsightImpactGraphOutput, error)
+	GetInsightImpactGraphRequest(*xray.GetInsightImpactGraphInput) (*request.Request, *xray.GetInsightImpactGraphOutput)
+
+	GetInsightSummaries(*xray.GetInsightSummariesInput) (*xray.GetInsightSummariesOutput, error)
+	GetInsightSummariesWithContext(aws.Context, *xray.GetInsightSummariesInput, ...request.Option) (*xray.GetInsightSummariesOutput, error)
+	GetInsightSummariesRequest(*xray.GetInsightSummariesInput) (*request.Request, *xray.GetInsightSummariesOutput)
+
+	GetInsightSummariesPages(*xray.GetInsightSummariesInput, func(*xray.GetInsightSummariesOutput, bool) bool) error
+	GetInsightSummariesPagesWithContext(aws.Context, *xray.GetInsightSummariesInput, func(*xray.GetInsightSummariesOutput, bool) bool, ...request.Option) error
+
 	GetSamplingRules(*xray.GetSamplingRulesInput) (*xray.GetSamplingRulesOutput, error)
 	GetSamplingRulesWithContext(aws.Context, *xray.GetSamplingRulesInput, ...request.Option) (*xray.GetSamplingRulesOutput, error)
 	GetSamplingRulesRequest(*xray.GetSamplingRulesInput) (*request.Request, *xray.GetSamplingRulesOutput)

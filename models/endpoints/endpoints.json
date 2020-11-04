@@ -2065,6 +2065,12 @@
             },
             "hostname" : "fips.eks.us-east-2.amazonaws.com"
           },
+          "fips-us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "fips.eks.us-west-1.amazonaws.com"
+          },
           "fips-us-west-2" : {
             "credentialScope" : {
               "region" : "us-west-2"
@@ -3362,6 +3368,30 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "eu-west-3" : { },
+          "fips-us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "lakeformation-fips.us-east-1.amazonaws.com"
+          },
+          "fips-us-east-2" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "lakeformation-fips.us-east-2.amazonaws.com"
+          },
+          "fips-us-west-1" : {
+            "credentialScope" : {
+              "region" : "us-west-1"
+            },
+            "hostname" : "lakeformation-fips.us-west-1.amazonaws.com"
+          },
+          "fips-us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "lakeformation-fips.us-west-2.amazonaws.com"
+          },
           "sa-east-1" : { },
           "us-east-1" : { },
           "us-east-2" : { },
@@ -4228,6 +4258,7 @@
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
           "ap-south-1" : { },
+          "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ca-central-1" : { },
           "eu-central-1" : { },
@@ -7708,6 +7739,18 @@
           "protocols" : [ "http", "https" ]
         },
         "endpoints" : {
+          "fips-us-gov-east-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-east-1"
+            },
+            "hostname" : "eks.us-gov-east-1.amazonaws.com"
+          },
+          "fips-us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "eks.us-gov-west-1.amazonaws.com"
+          },
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
         }
@@ -7915,6 +7958,7 @@
           "protocols" : [ "https" ]
         },
         "endpoints" : {
+          "us-gov-east-1" : { },
           "us-gov-west-1" : { },
           "us-gov-west-1-fips" : {
             "credentialScope" : {
@@ -9054,6 +9098,16 @@
       }
     },
     "services" : {
+      "api.ecr" : {
+        "endpoints" : {
+          "us-isob-east-1" : {
+            "credentialScope" : {
+              "region" : "us-isob-east-1"
+            },
+            "hostname" : "api.ecr.us-isob-east-1.sc2s.sgov.gov"
+          }
+        }
+      },
       "application-autoscaling" : {
         "defaults" : {
           "protocols" : [ "http", "https" ]
@@ -9113,6 +9167,11 @@
         "defaults" : {
           "protocols" : [ "http", "https" ]
         },
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "ecs" : {
         "endpoints" : {
           "us-isob-east-1" : { }
         }

@@ -1184,6 +1184,8 @@
         "CapacityReservation$EbsOptimized": "<p>Indicates whether the Capacity Reservation supports EBS-optimized instances. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS- optimized instance.</p>",
         "CapacityReservation$EphemeralStorage": "<p>Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.</p>",
         "ClassicLinkDnsSupport$ClassicLinkDnsSupported": "<p>Indicates whether ClassicLink DNS support is enabled for the VPC.</p>",
+        "ClientConnectOptions$Enabled": "<p>Indicates whether client connect options are enabled. The default is <code>false</code> (not enabled).</p>",
+        "ClientConnectResponseOptions$Enabled": "<p>Indicates whether client connect options are enabled.</p>",
         "ClientVpnEndpoint$SplitTunnel": "<p>Indicates whether split-tunnel is enabled in the AWS Client VPN endpoint.</p> <p>For information about split-tunnel VPN endpoints, see <a href=\"https://docs.aws.amazon.com/vpn/latest/clientvpn-admin/split-tunnel-vpn.html\">Split-Tunnel AWS Client VPN Endpoint</a> in the <i>AWS Client VPN Administrator Guide</i>.</p>",
         "ConfirmProductInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ConfirmProductInstanceResult$Return": "<p>The return value of the request. Returns <code>true</code> if the specified product code is owned by the requester and associated with the specified instance.</p>",
@@ -1996,13 +1998,13 @@
       }
     },
     "CapacityReservationOptions": {
-      "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p> <note> <p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p> </note> <p>For more information about Capacity Reservations, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html\">EC2 Fleet Example Configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p> <note> <p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p> </note> <p>For more information about Capacity Reservations, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html\">EC2 Fleet example configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
         "OnDemandOptions$CapacityReservationOptions": "<p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Supported only for fleets of type <code>instant</code>.</p>"
       }
     },
     "CapacityReservationOptionsRequest": {
-      "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p> <note> <p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p> </note> <p>For more information about Capacity Reservations, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html\">EC2 Fleet Example Configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "base": "<p>Describes the strategy for using unused Capacity Reservations for fulfilling On-Demand capacity.</p> <note> <p>This strategy can only be used if the EC2 Fleet is of type <code>instant</code>.</p> </note> <p>For more information about Capacity Reservations, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">On-Demand Capacity Reservations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For examples of using Capacity Reservations in an EC2 Fleet, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-examples.html\">EC2 Fleet example configurations</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
       "refs": {
         "OnDemandOptionsRequest$CapacityReservationOptions": "<p>The strategy for using unused Capacity Reservations for fulfilling On-Demand capacity. Supported only for fleets of type <code>instant</code>.</p>"
       }
@@ -2190,6 +2192,19 @@
         "ClientCertificateRevocationListStatus$Code": "<p>The state of the client certificate revocation list.</p>"
       }
     },
+    "ClientConnectOptions": {
+      "base": "<p>The options for managing connection authorization for new client connections.</p>",
+      "refs": {
+        "CreateClientVpnEndpointRequest$ClientConnectOptions": "<p>The options for managing connection authorization for new client connections.</p>",
+        "ModifyClientVpnEndpointRequest$ClientConnectOptions": "<p>The options for managing connection authorization for new client connections.</p>"
+      }
+    },
+    "ClientConnectResponseOptions": {
+      "base": "<p>The options for managing connection authorization for new client connections.</p>",
+      "refs": {
+        "ClientVpnEndpoint$ClientConnectOptions": "<p>The options for managing connection authorization for new client connections.</p>"
+      }
+    },
     "ClientData": {
       "base": "<p>Describes the client-specific data.</p>",
       "refs": {
@@ -2278,6 +2293,18 @@
       "base": "<p>Describes a Client VPN endpoint.</p>",
       "refs": {
         "EndpointSet$member": null
+      }
+    },
+    "ClientVpnEndpointAttributeStatus": {
+      "base": "<p>Describes the status of the Client VPN endpoint attribute.</p>",
+      "refs": {
+        "ClientConnectResponseOptions$Status": "<p>The status of any updates to the client connect options.</p>"
+      }
+    },
+    "ClientVpnEndpointAttributeStatusCode": {
+      "base": null,
+      "refs": {
+        "ClientVpnEndpointAttributeStatus$Code": "<p>The status code.</p>"
       }
     },
     "ClientVpnEndpointId": {
@@ -6036,9 +6063,9 @@
       }
     },
     "EnclaveOptionsRequest": {
-      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "base": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html\"> What is AWS Nitro Enclaves?</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p>",
       "refs": {
-        "RunInstancesRequest$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>You can't enable AWS Nitro Enclaves and hibernation on the same instance. For more information about AWS Nitro Enclaves requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitro-enclave.html#nitro-enclave-reqs\"> AWS Nitro Enclaves</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>"
+        "RunInstancesRequest$EnclaveOptions": "<p>Indicates whether the instance is enabled for AWS Nitro Enclaves. For more information, see <a href=\"https://docs.aws.amazon.com/enclaves/latest/user/nitro-enclave.html\"> What is AWS Nitro Enclaves?</a> in the <i>AWS Nitro Enclaves User Guide</i>.</p> <p>You can't enable AWS Nitro Enclaves and hibernation on the same instance.</p>"
       }
     },
     "EndDateType": {
@@ -6505,10 +6532,41 @@
         "OnDemandOptionsRequest$AllocationStrategy": "<p>The order of the launch template overrides to use in fulfilling On-Demand capacity. If you specify <code>lowest-price</code>, EC2 Fleet uses price to determine the order, launching the lowest price first. If you specify <code>prioritized</code>, EC2 Fleet uses the priority that you assigned to each launch template override, launching the highest priority first. If you do not specify a value, EC2 Fleet defaults to <code>lowest-price</code>.</p>"
       }
     },
+    "FleetReplacementStrategy": {
+      "base": null,
+      "refs": {
+        "FleetSpotCapacityRebalance$ReplacementStrategy": "<p>To allow EC2 Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, specify <code>launch</code>. Only available for fleets of type <code>maintain</code>.</p> <note> <p>When a replacement instance is launched, the instance marked for rebalance is not automatically terminated. You can terminate it, or you can wait until Amazon EC2 interrupts it. You are charged for both instances while they are running.</p> </note>",
+        "FleetSpotCapacityRebalanceRequest$ReplacementStrategy": "<p>The replacement strategy to use. Only available for fleets of type <code>maintain</code>.</p> <p>To allow EC2 Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for an existing Spot Instance in the fleet, specify <code>launch</code>. You must specify a value, otherwise you get an error.</p> <note> <p>When a replacement instance is launched, the instance marked for rebalance is not automatically terminated. You can terminate it, or you can wait until Amazon EC2 interrupts it. You are charged for all instances while they are running.</p> </note>"
+      }
+    },
     "FleetSet": {
       "base": null,
       "refs": {
         "DescribeFleetsResult$Fleets": "<p>Information about the EC2 Fleets.</p>"
+      }
+    },
+    "FleetSpotCapacityRebalance": {
+      "base": "<p>The strategy to use when Amazon EC2 emits a signal that your Spot Instance is at an elevated risk of being interrupted.</p>",
+      "refs": {
+        "FleetSpotMaintenanceStrategies$CapacityRebalance": "<p>The strategy to use when Amazon EC2 emits a signal that your Spot Instance is at an elevated risk of being interrupted.</p>"
+      }
+    },
+    "FleetSpotCapacityRebalanceRequest": {
+      "base": "<p>The Spot Instance replacement strategy to use when Amazon EC2 emits a signal that your Spot Instance is at an elevated risk of being interrupted. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-configuration-strategies.html#ec2-fleet-capacity-rebalance\">Capacity rebalancing</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+      "refs": {
+        "FleetSpotMaintenanceStrategiesRequest$CapacityRebalance": "<p>The strategy to use when Amazon EC2 emits a signal that your Spot Instance is at an elevated risk of being interrupted.</p>"
+      }
+    },
+    "FleetSpotMaintenanceStrategies": {
+      "base": "<p>The strategies for managing your Spot Instances that are at an elevated risk of being interrupted.</p>",
+      "refs": {
+        "SpotOptions$MaintenanceStrategies": "<p>The strategies for managing your workloads on your Spot Instances that will be interrupted. Currently only the capacity rebalance strategy is available.</p>"
+      }
+    },
+    "FleetSpotMaintenanceStrategiesRequest": {
+      "base": "<p>The strategies for managing your Spot Instances that are at an elevated risk of being interrupted.</p>",
+      "refs": {
+        "SpotOptionsRequest$MaintenanceStrategies": "<p>The strategies for managing your Spot Instances that are at an elevated risk of being interrupted.</p>"
       }
     },
     "FleetStateCode": {
@@ -6522,7 +6580,7 @@
     "FleetType": {
       "base": null,
       "refs": {
-        "CreateFleetRequest$Type": "<p>The type of the request. By default, the EC2 Fleet places an asynchronous request for your desired capacity, and maintains it by replenishing interrupted Spot Instances (<code>maintain</code>). A value of <code>instant</code> places a synchronous one-time request, and returns errors for any instances that could not be launched. A value of <code>request</code> places an asynchronous one-time request without maintaining capacity or submitting requests in alternative capacity pools if capacity is unavailable. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-configuration-strategies.html#ec2-fleet-request-type\">EC2 Fleet Request Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
+        "CreateFleetRequest$Type": "<p>The type of request. The default value is <code>maintain</code>.</p> <ul> <li> <p> <code>maintain</code> - The EC2 Fleet plaees an asynchronous request for your desired capacity, and continues to maintain your desired Spot capacity by replenishing interrupted Spot Instances.</p> </li> <li> <p> <code>request</code> - The EC2 Fleet places an asynchronous one-time request for your desired capacity, but does submit Spot requests in alternative capacity pools if Spot capacity is unavailable, and does not maintain Spot capacity if Spot Instances are interrupted.</p> </li> <li> <p> <code>instant</code> - The EC2 Fleet places a synchronous one-time request for your desired capacity, and returns errors for any instances that could not be launched.</p> </li> </ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-configuration-strategies.html#ec2-fleet-request-type\">EC2 Fleet request types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "FleetData$Type": "<p>The type of request. Indicates whether the EC2 Fleet only <code>requests</code> the target capacity, or also attempts to <code>maintain</code> it. If you request a certain target capacity, EC2 Fleet only places the required requests; it does not attempt to replenish instances if capacity is diminished, and it does not submit requests in alternative capacity pools if capacity is unavailable. To maintain a certain target capacity, EC2 Fleet places the required requests to meet this target capacity. It also automatically replenishes any interrupted Spot Instances. Default: <code>maintain</code>.</p>",
         "SpotFleetRequestConfigData$Type": "<p>The type of request. Indicates whether the Spot Fleet only requests the target capacity or also attempts to maintain it. When this value is <code>request</code>, the Spot Fleet only places the required requests. It does not attempt to replenish Spot Instances if capacity is diminished, nor does it submit requests in alternative Spot pools if capacity is not available. When this value is <code>maintain</code>, the Spot Fleet maintains the target capacity. The Spot Fleet places the required requests to meet capacity and automatically replenishes any interrupted instances. Default: <code>maintain</code>. <code>instant</code> is listed but is not used by Spot Fleet.</p>"
       }
@@ -11212,6 +11270,12 @@
       "refs": {
       }
     },
+    "ReplacementStrategy": {
+      "base": null,
+      "refs": {
+        "SpotCapacityRebalance$ReplacementStrategy": "<p>The replacement strategy to use. Only available for fleets of type <code>maintain</code>. You must specify a value, otherwise you get an error.</p> <p>To allow Spot Fleet to launch a replacement Spot Instance when an instance rebalance notification is emitted for a Spot Instance in the fleet, specify <code>launch</code>.</p> <note> <p>When a replacement instance is launched, the instance marked for rebalance is not automatically terminated. You can terminate it, or you can wait until Amazon EC2 interrupts it. You are charged for all instances while they are running.</p> </note>"
+      }
+    },
     "ReportInstanceReasonCodes": {
       "base": null,
       "refs": {
@@ -12239,6 +12303,12 @@
         "SpotOptionsRequest$AllocationStrategy": "<p>Indicates how to allocate the target Spot Instance capacity across the Spot Instance pools specified by the EC2 Fleet.</p> <p>If the allocation strategy is <code>lowest-price</code>, EC2 Fleet launches instances from the Spot Instance pools with the lowest price. This is the default allocation strategy.</p> <p>If the allocation strategy is <code>diversified</code>, EC2 Fleet launches instances from all of the Spot Instance pools that you specify.</p> <p>If the allocation strategy is <code>capacity-optimized</code>, EC2 Fleet launches instances from Spot Instance pools with optimal capacity for the number of instances that are launching.</p>"
       }
     },
+    "SpotCapacityRebalance": {
+      "base": "<p>The Spot Instance replacement strategy to use when Amazon EC2 emits a signal that your Spot Instance is at an elevated risk of being interrupted. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-fleet-configuration-strategies.html#spot-fleet-capacity-rebalance\">Capacity rebalancing</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",
+      "refs": {
+        "SpotMaintenanceStrategies$CapacityRebalance": "<p>The strategy to use when Amazon EC2 emits a signal that your Spot Instance is at an elevated risk of being interrupted.</p>"
+      }
+    },
     "SpotDatafeedSubscription": {
       "base": "<p>Describes the data feed for a Spot Instance.</p>",
       "refs": {
@@ -12365,6 +12435,12 @@
         "RequestSpotInstancesRequest$Type": "<p>The Spot Instance request type.</p> <p>Default: <code>one-time</code> </p>",
         "SpotInstanceRequest$Type": "<p>The Spot Instance request type.</p>",
         "SpotMarketOptions$SpotInstanceType": "<p>The Spot Instance request type. For <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances\">RunInstances</a>, persistent Spot Instance requests are only supported when <b>InstanceInterruptionBehavior</b> is set to either <code>hibernate</code> or <code>stop</code>.</p>"
+      }
+    },
+    "SpotMaintenanceStrategies": {
+      "base": "<p>The strategies for managing your Spot Instances that are at an elevated risk of being interrupted.</p>",
+      "refs": {
+        "SpotFleetRequestConfigData$SpotMaintenanceStrategies": "<p>The strategies for managing your Spot Instances that are at an elevated risk of being interrupted.</p>"
       }
     },
     "SpotMarketOptions": {
@@ -12641,6 +12717,8 @@
         "ClassicLinkInstance$VpcId": "<p>The ID of the VPC.</p>",
         "ClassicLoadBalancer$Name": "<p>The name of the load balancer.</p>",
         "ClientCertificateRevocationListStatus$Message": "<p>A message about the status of the client certificate revocation list, if applicable.</p>",
+        "ClientConnectOptions$LambdaFunctionArn": "<p>The Amazon Resource Name (ARN) of the AWS Lambda function used for connection authorization.</p>",
+        "ClientConnectResponseOptions$LambdaFunctionArn": "<p>The Amazon Resource Name (ARN) of the AWS Lambda function used for connection authorization.</p>",
         "ClientData$Comment": "<p>A user-defined comment about the disk upload.</p>",
         "ClientVpnAuthorizationRuleStatus$Message": "<p>A message about the status of the authorization rule, if applicable.</p>",
         "ClientVpnConnection$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint to which the client is connected.</p>",
@@ -12664,6 +12742,7 @@
         "ClientVpnEndpoint$ClientCidrBlock": "<p>The IPv4 address range, in CIDR notation, from which client IP addresses are assigned.</p>",
         "ClientVpnEndpoint$ServerCertificateArn": "<p>The ARN of the server certificate.</p>",
         "ClientVpnEndpoint$SelfServicePortalUrl": "<p>The URL of the self-service portal.</p>",
+        "ClientVpnEndpointAttributeStatus$Message": "<p>The status message.</p>",
         "ClientVpnEndpointStatus$Message": "<p>A message about the status of the Client VPN endpoint.</p>",
         "ClientVpnRoute$ClientVpnEndpointId": "<p>The ID of the Client VPN endpoint with which the route is associated.</p>",
         "ClientVpnRoute$DestinationCidr": "<p>The IPv4 address range, in CIDR notation, of the route destination.</p>",
@@ -14283,7 +14362,7 @@
         "CreateCustomerGatewayRequest$TagSpecifications": "<p>The tags to apply to the customer gateway.</p>",
         "CreateDhcpOptionsRequest$TagSpecifications": "<p>The tags to assign to the DHCP option.</p>",
         "CreateEgressOnlyInternetGatewayRequest$TagSpecifications": "<p>The tags to assign to the egress-only internet gateway.</p>",
-        "CreateFleetRequest$TagSpecifications": "<p>The key-value pair for tagging the EC2 Fleet request on creation. The value for <code>ResourceType</code> must be <code>fleet</code>, otherwise the fleet request fails. To tag instances at launch, specify the tags in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template\">launch template</a>. For information about tagging after launch, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources\">Tagging Your Resources</a>. </p>",
+        "CreateFleetRequest$TagSpecifications": "<p>The key-value pair for tagging the EC2 Fleet request on creation. The value for <code>ResourceType</code> must be <code>fleet</code>, otherwise the fleet request fails. To tag instances at launch, specify the tags in the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#create-launch-template\">launch template</a>. For information about tagging after launch, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-resources\">Tagging your resources</a>.</p>",
         "CreateFlowLogsRequest$TagSpecifications": "<p>The tags to apply to the flow logs.</p>",
         "CreateFpgaImageRequest$TagSpecifications": "<p>The tags to apply to the FPGA image during creation.</p>",
         "CreateInstanceExportTaskRequest$TagSpecifications": "<p>The tags to apply to the instance export task during creation.</p>",
@@ -15399,6 +15478,7 @@
       "base": null,
       "refs": {
         "AssociateTransitGatewayMulticastDomainRequest$SubnetIds": "<p>The IDs of the subnets to associate with the transit gateway multicast domain.</p>",
+        "ClientVpnConnection$PostureComplianceStatuses": "<p>The statuses returned by the client connect handler for posture compliance, if applicable.</p>",
         "ClientVpnEndpoint$DnsServers": "<p>Information about the DNS servers to be used for DNS resolution. </p>",
         "CoipPool$PoolCidrs": "<p>The address ranges of the address pool.</p>",
         "ConnectionNotification$ConnectionEvents": "<p>The events for the notification. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>",
