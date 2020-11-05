@@ -2415,7 +2415,8 @@
         "UPDATING",
         "DELETING",
         "ACTIVE",
-        "REGION_DISABLED"
+        "REGION_DISABLED",
+        "INACCESSIBLE_ENCRYPTION_CREDENTIALS"
       ]
     },
     "ReplicaStatusDescription":{"type":"string"},

@@ -355,7 +355,7 @@ func (c *RDS) AddTagsToResourceRequest(input *AddTagsToResourceInput) (req *requ
 //
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
@@ -3655,7 +3655,7 @@ func (c *RDS) DeleteDBProxyRequest(input *DeleteDBProxyInput) (req *request.Requ
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
 //   The requested operation can't be performed while the proxy is in this state.
@@ -4335,7 +4335,7 @@ func (c *RDS) DeregisterDBProxyTargetsRequest(input *DeregisterDBProxyTargetsInp
 //
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeInvalidDBProxyStateFault "InvalidDBProxyStateFault"
 //   The requested operation can't be performed while the proxy is in this state.
@@ -6562,7 +6562,7 @@ func (c *RDS) DescribeDBProxiesRequest(input *DescribeDBProxiesInput) (req *requ
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/DescribeDBProxies
 func (c *RDS) DescribeDBProxies(input *DescribeDBProxiesInput) (*DescribeDBProxiesOutput, error) {
@@ -6701,7 +6701,7 @@ func (c *RDS) DescribeDBProxyTargetGroupsRequest(input *DescribeDBProxyTargetGro
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
@@ -6846,7 +6846,7 @@ func (c *RDS) DescribeDBProxyTargetsRequest(input *DescribeDBProxyTargetsInput) 
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetNotFoundFault "DBProxyTargetNotFoundFault"
 //   The specified RDS DB instance or Aurora DB cluster isn't available for a
@@ -9849,7 +9849,7 @@ func (c *RDS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
@@ -10823,7 +10823,7 @@ func (c *RDS) ModifyDBProxyRequest(input *ModifyDBProxyInput) (req *request.Requ
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyAlreadyExistsFault "DBProxyTargetExistsFault"
 //   The specified proxy name must be unique for all proxies owned by your AWS
@@ -10910,7 +10910,7 @@ func (c *RDS) ModifyDBProxyTargetGroupRequest(input *ModifyDBProxyTargetGroupInp
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
@@ -11901,7 +11901,7 @@ func (c *RDS) RegisterDBProxyTargetsRequest(input *RegisterDBProxyTargetsInput) 
 // Returned Error Codes:
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
@@ -12373,7 +12373,7 @@ func (c *RDS) RemoveTagsFromResourceRequest(input *RemoveTagsFromResourceInput) 
 //
 //   * ErrCodeDBProxyNotFoundFault "DBProxyNotFoundFault"
 //   The specified proxy name doesn't correspond to a proxy owned by your AWS
-//   accoutn in the specified AWS Region.
+//   account in the specified AWS Region.
 //
 //   * ErrCodeDBProxyTargetGroupNotFoundFault "DBProxyTargetGroupNotFoundFault"
 //   The specified target group isn't available for a proxy owned by your AWS
@@ -18071,28 +18071,8 @@ type CreateDBInstanceInput struct {
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
 	//
-	// You can enable IAM database authentication for the following database engines:
-	//
-	// Amazon Aurora
-	//
-	// Not applicable. Mapping AWS IAM accounts to database accounts is managed
-	// by the DB cluster.
-	//
-	// MySQL
-	//
-	//    * For MySQL 5.6, minor version 5.6.34 or higher
-	//
-	//    * For MySQL 5.7, minor version 5.7.16 or higher
-	//
-	//    * For MySQL 8.0, minor version 8.0.16 or higher
-	//
-	// PostgreSQL
-	//
-	//    * For PostgreSQL 9.5, minor version 9.5.15 or higher
-	//
-	//    * For PostgreSQL 9.6, minor version 9.6.11 or higher
-	//
-	//    * PostgreSQL 10.6, 10.7, and 10.9
+	// This setting doesn't apply to Amazon Aurora. Mapping AWS IAM accounts to
+	// database accounts is managed by the DB cluster.
 	//
 	// For more information, see IAM Database Authentication for MySQL and PostgreSQL
 	// (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -18984,7 +18964,6 @@ type CreateDBInstanceReadReplicaInput struct {
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
-	// For information about the supported DB engines, see CreateDBInstance.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -19017,6 +18996,10 @@ type CreateDBInstanceReadReplicaInput struct {
 	//
 	// You can't create an encrypted read replica from an unencrypted DB instance.
 	KmsKeyId *string `type:"string"`
+
+	// The upper limit to which Amazon RDS can automatically scale the storage of
+	// the DB instance.
+	MaxAllocatedStorage *int64 `type:"integer"`
 
 	// The interval, in seconds, between points when Enhanced Monitoring metrics
 	// are collected for the read replica. To disable collecting Enhanced Monitoring
@@ -19340,6 +19323,12 @@ func (s *CreateDBInstanceReadReplicaInput) SetIops(v int64) *CreateDBInstanceRea
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateDBInstanceReadReplicaInput) SetKmsKeyId(v string) *CreateDBInstanceReadReplicaInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetMaxAllocatedStorage sets the MaxAllocatedStorage field's value.
+func (s *CreateDBInstanceReadReplicaInput) SetMaxAllocatedStorage(v int64) *CreateDBInstanceReadReplicaInput {
+	s.MaxAllocatedStorage = &v
 	return s
 }
 
@@ -23652,7 +23641,7 @@ type DBSnapshot struct {
 	// class of the DB instance when the DB snapshot was created.
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
-	// Specifies when the snapshot was taken in Coodinated Universal Time (UTC).
+	// Specifies when the snapshot was taken in Coordinated Universal Time (UTC).
 	SnapshotCreateTime *time.Time `type:"timestamp"`
 
 	// Provides the type of the DB snapshot.
@@ -33288,7 +33277,9 @@ type ModifyDBInstanceInput struct {
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
-	// For information about the supported DB engines, see CreateDBInstance.
+	//
+	// This setting doesn't apply to Amazon Aurora. Mapping AWS IAM accounts to
+	// database accounts is managed by the DB cluster.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -33304,7 +33295,7 @@ type ModifyDBInstanceInput struct {
 
 	// The version number of the database engine to upgrade to. Changing this parameter
 	// results in an outage and the change is applied during the next maintenance
-	// window unless the ApplyImmediately parameter is eanbled for this request.
+	// window unless the ApplyImmediately parameter is enabled for this request.
 	//
 	// For major version upgrades, if a nondefault DB parameter group is currently
 	// in use, a new DB parameter group in the DB parameter group family for the
@@ -38986,7 +38977,6 @@ type RestoreDBInstanceFromDBSnapshotInput struct {
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
-	// For information about the supported DB engines, see CreateDBInstance.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -39433,7 +39423,6 @@ type RestoreDBInstanceFromS3Input struct {
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
-	// For information about the supported DB engines, see CreateDBInstance.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)
@@ -40079,7 +40068,6 @@ type RestoreDBInstanceToPointInTimeInput struct {
 
 	// A value that indicates whether to enable mapping of AWS Identity and Access
 	// Management (IAM) accounts to database accounts. By default, mapping is disabled.
-	// For information about the supported DB engines, see CreateDBInstance.
 	//
 	// For more information about IAM database authentication, see IAM Database
 	// Authentication for MySQL and PostgreSQL (https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAMDBAuth.html)

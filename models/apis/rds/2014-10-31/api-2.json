@@ -2915,7 +2915,8 @@
         "DeletionProtection":{"shape":"BooleanOptional"},
         "Domain":{"shape":"String"},
         "DomainIAMRoleName":{"shape":"String"},
-        "ReplicaMode":{"shape":"ReplicaMode"}
+        "ReplicaMode":{"shape":"ReplicaMode"},
+        "MaxAllocatedStorage":{"shape":"IntegerOptional"}
       }
     },
     "CreateDBInstanceReadReplicaResult":{

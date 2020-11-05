@@ -399,11 +399,12 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //    Amazon SNS topic.
 //
 //    * MaximumRecordAgeInSeconds - Discard records older than the specified
-//    age. Default -1 (infinite). Minimum 60. Maximum 604800.
+//    age. The default value is infinite (-1). When set to infinite (-1), failed
+//    records are retried until the record expires
 //
 //    * MaximumRetryAttempts - Discard records after the specified number of
-//    retries. Default -1 (infinite). Minimum 0. Maximum 10000. When infinite,
-//    failed records will be retried until the record expires.
+//    retries. The default value is infinite (-1). When set to infinite (-1),
+//    failed records are retried until the record expires.
 //
 //    * ParallelizationFactor - Process multiple batches from each shard concurrently.
 //
@@ -4905,11 +4906,12 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 //    Amazon SNS topic.
 //
 //    * MaximumRecordAgeInSeconds - Discard records older than the specified
-//    age. Default -1 (infinite). Minimum 60. Maximum 604800.
+//    age. The default value is infinite (-1). When set to infinite (-1), failed
+//    records are retried until the record expires
 //
 //    * MaximumRetryAttempts - Discard records after the specified number of
-//    retries. Default -1 (infinite). Minimum 0. Maximum 10000. When infinite,
-//    failed records will be retried until the record expires.
+//    retries. The default value is infinite (-1). When set to infinite (-1),
+//    failed records are retried until the record expires.
 //
 //    * ParallelizationFactor - Process multiple batches from each shard concurrently.
 //
@@ -6030,6 +6032,21 @@ type CreateEventSourceMappingInput struct {
 	// (Streams) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
+	// (MQ) The name of the Amazon MQ broker destination queue to consume.
+	Queues []*string `min:"1" type:"list"`
+
+	// (MQ) The Secrets Manager secret that stores your broker credentials. To store
+	// your secret, use the following format: { "username": "your username", "password":
+	// "your password" }
+	//
+	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
+	// "URI": "secretARN" } ]
+	//
+	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
+	// customer or service managed keys. When using a customer managed KMS key,
+	// the Lambda execution role requires kms:Decrypt permissions.
+	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
+
 	// The position in a stream from which to start reading. Required for Amazon
 	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
 	// only supported for Amazon Kinesis streams.
@@ -6075,6 +6092,12 @@ func (s *CreateEventSourceMappingInput) Validate() error {
 	}
 	if s.ParallelizationFactor != nil && *s.ParallelizationFactor < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ParallelizationFactor", 1))
+	}
+	if s.Queues != nil && len(s.Queues) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Queues", 1))
+	}
+	if s.SourceAccessConfigurations != nil && len(s.SourceAccessConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceAccessConfigurations", 1))
 	}
 	if s.Topics != nil && len(s.Topics) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Topics", 1))
@@ -6143,6 +6166,18 @@ func (s *CreateEventSourceMappingInput) SetMaximumRetryAttempts(v int64) *Create
 // SetParallelizationFactor sets the ParallelizationFactor field's value.
 func (s *CreateEventSourceMappingInput) SetParallelizationFactor(v int64) *CreateEventSourceMappingInput {
 	s.ParallelizationFactor = &v
+	return s
+}
+
+// SetQueues sets the Queues field's value.
+func (s *CreateEventSourceMappingInput) SetQueues(v []*string) *CreateEventSourceMappingInput {
+	s.Queues = v
+	return s
+}
+
+// SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
+func (s *CreateEventSourceMappingInput) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *CreateEventSourceMappingInput {
+	s.SourceAccessConfigurations = v
 	return s
 }
 
@@ -7551,6 +7586,7 @@ type EventSourceMappingConfiguration struct {
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams) If the function returns an error, split the batch in two and retry.
+	// The default value is false.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
 	// (Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded
@@ -7570,19 +7606,37 @@ type EventSourceMappingConfiguration struct {
 	LastProcessingResult *string `type:"string"`
 
 	// (Streams) The maximum amount of time to gather records before invoking the
-	// function, in seconds.
+	// function, in seconds. The default value is zero.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
-	// (Streams) The maximum age of a record that Lambda sends to a function for
-	// processing.
+	// (Streams) Discard records older than the specified age. The default value
+	// is infinite (-1). When set to infinite (-1), failed records are retried until
+	// the record expires.
 	MaximumRecordAgeInSeconds *int64 `type:"integer"`
 
-	// (Streams) The maximum number of times to retry when the function returns
-	// an error.
+	// (Streams) Discard records after the specified number of retries. The default
+	// value is infinite (-1). When set to infinite (-1), failed records are retried
+	// until the record expires.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
 	// (Streams) The number of batches to process from each shard concurrently.
+	// The default value is 1.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
+
+	// (MQ) The name of the Amazon MQ broker destination queue to consume.
+	Queues []*string `min:"1" type:"list"`
+
+	// (MQ) The Secrets Manager secret that stores your broker credentials. To store
+	// your secret, use the following format: { "username": "your username", "password":
+	// "your password" }
+	//
+	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
+	// "URI": "secretARN" } ]
+	//
+	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
+	// customer or service managed keys. When using a customer managed KMS key,
+	// the Lambda execution role requires kms:Decrypt permissions.
+	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
 
 	// The state of the event source mapping. It can be one of the following: Creating,
 	// Enabling, Enabled, Disabling, Disabled, Updating, or Deleting.
@@ -7592,7 +7646,7 @@ type EventSourceMappingConfiguration struct {
 	// a user, or by the Lambda service.
 	StateTransitionReason *string `type:"string"`
 
-	// (MSK) The name of the Kafka topic.
+	// (MSK) The name of the Kafka topic to consume.
 	Topics []*string `min:"1" type:"list"`
 
 	// The identifier of the event source mapping.
@@ -7672,6 +7726,18 @@ func (s *EventSourceMappingConfiguration) SetMaximumRetryAttempts(v int64) *Even
 // SetParallelizationFactor sets the ParallelizationFactor field's value.
 func (s *EventSourceMappingConfiguration) SetParallelizationFactor(v int64) *EventSourceMappingConfiguration {
 	s.ParallelizationFactor = &v
+	return s
+}
+
+// SetQueues sets the Queues field's value.
+func (s *EventSourceMappingConfiguration) SetQueues(v []*string) *EventSourceMappingConfiguration {
+	s.Queues = v
+	return s
+}
+
+// SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
+func (s *EventSourceMappingConfiguration) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *EventSourceMappingConfiguration {
+	s.SourceAccessConfigurations = v
 	return s
 }
 
@@ -12918,6 +12984,51 @@ func (s *ServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// (MQ) The Secrets Manager secret that stores your broker credentials. To store
+// your secret, use the following format: { "username": "your username", "password":
+// "your password" }
+type SourceAccessConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
+	// "URI": "secretARN" } ]
+	//
+	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
+	// customer or service managed keys. When using a customer managed KMS key,
+	// the Lambda execution role requires kms:Decrypt permissions.
+	Type *string `type:"string" enum:"SourceAccessType"`
+
+	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
+	// "URI": "secretARN" } ]
+	//
+	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
+	// customer or service managed keys. When using a customer managed KMS key,
+	// the Lambda execution role requires kms:Decrypt permissions.
+	URI *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SourceAccessConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SourceAccessConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *SourceAccessConfiguration) SetType(v string) *SourceAccessConfiguration {
+	s.Type = &v
+	return s
+}
+
+// SetURI sets the URI field's value.
+func (s *SourceAccessConfiguration) SetURI(v string) *SourceAccessConfiguration {
+	s.URI = &v
+	return s
+}
+
 // AWS Lambda was not able to set up VPC access for the Lambda function because
 // one or more configured subnets has no available IP addresses.
 type SubnetIPAddressLimitReachedException struct {
@@ -13453,6 +13564,18 @@ type UpdateEventSourceMappingInput struct {
 	// (Streams) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
+	// (MQ) The Secrets Manager secret that stores your broker credentials. To store
+	// your secret, use the following format: { "username": "your username", "password":
+	// "your password" }
+	//
+	// To reference the secret, use the following format: [ { "Type": "BASIC_AUTH",
+	// "URI": "secretARN" } ]
+	//
+	// The value of Type is always BASIC_AUTH. To encrypt the secret, you can use
+	// customer or service managed keys. When using a customer managed KMS key,
+	// the Lambda execution role requires kms:Decrypt permissions.
+	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
+
 	// The identifier of the event source mapping.
 	//
 	// UUID is a required field
@@ -13486,6 +13609,9 @@ func (s *UpdateEventSourceMappingInput) Validate() error {
 	}
 	if s.ParallelizationFactor != nil && *s.ParallelizationFactor < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("ParallelizationFactor", 1))
+	}
+	if s.SourceAccessConfigurations != nil && len(s.SourceAccessConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceAccessConfigurations", 1))
 	}
 	if s.UUID == nil {
 		invalidParams.Add(request.NewErrParamRequired("UUID"))
@@ -13551,6 +13677,12 @@ func (s *UpdateEventSourceMappingInput) SetMaximumRetryAttempts(v int64) *Update
 // SetParallelizationFactor sets the ParallelizationFactor field's value.
 func (s *UpdateEventSourceMappingInput) SetParallelizationFactor(v int64) *UpdateEventSourceMappingInput {
 	s.ParallelizationFactor = &v
+	return s
+}
+
+// SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
+func (s *UpdateEventSourceMappingInput) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *UpdateEventSourceMappingInput {
+	s.SourceAccessConfigurations = v
 	return s
 }
 
@@ -14395,6 +14527,18 @@ func Runtime_Values() []string {
 		RuntimeRuby27,
 		RuntimeProvided,
 		RuntimeProvidedAl2,
+	}
+}
+
+const (
+	// SourceAccessTypeBasicAuth is a SourceAccessType enum value
+	SourceAccessTypeBasicAuth = "BASIC_AUTH"
+)
+
+// SourceAccessType_Values returns all elements of the SourceAccessType enum
+func SourceAccessType_Values() []string {
+	return []string{
+		SourceAccessTypeBasicAuth,
 	}
 }
 

@@ -3619,8 +3619,8 @@ type ConfluenceConfiguration struct {
 	// the key/value pairs required to connect to your Confluence server. The secret
 	// must contain a JSON structure with the following keys:
 	//
-	//    * username - The user name of a user with administrative privileges for
-	//    the Confluence server.
+	//    * username - The user name or email address of a user with administrative
+	//    privileges for the Confluence server.
 	//
 	//    * password - The password associated with the user logging in to the Confluence
 	//    server.
@@ -4579,6 +4579,23 @@ type CreateIndexInput struct {
 	// A list of key-value pairs that identify the index. You can use the tags to
 	// identify and organize your resources and to control access to resources.
 	Tags []*Tag `type:"list"`
+
+	// The user context policy.
+	//
+	// ATTRIBUTE_FILTER
+	//
+	// All indexed content is searchable and displayable for all users. If there
+	// is an access control list, it is ignored. You can filter on user and group
+	// attributes.
+	//
+	// USER_TOKEN
+	//
+	// Enables SSO and token-based user access control. All documents with no access
+	// control and all documents accessible to the user will be searchable and displayable.
+	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
+
+	// The user token configuration.
+	UserTokenConfigurations []*UserTokenConfiguration `type:"list"`
 }
 
 // String returns the string representation
@@ -4621,6 +4638,16 @@ func (s *CreateIndexInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserTokenConfigurations != nil {
+		for i, v := range s.UserTokenConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserTokenConfigurations", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -4670,6 +4697,18 @@ func (s *CreateIndexInput) SetServerSideEncryptionConfiguration(v *ServerSideEnc
 // SetTags sets the Tags field's value.
 func (s *CreateIndexInput) SetTags(v []*Tag) *CreateIndexInput {
 	s.Tags = v
+	return s
+}
+
+// SetUserContextPolicy sets the UserContextPolicy field's value.
+func (s *CreateIndexInput) SetUserContextPolicy(v string) *CreateIndexInput {
+	s.UserContextPolicy = &v
+	return s
+}
+
+// SetUserTokenConfigurations sets the UserTokenConfigurations field's value.
+func (s *CreateIndexInput) SetUserTokenConfigurations(v []*UserTokenConfiguration) *CreateIndexInput {
+	s.UserTokenConfigurations = v
 	return s
 }
 
@@ -6015,6 +6054,12 @@ type DescribeIndexOutput struct {
 
 	// The Unix datetime that the index was last updated.
 	UpdatedAt *time.Time `type:"timestamp"`
+
+	// The user context policy for the Amazon Kendra index.
+	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
+
+	// The user token configuration for the Amazon Kendra index.
+	UserTokenConfigurations []*UserTokenConfiguration `type:"list"`
 }
 
 // String returns the string representation
@@ -6102,6 +6147,18 @@ func (s *DescribeIndexOutput) SetStatus(v string) *DescribeIndexOutput {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeIndexOutput) SetUpdatedAt(v time.Time) *DescribeIndexOutput {
 	s.UpdatedAt = &v
+	return s
+}
+
+// SetUserContextPolicy sets the UserContextPolicy field's value.
+func (s *DescribeIndexOutput) SetUserContextPolicy(v string) *DescribeIndexOutput {
+	s.UserContextPolicy = &v
+	return s
+}
+
+// SetUserTokenConfigurations sets the UserTokenConfigurations field's value.
+func (s *DescribeIndexOutput) SetUserTokenConfigurations(v []*UserTokenConfiguration) *DescribeIndexOutput {
+	s.UserTokenConfigurations = v
 	return s
 }
 
@@ -6916,6 +6973,176 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Configuration information for the JSON token type.
+type JsonTokenTypeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The group attribute field.
+	//
+	// GroupAttributeField is a required field
+	GroupAttributeField *string `min:"1" type:"string" required:"true"`
+
+	// The user name attribute field.
+	//
+	// UserNameAttributeField is a required field
+	UserNameAttributeField *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s JsonTokenTypeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JsonTokenTypeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JsonTokenTypeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JsonTokenTypeConfiguration"}
+	if s.GroupAttributeField == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupAttributeField"))
+	}
+	if s.GroupAttributeField != nil && len(*s.GroupAttributeField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupAttributeField", 1))
+	}
+	if s.UserNameAttributeField == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserNameAttributeField"))
+	}
+	if s.UserNameAttributeField != nil && len(*s.UserNameAttributeField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserNameAttributeField", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupAttributeField sets the GroupAttributeField field's value.
+func (s *JsonTokenTypeConfiguration) SetGroupAttributeField(v string) *JsonTokenTypeConfiguration {
+	s.GroupAttributeField = &v
+	return s
+}
+
+// SetUserNameAttributeField sets the UserNameAttributeField field's value.
+func (s *JsonTokenTypeConfiguration) SetUserNameAttributeField(v string) *JsonTokenTypeConfiguration {
+	s.UserNameAttributeField = &v
+	return s
+}
+
+// Configuration information for the JWT token type.
+type JwtTokenTypeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The regular expression that identifies the claim.
+	ClaimRegex *string `min:"1" type:"string"`
+
+	// The group attribute field.
+	GroupAttributeField *string `min:"1" type:"string"`
+
+	// The issuer of the token.
+	Issuer *string `min:"1" type:"string"`
+
+	// The location of the key.
+	//
+	// KeyLocation is a required field
+	KeyLocation *string `type:"string" required:"true" enum:"KeyLocation"`
+
+	// The Amazon Resource Name (arn) of the secret.
+	SecretManagerArn *string `min:"1" type:"string"`
+
+	// The signing key URL.
+	URL *string `min:"1" type:"string"`
+
+	// The user name attribute field.
+	UserNameAttributeField *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s JwtTokenTypeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s JwtTokenTypeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *JwtTokenTypeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "JwtTokenTypeConfiguration"}
+	if s.ClaimRegex != nil && len(*s.ClaimRegex) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClaimRegex", 1))
+	}
+	if s.GroupAttributeField != nil && len(*s.GroupAttributeField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupAttributeField", 1))
+	}
+	if s.Issuer != nil && len(*s.Issuer) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Issuer", 1))
+	}
+	if s.KeyLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyLocation"))
+	}
+	if s.SecretManagerArn != nil && len(*s.SecretManagerArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SecretManagerArn", 1))
+	}
+	if s.URL != nil && len(*s.URL) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("URL", 1))
+	}
+	if s.UserNameAttributeField != nil && len(*s.UserNameAttributeField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserNameAttributeField", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClaimRegex sets the ClaimRegex field's value.
+func (s *JwtTokenTypeConfiguration) SetClaimRegex(v string) *JwtTokenTypeConfiguration {
+	s.ClaimRegex = &v
+	return s
+}
+
+// SetGroupAttributeField sets the GroupAttributeField field's value.
+func (s *JwtTokenTypeConfiguration) SetGroupAttributeField(v string) *JwtTokenTypeConfiguration {
+	s.GroupAttributeField = &v
+	return s
+}
+
+// SetIssuer sets the Issuer field's value.
+func (s *JwtTokenTypeConfiguration) SetIssuer(v string) *JwtTokenTypeConfiguration {
+	s.Issuer = &v
+	return s
+}
+
+// SetKeyLocation sets the KeyLocation field's value.
+func (s *JwtTokenTypeConfiguration) SetKeyLocation(v string) *JwtTokenTypeConfiguration {
+	s.KeyLocation = &v
+	return s
+}
+
+// SetSecretManagerArn sets the SecretManagerArn field's value.
+func (s *JwtTokenTypeConfiguration) SetSecretManagerArn(v string) *JwtTokenTypeConfiguration {
+	s.SecretManagerArn = &v
+	return s
+}
+
+// SetURL sets the URL field's value.
+func (s *JwtTokenTypeConfiguration) SetURL(v string) *JwtTokenTypeConfiguration {
+	s.URL = &v
+	return s
+}
+
+// SetUserNameAttributeField sets the UserNameAttributeField field's value.
+func (s *JwtTokenTypeConfiguration) SetUserNameAttributeField(v string) *JwtTokenTypeConfiguration {
+	s.UserNameAttributeField = &v
+	return s
+}
+
 type ListDataSourceSyncJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7412,6 +7639,10 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type OneDriveConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// A Boolean value that specifies whether local groups are disabled (True) or
+	// enabled (False).
+	DisableLocalGroups *bool `type:"boolean"`
+
 	// List of regular expressions applied to documents. Items that match the exclusion
 	// pattern are not indexed. If you provide both an inclusion pattern and an
 	// exclusion pattern, any item that matches the exclusion pattern isn't indexed.
@@ -7502,6 +7733,12 @@ func (s *OneDriveConfiguration) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDisableLocalGroups sets the DisableLocalGroups field's value.
+func (s *OneDriveConfiguration) SetDisableLocalGroups(v bool) *OneDriveConfiguration {
+	s.DisableLocalGroups = &v
+	return s
 }
 
 // SetExclusionPatterns sets the ExclusionPatterns field's value.
@@ -7718,6 +7955,9 @@ type QueryInput struct {
 	// If you don't provide sorting configuration, the results are sorted by the
 	// relevance that Amazon Kendra determines for the result.
 	SortingConfiguration *SortingConfiguration `type:"structure"`
+
+	// The user context token.
+	UserContext *UserContext `type:"structure"`
 }
 
 // String returns the string representation
@@ -7766,6 +8006,11 @@ func (s *QueryInput) Validate() error {
 	if s.SortingConfiguration != nil {
 		if err := s.SortingConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("SortingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UserContext != nil {
+		if err := s.UserContext.Validate(); err != nil {
+			invalidParams.AddNested("UserContext", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7826,6 +8071,12 @@ func (s *QueryInput) SetRequestedDocumentAttributes(v []*string) *QueryInput {
 // SetSortingConfiguration sets the SortingConfiguration field's value.
 func (s *QueryInput) SetSortingConfiguration(v *SortingConfiguration) *QueryInput {
 	s.SortingConfiguration = v
+	return s
+}
+
+// SetUserContext sets the UserContext field's value.
+func (s *QueryInput) SetUserContext(v *UserContext) *QueryInput {
+	s.UserContext = v
 	return s
 }
 
@@ -9753,6 +10004,10 @@ type SharePointConfiguration struct {
 	// site in the index; otherwise, FALSE.
 	CrawlAttachments *bool `type:"boolean"`
 
+	// A Boolean value that specifies whether local groups are disabled (True) or
+	// enabled (False).
+	DisableLocalGroups *bool `type:"boolean"`
+
 	// The Microsoft SharePoint attribute field that contains the title of the document.
 	DocumentTitleFieldName *string `min:"1" type:"string"`
 
@@ -9869,6 +10124,12 @@ func (s *SharePointConfiguration) Validate() error {
 // SetCrawlAttachments sets the CrawlAttachments field's value.
 func (s *SharePointConfiguration) SetCrawlAttachments(v bool) *SharePointConfiguration {
 	s.CrawlAttachments = &v
+	return s
+}
+
+// SetDisableLocalGroups sets the DisableLocalGroups field's value.
+func (s *SharePointConfiguration) SetDisableLocalGroups(v bool) *SharePointConfiguration {
+	s.DisableLocalGroups = &v
 	return s
 }
 
@@ -10841,6 +11102,12 @@ type UpdateIndexInput struct {
 	// A new IAM role that gives Amazon Kendra permission to access your Amazon
 	// CloudWatch logs.
 	RoleArn *string `min:"1" type:"string"`
+
+	// The user user token context policy.
+	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
+
+	// The user token configuration.
+	UserTokenConfigurations []*UserTokenConfiguration `type:"list"`
 }
 
 // String returns the string representation
@@ -10880,6 +11147,16 @@ func (s *UpdateIndexInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentMetadataConfigurationUpdates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.UserTokenConfigurations != nil {
+		for i, v := range s.UserTokenConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "UserTokenConfigurations", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -10926,6 +11203,18 @@ func (s *UpdateIndexInput) SetRoleArn(v string) *UpdateIndexInput {
 	return s
 }
 
+// SetUserContextPolicy sets the UserContextPolicy field's value.
+func (s *UpdateIndexInput) SetUserContextPolicy(v string) *UpdateIndexInput {
+	s.UserContextPolicy = &v
+	return s
+}
+
+// SetUserTokenConfigurations sets the UserTokenConfigurations field's value.
+func (s *UpdateIndexInput) SetUserTokenConfigurations(v []*UserTokenConfiguration) *UpdateIndexInput {
+	s.UserTokenConfigurations = v
+	return s
+}
+
 type UpdateIndexOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -10938,6 +11227,96 @@ func (s UpdateIndexOutput) String() string {
 // GoString returns the string representation
 func (s UpdateIndexOutput) GoString() string {
 	return s.String()
+}
+
+// Provides information about the user context for a Amazon Kendra index.
+type UserContext struct {
+	_ struct{} `type:"structure"`
+
+	// The user context token. It must be a JWT or a JSON token.
+	Token *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UserContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserContext"}
+	if s.Token != nil && len(*s.Token) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Token", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetToken sets the Token field's value.
+func (s *UserContext) SetToken(v string) *UserContext {
+	s.Token = &v
+	return s
+}
+
+// Provides configuration information for a token configuration.
+type UserTokenConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the JSON token type configuration.
+	JsonTokenTypeConfiguration *JsonTokenTypeConfiguration `type:"structure"`
+
+	// Information about the JWT token type configuration.
+	JwtTokenTypeConfiguration *JwtTokenTypeConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s UserTokenConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserTokenConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserTokenConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserTokenConfiguration"}
+	if s.JsonTokenTypeConfiguration != nil {
+		if err := s.JsonTokenTypeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JsonTokenTypeConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.JwtTokenTypeConfiguration != nil {
+		if err := s.JwtTokenTypeConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("JwtTokenTypeConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJsonTokenTypeConfiguration sets the JsonTokenTypeConfiguration field's value.
+func (s *UserTokenConfiguration) SetJsonTokenTypeConfiguration(v *JsonTokenTypeConfiguration) *UserTokenConfiguration {
+	s.JsonTokenTypeConfiguration = v
+	return s
+}
+
+// SetJwtTokenTypeConfiguration sets the JwtTokenTypeConfiguration field's value.
+func (s *UserTokenConfiguration) SetJwtTokenTypeConfiguration(v *JwtTokenTypeConfiguration) *UserTokenConfiguration {
+	s.JwtTokenTypeConfiguration = v
+	return s
 }
 
 type ValidationException struct {
@@ -11184,6 +11563,9 @@ func ConfluenceSpaceFieldName_Values() []string {
 }
 
 const (
+	// ConfluenceVersionCloud is a ConfluenceVersion enum value
+	ConfluenceVersionCloud = "CLOUD"
+
 	// ConfluenceVersionServer is a ConfluenceVersion enum value
 	ConfluenceVersionServer = "SERVER"
 )
@@ -11191,6 +11573,7 @@ const (
 // ConfluenceVersion_Values returns all elements of the ConfluenceVersion enum
 func ConfluenceVersion_Values() []string {
 	return []string{
+		ConfluenceVersionCloud,
 		ConfluenceVersionServer,
 	}
 }
@@ -11488,6 +11871,22 @@ func IndexStatus_Values() []string {
 }
 
 const (
+	// KeyLocationUrl is a KeyLocation enum value
+	KeyLocationUrl = "URL"
+
+	// KeyLocationSecretManager is a KeyLocation enum value
+	KeyLocationSecretManager = "SECRET_MANAGER"
+)
+
+// KeyLocation_Values returns all elements of the KeyLocation enum
+func KeyLocation_Values() []string {
+	return []string{
+		KeyLocationUrl,
+		KeyLocationSecretManager,
+	}
+}
+
+const (
 	// OrderAscending is a Order enum value
 	OrderAscending = "ASCENDING"
 
@@ -11765,5 +12164,21 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderDesc,
 		SortOrderAsc,
+	}
+}
+
+const (
+	// UserContextPolicyAttributeFilter is a UserContextPolicy enum value
+	UserContextPolicyAttributeFilter = "ATTRIBUTE_FILTER"
+
+	// UserContextPolicyUserToken is a UserContextPolicy enum value
+	UserContextPolicyUserToken = "USER_TOKEN"
+)
+
+// UserContextPolicy_Values returns all elements of the UserContextPolicy enum
+func UserContextPolicy_Values() []string {
+	return []string{
+		UserContextPolicyAttributeFilter,
+		UserContextPolicyUserToken,
 	}
 }

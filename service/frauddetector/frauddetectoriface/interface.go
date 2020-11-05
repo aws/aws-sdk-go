@@ -96,13 +96,45 @@ type FraudDetectorAPI interface {
 	DeleteDetectorVersionWithContext(aws.Context, *frauddetector.DeleteDetectorVersionInput, ...request.Option) (*frauddetector.DeleteDetectorVersionOutput, error)
 	DeleteDetectorVersionRequest(*frauddetector.DeleteDetectorVersionInput) (*request.Request, *frauddetector.DeleteDetectorVersionOutput)
 
+	DeleteEntityType(*frauddetector.DeleteEntityTypeInput) (*frauddetector.DeleteEntityTypeOutput, error)
+	DeleteEntityTypeWithContext(aws.Context, *frauddetector.DeleteEntityTypeInput, ...request.Option) (*frauddetector.DeleteEntityTypeOutput, error)
+	DeleteEntityTypeRequest(*frauddetector.DeleteEntityTypeInput) (*request.Request, *frauddetector.DeleteEntityTypeOutput)
+
 	DeleteEvent(*frauddetector.DeleteEventInput) (*frauddetector.DeleteEventOutput, error)
 	DeleteEventWithContext(aws.Context, *frauddetector.DeleteEventInput, ...request.Option) (*frauddetector.DeleteEventOutput, error)
 	DeleteEventRequest(*frauddetector.DeleteEventInput) (*request.Request, *frauddetector.DeleteEventOutput)
 
+	DeleteEventType(*frauddetector.DeleteEventTypeInput) (*frauddetector.DeleteEventTypeOutput, error)
+	DeleteEventTypeWithContext(aws.Context, *frauddetector.DeleteEventTypeInput, ...request.Option) (*frauddetector.DeleteEventTypeOutput, error)
+	DeleteEventTypeRequest(*frauddetector.DeleteEventTypeInput) (*request.Request, *frauddetector.DeleteEventTypeOutput)
+
+	DeleteExternalModel(*frauddetector.DeleteExternalModelInput) (*frauddetector.DeleteExternalModelOutput, error)
+	DeleteExternalModelWithContext(aws.Context, *frauddetector.DeleteExternalModelInput, ...request.Option) (*frauddetector.DeleteExternalModelOutput, error)
+	DeleteExternalModelRequest(*frauddetector.DeleteExternalModelInput) (*request.Request, *frauddetector.DeleteExternalModelOutput)
+
+	DeleteLabel(*frauddetector.DeleteLabelInput) (*frauddetector.DeleteLabelOutput, error)
+	DeleteLabelWithContext(aws.Context, *frauddetector.DeleteLabelInput, ...request.Option) (*frauddetector.DeleteLabelOutput, error)
+	DeleteLabelRequest(*frauddetector.DeleteLabelInput) (*request.Request, *frauddetector.DeleteLabelOutput)
+
+	DeleteModel(*frauddetector.DeleteModelInput) (*frauddetector.DeleteModelOutput, error)
+	DeleteModelWithContext(aws.Context, *frauddetector.DeleteModelInput, ...request.Option) (*frauddetector.DeleteModelOutput, error)
+	DeleteModelRequest(*frauddetector.DeleteModelInput) (*request.Request, *frauddetector.DeleteModelOutput)
+
+	DeleteModelVersion(*frauddetector.DeleteModelVersionInput) (*frauddetector.DeleteModelVersionOutput, error)
+	DeleteModelVersionWithContext(aws.Context, *frauddetector.DeleteModelVersionInput, ...request.Option) (*frauddetector.DeleteModelVersionOutput, error)
+	DeleteModelVersionRequest(*frauddetector.DeleteModelVersionInput) (*request.Request, *frauddetector.DeleteModelVersionOutput)
+
+	DeleteOutcome(*frauddetector.DeleteOutcomeInput) (*frauddetector.DeleteOutcomeOutput, error)
+	DeleteOutcomeWithContext(aws.Context, *frauddetector.DeleteOutcomeInput, ...request.Option) (*frauddetector.DeleteOutcomeOutput, error)
+	DeleteOutcomeRequest(*frauddetector.DeleteOutcomeInput) (*request.Request, *frauddetector.DeleteOutcomeOutput)
+
 	DeleteRule(*frauddetector.DeleteRuleInput) (*frauddetector.DeleteRuleOutput, error)
 	DeleteRuleWithContext(aws.Context, *frauddetector.DeleteRuleInput, ...request.Option) (*frauddetector.DeleteRuleOutput, error)
 	DeleteRuleRequest(*frauddetector.DeleteRuleInput) (*request.Request, *frauddetector.DeleteRuleOutput)
+
+	DeleteVariable(*frauddetector.DeleteVariableInput) (*frauddetector.DeleteVariableOutput, error)
+	DeleteVariableWithContext(aws.Context, *frauddetector.DeleteVariableInput, ...request.Option) (*frauddetector.DeleteVariableOutput, error)
+	DeleteVariableRequest(*frauddetector.DeleteVariableInput) (*request.Request, *frauddetector.DeleteVariableOutput)
 
 	DescribeDetector(*frauddetector.DescribeDetectorInput) (*frauddetector.DescribeDetectorOutput, error)
 	DescribeDetectorWithContext(aws.Context, *frauddetector.DescribeDetectorInput, ...request.Option) (*frauddetector.DescribeDetectorOutput, error)

@@ -3,22 +3,29 @@
   "service": "<p>Amazon EventBridge helps you to respond to state changes in your AWS resources. When your resources change state, they automatically send events into an event stream. You can create rules that match selected events in the stream and route them to targets to take action. You can also use rules to take action on a predetermined schedule. For example, you can configure rules to:</p> <ul> <li> <p>Automatically invoke an AWS Lambda function to update DNS entries when an event notifies you that Amazon EC2 instance enters the running state.</p> </li> <li> <p>Direct specific API records from AWS CloudTrail to an Amazon Kinesis data stream for detailed analysis of potential security or availability risks.</p> </li> <li> <p>Periodically invoke a built-in target to create a snapshot of an Amazon EBS volume.</p> </li> </ul> <p>For more information about the features of Amazon EventBridge, see the <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide\">Amazon EventBridge User Guide</a>.</p>",
   "operations": {
     "ActivateEventSource": "<p>Activates a partner event source that has been deactivated. Once activated, your matching event bus will start receiving events from the event source.</p>",
+    "CancelReplay": "<p>Cancels the specified replay.</p>",
+    "CreateArchive": "<p>Creates an archive of events with the specified settings. When you create an archive, incoming events might not immediately start being sent to the archive. Allow a short period of time for changes to take effect.</p>",
     "CreateEventBus": "<p>Creates a new event bus within your account. This can be a custom event bus which you can use to receive events from your custom applications and services, or it can be a partner event bus which can be matched to a partner event source.</p>",
     "CreatePartnerEventSource": "<p>Called by an SaaS partner to create a partner event source. This operation is not used by AWS customers.</p> <p>Each partner event source can be used by one AWS account to create a matching partner event bus in that AWS account. A SaaS partner must create one partner event source for each AWS account that wants to receive those event types. </p> <p>A partner event source creates events based on resources within the SaaS partner's service or application.</p> <p>An AWS account that creates a partner event bus that matches the partner event source can use that event bus to receive events from the partner, and then process them using AWS Events rules and targets.</p> <p>Partner event source names follow this format:</p> <p> <code> <i>partner_name</i>/<i>event_namespace</i>/<i>event_name</i> </code> </p> <p> <i>partner_name</i> is determined during partner registration and identifies the partner to AWS customers. <i>event_namespace</i> is determined by the partner and is a way for the partner to categorize their events. <i>event_name</i> is determined by the partner, and should uniquely identify an event-generating resource within the partner system. The combination of <i>event_namespace</i> and <i>event_name</i> should help AWS customers decide whether to create an event bus to receive these events.</p>",
     "DeactivateEventSource": "<p>You can use this operation to temporarily stop receiving events from the specified partner event source. The matching event bus is not deleted. </p> <p>When you deactivate a partner event source, the source goes into PENDING state. If it remains in PENDING state for more than two weeks, it is deleted.</p> <p>To activate a deactivated partner event source, use <a>ActivateEventSource</a>.</p>",
+    "DeleteArchive": "<p>Deletes the specified archive.</p>",
     "DeleteEventBus": "<p>Deletes the specified custom event bus or partner event bus. All rules associated with this event bus need to be deleted. You can't delete your account's default event bus.</p>",
     "DeletePartnerEventSource": "<p>This operation is used by SaaS partners to delete a partner event source. This operation is not used by AWS customers.</p> <p>When you delete an event source, the status of the corresponding partner event bus in the AWS customer account becomes DELETED.</p> <p/>",
     "DeleteRule": "<p>Deletes the specified rule.</p> <p>Before you can delete the rule, you must remove all targets, using <a>RemoveTargets</a>.</p> <p>When you delete a rule, incoming events might continue to match to the deleted rule. Allow a short period of time for changes to take effect.</p> <p>Managed rules are rules created and managed by another AWS service on your behalf. These rules are created by those other AWS services to support functionality in those services. You can delete these rules using the <code>Force</code> option, but you should do so only if you are sure the other service is not still using that rule.</p>",
+    "DescribeArchive": "<p>Retrieves details about an archive.</p>",
     "DescribeEventBus": "<p>Displays details about an event bus in your account. This can include the external AWS accounts that are permitted to write events to your default event bus, and the associated policy. For custom event buses and partner event buses, it displays the name, ARN, policy, state, and creation time.</p> <p> To enable your account to receive events from other accounts on its default event bus, use <a>PutPermission</a>.</p> <p>For more information about partner event buses, see <a>CreateEventBus</a>.</p>",
     "DescribeEventSource": "<p>This operation lists details about a partner event source that is shared with your account.</p>",
     "DescribePartnerEventSource": "<p>An SaaS partner can use this operation to list details about a partner event source that they have created. AWS customers do not use this operation. Instead, AWS customers can use <a>DescribeEventSource</a> to see details about a partner event source that is shared with them.</p>",
+    "DescribeReplay": "<p>Retrieves details about a replay. Use <code>DescribeReplay</code> to determine the progress of a running replay. A replay processes events to replay based on the time in the event, and replays them using 1 minute intervals. If you use <code>StartReplay</code> and specify an <code>EventStartTime</code> and an <code>EventEndTime</code> that covers a 20 minute time range, the events are replayed from the first minute of that 20 minute range first. Then the events from the second minute are replayed. You can use <code>DescribeReplay</code> to determine the progress of a replay. The value returned for <code>EventLastReplayedTime</code> indicates the time within the specified time range associated with the last event replayed.</p>",
     "DescribeRule": "<p>Describes the specified rule.</p> <p>DescribeRule does not list the targets of a rule. To see the targets associated with a rule, use <a>ListTargetsByRule</a>.</p>",
     "DisableRule": "<p>Disables the specified rule. A disabled rule won't match any events, and won't self-trigger if it has a schedule expression.</p> <p>When you disable a rule, incoming events might continue to match to the disabled rule. Allow a short period of time for changes to take effect.</p>",
     "EnableRule": "<p>Enables the specified rule. If the rule does not exist, the operation fails.</p> <p>When you enable a rule, incoming events might not immediately start matching to a newly enabled rule. Allow a short period of time for changes to take effect.</p>",
+    "ListArchives": "<p>Lists your archives. You can either list all the archives or you can provide a prefix to match to the archive names. Filter parameters are exclusive.</p>",
     "ListEventBuses": "<p>Lists all the event buses in your account, including the default event bus, custom event buses, and partner event buses.</p>",
     "ListEventSources": "<p>You can use this to see all the partner event sources that have been shared with your AWS account. For more information about partner event sources, see <a>CreateEventBus</a>.</p>",
     "ListPartnerEventSourceAccounts": "<p>An SaaS partner can use this operation to display the AWS account ID that a particular partner event source name is associated with. This operation is not used by AWS customers.</p>",
     "ListPartnerEventSources": "<p>An SaaS partner can use this operation to list all the partner event source names that they have created. This operation is not used by AWS customers.</p>",
+    "ListReplays": "<p>Lists your replays. You can either list all the replays or you can provide a prefix to match to the replay names. Filter parameters are exclusive.</p>",
     "ListRuleNamesByTarget": "<p>Lists the rules for the specified target. You can see which of the rules in Amazon EventBridge can invoke a specific target in your account.</p>",
     "ListRules": "<p>Lists your Amazon EventBridge rules. You can either list all the rules or you can provide a prefix to match to the rule names.</p> <p>ListRules does not list the targets of a rule. To see the targets associated with a rule, use <a>ListTargetsByRule</a>.</p>",
     "ListTagsForResource": "<p>Displays the tags associated with an EventBridge resource. In EventBridge, rules and event buses can be tagged.</p>",
@@ -30,9 +37,11 @@
     "PutTargets": "<p>Adds the specified targets to the specified rule, or updates the targets if they are already associated with the rule.</p> <p>Targets are the resources that are invoked when a rule is triggered.</p> <p>You can configure the following as targets for Events:</p> <ul> <li> <p>EC2 instances</p> </li> <li> <p>SSM Run Command</p> </li> <li> <p>SSM Automation</p> </li> <li> <p>AWS Lambda functions</p> </li> <li> <p>Data streams in Amazon Kinesis Data Streams</p> </li> <li> <p>Data delivery streams in Amazon Kinesis Data Firehose</p> </li> <li> <p>Amazon ECS tasks</p> </li> <li> <p>AWS Step Functions state machines</p> </li> <li> <p>AWS Batch jobs</p> </li> <li> <p>AWS CodeBuild projects</p> </li> <li> <p>Pipelines in AWS CodePipeline</p> </li> <li> <p>Amazon Inspector assessment templates</p> </li> <li> <p>Amazon SNS topics</p> </li> <li> <p>Amazon SQS queues, including FIFO queues</p> </li> <li> <p>The default event bus of another AWS account</p> </li> <li> <p>Amazon API Gateway REST APIs</p> </li> <li> <p>Redshift Clusters to invoke Data API ExecuteStatement on</p> </li> </ul> <p>Creating rules with built-in targets is supported only in the AWS Management Console. The built-in targets are <code>EC2 CreateSnapshot API call</code>, <code>EC2 RebootInstances API call</code>, <code>EC2 StopInstances API call</code>, and <code>EC2 TerminateInstances API call</code>. </p> <p>For some target types, <code>PutTargets</code> provides target-specific parameters. If the target is a Kinesis data stream, you can optionally specify which shard the event goes to by using the <code>KinesisParameters</code> argument. To invoke a command on multiple EC2 instances with one rule, you can use the <code>RunCommandParameters</code> field.</p> <p>To be able to make API calls against the resources that you own, Amazon EventBridge (CloudWatch Events) needs the appropriate permissions. For AWS Lambda and Amazon SNS resources, EventBridge relies on resource-based policies. For EC2 instances, Kinesis data streams, AWS Step Functions state machines and API Gateway REST APIs, EventBridge relies on IAM roles that you specify in the <code>RoleARN</code> argument in <code>PutTargets</code>. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/auth-and-access-control-eventbridge.html\">Authentication and Access Control</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>If another AWS account is in the same region and has granted you permission (using <code>PutPermission</code>), you can send events to that account. Set that account's event bus as a target of the rules in your account. To send the matched events to the other account, specify that account's event bus as the <code>Arn</code> value when you run <code>PutTargets</code>. If your account sends events to another account, your account is charged for each sent event. Each event sent to another account is charged as a custom event. The account receiving the event is not charged. For more information, see <a href=\"https://aws.amazon.com/eventbridge/pricing/\">Amazon EventBridge (CloudWatch Events) Pricing</a>.</p> <note> <p> <code>Input</code>, <code>InputPath</code>, and <code>InputTransformer</code> are not available with <code>PutTarget</code> if the target is an event bus of a different AWS account.</p> </note> <p>If you are setting the event bus of another account as the target, and that account granted permission to your account through an organization instead of directly by the account ID, then you must specify a <code>RoleArn</code> with proper permissions in the <code>Target</code> structure. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-cross-account-event-delivery.html\">Sending and Receiving Events Between AWS Accounts</a> in the <i>Amazon EventBridge User Guide</i>.</p> <p>For more information about enabling cross-account events, see <a>PutPermission</a>.</p> <p> <b>Input</b>, <b>InputPath</b>, and <b>InputTransformer</b> are mutually exclusive and optional parameters of a target. When a rule is triggered due to a matched event:</p> <ul> <li> <p>If none of the following arguments are specified for a target, then the entire event is passed to the target in JSON format (unless the target is Amazon EC2 Run Command or Amazon ECS task, in which case nothing from the event is passed to the target).</p> </li> <li> <p>If <b>Input</b> is specified in the form of valid JSON, then the matched event is overridden with this constant.</p> </li> <li> <p>If <b>InputPath</b> is specified in the form of JSONPath (for example, <code>$.detail</code>), then only the part of the event specified in the path is passed to the target (for example, only the detail part of the event is passed).</p> </li> <li> <p>If <b>InputTransformer</b> is specified, then one or more specified JSONPaths are extracted from the event and used as values in a template that you specify as the input to the target.</p> </li> </ul> <p>When you specify <code>InputPath</code> or <code>InputTransformer</code>, you must use JSON dot notation, not bracket notation.</p> <p>When you add targets to a rule and the associated rule triggers soon after, new or updated targets might not be immediately invoked. Allow a short period of time for changes to take effect.</p> <p>This action can partially fail if too many requests are made at the same time. If that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry in <code>FailedEntries</code> provides the ID of the failed target and the error code.</p>",
     "RemovePermission": "<p>Revokes the permission of another AWS account to be able to put events to the specified event bus. Specify the account to revoke by the <code>StatementId</code> value that you associated with the account when you granted it permission with <code>PutPermission</code>. You can find the <code>StatementId</code> by using <a>DescribeEventBus</a>.</p>",
     "RemoveTargets": "<p>Removes the specified targets from the specified rule. When the rule is triggered, those targets are no longer be invoked.</p> <p>When you remove a target, when the associated rule triggers, removed targets might continue to be invoked. Allow a short period of time for changes to take effect.</p> <p>This action can partially fail if too many requests are made at the same time. If that happens, <code>FailedEntryCount</code> is non-zero in the response and each entry in <code>FailedEntries</code> provides the ID of the failed target and the error code.</p>",
+    "StartReplay": "<p>Starts the specified replay. Events are not necessarily replayed in the exact same order that they were added to the archive. A replay processes events to replay based on the time in the event, and replays them using 1 minute intervals. If you specify an <code>EventStartTime</code> and an <code>EventEndTime</code> that covers a 20 minute time range, the events are replayed from the first minute of that 20 minute range first. Then the events from the second minute are replayed. You can use <code>DescribeReplay</code> to determine the progress of a replay. The value returned for <code>EventLastReplayedTime</code> indicates the time within the specified time range associated with the last event replayed.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified EventBridge resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In EventBridge, rules and event buses can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the <code>TagResource</code> action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "TestEventPattern": "<p>Tests whether the specified event pattern matches the provided event.</p> <p>Most services in AWS treat : or / as the same character in Amazon Resource Names (ARNs). However, EventBridge uses an exact match in event patterns and rules. Be sure to use the correct ARN characters when creating event patterns so that they match the ARN syntax in the event you want to match.</p>",
-    "UntagResource": "<p>Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge (CloudWatch Events, rules and event buses can be tagged.</p>"
+    "UntagResource": "<p>Removes one or more tags from the specified EventBridge resource. In Amazon EventBridge (CloudWatch Events, rules and event buses can be tagged.</p>",
+    "UpdateArchive": "<p>Updates the specified archive.</p>"
   },
   "shapes": {
     "AccountId": {
@@ -54,11 +63,80 @@
       "refs": {
       }
     },
+    "Archive": {
+      "base": "<p>An <code>Archive</code> object that contains details about an archive.</p>",
+      "refs": {
+        "ArchiveResponseList$member": null
+      }
+    },
+    "ArchiveArn": {
+      "base": null,
+      "refs": {
+        "CreateArchiveResponse$ArchiveArn": "<p>The ARN of the archive that was created.</p>",
+        "DescribeArchiveResponse$ArchiveArn": "<p>The ARN of the archive.</p>",
+        "UpdateArchiveResponse$ArchiveArn": "<p>The ARN of the archive.</p>"
+      }
+    },
+    "ArchiveDescription": {
+      "base": null,
+      "refs": {
+        "CreateArchiveRequest$Description": "<p>A description for the archive.</p>",
+        "DescribeArchiveResponse$Description": "<p>The description of the archive.</p>",
+        "UpdateArchiveRequest$Description": "<p>The description for the archive.</p>"
+      }
+    },
+    "ArchiveName": {
+      "base": null,
+      "refs": {
+        "Archive$ArchiveName": "<p>The name of the archive.</p>",
+        "CreateArchiveRequest$ArchiveName": "<p>The name for the archive to create.</p>",
+        "DeleteArchiveRequest$ArchiveName": "<p>The name of the archive to delete.</p>",
+        "DescribeArchiveRequest$ArchiveName": "<p>The name of the archive to retrieve.</p>",
+        "DescribeArchiveResponse$ArchiveName": "<p>The name of the archive.</p>",
+        "ListArchivesRequest$NamePrefix": "<p>A name prefix to filter the archives returned. Only archives with name that match the prefix are returned.</p>",
+        "UpdateArchiveRequest$ArchiveName": "<p>The name of the archive to update.</p>"
+      }
+    },
+    "ArchiveResponseList": {
+      "base": null,
+      "refs": {
+        "ListArchivesResponse$Archives": "<p>An array of <code>Archive</code> objects that include details about an archive.</p>"
+      }
+    },
+    "ArchiveState": {
+      "base": null,
+      "refs": {
+        "Archive$State": "<p>The current state of the archive.</p>",
+        "CreateArchiveResponse$State": "<p>The state of the archive that was created.</p>",
+        "DescribeArchiveResponse$State": "<p>The state of the archive.</p>",
+        "ListArchivesRequest$State": "<p>The state of the archive.</p>",
+        "UpdateArchiveResponse$State": "<p>The state of the archive.</p>"
+      }
+    },
+    "ArchiveStateReason": {
+      "base": null,
+      "refs": {
+        "Archive$StateReason": "<p>A description for the reason that the archive is in the current state.</p>",
+        "CreateArchiveResponse$StateReason": "<p>The reason that the archive is in the state.</p>",
+        "DescribeArchiveResponse$StateReason": "<p>The reason that the archive is in the state.</p>",
+        "UpdateArchiveResponse$StateReason": "<p>The reason that the archive is in the current state.</p>"
+      }
+    },
     "Arn": {
       "base": null,
       "refs": {
+        "Archive$EventSourceArn": "<p>The ARN of the event bus associated with the archive. Only events from this event bus are sent to the archive.</p>",
+        "CreateArchiveRequest$EventSourceArn": "<p>The ARN of the event source associated with the archive.</p>",
+        "DescribeArchiveResponse$EventSourceArn": "<p>The ARN of the event source associated with the archive.</p>",
+        "DescribeReplayResponse$EventSourceArn": "<p>The ARN of the archive events were replayed from.</p>",
         "EcsParameters$TaskDefinitionArn": "<p>The ARN of the task definition to use if the event target is an Amazon ECS task. </p>",
+        "ListArchivesRequest$EventSourceArn": "<p>The ARN of the event source associated with the archive.</p>",
+        "ListReplaysRequest$EventSourceArn": "<p>The ARN of the event source associated with the replay.</p>",
         "ListTagsForResourceRequest$ResourceARN": "<p>The ARN of the EventBridge resource for which you want to view tags.</p>",
+        "Replay$EventSourceArn": "<p>The ARN of the archive to replay event from.</p>",
+        "ReplayDestination$Arn": "<p>The ARN of the event bus to replay event to. You can replay events only to the event bus specified to create the archive.</p>",
+        "ReplayDestinationFilters$member": null,
+        "StartReplayRequest$EventSourceArn": "<p>The ARN of the archive to replay events from.</p>",
         "TagResourceRequest$ResourceARN": "<p>The ARN of the EventBridge resource that you're adding tags to.</p>",
         "UntagResourceRequest$ResourceARN": "<p>The ARN of the EventBridge resource from which you are removing tags.</p>"
       }
@@ -102,8 +180,18 @@
         "TestEventPatternResponse$Result": "<p>Indicates whether the event matches the event pattern.</p>"
       }
     },
+    "CancelReplayRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelReplayResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ConcurrentModificationException": {
-      "base": "<p>There is concurrent modification on a rule or target.</p>",
+      "base": "<p>There is concurrent modification on a rule, target, archive, or replay.</p>",
       "refs": {
       }
     },
@@ -111,6 +199,16 @@
       "base": "<p>A JSON string which you can use to limit the event bus permissions you are granting to only accounts that fulfill the condition. Currently, the only supported condition is membership in a certain AWS organization. The string must contain <code>Type</code>, <code>Key</code>, and <code>Value</code> fields. The <code>Value</code> field specifies the ID of the AWS organization. Following is an example value for <code>Condition</code>:</p> <p> <code>'{\"Type\" : \"StringEquals\", \"Key\": \"aws:PrincipalOrgID\", \"Value\": \"o-1234567890\"}'</code> </p>",
       "refs": {
         "PutPermissionRequest$Condition": "<p>This parameter enables you to limit the permission to accounts that fulfill a certain condition, such as being a member of a certain AWS organization. For more information about AWS Organizations, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_introduction.html\">What Is AWS Organizations</a> in the <i>AWS Organizations User Guide</i>.</p> <p>If you specify <code>Condition</code> with an AWS organization ID, and specify \"*\" as the value for <code>Principal</code>, you grant permission to all the accounts in the named organization.</p> <p>The <code>Condition</code> is a JSON string which must contain <code>Type</code>, <code>Key</code>, and <code>Value</code> fields.</p>"
+      }
+    },
+    "CreateArchiveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateArchiveResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateEventBusRequest": {
@@ -156,6 +254,16 @@
         "Target$DeadLetterConfig": "<p>The <code>DeadLetterConfig</code> that defines the target queue to send dead-letter queue events to.</p>"
       }
     },
+    "DeleteArchiveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteArchiveResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteEventBusRequest": {
       "base": null,
       "refs": {
@@ -167,6 +275,16 @@
       }
     },
     "DeleteRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeArchiveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeArchiveResponse": {
       "base": null,
       "refs": {
       }
@@ -197,6 +315,16 @@
       }
     },
     "DescribePartnerEventSourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReplayRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeReplayResponse": {
       "base": null,
       "refs": {
       }
@@ -288,10 +416,13 @@
     "EventPattern": {
       "base": null,
       "refs": {
+        "CreateArchiveRequest$EventPattern": "<p>An event pattern to use to filter events sent to the archive.</p>",
+        "DescribeArchiveResponse$EventPattern": "<p>The event pattern used to filter events sent to the archive.</p>",
         "DescribeRuleResponse$EventPattern": "<p>The event pattern. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html\">Events and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
         "PutRuleRequest$EventPattern": "<p>The event pattern. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html\">Events and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
         "Rule$EventPattern": "<p>The event pattern of the rule. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html\">Events and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
-        "TestEventPatternRequest$EventPattern": "<p>The event pattern. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html\">Events and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.</p>"
+        "TestEventPatternRequest$EventPattern": "<p>The event pattern. For more information, see <a href=\"https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html\">Events and Event Patterns</a> in the <i>Amazon EventBridge User Guide</i>.</p>",
+        "UpdateArchiveRequest$EventPattern": "<p>The event pattern to use to filter events sent to the archive.</p>"
       }
     },
     "EventResource": {
@@ -378,6 +509,11 @@
         "Target$HttpParameters": "<p>Contains the HTTP parameters to use when the target is a API Gateway REST endpoint.</p> <p>If you specify an API Gateway REST API as a target, you can use this parameter to specify headers, path parameter, query string keys/values as part of your target invoking request.</p>"
       }
     },
+    "IllegalStatusException": {
+      "base": "<p>An error occurred because a replay can be canceled only when the state is Running or Starting.</p>",
+      "refs": {
+      }
+    },
     "InputTransformer": {
       "base": "<p>Contains the parameters needed for you to provide custom input to a target based on one or more pieces of data extracted from the event.</p>",
       "refs": {
@@ -429,17 +565,19 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>You tried to create more rules or add more targets to a rule than is allowed.</p>",
+      "base": "<p>The request failed because it attempted to create resource beyond the allowed service quota.</p>",
       "refs": {
       }
     },
     "LimitMax100": {
       "base": null,
       "refs": {
+        "ListArchivesRequest$Limit": "<p>The maximum number of results to return.</p>",
         "ListEventBusesRequest$Limit": "<p>Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListEventSourcesRequest$Limit": "<p>Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListPartnerEventSourceAccountsRequest$Limit": "<p>Specifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListPartnerEventSourcesRequest$Limit": "<p>pecifying this limits the number of results returned by this operation. The operation also returns a NextToken which you can use in a subsequent operation to retrieve the next set of results.</p>",
+        "ListReplaysRequest$Limit": "<p>The maximum number of replays to retrieve.</p>",
         "ListRuleNamesByTargetRequest$Limit": "<p>The maximum number of results to return.</p>",
         "ListRulesRequest$Limit": "<p>The maximum number of results to return.</p>",
         "ListTargetsByRuleRequest$Limit": "<p>The maximum number of results to return.</p>"
@@ -449,6 +587,16 @@
       "base": null,
       "refs": {
         "EcsParameters$TaskCount": "<p>The number of tasks to create based on <code>TaskDefinition</code>. The default is 1.</p>"
+      }
+    },
+    "ListArchivesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListArchivesResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ListEventBusesRequest": {
@@ -487,6 +635,16 @@
       }
     },
     "ListPartnerEventSourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReplaysRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListReplaysResponse": {
       "base": null,
       "refs": {
       }
@@ -531,6 +689,15 @@
       "refs": {
       }
     },
+    "Long": {
+      "base": null,
+      "refs": {
+        "Archive$SizeBytes": "<p>The size of the archive, in bytes.</p>",
+        "Archive$EventCount": "<p>The number of events in the archive.</p>",
+        "DescribeArchiveResponse$SizeBytes": "<p>The size of the archive in bytes.</p>",
+        "DescribeArchiveResponse$EventCount": "<p>The number of events in the archive.</p>"
+      }
+    },
     "ManagedBy": {
       "base": null,
       "refs": {
@@ -570,6 +737,8 @@
     "NextToken": {
       "base": null,
       "refs": {
+        "ListArchivesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
+        "ListArchivesResponse$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListEventBusesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListEventBusesResponse$NextToken": "<p>A token you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListEventSourcesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
@@ -578,6 +747,8 @@
         "ListPartnerEventSourceAccountsResponse$NextToken": "<p>A token you can use in a subsequent operation to retrieve the next set of results.</p>",
         "ListPartnerEventSourcesRequest$NextToken": "<p>The token returned by a previous call to this operation. Specifying this retrieves the next set of results.</p>",
         "ListPartnerEventSourcesResponse$NextToken": "<p>A token you can use in a subsequent operation to retrieve the next set of results.</p>",
+        "ListReplaysRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
+        "ListReplaysResponse$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListRuleNamesByTargetRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
         "ListRuleNamesByTargetResponse$NextToken": "<p>Indicates whether there are additional results to retrieve. If there are no more results, the value is null.</p>",
         "ListRulesRequest$NextToken": "<p>The token returned by a previous call to retrieve the next set of results.</p>",
@@ -814,6 +985,76 @@
         "RemoveTargetsResponse$FailedEntries": "<p>The failed target entries.</p>"
       }
     },
+    "Replay": {
+      "base": "<p>A <code>Replay</code> object that contains details about a replay.</p>",
+      "refs": {
+        "ReplayList$member": null
+      }
+    },
+    "ReplayArn": {
+      "base": null,
+      "refs": {
+        "CancelReplayResponse$ReplayArn": "<p>The ARN of the replay to cancel.</p>",
+        "DescribeReplayResponse$ReplayArn": "<p>The ARN of the replay.</p>",
+        "StartReplayResponse$ReplayArn": "<p>The ARN of the replay.</p>"
+      }
+    },
+    "ReplayDescription": {
+      "base": null,
+      "refs": {
+        "DescribeReplayResponse$Description": "<p>The description of the replay.</p>",
+        "StartReplayRequest$Description": "<p>A description for the replay to start.</p>"
+      }
+    },
+    "ReplayDestination": {
+      "base": "<p>A <code>ReplayDestination</code> object that contains details about a replay.</p>",
+      "refs": {
+        "DescribeReplayResponse$Destination": "<p>A <code>ReplayDestination</code> object that contains details about the replay.</p>",
+        "StartReplayRequest$Destination": "<p>A <code>ReplayDestination</code> object that includes details about the destination for the replay.</p>"
+      }
+    },
+    "ReplayDestinationFilters": {
+      "base": null,
+      "refs": {
+        "ReplayDestination$FilterArns": "<p>A list of ARNs for rules to replay events to.</p>"
+      }
+    },
+    "ReplayList": {
+      "base": null,
+      "refs": {
+        "ListReplaysResponse$Replays": "<p>An array of <code>Replay</code> objects that contain information about the replay.</p>"
+      }
+    },
+    "ReplayName": {
+      "base": null,
+      "refs": {
+        "CancelReplayRequest$ReplayName": "<p>The name of the replay to cancel.</p>",
+        "DescribeReplayRequest$ReplayName": "<p>The name of the replay to retrieve.</p>",
+        "DescribeReplayResponse$ReplayName": "<p>The name of the replay.</p>",
+        "ListReplaysRequest$NamePrefix": "<p>A name prefix to filter the archives returned. Only archives with name that match the prefix are returned.</p>",
+        "Replay$ReplayName": "<p>The name of the replay.</p>",
+        "StartReplayRequest$ReplayName": "<p>The name of the replay to start.</p>"
+      }
+    },
+    "ReplayState": {
+      "base": null,
+      "refs": {
+        "CancelReplayResponse$State": "<p>The current state of the replay.</p>",
+        "DescribeReplayResponse$State": "<p>The current state of the replay.</p>",
+        "ListReplaysRequest$State": "<p>The state of the replay.</p>",
+        "Replay$State": "<p>The current state of the replay.</p>",
+        "StartReplayResponse$State": "<p>The state of the replay.</p>"
+      }
+    },
+    "ReplayStateReason": {
+      "base": null,
+      "refs": {
+        "CancelReplayResponse$StateReason": "<p>The reason that the replay is in the current state.</p>",
+        "DescribeReplayResponse$StateReason": "<p>The reason that the replay is in the current state.</p>",
+        "Replay$StateReason": "<p>A description of why the replay is in the current state.</p>",
+        "StartReplayResponse$StateReason": "<p>The reason that the replay is in the state.</p>"
+      }
+    },
     "ResourceAlreadyExistsException": {
       "base": "<p>The resource you are trying to create already exists.</p>",
       "refs": {
@@ -828,6 +1069,15 @@
     "ResourceNotFoundException": {
       "base": "<p>An entity that you specified does not exist.</p>",
       "refs": {
+      }
+    },
+    "RetentionDays": {
+      "base": null,
+      "refs": {
+        "Archive$RetentionDays": "<p>The number of days to retain events in the archive before they are deleted.</p>",
+        "CreateArchiveRequest$RetentionDays": "<p>The number of days to retain events for. Default value is 0. If set to 0, events are retained indefinitely</p>",
+        "DescribeArchiveResponse$RetentionDays": "<p>The number of days to retain events for in the archive.</p>",
+        "UpdateArchiveRequest$RetentionDays": "<p>The number of days to retain events in the archive.</p>"
       }
     },
     "RetryPolicy": {
@@ -958,6 +1208,16 @@
       "base": "<p>This structure includes the custom parameter to be used when the target is an SQS FIFO queue.</p>",
       "refs": {
         "Target$SqsParameters": "<p>Contains the message group ID to use when the target is a FIFO queue.</p> <p>If you specify an SQS FIFO queue as a target, the queue must have content-based deduplication enabled.</p>"
+      }
+    },
+    "StartReplayRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartReplayResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "StatementId": {
@@ -1128,12 +1388,29 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "Archive$CreationTime": "<p>The time stamp for the time that the archive was created.</p>",
+        "CreateArchiveResponse$CreationTime": "<p>The time at which the archive was created.</p>",
+        "DescribeArchiveResponse$CreationTime": "<p>The time at which the archive was created.</p>",
         "DescribeEventSourceResponse$CreationTime": "<p>The date and time that the event source was created.</p>",
         "DescribeEventSourceResponse$ExpirationTime": "<p>The date and time that the event source will expire if you do not create a matching event bus.</p>",
+        "DescribeReplayResponse$EventStartTime": "<p>The time stamp of the first event that was last replayed from the archive.</p>",
+        "DescribeReplayResponse$EventEndTime": "<p>The time stamp for the last event that was replayed from the archive.</p>",
+        "DescribeReplayResponse$EventLastReplayedTime": "<p>The time that the event was last replayed.</p>",
+        "DescribeReplayResponse$ReplayStartTime": "<p>A time stamp for the time that the replay started.</p>",
+        "DescribeReplayResponse$ReplayEndTime": "<p>A time stamp for the time that the replay stopped.</p>",
         "EventSource$CreationTime": "<p>The date and time the event source was created.</p>",
         "EventSource$ExpirationTime": "<p>The date and time that the event source will expire, if the AWS account doesn't create a matching event bus for it.</p>",
         "PartnerEventSourceAccount$CreationTime": "<p>The date and time the event source was created.</p>",
-        "PartnerEventSourceAccount$ExpirationTime": "<p>The date and time that the event source will expire, if the AWS account doesn't create a matching event bus for it.</p>"
+        "PartnerEventSourceAccount$ExpirationTime": "<p>The date and time that the event source will expire, if the AWS account doesn't create a matching event bus for it.</p>",
+        "Replay$EventStartTime": "<p>A time stamp for the time to start replaying events. This is determined by the time in the event as described in <a href=\"https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEventsRequestEntry.html#eventbridge-Type-PutEventsRequestEntry-Time\">Time</a>.</p>",
+        "Replay$EventEndTime": "<p>A time stamp for the time to start replaying events. Any event with a creation time prior to the <code>EventEndTime</code> specified is replayed.</p>",
+        "Replay$EventLastReplayedTime": "<p>A time stamp for the time that the last event was replayed.</p>",
+        "Replay$ReplayStartTime": "<p>A time stamp for the time that the replay started.</p>",
+        "Replay$ReplayEndTime": "<p>A time stamp for the time that the replay completed.</p>",
+        "StartReplayRequest$EventStartTime": "<p>A time stamp for the time to start replaying events. Only events that occurred between the <code>EventStartTime</code> and <code>EventEndTime</code> are replayed.</p>",
+        "StartReplayRequest$EventEndTime": "<p>A time stamp for the time to stop replaying events. Only events that occurred between the <code>EventStartTime</code> and <code>EventEndTime</code> are replayed.</p>",
+        "StartReplayResponse$ReplayStartTime": "<p>The time at which the replay started.</p>",
+        "UpdateArchiveResponse$CreationTime": "<p>The time at which the archive was updated.</p>"
       }
     },
     "TransformerInput": {
@@ -1154,6 +1431,16 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateArchiveRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateArchiveResponse": {
       "base": null,
       "refs": {
       }

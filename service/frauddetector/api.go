@@ -692,6 +692,9 @@ func (c *FraudDetector) DeleteDetectorRequest(input *DeleteDetectorInput) (req *
 // Deletes the detector. Before deleting a detector, you must first delete all
 // detector versions and rule versions associated with the detector.
 //
+// When you delete a detector, Amazon Fraud Detector permanently deletes the
+// detector and the data is no longer stored in Amazon Fraud Detector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -798,6 +801,9 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 // Deletes the detector version. You cannot delete detector versions that are
 // in ACTIVE status.
 //
+// When you delete a detector version, Amazon Fraud Detector permanently deletes
+// the detector and the data is no longer stored in Amazon Fraud Detector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -859,6 +865,114 @@ func (c *FraudDetector) DeleteDetectorVersionWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opDeleteEntityType = "DeleteEntityType"
+
+// DeleteEntityTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEntityType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEntityType for more information on using the DeleteEntityType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEntityTypeRequest method.
+//    req, resp := client.DeleteEntityTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEntityType
+func (c *FraudDetector) DeleteEntityTypeRequest(input *DeleteEntityTypeInput) (req *request.Request, output *DeleteEntityTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEntityType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEntityTypeInput{}
+	}
+
+	output = &DeleteEntityTypeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEntityType API operation for Amazon Fraud Detector.
+//
+// Deletes an entity type.
+//
+// You cannot delete an entity type that is included in an event type.
+//
+// When you delete an entity type, Amazon Fraud Detector permanently deletes
+// that entity type from the evaluation history, and the data is no longer stored
+// in Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteEntityType for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEntityType
+func (c *FraudDetector) DeleteEntityType(input *DeleteEntityTypeInput) (*DeleteEntityTypeOutput, error) {
+	req, out := c.DeleteEntityTypeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEntityTypeWithContext is the same as DeleteEntityType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEntityType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteEntityTypeWithContext(ctx aws.Context, input *DeleteEntityTypeInput, opts ...request.Option) (*DeleteEntityTypeOutput, error) {
+	req, out := c.DeleteEntityTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteEvent = "DeleteEvent"
 
 // DeleteEventRequest generates a "aws/request.Request" representing the
@@ -906,6 +1020,10 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 //
 // Deletes the specified event.
 //
+// When you delete an event, Amazon Fraud Detector permanently deletes that
+// event from the evaluation history, and the event data is no longer stored
+// in Amazon Fraud Detector.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -925,6 +1043,9 @@ func (c *FraudDetector) DeleteEventRequest(input *DeleteEventInput) (req *reques
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEvent
 func (c *FraudDetector) DeleteEvent(input *DeleteEventInput) (*DeleteEventOutput, error) {
 	req, out := c.DeleteEventRequest(input)
@@ -942,6 +1063,659 @@ func (c *FraudDetector) DeleteEvent(input *DeleteEventInput) (*DeleteEventOutput
 // for more information on using Contexts.
 func (c *FraudDetector) DeleteEventWithContext(ctx aws.Context, input *DeleteEventInput, opts ...request.Option) (*DeleteEventOutput, error) {
 	req, out := c.DeleteEventRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteEventType = "DeleteEventType"
+
+// DeleteEventTypeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventType operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventType for more information on using the DeleteEventType
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEventTypeRequest method.
+//    req, resp := client.DeleteEventTypeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventType
+func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req *request.Request, output *DeleteEventTypeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventType,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteEventTypeInput{}
+	}
+
+	output = &DeleteEventTypeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEventType API operation for Amazon Fraud Detector.
+//
+// Deletes an event type.
+//
+// You cannot delete an event type that is used in a detector or a model.
+//
+// When you delete an entity type, Amazon Fraud Detector permanently deletes
+// that entity type from the evaluation history, and the data is no longer stored
+// in Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteEventType for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteEventType
+func (c *FraudDetector) DeleteEventType(input *DeleteEventTypeInput) (*DeleteEventTypeOutput, error) {
+	req, out := c.DeleteEventTypeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventTypeWithContext is the same as DeleteEventType with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventType for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteEventTypeWithContext(ctx aws.Context, input *DeleteEventTypeInput, opts ...request.Option) (*DeleteEventTypeOutput, error) {
+	req, out := c.DeleteEventTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteExternalModel = "DeleteExternalModel"
+
+// DeleteExternalModelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteExternalModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteExternalModel for more information on using the DeleteExternalModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteExternalModelRequest method.
+//    req, resp := client.DeleteExternalModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteExternalModel
+func (c *FraudDetector) DeleteExternalModelRequest(input *DeleteExternalModelInput) (req *request.Request, output *DeleteExternalModelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteExternalModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteExternalModelInput{}
+	}
+
+	output = &DeleteExternalModelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteExternalModel API operation for Amazon Fraud Detector.
+//
+// Removes a SageMaker model from Amazon Fraud Detector.
+//
+// You can remove an Amazon SageMaker model if it is not associated with a detector
+// version. Removing a SageMaker model disconnects it from Amazon Fraud Detector,
+// but the model remains available in SageMaker.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteExternalModel for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteExternalModel
+func (c *FraudDetector) DeleteExternalModel(input *DeleteExternalModelInput) (*DeleteExternalModelOutput, error) {
+	req, out := c.DeleteExternalModelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteExternalModelWithContext is the same as DeleteExternalModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteExternalModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteExternalModelWithContext(ctx aws.Context, input *DeleteExternalModelInput, opts ...request.Option) (*DeleteExternalModelOutput, error) {
+	req, out := c.DeleteExternalModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteLabel = "DeleteLabel"
+
+// DeleteLabelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteLabel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteLabel for more information on using the DeleteLabel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteLabelRequest method.
+//    req, resp := client.DeleteLabelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteLabel
+func (c *FraudDetector) DeleteLabelRequest(input *DeleteLabelInput) (req *request.Request, output *DeleteLabelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteLabel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteLabelInput{}
+	}
+
+	output = &DeleteLabelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteLabel API operation for Amazon Fraud Detector.
+//
+// Deletes a label.
+//
+// You cannot delete labels that are included in an event type in Amazon Fraud
+// Detector.
+//
+// You cannot delete a label assigned to an event ID. You must first delete
+// the relevant event ID.
+//
+// When you delete a label, Amazon Fraud Detector permanently deletes that label
+// from the evaluation history, and the data is no longer stored in Amazon Fraud
+// Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteLabel for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteLabel
+func (c *FraudDetector) DeleteLabel(input *DeleteLabelInput) (*DeleteLabelOutput, error) {
+	req, out := c.DeleteLabelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteLabelWithContext is the same as DeleteLabel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteLabel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteLabelWithContext(ctx aws.Context, input *DeleteLabelInput, opts ...request.Option) (*DeleteLabelOutput, error) {
+	req, out := c.DeleteLabelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteModel = "DeleteModel"
+
+// DeleteModelRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteModel operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteModel for more information on using the DeleteModel
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteModelRequest method.
+//    req, resp := client.DeleteModelRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModel
+func (c *FraudDetector) DeleteModelRequest(input *DeleteModelInput) (req *request.Request, output *DeleteModelOutput) {
+	op := &request.Operation{
+		Name:       opDeleteModel,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteModelInput{}
+	}
+
+	output = &DeleteModelOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteModel API operation for Amazon Fraud Detector.
+//
+// Deletes a model.
+//
+// You can delete models and model versions in Amazon Fraud Detector, provided
+// that they are not associated with a detector version.
+//
+// When you delete a model, Amazon Fraud Detector permanently deletes that model
+// from the evaluation history, and the data is no longer stored in Amazon Fraud
+// Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteModel for usage and error information.
+//
+// Returned Error Types:
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModel
+func (c *FraudDetector) DeleteModel(input *DeleteModelInput) (*DeleteModelOutput, error) {
+	req, out := c.DeleteModelRequest(input)
+	return out, req.Send()
+}
+
+// DeleteModelWithContext is the same as DeleteModel with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteModel for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteModelWithContext(ctx aws.Context, input *DeleteModelInput, opts ...request.Option) (*DeleteModelOutput, error) {
+	req, out := c.DeleteModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteModelVersion = "DeleteModelVersion"
+
+// DeleteModelVersionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteModelVersion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteModelVersion for more information on using the DeleteModelVersion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteModelVersionRequest method.
+//    req, resp := client.DeleteModelVersionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModelVersion
+func (c *FraudDetector) DeleteModelVersionRequest(input *DeleteModelVersionInput) (req *request.Request, output *DeleteModelVersionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteModelVersion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteModelVersionInput{}
+	}
+
+	output = &DeleteModelVersionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteModelVersion API operation for Amazon Fraud Detector.
+//
+// Deletes a model version.
+//
+// You can delete models and model versions in Amazon Fraud Detector, provided
+// that they are not associated with a detector version.
+//
+// When you delete a model version, Amazon Fraud Detector permanently deletes
+// that model version from the evaluation history, and the data is no longer
+// stored in Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteModelVersion for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteModelVersion
+func (c *FraudDetector) DeleteModelVersion(input *DeleteModelVersionInput) (*DeleteModelVersionOutput, error) {
+	req, out := c.DeleteModelVersionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteModelVersionWithContext is the same as DeleteModelVersion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteModelVersion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteModelVersionWithContext(ctx aws.Context, input *DeleteModelVersionInput, opts ...request.Option) (*DeleteModelVersionOutput, error) {
+	req, out := c.DeleteModelVersionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteOutcome = "DeleteOutcome"
+
+// DeleteOutcomeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteOutcome operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteOutcome for more information on using the DeleteOutcome
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteOutcomeRequest method.
+//    req, resp := client.DeleteOutcomeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteOutcome
+func (c *FraudDetector) DeleteOutcomeRequest(input *DeleteOutcomeInput) (req *request.Request, output *DeleteOutcomeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteOutcome,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteOutcomeInput{}
+	}
+
+	output = &DeleteOutcomeOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteOutcome API operation for Amazon Fraud Detector.
+//
+// Deletes an outcome.
+//
+// You cannot delete an outcome that is used in a rule version.
+//
+// When you delete an outcome, Amazon Fraud Detector permanently deletes that
+// outcome from the evaluation history, and the data is no longer stored in
+// Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteOutcome for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteOutcome
+func (c *FraudDetector) DeleteOutcome(input *DeleteOutcomeInput) (*DeleteOutcomeOutput, error) {
+	req, out := c.DeleteOutcomeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteOutcomeWithContext is the same as DeleteOutcome with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteOutcome for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteOutcomeWithContext(ctx aws.Context, input *DeleteOutcomeInput, opts ...request.Option) (*DeleteOutcomeOutput, error) {
+	req, out := c.DeleteOutcomeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -994,6 +1768,10 @@ func (c *FraudDetector) DeleteRuleRequest(input *DeleteRuleInput) (req *request.
 //
 // Deletes the rule. You cannot delete a rule if it is used by an ACTIVE or
 // INACTIVE detector version.
+//
+// When you delete a rule, Amazon Fraud Detector permanently deletes that rule
+// from the evaluation history, and the data is no longer stored in Amazon Fraud
+// Detector.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1048,6 +1826,122 @@ func (c *FraudDetector) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput, e
 // for more information on using Contexts.
 func (c *FraudDetector) DeleteRuleWithContext(ctx aws.Context, input *DeleteRuleInput, opts ...request.Option) (*DeleteRuleOutput, error) {
 	req, out := c.DeleteRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVariable = "DeleteVariable"
+
+// DeleteVariableRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVariable operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVariable for more information on using the DeleteVariable
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVariableRequest method.
+//    req, resp := client.DeleteVariableRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteVariable
+func (c *FraudDetector) DeleteVariableRequest(input *DeleteVariableInput) (req *request.Request, output *DeleteVariableOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVariable,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteVariableInput{}
+	}
+
+	output = &DeleteVariableOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteVariable API operation for Amazon Fraud Detector.
+//
+// Deletes a variable.
+//
+// You can't delete variables that are included in an event type in Amazon Fraud
+// Detector.
+//
+// Amazon Fraud Detector automatically deletes model output variables and SageMaker
+// model output variables when you delete the model. You can't delete these
+// variables manually.
+//
+// When you delete a variable, Amazon Fraud Detector permanently deletes that
+// variable from the evaluation history, and the data is no longer stored in
+// Amazon Fraud Detector.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Fraud Detector's
+// API operation DeleteVariable for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   An exception indicating a specified value is not allowed.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * InternalServerException
+//   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
+//   * AccessDeniedException
+//   An exception indicating Amazon Fraud Detector does not have the needed permissions.
+//   This can occur if you submit a request, such as PutExternalModel, that specifies
+//   a role that is not in your account.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/DeleteVariable
+func (c *FraudDetector) DeleteVariable(input *DeleteVariableInput) (*DeleteVariableOutput, error) {
+	req, out := c.DeleteVariableRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVariableWithContext is the same as DeleteVariable with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVariable for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FraudDetector) DeleteVariableWithContext(ctx aws.Context, input *DeleteVariableInput, opts ...request.Option) (*DeleteVariableOutput, error) {
+	req, out := c.DeleteVariableRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1769,6 +2663,20 @@ func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPrediction
 func (c *FraudDetector) GetEventPrediction(input *GetEventPredictionInput) (*GetEventPredictionOutput, error) {
@@ -6171,18 +7079,73 @@ func (s DeleteDetectorVersionOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteEntityTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the entity type to delete.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEntityTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEntityTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEntityTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEntityTypeInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteEntityTypeInput) SetName(v string) *DeleteEntityTypeInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteEntityTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEntityTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEntityTypeOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEventInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the event to delete.
 	//
 	// EventId is a required field
-	EventId *string `locationName:"eventId" type:"string" required:"true"`
+	EventId *string `locationName:"eventId" min:"1" type:"string" required:"true"`
 
 	// The name of the event type.
 	//
 	// EventTypeName is a required field
-	EventTypeName *string `locationName:"eventTypeName" type:"string" required:"true"`
+	EventTypeName *string `locationName:"eventTypeName" min:"1" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -6201,8 +7164,14 @@ func (s *DeleteEventInput) Validate() error {
 	if s.EventId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventId"))
 	}
+	if s.EventId != nil && len(*s.EventId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventId", 1))
+	}
 	if s.EventTypeName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
+	}
+	if s.EventTypeName != nil && len(*s.EventTypeName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTypeName", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -6234,6 +7203,381 @@ func (s DeleteEventOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEventOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteEventTypeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the event type to delete.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteEventTypeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventTypeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventTypeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventTypeInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteEventTypeInput) SetName(v string) *DeleteEventTypeInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteEventTypeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteEventTypeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteEventTypeOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteExternalModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the Amazon Sagemaker model to delete.
+	//
+	// ModelEndpoint is a required field
+	ModelEndpoint *string `locationName:"modelEndpoint" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteExternalModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteExternalModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteExternalModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteExternalModelInput"}
+	if s.ModelEndpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelEndpoint"))
+	}
+	if s.ModelEndpoint != nil && len(*s.ModelEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelEndpoint", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelEndpoint sets the ModelEndpoint field's value.
+func (s *DeleteExternalModelInput) SetModelEndpoint(v string) *DeleteExternalModelInput {
+	s.ModelEndpoint = &v
+	return s
+}
+
+type DeleteExternalModelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteExternalModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteExternalModelOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteLabelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the label to delete.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteLabelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLabelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteLabelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteLabelInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteLabelInput) SetName(v string) *DeleteLabelInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteLabelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteLabelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteLabelOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteModelInput struct {
+	_ struct{} `type:"structure"`
+
+	// The model ID of the model to delete.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// The model type of the model to delete.
+	//
+	// ModelType is a required field
+	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
+}
+
+// String returns the string representation
+func (s DeleteModelInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteModelInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteModelInput"}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *DeleteModelInput) SetModelId(v string) *DeleteModelInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *DeleteModelInput) SetModelType(v string) *DeleteModelInput {
+	s.ModelType = &v
+	return s
+}
+
+type DeleteModelOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteModelOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteModelVersionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The model ID of the model version to delete.
+	//
+	// ModelId is a required field
+	ModelId *string `locationName:"modelId" min:"1" type:"string" required:"true"`
+
+	// The model type of the model version to delete.
+	//
+	// ModelType is a required field
+	ModelType *string `locationName:"modelType" type:"string" required:"true" enum:"ModelTypeEnum"`
+
+	// The model version number of the model version to delete.
+	//
+	// ModelVersionNumber is a required field
+	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteModelVersionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelVersionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteModelVersionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteModelVersionInput"}
+	if s.ModelId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelId"))
+	}
+	if s.ModelId != nil && len(*s.ModelId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelId", 1))
+	}
+	if s.ModelType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelType"))
+	}
+	if s.ModelVersionNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("ModelVersionNumber"))
+	}
+	if s.ModelVersionNumber != nil && len(*s.ModelVersionNumber) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ModelVersionNumber", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetModelId sets the ModelId field's value.
+func (s *DeleteModelVersionInput) SetModelId(v string) *DeleteModelVersionInput {
+	s.ModelId = &v
+	return s
+}
+
+// SetModelType sets the ModelType field's value.
+func (s *DeleteModelVersionInput) SetModelType(v string) *DeleteModelVersionInput {
+	s.ModelType = &v
+	return s
+}
+
+// SetModelVersionNumber sets the ModelVersionNumber field's value.
+func (s *DeleteModelVersionInput) SetModelVersionNumber(v string) *DeleteModelVersionInput {
+	s.ModelVersionNumber = &v
+	return s
+}
+
+type DeleteModelVersionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteModelVersionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteModelVersionOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteOutcomeInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the outcome to delete.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteOutcomeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOutcomeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteOutcomeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteOutcomeInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteOutcomeInput) SetName(v string) *DeleteOutcomeInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteOutcomeOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteOutcomeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteOutcomeOutput) GoString() string {
 	return s.String()
 }
 
@@ -6291,6 +7635,58 @@ func (s DeleteRuleOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteRuleOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteVariableInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the variable to delete.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteVariableInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVariableInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVariableInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVariableInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteVariableInput) SetName(v string) *DeleteVariableInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteVariableOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteVariableOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVariableOutput) GoString() string {
 	return s.String()
 }
 
@@ -8039,6 +9435,26 @@ type GetModelVersionOutput struct {
 	ModelVersionNumber *string `locationName:"modelVersionNumber" min:"3" type:"string"`
 
 	// The model version status.
+	//
+	// Possible values are:
+	//
+	//    * TRAINING_IN_PROGRESS
+	//
+	//    * TRAINING_COMPLETE
+	//
+	//    * ACTIVATE_REQUESTED
+	//
+	//    * ACTIVATE_IN_PROGRESS
+	//
+	//    * ACTIVE
+	//
+	//    * INACTIVATE_REQUESTED
+	//
+	//    * INACTIVATE_IN_PROGRESS
+	//
+	//    * INACTIVE
+	//
+	//    * ERROR
 	Status *string `locationName:"status" type:"string"`
 
 	// The training data schema.
