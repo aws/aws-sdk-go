@@ -223,7 +223,7 @@ const (
 	// "DBProxyNotFoundFault".
 	//
 	// The specified proxy name doesn't correspond to a proxy owned by your AWS
-	// accoutn in the specified AWS Region.
+	// account in the specified AWS Region.
 	ErrCodeDBProxyNotFoundFault = "DBProxyNotFoundFault"
 
 	// ErrCodeDBProxyQuotaExceededFault for service response error code

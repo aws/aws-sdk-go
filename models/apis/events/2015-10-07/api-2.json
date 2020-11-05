@@ -27,6 +27,38 @@
         {"shape":"OperationDisabledException"}
       ]
     },
+    "CancelReplay":{
+      "name":"CancelReplay",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelReplayRequest"},
+      "output":{"shape":"CancelReplayResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"IllegalStatusException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "CreateArchive":{
+      "name":"CreateArchive",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateArchiveRequest"},
+      "output":{"shape":"CreateArchiveResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidEventPatternException"}
+      ]
+    },
     "CreateEventBus":{
       "name":"CreateEventBus",
       "http":{
@@ -76,6 +108,20 @@
         {"shape":"OperationDisabledException"}
       ]
     },
+    "DeleteArchive":{
+      "name":"DeleteArchive",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteArchiveRequest"},
+      "output":{"shape":"DeleteArchiveResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DeleteEventBus":{
       "name":"DeleteEventBus",
       "http":{
@@ -113,6 +159,20 @@
         {"shape":"ManagedRuleException"},
         {"shape":"InternalException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeArchive":{
+      "name":"DescribeArchive",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeArchiveRequest"},
+      "output":{"shape":"DescribeArchiveResponse"},
+      "errors":[
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
       ]
     },
     "DescribeEventBus":{
@@ -156,6 +216,19 @@
         {"shape":"OperationDisabledException"}
       ]
     },
+    "DescribeReplay":{
+      "name":"DescribeReplay",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReplayRequest"},
+      "output":{"shape":"DescribeReplayResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "DescribeRule":{
       "name":"DescribeRule",
       "http":{
@@ -194,6 +267,19 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ConcurrentModificationException"},
         {"shape":"ManagedRuleException"},
+        {"shape":"InternalException"}
+      ]
+    },
+    "ListArchives":{
+      "name":"ListArchives",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListArchivesRequest"},
+      "output":{"shape":"ListArchivesResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"}
       ]
     },
@@ -247,6 +333,18 @@
       "errors":[
         {"shape":"InternalException"},
         {"shape":"OperationDisabledException"}
+      ]
+    },
+    "ListReplays":{
+      "name":"ListReplays",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReplaysRequest"},
+      "output":{"shape":"ListReplaysResponse"},
+      "errors":[
+        {"shape":"InternalException"}
       ]
     },
     "ListRuleNamesByTarget":{
@@ -401,6 +499,22 @@
         {"shape":"InternalException"}
       ]
     },
+    "StartReplay":{
+      "name":"StartReplay",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartReplayRequest"},
+      "output":{"shape":"StartReplayResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"InvalidEventPatternException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -443,6 +557,22 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"ManagedRuleException"}
       ]
+    },
+    "UpdateArchive":{
+      "name":"UpdateArchive",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateArchiveRequest"},
+      "output":{"shape":"UpdateArchiveResponse"},
+      "errors":[
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidEventPatternException"}
+      ]
     }
   },
   "shapes":{
@@ -464,6 +594,56 @@
       "members":{
         "Name":{"shape":"EventSourceName"}
       }
+    },
+    "Archive":{
+      "type":"structure",
+      "members":{
+        "ArchiveName":{"shape":"ArchiveName"},
+        "EventSourceArn":{"shape":"Arn"},
+        "State":{"shape":"ArchiveState"},
+        "StateReason":{"shape":"ArchiveStateReason"},
+        "RetentionDays":{"shape":"RetentionDays"},
+        "SizeBytes":{"shape":"Long"},
+        "EventCount":{"shape":"Long"},
+        "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "ArchiveArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:.+\\/.+$"
+    },
+    "ArchiveDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "ArchiveName":{
+      "type":"string",
+      "max":48,
+      "min":1,
+      "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "ArchiveResponseList":{
+      "type":"list",
+      "member":{"shape":"Archive"}
+    },
+    "ArchiveState":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED",
+        "CREATING",
+        "UPDATING",
+        "CREATE_FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
+    "ArchiveStateReason":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
     },
     "Arn":{
       "type":"string",
@@ -512,6 +692,21 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "CancelReplayRequest":{
+      "type":"structure",
+      "required":["ReplayName"],
+      "members":{
+        "ReplayName":{"shape":"ReplayName"}
+      }
+    },
+    "CancelReplayResponse":{
+      "type":"structure",
+      "members":{
+        "ReplayArn":{"shape":"ReplayArn"},
+        "State":{"shape":"ReplayState"},
+        "StateReason":{"shape":"ReplayStateReason"}
+      }
+    },
     "ConcurrentModificationException":{
       "type":"structure",
       "members":{
@@ -529,6 +724,29 @@
         "Type":{"shape":"String"},
         "Key":{"shape":"String"},
         "Value":{"shape":"String"}
+      }
+    },
+    "CreateArchiveRequest":{
+      "type":"structure",
+      "required":[
+        "ArchiveName",
+        "EventSourceArn"
+      ],
+      "members":{
+        "ArchiveName":{"shape":"ArchiveName"},
+        "EventSourceArn":{"shape":"Arn"},
+        "Description":{"shape":"ArchiveDescription"},
+        "EventPattern":{"shape":"EventPattern"},
+        "RetentionDays":{"shape":"RetentionDays"}
+      }
+    },
+    "CreateArchiveResponse":{
+      "type":"structure",
+      "members":{
+        "ArchiveArn":{"shape":"ArchiveArn"},
+        "State":{"shape":"ArchiveState"},
+        "StateReason":{"shape":"ArchiveStateReason"},
+        "CreationTime":{"shape":"Timestamp"}
       }
     },
     "CreateEventBusRequest":{
@@ -588,6 +806,18 @@
         "Arn":{"shape":"ResourceArn"}
       }
     },
+    "DeleteArchiveRequest":{
+      "type":"structure",
+      "required":["ArchiveName"],
+      "members":{
+        "ArchiveName":{"shape":"ArchiveName"}
+      }
+    },
+    "DeleteArchiveResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteEventBusRequest":{
       "type":"structure",
       "required":["Name"],
@@ -613,6 +843,29 @@
         "Name":{"shape":"RuleName"},
         "EventBusName":{"shape":"EventBusName"},
         "Force":{"shape":"Boolean"}
+      }
+    },
+    "DescribeArchiveRequest":{
+      "type":"structure",
+      "required":["ArchiveName"],
+      "members":{
+        "ArchiveName":{"shape":"ArchiveName"}
+      }
+    },
+    "DescribeArchiveResponse":{
+      "type":"structure",
+      "members":{
+        "ArchiveArn":{"shape":"ArchiveArn"},
+        "ArchiveName":{"shape":"ArchiveName"},
+        "EventSourceArn":{"shape":"Arn"},
+        "Description":{"shape":"ArchiveDescription"},
+        "EventPattern":{"shape":"EventPattern"},
+        "State":{"shape":"ArchiveState"},
+        "StateReason":{"shape":"ArchiveStateReason"},
+        "RetentionDays":{"shape":"RetentionDays"},
+        "SizeBytes":{"shape":"Long"},
+        "EventCount":{"shape":"Long"},
+        "CreationTime":{"shape":"Timestamp"}
       }
     },
     "DescribeEventBusRequest":{
@@ -659,6 +912,30 @@
       "members":{
         "Arn":{"shape":"String"},
         "Name":{"shape":"String"}
+      }
+    },
+    "DescribeReplayRequest":{
+      "type":"structure",
+      "required":["ReplayName"],
+      "members":{
+        "ReplayName":{"shape":"ReplayName"}
+      }
+    },
+    "DescribeReplayResponse":{
+      "type":"structure",
+      "members":{
+        "ReplayName":{"shape":"ReplayName"},
+        "ReplayArn":{"shape":"ReplayArn"},
+        "Description":{"shape":"ReplayDescription"},
+        "State":{"shape":"ReplayState"},
+        "StateReason":{"shape":"ReplayStateReason"},
+        "EventSourceArn":{"shape":"Arn"},
+        "Destination":{"shape":"ReplayDestination"},
+        "EventStartTime":{"shape":"Timestamp"},
+        "EventEndTime":{"shape":"Timestamp"},
+        "EventLastReplayedTime":{"shape":"Timestamp"},
+        "ReplayStartTime":{"shape":"Timestamp"},
+        "ReplayEndTime":{"shape":"Timestamp"}
       }
     },
     "DescribeRuleRequest":{
@@ -797,6 +1074,12 @@
         "QueryStringParameters":{"shape":"QueryStringParametersMap"}
       }
     },
+    "IllegalStatusException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InputTransformer":{
       "type":"structure",
       "required":["InputTemplate"],
@@ -860,6 +1143,23 @@
       "type":"integer",
       "min":1
     },
+    "ListArchivesRequest":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"ArchiveName"},
+        "EventSourceArn":{"shape":"Arn"},
+        "State":{"shape":"ArchiveState"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"LimitMax100"}
+      }
+    },
+    "ListArchivesResponse":{
+      "type":"structure",
+      "members":{
+        "Archives":{"shape":"ArchiveResponseList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListEventBusesRequest":{
       "type":"structure",
       "members":{
@@ -919,6 +1219,23 @@
       "type":"structure",
       "members":{
         "PartnerEventSources":{"shape":"PartnerEventSourceList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListReplaysRequest":{
+      "type":"structure",
+      "members":{
+        "NamePrefix":{"shape":"ReplayName"},
+        "State":{"shape":"ReplayState"},
+        "EventSourceArn":{"shape":"Arn"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"LimitMax100"}
+      }
+    },
+    "ListReplaysResponse":{
+      "type":"structure",
+      "members":{
+        "Replays":{"shape":"ReplayList"},
         "NextToken":{"shape":"NextToken"}
       }
     },
@@ -985,6 +1302,7 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "Long":{"type":"long"},
     "ManagedBy":{
       "type":"string",
       "max":128,
@@ -1307,6 +1625,69 @@
       "type":"list",
       "member":{"shape":"RemoveTargetsResultEntry"}
     },
+    "Replay":{
+      "type":"structure",
+      "members":{
+        "ReplayName":{"shape":"ReplayName"},
+        "EventSourceArn":{"shape":"Arn"},
+        "State":{"shape":"ReplayState"},
+        "StateReason":{"shape":"ReplayStateReason"},
+        "EventStartTime":{"shape":"Timestamp"},
+        "EventEndTime":{"shape":"Timestamp"},
+        "EventLastReplayedTime":{"shape":"Timestamp"},
+        "ReplayStartTime":{"shape":"Timestamp"},
+        "ReplayEndTime":{"shape":"Timestamp"}
+      }
+    },
+    "ReplayArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"^arn:aws([a-z]|\\-)*:events:([a-z]|\\d|\\-)*:([0-9]{12})?:.+\\/[\\.\\-_A-Za-z0-9]+$"
+    },
+    "ReplayDescription":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
+    "ReplayDestination":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "FilterArns":{"shape":"ReplayDestinationFilters"}
+      }
+    },
+    "ReplayDestinationFilters":{
+      "type":"list",
+      "member":{"shape":"Arn"}
+    },
+    "ReplayList":{
+      "type":"list",
+      "member":{"shape":"Replay"}
+    },
+    "ReplayName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "ReplayState":{
+      "type":"string",
+      "enum":[
+        "STARTING",
+        "RUNNING",
+        "CANCELLING",
+        "COMPLETED",
+        "CANCELLED",
+        "FAILED"
+      ]
+    },
+    "ReplayStateReason":{
+      "type":"string",
+      "max":512,
+      "pattern":".*"
+    },
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -1323,6 +1704,10 @@
       "members":{
       },
       "exception":true
+    },
+    "RetentionDays":{
+      "type":"integer",
+      "min":0
     },
     "RetryPolicy":{
       "type":"structure",
@@ -1434,6 +1819,33 @@
       "type":"structure",
       "members":{
         "MessageGroupId":{"shape":"MessageGroupId"}
+      }
+    },
+    "StartReplayRequest":{
+      "type":"structure",
+      "required":[
+        "ReplayName",
+        "EventSourceArn",
+        "EventStartTime",
+        "EventEndTime",
+        "Destination"
+      ],
+      "members":{
+        "ReplayName":{"shape":"ReplayName"},
+        "Description":{"shape":"ReplayDescription"},
+        "EventSourceArn":{"shape":"Arn"},
+        "EventStartTime":{"shape":"Timestamp"},
+        "EventEndTime":{"shape":"Timestamp"},
+        "Destination":{"shape":"ReplayDestination"}
+      }
+    },
+    "StartReplayResponse":{
+      "type":"structure",
+      "members":{
+        "ReplayArn":{"shape":"ReplayArn"},
+        "State":{"shape":"ReplayState"},
+        "StateReason":{"shape":"ReplayStateReason"},
+        "ReplayStartTime":{"shape":"Timestamp"}
       }
     },
     "StatementId":{
@@ -1599,6 +2011,25 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateArchiveRequest":{
+      "type":"structure",
+      "required":["ArchiveName"],
+      "members":{
+        "ArchiveName":{"shape":"ArchiveName"},
+        "Description":{"shape":"ArchiveDescription"},
+        "EventPattern":{"shape":"EventPattern"},
+        "RetentionDays":{"shape":"RetentionDays"}
+      }
+    },
+    "UpdateArchiveResponse":{
+      "type":"structure",
+      "members":{
+        "ArchiveArn":{"shape":"ArchiveArn"},
+        "State":{"shape":"ArchiveState"},
+        "StateReason":{"shape":"ArchiveStateReason"},
+        "CreationTime":{"shape":"Timestamp"}
       }
     }
   }

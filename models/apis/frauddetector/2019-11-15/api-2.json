@@ -150,6 +150,21 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "DeleteEntityType":{
+      "name":"DeleteEntityType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEntityTypeRequest"},
+      "output":{"shape":"DeleteEntityTypeResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
     "DeleteEvent":{
       "name":"DeleteEvent",
       "http":{
@@ -161,6 +176,98 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "DeleteEventType":{
+      "name":"DeleteEventType",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteEventTypeRequest"},
+      "output":{"shape":"DeleteEventTypeResult"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteExternalModel":{
+      "name":"DeleteExternalModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteExternalModelRequest"},
+      "output":{"shape":"DeleteExternalModelResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteLabel":{
+      "name":"DeleteLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteLabelRequest"},
+      "output":{"shape":"DeleteLabelResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DeleteModel":{
+      "name":"DeleteModel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteModelRequest"},
+      "output":{"shape":"DeleteModelResult"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteModelVersion":{
+      "name":"DeleteModelVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteModelVersionRequest"},
+      "output":{"shape":"DeleteModelVersionResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
+      ]
+    },
+    "DeleteOutcome":{
+      "name":"DeleteOutcome",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteOutcomeRequest"},
+      "output":{"shape":"DeleteOutcomeResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"}
       ]
     },
@@ -175,6 +282,22 @@
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "DeleteVariable":{
+      "name":"DeleteVariable",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteVariableRequest"},
+      "output":{"shape":"DeleteVariableResult"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
@@ -271,7 +394,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"}
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"}
       ]
     },
     "GetEventTypes":{
@@ -940,6 +1064,18 @@
       "members":{
       }
     },
+    "DeleteEntityTypeRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"identifier"}
+      }
+    },
+    "DeleteEntityTypeResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DeleteEventRequest":{
       "type":"structure",
       "required":[
@@ -947,11 +1083,93 @@
         "eventTypeName"
       ],
       "members":{
-        "eventId":{"shape":"string"},
-        "eventTypeName":{"shape":"string"}
+        "eventId":{"shape":"identifier"},
+        "eventTypeName":{"shape":"identifier"}
       }
     },
     "DeleteEventResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteEventTypeRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"identifier"}
+      }
+    },
+    "DeleteEventTypeResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteExternalModelRequest":{
+      "type":"structure",
+      "required":["modelEndpoint"],
+      "members":{
+        "modelEndpoint":{"shape":"sageMakerEndpointIdentifier"}
+      }
+    },
+    "DeleteExternalModelResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteLabelRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"identifier"}
+      }
+    },
+    "DeleteLabelResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteModelRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "modelType"
+      ],
+      "members":{
+        "modelId":{"shape":"modelIdentifier"},
+        "modelType":{"shape":"ModelTypeEnum"}
+      }
+    },
+    "DeleteModelResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteModelVersionRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "modelType",
+        "modelVersionNumber"
+      ],
+      "members":{
+        "modelId":{"shape":"modelIdentifier"},
+        "modelType":{"shape":"ModelTypeEnum"},
+        "modelVersionNumber":{"shape":"floatVersionString"}
+      }
+    },
+    "DeleteModelVersionResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteOutcomeRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"identifier"}
+      }
+    },
+    "DeleteOutcomeResult":{
       "type":"structure",
       "members":{
       }
@@ -964,6 +1182,18 @@
       }
     },
     "DeleteRuleResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteVariableRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"string"}
+      }
+    },
+    "DeleteVariableResult":{
       "type":"structure",
       "members":{
       }
@@ -1400,7 +1630,7 @@
       "type":"string",
       "max":90,
       "min":7,
-      "pattern":"^\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}|DEFAULT|arn:[a-zA-Z0-9-]+:kms:[a-zA-Z0-9-]+:\\d{12}:key\\/\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}$"
+      "pattern":"^DEFAULT|arn:[a-zA-Z0-9-]+:kms:[a-zA-Z0-9-]+:\\d{12}:key\\/\\w{8}-\\w{4}-\\w{4}-\\w{4}-\\w{12}$"
     },
     "Label":{
       "type":"structure",

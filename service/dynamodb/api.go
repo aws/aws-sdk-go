@@ -14615,6 +14615,12 @@ type ReplicaDescription struct {
 	//    20 hours, DynamoDB will remove this replica from the replication group.
 	//    The replica will not be deleted and replication will stop from and to
 	//    this region.
+	//
+	//    * INACCESSIBLE_ENCRYPTION_CREDENTIALS - The AWS KMS key used to encrypt
+	//    the table is inaccessible. If the AWS KMS key remains inaccessible for
+	//    more than 20 hours, DynamoDB will remove this replica from the replication
+	//    group. The replica will not be deleted and replication will stop from
+	//    and to this region.
 	ReplicaStatus *string `type:"string" enum:"ReplicaStatus"`
 
 	// Detailed information about the replica status.
@@ -20244,6 +20250,9 @@ const (
 
 	// ReplicaStatusRegionDisabled is a ReplicaStatus enum value
 	ReplicaStatusRegionDisabled = "REGION_DISABLED"
+
+	// ReplicaStatusInaccessibleEncryptionCredentials is a ReplicaStatus enum value
+	ReplicaStatusInaccessibleEncryptionCredentials = "INACCESSIBLE_ENCRYPTION_CREDENTIALS"
 )
 
 // ReplicaStatus_Values returns all elements of the ReplicaStatus enum
@@ -20255,6 +20264,7 @@ func ReplicaStatus_Values() []string {
 		ReplicaStatusDeleting,
 		ReplicaStatusActive,
 		ReplicaStatusRegionDisabled,
+		ReplicaStatusInaccessibleEncryptionCredentials,
 	}
 }
 

@@ -1,3 +1,25 @@
+Release v1.35.22 (2020-11-05)
+===
+
+### Service Client Updates
+* `service/appmesh`: Updates service API, documentation, paginators, and examples
+* `service/dynamodb`: Updates service API and documentation
+  * This release adds a new ReplicaStatus INACCESSIBLE_ENCRYPTION_CREDENTIALS for the Table description, indicating when a key used to encrypt a regional replica table is not accessible.
+* `service/ec2`: Updates service API and documentation
+  * Documentation updates for EC2.
+* `service/es`: Updates service API and documentation
+  * Amazon Elasticsearch Service now provides the ability to define a custom endpoint for your domain and link an SSL certificate from ACM, making it easier to refer to Kibana and the domain endpoint.
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * With this release, customers can now reprocess past events by storing the events published on event bus in an encrypted archive.
+* `service/frauddetector`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports providing user context in your query requests, Tokens can be JSON or JWT format. This release also introduces support for Confluence cloud datasources.
+* `service/lambda`: Updates service API and documentation
+  * Support Amazon MQ as an Event Source.
+* `service/rds`: Updates service API and documentation
+  * Supports a new parameter to set the max allocated storage in gigabytes for the CreateDBInstanceReadReplica API.
+
 Release v1.35.21 (2020-11-04)
 ===
 

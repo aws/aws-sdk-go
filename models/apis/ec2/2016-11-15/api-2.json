@@ -4065,7 +4065,7 @@
       "members":{
         "Domain":{"shape":"DomainType"},
         "Address":{"shape":"PublicIpAddress"},
-        "PublicIpv4Pool":{"shape":"String"},
+        "PublicIpv4Pool":{"shape":"Ipv4PoolEc2Id"},
         "NetworkBorderGroup":{"shape":"String"},
         "CustomerOwnedIpv4Pool":{"shape":"String"},
         "DryRun":{
@@ -7232,7 +7232,11 @@
     },
     "CreateInstanceExportTaskRequest":{
       "type":"structure",
-      "required":["InstanceId"],
+      "required":[
+        "ExportToS3Task",
+        "InstanceId",
+        "TargetEnvironment"
+      ],
       "members":{
         "Description":{
           "shape":"String",

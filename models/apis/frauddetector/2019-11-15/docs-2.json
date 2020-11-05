@@ -9,10 +9,18 @@
     "CreateModelVersion": "<p>Creates a version of the model using the specified model type and model id. </p>",
     "CreateRule": "<p>Creates a rule for use with the specified detector. </p>",
     "CreateVariable": "<p>Creates a variable.</p>",
-    "DeleteDetector": "<p>Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.</p>",
-    "DeleteDetectorVersion": "<p>Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code> status.</p>",
-    "DeleteEvent": "<p>Deletes the specified event.</p>",
-    "DeleteRule": "<p>Deletes the rule. You cannot delete a rule if it is used by an <code>ACTIVE</code> or <code>INACTIVE</code> detector version.</p>",
+    "DeleteDetector": "<p>Deletes the detector. Before deleting a detector, you must first delete all detector versions and rule versions associated with the detector.</p> <p>When you delete a detector, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteDetectorVersion": "<p>Deletes the detector version. You cannot delete detector versions that are in <code>ACTIVE</code> status.</p> <p>When you delete a detector version, Amazon Fraud Detector permanently deletes the detector and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteEntityType": "<p>Deletes an entity type.</p> <p>You cannot delete an entity type that is included in an event type.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteEvent": "<p>Deletes the specified event.</p> <p>When you delete an event, Amazon Fraud Detector permanently deletes that event from the evaluation history, and the event data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteEventType": "<p>Deletes an event type.</p> <p>You cannot delete an event type that is used in a detector or a model.</p> <p>When you delete an entity type, Amazon Fraud Detector permanently deletes that entity type from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteExternalModel": "<p>Removes a SageMaker model from Amazon Fraud Detector.</p> <p>You can remove an Amazon SageMaker model if it is not associated with a detector version. Removing a SageMaker model disconnects it from Amazon Fraud Detector, but the model remains available in SageMaker.</p>",
+    "DeleteLabel": "<p>Deletes a label.</p> <p>You cannot delete labels that are included in an event type in Amazon Fraud Detector.</p> <p>You cannot delete a label assigned to an event ID. You must first delete the relevant event ID.</p> <p>When you delete a label, Amazon Fraud Detector permanently deletes that label from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteModel": "<p>Deletes a model.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model, Amazon Fraud Detector permanently deletes that model from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteModelVersion": "<p>Deletes a model version.</p> <p>You can delete models and model versions in Amazon Fraud Detector, provided that they are not associated with a detector version.</p> <p> When you delete a model version, Amazon Fraud Detector permanently deletes that model version from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteOutcome": "<p>Deletes an outcome.</p> <p>You cannot delete an outcome that is used in a rule version.</p> <p>When you delete an outcome, Amazon Fraud Detector permanently deletes that outcome from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteRule": "<p>Deletes the rule. You cannot delete a rule if it is used by an <code>ACTIVE</code> or <code>INACTIVE</code> detector version.</p> <p>When you delete a rule, Amazon Fraud Detector permanently deletes that rule from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
+    "DeleteVariable": "<p>Deletes a variable.</p> <p>You can't delete variables that are included in an event type in Amazon Fraud Detector.</p> <p>Amazon Fraud Detector automatically deletes model output variables and SageMaker model output variables when you delete the model. You can't delete these variables manually.</p> <p>When you delete a variable, Amazon Fraud Detector permanently deletes that variable from the evaluation history, and the data is no longer stored in Amazon Fraud Detector.</p>",
     "DescribeDetector": "<p>Gets all versions for a specified detector.</p>",
     "DescribeModelVersions": "<p>Gets all of the model versions for the specified model type or for the specified model type and model ID. You can also get details for a single, specified model version. </p>",
     "GetDetectorVersion": "<p>Gets a particular detector version. </p>",
@@ -199,6 +207,16 @@
       "refs": {
       }
     },
+    "DeleteEntityTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEntityTypeResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteEventRequest": {
       "base": null,
       "refs": {
@@ -209,12 +227,82 @@
       "refs": {
       }
     },
+    "DeleteEventTypeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteEventTypeResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExternalModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteExternalModelResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLabelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteLabelResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteModelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteModelResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteModelVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteModelVersionResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOutcomeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteOutcomeResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteRuleRequest": {
       "base": null,
       "refs": {
       }
     },
     "DeleteRuleResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVariableRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteVariableResult": {
       "base": null,
       "refs": {
       }
@@ -642,6 +730,8 @@
         "CreateModelRequest$modelType": "<p>The model type. </p>",
         "CreateModelVersionRequest$modelType": "<p>The model type.</p>",
         "CreateModelVersionResult$modelType": "<p>The model type.</p>",
+        "DeleteModelRequest$modelType": "<p>The model type of the model to delete.</p>",
+        "DeleteModelVersionRequest$modelType": "<p>The model type of the model version to delete.</p>",
         "DescribeModelVersionsRequest$modelType": "<p>The model type.</p>",
         "GetModelVersionRequest$modelType": "<p>The model type.</p>",
         "GetModelVersionResult$modelType": "<p>The model type.</p>",
@@ -1121,6 +1211,7 @@
     "floatVersionString": {
       "base": null,
       "refs": {
+        "DeleteModelVersionRequest$modelVersionNumber": "<p>The model version number of the model version to delete.</p>",
         "DescribeModelVersionsRequest$modelVersionNumber": "<p>The model version number.</p>",
         "GetModelVersionRequest$modelVersionNumber": "<p>The model version number.</p>",
         "GetModelVersionResult$modelVersionNumber": "<p>The model version number.</p>",
@@ -1166,6 +1257,12 @@
         "CreateRuleRequest$detectorId": "<p>The detector ID for the rule's parent detector.</p>",
         "DeleteDetectorRequest$detectorId": "<p>The ID of the detector to delete.</p>",
         "DeleteDetectorVersionRequest$detectorId": "<p>The ID of the parent detector for the detector version to delete.</p>",
+        "DeleteEntityTypeRequest$name": "<p>The name of the entity type to delete.</p>",
+        "DeleteEventRequest$eventId": "<p>The ID of the event to delete.</p>",
+        "DeleteEventRequest$eventTypeName": "<p>The name of the event type.</p>",
+        "DeleteEventTypeRequest$name": "<p>The name of the event type to delete.</p>",
+        "DeleteLabelRequest$name": "<p>The name of the label to delete.</p>",
+        "DeleteOutcomeRequest$name": "<p>The name of the outcome to delete.</p>",
         "DescribeDetectorRequest$detectorId": "<p>The detector ID.</p>",
         "DescribeDetectorResult$detectorId": "<p>The detector ID.</p>",
         "Detector$detectorId": "<p>The detector ID.</p>",
@@ -1240,6 +1337,8 @@
         "CreateModelRequest$modelId": "<p>The model ID.</p>",
         "CreateModelVersionRequest$modelId": "<p>The model ID. </p>",
         "CreateModelVersionResult$modelId": "<p>The model ID.</p>",
+        "DeleteModelRequest$modelId": "<p>The model ID of the model to delete.</p>",
+        "DeleteModelVersionRequest$modelId": "<p>The model ID of the model version to delete.</p>",
         "DescribeModelVersionsRequest$modelId": "<p>The model ID.</p>",
         "GetModelVersionRequest$modelId": "<p>The model ID.</p>",
         "GetModelVersionResult$modelId": "<p>The model ID.</p>",
@@ -1298,6 +1397,7 @@
     "sageMakerEndpointIdentifier": {
       "base": null,
       "refs": {
+        "DeleteExternalModelRequest$modelEndpoint": "<p>The endpoint of the Amazon Sagemaker model to delete.</p>",
         "PutExternalModelRequest$modelEndpoint": "<p>The model endpoints name.</p>"
       }
     },
@@ -1318,8 +1418,7 @@
         "CreateVariableRequest$variableType": "<p>The variable type. For more information see <a href=\"https://docs.aws.amazon.com/frauddetector/latest/ug/create-a-variable.html#variable-types\">Variable types</a>. </p> <p>Valid Values: <code>AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT</code> </p>",
         "CsvIndexToVariableMap$key": null,
         "CsvIndexToVariableMap$value": null,
-        "DeleteEventRequest$eventId": "<p>The ID of the event to delete.</p>",
-        "DeleteEventRequest$eventTypeName": "<p>The name of the event type.</p>",
+        "DeleteVariableRequest$name": "<p>The name of the variable to delete.</p>",
         "DescribeDetectorRequest$nextToken": "<p>The next token from the previous response.</p>",
         "DescribeDetectorResult$nextToken": "<p>The next token to be used for subsequent requests.</p>",
         "DescribeModelVersionsRequest$nextToken": "<p>The next token from the previous results.</p>",
@@ -1353,7 +1452,7 @@
         "GetExternalModelsResult$nextToken": "<p>The next page token to be used in subsequent requests.</p>",
         "GetLabelsRequest$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetLabelsResult$nextToken": "<p>The next page token.</p>",
-        "GetModelVersionResult$status": "<p>The model version status.</p>",
+        "GetModelVersionResult$status": "<p>The model version status.</p> <p>Possible values are:</p> <ul> <li> <p> <code>TRAINING_IN_PROGRESS</code> </p> </li> <li> <p> <code>TRAINING_COMPLETE</code> </p> </li> <li> <p> <code>ACTIVATE_REQUESTED</code> </p> </li> <li> <p> <code>ACTIVATE_IN_PROGRESS</code> </p> </li> <li> <p> <code>ACTIVE</code> </p> </li> <li> <p> <code>INACTIVATE_REQUESTED</code> </p> </li> <li> <p> <code>INACTIVATE_IN_PROGRESS</code> </p> </li> <li> <p> <code>INACTIVE</code> </p> </li> <li> <p> <code>ERROR</code> </p> </li> </ul>",
         "GetModelsRequest$nextToken": "<p>The next token for the subsequent request.</p>",
         "GetModelsResult$nextToken": "<p>The next page token to be used in subsequent requests.</p>",
         "GetOutcomesRequest$nextToken": "<p>The next page token for the request. </p>",

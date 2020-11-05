@@ -4954,6 +4954,11 @@ func (s *CreateElasticsearchDomainInput) Validate() error {
 			invalidParams.AddNested("CognitoOptions", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.DomainEndpointOptions != nil {
+		if err := s.DomainEndpointOptions.Validate(); err != nil {
+			invalidParams.AddNested("DomainEndpointOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EncryptionAtRestOptions != nil {
 		if err := s.EncryptionAtRestOptions.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionAtRestOptions", err.(request.ErrInvalidParams))
@@ -6569,6 +6574,15 @@ func (s *DissociatePackageOutput) SetDomainPackageDetails(v *DomainPackageDetail
 type DomainEndpointOptions struct {
 	_ struct{} `type:"structure"`
 
+	// Specify the fully qualified domain for your custom endpoint.
+	CustomEndpoint *string `min:"1" type:"string"`
+
+	// Specify ACM certificate ARN for your custom endpoint.
+	CustomEndpointCertificateArn *string `type:"string"`
+
+	// Specify if custom endpoint should be enabled for the Elasticsearch domain.
+	CustomEndpointEnabled *bool `type:"boolean"`
+
 	// Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.
 	EnforceHTTPS *bool `type:"boolean"`
 
@@ -6590,6 +6604,37 @@ func (s DomainEndpointOptions) String() string {
 // GoString returns the string representation
 func (s DomainEndpointOptions) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DomainEndpointOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DomainEndpointOptions"}
+	if s.CustomEndpoint != nil && len(*s.CustomEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CustomEndpoint", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomEndpoint sets the CustomEndpoint field's value.
+func (s *DomainEndpointOptions) SetCustomEndpoint(v string) *DomainEndpointOptions {
+	s.CustomEndpoint = &v
+	return s
+}
+
+// SetCustomEndpointCertificateArn sets the CustomEndpointCertificateArn field's value.
+func (s *DomainEndpointOptions) SetCustomEndpointCertificateArn(v string) *DomainEndpointOptions {
+	s.CustomEndpointCertificateArn = &v
+	return s
+}
+
+// SetCustomEndpointEnabled sets the CustomEndpointEnabled field's value.
+func (s *DomainEndpointOptions) SetCustomEndpointEnabled(v bool) *DomainEndpointOptions {
+	s.CustomEndpointEnabled = &v
+	return s
 }
 
 // SetEnforceHTTPS sets the EnforceHTTPS field's value.
@@ -10613,6 +10658,11 @@ func (s *UpdateElasticsearchDomainConfigInput) Validate() error {
 	if s.CognitoOptions != nil {
 		if err := s.CognitoOptions.Validate(); err != nil {
 			invalidParams.AddNested("CognitoOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DomainEndpointOptions != nil {
+		if err := s.DomainEndpointOptions.Validate(); err != nil {
+			invalidParams.AddNested("DomainEndpointOptions", err.(request.ErrInvalidParams))
 		}
 	}
 

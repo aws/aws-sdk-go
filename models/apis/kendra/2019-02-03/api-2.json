@@ -564,6 +564,12 @@
       "max":5,
       "min":1
     },
+    "ClaimRegex":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "ClickFeedback":{
       "type":"structure",
       "required":[
@@ -786,7 +792,10 @@
     },
     "ConfluenceVersion":{
       "type":"string",
-      "enum":["SERVER"]
+      "enum":[
+        "CLOUD",
+        "SERVER"
+      ]
     },
     "ConnectionConfiguration":{
       "type":"structure",
@@ -888,7 +897,9 @@
           "shape":"ClientTokenName",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
+        "UserContextPolicy":{"shape":"UserContextPolicy"}
       }
     },
     "CreateIndexResponse":{
@@ -1214,7 +1225,9 @@
         "DocumentMetadataConfigurations":{"shape":"DocumentMetadataConfigurationList"},
         "IndexStatistics":{"shape":"IndexStatistics"},
         "ErrorMessage":{"shape":"ErrorMessage"},
-        "CapacityUnits":{"shape":"CapacityUnitsConfiguration"}
+        "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
+        "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
+        "UserContextPolicy":{"shape":"UserContextPolicy"}
       }
     },
     "Description":{
@@ -1442,6 +1455,12 @@
       "type":"list",
       "member":{"shape":"FaqSummary"}
     },
+    "GroupAttributeField":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "Highlight":{
       "type":"structure",
       "required":[
@@ -1550,6 +1569,43 @@
       },
       "exception":true,
       "fault":true
+    },
+    "Issuer":{
+      "type":"string",
+      "max":65,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
+    "JsonTokenTypeConfiguration":{
+      "type":"structure",
+      "required":[
+        "UserNameAttributeField",
+        "GroupAttributeField"
+      ],
+      "members":{
+        "UserNameAttributeField":{"shape":"String"},
+        "GroupAttributeField":{"shape":"String"}
+      }
+    },
+    "JwtTokenTypeConfiguration":{
+      "type":"structure",
+      "required":["KeyLocation"],
+      "members":{
+        "KeyLocation":{"shape":"KeyLocation"},
+        "URL":{"shape":"Url"},
+        "SecretManagerArn":{"shape":"RoleArn"},
+        "UserNameAttributeField":{"shape":"UserNameAttributeField"},
+        "GroupAttributeField":{"shape":"GroupAttributeField"},
+        "Issuer":{"shape":"Issuer"},
+        "ClaimRegex":{"shape":"ClaimRegex"}
+      }
+    },
+    "KeyLocation":{
+      "type":"string",
+      "enum":[
+        "URL",
+        "SECRET_MANAGER"
+      ]
     },
     "KmsKeyId":{
       "type":"string",
@@ -1681,7 +1737,8 @@
         "OneDriveUsers":{"shape":"OneDriveUsers"},
         "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
         "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
-        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
+        "DisableLocalGroups":{"shape":"Boolean"}
       }
     },
     "OneDriveUser":{
@@ -1771,7 +1828,8 @@
         "QueryResultTypeFilter":{"shape":"QueryResultType"},
         "PageNumber":{"shape":"Integer"},
         "PageSize":{"shape":"Integer"},
-        "SortingConfiguration":{"shape":"SortingConfiguration"}
+        "SortingConfiguration":{"shape":"SortingConfiguration"},
+        "UserContext":{"shape":"UserContext"}
       }
     },
     "QueryResult":{
@@ -2192,7 +2250,8 @@
         "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
         "VpcConfiguration":{"shape":"DataSourceVpcConfiguration"},
         "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"},
-        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"}
+        "DocumentTitleFieldName":{"shape":"DataSourceFieldName"},
+        "DisableLocalGroups":{"shape":"Boolean"}
       }
     },
     "SharePointUrlList":{
@@ -2386,6 +2445,12 @@
     },
     "Timestamp":{"type":"timestamp"},
     "Title":{"type":"string"},
+    "Token":{
+      "type":"string",
+      "max":100000,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "UntagResourceRequest":{
       "type":"structure",
       "required":[
@@ -2427,7 +2492,9 @@
         "RoleArn":{"shape":"RoleArn"},
         "Description":{"shape":"Description"},
         "DocumentMetadataConfigurationUpdates":{"shape":"DocumentMetadataConfigurationList"},
-        "CapacityUnits":{"shape":"CapacityUnitsConfiguration"}
+        "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
+        "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
+        "UserContextPolicy":{"shape":"UserContextPolicy"}
       }
     },
     "Url":{
@@ -2435,6 +2502,37 @@
       "max":2048,
       "min":1,
       "pattern":"^(https?|ftp|file):\\/\\/([^\\s]*)"
+    },
+    "UserContext":{
+      "type":"structure",
+      "members":{
+        "Token":{"shape":"Token"}
+      }
+    },
+    "UserContextPolicy":{
+      "type":"string",
+      "enum":[
+        "ATTRIBUTE_FILTER",
+        "USER_TOKEN"
+      ]
+    },
+    "UserNameAttributeField":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
+    "UserTokenConfiguration":{
+      "type":"structure",
+      "members":{
+        "JwtTokenTypeConfiguration":{"shape":"JwtTokenTypeConfiguration"},
+        "JsonTokenTypeConfiguration":{"shape":"JsonTokenTypeConfiguration"}
+      }
+    },
+    "UserTokenConfigurationList":{
+      "type":"list",
+      "member":{"shape":"UserTokenConfiguration"},
+      "max":1
     },
     "ValidationException":{
       "type":"structure",

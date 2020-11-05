@@ -73,7 +73,7 @@ func (c *CloudWatchEvents) ActivateEventSourceRequest(input *ActivateEventSource
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * InvalidStateException
 //   The specified state is not a valid state for an event source.
@@ -101,6 +101,192 @@ func (c *CloudWatchEvents) ActivateEventSource(input *ActivateEventSourceInput) 
 // for more information on using Contexts.
 func (c *CloudWatchEvents) ActivateEventSourceWithContext(ctx aws.Context, input *ActivateEventSourceInput, opts ...request.Option) (*ActivateEventSourceOutput, error) {
 	req, out := c.ActivateEventSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCancelReplay = "CancelReplay"
+
+// CancelReplayRequest generates a "aws/request.Request" representing the
+// client's request for the CancelReplay operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CancelReplay for more information on using the CancelReplay
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CancelReplayRequest method.
+//    req, resp := client.CancelReplayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/CancelReplay
+func (c *CloudWatchEvents) CancelReplayRequest(input *CancelReplayInput) (req *request.Request, output *CancelReplayOutput) {
+	op := &request.Operation{
+		Name:       opCancelReplay,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CancelReplayInput{}
+	}
+
+	output = &CancelReplayOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CancelReplay API operation for Amazon CloudWatch Events.
+//
+// Cancels the specified replay.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation CancelReplay for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * ConcurrentModificationException
+//   There is concurrent modification on a rule, target, archive, or replay.
+//
+//   * IllegalStatusException
+//   An error occurred because a replay can be canceled only when the state is
+//   Running or Starting.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/CancelReplay
+func (c *CloudWatchEvents) CancelReplay(input *CancelReplayInput) (*CancelReplayOutput, error) {
+	req, out := c.CancelReplayRequest(input)
+	return out, req.Send()
+}
+
+// CancelReplayWithContext is the same as CancelReplay with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CancelReplay for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) CancelReplayWithContext(ctx aws.Context, input *CancelReplayInput, opts ...request.Option) (*CancelReplayOutput, error) {
+	req, out := c.CancelReplayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateArchive = "CreateArchive"
+
+// CreateArchiveRequest generates a "aws/request.Request" representing the
+// client's request for the CreateArchive operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateArchive for more information on using the CreateArchive
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateArchiveRequest method.
+//    req, resp := client.CreateArchiveRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/CreateArchive
+func (c *CloudWatchEvents) CreateArchiveRequest(input *CreateArchiveInput) (req *request.Request, output *CreateArchiveOutput) {
+	op := &request.Operation{
+		Name:       opCreateArchive,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateArchiveInput{}
+	}
+
+	output = &CreateArchiveOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateArchive API operation for Amazon CloudWatch Events.
+//
+// Creates an archive of events with the specified settings. When you create
+// an archive, incoming events might not immediately start being sent to the
+// archive. Allow a short period of time for changes to take effect.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation CreateArchive for usage and error information.
+//
+// Returned Error Types:
+//   * ConcurrentModificationException
+//   There is concurrent modification on a rule, target, archive, or replay.
+//
+//   * ResourceAlreadyExistsException
+//   The resource you are trying to create already exists.
+//
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+//   * LimitExceededException
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
+//
+//   * InvalidEventPatternException
+//   The event pattern is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/CreateArchive
+func (c *CloudWatchEvents) CreateArchive(input *CreateArchiveInput) (*CreateArchiveOutput, error) {
+	req, out := c.CreateArchiveRequest(input)
+	return out, req.Send()
+}
+
+// CreateArchiveWithContext is the same as CreateArchive with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateArchive for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) CreateArchiveWithContext(ctx aws.Context, input *CreateArchiveInput, opts ...request.Option) (*CreateArchiveOutput, error) {
+	req, out := c.CreateArchiveRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -176,10 +362,11 @@ func (c *CloudWatchEvents) CreateEventBusRequest(input *CreateEventBusInput) (re
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * LimitExceededException
-//   You tried to create more rules or add more targets to a rule than is allowed.
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
 //
 //   * OperationDisabledException
 //   The operation you are attempting is not available in this region.
@@ -291,10 +478,11 @@ func (c *CloudWatchEvents) CreatePartnerEventSourceRequest(input *CreatePartnerE
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * LimitExceededException
-//   You tried to create more rules or add more targets to a rule than is allowed.
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
 //
 //   * OperationDisabledException
 //   The operation you are attempting is not available in this region.
@@ -386,7 +574,7 @@ func (c *CloudWatchEvents) DeactivateEventSourceRequest(input *DeactivateEventSo
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * InvalidStateException
 //   The specified state is not a valid state for an event source.
@@ -414,6 +602,92 @@ func (c *CloudWatchEvents) DeactivateEventSource(input *DeactivateEventSourceInp
 // for more information on using Contexts.
 func (c *CloudWatchEvents) DeactivateEventSourceWithContext(ctx aws.Context, input *DeactivateEventSourceInput, opts ...request.Option) (*DeactivateEventSourceOutput, error) {
 	req, out := c.DeactivateEventSourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteArchive = "DeleteArchive"
+
+// DeleteArchiveRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteArchive operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteArchive for more information on using the DeleteArchive
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteArchiveRequest method.
+//    req, resp := client.DeleteArchiveRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DeleteArchive
+func (c *CloudWatchEvents) DeleteArchiveRequest(input *DeleteArchiveInput) (req *request.Request, output *DeleteArchiveOutput) {
+	op := &request.Operation{
+		Name:       opDeleteArchive,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteArchiveInput{}
+	}
+
+	output = &DeleteArchiveOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteArchive API operation for Amazon CloudWatch Events.
+//
+// Deletes the specified archive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation DeleteArchive for usage and error information.
+//
+// Returned Error Types:
+//   * ConcurrentModificationException
+//   There is concurrent modification on a rule, target, archive, or replay.
+//
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DeleteArchive
+func (c *CloudWatchEvents) DeleteArchive(input *DeleteArchiveInput) (*DeleteArchiveOutput, error) {
+	req, out := c.DeleteArchiveRequest(input)
+	return out, req.Send()
+}
+
+// DeleteArchiveWithContext is the same as DeleteArchive with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteArchive for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) DeleteArchiveWithContext(ctx aws.Context, input *DeleteArchiveInput, opts ...request.Option) (*DeleteArchiveOutput, error) {
+	req, out := c.DeleteArchiveRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -480,7 +754,7 @@ func (c *CloudWatchEvents) DeleteEventBusRequest(input *DeleteEventBusInput) (re
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DeleteEventBus
 func (c *CloudWatchEvents) DeleteEventBus(input *DeleteEventBusInput) (*DeleteEventBusOutput, error) {
@@ -567,7 +841,7 @@ func (c *CloudWatchEvents) DeletePartnerEventSourceRequest(input *DeletePartnerE
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * OperationDisabledException
 //   The operation you are attempting is not available in this region.
@@ -661,7 +935,7 @@ func (c *CloudWatchEvents) DeleteRuleRequest(input *DeleteRuleInput) (req *reque
 //
 // Returned Error Types:
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -694,6 +968,91 @@ func (c *CloudWatchEvents) DeleteRule(input *DeleteRuleInput) (*DeleteRuleOutput
 // for more information on using Contexts.
 func (c *CloudWatchEvents) DeleteRuleWithContext(ctx aws.Context, input *DeleteRuleInput, opts ...request.Option) (*DeleteRuleOutput, error) {
 	req, out := c.DeleteRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeArchive = "DescribeArchive"
+
+// DescribeArchiveRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeArchive operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeArchive for more information on using the DescribeArchive
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeArchiveRequest method.
+//    req, resp := client.DescribeArchiveRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DescribeArchive
+func (c *CloudWatchEvents) DescribeArchiveRequest(input *DescribeArchiveInput) (req *request.Request, output *DescribeArchiveOutput) {
+	op := &request.Operation{
+		Name:       opDescribeArchive,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeArchiveInput{}
+	}
+
+	output = &DescribeArchiveOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeArchive API operation for Amazon CloudWatch Events.
+//
+// Retrieves details about an archive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation DescribeArchive for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceAlreadyExistsException
+//   The resource you are trying to create already exists.
+//
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DescribeArchive
+func (c *CloudWatchEvents) DescribeArchive(input *DescribeArchiveInput) (*DescribeArchiveOutput, error) {
+	req, out := c.DescribeArchiveRequest(input)
+	return out, req.Send()
+}
+
+// DescribeArchiveWithContext is the same as DescribeArchive with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeArchive for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) DescribeArchiveWithContext(ctx aws.Context, input *DescribeArchiveInput, opts ...request.Option) (*DescribeArchiveOutput, error) {
+	req, out := c.DescribeArchiveRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -963,6 +1322,96 @@ func (c *CloudWatchEvents) DescribePartnerEventSourceWithContext(ctx aws.Context
 	return out, req.Send()
 }
 
+const opDescribeReplay = "DescribeReplay"
+
+// DescribeReplayRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReplay operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReplay for more information on using the DescribeReplay
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeReplayRequest method.
+//    req, resp := client.DescribeReplayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DescribeReplay
+func (c *CloudWatchEvents) DescribeReplayRequest(input *DescribeReplayInput) (req *request.Request, output *DescribeReplayOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReplay,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeReplayInput{}
+	}
+
+	output = &DescribeReplayOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReplay API operation for Amazon CloudWatch Events.
+//
+// Retrieves details about a replay. Use DescribeReplay to determine the progress
+// of a running replay. A replay processes events to replay based on the time
+// in the event, and replays them using 1 minute intervals. If you use StartReplay
+// and specify an EventStartTime and an EventEndTime that covers a 20 minute
+// time range, the events are replayed from the first minute of that 20 minute
+// range first. Then the events from the second minute are replayed. You can
+// use DescribeReplay to determine the progress of a replay. The value returned
+// for EventLastReplayedTime indicates the time within the specified time range
+// associated with the last event replayed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation DescribeReplay for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/DescribeReplay
+func (c *CloudWatchEvents) DescribeReplay(input *DescribeReplayInput) (*DescribeReplayOutput, error) {
+	req, out := c.DescribeReplayRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReplayWithContext is the same as DescribeReplay with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReplay for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) DescribeReplayWithContext(ctx aws.Context, input *DescribeReplayInput, opts ...request.Option) (*DescribeReplayOutput, error) {
+	req, out := c.DescribeReplayRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeRule = "DescribeRule"
 
 // DescribeRuleRequest generates a "aws/request.Request" representing the
@@ -1111,7 +1560,7 @@ func (c *CloudWatchEvents) DisableRuleRequest(input *DisableRuleInput) (req *req
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -1209,7 +1658,7 @@ func (c *CloudWatchEvents) EnableRuleRequest(input *EnableRuleInput) (req *reque
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -1239,6 +1688,89 @@ func (c *CloudWatchEvents) EnableRule(input *EnableRuleInput) (*EnableRuleOutput
 // for more information on using Contexts.
 func (c *CloudWatchEvents) EnableRuleWithContext(ctx aws.Context, input *EnableRuleInput, opts ...request.Option) (*EnableRuleOutput, error) {
 	req, out := c.EnableRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListArchives = "ListArchives"
+
+// ListArchivesRequest generates a "aws/request.Request" representing the
+// client's request for the ListArchives operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListArchives for more information on using the ListArchives
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListArchivesRequest method.
+//    req, resp := client.ListArchivesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/ListArchives
+func (c *CloudWatchEvents) ListArchivesRequest(input *ListArchivesInput) (req *request.Request, output *ListArchivesOutput) {
+	op := &request.Operation{
+		Name:       opListArchives,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListArchivesInput{}
+	}
+
+	output = &ListArchivesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListArchives API operation for Amazon CloudWatch Events.
+//
+// Lists your archives. You can either list all the archives or you can provide
+// a prefix to match to the archive names. Filter parameters are exclusive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation ListArchives for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/ListArchives
+func (c *CloudWatchEvents) ListArchives(input *ListArchivesInput) (*ListArchivesOutput, error) {
+	req, out := c.ListArchivesRequest(input)
+	return out, req.Send()
+}
+
+// ListArchivesWithContext is the same as ListArchives with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListArchives for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) ListArchivesWithContext(ctx aws.Context, input *ListArchivesInput, opts ...request.Option) (*ListArchivesOutput, error) {
+	req, out := c.ListArchivesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1573,6 +2105,86 @@ func (c *CloudWatchEvents) ListPartnerEventSources(input *ListPartnerEventSource
 // for more information on using Contexts.
 func (c *CloudWatchEvents) ListPartnerEventSourcesWithContext(ctx aws.Context, input *ListPartnerEventSourcesInput, opts ...request.Option) (*ListPartnerEventSourcesOutput, error) {
 	req, out := c.ListPartnerEventSourcesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListReplays = "ListReplays"
+
+// ListReplaysRequest generates a "aws/request.Request" representing the
+// client's request for the ListReplays operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReplays for more information on using the ListReplays
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListReplaysRequest method.
+//    req, resp := client.ListReplaysRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/ListReplays
+func (c *CloudWatchEvents) ListReplaysRequest(input *ListReplaysInput) (req *request.Request, output *ListReplaysOutput) {
+	op := &request.Operation{
+		Name:       opListReplays,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListReplaysInput{}
+	}
+
+	output = &ListReplaysOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListReplays API operation for Amazon CloudWatch Events.
+//
+// Lists your replays. You can either list all the replays or you can provide
+// a prefix to match to the replay names. Filter parameters are exclusive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation ListReplays for usage and error information.
+//
+// Returned Error Types:
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/ListReplays
+func (c *CloudWatchEvents) ListReplays(input *ListReplaysInput) (*ListReplaysOutput, error) {
+	req, out := c.ListReplaysRequest(input)
+	return out, req.Send()
+}
+
+// ListReplaysWithContext is the same as ListReplays with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReplays for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) ListReplaysWithContext(ctx aws.Context, input *ListReplaysInput, opts ...request.Option) (*ListReplaysOutput, error) {
+	req, out := c.ListReplaysRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2160,7 +2772,7 @@ func (c *CloudWatchEvents) PutPermissionRequest(input *PutPermissionInput) (req 
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/PutPermission
 func (c *CloudWatchEvents) PutPermission(input *PutPermissionInput) (*PutPermissionOutput, error) {
@@ -2295,10 +2907,11 @@ func (c *CloudWatchEvents) PutRuleRequest(input *PutRuleInput) (req *request.Req
 //   The event pattern is not valid.
 //
 //   * LimitExceededException
-//   You tried to create more rules or add more targets to a rule than is allowed.
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -2505,10 +3118,11 @@ func (c *CloudWatchEvents) PutTargetsRequest(input *PutTargetsInput) (req *reque
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * LimitExceededException
-//   You tried to create more rules or add more targets to a rule than is allowed.
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -2608,7 +3222,7 @@ func (c *CloudWatchEvents) RemovePermissionRequest(input *RemovePermissionInput)
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/RemovePermission
 func (c *CloudWatchEvents) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
@@ -2700,7 +3314,7 @@ func (c *CloudWatchEvents) RemoveTargetsRequest(input *RemoveTargetsInput) (req 
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -2730,6 +3344,106 @@ func (c *CloudWatchEvents) RemoveTargets(input *RemoveTargetsInput) (*RemoveTarg
 // for more information on using Contexts.
 func (c *CloudWatchEvents) RemoveTargetsWithContext(ctx aws.Context, input *RemoveTargetsInput, opts ...request.Option) (*RemoveTargetsOutput, error) {
 	req, out := c.RemoveTargetsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStartReplay = "StartReplay"
+
+// StartReplayRequest generates a "aws/request.Request" representing the
+// client's request for the StartReplay operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartReplay for more information on using the StartReplay
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartReplayRequest method.
+//    req, resp := client.StartReplayRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/StartReplay
+func (c *CloudWatchEvents) StartReplayRequest(input *StartReplayInput) (req *request.Request, output *StartReplayOutput) {
+	op := &request.Operation{
+		Name:       opStartReplay,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartReplayInput{}
+	}
+
+	output = &StartReplayOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartReplay API operation for Amazon CloudWatch Events.
+//
+// Starts the specified replay. Events are not necessarily replayed in the exact
+// same order that they were added to the archive. A replay processes events
+// to replay based on the time in the event, and replays them using 1 minute
+// intervals. If you specify an EventStartTime and an EventEndTime that covers
+// a 20 minute time range, the events are replayed from the first minute of
+// that 20 minute range first. Then the events from the second minute are replayed.
+// You can use DescribeReplay to determine the progress of a replay. The value
+// returned for EventLastReplayedTime indicates the time within the specified
+// time range associated with the last event replayed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation StartReplay for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * ResourceAlreadyExistsException
+//   The resource you are trying to create already exists.
+//
+//   * InvalidEventPatternException
+//   The event pattern is not valid.
+//
+//   * LimitExceededException
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/StartReplay
+func (c *CloudWatchEvents) StartReplay(input *StartReplayInput) (*StartReplayOutput, error) {
+	req, out := c.StartReplayRequest(input)
+	return out, req.Send()
+}
+
+// StartReplayWithContext is the same as StartReplay with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartReplay for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) StartReplayWithContext(ctx aws.Context, input *StartReplayInput, opts ...request.Option) (*StartReplayOutput, error) {
+	req, out := c.StartReplayRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2809,7 +3523,7 @@ func (c *CloudWatchEvents) TagResourceRequest(input *TagResourceInput) (req *req
 //   An entity that you specified does not exist.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * InternalException
 //   This exception occurs due to unexpected causes.
@@ -2994,7 +3708,7 @@ func (c *CloudWatchEvents) UntagResourceRequest(input *UntagResourceInput) (req 
 //   This exception occurs due to unexpected causes.
 //
 //   * ConcurrentModificationException
-//   There is concurrent modification on a rule or target.
+//   There is concurrent modification on a rule, target, archive, or replay.
 //
 //   * ManagedRuleException
 //   This rule was created by an AWS service on behalf of your account. It is
@@ -3021,6 +3735,98 @@ func (c *CloudWatchEvents) UntagResource(input *UntagResourceInput) (*UntagResou
 // for more information on using Contexts.
 func (c *CloudWatchEvents) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateArchive = "UpdateArchive"
+
+// UpdateArchiveRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateArchive operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateArchive for more information on using the UpdateArchive
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateArchiveRequest method.
+//    req, resp := client.UpdateArchiveRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/UpdateArchive
+func (c *CloudWatchEvents) UpdateArchiveRequest(input *UpdateArchiveInput) (req *request.Request, output *UpdateArchiveOutput) {
+	op := &request.Operation{
+		Name:       opUpdateArchive,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateArchiveInput{}
+	}
+
+	output = &UpdateArchiveOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateArchive API operation for Amazon CloudWatch Events.
+//
+// Updates the specified archive.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudWatch Events's
+// API operation UpdateArchive for usage and error information.
+//
+// Returned Error Types:
+//   * ConcurrentModificationException
+//   There is concurrent modification on a rule, target, archive, or replay.
+//
+//   * ResourceNotFoundException
+//   An entity that you specified does not exist.
+//
+//   * InternalException
+//   This exception occurs due to unexpected causes.
+//
+//   * LimitExceededException
+//   The request failed because it attempted to create resource beyond the allowed
+//   service quota.
+//
+//   * InvalidEventPatternException
+//   The event pattern is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/events-2015-10-07/UpdateArchive
+func (c *CloudWatchEvents) UpdateArchive(input *UpdateArchiveInput) (*UpdateArchiveOutput, error) {
+	req, out := c.UpdateArchiveRequest(input)
+	return out, req.Send()
+}
+
+// UpdateArchiveWithContext is the same as UpdateArchive with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateArchive for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudWatchEvents) UpdateArchiveWithContext(ctx aws.Context, input *UpdateArchiveInput, opts ...request.Option) (*UpdateArchiveOutput, error) {
+	req, out := c.UpdateArchiveRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3079,6 +3885,94 @@ func (s ActivateEventSourceOutput) String() string {
 // GoString returns the string representation
 func (s ActivateEventSourceOutput) GoString() string {
 	return s.String()
+}
+
+// An Archive object that contains details about an archive.
+type Archive struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the archive.
+	ArchiveName *string `min:"1" type:"string"`
+
+	// The time stamp for the time that the archive was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The number of events in the archive.
+	EventCount *int64 `type:"long"`
+
+	// The ARN of the event bus associated with the archive. Only events from this
+	// event bus are sent to the archive.
+	EventSourceArn *string `min:"1" type:"string"`
+
+	// The number of days to retain events in the archive before they are deleted.
+	RetentionDays *int64 `type:"integer"`
+
+	// The size of the archive, in bytes.
+	SizeBytes *int64 `type:"long"`
+
+	// The current state of the archive.
+	State *string `type:"string" enum:"ArchiveState"`
+
+	// A description for the reason that the archive is in the current state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Archive) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Archive) GoString() string {
+	return s.String()
+}
+
+// SetArchiveName sets the ArchiveName field's value.
+func (s *Archive) SetArchiveName(v string) *Archive {
+	s.ArchiveName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Archive) SetCreationTime(v time.Time) *Archive {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEventCount sets the EventCount field's value.
+func (s *Archive) SetEventCount(v int64) *Archive {
+	s.EventCount = &v
+	return s
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *Archive) SetEventSourceArn(v string) *Archive {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *Archive) SetRetentionDays(v int64) *Archive {
+	s.RetentionDays = &v
+	return s
+}
+
+// SetSizeBytes sets the SizeBytes field's value.
+func (s *Archive) SetSizeBytes(v int64) *Archive {
+	s.SizeBytes = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Archive) SetState(v string) *Archive {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *Archive) SetStateReason(v string) *Archive {
+	s.StateReason = &v
+	return s
 }
 
 // This structure specifies the VPC subnets and security groups for the task,
@@ -3280,7 +4174,89 @@ func (s *BatchRetryStrategy) SetAttempts(v int64) *BatchRetryStrategy {
 	return s
 }
 
-// There is concurrent modification on a rule or target.
+type CancelReplayInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the replay to cancel.
+	//
+	// ReplayName is a required field
+	ReplayName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CancelReplayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelReplayInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CancelReplayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CancelReplayInput"}
+	if s.ReplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplayName"))
+	}
+	if s.ReplayName != nil && len(*s.ReplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplayName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplayName sets the ReplayName field's value.
+func (s *CancelReplayInput) SetReplayName(v string) *CancelReplayInput {
+	s.ReplayName = &v
+	return s
+}
+
+type CancelReplayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the replay to cancel.
+	ReplayArn *string `min:"1" type:"string"`
+
+	// The current state of the replay.
+	State *string `type:"string" enum:"ReplayState"`
+
+	// The reason that the replay is in the current state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CancelReplayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CancelReplayOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplayArn sets the ReplayArn field's value.
+func (s *CancelReplayOutput) SetReplayArn(v string) *CancelReplayOutput {
+	s.ReplayArn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CancelReplayOutput) SetState(v string) *CancelReplayOutput {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *CancelReplayOutput) SetStateReason(v string) *CancelReplayOutput {
+	s.StateReason = &v
+	return s
+}
+
+// There is concurrent modification on a rule, target, archive, or replay.
 type ConcurrentModificationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3407,6 +4383,142 @@ func (s *Condition) SetType(v string) *Condition {
 // SetValue sets the Value field's value.
 func (s *Condition) SetValue(v string) *Condition {
 	s.Value = &v
+	return s
+}
+
+type CreateArchiveInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name for the archive to create.
+	//
+	// ArchiveName is a required field
+	ArchiveName *string `min:"1" type:"string" required:"true"`
+
+	// A description for the archive.
+	Description *string `type:"string"`
+
+	// An event pattern to use to filter events sent to the archive.
+	EventPattern *string `type:"string"`
+
+	// The ARN of the event source associated with the archive.
+	//
+	// EventSourceArn is a required field
+	EventSourceArn *string `min:"1" type:"string" required:"true"`
+
+	// The number of days to retain events for. Default value is 0. If set to 0,
+	// events are retained indefinitely
+	RetentionDays *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s CreateArchiveInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateArchiveInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateArchiveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateArchiveInput"}
+	if s.ArchiveName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArchiveName"))
+	}
+	if s.ArchiveName != nil && len(*s.ArchiveName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArchiveName", 1))
+	}
+	if s.EventSourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventSourceArn"))
+	}
+	if s.EventSourceArn != nil && len(*s.EventSourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventSourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArchiveName sets the ArchiveName field's value.
+func (s *CreateArchiveInput) SetArchiveName(v string) *CreateArchiveInput {
+	s.ArchiveName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateArchiveInput) SetDescription(v string) *CreateArchiveInput {
+	s.Description = &v
+	return s
+}
+
+// SetEventPattern sets the EventPattern field's value.
+func (s *CreateArchiveInput) SetEventPattern(v string) *CreateArchiveInput {
+	s.EventPattern = &v
+	return s
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *CreateArchiveInput) SetEventSourceArn(v string) *CreateArchiveInput {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *CreateArchiveInput) SetRetentionDays(v int64) *CreateArchiveInput {
+	s.RetentionDays = &v
+	return s
+}
+
+type CreateArchiveOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the archive that was created.
+	ArchiveArn *string `min:"1" type:"string"`
+
+	// The time at which the archive was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The state of the archive that was created.
+	State *string `type:"string" enum:"ArchiveState"`
+
+	// The reason that the archive is in the state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateArchiveOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateArchiveOutput) GoString() string {
+	return s.String()
+}
+
+// SetArchiveArn sets the ArchiveArn field's value.
+func (s *CreateArchiveOutput) SetArchiveArn(v string) *CreateArchiveOutput {
+	s.ArchiveArn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateArchiveOutput) SetCreationTime(v time.Time) *CreateArchiveOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CreateArchiveOutput) SetState(v string) *CreateArchiveOutput {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *CreateArchiveOutput) SetStateReason(v string) *CreateArchiveOutput {
+	s.StateReason = &v
 	return s
 }
 
@@ -3691,6 +4803,61 @@ func (s *DeadLetterConfig) SetArn(v string) *DeadLetterConfig {
 	return s
 }
 
+type DeleteArchiveInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the archive to delete.
+	//
+	// ArchiveName is a required field
+	ArchiveName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteArchiveInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteArchiveInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteArchiveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteArchiveInput"}
+	if s.ArchiveName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArchiveName"))
+	}
+	if s.ArchiveName != nil && len(*s.ArchiveName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArchiveName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArchiveName sets the ArchiveName field's value.
+func (s *DeleteArchiveInput) SetArchiveName(v string) *DeleteArchiveInput {
+	s.ArchiveName = &v
+	return s
+}
+
+type DeleteArchiveOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteArchiveOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteArchiveOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteEventBusInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3898,6 +5065,160 @@ func (s DeleteRuleOutput) String() string {
 // GoString returns the string representation
 func (s DeleteRuleOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeArchiveInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the archive to retrieve.
+	//
+	// ArchiveName is a required field
+	ArchiveName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeArchiveInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeArchiveInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeArchiveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeArchiveInput"}
+	if s.ArchiveName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArchiveName"))
+	}
+	if s.ArchiveName != nil && len(*s.ArchiveName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArchiveName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArchiveName sets the ArchiveName field's value.
+func (s *DescribeArchiveInput) SetArchiveName(v string) *DescribeArchiveInput {
+	s.ArchiveName = &v
+	return s
+}
+
+type DescribeArchiveOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the archive.
+	ArchiveArn *string `min:"1" type:"string"`
+
+	// The name of the archive.
+	ArchiveName *string `min:"1" type:"string"`
+
+	// The time at which the archive was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The description of the archive.
+	Description *string `type:"string"`
+
+	// The number of events in the archive.
+	EventCount *int64 `type:"long"`
+
+	// The event pattern used to filter events sent to the archive.
+	EventPattern *string `type:"string"`
+
+	// The ARN of the event source associated with the archive.
+	EventSourceArn *string `min:"1" type:"string"`
+
+	// The number of days to retain events for in the archive.
+	RetentionDays *int64 `type:"integer"`
+
+	// The size of the archive in bytes.
+	SizeBytes *int64 `type:"long"`
+
+	// The state of the archive.
+	State *string `type:"string" enum:"ArchiveState"`
+
+	// The reason that the archive is in the state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeArchiveOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeArchiveOutput) GoString() string {
+	return s.String()
+}
+
+// SetArchiveArn sets the ArchiveArn field's value.
+func (s *DescribeArchiveOutput) SetArchiveArn(v string) *DescribeArchiveOutput {
+	s.ArchiveArn = &v
+	return s
+}
+
+// SetArchiveName sets the ArchiveName field's value.
+func (s *DescribeArchiveOutput) SetArchiveName(v string) *DescribeArchiveOutput {
+	s.ArchiveName = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeArchiveOutput) SetCreationTime(v time.Time) *DescribeArchiveOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeArchiveOutput) SetDescription(v string) *DescribeArchiveOutput {
+	s.Description = &v
+	return s
+}
+
+// SetEventCount sets the EventCount field's value.
+func (s *DescribeArchiveOutput) SetEventCount(v int64) *DescribeArchiveOutput {
+	s.EventCount = &v
+	return s
+}
+
+// SetEventPattern sets the EventPattern field's value.
+func (s *DescribeArchiveOutput) SetEventPattern(v string) *DescribeArchiveOutput {
+	s.EventPattern = &v
+	return s
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *DescribeArchiveOutput) SetEventSourceArn(v string) *DescribeArchiveOutput {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *DescribeArchiveOutput) SetRetentionDays(v int64) *DescribeArchiveOutput {
+	s.RetentionDays = &v
+	return s
+}
+
+// SetSizeBytes sets the SizeBytes field's value.
+func (s *DescribeArchiveOutput) SetSizeBytes(v int64) *DescribeArchiveOutput {
+	s.SizeBytes = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *DescribeArchiveOutput) SetState(v string) *DescribeArchiveOutput {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *DescribeArchiveOutput) SetStateReason(v string) *DescribeArchiveOutput {
+	s.StateReason = &v
+	return s
 }
 
 type DescribeEventBusInput struct {
@@ -4163,6 +5484,169 @@ func (s *DescribePartnerEventSourceOutput) SetArn(v string) *DescribePartnerEven
 // SetName sets the Name field's value.
 func (s *DescribePartnerEventSourceOutput) SetName(v string) *DescribePartnerEventSourceOutput {
 	s.Name = &v
+	return s
+}
+
+type DescribeReplayInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the replay to retrieve.
+	//
+	// ReplayName is a required field
+	ReplayName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeReplayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReplayInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReplayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReplayInput"}
+	if s.ReplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplayName"))
+	}
+	if s.ReplayName != nil && len(*s.ReplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplayName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReplayName sets the ReplayName field's value.
+func (s *DescribeReplayInput) SetReplayName(v string) *DescribeReplayInput {
+	s.ReplayName = &v
+	return s
+}
+
+type DescribeReplayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the replay.
+	Description *string `type:"string"`
+
+	// A ReplayDestination object that contains details about the replay.
+	Destination *ReplayDestination `type:"structure"`
+
+	// The time stamp for the last event that was replayed from the archive.
+	EventEndTime *time.Time `type:"timestamp"`
+
+	// The time that the event was last replayed.
+	EventLastReplayedTime *time.Time `type:"timestamp"`
+
+	// The ARN of the archive events were replayed from.
+	EventSourceArn *string `min:"1" type:"string"`
+
+	// The time stamp of the first event that was last replayed from the archive.
+	EventStartTime *time.Time `type:"timestamp"`
+
+	// The ARN of the replay.
+	ReplayArn *string `min:"1" type:"string"`
+
+	// A time stamp for the time that the replay stopped.
+	ReplayEndTime *time.Time `type:"timestamp"`
+
+	// The name of the replay.
+	ReplayName *string `min:"1" type:"string"`
+
+	// A time stamp for the time that the replay started.
+	ReplayStartTime *time.Time `type:"timestamp"`
+
+	// The current state of the replay.
+	State *string `type:"string" enum:"ReplayState"`
+
+	// The reason that the replay is in the current state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeReplayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReplayOutput) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeReplayOutput) SetDescription(v string) *DescribeReplayOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDestination sets the Destination field's value.
+func (s *DescribeReplayOutput) SetDestination(v *ReplayDestination) *DescribeReplayOutput {
+	s.Destination = v
+	return s
+}
+
+// SetEventEndTime sets the EventEndTime field's value.
+func (s *DescribeReplayOutput) SetEventEndTime(v time.Time) *DescribeReplayOutput {
+	s.EventEndTime = &v
+	return s
+}
+
+// SetEventLastReplayedTime sets the EventLastReplayedTime field's value.
+func (s *DescribeReplayOutput) SetEventLastReplayedTime(v time.Time) *DescribeReplayOutput {
+	s.EventLastReplayedTime = &v
+	return s
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *DescribeReplayOutput) SetEventSourceArn(v string) *DescribeReplayOutput {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetEventStartTime sets the EventStartTime field's value.
+func (s *DescribeReplayOutput) SetEventStartTime(v time.Time) *DescribeReplayOutput {
+	s.EventStartTime = &v
+	return s
+}
+
+// SetReplayArn sets the ReplayArn field's value.
+func (s *DescribeReplayOutput) SetReplayArn(v string) *DescribeReplayOutput {
+	s.ReplayArn = &v
+	return s
+}
+
+// SetReplayEndTime sets the ReplayEndTime field's value.
+func (s *DescribeReplayOutput) SetReplayEndTime(v time.Time) *DescribeReplayOutput {
+	s.ReplayEndTime = &v
+	return s
+}
+
+// SetReplayName sets the ReplayName field's value.
+func (s *DescribeReplayOutput) SetReplayName(v string) *DescribeReplayOutput {
+	s.ReplayName = &v
+	return s
+}
+
+// SetReplayStartTime sets the ReplayStartTime field's value.
+func (s *DescribeReplayOutput) SetReplayStartTime(v time.Time) *DescribeReplayOutput {
+	s.ReplayStartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *DescribeReplayOutput) SetState(v string) *DescribeReplayOutput {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *DescribeReplayOutput) SetStateReason(v string) *DescribeReplayOutput {
+	s.StateReason = &v
 	return s
 }
 
@@ -4735,6 +6219,63 @@ func (s *HttpParameters) SetQueryStringParameters(v map[string]*string) *HttpPar
 	return s
 }
 
+// An error occurred because a replay can be canceled only when the state is
+// Running or Starting.
+type IllegalStatusException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s IllegalStatusException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IllegalStatusException) GoString() string {
+	return s.String()
+}
+
+func newErrorIllegalStatusException(v protocol.ResponseMetadata) error {
+	return &IllegalStatusException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *IllegalStatusException) Code() string {
+	return "IllegalStatusException"
+}
+
+// Message returns the exception's message.
+func (s *IllegalStatusException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *IllegalStatusException) OrigErr() error {
+	return nil
+}
+
+func (s *IllegalStatusException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *IllegalStatusException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *IllegalStatusException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Contains the parameters needed for you to provide custom input to a target
 // based on one or more pieces of data extracted from the event.
 type InputTransformer struct {
@@ -5042,7 +6583,8 @@ func (s *KinesisParameters) SetPartitionKeyPath(v string) *KinesisParameters {
 	return s
 }
 
-// You tried to create more rules or add more targets to a rule than is allowed.
+// The request failed because it attempted to create resource beyond the allowed
+// service quota.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5096,6 +6638,120 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListArchivesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the event source associated with the archive.
+	EventSourceArn *string `min:"1" type:"string"`
+
+	// The maximum number of results to return.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// A name prefix to filter the archives returned. Only archives with name that
+	// match the prefix are returned.
+	NamePrefix *string `min:"1" type:"string"`
+
+	// The token returned by a previous call to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The state of the archive.
+	State *string `type:"string" enum:"ArchiveState"`
+}
+
+// String returns the string representation
+func (s ListArchivesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListArchivesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListArchivesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListArchivesInput"}
+	if s.EventSourceArn != nil && len(*s.EventSourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventSourceArn", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NamePrefix != nil && len(*s.NamePrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamePrefix", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *ListArchivesInput) SetEventSourceArn(v string) *ListArchivesInput {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListArchivesInput) SetLimit(v int64) *ListArchivesInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *ListArchivesInput) SetNamePrefix(v string) *ListArchivesInput {
+	s.NamePrefix = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListArchivesInput) SetNextToken(v string) *ListArchivesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListArchivesInput) SetState(v string) *ListArchivesInput {
+	s.State = &v
+	return s
+}
+
+type ListArchivesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of Archive objects that include details about an archive.
+	Archives []*Archive `type:"list"`
+
+	// The token returned by a previous call to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListArchivesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListArchivesOutput) GoString() string {
+	return s.String()
+}
+
+// SetArchives sets the Archives field's value.
+func (s *ListArchivesOutput) SetArchives(v []*Archive) *ListArchivesOutput {
+	s.Archives = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListArchivesOutput) SetNextToken(v string) *ListArchivesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListEventBusesInput struct {
@@ -5490,6 +7146,120 @@ func (s *ListPartnerEventSourcesOutput) SetNextToken(v string) *ListPartnerEvent
 // SetPartnerEventSources sets the PartnerEventSources field's value.
 func (s *ListPartnerEventSourcesOutput) SetPartnerEventSources(v []*PartnerEventSource) *ListPartnerEventSourcesOutput {
 	s.PartnerEventSources = v
+	return s
+}
+
+type ListReplaysInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the event source associated with the replay.
+	EventSourceArn *string `min:"1" type:"string"`
+
+	// The maximum number of replays to retrieve.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// A name prefix to filter the archives returned. Only archives with name that
+	// match the prefix are returned.
+	NamePrefix *string `min:"1" type:"string"`
+
+	// The token returned by a previous call to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// The state of the replay.
+	State *string `type:"string" enum:"ReplayState"`
+}
+
+// String returns the string representation
+func (s ListReplaysInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReplaysInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReplaysInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReplaysInput"}
+	if s.EventSourceArn != nil && len(*s.EventSourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventSourceArn", 1))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NamePrefix != nil && len(*s.NamePrefix) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NamePrefix", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *ListReplaysInput) SetEventSourceArn(v string) *ListReplaysInput {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListReplaysInput) SetLimit(v int64) *ListReplaysInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNamePrefix sets the NamePrefix field's value.
+func (s *ListReplaysInput) SetNamePrefix(v string) *ListReplaysInput {
+	s.NamePrefix = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReplaysInput) SetNextToken(v string) *ListReplaysInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ListReplaysInput) SetState(v string) *ListReplaysInput {
+	s.State = &v
+	return s
+}
+
+type ListReplaysOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token returned by a previous call to retrieve the next set of results.
+	NextToken *string `min:"1" type:"string"`
+
+	// An array of Replay objects that contain information about the replay.
+	Replays []*Replay `type:"list"`
+}
+
+// String returns the string representation
+func (s ListReplaysOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReplaysOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReplaysOutput) SetNextToken(v string) *ListReplaysOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReplays sets the Replays field's value.
+func (s *ListReplaysOutput) SetReplays(v []*Replay) *ListReplaysOutput {
+	s.Replays = v
 	return s
 }
 
@@ -7382,6 +9152,156 @@ func (s *RemoveTargetsResultEntry) SetTargetId(v string) *RemoveTargetsResultEnt
 	return s
 }
 
+// A Replay object that contains details about a replay.
+type Replay struct {
+	_ struct{} `type:"structure"`
+
+	// A time stamp for the time to start replaying events. Any event with a creation
+	// time prior to the EventEndTime specified is replayed.
+	EventEndTime *time.Time `type:"timestamp"`
+
+	// A time stamp for the time that the last event was replayed.
+	EventLastReplayedTime *time.Time `type:"timestamp"`
+
+	// The ARN of the archive to replay event from.
+	EventSourceArn *string `min:"1" type:"string"`
+
+	// A time stamp for the time to start replaying events. This is determined by
+	// the time in the event as described in Time (https://docs.aws.amazon.com/eventbridge/latest/APIReference/API_PutEventsRequestEntry.html#eventbridge-Type-PutEventsRequestEntry-Time).
+	EventStartTime *time.Time `type:"timestamp"`
+
+	// A time stamp for the time that the replay completed.
+	ReplayEndTime *time.Time `type:"timestamp"`
+
+	// The name of the replay.
+	ReplayName *string `min:"1" type:"string"`
+
+	// A time stamp for the time that the replay started.
+	ReplayStartTime *time.Time `type:"timestamp"`
+
+	// The current state of the replay.
+	State *string `type:"string" enum:"ReplayState"`
+
+	// A description of why the replay is in the current state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Replay) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Replay) GoString() string {
+	return s.String()
+}
+
+// SetEventEndTime sets the EventEndTime field's value.
+func (s *Replay) SetEventEndTime(v time.Time) *Replay {
+	s.EventEndTime = &v
+	return s
+}
+
+// SetEventLastReplayedTime sets the EventLastReplayedTime field's value.
+func (s *Replay) SetEventLastReplayedTime(v time.Time) *Replay {
+	s.EventLastReplayedTime = &v
+	return s
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *Replay) SetEventSourceArn(v string) *Replay {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetEventStartTime sets the EventStartTime field's value.
+func (s *Replay) SetEventStartTime(v time.Time) *Replay {
+	s.EventStartTime = &v
+	return s
+}
+
+// SetReplayEndTime sets the ReplayEndTime field's value.
+func (s *Replay) SetReplayEndTime(v time.Time) *Replay {
+	s.ReplayEndTime = &v
+	return s
+}
+
+// SetReplayName sets the ReplayName field's value.
+func (s *Replay) SetReplayName(v string) *Replay {
+	s.ReplayName = &v
+	return s
+}
+
+// SetReplayStartTime sets the ReplayStartTime field's value.
+func (s *Replay) SetReplayStartTime(v time.Time) *Replay {
+	s.ReplayStartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Replay) SetState(v string) *Replay {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *Replay) SetStateReason(v string) *Replay {
+	s.StateReason = &v
+	return s
+}
+
+// A ReplayDestination object that contains details about a replay.
+type ReplayDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the event bus to replay event to. You can replay events only to
+	// the event bus specified to create the archive.
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+
+	// A list of ARNs for rules to replay events to.
+	FilterArns []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ReplayDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReplayDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReplayDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReplayDestination"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *ReplayDestination) SetArn(v string) *ReplayDestination {
+	s.Arn = &v
+	return s
+}
+
+// SetFilterArns sets the FilterArns field's value.
+func (s *ReplayDestination) SetFilterArns(v []*string) *ReplayDestination {
+	s.FilterArns = v
+	return s
+}
+
 // The resource you are trying to create already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
@@ -7779,6 +9699,173 @@ func (s SqsParameters) GoString() string {
 // SetMessageGroupId sets the MessageGroupId field's value.
 func (s *SqsParameters) SetMessageGroupId(v string) *SqsParameters {
 	s.MessageGroupId = &v
+	return s
+}
+
+type StartReplayInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description for the replay to start.
+	Description *string `type:"string"`
+
+	// A ReplayDestination object that includes details about the destination for
+	// the replay.
+	//
+	// Destination is a required field
+	Destination *ReplayDestination `type:"structure" required:"true"`
+
+	// A time stamp for the time to stop replaying events. Only events that occurred
+	// between the EventStartTime and EventEndTime are replayed.
+	//
+	// EventEndTime is a required field
+	EventEndTime *time.Time `type:"timestamp" required:"true"`
+
+	// The ARN of the archive to replay events from.
+	//
+	// EventSourceArn is a required field
+	EventSourceArn *string `min:"1" type:"string" required:"true"`
+
+	// A time stamp for the time to start replaying events. Only events that occurred
+	// between the EventStartTime and EventEndTime are replayed.
+	//
+	// EventStartTime is a required field
+	EventStartTime *time.Time `type:"timestamp" required:"true"`
+
+	// The name of the replay to start.
+	//
+	// ReplayName is a required field
+	ReplayName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartReplayInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartReplayInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReplayInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReplayInput"}
+	if s.Destination == nil {
+		invalidParams.Add(request.NewErrParamRequired("Destination"))
+	}
+	if s.EventEndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventEndTime"))
+	}
+	if s.EventSourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventSourceArn"))
+	}
+	if s.EventSourceArn != nil && len(*s.EventSourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventSourceArn", 1))
+	}
+	if s.EventStartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventStartTime"))
+	}
+	if s.ReplayName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReplayName"))
+	}
+	if s.ReplayName != nil && len(*s.ReplayName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReplayName", 1))
+	}
+	if s.Destination != nil {
+		if err := s.Destination.Validate(); err != nil {
+			invalidParams.AddNested("Destination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *StartReplayInput) SetDescription(v string) *StartReplayInput {
+	s.Description = &v
+	return s
+}
+
+// SetDestination sets the Destination field's value.
+func (s *StartReplayInput) SetDestination(v *ReplayDestination) *StartReplayInput {
+	s.Destination = v
+	return s
+}
+
+// SetEventEndTime sets the EventEndTime field's value.
+func (s *StartReplayInput) SetEventEndTime(v time.Time) *StartReplayInput {
+	s.EventEndTime = &v
+	return s
+}
+
+// SetEventSourceArn sets the EventSourceArn field's value.
+func (s *StartReplayInput) SetEventSourceArn(v string) *StartReplayInput {
+	s.EventSourceArn = &v
+	return s
+}
+
+// SetEventStartTime sets the EventStartTime field's value.
+func (s *StartReplayInput) SetEventStartTime(v time.Time) *StartReplayInput {
+	s.EventStartTime = &v
+	return s
+}
+
+// SetReplayName sets the ReplayName field's value.
+func (s *StartReplayInput) SetReplayName(v string) *StartReplayInput {
+	s.ReplayName = &v
+	return s
+}
+
+type StartReplayOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the replay.
+	ReplayArn *string `min:"1" type:"string"`
+
+	// The time at which the replay started.
+	ReplayStartTime *time.Time `type:"timestamp"`
+
+	// The state of the replay.
+	State *string `type:"string" enum:"ReplayState"`
+
+	// The reason that the replay is in the state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StartReplayOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartReplayOutput) GoString() string {
+	return s.String()
+}
+
+// SetReplayArn sets the ReplayArn field's value.
+func (s *StartReplayOutput) SetReplayArn(v string) *StartReplayOutput {
+	s.ReplayArn = &v
+	return s
+}
+
+// SetReplayStartTime sets the ReplayStartTime field's value.
+func (s *StartReplayOutput) SetReplayStartTime(v time.Time) *StartReplayOutput {
+	s.ReplayStartTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *StartReplayOutput) SetState(v string) *StartReplayOutput {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *StartReplayOutput) SetStateReason(v string) *StartReplayOutput {
+	s.StateReason = &v
 	return s
 }
 
@@ -8321,6 +10408,156 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateArchiveInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the archive to update.
+	//
+	// ArchiveName is a required field
+	ArchiveName *string `min:"1" type:"string" required:"true"`
+
+	// The description for the archive.
+	Description *string `type:"string"`
+
+	// The event pattern to use to filter events sent to the archive.
+	EventPattern *string `type:"string"`
+
+	// The number of days to retain events in the archive.
+	RetentionDays *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s UpdateArchiveInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateArchiveInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateArchiveInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateArchiveInput"}
+	if s.ArchiveName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ArchiveName"))
+	}
+	if s.ArchiveName != nil && len(*s.ArchiveName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArchiveName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArchiveName sets the ArchiveName field's value.
+func (s *UpdateArchiveInput) SetArchiveName(v string) *UpdateArchiveInput {
+	s.ArchiveName = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateArchiveInput) SetDescription(v string) *UpdateArchiveInput {
+	s.Description = &v
+	return s
+}
+
+// SetEventPattern sets the EventPattern field's value.
+func (s *UpdateArchiveInput) SetEventPattern(v string) *UpdateArchiveInput {
+	s.EventPattern = &v
+	return s
+}
+
+// SetRetentionDays sets the RetentionDays field's value.
+func (s *UpdateArchiveInput) SetRetentionDays(v int64) *UpdateArchiveInput {
+	s.RetentionDays = &v
+	return s
+}
+
+type UpdateArchiveOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the archive.
+	ArchiveArn *string `min:"1" type:"string"`
+
+	// The time at which the archive was updated.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The state of the archive.
+	State *string `type:"string" enum:"ArchiveState"`
+
+	// The reason that the archive is in the current state.
+	StateReason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateArchiveOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateArchiveOutput) GoString() string {
+	return s.String()
+}
+
+// SetArchiveArn sets the ArchiveArn field's value.
+func (s *UpdateArchiveOutput) SetArchiveArn(v string) *UpdateArchiveOutput {
+	s.ArchiveArn = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateArchiveOutput) SetCreationTime(v time.Time) *UpdateArchiveOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *UpdateArchiveOutput) SetState(v string) *UpdateArchiveOutput {
+	s.State = &v
+	return s
+}
+
+// SetStateReason sets the StateReason field's value.
+func (s *UpdateArchiveOutput) SetStateReason(v string) *UpdateArchiveOutput {
+	s.StateReason = &v
+	return s
+}
+
+const (
+	// ArchiveStateEnabled is a ArchiveState enum value
+	ArchiveStateEnabled = "ENABLED"
+
+	// ArchiveStateDisabled is a ArchiveState enum value
+	ArchiveStateDisabled = "DISABLED"
+
+	// ArchiveStateCreating is a ArchiveState enum value
+	ArchiveStateCreating = "CREATING"
+
+	// ArchiveStateUpdating is a ArchiveState enum value
+	ArchiveStateUpdating = "UPDATING"
+
+	// ArchiveStateCreateFailed is a ArchiveState enum value
+	ArchiveStateCreateFailed = "CREATE_FAILED"
+
+	// ArchiveStateUpdateFailed is a ArchiveState enum value
+	ArchiveStateUpdateFailed = "UPDATE_FAILED"
+)
+
+// ArchiveState_Values returns all elements of the ArchiveState enum
+func ArchiveState_Values() []string {
+	return []string{
+		ArchiveStateEnabled,
+		ArchiveStateDisabled,
+		ArchiveStateCreating,
+		ArchiveStateUpdating,
+		ArchiveStateCreateFailed,
+		ArchiveStateUpdateFailed,
+	}
+}
+
 const (
 	// AssignPublicIpEnabled is a AssignPublicIp enum value
 	AssignPublicIpEnabled = "ENABLED"
@@ -8370,6 +10607,38 @@ func LaunchType_Values() []string {
 	return []string{
 		LaunchTypeEc2,
 		LaunchTypeFargate,
+	}
+}
+
+const (
+	// ReplayStateStarting is a ReplayState enum value
+	ReplayStateStarting = "STARTING"
+
+	// ReplayStateRunning is a ReplayState enum value
+	ReplayStateRunning = "RUNNING"
+
+	// ReplayStateCancelling is a ReplayState enum value
+	ReplayStateCancelling = "CANCELLING"
+
+	// ReplayStateCompleted is a ReplayState enum value
+	ReplayStateCompleted = "COMPLETED"
+
+	// ReplayStateCancelled is a ReplayState enum value
+	ReplayStateCancelled = "CANCELLED"
+
+	// ReplayStateFailed is a ReplayState enum value
+	ReplayStateFailed = "FAILED"
+)
+
+// ReplayState_Values returns all elements of the ReplayState enum
+func ReplayState_Values() []string {
+	return []string{
+		ReplayStateStarting,
+		ReplayStateRunning,
+		ReplayStateCancelling,
+		ReplayStateCompleted,
+		ReplayStateCancelled,
+		ReplayStateFailed,
 	}
 }
 

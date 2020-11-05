@@ -149,6 +149,7 @@
         "ConfluenceSpaceConfiguration$CrawlPersonalSpaces": "<p>Specifies whether Amazon Kendra should index personal spaces. Users can add restrictions to items in personal spaces. If personal spaces are indexed, queries without user context information may return restricted items from a personal space in their results. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html\">Filtering on user context</a>.</p>",
         "ConfluenceSpaceConfiguration$CrawlArchivedSpaces": "<p>Specifies whether Amazon Kendra should index archived spaces.</p>",
         "Highlight$TopAnswer": "<p>Indicates whether the response is the best response. True if this is the best response; otherwise, false.</p>",
+        "OneDriveConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
         "SalesforceConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to Salesforce objects.</p>",
         "Search$Facetable": "<p>Indicates that the field can be used to create search facets, a count of results for each value in the field. The default is <code>false</code> .</p>",
         "Search$Searchable": "<p>Determines whether the field is used in the search. If the <code>Searchable</code> field is <code>true</code>, you can use relevance tuning to manually tune how Amazon Kendra weights the field in the search. The default is <code>true</code> for string fields and <code>false</code> for number and date fields.</p>",
@@ -157,7 +158,8 @@
         "ServiceNowKnowledgeArticleConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should index attachments to knowledge articles.</p>",
         "ServiceNowServiceCatalogConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should crawl attachments to the service catalog items. </p>",
         "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
-        "SharePointConfiguration$UseChangeLog": "<p>Set to <code>TRUE</code> to use the Microsoft SharePoint change log to determine the documents that need to be updated in the index. Depending on the size of the SharePoint change log, it may take longer for Amazon Kendra to use the change log than it takes it to determine the changed documents using the Amazon Kendra document crawler.</p>"
+        "SharePointConfiguration$UseChangeLog": "<p>Set to <code>TRUE</code> to use the Microsoft SharePoint change log to determine the documents that need to be updated in the index. Depending on the size of the SharePoint change log, it may take longer for Amazon Kendra to use the change log than it takes it to determine the changed documents using the Amazon Kendra document crawler.</p>",
+        "SharePointConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>"
       }
     },
     "CapacityUnitsConfiguration": {
@@ -171,6 +173,12 @@
       "base": null,
       "refs": {
         "ColumnConfiguration$ChangeDetectingColumns": "<p>One to five columns that indicate when a document in the database has changed.</p>"
+      }
+    },
+    "ClaimRegex": {
+      "base": null,
+      "refs": {
+        "JwtTokenTypeConfiguration$ClaimRegex": "<p>The regular expression that identifies the claim.</p>"
       }
     },
     "ClickFeedback": {
@@ -889,6 +897,12 @@
         "ListFaqsResponse$FaqSummaryItems": "<p>information about the FAQs associated with the specified index.</p>"
       }
     },
+    "GroupAttributeField": {
+      "base": null,
+      "refs": {
+        "JwtTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>"
+      }
+    },
     "Highlight": {
       "base": "<p>Provides information that you can use to highlight a search result so that your users can quickly identify terms in the response.</p>",
       "refs": {
@@ -1021,6 +1035,30 @@
     "InternalServerException": {
       "base": "<p/>",
       "refs": {
+      }
+    },
+    "Issuer": {
+      "base": null,
+      "refs": {
+        "JwtTokenTypeConfiguration$Issuer": "<p>The issuer of the token.</p>"
+      }
+    },
+    "JsonTokenTypeConfiguration": {
+      "base": "<p>Configuration information for the JSON token type.</p>",
+      "refs": {
+        "UserTokenConfiguration$JsonTokenTypeConfiguration": "<p>Information about the JSON token type configuration.</p>"
+      }
+    },
+    "JwtTokenTypeConfiguration": {
+      "base": "<p>Configuration information for the JWT token type.</p>",
+      "refs": {
+        "UserTokenConfiguration$JwtTokenTypeConfiguration": "<p>Information about the JWT token type configuration.</p>"
+      }
+    },
+    "KeyLocation": {
+      "base": null,
+      "refs": {
+        "JwtTokenTypeConfiguration$KeyLocation": "<p>The location of the key.</p>"
       }
     },
     "KmsKeyId": {
@@ -1308,6 +1346,7 @@
         "DescribeDataSourceResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that enables the data source to access its resources.</p>",
         "DescribeFaqResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that provides access to the S3 bucket containing the input files for the FAQ.</p>",
         "DescribeIndexResponse$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role that gives Amazon Kendra permission to write to your Amazon Cloudwatch logs.</p>",
+        "JwtTokenTypeConfiguration$SecretManagerArn": "<p>The Amazon Resource Name (arn) of the secret.</p>",
         "UpdateDataSourceRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the new role to use when the data source is accessing resources on your behalf.</p>",
         "UpdateIndexRequest$RoleArn": "<p>A new IAM role that gives Amazon Kendra permission to access your Amazon CloudWatch logs.</p>"
       }
@@ -1461,7 +1500,7 @@
     "SecretArn": {
       "base": null,
       "refs": {
-        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
+        "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
         "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i>AWS Secrets Manager</i> user guide.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
@@ -1581,6 +1620,8 @@
         "DataSourceSyncJob$ExecutionId": "<p>A unique identifier for the synchronization job.</p>",
         "DataSourceSyncJob$DataSourceErrorCode": "<p>If the reason that the synchronization failed is due to an error with the underlying data source, this field contains a code that identifies the error.</p>",
         "DocumentAttributeStringListValue$member": null,
+        "JsonTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>",
+        "JsonTokenTypeConfiguration$GroupAttributeField": "<p>The group attribute field.</p>",
         "StartDataSourceSyncJobResponse$ExecutionId": "<p>Identifies a particular synchronization job.</p>",
         "TextWithHighlights$Text": "<p>The text to display to the user.</p>"
       }
@@ -1713,6 +1754,12 @@
         "Document$Title": "<p>The title of the document.</p>"
       }
     },
+    "Token": {
+      "base": null,
+      "refs": {
+        "UserContext$Token": "<p>The user context token. It must be a JWT or a JSON token.</p>"
+      }
+    },
     "UntagResourceRequest": {
       "base": null,
       "refs": {
@@ -1737,9 +1784,44 @@
       "base": null,
       "refs": {
         "ConfluenceConfiguration$ServerUrl": "<p>The URL of your Confluence instance. Use the full URL of the server. For example, <code>https://server.example.com:port/</code>. You can also use an IP address, for example, <code>https://192.168.1.113/</code>.</p>",
+        "JwtTokenTypeConfiguration$URL": "<p>The signing key URL.</p>",
         "QueryResultItem$DocumentURI": "<p>The URI of the original location of the document.</p>",
         "SalesforceConfiguration$ServerUrl": "<p>The instance URL for the Salesforce site that you want to index.</p>",
         "SharePointUrlList$member": null
+      }
+    },
+    "UserContext": {
+      "base": "<p>Provides information about the user context for a Amazon Kendra index.</p>",
+      "refs": {
+        "QueryRequest$UserContext": "<p>The user context token.</p>"
+      }
+    },
+    "UserContextPolicy": {
+      "base": null,
+      "refs": {
+        "CreateIndexRequest$UserContextPolicy": "<p>The user context policy.</p> <dl> <dt>ATTRIBUTE_FILTER</dt> <dd> <p>All indexed content is searchable and displayable for all users. If there is an access control list, it is ignored. You can filter on user and group attributes. </p> </dd> <dt>USER_TOKEN</dt> <dd> <p>Enables SSO and token-based user access control. All documents with no access control and all documents accessible to the user will be searchable and displayable. </p> </dd> </dl>",
+        "DescribeIndexResponse$UserContextPolicy": "<p>The user context policy for the Amazon Kendra index.</p>",
+        "UpdateIndexRequest$UserContextPolicy": "<p>The user user token context policy.</p>"
+      }
+    },
+    "UserNameAttributeField": {
+      "base": null,
+      "refs": {
+        "JwtTokenTypeConfiguration$UserNameAttributeField": "<p>The user name attribute field.</p>"
+      }
+    },
+    "UserTokenConfiguration": {
+      "base": "<p>Provides configuration information for a token configuration.</p>",
+      "refs": {
+        "UserTokenConfigurationList$member": null
+      }
+    },
+    "UserTokenConfigurationList": {
+      "base": null,
+      "refs": {
+        "CreateIndexRequest$UserTokenConfigurations": "<p>The user token configuration.</p>",
+        "DescribeIndexResponse$UserTokenConfigurations": "<p>The user token configuration for the Amazon Kendra index.</p>",
+        "UpdateIndexRequest$UserTokenConfigurations": "<p>The user token configuration.</p>"
       }
     },
     "ValidationException": {
