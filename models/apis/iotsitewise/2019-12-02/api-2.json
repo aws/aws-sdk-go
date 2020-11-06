@@ -195,22 +195,6 @@
       ],
       "endpoint":{"hostPrefix":"monitor."}
     },
-    "CreatePresignedPortalUrl":{
-      "name":"CreatePresignedPortalUrl",
-      "http":{
-        "method":"GET",
-        "requestUri":"/portals/{portalId}/presigned-url",
-        "responseCode":200
-      },
-      "input":{"shape":"CreatePresignedPortalUrlRequest"},
-      "output":{"shape":"CreatePresignedPortalUrlResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalFailureException"},
-        {"shape":"ThrottlingException"}
-      ],
-      "endpoint":{"hostPrefix":"monitor."}
-    },
     "CreateProject":{
       "name":"CreateProject",
       "http":{
@@ -1653,29 +1637,6 @@
         "portalStartUrl":{"shape":"Url"},
         "portalStatus":{"shape":"PortalStatus"},
         "ssoApplicationId":{"shape":"SSOApplicationId"}
-      }
-    },
-    "CreatePresignedPortalUrlRequest":{
-      "type":"structure",
-      "required":["portalId"],
-      "members":{
-        "portalId":{
-          "shape":"ID",
-          "location":"uri",
-          "locationName":"portalId"
-        },
-        "sessionDurationSeconds":{
-          "shape":"SessionDurationSeconds",
-          "location":"querystring",
-          "locationName":"sessionDurationSeconds"
-        }
-      }
-    },
-    "CreatePresignedPortalUrlResponse":{
-      "type":"structure",
-      "required":["presignedPortalUrl"],
-      "members":{
-        "presignedPortalUrl":{"shape":"Url"}
       }
     },
     "CreateProjectRequest":{
@@ -3258,11 +3219,6 @@
       "error":{"httpStatusCode":503},
       "exception":true,
       "fault":true
-    },
-    "SessionDurationSeconds":{
-      "type":"integer",
-      "max":43200,
-      "min":900
     },
     "TagKey":{
       "type":"string",

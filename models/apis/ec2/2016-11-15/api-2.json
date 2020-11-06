@@ -8643,6 +8643,7 @@
     "DateTime":{"type":"timestamp"},
     "DedicatedHostFlag":{"type":"boolean"},
     "DedicatedHostId":{"type":"string"},
+    "DefaultNetworkCardIndex":{"type":"integer"},
     "DefaultRouteTableAssociationValue":{
       "type":"string",
       "enum":[
@@ -21009,6 +21010,7 @@
     "MaxResults":{"type":"integer"},
     "MaximumBandwidthInMbps":{"type":"integer"},
     "MaximumIops":{"type":"integer"},
+    "MaximumNetworkCards":{"type":"integer"},
     "MaximumThroughputInMBps":{"type":"double"},
     "MembershipType":{
       "type":"string",
@@ -22475,6 +22477,31 @@
         "locationName":"item"
       }
     },
+    "NetworkCardIndex":{"type":"integer"},
+    "NetworkCardInfo":{
+      "type":"structure",
+      "members":{
+        "NetworkCardIndex":{
+          "shape":"NetworkCardIndex",
+          "locationName":"networkCardIndex"
+        },
+        "NetworkPerformance":{
+          "shape":"NetworkPerformance",
+          "locationName":"networkPerformance"
+        },
+        "MaximumNetworkInterfaces":{
+          "shape":"MaxNetworkInterfaces",
+          "locationName":"maximumNetworkInterfaces"
+        }
+      }
+    },
+    "NetworkCardInfoList":{
+      "type":"list",
+      "member":{
+        "shape":"NetworkCardInfo",
+        "locationName":"item"
+      }
+    },
     "NetworkInfo":{
       "type":"structure",
       "members":{
@@ -22485,6 +22512,18 @@
         "MaximumNetworkInterfaces":{
           "shape":"MaxNetworkInterfaces",
           "locationName":"maximumNetworkInterfaces"
+        },
+        "MaximumNetworkCards":{
+          "shape":"MaximumNetworkCards",
+          "locationName":"maximumNetworkCards"
+        },
+        "DefaultNetworkCardIndex":{
+          "shape":"DefaultNetworkCardIndex",
+          "locationName":"defaultNetworkCardIndex"
+        },
+        "NetworkCards":{
+          "shape":"NetworkCardInfoList",
+          "locationName":"networkCards"
         },
         "Ipv4AddressesPerInterface":{
           "shape":"MaxIpv4AddrPerInterface",

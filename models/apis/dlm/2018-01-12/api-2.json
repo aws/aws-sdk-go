@@ -364,7 +364,8 @@
         "PolicyId":{"shape":"PolicyId"},
         "Description":{"shape":"PolicyDescription"},
         "State":{"shape":"GettablePolicyStateValues"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "PolicyType":{"shape":"PolicyTypeValues"}
       }
     },
     "LifecyclePolicySummaryList":{
@@ -398,6 +399,7 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "NoReboot":{"type":"boolean"},
     "Parameter":{"type":"string"},
     "ParameterList":{
       "type":"list",
@@ -406,7 +408,8 @@
     "Parameters":{
       "type":"structure",
       "members":{
-        "ExcludeBootVolume":{"shape":"ExcludeBootVolume"}
+        "ExcludeBootVolume":{"shape":"ExcludeBootVolume"},
+        "NoReboot":{"shape":"NoReboot"}
       }
     },
     "PolicyArn":{
@@ -443,7 +446,10 @@
     },
     "PolicyTypeValues":{
       "type":"string",
-      "enum":["EBS_SNAPSHOT_MANAGEMENT"]
+      "enum":[
+        "EBS_SNAPSHOT_MANAGEMENT",
+        "IMAGE_MANAGEMENT"
+      ]
     },
     "ResourceNotFoundException":{
       "type":"structure",

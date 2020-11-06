@@ -229,6 +229,12 @@
       "refs": {
       }
     },
+    "NoReboot": {
+      "base": null,
+      "refs": {
+        "Parameters$NoReboot": "<p>Applies to AMI lifecycle policies only. Indicates whether targeted instances are rebooted when the lifecycle policy runs. <code>true</code> indicates that targeted instances are not rebooted when the policy runs. <code>false</code> indicates that target instances are rebooted when the policy runs. The default is <code>true</code> (instance are not rebooted).</p>"
+      }
+    },
     "Parameter": {
       "base": null,
       "refs": {
@@ -296,7 +302,8 @@
     "PolicyTypeValues": {
       "base": null,
       "refs": {
-        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. The default is EBS_SNAPSHOT_MANAGEMENT.</p>"
+        "LifecyclePolicySummary$PolicyType": "<p>The type of policy. <code>EBS_SNAPSHOT_MANAGEMENT</code> indicates that the policy manages the lifecycle of Amazon EBS snapshots. <code>IMAGE_MANAGEMENT</code> indicates that the policy manages the lifecycle of EBS-backed AMIs.</p>",
+        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. Specify <code>EBS_SNAPSHOT_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of Amazon EBS snapshots. Specify <code>IMAGE_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of EBS-backed AMIs. The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.</p>"
       }
     },
     "ResourceNotFoundException": {

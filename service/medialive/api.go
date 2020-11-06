@@ -22161,6 +22161,11 @@ func (s RtmpCaptionInfoDestinationSettings) GoString() string {
 type RtmpGroupSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Choose the ad marker type for this output group. MediaLive will create a
+	// message based on the content of each SCTE-35 message, format it for that
+	// marker type, and insert it in the datastream.
+	AdMarkers []*string `locationName:"adMarkers" type:"list"`
+
 	// Authentication scheme to use when connecting with CDN
 	AuthenticationScheme *string `locationName:"authenticationScheme" type:"string" enum:"AuthenticationScheme"`
 
@@ -22214,6 +22219,12 @@ func (s *RtmpGroupSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdMarkers sets the AdMarkers field's value.
+func (s *RtmpGroupSettings) SetAdMarkers(v []*string) *RtmpGroupSettings {
+	s.AdMarkers = v
+	return s
 }
 
 // SetAuthenticationScheme sets the AuthenticationScheme field's value.
@@ -30452,6 +30463,19 @@ func ReservationVideoQuality_Values() []string {
 		ReservationVideoQualityStandard,
 		ReservationVideoQualityEnhanced,
 		ReservationVideoQualityPremium,
+	}
+}
+
+// Rtmp Ad Markers
+const (
+	// RtmpAdMarkersOnCuePointScte35 is a RtmpAdMarkers enum value
+	RtmpAdMarkersOnCuePointScte35 = "ON_CUE_POINT_SCTE35"
+)
+
+// RtmpAdMarkers_Values returns all elements of the RtmpAdMarkers enum
+func RtmpAdMarkers_Values() []string {
+	return []string{
+		RtmpAdMarkersOnCuePointScte35,
 	}
 }
 
