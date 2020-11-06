@@ -2554,6 +2554,12 @@
       "refs": {
       }
     },
+    "RtmpAdMarkers": {
+      "base": "Rtmp Ad Markers",
+      "refs": {
+        "__listOfRtmpAdMarkers$member": null
+      }
+    },
     "RtmpCacheFullBehavior": {
       "base": "Rtmp Cache Full Behavior",
       "refs": {
@@ -3887,6 +3893,12 @@
       "base": null,
       "refs": {
         "ListReservationsResultModel$Reservations": "List of reservations"
+      }
+    },
+    "__listOfRtmpAdMarkers": {
+      "base": null,
+      "refs": {
+        "RtmpGroupSettings$AdMarkers": "Choose the ad marker type for this output group. MediaLive will create a message based on the content of each SCTE-35 message, format it for that marker type, and insert it in the datastream."
       }
     },
     "__listOfScheduleAction": {

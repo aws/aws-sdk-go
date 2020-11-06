@@ -10209,6 +10209,12 @@
         }
       }
     },
+    "RtmpAdMarkers": {
+      "type": "string",
+      "enum": [
+        "ON_CUE_POINT_SCTE35"
+      ]
+    },
     "RtmpCacheFullBehavior": {
       "type": "string",
       "enum": [
@@ -10232,6 +10238,10 @@
     "RtmpGroupSettings": {
       "type": "structure",
       "members": {
+        "AdMarkers": {
+          "shape": "__listOfRtmpAdMarkers",
+          "locationName": "adMarkers"
+        },
         "AuthenticationScheme": {
           "shape": "AuthenticationScheme",
           "locationName": "authenticationScheme"
@@ -12602,6 +12612,12 @@
       "type": "list",
       "member": {
         "shape": "Reservation"
+      }
+    },
+    "__listOfRtmpAdMarkers": {
+      "type": "list",
+      "member": {
+        "shape": "RtmpAdMarkers"
       }
     },
     "__listOfScheduleAction": {

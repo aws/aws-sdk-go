@@ -1,3 +1,16 @@
+Release v1.35.23 (2020-11-06)
+===
+
+### Service Client Updates
+* `service/dlm`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Network card support with four new attributes: NetworkCardIndex, NetworkPerformance, DefaultNetworkCardIndex, and MaximumNetworkInterfaces, added to the DescribeInstanceTypes API.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/medialive`: Updates service API and documentation
+  * Support for SCTE35 ad markers in OnCuePoint style in RTMP outputs.
+* `service/ssm`: Updates service documentation
+  * Documentation updates for Systems Manager
+
 Release v1.35.22 (2020-11-05)
 ===
 

@@ -1582,6 +1582,11 @@ type LifecyclePolicySummary struct {
 	// The identifier of the lifecycle policy.
 	PolicyId *string `type:"string"`
 
+	// The type of policy. EBS_SNAPSHOT_MANAGEMENT indicates that the policy manages
+	// the lifecycle of Amazon EBS snapshots. IMAGE_MANAGEMENT indicates that the
+	// policy manages the lifecycle of EBS-backed AMIs.
+	PolicyType *string `type:"string" enum:"PolicyTypeValues"`
+
 	// The activation state of the lifecycle policy.
 	State *string `type:"string" enum:"GettablePolicyStateValues"`
 
@@ -1608,6 +1613,12 @@ func (s *LifecyclePolicySummary) SetDescription(v string) *LifecyclePolicySummar
 // SetPolicyId sets the PolicyId field's value.
 func (s *LifecyclePolicySummary) SetPolicyId(v string) *LifecyclePolicySummary {
 	s.PolicyId = &v
+	return s
+}
+
+// SetPolicyType sets the PolicyType field's value.
+func (s *LifecyclePolicySummary) SetPolicyType(v string) *LifecyclePolicySummary {
+	s.PolicyType = &v
 	return s
 }
 
@@ -1757,6 +1768,13 @@ type Parameters struct {
 	// exclude the root volume from snapshots created using CreateSnapshots (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateSnapshots.html).
 	// The default is false.
 	ExcludeBootVolume *bool `type:"boolean"`
+
+	// Applies to AMI lifecycle policies only. Indicates whether targeted instances
+	// are rebooted when the lifecycle policy runs. true indicates that targeted
+	// instances are not rebooted when the policy runs. false indicates that target
+	// instances are rebooted when the policy runs. The default is true (instance
+	// are not rebooted).
+	NoReboot *bool `type:"boolean"`
 }
 
 // String returns the string representation
@@ -1775,6 +1793,12 @@ func (s *Parameters) SetExcludeBootVolume(v bool) *Parameters {
 	return s
 }
 
+// SetNoReboot sets the NoReboot field's value.
+func (s *Parameters) SetNoReboot(v bool) *Parameters {
+	s.NoReboot = &v
+	return s
+}
+
 // Specifies the configuration of a lifecycle policy.
 type PolicyDetails struct {
 	_ struct{} `type:"structure"`
@@ -1782,8 +1806,10 @@ type PolicyDetails struct {
 	// A set of optional parameters for the policy.
 	Parameters *Parameters `type:"structure"`
 
-	// The valid target resource types and actions a policy can manage. The default
-	// is EBS_SNAPSHOT_MANAGEMENT.
+	// The valid target resource types and actions a policy can manage. Specify
+	// EBS_SNAPSHOT_MANAGEMENT to create a lifecycle policy that manages the lifecycle
+	// of Amazon EBS snapshots. Specify IMAGE_MANAGEMENT to create a lifecycle policy
+	// that manages the lifecycle of EBS-backed AMIs. The default is EBS_SNAPSHOT_MANAGEMENT.
 	PolicyType *string `type:"string" enum:"PolicyTypeValues"`
 
 	// The resource type. Use VOLUME to create snapshots of individual volumes or
@@ -2478,12 +2504,16 @@ func IntervalUnitValues_Values() []string {
 const (
 	// PolicyTypeValuesEbsSnapshotManagement is a PolicyTypeValues enum value
 	PolicyTypeValuesEbsSnapshotManagement = "EBS_SNAPSHOT_MANAGEMENT"
+
+	// PolicyTypeValuesImageManagement is a PolicyTypeValues enum value
+	PolicyTypeValuesImageManagement = "IMAGE_MANAGEMENT"
 )
 
 // PolicyTypeValues_Values returns all elements of the PolicyTypeValues enum
 func PolicyTypeValues_Values() []string {
 	return []string{
 		PolicyTypeValuesEbsSnapshotManagement,
+		PolicyTypeValuesImageManagement,
 	}
 }
 

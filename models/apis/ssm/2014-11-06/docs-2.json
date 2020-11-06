@@ -391,13 +391,13 @@
     "AssociationFilterKey": {
       "base": null,
       "refs": {
-        "AssociationFilter$key": "<p>The name of the filter.</p>"
+        "AssociationFilter$key": "<p>The name of the filter.</p> <note> <p> <code>InstanceId</code> has been deprecated.</p> </note>"
       }
     },
     "AssociationFilterList": {
       "base": null,
       "refs": {
-        "ListAssociationsRequest$AssociationFilterList": "<p>One or more filters. Use a filter to return a more specific list of results.</p>"
+        "ListAssociationsRequest$AssociationFilterList": "<p>One or more filters. Use a filter to return a more specific list of results.</p> <note> <p>Filtering associations using the <code>InstanceID</code> attribute only returns legacy associations created using the <code>InstanceID</code> attribute. Associations targeting the instance that are part of the Target Attributes <code>ResourceGroup</code> or <code>Tags</code> are not returned.</p> </note>"
       }
     },
     "AssociationFilterOperatorType": {
@@ -676,7 +676,7 @@
     "AutomationExecutionFilterKey": {
       "base": null,
       "refs": {
-        "AutomationExecutionFilter$Key": "<p>One or more keys to limit the results. Valid filter keys include the following: DocumentNamePrefix, ExecutionStatus, ExecutionId, ParentExecutionId, CurrentAction, StartTimeBefore, StartTimeAfter.</p>"
+        "AutomationExecutionFilter$Key": "<p>One or more keys to limit the results. Valid filter keys include the following: DocumentNamePrefix, ExecutionStatus, ExecutionId, ParentExecutionId, CurrentAction, StartTimeBefore, StartTimeAfter, TargetResourceGroup.</p>"
       }
     },
     "AutomationExecutionFilterList": {
@@ -5022,7 +5022,7 @@
       }
     },
     "ParameterMaxVersionLimitExceeded": {
-      "base": "<p>The parameter exceeded the maximum number of allowed versions.</p>",
+      "base": "<p>Parameter Store retains the 100 most recently created versions of a parameter. After this number of versions has been created, Parameter Store deletes the oldest version when a new one is created. However, if the oldest version has a <i>label</i> attached to it, Parameter Store will not delete the version and instead presents this error message:</p> <p> <code>An error occurred (ParameterMaxVersionLimitExceeded) when calling the PutParameter operation: You attempted to create a new version of <i>parameter-name</i> by calling the PutParameter API with the overwrite flag. Version <i>version-number</i>, the oldest version, can't be deleted because it has a label associated with it. Move the label to another version of the parameter, and try again.</code> </p> <p>This safeguard is to prevent parameter versions with mission critical labels assigned to them from being deleted. To continue creating new parameters, first move the label from the oldest version of the parameter to a newer one for use in your operations. For information about moving parameter labels, see <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-console-move\">Move a parameter label (console)</a> or <a href=\"http://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-paramstore-labels.html#sysman-paramstore-labels-cli-move\">Move a parameter label (CLI) </a> in the <i>AWS Systems Manager User Guide</i>. </p>",
       "refs": {
       }
     },
