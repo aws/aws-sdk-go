@@ -676,7 +676,8 @@
         "status":{"shape":"ChannelStatus"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "lastMessageArrivalTime":{"shape":"Timestamp"}
       }
     },
     "ChannelActivity":{
@@ -737,7 +738,8 @@
         "channelStorage":{"shape":"ChannelStorageSummary"},
         "status":{"shape":"ChannelStatus"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "lastMessageArrivalTime":{"shape":"Timestamp"}
       }
     },
     "ComputeType":{
@@ -787,7 +789,8 @@
           "shape":"DatasetName",
           "location":"uri",
           "locationName":"datasetName"
-        }
+        },
+        "versionId":{"shape":"DatasetContentVersion"}
       }
     },
     "CreateDatasetContentResponse":{
@@ -809,7 +812,8 @@
         "contentDeliveryRules":{"shape":"DatasetContentDeliveryRules"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "versioningConfiguration":{"shape":"VersioningConfiguration"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "lateDataRules":{"shape":"LateDataRules"}
       }
     },
     "CreateDatasetResponse":{
@@ -909,7 +913,8 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
-        "versioningConfiguration":{"shape":"VersioningConfiguration"}
+        "versioningConfiguration":{"shape":"VersioningConfiguration"},
+        "lateDataRules":{"shape":"LateDataRules"}
       }
     },
     "DatasetAction":{
@@ -1077,7 +1082,8 @@
         "status":{"shape":"DatastoreStatus"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "lastMessageArrivalTime":{"shape":"Timestamp"}
       }
     },
     "DatastoreActivity":{
@@ -1137,7 +1143,8 @@
         "datastoreStorage":{"shape":"DatastoreStorageSummary"},
         "status":{"shape":"DatastoreStatus"},
         "creationTime":{"shape":"Timestamp"},
-        "lastUpdateTime":{"shape":"Timestamp"}
+        "lastUpdateTime":{"shape":"Timestamp"},
+        "lastMessageArrivalTime":{"shape":"Timestamp"}
       }
     },
     "DeleteChannelRequest":{
@@ -1209,6 +1216,13 @@
       "members":{
         "offsetSeconds":{"shape":"OffsetSeconds"},
         "timeExpression":{"shape":"TimeExpression"}
+      }
+    },
+    "DeltaTimeSessionWindowConfiguration":{
+      "type":"structure",
+      "required":["timeoutInMinutes"],
+      "members":{
+        "timeoutInMinutes":{"shape":"SessionTimeoutInMinutes"}
       }
     },
     "DescribeChannelRequest":{
@@ -1468,6 +1482,32 @@
       "max":64,
       "min":1,
       "pattern":"^[a-zA-Z0-9_-]+$"
+    },
+    "LateDataRule":{
+      "type":"structure",
+      "required":["ruleConfiguration"],
+      "members":{
+        "ruleName":{"shape":"LateDataRuleName"},
+        "ruleConfiguration":{"shape":"LateDataRuleConfiguration"}
+      }
+    },
+    "LateDataRuleConfiguration":{
+      "type":"structure",
+      "members":{
+        "deltaTimeSessionWindowConfiguration":{"shape":"DeltaTimeSessionWindowConfiguration"}
+      }
+    },
+    "LateDataRuleName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_]+$"
+    },
+    "LateDataRules":{
+      "type":"list",
+      "member":{"shape":"LateDataRule"},
+      "max":1,
+      "min":1
     },
     "LimitExceededException":{
       "type":"structure",
@@ -1988,6 +2028,11 @@
       "exception":true,
       "fault":true
     },
+    "SessionTimeoutInMinutes":{
+      "type":"integer",
+      "max":60,
+      "min":1
+    },
     "SizeInBytes":{"type":"double"},
     "SqlQuery":{"type":"string"},
     "SqlQueryDatasetAction":{
@@ -2148,7 +2193,8 @@
         "triggers":{"shape":"DatasetTriggers"},
         "contentDeliveryRules":{"shape":"DatasetContentDeliveryRules"},
         "retentionPeriod":{"shape":"RetentionPeriod"},
-        "versioningConfiguration":{"shape":"VersioningConfiguration"}
+        "versioningConfiguration":{"shape":"VersioningConfiguration"},
+        "lateDataRules":{"shape":"LateDataRules"}
       }
     },
     "UpdateDatastoreRequest":{

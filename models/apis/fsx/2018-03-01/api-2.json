@@ -13,6 +13,20 @@
     "uid":"fsx-2018-03-01"
   },
   "operations":{
+    "AssociateFileSystemAliases":{
+      "name":"AssociateFileSystemAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateFileSystemAliasesRequest"},
+      "output":{"shape":"AssociateFileSystemAliasesResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "CancelDataRepositoryTask":{
       "name":"CancelDataRepositoryTask",
       "http":{
@@ -174,6 +188,20 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeFileSystemAliases":{
+      "name":"DescribeFileSystemAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeFileSystemAliasesRequest"},
+      "output":{"shape":"DescribeFileSystemAliasesResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeFileSystems":{
       "name":"DescribeFileSystems",
       "http":{
@@ -182,6 +210,20 @@
       },
       "input":{"shape":"DescribeFileSystemsRequest"},
       "output":{"shape":"DescribeFileSystemsResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "DisassociateFileSystemAliases":{
+      "name":"DisassociateFileSystemAliases",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateFileSystemAliasesRequest"},
+      "output":{"shape":"DisassociateFileSystemAliasesResponse"},
       "errors":[
         {"shape":"BadRequest"},
         {"shape":"FileSystemNotFound"},
@@ -317,7 +359,9 @@
       "type":"string",
       "enum":[
         "FILE_SYSTEM_UPDATE",
-        "STORAGE_OPTIMIZATION"
+        "STORAGE_OPTIMIZATION",
+        "FILE_SYSTEM_ALIAS_ASSOCIATION",
+        "FILE_SYSTEM_ALIAS_DISASSOCIATION"
       ]
     },
     "AdministrativeActions":{
@@ -325,11 +369,65 @@
       "member":{"shape":"AdministrativeAction"},
       "max":50
     },
+    "Alias":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"AlternateDNSName"},
+        "Lifecycle":{"shape":"AliasLifecycle"}
+      }
+    },
+    "AliasLifecycle":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "CREATING",
+        "DELETING",
+        "CREATE_FAILED",
+        "DELETE_FAILED"
+      ]
+    },
+    "Aliases":{
+      "type":"list",
+      "member":{"shape":"Alias"},
+      "max":50
+    },
+    "AlternateDNSName":{
+      "type":"string",
+      "max":253,
+      "min":4,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{4,253}$"
+    },
+    "AlternateDNSNames":{
+      "type":"list",
+      "member":{"shape":"AlternateDNSName"},
+      "max":50
+    },
     "ArchivePath":{
       "type":"string",
-      "max":900,
+      "max":4357,
       "min":3,
       "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{3,4357}$"
+    },
+    "AssociateFileSystemAliasesRequest":{
+      "type":"structure",
+      "required":[
+        "FileSystemId",
+        "Aliases"
+      ],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Aliases":{"shape":"AlternateDNSNames"}
+      }
+    },
+    "AssociateFileSystemAliasesResponse":{
+      "type":"structure",
+      "members":{
+        "Aliases":{"shape":"Aliases"}
+      }
     },
     "AutoImportPolicyType":{
       "type":"string",
@@ -420,7 +518,8 @@
       "type":"string",
       "enum":[
         "AUTOMATIC",
-        "USER_INITIATED"
+        "USER_INITIATED",
+        "AWS_BACKUP"
       ]
     },
     "Backups":{
@@ -591,7 +690,8 @@
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "Aliases":{"shape":"AlternateDNSNames"}
       }
     },
     "CreationTime":{"type":"timestamp"},
@@ -856,6 +956,26 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeFileSystemAliasesRequest":{
+      "type":"structure",
+      "required":["FileSystemId"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "FileSystemId":{"shape":"FileSystemId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeFileSystemAliasesResponse":{
+      "type":"structure",
+      "members":{
+        "Aliases":{"shape":"Aliases"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeFileSystemsRequest":{
       "type":"structure",
       "members":{
@@ -889,6 +1009,27 @@
       "max":256,
       "min":1,
       "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,256}$"
+    },
+    "DisassociateFileSystemAliasesRequest":{
+      "type":"structure",
+      "required":[
+        "FileSystemId",
+        "Aliases"
+      ],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Aliases":{"shape":"AlternateDNSNames"}
+      }
+    },
+    "DisassociateFileSystemAliasesResponse":{
+      "type":"structure",
+      "members":{
+        "Aliases":{"shape":"Aliases"}
+      }
     },
     "DnsIps":{
       "type":"list",
@@ -1493,7 +1634,8 @@
         "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"},
         "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
         "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
-        "CopyTagsToBackups":{"shape":"Flag"}
+        "CopyTagsToBackups":{"shape":"Flag"},
+        "Aliases":{"shape":"Aliases"}
       }
     }
   }

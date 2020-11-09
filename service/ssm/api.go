@@ -15297,8 +15297,6 @@ type AssociationFilter struct {
 
 	// The name of the filter.
 	//
-	// InstanceId has been deprecated.
-	//
 	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true" enum:"AssociationFilterKey"`
 
@@ -34019,11 +34017,6 @@ type ListAssociationsInput struct {
 	_ struct{} `type:"structure"`
 
 	// One or more filters. Use a filter to return a more specific list of results.
-	//
-	// Filtering associations using the InstanceID attribute only returns legacy
-	// associations created using the InstanceID attribute. Associations targeting
-	// the instance that are part of the Target Attributes ResourceGroup or Tags
-	// are not returned.
 	AssociationFilterList []*AssociationFilter `min:"1" type:"list"`
 
 	// The maximum number of items to return for this call. The call also returns
@@ -47704,6 +47697,9 @@ const (
 
 	// AutomationExecutionFilterKeyTagKey is a AutomationExecutionFilterKey enum value
 	AutomationExecutionFilterKeyTagKey = "TagKey"
+
+	// AutomationExecutionFilterKeyTargetResourceGroup is a AutomationExecutionFilterKey enum value
+	AutomationExecutionFilterKeyTargetResourceGroup = "TargetResourceGroup"
 )
 
 // AutomationExecutionFilterKey_Values returns all elements of the AutomationExecutionFilterKey enum
@@ -47718,6 +47714,7 @@ func AutomationExecutionFilterKey_Values() []string {
 		AutomationExecutionFilterKeyStartTimeAfter,
 		AutomationExecutionFilterKeyAutomationType,
 		AutomationExecutionFilterKeyTagKey,
+		AutomationExecutionFilterKeyTargetResourceGroup,
 	}
 }
 

@@ -404,6 +404,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "DescribeBandwidthRateLimitSchedule":{
+      "name":"DescribeBandwidthRateLimitSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeBandwidthRateLimitScheduleInput"},
+      "output":{"shape":"DescribeBandwidthRateLimitScheduleOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeCache":{
       "name":"DescribeCache",
       "http":{
@@ -950,6 +963,19 @@
         {"shape":"InternalServerError"}
       ]
     },
+    "UpdateBandwidthRateLimitSchedule":{
+      "name":"UpdateBandwidthRateLimitSchedule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateBandwidthRateLimitScheduleInput"},
+      "output":{"shape":"UpdateBandwidthRateLimitScheduleOutput"},
+      "errors":[
+        {"shape":"InvalidGatewayRequestException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "UpdateChapCredentials":{
       "name":"UpdateChapCredentials",
       "http":{
@@ -1285,6 +1311,31 @@
     "BandwidthDownloadRateLimit":{
       "type":"long",
       "min":102400
+    },
+    "BandwidthRateLimitInterval":{
+      "type":"structure",
+      "required":[
+        "StartHourOfDay",
+        "StartMinuteOfHour",
+        "EndHourOfDay",
+        "EndMinuteOfHour",
+        "DaysOfWeek"
+      ],
+      "members":{
+        "StartHourOfDay":{"shape":"HourOfDay"},
+        "StartMinuteOfHour":{"shape":"MinuteOfHour"},
+        "EndHourOfDay":{"shape":"HourOfDay"},
+        "EndMinuteOfHour":{"shape":"MinuteOfHour"},
+        "DaysOfWeek":{"shape":"DaysOfWeek"},
+        "AverageUploadRateLimitInBitsPerSec":{"shape":"BandwidthUploadRateLimit"},
+        "AverageDownloadRateLimitInBitsPerSec":{"shape":"BandwidthDownloadRateLimit"}
+      }
+    },
+    "BandwidthRateLimitIntervals":{
+      "type":"list",
+      "member":{"shape":"BandwidthRateLimitInterval"},
+      "max":20,
+      "min":0
     },
     "BandwidthType":{
       "type":"string",
@@ -1649,6 +1700,12 @@
       "max":6,
       "min":0
     },
+    "DaysOfWeek":{
+      "type":"list",
+      "member":{"shape":"DayOfWeek"},
+      "max":7,
+      "min":1
+    },
     "DeleteAutomaticTapeCreationPolicyInput":{
       "type":"structure",
       "required":["GatewayARN"],
@@ -1828,6 +1885,20 @@
         "GatewayARN":{"shape":"GatewayARN"},
         "AverageUploadRateLimitInBitsPerSec":{"shape":"BandwidthUploadRateLimit"},
         "AverageDownloadRateLimitInBitsPerSec":{"shape":"BandwidthDownloadRateLimit"}
+      }
+    },
+    "DescribeBandwidthRateLimitScheduleInput":{
+      "type":"structure",
+      "required":["GatewayARN"],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "DescribeBandwidthRateLimitScheduleOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "BandwidthRateLimitIntervals":{"shape":"BandwidthRateLimitIntervals"}
       }
     },
     "DescribeCacheInput":{
@@ -3331,6 +3402,23 @@
       }
     },
     "UpdateBandwidthRateLimitOutput":{
+      "type":"structure",
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"}
+      }
+    },
+    "UpdateBandwidthRateLimitScheduleInput":{
+      "type":"structure",
+      "required":[
+        "GatewayARN",
+        "BandwidthRateLimitIntervals"
+      ],
+      "members":{
+        "GatewayARN":{"shape":"GatewayARN"},
+        "BandwidthRateLimitIntervals":{"shape":"BandwidthRateLimitIntervals"}
+      }
+    },
+    "UpdateBandwidthRateLimitScheduleOutput":{
       "type":"structure",
       "members":{
         "GatewayARN":{"shape":"GatewayARN"}

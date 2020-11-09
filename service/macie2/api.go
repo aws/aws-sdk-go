@@ -8583,8 +8583,8 @@ type DescribeClassificationJobOutput struct {
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// Provides information about when a classification job was paused and when
-	// it will expire and be cancelled if it isn’t resumed. This object is present
-	// only if a job’s current status (jobStatus) is USER_PAUSED.
+	// it will expire and be cancelled if it isn't resumed. This object is present
+	// only if a job's current status (jobStatus) is USER_PAUSED.
 	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
@@ -11005,8 +11005,8 @@ type JobSummary struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// Provides information about when a classification job was paused and when
-	// it will expire and be cancelled if it isn’t resumed. This object is present
-	// only if a job’s current status (jobStatus) is USER_PAUSED.
+	// it will expire and be cancelled if it isn't resumed. This object is present
+	// only if a job's current status (jobStatus) is USER_PAUSED.
 	UserPausedDetails *UserPausedDetails `locationName:"userPausedDetails" type:"structure"`
 }
 
@@ -12016,13 +12016,13 @@ type Occurrences struct {
 	Cells []*Cell `locationName:"cells" type:"list"`
 
 	// Provides details about the location of occurrences of sensitive data in an
-	// Adobe Portable Document Format file, Apache Avro object container, Microsoft
-	// Word document, or non-binary text file.
+	// Adobe Portable Document Format file, Microsoft Word document, or non-binary
+	// text file.
 	LineRanges []*Range `locationName:"lineRanges" type:"list"`
 
 	// Provides details about the location of occurrences of sensitive data in an
-	// Adobe Portable Document Format file, Apache Avro object container, Microsoft
-	// Word document, or non-binary text file.
+	// Adobe Portable Document Format file, Microsoft Word document, or non-binary
+	// text file.
 	OffsetRanges []*Range `locationName:"offsetRanges" type:"list"`
 
 	// Specifies the location of occurrences of sensitive data in an Adobe Portable
@@ -12080,13 +12080,13 @@ type Page struct {
 	_ struct{} `type:"structure"`
 
 	// Provides details about the location of an occurrence of sensitive data in
-	// an Adobe Portable Document Format file, Apache Avro object container, Microsoft
-	// Word document, or non-binary text file.
+	// an Adobe Portable Document Format file, Microsoft Word document, or non-binary
+	// text file.
 	LineRange *Range `locationName:"lineRange" type:"structure"`
 
 	// Provides details about the location of an occurrence of sensitive data in
-	// an Adobe Portable Document Format file, Apache Avro object container, Microsoft
-	// Word document, or non-binary text file.
+	// an Adobe Portable Document Format file, Microsoft Word document, or non-binary
+	// text file.
 	OffsetRange *Range `locationName:"offsetRange" type:"structure"`
 
 	PageNumber *int64 `locationName:"pageNumber" type:"long"`
@@ -12231,8 +12231,8 @@ func (s *PutClassificationExportConfigurationOutput) SetConfiguration(v *Classif
 }
 
 // Provides details about the location of an occurrence of sensitive data in
-// an Adobe Portable Document Format file, Apache Avro object container, Microsoft
-// Word document, or non-binary text file.
+// an Adobe Portable Document Format file, Microsoft Word document, or non-binary
+// text file.
 type Range struct {
 	_ struct{} `type:"structure"`
 
@@ -12271,10 +12271,12 @@ func (s *Range) SetStartColumn(v int64) *Range {
 	return s
 }
 
-// Specifies the location of an occurrence of sensitive data in an Apache Parquet
-// file.
+// Specifies the location of an occurrence of sensitive data in an Apache Avro
+// object container or Apache Parquet file.
 type Record struct {
 	_ struct{} `type:"structure"`
+
+	JsonPath *string `locationName:"jsonPath" type:"string"`
 
 	RecordIndex *int64 `locationName:"recordIndex" type:"long"`
 }
@@ -12287,6 +12289,12 @@ func (s Record) String() string {
 // GoString returns the string representation
 func (s Record) GoString() string {
 	return s.String()
+}
+
+// SetJsonPath sets the JsonPath field's value.
+func (s *Record) SetJsonPath(v string) *Record {
+	s.JsonPath = &v
+	return s
 }
 
 // SetRecordIndex sets the RecordIndex field's value.
@@ -14371,8 +14379,8 @@ func (s *UserIdentityRoot) SetPrincipalId(v string) *UserIdentityRoot {
 }
 
 // Provides information about when a classification job was paused and when
-// it will expire and be cancelled if it isn’t resumed. This object is present
-// only if a job’s current status (jobStatus) is USER_PAUSED.
+// it will expire and be cancelled if it isn't resumed. This object is present
+// only if a job's current status (jobStatus) is USER_PAUSED.
 type UserPausedDetails struct {
 	_ struct{} `type:"structure"`
 

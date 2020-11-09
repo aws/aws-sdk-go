@@ -74,17 +74,18 @@ func ExampleFSx_CreateBackup_shared00() {
 
 // To create a new file system
 //
-// This operation creates a new file system.
+// This operation creates a new Amazon FSx for Windows File Server file system.
 func ExampleFSx_CreateFileSystem_shared00() {
 	svc := fsx.New(session.New())
 	input := &fsx.CreateFileSystemInput{
 		ClientRequestToken: aws.String("a8ca07e4-61ec-4399-99f4-19853801bcd5"),
 		FileSystemType:     aws.String("WINDOWS"),
-		KmsKeyId:           aws.String("arn:aws:kms:us-east-1:012345678912:key/0ff3ea8d-130e-4133-877f-93908b6fdbd6"),
+		KmsKeyId:           aws.String("arn:aws:kms:us-east-1:012345678912:key/1111abcd-2222-3333-4444-55556666eeff"),
 		SecurityGroupIds: []*string{
 			aws.String("sg-edcd9784"),
 		},
-		StorageCapacity: aws.Int64(300),
+		StorageCapacity: aws.Int64(3200),
+		StorageType:     aws.String("HDD"),
 		SubnetIds: []*string{
 			aws.String("subnet-1234abcd"),
 		},
@@ -95,10 +96,13 @@ func ExampleFSx_CreateFileSystem_shared00() {
 			},
 		},
 		WindowsConfiguration: &fsx.CreateFileSystemWindowsConfiguration{
-			ActiveDirectoryId:             aws.String("d-1234abcd12"),
+			ActiveDirectoryId: aws.String("d-1234abcd12"),
+			Aliases: []*string{
+				aws.String("accounting.corp.example.com"),
+			},
 			AutomaticBackupRetentionDays:  aws.Int64(30),
 			DailyAutomaticBackupStartTime: aws.String("05:00"),
-			ThroughputCapacity:            aws.Int64(8),
+			ThroughputCapacity:            aws.Int64(32),
 			WeeklyMaintenanceStartTime:    aws.String("1:05:00"),
 		},
 	}

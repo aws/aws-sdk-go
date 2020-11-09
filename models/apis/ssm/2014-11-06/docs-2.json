@@ -391,13 +391,13 @@
     "AssociationFilterKey": {
       "base": null,
       "refs": {
-        "AssociationFilter$key": "<p>The name of the filter.</p> <note> <p> <code>InstanceId</code> has been deprecated.</p> </note>"
+        "AssociationFilter$key": "<p>The name of the filter.</p>"
       }
     },
     "AssociationFilterList": {
       "base": null,
       "refs": {
-        "ListAssociationsRequest$AssociationFilterList": "<p>One or more filters. Use a filter to return a more specific list of results.</p> <note> <p>Filtering associations using the <code>InstanceID</code> attribute only returns legacy associations created using the <code>InstanceID</code> attribute. Associations targeting the instance that are part of the Target Attributes <code>ResourceGroup</code> or <code>Tags</code> are not returned.</p> </note>"
+        "ListAssociationsRequest$AssociationFilterList": "<p>One or more filters. Use a filter to return a more specific list of results.</p>"
       }
     },
     "AssociationFilterOperatorType": {

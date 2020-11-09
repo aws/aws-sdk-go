@@ -416,6 +416,19 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
       ]
+    },
+    "UpdateTaskExecution":{
+      "name":"UpdateTaskExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateTaskExecutionRequest"},
+      "output":{"shape":"UpdateTaskExecutionResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalException"}
+      ]
     }
   },
   "shapes":{
@@ -1607,6 +1620,22 @@
       }
     },
     "UpdateAgentResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateTaskExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "TaskExecutionArn",
+        "Options"
+      ],
+      "members":{
+        "TaskExecutionArn":{"shape":"TaskExecutionArn"},
+        "Options":{"shape":"Options"}
+      }
+    },
+    "UpdateTaskExecutionResponse":{
       "type":"structure",
       "members":{
       }

@@ -2,6 +2,7 @@
   "version": "2.0",
   "service": "<p>Amazon FSx is a fully managed service that makes it easy for storage and application administrators to launch and use shared file storage.</p>",
   "operations": {
+    "AssociateFileSystemAliases": "<p>Use this action to associate one or more Domain Name Server (DNS) aliases with an existing Amazon FSx for Windows File Server file system. A file systen can have a maximum of 50 DNS aliases associated with it at any one time. If you try to associate a DNS alias that is already associated with the file system, FSx takes no action on that alias in the request. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html\">Working with DNS Aliases</a> and <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/walkthrough05-file-system-custom-CNAME.html\">Walkthrough 5: Using DNS aliases to access your file system</a>, including additional steps you must take to be able to access your file system using a DNS alias.</p> <p>The system response shows the DNS aliases that Amazon FSx is attempting to associate with the file system. Use the API operation to monitor the status of the aliases Amazon FSx is associating with the file system.</p>",
     "CancelDataRepositoryTask": "<p>Cancels an existing Amazon FSx for Lustre data repository task if that task is in either the <code>PENDING</code> or <code>EXECUTING</code> state. When you cancel a task, Amazon FSx does the following.</p> <ul> <li> <p>Any files that FSx has already exported are not reverted.</p> </li> <li> <p>FSx continues to export any files that are \"in-flight\" when the cancel operation is received.</p> </li> <li> <p>FSx does not export any files that have not yet been exported.</p> </li> </ul>",
     "CreateBackup": "<p>Creates a backup of an existing Amazon FSx file system. Creating regular backups for your file system is a best practice, enabling you to restore a file system from a backup if an issue arises with the original file system.</p> <p>For Amazon FSx for Lustre file systems, you can create a backup only for file systems with the following configuration:</p> <ul> <li> <p>a Persistent deployment type</p> </li> <li> <p>is <i>not</i> linked to a data respository.</p> </li> </ul> <p>For more information about backing up Amazon FSx for Lustre file systems, see <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html\">Working with FSx for Lustre backups</a>.</p> <p>For more information about backing up Amazon FSx for Lustre file systems, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html\">Working with FSx for Windows backups</a>.</p> <p>If a backup with the specified client request token exists, and the parameters match, this operation returns the description of the existing backup. If a backup specified client request token exists, and the parameters don't match, this operation returns <code>IncompatibleParameterError</code>. If a backup with the specified client request token doesn't exist, <code>CreateBackup</code> does the following: </p> <ul> <li> <p>Creates a new Amazon FSx backup with an assigned ID, and an initial lifecycle state of <code>CREATING</code>.</p> </li> <li> <p>Returns the description of the backup.</p> </li> </ul> <p>By using the idempotent operation, you can retry a <code>CreateBackup</code> operation without the risk of creating an extra backup. This approach can be useful when an initial call fails in a way that makes it unclear whether a backup was created. If you use the same client request token and the initial call created a backup, the operation returns a successful result because all the parameters are the same.</p> <p>The <code>CreateBackup</code> operation returns while the backup's lifecycle state is still <code>CREATING</code>. You can check the backup creation status by calling the <a>DescribeBackups</a> operation, which returns the backup state along with other information.</p>",
     "CreateDataRepositoryTask": "<p>Creates an Amazon FSx for Lustre data repository task. You use data repository tasks to perform bulk operations between your Amazon FSx file system and its linked data repository. An example of a data repository task is exporting any data and metadata changes, including POSIX metadata, to files, directories, and symbolic links (symlinks) from your FSx file system to its linked data repository. A <code>CreateDataRepositoryTask</code> operation will fail if a data repository is not linked to the FSx file system. To learn more about data repository tasks, see <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html\">Using Data Repository Tasks</a>. To learn more about linking a data repository to your file system, see <a href=\"https://docs.aws.amazon.com/fsx/latest/LustreGuide/export-data-repository.html#export-prefix\">Setting the Export Prefix</a>.</p>",
@@ -11,7 +12,9 @@
     "DeleteFileSystem": "<p>Deletes a file system, deleting its contents. After deletion, the file system no longer exists, and its data is gone. Any existing automatic backups will also be deleted.</p> <p>By default, when you delete an Amazon FSx for Windows File Server file system, a final backup is created upon deletion. This final backup is not subject to the file system's retention policy, and must be manually deleted.</p> <p>The <code>DeleteFileSystem</code> action returns while the file system has the <code>DELETING</code> status. You can check the file system deletion status by calling the <a>DescribeFileSystems</a> action, which returns a list of file systems in your account. If you pass the file system ID for a deleted file system, the <a>DescribeFileSystems</a> returns a <code>FileSystemNotFound</code> error.</p> <note> <p>Deleting an Amazon FSx for Lustre file system will fail with a 400 BadRequest if a data repository task is in a <code>PENDING</code> or <code>EXECUTING</code> state.</p> </note> <important> <p>The data in a deleted file system is also deleted and can't be recovered by any means.</p> </important>",
     "DescribeBackups": "<p>Returns the description of specific Amazon FSx backups, if a <code>BackupIds</code> value is provided for that backup. Otherwise, it returns all backups owned by your AWS account in the AWS Region of the endpoint that you're calling.</p> <p>When retrieving all backups, you can optionally specify the <code>MaxResults</code> parameter to limit the number of backups in a response. If more backups remain, Amazon FSx returns a <code>NextToken</code> value in the response. In this case, send a later request with the <code>NextToken</code> request parameter set to the value of <code>NextToken</code> from the last response.</p> <p>This action is used in an iterative process to retrieve a list of your backups. <code>DescribeBackups</code> is called first without a <code>NextToken</code>value. Then the action continues to be called with the <code>NextToken</code> parameter set to the value of the last <code>NextToken</code> value until a response has no <code>NextToken</code>.</p> <p>When using this action, keep the following in mind:</p> <ul> <li> <p>The implementation might return fewer than <code>MaxResults</code> file system descriptions while still including a <code>NextToken</code> value.</p> </li> <li> <p>The order of backups returned in the response of one <code>DescribeBackups</code> call and the order of backups returned across the responses of a multi-call iteration is unspecified.</p> </li> </ul>",
     "DescribeDataRepositoryTasks": "<p>Returns the description of specific Amazon FSx for Lustre data repository tasks, if one or more <code>TaskIds</code> values are provided in the request, or if filters are used in the request. You can use filters to narrow the response to include just tasks for specific file systems, or tasks in a specific lifecycle state. Otherwise, it returns all data repository tasks owned by your AWS account in the AWS Region of the endpoint that you're calling.</p> <p>When retrieving all tasks, you can paginate the response by using the optional <code>MaxResults</code> parameter to limit the number of tasks returned in a response. If more tasks remain, Amazon FSx returns a <code>NextToken</code> value in the response. In this case, send a later request with the <code>NextToken</code> request parameter set to the value of <code>NextToken</code> from the last response.</p>",
+    "DescribeFileSystemAliases": "<p>Returns the DNS aliases that are associated with the specified Amazon FSx for Windows File Server file system. A history of all DNS aliases that have been associated with and disassociated from the file system is available in the list of <a>AdministrativeAction</a> provided in the <a>DescribeFileSystems</a> operation response.</p>",
     "DescribeFileSystems": "<p>Returns the description of specific Amazon FSx file systems, if a <code>FileSystemIds</code> value is provided for that file system. Otherwise, it returns descriptions of all file systems owned by your AWS account in the AWS Region of the endpoint that you're calling.</p> <p>When retrieving all file system descriptions, you can optionally specify the <code>MaxResults</code> parameter to limit the number of descriptions in a response. If more file system descriptions remain, Amazon FSx returns a <code>NextToken</code> value in the response. In this case, send a later request with the <code>NextToken</code> request parameter set to the value of <code>NextToken</code> from the last response.</p> <p>This action is used in an iterative process to retrieve a list of your file system descriptions. <code>DescribeFileSystems</code> is called first without a <code>NextToken</code>value. Then the action continues to be called with the <code>NextToken</code> parameter set to the value of the last <code>NextToken</code> value until a response has no <code>NextToken</code>.</p> <p>When using this action, keep the following in mind:</p> <ul> <li> <p>The implementation might return fewer than <code>MaxResults</code> file system descriptions while still including a <code>NextToken</code> value.</p> </li> <li> <p>The order of file systems returned in the response of one <code>DescribeFileSystems</code> call and the order of file systems returned across the responses of a multicall iteration is unspecified.</p> </li> </ul>",
+    "DisassociateFileSystemAliases": "<p>Use this action to disassociate, or remove, one or more Domain Name Service (DNS) aliases from an Amazon FSx for Windows File Server file system. If you attempt to disassociate a DNS alias that is not associated with the file system, Amazon FSx responds with a 400 Bad Request. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html\">Working with DNS Aliases</a>.</p> <p>The system generated response showing the DNS aliases that Amazon FSx is attempting to disassociate from the file system. Use the API operation to monitor the status of the aliases Amazon FSx is disassociating with the file system.</p>",
     "ListTagsForResource": "<p>Lists tags for an Amazon FSx file systems and backups in the case of Amazon FSx for Windows File Server.</p> <p>When retrieving all tags, you can optionally specify the <code>MaxResults</code> parameter to limit the number of tags in a response. If more tags remain, Amazon FSx returns a <code>NextToken</code> value in the response. In this case, send a later request with the <code>NextToken</code> request parameter set to the value of <code>NextToken</code> from the last response.</p> <p>This action is used in an iterative process to retrieve a list of your tags. <code>ListTagsForResource</code> is called first without a <code>NextToken</code>value. Then the action continues to be called with the <code>NextToken</code> parameter set to the value of the last <code>NextToken</code> value until a response has no <code>NextToken</code>.</p> <p>When using this action, keep the following in mind:</p> <ul> <li> <p>The implementation might return fewer than <code>MaxResults</code> file system descriptions while still including a <code>NextToken</code> value.</p> </li> <li> <p>The order of tags returned in the response of one <code>ListTagsForResource</code> call and the order of tags returned across the responses of a multi-call iteration is unspecified.</p> </li> </ul>",
     "TagResource": "<p>Tags an Amazon FSx resource.</p>",
     "UntagResource": "<p>This action removes a tag from an Amazon FSx resource.</p>",
@@ -62,7 +65,7 @@
       }
     },
     "AdministrativeActionType": {
-      "base": "<p>Describes the type of administrative action, as follows:</p> <ul> <li> <p> <code>FILE_SYSTEM_UPDATE</code> - A file system update administrative action initiated by the user from the Amazon FSx console, API (UpdateFileSystem), or CLI (update-file-system). A</p> </li> <li> <p> <code>STORAGE_OPTIMIZATION</code> - Once the <code>FILE_SYSTEM_UPDATE</code> task to increase a file system's storage capacity completes successfully, a <code>STORAGE_OPTIMIZATION</code> task starts. Storage optimization is the process of migrating the file system data to the new, larger disks. You can track the storage migration progress using the <code>ProgressPercent</code> property. When <code>STORAGE_OPTIMIZATION</code> completes successfully, the parent <code>FILE_SYSTEM_UPDATE</code> action status changes to <code>COMPLETED</code>. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html\">Managing Storage Capacity</a>. </p> </li> </ul>",
+      "base": "<p>Describes the type of administrative action, as follows:</p> <ul> <li> <p> <code>FILE_SYSTEM_UPDATE</code> - A file system update administrative action initiated by the user from the Amazon FSx console, API (UpdateFileSystem), or CLI (update-file-system).</p> </li> <li> <p> <code>STORAGE_OPTIMIZATION</code> - Once the <code>FILE_SYSTEM_UPDATE</code> task to increase a file system's storage capacity completes successfully, a <code>STORAGE_OPTIMIZATION</code> task starts. Storage optimization is the process of migrating the file system data to the new, larger disks. You can track the storage migration progress using the <code>ProgressPercent</code> property. When <code>STORAGE_OPTIMIZATION</code> completes successfully, the parent <code>FILE_SYSTEM_UPDATE</code> action status changes to <code>COMPLETED</code>. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-storage-capacity.html\">Managing Storage Capacity</a>. </p> </li> <li> <p> <code>FILE_SYSTEM_ALIAS_ASSOCIATION</code> - A file system update to associate a new DNS alias with the file system. For more information, see .</p> </li> <li> <p> <code>FILE_SYSTEM_ALIAS_DISASSOCIATION</code> - A file system update to disassociate a DNS alias from the file system. For more information, see .</p> </li> </ul>",
       "refs": {
         "AdministrativeAction$AdministrativeActionType": null
       }
@@ -73,6 +76,42 @@
         "FileSystem$AdministrativeActions": "<p>A list of administrative actions for the file system that are in process or waiting to be processed. Administrative actions describe changes to the Windows file system that you have initiated using the <code>UpdateFileSystem</code> action. </p>"
       }
     },
+    "Alias": {
+      "base": "<p>A DNS alias that is associated with the file system. You can use a DNS alias to access a file system using user-defined DNS names, in addition to the default DNS name that Amazon FSx assigns to the file system. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html\">DNS aliases</a> in the <i>FSx for Windows File Server User Guide</i>.</p>",
+      "refs": {
+        "Aliases$member": null
+      }
+    },
+    "AliasLifecycle": {
+      "base": null,
+      "refs": {
+        "Alias$Lifecycle": "<p>Describes the state of the DNS alias.</p> <ul> <li> <p>AVAILABLE - The DNS alias is associated with an Amazon FSx file system.</p> </li> <li> <p>CREATING - Amazon FSx is creating the DNS alias and associating it with the file system.</p> </li> <li> <p>CREATE_FAILED - Amazon FSx was unable to associate the DNS alias with the file system.</p> </li> <li> <p>DELETING - Amazon FSx is disassociating the DNS alias from the file system and deleting it.</p> </li> <li> <p>DELETE_FAILED - Amazon FSx was unable to disassocate the DNS alias from the file system.</p> </li> </ul>"
+      }
+    },
+    "Aliases": {
+      "base": "<p>An array of one or more DNS aliases that are currently associated with the Amazon FSx file system. Aliases allow you to use existing DNS names to access the data in your Amazon FSx file system. You can associate up to 50 aliases with a file system at any time. You can associate additional DNS aliases after you create the file system using the <a>AssociateFileSystemAliases</a> operation. You can remove DNS aliases from the file system after it is created using the <a>DisassociateFileSystemAliases</a> operation. You only need to specify the alias name in the request payload. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html\">DNS aliases</a>.</p>",
+      "refs": {
+        "AssociateFileSystemAliasesResponse$Aliases": "<p>An array of the DNS aliases that Amazon FSx is associating with the file system.</p>",
+        "DescribeFileSystemAliasesResponse$Aliases": "<p>An array of one or more DNS aliases currently associated with the specified file system.</p>",
+        "DisassociateFileSystemAliasesResponse$Aliases": "<p>An array of one or more DNS aliases that Amazon FSx is attempting to disassociate from the file system.</p>",
+        "WindowsFileSystemConfiguration$Aliases": null
+      }
+    },
+    "AlternateDNSName": {
+      "base": null,
+      "refs": {
+        "Alias$Name": "<p>The name of the DNS alias. The alias name has to meet the following requirements:</p> <ul> <li> <p>Formatted as a fully-qualified domain name (FQDN), <code>hostname.domain</code>, for example, <code>accounting.example.com</code>.</p> </li> <li> <p>Can contain alphanumeric characters and the hyphen (-).</p> </li> <li> <p>Cannot start or end with a hyphen.</p> </li> <li> <p>Can start with a numeric.</p> </li> </ul> <p>For DNS names, Amazon FSx stores alphabetic characters as lowercase letters (a-z), regardless of how you specify them: as uppercase letters, lowercase letters, or the corresponding letters in escape codes.</p>",
+        "AlternateDNSNames$member": null
+      }
+    },
+    "AlternateDNSNames": {
+      "base": null,
+      "refs": {
+        "AssociateFileSystemAliasesRequest$Aliases": "<p>An array of one or more DNS alias names to associate with the file system. The alias name has to comply with the following formatting requirements:</p> <ul> <li> <p>Formatted as a fully-qualified domain name (FQDN), <i> <code>hostname.domain</code> </i>, for example, <code>accounting.corp.example.com</code>.</p> </li> <li> <p>Can contain alphanumeric characters and the hyphen (-).</p> </li> <li> <p>Cannot start or end with a hyphen.</p> </li> <li> <p>Can start with a numeric.</p> </li> </ul> <p>For DNS alias names, Amazon FSx stores alphabetic characters as lowercase letters (a-z), regardless of how you specify them: as uppercase letters, lowercase letters, or the corresponding letters in escape codes.</p>",
+        "CreateFileSystemWindowsConfiguration$Aliases": "<p>An array of one or more DNS alias names that you want to associate with the Amazon FSx file system. Aliases allow you to use existing DNS names to access the data in your Amazon FSx file system. You can associate up to 50 aliases with a file system at any time. You can associate additional DNS aliases after you create the file system using the <a>AssociateFileSystemAliases</a> operation. You can remove DNS aliases from the file system after it is created using the <a>DisassociateFileSystemAliases</a> operation. You only need to specify the alias name in the request payload.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/managing-dns-aliases.html\">Working with DNS Aliases</a> and <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/walkthrough05-file-system-custom-CNAME.html\">Walkthrough 5: Using DNS aliases to access your file system</a>, including additional steps you must take to be able to access your file system using a DNS alias.</p> <p>An alias name has to meet the following requirements:</p> <ul> <li> <p>Formatted as a fully-qualified domain name (FQDN), <code>hostname.domain</code>, for example, <code>accounting.example.com</code>.</p> </li> <li> <p>Can contain alphanumeric characters and the hyphen (-).</p> </li> <li> <p>Cannot start or end with a hyphen.</p> </li> <li> <p>Can start with a numeric.</p> </li> </ul> <p>For DNS alias names, Amazon FSx stores alphabetic characters as lowercase letters (a-z), regardless of how you specify them: as uppercase letters, lowercase letters, or the corresponding letters in escape codes.</p>",
+        "DisassociateFileSystemAliasesRequest$Aliases": "<p>An array of one or more DNS alias names to disassociate, or remove, from the file system.</p>"
+      }
+    },
     "ArchivePath": {
       "base": null,
       "refs": {
@@ -81,6 +120,16 @@
         "CreateFileSystemLustreConfiguration$ExportPath": "<p>(Optional) The path in Amazon S3 where the root of your Amazon FSx file system is exported. The path must use the same Amazon S3 bucket as specified in ImportPath. You can provide an optional prefix to which new and changed data is to be exported from your Amazon FSx for Lustre file system. If an <code>ExportPath</code> value is not provided, Amazon FSx sets a default export path, <code>s3://import-bucket/FSxLustre[creation-timestamp]</code>. The timestamp is in UTC format, for example <code>s3://import-bucket/FSxLustre20181105T222312Z</code>.</p> <p>The Amazon S3 export bucket must be the same as the import bucket specified by <code>ImportPath</code>. If you only specify a bucket name, such as <code>s3://import-bucket</code>, you get a 1:1 mapping of file system objects to S3 bucket objects. This mapping means that the input data in S3 is overwritten on export. If you provide a custom prefix in the export path, such as <code>s3://import-bucket/[custom-optional-prefix]</code>, Amazon FSx exports the contents of your file system to that export prefix in the Amazon S3 bucket.</p>",
         "DataRepositoryConfiguration$ImportPath": "<p>The import path to the Amazon S3 bucket (and optional prefix) that you're using as the data repository for your FSx for Lustre file system, for example <code>s3://import-bucket/optional-prefix</code>. If a prefix is specified after the Amazon S3 bucket name, only object keys with that prefix are loaded into the file system.</p>",
         "DataRepositoryConfiguration$ExportPath": "<p>The export path to the Amazon S3 bucket (and prefix) that you are using to store new and changed Lustre file system files in S3.</p>"
+      }
+    },
+    "AssociateFileSystemAliasesRequest": {
+      "base": "<p>The request object specifying one or more DNS alias names to associate with an Amazon FSx for Windows File Server file system.</p>",
+      "refs": {
+      }
+    },
+    "AssociateFileSystemAliasesResponse": {
+      "base": "<p>The system generated response showing the DNS aliases that Amazon FSx is attempting to associate with the file system. Use the API operation to monitor the status of the aliases Amazon FSx is associating with the file system. It can take up to 2.5 minutes for the alias status to change from <code>CREATING</code> to <code>AVAILABLE</code>. </p>",
+      "refs": {
       }
     },
     "AutoImportPolicyType": {
@@ -185,12 +234,15 @@
     "ClientRequestToken": {
       "base": "<p>(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.</p>",
       "refs": {
+        "AssociateFileSystemAliasesRequest$ClientRequestToken": null,
         "CreateBackupRequest$ClientRequestToken": "<p>(Optional) A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent creation. This string is automatically filled on your behalf when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.</p>",
         "CreateDataRepositoryTaskRequest$ClientRequestToken": null,
         "CreateFileSystemFromBackupRequest$ClientRequestToken": "<p>A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent creation. This string is automatically filled on your behalf when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.</p>",
         "CreateFileSystemRequest$ClientRequestToken": "<p>A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent creation. This string is automatically filled on your behalf when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.</p>",
         "DeleteBackupRequest$ClientRequestToken": "<p>A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent deletion. This is automatically filled on your behalf when using the AWS CLI or SDK.</p>",
         "DeleteFileSystemRequest$ClientRequestToken": "<p>A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent deletion. This is automatically filled on your behalf when using the AWS CLI or SDK.</p>",
+        "DescribeFileSystemAliasesRequest$ClientRequestToken": null,
+        "DisassociateFileSystemAliasesRequest$ClientRequestToken": null,
         "UpdateFileSystemRequest$ClientRequestToken": "<p>A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent updates. This string is automatically filled on your behalf when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.</p>"
       }
     },
@@ -460,6 +512,16 @@
       "refs": {
       }
     },
+    "DescribeFileSystemAliasesRequest": {
+      "base": "<p>The request object for <code>DescribeFileSystemAliases</code> operation.</p>",
+      "refs": {
+      }
+    },
+    "DescribeFileSystemAliasesResponse": {
+      "base": "<p>The response object for <code>DescribeFileSystemAliases</code> operation.</p>",
+      "refs": {
+      }
+    },
     "DescribeFileSystemsRequest": {
       "base": "<p>The request object for <code>DescribeFileSystems</code> operation.</p>",
       "refs": {
@@ -494,6 +556,16 @@
         "SelfManagedActiveDirectoryConfigurationUpdates$UserName": "<p>The user name for the service account on your self-managed AD domain that Amazon FSx will use to join to your AD domain. This account must have the permission to join computers to the domain in the organizational unit provided in <code>OrganizationalUnitDistinguishedName</code>.</p>"
       }
     },
+    "DisassociateFileSystemAliasesRequest": {
+      "base": "<p>The request object of DNS aliases to disassociate from an Amazon FSx for Windows File Server file system.</p>",
+      "refs": {
+      }
+    },
+    "DisassociateFileSystemAliasesResponse": {
+      "base": "<p>The system generated response showing the DNS aliases that Amazon FSx is attempting to disassociate from the file system. Use the API operation to monitor the status of the aliases Amazon FSx is removing from the file system.</p>",
+      "refs": {
+      }
+    },
     "DnsIps": {
       "base": null,
       "refs": {
@@ -519,7 +591,7 @@
       "base": "<p>A detailed error message.</p>",
       "refs": {
         "ActiveDirectoryError$Message": null,
-        "AdministrativeActionFailureDetails$Message": "<p>Error message providing details about the failure.</p>",
+        "AdministrativeActionFailureDetails$Message": "<p>Error message providing details about the failed administrative action.</p>",
         "BackupFailureDetails$Message": "<p>A message describing the backup creation failure.</p>",
         "BackupInProgress$Message": null,
         "BackupNotFound$Message": null,
@@ -555,7 +627,7 @@
     "FileSystem": {
       "base": "<p>A description of a specific Amazon FSx file system.</p>",
       "refs": {
-        "AdministrativeAction$TargetFileSystemValues": "<p>Describes the target <code>StorageCapacity</code> or <code>ThroughputCapacity</code> value provided in the <code>UpdateFileSystem</code> operation. Returned for <code>FILE_SYSTEM_UPDATE</code> administrative actions. </p>",
+        "AdministrativeAction$TargetFileSystemValues": "<p>Describes the target value for the administration action, provided in the <code>UpdateFileSystem</code> operation. Returned for <code>FILE_SYSTEM_UPDATE</code> administrative actions. </p>",
         "Backup$FileSystem": "<p>Metadata of the file system associated with the backup. This metadata is persisted even if the file system is deleted.</p>",
         "CreateFileSystemFromBackupResponse$FileSystem": "<p>A description of the file system.</p>",
         "CreateFileSystemResponse$FileSystem": "<p>The configuration of the file system that was created.</p>",
@@ -579,12 +651,15 @@
     "FileSystemId": {
       "base": "<p>The globally unique ID of the file system, assigned by Amazon FSx.</p>",
       "refs": {
+        "AssociateFileSystemAliasesRequest$FileSystemId": "<p>Specifies the file system with which you want to associate one or more DNS aliases.</p>",
         "BackupRestoring$FileSystemId": "<p>The ID of a file system being restored from the backup.</p>",
         "CreateBackupRequest$FileSystemId": "<p>The ID of the file system to back up.</p>",
         "CreateDataRepositoryTaskRequest$FileSystemId": null,
         "DataRepositoryTask$FileSystemId": null,
         "DeleteFileSystemRequest$FileSystemId": "<p>The ID of the file system you want to delete.</p>",
         "DeleteFileSystemResponse$FileSystemId": "<p>The ID of the file system being deleted.</p>",
+        "DescribeFileSystemAliasesRequest$FileSystemId": "<p>The ID of the file system to return the associated DNS aliases for (String).</p>",
+        "DisassociateFileSystemAliasesRequest$FileSystemId": "<p>Specifies the file system from which to disassociate the DNS aliases.</p>",
         "FileSystem$FileSystemId": "<p>The system-generated, unique 17-digit ID of the file system.</p>",
         "FileSystemIds$member": null,
         "UpdateFileSystemRequest$FileSystemId": "<p>Identifies the file system that you are updating.</p>"
@@ -760,6 +835,7 @@
       "refs": {
         "DescribeBackupsRequest$MaxResults": "<p>Maximum number of backups to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the <code>MaxResults</code> parameter specified in the request and the service's internal maximum number of items per page.</p>",
         "DescribeDataRepositoryTasksRequest$MaxResults": null,
+        "DescribeFileSystemAliasesRequest$MaxResults": "<p>Maximum number of DNS aliases to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the <code>MaxResults</code> parameter specified in the request and the service's internal maximum number of items per page.</p>",
         "DescribeFileSystemsRequest$MaxResults": "<p>Maximum number of file systems to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the <code>MaxResults</code> parameter specified in the request and the service's internal maximum number of items per page.</p>",
         "ListTagsForResourceRequest$MaxResults": "<p>Maximum number of tags to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the <code>MaxResults</code> parameter specified in the request and the service's internal maximum number of items per page.</p>"
       }
@@ -803,6 +879,8 @@
         "DescribeBackupsResponse$NextToken": "<p>This is present if there are more backups than returned in the response (String). You can use the <code>NextToken</code> value in the later request to fetch the backups. </p>",
         "DescribeDataRepositoryTasksRequest$NextToken": null,
         "DescribeDataRepositoryTasksResponse$NextToken": null,
+        "DescribeFileSystemAliasesRequest$NextToken": "<p>Opaque pagination token returned from a previous <code>DescribeFileSystemAliases</code> operation (String). If a token is included in the request, the action continues the list from where the previous returning call left off.</p>",
+        "DescribeFileSystemAliasesResponse$NextToken": "<p>Present if there are more DNS aliases than returned in the response (String). You can use the <code>NextToken</code> value in a later request to fetch additional descriptions. </p>",
         "DescribeFileSystemsRequest$NextToken": "<p>Opaque pagination token returned from a previous <code>DescribeFileSystems</code> operation (String). If a token present, the action continues the list from where the returning call left off.</p>",
         "DescribeFileSystemsResponse$NextToken": "<p>Present if there are more file systems than returned in the response (String). You can use the <code>NextToken</code> value in the later request to fetch the descriptions. </p>",
         "ListTagsForResourceRequest$NextToken": "<p>Opaque pagination token returned from a previous <code>ListTagsForResource</code> operation (String). If a token present, the action continues the list from where the returning call left off.</p>",
@@ -837,7 +915,7 @@
     "ProgressPercent": {
       "base": "<p>The current percent of progress of an asynchronous task.</p>",
       "refs": {
-        "AdministrativeAction$ProgressPercent": "<p>Provides the percent complete of a <code>STORAGE_OPTIMIZATION</code> administrative action.</p>",
+        "AdministrativeAction$ProgressPercent": "<p>Provides the percent complete of a <code>STORAGE_OPTIMIZATION</code> administrative action. Does not apply to any other administrative action type.</p>",
         "Backup$ProgressPercent": null
       }
     },

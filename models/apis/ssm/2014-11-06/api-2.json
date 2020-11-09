@@ -2390,7 +2390,8 @@
         "StartTimeBefore",
         "StartTimeAfter",
         "AutomationType",
-        "TagKey"
+        "TagKey",
+        "TargetResourceGroup"
       ]
     },
     "AutomationExecutionFilterList":{

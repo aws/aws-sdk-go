@@ -32,6 +32,7 @@
     "DeleteVolume": "<p>Deletes the specified storage volume that you previously created using the <a>CreateCachediSCSIVolume</a> or <a>CreateStorediSCSIVolume</a> API. This operation is only supported in the cached volume and stored volume types. For stored volume gateways, the local disk that was configured as the storage volume is not deleted. You can reuse the local disk to create another storage volume.</p> <p>Before you delete a volume, make sure there are no iSCSI connections to the volume you are deleting. You should also make sure there is no snapshot in progress. You can use the Amazon Elastic Compute Cloud (Amazon EC2) API to query snapshots on the volume you are deleting and check the snapshot status. For more information, go to <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/ApiReference-query-DescribeSnapshots.html\">DescribeSnapshots</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> <p>In the request, you must provide the Amazon Resource Name (ARN) of the storage volume you want to delete.</p>",
     "DescribeAvailabilityMonitorTest": "<p>Returns information about the most recent High Availability monitoring test that was performed on the host in a cluster. If a test isn't performed, the status and start time in the response would be null.</p>",
     "DescribeBandwidthRateLimit": "<p>Returns the bandwidth rate limits of a gateway. By default, these limits are not set, which means no bandwidth rate limiting is in effect. This operation is supported for the stored volume, cached volume, and tape gateway types.</p> <p>This operation only returns a value for a bandwidth rate limit only if the limit is set. If no limits are set for the gateway, then this operation returns only the gateway ARN in the response body. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
+    "DescribeBandwidthRateLimitSchedule": "<p> Returns information about the bandwidth rate limit schedule of a gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. This operation is supported only in the volume and tape gateway types. </p> <p>This operation returns information about a gateway's bandwidth rate limit schedule. A bandwidth rate limit schedule consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval defines a period of time on one or more days of the week, during which bandwidth rate limits are specified for uploading, downloading, or both. </p> <p> A bandwidth rate limit interval consists of one or more days of the week, a start hour and minute, an ending hour and minute, and bandwidth rate limits for uploading and downloading </p> <p> If no bandwidth rate limit schedule intervals are set for the gateway, this operation returns an empty response. To specify which gateway to describe, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "DescribeCache": "<p>Returns information about the cache of a gateway. This operation is only supported in the cached volume, tape, and file gateway types.</p> <p>The response includes disk IDs that are configured as cache, and it includes the amount of cache allocated and used.</p>",
     "DescribeCachediSCSIVolumes": "<p>Returns a description of the gateway volumes specified in the request. This operation is only supported in the cached volume gateway types.</p> <p>The list of gateway volumes in the request must be from one gateway. In the response, AWS Storage Gateway returns volume information sorted by volume Amazon Resource Name (ARN).</p>",
     "DescribeChapCredentials": "<p>Returns an array of Challenge-Handshake Authentication Protocol (CHAP) credentials information for a specified iSCSI target, one for each target-initiator pair. This operation is supported in the volume and tape gateway types.</p>",
@@ -74,6 +75,7 @@
     "StartGateway": "<p>Starts a gateway that you previously shut down (see <a>ShutdownGateway</a>). After the gateway starts, you can then make other API calls, your applications can read from or write to the gateway's storage volumes and you will be able to take snapshot backups.</p> <note> <p>When you make a request, you will get a 200 OK success response immediately. However, it might take some time for the gateway to be ready. You should call <a>DescribeGatewayInformation</a> and check the status before making any additional API calls. For more information, see <a>ActivateGateway</a>.</p> </note> <p>To specify which gateway to start, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
     "UpdateAutomaticTapeCreationPolicy": "<p>Updates the automatic tape creation policy of a gateway. Use this to update the policy with a new set of automatic tape creation rules. This is only supported for tape gateways.</p> <p>By default, there is no automatic tape creation policy.</p> <note> <p>A gateway can have only one automatic tape creation policy.</p> </note>",
     "UpdateBandwidthRateLimit": "<p>Updates the bandwidth rate limits of a gateway. You can update both the upload and download bandwidth rate limit or specify only one of the two. If you don't set a bandwidth rate limit, the existing rate limit remains. This operation is supported for the stored volume, cached volume, and tape gateway types.</p> <p>By default, a gateway's bandwidth rate limits are not set. If you don't set any limit, the gateway does not have any limitations on its bandwidth usage and could potentially use the maximum available bandwidth.</p> <p>To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p>",
+    "UpdateBandwidthRateLimitSchedule": "<p> Updates the bandwidth rate limit schedule for a specified gateway. By default, gateways do not have bandwidth rate limit schedules, which means no bandwidth rate limiting is in effect. Use this to initiate or update a gateway's bandwidth rate limit schedule. This operation is supported in the volume and tape gateway types. </p>",
     "UpdateChapCredentials": "<p>Updates the Challenge-Handshake Authentication Protocol (CHAP) credentials for a specified iSCSI target. By default, a gateway does not have CHAP enabled; however, for added security, you might use it. This operation is supported in the volume and tape gateway types.</p> <important> <p>When you update CHAP credentials, all existing connections on the target are closed and initiators must reconnect with the new credentials.</p> </important>",
     "UpdateGatewayInformation": "<p>Updates a gateway's metadata, which includes the gateway's name and time zone. To specify which gateway to update, use the Amazon Resource Name (ARN) of the gateway in your request.</p> <note> <p>For gateways activated after September 2, 2015, the gateway's ARN contains the gateway ID rather than the gateway name. However, changing the name of the gateway has no effect on the gateway's ARN.</p> </note>",
     "UpdateGatewaySoftwareNow": "<p>Updates the gateway virtual machine (VM) software. The request immediately triggers the software update.</p> <note> <p>When you make this request, you get a <code>200 OK</code> success response immediately. However, it might take some time for the update to complete. You can call <a>DescribeGatewayInformation</a> to verify the gateway is in the <code>STATE_RUNNING</code> state.</p> </note> <important> <p>A software update forces a system restart of your gateway. You can minimize the chance of any disruption to your applications by increasing your iSCSI Initiators' timeouts. For more information about increasing iSCSI Initiator timeouts for Windows and Linux, see <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorWindowsClient.html#CustomizeWindowsiSCSISettings\">Customizing your Windows iSCSI settings</a> and <a href=\"https://docs.aws.amazon.com/storagegateway/latest/userguide/ConfiguringiSCSIClientInitiatorRedHatClient.html#CustomizeLinuxiSCSISettings\">Customizing your Linux iSCSI settings</a>, respectively.</p> </important>",
@@ -218,8 +220,22 @@
     "BandwidthDownloadRateLimit": {
       "base": null,
       "refs": {
+        "BandwidthRateLimitInterval$AverageDownloadRateLimitInBitsPerSec": "<p> The average download rate limit component of the bandwidth rate limit interval, in bits per second. This field does not appear in the response if the download rate limit is not set. </p>",
         "DescribeBandwidthRateLimitOutput$AverageDownloadRateLimitInBitsPerSec": "<p>The average download bandwidth rate limit in bits per second. This field does not appear in the response if the download rate limit is not set.</p>",
         "UpdateBandwidthRateLimitInput$AverageDownloadRateLimitInBitsPerSec": "<p>The average download bandwidth rate limit in bits per second.</p>"
+      }
+    },
+    "BandwidthRateLimitInterval": {
+      "base": "<p> Describes a bandwidth rate limit interval for a gateway. A bandwidth rate limit schedule consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval defines a period of time on one or more days of the week, during which bandwidth rate limits are specified for uploading, downloading, or both. </p>",
+      "refs": {
+        "BandwidthRateLimitIntervals$member": null
+      }
+    },
+    "BandwidthRateLimitIntervals": {
+      "base": null,
+      "refs": {
+        "DescribeBandwidthRateLimitScheduleOutput$BandwidthRateLimitIntervals": "<p> An array that contains the bandwidth rate limit intervals for a tape or volume gateway. </p>",
+        "UpdateBandwidthRateLimitScheduleInput$BandwidthRateLimitIntervals": "<p> An array containing bandwidth rate limit schedule intervals for a gateway. When no bandwidth rate limit intervals have been scheduled, the array is empty. </p>"
       }
     },
     "BandwidthType": {
@@ -231,6 +247,7 @@
     "BandwidthUploadRateLimit": {
       "base": null,
       "refs": {
+        "BandwidthRateLimitInterval$AverageUploadRateLimitInBitsPerSec": "<p> The average upload rate limit component of the bandwidth rate limit interval, in bits per second. This field does not appear in the response if the upload rate limit is not set. </p>",
         "DescribeBandwidthRateLimitOutput$AverageUploadRateLimitInBitsPerSec": "<p>The average upload bandwidth rate limit in bits per second. This field does not appear in the response if the upload rate limit is not set.</p>",
         "UpdateBandwidthRateLimitInput$AverageUploadRateLimitInBitsPerSec": "<p>The average upload bandwidth rate limit in bits per second.</p>"
       }
@@ -478,8 +495,15 @@
     "DayOfWeek": {
       "base": null,
       "refs": {
+        "DaysOfWeek$member": null,
         "DescribeMaintenanceStartTimeOutput$DayOfWeek": "<p>An ordinal number between 0 and 6 that represents the day of the week, where 0 represents Sunday and 6 represents Saturday. The day of week is in the time zone of the gateway.</p>",
         "UpdateMaintenanceStartTimeInput$DayOfWeek": "<p>The day of the week component of the maintenance start time week represented as an ordinal number from 0 to 6, where 0 represents Sunday and 6 Saturday.</p>"
+      }
+    },
+    "DaysOfWeek": {
+      "base": null,
+      "refs": {
+        "BandwidthRateLimitInterval$DaysOfWeek": "<p> The days of the week component of the bandwidth rate limit interval, represented as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 Saturday. </p>"
       }
     },
     "DeleteAutomaticTapeCreationPolicyInput": {
@@ -605,6 +629,16 @@
     },
     "DescribeBandwidthRateLimitOutput": {
       "base": "<p>A JSON object containing the following fields:</p>",
+      "refs": {
+      }
+    },
+    "DescribeBandwidthRateLimitScheduleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeBandwidthRateLimitScheduleOutput": {
+      "base": null,
       "refs": {
       }
     },
@@ -1055,6 +1089,8 @@
         "DescribeAvailabilityMonitorTestOutput$GatewayARN": null,
         "DescribeBandwidthRateLimitInput$GatewayARN": null,
         "DescribeBandwidthRateLimitOutput$GatewayARN": null,
+        "DescribeBandwidthRateLimitScheduleInput$GatewayARN": null,
+        "DescribeBandwidthRateLimitScheduleOutput$GatewayARN": null,
         "DescribeCacheInput$GatewayARN": null,
         "DescribeCacheOutput$GatewayARN": null,
         "DescribeGatewayInformationInput$GatewayARN": null,
@@ -1108,6 +1144,8 @@
         "UpdateAutomaticTapeCreationPolicyOutput$GatewayARN": null,
         "UpdateBandwidthRateLimitInput$GatewayARN": null,
         "UpdateBandwidthRateLimitOutput$GatewayARN": null,
+        "UpdateBandwidthRateLimitScheduleInput$GatewayARN": null,
+        "UpdateBandwidthRateLimitScheduleOutput$GatewayARN": null,
         "UpdateGatewayInformationInput$GatewayARN": null,
         "UpdateGatewayInformationOutput$GatewayARN": null,
         "UpdateGatewaySoftwareNowInput$GatewayARN": null,
@@ -1205,6 +1243,8 @@
     "HourOfDay": {
       "base": null,
       "refs": {
+        "BandwidthRateLimitInterval$StartHourOfDay": "<p> The hour of the day to start the bandwidth rate limit interval. </p>",
+        "BandwidthRateLimitInterval$EndHourOfDay": "<p> The hour of the day to end the bandwidth rate limit interval. </p>",
         "DescribeMaintenanceStartTimeOutput$HourOfDay": "<p>The hour component of the maintenance start time represented as <i>hh</i>, where <i>hh</i> is the hour (0 to 23). The hour of the day is in the time zone of the gateway.</p>",
         "DescribeSnapshotScheduleOutput$StartAt": "<p>The hour of the day at which the snapshot schedule begins represented as <i>hh</i>, where <i>hh</i> is the hour (0 to 23). The hour of the day is in the time zone of the gateway.</p>",
         "UpdateMaintenanceStartTimeInput$HourOfDay": "<p>The hour component of the maintenance start time represented as <i>hh</i>, where <i>hh</i> is the hour (00 to 23). The hour of the day is in the time zone of the gateway.</p>",
@@ -1440,6 +1480,8 @@
     "MinuteOfHour": {
       "base": null,
       "refs": {
+        "BandwidthRateLimitInterval$StartMinuteOfHour": "<p> The minute of the hour to start the bandwidth rate limit interval. The interval begins at the start of that minute. To begin an interval exactly at the start of the hour, use the value <code>0</code>. </p>",
+        "BandwidthRateLimitInterval$EndMinuteOfHour": "<p> The minute of the hour to end the bandwidth rate limit interval. </p> <important> <p> The bandwidth rate limit interval ends at the end of the minute. To end an interval at the end of an hour, use the value <code>59</code>. </p> </important>",
         "DescribeMaintenanceStartTimeOutput$MinuteOfHour": "<p>The minute component of the maintenance start time represented as <i>mm</i>, where <i>mm</i> is the minute (0 to 59). The minute of the hour is in the time zone of the gateway.</p>",
         "UpdateMaintenanceStartTimeInput$MinuteOfHour": "<p>The minute component of the maintenance start time represented as <i>mm</i>, where <i>mm</i> is the minute (00 to 59). The minute of the hour is in the time zone of the gateway.</p>"
       }
@@ -2128,6 +2170,16 @@
     },
     "UpdateBandwidthRateLimitOutput": {
       "base": "<p>A JSON object containing the Amazon Resource Name (ARN) of the gateway whose throttle information was updated.</p>",
+      "refs": {
+      }
+    },
+    "UpdateBandwidthRateLimitScheduleInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBandwidthRateLimitScheduleOutput": {
+      "base": null,
       "refs": {
       }
     },

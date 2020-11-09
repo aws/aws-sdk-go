@@ -335,11 +335,11 @@ func (c *IoTAnalytics) CreateDatasetRequest(input *CreateDatasetInput) (req *req
 
 // CreateDataset API operation for AWS IoT Analytics.
 //
-// Creates a data set. A data set stores data retrieved from a data store by
-// applying a "queryAction" (a SQL query) or a "containerAction" (executing
-// a containerized application). This operation creates the skeleton of a data
-// set. The data set can be populated manually by calling "CreateDatasetContent"
-// or automatically according to a "trigger" you specify.
+// Creates a dataset. A dataset stores data retrieved from a data store by applying
+// a queryAction (a SQL query) or a containerAction (executing a containerized
+// application). This operation creates the skeleton of a dataset. The dataset
+// can be populated manually by calling CreateDatasetContent or automatically
+// according to a trigger you specify.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -433,8 +433,8 @@ func (c *IoTAnalytics) CreateDatasetContentRequest(input *CreateDatasetContentIn
 
 // CreateDatasetContent API operation for AWS IoT Analytics.
 //
-// Creates the content of a data set by applying a "queryAction" (a SQL query)
-// or a "containerAction" (executing a containerized application).
+// Creates the content of a data set by applying a queryAction (a SQL query)
+// or a containerAction (executing a containerized application).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -809,10 +809,10 @@ func (c *IoTAnalytics) DeleteDatasetRequest(input *DeleteDatasetInput) (req *req
 
 // DeleteDataset API operation for AWS IoT Analytics.
 //
-// Deletes the specified data set.
+// Deletes the specified dataset.
 //
-// You do not have to delete the content of the data set before you perform
-// this operation.
+// You do not have to delete the content of the dataset before you perform this
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -904,7 +904,7 @@ func (c *IoTAnalytics) DeleteDatasetContentRequest(input *DeleteDatasetContentIn
 
 // DeleteDatasetContent API operation for AWS IoT Analytics.
 //
-// Deletes the content of the specified data set.
+// Deletes the content of the specified dataset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1270,7 +1270,7 @@ func (c *IoTAnalytics) DescribeDatasetRequest(input *DescribeDatasetInput) (req 
 
 // DescribeDataset API operation for AWS IoT Analytics.
 //
-// Retrieves information about a data set.
+// Retrieves information about a dataset.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1634,7 +1634,7 @@ func (c *IoTAnalytics) GetDatasetContentRequest(input *GetDatasetContentInput) (
 
 // GetDatasetContent API operation for AWS IoT Analytics.
 //
-// Retrieves the contents of a data set as pre-signed URIs.
+// Retrieves the contents of a data set as presigned URIs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2458,7 +2458,7 @@ func (c *IoTAnalytics) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for AWS IoT Analytics.
 //
-// Lists the tags (metadata) which you have assigned to the resource.
+// Lists the tags (metadata) that you have assigned to the resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2555,11 +2555,10 @@ func (c *IoTAnalytics) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (
 //
 // Sets or updates the AWS IoT Analytics logging options.
 //
-// Note that if you update the value of any loggingOptions field, it takes up
-// to one minute for the change to take effect. Also, if you change the policy
-// attached to the role you specified in the roleArn field (for example, to
-// correct an invalid policy) it takes up to 5 minutes for that change to take
-// effect.
+// If you update the value of any loggingOptions field, it takes up to one minute
+// for the change to take effect. Also, if you change the policy attached to
+// the role you specified in the roleArn field (for example, to correct an invalid
+// policy), it takes up to five minutes for that change to take effect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2922,7 +2921,7 @@ func (c *IoTAnalytics) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for AWS IoT Analytics.
 //
-// Adds to or modifies the tags of the given resource. Tags are metadata which
+// Adds to or modifies the tags of the given resource. Tags are metadata that
 // can be used to manage a resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3446,16 +3445,16 @@ func (c *IoTAnalytics) UpdatePipelineWithContext(ctx aws.Context, input *UpdateP
 type AddAttributesActivity struct {
 	_ struct{} `type:"structure"`
 
-	// A list of 1-50 "AttributeNameMapping" objects that map an existing attribute
+	// A list of 1-50 AttributeNameMapping objects that map an existing attribute
 	// to a new attribute.
 	//
 	// The existing attributes remain in the message, so if you want to remove the
-	// originals, use "RemoveAttributeActivity".
+	// originals, use RemoveAttributeActivity.
 	//
 	// Attributes is a required field
 	Attributes map[string]*string `locationName:"attributes" min:"1" type:"map" required:"true"`
 
-	// The name of the 'addAttributes' activity.
+	// The name of the addAttributes activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -3527,8 +3526,8 @@ type BatchPutMessageErrorEntry struct {
 	// The message associated with the error.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
-	// The ID of the message that caused the error. (See the value corresponding
-	// to the "messageId" key in the message object.)
+	// The ID of the message that caused the error. See the value corresponding
+	// to the messageId key in the message object.
 	MessageId *string `locationName:"messageId" min:"1" type:"string"`
 }
 
@@ -3568,13 +3567,12 @@ type BatchPutMessageInput struct {
 	// ChannelName is a required field
 	ChannelName *string `locationName:"channelName" min:"1" type:"string" required:"true"`
 
-	// The list of messages to be sent. Each message has format: '{ "messageId":
-	// "string", "payload": "string"}'.
+	// The list of messages to be sent. Each message has the format: { "messageId":
+	// "string", "payload": "string"}.
 	//
-	// Note that the field names of message payloads (data) that you send to AWS
-	// IoT Analytics:
+	// The field names of message payloads (data) that you send to AWS IoT Analytics:
 	//
-	//    * Must contain only alphanumeric characters and undescores (_); no other
+	//    * Must contain only alphanumeric characters and undescores (_). No other
 	//    special characters are allowed.
 	//
 	//    * Must begin with an alphabetic character or single underscore (_).
@@ -3583,9 +3581,9 @@ type BatchPutMessageInput struct {
 	//
 	//    * In regular expression terms: "^[A-Za-z_]([A-Za-z0-9]*|[A-Za-z0-9][A-Za-z0-9_]*)$".
 	//
-	//    * Cannot be greater than 255 characters.
+	//    * Cannot be more than 255 characters.
 	//
-	//    * Are case-insensitive. (Fields named "foo" and "FOO" in the same payload
+	//    * Are case insensitive. (Fields named foo and FOO in the same payload
 	//    are considered duplicates.)
 	//
 	// For example, {"temp_01": 29} or {"_temp_01": 29} are valid, but {"temp-01":
@@ -3677,7 +3675,7 @@ type CancelPipelineReprocessingInput struct {
 	// PipelineName is a required field
 	PipelineName *string `location:"uri" locationName:"pipelineName" min:"1" type:"string" required:"true"`
 
-	// The ID of the reprocessing task (returned by "StartPipelineReprocessing").
+	// The ID of the reprocessing task (returned by StartPipelineReprocessing).
 	//
 	// ReprocessingId is a required field
 	ReprocessingId *string `location:"uri" locationName:"reprocessingId" type:"string" required:"true"`
@@ -3752,6 +3750,15 @@ type Channel struct {
 	// When the channel was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
+	// The last time when a new message arrived in the channel.
+	//
+	// AWS IoT Analytics updates this value at most once per minute for one channel.
+	// Hence, the lastMessageArrivalTime value is an approximation.
+	//
+	// This feature only applies to messages that arrived in the data store after
+	// October 23, 2020.
+	LastMessageArrivalTime *time.Time `locationName:"lastMessageArrivalTime" type:"timestamp"`
+
 	// When the channel was last updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
@@ -3764,9 +3771,9 @@ type Channel struct {
 	// The status of the channel.
 	Status *string `locationName:"status" type:"string" enum:"ChannelStatus"`
 
-	// Where channel data is stored. You may choose one of "serviceManagedS3" or
-	// "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-	// This cannot be changed after creation of the channel.
+	// Where channel data is stored. You can choose one of serviceManagedS3 or customerManagedS3
+	// storage. If not specified, the default is serviceManagedS3. You cannot change
+	// this storage option after the channel is created.
 	Storage *ChannelStorage `locationName:"storage" type:"structure"`
 }
 
@@ -3789,6 +3796,12 @@ func (s *Channel) SetArn(v string) *Channel {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Channel) SetCreationTime(v time.Time) *Channel {
 	s.CreationTime = &v
+	return s
+}
+
+// SetLastMessageArrivalTime sets the LastMessageArrivalTime field's value.
+func (s *Channel) SetLastMessageArrivalTime(v time.Time) *Channel {
+	s.LastMessageArrivalTime = &v
 	return s
 }
 
@@ -3831,7 +3844,7 @@ type ChannelActivity struct {
 	// ChannelName is a required field
 	ChannelName *string `locationName:"channelName" min:"1" type:"string" required:"true"`
 
-	// The name of the 'channel' activity.
+	// The name of the channel activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -3917,21 +3930,21 @@ func (s *ChannelStatistics) SetSize(v *EstimatedResourceSize) *ChannelStatistics
 	return s
 }
 
-// Where channel data is stored. You may choose one of "serviceManagedS3" or
-// "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-// This cannot be changed after creation of the channel.
+// Where channel data is stored. You may choose one of serviceManagedS3 or customerManagedS3
+// storage. If not specified, the default is serviceManagedS3. This cannot be
+// changed after creation of the channel.
 type ChannelStorage struct {
 	_ struct{} `type:"structure"`
 
 	// Use this to store channel data in an S3 bucket that you manage. If customer
-	// managed storage is selected, the "retentionPeriod" parameter is ignored.
-	// The choice of service-managed or customer-managed S3 storage cannot be changed
-	// after creation of the channel.
+	// managed storage is selected, the retentionPeriod parameter is ignored. You
+	// cannot change the choice of service-managed or customer-managed S3 storage
+	// after the channel is created.
 	CustomerManagedS3 *CustomerManagedChannelS3Storage `locationName:"customerManagedS3" type:"structure"`
 
-	// Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics
-	// service. The choice of service-managed or customer-managed S3 storage cannot
-	// be changed after creation of the channel.
+	// Use this to store channel data in an S3 bucket managed by AWS IoT Analytics.
+	// You cannot change the choice of service-managed or customer-managed S3 storage
+	// after the channel is created.
 	ServiceManagedS3 *ServiceManagedChannelS3Storage `locationName:"serviceManagedS3" type:"structure"`
 }
 
@@ -3979,8 +3992,7 @@ type ChannelStorageSummary struct {
 	// Used to store channel data in an S3 bucket that you manage.
 	CustomerManagedS3 *CustomerManagedChannelS3StorageSummary `locationName:"customerManagedS3" type:"structure"`
 
-	// Used to store channel data in an S3 bucket managed by the AWS IoT Analytics
-	// service.
+	// Used to store channel data in an S3 bucket managed by AWS IoT Analytics.
 	ServiceManagedS3 *ServiceManagedChannelS3StorageSummary `locationName:"serviceManagedS3" type:"structure"`
 }
 
@@ -4019,6 +4031,15 @@ type ChannelSummary struct {
 	// When the channel was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
+	// The last time when a new message arrived in the channel.
+	//
+	// AWS IoT Analytics updates this value at most once per minute for one channel.
+	// Hence, the lastMessageArrivalTime value is an approximation.
+	//
+	// This feature only applies to messages that arrived in the data store after
+	// October 23, 2020.
+	LastMessageArrivalTime *time.Time `locationName:"lastMessageArrivalTime" type:"timestamp"`
+
 	// The last time the channel was updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
@@ -4054,6 +4075,12 @@ func (s *ChannelSummary) SetCreationTime(v time.Time) *ChannelSummary {
 	return s
 }
 
+// SetLastMessageArrivalTime sets the LastMessageArrivalTime field's value.
+func (s *ChannelSummary) SetLastMessageArrivalTime(v time.Time) *ChannelSummary {
+	s.LastMessageArrivalTime = &v
+	return s
+}
+
 // SetLastUpdateTime sets the LastUpdateTime field's value.
 func (s *ChannelSummary) SetLastUpdateTime(v time.Time) *ChannelSummary {
 	s.LastUpdateTime = &v
@@ -4066,34 +4093,34 @@ func (s *ChannelSummary) SetStatus(v string) *ChannelSummary {
 	return s
 }
 
-// Information needed to run the "containerAction" to produce data set contents.
+// Information required to run the containerAction to produce dataset contents.
 type ContainerDatasetAction struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the role which gives permission to the system to access needed
-	// resources in order to run the "containerAction". This includes, at minimum,
-	// permission to retrieve the data set contents which are the input to the containerized
+	// The ARN of the role that gives permission to the system to access required
+	// resources to run the containerAction. This includes, at minimum, permission
+	// to retrieve the dataset contents that are the input to the containerized
 	// application.
 	//
 	// ExecutionRoleArn is a required field
 	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string" required:"true"`
 
 	// The ARN of the Docker container stored in your account. The Docker container
-	// contains an application and needed support libraries and is used to generate
-	// data set contents.
+	// contains an application and required support libraries and is used to generate
+	// dataset contents.
 	//
 	// Image is a required field
 	Image *string `locationName:"image" type:"string" required:"true"`
 
-	// Configuration of the resource which executes the "containerAction".
+	// Configuration of the resource that executes the containerAction.
 	//
 	// ResourceConfiguration is a required field
 	ResourceConfiguration *ResourceConfiguration `locationName:"resourceConfiguration" type:"structure" required:"true"`
 
-	// The values of variables used within the context of the execution of the containerized
+	// The values of variables used in the context of the execution of the containerized
 	// application (basically, parameters passed to the application). Each variable
-	// must have a name and a value given by one of "stringValue", "datasetContentVersionValue",
-	// or "outputFileUriValue".
+	// must have a name and a value given by one of stringValue, datasetContentVersionValue,
+	// or outputFileUriValue.
 	Variables []*Variable `locationName:"variables" type:"list"`
 }
 
@@ -4176,12 +4203,12 @@ type CreateChannelInput struct {
 	// ChannelName is a required field
 	ChannelName *string `locationName:"channelName" min:"1" type:"string" required:"true"`
 
-	// Where channel data is stored. You may choose one of "serviceManagedS3" or
-	// "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-	// This cannot be changed after creation of the channel.
+	// Where channel data is stored. You can choose one of serviceManagedS3 or customerManagedS3
+	// storage. If not specified, the default is serviceManagedS3. You cannot change
+	// this storage option after the channel is created.
 	ChannelStorage *ChannelStorage `locationName:"channelStorage" type:"structure"`
 
-	// How long, in days, message data is kept for the channel. When "customerManagedS3"
+	// How long, in days, message data is kept for the channel. When customerManagedS3
 	// storage is selected, this parameter is ignored.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
@@ -4306,10 +4333,15 @@ func (s *CreateChannelOutput) SetRetentionPeriod(v *RetentionPeriod) *CreateChan
 type CreateDatasetContentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data set.
+	// The name of the dataset.
 	//
 	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"datasetName" min:"1" type:"string" required:"true"`
+
+	// The version ID of the dataset content. To specify versionId for a dataset
+	// content, the dataset must use a DeltaTimer (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html)
+	// filter.
+	VersionId *string `locationName:"versionId" min:"7" type:"string"`
 }
 
 // String returns the string representation
@@ -4331,6 +4363,9 @@ func (s *CreateDatasetContentInput) Validate() error {
 	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
 	}
+	if s.VersionId != nil && len(*s.VersionId) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionId", 7))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -4344,10 +4379,16 @@ func (s *CreateDatasetContentInput) SetDatasetName(v string) *CreateDatasetConte
 	return s
 }
 
+// SetVersionId sets the VersionId field's value.
+func (s *CreateDatasetContentInput) SetVersionId(v string) *CreateDatasetContentInput {
+	s.VersionId = &v
+	return s
+}
+
 type CreateDatasetContentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The version ID of the data set contents which are being created.
+	// The version ID of the dataset contents that are being created.
 	VersionId *string `locationName:"versionId" min:"7" type:"string"`
 }
 
@@ -4375,7 +4416,7 @@ type CreateDatasetInput struct {
 	// Actions is a required field
 	Actions []*DatasetAction `locationName:"actions" min:"1" type:"list" required:"true"`
 
-	// When data set contents are created they are delivered to destinations specified
+	// When dataset contents are created, they are delivered to destinations specified
 	// here.
 	ContentDeliveryRules []*DatasetContentDeliveryRule `locationName:"contentDeliveryRules" type:"list"`
 
@@ -4384,11 +4425,19 @@ type CreateDatasetInput struct {
 	// DatasetName is a required field
 	DatasetName *string `locationName:"datasetName" min:"1" type:"string" required:"true"`
 
-	// [Optional] How long, in days, versions of data set contents are kept for
-	// the data set. If not specified or set to null, versions of data set contents
-	// are retained for at most 90 days. The number of versions of data set contents
-	// retained is determined by the versioningConfiguration parameter. (For more
-	// information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// A list of data rules that send notifications to Amazon CloudWatch, when data
+	// arrives late. To specify lateDataRules, the dataset must use a DeltaTimer
+	// (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html)
+	// filter.
+	LateDataRules []*LateDataRule `locationName:"lateDataRules" min:"1" type:"list"`
+
+	// Optional. How long, in days, versions of dataset contents are kept for the
+	// dataset. If not specified or set to null, versions of dataset contents are
+	// retained for at most 90 days. The number of versions of dataset contents
+	// retained is determined by the versioningConfiguration parameter. For more
+	// information, see Keeping Multiple Versions of AWS IoT Analytics Data Sets
+	// (https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// in the AWS IoT Analytics User Guide.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
 	// Metadata which can be used to manage the data set.
@@ -4399,10 +4448,12 @@ type CreateDatasetInput struct {
 	// The list of triggers can be empty or contain up to five DataSetTrigger objects.
 	Triggers []*DatasetTrigger `locationName:"triggers" type:"list"`
 
-	// [Optional] How many versions of data set contents are kept. If not specified
+	// Optional. How many versions of dataset contents are kept. If not specified
 	// or set to null, only the latest version plus the latest succeeded version
-	// (if they are different) are kept for the time period specified by the "retentionPeriod"
-	// parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// (if they are different) are kept for the time period specified by the retentionPeriod
+	// parameter. For more information, see Keeping Multiple Versions of AWS IoT
+	// Analytics Data Sets (https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// in the AWS IoT Analytics User Guide.
 	VersioningConfiguration *VersioningConfiguration `locationName:"versioningConfiguration" type:"structure"`
 }
 
@@ -4431,6 +4482,9 @@ func (s *CreateDatasetInput) Validate() error {
 	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
 	}
+	if s.LateDataRules != nil && len(s.LateDataRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LateDataRules", 1))
+	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
@@ -4451,6 +4505,16 @@ func (s *CreateDatasetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ContentDeliveryRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LateDataRules != nil {
+		for i, v := range s.LateDataRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LateDataRules", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -4509,6 +4573,12 @@ func (s *CreateDatasetInput) SetDatasetName(v string) *CreateDatasetInput {
 	return s
 }
 
+// SetLateDataRules sets the LateDataRules field's value.
+func (s *CreateDatasetInput) SetLateDataRules(v []*LateDataRule) *CreateDatasetInput {
+	s.LateDataRules = v
+	return s
+}
+
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *CreateDatasetInput) SetRetentionPeriod(v *RetentionPeriod) *CreateDatasetInput {
 	s.RetentionPeriod = v
@@ -4536,13 +4606,13 @@ func (s *CreateDatasetInput) SetVersioningConfiguration(v *VersioningConfigurati
 type CreateDatasetOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the data set.
+	// The ARN of the dataset.
 	DatasetArn *string `locationName:"datasetArn" type:"string"`
 
-	// The name of the data set.
+	// The name of the dataset.
 	DatasetName *string `locationName:"datasetName" min:"1" type:"string"`
 
-	// How long, in days, data set contents are kept for the data set.
+	// How long, in days, dataset contents are kept for the dataset.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 }
 
@@ -4582,12 +4652,12 @@ type CreateDatastoreInput struct {
 	// DatastoreName is a required field
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string" required:"true"`
 
-	// Where data store data is stored. You may choose one of "serviceManagedS3"
-	// or "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-	// This cannot be changed after the data store is created.
+	// Where data store data is stored. You can choose one of serviceManagedS3 or
+	// customerManagedS3 storage. If not specified, the default is serviceManagedS3.
+	// You cannot change this storage option after the data store is created.
 	DatastoreStorage *DatastoreStorage `locationName:"datastoreStorage" type:"structure"`
 
-	// How long, in days, message data is kept for the data store. When "customerManagedS3"
+	// How long, in days, message data is kept for the data store. When customerManagedS3
 	// storage is selected, this parameter is ignored.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
@@ -4712,15 +4782,15 @@ func (s *CreateDatastoreOutput) SetRetentionPeriod(v *RetentionPeriod) *CreateDa
 type CreatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "PipelineActivity" objects. Activities perform transformations
-	// on your messages, such as removing, renaming or adding message attributes;
-	// filtering messages based on attribute values; invoking your Lambda functions
-	// on messages for advanced processing; or performing mathematical transformations
-	// to normalize device data.
+	// A list of PipelineActivity objects. Activities perform transformations on
+	// your messages, such as removing, renaming or adding message attributes; filtering
+	// messages based on attribute values; invoking your Lambda functions on messages
+	// for advanced processing; or performing mathematical transformations to normalize
+	// device data.
 	//
 	// The list can be 2-25 PipelineActivity objects and must contain both a channel
-	// and a datastore activity. Each entry in the list must contain only one activity,
-	// for example:
+	// and a datastore activity. Each entry in the list must contain only one activity.
+	// For example:
 	//
 	// pipelineActivities = [ { "channel": { ... } }, { "lambda": { ... } }, ...
 	// ]
@@ -4843,24 +4913,24 @@ func (s *CreatePipelineOutput) SetPipelineName(v string) *CreatePipelineOutput {
 }
 
 // Use this to store channel data in an S3 bucket that you manage. If customer
-// managed storage is selected, the "retentionPeriod" parameter is ignored.
-// The choice of service-managed or customer-managed S3 storage cannot be changed
-// after creation of the channel.
+// managed storage is selected, the retentionPeriod parameter is ignored. You
+// cannot change the choice of service-managed or customer-managed S3 storage
+// after the channel is created.
 type CustomerManagedChannelS3Storage struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon S3 bucket in which channel data is stored.
+	// The name of the S3 bucket in which channel data is stored.
 	//
 	// Bucket is a required field
 	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
 
-	// [Optional] The prefix used to create the keys of the channel data objects.
-	// Each object in an Amazon S3 bucket has a key that is its unique identifier
-	// within the bucket (each object in a bucket has exactly one key). The prefix
-	// must end with a '/'.
+	// Optional. The prefix used to create the keys of the channel data objects.
+	// Each object in an S3 bucket has a key that is its unique identifier in the
+	// bucket. Each object in a bucket has exactly one key. The prefix must end
+	// with a forward slash (/).
 	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
 
-	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// The ARN of the role that grants AWS IoT Analytics permission to interact
 	// with your Amazon S3 resources.
 	//
 	// RoleArn is a required field
@@ -4924,16 +4994,16 @@ func (s *CustomerManagedChannelS3Storage) SetRoleArn(v string) *CustomerManagedC
 type CustomerManagedChannelS3StorageSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon S3 bucket in which channel data is stored.
+	// The name of the S3 bucket in which channel data is stored.
 	Bucket *string `locationName:"bucket" min:"3" type:"string"`
 
-	// [Optional] The prefix used to create the keys of the channel data objects.
-	// Each object in an Amazon S3 bucket has a key that is its unique identifier
-	// within the bucket (each object in a bucket has exactly one key). The prefix
-	// must end with a '/'.
+	// Optional. The prefix used to create the keys of the channel data objects.
+	// Each object in an S3 bucket has a key that is its unique identifier within
+	// the bucket (each object in a bucket has exactly one key). The prefix must
+	// end with a forward slash (/).
 	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
 
-	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// The ARN of the role that grants AWS IoT Analytics permission to interact
 	// with your Amazon S3 resources.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 }
@@ -4966,25 +5036,25 @@ func (s *CustomerManagedChannelS3StorageSummary) SetRoleArn(v string) *CustomerM
 	return s
 }
 
-// Use this to store data store data in an S3 bucket that you manage. When customer
-// managed storage is selected, the "retentionPeriod" parameter is ignored.
-// The choice of service-managed or customer-managed S3 storage cannot be changed
-// after creation of the data store.
+// Use this to store data store data in an S3 bucket that you manage. When customer-managed
+// storage is selected, the retentionPeriod parameter is ignored. You cannot
+// change the choice of service-managed or customer-managed S3 storage after
+// the data store is created.
 type CustomerManagedDatastoreS3Storage struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon S3 bucket in which data store data is stored.
+	// The name of the S3 bucket in which data store data is stored.
 	//
 	// Bucket is a required field
 	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
 
-	// [Optional] The prefix used to create the keys of the data store data objects.
-	// Each object in an Amazon S3 bucket has a key that is its unique identifier
-	// within the bucket (each object in a bucket has exactly one key). The prefix
-	// must end with a '/'.
+	// Optional. The prefix used to create the keys of the data store data objects.
+	// Each object in an S3 bucket has a key that is its unique identifier in the
+	// bucket. Each object in a bucket has exactly one key. The prefix must end
+	// with a forward slash (/).
 	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
 
-	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// The ARN of the role that grants AWS IoT Analytics permission to interact
 	// with your Amazon S3 resources.
 	//
 	// RoleArn is a required field
@@ -5048,16 +5118,16 @@ func (s *CustomerManagedDatastoreS3Storage) SetRoleArn(v string) *CustomerManage
 type CustomerManagedDatastoreS3StorageSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon S3 bucket in which data store data is stored.
+	// The name of the S3 bucket in which data store data is stored.
 	Bucket *string `locationName:"bucket" min:"3" type:"string"`
 
-	// [Optional] The prefix used to create the keys of the data store data objects.
-	// Each object in an Amazon S3 bucket has a key that is its unique identifier
-	// within the bucket (each object in a bucket has exactly one key). The prefix
-	// must end with a '/'.
+	// Optional. The prefix used to create the keys of the data store data objects.
+	// Each object in an S3 bucket has a key that is its unique identifier in the
+	// bucket. Each object in a bucket has exactly one key. The prefix must end
+	// with a forward slash (/).
 	KeyPrefix *string `locationName:"keyPrefix" min:"1" type:"string"`
 
-	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// The ARN of the role that grants AWS IoT Analytics permission to interact
 	// with your Amazon S3 resources.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 }
@@ -5094,13 +5164,13 @@ func (s *CustomerManagedDatastoreS3StorageSummary) SetRoleArn(v string) *Custome
 type Dataset struct {
 	_ struct{} `type:"structure"`
 
-	// The "DatasetAction" objects that automatically create the data set contents.
+	// The DatasetAction objects that automatically create the data set contents.
 	Actions []*DatasetAction `locationName:"actions" min:"1" type:"list"`
 
 	// The ARN of the data set.
 	Arn *string `locationName:"arn" type:"string"`
 
-	// When data set contents are created they are delivered to destinations specified
+	// When dataset contents are created they are delivered to destinations specified
 	// here.
 	ContentDeliveryRules []*DatasetContentDeliveryRule `locationName:"contentDeliveryRules" type:"list"`
 
@@ -5110,23 +5180,31 @@ type Dataset struct {
 	// The last time the data set was updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
+	// A list of data rules that send notifications to Amazon CloudWatch, when data
+	// arrives late. To specify lateDataRules, the dataset must use a DeltaTimer
+	// (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html)
+	// filter.
+	LateDataRules []*LateDataRule `locationName:"lateDataRules" min:"1" type:"list"`
+
 	// The name of the data set.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// [Optional] How long, in days, message data is kept for the data set.
+	// Optional. How long, in days, message data is kept for the data set.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
 	// The status of the data set.
 	Status *string `locationName:"status" type:"string" enum:"DatasetStatus"`
 
-	// The "DatasetTrigger" objects that specify when the data set is automatically
+	// The DatasetTrigger objects that specify when the data set is automatically
 	// updated.
 	Triggers []*DatasetTrigger `locationName:"triggers" type:"list"`
 
-	// [Optional] How many versions of data set contents are kept. If not specified
+	// Optional. How many versions of dataset contents are kept. If not specified
 	// or set to null, only the latest version plus the latest succeeded version
-	// (if they are different) are kept for the time period specified by the "retentionPeriod"
-	// parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// (if they are different) are kept for the time period specified by the retentionPeriod
+	// parameter. For more information, see Keeping Multiple Versions of AWS IoT
+	// Analytics Data Sets (https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// in the AWS IoT Analytics User Guide.
 	VersioningConfiguration *VersioningConfiguration `locationName:"versioningConfiguration" type:"structure"`
 }
 
@@ -5170,6 +5248,12 @@ func (s *Dataset) SetLastUpdateTime(v time.Time) *Dataset {
 	return s
 }
 
+// SetLateDataRules sets the LateDataRules field's value.
+func (s *Dataset) SetLateDataRules(v []*LateDataRule) *Dataset {
+	s.LateDataRules = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *Dataset) SetName(v string) *Dataset {
 	s.Name = &v
@@ -5200,7 +5284,7 @@ func (s *Dataset) SetVersioningConfiguration(v *VersioningConfiguration) *Datase
 	return s
 }
 
-// A "DatasetAction" object that specifies how data set contents are automatically
+// A DatasetAction object that specifies how data set contents are automatically
 // created.
 type DatasetAction struct {
 	_ struct{} `type:"structure"`
@@ -5209,13 +5293,13 @@ type DatasetAction struct {
 	// created.
 	ActionName *string `locationName:"actionName" min:"1" type:"string"`
 
-	// Information which allows the system to run a containerized application in
-	// order to create the data set contents. The application must be in a Docker
-	// container along with any needed support libraries.
+	// Information that allows the system to run a containerized application to
+	// create the dataset contents. The application must be in a Docker container
+	// along with any required support libraries.
 	ContainerAction *ContainerDatasetAction `locationName:"containerAction" type:"structure"`
 
-	// An "SqlQueryDatasetAction" object that uses an SQL query to automatically
-	// create data set contents.
+	// An SqlQueryDatasetAction object that uses an SQL query to automatically create
+	// data set contents.
 	QueryAction *SqlQueryDatasetAction `locationName:"queryAction" type:"structure"`
 }
 
@@ -5270,14 +5354,14 @@ func (s *DatasetAction) SetQueryAction(v *SqlQueryDatasetAction) *DatasetAction 
 	return s
 }
 
-// Information about the action which automatically creates the data set's contents.
+// Information about the action that automatically creates the dataset's contents.
 type DatasetActionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the action which automatically creates the data set's contents.
+	// The name of the action that automatically creates the dataset's contents.
 	ActionName *string `locationName:"actionName" min:"1" type:"string"`
 
-	// The type of action by which the data set's contents are automatically created.
+	// The type of action by which the dataset's contents are automatically created.
 	ActionType *string `locationName:"actionType" type:"string" enum:"DatasetActionType"`
 }
 
@@ -5303,14 +5387,14 @@ func (s *DatasetActionSummary) SetActionType(v string) *DatasetActionSummary {
 	return s
 }
 
-// The destination to which data set contents are delivered.
+// The destination to which dataset contents are delivered.
 type DatasetContentDeliveryDestination struct {
 	_ struct{} `type:"structure"`
 
-	// Configuration information for delivery of data set contents to AWS IoT Events.
+	// Configuration information for delivery of dataset contents to AWS IoT Events.
 	IotEventsDestinationConfiguration *IotEventsDestinationConfiguration `locationName:"iotEventsDestinationConfiguration" type:"structure"`
 
-	// Configuration information for delivery of data set contents to Amazon S3.
+	// Configuration information for delivery of dataset contents to Amazon S3.
 	S3DestinationConfiguration *S3DestinationConfiguration `locationName:"s3DestinationConfiguration" type:"structure"`
 }
 
@@ -5356,17 +5440,17 @@ func (s *DatasetContentDeliveryDestination) SetS3DestinationConfiguration(v *S3D
 	return s
 }
 
-// When data set contents are created they are delivered to destination specified
+// When dataset contents are created, they are delivered to destination specified
 // here.
 type DatasetContentDeliveryRule struct {
 	_ struct{} `type:"structure"`
 
-	// The destination to which data set contents are delivered.
+	// The destination to which dataset contents are delivered.
 	//
 	// Destination is a required field
 	Destination *DatasetContentDeliveryDestination `locationName:"destination" type:"structure" required:"true"`
 
-	// The name of the data set content delivery rules entry.
+	// The name of the dataset content delivery rules entry.
 	EntryName *string `locationName:"entryName" type:"string"`
 }
 
@@ -5417,8 +5501,8 @@ type DatasetContentStatus struct {
 	// The reason the data set contents are in this state.
 	Reason *string `locationName:"reason" type:"string"`
 
-	// The state of the data set contents. Can be one of "READY", "CREATING", "SUCCEEDED"
-	// or "FAILED".
+	// The state of the data set contents. Can be one of READY, CREATING, SUCCEEDED,
+	// or FAILED.
 	State *string `locationName:"state" type:"string" enum:"DatasetContentState"`
 }
 
@@ -5444,23 +5528,23 @@ func (s *DatasetContentStatus) SetState(v string) *DatasetContentStatus {
 	return s
 }
 
-// Summary information about data set contents.
+// Summary information about dataset contents.
 type DatasetContentSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The time the dataset content status was updated to SUCCEEDED or FAILED.
 	CompletionTime *time.Time `locationName:"completionTime" type:"timestamp"`
 
-	// The actual time the creation of the data set contents was started.
+	// The actual time the creation of the dataset contents was started.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The time the creation of the data set contents was scheduled to start.
+	// The time the creation of the dataset contents was scheduled to start.
 	ScheduleTime *time.Time `locationName:"scheduleTime" type:"timestamp"`
 
 	// The status of the data set contents.
 	Status *DatasetContentStatus `locationName:"status" type:"structure"`
 
-	// The version of the data set contents.
+	// The version of the dataset contents.
 	Version *string `locationName:"version" min:"7" type:"string"`
 }
 
@@ -5504,11 +5588,11 @@ func (s *DatasetContentSummary) SetVersion(v string) *DatasetContentSummary {
 	return s
 }
 
-// The data set whose latest contents are used as input to the notebook or application.
+// The dataset whose latest contents are used as input to the notebook or application.
 type DatasetContentVersionValue struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data set whose latest contents are used as input to the notebook
+	// The name of the dataset whose latest contents are used as input to the notebook
 	// or application.
 	//
 	// DatasetName is a required field
@@ -5551,7 +5635,7 @@ func (s *DatasetContentVersionValue) SetDatasetName(v string) *DatasetContentVer
 type DatasetEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The pre-signed URI of the data set item.
+	// The presigned URI of the data set item.
 	DataURI *string `locationName:"dataURI" type:"string"`
 
 	// The name of the data set item.
@@ -5584,7 +5668,7 @@ func (s *DatasetEntry) SetEntryName(v string) *DatasetEntry {
 type DatasetSummary struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "DataActionSummary" objects.
+	// A list of DataActionSummary objects.
 	Actions []*DatasetActionSummary `locationName:"actions" min:"1" type:"list"`
 
 	// The time the data set was created.
@@ -5651,7 +5735,7 @@ func (s *DatasetSummary) SetTriggers(v []*DatasetTrigger) *DatasetSummary {
 	return s
 }
 
-// The "DatasetTrigger" that specifies when the data set is automatically updated.
+// The DatasetTrigger that specifies when the data set is automatically updated.
 type DatasetTrigger struct {
 	_ struct{} `type:"structure"`
 
@@ -5659,7 +5743,7 @@ type DatasetTrigger struct {
 	// contents.
 	Dataset *TriggeringDataset `locationName:"dataset" type:"structure"`
 
-	// The "Schedule" when the trigger is initiated.
+	// The Schedule when the trigger is initiated.
 	Schedule *Schedule `locationName:"schedule" type:"structure"`
 }
 
@@ -5710,13 +5794,22 @@ type Datastore struct {
 	// When the data store was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
+	// The last time when a new message arrived in the data store.
+	//
+	// AWS IoT Analytics updates this value at most once per minute for one data
+	// store. Hence, the lastMessageArrivalTime value is an approximation.
+	//
+	// This feature only applies to messages that arrived in the data store after
+	// October 23, 2020.
+	LastMessageArrivalTime *time.Time `locationName:"lastMessageArrivalTime" type:"timestamp"`
+
 	// The last time the data store was updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
 	// The name of the data store.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// How long, in days, message data is kept for the data store. When "customerManagedS3"
+	// How long, in days, message data is kept for the data store. When customerManagedS3
 	// storage is selected, this parameter is ignored.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
@@ -5735,9 +5828,9 @@ type Datastore struct {
 	// The data store is being deleted.
 	Status *string `locationName:"status" type:"string" enum:"DatastoreStatus"`
 
-	// Where data store data is stored. You may choose one of "serviceManagedS3"
-	// or "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-	// This cannot be changed after the data store is created.
+	// Where data store data is stored. You can choose one of serviceManagedS3 or
+	// customerManagedS3 storage. If not specified, the default is serviceManagedS3.
+	// You cannot change this storage option after the data store is created.
 	Storage *DatastoreStorage `locationName:"storage" type:"structure"`
 }
 
@@ -5760,6 +5853,12 @@ func (s *Datastore) SetArn(v string) *Datastore {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Datastore) SetCreationTime(v time.Time) *Datastore {
 	s.CreationTime = &v
+	return s
+}
+
+// SetLastMessageArrivalTime sets the LastMessageArrivalTime field's value.
+func (s *Datastore) SetLastMessageArrivalTime(v time.Time) *Datastore {
+	s.LastMessageArrivalTime = &v
 	return s
 }
 
@@ -5793,7 +5892,7 @@ func (s *Datastore) SetStorage(v *DatastoreStorage) *Datastore {
 	return s
 }
 
-// The 'datastore' activity that specifies where to store the processed data.
+// The datastore activity that specifies where to store the processed data.
 type DatastoreActivity struct {
 	_ struct{} `type:"structure"`
 
@@ -5802,7 +5901,7 @@ type DatastoreActivity struct {
 	// DatastoreName is a required field
 	DatastoreName *string `locationName:"datastoreName" min:"1" type:"string" required:"true"`
 
-	// The name of the 'datastore' activity.
+	// The name of the datastore activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -5876,21 +5975,21 @@ func (s *DatastoreStatistics) SetSize(v *EstimatedResourceSize) *DatastoreStatis
 	return s
 }
 
-// Where data store data is stored. You may choose one of "serviceManagedS3"
-// or "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-// This cannot be changed after the data store is created.
+// Where data store data is stored. You can choose one of serviceManagedS3 or
+// customerManagedS3 storage. If not specified, the default is serviceManagedS3.
+// You cannot change this storage option after the data store is created.
 type DatastoreStorage struct {
 	_ struct{} `type:"structure"`
 
 	// Use this to store data store data in an S3 bucket that you manage. When customer
-	// managed storage is selected, the "retentionPeriod" parameter is ignored.
-	// The choice of service-managed or customer-managed S3 storage cannot be changed
+	// managed storage is selected, the retentionPeriod parameter is ignored. The
+	// choice of service-managed or customer-managed S3 storage cannot be changed
 	// after creation of the data store.
 	CustomerManagedS3 *CustomerManagedDatastoreS3Storage `locationName:"customerManagedS3" type:"structure"`
 
-	// Use this to store data store data in an S3 bucket managed by the AWS IoT
-	// Analytics service. The choice of service-managed or customer-managed S3 storage
-	// cannot be changed after creation of the data store.
+	// Use this to store data store data in an S3 bucket managed by AWS IoT Analytics.
+	// You cannot change the choice of service-managed or customer-managed S3 storage
+	// after the data store is created.
 	ServiceManagedS3 *ServiceManagedDatastoreS3Storage `locationName:"serviceManagedS3" type:"structure"`
 }
 
@@ -5938,8 +6037,7 @@ type DatastoreStorageSummary struct {
 	// Used to store data store data in an S3 bucket that you manage.
 	CustomerManagedS3 *CustomerManagedDatastoreS3StorageSummary `locationName:"customerManagedS3" type:"structure"`
 
-	// Used to store data store data in an S3 bucket managed by the AWS IoT Analytics
-	// service.
+	// Used to store data store data in an S3 bucket managed by AWS IoT Analytics.
 	ServiceManagedS3 *ServiceManagedDatastoreS3StorageSummary `locationName:"serviceManagedS3" type:"structure"`
 }
 
@@ -5978,6 +6076,15 @@ type DatastoreSummary struct {
 	// Where data store data is stored.
 	DatastoreStorage *DatastoreStorageSummary `locationName:"datastoreStorage" type:"structure"`
 
+	// The last time when a new message arrived in the data store.
+	//
+	// AWS IoT Analytics updates this value at most once per minute for one data
+	// store. Hence, the lastMessageArrivalTime value is an approximation.
+	//
+	// This feature only applies to messages that arrived in the data store after
+	// October 23, 2020.
+	LastMessageArrivalTime *time.Time `locationName:"lastMessageArrivalTime" type:"timestamp"`
+
 	// The last time the data store was updated.
 	LastUpdateTime *time.Time `locationName:"lastUpdateTime" type:"timestamp"`
 
@@ -6010,6 +6117,12 @@ func (s *DatastoreSummary) SetDatastoreName(v string) *DatastoreSummary {
 // SetDatastoreStorage sets the DatastoreStorage field's value.
 func (s *DatastoreSummary) SetDatastoreStorage(v *DatastoreStorageSummary) *DatastoreSummary {
 	s.DatastoreStorage = v
+	return s
+}
+
+// SetLastMessageArrivalTime sets the LastMessageArrivalTime field's value.
+func (s *DatastoreSummary) SetLastMessageArrivalTime(v time.Time) *DatastoreSummary {
+	s.LastMessageArrivalTime = &v
 	return s
 }
 
@@ -6083,12 +6196,12 @@ func (s DeleteChannelOutput) GoString() string {
 type DeleteDatasetContentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data set whose content is deleted.
+	// The name of the dataset whose content is deleted.
 	//
 	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"datasetName" min:"1" type:"string" required:"true"`
 
-	// The version of the data set whose content is deleted. You can also use the
+	// The version of the dataset whose content is deleted. You can also use the
 	// strings "$LATEST" or "$LATEST_SUCCEEDED" to delete the latest or latest successfully
 	// completed data set. If not specified, "$LATEST_SUCCEEDED" is the default.
 	VersionId *string `location:"querystring" locationName:"versionId" min:"7" type:"string"`
@@ -6319,22 +6432,21 @@ func (s DeletePipelineOutput) GoString() string {
 type DeltaTime struct {
 	_ struct{} `type:"structure"`
 
-	// The number of seconds of estimated "in flight" lag time of message data.
-	// When you create data set contents using message data from a specified time
-	// frame, some message data may still be "in flight" when processing begins,
-	// and so will not arrive in time to be processed. Use this field to make allowances
-	// for the "in flight" time of your message data, so that data not processed
-	// from a previous time frame will be included with the next time frame. Without
-	// this, missed message data would be excluded from processing during the next
-	// time frame as well, because its timestamp places it within the previous time
-	// frame.
+	// The number of seconds of estimated in-flight lag time of message data. When
+	// you create dataset contents using message data from a specified timeframe,
+	// some message data might still be in flight when processing begins, and so
+	// do not arrive in time to be processed. Use this field to make allowances
+	// for the in flight time of your message data, so that data not processed from
+	// a previous timeframe is included with the next timeframe. Otherwise, missed
+	// message data would be excluded from processing during the next timeframe
+	// too, because its timestamp places it within the previous timeframe.
 	//
 	// OffsetSeconds is a required field
 	OffsetSeconds *int64 `locationName:"offsetSeconds" type:"integer" required:"true"`
 
-	// An expression by which the time of the message data may be determined. This
-	// may be the name of a timestamp field, or a SQL expression which is used to
-	// derive the time the message data was generated.
+	// An expression by which the time of the message data might be determined.
+	// This can be the name of a timestamp field or a SQL expression that is used
+	// to derive the time the message data was generated.
 	//
 	// TimeExpression is a required field
 	TimeExpression *string `locationName:"timeExpression" type:"string" required:"true"`
@@ -6375,6 +6487,63 @@ func (s *DeltaTime) SetOffsetSeconds(v int64) *DeltaTime {
 // SetTimeExpression sets the TimeExpression field's value.
 func (s *DeltaTime) SetTimeExpression(v string) *DeltaTime {
 	s.TimeExpression = &v
+	return s
+}
+
+// A structure that contains the configuration information of a delta time session
+// window.
+//
+//  DeltaTime (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html)
+//  specifies a time interval. You can use DeltaTime to create dataset contents
+//  with data that has arrived in the data store since the last execution. For
+//  an example of DeltaTime, see Creating a SQL dataset with a delta window
+//  (CLI) (https://docs.aws.amazon.com/iotanalytics/latest/userguide/automate-create-dataset.html#automate-example6)
+//  in the AWS IoT Analytics User Guide.
+type DeltaTimeSessionWindowConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A time interval. You can use timeoutInMinutes so that AWS IoT Analytics can
+	// batch up late data notifications that have been generated since the last
+	// execution. AWS IoT Analytics sends one batch of notifications to Amazon CloudWatch
+	// Events at one time.
+	//
+	// For more information about how to write a timestamp expression, see Date
+	// and Time Functions and Operators (https://prestodb.io/docs/0.172/functions/datetime.html),
+	// in the Presto 0.172 Documentation.
+	//
+	// TimeoutInMinutes is a required field
+	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s DeltaTimeSessionWindowConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeltaTimeSessionWindowConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeltaTimeSessionWindowConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeltaTimeSessionWindowConfiguration"}
+	if s.TimeoutInMinutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeoutInMinutes"))
+	}
+	if s.TimeoutInMinutes != nil && *s.TimeoutInMinutes < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutInMinutes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeoutInMinutes sets the TimeoutInMinutes field's value.
+func (s *DeltaTimeSessionWindowConfiguration) SetTimeoutInMinutes(v int64) *DeltaTimeSessionWindowConfiguration {
+	s.TimeoutInMinutes = &v
 	return s
 }
 
@@ -6436,7 +6605,7 @@ type DescribeChannelOutput struct {
 	// An object that contains information about the channel.
 	Channel *Channel `locationName:"channel" type:"structure"`
 
-	// Statistics about the channel. Included if the 'includeStatistics' parameter
+	// Statistics about the channel. Included if the includeStatistics parameter
 	// is set to true in the request.
 	Statistics *ChannelStatistics `locationName:"statistics" type:"structure"`
 }
@@ -6586,7 +6755,7 @@ type DescribeDatastoreOutput struct {
 	Datastore *Datastore `locationName:"datastore" type:"structure"`
 
 	// Additional statistical information about the data store. Included if the
-	// 'includeStatistics' parameter is set to true in the request.
+	// includeStatistics parameter is set to true in the request.
 	Statistics *DatastoreStatistics `locationName:"statistics" type:"structure"`
 }
 
@@ -6693,7 +6862,7 @@ func (s *DescribePipelineInput) SetPipelineName(v string) *DescribePipelineInput
 type DescribePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A "Pipeline" object that contains information about the pipeline.
+	// A Pipeline object that contains information about the pipeline.
 	Pipeline *Pipeline `locationName:"pipeline" type:"structure"`
 }
 
@@ -6722,7 +6891,7 @@ type DeviceRegistryEnrichActivity struct {
 	// Attribute is a required field
 	Attribute *string `locationName:"attribute" min:"1" type:"string" required:"true"`
 
-	// The name of the 'deviceRegistryEnrich' activity.
+	// The name of the deviceRegistryEnrich activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -6818,7 +6987,7 @@ func (s *DeviceRegistryEnrichActivity) SetThingName(v string) *DeviceRegistryEnr
 	return s
 }
 
-// An activity that adds information from the AWS IoT Device Shadows service
+// An activity that adds information from the AWS IoT Device Shadow service
 // to a message.
 type DeviceShadowEnrichActivity struct {
 	_ struct{} `type:"structure"`
@@ -6828,7 +6997,7 @@ type DeviceShadowEnrichActivity struct {
 	// Attribute is a required field
 	Attribute *string `locationName:"attribute" min:"1" type:"string" required:"true"`
 
-	// The name of the 'deviceShadowEnrich' activity.
+	// The name of the deviceShadowEnrich activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -6931,7 +7100,7 @@ type EstimatedResourceSize struct {
 	// The time when the estimate of the size of the resource was made.
 	EstimatedOn *time.Time `locationName:"estimatedOn" type:"timestamp"`
 
-	// The estimated size of the resource in bytes.
+	// The estimated size of the resource, in bytes.
 	EstimatedSizeInBytes *float64 `locationName:"estimatedSizeInBytes" type:"double"`
 }
 
@@ -6962,12 +7131,12 @@ type FilterActivity struct {
 	_ struct{} `type:"structure"`
 
 	// An expression that looks like a SQL WHERE clause that must return a Boolean
-	// value.
+	// value. Messages that satisfy the condition are passed to the next activity.
 	//
 	// Filter is a required field
 	Filter *string `locationName:"filter" min:"1" type:"string" required:"true"`
 
-	// The name of the 'filter' activity.
+	// The name of the filter activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -7088,7 +7257,7 @@ func (s *GetDatasetContentInput) SetVersionId(v string) *GetDatasetContentInput 
 type GetDatasetContentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "DatasetEntry" objects.
+	// A list of DatasetEntry objects.
 	Entries []*DatasetEntry `locationName:"entries" type:"list"`
 
 	// The status of the data set content.
@@ -7126,20 +7295,20 @@ func (s *GetDatasetContentOutput) SetTimestamp(v time.Time) *GetDatasetContentOu
 	return s
 }
 
-// Configuration information for coordination with the AWS Glue ETL (extract,
-// transform and load) service.
+// Configuration information for coordination with AWS Glue, a fully managed
+// extract, transform and load (ETL) service.
 type GlueConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the database in your AWS Glue Data Catalog in which the table
-	// is located. (An AWS Glue Data Catalog database contains Glue Data tables.)
+	// is located. An AWS Glue Data Catalog database contains metadata tables.
 	//
 	// DatabaseName is a required field
 	DatabaseName *string `locationName:"databaseName" min:"1" type:"string" required:"true"`
 
-	// The name of the table in your AWS Glue Data Catalog which is used to perform
-	// the ETL (extract, transform and load) operations. (An AWS Glue Data Catalog
-	// table contains partitioned data and descriptions of data sources and targets.)
+	// The name of the table in your AWS Glue Data Catalog that is used to perform
+	// the ETL operations. An AWS Glue Data Catalog table contains partitioned data
+	// and descriptions of data sources and targets.
 	//
 	// TableName is a required field
 	TableName *string `locationName:"tableName" min:"1" type:"string" required:"true"`
@@ -7301,17 +7470,17 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Configuration information for delivery of data set contents to AWS IoT Events.
+// Configuration information for delivery of dataset contents to AWS IoT Events.
 type IotEventsDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS IoT Events input to which data set contents are delivered.
+	// The name of the AWS IoT Events input to which dataset contents are delivered.
 	//
 	// InputName is a required field
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 
-	// The ARN of the role which grants AWS IoT Analytics permission to deliver
-	// data set contents to an AWS IoT Events input.
+	// The ARN of the role that grants AWS IoT Analytics permission to deliver dataset
+	// contents to an AWS IoT Events input.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
@@ -7367,7 +7536,7 @@ type LambdaActivity struct {
 
 	// The number of messages passed to the Lambda function for processing.
 	//
-	// The AWS Lambda function must be able to process all of these messages within
+	// The Lambda function must be able to process all of these messages within
 	// five minutes, which is the maximum timeout duration for Lambda functions.
 	//
 	// BatchSize is a required field
@@ -7378,7 +7547,7 @@ type LambdaActivity struct {
 	// LambdaName is a required field
 	LambdaName *string `locationName:"lambdaName" min:"1" type:"string" required:"true"`
 
-	// The name of the 'lambda' activity.
+	// The name of the lambda activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -7449,6 +7618,102 @@ func (s *LambdaActivity) SetName(v string) *LambdaActivity {
 // SetNext sets the Next field's value.
 func (s *LambdaActivity) SetNext(v string) *LambdaActivity {
 	s.Next = &v
+	return s
+}
+
+// A structure that contains the name and configuration information of a late
+// data rule.
+type LateDataRule struct {
+	_ struct{} `type:"structure"`
+
+	// The information needed to configure the late data rule.
+	//
+	// RuleConfiguration is a required field
+	RuleConfiguration *LateDataRuleConfiguration `locationName:"ruleConfiguration" type:"structure" required:"true"`
+
+	// The name of the late data rule.
+	RuleName *string `locationName:"ruleName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LateDataRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LateDataRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LateDataRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LateDataRule"}
+	if s.RuleConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RuleConfiguration"))
+	}
+	if s.RuleName != nil && len(*s.RuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleName", 1))
+	}
+	if s.RuleConfiguration != nil {
+		if err := s.RuleConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("RuleConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRuleConfiguration sets the RuleConfiguration field's value.
+func (s *LateDataRule) SetRuleConfiguration(v *LateDataRuleConfiguration) *LateDataRule {
+	s.RuleConfiguration = v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *LateDataRule) SetRuleName(v string) *LateDataRule {
+	s.RuleName = &v
+	return s
+}
+
+// The information needed to configure a delta time session window.
+type LateDataRuleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The information needed to configure a delta time session window.
+	DeltaTimeSessionWindowConfiguration *DeltaTimeSessionWindowConfiguration `locationName:"deltaTimeSessionWindowConfiguration" type:"structure"`
+}
+
+// String returns the string representation
+func (s LateDataRuleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LateDataRuleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LateDataRuleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LateDataRuleConfiguration"}
+	if s.DeltaTimeSessionWindowConfiguration != nil {
+		if err := s.DeltaTimeSessionWindowConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DeltaTimeSessionWindowConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeltaTimeSessionWindowConfiguration sets the DeltaTimeSessionWindowConfiguration field's value.
+func (s *LateDataRuleConfiguration) SetDeltaTimeSessionWindowConfiguration(v *DeltaTimeSessionWindowConfiguration) *LateDataRuleConfiguration {
+	s.DeltaTimeSessionWindowConfiguration = v
 	return s
 }
 
@@ -7558,7 +7823,7 @@ func (s *ListChannelsInput) SetNextToken(v string) *ListChannelsInput {
 type ListChannelsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "ChannelSummary" objects.
+	// A list of ChannelSummary objects.
 	ChannelSummaries []*ChannelSummary `locationName:"channelSummaries" type:"list"`
 
 	// The token to retrieve the next set of results, or null if there are no more
@@ -7755,7 +8020,7 @@ func (s *ListDatasetsInput) SetNextToken(v string) *ListDatasetsInput {
 type ListDatasetsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "DatasetSummary" objects.
+	// A list of DatasetSummary objects.
 	DatasetSummaries []*DatasetSummary `locationName:"datasetSummaries" type:"list"`
 
 	// The token to retrieve the next set of results, or null if there are no more
@@ -7835,7 +8100,7 @@ func (s *ListDatastoresInput) SetNextToken(v string) *ListDatastoresInput {
 type ListDatastoresOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "DatastoreSummary" objects.
+	// A list of DatastoreSummary objects.
 	DatastoreSummaries []*DatastoreSummary `locationName:"datastoreSummaries" type:"list"`
 
 	// The token to retrieve the next set of results, or null if there are no more
@@ -7919,7 +8184,7 @@ type ListPipelinesOutput struct {
 	// results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// A list of "PipelineSummary" objects.
+	// A list of PipelineSummary objects.
 	PipelineSummaries []*PipelineSummary `locationName:"pipelineSummaries" type:"list"`
 }
 
@@ -7989,7 +8254,7 @@ func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResource
 type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The tags (metadata) which you have assigned to the resource.
+	// The tags (metadata) that you have assigned to the resource.
 	Tags []*Tag `locationName:"tags" min:"1" type:"list"`
 }
 
@@ -8018,7 +8283,7 @@ type LoggingOptions struct {
 	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
 
-	// The logging level. Currently, only "ERROR" is supported.
+	// The logging level. Currently, only ERROR is supported.
 	//
 	// Level is a required field
 	Level *string `locationName:"level" type:"string" required:"true" enum:"LoggingLevel"`
@@ -8095,7 +8360,7 @@ type MathActivity struct {
 	// Math is a required field
 	Math *string `locationName:"math" min:"1" type:"string" required:"true"`
 
-	// The name of the 'math' activity.
+	// The name of the math activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -8173,15 +8438,15 @@ func (s *MathActivity) SetNext(v string) *MathActivity {
 type Message struct {
 	_ struct{} `type:"structure"`
 
-	// The ID you wish to assign to the message. Each "messageId" must be unique
-	// within each batch sent.
+	// The ID you want to assign to the message. Each messageId must be unique within
+	// each batch sent.
 	//
 	// MessageId is a required field
 	MessageId *string `locationName:"messageId" min:"1" type:"string" required:"true"`
 
-	// The payload of the message. This may be a JSON string or a Base64-encoded
-	// string representing binary data (in which case you must decode it by means
-	// of a pipeline activity).
+	// The payload of the message. This can be a JSON string or a base64-encoded
+	// string representing binary data, in which case you must decode it by means
+	// of a pipeline activity.
 	//
 	// Payload is automatically base64 encoded/decoded by the SDK.
 	//
@@ -8234,7 +8499,7 @@ func (s *Message) SetPayload(v []byte) *Message {
 type OutputFileUriValue struct {
 	_ struct{} `type:"structure"`
 
-	// The URI of the location where data set contents are stored, usually the URI
+	// The URI of the location where dataset contents are stored, usually the URI
 	// of a file in an S3 bucket.
 	//
 	// FileName is a required field
@@ -8355,7 +8620,7 @@ type PipelineActivity struct {
 	// Adds data from the AWS IoT device registry to your message.
 	DeviceRegistryEnrich *DeviceRegistryEnrichActivity `locationName:"deviceRegistryEnrich" type:"structure"`
 
-	// Adds information from the AWS IoT Device Shadows service to a message.
+	// Adds information from the AWS IoT Device Shadow service to a message.
 	DeviceShadowEnrich *DeviceShadowEnrichActivity `locationName:"deviceShadowEnrich" type:"structure"`
 
 	// Filters a message based on its attributes.
@@ -8614,8 +8879,8 @@ func (s PutLoggingOptionsOutput) GoString() string {
 	return s.String()
 }
 
-// Information which is used to filter message data, to segregate it according
-// to the time frame in which it arrives.
+// Information that is used to filter message data, to segregate it according
+// to the timeframe in which it arrives.
 type QueryFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -8664,7 +8929,7 @@ type RemoveAttributesActivity struct {
 	// Attributes is a required field
 	Attributes []*string `locationName:"attributes" min:"1" type:"list" required:"true"`
 
-	// The name of the 'removeAttributes' activity.
+	// The name of the removeAttributes activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -8733,7 +8998,7 @@ type ReprocessingSummary struct {
 	// The time the pipeline reprocessing was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// The 'reprocessingId' returned by "StartPipelineReprocessing".
+	// The reprocessingId returned by StartPipelineReprocessing.
 	Id *string `locationName:"id" type:"string"`
 
 	// The status of the pipeline reprocessing.
@@ -8830,18 +9095,18 @@ func (s *ResourceAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The configuration of the resource used to execute the "containerAction".
+// The configuration of the resource used to execute the containerAction.
 type ResourceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The type of the compute resource used to execute the "containerAction". Possible
-	// values are: ACU_1 (vCPU=4, memory=16GiB) or ACU_2 (vCPU=8, memory=32GiB).
+	// The type of the compute resource used to execute the containerAction. Possible
+	// values are: ACU_1 (vCPU=4, memory=16 GiB) or ACU_2 (vCPU=8, memory=32 GiB).
 	//
 	// ComputeType is a required field
 	ComputeType *string `locationName:"computeType" type:"string" required:"true" enum:"ComputeType"`
 
-	// The size (in GB) of the persistent storage available to the resource instance
-	// used to execute the "containerAction" (min: 1, max: 50).
+	// The size, in GB, of the persistent storage available to the resource instance
+	// used to execute the containerAction (min: 1, max: 50).
 	//
 	// VolumeSizeInGB is a required field
 	VolumeSizeInGB *int64 `locationName:"volumeSizeInGB" min:"1" type:"integer" required:"true"`
@@ -8948,7 +9213,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type RetentionPeriod struct {
 	_ struct{} `type:"structure"`
 
-	// The number of days that message data is kept. The "unlimited" parameter must
+	// The number of days that message data is kept. The unlimited parameter must
 	// be false.
 	NumberOfDays *int64 `locationName:"numberOfDays" min:"1" type:"integer"`
 
@@ -8999,11 +9264,11 @@ type RunPipelineActivityInput struct {
 	// Payloads is a required field
 	Payloads [][]byte `locationName:"payloads" min:"1" type:"list" required:"true"`
 
-	// The pipeline activity that is run. This must not be a 'channel' activity
-	// or a 'datastore' activity because these activities are used in a pipeline
-	// only to load the original message and to store the (possibly) transformed
-	// message. If a 'lambda' activity is specified, only short-running Lambda functions
-	// (those with a timeout of less than 30 seconds or less) can be used.
+	// The pipeline activity that is run. This must not be a channel activity or
+	// a datastore activity because these activities are used in a pipeline only
+	// to load the original message and to store the (possibly) transformed message.
+	// If a lambda activity is specified, only short-running Lambda functions (those
+	// with a timeout of less than 30 seconds or less) can be used.
 	//
 	// PipelineActivity is a required field
 	PipelineActivity *PipelineActivity `locationName:"pipelineActivity" type:"structure" required:"true"`
@@ -9089,29 +9354,45 @@ func (s *RunPipelineActivityOutput) SetPayloads(v [][]byte) *RunPipelineActivity
 	return s
 }
 
-// Configuration information for delivery of data set contents to Amazon S3.
+// Configuration information for delivery of dataset contents to Amazon Simple
+// Storage Service (Amazon S3).
 type S3DestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon S3 bucket to which data set contents are delivered.
+	// The name of the S3 bucket to which dataset contents are delivered.
 	//
 	// Bucket is a required field
 	Bucket *string `locationName:"bucket" min:"3" type:"string" required:"true"`
 
-	// Configuration information for coordination with the AWS Glue ETL (extract,
-	// transform and load) service.
+	// Configuration information for coordination with AWS Glue, a fully managed
+	// extract, transform and load (ETL) service.
 	GlueConfiguration *GlueConfiguration `locationName:"glueConfiguration" type:"structure"`
 
-	// The key of the data set contents object. Each object in an Amazon S3 bucket
-	// has a key that is its unique identifier within the bucket (each object in
-	// a bucket has exactly one key). To produce a unique key, you can use "!{iotanalytics:scheduledTime}"
-	// to insert the time of the scheduled SQL query run, or "!{iotanalytics:versioned}
-	// to insert a unique hash identifying the data set, for example: "/DataSet/!{iotanalytics:scheduledTime}/!{iotanalytics:versioned}.csv".
+	// The key of the dataset contents object in an S3 bucket. Each object has a
+	// key that is a unique identifier. Each object has exactly one key.
+	//
+	// You can create a unique key with the following options:
+	//
+	//    * Use !{iotanalytics:scheduleTime} to insert the time of a scheduled SQL
+	//    query run.
+	//
+	//    * Use !{iotanalytics:versionId} to insert a unique hash that identifies
+	//    a dataset content.
+	//
+	//    * Use !{iotanalytics:creationTime} to insert the creation time of a dataset
+	//    content.
+	//
+	// The following example creates a unique key for a CSV file: dataset/mydataset/!{iotanalytics:scheduleTime}/!{iotanalytics:versionId}.csv
+	//
+	// If you don't use !{iotanalytics:versionId} to specify the key, you might
+	// get duplicate keys. For example, you might have two dataset contents with
+	// the same scheduleTime but different versionIds. This means that one dataset
+	// content overwrites the other.
 	//
 	// Key is a required field
 	Key *string `locationName:"key" min:"1" type:"string" required:"true"`
 
-	// The ARN of the role which grants AWS IoT Analytics permission to interact
+	// The ARN of the role that grants AWS IoT Analytics permission to interact
 	// with your Amazon S3 and AWS Glue resources.
 	//
 	// RoleArn is a required field
@@ -9196,7 +9477,7 @@ type SampleChannelDataInput struct {
 	// The end of the time window from which sample messages are retrieved.
 	EndTime *time.Time `location:"querystring" locationName:"endTime" type:"timestamp"`
 
-	// The number of sample messages to be retrieved. The limit is 10, the default
+	// The number of sample messages to be retrieved. The limit is 10. The default
 	// is also 10.
 	MaxMessages *int64 `location:"querystring" locationName:"maxMessages" min:"1" type:"integer"`
 
@@ -9317,7 +9598,7 @@ type SelectAttributesActivity struct {
 	// Attributes is a required field
 	Attributes []*string `locationName:"attributes" min:"1" type:"list" required:"true"`
 
-	// The name of the 'selectAttributes' activity.
+	// The name of the selectAttributes activity.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -9379,9 +9660,9 @@ func (s *SelectAttributesActivity) SetNext(v string) *SelectAttributesActivity {
 	return s
 }
 
-// Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics
-// service. The choice of service-managed or customer-managed S3 storage cannot
-// be changed after creation of the channel.
+// Use this to store channel data in an S3 bucket managed by AWS IoT Analytics.
+// You cannot change the choice of service-managed or customer-managed S3 storage
+// after the channel is created.
 type ServiceManagedChannelS3Storage struct {
 	_ struct{} `type:"structure"`
 }
@@ -9396,8 +9677,7 @@ func (s ServiceManagedChannelS3Storage) GoString() string {
 	return s.String()
 }
 
-// Used to store channel data in an S3 bucket managed by the AWS IoT Analytics
-// service.
+// Used to store channel data in an S3 bucket managed by AWS IoT Analytics.
 type ServiceManagedChannelS3StorageSummary struct {
 	_ struct{} `type:"structure"`
 }
@@ -9412,9 +9692,9 @@ func (s ServiceManagedChannelS3StorageSummary) GoString() string {
 	return s.String()
 }
 
-// Use this to store data store data in an S3 bucket managed by the AWS IoT
-// Analytics service. The choice of service-managed or customer-managed S3 storage
-// cannot be changed after creation of the data store.
+// Use this to store data store data in an S3 bucket managed by AWS IoT Analytics.
+// You cannot change the choice of service-managed or customer-managed S3 storage
+// after the data store is created.
 type ServiceManagedDatastoreS3Storage struct {
 	_ struct{} `type:"structure"`
 }
@@ -9429,8 +9709,7 @@ func (s ServiceManagedDatastoreS3Storage) GoString() string {
 	return s.String()
 }
 
-// Used to store data store data in an S3 bucket managed by the AWS IoT Analytics
-// service.
+// Used to store data store data in an S3 bucket managed by AWS IoT Analytics.
 type ServiceManagedDatastoreS3StorageSummary struct {
 	_ struct{} `type:"structure"`
 }
@@ -9505,7 +9784,7 @@ func (s *ServiceUnavailableException) RequestID() string {
 type SqlQueryDatasetAction struct {
 	_ struct{} `type:"structure"`
 
-	// Pre-filters applied to message data.
+	// Prefilters applied to message data.
 	Filters []*QueryFilter `locationName:"filters" type:"list"`
 
 	// A SQL query string.
@@ -9641,7 +9920,7 @@ func (s *StartPipelineReprocessingOutput) SetReprocessingId(v string) *StartPipe
 	return s
 }
 
-// A set of key/value pairs which are used to manage the resource.
+// A set of key-value pairs that are used to manage the resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -9838,12 +10117,12 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the data set whose content generation triggers the new
-// data set content generation.
+// Information about the dataset whose content generation triggers the new dataset
+// content generation.
 type TriggeringDataset struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the data set whose content generation triggers the new data set
+	// The name of the dataset whose content generation triggers the new dataset
 	// content generation.
 	//
 	// Name is a required field
@@ -9962,9 +10241,9 @@ type UpdateChannelInput struct {
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" min:"1" type:"string" required:"true"`
 
-	// Where channel data is stored. You may choose one of "serviceManagedS3" or
-	// "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-	// This cannot be changed after creation of the channel.
+	// Where channel data is stored. You can choose one of serviceManagedS3 or customerManagedS3
+	// storage. If not specified, the default is serviceManagedS3. You cannot change
+	// this storage option after the channel is created.
 	ChannelStorage *ChannelStorage `locationName:"channelStorage" type:"structure"`
 
 	// How long, in days, message data is kept for the channel. The retention period
@@ -10043,12 +10322,12 @@ func (s UpdateChannelOutput) GoString() string {
 type UpdateDatasetInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "DatasetAction" objects.
+	// A list of DatasetAction objects.
 	//
 	// Actions is a required field
 	Actions []*DatasetAction `locationName:"actions" min:"1" type:"list" required:"true"`
 
-	// When data set contents are created they are delivered to destinations specified
+	// When dataset contents are created, they are delivered to destinations specified
 	// here.
 	ContentDeliveryRules []*DatasetContentDeliveryRule `locationName:"contentDeliveryRules" type:"list"`
 
@@ -10057,17 +10336,25 @@ type UpdateDatasetInput struct {
 	// DatasetName is a required field
 	DatasetName *string `location:"uri" locationName:"datasetName" min:"1" type:"string" required:"true"`
 
-	// How long, in days, data set contents are kept for the data set.
+	// A list of data rules that send notifications to Amazon CloudWatch, when data
+	// arrives late. To specify lateDataRules, the dataset must use a DeltaTimer
+	// (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html)
+	// filter.
+	LateDataRules []*LateDataRule `locationName:"lateDataRules" min:"1" type:"list"`
+
+	// How long, in days, dataset contents are kept for the dataset.
 	RetentionPeriod *RetentionPeriod `locationName:"retentionPeriod" type:"structure"`
 
-	// A list of "DatasetTrigger" objects. The list can be empty or can contain
-	// up to five DataSetTrigger objects.
+	// A list of DatasetTrigger objects. The list can be empty or can contain up
+	// to five DatasetTrigger objects.
 	Triggers []*DatasetTrigger `locationName:"triggers" type:"list"`
 
-	// [Optional] How many versions of data set contents are kept. If not specified
+	// Optional. How many versions of dataset contents are kept. If not specified
 	// or set to null, only the latest version plus the latest succeeded version
-	// (if they are different) are kept for the time period specified by the "retentionPeriod"
-	// parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// (if they are different) are kept for the time period specified by the retentionPeriod
+	// parameter. For more information, see Keeping Multiple Versions of AWS IoT
+	// Analytics Data Sets (https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)
+	// in the AWS IoT Analytics User Guide.
 	VersioningConfiguration *VersioningConfiguration `locationName:"versioningConfiguration" type:"structure"`
 }
 
@@ -10096,6 +10383,9 @@ func (s *UpdateDatasetInput) Validate() error {
 	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
 	}
+	if s.LateDataRules != nil && len(s.LateDataRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LateDataRules", 1))
+	}
 	if s.Actions != nil {
 		for i, v := range s.Actions {
 			if v == nil {
@@ -10113,6 +10403,16 @@ func (s *UpdateDatasetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ContentDeliveryRules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.LateDataRules != nil {
+		for i, v := range s.LateDataRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LateDataRules", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -10161,6 +10461,12 @@ func (s *UpdateDatasetInput) SetDatasetName(v string) *UpdateDatasetInput {
 	return s
 }
 
+// SetLateDataRules sets the LateDataRules field's value.
+func (s *UpdateDatasetInput) SetLateDataRules(v []*LateDataRule) *UpdateDatasetInput {
+	s.LateDataRules = v
+	return s
+}
+
 // SetRetentionPeriod sets the RetentionPeriod field's value.
 func (s *UpdateDatasetInput) SetRetentionPeriod(v *RetentionPeriod) *UpdateDatasetInput {
 	s.RetentionPeriod = v
@@ -10201,9 +10507,9 @@ type UpdateDatastoreInput struct {
 	// DatastoreName is a required field
 	DatastoreName *string `location:"uri" locationName:"datastoreName" min:"1" type:"string" required:"true"`
 
-	// Where data store data is stored. You may choose one of "serviceManagedS3"
-	// or "customerManagedS3" storage. If not specified, the default is "serviceManagedS3".
-	// This cannot be changed after the data store is created.
+	// Where data store data is stored. You can choose one of serviceManagedS3 or
+	// customerManagedS3 storage. If not specified, the default isserviceManagedS3.
+	// You cannot change this storage option after the data store is created.
 	DatastoreStorage *DatastoreStorage `locationName:"datastoreStorage" type:"structure"`
 
 	// How long, in days, message data is kept for the data store. The retention
@@ -10282,15 +10588,15 @@ func (s UpdateDatastoreOutput) GoString() string {
 type UpdatePipelineInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of "PipelineActivity" objects. Activities perform transformations
-	// on your messages, such as removing, renaming or adding message attributes;
-	// filtering messages based on attribute values; invoking your Lambda functions
-	// on messages for advanced processing; or performing mathematical transformations
-	// to normalize device data.
+	// A list of PipelineActivity objects. Activities perform transformations on
+	// your messages, such as removing, renaming or adding message attributes; filtering
+	// messages based on attribute values; invoking your Lambda functions on messages
+	// for advanced processing; or performing mathematical transformations to normalize
+	// device data.
 	//
 	// The list can be 2-25 PipelineActivity objects and must contain both a channel
-	// and a datastore activity. Each entry in the list must contain only one activity,
-	// for example:
+	// and a datastore activity. Each entry in the list must contain only one activity.
+	// For example:
 	//
 	// pipelineActivities = [ { "channel": { ... } }, { "lambda": { ... } }, ...
 	// ]
@@ -10372,13 +10678,13 @@ func (s UpdatePipelineOutput) GoString() string {
 	return s.String()
 }
 
-// An instance of a variable to be passed to the "containerAction" execution.
-// Each variable must have a name and a value given by one of "stringValue",
-// "datasetContentVersionValue", or "outputFileUriValue".
+// An instance of a variable to be passed to the containerAction execution.
+// Each variable must have a name and a value given by one of stringValue, datasetContentVersionValue,
+// or outputFileUriValue.
 type Variable struct {
 	_ struct{} `type:"structure"`
 
-	// The value of the variable as a structure that specifies a data set content
+	// The value of the variable as a structure that specifies a dataset content
 	// version.
 	DatasetContentVersionValue *DatasetContentVersionValue `locationName:"datasetContentVersionValue" type:"structure"`
 
@@ -10463,15 +10769,15 @@ func (s *Variable) SetStringValue(v string) *Variable {
 	return s
 }
 
-// Information about the versioning of data set contents.
+// Information about the versioning of dataset contents.
 type VersioningConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// How many versions of data set contents will be kept. The "unlimited" parameter
-	// must be false.
+	// How many versions of dataset contents are kept. The unlimited parameter must
+	// be false.
 	MaxVersions *int64 `locationName:"maxVersions" min:"1" type:"integer"`
 
-	// If true, unlimited versions of data set contents will be kept.
+	// If true, unlimited versions of dataset contents are kept.
 	Unlimited *bool `locationName:"unlimited" type:"boolean"`
 }
 

@@ -5,32 +5,32 @@
     "BatchPutMessage": "<p>Sends messages to a channel.</p>",
     "CancelPipelineReprocessing": "<p>Cancels the reprocessing of data through the pipeline.</p>",
     "CreateChannel": "<p>Creates a channel. A channel collects data from an MQTT topic and archives the raw, unprocessed messages before publishing the data to a pipeline.</p>",
-    "CreateDataset": "<p>Creates a data set. A data set stores data retrieved from a data store by applying a \"queryAction\" (a SQL query) or a \"containerAction\" (executing a containerized application). This operation creates the skeleton of a data set. The data set can be populated manually by calling \"CreateDatasetContent\" or automatically according to a \"trigger\" you specify.</p>",
-    "CreateDatasetContent": "<p>Creates the content of a data set by applying a \"queryAction\" (a SQL query) or a \"containerAction\" (executing a containerized application).</p>",
+    "CreateDataset": "<p>Creates a dataset. A dataset stores data retrieved from a data store by applying a <code>queryAction</code> (a SQL query) or a <code>containerAction</code> (executing a containerized application). This operation creates the skeleton of a dataset. The dataset can be populated manually by calling <code>CreateDatasetContent</code> or automatically according to a trigger you specify.</p>",
+    "CreateDatasetContent": "<p>Creates the content of a data set by applying a <code>queryAction</code> (a SQL query) or a <code>containerAction</code> (executing a containerized application).</p>",
     "CreateDatastore": "<p>Creates a data store, which is a repository for messages.</p>",
     "CreatePipeline": "<p>Creates a pipeline. A pipeline consumes messages from a channel and allows you to process the messages before storing them in a data store. You must specify both a <code>channel</code> and a <code>datastore</code> activity and, optionally, as many as 23 additional activities in the <code>pipelineActivities</code> array.</p>",
     "DeleteChannel": "<p>Deletes the specified channel.</p>",
-    "DeleteDataset": "<p>Deletes the specified data set.</p> <p>You do not have to delete the content of the data set before you perform this operation.</p>",
-    "DeleteDatasetContent": "<p>Deletes the content of the specified data set.</p>",
+    "DeleteDataset": "<p>Deletes the specified dataset.</p> <p>You do not have to delete the content of the dataset before you perform this operation.</p>",
+    "DeleteDatasetContent": "<p>Deletes the content of the specified dataset.</p>",
     "DeleteDatastore": "<p>Deletes the specified data store.</p>",
     "DeletePipeline": "<p>Deletes the specified pipeline.</p>",
     "DescribeChannel": "<p>Retrieves information about a channel.</p>",
-    "DescribeDataset": "<p>Retrieves information about a data set.</p>",
+    "DescribeDataset": "<p>Retrieves information about a dataset.</p>",
     "DescribeDatastore": "<p>Retrieves information about a data store.</p>",
     "DescribeLoggingOptions": "<p>Retrieves the current settings of the AWS IoT Analytics logging options.</p>",
     "DescribePipeline": "<p>Retrieves information about a pipeline.</p>",
-    "GetDatasetContent": "<p>Retrieves the contents of a data set as pre-signed URIs.</p>",
+    "GetDatasetContent": "<p>Retrieves the contents of a data set as presigned URIs.</p>",
     "ListChannels": "<p>Retrieves a list of channels.</p>",
     "ListDatasetContents": "<p>Lists information about data set contents that have been created.</p>",
     "ListDatasets": "<p>Retrieves information about data sets.</p>",
     "ListDatastores": "<p>Retrieves a list of data stores.</p>",
     "ListPipelines": "<p>Retrieves a list of pipelines.</p>",
-    "ListTagsForResource": "<p>Lists the tags (metadata) which you have assigned to the resource.</p>",
-    "PutLoggingOptions": "<p>Sets or updates the AWS IoT Analytics logging options.</p> <p>Note that if you update the value of any <code>loggingOptions</code> field, it takes up to one minute for the change to take effect. Also, if you change the policy attached to the role you specified in the roleArn field (for example, to correct an invalid policy) it takes up to 5 minutes for that change to take effect. </p>",
+    "ListTagsForResource": "<p>Lists the tags (metadata) that you have assigned to the resource.</p>",
+    "PutLoggingOptions": "<p>Sets or updates the AWS IoT Analytics logging options.</p> <p>If you update the value of any <code>loggingOptions</code> field, it takes up to one minute for the change to take effect. Also, if you change the policy attached to the role you specified in the <code>roleArn</code> field (for example, to correct an invalid policy), it takes up to five minutes for that change to take effect. </p>",
     "RunPipelineActivity": "<p>Simulates the results of running a pipeline activity on a message payload.</p>",
     "SampleChannelData": "<p>Retrieves a sample of messages from the specified channel ingested during the specified timeframe. Up to 10 messages can be retrieved.</p>",
     "StartPipelineReprocessing": "<p>Starts the reprocessing of raw message data through the pipeline.</p>",
-    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p>",
+    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata that can be used to manage a resource.</p>",
     "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
     "UpdateChannel": "<p>Updates the settings of a channel.</p>",
     "UpdateDataset": "<p>Updates the settings of a data set.</p>",
@@ -41,30 +41,30 @@
     "ActivityBatchSize": {
       "base": null,
       "refs": {
-        "LambdaActivity$batchSize": "<p>The number of messages passed to the Lambda function for processing.</p> <p>The AWS Lambda function must be able to process all of these messages within five minutes, which is the maximum timeout duration for Lambda functions.</p>"
+        "LambdaActivity$batchSize": "<p>The number of messages passed to the Lambda function for processing.</p> <p>The Lambda function must be able to process all of these messages within five minutes, which is the maximum timeout duration for Lambda functions.</p>"
       }
     },
     "ActivityName": {
       "base": null,
       "refs": {
-        "AddAttributesActivity$name": "<p>The name of the 'addAttributes' activity.</p>",
+        "AddAttributesActivity$name": "<p>The name of the addAttributes activity.</p>",
         "AddAttributesActivity$next": "<p>The next activity in the pipeline.</p>",
-        "ChannelActivity$name": "<p>The name of the 'channel' activity.</p>",
+        "ChannelActivity$name": "<p>The name of the channel activity.</p>",
         "ChannelActivity$next": "<p>The next activity in the pipeline.</p>",
-        "DatastoreActivity$name": "<p>The name of the 'datastore' activity.</p>",
-        "DeviceRegistryEnrichActivity$name": "<p>The name of the 'deviceRegistryEnrich' activity.</p>",
+        "DatastoreActivity$name": "<p>The name of the datastore activity.</p>",
+        "DeviceRegistryEnrichActivity$name": "<p>The name of the <code>deviceRegistryEnrich</code> activity.</p>",
         "DeviceRegistryEnrichActivity$next": "<p>The next activity in the pipeline.</p>",
-        "DeviceShadowEnrichActivity$name": "<p>The name of the 'deviceShadowEnrich' activity.</p>",
+        "DeviceShadowEnrichActivity$name": "<p>The name of the <code>deviceShadowEnrich</code> activity.</p>",
         "DeviceShadowEnrichActivity$next": "<p>The next activity in the pipeline.</p>",
-        "FilterActivity$name": "<p>The name of the 'filter' activity.</p>",
+        "FilterActivity$name": "<p>The name of the filter activity.</p>",
         "FilterActivity$next": "<p>The next activity in the pipeline.</p>",
-        "LambdaActivity$name": "<p>The name of the 'lambda' activity.</p>",
+        "LambdaActivity$name": "<p>The name of the lambda activity.</p>",
         "LambdaActivity$next": "<p>The next activity in the pipeline.</p>",
-        "MathActivity$name": "<p>The name of the 'math' activity.</p>",
+        "MathActivity$name": "<p>The name of the math activity.</p>",
         "MathActivity$next": "<p>The next activity in the pipeline.</p>",
-        "RemoveAttributesActivity$name": "<p>The name of the 'removeAttributes' activity.</p>",
+        "RemoveAttributesActivity$name": "<p>The name of the <code>removeAttributes</code> activity.</p>",
         "RemoveAttributesActivity$next": "<p>The next activity in the pipeline.</p>",
-        "SelectAttributesActivity$name": "<p>The name of the 'selectAttributes' activity.</p>",
+        "SelectAttributesActivity$name": "<p>The name of the <code>selectAttributes</code> activity.</p>",
         "SelectAttributesActivity$next": "<p>The next activity in the pipeline.</p>"
       }
     },
@@ -90,7 +90,7 @@
     "AttributeNameMapping": {
       "base": null,
       "refs": {
-        "AddAttributesActivity$attributes": "<p>A list of 1-50 \"AttributeNameMapping\" objects that map an existing attribute to a new attribute.</p> <note> <p>The existing attributes remain in the message, so if you want to remove the originals, use \"RemoveAttributeActivity\".</p> </note>"
+        "AddAttributesActivity$attributes": "<p>A list of 1-50 <code>AttributeNameMapping</code> objects that map an existing attribute to a new attribute.</p> <note> <p>The existing attributes remain in the message, so if you want to remove the originals, use <code>RemoveAttributeActivity</code>.</p> </note>"
       }
     },
     "AttributeNames": {
@@ -125,17 +125,17 @@
     "BucketKeyExpression": {
       "base": null,
       "refs": {
-        "S3DestinationConfiguration$key": "<p>The key of the data set contents object. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key). To produce a unique key, you can use \"!{iotanalytics:scheduledTime}\" to insert the time of the scheduled SQL query run, or \"!{iotanalytics:versioned} to insert a unique hash identifying the data set, for example: \"/DataSet/!{iotanalytics:scheduledTime}/!{iotanalytics:versioned}.csv\".</p>"
+        "S3DestinationConfiguration$key": "<p>The key of the dataset contents object in an S3 bucket. Each object has a key that is a unique identifier. Each object has exactly one key.</p> <p>You can create a unique key with the following options:</p> <ul> <li> <p>Use <code>!{iotanalytics:scheduleTime}</code> to insert the time of a scheduled SQL query run.</p> </li> <li> <p>Use <code>!{iotanalytics:versionId}</code> to insert a unique hash that identifies a dataset content.</p> </li> <li> <p>Use <code>!{iotanalytics:creationTime}</code> to insert the creation time of a dataset content.</p> </li> </ul> <p>The following example creates a unique key for a CSV file: <code>dataset/mydataset/!{iotanalytics:scheduleTime}/!{iotanalytics:versionId}.csv</code> </p> <note> <p>If you don't use <code>!{iotanalytics:versionId}</code> to specify the key, you might get duplicate keys. For example, you might have two dataset contents with the same <code>scheduleTime</code> but different <code>versionId</code>s. This means that one dataset content overwrites the other. </p> </note>"
       }
     },
     "BucketName": {
       "base": null,
       "refs": {
-        "CustomerManagedChannelS3Storage$bucket": "<p>The name of the Amazon S3 bucket in which channel data is stored.</p>",
-        "CustomerManagedChannelS3StorageSummary$bucket": "<p>The name of the Amazon S3 bucket in which channel data is stored.</p>",
-        "CustomerManagedDatastoreS3Storage$bucket": "<p>The name of the Amazon S3 bucket in which data store data is stored.</p>",
-        "CustomerManagedDatastoreS3StorageSummary$bucket": "<p>The name of the Amazon S3 bucket in which data store data is stored.</p>",
-        "S3DestinationConfiguration$bucket": "<p>The name of the Amazon S3 bucket to which data set contents are delivered.</p>"
+        "CustomerManagedChannelS3Storage$bucket": "<p>The name of the S3 bucket in which channel data is stored.</p>",
+        "CustomerManagedChannelS3StorageSummary$bucket": "<p>The name of the S3 bucket in which channel data is stored.</p>",
+        "CustomerManagedDatastoreS3Storage$bucket": "<p>The name of the S3 bucket in which data store data is stored.</p>",
+        "CustomerManagedDatastoreS3StorageSummary$bucket": "<p>The name of the S3 bucket in which data store data is stored.</p>",
+        "S3DestinationConfiguration$bucket": "<p>The name of the S3 bucket to which dataset contents are delivered.</p>"
       }
     },
     "CancelPipelineReprocessingRequest": {
@@ -185,7 +185,7 @@
     "ChannelStatistics": {
       "base": "<p>Statistics information about the channel.</p>",
       "refs": {
-        "DescribeChannelResponse$statistics": "<p>Statistics about the channel. Included if the 'includeStatistics' parameter is set to true in the request.</p>"
+        "DescribeChannelResponse$statistics": "<p>Statistics about the channel. Included if the <code>includeStatistics</code> parameter is set to <code>true</code> in the request.</p>"
       }
     },
     "ChannelStatus": {
@@ -196,11 +196,11 @@
       }
     },
     "ChannelStorage": {
-      "base": "<p>Where channel data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after creation of the channel.</p>",
+      "base": "<p>Where channel data is stored. You may choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. This cannot be changed after creation of the channel.</p>",
       "refs": {
-        "Channel$storage": "<p>Where channel data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after creation of the channel.</p>",
-        "CreateChannelRequest$channelStorage": "<p>Where channel data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after creation of the channel.</p>",
-        "UpdateChannelRequest$channelStorage": "<p>Where channel data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after creation of the channel.</p>"
+        "Channel$storage": "<p>Where channel data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. You cannot change this storage option after the channel is created.</p>",
+        "CreateChannelRequest$channelStorage": "<p>Where channel data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. You cannot change this storage option after the channel is created.</p>",
+        "UpdateChannelRequest$channelStorage": "<p>Where channel data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. You cannot change this storage option after the channel is created.</p>"
       }
     },
     "ChannelStorageSummary": {
@@ -212,7 +212,7 @@
     "ChannelSummaries": {
       "base": null,
       "refs": {
-        "ListChannelsResponse$channelSummaries": "<p>A list of \"ChannelSummary\" objects.</p>"
+        "ListChannelsResponse$channelSummaries": "<p>A list of <code>ChannelSummary</code> objects.</p>"
       }
     },
     "ChannelSummary": {
@@ -224,13 +224,13 @@
     "ComputeType": {
       "base": null,
       "refs": {
-        "ResourceConfiguration$computeType": "<p>The type of the compute resource used to execute the \"containerAction\". Possible values are: ACU_1 (vCPU=4, memory=16GiB) or ACU_2 (vCPU=8, memory=32GiB).</p>"
+        "ResourceConfiguration$computeType": "<p>The type of the compute resource used to execute the <code>containerAction</code>. Possible values are: <code>ACU_1</code> (vCPU=4, memory=16 GiB) or <code>ACU_2</code> (vCPU=8, memory=32 GiB).</p>"
       }
     },
     "ContainerDatasetAction": {
-      "base": "<p>Information needed to run the \"containerAction\" to produce data set contents.</p>",
+      "base": "<p>Information required to run the <code>containerAction</code> to produce dataset contents.</p>",
       "refs": {
-        "DatasetAction$containerAction": "<p>Information which allows the system to run a containerized application in order to create the data set contents. The application must be in a Docker container along with any needed support libraries.</p>"
+        "DatasetAction$containerAction": "<p>Information that allows the system to run a containerized application to create the dataset contents. The application must be in a Docker container along with any required support libraries.</p>"
       }
     },
     "CreateChannelRequest": {
@@ -284,9 +284,9 @@
       }
     },
     "CustomerManagedChannelS3Storage": {
-      "base": "<p>Use this to store channel data in an S3 bucket that you manage. If customer managed storage is selected, the \"retentionPeriod\" parameter is ignored. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the channel.</p>",
+      "base": "<p>Use this to store channel data in an S3 bucket that you manage. If customer managed storage is selected, the <code>retentionPeriod</code> parameter is ignored. You cannot change the choice of service-managed or customer-managed S3 storage after the channel is created.</p>",
       "refs": {
-        "ChannelStorage$customerManagedS3": "<p>Use this to store channel data in an S3 bucket that you manage. If customer managed storage is selected, the \"retentionPeriod\" parameter is ignored. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the channel.</p>"
+        "ChannelStorage$customerManagedS3": "<p>Use this to store channel data in an S3 bucket that you manage. If customer managed storage is selected, the <code>retentionPeriod</code> parameter is ignored. You cannot change the choice of service-managed or customer-managed S3 storage after the channel is created.</p>"
       }
     },
     "CustomerManagedChannelS3StorageSummary": {
@@ -296,9 +296,9 @@
       }
     },
     "CustomerManagedDatastoreS3Storage": {
-      "base": "<p>Use this to store data store data in an S3 bucket that you manage. When customer managed storage is selected, the \"retentionPeriod\" parameter is ignored. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the data store.</p>",
+      "base": "<p>Use this to store data store data in an S3 bucket that you manage. When customer-managed storage is selected, the <code>retentionPeriod</code> parameter is ignored. You cannot change the choice of service-managed or customer-managed S3 storage after the data store is created.</p>",
       "refs": {
-        "DatastoreStorage$customerManagedS3": "<p>Use this to store data store data in an S3 bucket that you manage. When customer managed storage is selected, the \"retentionPeriod\" parameter is ignored. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the data store.</p>"
+        "DatastoreStorage$customerManagedS3": "<p>Use this to store data store data in an S3 bucket that you manage. When customer managed storage is selected, the <code>retentionPeriod</code> parameter is ignored. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the data store.</p>"
       }
     },
     "CustomerManagedDatastoreS3StorageSummary": {
@@ -314,7 +314,7 @@
       }
     },
     "DatasetAction": {
-      "base": "<p>A \"DatasetAction\" object that specifies how data set contents are automatically created.</p>",
+      "base": "<p>A <code>DatasetAction</code> object that specifies how data set contents are automatically created.</p>",
       "refs": {
         "DatasetActions$member": null
       }
@@ -323,17 +323,17 @@
       "base": null,
       "refs": {
         "DatasetAction$actionName": "<p>The name of the data set action by which data set contents are automatically created.</p>",
-        "DatasetActionSummary$actionName": "<p>The name of the action which automatically creates the data set's contents.</p>"
+        "DatasetActionSummary$actionName": "<p>The name of the action that automatically creates the dataset's contents.</p>"
       }
     },
     "DatasetActionSummaries": {
       "base": null,
       "refs": {
-        "DatasetSummary$actions": "<p>A list of \"DataActionSummary\" objects.</p>"
+        "DatasetSummary$actions": "<p>A list of <code>DataActionSummary</code> objects.</p>"
       }
     },
     "DatasetActionSummary": {
-      "base": "<p>Information about the action which automatically creates the data set's contents.</p>",
+      "base": "<p>Information about the action that automatically creates the dataset's contents.</p>",
       "refs": {
         "DatasetActionSummaries$member": null
       }
@@ -341,32 +341,32 @@
     "DatasetActionType": {
       "base": null,
       "refs": {
-        "DatasetActionSummary$actionType": "<p>The type of action by which the data set's contents are automatically created.</p>"
+        "DatasetActionSummary$actionType": "<p>The type of action by which the dataset's contents are automatically created.</p>"
       }
     },
     "DatasetActions": {
       "base": null,
       "refs": {
         "CreateDatasetRequest$actions": "<p>A list of actions that create the data set contents.</p>",
-        "Dataset$actions": "<p>The \"DatasetAction\" objects that automatically create the data set contents.</p>",
-        "UpdateDatasetRequest$actions": "<p>A list of \"DatasetAction\" objects.</p>"
+        "Dataset$actions": "<p>The <code>DatasetAction</code> objects that automatically create the data set contents.</p>",
+        "UpdateDatasetRequest$actions": "<p>A list of <code>DatasetAction</code> objects.</p>"
       }
     },
     "DatasetArn": {
       "base": null,
       "refs": {
-        "CreateDatasetResponse$datasetArn": "<p>The ARN of the data set.</p>",
+        "CreateDatasetResponse$datasetArn": "<p>The ARN of the dataset.</p>",
         "Dataset$arn": "<p>The ARN of the data set.</p>"
       }
     },
     "DatasetContentDeliveryDestination": {
-      "base": "<p>The destination to which data set contents are delivered.</p>",
+      "base": "<p>The destination to which dataset contents are delivered.</p>",
       "refs": {
-        "DatasetContentDeliveryRule$destination": "<p>The destination to which data set contents are delivered.</p>"
+        "DatasetContentDeliveryRule$destination": "<p>The destination to which dataset contents are delivered.</p>"
       }
     },
     "DatasetContentDeliveryRule": {
-      "base": "<p>When data set contents are created they are delivered to destination specified here.</p>",
+      "base": "<p>When dataset contents are created, they are delivered to destination specified here.</p>",
       "refs": {
         "DatasetContentDeliveryRules$member": null
       }
@@ -374,15 +374,15 @@
     "DatasetContentDeliveryRules": {
       "base": null,
       "refs": {
-        "CreateDatasetRequest$contentDeliveryRules": "<p>When data set contents are created they are delivered to destinations specified here.</p>",
-        "Dataset$contentDeliveryRules": "<p>When data set contents are created they are delivered to destinations specified here.</p>",
-        "UpdateDatasetRequest$contentDeliveryRules": "<p>When data set contents are created they are delivered to destinations specified here.</p>"
+        "CreateDatasetRequest$contentDeliveryRules": "<p>When dataset contents are created, they are delivered to destinations specified here.</p>",
+        "Dataset$contentDeliveryRules": "<p>When dataset contents are created they are delivered to destinations specified here.</p>",
+        "UpdateDatasetRequest$contentDeliveryRules": "<p>When dataset contents are created, they are delivered to destinations specified here.</p>"
       }
     },
     "DatasetContentState": {
       "base": null,
       "refs": {
-        "DatasetContentStatus$state": "<p>The state of the data set contents. Can be one of \"READY\", \"CREATING\", \"SUCCEEDED\" or \"FAILED\".</p>"
+        "DatasetContentStatus$state": "<p>The state of the data set contents. Can be one of READY, CREATING, SUCCEEDED, or FAILED.</p>"
       }
     },
     "DatasetContentStatus": {
@@ -399,7 +399,7 @@
       }
     },
     "DatasetContentSummary": {
-      "base": "<p>Summary information about data set contents.</p>",
+      "base": "<p>Summary information about dataset contents.</p>",
       "refs": {
         "DatasetContentSummaries$member": null
       }
@@ -407,22 +407,23 @@
     "DatasetContentVersion": {
       "base": null,
       "refs": {
-        "CreateDatasetContentResponse$versionId": "<p>The version ID of the data set contents which are being created.</p>",
-        "DatasetContentSummary$version": "<p>The version of the data set contents.</p>",
-        "DeleteDatasetContentRequest$versionId": "<p>The version of the data set whose content is deleted. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to delete the latest or latest successfully completed data set. If not specified, \"$LATEST_SUCCEEDED\" is the default.</p>",
+        "CreateDatasetContentRequest$versionId": "<p>The version ID of the dataset content. To specify <code>versionId</code> for a dataset content, the dataset must use a <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html\">DeltaTimer</a> filter.</p>",
+        "CreateDatasetContentResponse$versionId": "<p>The version ID of the dataset contents that are being created.</p>",
+        "DatasetContentSummary$version": "<p>The version of the dataset contents.</p>",
+        "DeleteDatasetContentRequest$versionId": "<p>The version of the dataset whose content is deleted. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to delete the latest or latest successfully completed data set. If not specified, \"$LATEST_SUCCEEDED\" is the default.</p>",
         "GetDatasetContentRequest$versionId": "<p>The version of the data set whose contents are retrieved. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to retrieve the contents of the latest or latest successfully completed data set. If not specified, \"$LATEST_SUCCEEDED\" is the default.</p>"
       }
     },
     "DatasetContentVersionValue": {
-      "base": "<p>The data set whose latest contents are used as input to the notebook or application.</p>",
+      "base": "<p>The dataset whose latest contents are used as input to the notebook or application.</p>",
       "refs": {
-        "Variable$datasetContentVersionValue": "<p>The value of the variable as a structure that specifies a data set content version.</p>"
+        "Variable$datasetContentVersionValue": "<p>The value of the variable as a structure that specifies a dataset content version.</p>"
       }
     },
     "DatasetEntries": {
       "base": null,
       "refs": {
-        "GetDatasetContentResponse$entries": "<p>A list of \"DatasetEntry\" objects.</p>"
+        "GetDatasetContentResponse$entries": "<p>A list of <code>DatasetEntry</code> objects.</p>"
       }
     },
     "DatasetEntry": {
@@ -434,18 +435,18 @@
     "DatasetName": {
       "base": null,
       "refs": {
-        "CreateDatasetContentRequest$datasetName": "<p>The name of the data set.</p>",
+        "CreateDatasetContentRequest$datasetName": "<p>The name of the dataset.</p>",
         "CreateDatasetRequest$datasetName": "<p>The name of the data set.</p>",
-        "CreateDatasetResponse$datasetName": "<p>The name of the data set.</p>",
+        "CreateDatasetResponse$datasetName": "<p>The name of the dataset.</p>",
         "Dataset$name": "<p>The name of the data set.</p>",
-        "DatasetContentVersionValue$datasetName": "<p>The name of the data set whose latest contents are used as input to the notebook or application.</p>",
+        "DatasetContentVersionValue$datasetName": "<p>The name of the dataset whose latest contents are used as input to the notebook or application.</p>",
         "DatasetSummary$datasetName": "<p>The name of the data set.</p>",
-        "DeleteDatasetContentRequest$datasetName": "<p>The name of the data set whose content is deleted.</p>",
+        "DeleteDatasetContentRequest$datasetName": "<p>The name of the dataset whose content is deleted.</p>",
         "DeleteDatasetRequest$datasetName": "<p>The name of the data set to delete.</p>",
         "DescribeDatasetRequest$datasetName": "<p>The name of the data set whose information is retrieved.</p>",
         "GetDatasetContentRequest$datasetName": "<p>The name of the data set whose contents are retrieved.</p>",
         "ListDatasetContentsRequest$datasetName": "<p>The name of the data set whose contents information you want to list.</p>",
-        "TriggeringDataset$name": "<p>The name of the data set whose content generation triggers the new data set content generation.</p>",
+        "TriggeringDataset$name": "<p>The name of the dataset whose content generation triggers the new dataset content generation.</p>",
         "UpdateDatasetRequest$datasetName": "<p>The name of the data set to update.</p>"
       }
     },
@@ -459,7 +460,7 @@
     "DatasetSummaries": {
       "base": null,
       "refs": {
-        "ListDatasetsResponse$datasetSummaries": "<p>A list of \"DatasetSummary\" objects.</p>"
+        "ListDatasetsResponse$datasetSummaries": "<p>A list of <code>DatasetSummary</code> objects.</p>"
       }
     },
     "DatasetSummary": {
@@ -469,7 +470,7 @@
       }
     },
     "DatasetTrigger": {
-      "base": "<p>The \"DatasetTrigger\" that specifies when the data set is automatically updated.</p>",
+      "base": "<p>The <code>DatasetTrigger</code> that specifies when the data set is automatically updated.</p>",
       "refs": {
         "DatasetTriggers$member": null
       }
@@ -477,10 +478,10 @@
     "DatasetTriggers": {
       "base": null,
       "refs": {
-        "CreateDatasetRequest$triggers": "<p>A list of triggers. A trigger causes data set contents to be populated at a specified time interval or when another data set's contents are created. The list of triggers can be empty or contain up to five <b>DataSetTrigger</b> objects.</p>",
-        "Dataset$triggers": "<p>The \"DatasetTrigger\" objects that specify when the data set is automatically updated.</p>",
-        "DatasetSummary$triggers": "<p>A list of triggers. A trigger causes data set content to be populated at a specified time interval or when another data set is populated. The list of triggers can be empty or contain up to five DataSetTrigger objects</p>",
-        "UpdateDatasetRequest$triggers": "<p>A list of \"DatasetTrigger\" objects. The list can be empty or can contain up to five <b>DataSetTrigger</b> objects.</p>"
+        "CreateDatasetRequest$triggers": "<p>A list of triggers. A trigger causes data set contents to be populated at a specified time interval or when another data set's contents are created. The list of triggers can be empty or contain up to five <code>DataSetTrigger</code> objects.</p>",
+        "Dataset$triggers": "<p>The <code>DatasetTrigger</code> objects that specify when the data set is automatically updated.</p>",
+        "DatasetSummary$triggers": "<p>A list of triggers. A trigger causes data set content to be populated at a specified time interval or when another data set is populated. The list of triggers can be empty or contain up to five <code>DataSetTrigger</code> objects</p>",
+        "UpdateDatasetRequest$triggers": "<p>A list of <code>DatasetTrigger</code> objects. The list can be empty or can contain up to five <code>DatasetTrigger</code> objects.</p>"
       }
     },
     "Datastore": {
@@ -490,7 +491,7 @@
       }
     },
     "DatastoreActivity": {
-      "base": "<p>The 'datastore' activity that specifies where to store the processed data.</p>",
+      "base": "<p>The datastore activity that specifies where to store the processed data.</p>",
       "refs": {
         "PipelineActivity$datastore": "<p>Specifies where to store the processed message data.</p>"
       }
@@ -518,7 +519,7 @@
     "DatastoreStatistics": {
       "base": "<p>Statistical information about the data store.</p>",
       "refs": {
-        "DescribeDatastoreResponse$statistics": "<p>Additional statistical information about the data store. Included if the 'includeStatistics' parameter is set to true in the request.</p>"
+        "DescribeDatastoreResponse$statistics": "<p>Additional statistical information about the data store. Included if the <code>includeStatistics</code> parameter is set to <code>true</code> in the request.</p>"
       }
     },
     "DatastoreStatus": {
@@ -529,11 +530,11 @@
       }
     },
     "DatastoreStorage": {
-      "base": "<p>Where data store data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after the data store is created.</p>",
+      "base": "<p>Where data store data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. You cannot change this storage option after the data store is created.</p>",
       "refs": {
-        "CreateDatastoreRequest$datastoreStorage": "<p>Where data store data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after the data store is created.</p>",
-        "Datastore$storage": "<p>Where data store data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after the data store is created.</p>",
-        "UpdateDatastoreRequest$datastoreStorage": "<p>Where data store data is stored. You may choose one of \"serviceManagedS3\" or \"customerManagedS3\" storage. If not specified, the default is \"serviceManagedS3\". This cannot be changed after the data store is created.</p>"
+        "CreateDatastoreRequest$datastoreStorage": "<p>Where data store data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. You cannot change this storage option after the data store is created.</p>",
+        "Datastore$storage": "<p>Where data store data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is <code>serviceManagedS3</code>. You cannot change this storage option after the data store is created.</p>",
+        "UpdateDatastoreRequest$datastoreStorage": "<p>Where data store data is stored. You can choose one of <code>serviceManagedS3</code> or <code>customerManagedS3</code> storage. If not specified, the default is<code>serviceManagedS3</code>. You cannot change this storage option after the data store is created.</p>"
       }
     },
     "DatastoreStorageSummary": {
@@ -545,7 +546,7 @@
     "DatastoreSummaries": {
       "base": null,
       "refs": {
-        "ListDatastoresResponse$datastoreSummaries": "<p>A list of \"DatastoreSummary\" objects.</p>"
+        "ListDatastoresResponse$datastoreSummaries": "<p>A list of <code>DatastoreSummary</code> objects.</p>"
       }
     },
     "DatastoreSummary": {
@@ -583,6 +584,12 @@
       "base": "<p>Used to limit data to that which has arrived since the last execution of the action.</p>",
       "refs": {
         "QueryFilter$deltaTime": "<p>Used to limit data to that which has arrived since the last execution of the action.</p>"
+      }
+    },
+    "DeltaTimeSessionWindowConfiguration": {
+      "base": "<p>A structure that contains the configuration information of a delta time session window.</p> <p> <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html\"> <code>DeltaTime</code> </a> specifies a time interval. You can use <code>DeltaTime</code> to create dataset contents with data that has arrived in the data store since the last execution. For an example of <code>DeltaTime</code>, see <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/userguide/automate-create-dataset.html#automate-example6\"> Creating a SQL dataset with a delta window (CLI)</a> in the <i>AWS IoT Analytics User Guide</i>.</p>",
+      "refs": {
+        "LateDataRuleConfiguration$deltaTimeSessionWindowConfiguration": "<p>The information needed to configure a delta time session window.</p>"
       }
     },
     "DescribeChannelRequest": {
@@ -642,9 +649,9 @@
       }
     },
     "DeviceShadowEnrichActivity": {
-      "base": "<p>An activity that adds information from the AWS IoT Device Shadows service to a message.</p>",
+      "base": "<p>An activity that adds information from the AWS IoT Device Shadow service to a message.</p>",
       "refs": {
-        "PipelineActivity$deviceShadowEnrich": "<p>Adds information from the AWS IoT Device Shadows service to a message.</p>"
+        "PipelineActivity$deviceShadowEnrich": "<p>Adds information from the AWS IoT Device Shadow service to a message.</p>"
       }
     },
     "DoubleValue": {
@@ -663,7 +670,7 @@
     "EntryName": {
       "base": null,
       "refs": {
-        "DatasetContentDeliveryRule$entryName": "<p>The name of the data set content delivery rules entry.</p>",
+        "DatasetContentDeliveryRule$entryName": "<p>The name of the dataset content delivery rules entry.</p>",
         "DatasetEntry$entryName": "<p>The name of the data set item.</p>"
       }
     },
@@ -695,7 +702,7 @@
     "FilterExpression": {
       "base": null,
       "refs": {
-        "FilterActivity$filter": "<p>An expression that looks like a SQL WHERE clause that must return a Boolean value.</p>"
+        "FilterActivity$filter": "<p>An expression that looks like a SQL WHERE clause that must return a Boolean value. Messages that satisfy the condition are passed to the next activity. </p>"
       }
     },
     "GetDatasetContentRequest": {
@@ -709,27 +716,27 @@
       }
     },
     "GlueConfiguration": {
-      "base": "<p>Configuration information for coordination with the AWS Glue ETL (extract, transform and load) service.</p>",
+      "base": "<p>Configuration information for coordination with AWS Glue, a fully managed extract, transform and load (ETL) service.</p>",
       "refs": {
-        "S3DestinationConfiguration$glueConfiguration": "<p>Configuration information for coordination with the AWS Glue ETL (extract, transform and load) service.</p>"
+        "S3DestinationConfiguration$glueConfiguration": "<p>Configuration information for coordination with AWS Glue, a fully managed extract, transform and load (ETL) service.</p>"
       }
     },
     "GlueDatabaseName": {
       "base": null,
       "refs": {
-        "GlueConfiguration$databaseName": "<p>The name of the database in your AWS Glue Data Catalog in which the table is located. (An AWS Glue Data Catalog database contains Glue Data tables.)</p>"
+        "GlueConfiguration$databaseName": "<p>The name of the database in your AWS Glue Data Catalog in which the table is located. An AWS Glue Data Catalog database contains metadata tables.</p>"
       }
     },
     "GlueTableName": {
       "base": null,
       "refs": {
-        "GlueConfiguration$tableName": "<p>The name of the table in your AWS Glue Data Catalog which is used to perform the ETL (extract, transform and load) operations. (An AWS Glue Data Catalog table contains partitioned data and descriptions of data sources and targets.)</p>"
+        "GlueConfiguration$tableName": "<p>The name of the table in your AWS Glue Data Catalog that is used to perform the ETL operations. An AWS Glue Data Catalog table contains partitioned data and descriptions of data sources and targets.</p>"
       }
     },
     "Image": {
       "base": null,
       "refs": {
-        "ContainerDatasetAction$image": "<p>The ARN of the Docker container stored in your account. The Docker container contains an application and needed support libraries and is used to generate data set contents.</p>"
+        "ContainerDatasetAction$image": "<p>The ARN of the Docker container stored in your account. The Docker container contains an application and required support libraries and is used to generate dataset contents.</p>"
       }
     },
     "IncludeStatisticsFlag": {
@@ -750,15 +757,15 @@
       }
     },
     "IotEventsDestinationConfiguration": {
-      "base": "<p>Configuration information for delivery of data set contents to AWS IoT Events.</p>",
+      "base": "<p>Configuration information for delivery of dataset contents to AWS IoT Events.</p>",
       "refs": {
-        "DatasetContentDeliveryDestination$iotEventsDestinationConfiguration": "<p>Configuration information for delivery of data set contents to AWS IoT Events.</p>"
+        "DatasetContentDeliveryDestination$iotEventsDestinationConfiguration": "<p>Configuration information for delivery of dataset contents to AWS IoT Events.</p>"
       }
     },
     "IotEventsInputName": {
       "base": null,
       "refs": {
-        "IotEventsDestinationConfiguration$inputName": "<p>The name of the AWS IoT Events input to which data set contents are delivered.</p>"
+        "IotEventsDestinationConfiguration$inputName": "<p>The name of the AWS IoT Events input to which dataset contents are delivered.</p>"
       }
     },
     "LambdaActivity": {
@@ -771,6 +778,32 @@
       "base": null,
       "refs": {
         "LambdaActivity$lambdaName": "<p>The name of the Lambda function that is run on the message.</p>"
+      }
+    },
+    "LateDataRule": {
+      "base": "<p>A structure that contains the name and configuration information of a late data rule.</p>",
+      "refs": {
+        "LateDataRules$member": null
+      }
+    },
+    "LateDataRuleConfiguration": {
+      "base": "<p>The information needed to configure a delta time session window.</p>",
+      "refs": {
+        "LateDataRule$ruleConfiguration": "<p>The information needed to configure the late data rule.</p>"
+      }
+    },
+    "LateDataRuleName": {
+      "base": null,
+      "refs": {
+        "LateDataRule$ruleName": "<p>The name of the late data rule.</p>"
+      }
+    },
+    "LateDataRules": {
+      "base": null,
+      "refs": {
+        "CreateDatasetRequest$lateDataRules": "<p>A list of data rules that send notifications to Amazon CloudWatch, when data arrives late. To specify <code>lateDataRules</code>, the dataset must use a <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html\">DeltaTimer</a> filter.</p>",
+        "Dataset$lateDataRules": "<p>A list of data rules that send notifications to Amazon CloudWatch, when data arrives late. To specify <code>lateDataRules</code>, the dataset must use a <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html\">DeltaTimer</a> filter.</p>",
+        "UpdateDatasetRequest$lateDataRules": "<p>A list of data rules that send notifications to Amazon CloudWatch, when data arrives late. To specify <code>lateDataRules</code>, the dataset must use a <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_DeltaTime.html\">DeltaTimer</a> filter.</p>"
       }
     },
     "LimitExceededException": {
@@ -853,7 +886,7 @@
     "LoggingLevel": {
       "base": null,
       "refs": {
-        "LoggingOptions$level": "<p>The logging level. Currently, only \"ERROR\" is supported.</p>"
+        "LoggingOptions$level": "<p>The logging level. Currently, only ERROR is supported.</p>"
       }
     },
     "LoggingOptions": {
@@ -878,7 +911,7 @@
     "MaxMessages": {
       "base": null,
       "refs": {
-        "SampleChannelDataRequest$maxMessages": "<p>The number of sample messages to be retrieved. The limit is 10, the default is also 10.</p>"
+        "SampleChannelDataRequest$maxMessages": "<p>The number of sample messages to be retrieved. The limit is 10. The default is also 10.</p>"
       }
     },
     "MaxResults": {
@@ -894,7 +927,7 @@
     "MaxVersions": {
       "base": null,
       "refs": {
-        "VersioningConfiguration$maxVersions": "<p>How many versions of data set contents will be kept. The \"unlimited\" parameter must be false.</p>"
+        "VersioningConfiguration$maxVersions": "<p>How many versions of dataset contents are kept. The <code>unlimited</code> parameter must be <code>false</code>.</p>"
       }
     },
     "Message": {
@@ -906,14 +939,14 @@
     "MessageId": {
       "base": null,
       "refs": {
-        "BatchPutMessageErrorEntry$messageId": "<p>The ID of the message that caused the error. (See the value corresponding to the \"messageId\" key in the message object.)</p>",
-        "Message$messageId": "<p>The ID you wish to assign to the message. Each \"messageId\" must be unique within each batch sent.</p>"
+        "BatchPutMessageErrorEntry$messageId": "<p>The ID of the message that caused the error. See the value corresponding to the <code>messageId</code> key in the message object.</p>",
+        "Message$messageId": "<p>The ID you want to assign to the message. Each <code>messageId</code> must be unique within each batch sent.</p>"
       }
     },
     "MessagePayload": {
       "base": null,
       "refs": {
-        "Message$payload": "<p>The payload of the message. This may be a JSON string or a Base64-encoded string representing binary data (in which case you must decode it by means of a pipeline activity).</p>",
+        "Message$payload": "<p>The payload of the message. This can be a JSON string or a base64-encoded string representing binary data, in which case you must decode it by means of a pipeline activity.</p>",
         "MessagePayloads$member": null
       }
     },
@@ -928,7 +961,7 @@
     "Messages": {
       "base": null,
       "refs": {
-        "BatchPutMessageRequest$messages": "<p>The list of messages to be sent. Each message has format: '{ \"messageId\": \"string\", \"payload\": \"string\"}'.</p> <p>Note that the field names of message payloads (data) that you send to AWS IoT Analytics:</p> <ul> <li> <p>Must contain only alphanumeric characters and undescores (_); no other special characters are allowed.</p> </li> <li> <p>Must begin with an alphabetic character or single underscore (_).</p> </li> <li> <p>Cannot contain hyphens (-).</p> </li> <li> <p>In regular expression terms: \"^[A-Za-z_]([A-Za-z0-9]*|[A-Za-z0-9][A-Za-z0-9_]*)$\". </p> </li> <li> <p>Cannot be greater than 255 characters.</p> </li> <li> <p>Are case-insensitive. (Fields named \"foo\" and \"FOO\" in the same payload are considered duplicates.)</p> </li> </ul> <p>For example, {\"temp_01\": 29} or {\"_temp_01\": 29} are valid, but {\"temp-01\": 29}, {\"01_temp\": 29} or {\"__temp_01\": 29} are invalid in message payloads. </p>"
+        "BatchPutMessageRequest$messages": "<p>The list of messages to be sent. Each message has the format: { \"messageId\": \"string\", \"payload\": \"string\"}.</p> <p>The field names of message payloads (data) that you send to AWS IoT Analytics:</p> <ul> <li> <p>Must contain only alphanumeric characters and undescores (_). No other special characters are allowed.</p> </li> <li> <p>Must begin with an alphabetic character or single underscore (_).</p> </li> <li> <p>Cannot contain hyphens (-).</p> </li> <li> <p>In regular expression terms: \"^[A-Za-z_]([A-Za-z0-9]*|[A-Za-z0-9][A-Za-z0-9_]*)$\". </p> </li> <li> <p>Cannot be more than 255 characters.</p> </li> <li> <p>Are case insensitive. (Fields named foo and FOO in the same payload are considered duplicates.)</p> </li> </ul> <p>For example, {\"temp_01\": 29} or {\"_temp_01\": 29} are valid, but {\"temp-01\": 29}, {\"01_temp\": 29} or {\"__temp_01\": 29} are invalid in message payloads. </p>"
       }
     },
     "NextToken": {
@@ -949,13 +982,13 @@
     "OffsetSeconds": {
       "base": null,
       "refs": {
-        "DeltaTime$offsetSeconds": "<p>The number of seconds of estimated \"in flight\" lag time of message data. When you create data set contents using message data from a specified time frame, some message data may still be \"in flight\" when processing begins, and so will not arrive in time to be processed. Use this field to make allowances for the \"in flight\" time of your message data, so that data not processed from a previous time frame will be included with the next time frame. Without this, missed message data would be excluded from processing during the next time frame as well, because its timestamp places it within the previous time frame.</p>"
+        "DeltaTime$offsetSeconds": "<p>The number of seconds of estimated in-flight lag time of message data. When you create dataset contents using message data from a specified timeframe, some message data might still be in flight when processing begins, and so do not arrive in time to be processed. Use this field to make allowances for the in flight time of your message data, so that data not processed from a previous timeframe is included with the next timeframe. Otherwise, missed message data would be excluded from processing during the next timeframe too, because its timestamp places it within the previous timeframe.</p>"
       }
     },
     "OutputFileName": {
       "base": null,
       "refs": {
-        "OutputFileUriValue$fileName": "<p>The URI of the location where data set contents are stored, usually the URI of a file in an S3 bucket.</p>"
+        "OutputFileUriValue$fileName": "<p>The URI of the location where dataset contents are stored, usually the URI of a file in an S3 bucket.</p>"
       }
     },
     "OutputFileUriValue": {
@@ -967,22 +1000,22 @@
     "Pipeline": {
       "base": "<p>Contains information about a pipeline.</p>",
       "refs": {
-        "DescribePipelineResponse$pipeline": "<p>A \"Pipeline\" object that contains information about the pipeline.</p>"
+        "DescribePipelineResponse$pipeline": "<p>A <code>Pipeline</code> object that contains information about the pipeline.</p>"
       }
     },
     "PipelineActivities": {
       "base": null,
       "refs": {
-        "CreatePipelineRequest$pipelineActivities": "<p>A list of \"PipelineActivity\" objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda functions on messages for advanced processing; or performing mathematical transformations to normalize device data.</p> <p>The list can be 2-25 <b>PipelineActivity</b> objects and must contain both a <code>channel</code> and a <code>datastore</code> activity. Each entry in the list must contain only one activity, for example:</p> <p> <code>pipelineActivities = [ { \"channel\": { ... } }, { \"lambda\": { ... } }, ... ]</code> </p>",
+        "CreatePipelineRequest$pipelineActivities": "<p>A list of <code>PipelineActivity</code> objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda functions on messages for advanced processing; or performing mathematical transformations to normalize device data.</p> <p>The list can be 2-25 <code>PipelineActivity</code> objects and must contain both a <code>channel</code> and a <code>datastore</code> activity. Each entry in the list must contain only one activity. For example:</p> <p> <code>pipelineActivities = [ { \"channel\": { ... } }, { \"lambda\": { ... } }, ... ]</code> </p>",
         "Pipeline$activities": "<p>The activities that perform transformations on the messages.</p>",
-        "UpdatePipelineRequest$pipelineActivities": "<p>A list of \"PipelineActivity\" objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda functions on messages for advanced processing; or performing mathematical transformations to normalize device data.</p> <p>The list can be 2-25 <b>PipelineActivity</b> objects and must contain both a <code>channel</code> and a <code>datastore</code> activity. Each entry in the list must contain only one activity, for example:</p> <p> <code>pipelineActivities = [ { \"channel\": { ... } }, { \"lambda\": { ... } }, ... ]</code> </p>"
+        "UpdatePipelineRequest$pipelineActivities": "<p>A list of <code>PipelineActivity</code> objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda functions on messages for advanced processing; or performing mathematical transformations to normalize device data.</p> <p>The list can be 2-25 <code>PipelineActivity</code> objects and must contain both a <code>channel</code> and a <code>datastore</code> activity. Each entry in the list must contain only one activity. For example:</p> <p> <code>pipelineActivities = [ { \"channel\": { ... } }, { \"lambda\": { ... } }, ... ]</code> </p>"
       }
     },
     "PipelineActivity": {
       "base": "<p>An activity that performs a transformation on a message.</p>",
       "refs": {
         "PipelineActivities$member": null,
-        "RunPipelineActivityRequest$pipelineActivity": "<p>The pipeline activity that is run. This must not be a 'channel' activity or a 'datastore' activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a 'lambda' activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.</p>"
+        "RunPipelineActivityRequest$pipelineActivity": "<p>The pipeline activity that is run. This must not be a channel activity or a datastore activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a lambda activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.</p>"
       }
     },
     "PipelineArn": {
@@ -1009,7 +1042,7 @@
     "PipelineSummaries": {
       "base": null,
       "refs": {
-        "ListPipelinesResponse$pipelineSummaries": "<p>A list of \"PipelineSummary\" objects.</p>"
+        "ListPipelinesResponse$pipelineSummaries": "<p>A list of <code>PipelineSummary</code> objects.</p>"
       }
     },
     "PipelineSummary": {
@@ -1021,7 +1054,7 @@
     "PresignedURI": {
       "base": null,
       "refs": {
-        "DatasetEntry$dataURI": "<p>The pre-signed URI of the data set item.</p>"
+        "DatasetEntry$dataURI": "<p>The presigned URI of the data set item.</p>"
       }
     },
     "PutLoggingOptionsRequest": {
@@ -1030,7 +1063,7 @@
       }
     },
     "QueryFilter": {
-      "base": "<p>Information which is used to filter message data, to segregate it according to the time frame in which it arrives.</p>",
+      "base": "<p>Information that is used to filter message data, to segregate it according to the timeframe in which it arrives.</p>",
       "refs": {
         "QueryFilters$member": null
       }
@@ -1038,7 +1071,7 @@
     "QueryFilters": {
       "base": null,
       "refs": {
-        "SqlQueryDatasetAction$filters": "<p>Pre-filters applied to message data.</p>"
+        "SqlQueryDatasetAction$filters": "<p>Prefilters applied to message data.</p>"
       }
     },
     "Reason": {
@@ -1056,8 +1089,8 @@
     "ReprocessingId": {
       "base": null,
       "refs": {
-        "CancelPipelineReprocessingRequest$reprocessingId": "<p>The ID of the reprocessing task (returned by \"StartPipelineReprocessing\").</p>",
-        "ReprocessingSummary$id": "<p>The 'reprocessingId' returned by \"StartPipelineReprocessing\".</p>",
+        "CancelPipelineReprocessingRequest$reprocessingId": "<p>The ID of the reprocessing task (returned by <code>StartPipelineReprocessing</code>).</p>",
+        "ReprocessingSummary$id": "<p>The <code>reprocessingId</code> returned by <code>StartPipelineReprocessing</code>.</p>",
         "StartPipelineReprocessingResponse$reprocessingId": "<p>The ID of the pipeline reprocessing activity that was started.</p>"
       }
     },
@@ -1094,9 +1127,9 @@
       }
     },
     "ResourceConfiguration": {
-      "base": "<p>The configuration of the resource used to execute the \"containerAction\".</p>",
+      "base": "<p>The configuration of the resource used to execute the <code>containerAction</code>.</p>",
       "refs": {
-        "ContainerDatasetAction$resourceConfiguration": "<p>Configuration of the resource which executes the \"containerAction\".</p>"
+        "ContainerDatasetAction$resourceConfiguration": "<p>Configuration of the resource that executes the <code>containerAction</code>.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1108,38 +1141,38 @@
       "base": "<p>How long, in days, message data is kept.</p>",
       "refs": {
         "Channel$retentionPeriod": "<p>How long, in days, message data is kept for the channel.</p>",
-        "CreateChannelRequest$retentionPeriod": "<p>How long, in days, message data is kept for the channel. When \"customerManagedS3\" storage is selected, this parameter is ignored.</p>",
+        "CreateChannelRequest$retentionPeriod": "<p>How long, in days, message data is kept for the channel. When <code>customerManagedS3</code> storage is selected, this parameter is ignored.</p>",
         "CreateChannelResponse$retentionPeriod": "<p>How long, in days, message data is kept for the channel.</p>",
-        "CreateDatasetRequest$retentionPeriod": "<p>[Optional] How long, in days, versions of data set contents are kept for the data set. If not specified or set to null, versions of data set contents are retained for at most 90 days. The number of versions of data set contents retained is determined by the <code>versioningConfiguration</code> parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)</p>",
-        "CreateDatasetResponse$retentionPeriod": "<p>How long, in days, data set contents are kept for the data set.</p>",
-        "CreateDatastoreRequest$retentionPeriod": "<p>How long, in days, message data is kept for the data store. When \"customerManagedS3\" storage is selected, this parameter is ignored.</p>",
+        "CreateDatasetRequest$retentionPeriod": "<p>Optional. How long, in days, versions of dataset contents are kept for the dataset. If not specified or set to <code>null</code>, versions of dataset contents are retained for at most 90 days. The number of versions of dataset contents retained is determined by the <code>versioningConfiguration</code> parameter. For more information, see <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions\">Keeping Multiple Versions of AWS IoT Analytics Data Sets</a> in the <i>AWS IoT Analytics User Guide</i>.</p>",
+        "CreateDatasetResponse$retentionPeriod": "<p>How long, in days, dataset contents are kept for the dataset.</p>",
+        "CreateDatastoreRequest$retentionPeriod": "<p>How long, in days, message data is kept for the data store. When <code>customerManagedS3</code> storage is selected, this parameter is ignored.</p>",
         "CreateDatastoreResponse$retentionPeriod": "<p>How long, in days, message data is kept for the data store.</p>",
-        "Dataset$retentionPeriod": "<p>[Optional] How long, in days, message data is kept for the data set.</p>",
-        "Datastore$retentionPeriod": "<p>How long, in days, message data is kept for the data store. When \"customerManagedS3\" storage is selected, this parameter is ignored.</p>",
+        "Dataset$retentionPeriod": "<p>Optional. How long, in days, message data is kept for the data set.</p>",
+        "Datastore$retentionPeriod": "<p>How long, in days, message data is kept for the data store. When <code>customerManagedS3</code> storage is selected, this parameter is ignored.</p>",
         "UpdateChannelRequest$retentionPeriod": "<p>How long, in days, message data is kept for the channel. The retention period cannot be updated if the channel's S3 storage is customer-managed.</p>",
-        "UpdateDatasetRequest$retentionPeriod": "<p>How long, in days, data set contents are kept for the data set.</p>",
+        "UpdateDatasetRequest$retentionPeriod": "<p>How long, in days, dataset contents are kept for the dataset.</p>",
         "UpdateDatastoreRequest$retentionPeriod": "<p>How long, in days, message data is kept for the data store. The retention period cannot be updated if the data store's S3 storage is customer-managed.</p>"
       }
     },
     "RetentionPeriodInDays": {
       "base": null,
       "refs": {
-        "RetentionPeriod$numberOfDays": "<p>The number of days that message data is kept. The \"unlimited\" parameter must be false.</p>"
+        "RetentionPeriod$numberOfDays": "<p>The number of days that message data is kept. The <code>unlimited</code> parameter must be false.</p>"
       }
     },
     "RoleArn": {
       "base": null,
       "refs": {
-        "ContainerDatasetAction$executionRoleArn": "<p>The ARN of the role which gives permission to the system to access needed resources in order to run the \"containerAction\". This includes, at minimum, permission to retrieve the data set contents which are the input to the containerized application.</p>",
-        "CustomerManagedChannelS3Storage$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
-        "CustomerManagedChannelS3StorageSummary$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
-        "CustomerManagedDatastoreS3Storage$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
-        "CustomerManagedDatastoreS3StorageSummary$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "ContainerDatasetAction$executionRoleArn": "<p>The ARN of the role that gives permission to the system to access required resources to run the <code>containerAction</code>. This includes, at minimum, permission to retrieve the dataset contents that are the input to the containerized application.</p>",
+        "CustomerManagedChannelS3Storage$roleArn": "<p>The ARN of the role that grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "CustomerManagedChannelS3StorageSummary$roleArn": "<p>The ARN of the role that grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "CustomerManagedDatastoreS3Storage$roleArn": "<p>The ARN of the role that grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
+        "CustomerManagedDatastoreS3StorageSummary$roleArn": "<p>The ARN of the role that grants AWS IoT Analytics permission to interact with your Amazon S3 resources.</p>",
         "DeviceRegistryEnrichActivity$roleArn": "<p>The ARN of the role that allows access to the device's registry information.</p>",
         "DeviceShadowEnrichActivity$roleArn": "<p>The ARN of the role that allows access to the device's shadow.</p>",
-        "IotEventsDestinationConfiguration$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to deliver data set contents to an AWS IoT Events input.</p>",
+        "IotEventsDestinationConfiguration$roleArn": "<p>The ARN of the role that grants AWS IoT Analytics permission to deliver dataset contents to an AWS IoT Events input.</p>",
         "LoggingOptions$roleArn": "<p>The ARN of the role that grants permission to AWS IoT Analytics to perform logging.</p>",
-        "S3DestinationConfiguration$roleArn": "<p>The ARN of the role which grants AWS IoT Analytics permission to interact with your Amazon S3 and AWS Glue resources.</p>"
+        "S3DestinationConfiguration$roleArn": "<p>The ARN of the role that grants AWS IoT Analytics permission to interact with your Amazon S3 and AWS Glue resources.</p>"
       }
     },
     "RunPipelineActivityRequest": {
@@ -1153,18 +1186,18 @@
       }
     },
     "S3DestinationConfiguration": {
-      "base": "<p>Configuration information for delivery of data set contents to Amazon S3.</p>",
+      "base": "<p>Configuration information for delivery of dataset contents to Amazon Simple Storage Service (Amazon S3).</p>",
       "refs": {
-        "DatasetContentDeliveryDestination$s3DestinationConfiguration": "<p>Configuration information for delivery of data set contents to Amazon S3.</p>"
+        "DatasetContentDeliveryDestination$s3DestinationConfiguration": "<p>Configuration information for delivery of dataset contents to Amazon S3.</p>"
       }
     },
     "S3KeyPrefix": {
       "base": null,
       "refs": {
-        "CustomerManagedChannelS3Storage$keyPrefix": "<p>[Optional] The prefix used to create the keys of the channel data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key). The prefix must end with a '/'.</p>",
-        "CustomerManagedChannelS3StorageSummary$keyPrefix": "<p>[Optional] The prefix used to create the keys of the channel data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key). The prefix must end with a '/'.</p>",
-        "CustomerManagedDatastoreS3Storage$keyPrefix": "<p>[Optional] The prefix used to create the keys of the data store data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key). The prefix must end with a '/'.</p>",
-        "CustomerManagedDatastoreS3StorageSummary$keyPrefix": "<p>[Optional] The prefix used to create the keys of the data store data objects. Each object in an Amazon S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key). The prefix must end with a '/'.</p>"
+        "CustomerManagedChannelS3Storage$keyPrefix": "<p>Optional. The prefix used to create the keys of the channel data objects. Each object in an S3 bucket has a key that is its unique identifier in the bucket. Each object in a bucket has exactly one key. The prefix must end with a forward slash (/).</p>",
+        "CustomerManagedChannelS3StorageSummary$keyPrefix": "<p>Optional. The prefix used to create the keys of the channel data objects. Each object in an S3 bucket has a key that is its unique identifier within the bucket (each object in a bucket has exactly one key). The prefix must end with a forward slash (/).</p>",
+        "CustomerManagedDatastoreS3Storage$keyPrefix": "<p>Optional. The prefix used to create the keys of the data store data objects. Each object in an S3 bucket has a key that is its unique identifier in the bucket. Each object in a bucket has exactly one key. The prefix must end with a forward slash (/).</p>",
+        "CustomerManagedDatastoreS3StorageSummary$keyPrefix": "<p>Optional. The prefix used to create the keys of the data store data objects. Each object in an S3 bucket has a key that is its unique identifier in the bucket. Each object in a bucket has exactly one key. The prefix must end with a forward slash (/).</p>"
       }
     },
     "SampleChannelDataRequest": {
@@ -1180,13 +1213,13 @@
     "Schedule": {
       "base": "<p>The schedule for when to trigger an update.</p>",
       "refs": {
-        "DatasetTrigger$schedule": "<p>The \"Schedule\" when the trigger is initiated.</p>"
+        "DatasetTrigger$schedule": "<p>The Schedule when the trigger is initiated.</p>"
       }
     },
     "ScheduleExpression": {
       "base": null,
       "refs": {
-        "Schedule$expression": "<p>The expression that defines when to trigger an update. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html\"> Schedule Expressions for Rules</a> in the Amazon CloudWatch Events User Guide.</p>"
+        "Schedule$expression": "<p>The expression that defines when to trigger an update. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html\">Schedule Expressions for Rules</a> in the <i>Amazon CloudWatch Events User Guide</i>.</p>"
       }
     },
     "SelectAttributesActivity": {
@@ -1196,27 +1229,27 @@
       }
     },
     "ServiceManagedChannelS3Storage": {
-      "base": "<p>Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics service. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the channel.</p>",
+      "base": "<p>Use this to store channel data in an S3 bucket managed by AWS IoT Analytics. You cannot change the choice of service-managed or customer-managed S3 storage after the channel is created.</p>",
       "refs": {
-        "ChannelStorage$serviceManagedS3": "<p>Use this to store channel data in an S3 bucket managed by the AWS IoT Analytics service. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the channel.</p>"
+        "ChannelStorage$serviceManagedS3": "<p>Use this to store channel data in an S3 bucket managed by AWS IoT Analytics. You cannot change the choice of service-managed or customer-managed S3 storage after the channel is created.</p>"
       }
     },
     "ServiceManagedChannelS3StorageSummary": {
-      "base": "<p>Used to store channel data in an S3 bucket managed by the AWS IoT Analytics service.</p>",
+      "base": "<p>Used to store channel data in an S3 bucket managed by AWS IoT Analytics.</p>",
       "refs": {
-        "ChannelStorageSummary$serviceManagedS3": "<p>Used to store channel data in an S3 bucket managed by the AWS IoT Analytics service.</p>"
+        "ChannelStorageSummary$serviceManagedS3": "<p>Used to store channel data in an S3 bucket managed by AWS IoT Analytics.</p>"
       }
     },
     "ServiceManagedDatastoreS3Storage": {
-      "base": "<p>Use this to store data store data in an S3 bucket managed by the AWS IoT Analytics service. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the data store.</p>",
+      "base": "<p>Use this to store data store data in an S3 bucket managed by AWS IoT Analytics. You cannot change the choice of service-managed or customer-managed S3 storage after the data store is created.</p>",
       "refs": {
-        "DatastoreStorage$serviceManagedS3": "<p>Use this to store data store data in an S3 bucket managed by the AWS IoT Analytics service. The choice of service-managed or customer-managed S3 storage cannot be changed after creation of the data store.</p>"
+        "DatastoreStorage$serviceManagedS3": "<p>Use this to store data store data in an S3 bucket managed by AWS IoT Analytics. You cannot change the choice of service-managed or customer-managed S3 storage after the data store is created.</p>"
       }
     },
     "ServiceManagedDatastoreS3StorageSummary": {
-      "base": "<p>Used to store data store data in an S3 bucket managed by the AWS IoT Analytics service.</p>",
+      "base": "<p>Used to store data store data in an S3 bucket managed by AWS IoT Analytics.</p>",
       "refs": {
-        "DatastoreStorageSummary$serviceManagedS3": "<p>Used to store data store data in an S3 bucket managed by the AWS IoT Analytics service.</p>"
+        "DatastoreStorageSummary$serviceManagedS3": "<p>Used to store data store data in an S3 bucket managed by AWS IoT Analytics.</p>"
       }
     },
     "ServiceUnavailableException": {
@@ -1224,10 +1257,16 @@
       "refs": {
       }
     },
+    "SessionTimeoutInMinutes": {
+      "base": null,
+      "refs": {
+        "DeltaTimeSessionWindowConfiguration$timeoutInMinutes": "<p>A time interval. You can use <code>timeoutInMinutes</code> so that AWS IoT Analytics can batch up late data notifications that have been generated since the last execution. AWS IoT Analytics sends one batch of notifications to Amazon CloudWatch Events at one time.</p> <p>For more information about how to write a timestamp expression, see <a href=\"https://prestodb.io/docs/0.172/functions/datetime.html\">Date and Time Functions and Operators</a>, in the <i>Presto 0.172 Documentation</i>.</p>"
+      }
+    },
     "SizeInBytes": {
       "base": null,
       "refs": {
-        "EstimatedResourceSize$estimatedSizeInBytes": "<p>The estimated size of the resource in bytes.</p>"
+        "EstimatedResourceSize$estimatedSizeInBytes": "<p>The estimated size of the resource, in bytes.</p>"
       }
     },
     "SqlQuery": {
@@ -1239,7 +1278,7 @@
     "SqlQueryDatasetAction": {
       "base": "<p>The SQL query to modify the message.</p>",
       "refs": {
-        "DatasetAction$queryAction": "<p>An \"SqlQueryDatasetAction\" object that uses an SQL query to automatically create data set contents.</p>"
+        "DatasetAction$queryAction": "<p>An <code>SqlQueryDatasetAction</code> object that uses an SQL query to automatically create data set contents.</p>"
       }
     },
     "StartPipelineReprocessingRequest": {
@@ -1266,7 +1305,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A set of key/value pairs which are used to manage the resource.</p>",
+      "base": "<p>A set of key-value pairs that are used to manage the resource.</p>",
       "refs": {
         "TagList$member": null
       }
@@ -1291,7 +1330,7 @@
         "CreateDatasetRequest$tags": "<p>Metadata which can be used to manage the data set.</p>",
         "CreateDatastoreRequest$tags": "<p>Metadata which can be used to manage the data store.</p>",
         "CreatePipelineRequest$tags": "<p>Metadata which can be used to manage the pipeline.</p>",
-        "ListTagsForResourceResponse$tags": "<p>The tags (metadata) which you have assigned to the resource.</p>",
+        "ListTagsForResourceResponse$tags": "<p>The tags (metadata) that you have assigned to the resource.</p>",
         "TagResourceRequest$tags": "<p>The new or modified tags for the resource.</p>"
       }
     },
@@ -1319,7 +1358,7 @@
     "TimeExpression": {
       "base": null,
       "refs": {
-        "DeltaTime$timeExpression": "<p>An expression by which the time of the message data may be determined. This may be the name of a timestamp field, or a SQL expression which is used to derive the time the message data was generated.</p>"
+        "DeltaTime$timeExpression": "<p>An expression by which the time of the message data might be determined. This can be the name of a timestamp field or a SQL expression that is used to derive the time the message data was generated.</p>"
       }
     },
     "Timestamp": {
@@ -1327,23 +1366,27 @@
       "refs": {
         "Channel$creationTime": "<p>When the channel was created.</p>",
         "Channel$lastUpdateTime": "<p>When the channel was last updated.</p>",
+        "Channel$lastMessageArrivalTime": "<p>The last time when a new message arrived in the channel.</p> <p>AWS IoT Analytics updates this value at most once per minute for one channel. Hence, the <code>lastMessageArrivalTime</code> value is an approximation.</p> <p>This feature only applies to messages that arrived in the data store after October 23, 2020. </p>",
         "ChannelSummary$creationTime": "<p>When the channel was created.</p>",
         "ChannelSummary$lastUpdateTime": "<p>The last time the channel was updated.</p>",
+        "ChannelSummary$lastMessageArrivalTime": "<p>The last time when a new message arrived in the channel.</p> <p>AWS IoT Analytics updates this value at most once per minute for one channel. Hence, the <code>lastMessageArrivalTime</code> value is an approximation.</p> <p>This feature only applies to messages that arrived in the data store after October 23, 2020. </p>",
         "Dataset$creationTime": "<p>When the data set was created.</p>",
         "Dataset$lastUpdateTime": "<p>The last time the data set was updated.</p>",
-        "DatasetContentSummary$creationTime": "<p>The actual time the creation of the data set contents was started.</p>",
-        "DatasetContentSummary$scheduleTime": "<p>The time the creation of the data set contents was scheduled to start.</p>",
+        "DatasetContentSummary$creationTime": "<p>The actual time the creation of the dataset contents was started.</p>",
+        "DatasetContentSummary$scheduleTime": "<p>The time the creation of the dataset contents was scheduled to start.</p>",
         "DatasetContentSummary$completionTime": "<p>The time the dataset content status was updated to SUCCEEDED or FAILED.</p>",
         "DatasetSummary$creationTime": "<p>The time the data set was created.</p>",
         "DatasetSummary$lastUpdateTime": "<p>The last time the data set was updated.</p>",
         "Datastore$creationTime": "<p>When the data store was created.</p>",
         "Datastore$lastUpdateTime": "<p>The last time the data store was updated.</p>",
+        "Datastore$lastMessageArrivalTime": "<p>The last time when a new message arrived in the data store.</p> <p>AWS IoT Analytics updates this value at most once per minute for one data store. Hence, the <code>lastMessageArrivalTime</code> value is an approximation.</p> <p>This feature only applies to messages that arrived in the data store after October 23, 2020. </p>",
         "DatastoreSummary$creationTime": "<p>When the data store was created.</p>",
         "DatastoreSummary$lastUpdateTime": "<p>The last time the data store was updated.</p>",
+        "DatastoreSummary$lastMessageArrivalTime": "<p>The last time when a new message arrived in the data store.</p> <p>AWS IoT Analytics updates this value at most once per minute for one data store. Hence, the <code>lastMessageArrivalTime</code> value is an approximation.</p> <p>This feature only applies to messages that arrived in the data store after October 23, 2020. </p>",
         "EstimatedResourceSize$estimatedOn": "<p>The time when the estimate of the size of the resource was made.</p>",
         "GetDatasetContentResponse$timestamp": "<p>The time when the request was made.</p>",
-        "ListDatasetContentsRequest$scheduledOnOrAfter": "<p>A filter to limit results to those data set contents whose creation is scheduled on or after the given time. See the field <code>triggers.schedule</code> in the CreateDataset request. (timestamp)</p>",
-        "ListDatasetContentsRequest$scheduledBefore": "<p>A filter to limit results to those data set contents whose creation is scheduled before the given time. See the field <code>triggers.schedule</code> in the CreateDataset request. (timestamp)</p>",
+        "ListDatasetContentsRequest$scheduledOnOrAfter": "<p>A filter to limit results to those data set contents whose creation is scheduled on or after the given time. See the field <code>triggers.schedule</code> in the <code>CreateDataset</code> request. (timestamp)</p>",
+        "ListDatasetContentsRequest$scheduledBefore": "<p>A filter to limit results to those data set contents whose creation is scheduled before the given time. See the field <code>triggers.schedule</code> in the <code>CreateDataset</code> request. (timestamp)</p>",
         "Pipeline$creationTime": "<p>When the pipeline was created.</p>",
         "Pipeline$lastUpdateTime": "<p>The last time the pipeline was updated.</p>",
         "PipelineSummary$creationTime": "<p>When the pipeline was created.</p>",
@@ -1352,7 +1395,7 @@
       }
     },
     "TriggeringDataset": {
-      "base": "<p>Information about the data set whose content generation triggers the new data set content generation.</p>",
+      "base": "<p>Information about the dataset whose content generation triggers the new dataset content generation.</p>",
       "refs": {
         "DatasetTrigger$dataset": "<p>The data set whose content creation triggers the creation of this data set's contents.</p>"
       }
@@ -1366,7 +1409,7 @@
     "UnlimitedVersioning": {
       "base": null,
       "refs": {
-        "VersioningConfiguration$unlimited": "<p>If true, unlimited versions of data set contents will be kept.</p>"
+        "VersioningConfiguration$unlimited": "<p>If true, unlimited versions of dataset contents are kept.</p>"
       }
     },
     "UntagResourceRequest": {
@@ -1400,7 +1443,7 @@
       }
     },
     "Variable": {
-      "base": "<p>An instance of a variable to be passed to the \"containerAction\" execution. Each variable must have a name and a value given by one of \"stringValue\", \"datasetContentVersionValue\", or \"outputFileUriValue\".</p>",
+      "base": "<p>An instance of a variable to be passed to the <code>containerAction</code> execution. Each variable must have a name and a value given by one of <code>stringValue</code>, <code>datasetContentVersionValue</code>, or <code>outputFileUriValue</code>.</p>",
       "refs": {
         "Variables$member": null
       }
@@ -1414,21 +1457,21 @@
     "Variables": {
       "base": null,
       "refs": {
-        "ContainerDatasetAction$variables": "<p>The values of variables used within the context of the execution of the containerized application (basically, parameters passed to the application). Each variable must have a name and a value given by one of \"stringValue\", \"datasetContentVersionValue\", or \"outputFileUriValue\".</p>"
+        "ContainerDatasetAction$variables": "<p>The values of variables used in the context of the execution of the containerized application (basically, parameters passed to the application). Each variable must have a name and a value given by one of <code>stringValue</code>, <code>datasetContentVersionValue</code>, or <code>outputFileUriValue</code>.</p>"
       }
     },
     "VersioningConfiguration": {
-      "base": "<p>Information about the versioning of data set contents.</p>",
+      "base": "<p>Information about the versioning of dataset contents.</p>",
       "refs": {
-        "CreateDatasetRequest$versioningConfiguration": "<p>[Optional] How many versions of data set contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the \"retentionPeriod\" parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)</p>",
-        "Dataset$versioningConfiguration": "<p>[Optional] How many versions of data set contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the \"retentionPeriod\" parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)</p>",
-        "UpdateDatasetRequest$versioningConfiguration": "<p>[Optional] How many versions of data set contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the \"retentionPeriod\" parameter. (For more information, see https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions)</p>"
+        "CreateDatasetRequest$versioningConfiguration": "<p>Optional. How many versions of dataset contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the <code>retentionPeriod</code> parameter. For more information, see <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions\">Keeping Multiple Versions of AWS IoT Analytics Data Sets</a> in the <i>AWS IoT Analytics User Guide</i>.</p>",
+        "Dataset$versioningConfiguration": "<p>Optional. How many versions of dataset contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the <code>retentionPeriod</code> parameter. For more information, see <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions\">Keeping Multiple Versions of AWS IoT Analytics Data Sets</a> in the <i>AWS IoT Analytics User Guide</i>.</p>",
+        "UpdateDatasetRequest$versioningConfiguration": "<p>Optional. How many versions of dataset contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the <code>retentionPeriod</code> parameter. For more information, see <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/userguide/getting-started.html#aws-iot-analytics-dataset-versions\">Keeping Multiple Versions of AWS IoT Analytics Data Sets</a> in the <i>AWS IoT Analytics User Guide</i>.</p>"
       }
     },
     "VolumeSizeInGB": {
       "base": null,
       "refs": {
-        "ResourceConfiguration$volumeSizeInGB": "<p>The size (in GB) of the persistent storage available to the resource instance used to execute the \"containerAction\" (min: 1, max: 50).</p>"
+        "ResourceConfiguration$volumeSizeInGB": "<p>The size, in GB, of the persistent storage available to the resource instance used to execute the <code>containerAction</code> (min: 1, max: 50).</p>"
       }
     },
     "errorMessage": {

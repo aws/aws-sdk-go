@@ -57,6 +57,12 @@
       "output_token": "Marker",
       "result_key": "Tags"
     },
+    "ListTapePools": {
+      "input_token": "Marker",
+      "limit_key": "Limit",
+      "output_token": "Marker",
+      "result_key": "PoolInfos"
+    },
     "ListTapes": {
       "input_token": "Marker",
       "limit_key": "Limit",

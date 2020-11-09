@@ -357,6 +357,22 @@
         {"shape":"InternalException"}
       ]
     },
+    "GetPackageVersionHistory":{
+      "name":"GetPackageVersionHistory",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2015-01-01/packages/{PackageID}/history"
+      },
+      "input":{"shape":"GetPackageVersionHistoryRequest"},
+      "output":{"shape":"GetPackageVersionHistoryResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetUpgradeHistory":{
       "name":"GetUpgradeHistory",
       "http":{
@@ -553,6 +569,23 @@
         {"shape":"ValidationException"}
       ]
     },
+    "UpdatePackage":{
+      "name":"UpdatePackage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2015-01-01/packages/update"
+      },
+      "input":{"shape":"UpdatePackageRequest"},
+      "output":{"shape":"UpdatePackageResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "UpgradeElasticsearchDomain":{
       "name":"UpgradeElasticsearchDomain",
       "http":{
@@ -745,6 +778,10 @@
         "Options":{"shape":"CognitoOptions"},
         "Status":{"shape":"OptionStatus"}
       }
+    },
+    "CommitMessage":{
+      "type":"string",
+      "max":160
     },
     "CompatibleElasticsearchVersionsList":{
       "type":"list",
@@ -1227,6 +1264,7 @@
         "LastUpdated":{"shape":"LastUpdated"},
         "DomainName":{"shape":"DomainName"},
         "DomainPackageStatus":{"shape":"DomainPackageStatus"},
+        "PackageVersion":{"shape":"PackageVersion"},
         "ReferencePath":{"shape":"ReferencePath"},
         "ErrorDetails":{"shape":"ErrorDetails"}
       }
@@ -1499,6 +1537,35 @@
       "type":"structure",
       "members":{
         "CompatibleElasticsearchVersions":{"shape":"CompatibleElasticsearchVersionsList"}
+      }
+    },
+    "GetPackageVersionHistoryRequest":{
+      "type":"structure",
+      "required":["PackageID"],
+      "members":{
+        "PackageID":{
+          "shape":"PackageID",
+          "location":"uri",
+          "locationName":"PackageID"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetPackageVersionHistoryResponse":{
+      "type":"structure",
+      "members":{
+        "PackageID":{"shape":"PackageID"},
+        "PackageVersionHistoryList":{"shape":"PackageVersionHistoryList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "GetUpgradeHistoryRequest":{
@@ -1936,6 +2003,8 @@
         "PackageDescription":{"shape":"PackageDescription"},
         "PackageStatus":{"shape":"PackageStatus"},
         "CreatedAt":{"shape":"CreatedAt"},
+        "LastUpdatedAt":{"shape":"LastUpdated"},
+        "AvailablePackageVersion":{"shape":"PackageVersion"},
         "ErrorDetails":{"shape":"ErrorDetails"}
       }
     },
@@ -1973,6 +2042,19 @@
     "PackageType":{
       "type":"string",
       "enum":["TXT-DICTIONARY"]
+    },
+    "PackageVersion":{"type":"string"},
+    "PackageVersionHistory":{
+      "type":"structure",
+      "members":{
+        "PackageVersion":{"shape":"PackageVersion"},
+        "CommitMessage":{"shape":"CommitMessage"},
+        "CreatedAt":{"shape":"CreatedAt"}
+      }
+    },
+    "PackageVersionHistoryList":{
+      "type":"list",
+      "member":{"shape":"PackageVersionHistory"}
     },
     "Password":{
       "type":"string",
@@ -2297,6 +2379,25 @@
       "required":["DomainConfig"],
       "members":{
         "DomainConfig":{"shape":"ElasticsearchDomainConfig"}
+      }
+    },
+    "UpdatePackageRequest":{
+      "type":"structure",
+      "required":[
+        "PackageID",
+        "PackageSource"
+      ],
+      "members":{
+        "PackageID":{"shape":"PackageID"},
+        "PackageSource":{"shape":"PackageSource"},
+        "PackageDescription":{"shape":"PackageDescription"},
+        "CommitMessage":{"shape":"CommitMessage"}
+      }
+    },
+    "UpdatePackageResponse":{
+      "type":"structure",
+      "members":{
+        "PackageDetails":{"shape":"PackageDetails"}
       }
     },
     "UpdateTimestamp":{"type":"timestamp"},

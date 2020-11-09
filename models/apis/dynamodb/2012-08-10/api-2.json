@@ -207,6 +207,20 @@
       "output":{"shape":"DescribeEndpointsResponse"},
       "endpointoperation":true
     },
+    "DescribeExport":{
+      "name":"DescribeExport",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExportInput"},
+      "output":{"shape":"DescribeExportOutput"},
+      "errors":[
+        {"shape":"ExportNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "DescribeGlobalTable":{
       "name":"DescribeGlobalTable",
       "http":{
@@ -294,6 +308,23 @@
       "endpointdiscovery":{
       }
     },
+    "ExportTableToPointInTime":{
+      "name":"ExportTableToPointInTime",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ExportTableToPointInTimeInput"},
+      "output":{"shape":"ExportTableToPointInTimeOutput"},
+      "errors":[
+        {"shape":"TableNotFoundException"},
+        {"shape":"PointInTimeRecoveryUnavailableException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InvalidExportTimeException"},
+        {"shape":"ExportConflictException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
     "GetItem":{
       "name":"GetItem",
       "http":{
@@ -335,6 +366,19 @@
       "output":{"shape":"ListContributorInsightsOutput"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerError"}
+      ]
+    },
+    "ListExports":{
+      "name":"ListExports",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListExportsInput"},
+      "output":{"shape":"ListExportsOutput"},
+      "errors":[
+        {"shape":"LimitExceededException"},
         {"shape":"InternalServerError"}
       ]
     },
@@ -988,6 +1032,10 @@
       "max":25,
       "min":1
     },
+    "BilledSizeBytes":{
+      "type":"long",
+      "min":0
+    },
     "BillingMode":{
       "type":"string",
       "enum":[
@@ -1036,6 +1084,7 @@
       "max":36,
       "min":1
     },
+    "ClientToken":{"type":"string"},
     "Code":{"type":"string"},
     "ComparisonOperator":{
       "type":"string",
@@ -1416,6 +1465,19 @@
         "Endpoints":{"shape":"Endpoints"}
       }
     },
+    "DescribeExportInput":{
+      "type":"structure",
+      "required":["ExportArn"],
+      "members":{
+        "ExportArn":{"shape":"ExportArn"}
+      }
+    },
+    "DescribeExportOutput":{
+      "type":"structure",
+      "members":{
+        "ExportDescription":{"shape":"ExportDescription"}
+      }
+    },
     "DescribeGlobalTableInput":{
       "type":"structure",
       "required":["GlobalTableName"],
@@ -1529,6 +1591,107 @@
         "AttributeValueList":{"shape":"AttributeValueList"}
       }
     },
+    "ExportArn":{
+      "type":"string",
+      "max":1024,
+      "min":37
+    },
+    "ExportConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ExportDescription":{
+      "type":"structure",
+      "members":{
+        "ExportArn":{"shape":"ExportArn"},
+        "ExportStatus":{"shape":"ExportStatus"},
+        "StartTime":{"shape":"ExportStartTime"},
+        "EndTime":{"shape":"ExportEndTime"},
+        "ExportManifest":{"shape":"ExportManifest"},
+        "TableArn":{"shape":"TableArn"},
+        "TableId":{"shape":"TableId"},
+        "ExportTime":{"shape":"ExportTime"},
+        "ClientToken":{"shape":"ClientToken"},
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3BucketOwner":{"shape":"S3BucketOwner"},
+        "S3Prefix":{"shape":"S3Prefix"},
+        "S3SseAlgorithm":{"shape":"S3SseAlgorithm"},
+        "S3SseKmsKeyId":{"shape":"S3SseKmsKeyId"},
+        "FailureCode":{"shape":"FailureCode"},
+        "FailureMessage":{"shape":"FailureMessage"},
+        "ExportFormat":{"shape":"ExportFormat"},
+        "BilledSizeBytes":{"shape":"BilledSizeBytes"},
+        "ItemCount":{"shape":"ItemCount"}
+      }
+    },
+    "ExportEndTime":{"type":"timestamp"},
+    "ExportFormat":{
+      "type":"string",
+      "enum":[
+        "DYNAMODB_JSON",
+        "ION"
+      ]
+    },
+    "ExportManifest":{"type":"string"},
+    "ExportNextToken":{"type":"string"},
+    "ExportNotFoundException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "ExportStartTime":{"type":"timestamp"},
+    "ExportStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "ExportSummaries":{
+      "type":"list",
+      "member":{"shape":"ExportSummary"}
+    },
+    "ExportSummary":{
+      "type":"structure",
+      "members":{
+        "ExportArn":{"shape":"ExportArn"},
+        "ExportStatus":{"shape":"ExportStatus"}
+      }
+    },
+    "ExportTableToPointInTimeInput":{
+      "type":"structure",
+      "required":[
+        "TableArn",
+        "S3Bucket"
+      ],
+      "members":{
+        "TableArn":{"shape":"TableArn"},
+        "ExportTime":{"shape":"ExportTime"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "S3Bucket":{"shape":"S3Bucket"},
+        "S3BucketOwner":{"shape":"S3BucketOwner"},
+        "S3Prefix":{"shape":"S3Prefix"},
+        "S3SseAlgorithm":{"shape":"S3SseAlgorithm"},
+        "S3SseKmsKeyId":{"shape":"S3SseKmsKeyId"},
+        "ExportFormat":{"shape":"ExportFormat"}
+      }
+    },
+    "ExportTableToPointInTimeOutput":{
+      "type":"structure",
+      "members":{
+        "ExportDescription":{"shape":"ExportDescription"}
+      }
+    },
+    "ExportTime":{"type":"timestamp"},
     "ExpressionAttributeNameMap":{
       "type":"map",
       "key":{"shape":"ExpressionAttributeNameVariable"},
@@ -1541,6 +1704,7 @@
       "value":{"shape":"AttributeValue"}
     },
     "ExpressionAttributeValueVariable":{"type":"string"},
+    "FailureCode":{"type":"string"},
     "FailureException":{
       "type":"structure",
       "members":{
@@ -1548,6 +1712,7 @@
         "ExceptionDescription":{"shape":"ExceptionDescription"}
       }
     },
+    "FailureMessage":{"type":"string"},
     "FilterConditionMap":{
       "type":"map",
       "key":{"shape":"AttributeName"},
@@ -1761,6 +1926,13 @@
       "exception":true,
       "fault":true
     },
+    "InvalidExportTimeException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
     "InvalidRestoreTimeException":{
       "type":"structure",
       "members":{
@@ -1927,6 +2099,26 @@
       "members":{
         "ContributorInsightsSummaries":{"shape":"ContributorInsightsSummaries"},
         "NextToken":{"shape":"NextTokenString"}
+      }
+    },
+    "ListExportsInput":{
+      "type":"structure",
+      "members":{
+        "TableArn":{"shape":"TableArn"},
+        "MaxResults":{"shape":"ListExportsMaxLimit"},
+        "NextToken":{"shape":"ExportNextToken"}
+      }
+    },
+    "ListExportsMaxLimit":{
+      "type":"integer",
+      "max":25,
+      "min":1
+    },
+    "ListExportsOutput":{
+      "type":"structure",
+      "members":{
+        "ExportSummaries":{"shape":"ExportSummaries"},
+        "NextToken":{"shape":"ExportNextToken"}
       }
     },
     "ListGlobalTablesInput":{
@@ -2560,6 +2752,21 @@
         "ALL_OLD",
         "NONE"
       ]
+    },
+    "S3Bucket":{"type":"string"},
+    "S3BucketOwner":{"type":"string"},
+    "S3Prefix":{"type":"string"},
+    "S3SseAlgorithm":{
+      "type":"string",
+      "enum":[
+        "AES256",
+        "KMS"
+      ]
+    },
+    "S3SseKmsKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "SSEDescription":{
       "type":"structure",

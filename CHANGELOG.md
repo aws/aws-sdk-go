@@ -1,3 +1,24 @@
+Release v1.35.24 (2020-11-09)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/dynamodb`: Updates service API, documentation, and paginators
+  * This release adds supports for exporting Amazon DynamoDB table data to Amazon S3 to perform analytics at any scale.
+* `service/ecs`: Updates service API and documentation
+  * This release provides native support for specifying Amazon FSx for Windows File Server file systems as volumes in your Amazon ECS task definitions.
+* `service/es`: Updates service API, documentation, and paginators
+  * Adding support for package versioning in Amazon Elasticsearch Service
+* `service/fsx`: Updates service API, documentation, paginators, and examples
+* `service/iotanalytics`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * S3 Intelligent-Tiering adds support for Archive and Deep Archive Access tiers; S3 Replication adds replication metrics and failure notifications, brings feature parity for delete marker replication
+* `service/ssm`: Updates service API and documentation
+  * add a new filter to allow customer to filter automation executions by using resource-group which used for execute automation
+* `service/storagegateway`: Updates service API, documentation, and paginators
+  * Added bandwidth rate limit schedule for Tape and Volume Gateways
+
 Release v1.35.23 (2020-11-06)
 ===
 
