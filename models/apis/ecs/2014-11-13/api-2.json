@@ -1715,6 +1715,30 @@
       "type":"list",
       "member":{"shape":"KeyValuePair"}
     },
+    "FSxWindowsFileServerAuthorizationConfig":{
+      "type":"structure",
+      "required":[
+        "credentialsParameter",
+        "domain"
+      ],
+      "members":{
+        "credentialsParameter":{"shape":"String"},
+        "domain":{"shape":"String"}
+      }
+    },
+    "FSxWindowsFileServerVolumeConfiguration":{
+      "type":"structure",
+      "required":[
+        "fileSystemId",
+        "rootDirectory",
+        "authorizationConfig"
+      ],
+      "members":{
+        "fileSystemId":{"shape":"String"},
+        "rootDirectory":{"shape":"String"},
+        "authorizationConfig":{"shape":"FSxWindowsFileServerAuthorizationConfig"}
+      }
+    },
     "Failure":{
       "type":"structure",
       "members":{
@@ -3216,7 +3240,8 @@
         "name":{"shape":"String"},
         "host":{"shape":"HostVolumeProperties"},
         "dockerVolumeConfiguration":{"shape":"DockerVolumeConfiguration"},
-        "efsVolumeConfiguration":{"shape":"EFSVolumeConfiguration"}
+        "efsVolumeConfiguration":{"shape":"EFSVolumeConfiguration"},
+        "fsxWindowsFileServerVolumeConfiguration":{"shape":"FSxWindowsFileServerVolumeConfiguration"}
       }
     },
     "VolumeFrom":{

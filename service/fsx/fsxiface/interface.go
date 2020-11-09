@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon FSx.
 //    func myFunc(svc fsxiface.FSxAPI) bool {
-//        // Make svc.CancelDataRepositoryTask request
+//        // Make svc.AssociateFileSystemAliases request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockFSxClient struct {
 //        fsxiface.FSxAPI
 //    }
-//    func (m *mockFSxClient) CancelDataRepositoryTask(input *fsx.CancelDataRepositoryTaskInput) (*fsx.CancelDataRepositoryTaskOutput, error) {
+//    func (m *mockFSxClient) AssociateFileSystemAliases(input *fsx.AssociateFileSystemAliasesInput) (*fsx.AssociateFileSystemAliasesOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type FSxAPI interface {
+	AssociateFileSystemAliases(*fsx.AssociateFileSystemAliasesInput) (*fsx.AssociateFileSystemAliasesOutput, error)
+	AssociateFileSystemAliasesWithContext(aws.Context, *fsx.AssociateFileSystemAliasesInput, ...request.Option) (*fsx.AssociateFileSystemAliasesOutput, error)
+	AssociateFileSystemAliasesRequest(*fsx.AssociateFileSystemAliasesInput) (*request.Request, *fsx.AssociateFileSystemAliasesOutput)
+
 	CancelDataRepositoryTask(*fsx.CancelDataRepositoryTaskInput) (*fsx.CancelDataRepositoryTaskOutput, error)
 	CancelDataRepositoryTaskWithContext(aws.Context, *fsx.CancelDataRepositoryTaskInput, ...request.Option) (*fsx.CancelDataRepositoryTaskOutput, error)
 	CancelDataRepositoryTaskRequest(*fsx.CancelDataRepositoryTaskInput) (*request.Request, *fsx.CancelDataRepositoryTaskOutput)
@@ -102,12 +106,23 @@ type FSxAPI interface {
 	DescribeDataRepositoryTasksPages(*fsx.DescribeDataRepositoryTasksInput, func(*fsx.DescribeDataRepositoryTasksOutput, bool) bool) error
 	DescribeDataRepositoryTasksPagesWithContext(aws.Context, *fsx.DescribeDataRepositoryTasksInput, func(*fsx.DescribeDataRepositoryTasksOutput, bool) bool, ...request.Option) error
 
+	DescribeFileSystemAliases(*fsx.DescribeFileSystemAliasesInput) (*fsx.DescribeFileSystemAliasesOutput, error)
+	DescribeFileSystemAliasesWithContext(aws.Context, *fsx.DescribeFileSystemAliasesInput, ...request.Option) (*fsx.DescribeFileSystemAliasesOutput, error)
+	DescribeFileSystemAliasesRequest(*fsx.DescribeFileSystemAliasesInput) (*request.Request, *fsx.DescribeFileSystemAliasesOutput)
+
+	DescribeFileSystemAliasesPages(*fsx.DescribeFileSystemAliasesInput, func(*fsx.DescribeFileSystemAliasesOutput, bool) bool) error
+	DescribeFileSystemAliasesPagesWithContext(aws.Context, *fsx.DescribeFileSystemAliasesInput, func(*fsx.DescribeFileSystemAliasesOutput, bool) bool, ...request.Option) error
+
 	DescribeFileSystems(*fsx.DescribeFileSystemsInput) (*fsx.DescribeFileSystemsOutput, error)
 	DescribeFileSystemsWithContext(aws.Context, *fsx.DescribeFileSystemsInput, ...request.Option) (*fsx.DescribeFileSystemsOutput, error)
 	DescribeFileSystemsRequest(*fsx.DescribeFileSystemsInput) (*request.Request, *fsx.DescribeFileSystemsOutput)
 
 	DescribeFileSystemsPages(*fsx.DescribeFileSystemsInput, func(*fsx.DescribeFileSystemsOutput, bool) bool) error
 	DescribeFileSystemsPagesWithContext(aws.Context, *fsx.DescribeFileSystemsInput, func(*fsx.DescribeFileSystemsOutput, bool) bool, ...request.Option) error
+
+	DisassociateFileSystemAliases(*fsx.DisassociateFileSystemAliasesInput) (*fsx.DisassociateFileSystemAliasesOutput, error)
+	DisassociateFileSystemAliasesWithContext(aws.Context, *fsx.DisassociateFileSystemAliasesInput, ...request.Option) (*fsx.DisassociateFileSystemAliasesOutput, error)
+	DisassociateFileSystemAliasesRequest(*fsx.DisassociateFileSystemAliasesInput) (*request.Request, *fsx.DisassociateFileSystemAliasesOutput)
 
 	ListTagsForResource(*fsx.ListTagsForResourceInput) (*fsx.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *fsx.ListTagsForResourceInput, ...request.Option) (*fsx.ListTagsForResourceOutput, error)

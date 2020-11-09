@@ -14,15 +14,18 @@
     "DescribeContinuousBackups": "<p>Checks the status of continuous backups and point in time recovery on the specified table. Continuous backups are <code>ENABLED</code> on all tables at table creation. If point in time recovery is enabled, <code>PointInTimeRecoveryStatus</code> will be set to ENABLED.</p> <p> After continuous backups and point in time recovery are enabled, you can restore to any point in time within <code>EarliestRestorableDateTime</code> and <code>LatestRestorableDateTime</code>. </p> <p> <code>LatestRestorableDateTime</code> is typically 5 minutes before the current time. You can restore your table to any point in time during the last 35 days. </p> <p>You can call <code>DescribeContinuousBackups</code> at a maximum rate of 10 times per second.</p>",
     "DescribeContributorInsights": "<p>Returns information about contributor insights, for a given table or global secondary index.</p>",
     "DescribeEndpoints": "<p>Returns the regional endpoint information.</p>",
+    "DescribeExport": "<p>Describes an existing table export.</p>",
     "DescribeGlobalTable": "<p>Returns information about the specified global table.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables. If you are using global tables <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html\">Version 2019.11.21</a> you can use <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/APIReference/API_DescribeTable.html\">DescribeTable</a> instead.</p> </note>",
     "DescribeGlobalTableSettings": "<p>Describes Region-specific settings for a global table.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
     "DescribeLimits": "<p>Returns the current provisioned-capacity quotas for your AWS account in a Region, both for the Region as a whole and for any one DynamoDB table that you create there.</p> <p>When you establish an AWS account, the account has initial quotas on the maximum read capacity units and write capacity units that you can provision across all of your DynamoDB tables in a given Region. Also, there are per-table quotas that apply when you create a table there. For more information, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Limits.html\">Service, Account, and Table Quotas</a> page in the <i>Amazon DynamoDB Developer Guide</i>.</p> <p>Although you can increase these quotas by filing a case at <a href=\"https://console.aws.amazon.com/support/home#/\">AWS Support Center</a>, obtaining the increase is not instantaneous. The <code>DescribeLimits</code> action lets you write code to compare the capacity you are currently using to those quotas imposed by your account so that you have enough time to apply for an increase before you hit a quota.</p> <p>For example, you could use one of the AWS SDKs to do the following:</p> <ol> <li> <p>Call <code>DescribeLimits</code> for a particular Region to obtain your current account quotas on provisioned capacity there.</p> </li> <li> <p>Create a variable to hold the aggregate read capacity units provisioned for all your tables in that Region, and one to hold the aggregate write capacity units. Zero them both.</p> </li> <li> <p>Call <code>ListTables</code> to obtain a list of all your DynamoDB tables.</p> </li> <li> <p>For each table name listed by <code>ListTables</code>, do the following:</p> <ul> <li> <p>Call <code>DescribeTable</code> with the table name.</p> </li> <li> <p>Use the data returned by <code>DescribeTable</code> to add the read capacity units and write capacity units provisioned for the table itself to your variables.</p> </li> <li> <p>If the table has one or more global secondary indexes (GSIs), loop over these GSIs and add their provisioned capacity values to your variables as well.</p> </li> </ul> </li> <li> <p>Report the account quotas for that Region returned by <code>DescribeLimits</code>, along with the total current provisioned capacity levels you have calculated.</p> </li> </ol> <p>This will let you see whether you are getting close to your account-level quotas.</p> <p>The per-table quotas apply only when you are creating a new table. They restrict the sum of the provisioned capacity of the new table itself and all its global secondary indexes.</p> <p>For existing tables and their GSIs, DynamoDB doesn't let you increase provisioned capacity extremely rapidly, but the only quota that applies is that the aggregate provisioned capacity over all your tables and GSIs cannot exceed either of the per-account quotas.</p> <note> <p> <code>DescribeLimits</code> should only be called periodically. You can expect throttling errors if you call it more than once in a minute.</p> </note> <p>The <code>DescribeLimits</code> Request element has no content.</p>",
     "DescribeTable": "<p>Returns information about the table, including the current status of the table, when it was created, the primary key schema, and any indexes on the table.</p> <note> <p>If you issue a <code>DescribeTable</code> request immediately after a <code>CreateTable</code> request, DynamoDB might return a <code>ResourceNotFoundException</code>. This is because <code>DescribeTable</code> uses an eventually consistent query, and the metadata for your table might not be available at that moment. Wait for a few seconds, and then try the <code>DescribeTable</code> request again.</p> </note>",
     "DescribeTableReplicaAutoScaling": "<p>Describes auto scaling settings across replicas of the global table at once.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V2.html\">Version 2019.11.21</a> of global tables.</p> </note>",
     "DescribeTimeToLive": "<p>Gives a description of the Time to Live (TTL) status on the specified table. </p>",
+    "ExportTableToPointInTime": "<p>Exports table data to an S3 bucket. The table must have point in time recovery enabled, and you can export data from any time within the point in time recovery window.</p>",
     "GetItem": "<p>The <code>GetItem</code> operation returns a set of attributes for the item with the given primary key. If there is no matching item, <code>GetItem</code> does not return any data and there will be no <code>Item</code> element in the response.</p> <p> <code>GetItem</code> provides an eventually consistent read by default. If your application requires a strongly consistent read, set <code>ConsistentRead</code> to <code>true</code>. Although a strongly consistent read might take more time than an eventually consistent read, it always returns the last updated value.</p>",
     "ListBackups": "<p>List backups associated with an AWS account. To list backups for a given table, specify <code>TableName</code>. <code>ListBackups</code> returns a paginated list of results with at most 1 MB worth of items in a page. You can also specify a maximum number of entries to be returned in a page. </p> <p>In the request, start time is inclusive, but end time is exclusive. Note that these boundaries are for the time at which the original backup was requested.</p> <p>You can call <code>ListBackups</code> a maximum of five times per second.</p>",
     "ListContributorInsights": "<p>Returns a list of ContributorInsightsSummary for a table and all its global secondary indexes.</p>",
+    "ListExports": "<p>Lists completed exports within the past 90 days.</p>",
     "ListGlobalTables": "<p>Lists all global tables that have a replica in the specified Region.</p> <note> <p>This operation only applies to <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/globaltables.V1.html\">Version 2017.11.29</a> of global tables.</p> </note>",
     "ListTables": "<p>Returns an array of table names associated with the current account and endpoint. The output from <code>ListTables</code> is paginated, with each page returning a maximum of 100 table names.</p>",
     "ListTagsOfResource": "<p>List all tags on an Amazon DynamoDB resource. You can call ListTagsOfResource up to 10 times per second, per account.</p> <p>For an overview on tagging DynamoDB resources, see <a href=\"https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tagging.html\">Tagging for DynamoDB</a> in the <i>Amazon DynamoDB Developer Guide</i>.</p>",
@@ -361,6 +364,12 @@
         "BatchWriteItemOutput$UnprocessedItems": "<p>A map of tables and requests against those tables that were not processed. The <code>UnprocessedItems</code> value is in the same form as <code>RequestItems</code>, so you can provide this value directly to a subsequent <code>BatchGetItem</code> operation. For more information, see <code>RequestItems</code> in the Request Parameters section.</p> <p>Each <code>UnprocessedItems</code> entry consists of a table name and, for that table, a list of operations to perform (<code>DeleteRequest</code> or <code>PutRequest</code>).</p> <ul> <li> <p> <code>DeleteRequest</code> - Perform a <code>DeleteItem</code> operation on the specified item. The item to be deleted is identified by a <code>Key</code> subelement:</p> <ul> <li> <p> <code>Key</code> - A map of primary key attribute values that uniquely identify the item. Each entry in this map consists of an attribute name and an attribute value.</p> </li> </ul> </li> <li> <p> <code>PutRequest</code> - Perform a <code>PutItem</code> operation on the specified item. The item to be put is identified by an <code>Item</code> subelement:</p> <ul> <li> <p> <code>Item</code> - A map of attributes and their values. Each entry in this map consists of an attribute name and an attribute value. Attribute values must not be null; string and binary type attributes must have lengths greater than zero; and set type attributes must not be empty. Requests that contain empty values will be rejected with a <code>ValidationException</code> exception.</p> <p>If you specify any attributes that are part of an index key, then the data types for those attributes must match those of the schema in the table's attribute definition.</p> </li> </ul> </li> </ul> <p>If there are no unprocessed items remaining, the response contains an empty <code>UnprocessedItems</code> map.</p>"
       }
     },
+    "BilledSizeBytes": {
+      "base": null,
+      "refs": {
+        "ExportDescription$BilledSizeBytes": "<p>The billable size of the table export.</p>"
+      }
+    },
     "BillingMode": {
       "base": null,
       "refs": {
@@ -435,6 +444,13 @@
       "base": null,
       "refs": {
         "TransactWriteItemsInput$ClientRequestToken": "<p>Providing a <code>ClientRequestToken</code> makes the call to <code>TransactWriteItems</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p> <p>Although multiple identical calls using the same client request token produce the same result on the server (no side effects), the responses to the calls might not be the same. If the <code>ReturnConsumedCapacity&gt;</code> parameter is set, then the initial <code>TransactWriteItems</code> call returns the amount of write capacity units consumed in making the changes. Subsequent <code>TransactWriteItems</code> calls with the same client token return the number of read capacity units consumed in reading the item.</p> <p>A client request token is valid for 10 minutes after the first request that uses it is completed. After 10 minutes, any request with the same client token is treated as a new request. Do not resubmit the same request with the same client token for more than 10 minutes, or the result might not be idempotent.</p> <p>If you submit a request with the same client token but a change in other parameters within the 10-minute idempotency window, DynamoDB returns an <code>IdempotentParameterMismatch</code> exception.</p>"
+      }
+    },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "ExportDescription$ClientToken": "<p>The client token that was provided for the export task. A client token makes calls to <code>ExportTableToPointInTimeInput</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p>",
+        "ExportTableToPointInTimeInput$ClientToken": "<p>Providing a <code>ClientToken</code> makes the call to <code>ExportTableToPointInTimeInput</code> idempotent, meaning that multiple identical calls have the same effect as one single call.</p> <p>A client token is valid for 8 hours after the first request that uses it is completed. After 8 hours, any request with the same client token is treated as a new request. Do not resubmit the same request with the same client token for more than 8 hours, or the result might not be idempotent.</p> <p>If you submit a request with the same client token but a change in other parameters within the 8-hour idempotency window, DynamoDB returns an <code>IdempotentParameterMismatch</code> exception.</p>"
       }
     },
     "Code": {
@@ -584,7 +600,7 @@
       }
     },
     "ContributorInsightsSummary": {
-      "base": "<p>Represents a Contributor Insights summary entry..</p>",
+      "base": "<p>Represents a Contributor Insights summary entry.</p>",
       "refs": {
         "ContributorInsightsSummaries$member": null
       }
@@ -756,6 +772,16 @@
       "refs": {
       }
     },
+    "DescribeExportInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeExportOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeGlobalTableInput": {
       "base": null,
       "refs": {
@@ -843,11 +869,14 @@
         "CancellationReason$Message": "<p>Cancellation reason message description.</p>",
         "ConditionalCheckFailedException$message": "<p>The conditional request failed.</p>",
         "ContinuousBackupsUnavailableException$message": null,
+        "ExportConflictException$message": null,
+        "ExportNotFoundException$message": null,
         "GlobalTableAlreadyExistsException$message": null,
         "GlobalTableNotFoundException$message": null,
         "IdempotentParameterMismatchException$Message": null,
         "IndexNotFoundException$message": null,
         "InternalServerError$message": "<p>The server encountered an internal error trying to fulfill the request.</p>",
+        "InvalidExportTimeException$message": null,
         "InvalidRestoreTimeException$message": null,
         "ItemCollectionSizeLimitExceededException$message": "<p>The total size of an item collection has exceeded the maximum limit of 10 gigabytes.</p>",
         "LimitExceededException$message": "<p>Too many operations for a given subscriber.</p>",
@@ -890,6 +919,99 @@
       "base": "<p>Represents a condition to be compared with an attribute value. This condition can be used with <code>DeleteItem</code>, <code>PutItem</code>, or <code>UpdateItem</code> operations; if the comparison evaluates to true, the operation succeeds; if not, the operation fails. You can use <code>ExpectedAttributeValue</code> in one of two different ways:</p> <ul> <li> <p>Use <code>AttributeValueList</code> to specify one or more values to compare against an attribute. Use <code>ComparisonOperator</code> to specify how you want to perform the comparison. If the comparison evaluates to true, then the conditional operation succeeds.</p> </li> <li> <p>Use <code>Value</code> to specify a value that DynamoDB will compare against an attribute. If the values match, then <code>ExpectedAttributeValue</code> evaluates to true and the conditional operation succeeds. Optionally, you can also set <code>Exists</code> to false, indicating that you <i>do not</i> expect to find the attribute value in the table. In this case, the conditional operation succeeds only if the comparison evaluates to false.</p> </li> </ul> <p> <code>Value</code> and <code>Exists</code> are incompatible with <code>AttributeValueList</code> and <code>ComparisonOperator</code>. Note that if you use both sets of parameters at once, DynamoDB will return a <code>ValidationException</code> exception.</p>",
       "refs": {
         "ExpectedAttributeMap$value": null
+      }
+    },
+    "ExportArn": {
+      "base": null,
+      "refs": {
+        "DescribeExportInput$ExportArn": "<p>The Amazon Resource Name (ARN) associated with the export.</p>",
+        "ExportDescription$ExportArn": "<p>The Amazon Resource Name (ARN) of the table export.</p>",
+        "ExportSummary$ExportArn": "<p>The Amazon Resource Name (ARN) of the export.</p>"
+      }
+    },
+    "ExportConflictException": {
+      "base": "<p>There was a conflict when writing to the specified S3 bucket.</p>",
+      "refs": {
+      }
+    },
+    "ExportDescription": {
+      "base": "<p>Represents the properties of the exported table.</p>",
+      "refs": {
+        "DescribeExportOutput$ExportDescription": "<p>Represents the properties of the export.</p>",
+        "ExportTableToPointInTimeOutput$ExportDescription": "<p>Contains a description of the table export.</p>"
+      }
+    },
+    "ExportEndTime": {
+      "base": null,
+      "refs": {
+        "ExportDescription$EndTime": "<p>The time at which the export task completed.</p>"
+      }
+    },
+    "ExportFormat": {
+      "base": null,
+      "refs": {
+        "ExportDescription$ExportFormat": "<p>The format of the exported data. Valid values for <code>ExportFormat</code> are <code>DYNAMODB_JSON</code> or <code>ION</code>.</p>",
+        "ExportTableToPointInTimeInput$ExportFormat": "<p>The format for the exported data. Valid values for <code>ExportFormat</code> are <code>DYNAMODB_JSON</code> or <code>ION</code>.</p>"
+      }
+    },
+    "ExportManifest": {
+      "base": null,
+      "refs": {
+        "ExportDescription$ExportManifest": "<p>The name of the manifest file for the export task.</p>"
+      }
+    },
+    "ExportNextToken": {
+      "base": null,
+      "refs": {
+        "ListExportsInput$NextToken": "<p>An optional string that, if supplied, must be copied from the output of a previous call to <code>ListExports</code>. When provided in this manner, the API fetches the next page of results.</p>",
+        "ListExportsOutput$NextToken": "<p>If this value is returned, there are additional results to be displayed. To retrieve them, call <code>ListExports</code> again, with <code>NextToken</code> set to this value.</p>"
+      }
+    },
+    "ExportNotFoundException": {
+      "base": "<p>The specified export was not found.</p>",
+      "refs": {
+      }
+    },
+    "ExportStartTime": {
+      "base": null,
+      "refs": {
+        "ExportDescription$StartTime": "<p>The time at which the export task began.</p>"
+      }
+    },
+    "ExportStatus": {
+      "base": null,
+      "refs": {
+        "ExportDescription$ExportStatus": "<p>Export can be in one of the following states: IN_PROGRESS, COMPLETED, or FAILED.</p>",
+        "ExportSummary$ExportStatus": "<p>Export can be in one of the following states: IN_PROGRESS, COMPLETED, or FAILED.</p>"
+      }
+    },
+    "ExportSummaries": {
+      "base": null,
+      "refs": {
+        "ListExportsOutput$ExportSummaries": "<p>A list of <code>ExportSummary</code> objects.</p>"
+      }
+    },
+    "ExportSummary": {
+      "base": "<p>Summary information about an export task.</p>",
+      "refs": {
+        "ExportSummaries$member": null
+      }
+    },
+    "ExportTableToPointInTimeInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportTableToPointInTimeOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ExportTime": {
+      "base": null,
+      "refs": {
+        "ExportDescription$ExportTime": "<p>Point in time from which table data was exported.</p>",
+        "ExportTableToPointInTimeInput$ExportTime": "<p>Time in the past from which to export table data. The table export will be a snapshot of the table's state at this point in time.</p>"
       }
     },
     "ExpressionAttributeNameMap": {
@@ -935,10 +1057,22 @@
         "ExpressionAttributeValueMap$key": null
       }
     },
+    "FailureCode": {
+      "base": null,
+      "refs": {
+        "ExportDescription$FailureCode": "<p>Status code for the result of the failed export.</p>"
+      }
+    },
     "FailureException": {
       "base": "<p>Represents a failure a contributor insights operation.</p>",
       "refs": {
         "DescribeContributorInsightsOutput$FailureException": "<p>Returns information about the last failure that encountered.</p> <p>The most common exceptions for a FAILED status are:</p> <ul> <li> <p>LimitExceededException - Per-account Amazon CloudWatch Contributor Insights rule limit reached. Please disable Contributor Insights for other tables/indexes OR disable Contributor Insights rules before retrying.</p> </li> <li> <p>AccessDeniedException - Amazon CloudWatch Contributor Insights rules cannot be modified due to insufficient permissions.</p> </li> <li> <p>AccessDeniedException - Failed to create service-linked role for Contributor Insights due to insufficient permissions.</p> </li> <li> <p>InternalServerError - Failed to create Amazon CloudWatch Contributor Insights rules. Please retry request.</p> </li> </ul>"
+      }
+    },
+    "FailureMessage": {
+      "base": null,
+      "refs": {
+        "ExportDescription$FailureMessage": "<p>Export failure reason description.</p>"
       }
     },
     "FilterConditionMap": {
@@ -1151,6 +1285,11 @@
       "refs": {
       }
     },
+    "InvalidExportTimeException": {
+      "base": "<p>The specified <code>ExportTime</code> is outside of the point in time recovery window.</p>",
+      "refs": {
+      }
+    },
     "InvalidRestoreTimeException": {
       "base": "<p>An invalid restore time was specified. RestoreDateTime must be between EarliestRestorableDateTime and LatestRestorableDateTime.</p>",
       "refs": {
@@ -1204,6 +1343,7 @@
     "ItemCount": {
       "base": null,
       "refs": {
+        "ExportDescription$ItemCount": "<p>The number of items exported.</p>",
         "SourceTableDetails$ItemCount": "<p>Number of items in the table. Note that this is an approximate value. </p>"
       }
     },
@@ -1357,6 +1497,22 @@
       }
     },
     "ListContributorInsightsOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExportsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListExportsMaxLimit": {
+      "base": null,
+      "refs": {
+        "ListExportsInput$MaxResults": "<p>Maximum number of results to return per page.</p>"
+      }
+    },
+    "ListExportsOutput": {
       "base": null,
       "refs": {
       }
@@ -1977,6 +2133,41 @@
         "Update$ReturnValuesOnConditionCheckFailure": "<p>Use <code>ReturnValuesOnConditionCheckFailure</code> to get the item attributes if the <code>Update</code> condition fails. For <code>ReturnValuesOnConditionCheckFailure</code>, the valid values are: NONE, ALL_OLD, UPDATED_OLD, ALL_NEW, UPDATED_NEW.</p>"
       }
     },
+    "S3Bucket": {
+      "base": null,
+      "refs": {
+        "ExportDescription$S3Bucket": "<p>The name of the Amazon S3 bucket containing the export.</p>",
+        "ExportTableToPointInTimeInput$S3Bucket": "<p>The name of the Amazon S3 bucket to export the snapshot to.</p>"
+      }
+    },
+    "S3BucketOwner": {
+      "base": null,
+      "refs": {
+        "ExportDescription$S3BucketOwner": "<p>The ID of the AWS account that owns the bucket containing the export.</p>",
+        "ExportTableToPointInTimeInput$S3BucketOwner": "<p>The ID of the AWS account that owns the bucket the export will be stored in.</p>"
+      }
+    },
+    "S3Prefix": {
+      "base": null,
+      "refs": {
+        "ExportDescription$S3Prefix": "<p>The Amazon S3 bucket prefix used as the file name and path of the exported snapshot.</p>",
+        "ExportTableToPointInTimeInput$S3Prefix": "<p>The Amazon S3 bucket prefix to use as the file name and path of the exported snapshot.</p>"
+      }
+    },
+    "S3SseAlgorithm": {
+      "base": null,
+      "refs": {
+        "ExportDescription$S3SseAlgorithm": "<p>Type of encryption used on the bucket where export data is stored. Valid values for <code>S3SseAlgorithm</code> are:</p> <ul> <li> <p> <code>AES256</code> - server-side encryption with Amazon S3 managed keys</p> </li> <li> <p> <code>KMS</code> - server-side encryption with AWS KMS managed keys</p> </li> </ul>",
+        "ExportTableToPointInTimeInput$S3SseAlgorithm": "<p>Type of encryption used on the bucket where export data will be stored. Valid values for <code>S3SseAlgorithm</code> are:</p> <ul> <li> <p> <code>AES256</code> - server-side encryption with Amazon S3 managed keys</p> </li> <li> <p> <code>KMS</code> - server-side encryption with AWS KMS managed keys</p> </li> </ul>"
+      }
+    },
+    "S3SseKmsKeyId": {
+      "base": null,
+      "refs": {
+        "ExportDescription$S3SseKmsKeyId": "<p>The ID of the AWS KMS managed key used to encrypt the S3 bucket where export data is stored (if applicable).</p>",
+        "ExportTableToPointInTimeInput$S3SseKmsKeyId": "<p>The ID of the AWS KMS managed key used to encrypt the S3 bucket where export data will be stored (if applicable).</p>"
+      }
+    },
     "SSEDescription": {
       "base": "<p>The description of the server-side encryption status on the specified table.</p>",
       "refs": {
@@ -2127,6 +2318,9 @@
       "base": null,
       "refs": {
         "BackupSummary$TableArn": "<p>ARN associated with the table.</p>",
+        "ExportDescription$TableArn": "<p>The Amazon Resource Name (ARN) of the table that was exported.</p>",
+        "ExportTableToPointInTimeInput$TableArn": "<p>The Amazon Resource Name (ARN) associated with the table to export.</p>",
+        "ListExportsInput$TableArn": "<p>The Amazon Resource Name (ARN) associated with the exported table.</p>",
         "RestoreSummary$SourceTableArn": "<p>The ARN of the source table of the backup that is being restored.</p>",
         "RestoreTableToPointInTimeInput$SourceTableArn": "<p>The DynamoDB table that will be restored. This value is an Amazon Resource Name (ARN).</p>",
         "SourceTableDetails$TableArn": "<p>ARN of the table for which backup was created. </p>"
@@ -2160,6 +2354,7 @@
       "base": null,
       "refs": {
         "BackupSummary$TableId": "<p>Unique identifier for the table.</p>",
+        "ExportDescription$TableId": "<p>Unique ID of the table that was exported.</p>",
         "SourceTableDetails$TableId": "<p>Unique identifier for the table for which the backup was created. </p>",
         "TableDescription$TableId": "<p>Unique identifier for the table for which the backup was created. </p>"
       }

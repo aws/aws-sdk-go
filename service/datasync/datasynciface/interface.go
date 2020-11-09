@@ -198,6 +198,10 @@ type DataSyncAPI interface {
 	UpdateTask(*datasync.UpdateTaskInput) (*datasync.UpdateTaskOutput, error)
 	UpdateTaskWithContext(aws.Context, *datasync.UpdateTaskInput, ...request.Option) (*datasync.UpdateTaskOutput, error)
 	UpdateTaskRequest(*datasync.UpdateTaskInput) (*request.Request, *datasync.UpdateTaskOutput)
+
+	UpdateTaskExecution(*datasync.UpdateTaskExecutionInput) (*datasync.UpdateTaskExecutionOutput, error)
+	UpdateTaskExecutionWithContext(aws.Context, *datasync.UpdateTaskExecutionInput, ...request.Option) (*datasync.UpdateTaskExecutionOutput, error)
+	UpdateTaskExecutionRequest(*datasync.UpdateTaskExecutionInput) (*request.Request, *datasync.UpdateTaskExecutionOutput)
 }
 
 var _ DataSyncAPI = (*datasync.DataSync)(nil)

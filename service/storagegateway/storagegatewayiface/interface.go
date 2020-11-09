@@ -180,6 +180,10 @@ type StorageGatewayAPI interface {
 	DescribeBandwidthRateLimitWithContext(aws.Context, *storagegateway.DescribeBandwidthRateLimitInput, ...request.Option) (*storagegateway.DescribeBandwidthRateLimitOutput, error)
 	DescribeBandwidthRateLimitRequest(*storagegateway.DescribeBandwidthRateLimitInput) (*request.Request, *storagegateway.DescribeBandwidthRateLimitOutput)
 
+	DescribeBandwidthRateLimitSchedule(*storagegateway.DescribeBandwidthRateLimitScheduleInput) (*storagegateway.DescribeBandwidthRateLimitScheduleOutput, error)
+	DescribeBandwidthRateLimitScheduleWithContext(aws.Context, *storagegateway.DescribeBandwidthRateLimitScheduleInput, ...request.Option) (*storagegateway.DescribeBandwidthRateLimitScheduleOutput, error)
+	DescribeBandwidthRateLimitScheduleRequest(*storagegateway.DescribeBandwidthRateLimitScheduleInput) (*request.Request, *storagegateway.DescribeBandwidthRateLimitScheduleOutput)
+
 	DescribeCache(*storagegateway.DescribeCacheInput) (*storagegateway.DescribeCacheOutput, error)
 	DescribeCacheWithContext(aws.Context, *storagegateway.DescribeCacheInput, ...request.Option) (*storagegateway.DescribeCacheOutput, error)
 	DescribeCacheRequest(*storagegateway.DescribeCacheInput) (*request.Request, *storagegateway.DescribeCacheOutput)
@@ -301,6 +305,9 @@ type StorageGatewayAPI interface {
 	ListTapePoolsWithContext(aws.Context, *storagegateway.ListTapePoolsInput, ...request.Option) (*storagegateway.ListTapePoolsOutput, error)
 	ListTapePoolsRequest(*storagegateway.ListTapePoolsInput) (*request.Request, *storagegateway.ListTapePoolsOutput)
 
+	ListTapePoolsPages(*storagegateway.ListTapePoolsInput, func(*storagegateway.ListTapePoolsOutput, bool) bool) error
+	ListTapePoolsPagesWithContext(aws.Context, *storagegateway.ListTapePoolsInput, func(*storagegateway.ListTapePoolsOutput, bool) bool, ...request.Option) error
+
 	ListTapes(*storagegateway.ListTapesInput) (*storagegateway.ListTapesOutput, error)
 	ListTapesWithContext(aws.Context, *storagegateway.ListTapesInput, ...request.Option) (*storagegateway.ListTapesOutput, error)
 	ListTapesRequest(*storagegateway.ListTapesInput) (*request.Request, *storagegateway.ListTapesOutput)
@@ -374,6 +381,10 @@ type StorageGatewayAPI interface {
 	UpdateBandwidthRateLimit(*storagegateway.UpdateBandwidthRateLimitInput) (*storagegateway.UpdateBandwidthRateLimitOutput, error)
 	UpdateBandwidthRateLimitWithContext(aws.Context, *storagegateway.UpdateBandwidthRateLimitInput, ...request.Option) (*storagegateway.UpdateBandwidthRateLimitOutput, error)
 	UpdateBandwidthRateLimitRequest(*storagegateway.UpdateBandwidthRateLimitInput) (*request.Request, *storagegateway.UpdateBandwidthRateLimitOutput)
+
+	UpdateBandwidthRateLimitSchedule(*storagegateway.UpdateBandwidthRateLimitScheduleInput) (*storagegateway.UpdateBandwidthRateLimitScheduleOutput, error)
+	UpdateBandwidthRateLimitScheduleWithContext(aws.Context, *storagegateway.UpdateBandwidthRateLimitScheduleInput, ...request.Option) (*storagegateway.UpdateBandwidthRateLimitScheduleOutput, error)
+	UpdateBandwidthRateLimitScheduleRequest(*storagegateway.UpdateBandwidthRateLimitScheduleInput) (*request.Request, *storagegateway.UpdateBandwidthRateLimitScheduleOutput)
 
 	UpdateChapCredentials(*storagegateway.UpdateChapCredentialsInput) (*storagegateway.UpdateChapCredentialsOutput, error)
 	UpdateChapCredentialsWithContext(aws.Context, *storagegateway.UpdateChapCredentialsInput, ...request.Option) (*storagegateway.UpdateChapCredentialsOutput, error)

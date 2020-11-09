@@ -2400,6 +2400,158 @@ func (c *ElasticsearchService) GetCompatibleElasticsearchVersionsWithContext(ctx
 	return out, req.Send()
 }
 
+const opGetPackageVersionHistory = "GetPackageVersionHistory"
+
+// GetPackageVersionHistoryRequest generates a "aws/request.Request" representing the
+// client's request for the GetPackageVersionHistory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPackageVersionHistory for more information on using the GetPackageVersionHistory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPackageVersionHistoryRequest method.
+//    req, resp := client.GetPackageVersionHistoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *ElasticsearchService) GetPackageVersionHistoryRequest(input *GetPackageVersionHistoryInput) (req *request.Request, output *GetPackageVersionHistoryOutput) {
+	op := &request.Operation{
+		Name:       opGetPackageVersionHistory,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2015-01-01/packages/{PackageID}/history",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetPackageVersionHistoryInput{}
+	}
+
+	output = &GetPackageVersionHistoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPackageVersionHistory API operation for Amazon Elasticsearch Service.
+//
+// Returns a list of versions of the package, along with their creation time
+// and commit message.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation GetPackageVersionHistory for usage and error information.
+//
+// Returned Error Types:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * AccessDeniedException
+//   An error occurred because user does not have permissions to access the resource.
+//   Returns HTTP status code 403.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+func (c *ElasticsearchService) GetPackageVersionHistory(input *GetPackageVersionHistoryInput) (*GetPackageVersionHistoryOutput, error) {
+	req, out := c.GetPackageVersionHistoryRequest(input)
+	return out, req.Send()
+}
+
+// GetPackageVersionHistoryWithContext is the same as GetPackageVersionHistory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPackageVersionHistory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) GetPackageVersionHistoryWithContext(ctx aws.Context, input *GetPackageVersionHistoryInput, opts ...request.Option) (*GetPackageVersionHistoryOutput, error) {
+	req, out := c.GetPackageVersionHistoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetPackageVersionHistoryPages iterates over the pages of a GetPackageVersionHistory operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetPackageVersionHistory method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetPackageVersionHistory operation.
+//    pageNum := 0
+//    err := client.GetPackageVersionHistoryPages(params,
+//        func(page *elasticsearchservice.GetPackageVersionHistoryOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *ElasticsearchService) GetPackageVersionHistoryPages(input *GetPackageVersionHistoryInput, fn func(*GetPackageVersionHistoryOutput, bool) bool) error {
+	return c.GetPackageVersionHistoryPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetPackageVersionHistoryPagesWithContext same as GetPackageVersionHistoryPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) GetPackageVersionHistoryPagesWithContext(ctx aws.Context, input *GetPackageVersionHistoryInput, fn func(*GetPackageVersionHistoryOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetPackageVersionHistoryInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetPackageVersionHistoryRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetPackageVersionHistoryOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetUpgradeHistory = "GetUpgradeHistory"
 
 // GetUpgradeHistoryRequest generates a "aws/request.Request" representing the
@@ -3860,6 +4012,103 @@ func (c *ElasticsearchService) UpdateElasticsearchDomainConfig(input *UpdateElas
 // for more information on using Contexts.
 func (c *ElasticsearchService) UpdateElasticsearchDomainConfigWithContext(ctx aws.Context, input *UpdateElasticsearchDomainConfigInput, opts ...request.Option) (*UpdateElasticsearchDomainConfigOutput, error) {
 	req, out := c.UpdateElasticsearchDomainConfigRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdatePackage = "UpdatePackage"
+
+// UpdatePackageRequest generates a "aws/request.Request" representing the
+// client's request for the UpdatePackage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdatePackage for more information on using the UpdatePackage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdatePackageRequest method.
+//    req, resp := client.UpdatePackageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *ElasticsearchService) UpdatePackageRequest(input *UpdatePackageInput) (req *request.Request, output *UpdatePackageOutput) {
+	op := &request.Operation{
+		Name:       opUpdatePackage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/2015-01-01/packages/update",
+	}
+
+	if input == nil {
+		input = &UpdatePackageInput{}
+	}
+
+	output = &UpdatePackageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdatePackage API operation for Amazon Elasticsearch Service.
+//
+// Updates a package for use with Amazon ES domains.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elasticsearch Service's
+// API operation UpdatePackage for usage and error information.
+//
+// Returned Error Types:
+//   * BaseException
+//   An error occurred while processing the request.
+//
+//   * InternalException
+//   The request processing has failed because of an unknown error, exception
+//   or failure (the failure is internal to the service) . Gives http status code
+//   of 500.
+//
+//   * LimitExceededException
+//   An exception for trying to create more than allowed resources or sub-resources.
+//   Gives http status code of 409.
+//
+//   * ResourceNotFoundException
+//   An exception for accessing or deleting a resource that does not exist. Gives
+//   http status code of 400.
+//
+//   * AccessDeniedException
+//   An error occurred because user does not have permissions to access the resource.
+//   Returns HTTP status code 403.
+//
+//   * ValidationException
+//   An exception for missing / invalid input fields. Gives http status code of
+//   400.
+//
+func (c *ElasticsearchService) UpdatePackage(input *UpdatePackageInput) (*UpdatePackageOutput, error) {
+	req, out := c.UpdatePackageRequest(input)
+	return out, req.Send()
+}
+
+// UpdatePackageWithContext is the same as UpdatePackage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdatePackage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ElasticsearchService) UpdatePackageWithContext(ctx aws.Context, input *UpdatePackageInput, opts ...request.Option) (*UpdatePackageOutput, error) {
+	req, out := c.UpdatePackageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6798,6 +7047,8 @@ type DomainPackageDetails struct {
 	// Currently supports only TXT-DICTIONARY.
 	PackageType *string `type:"string" enum:"PackageType"`
 
+	PackageVersion *string `type:"string"`
+
 	// The relative path on Amazon ES nodes, which can be used as synonym_path when
 	// the package is synonym file.
 	ReferencePath *string `type:"string"`
@@ -6852,6 +7103,12 @@ func (s *DomainPackageDetails) SetPackageName(v string) *DomainPackageDetails {
 // SetPackageType sets the PackageType field's value.
 func (s *DomainPackageDetails) SetPackageType(v string) *DomainPackageDetails {
 	s.PackageType = &v
+	return s
+}
+
+// SetPackageVersion sets the PackageVersion field's value.
+func (s *DomainPackageDetails) SetPackageVersion(v string) *DomainPackageDetails {
+	s.PackageVersion = &v
 	return s
 }
 
@@ -7752,6 +8009,107 @@ func (s GetCompatibleElasticsearchVersionsOutput) GoString() string {
 // SetCompatibleElasticsearchVersions sets the CompatibleElasticsearchVersions field's value.
 func (s *GetCompatibleElasticsearchVersionsOutput) SetCompatibleElasticsearchVersions(v []*CompatibleVersionsMap) *GetCompatibleElasticsearchVersionsOutput {
 	s.CompatibleElasticsearchVersions = v
+	return s
+}
+
+// Container for request parameters to GetPackageVersionHistory operation.
+type GetPackageVersionHistoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// Limits results to a maximum number of versions.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// Used for pagination. Only necessary if a previous API call includes a non-null
+	// NextToken value. If provided, returns results for the next page.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// Returns an audit history of versions of the package.
+	//
+	// PackageID is a required field
+	PackageID *string `location:"uri" locationName:"PackageID" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetPackageVersionHistoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPackageVersionHistoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetPackageVersionHistoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetPackageVersionHistoryInput"}
+	if s.PackageID == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageID"))
+	}
+	if s.PackageID != nil && len(*s.PackageID) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PackageID", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetPackageVersionHistoryInput) SetMaxResults(v int64) *GetPackageVersionHistoryInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetPackageVersionHistoryInput) SetNextToken(v string) *GetPackageVersionHistoryInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPackageID sets the PackageID field's value.
+func (s *GetPackageVersionHistoryInput) SetPackageID(v string) *GetPackageVersionHistoryInput {
+	s.PackageID = &v
+	return s
+}
+
+// Container for response returned by GetPackageVersionHistory operation.
+type GetPackageVersionHistoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `type:"string"`
+
+	PackageID *string `type:"string"`
+
+	// List of PackageVersionHistory objects.
+	PackageVersionHistoryList []*PackageVersionHistory `type:"list"`
+}
+
+// String returns the string representation
+func (s GetPackageVersionHistoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetPackageVersionHistoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetPackageVersionHistoryOutput) SetNextToken(v string) *GetPackageVersionHistoryOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetPackageID sets the PackageID field's value.
+func (s *GetPackageVersionHistoryOutput) SetPackageID(v string) *GetPackageVersionHistoryOutput {
+	s.PackageID = &v
+	return s
+}
+
+// SetPackageVersionHistoryList sets the PackageVersionHistoryList field's value.
+func (s *GetPackageVersionHistoryOutput) SetPackageVersionHistoryList(v []*PackageVersionHistory) *GetPackageVersionHistoryOutput {
+	s.PackageVersionHistoryList = v
 	return s
 }
 
@@ -9254,11 +9612,15 @@ func (s *OutboundCrossClusterSearchConnectionStatus) SetStatusCode(v string) *Ou
 type PackageDetails struct {
 	_ struct{} `type:"structure"`
 
+	AvailablePackageVersion *string `type:"string"`
+
 	// Timestamp which tells creation date of the package.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// Additional information if the package is in an error state. Null otherwise.
 	ErrorDetails *ErrorDetails `type:"structure"`
+
+	LastUpdatedAt *time.Time `type:"timestamp"`
 
 	// User-specified description of the package.
 	PackageDescription *string `type:"string"`
@@ -9286,6 +9648,12 @@ func (s PackageDetails) GoString() string {
 	return s.String()
 }
 
+// SetAvailablePackageVersion sets the AvailablePackageVersion field's value.
+func (s *PackageDetails) SetAvailablePackageVersion(v string) *PackageDetails {
+	s.AvailablePackageVersion = &v
+	return s
+}
+
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *PackageDetails) SetCreatedAt(v time.Time) *PackageDetails {
 	s.CreatedAt = &v
@@ -9295,6 +9663,12 @@ func (s *PackageDetails) SetCreatedAt(v time.Time) *PackageDetails {
 // SetErrorDetails sets the ErrorDetails field's value.
 func (s *PackageDetails) SetErrorDetails(v *ErrorDetails) *PackageDetails {
 	s.ErrorDetails = v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *PackageDetails) SetLastUpdatedAt(v time.Time) *PackageDetails {
+	s.LastUpdatedAt = &v
 	return s
 }
 
@@ -9371,6 +9745,48 @@ func (s *PackageSource) SetS3BucketName(v string) *PackageSource {
 // SetS3Key sets the S3Key field's value.
 func (s *PackageSource) SetS3Key(v string) *PackageSource {
 	s.S3Key = &v
+	return s
+}
+
+// Details of a package version.
+type PackageVersionHistory struct {
+	_ struct{} `type:"structure"`
+
+	// A message associated with the version.
+	CommitMessage *string `type:"string"`
+
+	// Timestamp which tells creation time of the package version.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// Version of the package.
+	PackageVersion *string `type:"string"`
+}
+
+// String returns the string representation
+func (s PackageVersionHistory) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PackageVersionHistory) GoString() string {
+	return s.String()
+}
+
+// SetCommitMessage sets the CommitMessage field's value.
+func (s *PackageVersionHistory) SetCommitMessage(v string) *PackageVersionHistory {
+	s.CommitMessage = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *PackageVersionHistory) SetCreatedAt(v time.Time) *PackageVersionHistory {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetPackageVersion sets the PackageVersion field's value.
+func (s *PackageVersionHistory) SetPackageVersion(v string) *PackageVersionHistory {
+	s.PackageVersion = &v
 	return s
 }
 
@@ -10762,6 +11178,106 @@ func (s UpdateElasticsearchDomainConfigOutput) GoString() string {
 // SetDomainConfig sets the DomainConfig field's value.
 func (s *UpdateElasticsearchDomainConfigOutput) SetDomainConfig(v *ElasticsearchDomainConfig) *UpdateElasticsearchDomainConfigOutput {
 	s.DomainConfig = v
+	return s
+}
+
+// Container for request parameters to UpdatePackage operation.
+type UpdatePackageInput struct {
+	_ struct{} `type:"structure"`
+
+	// An info message for the new version which will be shown as part of GetPackageVersionHistoryResponse.
+	CommitMessage *string `type:"string"`
+
+	// New description of the package.
+	PackageDescription *string `type:"string"`
+
+	// Unique identifier for the package.
+	//
+	// PackageID is a required field
+	PackageID *string `type:"string" required:"true"`
+
+	// The S3 location for importing the package specified as S3BucketName and S3Key
+	//
+	// PackageSource is a required field
+	PackageSource *PackageSource `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdatePackageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePackageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdatePackageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdatePackageInput"}
+	if s.PackageID == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageID"))
+	}
+	if s.PackageSource == nil {
+		invalidParams.Add(request.NewErrParamRequired("PackageSource"))
+	}
+	if s.PackageSource != nil {
+		if err := s.PackageSource.Validate(); err != nil {
+			invalidParams.AddNested("PackageSource", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCommitMessage sets the CommitMessage field's value.
+func (s *UpdatePackageInput) SetCommitMessage(v string) *UpdatePackageInput {
+	s.CommitMessage = &v
+	return s
+}
+
+// SetPackageDescription sets the PackageDescription field's value.
+func (s *UpdatePackageInput) SetPackageDescription(v string) *UpdatePackageInput {
+	s.PackageDescription = &v
+	return s
+}
+
+// SetPackageID sets the PackageID field's value.
+func (s *UpdatePackageInput) SetPackageID(v string) *UpdatePackageInput {
+	s.PackageID = &v
+	return s
+}
+
+// SetPackageSource sets the PackageSource field's value.
+func (s *UpdatePackageInput) SetPackageSource(v *PackageSource) *UpdatePackageInput {
+	s.PackageSource = v
+	return s
+}
+
+// Container for response returned by UpdatePackage operation.
+type UpdatePackageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the package PackageDetails.
+	PackageDetails *PackageDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdatePackageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdatePackageOutput) GoString() string {
+	return s.String()
+}
+
+// SetPackageDetails sets the PackageDetails field's value.
+func (s *UpdatePackageOutput) SetPackageDetails(v *PackageDetails) *UpdatePackageOutput {
+	s.PackageDetails = v
 	return s
 }
 

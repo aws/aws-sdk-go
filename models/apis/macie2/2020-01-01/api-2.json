@@ -4584,6 +4584,10 @@
     "Record": {
       "type": "structure",
       "members": {
+        "jsonPath": {
+          "shape": "__string",
+          "locationName": "jsonPath"
+        },
         "recordIndex": {
           "shape": "__long",
           "locationName": "recordIndex"

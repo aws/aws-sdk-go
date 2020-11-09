@@ -2932,6 +2932,96 @@ func (c *DataSync) UpdateTaskWithContext(ctx aws.Context, input *UpdateTaskInput
 	return out, req.Send()
 }
 
+const opUpdateTaskExecution = "UpdateTaskExecution"
+
+// UpdateTaskExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateTaskExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateTaskExecution for more information on using the UpdateTaskExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateTaskExecutionRequest method.
+//    req, resp := client.UpdateTaskExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTaskExecution
+func (c *DataSync) UpdateTaskExecutionRequest(input *UpdateTaskExecutionInput) (req *request.Request, output *UpdateTaskExecutionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateTaskExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateTaskExecutionInput{}
+	}
+
+	output = &UpdateTaskExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateTaskExecution API operation for AWS DataSync.
+//
+// Updates execution of a task.
+//
+// You can modify bandwidth throttling for a task execution that is running
+// or queued. For more information, see Adjusting Bandwidth Throttling for a
+// Task Execution (https://docs.aws.amazon.com/datasync/latest/working-with-task-executions.html#adjust-bandwidth-throttling).
+//
+// The only Option that can be modified by UpdateTaskExecution is BytesPerSecond
+// (https://docs.aws.amazon.com/datasync/latest/userguide/API_Options.html#DataSync-Type-Options-BytesPerSecond) .
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS DataSync's
+// API operation UpdateTaskExecution for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * InternalException
+//   This exception is thrown when an error occurs in the AWS DataSync service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/datasync-2018-11-09/UpdateTaskExecution
+func (c *DataSync) UpdateTaskExecution(input *UpdateTaskExecutionInput) (*UpdateTaskExecutionOutput, error) {
+	req, out := c.UpdateTaskExecutionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateTaskExecutionWithContext is the same as UpdateTaskExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateTaskExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataSync) UpdateTaskExecutionWithContext(ctx aws.Context, input *UpdateTaskExecutionInput, opts ...request.Option) (*UpdateTaskExecutionOutput, error) {
+	req, out := c.UpdateTaskExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Represents a single entry in a list of agents. AgentListEntry returns an
 // array that contains a list of agents when the ListAgents operation is called.
 type AgentListEntry struct {
@@ -3510,7 +3600,7 @@ type CreateLocationNfsInput struct {
 	// The path should be such that it can be mounted by other NFS clients in your
 	// network.
 	//
-	// To see all the paths exported by your NFS server. run "showmount -e nfs-server-name"
+	// To see all the paths exported by your NFS server, run "showmount -e nfs-server-name"
 	// from an NFS client that has access to your server. You can specify any directory
 	// that appears in the results, and any subdirectory of that directory. Ensure
 	// that the NFS export is accessible without Kerberos authentication.
@@ -3828,12 +3918,12 @@ type CreateLocationS3Input struct {
 	_ struct{} `type:"structure"`
 
 	// If you are using DataSync on an AWS Outpost, specify the Amazon Resource
-	// Names (ARNs) of the DataSync agents deployed on your AWS Outpost. For more
-	// information about launching a DataSync agent on an Amazon Outpost, see outposts-agent.
+	// Names (ARNs) of the DataSync agents deployed on your Outpost. For more information
+	// about launching a DataSync agent on an AWS Outpost, see outposts-agent.
 	AgentArns []*string `min:"1" type:"list"`
 
-	// The Amazon Resource Name (ARN) of the Amazon S3 bucket. If the bucket is
-	// on an AWS Outpost, this must be an access point ARN.
+	// The ARN of the Amazon S3 bucket. If the bucket is on an AWS Outpost, this
+	// must be an access point ARN.
 	//
 	// S3BucketArn is a required field
 	S3BucketArn *string `type:"string" required:"true"`
@@ -3853,9 +3943,8 @@ type CreateLocationS3Input struct {
 	// defaults to AWS S3 Outposts.
 	//
 	// For more information about S3 storage classes, see Amazon S3 Storage Classes
-	// (https://aws.amazon.com/s3/storage-classes/) in the Amazon Simple Storage
-	// Service Developer Guide. Some storage classes have behaviors that can affect
-	// your S3 storage cost. For detailed information, see using-storage-classes.
+	// (http://aws.amazon.com/s3/storage-classes/). Some storage classes have behaviors
+	// that can affect your S3 storage cost. For detailed information, see using-storage-classes.
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 
 	// A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is
@@ -4172,7 +4261,7 @@ type CreateTaskInput struct {
 	// A list of filter rules that determines which files to exclude from a task.
 	// The list should contain a single filter string that consists of the patterns
 	// to exclude. The patterns are delimited by "|" (that is, a pipe), for example,
-	// "/folder1|/folder2"
+	// "/folder1|/folder2".
 	Excludes []*FilterRule `type:"list"`
 
 	// The name of a task. This value is a text reference that is used to identify
@@ -5078,9 +5167,9 @@ func (s *DescribeLocationS3Input) SetLocationArn(v string) *DescribeLocationS3In
 type DescribeLocationS3Output struct {
 	_ struct{} `type:"structure"`
 
-	// If you are using DataSync on an Amazon Outpost, the Amazon Resource Name
-	// (ARNs) of the EC2 agents deployed on your AWS Outpost. For more information
-	// about launching a DataSync agent on an Amazon Outpost, see outposts-agent.
+	// If you are using DataSync on an AWS Outpost, the Amazon Resource Name (ARNs)
+	// of the EC2 agents deployed on your Outpost. For more information about launching
+	// a DataSync agent on an AWS Outpost, see outposts-agent.
 	AgentArns []*string `min:"1" type:"list"`
 
 	// The time that the Amazon S3 bucket location was created.
@@ -5101,10 +5190,9 @@ type DescribeLocationS3Output struct {
 
 	// The Amazon S3 storage class that you chose to store your files in when this
 	// location is used as a task destination. For more information about S3 storage
-	// classes, see Amazon S3 Storage Classes (https://aws.amazon.com/s3/storage-classes/)
-	// in the Amazon Simple Storage Service Developer Guide. Some storage classes
-	// have behaviors that can affect your S3 storage cost. For detailed information,
-	// see using-storage-classes.
+	// classes, see Amazon S3 Storage Classes (http://aws.amazon.com/s3/storage-classes/).
+	// Some storage classes have behaviors that can affect your S3 storage cost.
+	// For detailed information, see using-storage-classes.
 	S3StorageClass *string `type:"string" enum:"S3StorageClass"`
 }
 
@@ -7229,13 +7317,13 @@ type TaskExecutionResultDetail struct {
 	// phase.
 	TransferDuration *int64 `type:"long"`
 
-	// The status of the TRANSFERRING Phase.
+	// The status of the TRANSFERRING phase.
 	TransferStatus *string `type:"string" enum:"PhaseStatus"`
 
 	// The total time in milliseconds that AWS DataSync spent in the VERIFYING phase.
 	VerifyDuration *int64 `type:"long"`
 
-	// The status of the VERIFYING Phase.
+	// The status of the VERIFYING phase.
 	VerifyStatus *string `type:"string" enum:"PhaseStatus"`
 }
 
@@ -7594,6 +7682,86 @@ func (s UpdateAgentOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateAgentOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateTaskExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Represents the options that are available to control the behavior of a StartTaskExecution
+	// operation. Behavior includes preserving metadata such as user ID (UID), group
+	// ID (GID), and file permissions, and also overwriting files in the destination,
+	// data integrity verification, and so on.
+	//
+	// A task has a set of default options associated with it. If you don't specify
+	// an option in StartTaskExecution, the default value is used. You can override
+	// the defaults options on each task execution by specifying an overriding Options
+	// value to StartTaskExecution.
+	//
+	// Options is a required field
+	Options *Options `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the specific task execution that is being
+	// updated.
+	//
+	// TaskExecutionArn is a required field
+	TaskExecutionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateTaskExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTaskExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateTaskExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateTaskExecutionInput"}
+	if s.Options == nil {
+		invalidParams.Add(request.NewErrParamRequired("Options"))
+	}
+	if s.TaskExecutionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("TaskExecutionArn"))
+	}
+	if s.Options != nil {
+		if err := s.Options.Validate(); err != nil {
+			invalidParams.AddNested("Options", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOptions sets the Options field's value.
+func (s *UpdateTaskExecutionInput) SetOptions(v *Options) *UpdateTaskExecutionInput {
+	s.Options = v
+	return s
+}
+
+// SetTaskExecutionArn sets the TaskExecutionArn field's value.
+func (s *UpdateTaskExecutionInput) SetTaskExecutionArn(v string) *UpdateTaskExecutionInput {
+	s.TaskExecutionArn = &v
+	return s
+}
+
+type UpdateTaskExecutionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateTaskExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateTaskExecutionOutput) GoString() string {
 	return s.String()
 }
 
