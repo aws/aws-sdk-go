@@ -7721,6 +7721,7 @@
           "shape":"Boolean",
           "locationName":"dryRun"
         },
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
         "EgressOnlyInternetGatewayId":{
           "shape":"EgressOnlyInternetGatewayId",
           "locationName":"egressOnlyInternetGatewayId"
@@ -8380,7 +8381,6 @@
     },
     "CreateVpcEndpointServiceConfigurationRequest":{
       "type":"structure",
-      "required":["NetworkLoadBalancerArns"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "AcceptanceRequired":{"shape":"Boolean"},
@@ -8388,6 +8388,10 @@
         "NetworkLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"NetworkLoadBalancerArn"
+        },
+        "GatewayLoadBalancerArns":{
+          "shape":"ValueStringList",
+          "locationName":"GatewayLoadBalancerArn"
         },
         "ClientToken":{"shape":"String"},
         "TagSpecifications":{
@@ -21952,6 +21956,14 @@
         "RemoveNetworkLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"RemoveNetworkLoadBalancerArn"
+        },
+        "AddGatewayLoadBalancerArns":{
+          "shape":"ValueStringList",
+          "locationName":"AddGatewayLoadBalancerArn"
+        },
+        "RemoveGatewayLoadBalancerArns":{
+          "shape":"ValueStringList",
+          "locationName":"RemoveGatewayLoadBalancerArn"
         }
       }
     },
@@ -24518,6 +24530,7 @@
           "shape":"Boolean",
           "locationName":"dryRun"
         },
+        "VpcEndpointId":{"shape":"VpcEndpointId"},
         "EgressOnlyInternetGatewayId":{
           "shape":"EgressOnlyInternetGatewayId",
           "locationName":"egressOnlyInternetGatewayId"
@@ -26771,6 +26784,10 @@
           "shape":"ValueStringList",
           "locationName":"networkLoadBalancerArnSet"
         },
+        "GatewayLoadBalancerArns":{
+          "shape":"ValueStringList",
+          "locationName":"gatewayLoadBalancerArnSet"
+        },
         "BaseEndpointDnsNames":{
           "shape":"ValueStringList",
           "locationName":"baseEndpointDnsNameSet"
@@ -26870,7 +26887,8 @@
       "type":"string",
       "enum":[
         "Interface",
-        "Gateway"
+        "Gateway",
+        "GatewayLoadBalancer"
       ]
     },
     "ServiceTypeDetail":{
@@ -30839,6 +30857,10 @@
         "NetworkLoadBalancerArns":{
           "shape":"ValueStringList",
           "locationName":"networkLoadBalancerArnSet"
+        },
+        "GatewayLoadBalancerArns":{
+          "shape":"ValueStringList",
+          "locationName":"gatewayLoadBalancerArnSet"
         }
       }
     },
@@ -30897,7 +30919,8 @@
       "type":"string",
       "enum":[
         "Interface",
-        "Gateway"
+        "Gateway",
+        "GatewayLoadBalancer"
       ]
     },
     "VpcFlowLogId":{"type":"string"},

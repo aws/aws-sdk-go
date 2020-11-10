@@ -885,8 +885,6 @@
       "type":"structure",
       "required":[
         "LoadBalancerArn",
-        "Protocol",
-        "Port",
         "DefaultActions"
       ],
       "members":{
@@ -1569,7 +1567,8 @@
       "type":"string",
       "enum":[
         "application",
-        "network"
+        "network",
+        "gateway"
       ]
     },
     "LoadBalancers":{
@@ -1729,7 +1728,8 @@
         "TCP",
         "TLS",
         "UDP",
-        "TCP_UDP"
+        "TCP_UDP",
+        "GENEVE"
       ]
     },
     "ProtocolVersion":{"type":"string"},
