@@ -1,0 +1,1358 @@
+{
+  "version": "2.0",
+  "service": "<p>AWS Glue DataBrew is a visual, cloud-scale data-preparation service. DataBrew simplifies data preparation tasks, targeting data issues that are hard to spot and time-consuming to fix. DataBrew empowers users of all technical levels to visualize the data and perform one-click data transformations, with no coding required.</p>",
+  "operations": {
+    "BatchDeleteRecipeVersion": "<p>Deletes one or more versions of a recipe at a time.</p>",
+    "CreateDataset": "<p>Creates a new AWS Glue DataBrew dataset for this AWS account.</p>",
+    "CreateProfileJob": "<p>Creates a new job to profile an AWS Glue DataBrew dataset that exists in the current AWS account.</p>",
+    "CreateProject": "<p>Creates a new AWS Glue DataBrew project in the current AWS account.</p>",
+    "CreateRecipe": "<p>Creates a new AWS Glue DataBrew recipe for the current AWS account.</p>",
+    "CreateRecipeJob": "<p>Creates a new job for an existing AWS Glue DataBrew recipe in the current AWS account. You can create a standalone job using either a project, or a combination of a recipe and a dataset.</p>",
+    "CreateSchedule": "<p>Creates a new schedule for one or more AWS Glue DataBrew jobs. Jobs can be run at a specific date and time, or at regular intervals.</p>",
+    "DeleteDataset": "<p>Deletes a dataset from AWS Glue DataBrew.</p>",
+    "DeleteJob": "<p>Deletes the specified AWS Glue DataBrew job from the current AWS account. The job can be for a recipe or for a profile.</p>",
+    "DeleteProject": "<p>Deletes an existing AWS Glue DataBrew project from the current AWS account.</p>",
+    "DeleteRecipeVersion": "<p>Deletes a single version of an AWS Glue DataBrew recipe.</p>",
+    "DeleteSchedule": "<p>Deletes the specified AWS Glue DataBrew schedule from the current AWS account.</p>",
+    "DescribeDataset": "<p>Returns the definition of a specific AWS Glue DataBrew dataset that is in the current AWS account.</p>",
+    "DescribeJob": "<p>Returns the definition of a specific AWS Glue DataBrew job that is in the current AWS account.</p>",
+    "DescribeProject": "<p>Returns the definition of a specific AWS Glue DataBrew project that is in the current AWS account.</p>",
+    "DescribeRecipe": "<p>Returns the definition of a specific AWS Glue DataBrew recipe that is in the current AWS account.</p>",
+    "DescribeSchedule": "<p>Returns the definition of a specific AWS Glue DataBrew schedule that is in the current AWS account.</p>",
+    "ListDatasets": "<p>Lists all of the AWS Glue DataBrew datasets for the current AWS account.</p>",
+    "ListJobRuns": "<p>Lists all of the previous runs of a particular AWS Glue DataBrew job in the current AWS account.</p>",
+    "ListJobs": "<p>Lists the AWS Glue DataBrew jobs in the current AWS account.</p>",
+    "ListProjects": "<p>Lists all of the DataBrew projects in the current AWS account.</p>",
+    "ListRecipeVersions": "<p>Lists all of the versions of a particular AWS Glue DataBrew recipe in the current AWS account.</p>",
+    "ListRecipes": "<p>Lists all of the AWS Glue DataBrew recipes in the current AWS account.</p>",
+    "ListSchedules": "<p>Lists the AWS Glue DataBrew schedules in the current AWS account.</p>",
+    "ListTagsForResource": "<p>Lists all the tags for an AWS Glue DataBrew resource. </p>",
+    "PublishRecipe": "<p>Publishes a new major version of an AWS Glue DataBrew recipe that exists in the current AWS account.</p>",
+    "SendProjectSessionAction": "<p>Performs a recipe step within an interactive AWS Glue DataBrew session that's currently open.</p>",
+    "StartJobRun": "<p>Runs an AWS Glue DataBrew job that exists in the current AWS account.</p>",
+    "StartProjectSession": "<p>Creates an interactive session, enabling you to manipulate an AWS Glue DataBrew project.</p>",
+    "StopJobRun": "<p>Stops the specified job from running in the current AWS account.</p>",
+    "TagResource": "<p>Adds metadata tags to an AWS Glue DataBrew resource, such as a dataset, job, project, or recipe.</p>",
+    "UntagResource": "<p>Removes metadata tags from an AWS Glue DataBrew resource.</p>",
+    "UpdateDataset": "<p>Modifies the definition of an existing AWS Glue DataBrew dataset in the current AWS account.</p>",
+    "UpdateProfileJob": "<p>Modifies the definition of an existing AWS Glue DataBrew job in the current AWS account.</p>",
+    "UpdateProject": "<p>Modifies the definition of an existing AWS Glue DataBrew project in the current AWS account.</p>",
+    "UpdateRecipe": "<p>Modifies the definition of the latest working version of an AWS Glue DataBrew recipe in the current AWS account.</p>",
+    "UpdateRecipeJob": "<p>Modifies the definition of an existing AWS Glue DataBrew recipe job in the current AWS account.</p>",
+    "UpdateSchedule": "<p>Modifies the definition of an existing AWS Glue DataBrew schedule in the current AWS account.</p>"
+  },
+  "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>Access to the specified resource was denied.</p>",
+      "refs": {
+      }
+    },
+    "AccountId": {
+      "base": null,
+      "refs": {
+        "Dataset$AccountId": "<p>The ID of the AWS account that owns the dataset.</p>",
+        "Job$AccountId": "<p>The ID of the AWS account that owns the job.</p>",
+        "Project$AccountId": "<p>The ID of the AWS account that owns the project.</p>",
+        "Schedule$AccountId": "<p>The ID of the AWS account that owns the schedule.</p>"
+      }
+    },
+    "ActionId": {
+      "base": null,
+      "refs": {
+        "SendProjectSessionActionResponse$ActionId": "<p>A unique identifier for the action that was performed.</p>"
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role to be assumed for this request.</p>",
+        "CreateProjectRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role to be assumed for this request.</p>",
+        "CreateRecipeJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role to be assumed for this request.</p>",
+        "Dataset$ResourceArn": "<p>The unique Amazon Resource Name (ARN) for the dataset.</p>",
+        "DescribeDatasetResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the dataset.</p>",
+        "DescribeJobResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the job.</p>",
+        "DescribeJobResponse$RoleArn": "<p>The ARN of the AWS Identity and Access Management (IAM) role that was assumed for this request.</p>",
+        "DescribeProjectResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the project.</p>",
+        "DescribeProjectResponse$RoleArn": "<p>The ARN of the AWS Identity and Access Management (IAM) role that was assumed for this request.</p>",
+        "DescribeRecipeResponse$ResourceArn": "<p>The ARN of the recipe.</p>",
+        "DescribeScheduleResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the schedule.</p>",
+        "Job$ResourceArn": "<p>The unique Amazon Resource Name (ARN) for the job.</p>",
+        "Job$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that will be assumed for this job.</p>",
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) string that uniquely identifies the DataBrew resource. </p>",
+        "Project$ResourceArn": "<p>The Amazon Resource Name (ARN) for the project.</p>",
+        "Project$RoleArn": "<p>The Amazon Resource Name (ARN) of the role that will be assumed for this project.</p>",
+        "Recipe$ResourceArn": "<p>The Amazon Resource Name (ARN) for the recipe.</p>",
+        "Schedule$ResourceArn": "<p>The Amazon Resource Name (ARN) of the schedule.</p>",
+        "TagResourceRequest$ResourceArn": "<p>The DataBrew resource to which tags should be added. The value for this parameter is an Amazon Resource Name (ARN). For DataBrew, you can tag a dataset, a job, a project, or a recipe.</p>",
+        "UntagResourceRequest$ResourceArn": "<p>An DataBrew resource from which you want to remove a tag or tags. The value for this parameter is an Amazon Resource Name (ARN). </p>",
+        "UpdateProfileJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role to be assumed for this request.</p>",
+        "UpdateProjectRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role to be assumed for this request.</p>",
+        "UpdateRecipeJobRequest$RoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role to be assumed for this request.</p>"
+      }
+    },
+    "AssumeControl": {
+      "base": null,
+      "refs": {
+        "StartProjectSessionRequest$AssumeControl": "<p>A value that, if true, enables you to take control of a session, even if a different client is currently accessing the project.</p>"
+      }
+    },
+    "Attempt": {
+      "base": null,
+      "refs": {
+        "JobRun$Attempt": "<p>The number of times that DataBrew has attempted to run the job.</p>"
+      }
+    },
+    "BatchDeleteRecipeVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchDeleteRecipeVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Bucket": {
+      "base": null,
+      "refs": {
+        "S3Location$Bucket": "<p>The S3 bucket name.</p>"
+      }
+    },
+    "CatalogId": {
+      "base": null,
+      "refs": {
+        "DataCatalogInputDefinition$CatalogId": "<p>The unique identifier of the AWS account that holds the Data Catalog that stores the data.</p>"
+      }
+    },
+    "ClientSessionId": {
+      "base": null,
+      "refs": {
+        "SendProjectSessionActionRequest$ClientSessionId": "<p>A unique identifier for an interactive session that's currently open and ready for work. The action will be performed on this session.</p>",
+        "StartProjectSessionResponse$ClientSessionId": "<p>A system-generated identifier for the session.</p>"
+      }
+    },
+    "ColumnName": {
+      "base": null,
+      "refs": {
+        "ColumnNameList$member": null,
+        "HiddenColumnList$member": null
+      }
+    },
+    "ColumnNameList": {
+      "base": null,
+      "refs": {
+        "Output$PartitionColumns": "<p>The names of one or more partition columns for the output of the job.</p>"
+      }
+    },
+    "ColumnRange": {
+      "base": null,
+      "refs": {
+        "ViewFrame$ColumnRange": "<p>The number of columns to include in the view frame, beginning with the <code>StartColumnIndex</code> value and ignoring any columns in the <code>HiddenColumns</code> list.</p>"
+      }
+    },
+    "CompressionFormat": {
+      "base": null,
+      "refs": {
+        "Output$CompressionFormat": "<p>The compression algorithm used to compress the output text of the job.</p>"
+      }
+    },
+    "Condition": {
+      "base": null,
+      "refs": {
+        "ConditionExpression$Condition": "<p>A specific condition to apply to a recipe action. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html\">Recipe structure</a> in the <i>AWS Glue DataBrew Developer Guide</i>.</p>"
+      }
+    },
+    "ConditionExpression": {
+      "base": "<p>Represents an individual condition that evaluates to true or false.</p> <p>Conditions are used with recipe actions: The action is only performed for column values where the condition evaluates to true.</p> <p>If a recipe requires more than one condition, then the recipe must specify multiple <code>ConditionExpression</code> elements. Each condition is applied to the rows in a dataset first, before the recipe action is performed.</p>",
+      "refs": {
+        "ConditionExpressionList$member": null
+      }
+    },
+    "ConditionExpressionList": {
+      "base": null,
+      "refs": {
+        "RecipeStep$ConditionExpressions": "<p>One or more conditions that must be met, in order for the recipe step to succeed.</p> <note> <p>All of the conditions in the array must be met. In other words, all of the conditions must be combined using a logical AND operation.</p> </note>"
+      }
+    },
+    "ConditionValue": {
+      "base": null,
+      "refs": {
+        "ConditionExpression$Value": "<p>A value that the condition must evaluate to for the condition to succeed.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Updating or deleting a resource can cause an inconsistent state.</p>",
+      "refs": {
+      }
+    },
+    "CreateDatasetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProfileJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProfileJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProjectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRecipeJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRecipeJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRecipeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreatedBy": {
+      "base": null,
+      "refs": {
+        "Dataset$CreatedBy": "<p>The identifier (the user name) of the user who created the dataset.</p>",
+        "DescribeDatasetResponse$CreatedBy": "<p>The identifier (user name) of the user who created the dataset.</p>",
+        "DescribeJobResponse$CreatedBy": "<p>The identifier (user name) of the user associated with the creation of the job.</p>",
+        "DescribeProjectResponse$CreatedBy": "<p>The identifier (user name) of the user who created the project.</p>",
+        "DescribeRecipeResponse$CreatedBy": "<p>The identifier (user name) of the user who created the recipe.</p>",
+        "DescribeScheduleResponse$CreatedBy": "<p>The identifier (user name) of the user who created the schedule. </p>",
+        "Job$CreatedBy": "<p>The identifier (the user name) of the user who created the job.</p>",
+        "Project$CreatedBy": "<p>The identifier (the user name) of the user who crated the project.</p>",
+        "Recipe$CreatedBy": "<p>The identifier (the user name) of the user who created the recipe.</p>",
+        "Schedule$CreatedBy": "<p>The identifier (the user name) of the user who created the schedule.</p>"
+      }
+    },
+    "CronExpression": {
+      "base": null,
+      "refs": {
+        "CreateScheduleRequest$CronExpression": "<p>The date or dates and time or times, in <code>cron</code> format, when the jobs are to be run.</p>",
+        "DescribeScheduleResponse$CronExpression": "<p>The date or dates and time or times, in <code>cron</code> format, when the jobs are to be run for the schedule.</p>",
+        "Schedule$CronExpression": "<p>The date(s) and time(s), in <code>cron</code> format, when the job will run.</p>",
+        "UpdateScheduleRequest$CronExpression": "<p>The date or dates and time or times, in <code>cron</code> format, when the jobs are to be run.</p>"
+      }
+    },
+    "DataCatalogInputDefinition": {
+      "base": "<p>Represents how metadata stored in the AWS Glue Data Catalog is defined in an AWS Glue DataBrew dataset. </p>",
+      "refs": {
+        "Input$DataCatalogInputDefinition": "<p>The AWS Glue Data Catalog parameters for the data.</p>"
+      }
+    },
+    "DatabaseName": {
+      "base": null,
+      "refs": {
+        "DataCatalogInputDefinition$DatabaseName": "<p>The name of a database in the Data Catalog.</p>"
+      }
+    },
+    "Dataset": {
+      "base": "<p>Represents a dataset that can be processed by AWS Glue DataBrew.</p>",
+      "refs": {
+        "DatasetList$member": null
+      }
+    },
+    "DatasetList": {
+      "base": null,
+      "refs": {
+        "ListDatasetsResponse$Datasets": "<p>A list of datasets that are defined in the current AWS account.</p>"
+      }
+    },
+    "DatasetName": {
+      "base": null,
+      "refs": {
+        "CreateDatasetRequest$Name": "<p>The name of the dataset to be created.</p>",
+        "CreateDatasetResponse$Name": "<p>The name of the dataset that you created.</p>",
+        "CreateProfileJobRequest$DatasetName": "<p>The name of the dataset that this job is to act upon.</p>",
+        "CreateProjectRequest$DatasetName": "<p>The name of the dataset to associate this project with.</p>",
+        "CreateRecipeJobRequest$DatasetName": "<p>The name of the dataset that this job processes.</p>",
+        "Dataset$Name": "<p>The unique name of the dataset.</p>",
+        "DeleteDatasetRequest$Name": "<p>The name of the dataset to be deleted.</p>",
+        "DeleteDatasetResponse$Name": "<p>The name of the dataset that you deleted.</p>",
+        "DescribeDatasetRequest$Name": "<p>The name of the dataset to be described.</p>",
+        "DescribeDatasetResponse$Name": "<p>The name of the dataset.</p>",
+        "DescribeJobResponse$DatasetName": "<p>The dataset that the job acts upon.</p>",
+        "DescribeProjectResponse$DatasetName": "<p>The dataset associated with the project.</p>",
+        "Job$DatasetName": "<p>A dataset that the job is to process.</p>",
+        "JobRun$DatasetName": "<p>The name of the dataset for the job to process.</p>",
+        "ListJobsRequest$DatasetName": "<p>The name of a dataset. Using this parameter indicates to return only those jobs that act on the specified dataset.</p>",
+        "Project$DatasetName": "<p>The dataset that the project is to act upon.</p>",
+        "UpdateDatasetRequest$Name": "<p>The name of the dataset to be updated.</p>",
+        "UpdateDatasetResponse$Name": "<p>The name of the dataset that you updated.</p>"
+      }
+    },
+    "Date": {
+      "base": null,
+      "refs": {
+        "Dataset$CreateDate": "<p>The date and time that the dataset was created.</p>",
+        "Dataset$LastModifiedDate": "<p>The last modification date and time of the dataset.</p>",
+        "DescribeDatasetResponse$CreateDate": "<p>The date and time that the dataset was created.</p>",
+        "DescribeDatasetResponse$LastModifiedDate": "<p>The date and time that the dataset was last modified.</p>",
+        "DescribeJobResponse$CreateDate": "<p>The date and time that the job was created.</p>",
+        "DescribeJobResponse$LastModifiedDate": "<p>The date and time that the job was last modified.</p>",
+        "DescribeProjectResponse$CreateDate": "<p>The date and time that the project was created.</p>",
+        "DescribeProjectResponse$LastModifiedDate": "<p>The date and time that the project was last modified.</p>",
+        "DescribeProjectResponse$OpenDate": "<p>The date and time when the project was opened. </p>",
+        "DescribeRecipeResponse$CreateDate": "<p>The date and time that the recipe was created.</p>",
+        "DescribeRecipeResponse$LastModifiedDate": "<p>The date and time that the recipe was last modified.</p>",
+        "DescribeRecipeResponse$PublishedDate": "<p>The date and time when the recipe was last published.</p>",
+        "DescribeScheduleResponse$CreateDate": "<p>The date and time that the schedule was created.</p>",
+        "DescribeScheduleResponse$LastModifiedDate": "<p>The date and time that the schedule was last modified.</p>",
+        "Job$CreateDate": "<p>The date and time that the job was created.</p>",
+        "Job$LastModifiedDate": "<p>The modification date and time of the job.</p>",
+        "JobRun$CompletedOn": "<p>The date and time when the job completed processing.</p>",
+        "JobRun$StartedOn": "<p>The date and time when the job run began. </p>",
+        "Project$CreateDate": "<p>The date and time that the project was created.</p>",
+        "Project$LastModifiedDate": "<p>The last modification date and time for the project.</p>",
+        "Project$OpenDate": "<p>The date and time when the project was opened.</p>",
+        "Recipe$CreateDate": "<p>The date and time that the recipe was created.</p>",
+        "Recipe$LastModifiedDate": "<p>The last modification date and time of the recipe.</p>",
+        "Recipe$PublishedDate": "<p>The date and time when the recipe was published.</p>",
+        "Schedule$CreateDate": "<p>The date and time that the schedule was created.</p>",
+        "Schedule$LastModifiedDate": "<p>The date and time when the schedule was last modified.</p>",
+        "UpdateProjectResponse$LastModifiedDate": "<p>The date and time that the project was last modified.</p>"
+      }
+    },
+    "DeleteDatasetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProjectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRecipeVersionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRecipeVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDatasetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProjectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeRecipeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "EncryptionKeyArn": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$EncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.</p>",
+        "CreateRecipeJobRequest$EncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.</p>",
+        "DescribeJobResponse$EncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.</p>",
+        "Job$EncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of an encryption key that is used to protect a job.</p>",
+        "UpdateProfileJobRequest$EncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.</p>",
+        "UpdateRecipeJobRequest$EncryptionKeyArn": "<p>The Amazon Resource Name (ARN) of an encryption key that is used to protect the job.</p>"
+      }
+    },
+    "EncryptionMode": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - para&gt;<code>SSE-KMS</code> - server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
+        "CreateRecipeJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
+        "DescribeJobResponse$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
+        "Job$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
+        "UpdateProfileJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>",
+        "UpdateRecipeJobRequest$EncryptionMode": "<p>The encryption mode for the job, which can be one of the following:</p> <ul> <li> <p> <code>SSE-KMS</code> - Server-side encryption with AWS KMS-managed keys.</p> </li> <li> <p> <code>SSE-S3</code> - Server-side encryption with keys managed by Amazon S3.</p> </li> </ul>"
+      }
+    },
+    "ErrorCode": {
+      "base": null,
+      "refs": {
+        "RecipeVersionErrorDetail$ErrorCode": "<p>The HTTP status code for the error.</p>"
+      }
+    },
+    "ExcelOptions": {
+      "base": "<p>Options that define how DataBrew will interpret a Microsoft Excel file, when creating a dataset from that file.</p>",
+      "refs": {
+        "FormatOptions$Excel": "<p>Options that define how Excel input is to be interpreted by DataBrew.</p>"
+      }
+    },
+    "ExecutionTime": {
+      "base": null,
+      "refs": {
+        "JobRun$ExecutionTime": "<p>The amount of time, in seconds, during which a job run consumed resources.</p>"
+      }
+    },
+    "FormatOptions": {
+      "base": "<p>Options that define how Microsoft Excel input is to be interpreted by DataBrew.</p>",
+      "refs": {
+        "CreateDatasetRequest$FormatOptions": null,
+        "Dataset$FormatOptions": "<p>Options that define how DataBrew interprets the data in the dataset.</p>",
+        "DescribeDatasetResponse$FormatOptions": null,
+        "UpdateDatasetRequest$FormatOptions": null
+      }
+    },
+    "HiddenColumnList": {
+      "base": null,
+      "refs": {
+        "ViewFrame$HiddenColumns": "<p>A list of columns to hide in the view frame.</p>"
+      }
+    },
+    "Input": {
+      "base": "<p>Information on how AWS Glue DataBrew can find data, in either the AWS Glue Data Catalog or Amazon S3.</p>",
+      "refs": {
+        "CreateDatasetRequest$Input": null,
+        "Dataset$Input": "<p>Information on how DataBrew can find the dataset, in either the AWS Glue Data Catalog or Amazon S3.</p>",
+        "DescribeDatasetResponse$Input": null,
+        "UpdateDatasetRequest$Input": null
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>An internal service failure occurred.</p>",
+      "refs": {
+      }
+    },
+    "Job": {
+      "base": "<p>Represents all of the attributes of an AWS Glue DataBrew job.</p>",
+      "refs": {
+        "JobList$member": null
+      }
+    },
+    "JobList": {
+      "base": null,
+      "refs": {
+        "ListJobsResponse$Jobs": "<p>A list of jobs that are defined in the current AWS account.</p>"
+      }
+    },
+    "JobName": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$Name": "<p>The name of the job to be created.</p>",
+        "CreateProfileJobResponse$Name": "<p>The name of the job that was created.</p>",
+        "CreateRecipeJobRequest$Name": "<p>A unique name for the job.</p>",
+        "CreateRecipeJobResponse$Name": "<p>The name of the job that you created.</p>",
+        "DeleteJobRequest$Name": "<p>The name of the job to be deleted.</p>",
+        "DeleteJobResponse$Name": "<p>The name of the job that you deleted.</p>",
+        "DescribeJobRequest$Name": "<p>The name of the job to be described.</p>",
+        "DescribeJobResponse$Name": "<p>The name of the job.</p>",
+        "Job$Name": "<p>The unique name of the job.</p>",
+        "JobNameList$member": null,
+        "JobRun$JobName": "<p>The name of the job being processed during this run.</p>",
+        "ListJobRunsRequest$Name": "<p>The name of the job.</p>",
+        "ListSchedulesRequest$JobName": "<p>The name of the job that these schedules apply to.</p>",
+        "StartJobRunRequest$Name": "<p>The name of the job to be run.</p>",
+        "StopJobRunRequest$Name": "<p>The name of the job to be stopped.</p>",
+        "UpdateProfileJobRequest$Name": "<p>The name of the job to be updated.</p>",
+        "UpdateProfileJobResponse$Name": "<p>The name of the job that was updated.</p>",
+        "UpdateRecipeJobRequest$Name": "<p>The name of the job to update.</p>",
+        "UpdateRecipeJobResponse$Name": "<p>The name of the job that you updated.</p>"
+      }
+    },
+    "JobNameList": {
+      "base": null,
+      "refs": {
+        "CreateScheduleRequest$JobNames": "<p>The name or names of one or more jobs to be run.</p>",
+        "DescribeScheduleResponse$JobNames": "<p>The name or names of one or more jobs to be run by using the schedule.</p>",
+        "Schedule$JobNames": "<p>A list of jobs to be run, according to the schedule.</p>",
+        "UpdateScheduleRequest$JobNames": "<p>The name or names of one or more jobs to be run for this schedule.</p>"
+      }
+    },
+    "JobRun": {
+      "base": "<p>Represents one run of an AWS Glue DataBrew job.</p>",
+      "refs": {
+        "JobRunList$member": null
+      }
+    },
+    "JobRunErrorMessage": {
+      "base": null,
+      "refs": {
+        "JobRun$ErrorMessage": "<p>A message indicating an error (if any) that was encountered when the job ran.</p>"
+      }
+    },
+    "JobRunId": {
+      "base": null,
+      "refs": {
+        "JobRun$RunId": "<p>The unique identifier of the job run.</p>",
+        "StartJobRunResponse$RunId": "<p>A system-generated identifier for this particular job run.</p>",
+        "StopJobRunRequest$RunId": "<p>The ID of the job run to be stopped.</p>",
+        "StopJobRunResponse$RunId": "<p>The ID of the job run that you stopped.</p>"
+      }
+    },
+    "JobRunList": {
+      "base": null,
+      "refs": {
+        "ListJobRunsResponse$JobRuns": "<p>A list of job runs that have occurred for the specified job.</p>"
+      }
+    },
+    "JobRunState": {
+      "base": null,
+      "refs": {
+        "JobRun$State": "<p>The current state of the job run entity itself.</p>"
+      }
+    },
+    "JobType": {
+      "base": null,
+      "refs": {
+        "DescribeJobResponse$Type": "<p>The job type, which must be one of the following:</p> <ul> <li> <p> <code>PROFILE</code> - The job analyzes the dataset to determine its size, data types, data distribution, and more.</p> </li> <li> <p> <code>RECIPE</code> - The job applies one or more transformations to a dataset.</p> </li> </ul>",
+        "Job$Type": "<p>The job type of the job, which must be one of the following:</p> <ul> <li> <p> <code>PROFILE</code> - A job to analyze a dataset, to determine its size, data types, data distribution, and more.</p> </li> <li> <p> <code>RECIPE</code> - A job to apply one or more transformations to a dataset.</p> </li> </ul>"
+      }
+    },
+    "JsonOptions": {
+      "base": "<p>Represents the JSON-specific options that define how input is to be interpreted by AWS Glue DataBrew.</p>",
+      "refs": {
+        "FormatOptions$Json": "<p>Options that define how JSON input is to be interpreted by DataBrew.</p>"
+      }
+    },
+    "Key": {
+      "base": null,
+      "refs": {
+        "S3Location$Key": "<p>The unique name of the object in the bucket.</p>"
+      }
+    },
+    "LastModifiedBy": {
+      "base": null,
+      "refs": {
+        "Dataset$LastModifiedBy": "<p>The identifier (the user name) of the user who last modified the dataset.</p>",
+        "DescribeDatasetResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the dataset.</p>",
+        "DescribeJobResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the job.</p>",
+        "DescribeProjectResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the project.</p>",
+        "DescribeRecipeResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the recipe.</p>",
+        "DescribeScheduleResponse$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the schedule.</p>",
+        "Job$LastModifiedBy": "<p>The identifier (the user name) of the user who last modified the job.</p>",
+        "Project$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the project.</p>",
+        "Recipe$LastModifiedBy": "<p>The identifier (user name) of the user who last modified the recipe.</p>",
+        "Schedule$LastModifiedBy": "<p>The identifier (the user name) of the user who last modified the schedule.</p>"
+      }
+    },
+    "ListDatasetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDatasetsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobRunsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProjectsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProjectsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecipeVersionsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecipeVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecipesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRecipesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchedulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchedulesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "LogGroupName": {
+      "base": null,
+      "refs": {
+        "JobRun$LogGroupName": "<p>The name of an Amazon CloudWatch log group, where the job writes diagnostic messages when it runs.</p>"
+      }
+    },
+    "LogSubscription": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$LogSubscription": "<p>A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.</p>",
+        "CreateRecipeJobRequest$LogSubscription": "<p>A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.</p>",
+        "DescribeJobResponse$LogSubscription": "<p>A value that indicates whether Amazon CloudWatch logging is enabled for this job.</p>",
+        "Job$LogSubscription": "<p>The current status of Amazon CloudWatch logging for the job.</p>",
+        "JobRun$LogSubscription": "<p>The current status of Amazon CloudWatch logging for the job run.</p>",
+        "UpdateProfileJobRequest$LogSubscription": "<p>A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.</p>",
+        "UpdateRecipeJobRequest$LogSubscription": "<p>A value that enables or disables Amazon CloudWatch logging for the current AWS account. If logging is enabled, CloudWatch writes one log stream for each job run.</p>"
+      }
+    },
+    "MaxCapacity": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$MaxCapacity": "<p>The maximum number of nodes that DataBrew can use when the job processes data.</p>",
+        "CreateRecipeJobRequest$MaxCapacity": "<p>The maximum number of nodes that DataBrew can consume when the job processes data.</p>",
+        "DescribeJobResponse$MaxCapacity": "<p>The maximum number of nodes that AWS Glue DataBrew can consume when the job processes data.</p>",
+        "Job$MaxCapacity": "<p>The maximum number of nodes that can be consumed when the job processes data.</p>",
+        "UpdateProfileJobRequest$MaxCapacity": "<p>The maximum number of nodes that DataBrew can use when the job processes data.</p>",
+        "UpdateRecipeJobRequest$MaxCapacity": "<p>The maximum number of nodes that DataBrew can consume when the job processes data.</p>"
+      }
+    },
+    "MaxResults100": {
+      "base": null,
+      "refs": {
+        "ListDatasetsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListJobRunsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListJobsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListProjectsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListRecipeVersionsRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListRecipesRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>",
+        "ListSchedulesRequest$MaxResults": "<p>The maximum number of results to return in this request. </p>"
+      }
+    },
+    "MaxRetries": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$MaxRetries": "<p>The maximum number of times to retry the job after a job run fails.</p>",
+        "CreateRecipeJobRequest$MaxRetries": "<p>The maximum number of times to retry the job after a job run fails.</p>",
+        "DescribeJobResponse$MaxRetries": "<p>The maximum number of times to retry the job after a job run fails.</p>",
+        "Job$MaxRetries": "<p>The maximum number of times to retry the job after a job run fails.</p>",
+        "UpdateProfileJobRequest$MaxRetries": "<p>The maximum number of times to retry the job after a job run fails.</p>",
+        "UpdateRecipeJobRequest$MaxRetries": "<p>The maximum number of times to retry the job after a job run fails.</p>"
+      }
+    },
+    "Message": {
+      "base": null,
+      "refs": {
+        "AccessDeniedException$Message": null,
+        "ConflictException$Message": null,
+        "InternalServerException$Message": null,
+        "ResourceNotFoundException$Message": null,
+        "ServiceQuotaExceededException$Message": null,
+        "ValidationException$Message": null
+      }
+    },
+    "MultiLine": {
+      "base": null,
+      "refs": {
+        "JsonOptions$MultiLine": "<p>A value that specifies whether JSON input contains embedded new line characters.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListDatasetsRequest$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>",
+        "ListDatasetsResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call. </p>",
+        "ListJobRunsRequest$NextToken": "<p>A token generated by AWS Glue DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>",
+        "ListJobRunsResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call. </p>",
+        "ListJobsRequest$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>",
+        "ListJobsResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call. </p>",
+        "ListProjectsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "ListProjectsResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>",
+        "ListRecipeVersionsRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "ListRecipeVersionsResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>",
+        "ListRecipesRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "ListRecipesResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>",
+        "ListSchedulesRequest$NextToken": "<p>A pagination token that can be used in a subsequent request.</p>",
+        "ListSchedulesResponse$NextToken": "<p>A token generated by DataBrew that specifies where to continue pagination if a previous request was truncated. To get the next set of pages, pass in the NextToken value from the response object of the previous page call. </p>"
+      }
+    },
+    "OpenedBy": {
+      "base": null,
+      "refs": {
+        "DescribeProjectResponse$OpenedBy": "<p>The identifier (user name) of the user that opened the project for use. </p>",
+        "Project$OpenedBy": "<p>The identifier (the user name) of the user that opened the project for use.</p>"
+      }
+    },
+    "Operation": {
+      "base": null,
+      "refs": {
+        "RecipeAction$Operation": "<p>The name of a valid DataBrew transformation to be performed on the data.</p>"
+      }
+    },
+    "Output": {
+      "base": "<p>Represents individual output from a particular job run.</p>",
+      "refs": {
+        "OutputList$member": null
+      }
+    },
+    "OutputFormat": {
+      "base": null,
+      "refs": {
+        "Output$Format": "<p>The data format of the output of the job.</p>"
+      }
+    },
+    "OutputList": {
+      "base": null,
+      "refs": {
+        "CreateRecipeJobRequest$Outputs": "<p>One or more artifacts that represent the output from running the job.</p>",
+        "DescribeJobResponse$Outputs": "<p>One or more artifacts that represent the output from running the job.</p>",
+        "Job$Outputs": "<p>One or more artifacts that represent output from running the job.</p>",
+        "JobRun$Outputs": "<p>One or more output artifacts from a job run.</p>",
+        "UpdateRecipeJobRequest$Outputs": "<p>One or more artifacts that represent the output from running the job. </p>"
+      }
+    },
+    "OverwriteOutput": {
+      "base": null,
+      "refs": {
+        "Output$Overwrite": "<p>A value that, if true, means that any data in the location specified for output is overwritten with new output.</p>"
+      }
+    },
+    "ParameterMap": {
+      "base": null,
+      "refs": {
+        "RecipeAction$Parameters": "<p>Contextual parameters for the transformation.</p>"
+      }
+    },
+    "ParameterName": {
+      "base": null,
+      "refs": {
+        "ParameterMap$key": null
+      }
+    },
+    "ParameterValue": {
+      "base": null,
+      "refs": {
+        "ParameterMap$value": null
+      }
+    },
+    "Preview": {
+      "base": null,
+      "refs": {
+        "SendProjectSessionActionRequest$Preview": "<p>Returns the result of the recipe step, without applying it. The result isn't added to the view frame stack.</p>"
+      }
+    },
+    "Project": {
+      "base": "<p>Represents all of the attributes of an AWS Glue DataBrew project.</p>",
+      "refs": {
+        "ProjectList$member": null
+      }
+    },
+    "ProjectList": {
+      "base": null,
+      "refs": {
+        "ListProjectsResponse$Projects": "<p>A list of projects that are defined in the current AWS account.</p>"
+      }
+    },
+    "ProjectName": {
+      "base": null,
+      "refs": {
+        "CreateProjectRequest$Name": "<p>A unique name for the new project.</p>",
+        "CreateProjectResponse$Name": "<p>The name of the project that you created.</p>",
+        "CreateRecipeJobRequest$ProjectName": "<p>Either the name of an existing project, or a combination of a recipe and a dataset to associate with the recipe.</p>",
+        "DeleteProjectRequest$Name": "<p>The name of the project to be deleted.</p>",
+        "DeleteProjectResponse$Name": "<p>The name of the project that you deleted.</p>",
+        "DescribeJobResponse$ProjectName": "<p>The DataBrew project associated with this job.</p>",
+        "DescribeProjectRequest$Name": "<p>The name of the project to be described.</p>",
+        "DescribeProjectResponse$Name": "<p>The name of the project.</p>",
+        "DescribeRecipeResponse$ProjectName": "<p>The name of the project associated with this recipe.</p>",
+        "Job$ProjectName": "<p>The name of the project that the job is associated with.</p>",
+        "ListJobsRequest$ProjectName": "<p>The name of a project. Using this parameter indicates to return only those jobs that are associated with the specified project.</p>",
+        "Project$Name": "<p>The unique name of a project.</p>",
+        "Recipe$ProjectName": "<p>The name of the project that the recipe is associated with.</p>",
+        "SendProjectSessionActionRequest$Name": "<p>The name of the project to apply the action to.</p>",
+        "SendProjectSessionActionResponse$Name": "<p>The name of the project that was affected by the action.</p>",
+        "StartProjectSessionRequest$Name": "<p>The name of the project to act upon.</p>",
+        "StartProjectSessionResponse$Name": "<p>The name of the project to be acted upon.</p>",
+        "UpdateProjectRequest$Name": "<p>The name of the project to be updated.</p>",
+        "UpdateProjectResponse$Name": "<p>The name of the project that you updated.</p>"
+      }
+    },
+    "PublishRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PublishRecipeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PublishedBy": {
+      "base": null,
+      "refs": {
+        "DescribeRecipeResponse$PublishedBy": "<p>The identifier (user name) of the user who last published the recipe.</p>",
+        "Recipe$PublishedBy": "<p>The identifier (the user name) of the user who published the recipe.</p>"
+      }
+    },
+    "Recipe": {
+      "base": "<p>Represents one or more actions to be performed on an AWS Glue DataBrew dataset.</p>",
+      "refs": {
+        "RecipeList$member": null
+      }
+    },
+    "RecipeAction": {
+      "base": "<p>Represents a transformation and associated parameters that are used to apply a change to an AWS Glue DataBrew dataset. For more information, see <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/recipe-structure.html\">Recipe structure</a> and <a href=\"https://docs.aws.amazon.com/databrew/latest/dg/recipe-actions-reference.html\">ecipe actions reference</a> .</p>",
+      "refs": {
+        "RecipeStep$Action": "<p>The particular action to be performed in the recipe step.</p>"
+      }
+    },
+    "RecipeDescription": {
+      "base": null,
+      "refs": {
+        "CreateRecipeRequest$Description": "<p>A description for the recipe.</p>",
+        "DescribeRecipeResponse$Description": "<p>The description of the recipe.</p>",
+        "PublishRecipeRequest$Description": "<p>A description of the recipe to be published, for this version of the recipe.</p>",
+        "Recipe$Description": "<p>The description of the recipe.</p>",
+        "UpdateRecipeRequest$Description": "<p>A description of the recipe.</p>"
+      }
+    },
+    "RecipeErrorList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteRecipeVersionResponse$Errors": "<p>Errors, if any, that were encountered when deleting the recipe versions.</p>"
+      }
+    },
+    "RecipeErrorMessage": {
+      "base": null,
+      "refs": {
+        "RecipeVersionErrorDetail$ErrorMessage": "<p>The text of the error message.</p>"
+      }
+    },
+    "RecipeList": {
+      "base": null,
+      "refs": {
+        "ListRecipeVersionsResponse$Recipes": "<p>A list of versions for the specified recipe.</p>",
+        "ListRecipesResponse$Recipes": "<p>A list of recipes that are defined in the current AWS account.</p>"
+      }
+    },
+    "RecipeName": {
+      "base": null,
+      "refs": {
+        "BatchDeleteRecipeVersionRequest$Name": "<p>The name of the recipe to be modified.</p>",
+        "BatchDeleteRecipeVersionResponse$Name": "<p>The name of the recipe that was modified.</p>",
+        "CreateProjectRequest$RecipeName": "<p>The name of an existing recipe to associate with the project.</p>",
+        "CreateRecipeRequest$Name": "<p>A unique name for the recipe.</p>",
+        "CreateRecipeResponse$Name": "<p>The name of the recipe that you created.</p>",
+        "DeleteRecipeVersionRequest$Name": "<p>The name of the recipe to be deleted.</p>",
+        "DeleteRecipeVersionResponse$Name": "<p>The name of the recipe that was deleted.</p>",
+        "DescribeProjectResponse$RecipeName": "<p>The recipe associated with this job.</p>",
+        "DescribeRecipeRequest$Name": "<p>The name of the recipe to be described.</p>",
+        "DescribeRecipeResponse$Name": "<p>The name of the recipe.</p>",
+        "ListRecipeVersionsRequest$Name": "<p>The name of the recipe for which to return version information.</p>",
+        "Project$RecipeName": "<p>The name of a recipe that will be developed during a project session.</p>",
+        "PublishRecipeRequest$Name": "<p>The name of the recipe to be published.</p>",
+        "PublishRecipeResponse$Name": "<p>The name of the recipe that you published.</p>",
+        "Recipe$Name": "<p>The unique name for the recipe.</p>",
+        "RecipeReference$Name": "<p>The name of the recipe.</p>",
+        "UpdateRecipeRequest$Name": "<p>The name of the recipe to be updated.</p>",
+        "UpdateRecipeResponse$Name": "<p>The name of the recipe that was updated.</p>"
+      }
+    },
+    "RecipeReference": {
+      "base": "<p>Represents all of the attributes of an AWS Glue DataBrew recipe.</p>",
+      "refs": {
+        "CreateRecipeJobRequest$RecipeReference": null,
+        "DescribeJobResponse$RecipeReference": null,
+        "Job$RecipeReference": "<p>A set of steps that the job runs.</p>",
+        "JobRun$RecipeReference": "<p>The set of steps processed by the job.</p>"
+      }
+    },
+    "RecipeStep": {
+      "base": "<p>Represents a single step to be performed in an AWS Glue DataBrew recipe.</p>",
+      "refs": {
+        "RecipeStepList$member": null,
+        "SendProjectSessionActionRequest$RecipeStep": null
+      }
+    },
+    "RecipeStepList": {
+      "base": null,
+      "refs": {
+        "CreateRecipeRequest$Steps": "<p>An array containing the steps to be performed by the recipe. Each recipe step consists of one recipe action and (optionally) an array of condition expressions.</p>",
+        "DescribeRecipeResponse$Steps": "<p>One or more steps to be performed by the recipe. Each step consists of an action, and the conditions under which the action should succeed.</p>",
+        "Recipe$Steps": "<p>A list of steps that are defined by the recipe.</p>",
+        "UpdateRecipeRequest$Steps": "<p>One or more steps to be performed by the recipe. Each step consists of an action, and the conditions under which the action should succeed.</p>"
+      }
+    },
+    "RecipeVersion": {
+      "base": null,
+      "refs": {
+        "DeleteRecipeVersionRequest$RecipeVersion": "<p>The version of the recipe to be deleted.</p>",
+        "DeleteRecipeVersionResponse$RecipeVersion": "<p>The version of the recipe that was deleted.</p>",
+        "DescribeRecipeRequest$RecipeVersion": "<p>The recipe version identifier. If this parameter isn't specified, then the latest published version is returned.</p>",
+        "DescribeRecipeResponse$RecipeVersion": "<p>The recipe version identifier.</p>",
+        "ListRecipesRequest$RecipeVersion": "<p>A version identifier. Using this parameter indicates to return only those recipes that have this version identifier.</p>",
+        "Recipe$RecipeVersion": "<p>The identifier for the version for the recipe. </p>",
+        "RecipeReference$RecipeVersion": "<p>The identifier for the version for the recipe. </p>",
+        "RecipeVersionErrorDetail$RecipeVersion": "<p>The identifier for the recipe version associated with this error.</p>",
+        "RecipeVersionList$member": null
+      }
+    },
+    "RecipeVersionErrorDetail": {
+      "base": "<p>Represents any errors encountered when attempting to delete multiple recipe versions.</p>",
+      "refs": {
+        "RecipeErrorList$member": null
+      }
+    },
+    "RecipeVersionList": {
+      "base": null,
+      "refs": {
+        "BatchDeleteRecipeVersionRequest$RecipeVersions": "<p>An array of version identifiers to be deleted.</p>"
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>One or more resources can't be found.</p>",
+      "refs": {
+      }
+    },
+    "Result": {
+      "base": null,
+      "refs": {
+        "SendProjectSessionActionResponse$Result": "<p>A message indicating the result of performing the action.</p>"
+      }
+    },
+    "S3Location": {
+      "base": "<p>An Amazon S3 location (bucket name an object key) where DataBrew can read input data, or write output from a job.</p>",
+      "refs": {
+        "CreateProfileJobRequest$OutputLocation": null,
+        "DataCatalogInputDefinition$TempDirectory": "<p>An Amazon location that AWS Glue Data Catalog can use as a temporary directory.</p>",
+        "Input$S3InputDefinition": "<p>The Amazon S3 location where the data is stored.</p>",
+        "Output$Location": "<p>The location in Amazon S3 where the job writes its output.</p>",
+        "UpdateProfileJobRequest$OutputLocation": null
+      }
+    },
+    "Sample": {
+      "base": "<p>Represents the sample size and sampling type for AWS Glue DataBrew to use for interactive data analysis.</p>",
+      "refs": {
+        "CreateProjectRequest$Sample": null,
+        "DescribeProjectResponse$Sample": null,
+        "Project$Sample": "<p>The sample size and sampling type to apply to the data. If this parameter isn't specified, then the sample will consiste of the first 500 rows from the dataset.</p>",
+        "UpdateProjectRequest$Sample": null
+      }
+    },
+    "SampleSize": {
+      "base": null,
+      "refs": {
+        "Sample$Size": "<p>The number of rows in the sample.</p>"
+      }
+    },
+    "SampleType": {
+      "base": null,
+      "refs": {
+        "Sample$Type": "<p>The way in which DataBrew obtains rows from a dataset.</p>"
+      }
+    },
+    "Schedule": {
+      "base": "<p>Represents one or more dates and times when a job is to run.</p>",
+      "refs": {
+        "ScheduleList$member": null
+      }
+    },
+    "ScheduleList": {
+      "base": null,
+      "refs": {
+        "ListSchedulesResponse$Schedules": "<p>A list of schedules in the current AWS account.</p>"
+      }
+    },
+    "ScheduleName": {
+      "base": null,
+      "refs": {
+        "CreateScheduleRequest$Name": "<p>A unique name for the schedule.</p>",
+        "CreateScheduleResponse$Name": "<p>The name of the schedule that was created.</p>",
+        "DeleteScheduleRequest$Name": "<p>The name of the schedule to be deleted.</p>",
+        "DeleteScheduleResponse$Name": "<p>The name of the schedule that was deleted.</p>",
+        "DescribeScheduleRequest$Name": "<p>The name of the schedule to be described.</p>",
+        "DescribeScheduleResponse$Name": "<p>The name of the schedule.</p>",
+        "Schedule$Name": "<p>The name of the schedule.</p>",
+        "UpdateScheduleRequest$Name": "<p>The name of the schedule to update.</p>",
+        "UpdateScheduleResponse$Name": "<p>The name of the schedule that was updated.</p>"
+      }
+    },
+    "SendProjectSessionActionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendProjectSessionActionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>A service quota is exceeded.</p>",
+      "refs": {
+      }
+    },
+    "SessionStatus": {
+      "base": null,
+      "refs": {
+        "DescribeProjectResponse$SessionStatus": "<p>Describes the current state of the session:</p> <ul> <li> <p> <code>PROVISIONING</code> - allocating resources for the session.</p> </li> <li> <p> <code>INITIALIZING</code> - getting the session ready for first use.</p> </li> <li> <p> <code>ASSIGNED</code> - the session is ready for use.</p> </li> </ul>"
+      }
+    },
+    "SheetIndex": {
+      "base": null,
+      "refs": {
+        "SheetIndexList$member": null
+      }
+    },
+    "SheetIndexList": {
+      "base": null,
+      "refs": {
+        "ExcelOptions$SheetIndexes": "<p>Specifies one or more sheet numbers in the Excel file, which will be included in the dataset.</p>"
+      }
+    },
+    "SheetName": {
+      "base": null,
+      "refs": {
+        "SheetNameList$member": null
+      }
+    },
+    "SheetNameList": {
+      "base": null,
+      "refs": {
+        "ExcelOptions$SheetNames": "<p>Specifies one or more named sheets in the Excel file, which will be included in the dataset.</p>"
+      }
+    },
+    "Source": {
+      "base": null,
+      "refs": {
+        "Dataset$Source": "<p>The location of the data for the dataset, either Amazon S3 or the AWS Glue Data Catalog.</p>",
+        "DescribeDatasetResponse$Source": "<p>The location of the data for this dataset, Amazon S3 or the AWS Glue Data Catalog.</p>"
+      }
+    },
+    "StartColumnIndex": {
+      "base": null,
+      "refs": {
+        "ViewFrame$StartColumnIndex": "<p>The starting index for the range of columns to return in the view frame.</p>"
+      }
+    },
+    "StartJobRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartJobRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartProjectSessionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartProjectSessionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartedBy": {
+      "base": null,
+      "refs": {
+        "JobRun$StartedBy": "<p>The identifier (the user name) of the user who initiated the job run. </p>"
+      }
+    },
+    "StepIndex": {
+      "base": null,
+      "refs": {
+        "SendProjectSessionActionRequest$StepIndex": "<p>The index from which to preview a step. This index is used to preview the result of steps that have already been applied, so that the resulting view frame is from earlier in the view frame stack.</p>"
+      }
+    },
+    "StopJobRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopJobRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TableName": {
+      "base": null,
+      "refs": {
+        "DataCatalogInputDefinition$TableName": "<p>The name of a database table in the Data Catalog. This table corresponds to a DataBrew dataset.</p>"
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeyList$member": null,
+        "TagMap$key": null
+      }
+    },
+    "TagKeyList": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$TagKeys": "<p>The tag keys (names) of one or more tags to be removed.</p>"
+      }
+    },
+    "TagMap": {
+      "base": null,
+      "refs": {
+        "CreateDatasetRequest$Tags": "<p>Metadata tags to apply to this dataset.</p>",
+        "CreateProfileJobRequest$Tags": "<p>Metadata tags to apply to this job.</p>",
+        "CreateProjectRequest$Tags": "<p>Metadata tags to apply to this project.</p>",
+        "CreateRecipeJobRequest$Tags": "<p>Metadata tags to apply to this job dataset.</p>",
+        "CreateRecipeRequest$Tags": "<p>Metadata tags to apply to this recipe.</p>",
+        "CreateScheduleRequest$Tags": "<p>Metadata tags to apply to this schedule.</p>",
+        "Dataset$Tags": "<p>Metadata tags that have been applied to the dataset.</p>",
+        "DescribeDatasetResponse$Tags": "<p>Metadata tags associated with this dataset.</p>",
+        "DescribeJobResponse$Tags": "<p>Metadata tags associated with this job.</p>",
+        "DescribeProjectResponse$Tags": "<p>Metadata tags associated with this project.</p>",
+        "DescribeRecipeResponse$Tags": "<p>Metadata tags associated with this project.</p>",
+        "DescribeScheduleResponse$Tags": "<p>Metadata tags associated with this schedule.</p>",
+        "Job$Tags": "<p>Metadata tags that have been applied to the job.</p>",
+        "ListTagsForResourceResponse$Tags": "<p>A list of tags associated with the DataBrew resource.</p>",
+        "Project$Tags": "<p>Metadata tags that have been applied to the project.</p>",
+        "Recipe$Tags": "<p>Metadata tags that have been applied to the recipe.</p>",
+        "Schedule$Tags": "<p>Metadata tags that have been applied to the schedule.</p>",
+        "TagResourceRequest$Tags": "<p>One or more tags to be assigned to the resource.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": null
+      }
+    },
+    "TargetColumn": {
+      "base": null,
+      "refs": {
+        "ConditionExpression$TargetColumn": "<p>A column to apply this condition to, within an AWS Glue DataBrew dataset.</p>"
+      }
+    },
+    "Timeout": {
+      "base": null,
+      "refs": {
+        "CreateProfileJobRequest$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>",
+        "CreateRecipeJobRequest$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>",
+        "DescribeJobResponse$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>",
+        "Job$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>",
+        "UpdateProfileJobRequest$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>",
+        "UpdateRecipeJobRequest$Timeout": "<p>The job's timeout in minutes. A job that attempts to run longer than this timeout period ends with a status of <code>TIMEOUT</code>.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatasetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateDatasetResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProfileJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProfileJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProjectRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProjectResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRecipeJobRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRecipeJobResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRecipeRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRecipeResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateScheduleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateScheduleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The input parameters for this request failed validation.</p>",
+      "refs": {
+      }
+    },
+    "ViewFrame": {
+      "base": "<p>Represents the data being being transformed during an AWS Glue DataBrew project session.</p>",
+      "refs": {
+        "SendProjectSessionActionRequest$ViewFrame": null
+      }
+    }
+  }
+}
