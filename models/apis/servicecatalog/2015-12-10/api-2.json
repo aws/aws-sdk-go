@@ -2905,7 +2905,7 @@
     "PropertyValue":{
       "type":"string",
       "max":1024,
-      "min":1
+      "min":0
     },
     "ProviderName":{
       "type":"string",

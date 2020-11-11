@@ -632,6 +632,7 @@
         "customRules":{"shape":"CustomRules"},
         "productionBranch":{"shape":"ProductionBranch"},
         "buildSpec":{"shape":"BuildSpec"},
+        "customHeaders":{"shape":"CustomHeaders"},
         "enableAutoBranchCreation":{"shape":"EnableAutoBranchCreation"},
         "autoBranchCreationPatterns":{"shape":"AutoBranchCreationPatterns"},
         "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"}
@@ -643,8 +644,9 @@
     },
     "AppId":{
       "type":"string",
-      "max":255,
-      "min":1
+      "max":20,
+      "min":1,
+      "pattern":"d[a-z0-9]+"
     },
     "Apps":{
       "type":"list",
@@ -876,6 +878,7 @@
         "customRules":{"shape":"CustomRules"},
         "tags":{"shape":"TagMap"},
         "buildSpec":{"shape":"BuildSpec"},
+        "customHeaders":{"shape":"CustomHeaders"},
         "enableAutoBranchCreation":{"shape":"EnableAutoBranchCreation"},
         "autoBranchCreationPatterns":{"shape":"AutoBranchCreationPatterns"},
         "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"}
@@ -1041,6 +1044,11 @@
       "type":"list",
       "member":{"shape":"CustomDomain"},
       "max":255
+    },
+    "CustomHeaders":{
+      "type":"string",
+      "max":25000,
+      "min":1
     },
     "CustomRule":{
       "type":"structure",
@@ -1871,7 +1879,7 @@
     "MaxResults":{
       "type":"integer",
       "max":100,
-      "min":1
+      "min":0
     },
     "Name":{
       "type":"string",
@@ -2256,6 +2264,7 @@
         "basicAuthCredentials":{"shape":"BasicAuthCredentials"},
         "customRules":{"shape":"CustomRules"},
         "buildSpec":{"shape":"BuildSpec"},
+        "customHeaders":{"shape":"CustomHeaders"},
         "enableAutoBranchCreation":{"shape":"EnableAutoBranchCreation"},
         "autoBranchCreationPatterns":{"shape":"AutoBranchCreationPatterns"},
         "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"},

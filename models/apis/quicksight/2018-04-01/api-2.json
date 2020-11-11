@@ -2126,6 +2126,18 @@
       "max":64,
       "min":1
     },
+    "ColumnLevelPermissionRule":{
+      "type":"structure",
+      "members":{
+        "Principals":{"shape":"PrincipalList"},
+        "ColumnNames":{"shape":"ColumnNameList"}
+      }
+    },
+    "ColumnLevelPermissionRuleList":{
+      "type":"list",
+      "member":{"shape":"ColumnLevelPermissionRule"},
+      "min":1
+    },
     "ColumnList":{
       "type":"list",
       "member":{"shape":"ColumnName"},
@@ -2135,6 +2147,11 @@
     "ColumnName":{
       "type":"string",
       "max":128,
+      "min":1
+    },
+    "ColumnNameList":{
+      "type":"list",
+      "member":{"shape":"String"},
       "min":1
     },
     "ColumnSchema":{
@@ -2333,6 +2350,7 @@
         "ColumnGroups":{"shape":"ColumnGroupList"},
         "Permissions":{"shape":"ResourcePermissionList"},
         "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
+        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -2934,7 +2952,8 @@
         "ImportMode":{"shape":"DataSetImportMode"},
         "ConsumedSpiceCapacityInBytes":{"shape":"Long"},
         "ColumnGroups":{"shape":"ColumnGroupList"},
-        "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"}
+        "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
+        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"}
       }
     },
     "DataSetArnsList":{
@@ -2998,7 +3017,8 @@
         "CreatedTime":{"shape":"Timestamp"},
         "LastUpdatedTime":{"shape":"Timestamp"},
         "ImportMode":{"shape":"DataSetImportMode"},
-        "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"}
+        "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
+        "ColumnLevelPermissionRulesApplied":{"shape":"Boolean"}
       }
     },
     "DataSetSummaryList":{
@@ -3065,6 +3085,7 @@
         "JiraParameters":{"shape":"JiraParameters"},
         "MariaDbParameters":{"shape":"MariaDbParameters"},
         "MySqlParameters":{"shape":"MySqlParameters"},
+        "OracleParameters":{"shape":"OracleParameters"},
         "PostgreSqlParameters":{"shape":"PostgreSqlParameters"},
         "PrestoParameters":{"shape":"PrestoParameters"},
         "RdsParameters":{"shape":"RdsParameters"},
@@ -3097,6 +3118,7 @@
         "JIRA",
         "MARIADB",
         "MYSQL",
+        "ORACLE",
         "POSTGRESQL",
         "PRESTO",
         "REDSHIFT",
@@ -5885,6 +5907,19 @@
       "max":65535,
       "min":0
     },
+    "OracleParameters":{
+      "type":"structure",
+      "required":[
+        "Host",
+        "Port",
+        "Database"
+      ],
+      "members":{
+        "Host":{"shape":"Host"},
+        "Port":{"shape":"Port"},
+        "Database":{"shape":"Database"}
+      }
+    },
     "OutputColumn":{
       "type":"structure",
       "members":{
@@ -5979,6 +6014,12 @@
     "Principal":{
       "type":"string",
       "max":256,
+      "min":1
+    },
+    "PrincipalList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":100,
       "min":1
     },
     "ProjectOperation":{
@@ -7213,7 +7254,8 @@
         "LogicalTableMap":{"shape":"LogicalTableMap"},
         "ImportMode":{"shape":"DataSetImportMode"},
         "ColumnGroups":{"shape":"ColumnGroupList"},
-        "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"}
+        "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
+        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"}
       }
     },
     "UpdateDataSetResponse":{

@@ -600,6 +600,7 @@
         "PredictorName":{"shape":"Name"},
         "AlgorithmArn":{"shape":"Arn"},
         "ForecastHorizon":{"shape":"Integer"},
+        "ForecastTypes":{"shape":"ForecastTypes"},
         "PerformAutoML":{"shape":"Boolean"},
         "PerformHPO":{"shape":"Boolean"},
         "TrainingParameters":{"shape":"TrainingParameters"},
@@ -844,6 +845,7 @@
         "PredictorName":{"shape":"Name"},
         "AlgorithmArn":{"shape":"Arn"},
         "ForecastHorizon":{"shape":"Integer"},
+        "ForecastTypes":{"shape":"ForecastTypes"},
         "PerformAutoML":{"shape":"Boolean"},
         "PerformHPO":{"shape":"Boolean"},
         "TrainingParameters":{"shape":"TrainingParameters"},
@@ -886,6 +888,18 @@
       }
     },
     "ErrorMessage":{"type":"string"},
+    "ErrorMetric":{
+      "type":"structure",
+      "members":{
+        "ForecastType":{"shape":"ForecastType"},
+        "WAPE":{"shape":"Double"},
+        "RMSE":{"shape":"Double"}
+      }
+    },
+    "ErrorMetrics":{
+      "type":"list",
+      "member":{"shape":"ErrorMetric"}
+    },
     "EvaluationParameters":{
       "type":"structure",
       "members":{
@@ -1221,8 +1235,13 @@
     "Metrics":{
       "type":"structure",
       "members":{
-        "RMSE":{"shape":"Double"},
-        "WeightedQuantileLosses":{"shape":"WeightedQuantileLosses"}
+        "RMSE":{
+          "shape":"Double",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, please refer to ErrorMetrics for both RMSE and WAPE"
+        },
+        "WeightedQuantileLosses":{"shape":"WeightedQuantileLosses"},
+        "ErrorMetrics":{"shape":"ErrorMetrics"}
       }
     },
     "Name":{

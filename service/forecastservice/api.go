@@ -177,8 +177,8 @@ func (c *ForecastService) CreateDatasetGroupRequest(input *CreateDatasetGroupInp
 //
 // To get a list of all your datasets groups, use the ListDatasetGroups operation.
 //
-// The Status of a dataset group must be ACTIVE before you can create use the
-// dataset group to create a predictor. To get the status, use the DescribeDatasetGroup
+// The Status of a dataset group must be ACTIVE before you can use the dataset
+// group to create a predictor. To get the status, use the DescribeDatasetGroup
 // operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -613,34 +613,36 @@ func (c *ForecastService) CreatePredictorRequest(input *CreatePredictorInput) (r
 //
 // Creates an Amazon Forecast predictor.
 //
-// In the request, you provide a dataset group and either specify an algorithm
-// or let Amazon Forecast choose the algorithm for you using AutoML. If you
-// specify an algorithm, you also can override algorithm-specific hyperparameters.
+// In the request, provide a dataset group and either specify an algorithm or
+// let Amazon Forecast choose an algorithm for you using AutoML. If you specify
+// an algorithm, you also can override algorithm-specific hyperparameters.
 //
-// Amazon Forecast uses the chosen algorithm to train a model using the latest
-// version of the datasets in the specified dataset group. The result is called
-// a predictor. You then generate a forecast using the CreateForecast operation.
+// Amazon Forecast uses the algorithm to train a predictor using the latest
+// version of the datasets in the specified dataset group. You can then generate
+// a forecast using the CreateForecast operation.
 //
-// After training a model, the CreatePredictor operation also evaluates it.
-// To see the evaluation metrics, use the GetAccuracyMetrics operation. Always
-// review the evaluation metrics before deciding to use the predictor to generate
-// a forecast.
+// To see the evaluation metrics, use the GetAccuracyMetrics operation.
 //
-// Optionally, you can specify a featurization configuration to fill and aggregate
-// the data fields in the TARGET_TIME_SERIES dataset to improve model training.
-// For more information, see FeaturizationConfig.
+// You can specify a featurization configuration to fill and aggregate the data
+// fields in the TARGET_TIME_SERIES dataset to improve model training. For more
+// information, see FeaturizationConfig.
 //
 // For RELATED_TIME_SERIES datasets, CreatePredictor verifies that the DataFrequency
 // specified when the dataset was created matches the ForecastFrequency. TARGET_TIME_SERIES
 // datasets don't have this restriction. Amazon Forecast also verifies the delimiter
 // and timestamp format. For more information, see howitworks-datasets-groups.
 //
+// By default, predictors are trained and evaluated at the 0.1 (P10), 0.5 (P50),
+// and 0.9 (P90) quantiles. You can choose custom forecast types to train and
+// evaluate your predictor by setting the ForecastTypes.
+//
 // AutoML
 //
 // If you want Amazon Forecast to evaluate each algorithm and choose the one
 // that minimizes the objective function, set PerformAutoML to true. The objective
-// function is defined as the mean of the weighted p10, p50, and p90 quantile
-// losses. For more information, see EvaluationResult.
+// function is defined as the mean of the weighted losses over the forecast
+// types. By default, these are the p10, p50, and p90 quantile losses. For more
+// information, see EvaluationResult.
 //
 // When AutoML is enabled, the following properties are disallowed:
 //
@@ -1882,7 +1884,7 @@ func (c *ForecastService) GetAccuracyMetricsRequest(input *GetAccuracyMetricsInp
 // Provides metrics on the accuracy of the models that were trained by the CreatePredictor
 // operation. Use metrics to see how well the model performed and to decide
 // whether to use the predictor to generate a forecast. For more information,
-// see metrics.
+// see Predictor Metrics (https://docs.aws.amazon.com/forecast/latest/dg/metrics.html).
 //
 // This operation generates metrics for each backtest window that was evaluated.
 // The number of backtest windows (NumberOfBacktestWindows) is specified using
@@ -4138,8 +4140,9 @@ type CreatePredictorInput struct {
 	//
 	//    * arn:aws:forecast:::algorithm/ARIMA
 	//
-	//    * arn:aws:forecast:::algorithm/Deep_AR_Plus Supports hyperparameter optimization
-	//    (HPO)
+	//    * arn:aws:forecast:::algorithm/CNN-QR
+	//
+	//    * arn:aws:forecast:::algorithm/Deep_AR_Plus
 	//
 	//    * arn:aws:forecast:::algorithm/ETS
 	//
@@ -4175,6 +4178,14 @@ type CreatePredictorInput struct {
 	//
 	// ForecastHorizon is a required field
 	ForecastHorizon *int64 `type:"integer" required:"true"`
+
+	// Specifies the forecast types used to train a predictor. You can specify up
+	// to five forecast types. Forecast types can be quantiles from 0.01 to 0.99,
+	// by increments of 0.01 or higher. You can also specify the mean forecast with
+	// mean.
+	//
+	// The default value is ["0.10", "0.50", "0.9"].
+	ForecastTypes []*string `min:"1" type:"list"`
 
 	// Provides hyperparameter override values for the algorithm. If you don't provide
 	// this parameter, Amazon Forecast uses default values. The individual algorithms
@@ -4214,9 +4225,11 @@ type CreatePredictorInput struct {
 	// for each tunable hyperparameter. In this case, you are required to specify
 	// an algorithm and PerformAutoML must be false.
 	//
-	// The following algorithm supports HPO:
+	// The following algorithms support HPO:
 	//
 	//    * DeepAR+
+	//
+	//    * CNN-QR
 	PerformHPO *bool `type:"boolean"`
 
 	// A name for the predictor.
@@ -4279,6 +4292,9 @@ func (s *CreatePredictorInput) Validate() error {
 	}
 	if s.ForecastHorizon == nil {
 		invalidParams.Add(request.NewErrParamRequired("ForecastHorizon"))
+	}
+	if s.ForecastTypes != nil && len(s.ForecastTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ForecastTypes", 1))
 	}
 	if s.InputDataConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("InputDataConfig"))
@@ -4353,6 +4369,12 @@ func (s *CreatePredictorInput) SetFeaturizationConfig(v *FeaturizationConfig) *C
 // SetForecastHorizon sets the ForecastHorizon field's value.
 func (s *CreatePredictorInput) SetForecastHorizon(v int64) *CreatePredictorInput {
 	s.ForecastHorizon = &v
+	return s
+}
+
+// SetForecastTypes sets the ForecastTypes field's value.
+func (s *CreatePredictorInput) SetForecastTypes(v []*string) *CreatePredictorInput {
+	s.ForecastTypes = v
 	return s
 }
 
@@ -5886,6 +5908,9 @@ type DescribePredictorOutput struct {
 	// the prediction length.
 	ForecastHorizon *int64 `type:"integer"`
 
+	// The forecast types used during predictor training. Default value is ["0.1","0.5","0.9"]
+	ForecastTypes []*string `min:"1" type:"list"`
+
 	// The hyperparameter override values for the algorithm.
 	HPOConfig *HyperParameterTuningJobConfig `type:"structure"`
 
@@ -5933,9 +5958,9 @@ type DescribePredictorOutput struct {
 	Status *string `type:"string"`
 
 	// The default training parameters or overrides selected during model training.
-	// If using the AutoML algorithm or if HPO is turned on while using the DeepAR+
-	// algorithms, the optimized values for the chosen hyperparameters are returned.
-	// For more information, see aws-forecast-choosing-recipes.
+	// When running AutoML or choosing HPO with CNN-QR or DeepAR+, the optimized
+	// values for the chosen hyperparameters are returned. For more information,
+	// see aws-forecast-choosing-recipes.
 	TrainingParameters map[string]*string `type:"map"`
 }
 
@@ -5994,6 +6019,12 @@ func (s *DescribePredictorOutput) SetFeaturizationConfig(v *FeaturizationConfig)
 // SetForecastHorizon sets the ForecastHorizon field's value.
 func (s *DescribePredictorOutput) SetForecastHorizon(v int64) *DescribePredictorOutput {
 	s.ForecastHorizon = &v
+	return s
+}
+
+// SetForecastTypes sets the ForecastTypes field's value.
+func (s *DescribePredictorOutput) SetForecastTypes(v []*string) *DescribePredictorOutput {
+	s.ForecastTypes = v
 	return s
 }
 
@@ -6119,6 +6150,50 @@ func (s *EncryptionConfig) SetKMSKeyArn(v string) *EncryptionConfig {
 // SetRoleArn sets the RoleArn field's value.
 func (s *EncryptionConfig) SetRoleArn(v string) *EncryptionConfig {
 	s.RoleArn = &v
+	return s
+}
+
+// Provides detailed error metrics to evaluate the performance of a predictor.
+// This object is part of the Metrics object.
+type ErrorMetric struct {
+	_ struct{} `type:"structure"`
+
+	// Forecast types can be quantiles from 0.01 to 0.99 (by increments of 0.01),
+	// and the mean.
+	ForecastType *string `type:"string"`
+
+	// The root-mean-square error (RMSE).
+	RMSE *float64 `type:"double"`
+
+	// The weighted absolute percentage error (WAPE).
+	WAPE *float64 `type:"double"`
+}
+
+// String returns the string representation
+func (s ErrorMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ErrorMetric) GoString() string {
+	return s.String()
+}
+
+// SetForecastType sets the ForecastType field's value.
+func (s *ErrorMetric) SetForecastType(v string) *ErrorMetric {
+	s.ForecastType = &v
+	return s
+}
+
+// SetRMSE sets the RMSE field's value.
+func (s *ErrorMetric) SetRMSE(v float64) *ErrorMetric {
+	s.RMSE = &v
+	return s
+}
+
+// SetWAPE sets the WAPE field's value.
+func (s *ErrorMetric) SetWAPE(v float64) *ErrorMetric {
+	s.WAPE = &v
 	return s
 }
 
@@ -6444,6 +6519,11 @@ type FeaturizationMethod struct {
 	//    * backfill: zero, value, median, mean, min, max
 	//
 	//    * futurefill: zero, value, median, mean, min, max
+	//
+	// To set a filling method to a specific value, set the fill parameter to value
+	// and define the value in a corresponding _value parameter. For example, to
+	// set backfilling to a value of 2, include the following: "backfill": "value"
+	// and "backfill_value":"2".
 	FeaturizationMethodParameters map[string]*string `min:"1" type:"map"`
 }
 
@@ -7921,8 +8001,14 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type Metrics struct {
 	_ struct{} `type:"structure"`
 
-	// The root mean square error (RMSE).
-	RMSE *float64 `type:"double"`
+	// Provides detailed error metrics on forecast type, root-mean square-error
+	// (RMSE), and weighted average percentage error (WAPE).
+	ErrorMetrics []*ErrorMetric `type:"list"`
+
+	// The root-mean-square error (RMSE).
+	//
+	// Deprecated: This property is deprecated, please refer to ErrorMetrics for both RMSE and WAPE
+	RMSE *float64 `deprecated:"true" type:"double"`
 
 	// An array of weighted quantile losses. Quantiles divide a probability distribution
 	// into regions of equal probability. The distribution in this case is the loss
@@ -7938,6 +8024,12 @@ func (s Metrics) String() string {
 // GoString returns the string representation
 func (s Metrics) GoString() string {
 	return s.String()
+}
+
+// SetErrorMetrics sets the ErrorMetrics field's value.
+func (s *Metrics) SetErrorMetrics(v []*ErrorMetric) *Metrics {
+	s.ErrorMetrics = v
+	return s
 }
 
 // SetRMSE sets the RMSE field's value.
@@ -8632,39 +8724,10 @@ func (s *Statistics) SetStddev(v float64) *Statistics {
 // Describes a supplementary feature of a dataset group. This object is part
 // of the InputDataConfig object.
 //
-// The only supported feature is a holiday calendar. If you use the calendar,
-// all data in the datasets should belong to the same country as the calendar.
-// For the holiday calendar data, see the Jollyday (http://jollyday.sourceforge.net/data.html)
-// web site.
-//
-// India and Korea's holidays are not included in the Jollyday library, but
-// both are supported by Amazon Forecast. Their holidays are:
-//
-// "IN" - INDIA
-//
-//    * JANUARY 26 - REPUBLIC DAY
-//
-//    * AUGUST 15 - INDEPENDENCE DAY
-//
-//    * OCTOBER 2 GANDHI'S BIRTHDAY
-//
-// "KR" - KOREA
-//
-//    * JANUARY 1 - NEW YEAR
-//
-//    * MARCH 1 - INDEPENDENCE MOVEMENT DAY
-//
-//    * MAY 5 - CHILDREN'S DAY
-//
-//    * JUNE 6 - MEMORIAL DAY
-//
-//    * AUGUST 15 - LIBERATION DAY
-//
-//    * OCTOBER 3 - NATIONAL FOUNDATION DAY
-//
-//    * OCTOBER 9 - HANGEUL DAY
-//
-//    * DECEMBER 25 - CHRISTMAS DAY
+// The only supported feature is Holidays. If you use the calendar, all data
+// in the datasets should belong to the same country as the calendar. For the
+// holiday calendar data, see the Jollyday (http://jollyday.sourceforge.net/data.html)
+// website.
 type SupplementaryFeature struct {
 	_ struct{} `type:"structure"`
 
@@ -8675,19 +8738,35 @@ type SupplementaryFeature struct {
 
 	// One of the following 2 letter country codes:
 	//
+	//    * "AL" - ALBANIA
+	//
 	//    * "AR" - ARGENTINA
 	//
 	//    * "AT" - AUSTRIA
 	//
 	//    * "AU" - AUSTRALIA
 	//
+	//    * "BA" - BOSNIA HERZEGOVINA
+	//
 	//    * "BE" - BELGIUM
+	//
+	//    * "BG" - BULGARIA
+	//
+	//    * "BO" - BOLIVIA
 	//
 	//    * "BR" - BRAZIL
 	//
+	//    * "BY" - BELARUS
+	//
 	//    * "CA" - CANADA
 	//
-	//    * "CN" - CHINA
+	//    * "CL" - CHILE
+	//
+	//    * "CO" - COLOMBIA
+	//
+	//    * "CR" - COSTA RICA
+	//
+	//    * "HR" - CROATIA
 	//
 	//    * "CZ" - CZECH REPUBLIC
 	//
@@ -8695,37 +8774,81 @@ type SupplementaryFeature struct {
 	//
 	//    * "EC" - ECUADOR
 	//
+	//    * "EE" - ESTONIA
+	//
+	//    * "ET" - ETHIOPIA
+	//
 	//    * "FI" - FINLAND
 	//
 	//    * "FR" - FRANCE
 	//
 	//    * "DE" - GERMANY
 	//
+	//    * "GR" - GREECE
+	//
 	//    * "HU" - HUNGARY
 	//
-	//    * "IE" - IRELAND
+	//    * "IS" - ICELAND
 	//
 	//    * "IN" - INDIA
+	//
+	//    * "IE" - IRELAND
 	//
 	//    * "IT" - ITALY
 	//
 	//    * "JP" - JAPAN
 	//
+	//    * "KZ" - KAZAKHSTAN
+	//
 	//    * "KR" - KOREA
+	//
+	//    * "LV" - LATVIA
+	//
+	//    * "LI" - LIECHTENSTEIN
+	//
+	//    * "LT" - LITHUANIA
 	//
 	//    * "LU" - LUXEMBOURG
 	//
+	//    * "MK" - MACEDONIA
+	//
+	//    * "MT" - MALTA
+	//
 	//    * "MX" - MEXICO
+	//
+	//    * "MD" - MOLDOVA
+	//
+	//    * "ME" - MONTENEGRO
 	//
 	//    * "NL" - NETHERLANDS
 	//
+	//    * "NZ" - NEW ZEALAND
+	//
+	//    * "NI" - NICARAGUA
+	//
+	//    * "NG" - NIGERIA
+	//
 	//    * "NO" - NORWAY
+	//
+	//    * "PA" - PANAMA
+	//
+	//    * "PY" - PARAGUAY
+	//
+	//    * "PE" - PERU
 	//
 	//    * "PL" - POLAND
 	//
 	//    * "PT" - PORTUGAL
 	//
+	//    * "RO" - ROMANIA
+	//
 	//    * "RU" - RUSSIA
+	//
+	//    * "RS" - SERBIA
+	//
+	//    * "SK" - SLOVAKIA
+	//
+	//    * "SI" - SLOVENIA
 	//
 	//    * "ZA" - SOUTH AFRICA
 	//
@@ -8735,9 +8858,17 @@ type SupplementaryFeature struct {
 	//
 	//    * "CH" - SWITZERLAND
 	//
+	//    * "UA" - UKRAINE
+	//
+	//    * "AE" - UNITED ARAB EMIRATES
+	//
 	//    * "US" - UNITED STATES
 	//
 	//    * "UK" - UNITED KINGDOM
+	//
+	//    * "UY" - URUGUAY
+	//
+	//    * "VE" - VENEZUELA
 	//
 	// Value is a required field
 	Value *string `type:"string" required:"true"`

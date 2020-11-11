@@ -907,8 +907,10 @@ func (c *QuickSight) CreateIAMPolicyAssignmentRequest(input *CreateIAMPolicyAssi
 // CreateIAMPolicyAssignment API operation for Amazon QuickSight.
 //
 // Creates an assignment with one specified IAM policy, identified by its Amazon
-// Resource Name (ARN). This policy will be assigned to specified groups or
-// users of Amazon QuickSight. The users and groups need to be in the same namespace.
+// Resource Name (ARN). This policy assignment is attached to the specified
+// groups or users of Amazon QuickSight. Assignment names are unique per AWS
+// account. To avoid overwriting rules in other namespaces, use assignment names
+// that are unique.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10044,7 +10046,8 @@ func (c *QuickSight) UpdateIAMPolicyAssignmentRequest(input *UpdateIAMPolicyAssi
 // UpdateIAMPolicyAssignment API operation for Amazon QuickSight.
 //
 // Updates an existing IAM policy assignment. This operation updates only the
-// optional parameter or parameters that are specified in the request.
+// optional parameter or parameters that are specified in the request. This
+// overwrites all of the users included in Identities.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12068,6 +12071,59 @@ func (s *ColumnGroupSchema) SetName(v string) *ColumnGroupSchema {
 	return s
 }
 
+// A rule defined to grant access on one or more restricted columns. Each dataset
+// can have multiple rules. To create a restricted column, you add it to one
+// or more rules. Each rule must contain at least one column and at least one
+// user or group. To be able to see a restricted column, a user or group needs
+// to be added to a rule for that column.
+type ColumnLevelPermissionRule struct {
+	_ struct{} `type:"structure"`
+
+	// An array of column names.
+	ColumnNames []*string `min:"1" type:"list"`
+
+	// An array of Amazon Resource Names (ARNs) for QuickSight users or groups.
+	Principals []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ColumnLevelPermissionRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnLevelPermissionRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColumnLevelPermissionRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColumnLevelPermissionRule"}
+	if s.ColumnNames != nil && len(s.ColumnNames) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnNames", 1))
+	}
+	if s.Principals != nil && len(s.Principals) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Principals", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnNames sets the ColumnNames field's value.
+func (s *ColumnLevelPermissionRule) SetColumnNames(v []*string) *ColumnLevelPermissionRule {
+	s.ColumnNames = v
+	return s
+}
+
+// SetPrincipals sets the Principals field's value.
+func (s *ColumnLevelPermissionRule) SetPrincipals(v []*string) *ColumnLevelPermissionRule {
+	s.Principals = v
+	return s
+}
+
 // The column schema.
 type ColumnSchema struct {
 	_ struct{} `type:"structure"`
@@ -13006,6 +13062,9 @@ type CreateDataSetInput struct {
 	// only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
+	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
+
 	// An ID for the dataset that you want to create. This ID is unique per AWS
 	// Region for each AWS account.
 	//
@@ -13064,6 +13123,9 @@ func (s *CreateDataSetInput) Validate() error {
 	if s.ColumnGroups != nil && len(s.ColumnGroups) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ColumnGroups", 1))
 	}
+	if s.ColumnLevelPermissionRules != nil && len(s.ColumnLevelPermissionRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnLevelPermissionRules", 1))
+	}
 	if s.DataSetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
 	}
@@ -13098,6 +13160,16 @@ func (s *CreateDataSetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ColumnLevelPermissionRules != nil {
+		for i, v := range s.ColumnLevelPermissionRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnLevelPermissionRules", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -13162,6 +13234,12 @@ func (s *CreateDataSetInput) SetAwsAccountId(v string) *CreateDataSetInput {
 // SetColumnGroups sets the ColumnGroups field's value.
 func (s *CreateDataSetInput) SetColumnGroups(v []*ColumnGroup) *CreateDataSetInput {
 	s.ColumnGroups = v
+	return s
+}
+
+// SetColumnLevelPermissionRules sets the ColumnLevelPermissionRules field's value.
+func (s *CreateDataSetInput) SetColumnLevelPermissionRules(v []*ColumnLevelPermissionRule) *CreateDataSetInput {
+	s.ColumnLevelPermissionRules = v
 	return s
 }
 
@@ -13801,7 +13879,8 @@ func (s *CreateGroupOutput) SetStatus(v int64) *CreateGroupOutput {
 type CreateIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the assignment. It must be unique within an AWS account.
+	// The name of the assignment, also called a rule. It must be unique within
+	// an AWS account.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `min:"1" type:"string" required:"true"`
@@ -15861,6 +15940,9 @@ type DataSet struct {
 	// Currently, only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
+	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
+
 	// The amount of SPICE capacity used by this dataset. This is 0 if the dataset
 	// isn't imported into SPICE.
 	ConsumedSpiceCapacityInBytes *int64 `type:"long"`
@@ -15914,6 +15996,12 @@ func (s *DataSet) SetArn(v string) *DataSet {
 // SetColumnGroups sets the ColumnGroups field's value.
 func (s *DataSet) SetColumnGroups(v []*ColumnGroup) *DataSet {
 	s.ColumnGroups = v
+	return s
+}
+
+// SetColumnLevelPermissionRules sets the ColumnLevelPermissionRules field's value.
+func (s *DataSet) SetColumnLevelPermissionRules(v []*ColumnLevelPermissionRule) *DataSet {
+	s.ColumnLevelPermissionRules = v
 	return s
 }
 
@@ -16103,6 +16191,9 @@ type DataSetSummary struct {
 	// The Amazon Resource Name (ARN) of the dataset.
 	Arn *string `type:"string"`
 
+	// Indicates if the dataset has column level permission configured.
+	ColumnLevelPermissionRulesApplied *bool `type:"boolean"`
+
 	// The time that this dataset was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
@@ -16135,6 +16226,12 @@ func (s DataSetSummary) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DataSetSummary) SetArn(v string) *DataSetSummary {
 	s.Arn = &v
+	return s
+}
+
+// SetColumnLevelPermissionRulesApplied sets the ColumnLevelPermissionRulesApplied field's value.
+func (s *DataSetSummary) SetColumnLevelPermissionRulesApplied(v bool) *DataSetSummary {
+	s.ColumnLevelPermissionRulesApplied = &v
 	return s
 }
 
@@ -16427,6 +16524,9 @@ type DataSourceParameters struct {
 	// MySQL parameters.
 	MySqlParameters *MySqlParameters `type:"structure"`
 
+	// Oracle parameters.
+	OracleParameters *OracleParameters `type:"structure"`
+
 	// PostgreSQL parameters.
 	PostgreSqlParameters *PostgreSqlParameters `type:"structure"`
 
@@ -16512,6 +16612,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.MySqlParameters != nil {
 		if err := s.MySqlParameters.Validate(); err != nil {
 			invalidParams.AddNested("MySqlParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OracleParameters != nil {
+		if err := s.OracleParameters.Validate(); err != nil {
+			invalidParams.AddNested("OracleParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.PostgreSqlParameters != nil {
@@ -16621,6 +16726,12 @@ func (s *DataSourceParameters) SetMariaDbParameters(v *MariaDbParameters) *DataS
 // SetMySqlParameters sets the MySqlParameters field's value.
 func (s *DataSourceParameters) SetMySqlParameters(v *MySqlParameters) *DataSourceParameters {
 	s.MySqlParameters = v
+	return s
+}
+
+// SetOracleParameters sets the OracleParameters field's value.
+func (s *DataSourceParameters) SetOracleParameters(v *OracleParameters) *DataSourceParameters {
+	s.OracleParameters = v
 	return s
 }
 
@@ -19778,7 +19889,7 @@ func (s *DescribeGroupOutput) SetStatus(v int64) *DescribeGroupOutput {
 type DescribeIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the assignment.
+	// The name of the assignment, also called a rule.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
@@ -25350,6 +25461,81 @@ func (s *NamespaceInfoV2) SetNamespaceError(v *NamespaceError) *NamespaceInfoV2 
 	return s
 }
 
+type OracleParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Database.
+	//
+	// Database is a required field
+	Database *string `min:"1" type:"string" required:"true"`
+
+	// An Oracle host.
+	//
+	// Host is a required field
+	Host *string `min:"1" type:"string" required:"true"`
+
+	// Port.
+	//
+	// Port is a required field
+	Port *int64 `min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation
+func (s OracleParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OracleParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OracleParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OracleParameters"}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Database != nil && len(*s.Database) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Database", 1))
+	}
+	if s.Host == nil {
+		invalidParams.Add(request.NewErrParamRequired("Host"))
+	}
+	if s.Host != nil && len(*s.Host) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Host", 1))
+	}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.Port != nil && *s.Port < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Port", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabase sets the Database field's value.
+func (s *OracleParameters) SetDatabase(v string) *OracleParameters {
+	s.Database = &v
+	return s
+}
+
+// SetHost sets the Host field's value.
+func (s *OracleParameters) SetHost(v string) *OracleParameters {
+	s.Host = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *OracleParameters) SetPort(v int64) *OracleParameters {
+	s.Port = &v
+	return s
+}
+
 // Output column.
 type OutputColumn struct {
 	_ struct{} `type:"structure"`
@@ -26513,7 +26699,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResourcePermission struct {
 	_ struct{} `type:"structure"`
 
-	// The IAM action to grant or revoke permissions on, for example "quicksight:DescribeDashboard".
+	// The IAM action to grant or revoke permissions on.
 	//
 	// Actions is a required field
 	Actions []*string `min:"1" type:"list" required:"true"`
@@ -30690,6 +30876,9 @@ type UpdateDataSetInput struct {
 	// only geospatial hierarchy is supported.
 	ColumnGroups []*ColumnGroup `min:"1" type:"list"`
 
+	// A set of one or more definitions of a ColumnLevelPermissionRule .
+	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
+
 	// The ID for the dataset that you want to update. This ID is unique per AWS
 	// Region for each AWS account.
 	//
@@ -30741,6 +30930,9 @@ func (s *UpdateDataSetInput) Validate() error {
 	if s.ColumnGroups != nil && len(s.ColumnGroups) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ColumnGroups", 1))
 	}
+	if s.ColumnLevelPermissionRules != nil && len(s.ColumnLevelPermissionRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnLevelPermissionRules", 1))
+	}
 	if s.DataSetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
 	}
@@ -30772,6 +30964,16 @@ func (s *UpdateDataSetInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.ColumnLevelPermissionRules != nil {
+		for i, v := range s.ColumnLevelPermissionRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnLevelPermissionRules", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -30816,6 +31018,12 @@ func (s *UpdateDataSetInput) SetAwsAccountId(v string) *UpdateDataSetInput {
 // SetColumnGroups sets the ColumnGroups field's value.
 func (s *UpdateDataSetInput) SetColumnGroups(v []*ColumnGroup) *UpdateDataSetInput {
 	s.ColumnGroups = v
+	return s
+}
+
+// SetColumnLevelPermissionRules sets the ColumnLevelPermissionRules field's value.
+func (s *UpdateDataSetInput) SetColumnLevelPermissionRules(v []*ColumnLevelPermissionRule) *UpdateDataSetInput {
+	s.ColumnLevelPermissionRules = v
 	return s
 }
 
@@ -31556,7 +31764,8 @@ func (s *UpdateGroupOutput) SetStatus(v int64) *UpdateGroupOutput {
 type UpdateIAMPolicyAssignmentInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the assignment. This name must be unique within an AWS account.
+	// The name of the assignment, also called a rule. This name must be unique
+	// within an AWS account.
 	//
 	// AssignmentName is a required field
 	AssignmentName *string `location:"uri" locationName:"AssignmentName" min:"1" type:"string" required:"true"`
@@ -31671,7 +31880,7 @@ type UpdateIAMPolicyAssignmentOutput struct {
 	// The ID of the assignment.
 	AssignmentId *string `type:"string"`
 
-	// The name of the assignment.
+	// The name of the assignment or rule.
 	AssignmentName *string `min:"1" type:"string"`
 
 	// The status of the assignment. Possible values are as follows:
@@ -33456,6 +33665,9 @@ const (
 	// DataSourceTypeMysql is a DataSourceType enum value
 	DataSourceTypeMysql = "MYSQL"
 
+	// DataSourceTypeOracle is a DataSourceType enum value
+	DataSourceTypeOracle = "ORACLE"
+
 	// DataSourceTypePostgresql is a DataSourceType enum value
 	DataSourceTypePostgresql = "POSTGRESQL"
 
@@ -33506,6 +33718,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeJira,
 		DataSourceTypeMariadb,
 		DataSourceTypeMysql,
+		DataSourceTypeOracle,
 		DataSourceTypePostgresql,
 		DataSourceTypePresto,
 		DataSourceTypeRedshift,

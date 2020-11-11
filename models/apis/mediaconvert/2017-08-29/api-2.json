@@ -1441,6 +1441,32 @@
         "USE_CONFIGURED"
       ]
     },
+    "AutomatedAbrSettings": {
+      "type": "structure",
+      "members": {
+        "MaxAbrBitrate": {
+          "shape": "__integerMin100000Max100000000",
+          "locationName": "maxAbrBitrate"
+        },
+        "MaxRenditions": {
+          "shape": "__integerMin3Max15",
+          "locationName": "maxRenditions"
+        },
+        "MinAbrBitrate": {
+          "shape": "__integerMin100000Max100000000",
+          "locationName": "minAbrBitrate"
+        }
+      }
+    },
+    "AutomatedEncodingSettings": {
+      "type": "structure",
+      "members": {
+        "AbrSettings": {
+          "shape": "AutomatedAbrSettings",
+          "locationName": "abrSettings"
+        }
+      }
+    },
     "Av1AdaptiveQuantization": {
       "type": "string",
       "enum": [
@@ -3733,6 +3759,7 @@
       "type": "string",
       "enum": [
         "OFF",
+        "AUTO",
         "LOW",
         "MEDIUM",
         "HIGH",
@@ -7181,6 +7208,10 @@
     "OutputGroup": {
       "type": "structure",
       "members": {
+        "AutomatedEncodingSettings": {
+          "shape": "AutomatedEncodingSettings",
+          "locationName": "automatedEncodingSettings"
+        },
         "CustomName": {
           "shape": "__string",
           "locationName": "customName"
@@ -8879,6 +8910,11 @@
       "min": 0,
       "max": 99
     },
+    "__integerMin100000Max100000000": {
+      "type": "integer",
+      "min": 100000,
+      "max": 100000000
+    },
     "__integerMin1000Max1152000000": {
       "type": "integer",
       "min": 1000,
@@ -9063,6 +9099,11 @@
       "type": "integer",
       "min": 384000,
       "max": 768000
+    },
+    "__integerMin3Max15": {
+      "type": "integer",
+      "min": 3,
+      "max": 15
     },
     "__integerMin48000Max48000": {
       "type": "integer",

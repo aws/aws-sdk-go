@@ -10,7 +10,7 @@
     "CreateDataSource": "<p>Creates a data source.</p>",
     "CreateGroup": "<p>Creates an Amazon QuickSight group.</p> <p>The permissions resource is <code>arn:aws:quicksight:us-east-1:<i>&lt;relevant-aws-account-id&gt;</i>:group/default/<i>&lt;group-name&gt;</i> </code>.</p> <p>The response is a group object.</p>",
     "CreateGroupMembership": "<p>Adds an Amazon QuickSight user to an Amazon QuickSight group. </p>",
-    "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy will be assigned to specified groups or users of Amazon QuickSight. The users and groups need to be in the same namespace. </p>",
+    "CreateIAMPolicyAssignment": "<p>Creates an assignment with one specified IAM policy, identified by its Amazon Resource Name (ARN). This policy assignment is attached to the specified groups or users of Amazon QuickSight. Assignment names are unique per AWS account. To avoid overwriting rules in other namespaces, use assignment names that are unique.</p>",
     "CreateIngestion": "<p>Creates and starts a new SPICE ingestion on a dataset</p> <p>Any ingestions operating on tagged datasets inherit the same tags automatically for use in access control. For an example, see <a href=\"https://aws.amazon.com/premiumsupport/knowledge-center/iam-ec2-resource-tags/\">How do I create an IAM policy to control access to Amazon EC2 resources using tags?</a> in the AWS Knowledge Center. Tags are visible on the tagged dataset, but not on the ingestion resource.</p>",
     "CreateNamespace": "<p>(Enterprise edition only) Creates a new namespace for you to use with Amazon QuickSight.</p> <p>A namespace allows you to isolate the QuickSight users and groups that are registered for that namespace. Users that access the namespace can share assets only with other users or groups in the same namespace. They can't see users and groups in other namespaces. You can create a namespace after your AWS account is subscribed to QuickSight. The namespace must be unique within the AWS account. By default, there is a limit of 100 namespaces per AWS account. To increase your limit, create a ticket with AWS Support. </p>",
     "CreateTemplate": "<p>Creates a template from an existing QuickSight analysis or template. You can use the resulting template to create a dashboard.</p> <p>A <i>template</i> is an entity in QuickSight that encapsulates the metadata required to create an analysis and that you can use to create s dashboard. A template adds a layer of abstraction by using placeholders to replace the dataset associated with the analysis. You can use templates to create dashboards by replacing dataset placeholders with datasets that follow the same schema that was used to create the source analysis and template.</p>",
@@ -93,7 +93,7 @@
     "UpdateDataSource": "<p>Updates a data source.</p>",
     "UpdateDataSourcePermissions": "<p>Updates the permissions to a data source.</p>",
     "UpdateGroup": "<p>Changes a group description. </p>",
-    "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request.</p>",
+    "UpdateIAMPolicyAssignment": "<p>Updates an existing IAM policy assignment. This operation updates only the optional parameter or parameters that are specified in the request. This overwrites all of the users included in <code>Identities</code>. </p>",
     "UpdateTemplate": "<p>Updates a template from an existing Amazon QuickSight analysis or another template.</p>",
     "UpdateTemplateAlias": "<p>Updates the template alias of a template.</p>",
     "UpdateTemplatePermissions": "<p>Updates the resource permissions for a template.</p>",
@@ -127,7 +127,7 @@
     "ActionList": {
       "base": null,
       "refs": {
-        "ResourcePermission$Actions": "<p>The IAM action to grant or revoke permissions on, for example <code>\"quicksight:DescribeDashboard\"</code>.</p>"
+        "ResourcePermission$Actions": "<p>The IAM action to grant or revoke permissions on.</p>"
       }
     },
     "ActiveIAMPolicyAssignment": {
@@ -484,7 +484,7 @@
         "UpdateDataSourcePermissionsRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "UpdateDataSourceRequest$AwsAccountId": "<p>The AWS account ID.</p>",
         "UpdateGroupRequest$AwsAccountId": "<p>The ID for the AWS account that the group is in. Currently, you use the ID for the AWS account that contains your Amazon QuickSight account.</p>",
-        "UpdateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the AWS account that contains the IAM policy assignment.</p>",
+        "UpdateIAMPolicyAssignmentRequest$AwsAccountId": "<p>The ID of the AWS account that contains the IAM policy assignment. </p>",
         "UpdateTemplateAliasRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template alias that you're updating.</p>",
         "UpdateTemplatePermissionsRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template.</p>",
         "UpdateTemplateRequest$AwsAccountId": "<p>The ID of the AWS account that contains the template that you're updating.</p>",
@@ -509,6 +509,7 @@
     "Boolean": {
       "base": null,
       "refs": {
+        "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>Indicates if the dataset has column level permission configured. </p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
@@ -638,6 +639,20 @@
         "CalculatedColumn$ColumnId": "<p>A unique ID to identify a calculated column. During a dataset update, if the column ID of a calculated column matches that of an existing calculated column, Amazon QuickSight preserves the existing calculated column.</p>"
       }
     },
+    "ColumnLevelPermissionRule": {
+      "base": "<p>A rule defined to grant access on one or more restricted columns. Each dataset can have multiple rules. To create a restricted column, you add it to one or more rules. Each rule must contain at least one column and at least one user or group. To be able to see a restricted column, a user or group needs to be added to a rule for that column.</p>",
+      "refs": {
+        "ColumnLevelPermissionRuleList$member": null
+      }
+    },
+    "ColumnLevelPermissionRuleList": {
+      "base": null,
+      "refs": {
+        "CreateDataSetRequest$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a>ColumnLevelPermissionRule</a> </code>.</p>",
+        "DataSet$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a>ColumnLevelPermissionRule</a> </code>.</p>",
+        "UpdateDataSetRequest$ColumnLevelPermissionRules": "<p>A set of one or more definitions of a <code> <a>ColumnLevelPermissionRule</a> </code>.</p>"
+      }
+    },
     "ColumnList": {
       "base": null,
       "refs": {
@@ -655,6 +670,12 @@
         "RenameColumnOperation$ColumnName": "<p>The name of the column to be renamed.</p>",
         "RenameColumnOperation$NewColumnName": "<p>The new name for the column.</p>",
         "TagColumnOperation$ColumnName": "<p>The column that this operation acts on.</p>"
+      }
+    },
+    "ColumnNameList": {
+      "base": null,
+      "refs": {
+        "ColumnLevelPermissionRule$ColumnNames": "<p>An array of column names.</p>"
       }
     },
     "ColumnSchema": {
@@ -1116,6 +1137,7 @@
         "AuroraPostgreSqlParameters$Database": "<p>Database.</p>",
         "MariaDbParameters$Database": "<p>Database.</p>",
         "MySqlParameters$Database": "<p>Database.</p>",
+        "OracleParameters$Database": "<p>Database.</p>",
         "PostgreSqlParameters$Database": "<p>Database.</p>",
         "RdsParameters$Database": "<p>Database.</p>",
         "RedshiftParameters$Database": "<p>Database.</p>",
@@ -1735,6 +1757,7 @@
         "AuroraPostgreSqlParameters$Host": "<p>Host.</p>",
         "MariaDbParameters$Host": "<p>Host.</p>",
         "MySqlParameters$Host": "<p>Host.</p>",
+        "OracleParameters$Host": "<p>An Oracle host.</p>",
         "PostgreSqlParameters$Host": "<p>Host.</p>",
         "PrestoParameters$Host": "<p>Host.</p>",
         "RedshiftParameters$Host": "<p>Host. This field can be blank if <code>ClusterId</code> is provided.</p>",
@@ -1754,15 +1777,15 @@
       "base": null,
       "refs": {
         "ActiveIAMPolicyAssignment$AssignmentName": "<p>A name for the IAM policy assignment.</p>",
-        "CreateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment. It must be unique within an AWS account.</p>",
+        "CreateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. It must be unique within an AWS account.</p>",
         "CreateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. This name must be unique within the AWS account.</p>",
         "DeleteIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment. </p>",
         "DeleteIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. </p>",
-        "DescribeIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment. </p>",
+        "DescribeIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule.</p>",
         "IAMPolicyAssignment$AssignmentName": "<p>Assignment name.</p>",
         "IAMPolicyAssignmentSummary$AssignmentName": "<p>Assignment name.</p>",
-        "UpdateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment. This name must be unique within an AWS account.</p>",
-        "UpdateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment. </p>"
+        "UpdateIAMPolicyAssignmentRequest$AssignmentName": "<p>The name of the assignment, also called a rule. This name must be unique within an AWS account.</p>",
+        "UpdateIAMPolicyAssignmentResponse$AssignmentName": "<p>The name of the assignment or rule.</p>"
       }
     },
     "IAMPolicyAssignmentSummary": {
@@ -2347,6 +2370,12 @@
         "RedshiftParameters$Port": "<p>Port. This field can be blank if the <code>ClusterId</code> is provided.</p>"
       }
     },
+    "OracleParameters": {
+      "base": null,
+      "refs": {
+        "DataSourceParameters$OracleParameters": "<p>Oracle parameters.</p>"
+      }
+    },
     "OutputColumn": {
       "base": "<p>Output column.</p>",
       "refs": {
@@ -2402,6 +2431,7 @@
         "AuroraPostgreSqlParameters$Port": "<p>Port.</p>",
         "MariaDbParameters$Port": "<p>Port.</p>",
         "MySqlParameters$Port": "<p>Port.</p>",
+        "OracleParameters$Port": "<p>Port.</p>",
         "PostgreSqlParameters$Port": "<p>Port.</p>",
         "PrestoParameters$Port": "<p>Port.</p>",
         "SparkParameters$Port": "<p>Port.</p>",
@@ -2437,6 +2467,12 @@
       "base": null,
       "refs": {
         "ResourcePermission$Principal": "<p>The Amazon Resource Name (ARN) of the principal. This can be one of the following:</p> <ul> <li> <p>The ARN of an Amazon QuickSight user or group associated with a data source or dataset. (This is common.)</p> </li> <li> <p>The ARN of an Amazon QuickSight user, group, or namespace associated with an analysis, dashboard, template, or theme. (This is common.)</p> </li> <li> <p>The ARN of an AWS account root: This is an IAM ARN rather than a QuickSight ARN. Use this option only to share resources (templates) across AWS accounts. (This is less common.) </p> </li> </ul>"
+      }
+    },
+    "PrincipalList": {
+      "base": null,
+      "refs": {
+        "ColumnLevelPermissionRule$Principals": "<p>An array of Amazon Resource Names (ARNs) for QuickSight users or groups.</p>"
       }
     },
     "ProjectOperation": {
@@ -3003,6 +3039,7 @@
         "AnalysisSearchFilter$Value": "<p>The value of the named item, in this case <code>QUICKSIGHT_USER</code>, that you want to use as a filter, for example <code>\"Value\"</code>. An example is <code>\"arn:aws:quicksight:us-east-1:1:user/default/UserName1\"</code>.</p>",
         "ColumnGroupColumnSchema$Name": "<p>The name of the column group's column schema.</p>",
         "ColumnGroupSchema$Name": "<p>The name of the column group schema.</p>",
+        "ColumnNameList$member": null,
         "ColumnSchema$Name": "<p>The name of the column schema.</p>",
         "ColumnSchema$DataType": "<p>The data type of the column schema.</p>",
         "ColumnSchema$GeographicRole": "<p>The geographic role of the column schema.</p>",
@@ -3140,6 +3177,7 @@
         "NamespaceInfoV2$CapacityRegion": "<p>The namespace AWS Region.</p>",
         "PreconditionNotMetException$Message": null,
         "PreconditionNotMetException$RequestId": "<p>The AWS request ID for this request.</p>",
+        "PrincipalList$member": null,
         "ProjectedColumnList$member": null,
         "QuickSightUserNotFoundException$Message": null,
         "QuickSightUserNotFoundException$RequestId": "<p>The AWS request ID for this request.</p>",

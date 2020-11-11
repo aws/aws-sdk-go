@@ -164,8 +164,8 @@
       "base": "<p> Describes the automated branch creation configuration. </p>",
       "refs": {
         "App$autoBranchCreationConfig": "<p> Describes the automated branch creation configuration for the Amplify app. </p>",
-        "CreateAppRequest$autoBranchCreationConfig": "<p> The automated branch creation configuration for the Amplify app. </p>",
-        "UpdateAppRequest$autoBranchCreationConfig": "<p> The automated branch creation configuration for the Amplify app. </p>"
+        "CreateAppRequest$autoBranchCreationConfig": "<p> The automated branch creation configuration for an Amplify app. </p>",
+        "UpdateAppRequest$autoBranchCreationConfig": "<p> The automated branch creation configuration for an Amplify app. </p>"
       }
     },
     "AutoBranchCreationPattern": {
@@ -178,8 +178,8 @@
       "base": null,
       "refs": {
         "App$autoBranchCreationPatterns": "<p> Describes the automated branch creation glob patterns for the Amplify app. </p>",
-        "CreateAppRequest$autoBranchCreationPatterns": "<p> The automated branch creation glob patterns for the Amplify app. </p>",
-        "UpdateAppRequest$autoBranchCreationPatterns": "<p> Describes the automated branch creation glob patterns for the Amplify app. </p>"
+        "CreateAppRequest$autoBranchCreationPatterns": "<p> The automated branch creation glob patterns for an Amplify app. </p>",
+        "UpdateAppRequest$autoBranchCreationPatterns": "<p> Describes the automated branch creation glob patterns for an Amplify app. </p>"
       }
     },
     "AutoSubDomainCreationPattern": {
@@ -430,6 +430,14 @@
         "Branch$customDomains": "<p> The custom domains for a branch of an Amplify app. </p>"
       }
     },
+    "CustomHeaders": {
+      "base": null,
+      "refs": {
+        "App$customHeaders": "<p>Describes the custom HTTP headers for the Amplify app.</p>",
+        "CreateAppRequest$customHeaders": "<p>The custom HTTP headers for an Amplify app.</p>",
+        "UpdateAppRequest$customHeaders": "<p>The custom HTTP headers for an Amplify app.</p>"
+      }
+    },
     "CustomRule": {
       "base": "<p> Describes a custom rewrite or redirect rule. </p>",
       "refs": {
@@ -599,8 +607,8 @@
       "base": null,
       "refs": {
         "App$enableAutoBranchCreation": "<p> Enables automated branch creation for the Amplify app. </p>",
-        "CreateAppRequest$enableAutoBranchCreation": "<p> Enables automated branch creation for the Amplify app. </p>",
-        "UpdateAppRequest$enableAutoBranchCreation": "<p> Enables automated branch creation for the Amplify app. </p>"
+        "CreateAppRequest$enableAutoBranchCreation": "<p> Enables automated branch creation for an Amplify app. </p>",
+        "UpdateAppRequest$enableAutoBranchCreation": "<p> Enables automated branch creation for an Amplify app. </p>"
       }
     },
     "EnableAutoBuild": {
@@ -659,19 +667,19 @@
     "EnablePerformanceMode": {
       "base": null,
       "refs": {
-        "AutoBranchCreationConfig$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
-        "Branch$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
-        "CreateBranchRequest$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
-        "UpdateBranchRequest$enablePerformanceMode": "<p> Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. Enabling performance mode will mean that hosting configuration or code changes can take up to 10 minutes to roll out. </p>"
+        "AutoBranchCreationConfig$enablePerformanceMode": "<p>Enables performance mode for the branch.</p> <p>Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. When performance mode is enabled, hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
+        "Branch$enablePerformanceMode": "<p>Enables performance mode for the branch.</p> <p>Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. When performance mode is enabled, hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
+        "CreateBranchRequest$enablePerformanceMode": "<p>Enables performance mode for the branch.</p> <p>Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. When performance mode is enabled, hosting configuration or code changes can take up to 10 minutes to roll out. </p>",
+        "UpdateBranchRequest$enablePerformanceMode": "<p>Enables performance mode for the branch.</p> <p>Performance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. When performance mode is enabled, hosting configuration or code changes can take up to 10 minutes to roll out. </p>"
       }
     },
     "EnablePullRequestPreview": {
       "base": null,
       "refs": {
-        "AutoBranchCreationConfig$enablePullRequestPreview": "<p> Enables pull request preview for the autocreated branch. </p>",
-        "Branch$enablePullRequestPreview": "<p> Enables pull request preview for the branch. </p>",
-        "CreateBranchRequest$enablePullRequestPreview": "<p> Enables pull request preview for this branch. </p>",
-        "UpdateBranchRequest$enablePullRequestPreview": "<p> Enables pull request preview for this branch. </p>"
+        "AutoBranchCreationConfig$enablePullRequestPreview": "<p> Enables pull request previews for the autocreated branch. </p>",
+        "Branch$enablePullRequestPreview": "<p> Enables pull request previews for the branch. </p>",
+        "CreateBranchRequest$enablePullRequestPreview": "<p> Enables pull request previews for this branch. </p>",
+        "UpdateBranchRequest$enablePullRequestPreview": "<p> Enables pull request previews for this branch. </p>"
       }
     },
     "EndTime": {
@@ -1023,7 +1031,7 @@
       "base": null,
       "refs": {
         "App$name": "<p> The name for the Amplify app. </p>",
-        "CreateAppRequest$name": "<p> The name for the Amplify app. </p>",
+        "CreateAppRequest$name": "<p> The name for an Amplify app. </p>",
         "UpdateAppRequest$name": "<p> The name for an Amplify app. </p>"
       }
     },
