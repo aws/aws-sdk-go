@@ -35852,6 +35852,15 @@ func (s *FileLocation) SetStream(v *Stream) *FileLocation {
 type FirehoseAction struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to deliver the Kinesis Data Firehose stream as a batch by using PutRecordBatch
+	// (https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecordBatch.html).
+	// The default value is false.
+	//
+	// When batchMode is true and the rule's SQL statement evaluates to an Array,
+	// each Array element forms one record in the PutRecordBatch (https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecordBatch.html)
+	// request. The resulting array can't have more than 500 records.
+	BatchMode *bool `locationName:"batchMode" type:"boolean"`
+
 	// The delivery stream name.
 	//
 	// DeliveryStreamName is a required field
@@ -35892,6 +35901,12 @@ func (s *FirehoseAction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchMode sets the BatchMode field's value.
+func (s *FirehoseAction) SetBatchMode(v bool) *FirehoseAction {
+	s.BatchMode = &v
+	return s
 }
 
 // SetDeliveryStreamName sets the DeliveryStreamName field's value.
@@ -37853,6 +37868,15 @@ func (s *InvalidStateTransitionException) RequestID() string {
 type IotAnalyticsAction struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to process the action as a batch. The default value is false.
+	//
+	// When batchMode is true and the rule SQL statement evaluates to an Array,
+	// each Array element is delivered as a separate message when passed by BatchPutMessage
+	// (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html)
+	// to the AWS IoT Analytics channel. The resulting array can't have more than
+	// 100 messages.
+	BatchMode *bool `locationName:"batchMode" type:"boolean"`
+
 	// (deprecated) The ARN of the IoT Analytics channel to which message data will
 	// be sent.
 	ChannelArn *string `locationName:"channelArn" type:"string"`
@@ -37873,6 +37897,12 @@ func (s IotAnalyticsAction) String() string {
 // GoString returns the string representation
 func (s IotAnalyticsAction) GoString() string {
 	return s.String()
+}
+
+// SetBatchMode sets the BatchMode field's value.
+func (s *IotAnalyticsAction) SetBatchMode(v bool) *IotAnalyticsAction {
+	s.BatchMode = &v
+	return s
 }
 
 // SetChannelArn sets the ChannelArn field's value.
@@ -37897,13 +37927,28 @@ func (s *IotAnalyticsAction) SetRoleArn(v string) *IotAnalyticsAction {
 type IotEventsAction struct {
 	_ struct{} `type:"structure"`
 
+	// Whether to process the event actions as a batch. The default value is false.
+	//
+	// When batchMode is true, you can't specify a messageId.
+	//
+	// When batchMode is true and the rule SQL statement evaluates to an Array,
+	// each Array element is treated as a separate message when it's sent to AWS
+	// IoT Events by calling BatchPutMessage (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html).
+	// The resulting array can't have more than 10 messages.
+	BatchMode *bool `locationName:"batchMode" type:"boolean"`
+
 	// The name of the AWS IoT Events input.
 	//
 	// InputName is a required field
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
 
-	// [Optional] Use this to ensure that only one input (message) with a given
-	// messageId will be processed by an AWS IoT Events detector.
+	// The ID of the message. The default messageId is a new UUID value.
+	//
+	// When batchMode is true, you can't specify a messageId--a new UUID value will
+	// be assigned.
+	//
+	// Assign a value to this property to ensure that only one input (message) with
+	// a given messageId will be processed by an AWS IoT Events detector.
 	MessageId *string `locationName:"messageId" type:"string"`
 
 	// The ARN of the role that grants AWS IoT permission to send an input to an
@@ -37940,6 +37985,12 @@ func (s *IotEventsAction) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchMode sets the BatchMode field's value.
+func (s *IotEventsAction) SetBatchMode(v bool) *IotEventsAction {
+	s.BatchMode = &v
+	return s
 }
 
 // SetInputName sets the InputName field's value.
@@ -46844,7 +46895,8 @@ type S3Action struct {
 	// the object key. For more information, see S3 canned ACLs (https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl).
 	CannedAcl *string `locationName:"cannedAcl" type:"string" enum:"CannedAccessControlList"`
 
-	// The object key.
+	// The object key. For more information, see Actions, resources, and condition
+	// keys for Amazon S3 (https://docs.aws.amazon.com/AmazonS3/latest/dev/list_amazons3.html).
 	//
 	// Key is a required field
 	Key *string `locationName:"key" type:"string" required:"true"`
@@ -47785,7 +47837,7 @@ func (s SetV2LoggingOptionsOutput) GoString() string {
 	return s.String()
 }
 
-// Use Sig V4 authorization.
+// For more information, see Signature Version 4 signing process (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html).
 type SigV4Authorization struct {
 	_ struct{} `type:"structure"`
 

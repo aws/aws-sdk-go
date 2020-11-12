@@ -4252,6 +4252,7 @@
       }
     },
     "AwsJobTimeoutInProgressTimeoutInMinutes":{"type":"long"},
+    "BatchMode":{"type":"boolean"},
     "Behavior":{
       "type":"structure",
       "required":["name"],
@@ -6959,7 +6960,8 @@
       "members":{
         "roleArn":{"shape":"AwsArn"},
         "deliveryStreamName":{"shape":"DeliveryStreamName"},
-        "separator":{"shape":"FirehoseSeparator"}
+        "separator":{"shape":"FirehoseSeparator"},
+        "batchMode":{"shape":"BatchMode"}
       }
     },
     "FirehoseSeparator":{
@@ -7417,6 +7419,7 @@
       "members":{
         "channelArn":{"shape":"AwsArn"},
         "channelName":{"shape":"ChannelName"},
+        "batchMode":{"shape":"BatchMode"},
         "roleArn":{"shape":"AwsArn"}
       }
     },
@@ -7429,6 +7432,7 @@
       "members":{
         "inputName":{"shape":"InputName"},
         "messageId":{"shape":"MessageId"},
+        "batchMode":{"shape":"BatchMode"},
         "roleArn":{"shape":"AwsArn"}
       }
     },

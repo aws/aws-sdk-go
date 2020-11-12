@@ -8267,6 +8267,14 @@ type CreateWorldExportJobOutput struct {
 	// InvalidInput
 	//
 	// An input parameter in the request is not valid.
+	//
+	// AllWorldGenerationFailed
+	//
+	// All of the worlds in the world generation job failed. This can happen if
+	// your worldCount is greater than 50 or less than 1.
+	//
+	// For more information about troubleshooting WorldForge, see Troubleshooting
+	// Simulation WorldForge (https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting-worldforge.html).
 	FailureCode *string `locationName:"failureCode" type:"string" enum:"WorldExportJobErrorCode"`
 
 	// The IAM role that the world export process uses to access the Amazon S3 bucket
@@ -8387,6 +8395,10 @@ type CreateWorldGenerationJobInput struct {
 	//
 	// WorldCount is a required field
 	WorldCount *WorldCount `locationName:"worldCount" type:"structure" required:"true"`
+
+	// A map that contains tag keys and tag values that are attached to the generated
+	// worlds.
+	WorldTags map[string]*string `locationName:"worldTags" type:"map"`
 }
 
 // String returns the string representation
@@ -8442,6 +8454,12 @@ func (s *CreateWorldGenerationJobInput) SetTemplate(v string) *CreateWorldGenera
 // SetWorldCount sets the WorldCount field's value.
 func (s *CreateWorldGenerationJobInput) SetWorldCount(v *WorldCount) *CreateWorldGenerationJobInput {
 	s.WorldCount = v
+	return s
+}
+
+// SetWorldTags sets the WorldTags field's value.
+func (s *CreateWorldGenerationJobInput) SetWorldTags(v map[string]*string) *CreateWorldGenerationJobInput {
+	s.WorldTags = v
 	return s
 }
 
@@ -8523,6 +8541,10 @@ type CreateWorldGenerationJobOutput struct {
 
 	// Information about the world count.
 	WorldCount *WorldCount `locationName:"worldCount" type:"structure"`
+
+	// A map that contains tag keys and tag values that are attached to the generated
+	// worlds.
+	WorldTags map[string]*string `locationName:"worldTags" type:"map"`
 }
 
 // String returns the string representation
@@ -8580,6 +8602,12 @@ func (s *CreateWorldGenerationJobOutput) SetTemplate(v string) *CreateWorldGener
 // SetWorldCount sets the WorldCount field's value.
 func (s *CreateWorldGenerationJobOutput) SetWorldCount(v *WorldCount) *CreateWorldGenerationJobOutput {
 	s.WorldCount = v
+	return s
+}
+
+// SetWorldTags sets the WorldTags field's value.
+func (s *CreateWorldGenerationJobOutput) SetWorldTags(v map[string]*string) *CreateWorldGenerationJobOutput {
+	s.WorldTags = v
 	return s
 }
 
@@ -11125,6 +11153,10 @@ type DescribeWorldGenerationJobOutput struct {
 
 	// Information about the world count.
 	WorldCount *WorldCount `locationName:"worldCount" type:"structure"`
+
+	// A map that contains tag keys and tag values that are attached to the generated
+	// worlds.
+	WorldTags map[string]*string `locationName:"worldTags" type:"map"`
 }
 
 // String returns the string representation
@@ -11194,6 +11226,12 @@ func (s *DescribeWorldGenerationJobOutput) SetTemplate(v string) *DescribeWorldG
 // SetWorldCount sets the WorldCount field's value.
 func (s *DescribeWorldGenerationJobOutput) SetWorldCount(v *WorldCount) *DescribeWorldGenerationJobOutput {
 	s.WorldCount = v
+	return s
+}
+
+// SetWorldTags sets the WorldTags field's value.
+func (s *DescribeWorldGenerationJobOutput) SetWorldTags(v map[string]*string) *DescribeWorldGenerationJobOutput {
+	s.WorldTags = v
 	return s
 }
 

@@ -1,0 +1,481 @@
+{
+  "version": "2.0",
+  "service": "<p> AWS Service Catalog AppRegistry enables organizations to understand the application context of their AWS resources. AppRegistry provides a repository of your applications, their resources, and the application metadata that you use within your enterprise.</p>",
+  "operations": {
+    "AssociateAttributeGroup": "<p>Associates an attribute group with an application to augment the application's metadata with the group's attributes. This way applications can be described with user-defined details which are machine-readable (e.g. for third-party integrations).</p>",
+    "AssociateResource": "<p>Associates a resource with an application. Both the resource and the application can be specified either by ID or name.</p>",
+    "CreateApplication": "<p>Creates a new application that is the top-level node in a hierarchy of related cloud resource abstractions.</p>",
+    "CreateAttributeGroup": "<p>Creates a new attribute group as a container for user-defined attributes. This approach enables users to have full control over their cloud application's metadata in a rich machine-readable format to facilitate integration with automated workflows and third-party tools.</p>",
+    "DeleteApplication": "<p>Delete an application, specified either by its application ID or name.</p>",
+    "DeleteAttributeGroup": "<p>Deletes an attribute group, specified either by its attribute group ID or name.</p>",
+    "DisassociateAttributeGroup": "<p>Disassociates an attribute group from an application to remove the extra attributes contained in the attribute group from the application's metadata. This operation reverts AssociateAttributeGroup.</p>",
+    "DisassociateResource": "<p>Disassociates a resource from application. Both the resource and the application can be specified either by ID or name.</p>",
+    "GetApplication": "<p>Retrieves metadata information about one of your applications. The application can be specified either by its unique ID or by its name (which is unique within one account in one region at a given point in time). Specify by ID in automated workflows if you want to make sure that the exact same application is returned or a ResourceNotFoundException is thrown, avoiding the ABA addressing problem.</p>",
+    "GetAttributeGroup": "<p>Retrieves an attribute group, either by its name or its ID.</p>",
+    "ListApplications": "<p>Retrieves a list of all of your applications. Results are paginated.</p>",
+    "ListAssociatedAttributeGroups": "<p>Lists all attribute groups that are associated with specified application. Results are paginated.</p>",
+    "ListAssociatedResources": "<p>Lists all resources that are associated with specified application. Results are paginated.</p>",
+    "ListAttributeGroups": "<p>Lists all attribute groups which you have access to. Results are paginated.</p>",
+    "UpdateApplication": "<p>Updates an existing application with new attributes.</p>",
+    "UpdateAttributeGroup": "<p>Updates an existing attribute group with new details. </p>"
+  },
+  "shapes": {
+    "Application": {
+      "base": "<p>Represents a Service Catalog AppRegistry application that is the top-level node in a hierarchy of related cloud resource abstractions.</p>",
+      "refs": {
+        "CreateApplicationResponse$application": "<p>The name or ID of the application.</p>",
+        "UpdateApplicationResponse$application": "<p>The name or ID of the application.</p>"
+      }
+    },
+    "ApplicationArn": {
+      "base": null,
+      "refs": {
+        "Application$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>",
+        "ApplicationSummary$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>",
+        "AssociateAttributeGroupResponse$applicationArn": "<p>The Amazon resource name (ARN) of the application that was augmented with attributes.</p>",
+        "AssociateResourceResponse$applicationArn": "<p>The Amazon resource name (ARN) of the application that was augmented with attributes.</p>",
+        "DisassociateAttributeGroupResponse$applicationArn": "<p>The Amazon resource name (ARN) of the application that was augmented with attributes.</p>",
+        "DisassociateResourceResponse$applicationArn": "<p>The Amazon resource name (ARN) of the application that was augmented with attributes.</p>",
+        "GetApplicationResponse$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>"
+      }
+    },
+    "ApplicationId": {
+      "base": null,
+      "refs": {
+        "Application$id": "<p>The identifier of the application.</p>",
+        "ApplicationSummary$id": "<p>The identifier of the application.</p>",
+        "GetApplicationResponse$id": "<p>The identifier of the application.</p>"
+      }
+    },
+    "ApplicationSpecifier": {
+      "base": null,
+      "refs": {
+        "AssociateAttributeGroupRequest$application": "<p>The name or ID of the application.</p>",
+        "AssociateResourceRequest$application": "<p>The name or ID of the application.</p>",
+        "DeleteApplicationRequest$application": "<p>The name or ID of the application.</p>",
+        "DisassociateAttributeGroupRequest$application": "<p>The name or ID of the application.</p>",
+        "DisassociateResourceRequest$application": "<p>The name or ID of the application.</p>",
+        "GetApplicationRequest$application": "<p>The name or ID of the application.</p>",
+        "ListAssociatedAttributeGroupsRequest$application": "<p>The name or ID of the application.</p>",
+        "ListAssociatedResourcesRequest$application": "<p>The name or ID of the application.</p>",
+        "UpdateApplicationRequest$application": "<p>The name or ID of the application. The name must be unique in the region in which you are updating the attribute group.</p>"
+      }
+    },
+    "ApplicationSummaries": {
+      "base": null,
+      "refs": {
+        "ListApplicationsResponse$applications": "<p>The name or ID of the application.</p>"
+      }
+    },
+    "ApplicationSummary": {
+      "base": "<p>Summary of a Service Catalog AppRegistry application.</p>",
+      "refs": {
+        "ApplicationSummaries$member": null,
+        "DeleteApplicationResponse$application": "<p>The name or ID of the application.</p>"
+      }
+    },
+    "Arn": {
+      "base": null,
+      "refs": {
+        "AssociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>",
+        "DisassociateResourceResponse$resourceArn": "<p>The Amazon resource name (ARN) that specifies the resource.</p>"
+      }
+    },
+    "AssociateAttributeGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateAttributeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociateResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AssociationCount": {
+      "base": null,
+      "refs": {
+        "GetApplicationResponse$associatedResourceCount": "<p>The number of top-level resources that were registered as part of this application.</p>"
+      }
+    },
+    "AttributeGroup": {
+      "base": "<p>Represents a Service Catalog AppRegistry attribute group that is rich metadata which describes an application and its components.</p>",
+      "refs": {
+        "CreateAttributeGroupResponse$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
+        "UpdateAttributeGroupResponse$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>"
+      }
+    },
+    "AttributeGroupArn": {
+      "base": null,
+      "refs": {
+        "AssociateAttributeGroupResponse$attributeGroupArn": "<p>The Amazon resource name (ARN) of the attribute group that contains the application's new attributes.</p>",
+        "AttributeGroup$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>",
+        "AttributeGroupSummary$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>",
+        "DisassociateAttributeGroupResponse$attributeGroupArn": "<p>The Amazon resource name (ARN) of the attribute group that contains the application's new attributes.</p>",
+        "GetAttributeGroupResponse$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>"
+      }
+    },
+    "AttributeGroupId": {
+      "base": null,
+      "refs": {
+        "AttributeGroup$id": "<p>The globally unique attribute group identifier of the attribute group.</p>",
+        "AttributeGroupIds$member": null,
+        "AttributeGroupSummary$id": "<p>The globally unique attribute group identifier of the attribute group.</p>",
+        "GetAttributeGroupResponse$id": "<p>The identifier of the application.</p>"
+      }
+    },
+    "AttributeGroupIds": {
+      "base": null,
+      "refs": {
+        "ListAssociatedAttributeGroupsResponse$attributeGroups": "<p>A list of attribute group IDs.</p>"
+      }
+    },
+    "AttributeGroupSpecifier": {
+      "base": null,
+      "refs": {
+        "AssociateAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
+        "DeleteAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
+        "DisassociateAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
+        "GetAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>",
+        "UpdateAttributeGroupRequest$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>"
+      }
+    },
+    "AttributeGroupSummaries": {
+      "base": null,
+      "refs": {
+        "ListAttributeGroupsResponse$attributeGroups": "<p>A list of attribute group IDs.</p>"
+      }
+    },
+    "AttributeGroupSummary": {
+      "base": "<p>Summary of a Service Catalog AppRegistry attribute group.</p>",
+      "refs": {
+        "AttributeGroupSummaries$member": null,
+        "DeleteAttributeGroupResponse$attributeGroup": "<p>The name or ID of the attribute group that holds the attributes to describe the application.</p>"
+      }
+    },
+    "Attributes": {
+      "base": null,
+      "refs": {
+        "CreateAttributeGroupRequest$attributes": "<p>A JSON string in the form of nested key-value pairs that represent the attributes in the group and describes an application and its components.</p>",
+        "GetAttributeGroupResponse$attributes": "<p>A JSON string in the form of nested key-value pairs that represent the attributes in the group and describes an application and its components.</p>",
+        "UpdateAttributeGroupRequest$attributes": "<p>A JSON string in the form of nested key-value pairs that represent the attributes in the group and describes an application and its components.</p>"
+      }
+    },
+    "ClientToken": {
+      "base": null,
+      "refs": {
+        "CreateApplicationRequest$clientToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the clientToken, the same response is returned for each repeated request.</p>",
+        "CreateAttributeGroupRequest$clientToken": "<p>A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the clientToken, the same response is returned for each repeated request.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>There was a conflict when processing the request (for example, a resource with the given name already exists within the account).</p>",
+      "refs": {
+      }
+    },
+    "CreateApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAttributeGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateAttributeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAttributeGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteAttributeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Description": {
+      "base": null,
+      "refs": {
+        "Application$description": "<p>The description of the application.</p>",
+        "ApplicationSummary$description": "<p>The description of the application.</p>",
+        "AttributeGroup$description": "<p>The description of the attribute group that the user provides.</p>",
+        "AttributeGroupSummary$description": "<p>The description of the attribute group that the user provides.</p>",
+        "CreateApplicationRequest$description": "<p>The description of the application.</p>",
+        "CreateAttributeGroupRequest$description": "<p>The description of the attribute group that the user provides.</p>",
+        "GetApplicationResponse$description": "<p>The description of the application.</p>",
+        "GetAttributeGroupResponse$description": "<p>The description of the attribute group that the user provides.</p>",
+        "UpdateApplicationRequest$description": "<p>The description of the application.</p>",
+        "UpdateAttributeGroupRequest$description": "<p>The description of the attribute group that the user provides.</p>"
+      }
+    },
+    "DisassociateAttributeGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateAttributeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DisassociateResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAttributeGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAttributeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "InternalServerException": {
+      "base": "<p>The service is experiencing internal problems.</p>",
+      "refs": {
+      }
+    },
+    "ListApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssociatedAttributeGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssociatedAttributeGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssociatedResourcesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAssociatedResourcesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAttributeGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListAttributeGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListApplicationsRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>",
+        "ListAssociatedAttributeGroupsRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>",
+        "ListAssociatedResourcesRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>",
+        "ListAttributeGroupsRequest$maxResults": "<p>The upper bound of the number of results to return (cannot exceed 25). If this parameter is omitted, it defaults to 25. This value is optional.</p>"
+      }
+    },
+    "Name": {
+      "base": null,
+      "refs": {
+        "Application$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
+        "ApplicationSummary$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
+        "AttributeGroup$name": "<p>The name of the attribute group.</p>",
+        "AttributeGroupSummary$name": "<p>The name of the attribute group.</p>",
+        "CreateApplicationRequest$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
+        "CreateAttributeGroupRequest$name": "<p>The name of the attribute group.</p>",
+        "GetApplicationResponse$name": "<p>The name of the application. The name must be unique in the region in which you are creating the application.</p>",
+        "GetAttributeGroupResponse$name": "<p>The name of the attribute group.</p>",
+        "UpdateApplicationRequest$name": "<p>The anme of the application. The name must be unique in the region in which you are creating the application.</p>",
+        "UpdateAttributeGroupRequest$name": "<p>The new name of the attribute group. The name must be unique in the region in which you are updating the attribute group.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListApplicationsRequest$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListApplicationsResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAssociatedAttributeGroupsRequest$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAssociatedAttributeGroupsResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAssociatedResourcesRequest$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAssociatedResourcesResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAttributeGroupsRequest$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>",
+        "ListAttributeGroupsResponse$nextToken": "<p>The token to use to get the next page of results after a previous API call. </p>"
+      }
+    },
+    "ResourceInfo": {
+      "base": "<p>Information about the resource.</p>",
+      "refs": {
+        "Resources$member": null
+      }
+    },
+    "ResourceNotFoundException": {
+      "base": "<p>The specified resource does not exist.</p>",
+      "refs": {
+      }
+    },
+    "ResourceSpecifier": {
+      "base": null,
+      "refs": {
+        "AssociateResourceRequest$resource": "<p>The name or ID of the resource of which the application will be associated.</p>",
+        "DisassociateResourceRequest$resource": "<p>The name or ID of the resource of which the application will be associated.</p>",
+        "ResourceInfo$name": "<p>The name of the resource.</p>"
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "AssociateResourceRequest$resourceType": null,
+        "DisassociateResourceRequest$resourceType": "<p>The type of the resource that's being disassociated.</p>"
+      }
+    },
+    "Resources": {
+      "base": null,
+      "refs": {
+        "ListAssociatedResourcesResponse$resources": "<p>The name or ID of the resource of which the application will be associated.</p>"
+      }
+    },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The maximum number of resources per account has been reached.</p>",
+      "refs": {
+      }
+    },
+    "StackArn": {
+      "base": null,
+      "refs": {
+        "ResourceInfo$arn": "<p>The Amazon resource name (ARN) that specifies the application across services.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "ConflictException$message": null,
+        "InternalServerException$message": null,
+        "ResourceNotFoundException$message": null,
+        "ServiceQuotaExceededException$message": null,
+        "ValidationException$message": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tags$key": null
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tags$value": null
+      }
+    },
+    "Tags": {
+      "base": null,
+      "refs": {
+        "Application$tags": "<p>Key-value pairs you can use to associate with the application.</p>",
+        "AttributeGroup$tags": "<p>Key-value pairs you can use to associate with the attribute group.</p>",
+        "CreateApplicationRequest$tags": "<p>Key-value pairs you can use to associate with the application.</p>",
+        "CreateAttributeGroupRequest$tags": "<p>Key-value pairs you can use to associate with the attribute group.</p>",
+        "GetApplicationResponse$tags": "<p>Key-value pairs you can use to associate with the application.</p>",
+        "GetAttributeGroupResponse$tags": "<p>Key-value pairs you can use to associate with the attribute group.</p>"
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "Application$creationTime": "<p>The ISO-8601 formatted timestamp of the moment when the application was created.</p>",
+        "Application$lastUpdateTime": "<p> The ISO-8601 formatted timestamp of the moment when the application was last updated.</p>",
+        "ApplicationSummary$creationTime": "<p>The ISO-8601 formatted timestamp of the moment when the application was created.</p>",
+        "ApplicationSummary$lastUpdateTime": "<p> The ISO-8601 formatted timestamp of the moment when the application was last updated.</p>",
+        "AttributeGroup$creationTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was created.</p>",
+        "AttributeGroup$lastUpdateTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was last updated. This time is the same as the creationTime for a newly created attribute group.</p>",
+        "AttributeGroupSummary$creationTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was created.</p>",
+        "AttributeGroupSummary$lastUpdateTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was last updated. This time is the same as the creationTime for a newly created attribute group.</p>",
+        "GetApplicationResponse$creationTime": "<p>The ISO-8601 formatted timestamp of the moment when the application was created.</p>",
+        "GetApplicationResponse$lastUpdateTime": "<p>The ISO-8601 formatted timestamp of the moment when the application was last updated.</p>",
+        "GetAttributeGroupResponse$creationTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was created.</p>",
+        "GetAttributeGroupResponse$lastUpdateTime": "<p>The ISO-8601 formatted timestamp of the moment the attribute group was last updated. This time is the same as the creationTime for a newly created attribute group.</p>"
+      }
+    },
+    "UpdateApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAttributeGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateAttributeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ValidationException": {
+      "base": "<p>The request has invalid or missing parameters.</p>",
+      "refs": {
+      }
+    }
+  }
+}

@@ -411,7 +411,10 @@
         "Size":{"shape":"Size"}
       }
     },
-    "LexiconContent":{"type":"string"},
+    "LexiconContent":{
+      "type":"string",
+      "sensitive":true
+    },
     "LexiconDescription":{
       "type":"structure",
       "members":{
@@ -425,8 +428,7 @@
     },
     "LexiconName":{
       "type":"string",
-      "pattern":"[0-9A-Za-z]{1,20}",
-      "sensitive":true
+      "pattern":"[0-9A-Za-z]{1,20}"
     },
     "LexiconNameList":{
       "type":"list",
@@ -542,7 +544,7 @@
     },
     "OutputS3KeyPrefix":{
       "type":"string",
-      "pattern":"^[0-9a-zA-Z\\/\\!\\-_\\.\\*\\'\\(\\)]{0,800}$"
+      "pattern":"^[0-9a-zA-Z\\/\\!\\-_\\.\\*\\'\\(\\):;\\$@=+\\,\\?&]{0,800}$"
     },
     "OutputUri":{"type":"string"},
     "PutLexiconInput":{
@@ -809,6 +811,7 @@
         "Mizuki",
         "Naja",
         "Nicole",
+        "Olivia",
         "Penelope",
         "Raveena",
         "Ricardo",

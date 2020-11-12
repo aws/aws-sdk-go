@@ -12746,8 +12746,20 @@ const (
 	// LocaleEnUs is a Locale enum value
 	LocaleEnUs = "en-US"
 
+	// LocaleEsEs is a Locale enum value
+	LocaleEsEs = "es-ES"
+
 	// LocaleEsUs is a Locale enum value
 	LocaleEsUs = "es-US"
+
+	// LocaleFrFr is a Locale enum value
+	LocaleFrFr = "fr-FR"
+
+	// LocaleFrCa is a Locale enum value
+	LocaleFrCa = "fr-CA"
+
+	// LocaleItIt is a Locale enum value
+	LocaleItIt = "it-IT"
 )
 
 // Locale_Values returns all elements of the Locale enum
@@ -12757,7 +12769,11 @@ func Locale_Values() []string {
 		LocaleEnAu,
 		LocaleEnGb,
 		LocaleEnUs,
+		LocaleEsEs,
 		LocaleEsUs,
+		LocaleFrFr,
+		LocaleFrCa,
+		LocaleItIt,
 	}
 }
 

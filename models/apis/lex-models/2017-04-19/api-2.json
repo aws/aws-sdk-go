@@ -1932,7 +1932,11 @@
         "en-AU",
         "en-GB",
         "en-US",
-        "es-US"
+        "es-ES",
+        "es-US",
+        "fr-FR",
+        "fr-CA",
+        "it-IT"
       ]
     },
     "LocaleList":{
