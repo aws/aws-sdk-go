@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opAllocateStaticIp = "AllocateStaticIp"
@@ -1213,6 +1214,335 @@ func (c *Lightsail) CreateContactMethodWithContext(ctx aws.Context, input *Creat
 	return out, req.Send()
 }
 
+const opCreateContainerService = "CreateContainerService"
+
+// CreateContainerServiceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContainerService operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContainerService for more information on using the CreateContainerService
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContainerServiceRequest method.
+//    req, resp := client.CreateContainerServiceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateContainerService
+func (c *Lightsail) CreateContainerServiceRequest(input *CreateContainerServiceInput) (req *request.Request, output *CreateContainerServiceOutput) {
+	op := &request.Operation{
+		Name:       opCreateContainerService,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateContainerServiceInput{}
+	}
+
+	output = &CreateContainerServiceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContainerService API operation for Amazon Lightsail.
+//
+// Creates an Amazon Lightsail container service.
+//
+// A Lightsail container service is a compute resource to which you can deploy
+// containers. For more information, see Container services in Amazon Lightsail
+// (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-containers)
+// in the Lightsail Dev Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation CreateContainerService for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateContainerService
+func (c *Lightsail) CreateContainerService(input *CreateContainerServiceInput) (*CreateContainerServiceOutput, error) {
+	req, out := c.CreateContainerServiceRequest(input)
+	return out, req.Send()
+}
+
+// CreateContainerServiceWithContext is the same as CreateContainerService with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContainerService for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) CreateContainerServiceWithContext(ctx aws.Context, input *CreateContainerServiceInput, opts ...request.Option) (*CreateContainerServiceOutput, error) {
+	req, out := c.CreateContainerServiceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateContainerServiceDeployment = "CreateContainerServiceDeployment"
+
+// CreateContainerServiceDeploymentRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContainerServiceDeployment operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContainerServiceDeployment for more information on using the CreateContainerServiceDeployment
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContainerServiceDeploymentRequest method.
+//    req, resp := client.CreateContainerServiceDeploymentRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateContainerServiceDeployment
+func (c *Lightsail) CreateContainerServiceDeploymentRequest(input *CreateContainerServiceDeploymentInput) (req *request.Request, output *CreateContainerServiceDeploymentOutput) {
+	op := &request.Operation{
+		Name:       opCreateContainerServiceDeployment,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateContainerServiceDeploymentInput{}
+	}
+
+	output = &CreateContainerServiceDeploymentOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContainerServiceDeployment API operation for Amazon Lightsail.
+//
+// Creates a deployment for your Amazon Lightsail container service.
+//
+// A deployment specifies the containers that will be launched on the container
+// service and their settings, such as the ports to open, the environment variables
+// to apply, and the launch command to run. It also specifies the container
+// that will serve as the public endpoint of the deployment and its settings,
+// such as the HTTP or HTTPS port to use, and the health check configuration.
+//
+// You can deploy containers to your container service using container images
+// from a public registry like Docker Hub, or from your local machine. For more
+// information, see Creating container images for your Amazon Lightsail container
+// services (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-creating-container-images)
+// in the Lightsail Dev Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation CreateContainerServiceDeployment for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateContainerServiceDeployment
+func (c *Lightsail) CreateContainerServiceDeployment(input *CreateContainerServiceDeploymentInput) (*CreateContainerServiceDeploymentOutput, error) {
+	req, out := c.CreateContainerServiceDeploymentRequest(input)
+	return out, req.Send()
+}
+
+// CreateContainerServiceDeploymentWithContext is the same as CreateContainerServiceDeployment with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContainerServiceDeployment for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) CreateContainerServiceDeploymentWithContext(ctx aws.Context, input *CreateContainerServiceDeploymentInput, opts ...request.Option) (*CreateContainerServiceDeploymentOutput, error) {
+	req, out := c.CreateContainerServiceDeploymentRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateContainerServiceRegistryLogin = "CreateContainerServiceRegistryLogin"
+
+// CreateContainerServiceRegistryLoginRequest generates a "aws/request.Request" representing the
+// client's request for the CreateContainerServiceRegistryLogin operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateContainerServiceRegistryLogin for more information on using the CreateContainerServiceRegistryLogin
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateContainerServiceRegistryLoginRequest method.
+//    req, resp := client.CreateContainerServiceRegistryLoginRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateContainerServiceRegistryLogin
+func (c *Lightsail) CreateContainerServiceRegistryLoginRequest(input *CreateContainerServiceRegistryLoginInput) (req *request.Request, output *CreateContainerServiceRegistryLoginOutput) {
+	op := &request.Operation{
+		Name:       opCreateContainerServiceRegistryLogin,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateContainerServiceRegistryLoginInput{}
+	}
+
+	output = &CreateContainerServiceRegistryLoginOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateContainerServiceRegistryLogin API operation for Amazon Lightsail.
+//
+// Creates a temporary set of log in credentials that you can use to log in
+// to the Docker process on your local machine. After you're logged in, you
+// can use the native Docker commands to push your local container images to
+// the container image registry of your Amazon Lightsail account so that you
+// can use them with your Lightsail container service. The log in credentials
+// expire 12 hours after they are created, at which point you will need to create
+// a new set of log in credentials.
+//
+// You can only push container images to the container service registry of your
+// Lightsail account. You cannot pull container images perform any other container
+// image management actions on the container service registry of your Lightsail
+// account.
+//
+// After you push your container images to the container image registry of your
+// Lightsail account, use the RegisterContainerImage action to register the
+// pushed images to a specific Lightsail container service.
+//
+// This action is not required if you install and use the Lightsail Control
+// (lightsailctl) plugin to push container images to your Lightsail container
+// service. For more information, see Pushing and managing container images
+// on your Amazon Lightsail container services (amazon-lightsail-pushing-container-images)
+// in the Lightsail Dev Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation CreateContainerServiceRegistryLogin for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/CreateContainerServiceRegistryLogin
+func (c *Lightsail) CreateContainerServiceRegistryLogin(input *CreateContainerServiceRegistryLoginInput) (*CreateContainerServiceRegistryLoginOutput, error) {
+	req, out := c.CreateContainerServiceRegistryLoginRequest(input)
+	return out, req.Send()
+}
+
+// CreateContainerServiceRegistryLoginWithContext is the same as CreateContainerServiceRegistryLogin with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateContainerServiceRegistryLogin for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) CreateContainerServiceRegistryLoginWithContext(ctx aws.Context, input *CreateContainerServiceRegistryLoginInput, opts ...request.Option) (*CreateContainerServiceRegistryLoginOutput, error) {
+	req, out := c.CreateContainerServiceRegistryLoginRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateDisk = "CreateDisk"
 
 // CreateDiskRequest generates a "aws/request.Request" representing the
@@ -1610,7 +1940,7 @@ func (c *Lightsail) CreateDistributionRequest(input *CreateDistributionInput) (r
 // A distribution is a globally distributed network of caching servers that
 // improve the performance of your website or web application hosted on a Lightsail
 // instance. For more information, see Content delivery networks in Amazon Lightsail
-// (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-content-delivery-networks).
+// (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-content-delivery-network-distributions).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1817,9 +2147,9 @@ func (c *Lightsail) CreateDomainEntryRequest(input *CreateDomainEntryInput) (req
 
 // CreateDomainEntry API operation for Amazon Lightsail.
 //
-// Creates one of the following entry records associated with the domain: Address
-// (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start
-// of authority (SOA), service locator (SRV), or text (TXT).
+// Creates one of the following domain name system (DNS) records in a domain
+// DNS zone: Address (A), canonical name (CNAME), mail exchanger (MX), name
+// server (NS), start of authority (SOA), service locator (SRV), or text (TXT).
 //
 // The create domain entry operation supports tag-based access control via resource
 // tags applied to the resource identified by domain name. For more information,
@@ -3278,6 +3608,203 @@ func (c *Lightsail) DeleteContactMethod(input *DeleteContactMethodInput) (*Delet
 // for more information on using Contexts.
 func (c *Lightsail) DeleteContactMethodWithContext(ctx aws.Context, input *DeleteContactMethodInput, opts ...request.Option) (*DeleteContactMethodOutput, error) {
 	req, out := c.DeleteContactMethodRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContainerImage = "DeleteContainerImage"
+
+// DeleteContainerImageRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContainerImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContainerImage for more information on using the DeleteContainerImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContainerImageRequest method.
+//    req, resp := client.DeleteContainerImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteContainerImage
+func (c *Lightsail) DeleteContainerImageRequest(input *DeleteContainerImageInput) (req *request.Request, output *DeleteContainerImageOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContainerImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteContainerImageInput{}
+	}
+
+	output = &DeleteContainerImageOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContainerImage API operation for Amazon Lightsail.
+//
+// Deletes a container image that is registered to your Amazon Lightsail container
+// service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation DeleteContainerImage for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteContainerImage
+func (c *Lightsail) DeleteContainerImage(input *DeleteContainerImageInput) (*DeleteContainerImageOutput, error) {
+	req, out := c.DeleteContainerImageRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContainerImageWithContext is the same as DeleteContainerImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContainerImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) DeleteContainerImageWithContext(ctx aws.Context, input *DeleteContainerImageInput, opts ...request.Option) (*DeleteContainerImageOutput, error) {
+	req, out := c.DeleteContainerImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteContainerService = "DeleteContainerService"
+
+// DeleteContainerServiceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteContainerService operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteContainerService for more information on using the DeleteContainerService
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteContainerServiceRequest method.
+//    req, resp := client.DeleteContainerServiceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteContainerService
+func (c *Lightsail) DeleteContainerServiceRequest(input *DeleteContainerServiceInput) (req *request.Request, output *DeleteContainerServiceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteContainerService,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteContainerServiceInput{}
+	}
+
+	output = &DeleteContainerServiceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteContainerService API operation for Amazon Lightsail.
+//
+// Deletes your Amazon Lightsail container service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation DeleteContainerService for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/DeleteContainerService
+func (c *Lightsail) DeleteContainerService(input *DeleteContainerServiceInput) (*DeleteContainerServiceOutput, error) {
+	req, out := c.DeleteContainerServiceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteContainerServiceWithContext is the same as DeleteContainerService with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteContainerService for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) DeleteContainerServiceWithContext(ctx aws.Context, input *DeleteContainerServiceInput, opts ...request.Option) (*DeleteContainerServiceOutput, error) {
+	req, out := c.DeleteContainerServiceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6390,6 +6917,711 @@ func (c *Lightsail) GetContactMethods(input *GetContactMethodsInput) (*GetContac
 // for more information on using Contexts.
 func (c *Lightsail) GetContactMethodsWithContext(ctx aws.Context, input *GetContactMethodsInput, opts ...request.Option) (*GetContactMethodsOutput, error) {
 	req, out := c.GetContactMethodsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerAPIMetadata = "GetContainerAPIMetadata"
+
+// GetContainerAPIMetadataRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerAPIMetadata operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerAPIMetadata for more information on using the GetContainerAPIMetadata
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerAPIMetadataRequest method.
+//    req, resp := client.GetContainerAPIMetadataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerAPIMetadata
+func (c *Lightsail) GetContainerAPIMetadataRequest(input *GetContainerAPIMetadataInput) (req *request.Request, output *GetContainerAPIMetadataOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerAPIMetadata,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerAPIMetadataInput{}
+	}
+
+	output = &GetContainerAPIMetadataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerAPIMetadata API operation for Amazon Lightsail.
+//
+// Returns information about Amazon Lightsail containers, such as the current
+// version of the Lightsail Control (lightsailctl) plugin.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerAPIMetadata for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerAPIMetadata
+func (c *Lightsail) GetContainerAPIMetadata(input *GetContainerAPIMetadataInput) (*GetContainerAPIMetadataOutput, error) {
+	req, out := c.GetContainerAPIMetadataRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerAPIMetadataWithContext is the same as GetContainerAPIMetadata with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerAPIMetadata for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerAPIMetadataWithContext(ctx aws.Context, input *GetContainerAPIMetadataInput, opts ...request.Option) (*GetContainerAPIMetadataOutput, error) {
+	req, out := c.GetContainerAPIMetadataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerImages = "GetContainerImages"
+
+// GetContainerImagesRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerImages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerImages for more information on using the GetContainerImages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerImagesRequest method.
+//    req, resp := client.GetContainerImagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerImages
+func (c *Lightsail) GetContainerImagesRequest(input *GetContainerImagesInput) (req *request.Request, output *GetContainerImagesOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerImages,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerImagesInput{}
+	}
+
+	output = &GetContainerImagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerImages API operation for Amazon Lightsail.
+//
+// Returns the container images that are registered to your Amazon Lightsail
+// container service.
+//
+// If you created a deployment on your Lightsail container service that uses
+// container images from a public registry like Docker Hub, those images are
+// not returned as part of this action. Those images are not registered to your
+// Lightsail container service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerImages for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerImages
+func (c *Lightsail) GetContainerImages(input *GetContainerImagesInput) (*GetContainerImagesOutput, error) {
+	req, out := c.GetContainerImagesRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerImagesWithContext is the same as GetContainerImages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerImages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerImagesWithContext(ctx aws.Context, input *GetContainerImagesInput, opts ...request.Option) (*GetContainerImagesOutput, error) {
+	req, out := c.GetContainerImagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerLog = "GetContainerLog"
+
+// GetContainerLogRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerLog operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerLog for more information on using the GetContainerLog
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerLogRequest method.
+//    req, resp := client.GetContainerLogRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerLog
+func (c *Lightsail) GetContainerLogRequest(input *GetContainerLogInput) (req *request.Request, output *GetContainerLogOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerLog,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerLogInput{}
+	}
+
+	output = &GetContainerLogOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerLog API operation for Amazon Lightsail.
+//
+// Returns the log events of a container of your Amazon Lightsail container
+// service.
+//
+// If your container service has more than one node (i.e., a scale greater than
+// 1), then the log events that are returned for the specified container are
+// merged from all nodes on your container service.
+//
+// Container logs are retained for a certain amount of time. For more information,
+// see Amazon Lightsail endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/lightsail.html)
+// in the AWS General Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerLog for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerLog
+func (c *Lightsail) GetContainerLog(input *GetContainerLogInput) (*GetContainerLogOutput, error) {
+	req, out := c.GetContainerLogRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerLogWithContext is the same as GetContainerLog with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerLog for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerLogWithContext(ctx aws.Context, input *GetContainerLogInput, opts ...request.Option) (*GetContainerLogOutput, error) {
+	req, out := c.GetContainerLogRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerServiceDeployments = "GetContainerServiceDeployments"
+
+// GetContainerServiceDeploymentsRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerServiceDeployments operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerServiceDeployments for more information on using the GetContainerServiceDeployments
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerServiceDeploymentsRequest method.
+//    req, resp := client.GetContainerServiceDeploymentsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServiceDeployments
+func (c *Lightsail) GetContainerServiceDeploymentsRequest(input *GetContainerServiceDeploymentsInput) (req *request.Request, output *GetContainerServiceDeploymentsOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerServiceDeployments,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerServiceDeploymentsInput{}
+	}
+
+	output = &GetContainerServiceDeploymentsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerServiceDeployments API operation for Amazon Lightsail.
+//
+// Returns the deployments for your Amazon Lightsail container service
+//
+// A deployment specifies the settings, such as the ports and launch command,
+// of containers that are deployed to your container service.
+//
+// The deployments are ordered by version in ascending order. The newest version
+// is listed at the top of the response.
+//
+// A set number of deployments are kept before the oldest one is replaced with
+// the newest one. For more information, see Amazon Lightsail endpoints and
+// quotas (https://docs.aws.amazon.com/general/latest/gr/lightsail.html) in
+// the AWS General Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerServiceDeployments for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServiceDeployments
+func (c *Lightsail) GetContainerServiceDeployments(input *GetContainerServiceDeploymentsInput) (*GetContainerServiceDeploymentsOutput, error) {
+	req, out := c.GetContainerServiceDeploymentsRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerServiceDeploymentsWithContext is the same as GetContainerServiceDeployments with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerServiceDeployments for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerServiceDeploymentsWithContext(ctx aws.Context, input *GetContainerServiceDeploymentsInput, opts ...request.Option) (*GetContainerServiceDeploymentsOutput, error) {
+	req, out := c.GetContainerServiceDeploymentsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerServiceMetricData = "GetContainerServiceMetricData"
+
+// GetContainerServiceMetricDataRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerServiceMetricData operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerServiceMetricData for more information on using the GetContainerServiceMetricData
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerServiceMetricDataRequest method.
+//    req, resp := client.GetContainerServiceMetricDataRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServiceMetricData
+func (c *Lightsail) GetContainerServiceMetricDataRequest(input *GetContainerServiceMetricDataInput) (req *request.Request, output *GetContainerServiceMetricDataOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerServiceMetricData,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerServiceMetricDataInput{}
+	}
+
+	output = &GetContainerServiceMetricDataOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerServiceMetricData API operation for Amazon Lightsail.
+//
+// Returns the data points of a specific metric of your Amazon Lightsail container
+// service.
+//
+// Metrics report the utilization of your resources. Monitor and collect metric
+// data regularly to maintain the reliability, availability, and performance
+// of your resources.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerServiceMetricData for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServiceMetricData
+func (c *Lightsail) GetContainerServiceMetricData(input *GetContainerServiceMetricDataInput) (*GetContainerServiceMetricDataOutput, error) {
+	req, out := c.GetContainerServiceMetricDataRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerServiceMetricDataWithContext is the same as GetContainerServiceMetricData with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerServiceMetricData for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerServiceMetricDataWithContext(ctx aws.Context, input *GetContainerServiceMetricDataInput, opts ...request.Option) (*GetContainerServiceMetricDataOutput, error) {
+	req, out := c.GetContainerServiceMetricDataRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerServicePowers = "GetContainerServicePowers"
+
+// GetContainerServicePowersRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerServicePowers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerServicePowers for more information on using the GetContainerServicePowers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerServicePowersRequest method.
+//    req, resp := client.GetContainerServicePowersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServicePowers
+func (c *Lightsail) GetContainerServicePowersRequest(input *GetContainerServicePowersInput) (req *request.Request, output *GetContainerServicePowersOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerServicePowers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerServicePowersInput{}
+	}
+
+	output = &GetContainerServicePowersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerServicePowers API operation for Amazon Lightsail.
+//
+// Returns the list of powers that can be specified for your Amazon Lightsail
+// container services.
+//
+// The power specifies the amount of memory, the number of vCPUs, and the base
+// price of the container service.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerServicePowers for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServicePowers
+func (c *Lightsail) GetContainerServicePowers(input *GetContainerServicePowersInput) (*GetContainerServicePowersOutput, error) {
+	req, out := c.GetContainerServicePowersRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerServicePowersWithContext is the same as GetContainerServicePowers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerServicePowers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerServicePowersWithContext(ctx aws.Context, input *GetContainerServicePowersInput, opts ...request.Option) (*GetContainerServicePowersOutput, error) {
+	req, out := c.GetContainerServicePowersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetContainerServices = "GetContainerServices"
+
+// GetContainerServicesRequest generates a "aws/request.Request" representing the
+// client's request for the GetContainerServices operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetContainerServices for more information on using the GetContainerServices
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetContainerServicesRequest method.
+//    req, resp := client.GetContainerServicesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServices
+func (c *Lightsail) GetContainerServicesRequest(input *GetContainerServicesInput) (req *request.Request, output *GetContainerServicesOutput) {
+	op := &request.Operation{
+		Name:       opGetContainerServices,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetContainerServicesInput{}
+	}
+
+	output = &GetContainerServicesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetContainerServices API operation for Amazon Lightsail.
+//
+// Returns information about one or more of your Amazon Lightsail container
+// services.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation GetContainerServices for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/GetContainerServices
+func (c *Lightsail) GetContainerServices(input *GetContainerServicesInput) (*GetContainerServicesOutput, error) {
+	req, out := c.GetContainerServicesRequest(input)
+	return out, req.Send()
+}
+
+// GetContainerServicesWithContext is the same as GetContainerServices with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetContainerServices for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) GetContainerServicesWithContext(ctx aws.Context, input *GetContainerServicesInput, opts ...request.Option) (*GetContainerServicesOutput, error) {
+	req, out := c.GetContainerServicesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11786,6 +13018,109 @@ func (c *Lightsail) RebootRelationalDatabaseWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+const opRegisterContainerImage = "RegisterContainerImage"
+
+// RegisterContainerImageRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterContainerImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterContainerImage for more information on using the RegisterContainerImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RegisterContainerImageRequest method.
+//    req, resp := client.RegisterContainerImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RegisterContainerImage
+func (c *Lightsail) RegisterContainerImageRequest(input *RegisterContainerImageInput) (req *request.Request, output *RegisterContainerImageOutput) {
+	op := &request.Operation{
+		Name:       opRegisterContainerImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RegisterContainerImageInput{}
+	}
+
+	output = &RegisterContainerImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RegisterContainerImage API operation for Amazon Lightsail.
+//
+// Registers a container image to your Amazon Lightsail container service.
+//
+// This action is not required if you install and use the Lightsail Control
+// (lightsailctl) plugin to push container images to your Lightsail container
+// service. For more information, see Pushing and managing container images
+// on your Amazon Lightsail container services (amazon-lightsail-pushing-container-images)
+// in the Lightsail Dev Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation RegisterContainerImage for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/RegisterContainerImage
+func (c *Lightsail) RegisterContainerImage(input *RegisterContainerImageInput) (*RegisterContainerImageOutput, error) {
+	req, out := c.RegisterContainerImageRequest(input)
+	return out, req.Send()
+}
+
+// RegisterContainerImageWithContext is the same as RegisterContainerImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterContainerImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) RegisterContainerImageWithContext(ctx aws.Context, input *RegisterContainerImageInput, opts ...request.Option) (*RegisterContainerImageOutput, error) {
+	req, out := c.RegisterContainerImageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opReleaseStaticIp = "ReleaseStaticIp"
 
 // ReleaseStaticIpRequest generates a "aws/request.Request" representing the
@@ -12979,6 +14314,104 @@ func (c *Lightsail) UntagResource(input *UntagResourceInput) (*UntagResourceOutp
 // for more information on using Contexts.
 func (c *Lightsail) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateContainerService = "UpdateContainerService"
+
+// UpdateContainerServiceRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateContainerService operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateContainerService for more information on using the UpdateContainerService
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateContainerServiceRequest method.
+//    req, resp := client.UpdateContainerServiceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateContainerService
+func (c *Lightsail) UpdateContainerServiceRequest(input *UpdateContainerServiceInput) (req *request.Request, output *UpdateContainerServiceOutput) {
+	op := &request.Operation{
+		Name:       opUpdateContainerService,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateContainerServiceInput{}
+	}
+
+	output = &UpdateContainerServiceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateContainerService API operation for Amazon Lightsail.
+//
+// Updates the configuration of your Amazon Lightsail container service, such
+// as its power, scale, and public domain names.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lightsail's
+// API operation UpdateContainerService for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceException
+//   A general service exception.
+//
+//   * InvalidInputException
+//   Lightsail throws this exception when user input does not conform to the validation
+//   rules of an input field.
+//
+//   Domain-related APIs are only available in the N. Virginia (us-east-1) Region.
+//   Please set your AWS Region configuration to us-east-1 to create, view, or
+//   edit these resources.
+//
+//   * NotFoundException
+//   Lightsail throws this exception when it cannot find a resource.
+//
+//   * AccessDeniedException
+//   Lightsail throws this exception when the user cannot be authenticated or
+//   uses invalid credentials to access a resource.
+//
+//   * UnauthenticatedException
+//   Lightsail throws this exception when the user has not been authenticated.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lightsail-2016-11-28/UpdateContainerService
+func (c *Lightsail) UpdateContainerService(input *UpdateContainerServiceInput) (*UpdateContainerServiceOutput, error) {
+	req, out := c.UpdateContainerServiceRequest(input)
+	return out, req.Send()
+}
+
+// UpdateContainerServiceWithContext is the same as UpdateContainerService with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateContainerService for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Lightsail) UpdateContainerServiceWithContext(ctx aws.Context, input *UpdateContainerServiceInput, opts ...request.Option) (*UpdateContainerServiceOutput, error) {
+	req, out := c.UpdateContainerServiceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -15940,6 +17373,746 @@ func (s *ContactMethod) SetSupportCode(v string) *ContactMethod {
 	return s
 }
 
+// Describes the settings of a container that will be launched, or that is launched,
+// to an Amazon Lightsail container service.
+type Container struct {
+	_ struct{} `type:"structure"`
+
+	// The launch command for the container.
+	Command []*string `locationName:"command" type:"list"`
+
+	// The environment variables of the container.
+	Environment map[string]*string `locationName:"environment" type:"map"`
+
+	// The name of the image used for the container.
+	//
+	// Container images sourced from your Lightsail container service, that are
+	// registered and stored on your service, start with a colon (:). For example,
+	// :container-service-1.mystaticwebsite.1. Container images sourced from a public
+	// registry like Docker Hub don't start with a colon. For example, nginx:latest
+	// or nginx.
+	Image *string `locationName:"image" type:"string"`
+
+	// The open firewall ports of the container.
+	Ports map[string]*string `locationName:"ports" type:"map"`
+}
+
+// String returns the string representation
+func (s Container) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Container) GoString() string {
+	return s.String()
+}
+
+// SetCommand sets the Command field's value.
+func (s *Container) SetCommand(v []*string) *Container {
+	s.Command = v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *Container) SetEnvironment(v map[string]*string) *Container {
+	s.Environment = v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *Container) SetImage(v string) *Container {
+	s.Image = &v
+	return s
+}
+
+// SetPorts sets the Ports field's value.
+func (s *Container) SetPorts(v map[string]*string) *Container {
+	s.Ports = v
+	return s
+}
+
+// Describes a container image that is registered to an Amazon Lightsail container
+// service.
+type ContainerImage struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the container image was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The digest of the container image.
+	Digest *string `locationName:"digest" type:"string"`
+
+	// The name of the container image.
+	Image *string `locationName:"image" type:"string"`
+}
+
+// String returns the string representation
+func (s ContainerImage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerImage) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ContainerImage) SetCreatedAt(v time.Time) *ContainerImage {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDigest sets the Digest field's value.
+func (s *ContainerImage) SetDigest(v string) *ContainerImage {
+	s.Digest = &v
+	return s
+}
+
+// SetImage sets the Image field's value.
+func (s *ContainerImage) SetImage(v string) *ContainerImage {
+	s.Image = &v
+	return s
+}
+
+// Describes an Amazon Lightsail container service.
+type ContainerService struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the container service.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The name of the container service.
+	ContainerServiceName *string `locationName:"containerServiceName" min:"1" type:"string"`
+
+	// The timestamp when the container service was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// An object that describes the current container deployment of the container
+	// service.
+	CurrentDeployment *ContainerServiceDeployment `locationName:"currentDeployment" type:"structure"`
+
+	// A Boolean value indicating whether the container service is disabled.
+	IsDisabled *bool `locationName:"isDisabled" type:"boolean"`
+
+	// An object that describes the location of the container service, such as the
+	// AWS Region and Availability Zone.
+	Location *ResourceLocation `locationName:"location" type:"structure"`
+
+	// An object that describes the next deployment of the container service.
+	//
+	// This value is null when there is no deployment in a pending state.
+	NextDeployment *ContainerServiceDeployment `locationName:"nextDeployment" type:"structure"`
+
+	// The power specification of the container service.
+	//
+	// The power specifies the amount of RAM, the number of vCPUs, and the base
+	// price of the container service.
+	Power *string `locationName:"power" type:"string" enum:"ContainerServicePowerName"`
+
+	// The ID of the power of the container service.
+	PowerId *string `locationName:"powerId" type:"string"`
+
+	// The principal ARN of the container service.
+	//
+	// The principal ARN can be used to create a trust relationship between your
+	// standard AWS account and your Lightsail container service. This allows you
+	// to give your service permission to access resources in your standard AWS
+	// account.
+	PrincipalArn *string `locationName:"principalArn" type:"string"`
+
+	// The private domain name of the container service.
+	//
+	// The private domain name is accessible only by other resources within the
+	// default virtual private cloud (VPC) of your Lightsail account.
+	PrivateDomainName *string `locationName:"privateDomainName" type:"string"`
+
+	// The public domain name of the container service, such as example.com and
+	// www.example.com.
+	//
+	// You can specify up to four public domain names for a container service. The
+	// domain names that you specify are used when you create a deployment with
+	// a container configured as the public endpoint of your container service.
+	//
+	// If you don't specify public domain names, then you can use the default domain
+	// of the container service.
+	//
+	// You must create and validate an SSL/TLS certificate before you can use public
+	// domain names with your container service. Use the CreateCertificate action
+	// to create a certificate for the public domain names you want to use with
+	// your container service.
+	//
+	// See CreateContainerService or UpdateContainerService for information about
+	// how to specify public domain names for your Lightsail container service.
+	PublicDomainNames map[string][]*string `locationName:"publicDomainNames" type:"map"`
+
+	// The Lightsail resource type of the container service (i.e., ContainerService).
+	ResourceType *string `locationName:"resourceType" type:"string" enum:"ResourceType"`
+
+	// The scale specification of the container service.
+	//
+	// The scale specifies the allocated compute nodes of the container service.
+	Scale *int64 `locationName:"scale" min:"1" type:"integer"`
+
+	// The current state of the container service.
+	//
+	// The state can be:
+	//
+	//    * Pending - The container service is being created.
+	//
+	//    * Ready - The container service is created but does not have a container
+	//    deployment.
+	//
+	//    * Disabled - The container service is disabled.
+	//
+	//    * Updating - The container service capacity or other setting is being
+	//    updated.
+	//
+	//    * Deploying - The container service is launching a container deployment.
+	//
+	//    * Running - The container service is created and it has a container deployment.
+	State *string `locationName:"state" type:"string" enum:"ContainerServiceState"`
+
+	// The tag keys and optional values for the resource. For more information about
+	// tags in Lightsail, see the Lightsail Dev Guide (https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags).
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// The publicly accessible URL of the container service.
+	//
+	// If no public endpoint is specified in the currentDeployment, this URL returns
+	// a 404 response.
+	Url *string `locationName:"url" type:"string"`
+}
+
+// String returns the string representation
+func (s ContainerService) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerService) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ContainerService) SetArn(v string) *ContainerService {
+	s.Arn = &v
+	return s
+}
+
+// SetContainerServiceName sets the ContainerServiceName field's value.
+func (s *ContainerService) SetContainerServiceName(v string) *ContainerService {
+	s.ContainerServiceName = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ContainerService) SetCreatedAt(v time.Time) *ContainerService {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetCurrentDeployment sets the CurrentDeployment field's value.
+func (s *ContainerService) SetCurrentDeployment(v *ContainerServiceDeployment) *ContainerService {
+	s.CurrentDeployment = v
+	return s
+}
+
+// SetIsDisabled sets the IsDisabled field's value.
+func (s *ContainerService) SetIsDisabled(v bool) *ContainerService {
+	s.IsDisabled = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *ContainerService) SetLocation(v *ResourceLocation) *ContainerService {
+	s.Location = v
+	return s
+}
+
+// SetNextDeployment sets the NextDeployment field's value.
+func (s *ContainerService) SetNextDeployment(v *ContainerServiceDeployment) *ContainerService {
+	s.NextDeployment = v
+	return s
+}
+
+// SetPower sets the Power field's value.
+func (s *ContainerService) SetPower(v string) *ContainerService {
+	s.Power = &v
+	return s
+}
+
+// SetPowerId sets the PowerId field's value.
+func (s *ContainerService) SetPowerId(v string) *ContainerService {
+	s.PowerId = &v
+	return s
+}
+
+// SetPrincipalArn sets the PrincipalArn field's value.
+func (s *ContainerService) SetPrincipalArn(v string) *ContainerService {
+	s.PrincipalArn = &v
+	return s
+}
+
+// SetPrivateDomainName sets the PrivateDomainName field's value.
+func (s *ContainerService) SetPrivateDomainName(v string) *ContainerService {
+	s.PrivateDomainName = &v
+	return s
+}
+
+// SetPublicDomainNames sets the PublicDomainNames field's value.
+func (s *ContainerService) SetPublicDomainNames(v map[string][]*string) *ContainerService {
+	s.PublicDomainNames = v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *ContainerService) SetResourceType(v string) *ContainerService {
+	s.ResourceType = &v
+	return s
+}
+
+// SetScale sets the Scale field's value.
+func (s *ContainerService) SetScale(v int64) *ContainerService {
+	s.Scale = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContainerService) SetState(v string) *ContainerService {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ContainerService) SetTags(v []*Tag) *ContainerService {
+	s.Tags = v
+	return s
+}
+
+// SetUrl sets the Url field's value.
+func (s *ContainerService) SetUrl(v string) *ContainerService {
+	s.Url = &v
+	return s
+}
+
+// Describes a container deployment configuration of an Amazon Lightsail container
+// service.
+//
+// A deployment specifies the settings, such as the ports and launch command,
+// of containers that are deployed to your container service.
+type ContainerServiceDeployment struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the configuration for the containers of the deployment.
+	Containers map[string]*Container `locationName:"containers" type:"map"`
+
+	// The timestamp when the deployment was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// An object that describes the endpoint of the deployment.
+	PublicEndpoint *ContainerServiceEndpoint `locationName:"publicEndpoint" type:"structure"`
+
+	// The state of the deployment.
+	//
+	// A deployment can be in one of the following states:
+	//
+	//    * Activating - The deployment is being created.
+	//
+	//    * Active - The deployment was successfully created, and it's currently
+	//    running on the container service. The container service can have only
+	//    one deployment in an active state at a time.
+	//
+	//    * Inactive - The deployment was previously successfully created, but it
+	//    is not currently running on the container service.
+	//
+	//    * Failed - The deployment failed. Use the GetContainerLog action to view
+	//    the log events for the containers in the deployment to try to determine
+	//    the reason for the failure.
+	State *string `locationName:"state" type:"string" enum:"ContainerServiceDeploymentState"`
+
+	// The version number of the deployment.
+	Version *int64 `locationName:"version" type:"integer"`
+}
+
+// String returns the string representation
+func (s ContainerServiceDeployment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceDeployment) GoString() string {
+	return s.String()
+}
+
+// SetContainers sets the Containers field's value.
+func (s *ContainerServiceDeployment) SetContainers(v map[string]*Container) *ContainerServiceDeployment {
+	s.Containers = v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ContainerServiceDeployment) SetCreatedAt(v time.Time) *ContainerServiceDeployment {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetPublicEndpoint sets the PublicEndpoint field's value.
+func (s *ContainerServiceDeployment) SetPublicEndpoint(v *ContainerServiceEndpoint) *ContainerServiceDeployment {
+	s.PublicEndpoint = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContainerServiceDeployment) SetState(v string) *ContainerServiceDeployment {
+	s.State = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ContainerServiceDeployment) SetVersion(v int64) *ContainerServiceDeployment {
+	s.Version = &v
+	return s
+}
+
+// Describes a container deployment configuration of an Amazon Lightsail container
+// service.
+//
+// A deployment specifies the settings, such as the ports and launch command,
+// of containers that are deployed to your container service.
+type ContainerServiceDeploymentRequest struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the configuration for the containers of the deployment.
+	Containers map[string]*Container `locationName:"containers" type:"map"`
+
+	// An object that describes the endpoint of the deployment.
+	PublicEndpoint *EndpointRequest `locationName:"publicEndpoint" type:"structure"`
+}
+
+// String returns the string representation
+func (s ContainerServiceDeploymentRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceDeploymentRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContainerServiceDeploymentRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContainerServiceDeploymentRequest"}
+	if s.PublicEndpoint != nil {
+		if err := s.PublicEndpoint.Validate(); err != nil {
+			invalidParams.AddNested("PublicEndpoint", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainers sets the Containers field's value.
+func (s *ContainerServiceDeploymentRequest) SetContainers(v map[string]*Container) *ContainerServiceDeploymentRequest {
+	s.Containers = v
+	return s
+}
+
+// SetPublicEndpoint sets the PublicEndpoint field's value.
+func (s *ContainerServiceDeploymentRequest) SetPublicEndpoint(v *EndpointRequest) *ContainerServiceDeploymentRequest {
+	s.PublicEndpoint = v
+	return s
+}
+
+// Describes the public endpoint configuration of a deployment of an Amazon
+// Lightsail container service.
+type ContainerServiceEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container entry of the deployment that the endpoint configuration
+	// applies to.
+	ContainerName *string `locationName:"containerName" type:"string"`
+
+	// The port of the specified container to which traffic is forwarded to.
+	ContainerPort *int64 `locationName:"containerPort" type:"integer"`
+
+	// An object that describes the health check configuration of the container.
+	HealthCheck *ContainerServiceHealthCheckConfig `locationName:"healthCheck" type:"structure"`
+}
+
+// String returns the string representation
+func (s ContainerServiceEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *ContainerServiceEndpoint) SetContainerName(v string) *ContainerServiceEndpoint {
+	s.ContainerName = &v
+	return s
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *ContainerServiceEndpoint) SetContainerPort(v int64) *ContainerServiceEndpoint {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *ContainerServiceEndpoint) SetHealthCheck(v *ContainerServiceHealthCheckConfig) *ContainerServiceEndpoint {
+	s.HealthCheck = v
+	return s
+}
+
+// Describes the health check configuration of an Amazon Lightsail container
+// service.
+type ContainerServiceHealthCheckConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The number of consecutive health checks successes required before moving
+	// the container to the Healthy state.
+	HealthyThreshold *int64 `locationName:"healthyThreshold" type:"integer"`
+
+	// The approximate interval, in seconds, between health checks of an individual
+	// container. You may specify between 5 and 300 seconds.
+	IntervalSeconds *int64 `locationName:"intervalSeconds" type:"integer"`
+
+	// The path on the container on which to perform the health check.
+	Path *string `locationName:"path" type:"string"`
+
+	// The HTTP codes to use when checking for a successful response from a container.
+	// You can specify values between 200 and 499.
+	SuccessCodes *string `locationName:"successCodes" type:"string"`
+
+	// The amount of time, in seconds, during which no response means a failed health
+	// check. You may specify between 2 and 60 seconds.
+	TimeoutSeconds *int64 `locationName:"timeoutSeconds" type:"integer"`
+
+	// The number of consecutive health check failures required before moving the
+	// container to the Unhealthy state.
+	UnhealthyThreshold *int64 `locationName:"unhealthyThreshold" type:"integer"`
+}
+
+// String returns the string representation
+func (s ContainerServiceHealthCheckConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceHealthCheckConfig) GoString() string {
+	return s.String()
+}
+
+// SetHealthyThreshold sets the HealthyThreshold field's value.
+func (s *ContainerServiceHealthCheckConfig) SetHealthyThreshold(v int64) *ContainerServiceHealthCheckConfig {
+	s.HealthyThreshold = &v
+	return s
+}
+
+// SetIntervalSeconds sets the IntervalSeconds field's value.
+func (s *ContainerServiceHealthCheckConfig) SetIntervalSeconds(v int64) *ContainerServiceHealthCheckConfig {
+	s.IntervalSeconds = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *ContainerServiceHealthCheckConfig) SetPath(v string) *ContainerServiceHealthCheckConfig {
+	s.Path = &v
+	return s
+}
+
+// SetSuccessCodes sets the SuccessCodes field's value.
+func (s *ContainerServiceHealthCheckConfig) SetSuccessCodes(v string) *ContainerServiceHealthCheckConfig {
+	s.SuccessCodes = &v
+	return s
+}
+
+// SetTimeoutSeconds sets the TimeoutSeconds field's value.
+func (s *ContainerServiceHealthCheckConfig) SetTimeoutSeconds(v int64) *ContainerServiceHealthCheckConfig {
+	s.TimeoutSeconds = &v
+	return s
+}
+
+// SetUnhealthyThreshold sets the UnhealthyThreshold field's value.
+func (s *ContainerServiceHealthCheckConfig) SetUnhealthyThreshold(v int64) *ContainerServiceHealthCheckConfig {
+	s.UnhealthyThreshold = &v
+	return s
+}
+
+// Describes the log events of a container of an Amazon Lightsail container
+// service.
+type ContainerServiceLogEvent struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp when the container service log event was created.
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
+
+	// The message of the container service log event.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ContainerServiceLogEvent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceLogEvent) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *ContainerServiceLogEvent) SetCreatedAt(v time.Time) *ContainerServiceLogEvent {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *ContainerServiceLogEvent) SetMessage(v string) *ContainerServiceLogEvent {
+	s.Message = &v
+	return s
+}
+
+// Describes the powers that can be specified for an Amazon Lightsail container
+// service.
+//
+// The power specifies the amount of RAM, the number of vCPUs, and the base
+// price of the container service.
+type ContainerServicePower struct {
+	_ struct{} `type:"structure"`
+
+	// The number of vCPUs included in the power.
+	CpuCount *float64 `locationName:"cpuCount" type:"float"`
+
+	// A Boolean value indicating whether the power is active and can be specified
+	// for container services.
+	IsActive *bool `locationName:"isActive" type:"boolean"`
+
+	// The friendly name of the power (e.g., nano).
+	Name *string `locationName:"name" type:"string"`
+
+	// The ID of the power (e.g., nano-1).
+	PowerId *string `locationName:"powerId" type:"string"`
+
+	// The monthly price of the power in USD.
+	Price *float64 `locationName:"price" type:"float"`
+
+	// The amount of RAM (in GB) of the power.
+	RamSizeInGb *float64 `locationName:"ramSizeInGb" type:"float"`
+}
+
+// String returns the string representation
+func (s ContainerServicePower) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServicePower) GoString() string {
+	return s.String()
+}
+
+// SetCpuCount sets the CpuCount field's value.
+func (s *ContainerServicePower) SetCpuCount(v float64) *ContainerServicePower {
+	s.CpuCount = &v
+	return s
+}
+
+// SetIsActive sets the IsActive field's value.
+func (s *ContainerServicePower) SetIsActive(v bool) *ContainerServicePower {
+	s.IsActive = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ContainerServicePower) SetName(v string) *ContainerServicePower {
+	s.Name = &v
+	return s
+}
+
+// SetPowerId sets the PowerId field's value.
+func (s *ContainerServicePower) SetPowerId(v string) *ContainerServicePower {
+	s.PowerId = &v
+	return s
+}
+
+// SetPrice sets the Price field's value.
+func (s *ContainerServicePower) SetPrice(v float64) *ContainerServicePower {
+	s.Price = &v
+	return s
+}
+
+// SetRamSizeInGb sets the RamSizeInGb field's value.
+func (s *ContainerServicePower) SetRamSizeInGb(v float64) *ContainerServicePower {
+	s.RamSizeInGb = &v
+	return s
+}
+
+// Describes the login information for the container image registry of an Amazon
+// Lightsail account.
+type ContainerServiceRegistryLogin struct {
+	_ struct{} `type:"structure"`
+
+	// The timestamp of when the container image registry username and password
+	// expire.
+	//
+	// The log in credentials expire 12 hours after they are created, at which point
+	// you will need to create a new set of log in credentials using the CreateContainerServiceRegistryLogin
+	// action.
+	ExpiresAt *time.Time `locationName:"expiresAt" type:"timestamp"`
+
+	// The container service registry password to use to push container images to
+	// the container image registry of a Lightsail account
+	Password *string `locationName:"password" type:"string"`
+
+	// The address to use to push container images to the container image registry
+	// of a Lightsail account.
+	Registry *string `locationName:"registry" type:"string"`
+
+	// The container service registry username to use to push container images to
+	// the container image registry of a Lightsail account.
+	Username *string `locationName:"username" type:"string"`
+}
+
+// String returns the string representation
+func (s ContainerServiceRegistryLogin) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ContainerServiceRegistryLogin) GoString() string {
+	return s.String()
+}
+
+// SetExpiresAt sets the ExpiresAt field's value.
+func (s *ContainerServiceRegistryLogin) SetExpiresAt(v time.Time) *ContainerServiceRegistryLogin {
+	s.ExpiresAt = &v
+	return s
+}
+
+// SetPassword sets the Password field's value.
+func (s *ContainerServiceRegistryLogin) SetPassword(v string) *ContainerServiceRegistryLogin {
+	s.Password = &v
+	return s
+}
+
+// SetRegistry sets the Registry field's value.
+func (s *ContainerServiceRegistryLogin) SetRegistry(v string) *ContainerServiceRegistryLogin {
+	s.Registry = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *ContainerServiceRegistryLogin) SetUsername(v string) *ContainerServiceRegistryLogin {
+	s.Username = &v
+	return s
+}
+
 // Describes whether an Amazon Lightsail content delivery network (CDN) distribution
 // forwards cookies to the origin and, if so, which ones.
 //
@@ -16420,6 +18593,317 @@ func (s CreateContactMethodOutput) GoString() string {
 // SetOperations sets the Operations field's value.
 func (s *CreateContactMethodOutput) SetOperations(v []*Operation) *CreateContactMethodOutput {
 	s.Operations = v
+	return s
+}
+
+type CreateContainerServiceDeploymentInput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the settings of the containers that will be launched
+	// on the container service.
+	Containers map[string]*Container `locationName:"containers" type:"map"`
+
+	// An object that describes the settings of the public endpoint for the container
+	// service.
+	PublicEndpoint *EndpointRequest `locationName:"publicEndpoint" type:"structure"`
+
+	// The name of the container service for which to create the deployment.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateContainerServiceDeploymentInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerServiceDeploymentInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContainerServiceDeploymentInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContainerServiceDeploymentInput"}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+	if s.PublicEndpoint != nil {
+		if err := s.PublicEndpoint.Validate(); err != nil {
+			invalidParams.AddNested("PublicEndpoint", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainers sets the Containers field's value.
+func (s *CreateContainerServiceDeploymentInput) SetContainers(v map[string]*Container) *CreateContainerServiceDeploymentInput {
+	s.Containers = v
+	return s
+}
+
+// SetPublicEndpoint sets the PublicEndpoint field's value.
+func (s *CreateContainerServiceDeploymentInput) SetPublicEndpoint(v *EndpointRequest) *CreateContainerServiceDeploymentInput {
+	s.PublicEndpoint = v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *CreateContainerServiceDeploymentInput) SetServiceName(v string) *CreateContainerServiceDeploymentInput {
+	s.ServiceName = &v
+	return s
+}
+
+type CreateContainerServiceDeploymentOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes a container service.
+	ContainerService *ContainerService `locationName:"containerService" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateContainerServiceDeploymentOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerServiceDeploymentOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerService sets the ContainerService field's value.
+func (s *CreateContainerServiceDeploymentOutput) SetContainerService(v *ContainerService) *CreateContainerServiceDeploymentOutput {
+	s.ContainerService = v
+	return s
+}
+
+type CreateContainerServiceInput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes a deployment for the container service.
+	//
+	// A deployment specifies the containers that will be launched on the container
+	// service and their settings, such as the ports to open, the environment variables
+	// to apply, and the launch command to run. It also specifies the container
+	// that will serve as the public endpoint of the deployment and its settings,
+	// such as the HTTP or HTTPS port to use, and the health check configuration.
+	Deployment *ContainerServiceDeploymentRequest `locationName:"deployment" type:"structure"`
+
+	// The power specification for the container service.
+	//
+	// The power specifies the amount of memory, vCPUs, and base monthly cost of
+	// each node of the container service. The power and scale of a container service
+	// makes up its configured capacity. To determine the monthly price of your
+	// container service, multiply the base price of the power with the scale (the
+	// number of nodes) of the service.
+	//
+	// Use the GetContainerServicePowers action to get a list of power options that
+	// you can specify using this parameter, and their base monthly cost.
+	//
+	// Power is a required field
+	Power *string `locationName:"power" type:"string" required:"true" enum:"ContainerServicePowerName"`
+
+	// The public domain names to use with the container service, such as example.com
+	// and www.example.com.
+	//
+	// You can specify up to four public domain names for a container service. The
+	// domain names that you specify are used when you create a deployment with
+	// a container configured as the public endpoint of your container service.
+	//
+	// If you don't specify public domain names, then you can use the default domain
+	// of the container service.
+	//
+	// You must create and validate an SSL/TLS certificate before you can use public
+	// domain names with your container service. Use the CreateCertificate action
+	// to create a certificate for the public domain names you want to use with
+	// your container service.
+	//
+	// You can specify public domain names using a string to array map as shown
+	// in the example later on this page.
+	PublicDomainNames map[string][]*string `locationName:"publicDomainNames" type:"map"`
+
+	// The scale specification for the container service.
+	//
+	// The scale specifies the allocated compute nodes of the container service.
+	// The power and scale of a container service makes up its configured capacity.
+	// To determine the monthly price of your container service, multiply the base
+	// price of the power with the scale (the number of nodes) of the service.
+	//
+	// Scale is a required field
+	Scale *int64 `locationName:"scale" min:"1" type:"integer" required:"true"`
+
+	// The name for the container service.
+	//
+	// The name that you specify for your container service will make up part of
+	// its default domain. The default domain of a container service is typically
+	// https://<ServiceName>.<RandomGUID>.<AWSRegion>.cs.amazonlightsail.com. If
+	// the name of your container service is container-service-1, and it's located
+	// in the US East (Ohio) AWS region (us-east-2), then the domain for your container
+	// service will be like the following example: https://container-service-1.ur4EXAMPLE2uq.us-east-2.cs.amazonlightsail.com
+	//
+	// The following are the requirements for container service names:
+	//
+	//    * Must be unique within each AWS Region in your Lightsail account.
+	//
+	//    * Must contain 1 to 63 characters.
+	//
+	//    * Must contain only alphanumeric characters and hyphens.
+	//
+	//    * A hyphen (-) can separate words but cannot be at the start or end of
+	//    the name.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+
+	// The tag keys and optional values for the container service.
+	//
+	// For more information about tags in Lightsail, see the Lightsail Dev Guide
+	// (https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags).
+	Tags []*Tag `locationName:"tags" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateContainerServiceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerServiceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateContainerServiceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateContainerServiceInput"}
+	if s.Power == nil {
+		invalidParams.Add(request.NewErrParamRequired("Power"))
+	}
+	if s.Scale == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scale"))
+	}
+	if s.Scale != nil && *s.Scale < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Scale", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+	if s.Deployment != nil {
+		if err := s.Deployment.Validate(); err != nil {
+			invalidParams.AddNested("Deployment", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeployment sets the Deployment field's value.
+func (s *CreateContainerServiceInput) SetDeployment(v *ContainerServiceDeploymentRequest) *CreateContainerServiceInput {
+	s.Deployment = v
+	return s
+}
+
+// SetPower sets the Power field's value.
+func (s *CreateContainerServiceInput) SetPower(v string) *CreateContainerServiceInput {
+	s.Power = &v
+	return s
+}
+
+// SetPublicDomainNames sets the PublicDomainNames field's value.
+func (s *CreateContainerServiceInput) SetPublicDomainNames(v map[string][]*string) *CreateContainerServiceInput {
+	s.PublicDomainNames = v
+	return s
+}
+
+// SetScale sets the Scale field's value.
+func (s *CreateContainerServiceInput) SetScale(v int64) *CreateContainerServiceInput {
+	s.Scale = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *CreateContainerServiceInput) SetServiceName(v string) *CreateContainerServiceInput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateContainerServiceInput) SetTags(v []*Tag) *CreateContainerServiceInput {
+	s.Tags = v
+	return s
+}
+
+type CreateContainerServiceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes a container service.
+	ContainerService *ContainerService `locationName:"containerService" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateContainerServiceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerServiceOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerService sets the ContainerService field's value.
+func (s *CreateContainerServiceOutput) SetContainerService(v *ContainerService) *CreateContainerServiceOutput {
+	s.ContainerService = v
+	return s
+}
+
+type CreateContainerServiceRegistryLoginInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateContainerServiceRegistryLoginInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerServiceRegistryLoginInput) GoString() string {
+	return s.String()
+}
+
+type CreateContainerServiceRegistryLoginOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes the log in information for the container service
+	// registry of your Lightsail account.
+	RegistryLogin *ContainerServiceRegistryLogin `locationName:"registryLogin" type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateContainerServiceRegistryLoginOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateContainerServiceRegistryLoginOutput) GoString() string {
+	return s.String()
+}
+
+// SetRegistryLogin sets the RegistryLogin field's value.
+func (s *CreateContainerServiceRegistryLoginOutput) SetRegistryLogin(v *ContainerServiceRegistryLogin) *CreateContainerServiceRegistryLoginOutput {
+	s.RegistryLogin = v
 	return s
 }
 
@@ -18827,6 +21311,140 @@ func (s *DeleteContactMethodOutput) SetOperations(v []*Operation) *DeleteContact
 	return s
 }
 
+type DeleteContainerImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container image to delete from the container service.
+	//
+	// Use the GetContainerImages action to get the name of the container images
+	// that are registered to a container service.
+	//
+	// Container images sourced from your Lightsail container service, that are
+	// registered and stored on your service, start with a colon (:). For example,
+	// :container-service-1.mystaticwebsite.1. Container images sourced from a public
+	// registry like Docker Hub don't start with a colon. For example, nginx:latest
+	// or nginx.
+	//
+	// Image is a required field
+	Image *string `locationName:"image" type:"string" required:"true"`
+
+	// The name of the container service for which to delete a registered container
+	// image.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteContainerImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContainerImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContainerImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContainerImageInput"}
+	if s.Image == nil {
+		invalidParams.Add(request.NewErrParamRequired("Image"))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetImage sets the Image field's value.
+func (s *DeleteContainerImageInput) SetImage(v string) *DeleteContainerImageInput {
+	s.Image = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *DeleteContainerImageInput) SetServiceName(v string) *DeleteContainerImageInput {
+	s.ServiceName = &v
+	return s
+}
+
+type DeleteContainerImageOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteContainerImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContainerImageOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteContainerServiceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container service to delete.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteContainerServiceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContainerServiceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteContainerServiceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteContainerServiceInput"}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *DeleteContainerServiceInput) SetServiceName(v string) *DeleteContainerServiceInput {
+	s.ServiceName = &v
+	return s
+}
+
+type DeleteContainerServiceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteContainerServiceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteContainerServiceOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteDiskInput struct {
 	_ struct{} `type:"structure"`
 
@@ -20720,7 +23338,7 @@ type DomainEntry struct {
 	// When true, specifies whether the domain entry is an alias used by the Lightsail
 	// load balancer. You can include an alias (A type) record in your request,
 	// which points to a load balancer DNS name and routes traffic to your load
-	// balancer
+	// balancer.
 	IsAlias *bool `locationName:"isAlias" type:"boolean"`
 
 	// The name of the domain.
@@ -20969,6 +23587,69 @@ func (s EnableAddOnOutput) GoString() string {
 // SetOperations sets the Operations field's value.
 func (s *EnableAddOnOutput) SetOperations(v []*Operation) *EnableAddOnOutput {
 	s.Operations = v
+	return s
+}
+
+// Describes the settings of a public endpoint for an Amazon Lightsail container
+// service.
+type EndpointRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container for the endpoint.
+	//
+	// ContainerName is a required field
+	ContainerName *string `locationName:"containerName" type:"string" required:"true"`
+
+	// The port of the container to which traffic is forwarded to.
+	//
+	// ContainerPort is a required field
+	ContainerPort *int64 `locationName:"containerPort" type:"integer" required:"true"`
+
+	// An object that describes the health check configuration of the container.
+	HealthCheck *ContainerServiceHealthCheckConfig `locationName:"healthCheck" type:"structure"`
+}
+
+// String returns the string representation
+func (s EndpointRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EndpointRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EndpointRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EndpointRequest"}
+	if s.ContainerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerName"))
+	}
+	if s.ContainerPort == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerPort"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *EndpointRequest) SetContainerName(v string) *EndpointRequest {
+	s.ContainerName = &v
+	return s
+}
+
+// SetContainerPort sets the ContainerPort field's value.
+func (s *EndpointRequest) SetContainerPort(v int64) *EndpointRequest {
+	s.ContainerPort = &v
+	return s
+}
+
+// SetHealthCheck sets the HealthCheck field's value.
+func (s *EndpointRequest) SetHealthCheck(v *ContainerServiceHealthCheckConfig) *EndpointRequest {
+	s.HealthCheck = v
 	return s
 }
 
@@ -21243,7 +23924,7 @@ type GetActiveNamesOutput struct {
 	// The list of active names returned by the get active names request.
 	ActiveNames []*string `locationName:"activeNames" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -21330,7 +24011,7 @@ type GetAlarmsOutput struct {
 	// An array of objects that describe the alarms.
 	Alarms []*Alarm `locationName:"alarms" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -21485,7 +24166,7 @@ type GetBlueprintsOutput struct {
 	// blueprints.
 	Blueprints []*Blueprint `locationName:"blueprints" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -21560,7 +24241,7 @@ type GetBundlesOutput struct {
 	// bundles.
 	Bundles []*Bundle `locationName:"bundles" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -21596,7 +24277,7 @@ type GetCertificatesInput struct {
 
 	// The name for the certificate for which to return information.
 	//
-	// When omitted, the response includes all of your certificates in the AWS region
+	// When omitted, the response includes all of your certificates in the AWS Region
 	// where the request is made.
 	CertificateName *string `locationName:"certificateName" type:"string"`
 
@@ -21604,7 +24285,7 @@ type GetCertificatesInput struct {
 	//
 	// For example, specify ISSUED to return only certificates with an ISSUED status.
 	//
-	// When omitted, the response includes all of your certificates in the AWS region
+	// When omitted, the response includes all of your certificates in the AWS Region
 	// where the request is made, regardless of their current status.
 	CertificateStatuses []*string `locationName:"certificateStatuses" type:"list"`
 
@@ -21700,7 +24381,7 @@ type GetCloudFormationStackRecordsOutput struct {
 	// A list of objects describing the CloudFormation stack records.
 	CloudFormationStackRecords []*CloudFormationStackRecord `locationName:"cloudFormationStackRecords" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -21777,6 +24458,629 @@ func (s GetContactMethodsOutput) GoString() string {
 // SetContactMethods sets the ContactMethods field's value.
 func (s *GetContactMethodsOutput) SetContactMethods(v []*ContactMethod) *GetContactMethodsOutput {
 	s.ContactMethods = v
+	return s
+}
+
+type GetContainerAPIMetadataInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetContainerAPIMetadataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerAPIMetadataInput) GoString() string {
+	return s.String()
+}
+
+type GetContainerAPIMetadataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Metadata about Lightsail containers, such as the current version of the Lightsail
+	// Control (lightsailctl) plugin.
+	Metadata []map[string]*string `locationName:"metadata" type:"list"`
+}
+
+// String returns the string representation
+func (s GetContainerAPIMetadataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerAPIMetadataOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetadata sets the Metadata field's value.
+func (s *GetContainerAPIMetadataOutput) SetMetadata(v []map[string]*string) *GetContainerAPIMetadataOutput {
+	s.Metadata = v
+	return s
+}
+
+type GetContainerImagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container service for which to return registered container
+	// images.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContainerImagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerImagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerImagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerImagesInput"}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetContainerImagesInput) SetServiceName(v string) *GetContainerImagesInput {
+	s.ServiceName = &v
+	return s
+}
+
+type GetContainerImagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe container images that are registered to
+	// the container service.
+	ContainerImages []*ContainerImage `locationName:"containerImages" type:"list"`
+}
+
+// String returns the string representation
+func (s GetContainerImagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerImagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerImages sets the ContainerImages field's value.
+func (s *GetContainerImagesOutput) SetContainerImages(v []*ContainerImage) *GetContainerImagesOutput {
+	s.ContainerImages = v
+	return s
+}
+
+type GetContainerLogInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container that is either running or previously ran on the
+	// container service for which to return a log.
+	//
+	// ContainerName is a required field
+	ContainerName *string `locationName:"containerName" type:"string" required:"true"`
+
+	// The end of the time interval for which to get log data.
+	//
+	// Constraints:
+	//
+	//    * Specified in Coordinated Universal Time (UTC).
+	//
+	//    * Specified in the Unix time format. For example, if you wish to use an
+	//    end time of October 1, 2018, at 9 PM UTC, specify 1538427600 as the end
+	//    time.
+	//
+	// You can convert a human-friendly time to Unix time format using a converter
+	// like Epoch converter (https://www.epochconverter.com/).
+	EndTime *time.Time `locationName:"endTime" type:"timestamp"`
+
+	// The pattern to use to filter the returned log events to a specific term.
+	//
+	// The following are a few examples of filter patterns that you can specify:
+	//
+	//    * To return all log events, specify a filter pattern of "".
+	//
+	//    * To exclude log events that contain the ERROR term, and return all other
+	//    log events, specify a filter pattern of "-ERROR".
+	//
+	//    * To return log events that contain the ERROR term, specify a filter pattern
+	//    of "ERROR".
+	//
+	//    * To return log events that contain both the ERROR and Exception terms,
+	//    specify a filter pattern of "ERROR Exception".
+	//
+	//    * To return log events that contain the ERROR or the Exception term, specify
+	//    a filter pattern of "?ERROR ?Exception".
+	FilterPattern *string `locationName:"filterPattern" type:"string"`
+
+	// The token to advance to the next page of results from your request.
+	//
+	// To get a page token, perform an initial GetContainerLog request. If your
+	// results are paginated, the response will return a next page token that you
+	// can specify as the page token in a subsequent request.
+	PageToken *string `locationName:"pageToken" type:"string"`
+
+	// The name of the container service for which to get a container log.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+
+	// The start of the time interval for which to get log data.
+	//
+	// Constraints:
+	//
+	//    * Specified in Coordinated Universal Time (UTC).
+	//
+	//    * Specified in the Unix time format. For example, if you wish to use a
+	//    start time of October 1, 2018, at 8 PM UTC, specify 1538424000 as the
+	//    start time.
+	//
+	// You can convert a human-friendly time to Unix time format using a converter
+	// like Epoch converter (https://www.epochconverter.com/).
+	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
+}
+
+// String returns the string representation
+func (s GetContainerLogInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerLogInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerLogInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerLogInput"}
+	if s.ContainerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ContainerName"))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContainerName sets the ContainerName field's value.
+func (s *GetContainerLogInput) SetContainerName(v string) *GetContainerLogInput {
+	s.ContainerName = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetContainerLogInput) SetEndTime(v time.Time) *GetContainerLogInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetFilterPattern sets the FilterPattern field's value.
+func (s *GetContainerLogInput) SetFilterPattern(v string) *GetContainerLogInput {
+	s.FilterPattern = &v
+	return s
+}
+
+// SetPageToken sets the PageToken field's value.
+func (s *GetContainerLogInput) SetPageToken(v string) *GetContainerLogInput {
+	s.PageToken = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetContainerLogInput) SetServiceName(v string) *GetContainerLogInput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetContainerLogInput) SetStartTime(v time.Time) *GetContainerLogInput {
+	s.StartTime = &v
+	return s
+}
+
+type GetContainerLogOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe the log events of a container.
+	LogEvents []*ContainerServiceLogEvent `locationName:"logEvents" type:"list"`
+
+	// The token to advance to the next page of results from your request.
+	//
+	// A next page token is not returned if there are no more results to display.
+	//
+	// To get the next page of results, perform another GetContainerLog request
+	// and specify the next page token using the pageToken parameter.
+	NextPageToken *string `locationName:"nextPageToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetContainerLogOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerLogOutput) GoString() string {
+	return s.String()
+}
+
+// SetLogEvents sets the LogEvents field's value.
+func (s *GetContainerLogOutput) SetLogEvents(v []*ContainerServiceLogEvent) *GetContainerLogOutput {
+	s.LogEvents = v
+	return s
+}
+
+// SetNextPageToken sets the NextPageToken field's value.
+func (s *GetContainerLogOutput) SetNextPageToken(v string) *GetContainerLogOutput {
+	s.NextPageToken = &v
+	return s
+}
+
+type GetContainerServiceDeploymentsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container service for which to return deployments.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContainerServiceDeploymentsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServiceDeploymentsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerServiceDeploymentsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerServiceDeploymentsInput"}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetContainerServiceDeploymentsInput) SetServiceName(v string) *GetContainerServiceDeploymentsInput {
+	s.ServiceName = &v
+	return s
+}
+
+type GetContainerServiceDeploymentsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe deployments for a container service.
+	Deployments []*ContainerServiceDeployment `locationName:"deployments" type:"list"`
+}
+
+// String returns the string representation
+func (s GetContainerServiceDeploymentsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServiceDeploymentsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDeployments sets the Deployments field's value.
+func (s *GetContainerServiceDeploymentsOutput) SetDeployments(v []*ContainerServiceDeployment) *GetContainerServiceDeploymentsOutput {
+	s.Deployments = v
+	return s
+}
+
+type GetContainerServiceMetricDataInput struct {
+	_ struct{} `type:"structure"`
+
+	// The end time of the time period.
+	//
+	// EndTime is a required field
+	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
+
+	// The metric for which you want to return information.
+	//
+	// Valid container service metric names are listed below, along with the most
+	// useful statistics to include in your request, and the published unit value.
+	//
+	//    * CPUUtilization - The average percentage of compute units that are currently
+	//    in use across all nodes of the container service. This metric identifies
+	//    the processing power required to run containers on each node of the container
+	//    service. Statistics: The most useful statistics are Maximum and Average.
+	//    Unit: The published unit is Percent.
+	//
+	//    * MemoryUtilization - The average percentage of available memory that
+	//    is currently in use across all nodes of the container service. This metric
+	//    identifies the memory required to run containers on each node of the container
+	//    service. Statistics: The most useful statistics are Maximum and Average.
+	//    Unit: The published unit is Percent.
+	//
+	// MetricName is a required field
+	MetricName *string `locationName:"metricName" type:"string" required:"true" enum:"ContainerServiceMetricName"`
+
+	// The granularity, in seconds, of the returned data points.
+	//
+	// All container service metric data is available in 5-minute (300 seconds)
+	// granularity.
+	//
+	// Period is a required field
+	Period *int64 `locationName:"period" min:"60" type:"integer" required:"true"`
+
+	// The name of the container service for which to get metric data.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+
+	// The start time of the time period.
+	//
+	// StartTime is a required field
+	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
+
+	// The statistic for the metric.
+	//
+	// The following statistics are available:
+	//
+	//    * Minimum - The lowest value observed during the specified period. Use
+	//    this value to determine low volumes of activity for your application.
+	//
+	//    * Maximum - The highest value observed during the specified period. Use
+	//    this value to determine high volumes of activity for your application.
+	//
+	//    * Sum - All values submitted for the matching metric added together. You
+	//    can use this statistic to determine the total volume of a metric.
+	//
+	//    * Average - The value of Sum / SampleCount during the specified period.
+	//    By comparing this statistic with the Minimum and Maximum values, you can
+	//    determine the full scope of a metric and how close the average use is
+	//    to the Minimum and Maximum values. This comparison helps you to know when
+	//    to increase or decrease your resources.
+	//
+	//    * SampleCount - The count, or number, of data points used for the statistical
+	//    calculation.
+	//
+	// Statistics is a required field
+	Statistics []*string `locationName:"statistics" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s GetContainerServiceMetricDataInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServiceMetricDataInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerServiceMetricDataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerServiceMetricDataInput"}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.Period == nil {
+		invalidParams.Add(request.NewErrParamRequired("Period"))
+	}
+	if s.Period != nil && *s.Period < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("Period", 60))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.Statistics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistics"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetContainerServiceMetricDataInput) SetEndTime(v time.Time) *GetContainerServiceMetricDataInput {
+	s.EndTime = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *GetContainerServiceMetricDataInput) SetMetricName(v string) *GetContainerServiceMetricDataInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *GetContainerServiceMetricDataInput) SetPeriod(v int64) *GetContainerServiceMetricDataInput {
+	s.Period = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetContainerServiceMetricDataInput) SetServiceName(v string) *GetContainerServiceMetricDataInput {
+	s.ServiceName = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetContainerServiceMetricDataInput) SetStartTime(v time.Time) *GetContainerServiceMetricDataInput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *GetContainerServiceMetricDataInput) SetStatistics(v []*string) *GetContainerServiceMetricDataInput {
+	s.Statistics = v
+	return s
+}
+
+type GetContainerServiceMetricDataOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe the metric data returned.
+	MetricData []*MetricDatapoint `locationName:"metricData" type:"list"`
+
+	// The name of the metric returned.
+	MetricName *string `locationName:"metricName" type:"string" enum:"ContainerServiceMetricName"`
+}
+
+// String returns the string representation
+func (s GetContainerServiceMetricDataOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServiceMetricDataOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricData sets the MetricData field's value.
+func (s *GetContainerServiceMetricDataOutput) SetMetricData(v []*MetricDatapoint) *GetContainerServiceMetricDataOutput {
+	s.MetricData = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *GetContainerServiceMetricDataOutput) SetMetricName(v string) *GetContainerServiceMetricDataOutput {
+	s.MetricName = &v
+	return s
+}
+
+type GetContainerServicePowersInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetContainerServicePowersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServicePowersInput) GoString() string {
+	return s.String()
+}
+
+type GetContainerServicePowersOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe the powers that can be specified for a
+	// container service.
+	Powers []*ContainerServicePower `locationName:"powers" type:"list"`
+}
+
+// String returns the string representation
+func (s GetContainerServicePowersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServicePowersOutput) GoString() string {
+	return s.String()
+}
+
+// SetPowers sets the Powers field's value.
+func (s *GetContainerServicePowersOutput) SetPowers(v []*ContainerServicePower) *GetContainerServicePowersOutput {
+	s.Powers = v
+	return s
+}
+
+type GetContainerServicesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the container service for which to return information.
+	//
+	// When omitted, the response includes all of your container services in the
+	// AWS Region where the request is made.
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s GetContainerServicesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServicesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetContainerServicesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetContainerServicesInput"}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *GetContainerServicesInput) SetServiceName(v string) *GetContainerServicesInput {
+	s.ServiceName = &v
+	return s
+}
+
+type GetContainerServicesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe one or more container services.
+	ContainerServices []*ContainerService `locationName:"containerServices" type:"list"`
+}
+
+// String returns the string representation
+func (s GetContainerServicesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetContainerServicesOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerServices sets the ContainerServices field's value.
+func (s *GetContainerServicesOutput) SetContainerServices(v []*ContainerService) *GetContainerServicesOutput {
+	s.ContainerServices = v
 	return s
 }
 
@@ -21935,7 +25239,7 @@ type GetDiskSnapshotsOutput struct {
 	// An array of objects containing information about all block storage disk snapshots.
 	DiskSnapshots []*DiskSnapshot `locationName:"diskSnapshots" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -21999,7 +25303,7 @@ type GetDisksOutput struct {
 	// An array of objects containing information about all block storage disks.
 	Disks []*Disk `locationName:"disks" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -22542,7 +25846,7 @@ type GetDomainsOutput struct {
 	// entries in the user's account.
 	Domains []*Domain `locationName:"domains" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -22606,7 +25910,7 @@ type GetExportSnapshotRecordsOutput struct {
 	// A list of objects describing the export snapshot records.
 	ExportSnapshotRecords []*ExportSnapshotRecord `locationName:"exportSnapshotRecords" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -23173,7 +26477,7 @@ type GetInstanceSnapshotsOutput struct {
 	// get instance snapshots request.
 	InstanceSnapshots []*InstanceSnapshot `locationName:"instanceSnapshots" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -23298,7 +26602,7 @@ type GetInstancesOutput struct {
 	// An array of key-value pairs containing information about your instances.
 	Instances []*Instance `locationName:"instances" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -23423,7 +26727,7 @@ type GetKeyPairsOutput struct {
 	// An array of key-value pairs containing information about the key pairs.
 	KeyPairs []*KeyPair `locationName:"keyPairs" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -23861,7 +27165,7 @@ type GetLoadBalancersOutput struct {
 	// An array of LoadBalancer objects describing your load balancers.
 	LoadBalancers []*LoadBalancer `locationName:"loadBalancers" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -24017,7 +27321,7 @@ type GetOperationsForResourceOutput struct {
 	// Deprecated: NextPageCount has been deprecated
 	NextPageCount *string `locationName:"nextPageCount" deprecated:"true" type:"string"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -24089,7 +27393,7 @@ func (s *GetOperationsInput) SetPageToken(v string) *GetOperationsInput {
 type GetOperationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -24133,7 +27437,7 @@ type GetRegionsInput struct {
 	// e.g., us-east-2a.
 	IncludeAvailabilityZones *bool `locationName:"includeAvailabilityZones" type:"boolean"`
 
-	// >A Boolean value indicating whether to also include Availability Zones for
+	// A Boolean value indicating whether to also include Availability Zones for
 	// databases in your get regions request. Availability Zones are indicated with
 	// a letter (e.g., us-east-2a).
 	IncludeRelationalDatabaseAvailabilityZones *bool `locationName:"includeRelationalDatabaseAvailabilityZones" type:"boolean"`
@@ -24219,7 +27523,7 @@ type GetRelationalDatabaseBlueprintsOutput struct {
 	// request.
 	Blueprints []*RelationalDatabaseBlueprint `locationName:"blueprints" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -24283,7 +27587,7 @@ type GetRelationalDatabaseBundlesOutput struct {
 	// An object describing the result of your get relational database bundles request.
 	Bundles []*RelationalDatabaseBundle `locationName:"bundles" type:"list"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -24382,7 +27686,7 @@ func (s *GetRelationalDatabaseEventsInput) SetRelationalDatabaseName(v string) *
 type GetRelationalDatabaseEventsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -25068,7 +28372,7 @@ func (s *GetRelationalDatabaseParametersInput) SetRelationalDatabaseName(v strin
 type GetRelationalDatabaseParametersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -25194,7 +28498,7 @@ func (s *GetRelationalDatabaseSnapshotsInput) SetPageToken(v string) *GetRelatio
 type GetRelationalDatabaseSnapshotsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -25259,7 +28563,7 @@ func (s *GetRelationalDatabasesInput) SetPageToken(v string) *GetRelationalDatab
 type GetRelationalDatabasesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -25385,7 +28689,7 @@ func (s *GetStaticIpsInput) SetPageToken(v string) *GetStaticIpsInput {
 type GetStaticIpsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token to advance to the next page of resutls from your request.
+	// The token to advance to the next page of results from your request.
 	//
 	// A next page token is not returned if there are no more results to display.
 	//
@@ -29373,6 +32677,122 @@ func (s *Region) SetRelationalDatabaseAvailabilityZones(v []*AvailabilityZone) *
 	return s
 }
 
+type RegisterContainerImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The digest of the container image to be registered.
+	//
+	// Digest is a required field
+	Digest *string `locationName:"digest" type:"string" required:"true"`
+
+	// The label for the container image when it's registered to the container service.
+	//
+	// Use a descriptive label that you can use to track the different versions
+	// of your registered container images.
+	//
+	// Use the GetContainerImages action to return the container images registered
+	// to a Lightsail container service. The label is the <imagelabel> portion of
+	// the following image name example:
+	//
+	//    * :container-service-1.<imagelabel>.1
+	//
+	// If the name of your container service is mycontainerservice, and the label
+	// that you specify is mystaticwebsite, then the name of the registered container
+	// image will be :mycontainerservice.mystaticwebsite.1.
+	//
+	// The number at the end of these image name examples represents the version
+	// of the registered container image. If you push and register another container
+	// image to the same Lightsail container service, with the same label, then
+	// the version number for the new registered container image will be 2. If you
+	// push and register another container image, the version number will be 3,
+	// and so on.
+	//
+	// Label is a required field
+	Label *string `locationName:"label" min:"1" type:"string" required:"true"`
+
+	// The name of the container service for which to register a container image.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RegisterContainerImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterContainerImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterContainerImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterContainerImageInput"}
+	if s.Digest == nil {
+		invalidParams.Add(request.NewErrParamRequired("Digest"))
+	}
+	if s.Label == nil {
+		invalidParams.Add(request.NewErrParamRequired("Label"))
+	}
+	if s.Label != nil && len(*s.Label) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Label", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDigest sets the Digest field's value.
+func (s *RegisterContainerImageInput) SetDigest(v string) *RegisterContainerImageInput {
+	s.Digest = &v
+	return s
+}
+
+// SetLabel sets the Label field's value.
+func (s *RegisterContainerImageInput) SetLabel(v string) *RegisterContainerImageInput {
+	s.Label = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *RegisterContainerImageInput) SetServiceName(v string) *RegisterContainerImageInput {
+	s.ServiceName = &v
+	return s
+}
+
+type RegisterContainerImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes a container image that is registered to an Amazon Lightsail container
+	// service.
+	ContainerImage *ContainerImage `locationName:"containerImage" type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterContainerImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterContainerImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerImage sets the ContainerImage field's value.
+func (s *RegisterContainerImageOutput) SetContainerImage(v *ContainerImage) *RegisterContainerImageOutput {
+	s.ContainerImage = v
+	return s
+}
+
 // Describes a database.
 type RelationalDatabase struct {
 	_ struct{} `type:"structure"`
@@ -31356,6 +34776,139 @@ func (s *UntagResourceOutput) SetOperations(v []*Operation) *UntagResourceOutput
 	return s
 }
 
+type UpdateContainerServiceInput struct {
+	_ struct{} `type:"structure"`
+
+	// A Boolean value to indicate whether the container service is disabled.
+	IsDisabled *bool `locationName:"isDisabled" type:"boolean"`
+
+	// The power for the container service.
+	//
+	// The power specifies the amount of memory, vCPUs, and base monthly cost of
+	// each node of the container service. The power and scale of a container service
+	// makes up its configured capacity. To determine the monthly price of your
+	// container service, multiply the base price of the power with the scale (the
+	// number of nodes) of the service.
+	//
+	// Use the GetContainerServicePowers action to view the specifications of each
+	// power option.
+	Power *string `locationName:"power" type:"string" enum:"ContainerServicePowerName"`
+
+	// The public domain names to use with the container service, such as example.com
+	// and www.example.com.
+	//
+	// You can specify up to four public domain names for a container service. The
+	// domain names that you specify are used when you create a deployment with
+	// a container configured as the public endpoint of your container service.
+	//
+	// If you don't specify public domain names, then you can use the default domain
+	// of the container service.
+	//
+	// You must create and validate an SSL/TLS certificate before you can use public
+	// domain names with your container service. Use the CreateCertificate action
+	// to create a certificate for the public domain names you want to use with
+	// your container service.
+	//
+	// You can specify public domain names using a string to array map as shown
+	// in the example later on this page.
+	PublicDomainNames map[string][]*string `locationName:"publicDomainNames" type:"map"`
+
+	// The scale for the container service.
+	//
+	// The scale specifies the allocated compute nodes of the container service.
+	// The power and scale of a container service makes up its configured capacity.
+	// To determine the monthly price of your container service, multiply the base
+	// price of the power with the scale (the number of nodes) of the service.
+	Scale *int64 `locationName:"scale" min:"1" type:"integer"`
+
+	// The name of the container service to update.
+	//
+	// ServiceName is a required field
+	ServiceName *string `locationName:"serviceName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateContainerServiceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContainerServiceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateContainerServiceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateContainerServiceInput"}
+	if s.Scale != nil && *s.Scale < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Scale", 1))
+	}
+	if s.ServiceName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceName"))
+	}
+	if s.ServiceName != nil && len(*s.ServiceName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ServiceName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsDisabled sets the IsDisabled field's value.
+func (s *UpdateContainerServiceInput) SetIsDisabled(v bool) *UpdateContainerServiceInput {
+	s.IsDisabled = &v
+	return s
+}
+
+// SetPower sets the Power field's value.
+func (s *UpdateContainerServiceInput) SetPower(v string) *UpdateContainerServiceInput {
+	s.Power = &v
+	return s
+}
+
+// SetPublicDomainNames sets the PublicDomainNames field's value.
+func (s *UpdateContainerServiceInput) SetPublicDomainNames(v map[string][]*string) *UpdateContainerServiceInput {
+	s.PublicDomainNames = v
+	return s
+}
+
+// SetScale sets the Scale field's value.
+func (s *UpdateContainerServiceInput) SetScale(v int64) *UpdateContainerServiceInput {
+	s.Scale = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *UpdateContainerServiceInput) SetServiceName(v string) *UpdateContainerServiceInput {
+	s.ServiceName = &v
+	return s
+}
+
+type UpdateContainerServiceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that describes a container service.
+	ContainerService *ContainerService `locationName:"containerService" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateContainerServiceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateContainerServiceOutput) GoString() string {
+	return s.String()
+}
+
+// SetContainerService sets the ContainerService field's value.
+func (s *UpdateContainerServiceOutput) SetContainerService(v *ContainerService) *UpdateContainerServiceOutput {
+	s.ContainerService = v
+	return s
+}
+
 type UpdateDistributionBundleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -32196,6 +35749,134 @@ func ContactProtocol_Values() []string {
 	return []string{
 		ContactProtocolEmail,
 		ContactProtocolSms,
+	}
+}
+
+const (
+	// ContainerServiceDeploymentStateActivating is a ContainerServiceDeploymentState enum value
+	ContainerServiceDeploymentStateActivating = "ACTIVATING"
+
+	// ContainerServiceDeploymentStateActive is a ContainerServiceDeploymentState enum value
+	ContainerServiceDeploymentStateActive = "ACTIVE"
+
+	// ContainerServiceDeploymentStateInactive is a ContainerServiceDeploymentState enum value
+	ContainerServiceDeploymentStateInactive = "INACTIVE"
+
+	// ContainerServiceDeploymentStateFailed is a ContainerServiceDeploymentState enum value
+	ContainerServiceDeploymentStateFailed = "FAILED"
+)
+
+// ContainerServiceDeploymentState_Values returns all elements of the ContainerServiceDeploymentState enum
+func ContainerServiceDeploymentState_Values() []string {
+	return []string{
+		ContainerServiceDeploymentStateActivating,
+		ContainerServiceDeploymentStateActive,
+		ContainerServiceDeploymentStateInactive,
+		ContainerServiceDeploymentStateFailed,
+	}
+}
+
+const (
+	// ContainerServiceMetricNameCpuutilization is a ContainerServiceMetricName enum value
+	ContainerServiceMetricNameCpuutilization = "CPUUtilization"
+
+	// ContainerServiceMetricNameMemoryUtilization is a ContainerServiceMetricName enum value
+	ContainerServiceMetricNameMemoryUtilization = "MemoryUtilization"
+)
+
+// ContainerServiceMetricName_Values returns all elements of the ContainerServiceMetricName enum
+func ContainerServiceMetricName_Values() []string {
+	return []string{
+		ContainerServiceMetricNameCpuutilization,
+		ContainerServiceMetricNameMemoryUtilization,
+	}
+}
+
+const (
+	// ContainerServicePowerNameNano is a ContainerServicePowerName enum value
+	ContainerServicePowerNameNano = "nano"
+
+	// ContainerServicePowerNameMicro is a ContainerServicePowerName enum value
+	ContainerServicePowerNameMicro = "micro"
+
+	// ContainerServicePowerNameSmall is a ContainerServicePowerName enum value
+	ContainerServicePowerNameSmall = "small"
+
+	// ContainerServicePowerNameMedium is a ContainerServicePowerName enum value
+	ContainerServicePowerNameMedium = "medium"
+
+	// ContainerServicePowerNameLarge is a ContainerServicePowerName enum value
+	ContainerServicePowerNameLarge = "large"
+
+	// ContainerServicePowerNameXlarge is a ContainerServicePowerName enum value
+	ContainerServicePowerNameXlarge = "xlarge"
+)
+
+// ContainerServicePowerName_Values returns all elements of the ContainerServicePowerName enum
+func ContainerServicePowerName_Values() []string {
+	return []string{
+		ContainerServicePowerNameNano,
+		ContainerServicePowerNameMicro,
+		ContainerServicePowerNameSmall,
+		ContainerServicePowerNameMedium,
+		ContainerServicePowerNameLarge,
+		ContainerServicePowerNameXlarge,
+	}
+}
+
+const (
+	// ContainerServiceProtocolHttp is a ContainerServiceProtocol enum value
+	ContainerServiceProtocolHttp = "HTTP"
+
+	// ContainerServiceProtocolHttps is a ContainerServiceProtocol enum value
+	ContainerServiceProtocolHttps = "HTTPS"
+
+	// ContainerServiceProtocolTcp is a ContainerServiceProtocol enum value
+	ContainerServiceProtocolTcp = "TCP"
+
+	// ContainerServiceProtocolUdp is a ContainerServiceProtocol enum value
+	ContainerServiceProtocolUdp = "UDP"
+)
+
+// ContainerServiceProtocol_Values returns all elements of the ContainerServiceProtocol enum
+func ContainerServiceProtocol_Values() []string {
+	return []string{
+		ContainerServiceProtocolHttp,
+		ContainerServiceProtocolHttps,
+		ContainerServiceProtocolTcp,
+		ContainerServiceProtocolUdp,
+	}
+}
+
+const (
+	// ContainerServiceStatePending is a ContainerServiceState enum value
+	ContainerServiceStatePending = "PENDING"
+
+	// ContainerServiceStateReady is a ContainerServiceState enum value
+	ContainerServiceStateReady = "READY"
+
+	// ContainerServiceStateRunning is a ContainerServiceState enum value
+	ContainerServiceStateRunning = "RUNNING"
+
+	// ContainerServiceStateUpdating is a ContainerServiceState enum value
+	ContainerServiceStateUpdating = "UPDATING"
+
+	// ContainerServiceStateDeleting is a ContainerServiceState enum value
+	ContainerServiceStateDeleting = "DELETING"
+
+	// ContainerServiceStateDisabled is a ContainerServiceState enum value
+	ContainerServiceStateDisabled = "DISABLED"
+)
+
+// ContainerServiceState_Values returns all elements of the ContainerServiceState enum
+func ContainerServiceState_Values() []string {
+	return []string{
+		ContainerServiceStatePending,
+		ContainerServiceStateReady,
+		ContainerServiceStateRunning,
+		ContainerServiceStateUpdating,
+		ContainerServiceStateDeleting,
+		ContainerServiceStateDisabled,
 	}
 }
 
@@ -33339,6 +37020,27 @@ const (
 
 	// OperationTypeDeleteCertificate is a OperationType enum value
 	OperationTypeDeleteCertificate = "DeleteCertificate"
+
+	// OperationTypeCreateContainerService is a OperationType enum value
+	OperationTypeCreateContainerService = "CreateContainerService"
+
+	// OperationTypeUpdateContainerService is a OperationType enum value
+	OperationTypeUpdateContainerService = "UpdateContainerService"
+
+	// OperationTypeDeleteContainerService is a OperationType enum value
+	OperationTypeDeleteContainerService = "DeleteContainerService"
+
+	// OperationTypeCreateContainerServiceDeployment is a OperationType enum value
+	OperationTypeCreateContainerServiceDeployment = "CreateContainerServiceDeployment"
+
+	// OperationTypeCreateContainerServiceRegistryLogin is a OperationType enum value
+	OperationTypeCreateContainerServiceRegistryLogin = "CreateContainerServiceRegistryLogin"
+
+	// OperationTypeRegisterContainerImage is a OperationType enum value
+	OperationTypeRegisterContainerImage = "RegisterContainerImage"
+
+	// OperationTypeDeleteContainerImage is a OperationType enum value
+	OperationTypeDeleteContainerImage = "DeleteContainerImage"
 )
 
 // OperationType_Values returns all elements of the OperationType enum
@@ -33408,6 +37110,13 @@ func OperationType_Values() []string {
 		OperationTypeUpdateDistributionBundle,
 		OperationTypeCreateCertificate,
 		OperationTypeDeleteCertificate,
+		OperationTypeCreateContainerService,
+		OperationTypeUpdateContainerService,
+		OperationTypeDeleteContainerService,
+		OperationTypeCreateContainerServiceDeployment,
+		OperationTypeCreateContainerServiceRegistryLogin,
+		OperationTypeRegisterContainerImage,
+		OperationTypeDeleteContainerImage,
 	}
 }
 
@@ -33656,6 +37365,9 @@ func RenewalStatus_Values() []string {
 }
 
 const (
+	// ResourceTypeContainerService is a ResourceType enum value
+	ResourceTypeContainerService = "ContainerService"
+
 	// ResourceTypeInstance is a ResourceType enum value
 	ResourceTypeInstance = "Instance"
 
@@ -33714,6 +37426,7 @@ const (
 // ResourceType_Values returns all elements of the ResourceType enum
 func ResourceType_Values() []string {
 	return []string{
+		ResourceTypeContainerService,
 		ResourceTypeInstance,
 		ResourceTypeStaticIp,
 		ResourceTypeKeyPair,

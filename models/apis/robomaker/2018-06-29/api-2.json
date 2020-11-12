@@ -1304,7 +1304,8 @@
         },
         "template":{"shape":"Arn"},
         "worldCount":{"shape":"WorldCount"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "worldTags":{"shape":"TagMap"}
       }
     },
     "CreateWorldGenerationJobResponse":{
@@ -1317,7 +1318,8 @@
         "clientRequestToken":{"shape":"ClientRequestToken"},
         "template":{"shape":"Arn"},
         "worldCount":{"shape":"WorldCount"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "worldTags":{"shape":"TagMap"}
       }
     },
     "CreateWorldTemplateRequest":{
@@ -1766,7 +1768,8 @@
         "template":{"shape":"Arn"},
         "worldCount":{"shape":"WorldCount"},
         "finishedWorldsSummary":{"shape":"FinishedWorldsSummary"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "worldTags":{"shape":"TagMap"}
       }
     },
     "DescribeWorldRequest":{

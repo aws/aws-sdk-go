@@ -977,7 +977,7 @@ type DeleteLexiconInput struct {
 	// The name of the lexicon to delete. Must be an existing lexicon in the region.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1181,7 +1181,7 @@ type GetLexiconInput struct {
 	// Name of the lexicon.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -1834,10 +1834,10 @@ type Lexicon struct {
 
 	// Lexicon content in string format. The content of a lexicon must be in PLS
 	// format.
-	Content *string `type:"string"`
+	Content *string `type:"string" sensitive:"true"`
 
 	// Name of the lexicon.
-	Name *string `type:"string" sensitive:"true"`
+	Name *string `type:"string"`
 }
 
 // String returns the string representation
@@ -1942,7 +1942,7 @@ type LexiconDescription struct {
 	Attributes *LexiconAttributes `type:"structure"`
 
 	// Name of the lexicon.
-	Name *string `type:"string" sensitive:"true"`
+	Name *string `type:"string"`
 }
 
 // String returns the string representation
@@ -2406,14 +2406,14 @@ type PutLexiconInput struct {
 	// Content of the PLS lexicon as string data.
 	//
 	// Content is a required field
-	Content *string `type:"string" required:"true"`
+	Content *string `type:"string" required:"true" sensitive:"true"`
 
 	// Name of the lexicon. The name must follow the regular express format [0-9A-Za-z]{1,20}.
 	// That is, the name is a case-sensitive alphanumeric string up to 20 characters
 	// long.
 	//
 	// Name is a required field
-	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true" sensitive:"true"`
+	Name *string `location:"uri" locationName:"LexiconName" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -3013,8 +3013,27 @@ type SynthesizeSpeechInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the engine (standard or neural) for Amazon Polly to use when processing
-	// input text for speech synthesis. Using a voice that is not supported for
-	// the engine selected will result in an error.
+	// input text for speech synthesis. For information on Amazon Polly voices and
+	// which voices are available in standard-only, NTTS-only, and both standard
+	// and NTTS formats, see Available Voices (https://docs.aws.amazon.com/polly/latest/dg/voicelist.html).
+	//
+	// NTTS-only voices
+	//
+	// When using NTTS-only voices such as Kevin (en-US), this parameter is required
+	// and must be set to neural. If the engine is not specified, or is set to standard,
+	// this will result in an error.
+	//
+	// Type: String
+	//
+	// Valid Values: standard | neural
+	//
+	// Required: Yes
+	//
+	// Standard voices
+	//
+	// For standard voices, this is not required; the engine parameter defaults
+	// to standard. If the engine is not specified, or is set to standard and an
+	// NTTS-only voice is selected, this will result in an error.
 	Engine *string `type:"string" enum:"Engine"`
 
 	// Optional language code for the Synthesize Speech request. This is only necessary
@@ -3859,6 +3878,9 @@ const (
 	// VoiceIdNicole is a VoiceId enum value
 	VoiceIdNicole = "Nicole"
 
+	// VoiceIdOlivia is a VoiceId enum value
+	VoiceIdOlivia = "Olivia"
+
 	// VoiceIdPenelope is a VoiceId enum value
 	VoiceIdPenelope = "Penelope"
 
@@ -3950,6 +3972,7 @@ func VoiceId_Values() []string {
 		VoiceIdMizuki,
 		VoiceIdNaja,
 		VoiceIdNicole,
+		VoiceIdOlivia,
 		VoiceIdPenelope,
 		VoiceIdRaveena,
 		VoiceIdRicardo,

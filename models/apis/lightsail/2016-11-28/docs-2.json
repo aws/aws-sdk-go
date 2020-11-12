@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon Lightsail is the easiest way to get started with Amazon Web Services (AWS) for developers who need to build websites or web applications. It includes everything you need to launch your project quickly – instances (virtual private servers), managed databases, SSD-based block storage, static IP addresses, load balancers, content delivery network (CDN) distributions, DNS management of registered domains, and snapshots (backups) – for a low, predictable monthly price.</p> <p>You can manage your Lightsail resources using the Lightsail console, Lightsail API, AWS Command Line Interface (AWS CLI), or SDKs. For more information about Lightsail concepts and tasks, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli\">Lightsail Dev Guide</a>.</p> <p>This API Reference provides detailed information about the actions, data types, parameters, and errors of the Lightsail service. For more information about the supported AWS Regions, endpoints, and service quotas for the Lightsail service, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/lightsail.html\">Amazon Lightsail Endpoints and Quotas</a> in the <i>AWS General Reference</i>.</p>",
+  "service": "<p>Amazon Lightsail is the easiest way to get started with Amazon Web Services (AWS) for developers who need to build websites or web applications. It includes everything you need to launch your project quickly - instances (virtual private servers), container services, managed databases, SSD-based block storage, static IP addresses, load balancers, content delivery network (CDN) distributions, DNS management of registered domains, and resource snapshots (backups) - for a low, predictable monthly price.</p> <p>You can manage your Lightsail resources using the Lightsail console, Lightsail API, AWS Command Line Interface (AWS CLI), or SDKs. For more information about Lightsail concepts and tasks, see the <a href=\"http://lightsail.aws.amazon.com/ls/docs/how-to/article/lightsail-how-to-set-up-access-keys-to-use-sdk-api-cli\">Lightsail Dev Guide</a>.</p> <p>This API Reference provides detailed information about the actions, data types, parameters, and errors of the Lightsail service. For more information about the supported AWS Regions, endpoints, and service quotas of the Lightsail service, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/lightsail.html\">Amazon Lightsail Endpoints and Quotas</a> in the <i>AWS General Reference</i>.</p>",
   "operations": {
     "AllocateStaticIp": "<p>Allocates a static IP address.</p>",
     "AttachCertificateToDistribution": "<p>Attaches an SSL/TLS certificate to your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After the certificate is attached, your distribution accepts HTTPS traffic for all of the domains that are associated with the certificate.</p> <p>Use the <code>CreateCertificate</code> action to create a certificate that you can attach to your distribution.</p> <important> <p>Only certificates created in the <code>us-east-1</code> AWS Region can be attached to Lightsail distributions. Lightsail distributions are global resources that can reference an origin in any AWS Region, and distribute its content globally. However, all distributions are located in the <code>us-east-1</code> Region.</p> </important>",
@@ -13,12 +13,15 @@
     "CreateCertificate": "<p>Creates an SSL/TLS certificate for a Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After the certificate is created, use the <code>AttachCertificateToDistribution</code> action to attach the certificate to your distribution.</p> <important> <p>Only certificates created in the <code>us-east-1</code> AWS Region can be attached to Lightsail distributions. Lightsail distributions are global resources that can reference an origin in any AWS Region, and distribute its content globally. However, all distributions are located in the <code>us-east-1</code> Region.</p> </important>",
     "CreateCloudFormationStack": "<p>Creates an AWS CloudFormation stack, which creates a new Amazon EC2 instance from an exported Amazon Lightsail snapshot. This operation results in a CloudFormation stack record that can be used to track the AWS CloudFormation stack created. Use the <code>get cloud formation stack records</code> operation to get a list of the CloudFormation stacks created.</p> <important> <p>Wait until after your new Amazon EC2 instance is created before running the <code>create cloud formation stack</code> operation again with the same export snapshot record.</p> </important>",
     "CreateContactMethod": "<p>Creates an email or SMS text message contact method.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p>",
+    "CreateContainerService": "<p>Creates an Amazon Lightsail container service.</p> <p>A Lightsail container service is a compute resource to which you can deploy containers. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-containers\">Container services in Amazon Lightsail</a> in the <i>Lightsail Dev Guide</i>.</p>",
+    "CreateContainerServiceDeployment": "<p>Creates a deployment for your Amazon Lightsail container service.</p> <p>A deployment specifies the containers that will be launched on the container service and their settings, such as the ports to open, the environment variables to apply, and the launch command to run. It also specifies the container that will serve as the public endpoint of the deployment and its settings, such as the HTTP or HTTPS port to use, and the health check configuration.</p> <p>You can deploy containers to your container service using container images from a public registry like Docker Hub, or from your local machine. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-creating-container-images\">Creating container images for your Amazon Lightsail container services</a> in the <i>Lightsail Dev Guide</i>.</p>",
+    "CreateContainerServiceRegistryLogin": "<p>Creates a temporary set of log in credentials that you can use to log in to the Docker process on your local machine. After you're logged in, you can use the native Docker commands to push your local container images to the container image registry of your Amazon Lightsail account so that you can use them with your Lightsail container service. The log in credentials expire 12 hours after they are created, at which point you will need to create a new set of log in credentials.</p> <note> <p>You can only push container images to the container service registry of your Lightsail account. You cannot pull container images perform any other container image management actions on the container service registry of your Lightsail account.</p> </note> <p>After you push your container images to the container image registry of your Lightsail account, use the <code>RegisterContainerImage</code> action to register the pushed images to a specific Lightsail container service.</p> <note> <p>This action is not required if you install and use the Lightsail Control (lightsailctl) plugin to push container images to your Lightsail container service. For more information, see <a href=\"amazon-lightsail-pushing-container-images\">Pushing and managing container images on your Amazon Lightsail container services</a> in the <i>Lightsail Dev Guide</i>.</p> </note>",
     "CreateDisk": "<p>Creates a block storage disk that can be attached to an Amazon Lightsail instance in the same Availability Zone (e.g., <code>us-east-2a</code>).</p> <p>The <code>create disk</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateDiskFromSnapshot": "<p>Creates a block storage disk from a manual or automatic snapshot of a disk. The resulting disk can be attached to an Amazon Lightsail instance in the same Availability Zone (e.g., <code>us-east-2a</code>).</p> <p>The <code>create disk from snapshot</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>disk snapshot name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateDiskSnapshot": "<p>Creates a snapshot of a block storage disk. You can use snapshots for backups, to make copies of disks, and to save data before shutting down a Lightsail instance.</p> <p>You can take a snapshot of an attached disk that is in use; however, snapshots only capture data that has been written to your disk at the time the snapshot command is issued. This may exclude any data that has been cached by any applications or the operating system. If you can pause any file systems on the disk long enough to take a snapshot, your snapshot should be complete. Nevertheless, if you cannot pause all file writes to the disk, you should unmount the disk from within the Lightsail instance, issue the create disk snapshot command, and then remount the disk to ensure a consistent and complete snapshot. You may remount and use your disk while the snapshot status is pending.</p> <p>You can also use this operation to create a snapshot of an instance's system volume. You might want to do this, for example, to recover data from the system volume of a botched instance or to create a backup of the system volume like you would for a block storage disk. To create a snapshot of a system volume, just define the <code>instance name</code> parameter when issuing the snapshot command, and a snapshot of the defined instance's system volume will be created. After the snapshot is available, you can create a block storage disk from the snapshot and attach it to a running instance to access the data on the disk.</p> <p>The <code>create disk snapshot</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
-    "CreateDistribution": "<p>Creates an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution is a globally distributed network of caching servers that improve the performance of your website or web application hosted on a Lightsail instance. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-content-delivery-networks\">Content delivery networks in Amazon Lightsail</a>.</p>",
+    "CreateDistribution": "<p>Creates an Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution is a globally distributed network of caching servers that improve the performance of your website or web application hosted on a Lightsail instance. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-content-delivery-network-distributions\">Content delivery networks in Amazon Lightsail</a>.</p>",
     "CreateDomain": "<p>Creates a domain resource for the specified domain (e.g., example.com).</p> <p>The <code>create domain</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
-    "CreateDomainEntry": "<p>Creates one of the following entry records associated with the domain: Address (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority (SOA), service locator (SRV), or text (TXT).</p> <p>The <code>create domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "CreateDomainEntry": "<p>Creates one of the following domain name system (DNS) records in a domain DNS zone: Address (A), canonical name (CNAME), mail exchanger (MX), name server (NS), start of authority (SOA), service locator (SRV), or text (TXT).</p> <p>The <code>create domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateInstanceSnapshot": "<p>Creates a snapshot of a specific virtual private server, or <i>instance</i>. You can use a snapshot to create a new instance that is based on that snapshot.</p> <p>The <code>create instance snapshot</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateInstances": "<p>Creates one or more Amazon Lightsail instances.</p> <p>The <code>create instances</code> operation supports tag-based access control via request tags. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "CreateInstancesFromSnapshot": "<p>Creates one or more new instances from a manual or automatic snapshot of an instance.</p> <p>The <code>create instances from snapshot</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>instance snapshot name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
@@ -32,6 +35,8 @@
     "DeleteAutoSnapshot": "<p>Deletes an automatic snapshot of an instance or disk. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p>",
     "DeleteCertificate": "<p>Deletes an SSL/TLS certificate for your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>Certificates that are currently attached to a distribution cannot be deleted. Use the <code>DetachCertificateFromDistribution</code> action to detach a certificate from a distribution.</p>",
     "DeleteContactMethod": "<p>Deletes a contact method.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p>",
+    "DeleteContainerImage": "<p>Deletes a container image that is registered to your Amazon Lightsail container service.</p>",
+    "DeleteContainerService": "<p>Deletes your Amazon Lightsail container service.</p>",
     "DeleteDisk": "<p>Deletes the specified block storage disk. The disk must be in the <code>available</code> state (not attached to a Lightsail instance).</p> <note> <p>The disk may remain in the <code>deleting</code> state for several minutes.</p> </note> <p>The <code>delete disk</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>disk name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteDiskSnapshot": "<p>Deletes the specified disk snapshot.</p> <p>When you make periodic snapshots of a disk, the snapshots are incremental, and only the blocks on the device that have changed since your last snapshot are saved in the new snapshot. When you delete a snapshot, only the data not needed for any other snapshot is removed. So regardless of which prior snapshots have been deleted, all active snapshots will have access to all the information needed to restore the disk.</p> <p>The <code>delete disk snapshot</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>disk snapshot name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "DeleteDistribution": "<p>Deletes your Amazon Lightsail content delivery network (CDN) distribution.</p>",
@@ -61,6 +66,13 @@
     "GetCertificates": "<p>Returns information about one or more Amazon Lightsail SSL/TLS certificates.</p> <note> <p>To get a summary of a certificate, ommit <code>includeCertificateDetails</code> from your request. The response will include only the certificate Amazon Resource Name (ARN), certificate name, domain name, and tags.</p> </note>",
     "GetCloudFormationStackRecords": "<p>Returns the CloudFormation stack record created as a result of the <code>create cloud formation stack</code> operation.</p> <p>An AWS CloudFormation stack is used to create a new Amazon EC2 instance from an exported Lightsail snapshot.</p>",
     "GetContactMethods": "<p>Returns information about the configured contact methods. Specify a protocol in your request to return information about a specific contact method.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p>",
+    "GetContainerAPIMetadata": "<p>Returns information about Amazon Lightsail containers, such as the current version of the Lightsail Control (lightsailctl) plugin.</p>",
+    "GetContainerImages": "<p>Returns the container images that are registered to your Amazon Lightsail container service.</p> <note> <p>If you created a deployment on your Lightsail container service that uses container images from a public registry like Docker Hub, those images are not returned as part of this action. Those images are not registered to your Lightsail container service.</p> </note>",
+    "GetContainerLog": "<p>Returns the log events of a container of your Amazon Lightsail container service.</p> <p>If your container service has more than one node (i.e., a scale greater than 1), then the log events that are returned for the specified container are merged from all nodes on your container service.</p> <note> <p>Container logs are retained for a certain amount of time. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/lightsail.html\">Amazon Lightsail endpoints and quotas</a> in the <i>AWS General Reference</i>.</p> </note>",
+    "GetContainerServiceDeployments": "<p>Returns the deployments for your Amazon Lightsail container service</p> <p>A deployment specifies the settings, such as the ports and launch command, of containers that are deployed to your container service.</p> <p>The deployments are ordered by version in ascending order. The newest version is listed at the top of the response.</p> <note> <p>A set number of deployments are kept before the oldest one is replaced with the newest one. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/lightsail.html\">Amazon Lightsail endpoints and quotas</a> in the <i>AWS General Reference</i>.</p> </note>",
+    "GetContainerServiceMetricData": "<p>Returns the data points of a specific metric of your Amazon Lightsail container service.</p> <p>Metrics report the utilization of your resources. Monitor and collect metric data regularly to maintain the reliability, availability, and performance of your resources.</p>",
+    "GetContainerServicePowers": "<p>Returns the list of powers that can be specified for your Amazon Lightsail container services.</p> <p>The power specifies the amount of memory, the number of vCPUs, and the base price of the container service.</p>",
+    "GetContainerServices": "<p>Returns information about one or more of your Amazon Lightsail container services.</p>",
     "GetDisk": "<p>Returns information about a specific block storage disk.</p>",
     "GetDiskSnapshot": "<p>Returns information about a specific block storage disk snapshot.</p>",
     "GetDiskSnapshots": "<p>Returns information about all block storage disk snapshots in your AWS account and region.</p>",
@@ -112,6 +124,7 @@
     "PutInstancePublicPorts": "<p>Opens ports for a specific Amazon Lightsail instance, and specifies the IP addresses allowed to connect to the instance through the ports, and the protocol. This action also closes all currently open ports that are not included in the request. Include all of the ports and the protocols you want to open in your <code>PutInstancePublicPorts</code>request. Or use the <code>OpenInstancePublicPorts</code> action to open ports without closing currently open ports.</p> <p>The <code>PutInstancePublicPorts</code> action supports tag-based access control via resource tags applied to the resource identified by <code>instanceName</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "RebootInstance": "<p>Restarts a specific instance.</p> <p>The <code>reboot instance</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>instance name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
     "RebootRelationalDatabase": "<p>Restarts a specific database in Amazon Lightsail.</p> <p>The <code>reboot relational database</code> operation supports tag-based access control via resource tags applied to the resource identified by relationalDatabaseName. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "RegisterContainerImage": "<p>Registers a container image to your Amazon Lightsail container service.</p> <note> <p>This action is not required if you install and use the Lightsail Control (lightsailctl) plugin to push container images to your Lightsail container service. For more information, see <a href=\"amazon-lightsail-pushing-container-images\">Pushing and managing container images on your Amazon Lightsail container services</a> in the <i>Lightsail Dev Guide</i>.</p> </note>",
     "ReleaseStaticIp": "<p>Deletes a specific static IP from your account.</p>",
     "ResetDistributionCache": "<p>Deletes currently cached content from your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>After resetting the cache, the next time a content request is made, your distribution pulls, serves, and caches it from the origin.</p>",
     "SendContactMethodVerification": "<p>Sends a verification request to an email contact method to ensure it's owned by the requester. SMS contact methods don't need to be verified.</p> <p>A contact method is used to send you notifications about your Amazon Lightsail resources. You can add one email address and one mobile phone number contact method in each AWS Region. However, SMS text messaging is not supported in some AWS Regions, and SMS text messages cannot be sent to some countries/regions. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-notifications\">Notifications in Amazon Lightsail</a>.</p> <p>A verification request is sent to the contact method when you initially create it. Use this action to send another verification request if a previous verification request was deleted, or has expired.</p> <important> <p>Notifications are not sent to an email contact method until after it is verified, and confirmed as valid.</p> </important>",
@@ -123,6 +136,7 @@
     "TestAlarm": "<p>Tests an alarm by displaying a banner on the Amazon Lightsail console. If a notification trigger is configured for the specified alarm, the test also sends a notification to the notification protocol (<code>Email</code> and/or <code>SMS</code>) configured for the alarm.</p> <p>An alarm is used to monitor a single metric for one of your resources. When a metric condition is met, the alarm can notify you by email, SMS text message, and a banner displayed on the Amazon Lightsail console. For more information, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-alarms\">Alarms in Amazon Lightsail</a>.</p>",
     "UnpeerVpc": "<p>Attempts to unpeer the Lightsail VPC from the user's default VPC.</p>",
     "UntagResource": "<p>Deletes the specified set of tag keys and their values from the specified Amazon Lightsail resource.</p> <p>The <code>untag resource</code> operation supports tag-based access control via request tags and resource tags applied to the resource identified by <code>resource name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
+    "UpdateContainerService": "<p>Updates the configuration of your Amazon Lightsail container service, such as its power, scale, and public domain names.</p>",
     "UpdateDistribution": "<p>Updates an existing Amazon Lightsail content delivery network (CDN) distribution.</p> <p>Use this action to update the configuration of your existing distribution</p>",
     "UpdateDistributionBundle": "<p>Updates the bundle of your Amazon Lightsail content delivery network (CDN) distribution.</p> <p>A distribution bundle specifies the monthly network transfer quota and monthly cost of your dsitribution.</p> <p>Update your distribution's bundle if your distribution is going over its monthly network transfer quota and is incurring an overage fee.</p> <p>You can update your distribution's bundle only one time within your monthly AWS billing cycle. To determine if you can update your distribution's bundle, use the <code>GetDistributions</code> action. The <code>ableToUpdateBundle</code> parameter in the result will indicate whether you can currently update your distribution's bundle.</p>",
     "UpdateDomainEntry": "<p>Updates a domain recordset after it is created.</p> <p>The <code>update domain entry</code> operation supports tag-based access control via resource tags applied to the resource identified by <code>domain name</code>. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-controlling-access-using-tags\">Lightsail Dev Guide</a>.</p>",
@@ -415,7 +429,7 @@
         "CertificateSummary$certificateName": "<p>The name of the certificate.</p>",
         "CreateCertificateRequest$certificateName": "<p>The name for the certificate.</p>",
         "DeleteCertificateRequest$certificateName": "<p>The name of the certificate to delete.</p> <p>Use the <code>GetCertificates</code> action to get a list of certificate names that you can specify.</p>",
-        "GetCertificatesRequest$certificateName": "<p>The name for the certificate for which to return information.</p> <p>When omitted, the response includes all of your certificates in the AWS region where the request is made.</p>"
+        "GetCertificatesRequest$certificateName": "<p>The name for the certificate for which to return information.</p> <p>When omitted, the response includes all of your certificates in the AWS Region where the request is made.</p>"
       }
     },
     "CertificateStatus": {
@@ -428,7 +442,7 @@
     "CertificateStatusList": {
       "base": null,
       "refs": {
-        "GetCertificatesRequest$certificateStatuses": "<p>The status of the certificates for which to return information.</p> <p>For example, specify <code>ISSUED</code> to return only certificates with an <code>ISSUED</code> status.</p> <p>When omitted, the response includes all of your certificates in the AWS region where the request is made, regardless of their current status.</p>"
+        "GetCertificatesRequest$certificateStatuses": "<p>The status of the certificates for which to return information.</p> <p>For example, specify <code>ISSUED</code> to return only certificates with an <code>ISSUED</code> status.</p> <p>When omitted, the response includes all of your certificates in the AWS Region where the request is made, regardless of their current status.</p>"
       }
     },
     "CertificateSummary": {
@@ -532,6 +546,212 @@
         "PutAlarmRequest$contactProtocols": "<p>The contact protocols to use for the alarm, such as <code>Email</code>, <code>SMS</code> (text messaging), or both.</p> <p>A notification is sent via the specified contact protocol if notifications are enabled for the alarm, and when the alarm is triggered.</p> <p>A notification is not sent if a contact protocol is not specified, if the specified contact protocol is not configured in the AWS Region, or if notifications are not enabled for the alarm using the <code>notificationEnabled</code> paramater.</p> <p>Use the <code>CreateContactMethod</code> action to configure a contact protocol in an AWS Region.</p>"
       }
     },
+    "Container": {
+      "base": "<p>Describes the settings of a container that will be launched, or that is launched, to an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerMap$value": null
+      }
+    },
+    "ContainerImage": {
+      "base": "<p>Describes a container image that is registered to an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerImageList$member": null,
+        "RegisterContainerImageResult$containerImage": null
+      }
+    },
+    "ContainerImageList": {
+      "base": null,
+      "refs": {
+        "GetContainerImagesResult$containerImages": "<p>An array of objects that describe container images that are registered to the container service.</p>"
+      }
+    },
+    "ContainerLabel": {
+      "base": null,
+      "refs": {
+        "RegisterContainerImageRequest$label": "<p>The label for the container image when it's registered to the container service.</p> <p>Use a descriptive label that you can use to track the different versions of your registered container images.</p> <p>Use the <code>GetContainerImages</code> action to return the container images registered to a Lightsail container service. The label is the <code>&lt;imagelabel&gt;</code> portion of the following image name example:</p> <ul> <li> <p> <code>:container-service-1.&lt;imagelabel&gt;.1</code> </p> </li> </ul> <p>If the name of your container service is <code>mycontainerservice</code>, and the label that you specify is <code>mystaticwebsite</code>, then the name of the registered container image will be <code>:mycontainerservice.mystaticwebsite.1</code>.</p> <p>The number at the end of these image name examples represents the version of the registered container image. If you push and register another container image to the same Lightsail container service, with the same label, then the version number for the new registered container image will be <code>2</code>. If you push and register another container image, the version number will be <code>3</code>, and so on.</p>"
+      }
+    },
+    "ContainerMap": {
+      "base": null,
+      "refs": {
+        "ContainerServiceDeployment$containers": "<p>An object that describes the configuration for the containers of the deployment.</p>",
+        "ContainerServiceDeploymentRequest$containers": "<p>An object that describes the configuration for the containers of the deployment.</p>",
+        "CreateContainerServiceDeploymentRequest$containers": "<p>An object that describes the settings of the containers that will be launched on the container service.</p>"
+      }
+    },
+    "ContainerName": {
+      "base": null,
+      "refs": {
+        "ContainerMap$key": null
+      }
+    },
+    "ContainerService": {
+      "base": "<p>Describes an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerServiceList$member": null,
+        "CreateContainerServiceDeploymentResult$containerService": "<p>An object that describes a container service.</p>",
+        "CreateContainerServiceResult$containerService": "<p>An object that describes a container service.</p>",
+        "UpdateContainerServiceResult$containerService": "<p>An object that describes a container service.</p>"
+      }
+    },
+    "ContainerServiceDeployment": {
+      "base": "<p>Describes a container deployment configuration of an Amazon Lightsail container service.</p> <p>A deployment specifies the settings, such as the ports and launch command, of containers that are deployed to your container service.</p>",
+      "refs": {
+        "ContainerService$currentDeployment": "<p>An object that describes the current container deployment of the container service.</p>",
+        "ContainerService$nextDeployment": "<p>An object that describes the next deployment of the container service.</p> <p>This value is <code>null</code> when there is no deployment in a <code>pending</code> state.</p>",
+        "ContainerServiceDeploymentList$member": null
+      }
+    },
+    "ContainerServiceDeploymentList": {
+      "base": null,
+      "refs": {
+        "GetContainerServiceDeploymentsResult$deployments": "<p>An array of objects that describe deployments for a container service.</p>"
+      }
+    },
+    "ContainerServiceDeploymentRequest": {
+      "base": "<p>Describes a container deployment configuration of an Amazon Lightsail container service.</p> <p>A deployment specifies the settings, such as the ports and launch command, of containers that are deployed to your container service.</p>",
+      "refs": {
+        "CreateContainerServiceRequest$deployment": "<p>An object that describes a deployment for the container service.</p> <p>A deployment specifies the containers that will be launched on the container service and their settings, such as the ports to open, the environment variables to apply, and the launch command to run. It also specifies the container that will serve as the public endpoint of the deployment and its settings, such as the HTTP or HTTPS port to use, and the health check configuration.</p>"
+      }
+    },
+    "ContainerServiceDeploymentState": {
+      "base": null,
+      "refs": {
+        "ContainerServiceDeployment$state": "<p>The state of the deployment.</p> <p>A deployment can be in one of the following states:</p> <ul> <li> <p> <code>Activating</code> - The deployment is being created.</p> </li> <li> <p> <code>Active</code> - The deployment was successfully created, and it's currently running on the container service. The container service can have only one deployment in an active state at a time.</p> </li> <li> <p> <code>Inactive</code> - The deployment was previously successfully created, but it is not currently running on the container service.</p> </li> <li> <p> <code>Failed</code> - The deployment failed. Use the <code>GetContainerLog</code> action to view the log events for the containers in the deployment to try to determine the reason for the failure.</p> </li> </ul>"
+      }
+    },
+    "ContainerServiceEndpoint": {
+      "base": "<p>Describes the public endpoint configuration of a deployment of an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerServiceDeployment$publicEndpoint": "<p>An object that describes the endpoint of the deployment.</p>"
+      }
+    },
+    "ContainerServiceHealthCheckConfig": {
+      "base": "<p>Describes the health check configuration of an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerServiceEndpoint$healthCheck": "<p>An object that describes the health check configuration of the container.</p>",
+        "EndpointRequest$healthCheck": "<p>An object that describes the health check configuration of the container.</p>"
+      }
+    },
+    "ContainerServiceList": {
+      "base": null,
+      "refs": {
+        "ContainerServicesListResult$containerServices": "<p>An array of objects that describe one or more container services.</p>"
+      }
+    },
+    "ContainerServiceLogEvent": {
+      "base": "<p>Describes the log events of a container of an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerServiceLogEventList$member": null
+      }
+    },
+    "ContainerServiceLogEventList": {
+      "base": null,
+      "refs": {
+        "GetContainerLogResult$logEvents": "<p>An array of objects that describe the log events of a container.</p>"
+      }
+    },
+    "ContainerServiceMetadataEntry": {
+      "base": null,
+      "refs": {
+        "ContainerServiceMetadataEntryList$member": null
+      }
+    },
+    "ContainerServiceMetadataEntryList": {
+      "base": null,
+      "refs": {
+        "GetContainerAPIMetadataResult$metadata": "<p>Metadata about Lightsail containers, such as the current version of the Lightsail Control (lightsailctl) plugin.</p>"
+      }
+    },
+    "ContainerServiceMetricName": {
+      "base": null,
+      "refs": {
+        "GetContainerServiceMetricDataRequest$metricName": "<p>The metric for which you want to return information.</p> <p>Valid container service metric names are listed below, along with the most useful statistics to include in your request, and the published unit value.</p> <ul> <li> <p> <code>CPUUtilization</code> - The average percentage of compute units that are currently in use across all nodes of the container service. This metric identifies the processing power required to run containers on each node of the container service.</p> <p>Statistics: The most useful statistics are <code>Maximum</code> and <code>Average</code>.</p> <p>Unit: The published unit is <code>Percent</code>.</p> </li> <li> <p> <code>MemoryUtilization</code> - The average percentage of available memory that is currently in use across all nodes of the container service. This metric identifies the memory required to run containers on each node of the container service.</p> <p>Statistics: The most useful statistics are <code>Maximum</code> and <code>Average</code>.</p> <p>Unit: The published unit is <code>Percent</code>.</p> </li> </ul>",
+        "GetContainerServiceMetricDataResult$metricName": "<p>The name of the metric returned. </p>"
+      }
+    },
+    "ContainerServiceName": {
+      "base": null,
+      "refs": {
+        "ContainerService$containerServiceName": "<p>The name of the container service.</p>",
+        "CreateContainerServiceDeploymentRequest$serviceName": "<p>The name of the container service for which to create the deployment.</p>",
+        "CreateContainerServiceRequest$serviceName": "<p>The name for the container service.</p> <p>The name that you specify for your container service will make up part of its default domain. The default domain of a container service is typically <code>https://&lt;ServiceName&gt;.&lt;RandomGUID&gt;.&lt;AWSRegion&gt;.cs.amazonlightsail.com</code>. If the name of your container service is <code>container-service-1</code>, and it's located in the US East (Ohio) AWS region (<code>us-east-2</code>), then the domain for your container service will be like the following example: <code>https://container-service-1.ur4EXAMPLE2uq.us-east-2.cs.amazonlightsail.com</code> </p> <p>The following are the requirements for container service names:</p> <ul> <li> <p>Must be unique within each AWS Region in your Lightsail account.</p> </li> <li> <p>Must contain 1 to 63 characters.</p> </li> <li> <p>Must contain only alphanumeric characters and hyphens.</p> </li> <li> <p>A hyphen (-) can separate words but cannot be at the start or end of the name.</p> </li> </ul>",
+        "DeleteContainerImageRequest$serviceName": "<p>The name of the container service for which to delete a registered container image.</p>",
+        "DeleteContainerServiceRequest$serviceName": "<p>The name of the container service to delete.</p>",
+        "GetContainerImagesRequest$serviceName": "<p>The name of the container service for which to return registered container images.</p>",
+        "GetContainerLogRequest$serviceName": "<p>The name of the container service for which to get a container log.</p>",
+        "GetContainerServiceDeploymentsRequest$serviceName": "<p>The name of the container service for which to return deployments.</p>",
+        "GetContainerServiceMetricDataRequest$serviceName": "<p>The name of the container service for which to get metric data.</p>",
+        "GetContainerServicesRequest$serviceName": "<p>The name of the container service for which to return information.</p> <p>When omitted, the response includes all of your container services in the AWS Region where the request is made.</p>",
+        "RegisterContainerImageRequest$serviceName": "<p>The name of the container service for which to register a container image.</p>",
+        "UpdateContainerServiceRequest$serviceName": "<p>The name of the container service to update.</p>"
+      }
+    },
+    "ContainerServicePower": {
+      "base": "<p>Describes the powers that can be specified for an Amazon Lightsail container service.</p> <p>The power specifies the amount of RAM, the number of vCPUs, and the base price of the container service.</p>",
+      "refs": {
+        "ContainerServicePowerList$member": null
+      }
+    },
+    "ContainerServicePowerList": {
+      "base": null,
+      "refs": {
+        "GetContainerServicePowersResult$powers": "<p>An array of objects that describe the powers that can be specified for a container service.</p>"
+      }
+    },
+    "ContainerServicePowerName": {
+      "base": null,
+      "refs": {
+        "ContainerService$power": "<p>The power specification of the container service.</p> <p>The power specifies the amount of RAM, the number of vCPUs, and the base price of the container service.</p>",
+        "CreateContainerServiceRequest$power": "<p>The power specification for the container service.</p> <p>The power specifies the amount of memory, vCPUs, and base monthly cost of each node of the container service. The <code>power</code> and <code>scale</code> of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the <code>power</code> with the <code>scale</code> (the number of nodes) of the service.</p> <p>Use the <code>GetContainerServicePowers</code> action to get a list of power options that you can specify using this parameter, and their base monthly cost.</p>",
+        "UpdateContainerServiceRequest$power": "<p>The power for the container service.</p> <p>The power specifies the amount of memory, vCPUs, and base monthly cost of each node of the container service. The <code>power</code> and <code>scale</code> of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the <code>power</code> with the <code>scale</code> (the number of nodes) of the service.</p> <p>Use the <code>GetContainerServicePowers</code> action to view the specifications of each power option.</p>"
+      }
+    },
+    "ContainerServiceProtocol": {
+      "base": null,
+      "refs": {
+        "PortMap$value": null
+      }
+    },
+    "ContainerServicePublicDomains": {
+      "base": null,
+      "refs": {
+        "ContainerService$publicDomainNames": "<p>The public domain name of the container service, such as <code>example.com</code> and <code>www.example.com</code>.</p> <p>You can specify up to four public domain names for a container service. The domain names that you specify are used when you create a deployment with a container configured as the public endpoint of your container service.</p> <p>If you don't specify public domain names, then you can use the default domain of the container service.</p> <important> <p>You must create and validate an SSL/TLS certificate before you can use public domain names with your container service. Use the <code>CreateCertificate</code> action to create a certificate for the public domain names you want to use with your container service.</p> </important> <p>See <code>CreateContainerService</code> or <code>UpdateContainerService</code> for information about how to specify public domain names for your Lightsail container service.</p>",
+        "CreateContainerServiceRequest$publicDomainNames": "<p>The public domain names to use with the container service, such as <code>example.com</code> and <code>www.example.com</code>.</p> <p>You can specify up to four public domain names for a container service. The domain names that you specify are used when you create a deployment with a container configured as the public endpoint of your container service.</p> <p>If you don't specify public domain names, then you can use the default domain of the container service.</p> <important> <p>You must create and validate an SSL/TLS certificate before you can use public domain names with your container service. Use the <code>CreateCertificate</code> action to create a certificate for the public domain names you want to use with your container service.</p> </important> <p>You can specify public domain names using a string to array map as shown in the example later on this page.</p>",
+        "UpdateContainerServiceRequest$publicDomainNames": "<p>The public domain names to use with the container service, such as <code>example.com</code> and <code>www.example.com</code>.</p> <p>You can specify up to four public domain names for a container service. The domain names that you specify are used when you create a deployment with a container configured as the public endpoint of your container service.</p> <p>If you don't specify public domain names, then you can use the default domain of the container service.</p> <important> <p>You must create and validate an SSL/TLS certificate before you can use public domain names with your container service. Use the <code>CreateCertificate</code> action to create a certificate for the public domain names you want to use with your container service.</p> </important> <p>You can specify public domain names using a string to array map as shown in the example later on this page.</p>"
+      }
+    },
+    "ContainerServicePublicDomainsList": {
+      "base": null,
+      "refs": {
+        "ContainerServicePublicDomains$value": null
+      }
+    },
+    "ContainerServiceRegistryLogin": {
+      "base": "<p>Describes the login information for the container image registry of an Amazon Lightsail account.</p>",
+      "refs": {
+        "CreateContainerServiceRegistryLoginResult$registryLogin": "<p>An object that describes the log in information for the container service registry of your Lightsail account.</p>"
+      }
+    },
+    "ContainerServiceScale": {
+      "base": null,
+      "refs": {
+        "ContainerService$scale": "<p>The scale specification of the container service.</p> <p>The scale specifies the allocated compute nodes of the container service.</p>",
+        "CreateContainerServiceRequest$scale": "<p>The scale specification for the container service.</p> <p>The scale specifies the allocated compute nodes of the container service. The <code>power</code> and <code>scale</code> of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the <code>power</code> with the <code>scale</code> (the number of nodes) of the service.</p>",
+        "UpdateContainerServiceRequest$scale": "<p>The scale for the container service.</p> <p>The scale specifies the allocated compute nodes of the container service. The <code>power</code> and <code>scale</code> of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the <code>power</code> with the <code>scale</code> (the number of nodes) of the service.</p>"
+      }
+    },
+    "ContainerServiceState": {
+      "base": null,
+      "refs": {
+        "ContainerService$state": "<p>The current state of the container service.</p> <p>The state can be:</p> <ul> <li> <p> <code>Pending</code> - The container service is being created.</p> </li> <li> <p> <code>Ready</code> - The container service is created but does not have a container deployment.</p> </li> <li> <p> <code>Disabled</code> - The container service is disabled.</p> </li> <li> <p> <code>Updating</code> - The container service capacity or other setting is being updated.</p> </li> <li> <p> <code>Deploying</code> - The container service is launching a container deployment.</p> </li> <li> <p> <code>Running</code> - The container service is created and it has a container deployment.</p> </li> </ul>"
+      }
+    },
+    "ContainerServicesListResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CookieObject": {
       "base": "<p>Describes whether an Amazon Lightsail content delivery network (CDN) distribution forwards cookies to the origin and, if so, which ones.</p> <p>For the cookies that you specify, your distribution caches separate versions of the specified content based on the cookie values in viewer requests.</p>",
       "refs": {
@@ -574,6 +794,36 @@
       }
     },
     "CreateContactMethodResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerServiceDeploymentRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerServiceDeploymentResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerServiceRegistryLoginRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerServiceRegistryLoginResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerServiceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateContainerServiceResult": {
       "base": null,
       "refs": {
       }
@@ -764,6 +1014,26 @@
       }
     },
     "DeleteContactMethodResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContainerImageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContainerImageResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContainerServiceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteContainerServiceResult": {
       "base": null,
       "refs": {
       }
@@ -1165,6 +1435,19 @@
       "refs": {
       }
     },
+    "EndpointRequest": {
+      "base": "<p>Describes the settings of a public endpoint for an Amazon Lightsail container service.</p>",
+      "refs": {
+        "ContainerServiceDeploymentRequest$publicEndpoint": "<p>An object that describes the endpoint of the deployment.</p>",
+        "CreateContainerServiceDeploymentRequest$publicEndpoint": "<p>An object that describes the settings of the public endpoint for the container service.</p>"
+      }
+    },
+    "Environment": {
+      "base": null,
+      "refs": {
+        "Container$environment": "<p>The environment variables of the container.</p>"
+      }
+    },
     "ExportSnapshotRecord": {
       "base": "<p>Describes an export snapshot record.</p>",
       "refs": {
@@ -1282,6 +1565,71 @@
       }
     },
     "GetContactMethodsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerAPIMetadataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerAPIMetadataResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerImagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerImagesResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerLogRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerLogResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServiceDeploymentsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServiceDeploymentsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServiceMetricDataRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServiceMetricDataResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServicePowersRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServicePowersResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetContainerServicesRequest": {
       "base": null,
       "refs": {
       }
@@ -1967,12 +2315,21 @@
         "Certificate$revokedAt": "<p>The timestamp when the certificate was revoked. This value is present only when the certificate status is <code>REVOKED</code>.</p>",
         "CloudFormationStackRecord$createdAt": "<p>The date when the CloudFormation stack record was created.</p>",
         "ContactMethod$createdAt": "<p>The timestamp when the contact method was created.</p>",
+        "ContainerImage$createdAt": "<p>The timestamp when the container image was created.</p>",
+        "ContainerService$createdAt": "<p>The timestamp when the container service was created.</p>",
+        "ContainerServiceDeployment$createdAt": "<p>The timestamp when the deployment was created.</p>",
+        "ContainerServiceLogEvent$createdAt": "<p>The timestamp when the container service log event was created.</p>",
+        "ContainerServiceRegistryLogin$expiresAt": "<p>The timestamp of when the container image registry username and password expire.</p> <p>The log in credentials expire 12 hours after they are created, at which point you will need to create a new set of log in credentials using the <code>CreateContainerServiceRegistryLogin</code> action.</p>",
         "CreateRelationalDatabaseFromSnapshotRequest$restoreTime": "<p>The date and time to restore your database from.</p> <p>Constraints:</p> <ul> <li> <p>Must be before the latest restorable time for the database.</p> </li> <li> <p>Cannot be specified if the <code>use latest restorable time</code> parameter is <code>true</code>.</p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a restore time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the restore time.</p> </li> </ul>",
         "Disk$createdAt": "<p>The date when the disk was created.</p>",
         "DiskSnapshot$createdAt": "<p>The date when the disk snapshot was created.</p>",
         "Domain$createdAt": "<p>The date when the domain recordset was created.</p>",
         "ExportSnapshotRecord$createdAt": "<p>The date when the export snapshot record was created.</p>",
         "ExportSnapshotRecordSourceInfo$createdAt": "<p>The date when the source instance or disk snapshot was created.</p>",
+        "GetContainerLogRequest$startTime": "<p>The start of the time interval for which to get log data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, specify <code>1538424000</code> as the start time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
+        "GetContainerLogRequest$endTime": "<p>The end of the time interval for which to get log data.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 9 PM UTC, specify <code>1538427600</code> as the end time.</p> </li> </ul> <p>You can convert a human-friendly time to Unix time format using a converter like <a href=\"https://www.epochconverter.com/\">Epoch converter</a>.</p>",
+        "GetContainerServiceMetricDataRequest$startTime": "<p>The start time of the time period.</p>",
+        "GetContainerServiceMetricDataRequest$endTime": "<p>The end time of the time period.</p>",
         "GetDistributionLatestCacheResetResult$createTime": "<p>The timestamp of the last cache reset (e.g., <code>1479734909.17</code>) in Unix time format.</p>",
         "GetRelationalDatabaseLogEventsRequest$startTime": "<p>The start of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use a start time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the start time.</p> </li> </ul>",
         "GetRelationalDatabaseLogEventsRequest$endTime": "<p>The end of the time interval from which to get log events.</p> <p>Constraints:</p> <ul> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Specified in the Unix time format.</p> <p>For example, if you wish to use an end time of October 1, 2018, at 8 PM UTC, then you input <code>1538424000</code> as the end time.</p> </li> </ul>",
@@ -2190,6 +2547,7 @@
     "MetricDatapointList": {
       "base": null,
       "refs": {
+        "GetContainerServiceMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
         "GetDistributionMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
         "GetInstanceMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
         "GetLoadBalancerMetricDataResult$metricData": "<p>An array of objects that describe the metric data returned.</p>",
@@ -2207,6 +2565,7 @@
       "base": null,
       "refs": {
         "Alarm$period": "<p>The period, in seconds, over which the statistic is applied.</p>",
+        "GetContainerServiceMetricDataRequest$period": "<p>The granularity, in seconds, of the returned data points.</p> <p>All container service metric data is available in 5-minute (300 seconds) granularity.</p>",
         "GetDistributionMetricDataRequest$period": "<p>The granularity, in seconds, for the metric data points that will be returned.</p>",
         "GetInstanceMetricDataRequest$period": "<p>The granularity, in seconds, of the returned data points.</p> <p>The <code>StatusCheckFailed</code>, <code>StatusCheckFailed_Instance</code>, and <code>StatusCheckFailed_System</code> instance metric data is available in 1-minute (60 seconds) granularity. All other instance metric data is available in 5-minute (300 seconds) granularity.</p>",
         "GetLoadBalancerMetricDataRequest$period": "<p>The granularity, in seconds, of the returned data points.</p>",
@@ -2223,6 +2582,7 @@
     "MetricStatisticList": {
       "base": null,
       "refs": {
+        "GetContainerServiceMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of <code>Sum</code> / <code>SampleCount</code> during the specified period. By comparing this statistic with the <code>Minimum</code> and <code>Maximum</code> values, you can determine the full scope of a metric and how close the average use is to the <code>Minimum</code> and <code>Maximum</code> values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
         "GetDistributionMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
         "GetInstanceMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
         "GetLoadBalancerMetricDataRequest$statistics": "<p>The statistic for the metric.</p> <p>The following statistics are available:</p> <ul> <li> <p> <code>Minimum</code> - The lowest value observed during the specified period. Use this value to determine low volumes of activity for your application.</p> </li> <li> <p> <code>Maximum</code> - The highest value observed during the specified period. Use this value to determine high volumes of activity for your application.</p> </li> <li> <p> <code>Sum</code> - All values submitted for the matching metric added together. You can use this statistic to determine the total volume of a metric.</p> </li> <li> <p> <code>Average</code> - The value of Sum / SampleCount during the specified period. By comparing this statistic with the Minimum and Maximum values, you can determine the full scope of a metric and how close the average use is to the Minimum and Maximum values. This comparison helps you to know when to increase or decrease your resources.</p> </li> <li> <p> <code>SampleCount</code> - The count, or number, of data points used for the statistical calculation.</p> </li> </ul>",
@@ -2279,6 +2639,7 @@
         "CloudFormationStackRecordSourceInfo$arn": "<p>The Amazon Resource Name (ARN) of the export snapshot record.</p>",
         "ContactMethod$contactEndpoint": "<p>The destination of the contact method, such as an email address or a mobile phone number.</p>",
         "ContactMethod$arn": "<p>The Amazon Resource Name (ARN) of the contact method.</p>",
+        "ContainerService$arn": "<p>The Amazon Resource Name (ARN) of the container service.</p>",
         "CreateDiskFromSnapshotRequest$availabilityZone": "<p>The Availability Zone where you want to create the disk (e.g., <code>us-east-2a</code>). Choose the same Availability Zone as the Lightsail instance where you want to create the disk.</p> <p>Use the GetRegions operation to list the Availability Zones where Lightsail is currently available.</p>",
         "CreateDiskRequest$availabilityZone": "<p>The Availability Zone where you want to create the disk (e.g., <code>us-east-2a</code>). Use the same Availability Zone as the Lightsail instance to which you want to attach the disk.</p> <p>Use the <code>get regions</code> operation to list the Availability Zones where Lightsail is currently available.</p>",
         "CreateInstancesFromSnapshotRequest$bundleId": "<p>The bundle of specification information for your virtual private server (or <i>instance</i>), including the pricing plan (e.g., <code>micro_1_0</code>).</p>",
@@ -2566,6 +2927,12 @@
         "LoadBalancer$publicPorts": "<p>An array of public port settings for your load balancer. For HTTP, use port 80. For HTTPS, use port 443.</p>"
       }
     },
+    "PortMap": {
+      "base": null,
+      "refs": {
+        "Container$ports": "<p>The open firewall ports of the container.</p>"
+      }
+    },
     "PortState": {
       "base": null,
       "refs": {
@@ -2645,6 +3012,16 @@
         "Origin$regionName": "<p>The AWS Region name of the origin resource.</p>",
         "Region$name": "<p>The region name (e.g., <code>us-east-2</code>).</p>",
         "ResourceLocation$regionName": "<p>The AWS Region name.</p>"
+      }
+    },
+    "RegisterContainerImageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterContainerImageResult": {
+      "base": null,
+      "refs": {
       }
     },
     "RelationalDatabase": {
@@ -2811,6 +3188,7 @@
         "Alarm$location": "<p>An object that lists information about the location of the alarm.</p>",
         "CloudFormationStackRecord$location": "<p>A list of objects describing the Availability Zone and AWS Region of the CloudFormation stack record.</p>",
         "ContactMethod$location": null,
+        "ContainerService$location": "<p>An object that describes the location of the container service, such as the AWS Region and Availability Zone.</p>",
         "Disk$location": "<p>The AWS Region and Availability Zone where the disk is located.</p>",
         "DiskSnapshot$location": "<p>The AWS Region and Availability Zone where the disk snapshot was created.</p>",
         "Domain$location": "<p>The AWS Region and Availability Zones where the domain recordset was created.</p>",
@@ -2999,6 +3377,7 @@
         "Alarm$resourceType": "<p>The Lightsail resource type (e.g., <code>Alarm</code>).</p>",
         "CloudFormationStackRecord$resourceType": "<p>The Lightsail resource type (e.g., <code>CloudFormationStackRecord</code>).</p>",
         "ContactMethod$resourceType": "<p>The Lightsail resource type (e.g., <code>ContactMethod</code>).</p>",
+        "ContainerService$resourceType": "<p>The Lightsail resource type of the container service (i.e., <code>ContainerService</code>).</p>",
         "Disk$resourceType": "<p>The Lightsail resource type (e.g., <code>Disk</code>).</p>",
         "DiskSnapshot$resourceType": "<p>The Lightsail resource type (e.g., <code>DiskSnapshot</code>).</p>",
         "Domain$resourceType": "<p>The resource type. </p>",
@@ -3109,6 +3488,7 @@
     "StringList": {
       "base": null,
       "refs": {
+        "Container$command": "<p>The launch command for the container.</p>",
         "CookieObject$cookiesAllowList": "<p>The specific cookies to forward to your distribution's origin.</p>",
         "CreateInstancesFromSnapshotRequest$instanceNames": "<p>The names for your new instances.</p>",
         "CreateInstancesRequest$instanceNames": "<p>The names to use for your new Lightsail instances. Separate multiple values using quotation marks and commas, for example: <code>[\"MyFirstInstance\",\"MySecondInstance\"]</code> </p>",
@@ -3164,7 +3544,9 @@
       "refs": {
         "Certificate$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "CertificateSummary$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
+        "ContainerService$tags": "<p>The tag keys and optional values for the resource. For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "CreateCertificateRequest$tags": "<p>The tag keys and optional values to add to the certificate during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
+        "CreateContainerServiceRequest$tags": "<p>The tag keys and optional values for the container service.</p> <p>For more information about tags in Lightsail, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en/articles/amazon-lightsail-tags\">Lightsail Dev Guide</a>.</p>",
         "CreateDiskFromSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
         "CreateDiskRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
         "CreateDiskSnapshotRequest$tags": "<p>The tag keys and optional values to add to the resource during create.</p> <p>Use the <code>TagResource</code> action to tag a resource after it's created.</p>",
@@ -3259,6 +3641,16 @@
       "refs": {
       }
     },
+    "UpdateContainerServiceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateContainerServiceResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateDistributionBundleRequest": {
       "base": null,
       "refs": {
@@ -3325,6 +3717,8 @@
         "Alarm$notificationEnabled": "<p>Indicates whether the alarm is enabled.</p>",
         "Blueprint$isActive": "<p>A Boolean value indicating whether the blueprint is active. Inactive blueprints are listed to support customers with existing instances but are not necessarily available for launch of new instances. Blueprints are marked inactive when they become outdated due to operating system updates or new application releases.</p>",
         "Bundle$isActive": "<p>A Boolean value indicating whether the bundle is active.</p>",
+        "ContainerService$isDisabled": "<p>A Boolean value indicating whether the container service is disabled.</p>",
+        "ContainerServicePower$isActive": "<p>A Boolean value indicating whether the power is active and can be specified for container services.</p>",
         "CopySnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot of the specified source instance or disk.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CreateDiskFromSnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CreateInstancesFromSnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new instance from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
@@ -3340,11 +3734,11 @@
         "DiskInfo$isSystemDisk": "<p>A Boolean value indicating whether this disk is a system disk (has an operating system loaded on it).</p>",
         "DiskSnapshot$isFromAutoSnapshot": "<p>A Boolean value indicating whether the snapshot was created from an automatic snapshot.</p>",
         "DistributionBundle$isActive": "<p>Indicates whether the bundle is active, and can be specified for a new distribution.</p>",
-        "DomainEntry$isAlias": "<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer. You can include an alias (A type) record in your request, which points to a load balancer DNS name and routes traffic to your load balancer</p>",
+        "DomainEntry$isAlias": "<p>When <code>true</code>, specifies whether the domain entry is an alias used by the Lightsail load balancer. You can include an alias (A type) record in your request, which points to a load balancer DNS name and routes traffic to your load balancer.</p>",
         "GetBlueprintsRequest$includeInactive": "<p>A Boolean value indicating whether to include inactive results in your request.</p>",
         "GetBundlesRequest$includeInactive": "<p>A Boolean value that indicates whether to include inactive bundle results in your request.</p>",
         "GetRegionsRequest$includeAvailabilityZones": "<p>A Boolean value indicating whether to also include Availability Zones in your get regions request. Availability Zones are indicated with a letter: e.g., <code>us-east-2a</code>.</p>",
-        "GetRegionsRequest$includeRelationalDatabaseAvailabilityZones": "<p>&gt;A Boolean value indicating whether to also include Availability Zones for databases in your get regions request. Availability Zones are indicated with a letter (e.g., <code>us-east-2a</code>).</p>",
+        "GetRegionsRequest$includeRelationalDatabaseAvailabilityZones": "<p>A Boolean value indicating whether to also include Availability Zones for databases in your get regions request. Availability Zones are indicated with a letter (e.g., <code>us-east-2a</code>).</p>",
         "GetRelationalDatabaseLogEventsRequest$startFromHead": "<p>Parameter to specify if the log should start from head or tail. If <code>true</code> is specified, the log event starts from the head of the log. If <code>false</code> is specified, the log event starts from the tail of the log.</p> <note> <p>For PostgreSQL, the default value of <code>false</code> is the only option available.</p> </note>",
         "Instance$isStaticIp": "<p>A Boolean value indicating whether this instance has a static IP assigned to it.</p>",
         "InstanceSnapshot$isFromAutoSnapshot": "<p>A Boolean value indicating whether the snapshot was created from an automatic snapshot.</p>",
@@ -3365,6 +3759,7 @@
         "RelationalDatabaseParameter$isModifiable": "<p>A Boolean value indicating whether the parameter can be modified.</p>",
         "StaticIp$isAttached": "<p>A Boolean value indicating whether the static IP is attached.</p>",
         "StopInstanceRequest$force": "<p>When set to <code>True</code>, forces a Lightsail instance that is stuck in a <code>stopping</code> state to stop.</p> <important> <p>Only use the <code>force</code> parameter if your instance is stuck in the <code>stopping</code> state. In any other state, your instance should stop normally without adding this parameter to your API request.</p> </important>",
+        "UpdateContainerServiceRequest$isDisabled": "<p>A Boolean value to indicate whether the container service is disabled.</p>",
         "UpdateDistributionRequest$isEnabled": "<p>Indicates whether to enable the distribution.</p>",
         "UpdateRelationalDatabaseRequest$rotateMasterUserPassword": "<p>When <code>true</code>, the master user password is changed to a new strong password generated by Lightsail.</p> <p>Use the <code>get relational database master user password</code> operation to get the new password.</p>",
         "UpdateRelationalDatabaseRequest$enableBackupRetention": "<p>When <code>true</code>, enables automated backup retention for your database.</p> <p>Updates are applied during the next maintenance window because this can result in an outage.</p>",
@@ -3390,6 +3785,9 @@
       "refs": {
         "Bundle$price": "<p>The price in US dollars (e.g., <code>5.0</code>) of the bundle.</p>",
         "Bundle$ramSizeInGb": "<p>The amount of RAM in GB (e.g., <code>2.0</code>).</p>",
+        "ContainerServicePower$price": "<p>The monthly price of the power in USD.</p>",
+        "ContainerServicePower$cpuCount": "<p>The number of vCPUs included in the power.</p>",
+        "ContainerServicePower$ramSizeInGb": "<p>The amount of RAM (in GB) of the power.</p>",
         "DistributionBundle$price": "<p>The monthly price, in US dollars, of the bundle.</p>",
         "InstanceHardware$ramSizeInGb": "<p>The amount of RAM in GB on the instance (e.g., <code>1.0</code>).</p>",
         "RelationalDatabaseBundle$price": "<p>The cost of the database bundle in US currency.</p>",
@@ -3408,6 +3806,12 @@
         "Bundle$diskSizeInGb": "<p>The size of the SSD (e.g., <code>30</code>).</p>",
         "Bundle$power": "<p>A numeric value that represents the power of the bundle (e.g., <code>500</code>). You can use the bundle's power value in conjunction with a blueprint's minimum power value to determine whether the blueprint will run on the bundle. For example, you need a bundle with a power value of 500 or more to create an instance that uses a blueprint with a minimum power value of 500.</p>",
         "Bundle$transferPerMonthInGb": "<p>The data transfer rate per month in GB (e.g., <code>2000</code>).</p>",
+        "ContainerServiceDeployment$version": "<p>The version number of the deployment.</p>",
+        "ContainerServiceEndpoint$containerPort": "<p>The port of the specified container to which traffic is forwarded to.</p>",
+        "ContainerServiceHealthCheckConfig$healthyThreshold": "<p>The number of consecutive health checks successes required before moving the container to the <code>Healthy</code> state.</p>",
+        "ContainerServiceHealthCheckConfig$unhealthyThreshold": "<p>The number of consecutive health check failures required before moving the container to the <code>Unhealthy</code> state.</p>",
+        "ContainerServiceHealthCheckConfig$timeoutSeconds": "<p>The amount of time, in seconds, during which no response means a failed health check. You may specify between 2 and 60 seconds.</p>",
+        "ContainerServiceHealthCheckConfig$intervalSeconds": "<p>The approximate interval, in seconds, between health checks of an individual container. You may specify between 5 and 300 seconds.</p>",
         "CreateDiskFromSnapshotRequest$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
         "CreateDiskRequest$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
         "Disk$sizeInGb": "<p>The size of the disk in GB.</p>",
@@ -3417,6 +3821,7 @@
         "DiskSnapshot$sizeInGb": "<p>The size of the disk in GB.</p>",
         "DiskSnapshotInfo$sizeInGb": "<p>The size of the disk in GB (e.g., <code>32</code>).</p>",
         "DistributionBundle$transferPerMonthInGb": "<p>The monthly network transfer quota of the bundle.</p>",
+        "EndpointRequest$containerPort": "<p>The port of the container to which traffic is forwarded to.</p>",
         "GetRelationalDatabaseEventsRequest$durationInMinutes": "<p>The number of minutes in the past from which to retrieve events. For example, to get all events from the past 2 hours, enter 120.</p> <p>Default: <code>60</code> </p> <p>The minimum is 1 and the maximum is 14 days (20160 minutes).</p>",
         "InstanceHardware$cpuCount": "<p>The number of vCPUs the instance has.</p>",
         "InstanceSnapshot$sizeInGb": "<p>The size in GB of the SSD.</p>",
@@ -3468,6 +3873,26 @@
         "CacheBehaviorPerPath$path": "<p>The path to a directory or file to cached, or not cache. Use an asterisk symbol to specify wildcard directories (<code>path/to/assets/*</code>), and file types (<code>*.html, *jpg, *js</code>). Directories and file paths are case-sensitive.</p> <p>Examples:</p> <ul> <li> <p>Specify the following to cache all files in the document root of an Apache web server running on a Lightsail instance.</p> <p> <code>var/www/html/</code> </p> </li> <li> <p>Specify the following file to cache only the index page in the document root of an Apache web server.</p> <p> <code>var/www/html/index.html</code> </p> </li> <li> <p>Specify the following to cache only the .html files in the document root of an Apache web server.</p> <p> <code>var/www/html/*.html</code> </p> </li> <li> <p>Specify the following to cache only the .jpg, .png, and .gif files in the images sub-directory of the document root of an Apache web server.</p> <p> <code>var/www/html/images/*.jpg</code> </p> <p> <code>var/www/html/images/*.png</code> </p> <p> <code>var/www/html/images/*.gif</code> </p> <p>Specify the following to cache all files in the images sub-directory of the document root of an Apache web server.</p> <p> <code>var/www/html/images/</code> </p> </li> </ul>",
         "Certificate$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail certificate. This code enables our support team to look up your Lightsail information more easily.</p>",
         "ContactMethod$supportCode": "<p>The support code. Include this code in your email to support when you have questions about your Lightsail contact method. This code enables our support team to look up your Lightsail information more easily.</p>",
+        "Container$image": "<p>The name of the image used for the container.</p> <p>Container images sourced from your Lightsail container service, that are registered and stored on your service, start with a colon (<code>:</code>). For example, <code>:container-service-1.mystaticwebsite.1</code>. Container images sourced from a public registry like Docker Hub don't start with a colon. For example, <code>nginx:latest</code> or <code>nginx</code>.</p>",
+        "ContainerImage$image": "<p>The name of the container image.</p>",
+        "ContainerImage$digest": "<p>The digest of the container image.</p>",
+        "ContainerService$powerId": "<p>The ID of the power of the container service.</p>",
+        "ContainerService$principalArn": "<p>The principal ARN of the container service.</p> <p>The principal ARN can be used to create a trust relationship between your standard AWS account and your Lightsail container service. This allows you to give your service permission to access resources in your standard AWS account.</p>",
+        "ContainerService$privateDomainName": "<p>The private domain name of the container service.</p> <p>The private domain name is accessible only by other resources within the default virtual private cloud (VPC) of your Lightsail account.</p>",
+        "ContainerService$url": "<p>The publicly accessible URL of the container service.</p> <p>If no public endpoint is specified in the <code>currentDeployment</code>, this URL returns a 404 response.</p>",
+        "ContainerServiceEndpoint$containerName": "<p>The name of the container entry of the deployment that the endpoint configuration applies to.</p>",
+        "ContainerServiceHealthCheckConfig$path": "<p>The path on the container on which to perform the health check.</p>",
+        "ContainerServiceHealthCheckConfig$successCodes": "<p>The HTTP codes to use when checking for a successful response from a container. You can specify values between 200 and 499.</p>",
+        "ContainerServiceLogEvent$message": "<p>The message of the container service log event.</p>",
+        "ContainerServiceMetadataEntry$key": null,
+        "ContainerServiceMetadataEntry$value": null,
+        "ContainerServicePower$powerId": "<p>The ID of the power (e.g., <code>nano-1</code>).</p>",
+        "ContainerServicePower$name": "<p>The friendly name of the power (e.g., <code>nano</code>).</p>",
+        "ContainerServicePublicDomains$key": null,
+        "ContainerServicePublicDomainsList$member": null,
+        "ContainerServiceRegistryLogin$username": "<p>The container service registry username to use to push container images to the container image registry of a Lightsail account.</p>",
+        "ContainerServiceRegistryLogin$password": "<p>The container service registry password to use to push container images to the container image registry of a Lightsail account</p>",
+        "ContainerServiceRegistryLogin$registry": "<p>The address to use to push container images to the container image registry of a Lightsail account.</p>",
         "CopySnapshotRequest$sourceResourceName": "<p>The name of the source instance or disk from which the source automatic snapshot was created.</p> <p>Constraint:</p> <ul> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CopySnapshotRequest$restoreDate": "<p>The date of the source automatic snapshot to copy. Use the <code>get auto snapshots</code> operation to identify the dates of the available automatic snapshots.</p> <p>Constraints:</p> <ul> <li> <p>Must be specified in <code>YYYY-MM-DD</code> format.</p> </li> <li> <p>This parameter cannot be defined together with the <code>use latest restorable auto snapshot</code> parameter. The <code>restore date</code> and <code>use latest restorable auto snapshot</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
         "CreateDiskFromSnapshotRequest$sourceDiskName": "<p>The name of the source disk from which the source automatic snapshot was created.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>disk snapshot name</code> parameter. The <code>source disk name</code> and <code>disk snapshot name</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Lightsail Dev Guide</a>.</p> </li> </ul>",
@@ -3489,6 +3914,7 @@
         "CreateRelationalDatabaseRequest$masterUsername": "<p>The master user name for your new database.</p> <p>Constraints:</p> <ul> <li> <p>Master user name is required.</p> </li> <li> <p>Must contain from 1 to 16 alphanumeric characters.</p> </li> <li> <p>The first character must be a letter.</p> </li> <li> <p>Cannot be a reserved word for the database engine you choose.</p> <p>For more information about reserved words in MySQL 5.6 or 5.7, see the Keywords and Reserved Words articles for <a href=\"https://dev.mysql.com/doc/refman/5.6/en/keywords.html\">MySQL 5.6</a> or <a href=\"https://dev.mysql.com/doc/refman/5.7/en/keywords.html\">MySQL 5.7</a> respectively.</p> </li> </ul>",
         "CreateRelationalDatabaseRequest$preferredBackupWindow": "<p>The daily time range during which automated backups are created for your new database if automated backups are enabled.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. For more information about the preferred backup window time blocks for each region, see the <a href=\"https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_WorkingWithAutomatedBackups.html#USER_WorkingWithAutomatedBackups.BackupWindow\">Working With Backups</a> guide in the Amazon Relational Database Service (Amazon RDS) documentation.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>hh24:mi-hh24:mi</code> format.</p> <p>Example: <code>16:00-16:30</code> </p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Must not conflict with the preferred maintenance window.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> </ul>",
         "CreateRelationalDatabaseRequest$preferredMaintenanceWindow": "<p>The weekly time range during which system maintenance can occur on your new database.</p> <p>The default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.</p> <p>Constraints:</p> <ul> <li> <p>Must be in the <code>ddd:hh24:mi-ddd:hh24:mi</code> format.</p> </li> <li> <p>Valid days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.</p> </li> <li> <p>Must be at least 30 minutes.</p> </li> <li> <p>Specified in Coordinated Universal Time (UTC).</p> </li> <li> <p>Example: <code>Tue:17:00-Tue:17:30</code> </p> </li> </ul>",
+        "DeleteContainerImageRequest$image": "<p>The name of the container image to delete from the container service.</p> <p>Use the <code>GetContainerImages</code> action to get the name of the container images that are registered to a container service.</p> <note> <p>Container images sourced from your Lightsail container service, that are registered and stored on your service, start with a colon (<code>:</code>). For example, <code>:container-service-1.mystaticwebsite.1</code>. Container images sourced from a public registry like Docker Hub don't start with a colon. For example, <code>nginx:latest</code> or <code>nginx</code>.</p> </note>",
         "Disk$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "Disk$path": "<p>The disk path.</p>",
         "Disk$attachmentState": "<p>(Deprecated) The attachment state of the disk.</p> <note> <p>In releases prior to November 14, 2017, this parameter returned <code>attached</code> for system disks in the API response. It is now deprecated, but still included in the response. Use <code>isAttached</code> instead.</p> </note>",
@@ -3500,58 +3926,65 @@
         "Domain$supportCode": "<p>The support code. Include this code in your email to support when you have questions about an instance or another resource in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "DomainEntry$target": "<p>The target AWS name server (e.g., <code>ns-111.awsdns-22.com.</code>).</p> <p>For Lightsail load balancers, the value looks like <code>ab1234c56789c6b86aba6fb203d443bc-123456789.us-east-2.elb.amazonaws.com</code>. Be sure to also set <code>isAlias</code> to <code>true</code> when setting up an A record for a load balancer.</p>",
         "DomainEntryOptions$value": null,
+        "EndpointRequest$containerName": "<p>The name of the container for the endpoint.</p>",
+        "Environment$key": null,
+        "Environment$value": null,
         "GetActiveNamesRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetActiveNames</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetActiveNamesResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetActiveNames</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetActiveNamesResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetActiveNames</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetAlarmsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetAlarms</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetAlarmsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetAlarms</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetAlarmsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetAlarms</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetBlueprintsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetBlueprints</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetBlueprintsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetBlueprints</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetBlueprintsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetBlueprints</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetBundlesRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetBundles</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetBundlesResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetBundles</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetBundlesResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetBundles</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetCloudFormationStackRecordsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetClouFormationStackRecords</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetCloudFormationStackRecordsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetCloudFormationStackRecords</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetCloudFormationStackRecordsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetCloudFormationStackRecords</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetContainerLogRequest$containerName": "<p>The name of the container that is either running or previously ran on the container service for which to return a log.</p>",
+        "GetContainerLogRequest$filterPattern": "<p>The pattern to use to filter the returned log events to a specific term.</p> <p>The following are a few examples of filter patterns that you can specify:</p> <ul> <li> <p>To return all log events, specify a filter pattern of <code>\"\"</code>.</p> </li> <li> <p>To exclude log events that contain the <code>ERROR</code> term, and return all other log events, specify a filter pattern of <code>\"-ERROR\"</code>.</p> </li> <li> <p>To return log events that contain the <code>ERROR</code> term, specify a filter pattern of <code>\"ERROR\"</code>.</p> </li> <li> <p>To return log events that contain both the <code>ERROR</code> and <code>Exception</code> terms, specify a filter pattern of <code>\"ERROR Exception\"</code>.</p> </li> <li> <p>To return log events that contain the <code>ERROR</code> <i>or</i> the <code>Exception</code> term, specify a filter pattern of <code>\"?ERROR ?Exception\"</code>.</p> </li> </ul>",
+        "GetContainerLogRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetContainerLog</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
+        "GetContainerLogResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetContainerLog</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetDiskSnapshotsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDiskSnapshots</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetDiskSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDiskSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetDiskSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDiskSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetDisksRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDisks</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetDisksResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDisks</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetDisksResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDisks</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetDistributionLatestCacheResetResult$status": "<p>The status of the last cache reset.</p>",
         "GetDistributionsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDistributions</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
         "GetDistributionsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDistributions</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetDomainsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetDomains</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetDomainsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDomains</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetDomainsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetDomains</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetExportSnapshotRecordsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetExportSnapshotRecords</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetExportSnapshotRecordsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetExportSnapshotRecords</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetExportSnapshotRecordsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetExportSnapshotRecords</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetInstanceSnapshotsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetInstanceSnapshots</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetInstanceSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetInstanceSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetInstanceSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetInstanceSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetInstancesRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetInstances</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetInstancesResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetInstances</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetInstancesResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetInstances</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetKeyPairsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetKeyPairs</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetKeyPairsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetKeyPairs</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetKeyPairsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetKeyPairs</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetLoadBalancersRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetLoadBalancers</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetLoadBalancersResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetLoadBalancers</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetLoadBalancersResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetLoadBalancers</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetOperationsForResourceRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetOperationsForResource</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
         "GetOperationsForResourceResult$nextPageCount": "<p>(Deprecated) Returns the number of pages of results that remain.</p> <note> <p>In releases prior to June 12, 2017, this parameter returned <code>null</code> by the API. It is now deprecated, and the API returns the <code>next page token</code> parameter instead.</p> </note>",
-        "GetOperationsForResourceResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetOperationsForResource</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetOperationsForResourceResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetOperationsForResource</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetOperationsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetOperations</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetOperationsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetOperations</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetOperationsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetOperations</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetRelationalDatabaseBlueprintsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabaseBlueprints</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetRelationalDatabaseBlueprintsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseBlueprints</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetRelationalDatabaseBlueprintsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseBlueprints</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetRelationalDatabaseBundlesRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabaseBundles</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetRelationalDatabaseBundlesResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseBundles</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetRelationalDatabaseBundlesResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseBundles</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetRelationalDatabaseEventsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabaseEvents</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetRelationalDatabaseEventsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseEvents</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetRelationalDatabaseEventsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseEvents</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetRelationalDatabaseLogEventsRequest$logStreamName": "<p>The name of the log stream.</p> <p>Use the <code>get relational database log streams</code> operation to get a list of available log streams.</p>",
         "GetRelationalDatabaseLogEventsRequest$pageToken": "<p>The token to advance to the next or previous page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabaseLogEvents</code> request. If your results are paginated, the response will return a next forward token and/or next backward token that you can specify as the page token in a subsequent request.</p>",
         "GetRelationalDatabaseLogEventsResult$nextBackwardToken": "<p>A token used for advancing to the previous page of results from your get relational database log events request.</p>",
         "GetRelationalDatabaseLogEventsResult$nextForwardToken": "<p>A token used for advancing to the next page of results from your get relational database log events request.</p>",
         "GetRelationalDatabaseParametersRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabaseParameters</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetRelationalDatabaseParametersResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseParameters</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetRelationalDatabaseParametersResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseParameters</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetRelationalDatabaseSnapshotsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabaseSnapshots</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetRelationalDatabaseSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetRelationalDatabaseSnapshotsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabaseSnapshots</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetRelationalDatabasesRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetRelationalDatabases</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetRelationalDatabasesResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabases</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetRelationalDatabasesResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetRelationalDatabases</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "GetStaticIpsRequest$pageToken": "<p>The token to advance to the next page of results from your request.</p> <p>To get a page token, perform an initial <code>GetStaticIps</code> request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.</p>",
-        "GetStaticIpsResult$nextPageToken": "<p>The token to advance to the next page of resutls from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetStaticIps</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
+        "GetStaticIpsResult$nextPageToken": "<p>The token to advance to the next page of results from your request.</p> <p>A next page token is not returned if there are no more results to display.</p> <p>To get the next page of results, perform another <code>GetStaticIps</code> request and specify the next page token using the <code>pageToken</code> parameter.</p>",
         "HostKeyAttributes$algorithm": "<p>The SSH host key algorithm or the RDP certificate format.</p> <p>For SSH host keys, the algorithm may be <code>ssh-rsa</code>, <code>ecdsa-sha2-nistp256</code>, <code>ssh-ed25519</code>, etc. For RDP certificates, the algorithm is always <code>x509-cert</code>.</p>",
         "HostKeyAttributes$publicKey": "<p>The public SSH host key or the RDP certificate.</p>",
         "HostKeyAttributes$fingerprintSHA1": "<p>The SHA-1 fingerprint of the returned SSH host key or RDP certificate.</p> <ul> <li> <p>Example of an SHA-1 SSH fingerprint:</p> <p> <code>SHA1:1CHH6FaAaXjtFOsR/t83vf91SR0</code> </p> </li> <li> <p>Example of an SHA-1 RDP fingerprint:</p> <p> <code>af:34:51:fe:09:f0:e0:da:b8:4e:56:ca:60:c2:10:ff:38:06:db:45</code> </p> </li> </ul>",
@@ -3598,9 +4031,11 @@
         "PasswordData$ciphertext": "<p>The encrypted password. Ciphertext will be an empty string if access to your new instance is not ready yet. When you create an instance, it can take up to 15 minutes for the instance to be ready.</p> <note> <p>If you use the default key pair (<code>LightsailDefaultKeyPair</code>), the decrypted password will be available in the password field.</p> <p>If you are using a custom key pair, you need to use your own means of decryption.</p> <p>If you change the Administrator password on the instance, Lightsail will continue to return the original ciphertext value. When accessing the instance using RDP, you need to manually enter the Administrator password after changing it from the default.</p> </note>",
         "PendingModifiedRelationalDatabaseValues$masterUserPassword": "<p>The password for the master user of the database.</p>",
         "PendingModifiedRelationalDatabaseValues$engineVersion": "<p>The database engine version.</p>",
+        "PortMap$key": null,
         "Region$continentCode": "<p>The continent code (e.g., <code>NA</code>, meaning North America).</p>",
         "Region$description": "<p>The description of the AWS Region (e.g., <code>This region is recommended to serve users in the eastern United States and eastern Canada</code>).</p>",
         "Region$displayName": "<p>The display name (e.g., <code>Ohio</code>).</p>",
+        "RegisterContainerImageRequest$digest": "<p>The digest of the container image to be registered.</p>",
         "RelationalDatabase$supportCode": "<p>The support code for the database. Include this code in your email to support when you have questions about a database in Lightsail. This code enables our support team to look up your Lightsail information more easily.</p>",
         "RelationalDatabase$masterDatabaseName": "<p>The name of the master database created when the Lightsail database resource is created.</p>",
         "RelationalDatabase$secondaryAvailabilityZone": "<p>Describes the secondary Availability Zone of a high availability database.</p> <p>The secondary database is used for failover support of a high availability database.</p>",
