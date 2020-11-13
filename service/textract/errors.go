@@ -26,7 +26,7 @@ const (
 	// "DocumentTooLargeException".
 	//
 	// The document can't be processed because it's too large. The maximum document
-	// size for synchronous operations 5 MB. The maximum document size for asynchronous
+	// size for synchronous operations 10 MB. The maximum document size for asynchronous
 	// operations is 500 MB for PDF files.
 	ErrCodeDocumentTooLargeException = "DocumentTooLargeException"
 
@@ -56,6 +56,13 @@ const (
 	//
 	// An invalid job identifier was passed to GetDocumentAnalysis or to GetDocumentAnalysis.
 	ErrCodeInvalidJobIdException = "InvalidJobIdException"
+
+	// ErrCodeInvalidKMSKeyException for service response error code
+	// "InvalidKMSKeyException".
+	//
+	// Indicates you do not have decrypt permissions with the KMS key entered, or
+	// the KMS key was entered incorrectly.
+	ErrCodeInvalidKMSKeyException = "InvalidKMSKeyException"
 
 	// ErrCodeInvalidParameterException for service response error code
 	// "InvalidParameterException".
@@ -115,6 +122,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"IdempotentParameterMismatchException":   newErrorIdempotentParameterMismatchException,
 	"InternalServerError":                    newErrorInternalServerError,
 	"InvalidJobIdException":                  newErrorInvalidJobIdException,
+	"InvalidKMSKeyException":                 newErrorInvalidKMSKeyException,
 	"InvalidParameterException":              newErrorInvalidParameterException,
 	"InvalidS3ObjectException":               newErrorInvalidS3ObjectException,
 	"LimitExceededException":                 newErrorLimitExceededException,

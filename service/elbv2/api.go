@@ -4185,7 +4185,8 @@ type CreateListenerInput struct {
 
 	// The protocol for connections from clients to the load balancer. For Application
 	// Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load
-	// Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You cannot
+	// Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can’t
+	// specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You cannot
 	// specify a protocol for a Gateway Load Balancer.
 	Protocol *string `type:"string" enum:"ProtocolEnum"`
 
@@ -4331,10 +4332,9 @@ type CreateLoadBalancerInput struct {
 	// pool (CoIP pool).
 	CustomerOwnedIpv4Pool *string `type:"string"`
 
-	// [Application Load Balancers] The type of IP addresses used by the subnets
-	// for your load balancer. The possible values are ipv4 (for IPv4 addresses)
-	// and dualstack (for IPv4 and IPv6 addresses). Internal load balancers must
-	// use ipv4.
+	// The type of IP addresses used by the subnets for your load balancer. The
+	// possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and
+	// IPv6 addresses). Internal load balancers must use ipv4.
 	IpAddressType *string `type:"string" enum:"IpAddressType"`
 
 	// The name of the load balancer.
@@ -4380,7 +4380,8 @@ type CreateLoadBalancerInput struct {
 	// Zones. You can specify one Elastic IP address per subnet if you need static
 	// IP addresses for your internet-facing load balancer. For internal load balancers,
 	// you can specify one private IP address per subnet from the IPv4 range of
-	// the subnet.
+	// the subnet. For internet-facing load balancer, you can specify one IPv6 address
+	// per subnet.
 	//
 	// [Gateway Load Balancers] You can specify subnets from one or more Availability
 	// Zones. You cannot specify Elastic IP addresses for your subnets.
@@ -6673,6 +6674,9 @@ type LoadBalancerAddress struct {
 	// an internal-facing load balancer.
 	AllocationId *string `type:"string"`
 
+	// [Network Load Balancers] The IPv6 address.
+	IPv6Address *string `type:"string"`
+
 	// The static IP address.
 	IpAddress *string `type:"string"`
 
@@ -6693,6 +6697,12 @@ func (s LoadBalancerAddress) GoString() string {
 // SetAllocationId sets the AllocationId field's value.
 func (s *LoadBalancerAddress) SetAllocationId(v string) *LoadBalancerAddress {
 	s.AllocationId = &v
+	return s
+}
+
+// SetIPv6Address sets the IPv6Address field's value.
+func (s *LoadBalancerAddress) SetIPv6Address(v string) *LoadBalancerAddress {
+	s.IPv6Address = &v
 	return s
 }
 
@@ -6750,6 +6760,10 @@ type LoadBalancerAttribute struct {
 	//    * routing.http2.enabled - Indicates whether HTTP/2 is enabled. The value
 	//    is true or false. The default is true. Elastic Load Balancing requires
 	//    that message header names contain only alphanumeric characters and hyphens.
+	//
+	//    * waf.fail_open.enabled - Indicates whether to allow a WAF-enabled load
+	//    balancer to route requests to targets if it is unable to forward the request
+	//    to AWS WAF. The value is true or false. The default is false.
 	//
 	// The following attribute is supported by Network Load Balancers and Gateway
 	// Load Balancers:
@@ -6899,8 +6913,9 @@ type ModifyListenerInput struct {
 
 	// The protocol for connections from clients to the load balancer. Application
 	// Load Balancers support the HTTP and HTTPS protocols. Network Load Balancers
-	// support the TCP, TLS, UDP, and TCP_UDP protocols. You cannot specify a protocol
-	// for a Gateway Load Balancer.
+	// support the TCP, TLS, UDP, and TCP_UDP protocols. You can’t change the
+	// protocol to UDP or TCP_UDP if dual-stack mode is enabled. You cannot specify
+	// a protocol for a Gateway Load Balancer.
 	Protocol *string `type:"string" enum:"ProtocolEnum"`
 
 	// [HTTPS and TLS listeners] The security policy that defines which protocols
@@ -8108,7 +8123,8 @@ type SetIpAddressTypeInput struct {
 
 	// The IP address type. The possible values are ipv4 (for IPv4 addresses) and
 	// dualstack (for IPv4 and IPv6 addresses). Internal load balancers must use
-	// ipv4.
+	// ipv4. You can’t specify dualstack for a load balancer with a UDP or TCP_UDP
+	// listener.
 	//
 	// IpAddressType is a required field
 	IpAddressType *string `type:"string" required:"true" enum:"IpAddressType"`
@@ -8329,6 +8345,13 @@ func (s *SetSecurityGroupsOutput) SetSecurityGroupIds(v []*string) *SetSecurityG
 type SetSubnetsInput struct {
 	_ struct{} `type:"structure"`
 
+	// [Network Load Balancers] The type of IP addresses used by the subnets for
+	// your load balancer. The possible values are ipv4 (for IPv4 addresses) and
+	// dualstack (for IPv4 and IPv6 addresses). You can’t specify dualstack for
+	// a load balancer with a UDP or TCP_UDP listener. Internal load balancers must
+	// use ipv4.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
+
 	// The Amazon Resource Name (ARN) of the load balancer.
 	//
 	// LoadBalancerArn is a required field
@@ -8340,16 +8363,32 @@ type SetSubnetsInput struct {
 	// [Application Load Balancers] You must specify subnets from at least two Availability
 	// Zones. You cannot specify Elastic IP addresses for your subnets.
 	//
+	// [Application Load Balancers on Outposts] You must specify one Outpost subnet.
+	//
+	// [Application Load Balancers on Local Zones] You can specify subnets from
+	// one or more Local Zones.
+	//
 	// [Network Load Balancers] You can specify subnets from one or more Availability
-	// Zones. If you need static IP addresses for your internet-facing load balancer,
-	// you can specify one Elastic IP address per subnet. For internal load balancers,
+	// Zones. You can specify one Elastic IP address per subnet if you need static
+	// IP addresses for your internet-facing load balancer. For internal load balancers,
 	// you can specify one private IP address per subnet from the IPv4 range of
-	// the subnet.
+	// the subnet. For internet-facing load balancer, you can specify one IPv6 address
+	// per subnet.
 	SubnetMappings []*SubnetMapping `type:"list"`
 
-	// The IDs of the public subnets. You must specify subnets from at least two
-	// Availability Zones. You can specify only one subnet per Availability Zone.
-	// You must specify either subnets or subnet mappings.
+	// The IDs of the public subnets. You can specify only one subnet per Availability
+	// Zone. You must specify either subnets or subnet mappings.
+	//
+	// [Application Load Balancers] You must specify subnets from at least two Availability
+	// Zones.
+	//
+	// [Application Load Balancers on Outposts] You must specify one Outpost subnet.
+	//
+	// [Application Load Balancers on Local Zones] You can specify subnets from
+	// one or more Local Zones.
+	//
+	// [Network Load Balancers] You can specify subnets from one or more Availability
+	// Zones.
 	Subnets []*string `type:"list"`
 }
 
@@ -8376,6 +8415,12 @@ func (s *SetSubnetsInput) Validate() error {
 	return nil
 }
 
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *SetSubnetsInput) SetIpAddressType(v string) *SetSubnetsInput {
+	s.IpAddressType = &v
+	return s
+}
+
 // SetLoadBalancerArn sets the LoadBalancerArn field's value.
 func (s *SetSubnetsInput) SetLoadBalancerArn(v string) *SetSubnetsInput {
 	s.LoadBalancerArn = &v
@@ -8399,6 +8444,9 @@ type SetSubnetsOutput struct {
 
 	// Information about the subnets.
 	AvailabilityZones []*AvailabilityZone `type:"list"`
+
+	// [Network Load Balancers] The IP address type.
+	IpAddressType *string `type:"string" enum:"IpAddressType"`
 }
 
 // String returns the string representation
@@ -8414,6 +8462,12 @@ func (s SetSubnetsOutput) GoString() string {
 // SetAvailabilityZones sets the AvailabilityZones field's value.
 func (s *SetSubnetsOutput) SetAvailabilityZones(v []*AvailabilityZone) *SetSubnetsOutput {
 	s.AvailabilityZones = v
+	return s
+}
+
+// SetIpAddressType sets the IpAddressType field's value.
+func (s *SetSubnetsOutput) SetIpAddressType(v string) *SetSubnetsOutput {
+	s.IpAddressType = &v
 	return s
 }
 
@@ -8501,6 +8555,9 @@ type SubnetMapping struct {
 	// an internet-facing load balancer.
 	AllocationId *string `type:"string"`
 
+	// [Network Load Balancers] The IPv6 address.
+	IPv6Address *string `type:"string"`
+
 	// [Network Load Balancers] The private IPv4 address for an internal load balancer.
 	PrivateIPv4Address *string `type:"string"`
 
@@ -8521,6 +8578,12 @@ func (s SubnetMapping) GoString() string {
 // SetAllocationId sets the AllocationId field's value.
 func (s *SubnetMapping) SetAllocationId(v string) *SubnetMapping {
 	s.AllocationId = &v
+	return s
+}
+
+// SetIPv6Address sets the IPv6Address field's value.
+func (s *SubnetMapping) SetIPv6Address(v string) *SubnetMapping {
+	s.IPv6Address = &v
 	return s
 }
 
@@ -8932,7 +8995,11 @@ type TargetGroupAttribute struct {
 	//    contains a duplicate header field name or query parameter key, the load
 	//    balancer uses the last value sent by the client.
 	//
-	// The following attribute is supported only by Network Load Balancers:
+	// The following attributes are supported only by Network Load Balancers:
+	//
+	//    * deregistration_delay.connection_termination.enabled - Indicates whether
+	//    the load balancer terminates connections at the end of the deregistration
+	//    timeout. The value is true or false. The default is false.
 	//
 	//    * proxy_protocol_v2.enabled - Indicates whether Proxy Protocol version
 	//    2 is enabled. The value is true or false. The default is false.

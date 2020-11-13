@@ -110,7 +110,7 @@
       }
     },
     "DocumentTooLargeException": {
-      "base": "<p>The document can't be processed because it's too large. The maximum document size for synchronous operations 5 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>",
+      "base": "<p>The document can't be processed because it's too large. The maximum document size for synchronous operations 10 MB. The maximum document size for asynchronous operations is 500 MB for PDF files.</p>",
       "refs": {
       }
     },
@@ -268,6 +268,11 @@
       "refs": {
       }
     },
+    "InvalidKMSKeyException": {
+      "base": "<p> Indicates you do not have decrypt permissions with the KMS key entered, or the KMS key was entered incorrectly. </p>",
+      "refs": {
+      }
+    },
     "InvalidParameterException": {
       "base": "<p>An input parameter violated a constraint. For example, in synchronous operations, an <code>InvalidParameterException</code> exception occurs when neither of the <code>S3Object</code> or <code>Bytes</code> values are supplied in the <code>Document</code> request parameter. Validate your parameter before calling the API operation again.</p>",
       "refs": {
@@ -299,6 +304,13 @@
       "refs": {
         "StartDocumentAnalysisRequest$JobTag": "<p>An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).</p>",
         "StartDocumentTextDetectionRequest$JobTag": "<p>An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use <code>JobTag</code> to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).</p>"
+      }
+    },
+    "KMSKeyId": {
+      "base": null,
+      "refs": {
+        "StartDocumentAnalysisRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>",
+        "StartDocumentTextDetectionRequest$KMSKeyId": "<p>The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.</p>"
       }
     },
     "LimitExceededException": {
@@ -473,6 +485,12 @@
         "HumanLoopQuotaExceededException$ResourceType": "<p>The resource type.</p>",
         "HumanLoopQuotaExceededException$QuotaCode": "<p>The quota code.</p>",
         "HumanLoopQuotaExceededException$ServiceCode": "<p>The service code.</p>"
+      }
+    },
+    "TextType": {
+      "base": null,
+      "refs": {
+        "Block$TextType": "<p>The kind of text that Amazon Textract has detected. Can check for handwritten text and printed text.</p>"
       }
     },
     "ThrottlingException": {
