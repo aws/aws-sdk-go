@@ -49,6 +49,7 @@ const (
 	// "InvalidParameterException".
 	//
 	// Exception that indicates that the parameters passed to the API are invalid.
+	// If available, this exception includes details in additional properties.
 	ErrCodeInvalidParameterException = "InvalidParameterException"
 
 	// ErrCodeInvalidResourceException for service response error code
@@ -93,13 +94,15 @@ const (
 	// ErrCodeResourceAlreadyExistsException for service response error code
 	// "ResourceAlreadyExistsException".
 	//
-	// Exception indicating the specified resource already exists.
+	// Exception indicating the specified resource already exists. If available,
+	// this exception includes details in additional properties.
 	ErrCodeResourceAlreadyExistsException = "ResourceAlreadyExistsException"
 
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// Exception indicating the specified resource does not exist.
+	// Exception indicating the specified resource does not exist. If available,
+	// this exception includes details in additional properties.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 )
 

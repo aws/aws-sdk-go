@@ -100,6 +100,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidS3ObjectException"},
+        {"shape":"InvalidKMSKeyException"},
         {"shape":"UnsupportedDocumentException"},
         {"shape":"DocumentTooLargeException"},
         {"shape":"BadDocumentException"},
@@ -122,6 +123,7 @@
       "errors":[
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidS3ObjectException"},
+        {"shape":"InvalidKMSKeyException"},
         {"shape":"UnsupportedDocumentException"},
         {"shape":"DocumentTooLargeException"},
         {"shape":"BadDocumentException"},
@@ -174,6 +176,7 @@
         "BlockType":{"shape":"BlockType"},
         "Confidence":{"shape":"Percent"},
         "Text":{"shape":"String"},
+        "TextType":{"shape":"TextType"},
         "RowIndex":{"shape":"UInteger"},
         "ColumnIndex":{"shape":"UInteger"},
         "RowSpan":{"shape":"UInteger"},
@@ -432,6 +435,12 @@
       },
       "exception":true
     },
+    "InvalidKMSKeyException":{
+      "type":"structure",
+      "members":{
+      },
+      "exception":true
+    },
     "InvalidParameterException":{
       "type":"structure",
       "members":{
@@ -464,6 +473,12 @@
       "max":64,
       "min":1,
       "pattern":"[a-zA-Z0-9_.\\-:]+"
+    },
+    "KMSKeyId":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$"
     },
     "LimitExceededException":{
       "type":"structure",
@@ -606,7 +621,8 @@
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "JobTag":{"shape":"JobTag"},
         "NotificationChannel":{"shape":"NotificationChannel"},
-        "OutputConfig":{"shape":"OutputConfig"}
+        "OutputConfig":{"shape":"OutputConfig"},
+        "KMSKeyId":{"shape":"KMSKeyId"}
       }
     },
     "StartDocumentAnalysisResponse":{
@@ -623,7 +639,8 @@
         "ClientRequestToken":{"shape":"ClientRequestToken"},
         "JobTag":{"shape":"JobTag"},
         "NotificationChannel":{"shape":"NotificationChannel"},
-        "OutputConfig":{"shape":"OutputConfig"}
+        "OutputConfig":{"shape":"OutputConfig"},
+        "KMSKeyId":{"shape":"KMSKeyId"}
       }
     },
     "StartDocumentTextDetectionResponse":{
@@ -634,6 +651,13 @@
     },
     "StatusMessage":{"type":"string"},
     "String":{"type":"string"},
+    "TextType":{
+      "type":"string",
+      "enum":[
+        "HANDWRITING",
+        "PRINTED"
+      ]
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{

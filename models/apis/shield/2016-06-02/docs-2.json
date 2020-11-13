@@ -7,13 +7,17 @@
     "AssociateHealthCheck": "<p>Adds health-based detection to the Shield Advanced protection for a resource. Shield Advanced health-based detection uses the health of your AWS resource to improve responsiveness and accuracy in attack detection and mitigation. </p> <p>You define the health check in Route 53 and then associate it with your Shield Advanced protection. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html#ddos-advanced-health-check-option\">Shield Advanced Health-Based Detection</a> in the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/\">AWS WAF and AWS Shield Developer Guide</a>. </p>",
     "AssociateProactiveEngagementDetails": "<p>Initializes proactive engagement and sets the list of contacts for the DDoS Response Team (DRT) to use. You must provide at least one phone number in the emergency contact list. </p> <p>After you have initialized proactive engagement using this call, to disable or enable proactive engagement, use the calls <code>DisableProactiveEngagement</code> and <code>EnableProactiveEngagement</code>. </p> <note> <p>This call defines the list of email addresses and phone numbers that the DDoS Response Team (DRT) can use to contact you for escalations to the DRT and to initiate proactive customer support.</p> <p>The contacts that you provide in the request replace any contacts that were already defined. If you already have contacts defined and want to use them, retrieve the list using <code>DescribeEmergencyContactSettings</code> and then provide it to this call. </p> </note>",
     "CreateProtection": "<p>Enables AWS Shield Advanced for a specific AWS resource. The resource can be an Amazon CloudFront distribution, Elastic Load Balancing load balancer, AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route 53 hosted zone.</p> <p>You can add protection to only a single resource with each CreateProtection request. If you want to add protection to multiple resources at once, use the <a href=\"https://console.aws.amazon.com/waf/\">AWS WAF console</a>. For more information see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html\">Getting Started with AWS Shield Advanced</a> and <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html\">Add AWS Shield Advanced Protection to more AWS Resources</a>.</p>",
+    "CreateProtectionGroup": "<p>Creates a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
     "CreateSubscription": "<p>Activates AWS Shield Advanced for an account.</p> <p>When you initally create a subscription, your subscription is set to be automatically renewed at the end of the existing subscription period. You can change this by submitting an <code>UpdateSubscription</code> request. </p>",
     "DeleteProtection": "<p>Deletes an AWS Shield Advanced <a>Protection</a>.</p>",
+    "DeleteProtectionGroup": "<p>Removes the specified protection group.</p>",
     "DeleteSubscription": "<p>Removes AWS Shield Advanced from an account. AWS Shield Advanced requires a 1-year subscription commitment. You cannot delete a subscription prior to the completion of that commitment. </p>",
     "DescribeAttack": "<p>Describes the details of a DDoS attack. </p>",
+    "DescribeAttackStatistics": "<p>Provides information about the number and type of attacks AWS Shield has detected in the last year for all resources that belong to your account, regardless of whether you've defined Shield protections for them. This operation is available to Shield customers as well as to Shield Advanced customers.</p> <p>The operation returns data for the time range of midnight UTC, one year ago, to midnight UTC, today. For example, if the current time is <code>2020-10-26 15:39:32 PDT</code>, equal to <code>2020-10-26 22:39:32 UTC</code>, then the time range for the attack data returned is from <code>2019-10-26 00:00:00 UTC</code> to <code>2020-10-26 00:00:00 UTC</code>. </p> <p>The time range indicates the period covered by the attack statistics data items.</p>",
     "DescribeDRTAccess": "<p>Returns the current role and list of Amazon S3 log buckets used by the DDoS Response Team (DRT) to access your AWS account while assisting with attack mitigation.</p>",
     "DescribeEmergencyContactSettings": "<p>A list of email addresses and phone numbers that the DDoS Response Team (DRT) can use to contact you if you have proactive engagement enabled, for escalations to the DRT and to initiate proactive customer support.</p>",
     "DescribeProtection": "<p>Lists the details of a <a>Protection</a> object.</p>",
+    "DescribeProtectionGroup": "<p>Returns the specification for the specified protection group.</p>",
     "DescribeSubscription": "<p>Provides details about the AWS Shield Advanced subscription for an account.</p>",
     "DisableProactiveEngagement": "<p>Removes authorization from the DDoS Response Team (DRT) to notify contacts about escalations to the DRT and to initiate proactive customer support.</p>",
     "DisassociateDRTLogBucket": "<p>Removes the DDoS Response Team's (DRT) access to the specified Amazon S3 bucket containing your AWS WAF logs.</p> <p>To make a <code>DisassociateDRTLogBucket</code> request, you must be subscribed to the <a href=\"https://aws.amazon.com/premiumsupport/business-support/\">Business Support plan</a> or the <a href=\"https://aws.amazon.com/premiumsupport/enterprise-support/\">Enterprise Support plan</a>. However, if you are not subscribed to one of these support plans, but had been previously and had granted the DRT access to your account, you can submit a <code>DisassociateDRTLogBucket</code> request to remove this access.</p>",
@@ -22,8 +26,11 @@
     "EnableProactiveEngagement": "<p>Authorizes the DDoS Response Team (DRT) to use email and phone to notify contacts about escalations to the DRT and to initiate proactive customer support.</p>",
     "GetSubscriptionState": "<p>Returns the <code>SubscriptionState</code>, either <code>Active</code> or <code>Inactive</code>.</p>",
     "ListAttacks": "<p>Returns all ongoing DDoS attacks or all DDoS attacks during a specified time period.</p>",
+    "ListProtectionGroups": "<p>Retrieves the <a>ProtectionGroup</a> objects for the account.</p>",
     "ListProtections": "<p>Lists all <a>Protection</a> objects for the account.</p>",
+    "ListResourcesInProtectionGroup": "<p>Retrieves the resources that are included in the protection group. </p>",
     "UpdateEmergencyContactSettings": "<p>Updates the details of the list of email addresses and phone numbers that the DDoS Response Team (DRT) can use to contact you if you have proactive engagement enabled, for escalations to the DRT and to initiate proactive customer support.</p>",
+    "UpdateProtectionGroup": "<p>Updates an existing protection group. A protection group is a grouping of protected resources so they can be handled as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
     "UpdateSubscription": "<p>Updates the details of an existing subscription. Only enter values for parameters you want to change. Empty parameters are not updated.</p>"
   },
   "shapes": {
@@ -114,6 +121,18 @@
         "AttackProperty$AttackPropertyIdentifier": "<p>Defines the DDoS attack property information that is provided. The <code>WORDPRESS_PINGBACK_REFLECTOR</code> and <code>WORDPRESS_PINGBACK_SOURCE</code> values are valid only for WordPress reflective pingback DDoS attacks.</p>"
       }
     },
+    "AttackStatisticsDataItem": {
+      "base": "<p>A single attack statistics data record. This is returned by <a>DescribeAttackStatistics</a> along with a time range indicating the time period that the attack statistics apply to. </p>",
+      "refs": {
+        "AttackStatisticsDataList$member": null
+      }
+    },
+    "AttackStatisticsDataList": {
+      "base": null,
+      "refs": {
+        "DescribeAttackStatisticsResponse$DataItems": "<p>The data that describes the attacks detected during the time period.</p>"
+      }
+    },
     "AttackSummaries": {
       "base": null,
       "refs": {
@@ -149,6 +168,20 @@
         "AttackSummary$AttackVectors": "<p>The list of attacks for a specified time period.</p>"
       }
     },
+    "AttackVolume": {
+      "base": "<p>Information about the volume of attacks during the time period, included in an <a>AttackStatisticsDataItem</a>. If the accompanying <code>AttackCount</code> in the statistics object is zero, this setting might be empty.</p>",
+      "refs": {
+        "AttackStatisticsDataItem$AttackVolume": "<p>Information about the volume of attacks during the time period. If the accompanying <code>AttackCount</code> is zero, this setting might be empty.</p>"
+      }
+    },
+    "AttackVolumeStatistics": {
+      "base": "<p>Statistics objects for the various data types in <a>AttackVolume</a>. </p>",
+      "refs": {
+        "AttackVolume$BitsPerSecond": "<p>A statistics object that uses bits per second as the unit. This is included for network level attacks. </p>",
+        "AttackVolume$PacketsPerSecond": "<p>A statistics object that uses packets per second as the unit. This is included for network level attacks. </p>",
+        "AttackVolume$RequestsPerSecond": "<p>A statistics object that uses requests per second as the unit. This is included for application level attacks, and is only available for accounts that are subscribed to Shield Advanced.</p>"
+      }
+    },
     "AutoRenew": {
       "base": null,
       "refs": {
@@ -168,6 +201,16 @@
         "TopContributors$member": null
       }
     },
+    "CreateProtectionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateProtectionGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateProtectionRequest": {
       "base": null,
       "refs": {
@@ -184,6 +227,16 @@
       }
     },
     "CreateSubscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProtectionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteProtectionGroupResponse": {
       "base": null,
       "refs": {
       }
@@ -218,6 +271,16 @@
       "refs": {
       }
     },
+    "DescribeAttackStatisticsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeAttackStatisticsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeDRTAccessRequest": {
       "base": null,
       "refs": {
@@ -234,6 +297,16 @@
       }
     },
     "DescribeEmergencyContactSettingsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProtectionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeProtectionGroupResponse": {
       "base": null,
       "refs": {
       }
@@ -301,6 +374,7 @@
     "Double": {
       "base": null,
       "refs": {
+        "AttackVolumeStatistics$Max": "<p>The maximum attack volume observed for the given unit.</p>",
         "SummarizedCounter$Max": "<p>The maximum value of the counter for a specified time period.</p>",
         "SummarizedCounter$Average": "<p>The average value of the counter for a specified time period.</p>",
         "SummarizedCounter$Sum": "<p>The total of counter values for a specified time period.</p>"
@@ -393,7 +467,7 @@
       }
     },
     "InvalidParameterException": {
-      "base": "<p>Exception that indicates that the parameters passed to the API are invalid. </p>",
+      "base": "<p>Exception that indicates that the parameters passed to the API are invalid. If available, this exception includes details in additional properties. </p>",
       "refs": {
       }
     },
@@ -423,6 +497,7 @@
     "Limits": {
       "base": null,
       "refs": {
+        "ProtectionLimits$ProtectedResourceTypeLimits": "<p>The maximum number of resource types that you can specify in a protection.</p>",
         "Subscription$Limits": "<p>Specifies how many protections of a given type you can create.</p>"
       }
     },
@@ -441,12 +516,32 @@
       "refs": {
       }
     },
+    "ListProtectionGroupsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListProtectionGroupsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListProtectionsRequest": {
       "base": null,
       "refs": {
       }
     },
     "ListProtectionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourcesInProtectionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListResourcesInProtectionGroupResponse": {
       "base": null,
       "refs": {
       }
@@ -474,15 +569,20 @@
       "base": null,
       "refs": {
         "AttackProperty$Total": "<p>The total contributions made to this attack by all contributors, not just the five listed in the <code>TopContributors</code> list.</p>",
+        "AttackStatisticsDataItem$AttackCount": "<p>The number of attacks detected during the time period. This is always present, but might be zero. </p>",
         "Contributor$Value": "<p>The contribution of this contributor expressed in <a>Protection</a> units. For example <code>10,000</code>.</p>",
-        "Limit$Max": "<p>The maximum number of protections that can be created for the specified <code>Type</code>.</p>"
+        "Limit$Max": "<p>The maximum number of protections that can be created for the specified <code>Type</code>.</p>",
+        "ProtectionGroupArbitraryPatternLimits$MaxMembers": "<p>The maximum number of resources you can specify for a single arbitrary pattern in a protection group.</p>",
+        "ProtectionGroupLimits$MaxProtectionGroups": "<p>The maximum number of protection groups that you can have at one time. </p>"
       }
     },
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListAttacksRequest$MaxResults": "<p>The maximum number of <a>AttackSummary</a> objects to be returned. If this is left blank, the first 20 results will be returned.</p> <p>This is a maximum value; it is possible that AWS WAF will return the results in smaller batches. That is, the number of <a>AttackSummary</a> objects returned could be less than <code>MaxResults</code>, even if there are still more <a>AttackSummary</a> objects yet to return. If there are more <a>AttackSummary</a> objects to return, AWS WAF will always also return a <code>NextToken</code>.</p>",
-        "ListProtectionsRequest$MaxResults": "<p>The maximum number of <a>Protection</a> objects to be returned. If this is left blank the first 20 results will be returned.</p> <p>This is a maximum value; it is possible that AWS WAF will return the results in smaller batches. That is, the number of <a>Protection</a> objects returned could be less than <code>MaxResults</code>, even if there are still more <a>Protection</a> objects yet to return. If there are more <a>Protection</a> objects to return, AWS WAF will always also return a <code>NextToken</code>.</p>"
+        "ListAttacksRequest$MaxResults": "<p>The maximum number of <a>AttackSummary</a> objects to return. If you leave this blank, Shield Advanced returns the first 20 results.</p> <p>This is a maximum value. Shield Advanced might return the results in smaller batches. That is, the number of objects returned could be less than <code>MaxResults</code>, even if there are still more objects yet to return. If there are more objects to return, Shield Advanced returns a value in <code>NextToken</code> that you can use in your next request, to get the next batch of objects.</p>",
+        "ListProtectionGroupsRequest$MaxResults": "<p>The maximum number of <a>ProtectionGroup</a> objects to return. If you leave this blank, Shield Advanced returns the first 20 results.</p> <p>This is a maximum value. Shield Advanced might return the results in smaller batches. That is, the number of objects returned could be less than <code>MaxResults</code>, even if there are still more objects yet to return. If there are more objects to return, Shield Advanced returns a value in <code>NextToken</code> that you can use in your next request, to get the next batch of objects.</p>",
+        "ListProtectionsRequest$MaxResults": "<p>The maximum number of <a>Protection</a> objects to return. If you leave this blank, Shield Advanced returns the first 20 results.</p> <p>This is a maximum value. Shield Advanced might return the results in smaller batches. That is, the number of objects returned could be less than <code>MaxResults</code>, even if there are still more objects yet to return. If there are more objects to return, Shield Advanced returns a value in <code>NextToken</code> that you can use in your next request, to get the next batch of objects.</p>",
+        "ListResourcesInProtectionGroupRequest$MaxResults": "<p>The maximum number of resource ARN objects to return. If you leave this blank, Shield Advanced returns the first 20 results.</p> <p>This is a maximum value. Shield Advanced might return the results in smaller batches. That is, the number of objects returned could be less than <code>MaxResults</code>, even if there are still more objects yet to return. If there are more objects to return, Shield Advanced returns a value in <code>NextToken</code> that you can use in your next request, to get the next batch of objects.</p>"
       }
     },
     "Mitigation": {
@@ -519,11 +619,85 @@
         "Subscription$ProactiveEngagementStatus": "<p>If <code>ENABLED</code>, the DDoS Response Team (DRT) will use email and phone to notify contacts about escalations to the DRT and to initiate proactive customer support.</p> <p>If <code>PENDING</code>, you have requested proactive engagement and the request is pending. The status changes to <code>ENABLED</code> when your request is fully processed.</p> <p>If <code>DISABLED</code>, the DRT will not proactively notify contacts about escalations or to initiate proactive customer support. </p>"
       }
     },
+    "ProtectedResourceType": {
+      "base": null,
+      "refs": {
+        "CreateProtectionGroupRequest$ResourceType": "<p>The resource type to include in the protection group. All protected resources of this type are included in the protection group. Newly protected resources of this type are automatically added to the group. You must set this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
+        "ProtectionGroup$ResourceType": "<p>The resource type to include in the protection group. All protected resources of this type are included in the protection group. You must set this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
+        "UpdateProtectionGroupRequest$ResourceType": "<p>The resource type to include in the protection group. All protected resources of this type are included in the protection group. You must set this when you set <code>Pattern</code> to <code>BY_RESOURCE_TYPE</code> and you must not set it for any other <code>Pattern</code> setting. </p>"
+      }
+    },
     "Protection": {
       "base": "<p>An object that represents a resource that is under DDoS protection.</p>",
       "refs": {
         "DescribeProtectionResponse$Protection": "<p>The <a>Protection</a> object that is described.</p>",
         "Protections$member": null
+      }
+    },
+    "ProtectionGroup": {
+      "base": "<p>A grouping of protected resources that you and AWS Shield Advanced can monitor as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
+      "refs": {
+        "DescribeProtectionGroupResponse$ProtectionGroup": "<p>A grouping of protected resources that you and AWS Shield Advanced can monitor as a collective. This resource grouping improves the accuracy of detection and reduces false positives. </p>",
+        "ProtectionGroups$member": null
+      }
+    },
+    "ProtectionGroupAggregation": {
+      "base": null,
+      "refs": {
+        "CreateProtectionGroupRequest$Aggregation": "<p>Defines how AWS Shield combines resource data for the group in order to detect, mitigate, and report events.</p> <ul> <li> <p>Sum - Use the total traffic across the group. This is a good choice for most cases. Examples include Elastic IP addresses for EC2 instances that scale manually or automatically.</p> </li> <li> <p>Mean - Use the average of the traffic across the group. This is a good choice for resources that share traffic uniformly. Examples include accelerators and load balancers.</p> </li> <li> <p>Max - Use the highest traffic from each resource. This is useful for resources that don't share traffic and for resources that share that traffic in a non-uniform way. Examples include CloudFront distributions and origin resources for CloudFront distributions.</p> </li> </ul>",
+        "ProtectionGroup$Aggregation": "<p>Defines how AWS Shield combines resource data for the group in order to detect, mitigate, and report events.</p> <ul> <li> <p>Sum - Use the total traffic across the group. This is a good choice for most cases. Examples include Elastic IP addresses for EC2 instances that scale manually or automatically.</p> </li> <li> <p>Mean - Use the average of the traffic across the group. This is a good choice for resources that share traffic uniformly. Examples include accelerators and load balancers.</p> </li> <li> <p>Max - Use the highest traffic from each resource. This is useful for resources that don't share traffic and for resources that share that traffic in a non-uniform way. Examples include CloudFront distributions and origin resources for CloudFront distributions.</p> </li> </ul>",
+        "UpdateProtectionGroupRequest$Aggregation": "<p>Defines how AWS Shield combines resource data for the group in order to detect, mitigate, and report events.</p> <ul> <li> <p>Sum - Use the total traffic across the group. This is a good choice for most cases. Examples include Elastic IP addresses for EC2 instances that scale manually or automatically.</p> </li> <li> <p>Mean - Use the average of the traffic across the group. This is a good choice for resources that share traffic uniformly. Examples include accelerators and load balancers.</p> </li> <li> <p>Max - Use the highest traffic from each resource. This is useful for resources that don't share traffic and for resources that share that traffic in a non-uniform way. Examples include CloudFront distributions and origin resources for CloudFront distributions.</p> </li> </ul>"
+      }
+    },
+    "ProtectionGroupArbitraryPatternLimits": {
+      "base": "<p>Limits settings on protection groups with arbitrary pattern type. </p>",
+      "refs": {
+        "ProtectionGroupPatternTypeLimits$ArbitraryPatternLimits": "<p>Limits settings on protection groups with arbitrary pattern type. </p>"
+      }
+    },
+    "ProtectionGroupId": {
+      "base": null,
+      "refs": {
+        "CreateProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
+        "DeleteProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
+        "DescribeProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
+        "ListResourcesInProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
+        "ProtectionGroup$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>",
+        "UpdateProtectionGroupRequest$ProtectionGroupId": "<p>The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it. </p>"
+      }
+    },
+    "ProtectionGroupLimits": {
+      "base": "<p>Limits settings on protection groups for your subscription. </p>",
+      "refs": {
+        "SubscriptionLimits$ProtectionGroupLimits": "<p>Limits settings on protection groups for your subscription. </p>"
+      }
+    },
+    "ProtectionGroupMembers": {
+      "base": null,
+      "refs": {
+        "CreateProtectionGroupRequest$Members": "<p>The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
+        "ProtectionGroup$Members": "<p>The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>",
+        "UpdateProtectionGroupRequest$Members": "<p>The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set <code>Pattern</code> to <code>ARBITRARY</code> and you must not set it for any other <code>Pattern</code> setting. </p>"
+      }
+    },
+    "ProtectionGroupPattern": {
+      "base": null,
+      "refs": {
+        "CreateProtectionGroupRequest$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type. </p>",
+        "ProtectionGroup$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type.</p>",
+        "UpdateProtectionGroupRequest$Pattern": "<p>The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type.</p>"
+      }
+    },
+    "ProtectionGroupPatternTypeLimits": {
+      "base": "<p>Limits settings by pattern type in the protection groups for your subscription. </p>",
+      "refs": {
+        "ProtectionGroupLimits$PatternTypeLimits": "<p>Limits settings by pattern type in the protection groups for your subscription. </p>"
+      }
+    },
+    "ProtectionGroups": {
+      "base": null,
+      "refs": {
+        "ListProtectionGroupsResponse$ProtectionGroups": "<p/>"
       }
     },
     "ProtectionId": {
@@ -537,11 +711,17 @@
         "Protection$Id": "<p>The unique identifier (ID) of the protection.</p>"
       }
     },
+    "ProtectionLimits": {
+      "base": "<p>Limits settings on protections for your subscription. </p>",
+      "refs": {
+        "SubscriptionLimits$ProtectionLimits": "<p>Limits settings on protections for your subscription. </p>"
+      }
+    },
     "ProtectionName": {
       "base": null,
       "refs": {
         "CreateProtectionRequest$Name": "<p>Friendly name for the <code>Protection</code> you are creating.</p>",
-        "Protection$Name": "<p>The friendly name of the protection. For example, <code>My CloudFront distributions</code>.</p>"
+        "Protection$Name": "<p>The name of the protection. For example, <code>My CloudFront distributions</code>.</p>"
       }
     },
     "Protections": {
@@ -551,7 +731,7 @@
       }
     },
     "ResourceAlreadyExistsException": {
-      "base": "<p>Exception indicating the specified resource already exists.</p>",
+      "base": "<p>Exception indicating the specified resource already exists. If available, this exception includes details in additional properties. </p>",
       "refs": {
       }
     },
@@ -562,7 +742,9 @@
         "CreateProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the resource to be protected.</p> <p>The ARN should be in one of the following formats:</p> <ul> <li> <p>For an Application Load Balancer: <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/app/<i>load-balancer-name</i>/<i>load-balancer-id</i> </code> </p> </li> <li> <p>For an Elastic Load Balancer (Classic Load Balancer): <code>arn:aws:elasticloadbalancing:<i>region</i>:<i>account-id</i>:loadbalancer/<i>load-balancer-name</i> </code> </p> </li> <li> <p>For an AWS CloudFront distribution: <code>arn:aws:cloudfront::<i>account-id</i>:distribution/<i>distribution-id</i> </code> </p> </li> <li> <p>For an AWS Global Accelerator accelerator: <code>arn:aws:globalaccelerator::<i>account-id</i>:accelerator/<i>accelerator-id</i> </code> </p> </li> <li> <p>For Amazon Route 53: <code>arn:aws:route53:::hostedzone/<i>hosted-zone-id</i> </code> </p> </li> <li> <p>For an Elastic IP address: <code>arn:aws:ec2:<i>region</i>:<i>account-id</i>:eip-allocation/<i>allocation-id</i> </code> </p> </li> </ul>",
         "DescribeProtectionRequest$ResourceArn": "<p>The ARN (Amazon Resource Name) of the AWS resource for the <a>Protection</a> object that is described. When submitting the <code>DescribeProtection</code> request you must provide either the <code>ResourceArn</code> or the <code>ProtectionID</code>, but not both.</p>",
         "Protection$ResourceArn": "<p>The ARN (Amazon Resource Name) of the AWS resource that is protected.</p>",
-        "ResourceArnFilterList$member": null
+        "ProtectionGroupMembers$member": null,
+        "ResourceArnFilterList$member": null,
+        "ResourceArnList$member": null
       }
     },
     "ResourceArnFilterList": {
@@ -571,8 +753,14 @@
         "ListAttacksRequest$ResourceArns": "<p>The ARN (Amazon Resource Name) of the resource that was attacked. If this is left blank, all applicable resources for this account will be included.</p>"
       }
     },
+    "ResourceArnList": {
+      "base": null,
+      "refs": {
+        "ListResourcesInProtectionGroupResponse$ResourceArns": "<p>The Amazon Resource Names (ARNs) of the resources that are included in the protection group.</p>"
+      }
+    },
     "ResourceNotFoundException": {
-      "base": "<p>Exception indicating the specified resource does not exist.</p>",
+      "base": "<p>Exception indicating the specified resource does not exist. If available, this exception includes details in additional properties. </p>",
       "refs": {
       }
     },
@@ -592,10 +780,14 @@
         "Contributor$Name": "<p>The name of the contributor. This is dependent on the <code>AttackPropertyIdentifier</code>. For example, if the <code>AttackPropertyIdentifier</code> is <code>SOURCE_COUNTRY</code>, the <code>Name</code> could be <code>United States</code>.</p>",
         "Limit$Type": "<p>The type of protection.</p>",
         "Mitigation$MitigationName": "<p>The name of the mitigation taken for this attack.</p>",
+        "ResourceAlreadyExistsException$resourceType": "<p>The type of resource that already exists.</p>",
+        "ResourceNotFoundException$resourceType": "<p>Type of resource.</p>",
         "SubResourceSummary$Id": "<p>The unique identifier (ID) of the <code>SubResource</code>.</p>",
         "SummarizedAttackVector$VectorType": "<p>The attack type, for example, SNMP reflection or SYN flood.</p>",
         "SummarizedCounter$Name": "<p>The counter name.</p>",
-        "SummarizedCounter$Unit": "<p>The unit of the counters.</p>"
+        "SummarizedCounter$Unit": "<p>The unit of the counters.</p>",
+        "ValidationExceptionField$name": "<p>The name of the parameter that failed validation.</p>",
+        "ValidationExceptionField$message": "<p>The message describing why the parameter failed validation.</p>"
       }
     },
     "SubResourceSummary": {
@@ -620,6 +812,12 @@
       "base": "<p>Information about the AWS Shield Advanced subscription for an account.</p>",
       "refs": {
         "DescribeSubscriptionResponse$Subscription": "<p>The AWS Shield Advanced subscription details for an account.</p>"
+      }
+    },
+    "SubscriptionLimits": {
+      "base": "<p>Limits settings for your subscription. </p>",
+      "refs": {
+        "Subscription$SubscriptionLimits": "<p>Limits settings for your subscription. </p>"
       }
     },
     "SubscriptionState": {
@@ -655,8 +853,9 @@
       }
     },
     "TimeRange": {
-      "base": "<p>The time range.</p>",
+      "base": "<p>The time range. </p>",
       "refs": {
+        "DescribeAttackStatisticsResponse$TimeRange": null,
         "ListAttacksRequest$StartTime": "<p>The start of the time period for the attacks. This is a <code>timestamp</code> type. The sample request above indicates a <code>number</code> type because the default used by WAF is Unix time in seconds. However any valid <a href=\"http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types\">timestamp format</a> is allowed. </p>",
         "ListAttacksRequest$EndTime": "<p>The end of the time period for the attacks. This is a <code>timestamp</code> type. The sample request above indicates a <code>number</code> type because the default used by WAF is Unix time in seconds. However any valid <a href=\"http://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#parameter-types\">timestamp format</a> is allowed. </p>"
       }
@@ -672,15 +871,19 @@
       "base": null,
       "refs": {
         "ListAttacksRequest$NextToken": "<p>The <code>ListAttacksRequest.NextMarker</code> value from a previous call to <code>ListAttacksRequest</code>. Pass null if this is the first call.</p>",
-        "ListAttacksResponse$NextToken": "<p>The token returned by a previous call to indicate that there is more data available. If not null, more results are available. Pass this value for the <code>NextMarker</code> parameter in a subsequent call to <code>ListAttacks</code> to retrieve the next set of items.</p> <p>AWS WAF might return the list of <a>AttackSummary</a> objects in batches smaller than the number specified by MaxResults. If there are more <a>AttackSummary</a> objects to return, AWS WAF will always also return a <code>NextToken</code>.</p>",
+        "ListAttacksResponse$NextToken": "<p>The token returned by a previous call to indicate that there is more data available. If not null, more results are available. Pass this value for the <code>NextMarker</code> parameter in a subsequent call to <code>ListAttacks</code> to retrieve the next set of items.</p> <p>Shield Advanced might return the list of <a>AttackSummary</a> objects in batches smaller than the number specified by MaxResults. If there are more attack summary objects to return, Shield Advanced will always also return a <code>NextToken</code>.</p>",
+        "ListProtectionGroupsRequest$NextToken": "<p>The next token value from a previous call to <code>ListProtectionGroups</code>. Pass null if this is the first call.</p>",
+        "ListProtectionGroupsResponse$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more protection groups than the value of MaxResults, AWS Shield Advanced returns this token that you can use in your next request, to get the next batch of objects. </p>",
         "ListProtectionsRequest$NextToken": "<p>The <code>ListProtectionsRequest.NextToken</code> value from a previous call to <code>ListProtections</code>. Pass null if this is the first call.</p>",
-        "ListProtectionsResponse$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more Protections than the value of MaxResults, AWS Shield Advanced returns a NextToken value in the response that allows you to list another group of Protections. For the second and subsequent ListProtections requests, specify the value of NextToken from the previous response to get information about another batch of Protections.</p> <p>AWS WAF might return the list of <a>Protection</a> objects in batches smaller than the number specified by MaxResults. If there are more <a>Protection</a> objects to return, AWS WAF will always also return a <code>NextToken</code>.</p>"
+        "ListProtectionsResponse$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more Protections than the value of MaxResults, AWS Shield Advanced returns a NextToken value in the response that allows you to list another group of Protections. For the second and subsequent ListProtections requests, specify the value of NextToken from the previous response to get information about another batch of Protections.</p> <p>Shield Advanced might return the list of <a>Protection</a> objects in batches smaller than the number specified by MaxResults. If there are more <a>Protection</a> objects to return, Shield Advanced will always also return a <code>NextToken</code>.</p>",
+        "ListResourcesInProtectionGroupRequest$NextToken": "<p>The next token value from a previous call to <code>ListResourcesInProtectionGroup</code>. Pass null if this is the first call.</p>",
+        "ListResourcesInProtectionGroupResponse$NextToken": "<p>If you specify a value for <code>MaxResults</code> and you have more resources in the protection group than the value of MaxResults, AWS Shield Advanced returns this token that you can use in your next request, to get the next batch of objects. </p>"
       }
     },
     "TopContributors": {
       "base": null,
       "refs": {
-        "AttackProperty$TopContributors": "<p>The array of <a>Contributor</a> objects that includes the top five contributors to an attack. </p>"
+        "AttackProperty$TopContributors": "<p>The array of contributor objects that includes the top five contributors to an attack. </p>"
       }
     },
     "Unit": {
@@ -699,6 +902,16 @@
       "refs": {
       }
     },
+    "UpdateProtectionGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateProtectionGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateSubscriptionRequest": {
       "base": null,
       "refs": {
@@ -707,6 +920,24 @@
     "UpdateSubscriptionResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "ValidationExceptionField": {
+      "base": "<p>Provides information about a particular parameter passed inside a request that resulted in an exception.</p>",
+      "refs": {
+        "ValidationExceptionFieldList$member": null
+      }
+    },
+    "ValidationExceptionFieldList": {
+      "base": null,
+      "refs": {
+        "InvalidParameterException$fields": "<p>Fields that caused the exception.</p>"
+      }
+    },
+    "ValidationExceptionReason": {
+      "base": null,
+      "refs": {
+        "InvalidParameterException$reason": "<p>Additional information about the exception.</p>"
       }
     },
     "errorMessage": {

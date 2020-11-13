@@ -1334,6 +1334,7 @@
         "Values":{"shape":"ListOfString"}
       }
     },
+    "IPv6Address":{"type":"string"},
     "IncompatibleProtocolsException":{
       "type":"structure",
       "members":{
@@ -1491,7 +1492,8 @@
       "members":{
         "IpAddress":{"shape":"IpAddress"},
         "AllocationId":{"shape":"AllocationId"},
-        "PrivateIPv4Address":{"shape":"PrivateIPv4Address"}
+        "PrivateIPv4Address":{"shape":"PrivateIPv4Address"},
+        "IPv6Address":{"shape":"IPv6Address"}
       }
     },
     "LoadBalancerAddresses":{
@@ -1985,13 +1987,15 @@
       "members":{
         "LoadBalancerArn":{"shape":"LoadBalancerArn"},
         "Subnets":{"shape":"Subnets"},
-        "SubnetMappings":{"shape":"SubnetMappings"}
+        "SubnetMappings":{"shape":"SubnetMappings"},
+        "IpAddressType":{"shape":"IpAddressType"}
       }
     },
     "SetSubnetsOutput":{
       "type":"structure",
       "members":{
-        "AvailabilityZones":{"shape":"AvailabilityZones"}
+        "AvailabilityZones":{"shape":"AvailabilityZones"},
+        "IpAddressType":{"shape":"IpAddressType"}
       }
     },
     "SourceIpConditionConfig":{
@@ -2031,7 +2035,8 @@
       "members":{
         "SubnetId":{"shape":"SubnetId"},
         "AllocationId":{"shape":"AllocationId"},
-        "PrivateIPv4Address":{"shape":"PrivateIPv4Address"}
+        "PrivateIPv4Address":{"shape":"PrivateIPv4Address"},
+        "IPv6Address":{"shape":"IPv6Address"}
       }
     },
     "SubnetMappings":{

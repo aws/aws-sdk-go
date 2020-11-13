@@ -80,6 +80,10 @@ type ShieldAPI interface {
 	CreateProtectionWithContext(aws.Context, *shield.CreateProtectionInput, ...request.Option) (*shield.CreateProtectionOutput, error)
 	CreateProtectionRequest(*shield.CreateProtectionInput) (*request.Request, *shield.CreateProtectionOutput)
 
+	CreateProtectionGroup(*shield.CreateProtectionGroupInput) (*shield.CreateProtectionGroupOutput, error)
+	CreateProtectionGroupWithContext(aws.Context, *shield.CreateProtectionGroupInput, ...request.Option) (*shield.CreateProtectionGroupOutput, error)
+	CreateProtectionGroupRequest(*shield.CreateProtectionGroupInput) (*request.Request, *shield.CreateProtectionGroupOutput)
+
 	CreateSubscription(*shield.CreateSubscriptionInput) (*shield.CreateSubscriptionOutput, error)
 	CreateSubscriptionWithContext(aws.Context, *shield.CreateSubscriptionInput, ...request.Option) (*shield.CreateSubscriptionOutput, error)
 	CreateSubscriptionRequest(*shield.CreateSubscriptionInput) (*request.Request, *shield.CreateSubscriptionOutput)
@@ -88,6 +92,10 @@ type ShieldAPI interface {
 	DeleteProtectionWithContext(aws.Context, *shield.DeleteProtectionInput, ...request.Option) (*shield.DeleteProtectionOutput, error)
 	DeleteProtectionRequest(*shield.DeleteProtectionInput) (*request.Request, *shield.DeleteProtectionOutput)
 
+	DeleteProtectionGroup(*shield.DeleteProtectionGroupInput) (*shield.DeleteProtectionGroupOutput, error)
+	DeleteProtectionGroupWithContext(aws.Context, *shield.DeleteProtectionGroupInput, ...request.Option) (*shield.DeleteProtectionGroupOutput, error)
+	DeleteProtectionGroupRequest(*shield.DeleteProtectionGroupInput) (*request.Request, *shield.DeleteProtectionGroupOutput)
+
 	DeleteSubscription(*shield.DeleteSubscriptionInput) (*shield.DeleteSubscriptionOutput, error)
 	DeleteSubscriptionWithContext(aws.Context, *shield.DeleteSubscriptionInput, ...request.Option) (*shield.DeleteSubscriptionOutput, error)
 	DeleteSubscriptionRequest(*shield.DeleteSubscriptionInput) (*request.Request, *shield.DeleteSubscriptionOutput)
@@ -95,6 +103,10 @@ type ShieldAPI interface {
 	DescribeAttack(*shield.DescribeAttackInput) (*shield.DescribeAttackOutput, error)
 	DescribeAttackWithContext(aws.Context, *shield.DescribeAttackInput, ...request.Option) (*shield.DescribeAttackOutput, error)
 	DescribeAttackRequest(*shield.DescribeAttackInput) (*request.Request, *shield.DescribeAttackOutput)
+
+	DescribeAttackStatistics(*shield.DescribeAttackStatisticsInput) (*shield.DescribeAttackStatisticsOutput, error)
+	DescribeAttackStatisticsWithContext(aws.Context, *shield.DescribeAttackStatisticsInput, ...request.Option) (*shield.DescribeAttackStatisticsOutput, error)
+	DescribeAttackStatisticsRequest(*shield.DescribeAttackStatisticsInput) (*request.Request, *shield.DescribeAttackStatisticsOutput)
 
 	DescribeDRTAccess(*shield.DescribeDRTAccessInput) (*shield.DescribeDRTAccessOutput, error)
 	DescribeDRTAccessWithContext(aws.Context, *shield.DescribeDRTAccessInput, ...request.Option) (*shield.DescribeDRTAccessOutput, error)
@@ -107,6 +119,10 @@ type ShieldAPI interface {
 	DescribeProtection(*shield.DescribeProtectionInput) (*shield.DescribeProtectionOutput, error)
 	DescribeProtectionWithContext(aws.Context, *shield.DescribeProtectionInput, ...request.Option) (*shield.DescribeProtectionOutput, error)
 	DescribeProtectionRequest(*shield.DescribeProtectionInput) (*request.Request, *shield.DescribeProtectionOutput)
+
+	DescribeProtectionGroup(*shield.DescribeProtectionGroupInput) (*shield.DescribeProtectionGroupOutput, error)
+	DescribeProtectionGroupWithContext(aws.Context, *shield.DescribeProtectionGroupInput, ...request.Option) (*shield.DescribeProtectionGroupOutput, error)
+	DescribeProtectionGroupRequest(*shield.DescribeProtectionGroupInput) (*request.Request, *shield.DescribeProtectionGroupOutput)
 
 	DescribeSubscription(*shield.DescribeSubscriptionInput) (*shield.DescribeSubscriptionOutput, error)
 	DescribeSubscriptionWithContext(aws.Context, *shield.DescribeSubscriptionInput, ...request.Option) (*shield.DescribeSubscriptionOutput, error)
@@ -143,6 +159,13 @@ type ShieldAPI interface {
 	ListAttacksPages(*shield.ListAttacksInput, func(*shield.ListAttacksOutput, bool) bool) error
 	ListAttacksPagesWithContext(aws.Context, *shield.ListAttacksInput, func(*shield.ListAttacksOutput, bool) bool, ...request.Option) error
 
+	ListProtectionGroups(*shield.ListProtectionGroupsInput) (*shield.ListProtectionGroupsOutput, error)
+	ListProtectionGroupsWithContext(aws.Context, *shield.ListProtectionGroupsInput, ...request.Option) (*shield.ListProtectionGroupsOutput, error)
+	ListProtectionGroupsRequest(*shield.ListProtectionGroupsInput) (*request.Request, *shield.ListProtectionGroupsOutput)
+
+	ListProtectionGroupsPages(*shield.ListProtectionGroupsInput, func(*shield.ListProtectionGroupsOutput, bool) bool) error
+	ListProtectionGroupsPagesWithContext(aws.Context, *shield.ListProtectionGroupsInput, func(*shield.ListProtectionGroupsOutput, bool) bool, ...request.Option) error
+
 	ListProtections(*shield.ListProtectionsInput) (*shield.ListProtectionsOutput, error)
 	ListProtectionsWithContext(aws.Context, *shield.ListProtectionsInput, ...request.Option) (*shield.ListProtectionsOutput, error)
 	ListProtectionsRequest(*shield.ListProtectionsInput) (*request.Request, *shield.ListProtectionsOutput)
@@ -150,9 +173,20 @@ type ShieldAPI interface {
 	ListProtectionsPages(*shield.ListProtectionsInput, func(*shield.ListProtectionsOutput, bool) bool) error
 	ListProtectionsPagesWithContext(aws.Context, *shield.ListProtectionsInput, func(*shield.ListProtectionsOutput, bool) bool, ...request.Option) error
 
+	ListResourcesInProtectionGroup(*shield.ListResourcesInProtectionGroupInput) (*shield.ListResourcesInProtectionGroupOutput, error)
+	ListResourcesInProtectionGroupWithContext(aws.Context, *shield.ListResourcesInProtectionGroupInput, ...request.Option) (*shield.ListResourcesInProtectionGroupOutput, error)
+	ListResourcesInProtectionGroupRequest(*shield.ListResourcesInProtectionGroupInput) (*request.Request, *shield.ListResourcesInProtectionGroupOutput)
+
+	ListResourcesInProtectionGroupPages(*shield.ListResourcesInProtectionGroupInput, func(*shield.ListResourcesInProtectionGroupOutput, bool) bool) error
+	ListResourcesInProtectionGroupPagesWithContext(aws.Context, *shield.ListResourcesInProtectionGroupInput, func(*shield.ListResourcesInProtectionGroupOutput, bool) bool, ...request.Option) error
+
 	UpdateEmergencyContactSettings(*shield.UpdateEmergencyContactSettingsInput) (*shield.UpdateEmergencyContactSettingsOutput, error)
 	UpdateEmergencyContactSettingsWithContext(aws.Context, *shield.UpdateEmergencyContactSettingsInput, ...request.Option) (*shield.UpdateEmergencyContactSettingsOutput, error)
 	UpdateEmergencyContactSettingsRequest(*shield.UpdateEmergencyContactSettingsInput) (*request.Request, *shield.UpdateEmergencyContactSettingsOutput)
+
+	UpdateProtectionGroup(*shield.UpdateProtectionGroupInput) (*shield.UpdateProtectionGroupOutput, error)
+	UpdateProtectionGroupWithContext(aws.Context, *shield.UpdateProtectionGroupInput, ...request.Option) (*shield.UpdateProtectionGroupOutput, error)
+	UpdateProtectionGroupRequest(*shield.UpdateProtectionGroupInput) (*request.Request, *shield.UpdateProtectionGroupOutput)
 
 	UpdateSubscription(*shield.UpdateSubscriptionInput) (*shield.UpdateSubscriptionOutput, error)
 	UpdateSubscriptionWithContext(aws.Context, *shield.UpdateSubscriptionInput, ...request.Option) (*shield.UpdateSubscriptionOutput, error)
