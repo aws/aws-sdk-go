@@ -3186,6 +3186,10 @@ func (c *CodePipeline) RetryStageExecutionRequest(input *RetryStageExecutionInpu
 //   * ValidationException
 //   The validation was specified in an invalid format.
 //
+//   * ConflictException
+//   Your request cannot be handled because the pipeline is busy handling ongoing
+//   activities. Try again later.
+//
 //   * PipelineNotFoundException
 //   The pipeline was specified in an invalid format or cannot be found.
 //
@@ -3280,6 +3284,10 @@ func (c *CodePipeline) StartPipelineExecutionRequest(input *StartPipelineExecuti
 //   * ValidationException
 //   The validation was specified in an invalid format.
 //
+//   * ConflictException
+//   Your request cannot be handled because the pipeline is busy handling ongoing
+//   activities. Try again later.
+//
 //   * PipelineNotFoundException
 //   The pipeline was specified in an invalid format or cannot be found.
 //
@@ -3366,6 +3374,10 @@ func (c *CodePipeline) StopPipelineExecutionRequest(input *StopPipelineExecution
 // Returned Error Types:
 //   * ValidationException
 //   The validation was specified in an invalid format.
+//
+//   * ConflictException
+//   Your request cannot be handled because the pipeline is busy handling ongoing
+//   activities. Try again later.
 //
 //   * PipelineNotFoundException
 //   The pipeline was specified in an invalid format or cannot be found.
@@ -4285,6 +4297,13 @@ func (s *ActionDeclaration) SetRunOrder(v int64) *ActionDeclaration {
 type ActionExecution struct {
 	_ struct{} `type:"structure"`
 
+	// ID of the workflow action execution in the current stage. Use the GetPipelineState
+	// action to retrieve the current action execution details of the current stage.
+	//
+	// For older executions, this field might be empty. The action execution ID
+	// is available for executions run on or after March 2020.
+	ActionExecutionId *string `locationName:"actionExecutionId" type:"string"`
+
 	// The details of an error returned by a URL external to AWS.
 	ErrorDetails *ErrorDetails `locationName:"errorDetails" type:"structure"`
 
@@ -4326,6 +4345,12 @@ func (s ActionExecution) String() string {
 // GoString returns the string representation
 func (s ActionExecution) GoString() string {
 	return s.String()
+}
+
+// SetActionExecutionId sets the ActionExecutionId field's value.
+func (s *ActionExecution) SetActionExecutionId(v string) *ActionExecution {
+	s.ActionExecutionId = &v
+	return s
 }
 
 // SetErrorDetails sets the ErrorDetails field's value.
@@ -4950,10 +4975,25 @@ type ActionTypeId struct {
 	// the provider type for the action. Valid categories are limited to one of
 	// the following values.
 	//
+	//    * Source
+	//
+	//    * Build
+	//
+	//    * Test
+	//
+	//    * Deploy
+	//
+	//    * Invoke
+	//
+	//    * Approval
+	//
 	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
 
-	// The creator of the action being called.
+	// The creator of the action being called. There are three valid values for
+	// the Owner field in the action category section within your pipeline structure:
+	// AWS, ThirdParty, and Custom. For more information, see Valid Action Types
+	// and Providers in CodePipeline (https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers).
 	//
 	// Owner is a required field
 	Owner *string `locationName:"owner" type:"string" required:"true" enum:"ActionOwner"`
@@ -5715,14 +5755,68 @@ func (s *ConcurrentModificationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Your request cannot be handled because the pipeline is busy handling ongoing
+// activities. Try again later.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Represents the input of a CreateCustomActionType operation.
 type CreateCustomActionTypeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The category of the custom action, such as a build action or a test action.
-	//
-	// Although Source and Approval are listed as valid values, they are not currently
-	// functional. These values are reserved for future use.
 	//
 	// Category is a required field
 	Category *string `locationName:"category" type:"string" required:"true" enum:"ActionCategory"`
@@ -9332,7 +9426,7 @@ type PipelineDeclaration struct {
 	// you must use artifactStores.
 	ArtifactStores map[string]*ArtifactStore `locationName:"artifactStores" type:"map"`
 
-	// The name of the action to be performed.
+	// The name of the pipeline.
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
@@ -11545,6 +11639,9 @@ type StageState struct {
 	// The state of the stage.
 	ActionStates []*ActionState `locationName:"actionStates" type:"list"`
 
+	// Represents information about the run of a stage.
+	InboundExecution *StageExecution `locationName:"inboundExecution" type:"structure"`
+
 	// The state of the inbound transition, which is either enabled or disabled.
 	InboundTransitionState *TransitionState `locationName:"inboundTransitionState" type:"structure"`
 
@@ -11569,6 +11666,12 @@ func (s StageState) GoString() string {
 // SetActionStates sets the ActionStates field's value.
 func (s *StageState) SetActionStates(v []*ActionState) *StageState {
 	s.ActionStates = v
+	return s
+}
+
+// SetInboundExecution sets the InboundExecution field's value.
+func (s *StageState) SetInboundExecution(v *StageExecution) *StageState {
+	s.InboundExecution = v
 	return s
 }
 

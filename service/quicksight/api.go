@@ -21321,6 +21321,15 @@ type GetDashboardEmbedUrlInput struct {
 	// minutes.
 	SessionLifetimeInMinutes *int64 `location:"querystring" locationName:"session-lifetime" min:"15" type:"long"`
 
+	// Adds persistence of state for the user session in an embedded dashboard.
+	// Persistence applies to the sheet and the parameter settings. These are control
+	// settings that the dashboard subscriber (QuickSight reader) chooses while
+	// viewing the dashboard. If this is set to TRUE, the settings are the same
+	// when the the subscriber reopens the same dashboard URL. The state is stored
+	// in QuickSight, not in a browser cookie. If this is set to FALSE, the state
+	// of the user session is not persisted. The default is FALSE.
+	StatePersistenceEnabled *bool `location:"querystring" locationName:"state-persistence-enabled" type:"boolean"`
+
 	// Remove the undo/redo button on the embedded dashboard. The default is FALSE,
 	// which enables the undo/redo button.
 	UndoRedoDisabled *bool `location:"querystring" locationName:"undo-redo-disabled" type:"boolean"`
@@ -21406,6 +21415,12 @@ func (s *GetDashboardEmbedUrlInput) SetResetDisabled(v bool) *GetDashboardEmbedU
 // SetSessionLifetimeInMinutes sets the SessionLifetimeInMinutes field's value.
 func (s *GetDashboardEmbedUrlInput) SetSessionLifetimeInMinutes(v int64) *GetDashboardEmbedUrlInput {
 	s.SessionLifetimeInMinutes = &v
+	return s
+}
+
+// SetStatePersistenceEnabled sets the StatePersistenceEnabled field's value.
+func (s *GetDashboardEmbedUrlInput) SetStatePersistenceEnabled(v bool) *GetDashboardEmbedUrlInput {
+	s.StatePersistenceEnabled = &v
 	return s
 }
 
@@ -25461,6 +25476,7 @@ func (s *NamespaceInfoV2) SetNamespaceError(v *NamespaceError) *NamespaceInfoV2 
 	return s
 }
 
+// Oracle parameters.
 type OracleParameters struct {
 	_ struct{} `type:"structure"`
 

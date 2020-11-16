@@ -64,7 +64,8 @@
         {"shape":"ResourceQuotaExceededFault"},
         {"shape":"InvalidResourceStateFault"},
         {"shape":"ResourceNotFoundFault"},
-        {"shape":"AccessDeniedFault"}
+        {"shape":"AccessDeniedFault"},
+        {"shape":"S3AccessDeniedFault"}
       ]
     },
     "CreateEventSubscription":{
@@ -602,6 +603,20 @@
         {"shape":"ResourceNotFoundFault"},
         {"shape":"ResourceAlreadyExistsFault"},
         {"shape":"KMSKeyNotAccessibleFault"}
+      ]
+    },
+    "MoveReplicationTask":{
+      "name":"MoveReplicationTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"MoveReplicationTaskMessage"},
+      "output":{"shape":"MoveReplicationTaskResponse"},
+      "errors":[
+        {"shape":"AccessDeniedFault"},
+        {"shape":"InvalidResourceStateFault"},
+        {"shape":"ResourceNotFoundFault"}
       ]
     },
     "RebootReplicationInstance":{
@@ -2002,6 +2017,23 @@
         "KmsKeyId":{"shape":"String"}
       }
     },
+    "MoveReplicationTaskMessage":{
+      "type":"structure",
+      "required":[
+        "ReplicationTaskArn",
+        "TargetReplicationInstanceArn"
+      ],
+      "members":{
+        "ReplicationTaskArn":{"shape":"String"},
+        "TargetReplicationInstanceArn":{"shape":"String"}
+      }
+    },
+    "MoveReplicationTaskResponse":{
+      "type":"structure",
+      "members":{
+        "ReplicationTask":{"shape":"ReplicationTask"}
+      }
+    },
     "MySQLSettings":{
       "type":"structure",
       "members":{
@@ -2379,7 +2411,8 @@
         "RecoveryCheckpoint":{"shape":"String"},
         "ReplicationTaskArn":{"shape":"String"},
         "ReplicationTaskStats":{"shape":"ReplicationTaskStats"},
-        "TaskData":{"shape":"String"}
+        "TaskData":{"shape":"String"},
+        "TargetReplicationInstanceArn":{"shape":"String"}
       }
     },
     "ReplicationTaskAssessmentResult":{

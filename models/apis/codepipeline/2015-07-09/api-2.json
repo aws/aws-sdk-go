@@ -462,6 +462,7 @@
       "output":{"shape":"RetryStageExecutionOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"PipelineNotFoundException"},
         {"shape":"StageNotFoundException"},
         {"shape":"StageNotRetryableException"},
@@ -478,6 +479,7 @@
       "output":{"shape":"StartPipelineExecutionOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"PipelineNotFoundException"}
       ]
     },
@@ -491,6 +493,7 @@
       "output":{"shape":"StopPipelineExecutionOutput"},
       "errors":[
         {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"PipelineNotFoundException"},
         {"shape":"PipelineExecutionNotStoppableException"},
         {"shape":"DuplicatedStopRequestException"}
@@ -705,6 +708,7 @@
     "ActionExecution":{
       "type":"structure",
       "members":{
+        "actionExecutionId":{"shape":"ActionExecutionId"},
         "status":{"shape":"ActionExecutionStatus"},
         "summary":{"shape":"ExecutionSummary"},
         "lastStatusChange":{"shape":"Timestamp"},
@@ -1063,6 +1067,13 @@
       },
       "exception":true
     },
+    "ConflictException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"Message"}
+      },
+      "exception":true
+    },
     "ContinuationToken":{
       "type":"string",
       "max":2048,
@@ -1227,7 +1238,7 @@
     },
     "EncryptionKeyId":{
       "type":"string",
-      "max":100,
+      "max":400,
       "min":1
     },
     "EncryptionKeyType":{
@@ -2189,6 +2200,7 @@
       "type":"structure",
       "members":{
         "stageName":{"shape":"StageName"},
+        "inboundExecution":{"shape":"StageExecution"},
         "inboundTransitionState":{"shape":"TransitionState"},
         "actionStates":{"shape":"ActionStateList"},
         "latestExecution":{"shape":"StageExecution"}

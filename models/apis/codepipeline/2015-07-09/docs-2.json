@@ -92,8 +92,8 @@
     "ActionCategory": {
       "base": null,
       "refs": {
-        "ActionTypeId$category": "<p>A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the following values. </p>",
-        "CreateCustomActionTypeInput$category": "<p>The category of the custom action, such as a build action or a test action.</p> <note> <p>Although <code>Source</code> and <code>Approval</code> are listed as valid values, they are not currently functional. These values are reserved for future use.</p> </note>",
+        "ActionTypeId$category": "<p>A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the following values. </p> <ul> <li> <p>Source</p> </li> <li> <p>Build</p> </li> <li> <p>Test</p> </li> <li> <p>Deploy</p> </li> <li> <p>Invoke</p> </li> <li> <p>Approval</p> </li> </ul>",
+        "CreateCustomActionTypeInput$category": "<p>The category of the custom action, such as a build action or a test action.</p>",
         "DeleteCustomActionTypeInput$category": "<p>The category of the custom action that you want to delete, such as source or deploy.</p>"
       }
     },
@@ -191,6 +191,7 @@
       "base": null,
       "refs": {
         "ActionContext$actionExecutionId": "<p>The system-generated unique ID that corresponds to an action's execution.</p>",
+        "ActionExecution$actionExecutionId": "<p>ID of the workflow action execution in the current stage. Use the <a>GetPipelineState</a> action to retrieve the current action execution details of the current stage.</p> <note> <p>For older executions, this field might be empty. The action execution ID is available for executions run on or after March 2020.</p> </note>",
         "ActionExecutionDetail$actionExecutionId": "<p>The action execution ID.</p>"
       }
     },
@@ -253,7 +254,7 @@
     "ActionOwner": {
       "base": null,
       "refs": {
-        "ActionTypeId$owner": "<p>The creator of the action being called.</p>",
+        "ActionTypeId$owner": "<p>The creator of the action being called. There are three valid values for the <code>Owner</code> field in the action category section within your pipeline structure: <code>AWS</code>, <code>ThirdParty</code>, and <code>Custom</code>. For more information, see <a href=\"https://docs.aws.amazon.com/codepipeline/latest/userguide/reference-pipeline-structure.html#actions-valid-providers\">Valid Action Types and Providers in CodePipeline</a>.</p>",
         "ListActionTypesInput$actionOwnerFilter": "<p>Filters the list of action types to those created by a specified entity.</p>"
       }
     },
@@ -510,6 +511,11 @@
     },
     "ConcurrentModificationException": {
       "base": "<p>Unable to modify the tag due to a simultaneous update request.</p>",
+      "refs": {
+      }
+    },
+    "ConflictException": {
+      "base": "<p>Your request cannot be handled because the pipeline is busy handling ongoing activities. Try again later.</p>",
       "refs": {
       }
     },
@@ -1001,6 +1007,7 @@
       "base": null,
       "refs": {
         "ConcurrentModificationException$message": null,
+        "ConflictException$message": null,
         "DuplicatedStopRequestException$message": null,
         "ErrorDetails$message": "<p>The text of the error message.</p>",
         "FailureDetails$message": "<p>The message about the failure.</p>",
@@ -1193,7 +1200,7 @@
         "ListActionExecutionsInput$pipelineName": "<p> The name of the pipeline for which you want to list action execution history.</p>",
         "ListPipelineExecutionsInput$pipelineName": "<p>The name of the pipeline for which you want to get execution summary information.</p>",
         "PipelineContext$pipelineName": "<p>The name of the pipeline. This is a user-specified value. Pipeline names must be unique across all pipeline names under an Amazon Web Services account.</p>",
-        "PipelineDeclaration$name": "<p>The name of the action to be performed.</p>",
+        "PipelineDeclaration$name": "<p>The name of the pipeline.</p>",
         "PipelineExecution$pipelineName": "<p>The name of the pipeline with the specified pipeline execution.</p>",
         "PipelineSummary$name": "<p>The name of the pipeline.</p>",
         "PutActionRevisionInput$pipelineName": "<p>The name of the pipeline that starts processing the revision to the source.</p>",
@@ -1478,6 +1485,7 @@
     "StageExecution": {
       "base": "<p>Represents information about the run of a stage.</p>",
       "refs": {
+        "StageState$inboundExecution": null,
         "StageState$latestExecution": "<p>Information about the latest execution in the stage, including its ID and status.</p>"
       }
     },

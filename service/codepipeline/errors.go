@@ -32,6 +32,13 @@ const (
 	// Unable to modify the tag due to a simultaneous update request.
 	ErrCodeConcurrentModificationException = "ConcurrentModificationException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Your request cannot be handled because the pipeline is busy handling ongoing
+	// activities. Try again later.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeDuplicatedStopRequestException for service response error code
 	// "DuplicatedStopRequestException".
 	//
@@ -228,6 +235,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ActionTypeNotFoundException":                     newErrorActionTypeNotFoundException,
 	"ApprovalAlreadyCompletedException":               newErrorApprovalAlreadyCompletedException,
 	"ConcurrentModificationException":                 newErrorConcurrentModificationException,
+	"ConflictException":                               newErrorConflictException,
 	"DuplicatedStopRequestException":                  newErrorDuplicatedStopRequestException,
 	"InvalidActionDeclarationException":               newErrorInvalidActionDeclarationException,
 	"InvalidApprovalTokenException":                   newErrorInvalidApprovalTokenException,

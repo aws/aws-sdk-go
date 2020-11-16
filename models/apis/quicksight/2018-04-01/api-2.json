@@ -4552,14 +4552,19 @@
           "locationName":"session-lifetime"
         },
         "UndoRedoDisabled":{
-          "shape":"boolean",
+          "shape":"Boolean",
           "location":"querystring",
           "locationName":"undo-redo-disabled"
         },
         "ResetDisabled":{
-          "shape":"boolean",
+          "shape":"Boolean",
           "location":"querystring",
           "locationName":"reset-disabled"
+        },
+        "StatePersistenceEnabled":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"state-persistence-enabled"
         },
         "UserArn":{
           "shape":"Arn",

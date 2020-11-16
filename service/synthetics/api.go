@@ -1462,9 +1462,8 @@ type Canary struct {
 	// A structure that contains information about a canary run.
 	RunConfig *CanaryRunConfigOutput `type:"structure"`
 
-	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid values are syn-nodejs-2.0, syn-nodejs-2.0-beta, and syn-1.0. For more
-	// information about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
+	// Specifies the runtime version to use for the canary. For more information
+	// about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	RuntimeVersion *string `min:"1" type:"string"`
 
 	// A structure that contains information about how often the canary is to run,
@@ -1835,6 +1834,18 @@ type CanaryRunConfigInput struct {
 	// or later for their canary runtime.
 	ActiveTracing *bool `type:"boolean"`
 
+	// Specifies the keys and values to use for any environment variables used in
+	// the canary script. Use the following format:
+	//
+	// { "key1" : "value1", "key2" : "value2", ...}
+	//
+	// Keys must start with a letter and be at least two characters. The total size
+	// of your environment variables cannot exceed 4 KB. You can't specify any Lambda
+	// reserved environment variables as the keys for your environment variables.
+	// For more information about reserved keys, see Runtime environment variables
+	// (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime).
+	EnvironmentVariables map[string]*string `type:"map"`
+
 	// The maximum amount of memory available to the canary while it is running,
 	// in MB. This value must be a multiple of 64.
 	MemoryInMB *int64 `min:"960" type:"integer"`
@@ -1876,6 +1887,12 @@ func (s *CanaryRunConfigInput) Validate() error {
 // SetActiveTracing sets the ActiveTracing field's value.
 func (s *CanaryRunConfigInput) SetActiveTracing(v bool) *CanaryRunConfigInput {
 	s.ActiveTracing = &v
+	return s
+}
+
+// SetEnvironmentVariables sets the EnvironmentVariables field's value.
+func (s *CanaryRunConfigInput) SetEnvironmentVariables(v map[string]*string) *CanaryRunConfigInput {
+	s.EnvironmentVariables = v
 	return s
 }
 
@@ -2325,9 +2342,9 @@ type CreateCanaryInput struct {
 	// as timeout value.
 	RunConfig *CanaryRunConfigInput `type:"structure"`
 
-	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid values are syn-nodejs-2.0, syn-nodejs-2.0-beta, and syn-1.0. For more
-	// information about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
+	// Specifies the runtime version to use for the canary. For a list of valid
+	// runtime versions and more information about runtime versions, see Canary
+	// Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	//
 	// RuntimeVersion is a required field
 	RuntimeVersion *string `min:"1" type:"string" required:"true"`
@@ -3195,8 +3212,8 @@ type RuntimeVersion struct {
 	// The date that the runtime version was released.
 	ReleaseDate *time.Time `type:"timestamp"`
 
-	// The name of the runtime version. Currently, the only valid values are syn-nodejs-2.0,
-	// syn-nodejs-2.0-beta, and syn-1.0.
+	// The name of the runtime version. For a list of valid runtime versions, see
+	// Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	VersionName *string `min:"1" type:"string"`
 }
 
@@ -3536,9 +3553,9 @@ type UpdateCanaryInput struct {
 	// run of the canary.
 	RunConfig *CanaryRunConfigInput `type:"structure"`
 
-	// Specifies the runtime version to use for the canary. Currently, the only
-	// valid values are syn-nodejs-2.0, syn-nodejs-2.0-beta, and syn-1.0. For more
-	// information about runtime versions, see Canary Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
+	// Specifies the runtime version to use for the canary. For a list of valid
+	// runtime versions and for more information about runtime versions, see Canary
+	// Runtime Versions (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html).
 	RuntimeVersion *string `min:"1" type:"string"`
 
 	// A structure that contains information about how often the canary is to run,

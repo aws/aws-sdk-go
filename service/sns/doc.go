@@ -11,6 +11,10 @@
 // information about Amazon SNS features and their associated API calls, see
 // the Amazon SNS Developer Guide (https://docs.aws.amazon.com/sns/latest/dg/).
 //
+// For information on the permissions you need to use this API, see Identity
+// and access management in Amazon SNS (https://docs.aws.amazon.com/sns/latest/dg/sns-authentication-and-access-control.html)
+// in the Amazon SNS Developer Guide.
+//
 // We also provide SDKs that enable you to access Amazon SNS from your preferred
 // programming language. The SDKs contain functionality that automatically takes
 // care of tasks such as: cryptographically signing your service requests, retrying

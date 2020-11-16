@@ -4528,6 +4528,109 @@ func (c *ServiceCatalog) GetProvisionedProductOutputsPagesWithContext(ctx aws.Co
 	return p.Err()
 }
 
+const opImportAsProvisionedProduct = "ImportAsProvisionedProduct"
+
+// ImportAsProvisionedProductRequest generates a "aws/request.Request" representing the
+// client's request for the ImportAsProvisionedProduct operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ImportAsProvisionedProduct for more information on using the ImportAsProvisionedProduct
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ImportAsProvisionedProductRequest method.
+//    req, resp := client.ImportAsProvisionedProductRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ImportAsProvisionedProduct
+func (c *ServiceCatalog) ImportAsProvisionedProductRequest(input *ImportAsProvisionedProductInput) (req *request.Request, output *ImportAsProvisionedProductOutput) {
+	op := &request.Operation{
+		Name:       opImportAsProvisionedProduct,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ImportAsProvisionedProductInput{}
+	}
+
+	output = &ImportAsProvisionedProductOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ImportAsProvisionedProduct API operation for AWS Service Catalog.
+//
+// Requests the import of a resource as a Service Catalog provisioned product
+// that is associated to a Service Catalog product and provisioning artifact.
+// Once imported all supported Service Catalog governance actions are supported
+// on the provisioned product.
+//
+// Resource import only supports CloudFormation stack ARNs. CloudFormation StackSets
+// and non-root nested stacks are not supported.
+//
+// The CloudFormation stack must have one of the following statuses to be imported:
+// CREATE_COMPLETE, UPDATE_COMPLETE, UPDATE_ROLLBACK_COMPLETE, IMPORT_COMPLETE,
+// IMPORT_ROLLBACK_COMPLETE.
+//
+// Import of the resource requires that the CloudFormation stack template matches
+// the associated Service Catalog product provisioning artifact.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog's
+// API operation ImportAsProvisionedProduct for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   The specified resource is a duplicate.
+//
+//   * InvalidStateException
+//   An attempt was made to modify a resource that is in a state that is not valid.
+//   Check your resources to ensure that they are in valid states before retrying
+//   the operation.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidParametersException
+//   One or more parameters provided to the operation are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/servicecatalog-2015-12-10/ImportAsProvisionedProduct
+func (c *ServiceCatalog) ImportAsProvisionedProduct(input *ImportAsProvisionedProductInput) (*ImportAsProvisionedProductOutput, error) {
+	req, out := c.ImportAsProvisionedProductRequest(input)
+	return out, req.Send()
+}
+
+// ImportAsProvisionedProductWithContext is the same as ImportAsProvisionedProduct with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ImportAsProvisionedProduct for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ServiceCatalog) ImportAsProvisionedProductWithContext(ctx aws.Context, input *ImportAsProvisionedProductInput, opts ...request.Option) (*ImportAsProvisionedProductOutput, error) {
+	req, out := c.ImportAsProvisionedProductRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAcceptedPortfolioShares = "ListAcceptedPortfolioShares"
 
 // ListAcceptedPortfolioSharesRequest generates a "aws/request.Request" representing the
@@ -9867,7 +9970,7 @@ type CreateProductInput struct {
 	// ProductType is a required field
 	ProductType *string `type:"string" required:"true" enum:"ProductType"`
 
-	// The configuration of the provisioning artifact.
+	// The configuration of the provisioning artifact. The info field accepts ImportFromPhysicalID.
 	//
 	// ProvisioningArtifactParameters is a required field
 	ProvisioningArtifactParameters *ProvisioningArtifactProperties `type:"structure" required:"true"`
@@ -10324,7 +10427,7 @@ type CreateProvisioningArtifactInput struct {
 	// repeated request.
 	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The configuration for the provisioning artifact.
+	// The configuration for the provisioning artifact. The info field accepts ImportFromPhysicalID.
 	//
 	// Parameters is a required field
 	Parameters *ProvisioningArtifactProperties `type:"structure" required:"true"`
@@ -13907,6 +14010,149 @@ func (s *GetProvisionedProductOutputsOutput) SetNextPageToken(v string) *GetProv
 // SetOutputs sets the Outputs field's value.
 func (s *GetProvisionedProductOutputsOutput) SetOutputs(v []*RecordOutput) *GetProvisionedProductOutputsOutput {
 	s.Outputs = v
+	return s
+}
+
+type ImportAsProvisionedProductInput struct {
+	_ struct{} `type:"structure"`
+
+	// The language code.
+	//
+	//    * en - English (default)
+	//
+	//    * jp - Japanese
+	//
+	//    * zh - Chinese
+	AcceptLanguage *string `type:"string"`
+
+	// A unique identifier that you provide to ensure idempotency. If multiple requests
+	// differ only by the idempotency token, the same response is returned for each
+	// repeated request.
+	IdempotencyToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The unique identifier of the resource to be imported. It only currently supports
+	// CloudFormation stack IDs.
+	//
+	// PhysicalId is a required field
+	PhysicalId *string `type:"string" required:"true"`
+
+	// The product identifier.
+	//
+	// ProductId is a required field
+	ProductId *string `min:"1" type:"string" required:"true"`
+
+	// The user-friendly name of the provisioned product. The value must be unique
+	// for the AWS account. The name cannot be updated after the product is provisioned.
+	//
+	// ProvisionedProductName is a required field
+	ProvisionedProductName *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the provisioning artifact.
+	//
+	// ProvisioningArtifactId is a required field
+	ProvisioningArtifactId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ImportAsProvisionedProductInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportAsProvisionedProductInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ImportAsProvisionedProductInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ImportAsProvisionedProductInput"}
+	if s.IdempotencyToken != nil && len(*s.IdempotencyToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IdempotencyToken", 1))
+	}
+	if s.PhysicalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PhysicalId"))
+	}
+	if s.ProductId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProductId"))
+	}
+	if s.ProductId != nil && len(*s.ProductId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProductId", 1))
+	}
+	if s.ProvisionedProductName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProvisionedProductName"))
+	}
+	if s.ProvisionedProductName != nil && len(*s.ProvisionedProductName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisionedProductName", 1))
+	}
+	if s.ProvisioningArtifactId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ProvisioningArtifactId"))
+	}
+	if s.ProvisioningArtifactId != nil && len(*s.ProvisioningArtifactId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProvisioningArtifactId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAcceptLanguage sets the AcceptLanguage field's value.
+func (s *ImportAsProvisionedProductInput) SetAcceptLanguage(v string) *ImportAsProvisionedProductInput {
+	s.AcceptLanguage = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *ImportAsProvisionedProductInput) SetIdempotencyToken(v string) *ImportAsProvisionedProductInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetPhysicalId sets the PhysicalId field's value.
+func (s *ImportAsProvisionedProductInput) SetPhysicalId(v string) *ImportAsProvisionedProductInput {
+	s.PhysicalId = &v
+	return s
+}
+
+// SetProductId sets the ProductId field's value.
+func (s *ImportAsProvisionedProductInput) SetProductId(v string) *ImportAsProvisionedProductInput {
+	s.ProductId = &v
+	return s
+}
+
+// SetProvisionedProductName sets the ProvisionedProductName field's value.
+func (s *ImportAsProvisionedProductInput) SetProvisionedProductName(v string) *ImportAsProvisionedProductInput {
+	s.ProvisionedProductName = &v
+	return s
+}
+
+// SetProvisioningArtifactId sets the ProvisioningArtifactId field's value.
+func (s *ImportAsProvisionedProductInput) SetProvisioningArtifactId(v string) *ImportAsProvisionedProductInput {
+	s.ProvisioningArtifactId = &v
+	return s
+}
+
+type ImportAsProvisionedProductOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about a request operation.
+	RecordDetail *RecordDetail `type:"structure"`
+}
+
+// String returns the string representation
+func (s ImportAsProvisionedProductOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ImportAsProvisionedProductOutput) GoString() string {
+	return s.String()
+}
+
+// SetRecordDetail sets the RecordDetail field's value.
+func (s *ImportAsProvisionedProductOutput) SetRecordDetail(v *RecordDetail) *ImportAsProvisionedProductOutput {
+	s.RecordDetail = v
 	return s
 }
 
@@ -19840,6 +20086,12 @@ type TerminateProvisionedProductInput struct {
 	// and ProvisionedProductId.
 	ProvisionedProductName *string `min:"1" type:"string"`
 
+	// When this boolean parameter is set to true, the TerminateProvisionedProduct
+	// API deletes the Service Catalog provisioned product. However, it does not
+	// remove the CloudFormation stack, stack set, or the underlying resources of
+	// the deleted provisioned product. The default value is false.
+	RetainPhysicalResources *bool `type:"boolean"`
+
 	// An idempotency token that uniquely identifies the termination request. This
 	// token is only valid during the termination process. After the provisioned
 	// product is terminated, subsequent requests to terminate the same provisioned
@@ -19897,6 +20149,12 @@ func (s *TerminateProvisionedProductInput) SetProvisionedProductId(v string) *Te
 // SetProvisionedProductName sets the ProvisionedProductName field's value.
 func (s *TerminateProvisionedProductInput) SetProvisionedProductName(v string) *TerminateProvisionedProductInput {
 	s.ProvisionedProductName = &v
+	return s
+}
+
+// SetRetainPhysicalResources sets the RetainPhysicalResources field's value.
+func (s *TerminateProvisionedProductInput) SetRetainPhysicalResources(v bool) *TerminateProvisionedProductInput {
+	s.RetainPhysicalResources = &v
 	return s
 }
 
@@ -20682,11 +20940,8 @@ type UpdateProvisionedProductPropertiesInput struct {
 	// call UpdateProvisionedProductProperties to update the launch role that is
 	// associated with a provisioned product. This role is used when an end user
 	// calls a provisioning operation such as UpdateProvisionedProduct, TerminateProvisionedProduct,
-	// or ExecuteProvisionedProductServiceAction. Only a role ARN or an empty string
-	// "" is valid. A user ARN is invalid. if an admin user passes an empty string
-	// "" as the value for the key LAUNCH_ROLE, the admin removes the launch role
-	// that is associated with the provisioned product. As a result, the end user
-	// operations use the credentials of the end user.
+	// or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user
+	// ARN is invalid.
 	//
 	// The OWNER key accepts user ARNs and role ARNs. The owner is the user that
 	// has permission to see, update, terminate, and execute service actions in
