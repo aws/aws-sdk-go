@@ -1,3 +1,23 @@
+Release v1.35.29 (2020-11-16)
+===
+
+### Service Client Updates
+* `service/codepipeline`: Updates service API and documentation
+  * We show details about inbound executions and id of action executions in GetPipelineState API. We also add ConflictException to StartPipelineExecution, RetryStageExecution, StopPipelineExecution APIs.
+* `service/dms`: Updates service API and documentation
+  * Adding MoveReplicationTask feature to move replication tasks between instances
+* `service/iotsecuretunneling`: Updates service API and documentation
+* `service/iotsitewise`: Updates service API and documentation
+* `service/quicksight`: Updates service API and documentation
+  * Adding new parameters for dashboard persistence
+* `service/sagemaker`: Updates service API and documentation
+  * This feature enables customers to encrypt their Amazon SageMaker Studio storage volumes with customer master keys (CMKs) managed by them in AWS Key Management Service (KMS).
+* `service/servicecatalog`: Updates service API and documentation
+  * Support import of CloudFormation stacks into Service Catalog provisioned products.
+* `service/sns`: Updates service documentation
+  * Documentation updates for Amazon SNS.
+* `service/synthetics`: Updates service API and documentation
+
 Release v1.35.28 (2020-11-13)
 ===
 

@@ -227,6 +227,24 @@
       "refs": {
       }
     },
+    "EnvironmentVariableName": {
+      "base": null,
+      "refs": {
+        "EnvironmentVariablesMap$key": null
+      }
+    },
+    "EnvironmentVariableValue": {
+      "base": null,
+      "refs": {
+        "EnvironmentVariablesMap$value": null
+      }
+    },
+    "EnvironmentVariablesMap": {
+      "base": null,
+      "refs": {
+        "CanaryRunConfigInput$EnvironmentVariables": "<p>Specifies the keys and values to use for any environment variables used in the canary script. Use the following format:</p> <p>{ \"key1\" : \"value1\", \"key2\" : \"value2\", ...}</p> <p>Keys must start with a letter and be at least two characters. The total size of your environment variables cannot exceed 4 KB. You can't specify any Lambda reserved environment variables as the keys for your environment variables. For more information about reserved keys, see <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html#configuration-envvars-runtime\"> Runtime environment variables</a>.</p>"
+      }
+    },
     "ErrorMessage": {
       "base": null,
       "refs": {
@@ -392,7 +410,7 @@
       "base": null,
       "refs": {
         "Canary$ArtifactS3Location": "<p>The location in Amazon S3 where Synthetics stores artifacts from the runs of this canary. Artifacts include the log file, screenshots, and HAR files.</p>",
-        "Canary$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
+        "Canary$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
         "CanaryCodeInput$S3Bucket": "<p>If your canary script is located in S3, specify the full bucket name here. The bucket must already exist. Specify the full bucket name, including <code>s3://</code> as the start of the bucket name.</p>",
         "CanaryCodeInput$S3Key": "<p>The S3 key of your script. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingObjects.html\">Working with Amazon S3 Objects</a>.</p>",
         "CanaryCodeInput$S3Version": "<p>The S3 version ID of your script.</p>",
@@ -405,10 +423,10 @@
         "CanaryScheduleOutput$Expression": "<p>A rate expression that defines how often the canary is to run. The syntax is <code>rate(<i>number unit</i>)</code>. <i>unit</i> can be <code>minute</code>, <code>minutes</code>, or <code>hour</code>. </p> <p>For example, <code>rate(1 minute)</code> runs the canary once a minute, <code>rate(10 minutes)</code> runs it once every 10 minutes, and <code>rate(1 hour)</code> runs it once every hour.</p> <p>Specifying <code>rate(0 minute)</code> or <code>rate(0 hour)</code> is a special value that causes the canary to run only once when it is started.</p>",
         "CanaryStatus$StateReason": "<p>If the canary has insufficient permissions to run, this field provides more details.</p>",
         "CreateCanaryRequest$ArtifactS3Location": "<p>The location in Amazon S3 where Synthetics stores artifacts from the test runs of this canary. Artifacts include the log file, screenshots, and HAR files.</p>",
-        "CreateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
-        "RuntimeVersion$VersionName": "<p>The name of the runtime version. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>.</p>",
+        "CreateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. For a list of valid runtime versions and more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
+        "RuntimeVersion$VersionName": "<p>The name of the runtime version. For a list of valid runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
         "RuntimeVersion$Description": "<p>A description of the runtime version, created by Amazon.</p>",
-        "UpdateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. Currently, the only valid values are <code>syn-nodejs-2.0</code>, <code>syn-nodejs-2.0-beta</code>, and <code>syn-1.0</code>. For more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>"
+        "UpdateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. For a list of valid runtime versions and for more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>"
       }
     },
     "SubnetId": {

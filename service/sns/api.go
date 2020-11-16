@@ -3142,7 +3142,8 @@ func (c *SNS) SubscribeRequest(input *SubscribeInput) (req *request.Request, out
 //
 // Subscribes an endpoint to an Amazon SNS topic. If the endpoint type is HTTP/S
 // or email, or if the endpoint and the topic are not in the same AWS account,
-// the endpoint owner must the ConfirmSubscription action to confirm the subscription.
+// the endpoint owner must run the ConfirmSubscription action to confirm the
+// subscription.
 //
 // You call the ConfirmSubscription action with the token from the subscription
 // response. Confirmation tokens are valid for three days.
@@ -5969,7 +5970,7 @@ type SetSubscriptionAttributesInput struct {
 	// A map of attributes with their corresponding values.
 	//
 	// The following lists the names, descriptions, and values of the special request
-	// parameters that the SetTopicAttributes action uses:
+	// parameters that this action uses:
 	//
 	//    * DeliveryPolicy – The policy that defines how Amazon SNS retries failed
 	//    deliveries to HTTP/S endpoints.

@@ -392,8 +392,9 @@ func (c *SageMaker) CreateAppImageConfigRequest(input *CreateAppImageConfigInput
 
 // CreateAppImageConfig API operation for Amazon SageMaker Service.
 //
-// Creates a configuration for running an Amazon SageMaker image as a KernelGateway
-// app.
+// Creates a configuration for running a SageMaker image as a KernelGateway
+// app. The configuration specifies the Amazon Elastic File System (EFS) storage
+// volume on the image, and a list of the kernels in the image.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -909,6 +910,22 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // region, you need to reactivate AWS STS for that region. For more information,
 // see Activating and Deactivating AWS STS in an AWS Region (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_enable-regions.html)
 // in the AWS Identity and Access Management User Guide.
+//
+// To add the IAM role policies for using this API operation, go to the IAM
+// console (https://console.aws.amazon.com/iam/), and choose Roles in the left
+// navigation pane. Search the IAM role that you want to grant access to use
+// the CreateEndpoint and CreateEndpointConfig API operations, add the following
+// policies to the role.
+//
+//    * Option 1: For a full Amazon SageMaker access, search and attach the
+//    AmazonSageMakerFullAccess policy.
+//
+//    * Option 2: For granting a limited access to an IAM role, paste the following
+//    Action elements manually into the JSON file of the IAM role: "Action":
+//    ["sagemaker:CreateEndpoint", "sagemaker:CreateEndpointConfig"] "Resource":
+//    [ "arn:aws:sagemaker:region:account-id:endpoint/endpointName" "arn:aws:sagemaker:region:account-id:endpoint-config/endpointConfigName"
+//    ] For more information, see Amazon SageMaker API Permissions: Actions,
+//    Permissions, and Resources Reference (https://docs.aws.amazon.com/sagemaker/latest/dg/api-permissions-reference.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1459,8 +1476,10 @@ func (c *SageMaker) CreateImageRequest(input *CreateImageInput) (req *request.Re
 
 // CreateImage API operation for Amazon SageMaker Service.
 //
-// Creates a SageMaker Image. A SageMaker image represents a set of container
-// images. Each of these container images is represented by a SageMaker ImageVersion.
+// Creates a custom SageMaker image. A SageMaker image is a set of image versions.
+// Each image version represents a container image stored in Amazon Container
+// Registry (ECR). For more information, see Bring your own SageMaker image
+// (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15567,21 +15586,20 @@ func (s *AppDetails) SetUserProfileName(v string) *AppDetails {
 	return s
 }
 
-// The configuration for running an Amazon SageMaker image as a KernelGateway
-// app.
+// The configuration for running a SageMaker image as a KernelGateway app.
 type AppImageConfigDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the AppImageConfig.
 	AppImageConfigArn *string `type:"string"`
 
-	// The name of the AppImageConfig.
+	// The name of the AppImageConfig. Must be unique to your account.
 	AppImageConfigName *string `type:"string"`
 
 	// When the AppImageConfig was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The KernelGateway app.
+	// The configuration for the file system and kernels in the SageMaker image.
 	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
 
 	// When the AppImageConfig was last modified.
@@ -18734,9 +18752,15 @@ type CreateDomainInput struct {
 	// DomainName is a required field
 	DomainName *string `type:"string" required:"true"`
 
-	// The AWS Key Management Service (KMS) encryption key ID. Encryption with a
-	// customer master key (CMK) is not supported.
-	HomeEfsFileSystemKmsKeyId *string `type:"string"`
+	// This member is deprecated and replaced with KmsKeyId.
+	//
+	// Deprecated: This property is deprecated, use KmsKeyId instead.
+	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
+
+	// SageMaker uses AWS KMS to encrypt the EFS volume attached to the domain with
+	// an AWS managed customer master key (CMK) by default. For more control, specify
+	// a customer managed CMK.
+	KmsKeyId *string `type:"string"`
 
 	// The VPC subnets that Studio uses for communication.
 	//
@@ -18834,6 +18858,12 @@ func (s *CreateDomainInput) SetDomainName(v string) *CreateDomainInput {
 // SetHomeEfsFileSystemKmsKeyId sets the HomeEfsFileSystemKmsKeyId field's value.
 func (s *CreateDomainInput) SetHomeEfsFileSystemKmsKeyId(v string) *CreateDomainInput {
 	s.HomeEfsFileSystemKmsKeyId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *CreateDomainInput) SetKmsKeyId(v string) *CreateDomainInput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -19733,8 +19763,7 @@ type CreateImageInput struct {
 	// The description of the image.
 	Description *string `min:"1" type:"string"`
 
-	// The display name of the image. When the image is added to a domain, DisplayName
-	// must be unique to the domain.
+	// The display name of the image. If not provided, ImageName is displayed.
 	DisplayName *string `min:"1" type:"string"`
 
 	// The name of the image. Must be unique to your account.
@@ -22811,7 +22840,8 @@ func (s *CreateWorkteamOutput) SetWorkteamArn(v string) *CreateWorkteamOutput {
 	return s
 }
 
-// A custom image.
+// A custom SageMaker image. For more information, see Bring your own SageMaker
+// image (https://docs.aws.amazon.com/sagemaker/latest/dg/studio-byoi.html).
 type CustomImage struct {
 	_ struct{} `type:"structure"`
 
@@ -25047,7 +25077,7 @@ type DescribeAppImageConfigOutput struct {
 	// When the AppImageConfig was created.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// The KernelGateway app.
+	// The configuration of a KernelGateway app.
 	KernelGatewayImageConfig *KernelGatewayImageConfig `type:"structure"`
 
 	// When the AppImageConfig was last modified.
@@ -25903,7 +25933,7 @@ type DescribeDomainOutput struct {
 	// The creation time.
 	CreationTime *time.Time `type:"timestamp"`
 
-	// Settings which are applied to all UserProfile in this domain, if settings
+	// Settings which are applied to all UserProfiles in this domain, if settings
 	// are not explicitly specified in a given UserProfile.
 	DefaultUserSettings *UserSettings `type:"structure"`
 
@@ -25922,8 +25952,14 @@ type DescribeDomainOutput struct {
 	// The ID of the Amazon Elastic File System (EFS) managed by this Domain.
 	HomeEfsFileSystemId *string `type:"string"`
 
-	// The AWS Key Management Service encryption key ID.
-	HomeEfsFileSystemKmsKeyId *string `type:"string"`
+	// This member is deprecated and replaced with KmsKeyId.
+	//
+	// Deprecated: This property is deprecated, use KmsKeyId instead.
+	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
+
+	// The AWS KMS customer managed CMK used to encrypt the EFS volume attached
+	// to the domain.
+	KmsKeyId *string `type:"string"`
 
 	// The last modified time.
 	LastModifiedTime *time.Time `type:"timestamp"`
@@ -26011,6 +26047,12 @@ func (s *DescribeDomainOutput) SetHomeEfsFileSystemId(v string) *DescribeDomainO
 // SetHomeEfsFileSystemKmsKeyId sets the HomeEfsFileSystemKmsKeyId field's value.
 func (s *DescribeDomainOutput) SetHomeEfsFileSystemKmsKeyId(v string) *DescribeDomainOutput {
 	s.HomeEfsFileSystemKmsKeyId = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *DescribeDomainOutput) SetKmsKeyId(v string) *DescribeDomainOutput {
+	s.KmsKeyId = &v
 	return s
 }
 
@@ -30826,14 +30868,15 @@ func (s *ExperimentSummary) SetLastModifiedTime(v time.Time) *ExperimentSummary 
 	return s
 }
 
-// The Amazon Elastic File System (EFS) storage configuration for an image.
+// The Amazon Elastic File System (EFS) storage configuration for a SageMaker
+// image.
 type FileSystemConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The default POSIX group ID. If not specified, defaults to 100.
+	// The default POSIX group ID (GID). If not specified, defaults to 100.
 	DefaultGid *int64 `type:"integer"`
 
-	// The default POSIX user ID. If not specified, defaults to 1000.
+	// The default POSIX user ID (UID). If not specified, defaults to 1000.
 	DefaultUid *int64 `type:"integer"`
 
 	// The path within the image to mount the user's EFS home directory. The directory
@@ -34354,10 +34397,10 @@ type InputConfig struct {
 	//    If using the console, {"input_1": [1,3,224,224], "input_2":[1,3,224,224]}
 	//    If using the CLI, {\"input_1\": [1,3,224,224], \"input_2\":[1,3,224,224]}
 	//
-	//    * MXNET/ONNX: You must specify the name and shape (NCHW format) of the
-	//    expected data inputs in order using a dictionary format for your trained
-	//    model. The dictionary formats required for the console and CLI are different.
-	//    Examples for one input: If using the console, {"data":[1,3,1024,1024]}
+	//    * MXNET/ONNX/DARKNET: You must specify the name and shape (NCHW format)
+	//    of the expected data inputs in order using a dictionary format for your
+	//    trained model. The dictionary formats required for the console and CLI
+	//    are different. Examples for one input: If using the console, {"data":[1,3,1024,1024]}
 	//    If using the CLI, {\"data\":[1,3,1024,1024]} Examples for two inputs:
 	//    If using the console, {"var1": [1,1,28,28], "var2":[1,1,28,28]} If using
 	//    the CLI, {\"var1\": [1,1,28,28], \"var2\":[1,1,28,28]}
@@ -34637,12 +34680,12 @@ func (s *IntegerParameterRangeSpecification) SetMinValue(v string) *IntegerParam
 	return s
 }
 
-// Jupyter server's app settings.
+// The JupyterServer app settings.
 type JupyterServerAppSettings struct {
 	_ struct{} `type:"structure"`
 
-	// The default instance type and the Amazon Resource Name (ARN) of the SageMaker
-	// image created on the instance.
+	// The default instance type and the Amazon Resource Name (ARN) of the default
+	// SageMaker image used by the JupyterServer app.
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
 }
 
@@ -34666,7 +34709,8 @@ func (s *JupyterServerAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *Jupy
 type KernelGatewayAppSettings struct {
 	_ struct{} `type:"structure"`
 
-	// A list of custom images that are configured to run as a KernelGateway app.
+	// A list of custom SageMaker images that are configured to run as a KernelGateway
+	// app.
 	CustomImages []*CustomImage `type:"list"`
 
 	// The default instance type and the Amazon Resource Name (ARN) of the default
@@ -34716,15 +34760,16 @@ func (s *KernelGatewayAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *Kern
 	return s
 }
 
-// The configuration for an Amazon SageMaker KernelGateway app.
+// The configuration for the file system and kernels in a SageMaker image running
+// as a KernelGateway app.
 type KernelGatewayImageConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The file system configuration.
+	// The Amazon Elastic File System (EFS) storage configuration for a SageMaker
+	// image.
 	FileSystemConfig *FileSystemConfig `type:"structure"`
 
-	// Defines how a kernel is started and the arguments, environment variables,
-	// and metadata that are available to the kernel.
+	// The specification of the Jupyter kernels in the image.
 	//
 	// KernelSpecs is a required field
 	KernelSpecs []*KernelSpec `min:"1" type:"list" required:"true"`
@@ -34778,15 +34823,14 @@ func (s *KernelGatewayImageConfig) SetKernelSpecs(v []*KernelSpec) *KernelGatewa
 	return s
 }
 
-// Defines how a kernel is started and the arguments, environment variables,
-// and metadata that are available to the kernel.
+// The specification of a Jupyter kernel.
 type KernelSpec struct {
 	_ struct{} `type:"structure"`
 
 	// The display name of the kernel.
 	DisplayName *string `type:"string"`
 
-	// The name of the kernel. Must be unique to your account.
+	// The name of the kernel.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`

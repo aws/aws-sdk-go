@@ -281,7 +281,8 @@
       "members":{
         "TimeoutInSeconds":{"shape":"MaxFifteenMinutesInSeconds"},
         "MemoryInMB":{"shape":"MaxSize3008"},
-        "ActiveTracing":{"shape":"NullableBoolean"}
+        "ActiveTracing":{"shape":"NullableBoolean"},
+        "EnvironmentVariables":{"shape":"EnvironmentVariablesMap"}
       }
     },
     "CanaryRunConfigOutput":{
@@ -471,6 +472,16 @@
         "RuntimeVersions":{"shape":"RuntimeVersionList"},
         "NextToken":{"shape":"Token"}
       }
+    },
+    "EnvironmentVariableName":{
+      "type":"string",
+      "pattern":"[a-zA-Z]([a-zA-Z0-9_])+"
+    },
+    "EnvironmentVariableValue":{"type":"string"},
+    "EnvironmentVariablesMap":{
+      "type":"map",
+      "key":{"shape":"EnvironmentVariableName"},
+      "value":{"shape":"EnvironmentVariableValue"}
     },
     "ErrorMessage":{"type":"string"},
     "FunctionArn":{

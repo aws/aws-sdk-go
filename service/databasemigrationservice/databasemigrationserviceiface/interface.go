@@ -290,6 +290,10 @@ type DatabaseMigrationServiceAPI interface {
 	ModifyReplicationTaskWithContext(aws.Context, *databasemigrationservice.ModifyReplicationTaskInput, ...request.Option) (*databasemigrationservice.ModifyReplicationTaskOutput, error)
 	ModifyReplicationTaskRequest(*databasemigrationservice.ModifyReplicationTaskInput) (*request.Request, *databasemigrationservice.ModifyReplicationTaskOutput)
 
+	MoveReplicationTask(*databasemigrationservice.MoveReplicationTaskInput) (*databasemigrationservice.MoveReplicationTaskOutput, error)
+	MoveReplicationTaskWithContext(aws.Context, *databasemigrationservice.MoveReplicationTaskInput, ...request.Option) (*databasemigrationservice.MoveReplicationTaskOutput, error)
+	MoveReplicationTaskRequest(*databasemigrationservice.MoveReplicationTaskInput) (*request.Request, *databasemigrationservice.MoveReplicationTaskOutput)
+
 	RebootReplicationInstance(*databasemigrationservice.RebootReplicationInstanceInput) (*databasemigrationservice.RebootReplicationInstanceOutput, error)
 	RebootReplicationInstanceWithContext(aws.Context, *databasemigrationservice.RebootReplicationInstanceInput, ...request.Option) (*databasemigrationservice.RebootReplicationInstanceOutput, error)
 	RebootReplicationInstanceRequest(*databasemigrationservice.RebootReplicationInstanceInput) (*request.Request, *databasemigrationservice.RebootReplicationInstanceOutput)

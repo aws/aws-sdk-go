@@ -700,6 +700,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "ImportAsProvisionedProduct":{
+      "name":"ImportAsProvisionedProduct",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportAsProvisionedProductInput"},
+      "output":{"shape":"ImportAsProvisionedProductOutput"},
+      "errors":[
+        {"shape":"DuplicateResourceException"},
+        {"shape":"InvalidStateException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParametersException"}
+      ]
+    },
     "ListAcceptedPortfolioShares":{
       "name":"ListAcceptedPortfolioShares",
       "http":{
@@ -2268,6 +2283,33 @@
       "pattern":"[a-zA-Z0-9][a-zA-Z0-9_-]*"
     },
     "IgnoreErrors":{"type":"boolean"},
+    "ImportAsProvisionedProductInput":{
+      "type":"structure",
+      "required":[
+        "ProductId",
+        "ProvisioningArtifactId",
+        "ProvisionedProductName",
+        "PhysicalId",
+        "IdempotencyToken"
+      ],
+      "members":{
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "ProductId":{"shape":"Id"},
+        "ProvisioningArtifactId":{"shape":"Id"},
+        "ProvisionedProductName":{"shape":"ProvisionedProductName"},
+        "PhysicalId":{"shape":"PhysicalId"},
+        "IdempotencyToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "ImportAsProvisionedProductOutput":{
+      "type":"structure",
+      "members":{
+        "RecordDetail":{"shape":"RecordDetail"}
+      }
+    },
     "InstructionType":{"type":"string"},
     "InstructionValue":{"type":"string"},
     "InvalidParametersException":{
@@ -3455,6 +3497,7 @@
       }
     },
     "ResourceType":{"type":"string"},
+    "RetainPhysicalResources":{"type":"boolean"},
     "RoleArn":{
       "type":"string",
       "max":1224,
@@ -3860,7 +3903,8 @@
           "idempotencyToken":true
         },
         "IgnoreErrors":{"shape":"IgnoreErrors"},
-        "AcceptLanguage":{"shape":"AcceptLanguage"}
+        "AcceptLanguage":{"shape":"AcceptLanguage"},
+        "RetainPhysicalResources":{"shape":"RetainPhysicalResources"}
       }
     },
     "TerminateProvisionedProductOutput":{

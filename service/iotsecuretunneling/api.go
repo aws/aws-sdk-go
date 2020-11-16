@@ -431,7 +431,7 @@ func (c *IoTSecureTunneling) OpenTunnelRequest(input *OpenTunnelInput) (req *req
 // OpenTunnel API operation for AWS IoT Secure Tunneling.
 //
 // Creates a new tunnel, and returns two client access tokens for clients to
-// use to connect to the AWS IoT Secure Tunneling proxy server. .
+// use to connect to the AWS IoT Secure Tunneling proxy server.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -785,19 +785,17 @@ func (s *DescribeTunnelOutput) SetTunnel(v *Tunnel) *DescribeTunnelOutput {
 type DestinationConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A list of service names that identity the target application. Currently,
-	// you can only specify a single name. The AWS IoT client running on the destination
-	// device reads this value and uses it to look up a port or an IP address and
-	// a port. The AWS IoT client instantiates the local proxy which uses this information
-	// to connect to the destination application.
+	// A list of service names that identity the target application. The AWS IoT
+	// client running on the destination device reads this value and uses it to
+	// look up a port or an IP address and a port. The AWS IoT client instantiates
+	// the local proxy which uses this information to connect to the destination
+	// application.
 	//
 	// Services is a required field
 	Services []*string `locationName:"services" min:"1" type:"list" required:"true"`
 
 	// The name of the IoT thing to which you want to connect.
-	//
-	// ThingName is a required field
-	ThingName *string `locationName:"thingName" min:"1" type:"string" required:"true"`
+	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -818,9 +816,6 @@ func (s *DestinationConfig) Validate() error {
 	}
 	if s.Services != nil && len(s.Services) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Services", 1))
-	}
-	if s.ThingName == nil {
-		invalidParams.Add(request.NewErrParamRequired("ThingName"))
 	}
 	if s.ThingName != nil && len(*s.ThingName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ThingName", 1))

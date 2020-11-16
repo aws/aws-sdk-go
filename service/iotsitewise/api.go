@@ -1120,6 +1120,103 @@ func (c *IoTSiteWise) CreatePortalWithContext(ctx aws.Context, input *CreatePort
 	return out, req.Send()
 }
 
+const opCreatePresignedPortalUrl = "CreatePresignedPortalUrl"
+
+// CreatePresignedPortalUrlRequest generates a "aws/request.Request" representing the
+// client's request for the CreatePresignedPortalUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreatePresignedPortalUrl for more information on using the CreatePresignedPortalUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreatePresignedPortalUrlRequest method.
+//    req, resp := client.CreatePresignedPortalUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreatePresignedPortalUrl
+func (c *IoTSiteWise) CreatePresignedPortalUrlRequest(input *CreatePresignedPortalUrlInput) (req *request.Request, output *CreatePresignedPortalUrlOutput) {
+	op := &request.Operation{
+		Name:       opCreatePresignedPortalUrl,
+		HTTPMethod: "GET",
+		HTTPPath:   "/portals/{portalId}/presigned-url",
+	}
+
+	if input == nil {
+		input = &CreatePresignedPortalUrlInput{}
+	}
+
+	output = &CreatePresignedPortalUrlOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("monitor.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// CreatePresignedPortalUrl API operation for AWS IoT SiteWise.
+//
+// Creates a pre-signed URL to a portal. Use this operation to create URLs to
+// portals that use AWS Identity and Access Management (IAM) to authenticate
+// users. An IAM user with access to a portal can call this API to get a URL
+// to that portal. The URL contains a session token that lets the IAM user access
+// the portal.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation CreatePresignedPortalUrl for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * InternalFailureException
+//   AWS IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of AWS IoT SiteWise assets that can be created per second, the
+//   allowed number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the AWS IoT SiteWise User Guide.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreatePresignedPortalUrl
+func (c *IoTSiteWise) CreatePresignedPortalUrl(input *CreatePresignedPortalUrlInput) (*CreatePresignedPortalUrlOutput, error) {
+	req, out := c.CreatePresignedPortalUrlRequest(input)
+	return out, req.Send()
+}
+
+// CreatePresignedPortalUrlWithContext is the same as CreatePresignedPortalUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreatePresignedPortalUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) CreatePresignedPortalUrlWithContext(ctx aws.Context, input *CreatePresignedPortalUrlInput, opts ...request.Option) (*CreatePresignedPortalUrlOutput, error) {
+	req, out := c.CreatePresignedPortalUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateProject = "CreateProject"
 
 // CreateProjectRequest generates a "aws/request.Request" representing the
@@ -8841,6 +8938,89 @@ func (s *CreatePortalOutput) SetPortalStatus(v *PortalStatus) *CreatePortalOutpu
 // SetSsoApplicationId sets the SsoApplicationId field's value.
 func (s *CreatePortalOutput) SetSsoApplicationId(v string) *CreatePortalOutput {
 	s.SsoApplicationId = &v
+	return s
+}
+
+type CreatePresignedPortalUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the portal to access.
+	//
+	// PortalId is a required field
+	PortalId *string `location:"uri" locationName:"portalId" min:"36" type:"string" required:"true"`
+
+	// The duration (in seconds) for which the session at the URL is valid.
+	//
+	// Default: 900 seconds (15 minutes)
+	SessionDurationSeconds *int64 `location:"querystring" locationName:"sessionDurationSeconds" min:"900" type:"integer"`
+}
+
+// String returns the string representation
+func (s CreatePresignedPortalUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePresignedPortalUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreatePresignedPortalUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreatePresignedPortalUrlInput"}
+	if s.PortalId == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortalId"))
+	}
+	if s.PortalId != nil && len(*s.PortalId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("PortalId", 36))
+	}
+	if s.SessionDurationSeconds != nil && *s.SessionDurationSeconds < 900 {
+		invalidParams.Add(request.NewErrParamMinValue("SessionDurationSeconds", 900))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPortalId sets the PortalId field's value.
+func (s *CreatePresignedPortalUrlInput) SetPortalId(v string) *CreatePresignedPortalUrlInput {
+	s.PortalId = &v
+	return s
+}
+
+// SetSessionDurationSeconds sets the SessionDurationSeconds field's value.
+func (s *CreatePresignedPortalUrlInput) SetSessionDurationSeconds(v int64) *CreatePresignedPortalUrlInput {
+	s.SessionDurationSeconds = &v
+	return s
+}
+
+type CreatePresignedPortalUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The pre-signed URL to the portal. The URL contains the portal ID and a session
+	// token that lets you access the portal. The URL has the following format.
+	//
+	// https://<portal-id>.app.iotsitewise.aws/auth?token=<encrypted-token>
+	//
+	// PresignedPortalUrl is a required field
+	PresignedPortalUrl *string `locationName:"presignedPortalUrl" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreatePresignedPortalUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreatePresignedPortalUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetPresignedPortalUrl sets the PresignedPortalUrl field's value.
+func (s *CreatePresignedPortalUrlOutput) SetPresignedPortalUrl(v string) *CreatePresignedPortalUrlOutput {
+	s.PresignedPortalUrl = &v
 	return s
 }
 

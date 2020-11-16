@@ -156,10 +156,7 @@
     },
     "DestinationConfig":{
       "type":"structure",
-      "required":[
-        "thingName",
-        "services"
-      ],
+      "required":["services"],
       "members":{
         "thingName":{"shape":"ThingName"},
         "services":{"shape":"ServiceList"}
@@ -240,14 +237,13 @@
     },
     "Service":{
       "type":"string",
-      "max":8,
+      "max":128,
       "min":1,
       "pattern":"[a-zA-Z0-9:_-]+"
     },
     "ServiceList":{
       "type":"list",
       "member":{"shape":"Service"},
-      "max":1,
       "min":1
     },
     "Tag":{

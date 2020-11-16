@@ -267,6 +267,10 @@ type ServiceCatalogAPI interface {
 	GetProvisionedProductOutputsPages(*servicecatalog.GetProvisionedProductOutputsInput, func(*servicecatalog.GetProvisionedProductOutputsOutput, bool) bool) error
 	GetProvisionedProductOutputsPagesWithContext(aws.Context, *servicecatalog.GetProvisionedProductOutputsInput, func(*servicecatalog.GetProvisionedProductOutputsOutput, bool) bool, ...request.Option) error
 
+	ImportAsProvisionedProduct(*servicecatalog.ImportAsProvisionedProductInput) (*servicecatalog.ImportAsProvisionedProductOutput, error)
+	ImportAsProvisionedProductWithContext(aws.Context, *servicecatalog.ImportAsProvisionedProductInput, ...request.Option) (*servicecatalog.ImportAsProvisionedProductOutput, error)
+	ImportAsProvisionedProductRequest(*servicecatalog.ImportAsProvisionedProductInput) (*request.Request, *servicecatalog.ImportAsProvisionedProductOutput)
+
 	ListAcceptedPortfolioShares(*servicecatalog.ListAcceptedPortfolioSharesInput) (*servicecatalog.ListAcceptedPortfolioSharesOutput, error)
 	ListAcceptedPortfolioSharesWithContext(aws.Context, *servicecatalog.ListAcceptedPortfolioSharesInput, ...request.Option) (*servicecatalog.ListAcceptedPortfolioSharesOutput, error)
 	ListAcceptedPortfolioSharesRequest(*servicecatalog.ListAcceptedPortfolioSharesInput) (*request.Request, *servicecatalog.ListAcceptedPortfolioSharesOutput)

@@ -2926,7 +2926,12 @@
         "VpcId":{"shape":"VpcId"},
         "Tags":{"shape":"TagList"},
         "AppNetworkAccessType":{"shape":"AppNetworkAccessType"},
-        "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"}
+        "HomeEfsFileSystemKmsKeyId":{
+          "shape":"KmsKeyId",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use KmsKeyId instead."
+        },
+        "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "CreateDomainResponse":{
@@ -4068,10 +4073,15 @@
         "AuthMode":{"shape":"AuthMode"},
         "DefaultUserSettings":{"shape":"UserSettings"},
         "AppNetworkAccessType":{"shape":"AppNetworkAccessType"},
-        "HomeEfsFileSystemKmsKeyId":{"shape":"KmsKeyId"},
+        "HomeEfsFileSystemKmsKeyId":{
+          "shape":"KmsKeyId",
+          "deprecated":true,
+          "deprecatedMessage":"This property is deprecated, use KmsKeyId instead."
+        },
         "SubnetIds":{"shape":"Subnets"},
         "Url":{"shape":"String1024"},
-        "VpcId":{"shape":"VpcId"}
+        "VpcId":{"shape":"VpcId"},
+        "KmsKeyId":{"shape":"KmsKeyId"}
       }
     },
     "DescribeEndpointConfigInput":{

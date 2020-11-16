@@ -510,6 +510,9 @@
       "base": null,
       "refs": {
         "DataSetSummary$ColumnLevelPermissionRulesApplied": "<p>Indicates if the dataset has column level permission configured. </p>",
+        "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
+        "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
+        "GetDashboardEmbedUrlRequest$StatePersistenceEnabled": "<p>Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (QuickSight reader) chooses while viewing the dashboard. If this is set to <code>TRUE</code>, the settings are the same when the the subscriber reopens the same dashboard URL. The state is stored in QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is <code>FALSE</code>.</p>",
         "SslProperties$DisableSsl": "<p>A Boolean option to control whether SSL should be disabled.</p>",
         "UpdateUserRequest$UnapplyCustomPermissions": "<p>A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.</p>",
         "UploadSettings$ContainsHeader": "<p>Whether the file has a header row, or the files each have a header row.</p>",
@@ -2371,7 +2374,7 @@
       }
     },
     "OracleParameters": {
-      "base": null,
+      "base": "<p>Oracle parameters.</p>",
       "refs": {
         "DataSourceParameters$OracleParameters": "<p>Oracle parameters.</p>"
       }
@@ -3945,8 +3948,6 @@
         "BorderStyle$Show": "<p>The option to enable display of borders for visuals.</p>",
         "DeleteAnalysisRequest$ForceDeleteWithoutRecovery": "<p>This option defaults to the value <code>NoForceDeleteWithoutRecovery</code>. To immediately delete the analysis, add the <code>ForceDeleteWithoutRecovery</code> option. You can't restore an analysis after it's deleted. </p>",
         "DescribeAccountCustomizationRequest$Resolved": "<p>The <code>Resolved</code> flag works with the other parameters to determine which view of QuickSight customizations is returned. You can add this flag to your command to use the same view that QuickSight uses to identify which customizations to apply to the console. Omit this flag, or set it to <code>no-resolved</code>, to reveal customizations that are configured at different levels. </p>",
-        "GetDashboardEmbedUrlRequest$UndoRedoDisabled": "<p>Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.</p>",
-        "GetDashboardEmbedUrlRequest$ResetDisabled": "<p>Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.</p>",
         "GutterStyle$Show": "<p>This Boolean value controls whether to display a gutter space between sheet tiles. </p>",
         "MarginStyle$Show": "<p>This Boolean value controls whether to display sheet margins.</p>"
       }
