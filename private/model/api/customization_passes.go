@@ -313,13 +313,15 @@ func mergeServicesCustomizations(a *API) error {
 	return nil
 }
 
-// rdsCustomizations are customization for the service/rds. This adds non-modeled fields used for presigning.
+// rdsCustomizations are customization for the service/rds. This adds
+// non-modeled fields used for presigning.
 func rdsCustomizations(a *API) error {
 	inputs := []string{
 		"CopyDBSnapshotInput",
 		"CreateDBInstanceReadReplicaInput",
 		"CopyDBClusterSnapshotInput",
 		"CreateDBClusterInput",
+		"StartDBInstanceAutomatedBackupsReplicationInput",
 	}
 	for _, input := range inputs {
 		if ref, ok := a.Shapes[input]; ok {
