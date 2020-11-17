@@ -1,3 +1,16 @@
+Release v1.35.30 (2020-11-17)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * This release adds CRUD APIs for Amazon Chime SipMediaApplications and SipRules. It also adds the API for creating outbound PSTN calls for Amazon Chime meetings.
+* `service/connect`: Updates service API and documentation
+* `service/fms`: Updates service API and documentation
+* `service/macie2`: Updates service API and documentation
+* `service/network-firewall`: Adds new service
+* `service/rds`: Updates service API and documentation
+  * Support copy-db-snapshot in the one region on cross clusters and local cluster for RDSonVmware. Add target-custom-availability-zone parameter to specify where a snapshot should be copied.
+
 Release v1.35.29 (2020-11-16)
 ===
 

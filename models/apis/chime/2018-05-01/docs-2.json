@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>The Amazon Chime API (application programming interface) is designed for developers to perform key tasks, such as creating and managing Amazon Chime accounts, users, and Voice Connectors. This guide provides detailed information about the Amazon Chime API, including operations, types, inputs and outputs, and error codes. It also includes some server-side API actions to use with the Amazon Chime SDK. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p> <p>You can use an AWS SDK, the AWS Command Line Interface (AWS CLI), or the REST API to make API calls. We recommend using an AWS SDK or the AWS CLI. Each API operation includes links to information about using it with a language-specific AWS SDK or the AWS CLI.</p> <dl> <dt>Using an AWS SDK</dt> <dd> <p>You don't need to write code to calculate a signature for request authentication. The SDK clients authenticate your requests by using access keys that you provide. For more information about AWS SDKs, see the <a href=\"http://aws.amazon.com/developer/\">AWS Developer Center</a>.</p> </dd> <dt>Using the AWS CLI</dt> <dd> <p>Use your access keys with the AWS CLI to make API calls. For information about setting up the AWS CLI, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/installing.html\">Installing the AWS Command Line Interface</a> in the <i>AWS Command Line Interface User Guide</i>. For a list of available Amazon Chime commands, see the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/chime/index.html\">Amazon Chime commands</a> in the <i>AWS CLI Command Reference</i>.</p> </dd> <dt>Using REST API</dt> <dd> <p>If you use REST to make API calls, you must authenticate your request by providing a signature. Amazon Chime supports signature version 4. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4 Signing Process</a> in the <i>Amazon Web Services General Reference</i>.</p> <p>When making REST API calls, use the service name <code>chime</code> and REST endpoint <code>https://service.chime.aws.amazon.com</code>.</p> </dd> </dl> <p>Administrative permissions are controlled using AWS Identity and Access Management (IAM). For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/security-iam.html\">Identity and Access Management for Amazon Chime</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+  "service": "<p>The Amazon Chime API (application programming interface) is designed for developers to perform key tasks, such as creating and managing Amazon Chime accounts, users, and Voice Connectors. This guide provides detailed information about the Amazon Chime API, including operations, types, inputs and outputs, and error codes. It also includes some server-side API actions to use with the Amazon Chime SDK. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p> <p>You can use an AWS SDK, the AWS Command Line Interface (AWS CLI), or the REST API to make API calls. We recommend using an AWS SDK or the AWS CLI. Each API operation includes links to information about using it with a language-specific AWS SDK or the AWS CLI.</p> <dl> <dt>Using an AWS SDK</dt> <dd> <p>You don't need to write code to calculate a signature for request authentication. The SDK clients authenticate your requests by using access keys that you provide. For more information about AWS SDKs, see the <a href=\"http://aws.amazon.com/developer/\">AWS Developer Center</a>.</p> </dd> <dt>Using the AWS CLI</dt> <dd> <p>Use your access keys with the AWS CLI to make API calls. For information about setting up the AWS CLI, see <a href=\"https://docs.aws.amazon.com/cli/latest/userguide/installing.html\">Installing the AWS Command Line Interface</a> in the <i>AWS Command Line Interface User Guide</i>. For a list of available Amazon Chime commands, see the <a href=\"https://docs.aws.amazon.com/cli/latest/reference/chime/index.html\">Amazon Chime commands</a> in the <i>AWS CLI Command Reference</i>.</p> </dd> <dt>Using REST API</dt> <dd> <p>If you use REST to make API calls, you must authenticate your request by providing a signature. Amazon Chime supports Signature Version 4. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Signature Version 4 Signing Process</a> in the <i>Amazon Web Services General Reference</i>.</p> <p>When making REST API calls, use the service name <code>chime</code> and REST endpoint <code>https://service.chime.aws.amazon.com</code>.</p> </dd> </dl> <p>Administrative permissions are controlled using AWS Identity and Access Management (IAM). For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/security-iam.html\">Identity and Access Management for Amazon Chime</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
   "operations": {
     "AssociatePhoneNumberWithUser": "<p>Associates a phone number with the specified Amazon Chime user.</p>",
     "AssociatePhoneNumbersWithVoiceConnector": "<p>Associates phone numbers with the specified Amazon Chime Voice Connector.</p>",
@@ -17,11 +17,15 @@
     "CreateAttendee": "<p>Creates a new attendee for an active Amazon Chime SDK meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreateBot": "<p>Creates a bot for an Amazon Chime Enterprise account.</p>",
     "CreateMeeting": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
+    "CreateMeetingDialOut": "<p>Uses the join token and call metadata in a meeting request (From number, To number, and so forth) to initiate an outbound call to a public switched telephone network (PSTN) and joins them into Chime meeting. Also ensures that the From number belongs to the customer.</p> <p>To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code> API with the corresponding SIP media application ID.</p>",
     "CreateMeetingWithAttendees": "<p>Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i>. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "CreatePhoneNumberOrder": "<p>Creates an order for phone numbers to be provisioned. Choose from Amazon Chime Business Calling and Amazon Chime Voice Connector product types. For toll-free numbers, you must use the Amazon Chime Voice Connector product type.</p>",
     "CreateProxySession": "<p>Creates a proxy session on the specified Amazon Chime Voice Connector for the specified participant phone numbers.</p>",
     "CreateRoom": "<p>Creates a chat room for the specified Amazon Chime Enterprise account.</p>",
     "CreateRoomMembership": "<p>Adds a member to a chat room in an Amazon Chime Enterprise account. A member can be either a user or a bot. The member role designates whether the member is a chat room administrator or a general chat room member.</p>",
+    "CreateSipMediaApplication": "<p>Creates a SIP media application.</p>",
+    "CreateSipMediaApplicationCall": "<p>Creates an outbound call to a phone number from the phone number specified in the request, and it invokes the endpoint of the specified <code>sipMediaApplicationId</code>.</p>",
+    "CreateSipRule": "<p>Creates a SIP rule which can be used to run a SIP media application as a target for a specific trigger type.</p>",
     "CreateUser": "<p>Creates a user under the specified Amazon Chime account.</p>",
     "CreateVoiceConnector": "<p>Creates an Amazon Chime Voice Connector under the administrator's AWS account. You can choose to create an Amazon Chime Voice Connector in a specific AWS Region.</p> <p>Enabling <a>CreateVoiceConnectorRequest$RequireEncryption</a> configures your Amazon Chime Voice Connector to use TLS transport for SIP signaling and Secure RTP (SRTP) for media. Inbound calls use TLS transport, and unencrypted outbound calls are blocked.</p>",
     "CreateVoiceConnectorGroup": "<p>Creates an Amazon Chime Voice Connector group under the administrator's AWS account. You can associate Amazon Chime Voice Connectors with the Amazon Chime Voice Connector group by including <code>VoiceConnectorItems</code> in the request.</p> <p>You can include Amazon Chime Voice Connectors from different AWS Regions in your group. This creates a fault tolerant mechanism for fallback in case of availability events.</p>",
@@ -33,6 +37,8 @@
     "DeleteProxySession": "<p>Deletes the specified proxy session from the specified Amazon Chime Voice Connector.</p>",
     "DeleteRoom": "<p>Deletes a chat room in an Amazon Chime Enterprise account.</p>",
     "DeleteRoomMembership": "<p>Removes a member from a chat room in an Amazon Chime Enterprise account.</p>",
+    "DeleteSipMediaApplication": "<p>Deletes a SIP media application.</p>",
+    "DeleteSipRule": "<p>Deletes a SIP rule. You must disable a SIP rule before you can delete it.</p>",
     "DeleteVoiceConnector": "<p>Deletes the specified Amazon Chime Voice Connector. Any phone numbers associated with the Amazon Chime Voice Connector must be disassociated from it before it can be deleted.</p>",
     "DeleteVoiceConnectorEmergencyCallingConfiguration": "<p>Deletes the emergency calling configuration details from the specified Amazon Chime Voice Connector.</p>",
     "DeleteVoiceConnectorGroup": "<p>Deletes the specified Amazon Chime Voice Connector group. Any <code>VoiceConnectorItems</code> and phone numbers associated with the group must be removed before it can be deleted.</p>",
@@ -58,6 +64,9 @@
     "GetProxySession": "<p>Gets the specified proxy session details for the specified Amazon Chime Voice Connector.</p>",
     "GetRetentionSettings": "<p>Gets the retention settings for the specified Amazon Chime Enterprise account. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
     "GetRoom": "<p>Retrieves room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
+    "GetSipMediaApplication": "<p>Retrieves the information for a SIP media application, including name, AWS Region, and endpoints.</p>",
+    "GetSipMediaApplicationLoggingConfiguration": "<p>Returns the logging configuration for the specified SIP media application.</p>",
+    "GetSipRule": "<p>Retrieves the details of a SIP rule, such as the rule ID, name, triggers, and target endpoints.</p>",
     "GetUser": "<p>Retrieves details for the specified user ID, such as primary email address, license type, and personal meeting PIN.</p> <p>To retrieve user details with an email address instead of a user ID, use the <a>ListUsers</a> action, and then filter by email address.</p>",
     "GetUserSettings": "<p>Retrieves settings for the specified user ID, such as any associated phone number settings.</p>",
     "GetVoiceConnector": "<p>Retrieves details for the specified Amazon Chime Voice Connector, such as timestamps, name, outbound host, and encryption requirements.</p>",
@@ -81,6 +90,8 @@
     "ListProxySessions": "<p>Lists the proxy sessions for the specified Amazon Chime Voice Connector.</p>",
     "ListRoomMemberships": "<p>Lists the membership details for the specified room in an Amazon Chime Enterprise account, such as the members' IDs, email addresses, and names.</p>",
     "ListRooms": "<p>Lists the room details for the specified Amazon Chime Enterprise account. Optionally, filter the results by a member ID (user ID or bot ID) to see a list of rooms that the member belongs to.</p>",
+    "ListSipMediaApplications": "<p>Lists the SIP media applications under the administrator's AWS account.</p>",
+    "ListSipRules": "<p>Lists the SIP rules under the administrator's AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon Chime SDK meeting resource.</p>",
     "ListUsers": "<p>Lists the users that belong to the specified Amazon Chime account. You can specify an email address to list only the user that the email address belongs to.</p>",
     "ListVoiceConnectorGroups": "<p>Lists the Amazon Chime Voice Connector groups for the administrator's AWS account.</p>",
@@ -89,6 +100,7 @@
     "LogoutUser": "<p>Logs out the specified user from all of the devices they are currently logged into.</p>",
     "PutEventsConfiguration": "<p>Creates an events configuration that allows a bot to receive outgoing events sent by Amazon Chime. Choose either an HTTPS endpoint or a Lambda function ARN. For more information, see <a>Bot</a>.</p>",
     "PutRetentionSettings": "<p>Puts retention settings for the specified Amazon Chime Enterprise account. We recommend using AWS CloudTrail to monitor usage of this API for your account. For more information, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/cloudtrail.html\">Logging Amazon Chime API Calls with AWS CloudTrail</a> in the <i>Amazon Chime Administration Guide</i>.</p> <p>To turn off existing retention settings, remove the number of days from the corresponding <b>RetentionDays</b> field in the <b>RetentionSettings</b> object. For more information about retention settings, see <a href=\"https://docs.aws.amazon.com/chime/latest/ag/chat-retention.html\">Managing Chat Retention Policies</a> in the <i>Amazon Chime Administration Guide</i>.</p>",
+    "PutSipMediaApplicationLoggingConfiguration": "<p>Updates the logging configuration for the specified SIP media application.</p>",
     "PutVoiceConnectorEmergencyCallingConfiguration": "<p>Puts emergency calling configuration details to the specified Amazon Chime Voice Connector, such as emergency phone numbers and calling countries. Origination and termination settings must be enabled for the Amazon Chime Voice Connector before emergency calling can be configured.</p>",
     "PutVoiceConnectorLoggingConfiguration": "<p>Adds a logging configuration for the specified Amazon Chime Voice Connector. The logging configuration specifies whether SIP message logs are enabled for sending to Amazon CloudWatch Logs.</p>",
     "PutVoiceConnectorOrigination": "<p>Adds origination settings for the specified Amazon Chime Voice Connector.</p> <note> <p>If emergency calling is configured for the Amazon Chime Voice Connector, it must be deleted prior to turning off origination settings.</p> </note>",
@@ -117,6 +129,8 @@
     "UpdateProxySession": "<p>Updates the specified proxy session details, such as voice or SMS capabilities.</p>",
     "UpdateRoom": "<p>Updates room details, such as the room name, for a room in an Amazon Chime Enterprise account.</p>",
     "UpdateRoomMembership": "<p>Updates room membership details, such as the member role, for a room in an Amazon Chime Enterprise account. The member role designates whether the member is a chat room administrator or a general chat room member. The member role can be updated only for user IDs.</p>",
+    "UpdateSipMediaApplication": "<p>Updates the details for the specified SIP media application.</p>",
+    "UpdateSipRule": "<p>Updates the details for the specified SIP rule.</p>",
     "UpdateUser": "<p>Updates user details for a specified user ID. Currently, only <code>LicenseType</code> updates are supported for this action.</p>",
     "UpdateUserSettings": "<p>Updates the settings for the specified user, such as phone number settings.</p>",
     "UpdateVoiceConnector": "<p>Updates details for the specified Amazon Chime Voice Connector.</p>",
@@ -132,15 +146,15 @@
       "base": "<p>The Amazon Chime account details. An AWS account can have multiple Amazon Chime accounts.</p>",
       "refs": {
         "AccountList$member": null,
-        "CreateAccountResponse$Account": "<p>The Amazon Chime account details.</p>",
-        "GetAccountResponse$Account": "<p>The Amazon Chime account details.</p>",
-        "UpdateAccountResponse$Account": "<p>The updated Amazon Chime account details.</p>"
+        "CreateAccountResponse$Account": null,
+        "GetAccountResponse$Account": null,
+        "UpdateAccountResponse$Account": null
       }
     },
     "AccountList": {
       "base": null,
       "refs": {
-        "ListAccountsResponse$Accounts": "<p>List of Amazon Chime accounts and account details.</p>"
+        "ListAccountsResponse$Accounts": "<p>The list of accounts.</p>"
       }
     },
     "AccountName": {
@@ -357,6 +371,8 @@
         "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector.</p>",
         "Proxy$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "PutVoiceConnectorProxyRequest$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
+        "SipMediaApplicationLoggingConfiguration$EnableSipMediaApplicationMessageLogs": "<p>Enables application message logs for the SIP media application.</p>",
+        "SipRule$Disabled": "<p>Indicates if the SIP rule is enabled or disabled. You must disable a rule before you can delete it.</p>",
         "StreamingConfiguration$Disabled": "<p>When true, media streaming to Amazon Kinesis is turned off.</p>",
         "TelephonySettings$InboundCalling": "<p>Allows or denies inbound calling.</p>",
         "TelephonySettings$OutboundCalling": "<p>Allows or denies outbound calling.</p>",
@@ -524,6 +540,16 @@
       "refs": {
       }
     },
+    "CreateMeetingDialOutRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMeetingDialOutResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateMeetingRequest": {
       "base": null,
       "refs": {
@@ -586,6 +612,36 @@
       }
     },
     "CreateRoomResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationCallRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationCallResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipMediaApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSipRuleResponse": {
       "base": null,
       "refs": {
       }
@@ -695,6 +751,16 @@
       "refs": {
       }
     },
+    "DeleteSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteVoiceConnectorEmergencyCallingConfigurationRequest": {
       "base": null,
       "refs": {
@@ -779,6 +845,10 @@
       "base": null,
       "refs": {
         "AssociatePhoneNumberWithUserRequest$E164PhoneNumber": "<p>The phone number, in E.164 format.</p>",
+        "CreateMeetingDialOutRequest$FromPhoneNumber": "<p>Phone number used as the caller ID when the remote party receives a call.</p>",
+        "CreateMeetingDialOutRequest$ToPhoneNumber": "<p>Phone number called when inviting someone to a meeting.</p>",
+        "CreateSipMediaApplicationCallRequest$FromPhoneNumber": "<p>The phone number that a user calls from.</p>",
+        "CreateSipMediaApplicationCallRequest$ToPhoneNumber": "<p>The phone number that the user dials in order to connect to a meeting</p>",
         "DNISEmergencyCallingConfiguration$EmergencyPhoneNumber": "<p>The DNIS phone number to route emergency calls to, in E.164 format.</p>",
         "DNISEmergencyCallingConfiguration$TestPhoneNumber": "<p>The DNIS phone number to route test emergency calls to, in E.164 format.</p>",
         "E164PhoneNumberList$member": null,
@@ -865,10 +935,10 @@
     "ExternalUserIdType": {
       "base": null,
       "refs": {
-        "Attendee$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
-        "CreateAttendeeError$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
-        "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
-        "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. Links the attendee to an identity managed by a builder application.</p>",
+        "Attendee$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
+        "CreateAttendeeError$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
+        "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
+        "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application. If you create an attendee with the same external user id, the service returns the existing record.</p>",
         "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>",
         "CreateMeetingWithAttendeesRequest$MeetingHostId": "<p>Reserved.</p>"
       }
@@ -876,6 +946,12 @@
     "ForbiddenException": {
       "base": "<p>The client is permanently forbidden from making the request. For example, when a user tries to create an account from an unsupported Region.</p>",
       "refs": {
+      }
+    },
+    "FunctionArn": {
+      "base": null,
+      "refs": {
+        "SipMediaApplicationEndpoint$LambdaArn": "<p>Valid Amazon Resource Name (ARN) of the Lambda function of the same AWS Region where the SIP media application is created.</p>"
       }
     },
     "GeoMatchLevel": {
@@ -1012,6 +1088,36 @@
       "refs": {
       }
     },
+    "GetSipMediaApplicationLoggingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationLoggingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipMediaApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSipRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetUserRequest": {
       "base": null,
       "refs": {
@@ -1128,6 +1234,8 @@
         "Attendee$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
         "BatchCreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "CreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
+        "CreateMeetingDialOutRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p> <p>Type: String</p> <p>Pattern: [a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}</p> <p>Required: No</p>",
+        "CreateMeetingDialOutResponse$TransactionId": "<p>Unique ID that tracks API calls.</p>",
         "DeleteAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "DeleteAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
         "DeleteMeetingRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
@@ -1141,6 +1249,7 @@
         "ListMeetingTagsRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "Meeting$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "PhoneNumberOrder$PhoneNumberOrderId": "<p>The phone number order ID.</p>",
+        "SipMediaApplicationCall$TransactionId": "<p>The transaction ID of a call.</p>",
         "TagAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "TagAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
         "TagMeetingRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
@@ -1206,6 +1315,10 @@
         "Room$CreatedTimestamp": "<p>The room creation timestamp, in ISO 8601 format.</p>",
         "Room$UpdatedTimestamp": "<p>The room update timestamp, in ISO 8601 format.</p>",
         "RoomMembership$UpdatedTimestamp": "<p>The room membership update timestamp, in ISO 8601 format.</p>",
+        "SipMediaApplication$CreatedTimestamp": "<p>The SIP media application creation timestamp, in ISO 8601 format.</p>",
+        "SipMediaApplication$UpdatedTimestamp": "<p>The SIP media application updated timestamp, in ISO 8601 format.</p>",
+        "SipRule$CreatedTimestamp": "<p>The SIP rule created timestamp, in ISO 8601 format.</p>",
+        "SipRule$UpdatedTimestamp": "<p>The SIP rule updated timestamp, in ISO 8601 format.</p>",
         "TerminationHealth$Timestamp": "<p>The timestamp, in ISO 8601 format.</p>",
         "User$RegisteredOn": "<p>Date and time when the user is registered, in ISO 8601 format.</p>",
         "User$InvitedOn": "<p>Date and time when the user is invited to the Amazon Chime account, in ISO 8601 format.</p>",
@@ -1218,7 +1331,8 @@
     "JoinTokenString": {
       "base": null,
       "refs": {
-        "Attendee$JoinToken": "<p>The join token used by the Amazon Chime SDK attendee.</p>"
+        "Attendee$JoinToken": "<p>The join token used by the Amazon Chime SDK attendee.</p>",
+        "CreateMeetingDialOutRequest$JoinToken": "<p>Token used by the Amazon Chime SDK attendee. Call the <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.html\"> CreateAttendee API</a> to get a join token. </p>"
       }
     },
     "License": {
@@ -1343,6 +1457,26 @@
       }
     },
     "ListRoomsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipMediaApplicationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipMediaApplicationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipRulesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSipRulesResponse": {
       "base": null,
       "refs": {
       }
@@ -1497,7 +1631,11 @@
       "base": null,
       "refs": {
         "ListProxySessionsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
-        "ListProxySessionsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>"
+        "ListProxySessionsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListSipMediaApplicationsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListSipMediaApplicationsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListSipRulesRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListSipRulesResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>"
       }
     },
     "NonEmptyString": {
@@ -1517,6 +1655,8 @@
         "CreateRoomMembershipRequest$RoomId": "<p>The room ID.</p>",
         "CreateRoomMembershipRequest$MemberId": "<p>The Amazon Chime member ID (user ID or bot ID).</p>",
         "CreateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "CreateSipMediaApplicationCallRequest$SipMediaApplicationId": "<p>The ID of the SIP media application.</p>",
+        "CreateSipRuleRequest$TriggerValue": "<p>If <code>TriggerType</code> is <code>RequestUriHostname</code> then the value can be the outbound host name of an Amazon Chime Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code> then the value can be a customer-owned phone number in E164 format. <code>SipRule</code> is triggered if the SIP application requests a host name, or a If <code>TriggerType</code> is <code>RequestUriHostname</code>, then the value can be the outbound hostname of an Amazon Chime Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code>, then the value can be a customer-owned phone number in E164 format. <code>SipRule</code> is triggered if the SIP application requests a host name, or a <code>ToPhoneNumber</code> value matches the incoming SIP request.</p>",
         "CreateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1526,6 +1666,8 @@
         "DeleteRoomMembershipRequest$MemberId": "<p>The member ID (user ID or bot ID).</p>",
         "DeleteRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DeleteRoomRequest$RoomId": "<p>The chat room ID.</p>",
+        "DeleteSipMediaApplicationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
+        "DeleteSipRuleRequest$SipRuleId": "<p>The SIP rule ID.</p>",
         "DeleteVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "DeleteVoiceConnectorGroupRequest$VoiceConnectorGroupId": "<p>The Amazon Chime Voice Connector group ID.</p>",
         "DeleteVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1545,6 +1687,9 @@
         "GetRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetRoomRequest$RoomId": "<p>The room ID.</p>",
+        "GetSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": "<p>The ID of the SIP media application.</p>",
+        "GetSipMediaApplicationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
+        "GetSipRuleRequest$SipRuleId": "<p>The SIP rule ID.</p>",
         "GetUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "GetUserRequest$UserId": "<p>The user ID.</p>",
         "GetVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1560,6 +1705,7 @@
         "ListRoomMembershipsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListRoomMembershipsRequest$RoomId": "<p>The room ID.</p>",
         "ListRoomsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "ListSipRulesRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "ListUsersRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "ListVoiceConnectorTerminationCredentialsRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "LogoutUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1572,6 +1718,7 @@
         "PutEventsConfigurationRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "PutEventsConfigurationRequest$BotId": "<p>The bot ID.</p>",
         "PutRetentionSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
+        "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationId": "<p>The ID of the specified SIP media application</p>",
         "PutVoiceConnectorEmergencyCallingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorLoggingConfigurationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
         "PutVoiceConnectorOriginationRequest$VoiceConnectorId": "<p>The Amazon Chime Voice Connector ID.</p>",
@@ -1595,6 +1742,10 @@
         "RoomMembership$RoomId": "<p>The room ID.</p>",
         "RoomMembership$InvitedBy": "<p>The identifier of the user that invited the room member.</p>",
         "SigninDelegateGroup$GroupName": "<p>The group name.</p>",
+        "SipMediaApplication$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
+        "SipRule$SipRuleId": "<p>The SIP rule ID.</p>",
+        "SipRule$TriggerValue": "<p>If <code>TriggerType</code> is <code>RequestUriHostname</code>, then the value can be the outbound host name of the Amazon Chime Voice Connector. If <code>TriggerType</code> is <code>ToPhoneNumber</code>, then the value can be a customer-owned phone number in E164 format. <code>SipRule</code> is triggered when a SIP rule requests host name or <code>ToPhoneNumber</code> matches in the incoming SIP request.</p>",
+        "SipRuleTargetApplication$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
         "UpdateAccountRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateAccountSettingsRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateBotRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -1605,6 +1756,8 @@
         "UpdateRoomMembershipRequest$MemberId": "<p>The member ID.</p>",
         "UpdateRoomRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateRoomRequest$RoomId": "<p>The room ID.</p>",
+        "UpdateSipMediaApplicationRequest$SipMediaApplicationId": "<p>The SIP media application ID.</p>",
+        "UpdateSipRuleRequest$SipRuleId": "<p>The SIP rule ID.</p>",
         "UpdateUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "UpdateUserRequest$UserId": "<p>The user ID.</p>",
         "UpdateUserRequestItem$UserId": "<p>The user ID.</p>",
@@ -1659,13 +1812,15 @@
         "AssociatePhoneNumbersWithVoiceConnectorGroupRequest$ForceAssociate": "<p>If true, associates the provided phone numbers with the provided Amazon Chime Voice Connector Group and removes any previously existing associations. If false, does not associate any phone numbers that have previously existing associations.</p>",
         "AssociatePhoneNumbersWithVoiceConnectorRequest$ForceAssociate": "<p>If true, associates the provided phone numbers with the provided Amazon Chime Voice Connector and removes any previously existing associations. If false, does not associate any phone numbers that have previously existing associations.</p>",
         "Bot$Disabled": "<p>When true, the bot is stopped from running in your account.</p>",
+        "CreateSipRuleRequest$Disabled": "<p>Enables or disables a rule. You must disable rules before you can delete them.</p>",
         "PhoneNumberCapabilities$InboundCall": "<p>Allows or denies inbound calling for the specified phone number.</p>",
         "PhoneNumberCapabilities$OutboundCall": "<p>Allows or denies outbound calling for the specified phone number.</p>",
         "PhoneNumberCapabilities$InboundSMS": "<p>Allows or denies inbound SMS messaging for the specified phone number.</p>",
         "PhoneNumberCapabilities$OutboundSMS": "<p>Allows or denies outbound SMS messaging for the specified phone number.</p>",
         "PhoneNumberCapabilities$InboundMMS": "<p>Allows or denies inbound MMS messaging for the specified phone number.</p>",
         "PhoneNumberCapabilities$OutboundMMS": "<p>Allows or denies outbound MMS messaging for the specified phone number.</p>",
-        "UpdateBotRequest$Disabled": "<p>When true, stops the specified bot from running in your account.</p>"
+        "UpdateBotRequest$Disabled": "<p>When true, stops the specified bot from running in your account.</p>",
+        "UpdateSipRuleRequest$Disabled": "<p>The new value specified to indicate whether the rule is disabled.</p>"
       }
     },
     "NumberSelectionBehavior": {
@@ -1932,6 +2087,16 @@
       "refs": {
       }
     },
+    "PutSipMediaApplicationLoggingConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutSipMediaApplicationLoggingConfigurationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutVoiceConnectorEmergencyCallingConfigurationRequest": {
       "base": null,
       "refs": {
@@ -2069,6 +2234,8 @@
         "ListProxySessionsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListRoomMembershipsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListRoomsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
+        "ListSipMediaApplicationsRequest$MaxResults": "<p>The maximum number of results to return in a single call. Defaults to 100.</p>",
+        "ListSipRulesRequest$MaxResults": "<p>The maximum number of results to return in a single call. Defaults to 100.</p>",
         "ListVoiceConnectorGroupsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListVoiceConnectorsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>"
       }
@@ -2196,6 +2363,107 @@
         "AssociateSigninDelegateGroupsWithAccountRequest$SigninDelegateGroups": "<p>The sign-in delegate groups.</p>"
       }
     },
+    "SipApplicationPriority": {
+      "base": null,
+      "refs": {
+        "SipRuleTargetApplication$Priority": "<p>Priority of the SIP media application in the target list.</p>"
+      }
+    },
+    "SipMediaApplication": {
+      "base": "<p>The SIP media application details, including name and endpoints. An AWS account can have multiple SIP media applications.</p>",
+      "refs": {
+        "CreateSipMediaApplicationResponse$SipMediaApplication": "<p>The Sip media application details.</p>",
+        "GetSipMediaApplicationResponse$SipMediaApplication": "<p>The SIP media application details.</p>",
+        "SipMediaApplicationList$member": null,
+        "UpdateSipMediaApplicationResponse$SipMediaApplication": "<p>The updated SIP media application details.</p>"
+      }
+    },
+    "SipMediaApplicationCall": {
+      "base": "<p>A <code>Call</code> instance for a SIP media application.</p>",
+      "refs": {
+        "CreateSipMediaApplicationCallResponse$SipMediaApplicationCall": "<p>The actual call.</p>"
+      }
+    },
+    "SipMediaApplicationEndpoint": {
+      "base": "<p>Endpoints to specify as part of a SIP media application.</p>",
+      "refs": {
+        "SipMediaApplicationEndpointList$member": null
+      }
+    },
+    "SipMediaApplicationEndpointList": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationRequest$Endpoints": "<p>List of endpoints (Lambda Amazon Resource Names) specified for the SIP media application. Currently, only one endpoint is supported.</p>",
+        "SipMediaApplication$Endpoints": "<p>List of endpoints for SIP media application. Currently, only one endpoint per SIP media application is permitted.</p>",
+        "UpdateSipMediaApplicationRequest$Endpoints": "<p>The new set of endpoints for the specified SIP media application.</p>"
+      }
+    },
+    "SipMediaApplicationList": {
+      "base": null,
+      "refs": {
+        "ListSipMediaApplicationsResponse$SipMediaApplications": "<p>List of SIP media applications and application details.</p>"
+      }
+    },
+    "SipMediaApplicationLoggingConfiguration": {
+      "base": "<p>Logging configuration of the SIP media application.</p>",
+      "refs": {
+        "GetSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": "<p>The actual logging configuration.</p>",
+        "PutSipMediaApplicationLoggingConfigurationRequest$SipMediaApplicationLoggingConfiguration": "<p>The actual logging configuration.</p>",
+        "PutSipMediaApplicationLoggingConfigurationResponse$SipMediaApplicationLoggingConfiguration": "<p>The actual logging configuration.</p>"
+      }
+    },
+    "SipMediaApplicationName": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationRequest$Name": "<p>The SIP media application name.</p>",
+        "SipMediaApplication$Name": "<p>The name of the SIP media application.</p>",
+        "UpdateSipMediaApplicationRequest$Name": "<p>The new name for the specified SIP media application.</p>"
+      }
+    },
+    "SipRule": {
+      "base": "<p>The SIP rule details, including name, triggers, and target applications. An AWS account can have multiple SIP rules.</p>",
+      "refs": {
+        "CreateSipRuleResponse$SipRule": "<p>Returns the SIP rule information, including the rule ID, triggers, and target applications.</p>",
+        "GetSipRuleResponse$SipRule": "<p>The SIP rule details.</p>",
+        "SipRuleList$member": null,
+        "UpdateSipRuleResponse$SipRule": "<p>Updated SIP rule details.</p>"
+      }
+    },
+    "SipRuleList": {
+      "base": null,
+      "refs": {
+        "ListSipRulesResponse$SipRules": "<p>List of SIP rules and rule details.</p>"
+      }
+    },
+    "SipRuleName": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleRequest$Name": "<p>The name of the SIP rule.</p>",
+        "SipRule$Name": "<p>The name of the SIP rule.</p>",
+        "UpdateSipRuleRequest$Name": "<p>The new name for the specified SIP rule.</p>"
+      }
+    },
+    "SipRuleTargetApplication": {
+      "base": "<p>Target SIP media application along with other details like priority and AWS Region to be specified in the SIP rule. Only one SIP rule per AWS Region can be provided.</p>",
+      "refs": {
+        "SipRuleTargetApplicationList$member": null
+      }
+    },
+    "SipRuleTargetApplicationList": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleRequest$TargetApplications": "<p>List of SIP media applications with priority and AWS Region. Only one SIP application per AWS Region can be used.</p>",
+        "SipRule$TargetApplications": "<p>List of SIP media applications with priority and AWS Region. You can only use one SIP application per AWS Region and priority combination.</p>",
+        "UpdateSipRuleRequest$TargetApplications": "<p>The new value of the list of target applications.</p>"
+      }
+    },
+    "SipRuleTriggerType": {
+      "base": null,
+      "refs": {
+        "CreateSipRuleRequest$TriggerType": "<p>The type of trigger whose value is assigned to the SIP rule in <code>TriggerValue</code>. Allowed trigger values are <code>RequestUriHostname</code> and <code>ToPhoneNumber</code>.</p>",
+        "SipRule$TriggerType": "<p>The type of trigger whose value is assigned to the SIP rule in <code>TriggerValue</code>.</p>"
+      }
+    },
     "StreamingConfiguration": {
       "base": "<p>The streaming configuration associated with an Amazon Chime Voice Connector. Specifies whether media streaming is enabled for sending to Amazon Kinesis, and shows the retention period for the Amazon Kinesis data, in hours.</p>",
       "refs": {
@@ -2234,6 +2502,7 @@
         "CreateAttendeeError$ErrorMessage": "<p>The error message.</p>",
         "CreateMeetingRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>, <code>ap-northeast-2</code>, <code>ap-south-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
         "CreateMeetingWithAttendeesRequest$MediaRegion": "<p>The Region in which to create the meeting. Default: <code>us-east-1</code>.</p> <p>Available values: <code>af-south-1</code>, <code>ap-northeast-1</code>, <code>ap-northeast-2</code>, <code>ap-south-1</code>, <code>ap-southeast-1</code>, <code>ap-southeast-2</code>, <code>ca-central-1</code>, <code>eu-central-1</code>, <code>eu-north-1</code>, <code>eu-south-1</code>, <code>eu-west-1</code>, <code>eu-west-2</code>, <code>eu-west-3</code>, <code>sa-east-1</code>, <code>us-east-1</code>, <code>us-east-2</code>, <code>us-west-1</code>, <code>us-west-2</code>.</p>",
+        "CreateSipMediaApplicationRequest$AwsRegion": "<p>AWS Region assigned to the SIP media application.</p>",
         "CreateUserRequest$Username": "<p>The user name.</p>",
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
@@ -2245,7 +2514,7 @@
         "GetUserSettingsRequest$UserId": "<p>The user ID.</p>",
         "Invite$InviteId": "<p>The invite ID.</p>",
         "ListAccountsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
-        "ListAccountsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListAccountsResponse$NextToken": "<p>The account's user token.</p>",
         "ListAttendeesRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListAttendeesResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListBotsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
@@ -2284,6 +2553,8 @@
         "SearchAvailablePhoneNumbersRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ServiceFailureException$Message": null,
         "ServiceUnavailableException$Message": null,
+        "SipMediaApplication$AwsRegion": "<p>The AWS Region in which the SIP media application is created.</p>",
+        "SipRuleTargetApplication$AwsRegion": "<p>AWS Region of target application.</p>",
         "StringList$member": null,
         "TerminationHealth$Source": "<p>The source IP address.</p>",
         "ThrottledClientException$Message": null,
@@ -2510,6 +2781,26 @@
       }
     },
     "UpdateRoomResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipMediaApplicationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipRuleRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSipRuleResponse": {
       "base": null,
       "refs": {
       }

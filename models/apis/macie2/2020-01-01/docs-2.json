@@ -701,6 +701,19 @@
         "S3Object$Tags" : "<p>The tags that are associated with the object.</p>"
       }
     },
+    "LastRunErrorStatus" : {
+      "base" : "<p>Specifies whether any account- or bucket-level access errors occurred when a classification job ran. For example, the job is configured to analyze data for a member account that was suspended, or the job is configured to analyze an S3 bucket that Amazon Macie isn't allowed to access.</p>",
+      "refs" : {
+        "DescribeClassificationJobResponse$LastRunErrorStatus" : "<p>Specifies whether any account- or bucket-level access errors occurred when the job ran. For a recurring job, this value indicates the error status of the job's most recent run.</p>",
+        "JobSummary$LastRunErrorStatus" : "<p>Specifies whether any account- or bucket-level access errors occurred when the job ran. For a recurring job, this value indicates the error status of the job's most recent run.</p>"
+      }
+    },
+    "LastRunErrorStatusCode" : {
+      "base" : "<p>Specifies whether any account- or bucket-level access errors occurred during the run of a one-time classification job or the most recent run of a recurring classification job. Possible values are:</p>",
+      "refs" : {
+        "LastRunErrorStatus$Code" : "<p>Specifies whether any account- or bucket-level access errors occurred when the job ran. For a recurring job, this value indicates the error status of the job's most recent run. Possible values are:</p> <ul><li><p>ERROR - One or more errors occurred. Amazon Macie didn't process all the data specified for the job.</p></li> <li><p>NONE - No errors occurred. Macie processed all the data specified for the job.</p></li></ul>"
+      }
+    },
     "ListClassificationJobsRequest" : {
       "base" : "<p>Specifies criteria for filtering, sorting, and paginating the results of a request for information about classification jobs.</p>",
       "refs" : { }
@@ -866,7 +879,7 @@
       "base" : "<p>Provides details about the location of occurrences of sensitive data in an Adobe Portable Document Format file, Microsoft Word document, or non-binary text file.</p>",
       "refs" : {
         "Occurrences$LineRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a Microsoft Word document or non-binary text file, such as an HTML, JSON, TXT, or XML file. Each object specifies the line that contains the data, and the position of the data on that line.</p> <p>This value is often null for file types that are supported by Cell, Page, or Record objects. Exceptions are the locations of: data in unstructured sections of an otherwise structured file, such as a comment in a file; and, data in a malformed file that Amazon Macie analyzes as plain text.</p>",
-        "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the beginning of the file.</p> <p>This value is typically null. For binary text files, Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
+        "Occurrences$OffsetRanges" : "<p>An array of objects, one for each occurrence of sensitive data in a binary text file. Each object specifies the position of the data relative to the beginning of the file.</p> <p>This value is typically null. For binary text files, Amazon Macie adds location data to a lineRanges.Range or Page object, depending on the file type.</p>"
       }
     },
     "Record" : {
@@ -878,7 +891,7 @@
     "Records" : {
       "base" : "<p>Specifies the location of occurrences of sensitive data in an Apache Parquet file.</p>",
       "refs" : {
-        "Occurrences$Records" : "<p>An array of objects, one for each occurrence of sensitive data in an Apache Avro object container or Apache Parquet file. Each object specifies the field or record that contains the data. This value is null for all other types of files.</p>"
+        "Occurrences$Records" : "<p>An array of objects, one for each occurrence of sensitive data in an Apache Avro object container or Apache Parquet file. Each object specifies the record index and the path to the field in the record that contains the data. This value is null for all other types of files.</p>"
       }
     },
     "RelationshipStatus" : {
@@ -969,7 +982,7 @@
     "SensitiveDataItemCategory" : {
       "base" : "<p>The category of sensitive data that was detected and produced the finding. Possible values are:</p>",
       "refs" : {
-        "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: FINANCIAL_INFORMATION, for financial information such as credit card numbers; PERSONAL_INFORMATION, for personally identifiable information, such as full names and mailing addresses, or personal health information; or, CUSTOM_IDENTIFIER, for data that was detected by a custom data identifier.</p>"
+        "SensitiveDataItem$Category" : "<p>The category of sensitive data that was detected. For example: CREDENTIALS, for credentials data such as private keys or AWS secret keys; FINANCIAL_INFORMATION, for financial data such as credit card numbers; or, PERSONAL_INFORMATION, for personal health information, such as health insurance identification numbers, or personally identifiable information, such as driver's license identification numbers.</p>"
       }
     },
     "ServerSideEncryption" : {
@@ -1249,7 +1262,7 @@
         "BucketMetadata$Versioning" : "<p>Specifies whether versioning is enabled for the bucket.</p>",
         "BucketPolicy$AllowsPublicReadAccess" : "<p>Specifies whether the bucket policy allows the general public to have read access to the bucket.</p>",
         "BucketPolicy$AllowsPublicWriteAccess" : "<p>Specifies whether the bucket policy allows the general public to have write access to the bucket.</p>",
-        "ClassificationResult$AdditionalOccurrences" : "<p>Specifies whether Amazon Macie detected additional occurrences of sensitive data in the S3 object. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p> <p>This value can help you to determine whether to investigate additional occurrences of sensitive data in an object. You can do this by referring to the corresponding sensitive data discovery result for the finding (ClassificationDetails.detailedResultsLocation).</p>",
+        "ClassificationResult$AdditionalOccurrences" : "<p>Specifies whether Amazon Macie detected additional occurrences of sensitive data in the S3 object. A finding includes location data for a maximum of 15 occurrences of sensitive data.</p> <p>This value can help you determine whether to investigate additional occurrences of sensitive data in an object. You can do this by referring to the corresponding sensitive data discovery result for the finding (ClassificationDetails.detailedResultsLocation).</p>",
         "CreateClassificationJobRequest$InitialRun" : "<p>Specifies whether to analyze all existing, eligible objects immediately after the job is created.</p>",
         "CreateInvitationsRequest$DisableEmailNotification" : "<p>Specifies whether to send an email notification to the root user of each account that the invitation will be sent to. This notification is in addition to an alert that the root user receives in AWS Personal Health Dashboard. To send an email notification to the root user of each account, set this value to true.</p>",
         "DescribeClassificationJobResponse$InitialRun" : "<p>Specifies whether the job is configured to analyze all existing, eligible objects immediately after it's created.</p>",
@@ -1438,7 +1451,7 @@
         "CreateCustomDataIdentifierRequest$Keywords" : "<p>An array that lists specific character sequences (keywords), one of which must be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 4 - 90 characters. Keywords aren't case sensitive.</p>",
         "CreateInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account to send the invitation to.</p>",
         "CriterionAdditionalProperties$Eq" : "<p>An equal to condition to apply to a specified property value for findings.</p>",
-        "CriterionAdditionalProperties$EqExactMatch" : "<p>A condition that requires an array field of a finding to exactly match the specified property values. You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
+        "CriterionAdditionalProperties$EqExactMatch" : "<p>A condition that requires an array field on a finding to exactly match the specified property values. You can use this operator with the following properties: customDataIdentifiers.detections.arn, customDataIdentifiers.detections.name, resourcesAffected.s3Bucket.tags.key, resourcesAffected.s3Bucket.tags.value, resourcesAffected.s3Object.tags.key, resourcesAffected.s3Object.tags.value, sensitiveData.category, and sensitiveData.detections.type.</p>",
         "CriterionAdditionalProperties$Neq" : "<p>A not equal to condition to apply to a specified property value for findings.</p>",
         "DeclineInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to decline.</p>",
         "DeleteInvitationsRequest$AccountIds" : "<p>An array that lists AWS account IDs, one for each account that sent an invitation to delete.</p>",
@@ -1489,7 +1502,7 @@
         "CustomDataIdentifiers$TotalCount" : "<p>The total number of occurrences of the data that was detected by the custom data identifiers and produced the finding.</p>",
         "CustomDetection$Count" : "<p>The total number of occurrences of the sensitive data that the custom data identifier detected.</p>",
         "DefaultDetection$Count" : "<p>The total number of occurrences of the type of sensitive data that was detected.</p>",
-        "Finding$Count" : "<p>The total number of occurrences of the finding.</p>",
+        "Finding$Count" : "<p>The total number of occurrences of the finding. For sensitive data findings, this value is always 1. All sensitive data findings are considered new (unique) because they derive from individual classification jobs.</p>",
         "GetBucketStatisticsResponse$BucketCount" : "<p>The total number of buckets.</p>",
         "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
@@ -1550,7 +1563,7 @@
         "ClassificationDetails$JobArn" : "<p>The Amazon Resource Name (ARN) of the classification job that produced the finding.</p>",
         "ClassificationDetails$JobId" : "<p>The unique identifier for the classification job that produced the finding.</p>",
         "ClassificationResult$MimeType" : "<p>The type of content, as a MIME type, that the finding applies to. For example, application/gzip, for a GNU Gzip compressed archive file, or application/pdf, for an Adobe Portable Document Format file.</p>",
-        "ClassificationResultStatus$Code" : " <p>The status of the finding. Possible values are:</p> <ul><li><p>COMPLETE - Amazon Macie successfully completed its analysis of the object that the finding applies to.</p></li> <li><p>PARTIAL - Macie was able to analyze only a subset of the data in the object that the finding applies to. For example, the object is a compressed or archive file that contains files in an unsupported format.</p></li> <li><p>SKIPPED - Macie wasn't able to analyze the object that the finding applies to. For example, the object is a malformed file or a file that uses an unsupported format.</p></li></ul>",
+        "ClassificationResultStatus$Code" : " <p>The status of the finding. Possible values are:</p> <ul><li><p>COMPLETE - Amazon Macie successfully completed its analysis of the object that the finding applies to.</p></li> <li><p>PARTIAL - Macie analyzed only a subset of the data in the object that the finding applies to. For example, the object is an archive file that contains files in an unsupported format.</p></li> <li><p>SKIPPED - Macie wasn't able to analyze the object that the finding applies to. For example, the object is a malformed file or a file that uses an unsupported format.</p></li></ul>",
         "ClassificationResultStatus$Reason" : "<p>A brief description of the status of the finding. Amazon Macie uses this value to notify you of any errors, warnings, or considerations that might impact your analysis of the finding.</p>",
         "ConflictException$Message" : "<p>The explanation of the error that occurred.</p>",
         "CreateClassificationJobRequest$ClientToken" : "<p>A unique, case-sensitive token that you provide to ensure the idempotency of the request.</p>",
@@ -1638,7 +1651,7 @@
         "JobSummary$JobId" : "<p>The unique identifier for the job.</p>",
         "JobSummary$Name" : "<p>The custom name of the job.</p>",
         "KeyValuePair$Key" : "<p>One part of a key-value pair that comprises a tag. A tag key is a general label that acts as a category for more specific tag values.</p>",
-        "KeyValuePair$Value" : "<p>One part of a key-value pair that comprises a tag. A tag value acts as a descriptor for a tag key. A tag value can be empty or null.</p>",
+        "KeyValuePair$Value" : "<p>One part of a key-value pair that comprises a tag. A tag value acts as a descriptor for a tag key. A tag value can be an empty string.</p>",
         "ListClassificationJobsRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
         "ListClassificationJobsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "ListCustomDataIdentifiersRequest$NextToken" : "<p>The nextToken string that specifies which page of results to return in a paginated response.</p>",
@@ -1653,7 +1666,7 @@
         "Member$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
         "Member$Email" : "<p>The email address for the account.</p>",
         "Member$MasterAccountId" : "<p>The AWS account ID for the master account.</p>",
-        "Record$JsonPath" : "<p>The path, as a JSONPath expression, to the field (in an Apache Avro object container) or record (in an Apache Parquet file) that contains the data.</p> <p>If the name of an element exceeds 20 characters, Amazon Macie truncates the name by removing characters from the beginning of the name. If the resulting full path exceeds 250 characters, Macie also truncates the path, starting with the first element in the path, until the path contains 250 or fewer characters.</p>",
+        "Record$JsonPath" : "<p>The path, as a JSONPath expression, to the field in the record that contains the data.</p> <p>If the name of an element exceeds 20 characters, Amazon Macie truncates the name by removing characters from the beginning of the name. If the resulting full path exceeds 250 characters, Macie also truncates the path, starting with the first element in the path, until the path contains 250 or fewer characters.</p>",
         "ResourceNotFoundException$Message" : "<p>The explanation of the error that occurred.</p>",
         "S3Bucket$Arn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "S3Bucket$Name" : "<p>The name of the bucket.</p>",

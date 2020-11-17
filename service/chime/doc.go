@@ -36,7 +36,7 @@
 // Using REST API
 //
 // If you use REST to make API calls, you must authenticate your request by
-// providing a signature. Amazon Chime supports signature version 4. For more
+// providing a signature. Amazon Chime supports Signature Version 4. For more
 // information, see Signature Version 4 Signing Process (https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html)
 // in the Amazon Web Services General Reference.
 //

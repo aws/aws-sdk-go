@@ -2993,6 +2993,10 @@
           "shape": "JobType",
           "locationName": "jobType"
         },
+        "lastRunErrorStatus": {
+          "shape": "LastRunErrorStatus",
+          "locationName": "lastRunErrorStatus"
+        },
         "lastRunTime": {
           "shape": "__timestampIso8601",
           "locationName": "lastRunTime"
@@ -4043,6 +4047,10 @@
           "shape": "JobType",
           "locationName": "jobType"
         },
+        "lastRunErrorStatus": {
+          "shape": "LastRunErrorStatus",
+          "locationName": "lastRunErrorStatus"
+        },
         "name": {
           "shape": "__string",
           "locationName": "name"
@@ -4078,6 +4086,22 @@
       "member": {
         "shape": "KeyValuePair"
       }
+    },
+    "LastRunErrorStatus": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "shape": "LastRunErrorStatusCode",
+          "locationName": "code"
+        }
+      }
+    },
+    "LastRunErrorStatusCode": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "ERROR"
+      ]
     },
     "ListClassificationJobsRequest": {
       "type": "structure",

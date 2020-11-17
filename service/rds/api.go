@@ -1146,6 +1146,10 @@ func (c *RDS) CopyDBSnapshotRequest(input *CopyDBSnapshotInput) (req *request.Re
 //   * ErrCodeKMSKeyNotAccessibleFault "KMSKeyNotAccessibleFault"
 //   An error occurred accessing an AWS KMS key.
 //
+//   * ErrCodeCustomAvailabilityZoneNotFoundFault "CustomAvailabilityZoneNotFound"
+//   CustomAvailabilityZoneId doesn't refer to an existing custom Availability
+//   Zone identifier.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/rds-2014-10-31/CopyDBSnapshot
 func (c *RDS) CopyDBSnapshot(input *CopyDBSnapshotInput) (*CopyDBSnapshotOutput, error) {
 	req, out := c.CopyDBSnapshotRequest(input)
@@ -16364,6 +16368,11 @@ type CopyDBSnapshotInput struct {
 	// in the Amazon RDS User Guide.
 	Tags []*Tag `locationNameList:"Tag" type:"list"`
 
+	// The external custom Availability Zone (CAZ) identifier for the target CAZ.
+	//
+	// Example: rds-caz-aiqhTgQv.
+	TargetCustomAvailabilityZone *string `type:"string"`
+
 	// The identifier for the copy of the snapshot.
 	//
 	// Constraints:
@@ -16453,6 +16462,12 @@ func (s *CopyDBSnapshotInput) SetSourceRegion(v string) *CopyDBSnapshotInput {
 // SetTags sets the Tags field's value.
 func (s *CopyDBSnapshotInput) SetTags(v []*Tag) *CopyDBSnapshotInput {
 	s.Tags = v
+	return s
+}
+
+// SetTargetCustomAvailabilityZone sets the TargetCustomAvailabilityZone field's value.
+func (s *CopyDBSnapshotInput) SetTargetCustomAvailabilityZone(v string) *CopyDBSnapshotInput {
+	s.TargetCustomAvailabilityZone = &v
 	return s
 }
 

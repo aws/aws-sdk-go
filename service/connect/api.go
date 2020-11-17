@@ -406,6 +406,103 @@ func (c *Connect) CreateUserWithContext(ctx aws.Context, input *CreateUserInput,
 	return out, req.Send()
 }
 
+const opCreateUserHierarchyGroup = "CreateUserHierarchyGroup"
+
+// CreateUserHierarchyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUserHierarchyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUserHierarchyGroup for more information on using the CreateUserHierarchyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUserHierarchyGroupRequest method.
+//    req, resp := client.CreateUserHierarchyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUserHierarchyGroup
+func (c *Connect) CreateUserHierarchyGroupRequest(input *CreateUserHierarchyGroupInput) (req *request.Request, output *CreateUserHierarchyGroupOutput) {
+	op := &request.Operation{
+		Name:       opCreateUserHierarchyGroup,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/user-hierarchy-groups/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateUserHierarchyGroupInput{}
+	}
+
+	output = &CreateUserHierarchyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUserHierarchyGroup API operation for Amazon Connect Service.
+//
+// Creates a new user hierarchy group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateUserHierarchyGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateUserHierarchyGroup
+func (c *Connect) CreateUserHierarchyGroup(input *CreateUserHierarchyGroupInput) (*CreateUserHierarchyGroupOutput, error) {
+	req, out := c.CreateUserHierarchyGroupRequest(input)
+	return out, req.Send()
+}
+
+// CreateUserHierarchyGroupWithContext is the same as CreateUserHierarchyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUserHierarchyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *CreateUserHierarchyGroupInput, opts ...request.Option) (*CreateUserHierarchyGroupOutput, error) {
+	req, out := c.CreateUserHierarchyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteUser = "DeleteUser"
 
 // DeleteUserRequest generates a "aws/request.Request" representing the
@@ -497,6 +594,102 @@ func (c *Connect) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) 
 // for more information on using Contexts.
 func (c *Connect) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput, opts ...request.Option) (*DeleteUserOutput, error) {
 	req, out := c.DeleteUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUserHierarchyGroup = "DeleteUserHierarchyGroup"
+
+// DeleteUserHierarchyGroupRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUserHierarchyGroup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUserHierarchyGroup for more information on using the DeleteUserHierarchyGroup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUserHierarchyGroupRequest method.
+//    req, resp := client.DeleteUserHierarchyGroupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUserHierarchyGroup
+func (c *Connect) DeleteUserHierarchyGroupRequest(input *DeleteUserHierarchyGroupInput) (req *request.Request, output *DeleteUserHierarchyGroupOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUserHierarchyGroup,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}",
+	}
+
+	if input == nil {
+		input = &DeleteUserHierarchyGroupInput{}
+	}
+
+	output = &DeleteUserHierarchyGroupOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteUserHierarchyGroup API operation for Amazon Connect Service.
+//
+// Deletes an existing user hierarchy group. It must not be associated with
+// any agents or have any active child groups.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteUserHierarchyGroup for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteUserHierarchyGroup
+func (c *Connect) DeleteUserHierarchyGroup(input *DeleteUserHierarchyGroupInput) (*DeleteUserHierarchyGroupOutput, error) {
+	req, out := c.DeleteUserHierarchyGroupRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUserHierarchyGroupWithContext is the same as DeleteUserHierarchyGroup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUserHierarchyGroup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteUserHierarchyGroupWithContext(ctx aws.Context, input *DeleteUserHierarchyGroupInput, opts ...request.Option) (*DeleteUserHierarchyGroupOutput, error) {
+	req, out := c.DeleteUserHierarchyGroupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4099,9 +4292,6 @@ func (c *Connect) UpdateContactAttributesRequest(input *UpdateContactAttributesI
 // Contact attributes are available in Amazon Connect for 24 months, and are
 // then deleted.
 //
-// This operation is also available in the Amazon Connect Flow language. See
-// UpdateContactAttributes (https://docs.aws.amazon.com/connect/latest/adminguide/contact-actions-updatecontactattributes.html).
-//
 // Important: You cannot use the operation to update attributes for contacts
 // that occurred prior to the release of the API, September 12, 2018. You can
 // update attributes only for contacts that started after the release of the
@@ -4296,6 +4486,9 @@ func (c *Connect) UpdateContactFlowNameRequest(input *UpdateContactFlowNameInput
 // UpdateContactFlowName API operation for Amazon Connect Service.
 //
 // The name of the contact flow.
+//
+// You can also create and update contact flows using the Amazon Connect Flow
+// language (https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4805,6 +4998,197 @@ func (c *Connect) UpdateUserHierarchy(input *UpdateUserHierarchyInput) (*UpdateU
 // for more information on using Contexts.
 func (c *Connect) UpdateUserHierarchyWithContext(ctx aws.Context, input *UpdateUserHierarchyInput, opts ...request.Option) (*UpdateUserHierarchyOutput, error) {
 	req, out := c.UpdateUserHierarchyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateUserHierarchyGroupName = "UpdateUserHierarchyGroupName"
+
+// UpdateUserHierarchyGroupNameRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUserHierarchyGroupName operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUserHierarchyGroupName for more information on using the UpdateUserHierarchyGroupName
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateUserHierarchyGroupNameRequest method.
+//    req, resp := client.UpdateUserHierarchyGroupNameRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyGroupName
+func (c *Connect) UpdateUserHierarchyGroupNameRequest(input *UpdateUserHierarchyGroupNameInput) (req *request.Request, output *UpdateUserHierarchyGroupNameOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUserHierarchyGroupName,
+		HTTPMethod: "POST",
+		HTTPPath:   "/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}/name",
+	}
+
+	if input == nil {
+		input = &UpdateUserHierarchyGroupNameInput{}
+	}
+
+	output = &UpdateUserHierarchyGroupNameOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateUserHierarchyGroupName API operation for Amazon Connect Service.
+//
+// Updates the name of the user hierarchy group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateUserHierarchyGroupName for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyGroupName
+func (c *Connect) UpdateUserHierarchyGroupName(input *UpdateUserHierarchyGroupNameInput) (*UpdateUserHierarchyGroupNameOutput, error) {
+	req, out := c.UpdateUserHierarchyGroupNameRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserHierarchyGroupNameWithContext is the same as UpdateUserHierarchyGroupName with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUserHierarchyGroupName for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateUserHierarchyGroupNameWithContext(ctx aws.Context, input *UpdateUserHierarchyGroupNameInput, opts ...request.Option) (*UpdateUserHierarchyGroupNameOutput, error) {
+	req, out := c.UpdateUserHierarchyGroupNameRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateUserHierarchyStructure = "UpdateUserHierarchyStructure"
+
+// UpdateUserHierarchyStructureRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateUserHierarchyStructure operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateUserHierarchyStructure for more information on using the UpdateUserHierarchyStructure
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateUserHierarchyStructureRequest method.
+//    req, resp := client.UpdateUserHierarchyStructureRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyStructure
+func (c *Connect) UpdateUserHierarchyStructureRequest(input *UpdateUserHierarchyStructureInput) (req *request.Request, output *UpdateUserHierarchyStructureOutput) {
+	op := &request.Operation{
+		Name:       opUpdateUserHierarchyStructure,
+		HTTPMethod: "POST",
+		HTTPPath:   "/user-hierarchy-structure/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &UpdateUserHierarchyStructureInput{}
+	}
+
+	output = &UpdateUserHierarchyStructureOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateUserHierarchyStructure API operation for Amazon Connect Service.
+//
+// Updates the user hierarchy structure: add, remove, and rename user hierarchy
+// levels.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateUserHierarchyStructure for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ResourceInUseException
+//   That resource is already in use. Please try another.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed due to an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateUserHierarchyStructure
+func (c *Connect) UpdateUserHierarchyStructure(input *UpdateUserHierarchyStructureInput) (*UpdateUserHierarchyStructureOutput, error) {
+	req, out := c.UpdateUserHierarchyStructureRequest(input)
+	return out, req.Send()
+}
+
+// UpdateUserHierarchyStructureWithContext is the same as UpdateUserHierarchyStructure with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateUserHierarchyStructure for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateUserHierarchyStructureWithContext(ctx aws.Context, input *UpdateUserHierarchyStructureInput, opts ...request.Option) (*UpdateUserHierarchyStructureOutput, error) {
+	req, out := c.UpdateUserHierarchyStructureRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5913,6 +6297,103 @@ func (s *CreateRoutingProfileOutput) SetRoutingProfileId(v string) *CreateRoutin
 	return s
 }
 
+type CreateUserHierarchyGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the user hierarchy group. Must not be more than 100 characters.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The identifier for the parent hierarchy group. The user hierarchy is created
+	// at level one if the parent group ID is null.
+	ParentGroupId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateUserHierarchyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserHierarchyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUserHierarchyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUserHierarchyGroupInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateUserHierarchyGroupInput) SetInstanceId(v string) *CreateUserHierarchyGroupInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateUserHierarchyGroupInput) SetName(v string) *CreateUserHierarchyGroupInput {
+	s.Name = &v
+	return s
+}
+
+// SetParentGroupId sets the ParentGroupId field's value.
+func (s *CreateUserHierarchyGroupInput) SetParentGroupId(v string) *CreateUserHierarchyGroupInput {
+	s.ParentGroupId = &v
+	return s
+}
+
+type CreateUserHierarchyGroupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the hierarchy group.
+	HierarchyGroupArn *string `type:"string"`
+
+	// The identifier of the hierarchy group.
+	HierarchyGroupId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateUserHierarchyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateUserHierarchyGroupOutput) GoString() string {
+	return s.String()
+}
+
+// SetHierarchyGroupArn sets the HierarchyGroupArn field's value.
+func (s *CreateUserHierarchyGroupOutput) SetHierarchyGroupArn(v string) *CreateUserHierarchyGroupOutput {
+	s.HierarchyGroupArn = &v
+	return s
+}
+
+// SetHierarchyGroupId sets the HierarchyGroupId field's value.
+func (s *CreateUserHierarchyGroupOutput) SetHierarchyGroupId(v string) *CreateUserHierarchyGroupOutput {
+	s.HierarchyGroupId = &v
+	return s
+}
+
 type CreateUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6271,6 +6752,78 @@ func (s *CurrentMetricResult) SetCollections(v []*CurrentMetricData) *CurrentMet
 func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult {
 	s.Dimensions = v
 	return s
+}
+
+type DeleteUserHierarchyGroupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the hierarchy group.
+	//
+	// HierarchyGroupId is a required field
+	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteUserHierarchyGroupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserHierarchyGroupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUserHierarchyGroupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUserHierarchyGroupInput"}
+	if s.HierarchyGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HierarchyGroupId"))
+	}
+	if s.HierarchyGroupId != nil && len(*s.HierarchyGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HierarchyGroupId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHierarchyGroupId sets the HierarchyGroupId field's value.
+func (s *DeleteUserHierarchyGroupInput) SetHierarchyGroupId(v string) *DeleteUserHierarchyGroupInput {
+	s.HierarchyGroupId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteUserHierarchyGroupInput) SetInstanceId(v string) *DeleteUserHierarchyGroupInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteUserHierarchyGroupOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteUserHierarchyGroupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteUserHierarchyGroupOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteUserInput struct {
@@ -7909,6 +8462,45 @@ func (s *HierarchyLevel) SetName(v string) *HierarchyLevel {
 	return s
 }
 
+// Contains information about the hierarchy level to update.
+type HierarchyLevelUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the user hierarchy level. Must not be more than 50 characters.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s HierarchyLevelUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HierarchyLevelUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HierarchyLevelUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HierarchyLevelUpdate"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *HierarchyLevelUpdate) SetName(v string) *HierarchyLevelUpdate {
+	s.Name = &v
+	return s
+}
+
 // Contains information about the levels of a hierarchy group.
 type HierarchyPath struct {
 	_ struct{} `type:"structure"`
@@ -8025,6 +8617,101 @@ func (s *HierarchyStructure) SetLevelThree(v *HierarchyLevel) *HierarchyStructur
 
 // SetLevelTwo sets the LevelTwo field's value.
 func (s *HierarchyStructure) SetLevelTwo(v *HierarchyLevel) *HierarchyStructure {
+	s.LevelTwo = v
+	return s
+}
+
+// Contains information about the level hierarchy to update.
+type HierarchyStructureUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The update for level five.
+	LevelFive *HierarchyLevelUpdate `type:"structure"`
+
+	// The update for level four.
+	LevelFour *HierarchyLevelUpdate `type:"structure"`
+
+	// The update for level one.
+	LevelOne *HierarchyLevelUpdate `type:"structure"`
+
+	// The update for level three.
+	LevelThree *HierarchyLevelUpdate `type:"structure"`
+
+	// The update for level two.
+	LevelTwo *HierarchyLevelUpdate `type:"structure"`
+}
+
+// String returns the string representation
+func (s HierarchyStructureUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HierarchyStructureUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HierarchyStructureUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HierarchyStructureUpdate"}
+	if s.LevelFive != nil {
+		if err := s.LevelFive.Validate(); err != nil {
+			invalidParams.AddNested("LevelFive", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LevelFour != nil {
+		if err := s.LevelFour.Validate(); err != nil {
+			invalidParams.AddNested("LevelFour", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LevelOne != nil {
+		if err := s.LevelOne.Validate(); err != nil {
+			invalidParams.AddNested("LevelOne", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LevelThree != nil {
+		if err := s.LevelThree.Validate(); err != nil {
+			invalidParams.AddNested("LevelThree", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LevelTwo != nil {
+		if err := s.LevelTwo.Validate(); err != nil {
+			invalidParams.AddNested("LevelTwo", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLevelFive sets the LevelFive field's value.
+func (s *HierarchyStructureUpdate) SetLevelFive(v *HierarchyLevelUpdate) *HierarchyStructureUpdate {
+	s.LevelFive = v
+	return s
+}
+
+// SetLevelFour sets the LevelFour field's value.
+func (s *HierarchyStructureUpdate) SetLevelFour(v *HierarchyLevelUpdate) *HierarchyStructureUpdate {
+	s.LevelFour = v
+	return s
+}
+
+// SetLevelOne sets the LevelOne field's value.
+func (s *HierarchyStructureUpdate) SetLevelOne(v *HierarchyLevelUpdate) *HierarchyStructureUpdate {
+	s.LevelOne = v
+	return s
+}
+
+// SetLevelThree sets the LevelThree field's value.
+func (s *HierarchyStructureUpdate) SetLevelThree(v *HierarchyLevelUpdate) *HierarchyStructureUpdate {
+	s.LevelThree = v
+	return s
+}
+
+// SetLevelTwo sets the LevelTwo field's value.
+func (s *HierarchyStructureUpdate) SetLevelTwo(v *HierarchyLevelUpdate) *HierarchyStructureUpdate {
 	s.LevelTwo = v
 	return s
 }
@@ -9908,6 +10595,68 @@ func (s *QueueSummary) SetName(v string) *QueueSummary {
 func (s *QueueSummary) SetQueueType(v string) *QueueSummary {
 	s.QueueType = &v
 	return s
+}
+
+// That resource is already in use. Please try another.
+type ResourceInUseException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The identifier for the resource.
+	ResourceId *string `type:"string"`
+
+	// The type of resource.
+	ResourceType *string `type:"string" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s ResourceInUseException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceInUseException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceInUseException(v protocol.ResponseMetadata) error {
+	return &ResourceInUseException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceInUseException) Code() string {
+	return "ResourceInUseException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceInUseException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceInUseException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceInUseException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceInUseException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceInUseException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The specified resource was not found.
@@ -11995,6 +12744,92 @@ func (s UpdateRoutingProfileQueuesOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateUserHierarchyGroupNameInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the hierarchy group.
+	//
+	// HierarchyGroupId is a required field
+	HierarchyGroupId *string `location:"uri" locationName:"HierarchyGroupId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the hierarchy group. Must not be more than 100 characters.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateUserHierarchyGroupNameInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserHierarchyGroupNameInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserHierarchyGroupNameInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserHierarchyGroupNameInput"}
+	if s.HierarchyGroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HierarchyGroupId"))
+	}
+	if s.HierarchyGroupId != nil && len(*s.HierarchyGroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HierarchyGroupId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHierarchyGroupId sets the HierarchyGroupId field's value.
+func (s *UpdateUserHierarchyGroupNameInput) SetHierarchyGroupId(v string) *UpdateUserHierarchyGroupNameInput {
+	s.HierarchyGroupId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateUserHierarchyGroupNameInput) SetInstanceId(v string) *UpdateUserHierarchyGroupNameInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateUserHierarchyGroupNameInput) SetName(v string) *UpdateUserHierarchyGroupNameInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateUserHierarchyGroupNameOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateUserHierarchyGroupNameOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserHierarchyGroupNameOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateUserHierarchyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12073,6 +12908,80 @@ func (s UpdateUserHierarchyOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateUserHierarchyOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateUserHierarchyStructureInput struct {
+	_ struct{} `type:"structure"`
+
+	// The hierarchy levels to update.
+	//
+	// HierarchyStructure is a required field
+	HierarchyStructure *HierarchyStructureUpdate `type:"structure" required:"true"`
+
+	// The identifier of the Amazon Connect instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateUserHierarchyStructureInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserHierarchyStructureInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateUserHierarchyStructureInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateUserHierarchyStructureInput"}
+	if s.HierarchyStructure == nil {
+		invalidParams.Add(request.NewErrParamRequired("HierarchyStructure"))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.HierarchyStructure != nil {
+		if err := s.HierarchyStructure.Validate(); err != nil {
+			invalidParams.AddNested("HierarchyStructure", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHierarchyStructure sets the HierarchyStructure field's value.
+func (s *UpdateUserHierarchyStructureInput) SetHierarchyStructure(v *HierarchyStructureUpdate) *UpdateUserHierarchyStructureInput {
+	s.HierarchyStructure = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateUserHierarchyStructureInput) SetInstanceId(v string) *UpdateUserHierarchyStructureInput {
+	s.InstanceId = &v
+	return s
+}
+
+type UpdateUserHierarchyStructureOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateUserHierarchyStructureOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateUserHierarchyStructureOutput) GoString() string {
 	return s.String()
 }
 
@@ -14046,6 +14955,42 @@ func QueueType_Values() []string {
 	return []string{
 		QueueTypeStandard,
 		QueueTypeAgent,
+	}
+}
+
+const (
+	// ResourceTypeContact is a ResourceType enum value
+	ResourceTypeContact = "CONTACT"
+
+	// ResourceTypeContactFlow is a ResourceType enum value
+	ResourceTypeContactFlow = "CONTACT_FLOW"
+
+	// ResourceTypeInstance is a ResourceType enum value
+	ResourceTypeInstance = "INSTANCE"
+
+	// ResourceTypeParticipant is a ResourceType enum value
+	ResourceTypeParticipant = "PARTICIPANT"
+
+	// ResourceTypeHierarchyLevel is a ResourceType enum value
+	ResourceTypeHierarchyLevel = "HIERARCHY_LEVEL"
+
+	// ResourceTypeHierarchyGroup is a ResourceType enum value
+	ResourceTypeHierarchyGroup = "HIERARCHY_GROUP"
+
+	// ResourceTypeUser is a ResourceType enum value
+	ResourceTypeUser = "USER"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeContact,
+		ResourceTypeContactFlow,
+		ResourceTypeInstance,
+		ResourceTypeParticipant,
+		ResourceTypeHierarchyLevel,
+		ResourceTypeHierarchyGroup,
+		ResourceTypeUser,
 	}
 }
 
