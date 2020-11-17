@@ -8,6 +8,10 @@
 // data types, and errors. For detailed information about AWS Firewall Manager
 // features, see the AWS Firewall Manager Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html).
 //
+// Some API actions require explicit resource permissions. For information,
+// see the developer guide topic Firewall Manager required permissions for API
+// actions (https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html).
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01 for more information on this service.
 //
 // See fms package documentation for more information.

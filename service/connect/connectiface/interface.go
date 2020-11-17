@@ -76,9 +76,17 @@ type ConnectAPI interface {
 	CreateUserWithContext(aws.Context, *connect.CreateUserInput, ...request.Option) (*connect.CreateUserOutput, error)
 	CreateUserRequest(*connect.CreateUserInput) (*request.Request, *connect.CreateUserOutput)
 
+	CreateUserHierarchyGroup(*connect.CreateUserHierarchyGroupInput) (*connect.CreateUserHierarchyGroupOutput, error)
+	CreateUserHierarchyGroupWithContext(aws.Context, *connect.CreateUserHierarchyGroupInput, ...request.Option) (*connect.CreateUserHierarchyGroupOutput, error)
+	CreateUserHierarchyGroupRequest(*connect.CreateUserHierarchyGroupInput) (*request.Request, *connect.CreateUserHierarchyGroupOutput)
+
 	DeleteUser(*connect.DeleteUserInput) (*connect.DeleteUserOutput, error)
 	DeleteUserWithContext(aws.Context, *connect.DeleteUserInput, ...request.Option) (*connect.DeleteUserOutput, error)
 	DeleteUserRequest(*connect.DeleteUserInput) (*request.Request, *connect.DeleteUserOutput)
+
+	DeleteUserHierarchyGroup(*connect.DeleteUserHierarchyGroupInput) (*connect.DeleteUserHierarchyGroupOutput, error)
+	DeleteUserHierarchyGroupWithContext(aws.Context, *connect.DeleteUserHierarchyGroupInput, ...request.Option) (*connect.DeleteUserHierarchyGroupOutput, error)
+	DeleteUserHierarchyGroupRequest(*connect.DeleteUserHierarchyGroupInput) (*request.Request, *connect.DeleteUserHierarchyGroupOutput)
 
 	DescribeContactFlow(*connect.DescribeContactFlowInput) (*connect.DescribeContactFlowOutput, error)
 	DescribeContactFlowWithContext(aws.Context, *connect.DescribeContactFlowInput, ...request.Option) (*connect.DescribeContactFlowOutput, error)
@@ -267,6 +275,14 @@ type ConnectAPI interface {
 	UpdateUserHierarchy(*connect.UpdateUserHierarchyInput) (*connect.UpdateUserHierarchyOutput, error)
 	UpdateUserHierarchyWithContext(aws.Context, *connect.UpdateUserHierarchyInput, ...request.Option) (*connect.UpdateUserHierarchyOutput, error)
 	UpdateUserHierarchyRequest(*connect.UpdateUserHierarchyInput) (*request.Request, *connect.UpdateUserHierarchyOutput)
+
+	UpdateUserHierarchyGroupName(*connect.UpdateUserHierarchyGroupNameInput) (*connect.UpdateUserHierarchyGroupNameOutput, error)
+	UpdateUserHierarchyGroupNameWithContext(aws.Context, *connect.UpdateUserHierarchyGroupNameInput, ...request.Option) (*connect.UpdateUserHierarchyGroupNameOutput, error)
+	UpdateUserHierarchyGroupNameRequest(*connect.UpdateUserHierarchyGroupNameInput) (*request.Request, *connect.UpdateUserHierarchyGroupNameOutput)
+
+	UpdateUserHierarchyStructure(*connect.UpdateUserHierarchyStructureInput) (*connect.UpdateUserHierarchyStructureOutput, error)
+	UpdateUserHierarchyStructureWithContext(aws.Context, *connect.UpdateUserHierarchyStructureInput, ...request.Option) (*connect.UpdateUserHierarchyStructureOutput, error)
+	UpdateUserHierarchyStructureRequest(*connect.UpdateUserHierarchyStructureInput) (*request.Request, *connect.UpdateUserHierarchyStructureOutput)
 
 	UpdateUserIdentityInfo(*connect.UpdateUserIdentityInfoInput) (*connect.UpdateUserIdentityInfoOutput, error)
 	UpdateUserIdentityInfoWithContext(aws.Context, *connect.UpdateUserIdentityInfoInput, ...request.Option) (*connect.UpdateUserIdentityInfoOutput, error)

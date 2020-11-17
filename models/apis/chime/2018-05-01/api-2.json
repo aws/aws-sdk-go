@@ -301,6 +301,25 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "CreateMeetingDialOut":{
+      "name":"CreateMeetingDialOut",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings/{meetingId}/dial-outs",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateMeetingDialOutRequest"},
+      "output":{"shape":"CreateMeetingDialOutResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "CreateMeetingWithAttendees":{
       "name":"CreateMeetingWithAttendees",
       "http":{
@@ -396,6 +415,67 @@
         {"shape":"ForbiddenException"},
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateSipMediaApplication":{
+      "name":"CreateSipMediaApplication",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sip-media-applications",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateSipMediaApplicationRequest"},
+      "output":{"shape":"CreateSipMediaApplicationResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ConflictException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateSipMediaApplicationCall":{
+      "name":"CreateSipMediaApplicationCall",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}/calls",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateSipMediaApplicationCallRequest"},
+      "output":{"shape":"CreateSipMediaApplicationCallResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "CreateSipRule":{
+      "name":"CreateSipRule",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sip-rules",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateSipRuleRequest"},
+      "output":{"shape":"CreateSipRuleResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -600,6 +680,44 @@
         {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteSipMediaApplication":{
+      "name":"DeleteSipMediaApplication",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteSipMediaApplicationRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "DeleteSipRule":{
+      "name":"DeleteSipRule",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/sip-rules/{sipRuleId}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteSipRuleRequest"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
@@ -1066,6 +1184,63 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "GetSipMediaApplication":{
+      "name":"GetSipMediaApplication",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSipMediaApplicationRequest"},
+      "output":{"shape":"GetSipMediaApplicationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetSipMediaApplicationLoggingConfiguration":{
+      "name":"GetSipMediaApplicationLoggingConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}/logging-configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSipMediaApplicationLoggingConfigurationRequest"},
+      "output":{"shape":"GetSipMediaApplicationLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "GetSipRule":{
+      "name":"GetSipRule",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sip-rules/{sipRuleId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSipRuleRequest"},
+      "output":{"shape":"GetSipRuleResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "GetUser":{
       "name":"GetUser",
       "http":{
@@ -1498,6 +1673,42 @@
         {"shape":"ServiceFailureException"}
       ]
     },
+    "ListSipMediaApplications":{
+      "name":"ListSipMediaApplications",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sip-media-applications",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSipMediaApplicationsRequest"},
+      "output":{"shape":"ListSipMediaApplicationsResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "ListSipRules":{
+      "name":"ListSipRules",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sip-rules",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSipRulesRequest"},
+      "output":{"shape":"ListSipRulesResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -1642,6 +1853,25 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "PutSipMediaApplicationLoggingConfiguration":{
+      "name":"PutSipMediaApplicationLoggingConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}/logging-configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"PutSipMediaApplicationLoggingConfigurationRequest"},
+      "output":{"shape":"PutSipMediaApplicationLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
         {"shape":"ThrottledClientException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
@@ -2166,6 +2396,47 @@
         {"shape":"BadRequestException"},
         {"shape":"ForbiddenException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateSipMediaApplication":{
+      "name":"UpdateSipMediaApplication",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sip-media-applications/{sipMediaApplicationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateSipMediaApplicationRequest"},
+      "output":{"shape":"UpdateSipMediaApplicationResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "UpdateSipRule":{
+      "name":"UpdateSipRule",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sip-rules/{sipRuleId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateSipRuleRequest"},
+      "output":{"shape":"UpdateSipRuleResponse"},
+      "errors":[
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"ResourceLimitExceededException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -2763,6 +3034,31 @@
         "Bot":{"shape":"Bot"}
       }
     },
+    "CreateMeetingDialOutRequest":{
+      "type":"structure",
+      "required":[
+        "FromPhoneNumber",
+        "ToPhoneNumber",
+        "JoinToken",
+        "MeetingId"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "FromPhoneNumber":{"shape":"E164PhoneNumber"},
+        "ToPhoneNumber":{"shape":"E164PhoneNumber"},
+        "JoinToken":{"shape":"JoinTokenString"}
+      }
+    },
+    "CreateMeetingDialOutResponse":{
+      "type":"structure",
+      "members":{
+        "TransactionId":{"shape":"GuidString"}
+      }
+    },
     "CreateMeetingRequest":{
       "type":"structure",
       "required":["ClientRequestToken"],
@@ -2910,6 +3206,65 @@
       "type":"structure",
       "members":{
         "Room":{"shape":"Room"}
+      }
+    },
+    "CreateSipMediaApplicationCallRequest":{
+      "type":"structure",
+      "required":["SipMediaApplicationId"],
+      "members":{
+        "FromPhoneNumber":{"shape":"E164PhoneNumber"},
+        "ToPhoneNumber":{"shape":"E164PhoneNumber"},
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        }
+      }
+    },
+    "CreateSipMediaApplicationCallResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationCall":{"shape":"SipMediaApplicationCall"}
+      }
+    },
+    "CreateSipMediaApplicationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsRegion",
+        "Endpoints"
+      ],
+      "members":{
+        "AwsRegion":{"shape":"String"},
+        "Name":{"shape":"SipMediaApplicationName"},
+        "Endpoints":{"shape":"SipMediaApplicationEndpointList"}
+      }
+    },
+    "CreateSipMediaApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplication":{"shape":"SipMediaApplication"}
+      }
+    },
+    "CreateSipRuleRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "TriggerType",
+        "TriggerValue",
+        "TargetApplications"
+      ],
+      "members":{
+        "Name":{"shape":"SipRuleName"},
+        "TriggerType":{"shape":"SipRuleTriggerType"},
+        "TriggerValue":{"shape":"NonEmptyString"},
+        "Disabled":{"shape":"NullableBoolean"},
+        "TargetApplications":{"shape":"SipRuleTargetApplicationList"}
+      }
+    },
+    "CreateSipRuleResponse":{
+      "type":"structure",
+      "members":{
+        "SipRule":{"shape":"SipRule"}
       }
     },
     "CreateUserRequest":{
@@ -3131,6 +3486,28 @@
           "shape":"NonEmptyString",
           "location":"uri",
           "locationName":"roomId"
+        }
+      }
+    },
+    "DeleteSipMediaApplicationRequest":{
+      "type":"structure",
+      "required":["SipMediaApplicationId"],
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        }
+      }
+    },
+    "DeleteSipRuleRequest":{
+      "type":"structure",
+      "required":["SipRuleId"],
+      "members":{
+        "SipRuleId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipRuleId"
         }
       }
     },
@@ -3388,6 +3765,12 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "FunctionArn":{
+      "type":"string",
+      "max":10000,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?",
+      "sensitive":true
     },
     "GeoMatchLevel":{
       "type":"string",
@@ -3649,6 +4032,57 @@
         "Room":{"shape":"Room"}
       }
     },
+    "GetSipMediaApplicationLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":["SipMediaApplicationId"],
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        }
+      }
+    },
+    "GetSipMediaApplicationLoggingConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationLoggingConfiguration":{"shape":"SipMediaApplicationLoggingConfiguration"}
+      }
+    },
+    "GetSipMediaApplicationRequest":{
+      "type":"structure",
+      "required":["SipMediaApplicationId"],
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        }
+      }
+    },
+    "GetSipMediaApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplication":{"shape":"SipMediaApplication"}
+      }
+    },
+    "GetSipRuleRequest":{
+      "type":"structure",
+      "required":["SipRuleId"],
+      "members":{
+        "SipRuleId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipRuleId"
+        }
+      }
+    },
+    "GetSipRuleResponse":{
+      "type":"structure",
+      "members":{
+        "SipRule":{"shape":"SipRule"}
+      }
+    },
     "GetUserRequest":{
       "type":"structure",
       "required":[
@@ -3908,6 +4342,7 @@
       "type":"string",
       "max":2048,
       "min":2,
+      "pattern":"^[a-zA-Z0-9+/]+$",
       "sensitive":true
     },
     "License":{
@@ -4239,6 +4674,55 @@
       "members":{
         "Rooms":{"shape":"RoomList"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "ListSipMediaApplicationsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextTokenString",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListSipMediaApplicationsResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplications":{"shape":"SipMediaApplicationList"},
+        "NextToken":{"shape":"NextTokenString"}
+      }
+    },
+    "ListSipRulesRequest":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"querystring",
+          "locationName":"sip-media-application"
+        },
+        "MaxResults":{
+          "shape":"ResultMax",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "NextToken":{
+          "shape":"NextTokenString",
+          "location":"querystring",
+          "locationName":"next-token"
+        }
+      }
+    },
+    "ListSipRulesResponse":{
+      "type":"structure",
+      "members":{
+        "SipRules":{"shape":"SipRuleList"},
+        "NextToken":{"shape":"NextTokenString"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -4626,7 +5110,8 @@
         "AccountId",
         "UserId",
         "VoiceConnectorId",
-        "VoiceConnectorGroupId"
+        "VoiceConnectorGroupId",
+        "SipRuleId"
       ]
     },
     "PhoneNumberCapabilities":{
@@ -4817,6 +5302,24 @@
       "members":{
         "RetentionSettings":{"shape":"RetentionSettings"},
         "InitiateDeletionTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "PutSipMediaApplicationLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":["SipMediaApplicationId"],
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        },
+        "SipMediaApplicationLoggingConfiguration":{"shape":"SipMediaApplicationLoggingConfiguration"}
+      }
+    },
+    "PutSipMediaApplicationLoggingConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationLoggingConfiguration":{"shape":"SipMediaApplicationLoggingConfiguration"}
       }
     },
     "PutVoiceConnectorEmergencyCallingConfigurationRequest":{
@@ -5248,6 +5751,97 @@
       "type":"list",
       "member":{"shape":"SigninDelegateGroup"}
     },
+    "SipApplicationPriority":{
+      "type":"integer",
+      "min":1
+    },
+    "SipMediaApplication":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationId":{"shape":"NonEmptyString"},
+        "AwsRegion":{"shape":"String"},
+        "Name":{"shape":"SipMediaApplicationName"},
+        "Endpoints":{"shape":"SipMediaApplicationEndpointList"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "SipMediaApplicationCall":{
+      "type":"structure",
+      "members":{
+        "TransactionId":{"shape":"GuidString"}
+      }
+    },
+    "SipMediaApplicationEndpoint":{
+      "type":"structure",
+      "members":{
+        "LambdaArn":{"shape":"FunctionArn"}
+      }
+    },
+    "SipMediaApplicationEndpointList":{
+      "type":"list",
+      "member":{"shape":"SipMediaApplicationEndpoint"},
+      "max":1,
+      "min":1
+    },
+    "SipMediaApplicationList":{
+      "type":"list",
+      "member":{"shape":"SipMediaApplication"}
+    },
+    "SipMediaApplicationLoggingConfiguration":{
+      "type":"structure",
+      "members":{
+        "EnableSipMediaApplicationMessageLogs":{"shape":"Boolean"}
+      }
+    },
+    "SipMediaApplicationName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "SipRule":{
+      "type":"structure",
+      "members":{
+        "SipRuleId":{"shape":"NonEmptyString"},
+        "Name":{"shape":"SipRuleName"},
+        "Disabled":{"shape":"Boolean"},
+        "TriggerType":{"shape":"SipRuleTriggerType"},
+        "TriggerValue":{"shape":"NonEmptyString"},
+        "TargetApplications":{"shape":"SipRuleTargetApplicationList"},
+        "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+      }
+    },
+    "SipRuleList":{
+      "type":"list",
+      "member":{"shape":"SipRule"}
+    },
+    "SipRuleName":{
+      "type":"string",
+      "max":256,
+      "min":1
+    },
+    "SipRuleTargetApplication":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplicationId":{"shape":"NonEmptyString"},
+        "Priority":{"shape":"SipApplicationPriority"},
+        "AwsRegion":{"shape":"String"}
+      }
+    },
+    "SipRuleTargetApplicationList":{
+      "type":"list",
+      "member":{"shape":"SipRuleTargetApplication"},
+      "max":25,
+      "min":1
+    },
+    "SipRuleTriggerType":{
+      "type":"string",
+      "enum":[
+        "ToPhoneNumber",
+        "RequestUriHostname"
+      ]
+    },
     "StreamingConfiguration":{
       "type":"structure",
       "required":["DataRetentionInHours"],
@@ -5669,6 +6263,48 @@
       "type":"structure",
       "members":{
         "Room":{"shape":"Room"}
+      }
+    },
+    "UpdateSipMediaApplicationRequest":{
+      "type":"structure",
+      "required":["SipMediaApplicationId"],
+      "members":{
+        "SipMediaApplicationId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipMediaApplicationId"
+        },
+        "Name":{"shape":"SipMediaApplicationName"},
+        "Endpoints":{"shape":"SipMediaApplicationEndpointList"}
+      }
+    },
+    "UpdateSipMediaApplicationResponse":{
+      "type":"structure",
+      "members":{
+        "SipMediaApplication":{"shape":"SipMediaApplication"}
+      }
+    },
+    "UpdateSipRuleRequest":{
+      "type":"structure",
+      "required":[
+        "SipRuleId",
+        "Name"
+      ],
+      "members":{
+        "SipRuleId":{
+          "shape":"NonEmptyString",
+          "location":"uri",
+          "locationName":"sipRuleId"
+        },
+        "Name":{"shape":"SipRuleName"},
+        "Disabled":{"shape":"NullableBoolean"},
+        "TargetApplications":{"shape":"SipRuleTargetApplicationList"}
+      }
+    },
+    "UpdateSipRuleResponse":{
+      "type":"structure",
+      "members":{
+        "SipRule":{"shape":"SipRule"}
       }
     },
     "UpdateUserRequest":{

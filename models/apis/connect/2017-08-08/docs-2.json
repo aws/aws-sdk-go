@@ -6,7 +6,9 @@
     "CreateContactFlow": "<p>Creates a contact flow for the specified Amazon Connect instance.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "CreateRoutingProfile": "<p>Creates a new routing profile.</p>",
     "CreateUser": "<p>Creates a user account for the specified Amazon Connect instance.</p> <p>For information about how to create user accounts using the Amazon Connect console, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/user-management.html\">Add Users</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "CreateUserHierarchyGroup": "<p>Creates a new user hierarchy group.</p>",
     "DeleteUser": "<p>Deletes a user account from the specified Amazon Connect instance.</p> <p>For information about what happens to a user's data when their account is deleted, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/delete-users.html\">Delete Users from Your Amazon Connect Instance</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
+    "DeleteUserHierarchyGroup": "<p>Deletes an existing user hierarchy group. It must not be associated with any agents or have any active child groups.</p>",
     "DescribeContactFlow": "<p>Describes the specified contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "DescribeRoutingProfile": "<p>Describes the specified routing profile.</p>",
     "DescribeUser": "<p>Describes the specified user account. You can find the instance ID in the console (it’s the final part of the ARN). The console does not display the user IDs. Instead, list the users and note the IDs provided in the output.</p>",
@@ -37,14 +39,16 @@
     "SuspendContactRecording": "<p>When a contact is being recorded, this API suspends recording the call. For example, you might suspend the call recording while collecting sensitive information, such as a credit card number. Then use ResumeContactRecording to restart recording. </p> <p>The period of time that the recording is suspended is filled with silence in the final recording. </p> <p>Only voice recordings are supported at this time.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource.</p> <p>The supported resource types are users, routing profiles, and contact flows.</p> <p>For sample policies that use tags, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html\">Amazon Connect Identity-Based Policy Examples</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
     "UntagResource": "<p>Removes the specified tags from the specified resource.</p>",
-    "UpdateContactAttributes": "<p>Creates or updates the contact attributes associated with the specified contact.</p> <p>You can add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p>This operation is also available in the Amazon Connect Flow language. See <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/contact-actions-updatecontactattributes.html\">UpdateContactAttributes</a>.</p> <p> <b>Important:</b> You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
+    "UpdateContactAttributes": "<p>Creates or updates the contact attributes associated with the specified contact.</p> <p>You can add or update attributes for both ongoing and completed contacts. For example, you can update the customer's name or the reason the customer called while the call is active, or add notes about steps that the agent took during the call that are displayed to the next agent that takes the call. You can also update attributes for a contact using data from your CRM application and save the data with the contact in Amazon Connect. You could also flag calls for additional analysis, such as legal review or identifying abusive callers.</p> <p>Contact attributes are available in Amazon Connect for 24 months, and are then deleted.</p> <p> <b>Important:</b> You cannot use the operation to update attributes for contacts that occurred prior to the release of the API, September 12, 2018. You can update attributes only for contacts that started after the release of the API. If you attempt to update attributes for a contact that occurred prior to the release of the API, a 400 error is returned. This applies also to queued callbacks that were initiated prior to the release of the API but are still active in your instance.</p>",
     "UpdateContactFlowContent": "<p>Updates the specified contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
-    "UpdateContactFlowName": "<p>The name of the contact flow.</p>",
+    "UpdateContactFlowName": "<p>The name of the contact flow.</p> <p>You can also create and update contact flows using the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/flow-language.html\">Amazon Connect Flow language</a>.</p>",
     "UpdateRoutingProfileConcurrency": "<p>Updates the channels that agents can handle in the Contact Control Panel (CCP) for a routing profile.</p>",
     "UpdateRoutingProfileDefaultOutboundQueue": "<p>Updates the default outbound queue of a routing profile.</p>",
     "UpdateRoutingProfileName": "<p>Updates the name and description of a routing profile. The request accepts the following data in JSON format. At least <code>Name</code> or <code>Description</code> must be provided.</p>",
     "UpdateRoutingProfileQueues": "<p>Updates the properties associated with a set of queues for a routing profile.</p>",
     "UpdateUserHierarchy": "<p>Assigns the specified hierarchy group to the specified user.</p>",
+    "UpdateUserHierarchyGroupName": "<p>Updates the name of the user hierarchy group. </p>",
+    "UpdateUserHierarchyStructure": "<p>Updates the user hierarchy structure: add, remove, and rename user hierarchy levels.</p>",
     "UpdateUserIdentityInfo": "<p>Updates the identity information for the specified user.</p> <important> <p>Someone with the ability to invoke <code>UpdateUserIndentityInfo</code> can change the login credentials of other users by changing their email address. This poses a security risk to your organization. They can change the email address of a user to the attacker's email address, and then reset the password through email. We strongly recommend limiting who has the ability to invoke <code>UpdateUserIndentityInfo</code>. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/security-profile-best-practices.html\">Best Practices for Security Profiles</a> in the <i>Amazon Connect Administrator Guide</i>.</p> </important>",
     "UpdateUserPhoneConfig": "<p>Updates the phone configuration settings for the specified user.</p>",
     "UpdateUserRoutingProfile": "<p>Assigns the specified routing profile to the specified user.</p>",
@@ -58,6 +62,7 @@
         "ContactFlowSummary$Arn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "CreateContactFlowResponse$ContactFlowArn": "<p>The Amazon Resource Name (ARN) of the contact flow.</p>",
         "CreateRoutingProfileResponse$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
+        "CreateUserHierarchyGroupResponse$HierarchyGroupArn": "<p>The Amazon Resource Name (ARN) of the hierarchy group. </p>",
         "CreateUserResponse$UserArn": "<p>The Amazon Resource Name (ARN) of the user account.</p>",
         "HierarchyGroup$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
         "HierarchyGroupSummary$Arn": "<p>The Amazon Resource Name (ARN) of the hierarchy group.</p>",
@@ -68,6 +73,7 @@
         "PromptSummary$Arn": "<p>The Amazon Resource Name (ARN) of the prompt.</p>",
         "QueueReference$Arn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
         "QueueSummary$Arn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
+        "ResourceInUseException$ResourceId": "<p>The identifier for the resource.</p>",
         "RoutingProfile$RoutingProfileArn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
         "RoutingProfileQueueConfigSummary$QueueArn": "<p>The Amazon Resource Name (ARN) of the queue.</p>",
         "RoutingProfileSummary$Arn": "<p>The Amazon Resource Name (ARN) of the routing profile.</p>",
@@ -308,6 +314,16 @@
       "refs": {
       }
     },
+    "CreateUserHierarchyGroupRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateUserHierarchyGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateUserRequest": {
       "base": null,
       "refs": {
@@ -372,6 +388,11 @@
       "refs": {
         "RoutingProfileQueueConfig$Delay": "<p>The delay, in seconds, a contact should be in the queue before they are routed to an available agent. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html\">Queues: priority and delay</a> in the <i>Amazon Connect Administrator Guide</i>.</p>",
         "RoutingProfileQueueConfigSummary$Delay": "<p>The delay, in seconds, that a contact should be in the queue before they are routed to an available agent. For more information, see <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/concepts-routing-profiles-priority.html\">Queues: priority and delay</a> in the <i>Amazon Connect Administrator Guide</i>.</p>"
+      }
+    },
+    "DeleteUserHierarchyGroupRequest": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteUserRequest": {
@@ -539,10 +560,14 @@
     "HierarchyGroupId": {
       "base": null,
       "refs": {
+        "CreateUserHierarchyGroupRequest$ParentGroupId": "<p>The identifier for the parent hierarchy group. The user hierarchy is created at level one if the parent group ID is null.</p>",
+        "CreateUserHierarchyGroupResponse$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "CreateUserRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>",
+        "DeleteUserHierarchyGroupRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "DescribeUserHierarchyGroupRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "HierarchyGroup$Id": "<p>The identifier of the hierarchy group.</p>",
         "HierarchyGroupSummary$Id": "<p>The identifier of the hierarchy group.</p>",
+        "UpdateUserHierarchyGroupNameRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "UpdateUserHierarchyRequest$HierarchyGroupId": "<p>The identifier of the hierarchy group.</p>",
         "User$HierarchyGroupId": "<p>The identifier of the hierarchy group for the user.</p>"
       }
@@ -550,8 +575,10 @@
     "HierarchyGroupName": {
       "base": null,
       "refs": {
+        "CreateUserHierarchyGroupRequest$Name": "<p>The name of the user hierarchy group. Must not be more than 100 characters.</p>",
         "HierarchyGroup$Name": "<p>The name of the hierarchy group.</p>",
-        "HierarchyGroupSummary$Name": "<p>The name of the hierarchy group.</p>"
+        "HierarchyGroupSummary$Name": "<p>The name of the hierarchy group.</p>",
+        "UpdateUserHierarchyGroupNameRequest$Name": "<p>The name of the hierarchy group. Must not be more than 100 characters.</p>"
       }
     },
     "HierarchyGroupSummary": {
@@ -591,7 +618,18 @@
     "HierarchyLevelName": {
       "base": null,
       "refs": {
-        "HierarchyLevel$Name": "<p>The name of the hierarchy level.</p>"
+        "HierarchyLevel$Name": "<p>The name of the hierarchy level.</p>",
+        "HierarchyLevelUpdate$Name": "<p>The name of the user hierarchy level. Must not be more than 50 characters.</p>"
+      }
+    },
+    "HierarchyLevelUpdate": {
+      "base": "<p>Contains information about the hierarchy level to update.</p>",
+      "refs": {
+        "HierarchyStructureUpdate$LevelOne": "<p>The update for level one.</p>",
+        "HierarchyStructureUpdate$LevelTwo": "<p>The update for level two.</p>",
+        "HierarchyStructureUpdate$LevelThree": "<p>The update for level three.</p>",
+        "HierarchyStructureUpdate$LevelFour": "<p>The update for level four.</p>",
+        "HierarchyStructureUpdate$LevelFive": "<p>The update for level five.</p>"
       }
     },
     "HierarchyPath": {
@@ -604,6 +642,12 @@
       "base": "<p>Contains information about a hierarchy structure.</p>",
       "refs": {
         "DescribeUserHierarchyStructureResponse$HierarchyStructure": "<p>Information about the hierarchy structure.</p>"
+      }
+    },
+    "HierarchyStructureUpdate": {
+      "base": "<p>Contains information about the level hierarchy to update.</p>",
+      "refs": {
+        "UpdateUserHierarchyStructureRequest$HierarchyStructure": "<p>The hierarchy levels to update.</p>"
       }
     },
     "HistoricalMetric": {
@@ -679,7 +723,9 @@
         "AssociateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "CreateUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "CreateUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "DeleteUserHierarchyGroupRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DeleteUserRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeContactFlowRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "DescribeRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
@@ -716,7 +762,9 @@
         "UpdateRoutingProfileDefaultOutboundQueueRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateRoutingProfileNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateRoutingProfileQueuesRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "UpdateUserHierarchyGroupNameRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateUserHierarchyRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
+        "UpdateUserHierarchyStructureRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateUserIdentityInfoRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateUserPhoneConfigRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
         "UpdateUserRoutingProfileRequest$InstanceId": "<p>The identifier of the Amazon Connect instance.</p>",
@@ -906,6 +954,7 @@
         "InvalidRequestException$Message": "<p>The message.</p>",
         "LimitExceededException$Message": "<p>The message.</p>",
         "OutboundContactNotPermittedException$Message": "<p>The message.</p>",
+        "ResourceInUseException$Message": null,
         "ResourceNotFoundException$Message": "<p>The message.</p>",
         "ThrottlingException$Message": null,
         "UserNotFoundException$Message": null
@@ -1135,9 +1184,20 @@
         "Filters$Queues": "<p>The queues to use to filter the metrics. You can specify up to 100 queues per request.</p>"
       }
     },
+    "ResourceInUseException": {
+      "base": "<p>That resource is already in use. Please try another.</p>",
+      "refs": {
+      }
+    },
     "ResourceNotFoundException": {
       "base": "<p>The specified resource was not found.</p>",
       "refs": {
+      }
+    },
+    "ResourceType": {
+      "base": null,
+      "refs": {
+        "ResourceInUseException$ResourceType": "<p>The type of resource.</p>"
       }
     },
     "ResumeContactRecordingRequest": {
@@ -1455,7 +1515,17 @@
       "refs": {
       }
     },
+    "UpdateUserHierarchyGroupNameRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateUserHierarchyRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateUserHierarchyStructureRequest": {
       "base": null,
       "refs": {
       }

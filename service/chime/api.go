@@ -1557,6 +1557,111 @@ func (c *Chime) CreateMeetingWithContext(ctx aws.Context, input *CreateMeetingIn
 	return out, req.Send()
 }
 
+const opCreateMeetingDialOut = "CreateMeetingDialOut"
+
+// CreateMeetingDialOutRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMeetingDialOut operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMeetingDialOut for more information on using the CreateMeetingDialOut
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMeetingDialOutRequest method.
+//    req, resp := client.CreateMeetingDialOutRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeetingDialOut
+func (c *Chime) CreateMeetingDialOutRequest(input *CreateMeetingDialOutInput) (req *request.Request, output *CreateMeetingDialOutOutput) {
+	op := &request.Operation{
+		Name:       opCreateMeetingDialOut,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/dial-outs",
+	}
+
+	if input == nil {
+		input = &CreateMeetingDialOutInput{}
+	}
+
+	output = &CreateMeetingDialOutOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMeetingDialOut API operation for Amazon Chime.
+//
+// Uses the join token and call metadata in a meeting request (From number,
+// To number, and so forth) to initiate an outbound call to a public switched
+// telephone network (PSTN) and joins them into Chime meeting. Also ensures
+// that the From number belongs to the customer.
+//
+// To play welcome audio or implement an interactive voice response (IVR), use
+// the CreateSipMediaApplicationCall API with the corresponding SIP media application
+// ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateMeetingDialOut for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMeetingDialOut
+func (c *Chime) CreateMeetingDialOut(input *CreateMeetingDialOutInput) (*CreateMeetingDialOutOutput, error) {
+	req, out := c.CreateMeetingDialOutRequest(input)
+	return out, req.Send()
+}
+
+// CreateMeetingDialOutWithContext is the same as CreateMeetingDialOut with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMeetingDialOut for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateMeetingDialOutWithContext(ctx aws.Context, input *CreateMeetingDialOutInput, opts ...request.Option) (*CreateMeetingDialOutOutput, error) {
+	req, out := c.CreateMeetingDialOutRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMeetingWithAttendees = "CreateMeetingWithAttendees"
 
 // CreateMeetingWithAttendeesRequest generates a "aws/request.Request" representing the
@@ -2066,6 +2171,316 @@ func (c *Chime) CreateRoomMembership(input *CreateRoomMembershipInput) (*CreateR
 // for more information on using Contexts.
 func (c *Chime) CreateRoomMembershipWithContext(ctx aws.Context, input *CreateRoomMembershipInput, opts ...request.Option) (*CreateRoomMembershipOutput, error) {
 	req, out := c.CreateRoomMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSipMediaApplication = "CreateSipMediaApplication"
+
+// CreateSipMediaApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSipMediaApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSipMediaApplication for more information on using the CreateSipMediaApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSipMediaApplicationRequest method.
+//    req, resp := client.CreateSipMediaApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateSipMediaApplication
+func (c *Chime) CreateSipMediaApplicationRequest(input *CreateSipMediaApplicationInput) (req *request.Request, output *CreateSipMediaApplicationOutput) {
+	op := &request.Operation{
+		Name:       opCreateSipMediaApplication,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sip-media-applications",
+	}
+
+	if input == nil {
+		input = &CreateSipMediaApplicationInput{}
+	}
+
+	output = &CreateSipMediaApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSipMediaApplication API operation for Amazon Chime.
+//
+// Creates a SIP media application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateSipMediaApplication for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateSipMediaApplication
+func (c *Chime) CreateSipMediaApplication(input *CreateSipMediaApplicationInput) (*CreateSipMediaApplicationOutput, error) {
+	req, out := c.CreateSipMediaApplicationRequest(input)
+	return out, req.Send()
+}
+
+// CreateSipMediaApplicationWithContext is the same as CreateSipMediaApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSipMediaApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateSipMediaApplicationWithContext(ctx aws.Context, input *CreateSipMediaApplicationInput, opts ...request.Option) (*CreateSipMediaApplicationOutput, error) {
+	req, out := c.CreateSipMediaApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSipMediaApplicationCall = "CreateSipMediaApplicationCall"
+
+// CreateSipMediaApplicationCallRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSipMediaApplicationCall operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSipMediaApplicationCall for more information on using the CreateSipMediaApplicationCall
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSipMediaApplicationCallRequest method.
+//    req, resp := client.CreateSipMediaApplicationCallRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateSipMediaApplicationCall
+func (c *Chime) CreateSipMediaApplicationCallRequest(input *CreateSipMediaApplicationCallInput) (req *request.Request, output *CreateSipMediaApplicationCallOutput) {
+	op := &request.Operation{
+		Name:       opCreateSipMediaApplicationCall,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}/calls",
+	}
+
+	if input == nil {
+		input = &CreateSipMediaApplicationCallInput{}
+	}
+
+	output = &CreateSipMediaApplicationCallOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSipMediaApplicationCall API operation for Amazon Chime.
+//
+// Creates an outbound call to a phone number from the phone number specified
+// in the request, and it invokes the endpoint of the specified sipMediaApplicationId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateSipMediaApplicationCall for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateSipMediaApplicationCall
+func (c *Chime) CreateSipMediaApplicationCall(input *CreateSipMediaApplicationCallInput) (*CreateSipMediaApplicationCallOutput, error) {
+	req, out := c.CreateSipMediaApplicationCallRequest(input)
+	return out, req.Send()
+}
+
+// CreateSipMediaApplicationCallWithContext is the same as CreateSipMediaApplicationCall with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSipMediaApplicationCall for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateSipMediaApplicationCallWithContext(ctx aws.Context, input *CreateSipMediaApplicationCallInput, opts ...request.Option) (*CreateSipMediaApplicationCallOutput, error) {
+	req, out := c.CreateSipMediaApplicationCallRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateSipRule = "CreateSipRule"
+
+// CreateSipRuleRequest generates a "aws/request.Request" representing the
+// client's request for the CreateSipRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateSipRule for more information on using the CreateSipRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateSipRuleRequest method.
+//    req, resp := client.CreateSipRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateSipRule
+func (c *Chime) CreateSipRuleRequest(input *CreateSipRuleInput) (req *request.Request, output *CreateSipRuleOutput) {
+	op := &request.Operation{
+		Name:       opCreateSipRule,
+		HTTPMethod: "POST",
+		HTTPPath:   "/sip-rules",
+	}
+
+	if input == nil {
+		input = &CreateSipRuleInput{}
+	}
+
+	output = &CreateSipRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateSipRule API operation for Amazon Chime.
+//
+// Creates a SIP rule which can be used to run a SIP media application as a
+// target for a specific trigger type.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateSipRule for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateSipRule
+func (c *Chime) CreateSipRule(input *CreateSipRuleInput) (*CreateSipRuleOutput, error) {
+	req, out := c.CreateSipRuleRequest(input)
+	return out, req.Send()
+}
+
+// CreateSipRuleWithContext is the same as CreateSipRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateSipRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateSipRuleWithContext(ctx aws.Context, input *CreateSipRuleInput, opts ...request.Option) (*CreateSipRuleOutput, error) {
+	req, out := c.CreateSipRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3201,6 +3616,212 @@ func (c *Chime) DeleteRoomMembership(input *DeleteRoomMembershipInput) (*DeleteR
 // for more information on using Contexts.
 func (c *Chime) DeleteRoomMembershipWithContext(ctx aws.Context, input *DeleteRoomMembershipInput, opts ...request.Option) (*DeleteRoomMembershipOutput, error) {
 	req, out := c.DeleteRoomMembershipRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSipMediaApplication = "DeleteSipMediaApplication"
+
+// DeleteSipMediaApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSipMediaApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSipMediaApplication for more information on using the DeleteSipMediaApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSipMediaApplicationRequest method.
+//    req, resp := client.DeleteSipMediaApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteSipMediaApplication
+func (c *Chime) DeleteSipMediaApplicationRequest(input *DeleteSipMediaApplicationInput) (req *request.Request, output *DeleteSipMediaApplicationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSipMediaApplication,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}",
+	}
+
+	if input == nil {
+		input = &DeleteSipMediaApplicationInput{}
+	}
+
+	output = &DeleteSipMediaApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSipMediaApplication API operation for Amazon Chime.
+//
+// Deletes a SIP media application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteSipMediaApplication for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteSipMediaApplication
+func (c *Chime) DeleteSipMediaApplication(input *DeleteSipMediaApplicationInput) (*DeleteSipMediaApplicationOutput, error) {
+	req, out := c.DeleteSipMediaApplicationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSipMediaApplicationWithContext is the same as DeleteSipMediaApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSipMediaApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteSipMediaApplicationWithContext(ctx aws.Context, input *DeleteSipMediaApplicationInput, opts ...request.Option) (*DeleteSipMediaApplicationOutput, error) {
+	req, out := c.DeleteSipMediaApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteSipRule = "DeleteSipRule"
+
+// DeleteSipRuleRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteSipRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteSipRule for more information on using the DeleteSipRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteSipRuleRequest method.
+//    req, resp := client.DeleteSipRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteSipRule
+func (c *Chime) DeleteSipRuleRequest(input *DeleteSipRuleInput) (req *request.Request, output *DeleteSipRuleOutput) {
+	op := &request.Operation{
+		Name:       opDeleteSipRule,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/sip-rules/{sipRuleId}",
+	}
+
+	if input == nil {
+		input = &DeleteSipRuleInput{}
+	}
+
+	output = &DeleteSipRuleOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteSipRule API operation for Amazon Chime.
+//
+// Deletes a SIP rule. You must disable a SIP rule before you can delete it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteSipRule for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteSipRule
+func (c *Chime) DeleteSipRule(input *DeleteSipRuleInput) (*DeleteSipRuleOutput, error) {
+	req, out := c.DeleteSipRuleRequest(input)
+	return out, req.Send()
+}
+
+// DeleteSipRuleWithContext is the same as DeleteSipRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteSipRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteSipRuleWithContext(ctx aws.Context, input *DeleteSipRuleInput, opts ...request.Option) (*DeleteSipRuleOutput, error) {
+	req, out := c.DeleteSipRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5701,6 +6322,302 @@ func (c *Chime) GetRoom(input *GetRoomInput) (*GetRoomOutput, error) {
 // for more information on using Contexts.
 func (c *Chime) GetRoomWithContext(ctx aws.Context, input *GetRoomInput, opts ...request.Option) (*GetRoomOutput, error) {
 	req, out := c.GetRoomRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSipMediaApplication = "GetSipMediaApplication"
+
+// GetSipMediaApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the GetSipMediaApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSipMediaApplication for more information on using the GetSipMediaApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSipMediaApplicationRequest method.
+//    req, resp := client.GetSipMediaApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetSipMediaApplication
+func (c *Chime) GetSipMediaApplicationRequest(input *GetSipMediaApplicationInput) (req *request.Request, output *GetSipMediaApplicationOutput) {
+	op := &request.Operation{
+		Name:       opGetSipMediaApplication,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}",
+	}
+
+	if input == nil {
+		input = &GetSipMediaApplicationInput{}
+	}
+
+	output = &GetSipMediaApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSipMediaApplication API operation for Amazon Chime.
+//
+// Retrieves the information for a SIP media application, including name, AWS
+// Region, and endpoints.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetSipMediaApplication for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetSipMediaApplication
+func (c *Chime) GetSipMediaApplication(input *GetSipMediaApplicationInput) (*GetSipMediaApplicationOutput, error) {
+	req, out := c.GetSipMediaApplicationRequest(input)
+	return out, req.Send()
+}
+
+// GetSipMediaApplicationWithContext is the same as GetSipMediaApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSipMediaApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetSipMediaApplicationWithContext(ctx aws.Context, input *GetSipMediaApplicationInput, opts ...request.Option) (*GetSipMediaApplicationOutput, error) {
+	req, out := c.GetSipMediaApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSipMediaApplicationLoggingConfiguration = "GetSipMediaApplicationLoggingConfiguration"
+
+// GetSipMediaApplicationLoggingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetSipMediaApplicationLoggingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSipMediaApplicationLoggingConfiguration for more information on using the GetSipMediaApplicationLoggingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSipMediaApplicationLoggingConfigurationRequest method.
+//    req, resp := client.GetSipMediaApplicationLoggingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetSipMediaApplicationLoggingConfiguration
+func (c *Chime) GetSipMediaApplicationLoggingConfigurationRequest(input *GetSipMediaApplicationLoggingConfigurationInput) (req *request.Request, output *GetSipMediaApplicationLoggingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetSipMediaApplicationLoggingConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}/logging-configuration",
+	}
+
+	if input == nil {
+		input = &GetSipMediaApplicationLoggingConfigurationInput{}
+	}
+
+	output = &GetSipMediaApplicationLoggingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSipMediaApplicationLoggingConfiguration API operation for Amazon Chime.
+//
+// Returns the logging configuration for the specified SIP media application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetSipMediaApplicationLoggingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetSipMediaApplicationLoggingConfiguration
+func (c *Chime) GetSipMediaApplicationLoggingConfiguration(input *GetSipMediaApplicationLoggingConfigurationInput) (*GetSipMediaApplicationLoggingConfigurationOutput, error) {
+	req, out := c.GetSipMediaApplicationLoggingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetSipMediaApplicationLoggingConfigurationWithContext is the same as GetSipMediaApplicationLoggingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSipMediaApplicationLoggingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetSipMediaApplicationLoggingConfigurationWithContext(ctx aws.Context, input *GetSipMediaApplicationLoggingConfigurationInput, opts ...request.Option) (*GetSipMediaApplicationLoggingConfigurationOutput, error) {
+	req, out := c.GetSipMediaApplicationLoggingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetSipRule = "GetSipRule"
+
+// GetSipRuleRequest generates a "aws/request.Request" representing the
+// client's request for the GetSipRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetSipRule for more information on using the GetSipRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetSipRuleRequest method.
+//    req, resp := client.GetSipRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetSipRule
+func (c *Chime) GetSipRuleRequest(input *GetSipRuleInput) (req *request.Request, output *GetSipRuleOutput) {
+	op := &request.Operation{
+		Name:       opGetSipRule,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sip-rules/{sipRuleId}",
+	}
+
+	if input == nil {
+		input = &GetSipRuleInput{}
+	}
+
+	output = &GetSipRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetSipRule API operation for Amazon Chime.
+//
+// Retrieves the details of a SIP rule, such as the rule ID, name, triggers,
+// and target endpoints.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetSipRule for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetSipRule
+func (c *Chime) GetSipRule(input *GetSipRuleInput) (*GetSipRuleOutput, error) {
+	req, out := c.GetSipRuleRequest(input)
+	return out, req.Send()
+}
+
+// GetSipRuleWithContext is the same as GetSipRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetSipRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetSipRuleWithContext(ctx aws.Context, input *GetSipRuleInput, opts ...request.Option) (*GetSipRuleOutput, error) {
+	req, out := c.GetSipRuleRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8504,6 +9421,196 @@ func (c *Chime) ListRoomsPagesWithContext(ctx aws.Context, input *ListRoomsInput
 	return p.Err()
 }
 
+const opListSipMediaApplications = "ListSipMediaApplications"
+
+// ListSipMediaApplicationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListSipMediaApplications operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSipMediaApplications for more information on using the ListSipMediaApplications
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSipMediaApplicationsRequest method.
+//    req, resp := client.ListSipMediaApplicationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListSipMediaApplications
+func (c *Chime) ListSipMediaApplicationsRequest(input *ListSipMediaApplicationsInput) (req *request.Request, output *ListSipMediaApplicationsOutput) {
+	op := &request.Operation{
+		Name:       opListSipMediaApplications,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sip-media-applications",
+	}
+
+	if input == nil {
+		input = &ListSipMediaApplicationsInput{}
+	}
+
+	output = &ListSipMediaApplicationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSipMediaApplications API operation for Amazon Chime.
+//
+// Lists the SIP media applications under the administrator's AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListSipMediaApplications for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListSipMediaApplications
+func (c *Chime) ListSipMediaApplications(input *ListSipMediaApplicationsInput) (*ListSipMediaApplicationsOutput, error) {
+	req, out := c.ListSipMediaApplicationsRequest(input)
+	return out, req.Send()
+}
+
+// ListSipMediaApplicationsWithContext is the same as ListSipMediaApplications with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSipMediaApplications for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListSipMediaApplicationsWithContext(ctx aws.Context, input *ListSipMediaApplicationsInput, opts ...request.Option) (*ListSipMediaApplicationsOutput, error) {
+	req, out := c.ListSipMediaApplicationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListSipRules = "ListSipRules"
+
+// ListSipRulesRequest generates a "aws/request.Request" representing the
+// client's request for the ListSipRules operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListSipRules for more information on using the ListSipRules
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListSipRulesRequest method.
+//    req, resp := client.ListSipRulesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListSipRules
+func (c *Chime) ListSipRulesRequest(input *ListSipRulesInput) (req *request.Request, output *ListSipRulesOutput) {
+	op := &request.Operation{
+		Name:       opListSipRules,
+		HTTPMethod: "GET",
+		HTTPPath:   "/sip-rules",
+	}
+
+	if input == nil {
+		input = &ListSipRulesInput{}
+	}
+
+	output = &ListSipRulesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListSipRules API operation for Amazon Chime.
+//
+// Lists the SIP rules under the administrator's AWS account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListSipRules for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListSipRules
+func (c *Chime) ListSipRules(input *ListSipRulesInput) (*ListSipRulesOutput, error) {
+	req, out := c.ListSipRulesRequest(input)
+	return out, req.Send()
+}
+
+// ListSipRulesWithContext is the same as ListSipRules with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListSipRules for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListSipRulesWithContext(ctx aws.Context, input *ListSipRulesInput, opts ...request.Option) (*ListSipRulesOutput, error) {
+	req, out := c.ListSipRulesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTagsForResource = "ListTagsForResource"
 
 // ListTagsForResourceRequest generates a "aws/request.Request" representing the
@@ -9469,6 +10576,104 @@ func (c *Chime) PutRetentionSettings(input *PutRetentionSettingsInput) (*PutRete
 // for more information on using Contexts.
 func (c *Chime) PutRetentionSettingsWithContext(ctx aws.Context, input *PutRetentionSettingsInput, opts ...request.Option) (*PutRetentionSettingsOutput, error) {
 	req, out := c.PutRetentionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutSipMediaApplicationLoggingConfiguration = "PutSipMediaApplicationLoggingConfiguration"
+
+// PutSipMediaApplicationLoggingConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutSipMediaApplicationLoggingConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutSipMediaApplicationLoggingConfiguration for more information on using the PutSipMediaApplicationLoggingConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutSipMediaApplicationLoggingConfigurationRequest method.
+//    req, resp := client.PutSipMediaApplicationLoggingConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutSipMediaApplicationLoggingConfiguration
+func (c *Chime) PutSipMediaApplicationLoggingConfigurationRequest(input *PutSipMediaApplicationLoggingConfigurationInput) (req *request.Request, output *PutSipMediaApplicationLoggingConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutSipMediaApplicationLoggingConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}/logging-configuration",
+	}
+
+	if input == nil {
+		input = &PutSipMediaApplicationLoggingConfigurationInput{}
+	}
+
+	output = &PutSipMediaApplicationLoggingConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutSipMediaApplicationLoggingConfiguration API operation for Amazon Chime.
+//
+// Updates the logging configuration for the specified SIP media application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation PutSipMediaApplicationLoggingConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/PutSipMediaApplicationLoggingConfiguration
+func (c *Chime) PutSipMediaApplicationLoggingConfiguration(input *PutSipMediaApplicationLoggingConfigurationInput) (*PutSipMediaApplicationLoggingConfigurationOutput, error) {
+	req, out := c.PutSipMediaApplicationLoggingConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutSipMediaApplicationLoggingConfigurationWithContext is the same as PutSipMediaApplicationLoggingConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutSipMediaApplicationLoggingConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) PutSipMediaApplicationLoggingConfigurationWithContext(ctx aws.Context, input *PutSipMediaApplicationLoggingConfigurationInput, opts ...request.Option) (*PutSipMediaApplicationLoggingConfigurationOutput, error) {
+	req, out := c.PutSipMediaApplicationLoggingConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12276,6 +13481,213 @@ func (c *Chime) UpdateRoomMembershipWithContext(ctx aws.Context, input *UpdateRo
 	return out, req.Send()
 }
 
+const opUpdateSipMediaApplication = "UpdateSipMediaApplication"
+
+// UpdateSipMediaApplicationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSipMediaApplication operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSipMediaApplication for more information on using the UpdateSipMediaApplication
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSipMediaApplicationRequest method.
+//    req, resp := client.UpdateSipMediaApplicationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipMediaApplication
+func (c *Chime) UpdateSipMediaApplicationRequest(input *UpdateSipMediaApplicationInput) (req *request.Request, output *UpdateSipMediaApplicationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSipMediaApplication,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sip-media-applications/{sipMediaApplicationId}",
+	}
+
+	if input == nil {
+		input = &UpdateSipMediaApplicationInput{}
+	}
+
+	output = &UpdateSipMediaApplicationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSipMediaApplication API operation for Amazon Chime.
+//
+// Updates the details for the specified SIP media application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateSipMediaApplication for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipMediaApplication
+func (c *Chime) UpdateSipMediaApplication(input *UpdateSipMediaApplicationInput) (*UpdateSipMediaApplicationOutput, error) {
+	req, out := c.UpdateSipMediaApplicationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSipMediaApplicationWithContext is the same as UpdateSipMediaApplication with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSipMediaApplication for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateSipMediaApplicationWithContext(ctx aws.Context, input *UpdateSipMediaApplicationInput, opts ...request.Option) (*UpdateSipMediaApplicationOutput, error) {
+	req, out := c.UpdateSipMediaApplicationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateSipRule = "UpdateSipRule"
+
+// UpdateSipRuleRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSipRule operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSipRule for more information on using the UpdateSipRule
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSipRuleRequest method.
+//    req, resp := client.UpdateSipRuleRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipRule
+func (c *Chime) UpdateSipRuleRequest(input *UpdateSipRuleInput) (req *request.Request, output *UpdateSipRuleOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSipRule,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/sip-rules/{sipRuleId}",
+	}
+
+	if input == nil {
+		input = &UpdateSipRuleInput{}
+	}
+
+	output = &UpdateSipRuleOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSipRule API operation for Amazon Chime.
+//
+// Updates the details for the specified SIP rule.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation UpdateSipRule for usage and error information.
+//
+// Returned Error Types:
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request. For example,
+//   when a user tries to create an account from an unsupported Region.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/UpdateSipRule
+func (c *Chime) UpdateSipRule(input *UpdateSipRuleInput) (*UpdateSipRuleOutput, error) {
+	req, out := c.UpdateSipRuleRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSipRuleWithContext is the same as UpdateSipRule with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSipRule for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) UpdateSipRuleWithContext(ctx aws.Context, input *UpdateSipRuleInput, opts ...request.Option) (*UpdateSipRuleOutput, error) {
+	req, out := c.UpdateSipRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateUser = "UpdateUser"
 
 // UpdateUserRequest generates a "aws/request.Request" representing the
@@ -13254,8 +14666,9 @@ type Attendee struct {
 	// The Amazon Chime SDK attendee ID.
 	AttendeeId *string `type:"string"`
 
-	// The Amazon Chime SDK external user ID. Links the attendee to an identity
-	// managed by a builder application.
+	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
+	// to an identity managed by a builder application. If you create an attendee
+	// with the same external user id, the service returns the existing record.
 	ExternalUserId *string `min:"2" type:"string" sensitive:"true"`
 
 	// The join token used by the Amazon Chime SDK attendee.
@@ -14196,7 +15609,8 @@ func (s *CreateAccountInput) SetName(v string) *CreateAccountInput {
 type CreateAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime account details.
+	// The Amazon Chime account details. An AWS account can have multiple Amazon
+	// Chime accounts.
 	Account *Account `type:"structure"`
 }
 
@@ -14228,8 +15642,9 @@ type CreateAttendeeError struct {
 	// The error message.
 	ErrorMessage *string `type:"string"`
 
-	// The Amazon Chime SDK external user ID. Links the attendee to an identity
-	// managed by a builder application.
+	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
+	// to an identity managed by a builder application. If you create an attendee
+	// with the same external user id, the service returns the existing record.
 	ExternalUserId *string `min:"2" type:"string" sensitive:"true"`
 }
 
@@ -14264,8 +15679,9 @@ func (s *CreateAttendeeError) SetExternalUserId(v string) *CreateAttendeeError {
 type CreateAttendeeInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime SDK external user ID. Links the attendee to an identity
-	// managed by a builder application.
+	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
+	// to an identity managed by a builder application. If you create an attendee
+	// with the same external user id, the service returns the existing record.
 	//
 	// ExternalUserId is a required field
 	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
@@ -14370,8 +15786,9 @@ func (s *CreateAttendeeOutput) SetAttendee(v *Attendee) *CreateAttendeeOutput {
 type CreateAttendeeRequestItem struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime SDK external user ID. Links the attendee to an identity
-	// managed by a builder application.
+	// The Amazon Chime SDK external user ID. An idempotency token. Links the attendee
+	// to an identity managed by a builder application. If you create an attendee
+	// with the same external user id, the service returns the existing record.
 	//
 	// ExternalUserId is a required field
 	ExternalUserId *string `min:"2" type:"string" required:"true" sensitive:"true"`
@@ -14515,6 +15932,123 @@ func (s CreateBotOutput) GoString() string {
 // SetBot sets the Bot field's value.
 func (s *CreateBotOutput) SetBot(v *Bot) *CreateBotOutput {
 	s.Bot = v
+	return s
+}
+
+type CreateMeetingDialOutInput struct {
+	_ struct{} `type:"structure"`
+
+	// Phone number used as the caller ID when the remote party receives a call.
+	//
+	// FromPhoneNumber is a required field
+	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
+
+	// Token used by the Amazon Chime SDK attendee. Call the CreateAttendee API
+	// (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/chime/latest/APIReference/API_Attendee.html)
+	// to get a join token.
+	//
+	// JoinToken is a required field
+	JoinToken *string `min:"2" type:"string" required:"true" sensitive:"true"`
+
+	// The Amazon Chime SDK meeting ID.
+	//
+	// Type: String
+	//
+	// Pattern: [a-fA-F0-9]{8}(?:-[a-fA-F0-9]{4}){3}-[a-fA-F0-9]{12}
+	//
+	// Required: No
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// Phone number called when inviting someone to a meeting.
+	//
+	// ToPhoneNumber is a required field
+	ToPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateMeetingDialOutInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingDialOutInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMeetingDialOutInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMeetingDialOutInput"}
+	if s.FromPhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("FromPhoneNumber"))
+	}
+	if s.JoinToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("JoinToken"))
+	}
+	if s.JoinToken != nil && len(*s.JoinToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("JoinToken", 2))
+	}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.ToPhoneNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("ToPhoneNumber"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFromPhoneNumber sets the FromPhoneNumber field's value.
+func (s *CreateMeetingDialOutInput) SetFromPhoneNumber(v string) *CreateMeetingDialOutInput {
+	s.FromPhoneNumber = &v
+	return s
+}
+
+// SetJoinToken sets the JoinToken field's value.
+func (s *CreateMeetingDialOutInput) SetJoinToken(v string) *CreateMeetingDialOutInput {
+	s.JoinToken = &v
+	return s
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *CreateMeetingDialOutInput) SetMeetingId(v string) *CreateMeetingDialOutInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetToPhoneNumber sets the ToPhoneNumber field's value.
+func (s *CreateMeetingDialOutInput) SetToPhoneNumber(v string) *CreateMeetingDialOutInput {
+	s.ToPhoneNumber = &v
+	return s
+}
+
+type CreateMeetingDialOutOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique ID that tracks API calls.
+	TransactionId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateMeetingDialOutOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMeetingDialOutOutput) GoString() string {
+	return s.String()
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *CreateMeetingDialOutOutput) SetTransactionId(v string) *CreateMeetingDialOutOutput {
+	s.TransactionId = &v
 	return s
 }
 
@@ -15246,6 +16780,319 @@ func (s CreateRoomOutput) GoString() string {
 // SetRoom sets the Room field's value.
 func (s *CreateRoomOutput) SetRoom(v *Room) *CreateRoomOutput {
 	s.Room = v
+	return s
+}
+
+type CreateSipMediaApplicationCallInput struct {
+	_ struct{} `type:"structure"`
+
+	// The phone number that a user calls from.
+	FromPhoneNumber *string `type:"string" sensitive:"true"`
+
+	// The ID of the SIP media application.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+
+	// The phone number that the user dials in order to connect to a meeting
+	ToPhoneNumber *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s CreateSipMediaApplicationCallInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSipMediaApplicationCallInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSipMediaApplicationCallInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSipMediaApplicationCallInput"}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFromPhoneNumber sets the FromPhoneNumber field's value.
+func (s *CreateSipMediaApplicationCallInput) SetFromPhoneNumber(v string) *CreateSipMediaApplicationCallInput {
+	s.FromPhoneNumber = &v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *CreateSipMediaApplicationCallInput) SetSipMediaApplicationId(v string) *CreateSipMediaApplicationCallInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+// SetToPhoneNumber sets the ToPhoneNumber field's value.
+func (s *CreateSipMediaApplicationCallInput) SetToPhoneNumber(v string) *CreateSipMediaApplicationCallInput {
+	s.ToPhoneNumber = &v
+	return s
+}
+
+type CreateSipMediaApplicationCallOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actual call.
+	SipMediaApplicationCall *SipMediaApplicationCall `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSipMediaApplicationCallOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSipMediaApplicationCallOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplicationCall sets the SipMediaApplicationCall field's value.
+func (s *CreateSipMediaApplicationCallOutput) SetSipMediaApplicationCall(v *SipMediaApplicationCall) *CreateSipMediaApplicationCallOutput {
+	s.SipMediaApplicationCall = v
+	return s
+}
+
+type CreateSipMediaApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// AWS Region assigned to the SIP media application.
+	//
+	// AwsRegion is a required field
+	AwsRegion *string `type:"string" required:"true"`
+
+	// List of endpoints (Lambda Amazon Resource Names) specified for the SIP media
+	// application. Currently, only one endpoint is supported.
+	//
+	// Endpoints is a required field
+	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list" required:"true"`
+
+	// The SIP media application name.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateSipMediaApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSipMediaApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSipMediaApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSipMediaApplicationInput"}
+	if s.AwsRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsRegion"))
+	}
+	if s.Endpoints == nil {
+		invalidParams.Add(request.NewErrParamRequired("Endpoints"))
+	}
+	if s.Endpoints != nil && len(s.Endpoints) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Endpoints", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *CreateSipMediaApplicationInput) SetAwsRegion(v string) *CreateSipMediaApplicationInput {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *CreateSipMediaApplicationInput) SetEndpoints(v []*SipMediaApplicationEndpoint) *CreateSipMediaApplicationInput {
+	s.Endpoints = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSipMediaApplicationInput) SetName(v string) *CreateSipMediaApplicationInput {
+	s.Name = &v
+	return s
+}
+
+type CreateSipMediaApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Sip media application details.
+	SipMediaApplication *SipMediaApplication `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSipMediaApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSipMediaApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplication sets the SipMediaApplication field's value.
+func (s *CreateSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaApplication) *CreateSipMediaApplicationOutput {
+	s.SipMediaApplication = v
+	return s
+}
+
+type CreateSipRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enables or disables a rule. You must disable rules before you can delete
+	// them.
+	Disabled *bool `type:"boolean"`
+
+	// The name of the SIP rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// List of SIP media applications with priority and AWS Region. Only one SIP
+	// application per AWS Region can be used.
+	//
+	// TargetApplications is a required field
+	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list" required:"true"`
+
+	// The type of trigger whose value is assigned to the SIP rule in TriggerValue.
+	// Allowed trigger values are RequestUriHostname and ToPhoneNumber.
+	//
+	// TriggerType is a required field
+	TriggerType *string `type:"string" required:"true" enum:"SipRuleTriggerType"`
+
+	// If TriggerType is RequestUriHostname then the value can be the outbound host
+	// name of an Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber
+	// then the value can be a customer-owned phone number in E164 format. SipRule
+	// is triggered if the SIP application requests a host name, or a If TriggerType
+	// is RequestUriHostname, then the value can be the outbound hostname of an
+	// Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber, then the value
+	// can be a customer-owned phone number in E164 format. SipRule is triggered
+	// if the SIP application requests a host name, or a ToPhoneNumber value matches
+	// the incoming SIP request.
+	//
+	// TriggerValue is a required field
+	TriggerValue *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateSipRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSipRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSipRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSipRuleInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.TargetApplications == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetApplications"))
+	}
+	if s.TargetApplications != nil && len(s.TargetApplications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetApplications", 1))
+	}
+	if s.TriggerType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TriggerType"))
+	}
+	if s.TriggerValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TriggerValue"))
+	}
+	if s.TargetApplications != nil {
+		for i, v := range s.TargetApplications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetApplications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisabled sets the Disabled field's value.
+func (s *CreateSipRuleInput) SetDisabled(v bool) *CreateSipRuleInput {
+	s.Disabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateSipRuleInput) SetName(v string) *CreateSipRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetTargetApplications sets the TargetApplications field's value.
+func (s *CreateSipRuleInput) SetTargetApplications(v []*SipRuleTargetApplication) *CreateSipRuleInput {
+	s.TargetApplications = v
+	return s
+}
+
+// SetTriggerType sets the TriggerType field's value.
+func (s *CreateSipRuleInput) SetTriggerType(v string) *CreateSipRuleInput {
+	s.TriggerType = &v
+	return s
+}
+
+// SetTriggerValue sets the TriggerValue field's value.
+func (s *CreateSipRuleInput) SetTriggerValue(v string) *CreateSipRuleInput {
+	s.TriggerValue = &v
+	return s
+}
+
+type CreateSipRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the SIP rule information, including the rule ID, triggers, and target
+	// applications.
+	SipRule *SipRule `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSipRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSipRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipRule sets the SipRule field's value.
+func (s *CreateSipRuleOutput) SetSipRule(v *SipRule) *CreateSipRuleOutput {
+	s.SipRule = v
 	return s
 }
 
@@ -16151,6 +17998,116 @@ func (s DeleteRoomOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteRoomOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSipMediaApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP media application ID.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSipMediaApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSipMediaApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSipMediaApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSipMediaApplicationInput"}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *DeleteSipMediaApplicationInput) SetSipMediaApplicationId(v string) *DeleteSipMediaApplicationInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+type DeleteSipMediaApplicationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSipMediaApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSipMediaApplicationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteSipRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP rule ID.
+	//
+	// SipRuleId is a required field
+	SipRuleId *string `location:"uri" locationName:"sipRuleId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteSipRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSipRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteSipRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteSipRuleInput"}
+	if s.SipRuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipRuleId"))
+	}
+	if s.SipRuleId != nil && len(*s.SipRuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipRuleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSipRuleId sets the SipRuleId field's value.
+func (s *DeleteSipRuleInput) SetSipRuleId(v string) *DeleteSipRuleInput {
+	s.SipRuleId = &v
+	return s
+}
+
+type DeleteSipRuleOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteSipRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteSipRuleOutput) GoString() string {
 	return s.String()
 }
 
@@ -17158,7 +19115,8 @@ func (s *GetAccountInput) SetAccountId(v string) *GetAccountInput {
 type GetAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Chime account details.
+	// The Amazon Chime account details. An AWS account can have multiple Amazon
+	// Chime accounts.
 	Account *Account `type:"structure"`
 }
 
@@ -18002,6 +19960,198 @@ func (s GetRoomOutput) GoString() string {
 // SetRoom sets the Room field's value.
 func (s *GetRoomOutput) SetRoom(v *Room) *GetRoomOutput {
 	s.Room = v
+	return s
+}
+
+type GetSipMediaApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP media application ID.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSipMediaApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSipMediaApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSipMediaApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSipMediaApplicationInput"}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *GetSipMediaApplicationInput) SetSipMediaApplicationId(v string) *GetSipMediaApplicationInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+type GetSipMediaApplicationLoggingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the SIP media application.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSipMediaApplicationLoggingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSipMediaApplicationLoggingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSipMediaApplicationLoggingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSipMediaApplicationLoggingConfigurationInput"}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *GetSipMediaApplicationLoggingConfigurationInput) SetSipMediaApplicationId(v string) *GetSipMediaApplicationLoggingConfigurationInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+type GetSipMediaApplicationLoggingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actual logging configuration.
+	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSipMediaApplicationLoggingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSipMediaApplicationLoggingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplicationLoggingConfiguration sets the SipMediaApplicationLoggingConfiguration field's value.
+func (s *GetSipMediaApplicationLoggingConfigurationOutput) SetSipMediaApplicationLoggingConfiguration(v *SipMediaApplicationLoggingConfiguration) *GetSipMediaApplicationLoggingConfigurationOutput {
+	s.SipMediaApplicationLoggingConfiguration = v
+	return s
+}
+
+type GetSipMediaApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP media application details.
+	SipMediaApplication *SipMediaApplication `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSipMediaApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSipMediaApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplication sets the SipMediaApplication field's value.
+func (s *GetSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaApplication) *GetSipMediaApplicationOutput {
+	s.SipMediaApplication = v
+	return s
+}
+
+type GetSipRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP rule ID.
+	//
+	// SipRuleId is a required field
+	SipRuleId *string `location:"uri" locationName:"sipRuleId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetSipRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSipRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetSipRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetSipRuleInput"}
+	if s.SipRuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipRuleId"))
+	}
+	if s.SipRuleId != nil && len(*s.SipRuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipRuleId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSipRuleId sets the SipRuleId field's value.
+func (s *GetSipRuleInput) SetSipRuleId(v string) *GetSipRuleInput {
+	s.SipRuleId = &v
+	return s
+}
+
+type GetSipRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP rule details.
+	SipRule *SipRule `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetSipRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetSipRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipRule sets the SipRule field's value.
+func (s *GetSipRuleOutput) SetSipRule(v *SipRule) *GetSipRuleOutput {
+	s.SipRule = v
 	return s
 }
 
@@ -18951,10 +21101,10 @@ func (s *ListAccountsInput) SetUserEmail(v string) *ListAccountsInput {
 type ListAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of Amazon Chime accounts and account details.
+	// The list of accounts.
 	Accounts []*Account `type:"list"`
 
-	// The token to use to retrieve the next page of results.
+	// The account's user token.
 	NextToken *string `type:"string"`
 }
 
@@ -19895,6 +22045,169 @@ func (s *ListRoomsOutput) SetNextToken(v string) *ListRoomsOutput {
 // SetRooms sets the Rooms field's value.
 func (s *ListRoomsOutput) SetRooms(v []*Room) *ListRoomsOutput {
 	s.Rooms = v
+	return s
+}
+
+type ListSipMediaApplicationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call. Defaults to 100.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListSipMediaApplicationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSipMediaApplicationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSipMediaApplicationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSipMediaApplicationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSipMediaApplicationsInput) SetMaxResults(v int64) *ListSipMediaApplicationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSipMediaApplicationsInput) SetNextToken(v string) *ListSipMediaApplicationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListSipMediaApplicationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	// List of SIP media applications and application details.
+	SipMediaApplications []*SipMediaApplication `type:"list"`
+}
+
+// String returns the string representation
+func (s ListSipMediaApplicationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSipMediaApplicationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSipMediaApplicationsOutput) SetNextToken(v string) *ListSipMediaApplicationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSipMediaApplications sets the SipMediaApplications field's value.
+func (s *ListSipMediaApplicationsOutput) SetSipMediaApplications(v []*SipMediaApplication) *ListSipMediaApplicationsOutput {
+	s.SipMediaApplications = v
+	return s
+}
+
+type ListSipRulesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call. Defaults to 100.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+
+	// The SIP media application ID.
+	SipMediaApplicationId *string `location:"querystring" locationName:"sip-media-application" type:"string"`
+}
+
+// String returns the string representation
+func (s ListSipRulesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSipRulesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListSipRulesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListSipRulesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListSipRulesInput) SetMaxResults(v int64) *ListSipRulesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSipRulesInput) SetNextToken(v string) *ListSipRulesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *ListSipRulesInput) SetSipMediaApplicationId(v string) *ListSipRulesInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+type ListSipRulesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results.
+	NextToken *string `type:"string"`
+
+	// List of SIP rules and rule details.
+	SipRules []*SipRule `type:"list"`
+}
+
+// String returns the string representation
+func (s ListSipRulesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListSipRulesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListSipRulesOutput) SetNextToken(v string) *ListSipRulesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSipRules sets the SipRules field's value.
+func (s *ListSipRulesOutput) SetSipRules(v []*SipRule) *ListSipRulesOutput {
+	s.SipRules = v
 	return s
 }
 
@@ -21703,6 +24016,79 @@ func (s *PutRetentionSettingsOutput) SetRetentionSettings(v *RetentionSettings) 
 	return s
 }
 
+type PutSipMediaApplicationLoggingConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the specified SIP media application
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+
+	// The actual logging configuration.
+	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutSipMediaApplicationLoggingConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSipMediaApplicationLoggingConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutSipMediaApplicationLoggingConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutSipMediaApplicationLoggingConfigurationInput"}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *PutSipMediaApplicationLoggingConfigurationInput) SetSipMediaApplicationId(v string) *PutSipMediaApplicationLoggingConfigurationInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+// SetSipMediaApplicationLoggingConfiguration sets the SipMediaApplicationLoggingConfiguration field's value.
+func (s *PutSipMediaApplicationLoggingConfigurationInput) SetSipMediaApplicationLoggingConfiguration(v *SipMediaApplicationLoggingConfiguration) *PutSipMediaApplicationLoggingConfigurationInput {
+	s.SipMediaApplicationLoggingConfiguration = v
+	return s
+}
+
+type PutSipMediaApplicationLoggingConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The actual logging configuration.
+	SipMediaApplicationLoggingConfiguration *SipMediaApplicationLoggingConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutSipMediaApplicationLoggingConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutSipMediaApplicationLoggingConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplicationLoggingConfiguration sets the SipMediaApplicationLoggingConfiguration field's value.
+func (s *PutSipMediaApplicationLoggingConfigurationOutput) SetSipMediaApplicationLoggingConfiguration(v *SipMediaApplicationLoggingConfiguration) *PutSipMediaApplicationLoggingConfigurationOutput {
+	s.SipMediaApplicationLoggingConfiguration = v
+	return s
+}
+
 type PutVoiceConnectorEmergencyCallingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23233,6 +25619,301 @@ func (s *SigninDelegateGroup) SetGroupName(v string) *SigninDelegateGroup {
 	return s
 }
 
+// The SIP media application details, including name and endpoints. An AWS account
+// can have multiple SIP media applications.
+type SipMediaApplication struct {
+	_ struct{} `type:"structure"`
+
+	// The AWS Region in which the SIP media application is created.
+	AwsRegion *string `type:"string"`
+
+	// The SIP media application creation timestamp, in ISO 8601 format.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// List of endpoints for SIP media application. Currently, only one endpoint
+	// per SIP media application is permitted.
+	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list"`
+
+	// The name of the SIP media application.
+	Name *string `min:"1" type:"string"`
+
+	// The SIP media application ID.
+	SipMediaApplicationId *string `type:"string"`
+
+	// The SIP media application updated timestamp, in ISO 8601 format.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s SipMediaApplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SipMediaApplication) GoString() string {
+	return s.String()
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *SipMediaApplication) SetAwsRegion(v string) *SipMediaApplication {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *SipMediaApplication) SetCreatedTimestamp(v time.Time) *SipMediaApplication {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *SipMediaApplication) SetEndpoints(v []*SipMediaApplicationEndpoint) *SipMediaApplication {
+	s.Endpoints = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SipMediaApplication) SetName(v string) *SipMediaApplication {
+	s.Name = &v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *SipMediaApplication) SetSipMediaApplicationId(v string) *SipMediaApplication {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *SipMediaApplication) SetUpdatedTimestamp(v time.Time) *SipMediaApplication {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// A Call instance for a SIP media application.
+type SipMediaApplicationCall struct {
+	_ struct{} `type:"structure"`
+
+	// The transaction ID of a call.
+	TransactionId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SipMediaApplicationCall) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SipMediaApplicationCall) GoString() string {
+	return s.String()
+}
+
+// SetTransactionId sets the TransactionId field's value.
+func (s *SipMediaApplicationCall) SetTransactionId(v string) *SipMediaApplicationCall {
+	s.TransactionId = &v
+	return s
+}
+
+// Endpoints to specify as part of a SIP media application.
+type SipMediaApplicationEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// Valid Amazon Resource Name (ARN) of the Lambda function of the same AWS Region
+	// where the SIP media application is created.
+	LambdaArn *string `type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s SipMediaApplicationEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SipMediaApplicationEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetLambdaArn sets the LambdaArn field's value.
+func (s *SipMediaApplicationEndpoint) SetLambdaArn(v string) *SipMediaApplicationEndpoint {
+	s.LambdaArn = &v
+	return s
+}
+
+// Logging configuration of the SIP media application.
+type SipMediaApplicationLoggingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Enables application message logs for the SIP media application.
+	EnableSipMediaApplicationMessageLogs *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s SipMediaApplicationLoggingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SipMediaApplicationLoggingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEnableSipMediaApplicationMessageLogs sets the EnableSipMediaApplicationMessageLogs field's value.
+func (s *SipMediaApplicationLoggingConfiguration) SetEnableSipMediaApplicationMessageLogs(v bool) *SipMediaApplicationLoggingConfiguration {
+	s.EnableSipMediaApplicationMessageLogs = &v
+	return s
+}
+
+// The SIP rule details, including name, triggers, and target applications.
+// An AWS account can have multiple SIP rules.
+type SipRule struct {
+	_ struct{} `type:"structure"`
+
+	// The SIP rule created timestamp, in ISO 8601 format.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// Indicates if the SIP rule is enabled or disabled. You must disable a rule
+	// before you can delete it.
+	Disabled *bool `type:"boolean"`
+
+	// The name of the SIP rule.
+	Name *string `min:"1" type:"string"`
+
+	// The SIP rule ID.
+	SipRuleId *string `type:"string"`
+
+	// List of SIP media applications with priority and AWS Region. You can only
+	// use one SIP application per AWS Region and priority combination.
+	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list"`
+
+	// The type of trigger whose value is assigned to the SIP rule in TriggerValue.
+	TriggerType *string `type:"string" enum:"SipRuleTriggerType"`
+
+	// If TriggerType is RequestUriHostname, then the value can be the outbound
+	// host name of the Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber,
+	// then the value can be a customer-owned phone number in E164 format. SipRule
+	// is triggered when a SIP rule requests host name or ToPhoneNumber matches
+	// in the incoming SIP request.
+	TriggerValue *string `type:"string"`
+
+	// The SIP rule updated timestamp, in ISO 8601 format.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s SipRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SipRule) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *SipRule) SetCreatedTimestamp(v time.Time) *SipRule {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetDisabled sets the Disabled field's value.
+func (s *SipRule) SetDisabled(v bool) *SipRule {
+	s.Disabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *SipRule) SetName(v string) *SipRule {
+	s.Name = &v
+	return s
+}
+
+// SetSipRuleId sets the SipRuleId field's value.
+func (s *SipRule) SetSipRuleId(v string) *SipRule {
+	s.SipRuleId = &v
+	return s
+}
+
+// SetTargetApplications sets the TargetApplications field's value.
+func (s *SipRule) SetTargetApplications(v []*SipRuleTargetApplication) *SipRule {
+	s.TargetApplications = v
+	return s
+}
+
+// SetTriggerType sets the TriggerType field's value.
+func (s *SipRule) SetTriggerType(v string) *SipRule {
+	s.TriggerType = &v
+	return s
+}
+
+// SetTriggerValue sets the TriggerValue field's value.
+func (s *SipRule) SetTriggerValue(v string) *SipRule {
+	s.TriggerValue = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *SipRule) SetUpdatedTimestamp(v time.Time) *SipRule {
+	s.UpdatedTimestamp = &v
+	return s
+}
+
+// Target SIP media application along with other details like priority and AWS
+// Region to be specified in the SIP rule. Only one SIP rule per AWS Region
+// can be provided.
+type SipRuleTargetApplication struct {
+	_ struct{} `type:"structure"`
+
+	// AWS Region of target application.
+	AwsRegion *string `type:"string"`
+
+	// Priority of the SIP media application in the target list.
+	Priority *int64 `min:"1" type:"integer"`
+
+	// The SIP media application ID.
+	SipMediaApplicationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s SipRuleTargetApplication) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SipRuleTargetApplication) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SipRuleTargetApplication) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SipRuleTargetApplication"}
+	if s.Priority != nil && *s.Priority < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Priority", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *SipRuleTargetApplication) SetAwsRegion(v string) *SipRuleTargetApplication {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *SipRuleTargetApplication) SetPriority(v int64) *SipRuleTargetApplication {
+	s.Priority = &v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *SipRuleTargetApplication) SetSipMediaApplicationId(v string) *SipRuleTargetApplication {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
 // The streaming configuration associated with an Amazon Chime Voice Connector.
 // Specifies whether media streaming is enabled for sending to Amazon Kinesis,
 // and shows the retention period for the Amazon Kinesis data, in hours.
@@ -24307,7 +26988,8 @@ func (s *UpdateAccountInput) SetName(v string) *UpdateAccountInput {
 type UpdateAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The updated Amazon Chime account details.
+	// The Amazon Chime account details. An AWS account can have multiple Amazon
+	// Chime accounts.
 	Account *Account `type:"structure"`
 }
 
@@ -25045,6 +27727,206 @@ func (s UpdateRoomOutput) GoString() string {
 // SetRoom sets the Room field's value.
 func (s *UpdateRoomOutput) SetRoom(v *Room) *UpdateRoomOutput {
 	s.Room = v
+	return s
+}
+
+type UpdateSipMediaApplicationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new set of endpoints for the specified SIP media application.
+	Endpoints []*SipMediaApplicationEndpoint `min:"1" type:"list"`
+
+	// The new name for the specified SIP media application.
+	Name *string `min:"1" type:"string"`
+
+	// The SIP media application ID.
+	//
+	// SipMediaApplicationId is a required field
+	SipMediaApplicationId *string `location:"uri" locationName:"sipMediaApplicationId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateSipMediaApplicationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipMediaApplicationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSipMediaApplicationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSipMediaApplicationInput"}
+	if s.Endpoints != nil && len(s.Endpoints) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Endpoints", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SipMediaApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipMediaApplicationId"))
+	}
+	if s.SipMediaApplicationId != nil && len(*s.SipMediaApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipMediaApplicationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *UpdateSipMediaApplicationInput) SetEndpoints(v []*SipMediaApplicationEndpoint) *UpdateSipMediaApplicationInput {
+	s.Endpoints = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateSipMediaApplicationInput) SetName(v string) *UpdateSipMediaApplicationInput {
+	s.Name = &v
+	return s
+}
+
+// SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
+func (s *UpdateSipMediaApplicationInput) SetSipMediaApplicationId(v string) *UpdateSipMediaApplicationInput {
+	s.SipMediaApplicationId = &v
+	return s
+}
+
+type UpdateSipMediaApplicationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The updated SIP media application details.
+	SipMediaApplication *SipMediaApplication `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSipMediaApplicationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipMediaApplicationOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipMediaApplication sets the SipMediaApplication field's value.
+func (s *UpdateSipMediaApplicationOutput) SetSipMediaApplication(v *SipMediaApplication) *UpdateSipMediaApplicationOutput {
+	s.SipMediaApplication = v
+	return s
+}
+
+type UpdateSipRuleInput struct {
+	_ struct{} `type:"structure"`
+
+	// The new value specified to indicate whether the rule is disabled.
+	Disabled *bool `type:"boolean"`
+
+	// The new name for the specified SIP rule.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The SIP rule ID.
+	//
+	// SipRuleId is a required field
+	SipRuleId *string `location:"uri" locationName:"sipRuleId" type:"string" required:"true"`
+
+	// The new value of the list of target applications.
+	TargetApplications []*SipRuleTargetApplication `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s UpdateSipRuleInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipRuleInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSipRuleInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSipRuleInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SipRuleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SipRuleId"))
+	}
+	if s.SipRuleId != nil && len(*s.SipRuleId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SipRuleId", 1))
+	}
+	if s.TargetApplications != nil && len(s.TargetApplications) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetApplications", 1))
+	}
+	if s.TargetApplications != nil {
+		for i, v := range s.TargetApplications {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TargetApplications", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDisabled sets the Disabled field's value.
+func (s *UpdateSipRuleInput) SetDisabled(v bool) *UpdateSipRuleInput {
+	s.Disabled = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateSipRuleInput) SetName(v string) *UpdateSipRuleInput {
+	s.Name = &v
+	return s
+}
+
+// SetSipRuleId sets the SipRuleId field's value.
+func (s *UpdateSipRuleInput) SetSipRuleId(v string) *UpdateSipRuleInput {
+	s.SipRuleId = &v
+	return s
+}
+
+// SetTargetApplications sets the TargetApplications field's value.
+func (s *UpdateSipRuleInput) SetTargetApplications(v []*SipRuleTargetApplication) *UpdateSipRuleInput {
+	s.TargetApplications = v
+	return s
+}
+
+type UpdateSipRuleOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Updated SIP rule details.
+	SipRule *SipRule `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSipRuleOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSipRuleOutput) GoString() string {
+	return s.String()
+}
+
+// SetSipRule sets the SipRule field's value.
+func (s *UpdateSipRuleOutput) SetSipRule(v *SipRule) *UpdateSipRuleOutput {
+	s.SipRule = v
 	return s
 }
 
@@ -26294,6 +29176,9 @@ const (
 
 	// PhoneNumberAssociationNameVoiceConnectorGroupId is a PhoneNumberAssociationName enum value
 	PhoneNumberAssociationNameVoiceConnectorGroupId = "VoiceConnectorGroupId"
+
+	// PhoneNumberAssociationNameSipRuleId is a PhoneNumberAssociationName enum value
+	PhoneNumberAssociationNameSipRuleId = "SipRuleId"
 )
 
 // PhoneNumberAssociationName_Values returns all elements of the PhoneNumberAssociationName enum
@@ -26303,6 +29188,7 @@ func PhoneNumberAssociationName_Values() []string {
 		PhoneNumberAssociationNameUserId,
 		PhoneNumberAssociationNameVoiceConnectorId,
 		PhoneNumberAssociationNameVoiceConnectorGroupId,
+		PhoneNumberAssociationNameSipRuleId,
 	}
 }
 
@@ -26455,6 +29341,22 @@ func RoomMembershipRole_Values() []string {
 	return []string{
 		RoomMembershipRoleAdministrator,
 		RoomMembershipRoleMember,
+	}
+}
+
+const (
+	// SipRuleTriggerTypeToPhoneNumber is a SipRuleTriggerType enum value
+	SipRuleTriggerTypeToPhoneNumber = "ToPhoneNumber"
+
+	// SipRuleTriggerTypeRequestUriHostname is a SipRuleTriggerType enum value
+	SipRuleTriggerTypeRequestUriHostname = "RequestUriHostname"
+)
+
+// SipRuleTriggerType_Values returns all elements of the SipRuleTriggerType enum
+func SipRuleTriggerType_Values() []string {
+	return []string{
+		SipRuleTriggerTypeToPhoneNumber,
+		SipRuleTriggerTypeRequestUriHostname,
 	}
 }
 

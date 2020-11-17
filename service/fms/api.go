@@ -371,6 +371,15 @@ func (c *FMS) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
 //
+//   * InvalidInputException
+//   The parameters of the request were invalid.
+//
+//   * LimitExceededException
+//   The operation exceeds a resource limit, for example, the maximum number of
+//   policy objects that you can create for an AWS account. For more information,
+//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the AWS WAF Developer Guide.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/DeletePolicy
 func (c *FMS) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
 	req, out := c.DeletePolicyRequest(input)
@@ -813,7 +822,11 @@ func (c *FMS) GetComplianceDetailRequest(input *GetComplianceDetailInput) (req *
 // policies if the specified policy has not been applied to them. Resources
 // are considered noncompliant for security group policies if they are in scope
 // of the policy, they violate one or more of the policy rules, and remediation
-// is disabled or not possible.
+// is disabled or not possible. Resources are considered noncompliant for Network
+// Firewall policies if a firewall is missing in the VPC, if the firewall endpoint
+// isn't set up in an expected Availability Zone and subnet, if a subnet created
+// by the Firewall Manager doesn't have the expected route table, and for modifications
+// to a firewall policy that violate the Firewall Manager policy's rules.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2188,6 +2201,12 @@ func (c *FMS) PutNotificationChannelRequest(input *PutNotificationChannelInput) 
 // Designates the IAM role and Amazon Simple Notification Service (SNS) topic
 // that AWS Firewall Manager uses to record SNS logs.
 //
+// To perform this action outside of the console, you must configure the SNS
+// topic to allow the Firewall Manager role AWSServiceRoleForFMS to publish
+// SNS logs. For more information, see Firewall Manager required permissions
+// for API actions (https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html)
+// in the AWS Firewall Manager Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2281,17 +2300,20 @@ func (c *FMS) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, out
 //
 // Firewall Manager provides the following types of policies:
 //
-//    * A Shield Advanced policy, which applies Shield Advanced protection to
-//    specified accounts and resources
-//
 //    * An AWS WAF policy (type WAFV2), which defines rule groups to run first
 //    in the corresponding AWS WAF web ACL and rule groups to run last in the
 //    web ACL.
 //
 //    * An AWS WAF Classic policy (type WAF), which defines a rule group.
 //
+//    * A Shield Advanced policy, which applies Shield Advanced protection to
+//    specified accounts and resources.
+//
 //    * A security group policy, which manages VPC security groups across your
 //    AWS organization.
+//
+//    * An AWS Network Firewall policy, which provides firewall rules to filter
+//    network traffic in specified Amazon VPCs.
 //
 // Each policy is specific to one of the types. If you want to enforce more
 // than one policy type across accounts, create multiple policies. You can create
@@ -3085,7 +3107,8 @@ type ComplianceViolator struct {
 
 	// The resource type. This is in the format shown in the AWS Resource Types
 	// Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
-	// For example: AWS::ElasticLoadBalancingV2::LoadBalancer or AWS::CloudFront::Distribution.
+	// For example: AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::CloudFront::Distribution,
+	// or AWS::NetworkFirewall::FirewallPolicy.
 	ResourceType *string `min:"1" type:"string"`
 
 	// The reason that the resource is not protected by the policy.
@@ -4046,7 +4069,7 @@ type GetViolationDetailsInput struct {
 	// The resource type. This is in the format shown in the AWS Resource Types
 	// Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
 	// Supported resource types are: AWS::EC2::Instance, AWS::EC2::NetworkInterface,
-	// or AWS::EC2::SecurityGroup.
+	// AWS::EC2::SecurityGroup, AWS::NetworkFirewall::FirewallPolicy, and AWS::EC2::Subnet.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
@@ -5005,6 +5028,281 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 	return s
 }
 
+// Violation details for AWS Network Firewall for a subnet that's not associated
+// to the expected Firewall Manager managed route table.
+type NetworkFirewallMissingExpectedRTViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zone of a violating subnet.
+	AvailabilityZone *string `type:"string"`
+
+	// The resource ID of the current route table that's associated with the subnet,
+	// if one is available.
+	CurrentRouteTable *string `min:"1" type:"string"`
+
+	// The resource ID of the route table that should be associated with the subnet.
+	ExpectedRouteTable *string `min:"1" type:"string"`
+
+	// The resource ID of the VPC associated with a violating subnet.
+	VPC *string `min:"1" type:"string"`
+
+	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	ViolationTarget *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallMissingExpectedRTViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallMissingExpectedRTViolation) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NetworkFirewallMissingExpectedRTViolation) SetAvailabilityZone(v string) *NetworkFirewallMissingExpectedRTViolation {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetCurrentRouteTable sets the CurrentRouteTable field's value.
+func (s *NetworkFirewallMissingExpectedRTViolation) SetCurrentRouteTable(v string) *NetworkFirewallMissingExpectedRTViolation {
+	s.CurrentRouteTable = &v
+	return s
+}
+
+// SetExpectedRouteTable sets the ExpectedRouteTable field's value.
+func (s *NetworkFirewallMissingExpectedRTViolation) SetExpectedRouteTable(v string) *NetworkFirewallMissingExpectedRTViolation {
+	s.ExpectedRouteTable = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *NetworkFirewallMissingExpectedRTViolation) SetVPC(v string) *NetworkFirewallMissingExpectedRTViolation {
+	s.VPC = &v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *NetworkFirewallMissingExpectedRTViolation) SetViolationTarget(v string) *NetworkFirewallMissingExpectedRTViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// Violation details for AWS Network Firewall for a subnet that doesn't have
+// a Firewall Manager managed firewall in its VPC.
+type NetworkFirewallMissingFirewallViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zone of a violating subnet.
+	AvailabilityZone *string `type:"string"`
+
+	// The reason the resource has this violation, if one is available.
+	TargetViolationReason *string `type:"string"`
+
+	// The resource ID of the VPC associated with a violating subnet.
+	VPC *string `min:"1" type:"string"`
+
+	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	ViolationTarget *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallMissingFirewallViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallMissingFirewallViolation) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NetworkFirewallMissingFirewallViolation) SetAvailabilityZone(v string) *NetworkFirewallMissingFirewallViolation {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetTargetViolationReason sets the TargetViolationReason field's value.
+func (s *NetworkFirewallMissingFirewallViolation) SetTargetViolationReason(v string) *NetworkFirewallMissingFirewallViolation {
+	s.TargetViolationReason = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *NetworkFirewallMissingFirewallViolation) SetVPC(v string) *NetworkFirewallMissingFirewallViolation {
+	s.VPC = &v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *NetworkFirewallMissingFirewallViolation) SetViolationTarget(v string) *NetworkFirewallMissingFirewallViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// Violation details for AWS Network Firewall for an Availability Zone that's
+// missing the expected Firewall Manager managed subnet.
+type NetworkFirewallMissingSubnetViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The Availability Zone of a violating subnet.
+	AvailabilityZone *string `type:"string"`
+
+	// The reason the resource has this violation, if one is available.
+	TargetViolationReason *string `type:"string"`
+
+	// The resource ID of the VPC associated with a violating subnet.
+	VPC *string `min:"1" type:"string"`
+
+	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	ViolationTarget *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallMissingSubnetViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallMissingSubnetViolation) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZone sets the AvailabilityZone field's value.
+func (s *NetworkFirewallMissingSubnetViolation) SetAvailabilityZone(v string) *NetworkFirewallMissingSubnetViolation {
+	s.AvailabilityZone = &v
+	return s
+}
+
+// SetTargetViolationReason sets the TargetViolationReason field's value.
+func (s *NetworkFirewallMissingSubnetViolation) SetTargetViolationReason(v string) *NetworkFirewallMissingSubnetViolation {
+	s.TargetViolationReason = &v
+	return s
+}
+
+// SetVPC sets the VPC field's value.
+func (s *NetworkFirewallMissingSubnetViolation) SetVPC(v string) *NetworkFirewallMissingSubnetViolation {
+	s.VPC = &v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *NetworkFirewallMissingSubnetViolation) SetViolationTarget(v string) *NetworkFirewallMissingSubnetViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// The definition of the AWS Network Firewall firewall policy.
+type NetworkFirewallPolicyDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The stateful rule groups that are used in the Network Firewall firewall policy.
+	StatefulRuleGroups []*StatefulRuleGroup `type:"list"`
+
+	// Names of custom actions that are available for use in the stateless default
+	// actions settings.
+	StatelessCustomActions []*string `type:"list"`
+
+	// The actions to take on packets that don't match any of the stateless rule
+	// groups.
+	StatelessDefaultActions []*string `type:"list"`
+
+	// The actions to take on packet fragments that don't match any of the stateless
+	// rule groups.
+	StatelessFragmentDefaultActions []*string `type:"list"`
+
+	// The stateless rule groups that are used in the Network Firewall firewall
+	// policy.
+	StatelessRuleGroups []*StatelessRuleGroup `type:"list"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallPolicyDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallPolicyDescription) GoString() string {
+	return s.String()
+}
+
+// SetStatefulRuleGroups sets the StatefulRuleGroups field's value.
+func (s *NetworkFirewallPolicyDescription) SetStatefulRuleGroups(v []*StatefulRuleGroup) *NetworkFirewallPolicyDescription {
+	s.StatefulRuleGroups = v
+	return s
+}
+
+// SetStatelessCustomActions sets the StatelessCustomActions field's value.
+func (s *NetworkFirewallPolicyDescription) SetStatelessCustomActions(v []*string) *NetworkFirewallPolicyDescription {
+	s.StatelessCustomActions = v
+	return s
+}
+
+// SetStatelessDefaultActions sets the StatelessDefaultActions field's value.
+func (s *NetworkFirewallPolicyDescription) SetStatelessDefaultActions(v []*string) *NetworkFirewallPolicyDescription {
+	s.StatelessDefaultActions = v
+	return s
+}
+
+// SetStatelessFragmentDefaultActions sets the StatelessFragmentDefaultActions field's value.
+func (s *NetworkFirewallPolicyDescription) SetStatelessFragmentDefaultActions(v []*string) *NetworkFirewallPolicyDescription {
+	s.StatelessFragmentDefaultActions = v
+	return s
+}
+
+// SetStatelessRuleGroups sets the StatelessRuleGroups field's value.
+func (s *NetworkFirewallPolicyDescription) SetStatelessRuleGroups(v []*StatelessRuleGroup) *NetworkFirewallPolicyDescription {
+	s.StatelessRuleGroups = v
+	return s
+}
+
+// Violation details for AWS Network Firewall for a firewall policy that has
+// a different NetworkFirewallPolicyDescription than is required by the Firewall
+// Manager policy.
+type NetworkFirewallPolicyModifiedViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The policy that's currently in use in the individual account.
+	CurrentPolicyDescription *NetworkFirewallPolicyDescription `type:"structure"`
+
+	// The policy that should be in use in the individual account in order to be
+	// compliant.
+	ExpectedPolicyDescription *NetworkFirewallPolicyDescription `type:"structure"`
+
+	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	ViolationTarget *string `type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallPolicyModifiedViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallPolicyModifiedViolation) GoString() string {
+	return s.String()
+}
+
+// SetCurrentPolicyDescription sets the CurrentPolicyDescription field's value.
+func (s *NetworkFirewallPolicyModifiedViolation) SetCurrentPolicyDescription(v *NetworkFirewallPolicyDescription) *NetworkFirewallPolicyModifiedViolation {
+	s.CurrentPolicyDescription = v
+	return s
+}
+
+// SetExpectedPolicyDescription sets the ExpectedPolicyDescription field's value.
+func (s *NetworkFirewallPolicyModifiedViolation) SetExpectedPolicyDescription(v *NetworkFirewallPolicyDescription) *NetworkFirewallPolicyModifiedViolation {
+	s.ExpectedPolicyDescription = v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *NetworkFirewallPolicyModifiedViolation) SetViolationTarget(v string) *NetworkFirewallPolicyModifiedViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
 // The reference rule that partially matches the ViolationTarget rule and violation
 // reason.
 type PartialMatch struct {
@@ -5129,7 +5427,8 @@ type Policy struct {
 	// values are AWS::EC2::NetworkInterface and AWS::EC2::Instance. For a security
 	// group content audit policy, valid values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
 	// and AWS::EC2::Instance. For a security group usage audit policy, the value
-	// is AWS::EC2::SecurityGroup.
+	// is AWS::EC2::SecurityGroup. For an AWS Network Firewall policy, the value
+	// is AWS::EC2::VPC.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
@@ -5464,7 +5763,8 @@ type PolicySummary struct {
 	// values are AWS::EC2::NetworkInterface and AWS::EC2::Instance. For a security
 	// group content audit policy, valid values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
 	// and AWS::EC2::Instance. For a security group usage audit policy, the value
-	// is AWS::EC2::SecurityGroup.
+	// is AWS::EC2::SecurityGroup. For an AWS Network Firewall policy, the value
+	// is AWS::EC2::VPC.
 	ResourceType *string `min:"1" type:"string"`
 
 	// The service that the policy is using to protect the resources. This specifies
@@ -6161,6 +6461,25 @@ type ResourceViolation struct {
 
 	// Violation details for security groups.
 	AwsVPCSecurityGroupViolation *AwsVPCSecurityGroupViolation `type:"structure"`
+
+	// Violation detail for an Network Firewall policy that indicates that a subnet
+	// is not associated with the expected Firewall Manager managed route table.
+	NetworkFirewallMissingExpectedRTViolation *NetworkFirewallMissingExpectedRTViolation `type:"structure"`
+
+	// Violation detail for an Network Firewall policy that indicates that a subnet
+	// has no Firewall Manager managed firewall in its VPC.
+	NetworkFirewallMissingFirewallViolation *NetworkFirewallMissingFirewallViolation `type:"structure"`
+
+	// Violation detail for an Network Firewall policy that indicates that an Availability
+	// Zone is missing the expected Firewall Manager managed subnet.
+	NetworkFirewallMissingSubnetViolation *NetworkFirewallMissingSubnetViolation `type:"structure"`
+
+	// Violation detail for an Network Firewall policy that indicates that a firewall
+	// policy in an individual account has been modified in a way that makes it
+	// noncompliant. For example, the individual account owner might have deleted
+	// a rule group, changed the priority of a stateless rule group, or changed
+	// a policy default action.
+	NetworkFirewallPolicyModifiedViolation *NetworkFirewallPolicyModifiedViolation `type:"structure"`
 }
 
 // String returns the string representation
@@ -6188,6 +6507,30 @@ func (s *ResourceViolation) SetAwsEc2NetworkInterfaceViolation(v *AwsEc2NetworkI
 // SetAwsVPCSecurityGroupViolation sets the AwsVPCSecurityGroupViolation field's value.
 func (s *ResourceViolation) SetAwsVPCSecurityGroupViolation(v *AwsVPCSecurityGroupViolation) *ResourceViolation {
 	s.AwsVPCSecurityGroupViolation = v
+	return s
+}
+
+// SetNetworkFirewallMissingExpectedRTViolation sets the NetworkFirewallMissingExpectedRTViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallMissingExpectedRTViolation(v *NetworkFirewallMissingExpectedRTViolation) *ResourceViolation {
+	s.NetworkFirewallMissingExpectedRTViolation = v
+	return s
+}
+
+// SetNetworkFirewallMissingFirewallViolation sets the NetworkFirewallMissingFirewallViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallMissingFirewallViolation(v *NetworkFirewallMissingFirewallViolation) *ResourceViolation {
+	s.NetworkFirewallMissingFirewallViolation = v
+	return s
+}
+
+// SetNetworkFirewallMissingSubnetViolation sets the NetworkFirewallMissingSubnetViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallMissingSubnetViolation(v *NetworkFirewallMissingSubnetViolation) *ResourceViolation {
+	s.NetworkFirewallMissingSubnetViolation = v
+	return s
+}
+
+// SetNetworkFirewallPolicyModifiedViolation sets the NetworkFirewallPolicyModifiedViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallPolicyModifiedViolation(v *NetworkFirewallPolicyModifiedViolation) *ResourceViolation {
+	s.NetworkFirewallPolicyModifiedViolation = v
 	return s
 }
 
@@ -6321,25 +6664,29 @@ type SecurityServicePolicyData struct {
 	// Details about the service that are specific to the service type, in JSON
 	// format. For service type SHIELD_ADVANCED, this is an empty string.
 	//
-	//    * Example: WAFV2 "ManagedServiceData": "{\"type\":\"WAFV2\",\"defaultAction\":{\"type\":\"ALLOW\"},\"preProcessRuleGroups\":[{\"managedRuleGroupIdentifier\":null,\"ruleGroupArn\":\"rulegrouparn\",\"overrideAction\":{\"type\":\"COUNT\"},\"excludeRules\":[{\"name\":\"EntityName\"}],\"ruleGroupType\":\"RuleGroup\"}],\"postProcessRuleGroups\":[{\"managedRuleGroupIdentifier\":{\"managedRuleGroupName\":\"AWSManagedRulesAdminProtectionRuleSet\",\"vendorName\":\"AWS\"},\"ruleGroupArn\":\"rulegrouparn\",\"overrideAction\":{\"type\":\"NONE\"},\"excludeRules\":[],\"ruleGroupType\":\"ManagedRuleGroup\"}],\"overrideCustomerWebACLAssociation\":false}"
+	//    * Example: NETWORK_FIREWALL "{\"type\":\"NETWORK_FIREWALL\",\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateless-rulegroup/rulegroup2\",\"priority\":10}],\"networkFirewallStatelessDefaultActions\":[\"aws:pass\",\"custom1\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"custom2\",\"aws:pass\"],\"networkFirewallStatelessCustomActions\":[{\"actionName\":\"custom1\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension1\"}]}}},{\"actionName\":\"custom2\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension2\"}]}}}],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateful-rulegroup/rulegroup1\"}],\"networkFirewallOrchestrationConfig\":{\"singleFirewallEndpointPerVPC\":true,\"allowedIPV4CidrList\":[\"10.24.34.0/28\"]}
+	//    }"
 	//
-	//    * Example: WAF Classic "ManagedServiceData": "{\"type\": \"WAF\", \"ruleGroups\":
-	//    [{\"id\": \"12345678-1bcd-9012-efga-0987654321ab\", \"overrideAction\"
-	//    : {\"type\": \"COUNT\"}}], \"defaultAction\": {\"type\": \"BLOCK\"}}
+	//    * Example: WAFV2 "{\"type\":\"WAFV2\",\"preProcessRuleGroups\":[{\"ruleGroupArn\":null,\"overrideAction\":{\"type\":\"NONE\"},\"managedRuleGroupIdentifier\":{\"version\":null,\"vendorName\":\"AWS\",\"managedRuleGroupName\":\"AWSManagedRulesAmazonIpReputationList\"},\"ruleGroupType\":\"ManagedRuleGroup\",\"excludeRules\":[]}],\"postProcessRuleGroups\":[],\"defaultAction\":{\"type\":\"ALLOW\"},\"overrideCustomerWebACLAssociation\":false,\"loggingConfiguration\":{\"logDestinationConfigs\":[\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\"],\"redactedFields\":[{\"redactedFieldType\":\"SingleHeader\",\"redactedFieldValue\":\"Cookies\"},{\"redactedFieldType\":\"Method\"}]}}"
+	//    In the loggingConfiguration, you can specify one logDestinationConfigs,
+	//    you can optionally provide up to 20 redactedFields, and the RedactedFieldType
+	//    must be one of URI, QUERY_STRING, HEADER, or METHOD.
 	//
-	//    * Example: SECURITY_GROUPS_COMMON "SecurityServicePolicyData":{"Type":"SECURITY_GROUPS_COMMON","ManagedServiceData":"{\"type\":\"SECURITY_GROUPS_COMMON\",\"revertManualSecurityGroupChanges\":false,\"exclusiveResourceSecurityGroupManagement\":false,
-	//    \"applyToAllEC2InstanceENIs\":false,\"securityGroups\":[{\"id\":\" sg-000e55995d61a06bd\"}]}"},"RemediationEnabled":false,"ResourceType":"AWS::EC2::NetworkInterface"}
+	//    * Example: WAF Classic "{\"type\": \"WAF\", \"ruleGroups\": [{\"id\":\"12345678-1bcd-9012-efga-0987654321ab\",
+	//    \"overrideAction\" : {\"type\": \"COUNT\"}}], \"defaultAction\": {\"type\":
+	//    \"BLOCK\"}}"
 	//
-	//    * Example: SECURITY_GROUPS_CONTENT_AUDIT "SecurityServicePolicyData":{"Type":"SECURITY_GROUPS_CONTENT_AUDIT","ManagedServiceData":"{\"type\":\"SECURITY_GROUPS_CONTENT_AUDIT\",\"securityGroups\":[{\"id\":\"
-	//    sg-000e55995d61a06bd \"}],\"securityGroupAction\":{\"type\":\"ALLOW\"}}"},"RemediationEnabled":false,"ResourceType":"AWS::EC2::NetworkInterface"}
+	//    * Example: SECURITY_GROUPS_COMMON "{\"type\":\"SECURITY_GROUPS_COMMON\",\"revertManualSecurityGroupChanges\":false,\"exclusiveResourceSecurityGroupManagement\":false,
+	//    \"applyToAllEC2InstanceENIs\":false,\"securityGroups\":[{\"id\":\" sg-000e55995d61a06bd\"}]}"
+	//
+	//    * Example: SECURITY_GROUPS_CONTENT_AUDIT "{\"type\":\"SECURITY_GROUPS_CONTENT_AUDIT\",\"securityGroups\":[{\"id\":\"sg-000e55995d61a06bd\"}],\"securityGroupAction\":{\"type\":\"ALLOW\"}}"
 	//    The security group action for content audit can be ALLOW or DENY. For
 	//    ALLOW, all in-scope security group rules must be within the allowed range
 	//    of the policy's security group rules. For DENY, all in-scope security
 	//    group rules must not contain a value or a range that matches a rule value
 	//    or range in the policy security group.
 	//
-	//    * Example: SECURITY_GROUPS_USAGE_AUDIT "SecurityServicePolicyData":{"Type":"SECURITY_GROUPS_USAGE_AUDIT","ManagedServiceData":"{\"type\":\"SECURITY_GROUPS_USAGE_AUDIT\",\"deleteUnusedSecurityGroups\":true,\"coalesceRedundantSecurityGroups\":true}"},"RemediationEnabled":false,"Resou
-	//    rceType":"AWS::EC2::SecurityGroup"}
+	//    * Example: SECURITY_GROUPS_USAGE_AUDIT "{\"type\":\"SECURITY_GROUPS_USAGE_AUDIT\",\"deleteUnusedSecurityGroups\":true,\"coalesceRedundantSecurityGroups\":true}"
 	ManagedServiceData *string `min:"1" type:"string"`
 
 	// The service that the policy is using to protect the resources. This specifies
@@ -6388,6 +6735,82 @@ func (s *SecurityServicePolicyData) SetManagedServiceData(v string) *SecuritySer
 // SetType sets the Type field's value.
 func (s *SecurityServicePolicyData) SetType(v string) *SecurityServicePolicyData {
 	s.Type = &v
+	return s
+}
+
+// AWS Network Firewall stateful rule group, used in a NetworkFirewallPolicyDescription.
+type StatefulRuleGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The resource ID of the rule group.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The name of the rule group.
+	RuleGroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StatefulRuleGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatefulRuleGroup) GoString() string {
+	return s.String()
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *StatefulRuleGroup) SetResourceId(v string) *StatefulRuleGroup {
+	s.ResourceId = &v
+	return s
+}
+
+// SetRuleGroupName sets the RuleGroupName field's value.
+func (s *StatefulRuleGroup) SetRuleGroupName(v string) *StatefulRuleGroup {
+	s.RuleGroupName = &v
+	return s
+}
+
+// AWS Network Firewall stateless rule group, used in a NetworkFirewallPolicyDescription.
+type StatelessRuleGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The priority of the rule group. AWS Network Firewall evaluates the stateless
+	// rule groups in a firewall policy starting from the lowest priority setting.
+	Priority *int64 `min:"1" type:"integer"`
+
+	// The resource ID of the rule group.
+	ResourceId *string `min:"1" type:"string"`
+
+	// The name of the rule group.
+	RuleGroupName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StatelessRuleGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatelessRuleGroup) GoString() string {
+	return s.String()
+}
+
+// SetPriority sets the Priority field's value.
+func (s *StatelessRuleGroup) SetPriority(v int64) *StatelessRuleGroup {
+	s.Priority = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *StatelessRuleGroup) SetResourceId(v string) *StatelessRuleGroup {
+	s.ResourceId = &v
+	return s
+}
+
+// SetRuleGroupName sets the RuleGroupName field's value.
+func (s *StatelessRuleGroup) SetRuleGroupName(v string) *StatelessRuleGroup {
+	s.RuleGroupName = &v
 	return s
 }
 
@@ -6814,6 +7237,9 @@ const (
 
 	// SecurityServiceTypeSecurityGroupsUsageAudit is a SecurityServiceType enum value
 	SecurityServiceTypeSecurityGroupsUsageAudit = "SECURITY_GROUPS_USAGE_AUDIT"
+
+	// SecurityServiceTypeNetworkFirewall is a SecurityServiceType enum value
+	SecurityServiceTypeNetworkFirewall = "NETWORK_FIREWALL"
 )
 
 // SecurityServiceType_Values returns all elements of the SecurityServiceType enum
@@ -6825,6 +7251,7 @@ func SecurityServiceType_Values() []string {
 		SecurityServiceTypeSecurityGroupsCommon,
 		SecurityServiceTypeSecurityGroupsContentAudit,
 		SecurityServiceTypeSecurityGroupsUsageAudit,
+		SecurityServiceTypeNetworkFirewall,
 	}
 }
 
@@ -6855,6 +7282,18 @@ const (
 
 	// ViolationReasonSecurityGroupRedundant is a ViolationReason enum value
 	ViolationReasonSecurityGroupRedundant = "SECURITY_GROUP_REDUNDANT"
+
+	// ViolationReasonMissingFirewall is a ViolationReason enum value
+	ViolationReasonMissingFirewall = "MISSING_FIREWALL"
+
+	// ViolationReasonMissingFirewallSubnetInAz is a ViolationReason enum value
+	ViolationReasonMissingFirewallSubnetInAz = "MISSING_FIREWALL_SUBNET_IN_AZ"
+
+	// ViolationReasonMissingExpectedRouteTable is a ViolationReason enum value
+	ViolationReasonMissingExpectedRouteTable = "MISSING_EXPECTED_ROUTE_TABLE"
+
+	// ViolationReasonNetworkFirewallPolicyModified is a ViolationReason enum value
+	ViolationReasonNetworkFirewallPolicyModified = "NETWORK_FIREWALL_POLICY_MODIFIED"
 )
 
 // ViolationReason_Values returns all elements of the ViolationReason enum
@@ -6869,5 +7308,9 @@ func ViolationReason_Values() []string {
 		ViolationReasonResourceViolatesAuditSecurityGroup,
 		ViolationReasonSecurityGroupUnused,
 		ViolationReasonSecurityGroupRedundant,
+		ViolationReasonMissingFirewall,
+		ViolationReasonMissingFirewallSubnetInAz,
+		ViolationReasonMissingExpectedRouteTable,
+		ViolationReasonNetworkFirewallPolicyModified,
 	}
 }

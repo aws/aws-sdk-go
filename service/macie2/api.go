@@ -8561,6 +8561,12 @@ type DescribeClassificationJobOutput struct {
 	// The schedule for running a classification job. Valid values are:
 	JobType *string `locationName:"jobType" type:"string" enum:"JobType"`
 
+	// Specifies whether any account- or bucket-level access errors occurred when
+	// a classification job ran. For example, the job is configured to analyze data
+	// for a member account that was suspended, or the job is configured to analyze
+	// an S3 bucket that Amazon Macie isn't allowed to access.
+	LastRunErrorStatus *LastRunErrorStatus `locationName:"lastRunErrorStatus" type:"structure"`
+
 	LastRunTime *time.Time `locationName:"lastRunTime" type:"timestamp" timestampFormat:"iso8601"`
 
 	Name *string `locationName:"name" type:"string"`
@@ -8649,6 +8655,12 @@ func (s *DescribeClassificationJobOutput) SetJobStatus(v string) *DescribeClassi
 // SetJobType sets the JobType field's value.
 func (s *DescribeClassificationJobOutput) SetJobType(v string) *DescribeClassificationJobOutput {
 	s.JobType = &v
+	return s
+}
+
+// SetLastRunErrorStatus sets the LastRunErrorStatus field's value.
+func (s *DescribeClassificationJobOutput) SetLastRunErrorStatus(v *LastRunErrorStatus) *DescribeClassificationJobOutput {
+	s.LastRunErrorStatus = v
 	return s
 }
 
@@ -11002,6 +11014,12 @@ type JobSummary struct {
 	// The schedule for running a classification job. Valid values are:
 	JobType *string `locationName:"jobType" type:"string" enum:"JobType"`
 
+	// Specifies whether any account- or bucket-level access errors occurred when
+	// a classification job ran. For example, the job is configured to analyze data
+	// for a member account that was suspended, or the job is configured to analyze
+	// an S3 bucket that Amazon Macie isn't allowed to access.
+	LastRunErrorStatus *LastRunErrorStatus `locationName:"lastRunErrorStatus" type:"structure"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	// Provides information about when a classification job was paused and when
@@ -11050,6 +11068,12 @@ func (s *JobSummary) SetJobType(v string) *JobSummary {
 	return s
 }
 
+// SetLastRunErrorStatus sets the LastRunErrorStatus field's value.
+func (s *JobSummary) SetLastRunErrorStatus(v *LastRunErrorStatus) *JobSummary {
+	s.LastRunErrorStatus = v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *JobSummary) SetName(v string) *JobSummary {
 	s.Name = &v
@@ -11092,6 +11116,35 @@ func (s *KeyValuePair) SetKey(v string) *KeyValuePair {
 // SetValue sets the Value field's value.
 func (s *KeyValuePair) SetValue(v string) *KeyValuePair {
 	s.Value = &v
+	return s
+}
+
+// Specifies whether any account- or bucket-level access errors occurred when
+// a classification job ran. For example, the job is configured to analyze data
+// for a member account that was suspended, or the job is configured to analyze
+// an S3 bucket that Amazon Macie isn't allowed to access.
+type LastRunErrorStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether any account- or bucket-level access errors occurred during
+	// the run of a one-time classification job or the most recent run of a recurring
+	// classification job. Possible values are:
+	Code *string `locationName:"code" type:"string" enum:"LastRunErrorStatusCode"`
+}
+
+// String returns the string representation
+func (s LastRunErrorStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LastRunErrorStatus) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *LastRunErrorStatus) SetCode(v string) *LastRunErrorStatus {
+	s.Code = &v
 	return s
 }
 
@@ -14880,6 +14933,25 @@ func JobType_Values() []string {
 	return []string{
 		JobTypeOneTime,
 		JobTypeScheduled,
+	}
+}
+
+// Specifies whether any account- or bucket-level access errors occurred during
+// the run of a one-time classification job or the most recent run of a recurring
+// classification job. Possible values are:
+const (
+	// LastRunErrorStatusCodeNone is a LastRunErrorStatusCode enum value
+	LastRunErrorStatusCodeNone = "NONE"
+
+	// LastRunErrorStatusCodeError is a LastRunErrorStatusCode enum value
+	LastRunErrorStatusCodeError = "ERROR"
+)
+
+// LastRunErrorStatusCode_Values returns all elements of the LastRunErrorStatusCode enum
+func LastRunErrorStatusCode_Values() []string {
+	return []string{
+		LastRunErrorStatusCodeNone,
+		LastRunErrorStatusCodeError,
 	}
 }
 

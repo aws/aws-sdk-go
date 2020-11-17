@@ -83,6 +83,24 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CreateUserHierarchyGroup":{
+      "name":"CreateUserHierarchyGroup",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/user-hierarchy-groups/{InstanceId}"
+      },
+      "input":{"shape":"CreateUserHierarchyGroupRequest"},
+      "output":{"shape":"CreateUserHierarchyGroupResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"DuplicateResourceException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "DeleteUser":{
       "name":"DeleteUser",
       "http":{
@@ -94,6 +112,22 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InvalidParameterException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "DeleteUserHierarchyGroup":{
+      "name":"DeleteUserHierarchyGroup",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}"
+      },
+      "input":{"shape":"DeleteUserHierarchyGroupRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
       ]
@@ -693,6 +727,38 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "UpdateUserHierarchyGroupName":{
+      "name":"UpdateUserHierarchyGroupName",
+      "http":{
+        "method":"POST",
+        "requestUri":"/user-hierarchy-groups/{InstanceId}/{HierarchyGroupId}/name"
+      },
+      "input":{"shape":"UpdateUserHierarchyGroupNameRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"DuplicateResourceException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateUserHierarchyStructure":{
+      "name":"UpdateUserHierarchyStructure",
+      "http":{
+        "method":"POST",
+        "requestUri":"/user-hierarchy-structure/{InstanceId}"
+      },
+      "input":{"shape":"UpdateUserHierarchyStructureRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "UpdateUserIdentityInfo":{
       "name":"UpdateUserIdentityInfo",
       "http":{
@@ -991,6 +1057,29 @@
         "RoutingProfileId":{"shape":"RoutingProfileId"}
       }
     },
+    "CreateUserHierarchyGroupRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "InstanceId"
+      ],
+      "members":{
+        "Name":{"shape":"HierarchyGroupName"},
+        "ParentGroupId":{"shape":"HierarchyGroupId"},
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
+    },
+    "CreateUserHierarchyGroupResponse":{
+      "type":"structure",
+      "members":{
+        "HierarchyGroupId":{"shape":"HierarchyGroupId"},
+        "HierarchyGroupArn":{"shape":"ARN"}
+      }
+    },
     "CreateUserRequest":{
       "type":"structure",
       "required":[
@@ -1091,6 +1180,25 @@
       "type":"integer",
       "max":9999,
       "min":0
+    },
+    "DeleteUserHierarchyGroupRequest":{
+      "type":"structure",
+      "required":[
+        "HierarchyGroupId",
+        "InstanceId"
+      ],
+      "members":{
+        "HierarchyGroupId":{
+          "shape":"HierarchyGroupId",
+          "location":"uri",
+          "locationName":"HierarchyGroupId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
     },
     "DeleteUserRequest":{
       "type":"structure",
@@ -1439,6 +1547,13 @@
     },
     "HierarchyLevelId":{"type":"string"},
     "HierarchyLevelName":{"type":"string"},
+    "HierarchyLevelUpdate":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"HierarchyLevelName"}
+      }
+    },
     "HierarchyPath":{
       "type":"structure",
       "members":{
@@ -1457,6 +1572,16 @@
         "LevelThree":{"shape":"HierarchyLevel"},
         "LevelFour":{"shape":"HierarchyLevel"},
         "LevelFive":{"shape":"HierarchyLevel"}
+      }
+    },
+    "HierarchyStructureUpdate":{
+      "type":"structure",
+      "members":{
+        "LevelOne":{"shape":"HierarchyLevelUpdate"},
+        "LevelTwo":{"shape":"HierarchyLevelUpdate"},
+        "LevelThree":{"shape":"HierarchyLevelUpdate"},
+        "LevelFour":{"shape":"HierarchyLevelUpdate"},
+        "LevelFive":{"shape":"HierarchyLevelUpdate"}
       }
     },
     "HistoricalMetric":{
@@ -2346,6 +2471,16 @@
       "max":100,
       "min":1
     },
+    "ResourceInUseException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"Message"},
+        "ResourceType":{"shape":"ResourceType"},
+        "ResourceId":{"shape":"ARN"}
+      },
+      "error":{"httpStatusCode":409},
+      "exception":true
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
@@ -2353,6 +2488,18 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "CONTACT",
+        "CONTACT_FLOW",
+        "INSTANCE",
+        "PARTICIPANT",
+        "HIERARCHY_LEVEL",
+        "HIERARCHY_GROUP",
+        "USER"
+      ]
     },
     "ResumeContactRecordingRequest":{
       "type":"structure",
@@ -2856,6 +3003,27 @@
         "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"}
       }
     },
+    "UpdateUserHierarchyGroupNameRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "HierarchyGroupId",
+        "InstanceId"
+      ],
+      "members":{
+        "Name":{"shape":"HierarchyGroupName"},
+        "HierarchyGroupId":{
+          "shape":"HierarchyGroupId",
+          "location":"uri",
+          "locationName":"HierarchyGroupId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
+    },
     "UpdateUserHierarchyRequest":{
       "type":"structure",
       "required":[
@@ -2869,6 +3037,21 @@
           "location":"uri",
           "locationName":"UserId"
         },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        }
+      }
+    },
+    "UpdateUserHierarchyStructureRequest":{
+      "type":"structure",
+      "required":[
+        "HierarchyStructure",
+        "InstanceId"
+      ],
+      "members":{
+        "HierarchyStructure":{"shape":"HierarchyStructureUpdate"},
         "InstanceId":{
           "shape":"InstanceId",
           "location":"uri",

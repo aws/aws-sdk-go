@@ -68,6 +68,12 @@ const (
 	// The contact is not permitted.
 	ErrCodeOutboundContactNotPermittedException = "OutboundContactNotPermittedException"
 
+	// ErrCodeResourceInUseException for service response error code
+	// "ResourceInUseException".
+	//
+	// That resource is already in use. Please try another.
+	ErrCodeResourceInUseException = "ResourceInUseException"
+
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
@@ -98,6 +104,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidRequestException":              newErrorInvalidRequestException,
 	"LimitExceededException":               newErrorLimitExceededException,
 	"OutboundContactNotPermittedException": newErrorOutboundContactNotPermittedException,
+	"ResourceInUseException":               newErrorResourceInUseException,
 	"ResourceNotFoundException":            newErrorResourceNotFoundException,
 	"ThrottlingException":                  newErrorThrottlingException,
 	"UserNotFoundException":                newErrorUserNotFoundException,

@@ -307,6 +307,8 @@ func ExampleRDS_CopyDBSnapshot_shared00() {
 				fmt.Println(rds.ErrCodeSnapshotQuotaExceededFault, aerr.Error())
 			case rds.ErrCodeKMSKeyNotAccessibleFault:
 				fmt.Println(rds.ErrCodeKMSKeyNotAccessibleFault, aerr.Error())
+			case rds.ErrCodeCustomAvailabilityZoneNotFoundFault:
+				fmt.Println(rds.ErrCodeCustomAvailabilityZoneNotFoundFault, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

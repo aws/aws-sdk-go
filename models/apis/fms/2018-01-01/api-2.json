@@ -63,7 +63,9 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InvalidOperationException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "DeleteProtocolsList":{
@@ -563,7 +565,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=,+\\-@]*)$"
     },
     "DisassociateAdminAccountRequest":{
       "type":"structure",
@@ -864,6 +866,68 @@
     "MemberAccounts":{
       "type":"list",
       "member":{"shape":"AWSAccountId"}
+    },
+    "NetworkFirewallAction":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9]+$"
+    },
+    "NetworkFirewallActionList":{
+      "type":"list",
+      "member":{"shape":"NetworkFirewallAction"}
+    },
+    "NetworkFirewallMissingExpectedRTViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "VPC":{"shape":"ResourceId"},
+        "AvailabilityZone":{"shape":"LengthBoundedString"},
+        "CurrentRouteTable":{"shape":"ResourceId"},
+        "ExpectedRouteTable":{"shape":"ResourceId"}
+      }
+    },
+    "NetworkFirewallMissingFirewallViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "VPC":{"shape":"ResourceId"},
+        "AvailabilityZone":{"shape":"LengthBoundedString"},
+        "TargetViolationReason":{"shape":"TargetViolationReason"}
+      }
+    },
+    "NetworkFirewallMissingSubnetViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "VPC":{"shape":"ResourceId"},
+        "AvailabilityZone":{"shape":"LengthBoundedString"},
+        "TargetViolationReason":{"shape":"TargetViolationReason"}
+      }
+    },
+    "NetworkFirewallPolicyDescription":{
+      "type":"structure",
+      "members":{
+        "StatelessRuleGroups":{"shape":"StatelessRuleGroupList"},
+        "StatelessDefaultActions":{"shape":"NetworkFirewallActionList"},
+        "StatelessFragmentDefaultActions":{"shape":"NetworkFirewallActionList"},
+        "StatelessCustomActions":{"shape":"NetworkFirewallActionList"},
+        "StatefulRuleGroups":{"shape":"StatefulRuleGroupList"}
+      }
+    },
+    "NetworkFirewallPolicyModifiedViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "CurrentPolicyDescription":{"shape":"NetworkFirewallPolicyDescription"},
+        "ExpectedPolicyDescription":{"shape":"NetworkFirewallPolicyDescription"}
+      }
+    },
+    "NetworkFirewallResourceName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-]+$"
     },
     "PaginationMaxResults":{
       "type":"integer",
@@ -1171,7 +1235,11 @@
       "members":{
         "AwsVPCSecurityGroupViolation":{"shape":"AwsVPCSecurityGroupViolation"},
         "AwsEc2NetworkInterfaceViolation":{"shape":"AwsEc2NetworkInterfaceViolation"},
-        "AwsEc2InstanceViolation":{"shape":"AwsEc2InstanceViolation"}
+        "AwsEc2InstanceViolation":{"shape":"AwsEc2InstanceViolation"},
+        "NetworkFirewallMissingFirewallViolation":{"shape":"NetworkFirewallMissingFirewallViolation"},
+        "NetworkFirewallMissingSubnetViolation":{"shape":"NetworkFirewallMissingSubnetViolation"},
+        "NetworkFirewallMissingExpectedRTViolation":{"shape":"NetworkFirewallMissingExpectedRTViolation"},
+        "NetworkFirewallPolicyModifiedViolation":{"shape":"NetworkFirewallPolicyModifiedViolation"}
       }
     },
     "ResourceViolations":{
@@ -1218,8 +1286,37 @@
         "SHIELD_ADVANCED",
         "SECURITY_GROUPS_COMMON",
         "SECURITY_GROUPS_CONTENT_AUDIT",
-        "SECURITY_GROUPS_USAGE_AUDIT"
+        "SECURITY_GROUPS_USAGE_AUDIT",
+        "NETWORK_FIREWALL"
       ]
+    },
+    "StatefulRuleGroup":{
+      "type":"structure",
+      "members":{
+        "RuleGroupName":{"shape":"NetworkFirewallResourceName"},
+        "ResourceId":{"shape":"ResourceId"}
+      }
+    },
+    "StatefulRuleGroupList":{
+      "type":"list",
+      "member":{"shape":"StatefulRuleGroup"}
+    },
+    "StatelessRuleGroup":{
+      "type":"structure",
+      "members":{
+        "RuleGroupName":{"shape":"NetworkFirewallResourceName"},
+        "ResourceId":{"shape":"ResourceId"},
+        "Priority":{"shape":"StatelessRuleGroupPriority"}
+      }
+    },
+    "StatelessRuleGroupList":{
+      "type":"list",
+      "member":{"shape":"StatelessRuleGroup"}
+    },
+    "StatelessRuleGroupPriority":{
+      "type":"integer",
+      "max":65535,
+      "min":1
     },
     "Tag":{
       "type":"structure",
@@ -1335,7 +1432,11 @@
         "RESOURCE_MISSING_SECURITY_GROUP",
         "RESOURCE_VIOLATES_AUDIT_SECURITY_GROUP",
         "SECURITY_GROUP_UNUSED",
-        "SECURITY_GROUP_REDUNDANT"
+        "SECURITY_GROUP_REDUNDANT",
+        "MISSING_FIREWALL",
+        "MISSING_FIREWALL_SUBNET_IN_AZ",
+        "MISSING_EXPECTED_ROUTE_TABLE",
+        "NETWORK_FIREWALL_POLICY_MODIFIED"
       ]
     },
     "ViolationTarget":{

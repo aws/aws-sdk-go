@@ -120,6 +120,10 @@ type ChimeAPI interface {
 	CreateMeetingWithContext(aws.Context, *chime.CreateMeetingInput, ...request.Option) (*chime.CreateMeetingOutput, error)
 	CreateMeetingRequest(*chime.CreateMeetingInput) (*request.Request, *chime.CreateMeetingOutput)
 
+	CreateMeetingDialOut(*chime.CreateMeetingDialOutInput) (*chime.CreateMeetingDialOutOutput, error)
+	CreateMeetingDialOutWithContext(aws.Context, *chime.CreateMeetingDialOutInput, ...request.Option) (*chime.CreateMeetingDialOutOutput, error)
+	CreateMeetingDialOutRequest(*chime.CreateMeetingDialOutInput) (*request.Request, *chime.CreateMeetingDialOutOutput)
+
 	CreateMeetingWithAttendees(*chime.CreateMeetingWithAttendeesInput) (*chime.CreateMeetingWithAttendeesOutput, error)
 	CreateMeetingWithAttendeesWithContext(aws.Context, *chime.CreateMeetingWithAttendeesInput, ...request.Option) (*chime.CreateMeetingWithAttendeesOutput, error)
 	CreateMeetingWithAttendeesRequest(*chime.CreateMeetingWithAttendeesInput) (*request.Request, *chime.CreateMeetingWithAttendeesOutput)
@@ -139,6 +143,18 @@ type ChimeAPI interface {
 	CreateRoomMembership(*chime.CreateRoomMembershipInput) (*chime.CreateRoomMembershipOutput, error)
 	CreateRoomMembershipWithContext(aws.Context, *chime.CreateRoomMembershipInput, ...request.Option) (*chime.CreateRoomMembershipOutput, error)
 	CreateRoomMembershipRequest(*chime.CreateRoomMembershipInput) (*request.Request, *chime.CreateRoomMembershipOutput)
+
+	CreateSipMediaApplication(*chime.CreateSipMediaApplicationInput) (*chime.CreateSipMediaApplicationOutput, error)
+	CreateSipMediaApplicationWithContext(aws.Context, *chime.CreateSipMediaApplicationInput, ...request.Option) (*chime.CreateSipMediaApplicationOutput, error)
+	CreateSipMediaApplicationRequest(*chime.CreateSipMediaApplicationInput) (*request.Request, *chime.CreateSipMediaApplicationOutput)
+
+	CreateSipMediaApplicationCall(*chime.CreateSipMediaApplicationCallInput) (*chime.CreateSipMediaApplicationCallOutput, error)
+	CreateSipMediaApplicationCallWithContext(aws.Context, *chime.CreateSipMediaApplicationCallInput, ...request.Option) (*chime.CreateSipMediaApplicationCallOutput, error)
+	CreateSipMediaApplicationCallRequest(*chime.CreateSipMediaApplicationCallInput) (*request.Request, *chime.CreateSipMediaApplicationCallOutput)
+
+	CreateSipRule(*chime.CreateSipRuleInput) (*chime.CreateSipRuleOutput, error)
+	CreateSipRuleWithContext(aws.Context, *chime.CreateSipRuleInput, ...request.Option) (*chime.CreateSipRuleOutput, error)
+	CreateSipRuleRequest(*chime.CreateSipRuleInput) (*request.Request, *chime.CreateSipRuleOutput)
 
 	CreateUser(*chime.CreateUserInput) (*chime.CreateUserOutput, error)
 	CreateUserWithContext(aws.Context, *chime.CreateUserInput, ...request.Option) (*chime.CreateUserOutput, error)
@@ -183,6 +199,14 @@ type ChimeAPI interface {
 	DeleteRoomMembership(*chime.DeleteRoomMembershipInput) (*chime.DeleteRoomMembershipOutput, error)
 	DeleteRoomMembershipWithContext(aws.Context, *chime.DeleteRoomMembershipInput, ...request.Option) (*chime.DeleteRoomMembershipOutput, error)
 	DeleteRoomMembershipRequest(*chime.DeleteRoomMembershipInput) (*request.Request, *chime.DeleteRoomMembershipOutput)
+
+	DeleteSipMediaApplication(*chime.DeleteSipMediaApplicationInput) (*chime.DeleteSipMediaApplicationOutput, error)
+	DeleteSipMediaApplicationWithContext(aws.Context, *chime.DeleteSipMediaApplicationInput, ...request.Option) (*chime.DeleteSipMediaApplicationOutput, error)
+	DeleteSipMediaApplicationRequest(*chime.DeleteSipMediaApplicationInput) (*request.Request, *chime.DeleteSipMediaApplicationOutput)
+
+	DeleteSipRule(*chime.DeleteSipRuleInput) (*chime.DeleteSipRuleOutput, error)
+	DeleteSipRuleWithContext(aws.Context, *chime.DeleteSipRuleInput, ...request.Option) (*chime.DeleteSipRuleOutput, error)
+	DeleteSipRuleRequest(*chime.DeleteSipRuleInput) (*request.Request, *chime.DeleteSipRuleOutput)
 
 	DeleteVoiceConnector(*chime.DeleteVoiceConnectorInput) (*chime.DeleteVoiceConnectorOutput, error)
 	DeleteVoiceConnectorWithContext(aws.Context, *chime.DeleteVoiceConnectorInput, ...request.Option) (*chime.DeleteVoiceConnectorOutput, error)
@@ -283,6 +307,18 @@ type ChimeAPI interface {
 	GetRoom(*chime.GetRoomInput) (*chime.GetRoomOutput, error)
 	GetRoomWithContext(aws.Context, *chime.GetRoomInput, ...request.Option) (*chime.GetRoomOutput, error)
 	GetRoomRequest(*chime.GetRoomInput) (*request.Request, *chime.GetRoomOutput)
+
+	GetSipMediaApplication(*chime.GetSipMediaApplicationInput) (*chime.GetSipMediaApplicationOutput, error)
+	GetSipMediaApplicationWithContext(aws.Context, *chime.GetSipMediaApplicationInput, ...request.Option) (*chime.GetSipMediaApplicationOutput, error)
+	GetSipMediaApplicationRequest(*chime.GetSipMediaApplicationInput) (*request.Request, *chime.GetSipMediaApplicationOutput)
+
+	GetSipMediaApplicationLoggingConfiguration(*chime.GetSipMediaApplicationLoggingConfigurationInput) (*chime.GetSipMediaApplicationLoggingConfigurationOutput, error)
+	GetSipMediaApplicationLoggingConfigurationWithContext(aws.Context, *chime.GetSipMediaApplicationLoggingConfigurationInput, ...request.Option) (*chime.GetSipMediaApplicationLoggingConfigurationOutput, error)
+	GetSipMediaApplicationLoggingConfigurationRequest(*chime.GetSipMediaApplicationLoggingConfigurationInput) (*request.Request, *chime.GetSipMediaApplicationLoggingConfigurationOutput)
+
+	GetSipRule(*chime.GetSipRuleInput) (*chime.GetSipRuleOutput, error)
+	GetSipRuleWithContext(aws.Context, *chime.GetSipRuleInput, ...request.Option) (*chime.GetSipRuleOutput, error)
+	GetSipRuleRequest(*chime.GetSipRuleInput) (*request.Request, *chime.GetSipRuleOutput)
 
 	GetUser(*chime.GetUserInput) (*chime.GetUserOutput, error)
 	GetUserWithContext(aws.Context, *chime.GetUserInput, ...request.Option) (*chime.GetUserOutput, error)
@@ -403,6 +439,14 @@ type ChimeAPI interface {
 	ListRoomsPages(*chime.ListRoomsInput, func(*chime.ListRoomsOutput, bool) bool) error
 	ListRoomsPagesWithContext(aws.Context, *chime.ListRoomsInput, func(*chime.ListRoomsOutput, bool) bool, ...request.Option) error
 
+	ListSipMediaApplications(*chime.ListSipMediaApplicationsInput) (*chime.ListSipMediaApplicationsOutput, error)
+	ListSipMediaApplicationsWithContext(aws.Context, *chime.ListSipMediaApplicationsInput, ...request.Option) (*chime.ListSipMediaApplicationsOutput, error)
+	ListSipMediaApplicationsRequest(*chime.ListSipMediaApplicationsInput) (*request.Request, *chime.ListSipMediaApplicationsOutput)
+
+	ListSipRules(*chime.ListSipRulesInput) (*chime.ListSipRulesOutput, error)
+	ListSipRulesWithContext(aws.Context, *chime.ListSipRulesInput, ...request.Option) (*chime.ListSipRulesOutput, error)
+	ListSipRulesRequest(*chime.ListSipRulesInput) (*request.Request, *chime.ListSipRulesOutput)
+
 	ListTagsForResource(*chime.ListTagsForResourceInput) (*chime.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *chime.ListTagsForResourceInput, ...request.Option) (*chime.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*chime.ListTagsForResourceInput) (*request.Request, *chime.ListTagsForResourceOutput)
@@ -443,6 +487,10 @@ type ChimeAPI interface {
 	PutRetentionSettings(*chime.PutRetentionSettingsInput) (*chime.PutRetentionSettingsOutput, error)
 	PutRetentionSettingsWithContext(aws.Context, *chime.PutRetentionSettingsInput, ...request.Option) (*chime.PutRetentionSettingsOutput, error)
 	PutRetentionSettingsRequest(*chime.PutRetentionSettingsInput) (*request.Request, *chime.PutRetentionSettingsOutput)
+
+	PutSipMediaApplicationLoggingConfiguration(*chime.PutSipMediaApplicationLoggingConfigurationInput) (*chime.PutSipMediaApplicationLoggingConfigurationOutput, error)
+	PutSipMediaApplicationLoggingConfigurationWithContext(aws.Context, *chime.PutSipMediaApplicationLoggingConfigurationInput, ...request.Option) (*chime.PutSipMediaApplicationLoggingConfigurationOutput, error)
+	PutSipMediaApplicationLoggingConfigurationRequest(*chime.PutSipMediaApplicationLoggingConfigurationInput) (*request.Request, *chime.PutSipMediaApplicationLoggingConfigurationOutput)
 
 	PutVoiceConnectorEmergencyCallingConfiguration(*chime.PutVoiceConnectorEmergencyCallingConfigurationInput) (*chime.PutVoiceConnectorEmergencyCallingConfigurationOutput, error)
 	PutVoiceConnectorEmergencyCallingConfigurationWithContext(aws.Context, *chime.PutVoiceConnectorEmergencyCallingConfigurationInput, ...request.Option) (*chime.PutVoiceConnectorEmergencyCallingConfigurationOutput, error)
@@ -555,6 +603,14 @@ type ChimeAPI interface {
 	UpdateRoomMembership(*chime.UpdateRoomMembershipInput) (*chime.UpdateRoomMembershipOutput, error)
 	UpdateRoomMembershipWithContext(aws.Context, *chime.UpdateRoomMembershipInput, ...request.Option) (*chime.UpdateRoomMembershipOutput, error)
 	UpdateRoomMembershipRequest(*chime.UpdateRoomMembershipInput) (*request.Request, *chime.UpdateRoomMembershipOutput)
+
+	UpdateSipMediaApplication(*chime.UpdateSipMediaApplicationInput) (*chime.UpdateSipMediaApplicationOutput, error)
+	UpdateSipMediaApplicationWithContext(aws.Context, *chime.UpdateSipMediaApplicationInput, ...request.Option) (*chime.UpdateSipMediaApplicationOutput, error)
+	UpdateSipMediaApplicationRequest(*chime.UpdateSipMediaApplicationInput) (*request.Request, *chime.UpdateSipMediaApplicationOutput)
+
+	UpdateSipRule(*chime.UpdateSipRuleInput) (*chime.UpdateSipRuleOutput, error)
+	UpdateSipRuleWithContext(aws.Context, *chime.UpdateSipRuleInput, ...request.Option) (*chime.UpdateSipRuleOutput, error)
+	UpdateSipRuleRequest(*chime.UpdateSipRuleInput) (*request.Request, *chime.UpdateSipRuleOutput)
 
 	UpdateUser(*chime.UpdateUserInput) (*chime.UpdateUserOutput, error)
 	UpdateUserWithContext(aws.Context, *chime.UpdateUserInput, ...request.Option) (*chime.UpdateUserOutput, error)

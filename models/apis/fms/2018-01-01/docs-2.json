@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS Firewall Manager</fullname> <p>This is the <i>AWS Firewall Manager API Reference</i>. This guide is for developers who need detailed information about the AWS Firewall Manager API actions, data types, and errors. For detailed information about AWS Firewall Manager features, see the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html\">AWS Firewall Manager Developer Guide</a>.</p>",
+  "service": "<fullname>AWS Firewall Manager</fullname> <p>This is the <i>AWS Firewall Manager API Reference</i>. This guide is for developers who need detailed information about the AWS Firewall Manager API actions, data types, and errors. For detailed information about AWS Firewall Manager features, see the <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-chapter.html\">AWS Firewall Manager Developer Guide</a>.</p> <p>Some API actions require explicit resource permissions. For information, see the developer guide topic <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html\">Firewall Manager required permissions for API actions</a>. </p>",
   "operations": {
     "AssociateAdminAccount": "<p>Sets the AWS Firewall Manager administrator account. AWS Firewall Manager must be associated with the master account of your AWS organization or associated with a member account that has the appropriate permissions. If the account ID that you submit is not an AWS Organizations master account, AWS Firewall Manager will set the appropriate permissions for the given member account.</p> <p>The account that you associate with AWS Firewall Manager is called the AWS Firewall Manager administrator account. </p>",
     "DeleteAppsList": "<p>Permanently deletes an AWS Firewall Manager applications list.</p>",
@@ -10,7 +10,7 @@
     "DisassociateAdminAccount": "<p>Disassociates the account that has been set as the AWS Firewall Manager administrator account. To set a different account as the administrator account, you must submit an <code>AssociateAdminAccount</code> request.</p>",
     "GetAdminAccount": "<p>Returns the AWS Organizations master account that is associated with AWS Firewall Manager as the AWS Firewall Manager administrator.</p>",
     "GetAppsList": "<p>Returns information about the specified AWS Firewall Manager applications list.</p>",
-    "GetComplianceDetail": "<p>Returns detailed compliance information about the specified member account. Details include resources that are in and out of compliance with the specified policy. Resources are considered noncompliant for AWS WAF and Shield Advanced policies if the specified policy has not been applied to them. Resources are considered noncompliant for security group policies if they are in scope of the policy, they violate one or more of the policy rules, and remediation is disabled or not possible. </p>",
+    "GetComplianceDetail": "<p>Returns detailed compliance information about the specified member account. Details include resources that are in and out of compliance with the specified policy. Resources are considered noncompliant for AWS WAF and Shield Advanced policies if the specified policy has not been applied to them. Resources are considered noncompliant for security group policies if they are in scope of the policy, they violate one or more of the policy rules, and remediation is disabled or not possible. Resources are considered noncompliant for Network Firewall policies if a firewall is missing in the VPC, if the firewall endpoint isn't set up in an expected Availability Zone and subnet, if a subnet created by the Firewall Manager doesn't have the expected route table, and for modifications to a firewall policy that violate the Firewall Manager policy's rules. </p>",
     "GetNotificationChannel": "<p>Information about the Amazon Simple Notification Service (SNS) topic that is used to record AWS Firewall Manager SNS logs.</p>",
     "GetPolicy": "<p>Returns information about the specified AWS Firewall Manager policy.</p>",
     "GetProtectionStatus": "<p>If you created a Shield Advanced policy, returns policy-level attack summary information in the event of a potential DDoS attack. Other policy types are currently unsupported.</p>",
@@ -23,8 +23,8 @@
     "ListProtocolsLists": "<p>Returns an array of <code>ProtocolsListDataSummary</code> objects.</p>",
     "ListTagsForResource": "<p>Retrieves the list of tags for the specified AWS resource. </p>",
     "PutAppsList": "<p>Creates an AWS Firewall Manager applications list.</p>",
-    "PutNotificationChannel": "<p>Designates the IAM role and Amazon Simple Notification Service (SNS) topic that AWS Firewall Manager uses to record SNS logs.</p>",
-    "PutPolicy": "<p>Creates an AWS Firewall Manager policy.</p> <p>Firewall Manager provides the following types of policies: </p> <ul> <li> <p>A Shield Advanced policy, which applies Shield Advanced protection to specified accounts and resources</p> </li> <li> <p>An AWS WAF policy (type WAFV2), which defines rule groups to run first in the corresponding AWS WAF web ACL and rule groups to run last in the web ACL.</p> </li> <li> <p>An AWS WAF Classic policy (type WAF), which defines a rule group. </p> </li> <li> <p>A security group policy, which manages VPC security groups across your AWS organization. </p> </li> </ul> <p>Each policy is specific to one of the types. If you want to enforce more than one policy type across accounts, create multiple policies. You can create multiple policies for each type.</p> <p>You must be subscribed to Shield Advanced to create a Shield Advanced policy. For more information about subscribing to Shield Advanced, see <a href=\"https://docs.aws.amazon.com/waf/latest/DDOSAPIReference/API_CreateSubscription.html\">CreateSubscription</a>.</p>",
+    "PutNotificationChannel": "<p>Designates the IAM role and Amazon Simple Notification Service (SNS) topic that AWS Firewall Manager uses to record SNS logs.</p> <p>To perform this action outside of the console, you must configure the SNS topic to allow the Firewall Manager role <code>AWSServiceRoleForFMS</code> to publish SNS logs. For more information, see <a href=\"https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html\">Firewall Manager required permissions for API actions</a> in the <i>AWS Firewall Manager Developer Guide</i>.</p>",
+    "PutPolicy": "<p>Creates an AWS Firewall Manager policy.</p> <p>Firewall Manager provides the following types of policies: </p> <ul> <li> <p>An AWS WAF policy (type WAFV2), which defines rule groups to run first in the corresponding AWS WAF web ACL and rule groups to run last in the web ACL.</p> </li> <li> <p>An AWS WAF Classic policy (type WAF), which defines a rule group. </p> </li> <li> <p>A Shield Advanced policy, which applies Shield Advanced protection to specified accounts and resources.</p> </li> <li> <p>A security group policy, which manages VPC security groups across your AWS organization. </p> </li> <li> <p>An AWS Network Firewall policy, which provides firewall rules to filter network traffic in specified Amazon VPCs.</p> </li> </ul> <p>Each policy is specific to one of the types. If you want to enforce more than one policy type across accounts, create multiple policies. You can create multiple policies for each type.</p> <p>You must be subscribed to Shield Advanced to create a Shield Advanced policy. For more information about subscribing to Shield Advanced, see <a href=\"https://docs.aws.amazon.com/waf/latest/DDOSAPIReference/API_CreateSubscription.html\">CreateSubscription</a>.</p>",
     "PutProtocolsList": "<p>Creates an AWS Firewall Manager protocols list.</p>",
     "TagResource": "<p>Adds one or more tags to an AWS resource.</p>",
     "UntagResource": "<p>Removes one or more tags from an AWS resource.</p>"
@@ -356,6 +356,9 @@
       "base": null,
       "refs": {
         "AwsVPCSecurityGroupViolation$ViolationTargetDescription": "<p>A description of the security group that violates the policy.</p>",
+        "NetworkFirewallMissingExpectedRTViolation$AvailabilityZone": "<p>The Availability Zone of a violating subnet. </p>",
+        "NetworkFirewallMissingFirewallViolation$AvailabilityZone": "<p>The Availability Zone of a violating subnet. </p>",
+        "NetworkFirewallMissingSubnetViolation$AvailabilityZone": "<p>The Availability Zone of a violating subnet. </p>",
         "SecurityGroupRuleDescription$Protocol": "<p>The IP protocol name (<code>tcp</code>, <code>udp</code>, <code>icmp</code>, <code>icmpv6</code>) or number.</p>",
         "ViolationDetail$ResourceDescription": "<p>Brief description for the requested resource.</p>"
       }
@@ -441,13 +444,65 @@
     "ManagedServiceData": {
       "base": null,
       "refs": {
-        "SecurityServicePolicyData$ManagedServiceData": "<p>Details about the service that are specific to the service type, in JSON format. For service type <code>SHIELD_ADVANCED</code>, this is an empty string.</p> <ul> <li> <p>Example: <code>WAFV2</code> </p> <p> <code>\"ManagedServiceData\": \"{\\\"type\\\":\\\"WAFV2\\\",\\\"defaultAction\\\":{\\\"type\\\":\\\"ALLOW\\\"},\\\"preProcessRuleGroups\\\":[{\\\"managedRuleGroupIdentifier\\\":null,\\\"ruleGroupArn\\\":\\\"rulegrouparn\\\",\\\"overrideAction\\\":{\\\"type\\\":\\\"COUNT\\\"},\\\"excludeRules\\\":[{\\\"name\\\":\\\"EntityName\\\"}],\\\"ruleGroupType\\\":\\\"RuleGroup\\\"}],\\\"postProcessRuleGroups\\\":[{\\\"managedRuleGroupIdentifier\\\":{\\\"managedRuleGroupName\\\":\\\"AWSManagedRulesAdminProtectionRuleSet\\\",\\\"vendorName\\\":\\\"AWS\\\"},\\\"ruleGroupArn\\\":\\\"rulegrouparn\\\",\\\"overrideAction\\\":{\\\"type\\\":\\\"NONE\\\"},\\\"excludeRules\\\":[],\\\"ruleGroupType\\\":\\\"ManagedRuleGroup\\\"}],\\\"overrideCustomerWebACLAssociation\\\":false}\"</code> </p> </li> <li> <p>Example: <code>WAF Classic</code> </p> <p> <code>\"ManagedServiceData\": \"{\\\"type\\\": \\\"WAF\\\", \\\"ruleGroups\\\": [{\\\"id\\\": \\\"12345678-1bcd-9012-efga-0987654321ab\\\", \\\"overrideAction\\\" : {\\\"type\\\": \\\"COUNT\\\"}}], \\\"defaultAction\\\": {\\\"type\\\": \\\"BLOCK\\\"}}</code> </p> </li> <li> <p>Example: <code>SECURITY_GROUPS_COMMON</code> </p> <p> <code>\"SecurityServicePolicyData\":{\"Type\":\"SECURITY_GROUPS_COMMON\",\"ManagedServiceData\":\"{\\\"type\\\":\\\"SECURITY_GROUPS_COMMON\\\",\\\"revertManualSecurityGroupChanges\\\":false,\\\"exclusiveResourceSecurityGroupManagement\\\":false, \\\"applyToAllEC2InstanceENIs\\\":false,\\\"securityGroups\\\":[{\\\"id\\\":\\\" sg-000e55995d61a06bd\\\"}]}\"},\"RemediationEnabled\":false,\"ResourceType\":\"AWS::EC2::NetworkInterface\"}</code> </p> </li> <li> <p>Example: <code>SECURITY_GROUPS_CONTENT_AUDIT</code> </p> <p> <code>\"SecurityServicePolicyData\":{\"Type\":\"SECURITY_GROUPS_CONTENT_AUDIT\",\"ManagedServiceData\":\"{\\\"type\\\":\\\"SECURITY_GROUPS_CONTENT_AUDIT\\\",\\\"securityGroups\\\":[{\\\"id\\\":\\\" sg-000e55995d61a06bd \\\"}],\\\"securityGroupAction\\\":{\\\"type\\\":\\\"ALLOW\\\"}}\"},\"RemediationEnabled\":false,\"ResourceType\":\"AWS::EC2::NetworkInterface\"}</code> </p> <p>The security group action for content audit can be <code>ALLOW</code> or <code>DENY</code>. For <code>ALLOW</code>, all in-scope security group rules must be within the allowed range of the policy's security group rules. For <code>DENY</code>, all in-scope security group rules must not contain a value or a range that matches a rule value or range in the policy security group.</p> </li> <li> <p>Example: <code>SECURITY_GROUPS_USAGE_AUDIT</code> </p> <p> <code>\"SecurityServicePolicyData\":{\"Type\":\"SECURITY_GROUPS_USAGE_AUDIT\",\"ManagedServiceData\":\"{\\\"type\\\":\\\"SECURITY_GROUPS_USAGE_AUDIT\\\",\\\"deleteUnusedSecurityGroups\\\":true,\\\"coalesceRedundantSecurityGroups\\\":true}\"},\"RemediationEnabled\":false,\"Resou rceType\":\"AWS::EC2::SecurityGroup\"}</code> </p> </li> </ul>"
+        "SecurityServicePolicyData$ManagedServiceData": "<p>Details about the service that are specific to the service type, in JSON format. For service type <code>SHIELD_ADVANCED</code>, this is an empty string.</p> <ul> <li> <p>Example: <code>NETWORK_FIREWALL</code> </p> <p> <code>\"{\\\"type\\\":\\\"NETWORK_FIREWALL\\\",\\\"networkFirewallStatelessRuleGroupReferences\\\":[{\\\"resourceARN\\\":\\\"arn:aws:network-firewall:us-west-1:1234567891011:stateless-rulegroup/rulegroup2\\\",\\\"priority\\\":10}],\\\"networkFirewallStatelessDefaultActions\\\":[\\\"aws:pass\\\",\\\"custom1\\\"],\\\"networkFirewallStatelessFragmentDefaultActions\\\":[\\\"custom2\\\",\\\"aws:pass\\\"],\\\"networkFirewallStatelessCustomActions\\\":[{\\\"actionName\\\":\\\"custom1\\\",\\\"actionDefinition\\\":{\\\"publishMetricAction\\\":{\\\"dimensions\\\":[{\\\"value\\\":\\\"dimension1\\\"}]}}},{\\\"actionName\\\":\\\"custom2\\\",\\\"actionDefinition\\\":{\\\"publishMetricAction\\\":{\\\"dimensions\\\":[{\\\"value\\\":\\\"dimension2\\\"}]}}}],\\\"networkFirewallStatefulRuleGroupReferences\\\":[{\\\"resourceARN\\\":\\\"arn:aws:network-firewall:us-west-1:1234567891011:stateful-rulegroup/rulegroup1\\\"}],\\\"networkFirewallOrchestrationConfig\\\":{\\\"singleFirewallEndpointPerVPC\\\":true,\\\"allowedIPV4CidrList\\\":[\\\"10.24.34.0/28\\\"]} }\"</code> </p> </li> <li> <p>Example: <code>WAFV2</code> </p> <p> <code>\"{\\\"type\\\":\\\"WAFV2\\\",\\\"preProcessRuleGroups\\\":[{\\\"ruleGroupArn\\\":null,\\\"overrideAction\\\":{\\\"type\\\":\\\"NONE\\\"},\\\"managedRuleGroupIdentifier\\\":{\\\"version\\\":null,\\\"vendorName\\\":\\\"AWS\\\",\\\"managedRuleGroupName\\\":\\\"AWSManagedRulesAmazonIpReputationList\\\"},\\\"ruleGroupType\\\":\\\"ManagedRuleGroup\\\",\\\"excludeRules\\\":[]}],\\\"postProcessRuleGroups\\\":[],\\\"defaultAction\\\":{\\\"type\\\":\\\"ALLOW\\\"},\\\"overrideCustomerWebACLAssociation\\\":false,\\\"loggingConfiguration\\\":{\\\"logDestinationConfigs\\\":[\\\"arn:aws:firehose:us-west-2:12345678912:deliverystream/aws-waf-logs-fms-admin-destination\\\"],\\\"redactedFields\\\":[{\\\"redactedFieldType\\\":\\\"SingleHeader\\\",\\\"redactedFieldValue\\\":\\\"Cookies\\\"},{\\\"redactedFieldType\\\":\\\"Method\\\"}]}}\"</code> </p> <p>In the <code>loggingConfiguration</code>, you can specify one <code>logDestinationConfigs</code>, you can optionally provide up to 20 <code>redactedFields</code>, and the <code>RedactedFieldType</code> must be one of <code>URI</code>, <code>QUERY_STRING</code>, <code>HEADER</code>, or <code>METHOD</code>.</p> </li> <li> <p>Example: <code>WAF Classic</code> </p> <p> <code>\"{\\\"type\\\": \\\"WAF\\\", \\\"ruleGroups\\\": [{\\\"id\\\":\\\"12345678-1bcd-9012-efga-0987654321ab\\\", \\\"overrideAction\\\" : {\\\"type\\\": \\\"COUNT\\\"}}], \\\"defaultAction\\\": {\\\"type\\\": \\\"BLOCK\\\"}}\"</code> </p> </li> <li> <p>Example: <code>SECURITY_GROUPS_COMMON</code> </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_COMMON\\\",\\\"revertManualSecurityGroupChanges\\\":false,\\\"exclusiveResourceSecurityGroupManagement\\\":false, \\\"applyToAllEC2InstanceENIs\\\":false,\\\"securityGroups\\\":[{\\\"id\\\":\\\" sg-000e55995d61a06bd\\\"}]}\"</code> </p> </li> <li> <p>Example: <code>SECURITY_GROUPS_CONTENT_AUDIT</code> </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_CONTENT_AUDIT\\\",\\\"securityGroups\\\":[{\\\"id\\\":\\\"sg-000e55995d61a06bd\\\"}],\\\"securityGroupAction\\\":{\\\"type\\\":\\\"ALLOW\\\"}}\"</code> </p> <p>The security group action for content audit can be <code>ALLOW</code> or <code>DENY</code>. For <code>ALLOW</code>, all in-scope security group rules must be within the allowed range of the policy's security group rules. For <code>DENY</code>, all in-scope security group rules must not contain a value or a range that matches a rule value or range in the policy security group.</p> </li> <li> <p>Example: <code>SECURITY_GROUPS_USAGE_AUDIT</code> </p> <p> <code>\"{\\\"type\\\":\\\"SECURITY_GROUPS_USAGE_AUDIT\\\",\\\"deleteUnusedSecurityGroups\\\":true,\\\"coalesceRedundantSecurityGroups\\\":true}\"</code> </p> </li> </ul>"
       }
     },
     "MemberAccounts": {
       "base": null,
       "refs": {
         "ListMemberAccountsResponse$MemberAccounts": "<p>An array of account IDs.</p>"
+      }
+    },
+    "NetworkFirewallAction": {
+      "base": null,
+      "refs": {
+        "NetworkFirewallActionList$member": null
+      }
+    },
+    "NetworkFirewallActionList": {
+      "base": null,
+      "refs": {
+        "NetworkFirewallPolicyDescription$StatelessDefaultActions": "<p>The actions to take on packets that don't match any of the stateless rule groups. </p>",
+        "NetworkFirewallPolicyDescription$StatelessFragmentDefaultActions": "<p>The actions to take on packet fragments that don't match any of the stateless rule groups. </p>",
+        "NetworkFirewallPolicyDescription$StatelessCustomActions": "<p>Names of custom actions that are available for use in the stateless default actions settings.</p>"
+      }
+    },
+    "NetworkFirewallMissingExpectedRTViolation": {
+      "base": "<p>Violation details for AWS Network Firewall for a subnet that's not associated to the expected Firewall Manager managed route table.</p>",
+      "refs": {
+        "ResourceViolation$NetworkFirewallMissingExpectedRTViolation": "<p>Violation detail for an Network Firewall policy that indicates that a subnet is not associated with the expected Firewall Manager managed route table. </p>"
+      }
+    },
+    "NetworkFirewallMissingFirewallViolation": {
+      "base": "<p>Violation details for AWS Network Firewall for a subnet that doesn't have a Firewall Manager managed firewall in its VPC. </p>",
+      "refs": {
+        "ResourceViolation$NetworkFirewallMissingFirewallViolation": "<p>Violation detail for an Network Firewall policy that indicates that a subnet has no Firewall Manager managed firewall in its VPC. </p>"
+      }
+    },
+    "NetworkFirewallMissingSubnetViolation": {
+      "base": "<p>Violation details for AWS Network Firewall for an Availability Zone that's missing the expected Firewall Manager managed subnet.</p>",
+      "refs": {
+        "ResourceViolation$NetworkFirewallMissingSubnetViolation": "<p>Violation detail for an Network Firewall policy that indicates that an Availability Zone is missing the expected Firewall Manager managed subnet.</p>"
+      }
+    },
+    "NetworkFirewallPolicyDescription": {
+      "base": "<p>The definition of the AWS Network Firewall firewall policy.</p>",
+      "refs": {
+        "NetworkFirewallPolicyModifiedViolation$CurrentPolicyDescription": "<p>The policy that's currently in use in the individual account. </p>",
+        "NetworkFirewallPolicyModifiedViolation$ExpectedPolicyDescription": "<p>The policy that should be in use in the individual account in order to be compliant. </p>"
+      }
+    },
+    "NetworkFirewallPolicyModifiedViolation": {
+      "base": "<p>Violation details for AWS Network Firewall for a firewall policy that has a different <a>NetworkFirewallPolicyDescription</a> than is required by the Firewall Manager policy. </p>",
+      "refs": {
+        "ResourceViolation$NetworkFirewallPolicyModifiedViolation": "<p>Violation detail for an Network Firewall policy that indicates that a firewall policy in an individual account has been modified in a way that makes it noncompliant. For example, the individual account owner might have deleted a rule group, changed the priority of a stateless rule group, or changed a policy default action.</p>"
+      }
+    },
+    "NetworkFirewallResourceName": {
+      "base": null,
+      "refs": {
+        "StatefulRuleGroup$RuleGroupName": "<p>The name of the rule group.</p>",
+        "StatelessRuleGroup$RuleGroupName": "<p>The name of the rule group.</p>"
       }
     },
     "PaginationMaxResults": {
@@ -701,8 +756,15 @@
       "refs": {
         "ComplianceViolator$ResourceId": "<p>The resource ID.</p>",
         "GetViolationDetailsRequest$ResourceId": "<p>The ID of the resource that has violations.</p>",
+        "NetworkFirewallMissingExpectedRTViolation$VPC": "<p>The resource ID of the VPC associated with a violating subnet.</p>",
+        "NetworkFirewallMissingExpectedRTViolation$CurrentRouteTable": "<p>The resource ID of the current route table that's associated with the subnet, if one is available.</p>",
+        "NetworkFirewallMissingExpectedRTViolation$ExpectedRouteTable": "<p>The resource ID of the route table that should be associated with the subnet.</p>",
+        "NetworkFirewallMissingFirewallViolation$VPC": "<p>The resource ID of the VPC associated with a violating subnet.</p>",
+        "NetworkFirewallMissingSubnetViolation$VPC": "<p>The resource ID of the VPC associated with a violating subnet.</p>",
         "ResourceIdList$member": null,
         "SecurityGroupRuleDescription$PrefixListId": "<p>The ID of the prefix list for the security group rule.</p>",
+        "StatefulRuleGroup$ResourceId": "<p>The resource ID of the rule group.</p>",
+        "StatelessRuleGroup$ResourceId": "<p>The resource ID of the rule group.</p>",
         "ViolationDetail$ResourceId": "<p>The resource ID that the violation details were requested for.</p>"
       }
     },
@@ -757,10 +819,10 @@
     "ResourceType": {
       "base": null,
       "refs": {
-        "ComplianceViolator$ResourceType": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. For example: <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> or <code>AWS::CloudFront::Distribution</code>.</p>",
-        "GetViolationDetailsRequest$ResourceType": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. Supported resource types are: <code>AWS::EC2::Instance</code>, <code>AWS::EC2::NetworkInterface</code>, or <code>AWS::EC2::SecurityGroup</code>. </p>",
-        "Policy$ResourceType": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. For AWS WAF and Shield Advanced, examples include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. </p>",
-        "PolicySummary$ResourceType": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. For AWS WAF and Shield Advanced, examples include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. </p>",
+        "ComplianceViolator$ResourceType": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. For example: <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code>, <code>AWS::CloudFront::Distribution</code>, or <code>AWS::NetworkFirewall::FirewallPolicy</code>.</p>",
+        "GetViolationDetailsRequest$ResourceType": "<p>The resource type. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. Supported resource types are: <code>AWS::EC2::Instance</code>, <code>AWS::EC2::NetworkInterface</code>, <code>AWS::EC2::SecurityGroup</code>, <code>AWS::NetworkFirewall::FirewallPolicy</code>, and <code>AWS::EC2::Subnet</code>. </p>",
+        "Policy$ResourceType": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. For AWS WAF and Shield Advanced, examples include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. For an AWS Network Firewall policy, the value is <code>AWS::EC2::VPC</code>.</p>",
+        "PolicySummary$ResourceType": "<p>The type of resource protected by or in scope of the policy. This is in the format shown in the <a href=\"https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html\">AWS Resource Types Reference</a>. For AWS WAF and Shield Advanced, examples include <code>AWS::ElasticLoadBalancingV2::LoadBalancer</code> and <code>AWS::CloudFront::Distribution</code>. For a security group common policy, valid values are <code>AWS::EC2::NetworkInterface</code> and <code>AWS::EC2::Instance</code>. For a security group content audit policy, valid values are <code>AWS::EC2::SecurityGroup</code>, <code>AWS::EC2::NetworkInterface</code>, and <code>AWS::EC2::Instance</code>. For a security group usage audit policy, the value is <code>AWS::EC2::SecurityGroup</code>. For an AWS Network Firewall policy, the value is <code>AWS::EC2::VPC</code>.</p>",
         "ResourceTypeList$member": null,
         "ViolationDetail$ResourceType": "<p>The resource type that the violation details were requested for.</p>"
       }
@@ -815,6 +877,36 @@
         "SecurityServicePolicyData$Type": "<p>The service that the policy is using to protect the resources. This specifies the type of policy that is created, either an AWS WAF policy, a Shield Advanced policy, or a security group policy. For security group policies, Firewall Manager supports one security group for each common policy and for each content audit policy. This is an adjustable limit that you can increase by contacting AWS Support.</p>"
       }
     },
+    "StatefulRuleGroup": {
+      "base": "<p>AWS Network Firewall stateful rule group, used in a <a>NetworkFirewallPolicyDescription</a>. </p>",
+      "refs": {
+        "StatefulRuleGroupList$member": null
+      }
+    },
+    "StatefulRuleGroupList": {
+      "base": null,
+      "refs": {
+        "NetworkFirewallPolicyDescription$StatefulRuleGroups": "<p>The stateful rule groups that are used in the Network Firewall firewall policy. </p>"
+      }
+    },
+    "StatelessRuleGroup": {
+      "base": "<p>AWS Network Firewall stateless rule group, used in a <a>NetworkFirewallPolicyDescription</a>. </p>",
+      "refs": {
+        "StatelessRuleGroupList$member": null
+      }
+    },
+    "StatelessRuleGroupList": {
+      "base": null,
+      "refs": {
+        "NetworkFirewallPolicyDescription$StatelessRuleGroups": "<p>The stateless rule groups that are used in the Network Firewall firewall policy. </p>"
+      }
+    },
+    "StatelessRuleGroupPriority": {
+      "base": null,
+      "refs": {
+        "StatelessRuleGroup$Priority": "<p>The priority of the rule group. AWS Network Firewall evaluates the stateless rule groups in a firewall policy starting from the lowest priority setting. </p>"
+      }
+    },
     "Tag": {
       "base": "<p>A collection of key:value pairs associated with an AWS resource. The key:value pair can be anything you define. Typically, the tag key represents a category (such as \"environment\") and the tag value represents a specific value within that category (such as \"test,\" \"development,\" or \"production\"). You can add up to 50 tags to each AWS resource. </p>",
       "refs": {
@@ -864,6 +956,8 @@
     "TargetViolationReason": {
       "base": null,
       "refs": {
+        "NetworkFirewallMissingFirewallViolation$TargetViolationReason": "<p>The reason the resource has this violation, if one is available. </p>",
+        "NetworkFirewallMissingSubnetViolation$TargetViolationReason": "<p>The reason the resource has this violation, if one is available. </p>",
         "TargetViolationReasons$member": null
       }
     },
@@ -920,7 +1014,11 @@
       "refs": {
         "AwsEc2InstanceViolation$ViolationTarget": "<p>The resource ID of the EC2 instance.</p>",
         "AwsEc2NetworkInterfaceViolation$ViolationTarget": "<p>The resource ID of the network interface.</p>",
-        "AwsVPCSecurityGroupViolation$ViolationTarget": "<p>The security group rule that is being evaluated.</p>"
+        "AwsVPCSecurityGroupViolation$ViolationTarget": "<p>The security group rule that is being evaluated.</p>",
+        "NetworkFirewallMissingExpectedRTViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>",
+        "NetworkFirewallMissingFirewallViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>",
+        "NetworkFirewallMissingSubnetViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>",
+        "NetworkFirewallPolicyModifiedViolation$ViolationTarget": "<p>The ID of the AWS Network Firewall or VPC resource that's in violation.</p>"
       }
     }
   }
