@@ -85,20 +85,20 @@ func (c *S3Control) CreateAccessPointRequest(input *CreateAccessPointInput) (req
 // in the Amazon Simple Storage Service Developer Guide .
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html#API_control_CreateAccessPoint_Examples)
+// section.
 //
 // The following actions are related to CreateAccessPoint:
 //
 //    * GetAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html)
 //
-//    * DeleteAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteAccessPoint.html)
+//    * DeleteAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html)
 //
-//    * ListAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_ListAccessPoints.html)
+//    * ListAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListAccessPoints.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -200,21 +200,21 @@ func (c *S3Control) CreateBucketRequest(input *CreateBucketInput) (req *request.
 //    * Bucket Location constraint
 //
 // For an example of the request syntax for Amazon S3 on Outposts that uses
-// the S3 on Outposts endpoint hostname prefix and outpost-id in your API request,
-// see the Example (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateBucket.html#API_control_CreateBucket_Examples)
-// section below.
+// the S3 on Outposts endpoint hostname prefix and x-amz-outpost-id in your
+// API request, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html#API_control_CreateBucket_Examples)
+// section.
 //
 // The following actions are related to CreateBucket for Amazon S3 on Outposts:
 //
 //    * PutObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
 //
-//    * GetBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucket.html)
+//    * GetBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html)
 //
-//    * DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucket.html)
+//    * DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html)
 //
-//    * CreateAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateAccessPoint.html)
+//    * CreateAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateAccessPoint.html)
 //
-//    * PutAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutAccessPointPolicy.html)
+//    * PutAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -306,7 +306,7 @@ func (c *S3Control) CreateJobRequest(input *CreateJobInput) (req *request.Reques
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html) in
 // the Amazon Simple Storage Service Developer Guide.
 //
-// This operation creates a S3 Batch Operations job.
+// This operation creates an S3 Batch Operations job.
 //
 // Related actions include:
 //
@@ -409,12 +409,12 @@ func (c *S3Control) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req
 // Deletes the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the ARN,
-// see the Example (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPoint.html#API_control_DeleteAccessPoint_Examples)
+// section.
 //
 // The following actions are related to DeleteAccessPoint:
 //
@@ -505,12 +505,12 @@ func (c *S3Control) DeleteAccessPointPolicyRequest(input *DeleteAccessPointPolic
 // Deletes the access point policy for the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteAccessPointPolicy.html#API_control_DeleteAccessPointPolicy_Examples)
+// section.
 //
 // The following actions are related to DeleteAccessPointPolicy:
 //
@@ -608,18 +608,18 @@ func (c *S3Control) DeleteBucketRequest(input *DeleteBucketInput) (req *request.
 // Simple Storage Service Developer Guide.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucket.html#API_control_DeleteBucket_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html#API_control_DeleteBucket_Examples)
+// section.
 //
 // Related Resources
 //
 //    * CreateBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html)
 //
-//    * GetBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucket.html)
+//    * GetBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html)
 //
 //    * DeleteObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html)
 //
@@ -715,17 +715,17 @@ func (c *S3Control) DeleteBucketLifecycleConfigurationRequest(input *DeleteBucke
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 // in Amazon Simple Storage Service Developer Guide.
 //
-// To use this operation, you must have permission to perform the s3outposts:DeleteLifecycleConfiguration
+// To use this operation, you must have permission to perform the s3-outposts:DeleteLifecycleConfiguration
 // action. By default, the bucket owner has this permission and the Outposts
 // bucket owner can grant this permission to others.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketLifecycleConfiguration.html#API_control_DeleteBucketLifecycleConfiguration_Examples)
+// section.
 //
 // For more information about object expiration, see Elements to Describe Lifecycle
 // Actions (https://docs.aws.amazon.com/AmazonS3/latest/dev/intro-lifecycle-rules.html#intro-lifecycle-rules-actions).
@@ -822,7 +822,7 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // This implementation of the DELETE operation uses the policy subresource to
 // delete the policy of a specified Amazon S3 on Outposts bucket. If you are
 // using an identity other than the root user of the AWS account that owns the
-// bucket, the calling identity must have the s3outposts:DeleteBucketPolicy
+// bucket, the calling identity must have the s3-outposts:DeleteBucketPolicy
 // permissions on the specified Outposts bucket and belong to the bucket owner's
 // account to use this operation. For more information, see Using Amazon S3
 // on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
@@ -841,18 +841,18 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketPolicy.html#API_control_DeleteBucketPolicy_Examples)
+// section.
 //
 // The following actions are related to DeleteBucketPolicy:
 //
 //    * GetBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html)
 //
-//    * PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketPolicy.html)
+//    * PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -933,7 +933,7 @@ func (c *S3Control) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) 
 // DeleteBucketTagging API operation for AWS S3 Control.
 //
 //
-// This API operation deletes an Amazon S3 on Outposts bucket's tags. To delete
+// This operation deletes an Amazon S3 on Outposts bucket's tags. To delete
 // an S3 bucket tags, see DeleteBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html)
 // in the Amazon Simple Storage Service API.
 //
@@ -946,12 +946,12 @@ func (c *S3Control) DeleteBucketTaggingRequest(input *DeleteBucketTaggingInput) 
 // permission to others.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucketTagging.html#API_control_DeleteBucketTagging_Examples)
+// section.
 //
 // The following actions are related to DeleteBucketTagging:
 //
@@ -1168,6 +1168,174 @@ func (c *S3Control) DeletePublicAccessBlockWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteStorageLensConfiguration = "DeleteStorageLensConfiguration"
+
+// DeleteStorageLensConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStorageLensConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStorageLensConfiguration for more information on using the DeleteStorageLensConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteStorageLensConfigurationRequest method.
+//    req, resp := client.DeleteStorageLensConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensConfiguration
+func (c *S3Control) DeleteStorageLensConfigurationRequest(input *DeleteStorageLensConfigurationInput) (req *request.Request, output *DeleteStorageLensConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStorageLensConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/storagelens/{storagelensid}",
+	}
+
+	if input == nil {
+		input = &DeleteStorageLensConfigurationInput{}
+	}
+
+	output = &DeleteStorageLensConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteStorageLensConfiguration API operation for AWS S3 Control.
+//
+// Deletes the Amazon S3 Storage Lens configuration. For more information about
+// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:DeleteStorageLensConfiguration
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteStorageLensConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensConfiguration
+func (c *S3Control) DeleteStorageLensConfiguration(input *DeleteStorageLensConfigurationInput) (*DeleteStorageLensConfigurationOutput, error) {
+	req, out := c.DeleteStorageLensConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStorageLensConfigurationWithContext is the same as DeleteStorageLensConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStorageLensConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteStorageLensConfigurationWithContext(ctx aws.Context, input *DeleteStorageLensConfigurationInput, opts ...request.Option) (*DeleteStorageLensConfigurationOutput, error) {
+	req, out := c.DeleteStorageLensConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStorageLensConfigurationTagging = "DeleteStorageLensConfigurationTagging"
+
+// DeleteStorageLensConfigurationTaggingRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStorageLensConfigurationTagging operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStorageLensConfigurationTagging for more information on using the DeleteStorageLensConfigurationTagging
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteStorageLensConfigurationTaggingRequest method.
+//    req, resp := client.DeleteStorageLensConfigurationTaggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensConfigurationTagging
+func (c *S3Control) DeleteStorageLensConfigurationTaggingRequest(input *DeleteStorageLensConfigurationTaggingInput) (req *request.Request, output *DeleteStorageLensConfigurationTaggingOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStorageLensConfigurationTagging,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v20180820/storagelens/{storagelensid}/tagging",
+	}
+
+	if input == nil {
+		input = &DeleteStorageLensConfigurationTaggingInput{}
+	}
+
+	output = &DeleteStorageLensConfigurationTaggingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// DeleteStorageLensConfigurationTagging API operation for AWS S3 Control.
+//
+// Deletes the Amazon S3 Storage Lens configuration tags. For more information
+// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:DeleteStorageLensConfigurationTagging
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteStorageLensConfigurationTagging for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteStorageLensConfigurationTagging
+func (c *S3Control) DeleteStorageLensConfigurationTagging(input *DeleteStorageLensConfigurationTaggingInput) (*DeleteStorageLensConfigurationTaggingOutput, error) {
+	req, out := c.DeleteStorageLensConfigurationTaggingRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStorageLensConfigurationTaggingWithContext is the same as DeleteStorageLensConfigurationTagging with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStorageLensConfigurationTagging for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteStorageLensConfigurationTaggingWithContext(ctx aws.Context, input *DeleteStorageLensConfigurationTaggingInput, opts ...request.Option) (*DeleteStorageLensConfigurationTaggingOutput, error) {
+	req, out := c.DeleteStorageLensConfigurationTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeJob = "DescribeJob"
 
 // DescribeJobRequest generates a "aws/request.Request" representing the
@@ -1318,12 +1486,12 @@ func (c *S3Control) GetAccessPointRequest(input *GetAccessPointInput) (req *requ
 // Returns configuration information about the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
+// section.
 //
 // The following actions are related to GetAccessPoint:
 //
@@ -1578,13 +1746,31 @@ func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Reques
 // S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
+// If you are using an identity other than the root user of the AWS account
+// that owns the bucket, the calling identity must have the s3-outposts:GetBucket
+// permissions on the specified bucket and belong to the bucket owner's account
+// in order to use this operation. Only users from Outposts bucket owner account
+// with the right permissions can perform actions on an Outposts bucket.
+//
+// If you don't have s3-outposts:GetBucket permissions or you're not using an
+// identity that belongs to the bucket owner's account, Amazon S3 returns a
+// 403 Access Denied error.
+//
 // The following actions are related to GetBucket for Amazon S3 on Outposts:
+//
+// All Amazon S3 on Outposts REST API requests for this action require an additional
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucket.html#API_control_GetBucket_Examples)
+// section.
 //
 //    * PutObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html)
 //
-//    * CreateBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_CreateBucket.html)
+//    * CreateBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateBucket.html)
 //
-//    * DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_DeleteBucket.html)
+//    * DeleteBucket (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteBucket.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1664,7 +1850,7 @@ func (c *S3Control) GetBucketLifecycleConfigurationRequest(input *GetBucketLifec
 // GetBucketLifecycleConfiguration API operation for AWS S3 Control.
 //
 //
-// This API operation gets an Amazon S3 on Outposts bucket's lifecycle configuration.
+// This operation gets an Amazon S3 on Outposts bucket's lifecycle configuration.
 // To get an S3 bucket's lifecycle configuration, see GetBucketLifecycleConfiguration
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html)
 // in the Amazon Simple Storage Service API.
@@ -1675,19 +1861,19 @@ func (c *S3Control) GetBucketLifecycleConfigurationRequest(input *GetBucketLifec
 // (https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html)
 // in Amazon Simple Storage Service Developer Guide.
 //
-// To use this operation, you must have permission to perform the s3outposts:GetLifecycleConfiguration
+// To use this operation, you must have permission to perform the s3-outposts:GetLifecycleConfiguration
 // action. The Outposts bucket owner has this permission, by default. The bucket
 // owner can grant this permission to others. For more information about permissions,
 // see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
 // and Managing Access Permissions to Your Amazon S3 Resources (https://docs.aws.amazon.com/AmazonS3/latest/dev/s3-access-control.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketLifecycleConfiguration.html#API_control_GetBucketLifecycleConfiguration_Examples)
+// section.
 //
 // GetBucketLifecycleConfiguration has the following special error:
 //
@@ -1779,8 +1965,8 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // GetBucketPolicy API operation for AWS S3 Control.
 //
 //
-// This API action gets a bucket policy for an Amazon S3 on Outposts bucket.
-// To get a policy for an S3 bucket, see GetBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html)
+// This action gets a bucket policy for an Amazon S3 on Outposts bucket. To
+// get a policy for an S3 bucket, see GetBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html)
 // in the Amazon Simple Storage Service API.
 //
 // Returns the policy of a specified Outposts bucket. For more information,
@@ -1792,10 +1978,10 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // permissions on the specified bucket and belong to the bucket owner's account
 // in order to use this operation.
 //
-// If you don't have s3outposts:GetBucketPolicy permissions, Amazon S3 returns
-// a 403 Access Denied error. If you have the correct permissions, but you're
-// not using an identity that belongs to the bucket owner's account, Amazon
-// S3 returns a 405 Method Not Allowed error.
+// Only users from Outposts bucket owner account with the right permissions
+// can perform actions on an Outposts bucket. If you don't have s3-outposts:GetBucketPolicy
+// permissions or you're not using an identity that belongs to the bucket owner's
+// account, Amazon S3 returns a 403 Access Denied error.
 //
 // As a security precaution, the root user of the AWS account that owns a bucket
 // can always use this operation, even if the policy explicitly denies the root
@@ -1805,12 +1991,12 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketPolicy.html#API_control_GetBucketPolicy_Examples)
+// section.
 //
 // The following actions are related to GetBucketPolicy:
 //
@@ -1898,8 +2084,8 @@ func (c *S3Control) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *
 // GetBucketTagging API operation for AWS S3 Control.
 //
 //
-// This API operation gets an Amazon S3 on Outposts bucket's tags. To get an
-// S3 bucket tags, see GetBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html)
+// This operation gets an Amazon S3 on Outposts bucket's tags. To get an S3
+// bucket tags, see GetBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html)
 // in the Amazon Simple Storage Service API.
 //
 // Returns the tag set associated with the Outposts bucket. For more information,
@@ -1916,12 +2102,12 @@ func (c *S3Control) GetBucketTaggingRequest(input *GetBucketTaggingInput) (req *
 //    with the bucket.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetBucketTagging.html#API_control_GetBucketTagging_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetBucketTagging.html#API_control_GetBucketTagging_Examples)
+// section.
 //
 // The following actions are related to GetBucketTagging:
 //
@@ -2141,6 +2327,172 @@ func (c *S3Control) GetPublicAccessBlockWithContext(ctx aws.Context, input *GetP
 	return out, req.Send()
 }
 
+const opGetStorageLensConfiguration = "GetStorageLensConfiguration"
+
+// GetStorageLensConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the GetStorageLensConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStorageLensConfiguration for more information on using the GetStorageLensConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetStorageLensConfigurationRequest method.
+//    req, resp := client.GetStorageLensConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensConfiguration
+func (c *S3Control) GetStorageLensConfigurationRequest(input *GetStorageLensConfigurationInput) (req *request.Request, output *GetStorageLensConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opGetStorageLensConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/storagelens/{storagelensid}",
+	}
+
+	if input == nil {
+		input = &GetStorageLensConfigurationInput{}
+	}
+
+	output = &GetStorageLensConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetStorageLensConfiguration API operation for AWS S3 Control.
+//
+// Gets the Amazon S3 Storage Lens configuration. For more information, see
+// Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:GetStorageLensConfiguration
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetStorageLensConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensConfiguration
+func (c *S3Control) GetStorageLensConfiguration(input *GetStorageLensConfigurationInput) (*GetStorageLensConfigurationOutput, error) {
+	req, out := c.GetStorageLensConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// GetStorageLensConfigurationWithContext is the same as GetStorageLensConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStorageLensConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetStorageLensConfigurationWithContext(ctx aws.Context, input *GetStorageLensConfigurationInput, opts ...request.Option) (*GetStorageLensConfigurationOutput, error) {
+	req, out := c.GetStorageLensConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetStorageLensConfigurationTagging = "GetStorageLensConfigurationTagging"
+
+// GetStorageLensConfigurationTaggingRequest generates a "aws/request.Request" representing the
+// client's request for the GetStorageLensConfigurationTagging operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetStorageLensConfigurationTagging for more information on using the GetStorageLensConfigurationTagging
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetStorageLensConfigurationTaggingRequest method.
+//    req, resp := client.GetStorageLensConfigurationTaggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensConfigurationTagging
+func (c *S3Control) GetStorageLensConfigurationTaggingRequest(input *GetStorageLensConfigurationTaggingInput) (req *request.Request, output *GetStorageLensConfigurationTaggingOutput) {
+	op := &request.Operation{
+		Name:       opGetStorageLensConfigurationTagging,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/storagelens/{storagelensid}/tagging",
+	}
+
+	if input == nil {
+		input = &GetStorageLensConfigurationTaggingInput{}
+	}
+
+	output = &GetStorageLensConfigurationTaggingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// GetStorageLensConfigurationTagging API operation for AWS S3 Control.
+//
+// Gets the tags of Amazon S3 Storage Lens configuration. For more information
+// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:GetStorageLensConfigurationTagging
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetStorageLensConfigurationTagging for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetStorageLensConfigurationTagging
+func (c *S3Control) GetStorageLensConfigurationTagging(input *GetStorageLensConfigurationTaggingInput) (*GetStorageLensConfigurationTaggingOutput, error) {
+	req, out := c.GetStorageLensConfigurationTaggingRequest(input)
+	return out, req.Send()
+}
+
+// GetStorageLensConfigurationTaggingWithContext is the same as GetStorageLensConfigurationTagging with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetStorageLensConfigurationTagging for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetStorageLensConfigurationTaggingWithContext(ctx aws.Context, input *GetStorageLensConfigurationTaggingInput, opts ...request.Option) (*GetStorageLensConfigurationTaggingOutput, error) {
+	req, out := c.GetStorageLensConfigurationTaggingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAccessPoints = "ListAccessPoints"
 
 // ListAccessPointsRequest generates a "aws/request.Request" representing the
@@ -2203,12 +2555,12 @@ func (c *S3Control) ListAccessPointsRequest(input *ListAccessPointsInput) (req *
 // can use to list the additional access points.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetAccessPoint.html#API_control_GetAccessPoint_Examples)
+// section.
 //
 // The following actions are related to ListAccessPoints:
 //
@@ -2505,15 +2857,15 @@ func (c *S3Control) ListRegionalBucketsRequest(input *ListRegionalBucketsInput) 
 
 // ListRegionalBuckets API operation for AWS S3 Control.
 //
-// Returns a list of all Outposts buckets in an Outposts that are owned by the
+// Returns a list of all Outposts buckets in an Outpost that are owned by the
 // authenticated sender of the request. For more information, see Using Amazon
 // S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html)
 // in the Amazon Simple Storage Service Developer Guide.
 //
 // For an example of the request syntax for Amazon S3 on Outposts that uses
-// the S3 on Outposts endpoint hostname prefix and outpost-id in your API request,
-// see the Example (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples)
-// section below.
+// the S3 on Outposts endpoint hostname prefix and x-amz-outpost-id in your
+// request, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListRegionalBuckets.html#API_control_ListRegionalBuckets_Examples)
+// section.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2595,6 +2947,89 @@ func (c *S3Control) ListRegionalBucketsPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListStorageLensConfigurations = "ListStorageLensConfigurations"
+
+// ListStorageLensConfigurationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStorageLensConfigurations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStorageLensConfigurations for more information on using the ListStorageLensConfigurations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStorageLensConfigurationsRequest method.
+//    req, resp := client.ListStorageLensConfigurationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListStorageLensConfigurations
+func (c *S3Control) ListStorageLensConfigurationsRequest(input *ListStorageLensConfigurationsInput) (req *request.Request, output *ListStorageLensConfigurationsOutput) {
+	op := &request.Operation{
+		Name:       opListStorageLensConfigurations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/storagelens",
+	}
+
+	if input == nil {
+		input = &ListStorageLensConfigurationsInput{}
+	}
+
+	output = &ListStorageLensConfigurationsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// ListStorageLensConfigurations API operation for AWS S3 Control.
+//
+// Gets a list of Amazon S3 Storage Lens configurations. For more information
+// about S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:ListStorageLensConfigurations
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListStorageLensConfigurations for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListStorageLensConfigurations
+func (c *S3Control) ListStorageLensConfigurations(input *ListStorageLensConfigurationsInput) (*ListStorageLensConfigurationsOutput, error) {
+	req, out := c.ListStorageLensConfigurationsRequest(input)
+	return out, req.Send()
+}
+
+// ListStorageLensConfigurationsWithContext is the same as ListStorageLensConfigurations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStorageLensConfigurations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListStorageLensConfigurationsWithContext(ctx aws.Context, input *ListStorageLensConfigurationsInput, opts ...request.Option) (*ListStorageLensConfigurationsOutput, error) {
+	req, out := c.ListStorageLensConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutAccessPointPolicy = "PutAccessPointPolicy"
 
 // PutAccessPointPolicyRequest generates a "aws/request.Request" representing the
@@ -2650,12 +3085,12 @@ func (c *S3Control) PutAccessPointPolicyRequest(input *PutAccessPointPolicyInput
 // existing policy associated with the specified access point.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutAccessPointPolicy.html#API_control_PutAccessPointPolicy_Examples)
+// section.
 //
 // The following actions are related to PutAccessPointPolicy:
 //
@@ -2746,23 +3181,24 @@ func (c *S3Control) PutBucketLifecycleConfigurationRequest(input *PutBucketLifec
 // PutBucketLifecycleConfiguration API operation for AWS S3 Control.
 //
 //
-// This API action puts a lifecycle configuration to an Amazon S3 on Outposts
-// bucket. To put a lifecycle configuration to an S3 bucket, see PutBucketLifecycleConfiguration
+// This action puts a lifecycle configuration to an Amazon S3 on Outposts bucket.
+// To put a lifecycle configuration to an S3 bucket, see PutBucketLifecycleConfiguration
 // (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html)
 // in the Amazon Simple Storage Service API.
 //
 // Creates a new lifecycle configuration for the Outposts bucket or replaces
-// an existing lifecycle configuration. Outposts buckets can only support a
-// lifecycle that deletes objects after a certain period of time. For more information,
-// see Managing Lifecycle Permissions for Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html).
+// an existing lifecycle configuration. Outposts buckets only support lifecycle
+// configurations that delete/expire objects after a certain period of time
+// and abort incomplete multipart uploads. For more information, see Managing
+// Lifecycle Permissions for Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/dev/S3onOutposts.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketLifecycleConfiguration.html#API_control_PutBucketLifecycleConfiguration_Examples)
+// section.
 //
 // The following actions are related to PutBucketLifecycleConfiguration:
 //
@@ -2853,8 +3289,8 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // PutBucketPolicy API operation for AWS S3 Control.
 //
 //
-// This API action puts a bucket policy to an Amazon S3 on Outposts bucket.
-// To put a policy on an S3 bucket, see PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html)
+// This action puts a bucket policy to an Amazon S3 on Outposts bucket. To put
+// a policy on an S3 bucket, see PutBucketPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html)
 // in the Amazon Simple Storage Service API.
 //
 // Applies an Amazon S3 bucket policy to an Outposts bucket. For more information,
@@ -2879,12 +3315,12 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketPolicy.html#API_control_PutBucketPolicy_Examples)
+// section.
 //
 // The following actions are related to PutBucketPolicy:
 //
@@ -2975,8 +3411,8 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // PutBucketTagging API operation for AWS S3 Control.
 //
 //
-// This API action puts tags on an Amazon S3 on Outposts bucket. To put tags
-// on an S3 bucket, see PutBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
+// This action puts tags on an Amazon S3 on Outposts bucket. To put tags on
+// an S3 bucket, see PutBucketTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html)
 // in the Amazon Simple Storage Service API.
 //
 // Sets the tags for an Outposts bucket. For more information, see Using Amazon
@@ -2995,7 +3431,7 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // the new value overwrites the old value. For more information, see Using Cost
 // Allocation in Amazon S3 Bucket Tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/CostAllocTagging.html).
 //
-// To use this operation, you must have permissions to perform the s3outposts:PutBucketTagging
+// To use this operation, you must have permissions to perform the s3-outposts:PutBucketTagging
 // action. The Outposts bucket owner has this permission by default and can
 // grant this permission to others. For more information about permissions,
 // see Permissions Related to Bucket Subresource Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-with-s3-actions.html#using-with-s3-actions-related-to-bucket-subresources)
@@ -3019,12 +3455,12 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 //    the provided tag to the bucket.
 //
 // All Amazon S3 on Outposts REST API requests for this action require an additional
-// parameter of outpost-id to be passed with the request and an S3 on Outposts
-// endpoint hostname prefix instead of s3-control. For an example of the request
-// syntax for Amazon S3 on Outposts that uses the S3 on Outposts endpoint hostname
-// prefix and the outpost-id derived using the access point ARN, see the Example
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/API__control_PutBucketTagging.html#API_control_PutBucketTagging_Examples)
-// section below.
+// parameter of x-amz-outpost-id to be passed with the request and an S3 on
+// Outposts endpoint hostname prefix instead of s3-control. For an example of
+// the request syntax for Amazon S3 on Outposts that uses the S3 on Outposts
+// endpoint hostname prefix and the x-amz-outpost-id derived using the access
+// point ARN, see the Examples (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutBucketTagging.html#API_control_PutBucketTagging_Examples)
+// section.
 //
 // The following actions are related to PutBucketTagging:
 //
@@ -3114,8 +3550,8 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 // associated with the job. To modify the existing tag set, you can either replace
 // the existing tag set entirely, or make changes within the existing tag set
 // by retrieving the existing tag set using GetJobTagging (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetJobTagging.html),
-// modify that tag set, and use this API action to replace the tag set with
-// the one you modified. For more information, see Controlling access and labeling
+// modify that tag set, and use this action to replace the tag set with the
+// one you modified. For more information, see Controlling access and labeling
 // jobs using tags (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-managing-jobs.html#batch-ops-job-tags)
 // in the Amazon Simple Storage Service Developer Guide.
 //
@@ -3267,6 +3703,175 @@ func (c *S3Control) PutPublicAccessBlock(input *PutPublicAccessBlockInput) (*Put
 // for more information on using Contexts.
 func (c *S3Control) PutPublicAccessBlockWithContext(ctx aws.Context, input *PutPublicAccessBlockInput, opts ...request.Option) (*PutPublicAccessBlockOutput, error) {
 	req, out := c.PutPublicAccessBlockRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutStorageLensConfiguration = "PutStorageLensConfiguration"
+
+// PutStorageLensConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutStorageLensConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutStorageLensConfiguration for more information on using the PutStorageLensConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutStorageLensConfigurationRequest method.
+//    req, resp := client.PutStorageLensConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutStorageLensConfiguration
+func (c *S3Control) PutStorageLensConfigurationRequest(input *PutStorageLensConfigurationInput) (req *request.Request, output *PutStorageLensConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutStorageLensConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/storagelens/{storagelensid}",
+	}
+
+	if input == nil {
+		input = &PutStorageLensConfigurationInput{}
+	}
+
+	output = &PutStorageLensConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// PutStorageLensConfiguration API operation for AWS S3 Control.
+//
+// Puts an Amazon S3 Storage Lens configuration. For more information about
+// S3 Storage Lens, see Working with Amazon S3 Storage Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:PutStorageLensConfiguration
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutStorageLensConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutStorageLensConfiguration
+func (c *S3Control) PutStorageLensConfiguration(input *PutStorageLensConfigurationInput) (*PutStorageLensConfigurationOutput, error) {
+	req, out := c.PutStorageLensConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutStorageLensConfigurationWithContext is the same as PutStorageLensConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutStorageLensConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutStorageLensConfigurationWithContext(ctx aws.Context, input *PutStorageLensConfigurationInput, opts ...request.Option) (*PutStorageLensConfigurationOutput, error) {
+	req, out := c.PutStorageLensConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutStorageLensConfigurationTagging = "PutStorageLensConfigurationTagging"
+
+// PutStorageLensConfigurationTaggingRequest generates a "aws/request.Request" representing the
+// client's request for the PutStorageLensConfigurationTagging operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutStorageLensConfigurationTagging for more information on using the PutStorageLensConfigurationTagging
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutStorageLensConfigurationTaggingRequest method.
+//    req, resp := client.PutStorageLensConfigurationTaggingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutStorageLensConfigurationTagging
+func (c *S3Control) PutStorageLensConfigurationTaggingRequest(input *PutStorageLensConfigurationTaggingInput) (req *request.Request, output *PutStorageLensConfigurationTaggingOutput) {
+	op := &request.Operation{
+		Name:       opPutStorageLensConfigurationTagging,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v20180820/storagelens/{storagelensid}/tagging",
+	}
+
+	if input == nil {
+		input = &PutStorageLensConfigurationTaggingInput{}
+	}
+
+	output = &PutStorageLensConfigurationTaggingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	return
+}
+
+// PutStorageLensConfigurationTagging API operation for AWS S3 Control.
+//
+// Put or replace tags on an existing Amazon S3 Storage Lens configuration.
+// For more information about S3 Storage Lens, see Working with Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// To use this action, you must have permission to perform the s3:PutStorageLensConfigurationTagging
+// action. For more information, see Setting permissions to use Amazon S3 Storage
+// Lens (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage_lens.html#storage_lens_IAM)
+// in the Amazon Simple Storage Service Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutStorageLensConfigurationTagging for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutStorageLensConfigurationTagging
+func (c *S3Control) PutStorageLensConfigurationTagging(input *PutStorageLensConfigurationTaggingInput) (*PutStorageLensConfigurationTaggingOutput, error) {
+	req, out := c.PutStorageLensConfigurationTaggingRequest(input)
+	return out, req.Send()
+}
+
+// PutStorageLensConfigurationTaggingWithContext is the same as PutStorageLensConfigurationTagging with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutStorageLensConfigurationTagging for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutStorageLensConfigurationTaggingWithContext(ctx aws.Context, input *PutStorageLensConfigurationTaggingInput, opts ...request.Option) (*PutStorageLensConfigurationTaggingOutput, error) {
+	req, out := c.PutStorageLensConfigurationTaggingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3567,6 +4172,131 @@ func (s *AccessPoint) SetVpcConfiguration(v *VpcConfiguration) *AccessPoint {
 	return s
 }
 
+// A container for the account level Amazon S3 Storage Lens configuration.
+type AccountLevel struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the S3 Storage Lens activity metrics.
+	ActivityMetrics *ActivityMetrics `type:"structure"`
+
+	// A container for the S3 Storage Lens bucket-level configuration.
+	//
+	// BucketLevel is a required field
+	BucketLevel *BucketLevel `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AccountLevel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountLevel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AccountLevel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AccountLevel"}
+	if s.BucketLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketLevel"))
+	}
+	if s.BucketLevel != nil {
+		if err := s.BucketLevel.Validate(); err != nil {
+			invalidParams.AddNested("BucketLevel", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivityMetrics sets the ActivityMetrics field's value.
+func (s *AccountLevel) SetActivityMetrics(v *ActivityMetrics) *AccountLevel {
+	s.ActivityMetrics = v
+	return s
+}
+
+// SetBucketLevel sets the BucketLevel field's value.
+func (s *AccountLevel) SetBucketLevel(v *BucketLevel) *AccountLevel {
+	s.BucketLevel = v
+	return s
+}
+
+// A container for the activity metrics.
+type ActivityMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container for whether the activity metrics are enabled.
+	IsEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s ActivityMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActivityMetrics) GoString() string {
+	return s.String()
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *ActivityMetrics) SetIsEnabled(v bool) *ActivityMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
+// A container for the bucket-level configuration.
+type BucketLevel struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the bucket-level activity metrics for Amazon S3 Storage Lens
+	ActivityMetrics *ActivityMetrics `type:"structure"`
+
+	// A container for the bucket-level prefix-level metrics for S3 Storage Lens
+	PrefixLevel *PrefixLevel `type:"structure"`
+}
+
+// String returns the string representation
+func (s BucketLevel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BucketLevel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BucketLevel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BucketLevel"}
+	if s.PrefixLevel != nil {
+		if err := s.PrefixLevel.Validate(); err != nil {
+			invalidParams.AddNested("PrefixLevel", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActivityMetrics sets the ActivityMetrics field's value.
+func (s *BucketLevel) SetActivityMetrics(v *ActivityMetrics) *BucketLevel {
+	s.ActivityMetrics = v
+	return s
+}
+
+// SetPrefixLevel sets the PrefixLevel field's value.
+func (s *BucketLevel) SetPrefixLevel(v *PrefixLevel) *BucketLevel {
+	s.PrefixLevel = v
+	return s
+}
+
 type CreateAccessPointInput struct {
 	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
@@ -3578,8 +4308,11 @@ type CreateAccessPointInput struct {
 
 	// The name of the bucket that you want to associate this access point with.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -3593,8 +4326,8 @@ type CreateAccessPointInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 
 	// The PublicAccessBlock configuration that you want to apply to this Amazon
-	// S3 bucket. You can enable the configuration options in any combination. For
-	// more information about when Amazon S3 considers a bucket or object public,
+	// S3 account. You can enable the configuration options in any combination.
+	// For more information about when Amazon S3 considers a bucket or object public,
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
@@ -3732,6 +4465,8 @@ type CreateAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the access point.
+	//
+	// This is only supported by Amazon S3 on Outposts.
 	AccessPointArn *string `min:"4" type:"string"`
 }
 
@@ -3944,8 +4679,11 @@ type CreateBucketOutput struct {
 
 	// The Amazon Resource Name (ARN) of the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -4207,8 +4945,11 @@ type DeleteAccessPointInput struct {
 
 	// The name of the access point you want to delete.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
-	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -4333,8 +5074,11 @@ type DeleteAccessPointPolicyInput struct {
 
 	// The name of the access point whose policy you want to delete.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
-	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -4459,8 +5203,11 @@ type DeleteBucketInput struct {
 
 	// Specifies the bucket being deleted.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -4568,10 +5315,13 @@ type DeleteBucketLifecycleConfigurationInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The bucket ARN of the bucket.
+	// Specifies the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -4707,10 +5457,13 @@ type DeleteBucketPolicyInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ARN of the bucket.
+	// Specifies the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -4834,8 +5587,11 @@ type DeleteBucketTaggingInput struct {
 
 	// The bucket ARN that has the tag set to be removed.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -5089,6 +5845,162 @@ func (s DeletePublicAccessBlockOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteStorageLensConfigurationInput struct {
+	_ struct{} `locationName:"DeleteStorageLensConfigurationRequest" type:"structure"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID of the S3 Storage Lens configuration.
+	//
+	// ConfigId is a required field
+	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteStorageLensConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStorageLensConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStorageLensConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStorageLensConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConfigId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigId"))
+	}
+	if s.ConfigId != nil && len(*s.ConfigId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteStorageLensConfigurationInput) SetAccountId(v string) *DeleteStorageLensConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *DeleteStorageLensConfigurationInput) SetConfigId(v string) *DeleteStorageLensConfigurationInput {
+	s.ConfigId = &v
+	return s
+}
+
+func (s *DeleteStorageLensConfigurationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteStorageLensConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStorageLensConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStorageLensConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStorageLensConfigurationTaggingInput struct {
+	_ struct{} `locationName:"DeleteStorageLensConfigurationTaggingRequest" type:"structure"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID of the S3 Storage Lens configuration.
+	//
+	// ConfigId is a required field
+	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteStorageLensConfigurationTaggingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStorageLensConfigurationTaggingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStorageLensConfigurationTaggingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStorageLensConfigurationTaggingInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConfigId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigId"))
+	}
+	if s.ConfigId != nil && len(*s.ConfigId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteStorageLensConfigurationTaggingInput) SetAccountId(v string) *DeleteStorageLensConfigurationTaggingInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *DeleteStorageLensConfigurationTaggingInput) SetConfigId(v string) *DeleteStorageLensConfigurationTaggingInput {
+	s.ConfigId = &v
+	return s
+}
+
+func (s *DeleteStorageLensConfigurationTaggingInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DeleteStorageLensConfigurationTaggingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStorageLensConfigurationTaggingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeJobInput struct {
 	_ struct{} `locationName:"DescribeJobRequest" type:"structure"`
 
@@ -5175,6 +6087,39 @@ func (s *DescribeJobOutput) SetJob(v *JobDescriptor) *DescribeJobOutput {
 	return s
 }
 
+// A container for what Amazon S3 Storage Lens will exclude.
+type Exclude struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the S3 Storage Lens bucket excludes.
+	Buckets []*string `locationNameList:"Arn" type:"list"`
+
+	// A container for the S3 Storage Lens Region excludes.
+	Regions []*string `locationNameList:"Region" type:"list"`
+}
+
+// String returns the string representation
+func (s Exclude) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Exclude) GoString() string {
+	return s.String()
+}
+
+// SetBuckets sets the Buckets field's value.
+func (s *Exclude) SetBuckets(v []*string) *Exclude {
+	s.Buckets = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *Exclude) SetRegions(v []*string) *Exclude {
+	s.Regions = v
+	return s
+}
+
 type GetAccessPointInput struct {
 	_ struct{} `locationName:"GetAccessPointRequest" type:"structure"`
 
@@ -5186,8 +6131,11 @@ type GetAccessPointInput struct {
 	// The name of the access point whose configuration information you want to
 	// retrieve.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
-	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -5310,8 +6258,8 @@ type GetAccessPointOutput struct {
 	NetworkOrigin *string `type:"string" enum:"NetworkOrigin"`
 
 	// The PublicAccessBlock configuration that you want to apply to this Amazon
-	// S3 bucket. You can enable the configuration options in any combination. For
-	// more information about when Amazon S3 considers a bucket or object public,
+	// S3 account. You can enable the configuration options in any combination.
+	// For more information about when Amazon S3 considers a bucket or object public,
 	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
@@ -5379,8 +6327,11 @@ type GetAccessPointPolicyInput struct {
 
 	// The name of the access point whose policy you want to retrieve.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
-	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -5599,10 +6550,13 @@ type GetBucketInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ARN of the bucket.
+	// Specifies the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -5712,8 +6666,11 @@ type GetBucketLifecycleConfigurationInput struct {
 
 	// The Amazon Resource Name (ARN) of the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -5884,10 +6841,13 @@ type GetBucketPolicyInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ARN of the bucket.
+	// Specifies the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -6018,10 +6978,13 @@ type GetBucketTaggingInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ARN of the bucket.
+	// Specifies the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -6301,6 +7264,213 @@ func (s GetPublicAccessBlockOutput) GoString() string {
 // SetPublicAccessBlockConfiguration sets the PublicAccessBlockConfiguration field's value.
 func (s *GetPublicAccessBlockOutput) SetPublicAccessBlockConfiguration(v *PublicAccessBlockConfiguration) *GetPublicAccessBlockOutput {
 	s.PublicAccessBlockConfiguration = v
+	return s
+}
+
+type GetStorageLensConfigurationInput struct {
+	_ struct{} `locationName:"GetStorageLensConfigurationRequest" type:"structure"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID of the Amazon S3 Storage Lens configuration.
+	//
+	// ConfigId is a required field
+	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetStorageLensConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetStorageLensConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStorageLensConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStorageLensConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConfigId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigId"))
+	}
+	if s.ConfigId != nil && len(*s.ConfigId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetStorageLensConfigurationInput) SetAccountId(v string) *GetStorageLensConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *GetStorageLensConfigurationInput) SetConfigId(v string) *GetStorageLensConfigurationInput {
+	s.ConfigId = &v
+	return s
+}
+
+func (s *GetStorageLensConfigurationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetStorageLensConfigurationOutput struct {
+	_ struct{} `type:"structure" payload:"StorageLensConfiguration"`
+
+	// The S3 Storage Lens configuration requested.
+	StorageLensConfiguration *StorageLensConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetStorageLensConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetStorageLensConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageLensConfiguration sets the StorageLensConfiguration field's value.
+func (s *GetStorageLensConfigurationOutput) SetStorageLensConfiguration(v *StorageLensConfiguration) *GetStorageLensConfigurationOutput {
+	s.StorageLensConfiguration = v
+	return s
+}
+
+type GetStorageLensConfigurationTaggingInput struct {
+	_ struct{} `locationName:"GetStorageLensConfigurationTaggingRequest" type:"structure"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID of the Amazon S3 Storage Lens configuration.
+	//
+	// ConfigId is a required field
+	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetStorageLensConfigurationTaggingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetStorageLensConfigurationTaggingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetStorageLensConfigurationTaggingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetStorageLensConfigurationTaggingInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConfigId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigId"))
+	}
+	if s.ConfigId != nil && len(*s.ConfigId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetStorageLensConfigurationTaggingInput) SetAccountId(v string) *GetStorageLensConfigurationTaggingInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *GetStorageLensConfigurationTaggingInput) SetConfigId(v string) *GetStorageLensConfigurationTaggingInput {
+	s.ConfigId = &v
+	return s
+}
+
+func (s *GetStorageLensConfigurationTaggingInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetStorageLensConfigurationTaggingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The tags of S3 Storage Lens configuration requested.
+	Tags []*StorageLensTag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation
+func (s GetStorageLensConfigurationTaggingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetStorageLensConfigurationTaggingOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetStorageLensConfigurationTaggingOutput) SetTags(v []*StorageLensTag) *GetStorageLensConfigurationTaggingOutput {
+	s.Tags = v
+	return s
+}
+
+// A container for what Amazon S3 Storage Lens configuration includes.
+type Include struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the S3 Storage Lens bucket includes.
+	Buckets []*string `locationNameList:"Arn" type:"list"`
+
+	// A container for the S3 Storage Lens Region includes.
+	Regions []*string `locationNameList:"Region" type:"list"`
+}
+
+// String returns the string representation
+func (s Include) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Include) GoString() string {
+	return s.String()
+}
+
+// SetBuckets sets the Buckets field's value.
+func (s *Include) SetBuckets(v []*string) *Include {
+	s.Buckets = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *Include) SetRegions(v []*string) *Include {
+	s.Regions = v
 	return s
 }
 
@@ -7431,8 +8601,11 @@ type ListAccessPointsInput struct {
 
 	// The name of the bucket whose associated access points you want to list.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -7829,6 +9002,157 @@ func (s *ListRegionalBucketsOutput) SetRegionalBucketList(v []*RegionalBucket) *
 	return s
 }
 
+// Part of ListStorageLensConfigurationResult. Each entry includes the description
+// of the S3 Storage Lens configuration, its home Region, whether it is enabled,
+// its Amazon Resource Name (ARN), and config ID.
+type ListStorageLensConfigurationEntry struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the S3 Storage Lens home Region. Your metrics data is stored
+	// and retained in your designated S3 Storage Lens home Region.
+	//
+	// HomeRegion is a required field
+	HomeRegion *string `min:"5" type:"string" required:"true"`
+
+	// A container for the S3 Storage Lens configuration ID.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A container for whether the S3 Storage Lens configuration is enabled. This
+	// property is required.
+	IsEnabled *bool `type:"boolean"`
+
+	// The ARN of the S3 Storage Lens configuration. This property is read-only.
+	//
+	// StorageLensArn is a required field
+	StorageLensArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListStorageLensConfigurationEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStorageLensConfigurationEntry) GoString() string {
+	return s.String()
+}
+
+// SetHomeRegion sets the HomeRegion field's value.
+func (s *ListStorageLensConfigurationEntry) SetHomeRegion(v string) *ListStorageLensConfigurationEntry {
+	s.HomeRegion = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ListStorageLensConfigurationEntry) SetId(v string) *ListStorageLensConfigurationEntry {
+	s.Id = &v
+	return s
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *ListStorageLensConfigurationEntry) SetIsEnabled(v bool) *ListStorageLensConfigurationEntry {
+	s.IsEnabled = &v
+	return s
+}
+
+// SetStorageLensArn sets the StorageLensArn field's value.
+func (s *ListStorageLensConfigurationEntry) SetStorageLensArn(v string) *ListStorageLensConfigurationEntry {
+	s.StorageLensArn = &v
+	return s
+}
+
+type ListStorageLensConfigurationsInput struct {
+	_ struct{} `locationName:"ListStorageLensConfigurationsRequest" type:"structure"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// A pagination token to request the next page of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListStorageLensConfigurationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStorageLensConfigurationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStorageLensConfigurationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStorageLensConfigurationsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListStorageLensConfigurationsInput) SetAccountId(v string) *ListStorageLensConfigurationsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageLensConfigurationsInput) SetNextToken(v string) *ListStorageLensConfigurationsInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListStorageLensConfigurationsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListStorageLensConfigurationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If the request produced more than the maximum number of S3 Storage Lens configuration
+	// results, you can pass this value into a subsequent request to retrieve the
+	// next page of results.
+	NextToken *string `type:"string"`
+
+	// A list of S3 Storage Lens configurations.
+	StorageLensConfigurationList []*ListStorageLensConfigurationEntry `locationNameList:"StorageLensConfiguration" type:"list" flattened:"true"`
+}
+
+// String returns the string representation
+func (s ListStorageLensConfigurationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStorageLensConfigurationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStorageLensConfigurationsOutput) SetNextToken(v string) *ListStorageLensConfigurationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageLensConfigurationList sets the StorageLensConfigurationList field's value.
+func (s *ListStorageLensConfigurationsOutput) SetStorageLensConfigurationList(v []*ListStorageLensConfigurationEntry) *ListStorageLensConfigurationsOutput {
+	s.StorageLensConfigurationList = v
+	return s
+}
+
 // The container of the noncurrent version expiration.
 type NoncurrentVersionExpiration struct {
 	_ struct{} `type:"structure"`
@@ -7920,9 +9244,100 @@ func (s *PolicyStatus) SetIsPublic(v bool) *PolicyStatus {
 	return s
 }
 
+// A container for the prefix-level configuration.
+type PrefixLevel struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the prefix-level storage metrics for S3 Storage Lens.
+	//
+	// StorageMetrics is a required field
+	StorageMetrics *PrefixLevelStorageMetrics `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PrefixLevel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrefixLevel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrefixLevel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrefixLevel"}
+	if s.StorageMetrics == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageMetrics"))
+	}
+	if s.StorageMetrics != nil {
+		if err := s.StorageMetrics.Validate(); err != nil {
+			invalidParams.AddNested("StorageMetrics", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStorageMetrics sets the StorageMetrics field's value.
+func (s *PrefixLevel) SetStorageMetrics(v *PrefixLevelStorageMetrics) *PrefixLevel {
+	s.StorageMetrics = v
+	return s
+}
+
+// A container for the prefix-level storage metrics for S3 Storage Lens.
+type PrefixLevelStorageMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// A container for whether prefix-level storage metrics are enabled.
+	IsEnabled *bool `type:"boolean"`
+
+	SelectionCriteria *SelectionCriteria `type:"structure"`
+}
+
+// String returns the string representation
+func (s PrefixLevelStorageMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrefixLevelStorageMetrics) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PrefixLevelStorageMetrics) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PrefixLevelStorageMetrics"}
+	if s.SelectionCriteria != nil {
+		if err := s.SelectionCriteria.Validate(); err != nil {
+			invalidParams.AddNested("SelectionCriteria", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *PrefixLevelStorageMetrics) SetIsEnabled(v bool) *PrefixLevelStorageMetrics {
+	s.IsEnabled = &v
+	return s
+}
+
+// SetSelectionCriteria sets the SelectionCriteria field's value.
+func (s *PrefixLevelStorageMetrics) SetSelectionCriteria(v *SelectionCriteria) *PrefixLevelStorageMetrics {
+	s.SelectionCriteria = v
+	return s
+}
+
 // The PublicAccessBlock configuration that you want to apply to this Amazon
-// S3 bucket. You can enable the configuration options in any combination. For
-// more information about when Amazon S3 considers a bucket or object public,
+// S3 account. You can enable the configuration options in any combination.
+// For more information about when Amazon S3 considers a bucket or object public,
 // see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
 // in the Amazon Simple Storage Service Developer Guide.
 //
@@ -7967,8 +9382,8 @@ type PublicAccessBlockConfiguration struct {
 
 	// Specifies whether Amazon S3 should restrict public bucket policies for buckets
 	// in this account. Setting this element to TRUE restricts access to buckets
-	// with public policies to only AWS services and authorized users within this
-	// account.
+	// with public policies to only AWS service principals and authorized users
+	// within this account.
 	//
 	// Enabling this setting doesn't affect previously stored bucket policies, except
 	// that public and cross-account access within any public bucket policy, including
@@ -8024,8 +9439,11 @@ type PutAccessPointPolicyInput struct {
 	// The name of the access point that you want to associate with the specified
 	// policy.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the access point accessed in
-	// the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -8035,7 +9453,7 @@ type PutAccessPointPolicyInput struct {
 	Name *string `location:"uri" locationName:"name" min:"3" type:"string" required:"true"`
 
 	// The policy that you want to apply to the specified access point. For more
-	// information about access point policies, see Managing Data Access with Amazon
+	// information about access point policies, see Managing data access with Amazon
 	// S3 Access Points (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-points.html)
 	// in the Amazon Simple Storage Service Developer Guide.
 	//
@@ -8298,10 +9716,13 @@ type PutBucketPolicyInput struct {
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
-	// The ARN of the bucket.
+	// Specifies the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -8451,8 +9872,11 @@ type PutBucketTaggingInput struct {
 
 	// The Amazon Resource Name (ARN) of the bucket.
 	//
-	// For Amazon S3 on Outposts specify the ARN of the bucket accessed in the format
-	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with Amazon S3 on Outposts with the REST API, you
+	// must specify the name and the x-amz-outpost-id as well.
+	//
+	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
+	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -8762,6 +10186,228 @@ func (s PutPublicAccessBlockOutput) GoString() string {
 	return s.String()
 }
 
+type PutStorageLensConfigurationInput struct {
+	_ struct{} `locationName:"PutStorageLensConfigurationRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID of the S3 Storage Lens configuration.
+	//
+	// ConfigId is a required field
+	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
+
+	// The S3 Storage Lens configuration.
+	//
+	// StorageLensConfiguration is a required field
+	StorageLensConfiguration *StorageLensConfiguration `type:"structure" required:"true"`
+
+	// The tag set of the S3 Storage Lens configuration.
+	//
+	// You can set up to a maximum of 50 tags.
+	Tags []*StorageLensTag `locationNameList:"Tag" type:"list"`
+}
+
+// String returns the string representation
+func (s PutStorageLensConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStorageLensConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutStorageLensConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutStorageLensConfigurationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConfigId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigId"))
+	}
+	if s.ConfigId != nil && len(*s.ConfigId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigId", 1))
+	}
+	if s.StorageLensConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageLensConfiguration"))
+	}
+	if s.StorageLensConfiguration != nil {
+		if err := s.StorageLensConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("StorageLensConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutStorageLensConfigurationInput) SetAccountId(v string) *PutStorageLensConfigurationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *PutStorageLensConfigurationInput) SetConfigId(v string) *PutStorageLensConfigurationInput {
+	s.ConfigId = &v
+	return s
+}
+
+// SetStorageLensConfiguration sets the StorageLensConfiguration field's value.
+func (s *PutStorageLensConfigurationInput) SetStorageLensConfiguration(v *StorageLensConfiguration) *PutStorageLensConfigurationInput {
+	s.StorageLensConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutStorageLensConfigurationInput) SetTags(v []*StorageLensTag) *PutStorageLensConfigurationInput {
+	s.Tags = v
+	return s
+}
+
+func (s *PutStorageLensConfigurationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type PutStorageLensConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutStorageLensConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStorageLensConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type PutStorageLensConfigurationTaggingInput struct {
+	_ struct{} `locationName:"PutStorageLensConfigurationTaggingRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The account ID of the requester.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The ID of the S3 Storage Lens configuration.
+	//
+	// ConfigId is a required field
+	ConfigId *string `location:"uri" locationName:"storagelensid" min:"1" type:"string" required:"true"`
+
+	// The tag set of the S3 Storage Lens configuration.
+	//
+	// You can set up to a maximum of 50 tags.
+	//
+	// Tags is a required field
+	Tags []*StorageLensTag `locationNameList:"Tag" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PutStorageLensConfigurationTaggingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStorageLensConfigurationTaggingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutStorageLensConfigurationTaggingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutStorageLensConfigurationTaggingInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.ConfigId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConfigId"))
+	}
+	if s.ConfigId != nil && len(*s.ConfigId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ConfigId", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutStorageLensConfigurationTaggingInput) SetAccountId(v string) *PutStorageLensConfigurationTaggingInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetConfigId sets the ConfigId field's value.
+func (s *PutStorageLensConfigurationTaggingInput) SetConfigId(v string) *PutStorageLensConfigurationTaggingInput {
+	s.ConfigId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutStorageLensConfigurationTaggingInput) SetTags(v []*StorageLensTag) *PutStorageLensConfigurationTaggingInput {
+	s.Tags = v
+	return s
+}
+
+func (s *PutStorageLensConfigurationTaggingInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type PutStorageLensConfigurationTaggingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutStorageLensConfigurationTaggingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStorageLensConfigurationTaggingOutput) GoString() string {
+	return s.String()
+}
+
 // The container for the regional bucket.
 type RegionalBucket struct {
 	_ struct{} `type:"structure"`
@@ -8928,6 +10574,113 @@ func (s *S3AccessControlPolicy) SetCannedAccessControlList(v string) *S3AccessCo
 	return s
 }
 
+// A container for the bucket where the Amazon S3 Storage Lens metrics export
+// files are located.
+type S3BucketDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The account ID of the owner of the S3 Storage Lens metrics export bucket.
+	//
+	// AccountId is a required field
+	AccountId *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the bucket. This property is read-only
+	// and follows the following format: arn:aws:s3:us-east-1:example-account-id:bucket/your-destination-bucket-name
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+
+	// The container for the type encryption of the metrics exports in this bucket.
+	Encryption *StorageLensDataExportEncryption `type:"structure"`
+
+	// Format is a required field
+	Format *string `type:"string" required:"true" enum:"Format"`
+
+	// The schema version of the export file.
+	//
+	// OutputSchemaVersion is a required field
+	OutputSchemaVersion *string `type:"string" required:"true" enum:"OutputSchemaVersion"`
+
+	// The prefix of the destination bucket where the metrics export will be delivered.
+	Prefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s S3BucketDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3BucketDestination) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3BucketDestination) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3BucketDestination"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+	if s.Format == nil {
+		invalidParams.Add(request.NewErrParamRequired("Format"))
+	}
+	if s.OutputSchemaVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputSchemaVersion"))
+	}
+	if s.Encryption != nil {
+		if err := s.Encryption.Validate(); err != nil {
+			invalidParams.AddNested("Encryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *S3BucketDestination) SetAccountId(v string) *S3BucketDestination {
+	s.AccountId = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *S3BucketDestination) SetArn(v string) *S3BucketDestination {
+	s.Arn = &v
+	return s
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *S3BucketDestination) SetEncryption(v *StorageLensDataExportEncryption) *S3BucketDestination {
+	s.Encryption = v
+	return s
+}
+
+// SetFormat sets the Format field's value.
+func (s *S3BucketDestination) SetFormat(v string) *S3BucketDestination {
+	s.Format = &v
+	return s
+}
+
+// SetOutputSchemaVersion sets the OutputSchemaVersion field's value.
+func (s *S3BucketDestination) SetOutputSchemaVersion(v string) *S3BucketDestination {
+	s.OutputSchemaVersion = &v
+	return s
+}
+
+// SetPrefix sets the Prefix field's value.
+func (s *S3BucketDestination) SetPrefix(v string) *S3BucketDestination {
+	s.Prefix = &v
+	return s
+}
+
 // Contains the configuration parameters for a PUT Copy object operation. S3
 // Batch Operations passes each value through to the underlying PUT Copy object
 // API. For more information about the parameters for this operation, see PUT
@@ -8958,6 +10711,8 @@ type S3CopyObjectOperation struct {
 	// in the Batch Operations job.
 	ObjectLockRetainUntilDate *time.Time `type:"timestamp"`
 
+	// Specifies an optional metadata property for website redirects, x-amz-website-redirect-location.
+	// Allows webpage redirects if the object is accessed through a website endpoint.
 	RedirectLocation *string `min:"1" type:"string"`
 
 	RequesterPays *bool `type:"boolean"`
@@ -8966,8 +10721,14 @@ type S3CopyObjectOperation struct {
 
 	StorageClass *string `type:"string" enum:"S3StorageClass"`
 
+	// Specifies the folder prefix into which you would like the objects to be copied.
+	// For example, to copy objects into a folder named "Folder1" in the destination
+	// bucket, set the TargetKeyPrefix to "Folder1/".
 	TargetKeyPrefix *string `min:"1" type:"string"`
 
+	// Specifies the destination bucket ARN for the batch copy operation. For example,
+	// to copy objects to a bucket named "destinationBucket", set the TargetResource
+	// to "arn:aws:s3:::destinationBucket".
 	TargetResource *string `min:"1" type:"string"`
 
 	UnModifiedSinceConstraint *time.Time `type:"timestamp"`
@@ -9759,6 +11520,442 @@ func (s *S3Tag) SetValue(v string) *S3Tag {
 	return s
 }
 
+type SSEKMS struct {
+	_ struct{} `locationName:"SSE-KMS" type:"structure"`
+
+	// A container for the ARN of the SSE-KMS encryption. This property is read-only
+	// and follows the following format: arn:aws:kms:us-east-1:example-account-id:key/example-9a73-4afc-8d29-8f5900cef44e
+	//
+	// KeyId is a required field
+	KeyId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SSEKMS) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SSEKMS) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SSEKMS) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SSEKMS"}
+	if s.KeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *SSEKMS) SetKeyId(v string) *SSEKMS {
+	s.KeyId = &v
+	return s
+}
+
+type SSES3 struct {
+	_ struct{} `locationName:"SSE-S3" type:"structure"`
+}
+
+// String returns the string representation
+func (s SSES3) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SSES3) GoString() string {
+	return s.String()
+}
+
+type SelectionCriteria struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the delimiter of the selection criteria being used.
+	Delimiter *string `type:"string"`
+
+	// The max depth of the selection criteria
+	MaxDepth *int64 `min:"1" type:"integer"`
+
+	// The minimum number of storage bytes percentage whose metrics will be selected.
+	//
+	// You must choose a value greater than or equal to 1.0.
+	MinStorageBytesPercentage *float64 `min:"0.1" type:"double"`
+}
+
+// String returns the string representation
+func (s SelectionCriteria) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SelectionCriteria) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SelectionCriteria) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SelectionCriteria"}
+	if s.MaxDepth != nil && *s.MaxDepth < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxDepth", 1))
+	}
+	if s.MinStorageBytesPercentage != nil && *s.MinStorageBytesPercentage < 0.1 {
+		invalidParams.Add(request.NewErrParamMinValue("MinStorageBytesPercentage", 0.1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDelimiter sets the Delimiter field's value.
+func (s *SelectionCriteria) SetDelimiter(v string) *SelectionCriteria {
+	s.Delimiter = &v
+	return s
+}
+
+// SetMaxDepth sets the MaxDepth field's value.
+func (s *SelectionCriteria) SetMaxDepth(v int64) *SelectionCriteria {
+	s.MaxDepth = &v
+	return s
+}
+
+// SetMinStorageBytesPercentage sets the MinStorageBytesPercentage field's value.
+func (s *SelectionCriteria) SetMinStorageBytesPercentage(v float64) *SelectionCriteria {
+	s.MinStorageBytesPercentage = &v
+	return s
+}
+
+// The AWS organization for your S3 Storage Lens.
+type StorageLensAwsOrg struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the Amazon Resource Name (ARN) of the AWS organization. This
+	// property is read-only and follows the following format: arn:aws:organizations:us-east-1:example-account-id:organization/o-ex2l495dck
+	//
+	// Arn is a required field
+	Arn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StorageLensAwsOrg) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageLensAwsOrg) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensAwsOrg) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensAwsOrg"}
+	if s.Arn == nil {
+		invalidParams.Add(request.NewErrParamRequired("Arn"))
+	}
+	if s.Arn != nil && len(*s.Arn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Arn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArn sets the Arn field's value.
+func (s *StorageLensAwsOrg) SetArn(v string) *StorageLensAwsOrg {
+	s.Arn = &v
+	return s
+}
+
+// A container for the Amazon S3 Storage Lens configuration.
+type StorageLensConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A container for all the account-level configurations of your S3 Storage Lens
+	// configuration.
+	//
+	// AccountLevel is a required field
+	AccountLevel *AccountLevel `type:"structure" required:"true"`
+
+	// A container for the AWS organization for this S3 Storage Lens configuration.
+	AwsOrg *StorageLensAwsOrg `type:"structure"`
+
+	// A container to specify the properties of your S3 Storage Lens metrics export
+	// including, the destination, schema and format.
+	DataExport *StorageLensDataExport `type:"structure"`
+
+	// A container for what is excluded in this configuration. This container can
+	// only be valid if there is no Include container submitted, and it's not empty.
+	Exclude *Exclude `type:"structure"`
+
+	// A container for the Amazon S3 Storage Lens configuration ID.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A container for what is included in this configuration. This container can
+	// only be valid if there is no Exclude container submitted, and it's not empty.
+	Include *Include `type:"structure"`
+
+	// A container for whether the S3 Storage Lens configuration is enabled.
+	//
+	// IsEnabled is a required field
+	IsEnabled *bool `type:"boolean" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the S3 Storage Lens configuration. This
+	// property is read-only and follows the following format: arn:aws:s3:us-east-1:example-account-id:storage-lens/your-dashboard-name
+	StorageLensArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StorageLensConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageLensConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensConfiguration"}
+	if s.AccountLevel == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountLevel"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.IsEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("IsEnabled"))
+	}
+	if s.StorageLensArn != nil && len(*s.StorageLensArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageLensArn", 1))
+	}
+	if s.AccountLevel != nil {
+		if err := s.AccountLevel.Validate(); err != nil {
+			invalidParams.AddNested("AccountLevel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AwsOrg != nil {
+		if err := s.AwsOrg.Validate(); err != nil {
+			invalidParams.AddNested("AwsOrg", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DataExport != nil {
+		if err := s.DataExport.Validate(); err != nil {
+			invalidParams.AddNested("DataExport", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountLevel sets the AccountLevel field's value.
+func (s *StorageLensConfiguration) SetAccountLevel(v *AccountLevel) *StorageLensConfiguration {
+	s.AccountLevel = v
+	return s
+}
+
+// SetAwsOrg sets the AwsOrg field's value.
+func (s *StorageLensConfiguration) SetAwsOrg(v *StorageLensAwsOrg) *StorageLensConfiguration {
+	s.AwsOrg = v
+	return s
+}
+
+// SetDataExport sets the DataExport field's value.
+func (s *StorageLensConfiguration) SetDataExport(v *StorageLensDataExport) *StorageLensConfiguration {
+	s.DataExport = v
+	return s
+}
+
+// SetExclude sets the Exclude field's value.
+func (s *StorageLensConfiguration) SetExclude(v *Exclude) *StorageLensConfiguration {
+	s.Exclude = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *StorageLensConfiguration) SetId(v string) *StorageLensConfiguration {
+	s.Id = &v
+	return s
+}
+
+// SetInclude sets the Include field's value.
+func (s *StorageLensConfiguration) SetInclude(v *Include) *StorageLensConfiguration {
+	s.Include = v
+	return s
+}
+
+// SetIsEnabled sets the IsEnabled field's value.
+func (s *StorageLensConfiguration) SetIsEnabled(v bool) *StorageLensConfiguration {
+	s.IsEnabled = &v
+	return s
+}
+
+// SetStorageLensArn sets the StorageLensArn field's value.
+func (s *StorageLensConfiguration) SetStorageLensArn(v string) *StorageLensConfiguration {
+	s.StorageLensArn = &v
+	return s
+}
+
+// A container to specify the properties of your S3 Storage Lens metrics export,
+// including the destination, schema, and format.
+type StorageLensDataExport struct {
+	_ struct{} `type:"structure"`
+
+	// A container for the bucket where the S3 Storage Lens metrics export will
+	// be located.
+	//
+	// S3BucketDestination is a required field
+	S3BucketDestination *S3BucketDestination `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StorageLensDataExport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageLensDataExport) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensDataExport) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensDataExport"}
+	if s.S3BucketDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketDestination"))
+	}
+	if s.S3BucketDestination != nil {
+		if err := s.S3BucketDestination.Validate(); err != nil {
+			invalidParams.AddNested("S3BucketDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3BucketDestination sets the S3BucketDestination field's value.
+func (s *StorageLensDataExport) SetS3BucketDestination(v *S3BucketDestination) *StorageLensDataExport {
+	s.S3BucketDestination = v
+	return s
+}
+
+// A container for the encryption of the S3 Storage Lens metrics exports.
+type StorageLensDataExportEncryption struct {
+	_ struct{} `type:"structure"`
+
+	SSEKMS *SSEKMS `locationName:"SSE-KMS" type:"structure"`
+
+	SSES3 *SSES3 `locationName:"SSE-S3" type:"structure"`
+}
+
+// String returns the string representation
+func (s StorageLensDataExportEncryption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageLensDataExportEncryption) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensDataExportEncryption) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensDataExportEncryption"}
+	if s.SSEKMS != nil {
+		if err := s.SSEKMS.Validate(); err != nil {
+			invalidParams.AddNested("SSEKMS", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSSEKMS sets the SSEKMS field's value.
+func (s *StorageLensDataExportEncryption) SetSSEKMS(v *SSEKMS) *StorageLensDataExportEncryption {
+	s.SSEKMS = v
+	return s
+}
+
+// SetSSES3 sets the SSES3 field's value.
+func (s *StorageLensDataExportEncryption) SetSSES3(v *SSES3) *StorageLensDataExportEncryption {
+	s.SSES3 = v
+	return s
+}
+
+type StorageLensTag struct {
+	_ struct{} `type:"structure"`
+
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StorageLensTag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageLensTag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StorageLensTag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StorageLensTag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *StorageLensTag) SetKey(v string) *StorageLensTag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *StorageLensTag) SetValue(v string) *StorageLensTag {
+	s.Value = &v
+	return s
+}
+
 type Tagging struct {
 	_ struct{} `type:"structure"`
 
@@ -9809,7 +12006,7 @@ func (s *Tagging) SetTagSet(v []*S3Tag) *Tagging {
 
 // Specifies when an object transitions to a specified storage class. For more
 // information about Amazon S3 Lifecycle configuration rules, see Transitioning
-// Objects Using Amazon S3 Lifecycle (https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html)
+// objects using Amazon S3 Lifecycle (https://docs.aws.amazon.com/AmazonS3/latest/dev/lifecycle-transition-general-considerations.html)
 // in the Amazon Simple Storage Service Developer Guide.
 type Transition struct {
 	_ struct{} `type:"structure"`
@@ -10232,6 +12429,22 @@ func ExpirationStatus_Values() []string {
 }
 
 const (
+	// FormatCsv is a Format enum value
+	FormatCsv = "CSV"
+
+	// FormatParquet is a Format enum value
+	FormatParquet = "Parquet"
+)
+
+// Format_Values returns all elements of the Format enum
+func Format_Values() []string {
+	return []string{
+		FormatCsv,
+		FormatParquet,
+	}
+}
+
+const (
 	// JobManifestFieldNameIgnore is a JobManifestFieldName enum value
 	JobManifestFieldNameIgnore = "Ignore"
 
@@ -10408,6 +12621,18 @@ func OperationName_Values() []string {
 		OperationNameS3initiateRestoreObject,
 		OperationNameS3putObjectLegalHold,
 		OperationNameS3putObjectRetention,
+	}
+}
+
+const (
+	// OutputSchemaVersionV1 is a OutputSchemaVersion enum value
+	OutputSchemaVersionV1 = "V_1"
+)
+
+// OutputSchemaVersion_Values returns all elements of the OutputSchemaVersion enum
+func OutputSchemaVersion_Values() []string {
+	return []string{
+		OutputSchemaVersionV1,
 	}
 }
 

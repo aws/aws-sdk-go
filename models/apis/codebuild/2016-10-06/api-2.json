@@ -1911,7 +1911,8 @@
         "exportConfig":{"shape":"ReportExportConfig"},
         "created":{"shape":"Timestamp"},
         "lastModified":{"shape":"Timestamp"},
-        "tags":{"shape":"TagList"}
+        "tags":{"shape":"TagList"},
+        "status":{"shape":"ReportGroupStatusType"}
       }
     },
     "ReportGroupArns":{
@@ -1931,6 +1932,13 @@
         "NAME",
         "CREATED_TIME",
         "LAST_MODIFIED_TIME"
+      ]
+    },
+    "ReportGroupStatusType":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "DELETING"
       ]
     },
     "ReportGroups":{

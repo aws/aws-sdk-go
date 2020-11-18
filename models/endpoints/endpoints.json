@@ -676,6 +676,7 @@
       },
       "athena" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-east-1" : { },
           "ap-northeast-1" : { },
           "ap-northeast-2" : { },
@@ -856,7 +857,7 @@
             "credentialScope" : {
               "region" : "us-east-1"
             },
-            "hostname" : "service.chime.aws.amazon.com",
+            "hostname" : "chime.us-east-1.amazonaws.com",
             "protocols" : [ "https" ]
           }
         },
@@ -9244,6 +9245,11 @@
         }
       },
       "elasticmapreduce" : {
+        "endpoints" : {
+          "us-isob-east-1" : { }
+        }
+      },
+      "es" : {
         "endpoints" : {
           "us-isob-east-1" : { }
         }

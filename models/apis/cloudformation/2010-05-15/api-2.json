@@ -927,7 +927,8 @@
         "Add",
         "Modify",
         "Remove",
-        "Import"
+        "Import",
+        "Dynamic"
       ]
     },
     "ChangeSetId":{
@@ -964,7 +965,10 @@
         "CREATE_PENDING",
         "CREATE_IN_PROGRESS",
         "CREATE_COMPLETE",
+        "DELETE_PENDING",
+        "DELETE_IN_PROGRESS",
         "DELETE_COMPLETE",
+        "DELETE_FAILED",
         "FAILED"
       ]
     },
@@ -984,7 +988,10 @@
         "Status":{"shape":"ChangeSetStatus"},
         "StatusReason":{"shape":"ChangeSetStatusReason"},
         "CreationTime":{"shape":"CreationTime"},
-        "Description":{"shape":"Description"}
+        "Description":{"shape":"Description"},
+        "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
+        "ParentChangeSetId":{"shape":"ChangeSetId"},
+        "RootChangeSetId":{"shape":"ChangeSetId"}
       }
     },
     "ChangeSetType":{
@@ -1061,7 +1068,8 @@
         "ClientToken":{"shape":"ClientToken"},
         "Description":{"shape":"Description"},
         "ChangeSetType":{"shape":"ChangeSetType"},
-        "ResourcesToImport":{"shape":"ResourcesToImport"}
+        "ResourcesToImport":{"shape":"ResourcesToImport"},
+        "IncludeNestedStacks":{"shape":"IncludeNestedStacks"}
       }
     },
     "CreateChangeSetOutput":{
@@ -1294,7 +1302,10 @@
         "Capabilities":{"shape":"Capabilities"},
         "Tags":{"shape":"Tags"},
         "Changes":{"shape":"Changes"},
-        "NextToken":{"shape":"NextToken"}
+        "NextToken":{"shape":"NextToken"},
+        "IncludeNestedStacks":{"shape":"IncludeNestedStacks"},
+        "ParentChangeSetId":{"shape":"ChangeSetId"},
+        "RootChangeSetId":{"shape":"ChangeSetId"}
       }
     },
     "DescribeStackDriftDetectionStatusInput":{
@@ -1731,6 +1742,7 @@
       "type":"integer",
       "min":0
     },
+    "IncludeNestedStacks":{"type":"boolean"},
     "InsufficientCapabilitiesException":{
       "type":"structure",
       "members":{
@@ -2353,7 +2365,8 @@
         "ResourceType":{"shape":"ResourceType"},
         "Replacement":{"shape":"Replacement"},
         "Scope":{"shape":"Scope"},
-        "Details":{"shape":"ResourceChangeDetails"}
+        "Details":{"shape":"ResourceChangeDetails"},
+        "ChangeSetId":{"shape":"ChangeSetId"}
       }
     },
     "ResourceChangeDetail":{

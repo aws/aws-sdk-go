@@ -108,6 +108,10 @@ type BackupAPI interface {
 	DescribeCopyJobWithContext(aws.Context, *backup.DescribeCopyJobInput, ...request.Option) (*backup.DescribeCopyJobOutput, error)
 	DescribeCopyJobRequest(*backup.DescribeCopyJobInput) (*request.Request, *backup.DescribeCopyJobOutput)
 
+	DescribeGlobalSettings(*backup.DescribeGlobalSettingsInput) (*backup.DescribeGlobalSettingsOutput, error)
+	DescribeGlobalSettingsWithContext(aws.Context, *backup.DescribeGlobalSettingsInput, ...request.Option) (*backup.DescribeGlobalSettingsOutput, error)
+	DescribeGlobalSettingsRequest(*backup.DescribeGlobalSettingsInput) (*request.Request, *backup.DescribeGlobalSettingsOutput)
+
 	DescribeProtectedResource(*backup.DescribeProtectedResourceInput) (*backup.DescribeProtectedResourceOutput, error)
 	DescribeProtectedResourceWithContext(aws.Context, *backup.DescribeProtectedResourceInput, ...request.Option) (*backup.DescribeProtectedResourceOutput, error)
 	DescribeProtectedResourceRequest(*backup.DescribeProtectedResourceInput) (*request.Request, *backup.DescribeProtectedResourceOutput)
@@ -279,6 +283,10 @@ type BackupAPI interface {
 	UpdateBackupPlan(*backup.UpdateBackupPlanInput) (*backup.UpdateBackupPlanOutput, error)
 	UpdateBackupPlanWithContext(aws.Context, *backup.UpdateBackupPlanInput, ...request.Option) (*backup.UpdateBackupPlanOutput, error)
 	UpdateBackupPlanRequest(*backup.UpdateBackupPlanInput) (*request.Request, *backup.UpdateBackupPlanOutput)
+
+	UpdateGlobalSettings(*backup.UpdateGlobalSettingsInput) (*backup.UpdateGlobalSettingsOutput, error)
+	UpdateGlobalSettingsWithContext(aws.Context, *backup.UpdateGlobalSettingsInput, ...request.Option) (*backup.UpdateGlobalSettingsOutput, error)
+	UpdateGlobalSettingsRequest(*backup.UpdateGlobalSettingsInput) (*request.Request, *backup.UpdateGlobalSettingsOutput)
 
 	UpdateRecoveryPointLifecycle(*backup.UpdateRecoveryPointLifecycleInput) (*backup.UpdateRecoveryPointLifecycleOutput, error)
 	UpdateRecoveryPointLifecycleWithContext(aws.Context, *backup.UpdateRecoveryPointLifecycleInput, ...request.Option) (*backup.UpdateRecoveryPointLifecycleOutput, error)
