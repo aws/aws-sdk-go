@@ -104,6 +104,14 @@ type S3ControlAPI interface {
 	DeletePublicAccessBlockWithContext(aws.Context, *s3control.DeletePublicAccessBlockInput, ...request.Option) (*s3control.DeletePublicAccessBlockOutput, error)
 	DeletePublicAccessBlockRequest(*s3control.DeletePublicAccessBlockInput) (*request.Request, *s3control.DeletePublicAccessBlockOutput)
 
+	DeleteStorageLensConfiguration(*s3control.DeleteStorageLensConfigurationInput) (*s3control.DeleteStorageLensConfigurationOutput, error)
+	DeleteStorageLensConfigurationWithContext(aws.Context, *s3control.DeleteStorageLensConfigurationInput, ...request.Option) (*s3control.DeleteStorageLensConfigurationOutput, error)
+	DeleteStorageLensConfigurationRequest(*s3control.DeleteStorageLensConfigurationInput) (*request.Request, *s3control.DeleteStorageLensConfigurationOutput)
+
+	DeleteStorageLensConfigurationTagging(*s3control.DeleteStorageLensConfigurationTaggingInput) (*s3control.DeleteStorageLensConfigurationTaggingOutput, error)
+	DeleteStorageLensConfigurationTaggingWithContext(aws.Context, *s3control.DeleteStorageLensConfigurationTaggingInput, ...request.Option) (*s3control.DeleteStorageLensConfigurationTaggingOutput, error)
+	DeleteStorageLensConfigurationTaggingRequest(*s3control.DeleteStorageLensConfigurationTaggingInput) (*request.Request, *s3control.DeleteStorageLensConfigurationTaggingOutput)
+
 	DescribeJob(*s3control.DescribeJobInput) (*s3control.DescribeJobOutput, error)
 	DescribeJobWithContext(aws.Context, *s3control.DescribeJobInput, ...request.Option) (*s3control.DescribeJobOutput, error)
 	DescribeJobRequest(*s3control.DescribeJobInput) (*request.Request, *s3control.DescribeJobOutput)
@@ -144,6 +152,14 @@ type S3ControlAPI interface {
 	GetPublicAccessBlockWithContext(aws.Context, *s3control.GetPublicAccessBlockInput, ...request.Option) (*s3control.GetPublicAccessBlockOutput, error)
 	GetPublicAccessBlockRequest(*s3control.GetPublicAccessBlockInput) (*request.Request, *s3control.GetPublicAccessBlockOutput)
 
+	GetStorageLensConfiguration(*s3control.GetStorageLensConfigurationInput) (*s3control.GetStorageLensConfigurationOutput, error)
+	GetStorageLensConfigurationWithContext(aws.Context, *s3control.GetStorageLensConfigurationInput, ...request.Option) (*s3control.GetStorageLensConfigurationOutput, error)
+	GetStorageLensConfigurationRequest(*s3control.GetStorageLensConfigurationInput) (*request.Request, *s3control.GetStorageLensConfigurationOutput)
+
+	GetStorageLensConfigurationTagging(*s3control.GetStorageLensConfigurationTaggingInput) (*s3control.GetStorageLensConfigurationTaggingOutput, error)
+	GetStorageLensConfigurationTaggingWithContext(aws.Context, *s3control.GetStorageLensConfigurationTaggingInput, ...request.Option) (*s3control.GetStorageLensConfigurationTaggingOutput, error)
+	GetStorageLensConfigurationTaggingRequest(*s3control.GetStorageLensConfigurationTaggingInput) (*request.Request, *s3control.GetStorageLensConfigurationTaggingOutput)
+
 	ListAccessPoints(*s3control.ListAccessPointsInput) (*s3control.ListAccessPointsOutput, error)
 	ListAccessPointsWithContext(aws.Context, *s3control.ListAccessPointsInput, ...request.Option) (*s3control.ListAccessPointsOutput, error)
 	ListAccessPointsRequest(*s3control.ListAccessPointsInput) (*request.Request, *s3control.ListAccessPointsOutput)
@@ -164,6 +180,10 @@ type S3ControlAPI interface {
 
 	ListRegionalBucketsPages(*s3control.ListRegionalBucketsInput, func(*s3control.ListRegionalBucketsOutput, bool) bool) error
 	ListRegionalBucketsPagesWithContext(aws.Context, *s3control.ListRegionalBucketsInput, func(*s3control.ListRegionalBucketsOutput, bool) bool, ...request.Option) error
+
+	ListStorageLensConfigurations(*s3control.ListStorageLensConfigurationsInput) (*s3control.ListStorageLensConfigurationsOutput, error)
+	ListStorageLensConfigurationsWithContext(aws.Context, *s3control.ListStorageLensConfigurationsInput, ...request.Option) (*s3control.ListStorageLensConfigurationsOutput, error)
+	ListStorageLensConfigurationsRequest(*s3control.ListStorageLensConfigurationsInput) (*request.Request, *s3control.ListStorageLensConfigurationsOutput)
 
 	PutAccessPointPolicy(*s3control.PutAccessPointPolicyInput) (*s3control.PutAccessPointPolicyOutput, error)
 	PutAccessPointPolicyWithContext(aws.Context, *s3control.PutAccessPointPolicyInput, ...request.Option) (*s3control.PutAccessPointPolicyOutput, error)
@@ -188,6 +208,14 @@ type S3ControlAPI interface {
 	PutPublicAccessBlock(*s3control.PutPublicAccessBlockInput) (*s3control.PutPublicAccessBlockOutput, error)
 	PutPublicAccessBlockWithContext(aws.Context, *s3control.PutPublicAccessBlockInput, ...request.Option) (*s3control.PutPublicAccessBlockOutput, error)
 	PutPublicAccessBlockRequest(*s3control.PutPublicAccessBlockInput) (*request.Request, *s3control.PutPublicAccessBlockOutput)
+
+	PutStorageLensConfiguration(*s3control.PutStorageLensConfigurationInput) (*s3control.PutStorageLensConfigurationOutput, error)
+	PutStorageLensConfigurationWithContext(aws.Context, *s3control.PutStorageLensConfigurationInput, ...request.Option) (*s3control.PutStorageLensConfigurationOutput, error)
+	PutStorageLensConfigurationRequest(*s3control.PutStorageLensConfigurationInput) (*request.Request, *s3control.PutStorageLensConfigurationOutput)
+
+	PutStorageLensConfigurationTagging(*s3control.PutStorageLensConfigurationTaggingInput) (*s3control.PutStorageLensConfigurationTaggingOutput, error)
+	PutStorageLensConfigurationTaggingWithContext(aws.Context, *s3control.PutStorageLensConfigurationTaggingInput, ...request.Option) (*s3control.PutStorageLensConfigurationTaggingOutput, error)
+	PutStorageLensConfigurationTaggingRequest(*s3control.PutStorageLensConfigurationTaggingInput) (*request.Request, *s3control.PutStorageLensConfigurationTaggingOutput)
 
 	UpdateJobPriority(*s3control.UpdateJobPriorityInput) (*s3control.UpdateJobPriorityOutput, error)
 	UpdateJobPriorityWithContext(aws.Context, *s3control.UpdateJobPriorityInput, ...request.Option) (*s3control.UpdateJobPriorityOutput, error)

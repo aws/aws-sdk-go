@@ -1149,6 +1149,85 @@ func (c *Backup) DescribeCopyJobWithContext(ctx aws.Context, input *DescribeCopy
 	return out, req.Send()
 }
 
+const opDescribeGlobalSettings = "DescribeGlobalSettings"
+
+// DescribeGlobalSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeGlobalSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeGlobalSettings for more information on using the DescribeGlobalSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeGlobalSettingsRequest method.
+//    req, resp := client.DescribeGlobalSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeGlobalSettings
+func (c *Backup) DescribeGlobalSettingsRequest(input *DescribeGlobalSettingsInput) (req *request.Request, output *DescribeGlobalSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeGlobalSettings,
+		HTTPMethod: "GET",
+		HTTPPath:   "/global-settings",
+	}
+
+	if input == nil {
+		input = &DescribeGlobalSettingsInput{}
+	}
+
+	output = &DescribeGlobalSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeGlobalSettings API operation for AWS Backup.
+//
+// The current feature settings for the AWS Account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DescribeGlobalSettings for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeGlobalSettings
+func (c *Backup) DescribeGlobalSettings(input *DescribeGlobalSettingsInput) (*DescribeGlobalSettingsOutput, error) {
+	req, out := c.DescribeGlobalSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeGlobalSettingsWithContext is the same as DescribeGlobalSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeGlobalSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DescribeGlobalSettingsWithContext(ctx aws.Context, input *DescribeGlobalSettingsInput, opts ...request.Option) (*DescribeGlobalSettingsOutput, error) {
+	req, out := c.DescribeGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeProtectedResource = "DescribeProtectedResource"
 
 // DescribeProtectedResourceRequest generates a "aws/request.Request" representing the
@@ -1374,11 +1453,12 @@ func (c *Backup) DescribeRegionSettingsRequest(input *DescribeRegionSettingsInpu
 
 // DescribeRegionSettings API operation for AWS Backup.
 //
-// Returns the current service opt-in settings for the Region. If the service
-// has a value set to true, AWS Backup tries to protect that service's resources
-// in this Region, when included in an on-demand backup or scheduled backup
-// plan. If the value is set to false for a service, AWS Backup does not try
-// to protect that service's resources in this Region.
+// Returns the current service opt-in settings for the Region. If service-opt-in
+// is enabled for a service, AWS Backup tries to protect that service's resources
+// in this Region, when the resource is included in an on-demand backup or scheduled
+// backup plan. Otherwise, AWS Backup does not try to protect that service's
+// resources in this Region, AWS Backup does not try to protect that service's
+// resources in this Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4315,6 +4395,10 @@ func (c *Backup) StartBackupJobRequest(input *StartBackupJobInput) (req *request
 //   * MissingParameterValueException
 //   Indicates that a required parameter is missing.
 //
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
 //   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
 //
@@ -4896,6 +4980,98 @@ func (c *Backup) UpdateBackupPlanWithContext(ctx aws.Context, input *UpdateBacku
 	return out, req.Send()
 }
 
+const opUpdateGlobalSettings = "UpdateGlobalSettings"
+
+// UpdateGlobalSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateGlobalSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateGlobalSettings for more information on using the UpdateGlobalSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateGlobalSettingsRequest method.
+//    req, resp := client.UpdateGlobalSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateGlobalSettings
+func (c *Backup) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsInput) (req *request.Request, output *UpdateGlobalSettingsOutput) {
+	op := &request.Operation{
+		Name:       opUpdateGlobalSettings,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/global-settings",
+	}
+
+	if input == nil {
+		input = &UpdateGlobalSettingsInput{}
+	}
+
+	output = &UpdateGlobalSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateGlobalSettings API operation for AWS Backup.
+//
+// Updates the current global settings for the AWS Account. Use the DescribeGlobalSettings
+// API to determine the current settings.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation UpdateGlobalSettings for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateGlobalSettings
+func (c *Backup) UpdateGlobalSettings(input *UpdateGlobalSettingsInput) (*UpdateGlobalSettingsOutput, error) {
+	req, out := c.UpdateGlobalSettingsRequest(input)
+	return out, req.Send()
+}
+
+// UpdateGlobalSettingsWithContext is the same as UpdateGlobalSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateGlobalSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) UpdateGlobalSettingsWithContext(ctx aws.Context, input *UpdateGlobalSettingsInput, opts ...request.Option) (*UpdateGlobalSettingsOutput, error) {
+	req, out := c.UpdateGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRecoveryPointLifecycle = "UpdateRecoveryPointLifecycle"
 
 // UpdateRecoveryPointLifecycleRequest generates a "aws/request.Request" representing the
@@ -5040,11 +5216,12 @@ func (c *Backup) UpdateRegionSettingsRequest(input *UpdateRegionSettingsInput) (
 
 // UpdateRegionSettings API operation for AWS Backup.
 //
-// Updates the current service opt-in settings for the Region. If the service
-// has a value set to true, AWS Backup tries to protect that service's resources
-// in this Region, when included in an on-demand backup or scheduled backup
-// plan. If the value is set to false for a service, AWS Backup does not try
-// to protect that service's resources in this Region.
+// Updates the current service opt-in settings for the Region. If service-opt-in
+// is enabled for a service, AWS Backup tries to protect that service's resources
+// in this Region, when the resource is included in an on-demand backup or scheduled
+// backup plan. Otherwise, AWS Backup does not try to protect that service's
+// resources in this Region. Use the DescribeRegionSettings API to determine
+// the resource types that are supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5093,9 +5270,13 @@ type AdvancedBackupSetting struct {
 	// Specifies the backup option for a selected resource. This option is only
 	// available for Windows VSS backup jobs.
 	//
-	// Valid values: Set to "WindowsVSS”:“enabled" to enable WindowsVSS backup
-	// option and create a VSS Windows backup. Set to “WindowsVSS”:”disabled”
-	// to create a regular backup. The WindowsVSS option is not enabled by default.
+	// Valid values:
+	//
+	// Set to "WindowsVSS":"enabled" to enable the WindowsVSS backup option and
+	// create a VSS Windows backup.
+	//
+	// Set to "WindowsVSS":"disabled" to create a regular backup. The WindowsVSS
+	// option is not enabled by default.
 	//
 	// If you specify an invalid option, you get an InvalidParameterValueException
 	// exception.
@@ -6447,8 +6628,8 @@ type DescribeBackupJobOutput struct {
 	BackupSizeInBytes *int64 `type:"long"`
 
 	// Represents the actual backup type selected for a backup job. For example,
-	// if a successful WindowsVSS backup was taken, BackupType returns “WindowsVSS”.
-	// If BackupType is empty, then it is a regular backup.
+	// if a successful WindowsVSS backup was taken, BackupType returns "WindowsVSS".
+	// If BackupType is empty, then the backup type that was is a regular backup.
 	BackupType *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for
@@ -6839,6 +7020,55 @@ func (s *DescribeCopyJobOutput) SetCopyJob(v *CopyJob) *DescribeCopyJobOutput {
 	return s
 }
 
+type DescribeGlobalSettingsInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeGlobalSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGlobalSettingsInput) GoString() string {
+	return s.String()
+}
+
+type DescribeGlobalSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of resources along with the opt-in preferences for the account.
+	GlobalSettings map[string]*string `type:"map"`
+
+	// The date and time that the global settings was last updated. This update
+	// is in Unix format and Coordinated Universal Time (UTC). The value of LastUpdateTime
+	// is accurate to milliseconds. For example, the value 1516925490.087 represents
+	// Friday, January 26, 2018 12:11:30.087 AM.
+	LastUpdateTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DescribeGlobalSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeGlobalSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalSettings sets the GlobalSettings field's value.
+func (s *DescribeGlobalSettingsOutput) SetGlobalSettings(v map[string]*string) *DescribeGlobalSettingsOutput {
+	s.GlobalSettings = v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *DescribeGlobalSettingsOutput) SetLastUpdateTime(v time.Time) *DescribeGlobalSettingsOutput {
+	s.LastUpdateTime = &v
+	return s
+}
+
 type DescribeProtectedResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7066,6 +7296,12 @@ type DescribeRecoveryPointOutput struct {
 	// Service (Amazon RDS) database.
 	ResourceType *string `type:"string"`
 
+	// An Amazon Resource Name (ARN) that uniquely identifies the source vault where
+	// the resource was originally backed up in; for example, arn:aws:backup:us-east-1:123456789012:vault:BackupVault.
+	// If the recovery is restored to the same AWS account or Region, this value
+	// will be null.
+	SourceBackupVaultArn *string `type:"string"`
+
 	// A status code specifying the state of the recovery point.
 	//
 	// A partial status indicates that the recovery point was not successfully re-created
@@ -7174,6 +7410,12 @@ func (s *DescribeRecoveryPointOutput) SetResourceArn(v string) *DescribeRecovery
 // SetResourceType sets the ResourceType field's value.
 func (s *DescribeRecoveryPointOutput) SetResourceType(v string) *DescribeRecoveryPointOutput {
 	s.ResourceType = &v
+	return s
+}
+
+// SetSourceBackupVaultArn sets the SourceBackupVaultArn field's value.
+func (s *DescribeRecoveryPointOutput) SetSourceBackupVaultArn(v string) *DescribeRecoveryPointOutput {
+	s.SourceBackupVaultArn = &v
 	return s
 }
 
@@ -10656,6 +10898,10 @@ type RecoveryPointByBackupVault struct {
 	// resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
+	// The backup vault where the recovery point was originally copied from. If
+	// the recovery point is restored to the same account this value will be null.
+	SourceBackupVaultArn *string `type:"string"`
+
 	// A status code specifying the state of the recovery point.
 	Status *string `type:"string" enum:"RecoveryPointStatus"`
 }
@@ -10757,6 +11003,12 @@ func (s *RecoveryPointByBackupVault) SetResourceArn(v string) *RecoveryPointByBa
 // SetResourceType sets the ResourceType field's value.
 func (s *RecoveryPointByBackupVault) SetResourceType(v string) *RecoveryPointByBackupVault {
 	s.ResourceType = &v
+	return s
+}
+
+// SetSourceBackupVaultArn sets the SourceBackupVaultArn field's value.
+func (s *RecoveryPointByBackupVault) SetSourceBackupVaultArn(v string) *RecoveryPointByBackupVault {
+	s.SourceBackupVaultArn = &v
 	return s
 }
 
@@ -12384,6 +12636,43 @@ func (s *UpdateBackupPlanOutput) SetCreationDate(v time.Time) *UpdateBackupPlanO
 func (s *UpdateBackupPlanOutput) SetVersionId(v string) *UpdateBackupPlanOutput {
 	s.VersionId = &v
 	return s
+}
+
+type UpdateGlobalSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of resources along with the opt-in preferences for the account.
+	GlobalSettings map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s UpdateGlobalSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGlobalSettingsInput) GoString() string {
+	return s.String()
+}
+
+// SetGlobalSettings sets the GlobalSettings field's value.
+func (s *UpdateGlobalSettingsInput) SetGlobalSettings(v map[string]*string) *UpdateGlobalSettingsInput {
+	s.GlobalSettings = v
+	return s
+}
+
+type UpdateGlobalSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateGlobalSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateGlobalSettingsOutput) GoString() string {
+	return s.String()
 }
 
 type UpdateRecoveryPointLifecycleInput struct {

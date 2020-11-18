@@ -816,7 +816,9 @@ type CreateOutpostInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The name of the Outpost.
-	Name *string `min:"1" type:"string"`
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
 
 	// The ID of the site.
 	//
@@ -845,6 +847,9 @@ func (s *CreateOutpostInput) Validate() error {
 	}
 	if s.Description != nil && len(*s.Description) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
