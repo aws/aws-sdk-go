@@ -841,6 +841,16 @@
         "CustomPayload"
       ]
     },
+    "ContextTimeToLiveInSeconds":{
+      "type":"integer",
+      "max":86400,
+      "min":5
+    },
+    "ContextTurnsToLive":{
+      "type":"integer",
+      "max":20,
+      "min":1
+    },
     "ConversationLogsRequest":{
       "type":"structure",
       "required":[
@@ -924,7 +934,9 @@
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
-        "kendraConfiguration":{"shape":"KendraConfiguration"}
+        "kendraConfiguration":{"shape":"KendraConfiguration"},
+        "inputContexts":{"shape":"InputContextList"},
+        "outputContexts":{"shape":"OutputContextList"}
       }
     },
     "CreateSlotTypeVersionRequest":{
@@ -1608,7 +1620,9 @@
         "createdDate":{"shape":"Timestamp"},
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
-        "kendraConfiguration":{"shape":"KendraConfiguration"}
+        "kendraConfiguration":{"shape":"KendraConfiguration"},
+        "inputContexts":{"shape":"InputContextList"},
+        "outputContexts":{"shape":"OutputContextList"}
       }
     },
     "GetIntentVersionsRequest":{
@@ -1806,6 +1820,25 @@
         "COMPLETE",
         "FAILED"
       ]
+    },
+    "InputContext":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"InputContextName"}
+      }
+    },
+    "InputContextList":{
+      "type":"list",
+      "member":{"shape":"InputContext"},
+      "max":5,
+      "min":0
+    },
+    "InputContextName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([A-Za-z]_?)+$"
     },
     "Intent":{
       "type":"structure",
@@ -2046,6 +2079,31 @@
         "DEFAULT_OBFUSCATION"
       ]
     },
+    "OutputContext":{
+      "type":"structure",
+      "required":[
+        "name",
+        "timeToLiveInSeconds",
+        "turnsToLive"
+      ],
+      "members":{
+        "name":{"shape":"OutputContextName"},
+        "timeToLiveInSeconds":{"shape":"ContextTimeToLiveInSeconds"},
+        "turnsToLive":{"shape":"ContextTurnsToLive"}
+      }
+    },
+    "OutputContextList":{
+      "type":"list",
+      "member":{"shape":"OutputContext"},
+      "max":10,
+      "min":0
+    },
+    "OutputContextName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([A-Za-z]_?)+$"
+    },
     "PreconditionFailedException":{
       "type":"structure",
       "members":{
@@ -2198,7 +2256,9 @@
         "parentIntentSignature":{"shape":"BuiltinIntentSignature"},
         "checksum":{"shape":"String"},
         "createVersion":{"shape":"Boolean"},
-        "kendraConfiguration":{"shape":"KendraConfiguration"}
+        "kendraConfiguration":{"shape":"KendraConfiguration"},
+        "inputContexts":{"shape":"InputContextList"},
+        "outputContexts":{"shape":"OutputContextList"}
       }
     },
     "PutIntentResponse":{
@@ -2220,7 +2280,9 @@
         "version":{"shape":"Version"},
         "checksum":{"shape":"String"},
         "createVersion":{"shape":"Boolean"},
-        "kendraConfiguration":{"shape":"KendraConfiguration"}
+        "kendraConfiguration":{"shape":"KendraConfiguration"},
+        "inputContexts":{"shape":"InputContextList"},
+        "outputContexts":{"shape":"OutputContextList"}
       }
     },
     "PutSlotTypeRequest":{
@@ -2335,7 +2397,8 @@
         "priority":{"shape":"Priority"},
         "sampleUtterances":{"shape":"SlotUtteranceList"},
         "responseCard":{"shape":"ResponseCard"},
-        "obfuscationSetting":{"shape":"ObfuscationSetting"}
+        "obfuscationSetting":{"shape":"ObfuscationSetting"},
+        "defaultValueSpec":{"shape":"SlotDefaultValueSpec"}
       }
     },
     "SlotConstraint":{
@@ -2344,6 +2407,31 @@
         "Required",
         "Optional"
       ]
+    },
+    "SlotDefaultValue":{
+      "type":"structure",
+      "required":["defaultValue"],
+      "members":{
+        "defaultValue":{"shape":"SlotDefaultValueString"}
+      }
+    },
+    "SlotDefaultValueList":{
+      "type":"list",
+      "member":{"shape":"SlotDefaultValue"},
+      "max":10,
+      "min":0
+    },
+    "SlotDefaultValueSpec":{
+      "type":"structure",
+      "required":["defaultValueList"],
+      "members":{
+        "defaultValueList":{"shape":"SlotDefaultValueList"}
+      }
+    },
+    "SlotDefaultValueString":{
+      "type":"string",
+      "max":202,
+      "min":1
     },
     "SlotList":{
       "type":"list",

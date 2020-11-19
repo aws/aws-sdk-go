@@ -4496,6 +4496,10 @@
           "shape": "DeviceSettingsSyncState",
           "locationName": "deviceSettingsSyncState"
         },
+        "DeviceUpdateStatus": {
+          "shape": "DeviceUpdateStatus",
+          "locationName": "deviceUpdateStatus"
+        },
         "HdDeviceSettings": {
           "shape": "InputDeviceHdSettings",
           "locationName": "hdDeviceSettings"
@@ -4990,6 +4994,13 @@
       "enum": [
         "SYNCED",
         "SYNCING"
+      ]
+    },
+    "DeviceUpdateStatus": {
+      "type": "string",
+      "enum": [
+        "UP_TO_DATE",
+        "NOT_UP_TO_DATE"
       ]
     },
     "DvbNitSettings": {
@@ -7222,6 +7233,10 @@
           "shape": "DeviceSettingsSyncState",
           "locationName": "deviceSettingsSyncState"
         },
+        "DeviceUpdateStatus": {
+          "shape": "DeviceUpdateStatus",
+          "locationName": "deviceUpdateStatus"
+        },
         "HdDeviceSettings": {
           "shape": "InputDeviceHdSettings",
           "locationName": "hdDeviceSettings"
@@ -7415,6 +7430,10 @@
         "DeviceSettingsSyncState": {
           "shape": "DeviceSettingsSyncState",
           "locationName": "deviceSettingsSyncState"
+        },
+        "DeviceUpdateStatus": {
+          "shape": "DeviceUpdateStatus",
+          "locationName": "deviceUpdateStatus"
         },
         "HdDeviceSettings": {
           "shape": "InputDeviceHdSettings",
@@ -11652,6 +11671,10 @@
         "DeviceSettingsSyncState": {
           "shape": "DeviceSettingsSyncState",
           "locationName": "deviceSettingsSyncState"
+        },
+        "DeviceUpdateStatus": {
+          "shape": "DeviceUpdateStatus",
+          "locationName": "deviceUpdateStatus"
         },
         "HdDeviceSettings": {
           "shape": "InputDeviceHdSettings",

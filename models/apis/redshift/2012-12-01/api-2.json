@@ -1896,7 +1896,8 @@
         "ExpectedNextSnapshotScheduleTime":{"shape":"TStamp"},
         "ExpectedNextSnapshotScheduleTimeStatus":{"shape":"String"},
         "NextMaintenanceWindowStartTime":{"shape":"TStamp"},
-        "ResizeInfo":{"shape":"ResizeInfo"}
+        "ResizeInfo":{"shape":"ResizeInfo"},
+        "ClusterNamespaceArn":{"shape":"String"}
       },
       "wrapper":true
     },

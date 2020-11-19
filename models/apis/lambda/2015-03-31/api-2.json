@@ -1327,6 +1327,8 @@
       "type":"structure",
       "members":{
         "UUID":{"shape":"String"},
+        "StartingPosition":{"shape":"EventSourcePosition"},
+        "StartingPositionTimestamp":{"shape":"Date"},
         "BatchSize":{"shape":"BatchSize"},
         "MaximumBatchingWindowInSeconds":{"shape":"MaximumBatchingWindowInSeconds"},
         "ParallelizationFactor":{"shape":"ParallelizationFactor"},

@@ -3324,6 +3324,12 @@ func (c *Redshift) DescribeClusterDbRevisionsRequest(input *DescribeClusterDbRev
 		Name:       opDescribeClusterDbRevisions,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -3373,6 +3379,58 @@ func (c *Redshift) DescribeClusterDbRevisionsWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeClusterDbRevisionsPages iterates over the pages of a DescribeClusterDbRevisions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeClusterDbRevisions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeClusterDbRevisions operation.
+//    pageNum := 0
+//    err := client.DescribeClusterDbRevisionsPages(params,
+//        func(page *redshift.DescribeClusterDbRevisionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeClusterDbRevisionsPages(input *DescribeClusterDbRevisionsInput, fn func(*DescribeClusterDbRevisionsOutput, bool) bool) error {
+	return c.DescribeClusterDbRevisionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeClusterDbRevisionsPagesWithContext same as DescribeClusterDbRevisionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeClusterDbRevisionsPagesWithContext(ctx aws.Context, input *DescribeClusterDbRevisionsInput, fn func(*DescribeClusterDbRevisionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeClusterDbRevisionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeClusterDbRevisionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeClusterDbRevisionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeClusterParameterGroups = "DescribeClusterParameterGroups"
@@ -4179,6 +4237,12 @@ func (c *Redshift) DescribeClusterTracksRequest(input *DescribeClusterTracksInpu
 		Name:       opDescribeClusterTracks,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -4228,6 +4292,58 @@ func (c *Redshift) DescribeClusterTracksWithContext(ctx aws.Context, input *Desc
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeClusterTracksPages iterates over the pages of a DescribeClusterTracks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeClusterTracks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeClusterTracks operation.
+//    pageNum := 0
+//    err := client.DescribeClusterTracksPages(params,
+//        func(page *redshift.DescribeClusterTracksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeClusterTracksPages(input *DescribeClusterTracksInput, fn func(*DescribeClusterTracksOutput, bool) bool) error {
+	return c.DescribeClusterTracksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeClusterTracksPagesWithContext same as DescribeClusterTracksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeClusterTracksPagesWithContext(ctx aws.Context, input *DescribeClusterTracksInput, fn func(*DescribeClusterTracksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeClusterTracksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeClusterTracksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeClusterTracksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeClusterVersions = "DescribeClusterVersions"
@@ -6245,6 +6361,12 @@ func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopy
 		Name:       opDescribeSnapshotCopyGrants,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6302,6 +6424,58 @@ func (c *Redshift) DescribeSnapshotCopyGrantsWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// DescribeSnapshotCopyGrantsPages iterates over the pages of a DescribeSnapshotCopyGrants operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSnapshotCopyGrants method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeSnapshotCopyGrants operation.
+//    pageNum := 0
+//    err := client.DescribeSnapshotCopyGrantsPages(params,
+//        func(page *redshift.DescribeSnapshotCopyGrantsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeSnapshotCopyGrantsPages(input *DescribeSnapshotCopyGrantsInput, fn func(*DescribeSnapshotCopyGrantsOutput, bool) bool) error {
+	return c.DescribeSnapshotCopyGrantsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeSnapshotCopyGrantsPagesWithContext same as DescribeSnapshotCopyGrantsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeSnapshotCopyGrantsPagesWithContext(ctx aws.Context, input *DescribeSnapshotCopyGrantsInput, fn func(*DescribeSnapshotCopyGrantsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeSnapshotCopyGrantsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeSnapshotCopyGrantsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeSnapshotCopyGrantsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeSnapshotSchedules = "DescribeSnapshotSchedules"
 
 // DescribeSnapshotSchedulesRequest generates a "aws/request.Request" representing the
@@ -6333,6 +6507,12 @@ func (c *Redshift) DescribeSnapshotSchedulesRequest(input *DescribeSnapshotSched
 		Name:       opDescribeSnapshotSchedules,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6374,6 +6554,58 @@ func (c *Redshift) DescribeSnapshotSchedulesWithContext(ctx aws.Context, input *
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeSnapshotSchedulesPages iterates over the pages of a DescribeSnapshotSchedules operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeSnapshotSchedules method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeSnapshotSchedules operation.
+//    pageNum := 0
+//    err := client.DescribeSnapshotSchedulesPages(params,
+//        func(page *redshift.DescribeSnapshotSchedulesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeSnapshotSchedulesPages(input *DescribeSnapshotSchedulesInput, fn func(*DescribeSnapshotSchedulesOutput, bool) bool) error {
+	return c.DescribeSnapshotSchedulesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeSnapshotSchedulesPagesWithContext same as DescribeSnapshotSchedulesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeSnapshotSchedulesPagesWithContext(ctx aws.Context, input *DescribeSnapshotSchedulesInput, fn func(*DescribeSnapshotSchedulesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeSnapshotSchedulesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeSnapshotSchedulesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeSnapshotSchedulesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeStorage = "DescribeStorage"
@@ -6481,6 +6713,12 @@ func (c *Redshift) DescribeTableRestoreStatusRequest(input *DescribeTableRestore
 		Name:       opDescribeTableRestoreStatus,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6536,6 +6774,58 @@ func (c *Redshift) DescribeTableRestoreStatusWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+// DescribeTableRestoreStatusPages iterates over the pages of a DescribeTableRestoreStatus operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTableRestoreStatus method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeTableRestoreStatus operation.
+//    pageNum := 0
+//    err := client.DescribeTableRestoreStatusPages(params,
+//        func(page *redshift.DescribeTableRestoreStatusOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeTableRestoreStatusPages(input *DescribeTableRestoreStatusInput, fn func(*DescribeTableRestoreStatusOutput, bool) bool) error {
+	return c.DescribeTableRestoreStatusPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTableRestoreStatusPagesWithContext same as DescribeTableRestoreStatusPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeTableRestoreStatusPagesWithContext(ctx aws.Context, input *DescribeTableRestoreStatusInput, fn func(*DescribeTableRestoreStatusOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeTableRestoreStatusInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeTableRestoreStatusRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeTableRestoreStatusOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opDescribeTags = "DescribeTags"
 
 // DescribeTagsRequest generates a "aws/request.Request" representing the
@@ -6567,6 +6857,12 @@ func (c *Redshift) DescribeTagsRequest(input *DescribeTagsInput) (req *request.R
 		Name:       opDescribeTags,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -6638,6 +6934,58 @@ func (c *Redshift) DescribeTagsWithContext(ctx aws.Context, input *DescribeTagsI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// DescribeTagsPages iterates over the pages of a DescribeTags operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeTags method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeTags operation.
+//    pageNum := 0
+//    err := client.DescribeTagsPages(params,
+//        func(page *redshift.DescribeTagsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) DescribeTagsPages(input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool) error {
+	return c.DescribeTagsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeTagsPagesWithContext same as DescribeTagsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeTagsPagesWithContext(ctx aws.Context, input *DescribeTagsInput, fn func(*DescribeTagsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeTagsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeTagsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeTagsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opDescribeUsageLimits = "DescribeUsageLimits"
@@ -7316,6 +7664,12 @@ func (c *Redshift) GetReservedNodeExchangeOfferingsRequest(input *GetReservedNod
 		Name:       opGetReservedNodeExchangeOfferings,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"Marker"},
+			OutputTokens:    []string{"Marker"},
+			LimitToken:      "MaxRecords",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -7379,6 +7733,58 @@ func (c *Redshift) GetReservedNodeExchangeOfferingsWithContext(ctx aws.Context, 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// GetReservedNodeExchangeOfferingsPages iterates over the pages of a GetReservedNodeExchangeOfferings operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetReservedNodeExchangeOfferings method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetReservedNodeExchangeOfferings operation.
+//    pageNum := 0
+//    err := client.GetReservedNodeExchangeOfferingsPages(params,
+//        func(page *redshift.GetReservedNodeExchangeOfferingsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Redshift) GetReservedNodeExchangeOfferingsPages(input *GetReservedNodeExchangeOfferingsInput, fn func(*GetReservedNodeExchangeOfferingsOutput, bool) bool) error {
+	return c.GetReservedNodeExchangeOfferingsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetReservedNodeExchangeOfferingsPagesWithContext same as GetReservedNodeExchangeOfferingsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) GetReservedNodeExchangeOfferingsPagesWithContext(ctx aws.Context, input *GetReservedNodeExchangeOfferingsInput, fn func(*GetReservedNodeExchangeOfferingsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetReservedNodeExchangeOfferingsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetReservedNodeExchangeOfferingsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetReservedNodeExchangeOfferingsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opModifyCluster = "ModifyCluster"
@@ -10558,6 +10964,9 @@ type Cluster struct {
 	// The unique identifier of the cluster.
 	ClusterIdentifier *string `type:"string"`
 
+	// The namespace Amazon Resource Name (ARN) of the cluster.
+	ClusterNamespaceArn *string `type:"string"`
+
 	// The nodes in the cluster.
 	ClusterNodes []*ClusterNode `type:"list"`
 
@@ -10812,6 +11221,12 @@ func (s *Cluster) SetClusterCreateTime(v time.Time) *Cluster {
 // SetClusterIdentifier sets the ClusterIdentifier field's value.
 func (s *Cluster) SetClusterIdentifier(v string) *Cluster {
 	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetClusterNamespaceArn sets the ClusterNamespaceArn field's value.
+func (s *Cluster) SetClusterNamespaceArn(v string) *Cluster {
+	s.ClusterNamespaceArn = &v
 	return s
 }
 

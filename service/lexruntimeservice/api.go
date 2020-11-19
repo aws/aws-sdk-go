@@ -635,6 +635,138 @@ func (c *LexRuntimeService) PutSessionWithContext(ctx aws.Context, input *PutSes
 	return out, req.Send()
 }
 
+// A context is a variable that contains information about the current state
+// of the conversation between a user and Amazon Lex. Context can be set automatically
+// by Amazon Lex when an intent is fulfilled, or it can be set at runtime using
+// the PutContent, PutText, or PutSession operation.
+type ActiveContext struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the context.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// State variables for the current context. You can use these values as default
+	// values for slots in subsequent events.
+	//
+	// Parameters is a required field
+	Parameters map[string]*string `locationName:"parameters" type:"map" required:"true"`
+
+	// The length of time or number of turns that a context remains active.
+	//
+	// TimeToLive is a required field
+	TimeToLive *ActiveContextTimeToLive `locationName:"timeToLive" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ActiveContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActiveContext) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActiveContext) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActiveContext"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.TimeToLive == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeToLive"))
+	}
+	if s.TimeToLive != nil {
+		if err := s.TimeToLive.Validate(); err != nil {
+			invalidParams.AddNested("TimeToLive", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ActiveContext) SetName(v string) *ActiveContext {
+	s.Name = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ActiveContext) SetParameters(v map[string]*string) *ActiveContext {
+	s.Parameters = v
+	return s
+}
+
+// SetTimeToLive sets the TimeToLive field's value.
+func (s *ActiveContext) SetTimeToLive(v *ActiveContextTimeToLive) *ActiveContext {
+	s.TimeToLive = v
+	return s
+}
+
+// The length of time or number of turns that a context remains active.
+type ActiveContextTimeToLive struct {
+	_ struct{} `type:"structure"`
+
+	// The number of seconds that the context should be active after it is first
+	// sent in a PostContent or PostText response. You can set the value between
+	// 5 and 86,400 seconds (24 hours).
+	TimeToLiveInSeconds *int64 `locationName:"timeToLiveInSeconds" min:"5" type:"integer"`
+
+	// The number of conversation turns that the context should be active. A conversation
+	// turn is one PostContent or PostText request and the corresponding response
+	// from Amazon Lex.
+	TurnsToLive *int64 `locationName:"turnsToLive" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s ActiveContextTimeToLive) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActiveContextTimeToLive) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ActiveContextTimeToLive) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ActiveContextTimeToLive"}
+	if s.TimeToLiveInSeconds != nil && *s.TimeToLiveInSeconds < 5 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeToLiveInSeconds", 5))
+	}
+	if s.TurnsToLive != nil && *s.TurnsToLive < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TurnsToLive", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeToLiveInSeconds sets the TimeToLiveInSeconds field's value.
+func (s *ActiveContextTimeToLive) SetTimeToLiveInSeconds(v int64) *ActiveContextTimeToLive {
+	s.TimeToLiveInSeconds = &v
+	return s
+}
+
+// SetTurnsToLive sets the TurnsToLive field's value.
+func (s *ActiveContextTimeToLive) SetTurnsToLive(v int64) *ActiveContextTimeToLive {
+	s.TurnsToLive = &v
+	return s
+}
+
 // Either the Amazon Lex bot is still building, or one of the dependent services
 // (Amazon Polly, AWS Lambda) failed with an internal service error.
 type BadGatewayException struct {
@@ -1323,6 +1455,13 @@ func (s *GetSessionInput) SetUserId(v string) *GetSessionInput {
 type GetSessionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of active contexts for the session. A context can be set when an intent
+	// is fulfilled or by calling the PostContent, PostText, or PutSession operation.
+	//
+	// You can use a context to control the intents that can follow up an intent,
+	// or to modify the operation of your application.
+	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list" sensitive:"true"`
+
 	// Describes the current state of the bot.
 	DialogAction *DialogAction `locationName:"dialogAction" type:"structure"`
 
@@ -1352,6 +1491,12 @@ func (s GetSessionOutput) String() string {
 // GoString returns the string representation
 func (s GetSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *GetSessionOutput) SetActiveContexts(v []*ActiveContext) *GetSessionOutput {
+	s.ActiveContexts = v
+	return s
 }
 
 // SetDialogAction sets the DialogAction field's value.
@@ -1849,6 +1994,14 @@ type PostContentInput struct {
 	//    text/plain; charset=utf-8 audio/* (defaults to mpeg)
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
+	// A list of contexts active for the request. A context can be activated when
+	// a previous intent is fulfilled, or by including the context in the request,
+	//
+	// If you don't specify a list of contexts, Amazon Lex will use the current
+	// list of contexts for the session. If you specify an empty list, all contexts
+	// for the session are cleared.
+	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
+
 	// Alias of the Amazon Lex bot.
 	//
 	// BotAlias is a required field
@@ -1992,6 +2145,12 @@ func (s *PostContentInput) SetAccept(v string) *PostContentInput {
 	return s
 }
 
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *PostContentInput) SetActiveContexts(v aws.JSONValue) *PostContentInput {
+	s.ActiveContexts = v
+	return s
+}
+
 // SetBotAlias sets the BotAlias field's value.
 func (s *PostContentInput) SetBotAlias(v string) *PostContentInput {
 	s.BotAlias = &v
@@ -2037,6 +2196,13 @@ func (s *PostContentInput) SetUserId(v string) *PostContentInput {
 type PostContentOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
+	// A list of active contexts for the session. A context can be set when an intent
+	// is fulfilled or by calling the PostContent, PostText, or PutSession operation.
+	//
+	// You can use a context to control the intents that can follow up an intent,
+	// or to modify the operation of your application.
+	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
+
 	// One to four alternative intents that may be applicable to the user's intent.
 	//
 	// Each alternative includes a score that indicates how confident Amazon Lex
@@ -2056,14 +2222,6 @@ type PostContentOutput struct {
 	// The version of the bot that responded to the conversation. You can use this
 	// information to help determine if one version of a bot is performing better
 	// than another version.
-	//
-	// If you have enabled the new natural language understanding (NLU) model, you
-	// can use this to determine if the improvement is due to changes to the bot
-	// or changes to the NLU.
-	//
-	// For more information about enabling the new NLU, see the enableModelImprovements
-	// (https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements)
-	// parameter of the PutBot operation.
 	BotVersion *string `location:"header" locationName:"x-amz-lex-bot-version" min:"1" type:"string"`
 
 	// Content type as specified in the Accept HTTP header in the request.
@@ -2154,7 +2312,7 @@ type PostContentOutput struct {
 	// and 1.0.
 	//
 	// The score is a relative score, not an absolute score. The score may change
-	// based on improvements to the Amazon Lex NLU.
+	// based on improvements to Amazon Lex.
 	NluIntentConfidence aws.JSONValue `location:"header" locationName:"x-amz-lex-nlu-intent-confidence" type:"jsonvalue"`
 
 	// The sentiment expressed in an utterance.
@@ -2195,6 +2353,12 @@ func (s PostContentOutput) String() string {
 // GoString returns the string representation
 func (s PostContentOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *PostContentOutput) SetActiveContexts(v aws.JSONValue) *PostContentOutput {
+	s.ActiveContexts = v
+	return s
 }
 
 // SetAlternativeIntents sets the AlternativeIntents field's value.
@@ -2290,6 +2454,14 @@ func (s *PostContentOutput) SetSlots(v aws.JSONValue) *PostContentOutput {
 type PostTextInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of contexts active for the request. A context can be activated when
+	// a previous intent is fulfilled, or by including the context in the request,
+	//
+	// If you don't specify a list of contexts, Amazon Lex will use the current
+	// list of contexts for the session. If you specify an empty list, all contexts
+	// for the session are cleared.
+	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list" sensitive:"true"`
+
 	// The alias of the Amazon Lex bot.
 	//
 	// BotAlias is a required field
@@ -2383,11 +2555,27 @@ func (s *PostTextInput) Validate() error {
 	if s.UserId != nil && len(*s.UserId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
 	}
+	if s.ActiveContexts != nil {
+		for i, v := range s.ActiveContexts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ActiveContexts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *PostTextInput) SetActiveContexts(v []*ActiveContext) *PostTextInput {
+	s.ActiveContexts = v
+	return s
 }
 
 // SetBotAlias sets the BotAlias field's value.
@@ -2429,6 +2617,13 @@ func (s *PostTextInput) SetUserId(v string) *PostTextInput {
 type PostTextOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of active contexts for the session. A context can be set when an intent
+	// is fulfilled or by calling the PostContent, PostText, or PutSession operation.
+	//
+	// You can use a context to control the intents that can follow up an intent,
+	// or to modify the operation of your application.
+	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list" sensitive:"true"`
+
 	// One to four alternative intents that may be applicable to the user's intent.
 	//
 	// Each alternative includes a score that indicates how confident Amazon Lex
@@ -2439,14 +2634,6 @@ type PostTextOutput struct {
 	// The version of the bot that responded to the conversation. You can use this
 	// information to help determine if one version of a bot is performing better
 	// than another version.
-	//
-	// If you have enabled the new natural language understanding (NLU) model, you
-	// can use this to determine if the improvement is due to changes to the bot
-	// or changes to the NLU.
-	//
-	// For more information about enabling the new NLU, see the enableModelImprovements
-	// (https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements)
-	// parameter of the PutBot operation.
 	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
 
 	// Identifies the current state of the user interaction. Amazon Lex returns
@@ -2527,8 +2714,7 @@ type PostTextOutput struct {
 	// and 1.0. For more information, see Confidence Scores (https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html).
 	//
 	// The score is a relative score, not an absolute score. The score may change
-	// based on improvements to the Amazon Lex natural language understanding (NLU)
-	// model.
+	// based on improvements to Amazon Lex.
 	NluIntentConfidence *IntentConfidence `locationName:"nluIntentConfidence" type:"structure"`
 
 	// Represents the options that the user has to respond to the current prompt.
@@ -2573,6 +2759,12 @@ func (s PostTextOutput) String() string {
 // GoString returns the string representation
 func (s PostTextOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *PostTextOutput) SetActiveContexts(v []*ActiveContext) *PostTextOutput {
+	s.ActiveContexts = v
+	return s
 }
 
 // SetAlternativeIntents sets the AlternativeIntents field's value.
@@ -2719,6 +2911,14 @@ type PutSessionInput struct {
 	//    audio/* (defaults to mpeg) text/plain; charset=utf-8
 	Accept *string `location:"header" locationName:"Accept" type:"string"`
 
+	// A list of contexts active for the request. A context can be activated when
+	// a previous intent is fulfilled, or by including the context in the request,
+	//
+	// If you don't specify a list of contexts, Amazon Lex will use the current
+	// list of contexts for the session. If you specify an empty list, all contexts
+	// for the session are cleared.
+	ActiveContexts []*ActiveContext `locationName:"activeContexts" type:"list" sensitive:"true"`
+
 	// The alias in use for the bot that contains the session data.
 	//
 	// BotAlias is a required field
@@ -2796,6 +2996,16 @@ func (s *PutSessionInput) Validate() error {
 	if s.UserId != nil && len(*s.UserId) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("UserId", 2))
 	}
+	if s.ActiveContexts != nil {
+		for i, v := range s.ActiveContexts {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ActiveContexts", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.DialogAction != nil {
 		if err := s.DialogAction.Validate(); err != nil {
 			invalidParams.AddNested("DialogAction", err.(request.ErrInvalidParams))
@@ -2821,6 +3031,12 @@ func (s *PutSessionInput) Validate() error {
 // SetAccept sets the Accept field's value.
 func (s *PutSessionInput) SetAccept(v string) *PutSessionInput {
 	s.Accept = &v
+	return s
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *PutSessionInput) SetActiveContexts(v []*ActiveContext) *PutSessionInput {
+	s.ActiveContexts = v
 	return s
 }
 
@@ -2862,6 +3078,9 @@ func (s *PutSessionInput) SetUserId(v string) *PutSessionInput {
 
 type PutSessionOutput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
+
+	// A list of active contexts for the session.
+	ActiveContexts aws.JSONValue `location:"header" locationName:"x-amz-lex-active-contexts" type:"jsonvalue"`
 
 	// The audio version of the message to convey to the user.
 	AudioStream io.ReadCloser `locationName:"audioStream" type:"blob"`
@@ -2939,6 +3158,12 @@ func (s PutSessionOutput) String() string {
 // GoString returns the string representation
 func (s PutSessionOutput) GoString() string {
 	return s.String()
+}
+
+// SetActiveContexts sets the ActiveContexts field's value.
+func (s *PutSessionOutput) SetActiveContexts(v aws.JSONValue) *PutSessionOutput {
+	s.ActiveContexts = v
+	return s
 }
 
 // SetAudioStream sets the AudioStream field's value.

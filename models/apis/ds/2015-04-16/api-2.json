@@ -47,6 +47,27 @@
         {"shape":"ServiceException"}
       ]
     },
+    "AddRegion":{
+      "name":"AddRegion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddRegionRequest"},
+      "output":{"shape":"AddRegionResult"},
+      "errors":[
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"EntityDoesNotExistException"},
+        {"shape":"DirectoryAlreadyInRegionException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"RegionLimitExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "AddTagsToResource":{
       "name":"AddTagsToResource",
       "http":{
@@ -436,6 +457,24 @@
         {"shape":"ServiceException"}
       ]
     },
+    "DescribeRegions":{
+      "name":"DescribeRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeRegionsRequest"},
+      "output":{"shape":"DescribeRegionsResult"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DescribeSharedDirectories":{
       "name":"DescribeSharedDirectories",
       "http":{
@@ -759,6 +798,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "RemoveRegion":{
+      "name":"RemoveRegion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveRegionRequest"},
+      "output":{"shape":"RemoveRegionResult"},
+      "errors":[
+        {"shape":"DirectoryUnavailableException"},
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "RemoveTagsFromResource":{
       "name":"RemoveTagsFromResource",
       "http":{
@@ -987,6 +1043,24 @@
       "members":{
       }
     },
+    "AddRegionRequest":{
+      "type":"structure",
+      "required":[
+        "DirectoryId",
+        "RegionName",
+        "VPCSettings"
+      ],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RegionName":{"shape":"RegionName"},
+        "VPCSettings":{"shape":"DirectoryVpcSettings"}
+      }
+    },
+    "AddRegionResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "AddTagsToResourceRequest":{
       "type":"structure",
       "required":[
@@ -1004,6 +1078,10 @@
       }
     },
     "AddedDateTime":{"type":"timestamp"},
+    "AdditionalRegions":{
+      "type":"list",
+      "member":{"shape":"RegionName"}
+    },
     "AliasName":{
       "type":"string",
       "max":62,
@@ -1578,6 +1656,22 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeRegionsRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RegionName":{"shape":"RegionName"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeRegionsResult":{
+      "type":"structure",
+      "members":{
+        "RegionsDescription":{"shape":"RegionsDescription"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DescribeSharedDirectoriesRequest":{
       "type":"structure",
       "required":["OwnerDirectoryId"],
@@ -1636,6 +1730,14 @@
     "DesiredNumberOfDomainControllers":{
       "type":"integer",
       "min":2
+    },
+    "DirectoryAlreadyInRegionException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
     },
     "DirectoryAlreadySharedException":{
       "type":"structure",
@@ -1697,7 +1799,8 @@
         "StageReason":{"shape":"StageReason"},
         "SsoEnabled":{"shape":"SsoEnabled"},
         "DesiredNumberOfDomainControllers":{"shape":"DesiredNumberOfDomainControllers"},
-        "OwnerDirectoryDescription":{"shape":"OwnerDirectoryDescription"}
+        "OwnerDirectoryDescription":{"shape":"OwnerDirectoryDescription"},
+        "RegionsInfo":{"shape":"RegionsInfo"}
       }
     },
     "DirectoryDescriptions":{
@@ -1763,7 +1866,7 @@
     },
     "DirectoryShortName":{
       "type":"string",
-      "pattern":"^[^\\\\/:*?\\\"\\<\\>|.]+[^\\\\/:*?\\\"<>|]*$"
+      "pattern":"^[^\\\\/:*?\"<>|.]+[^\\\\/:*?\"<>|]*$"
     },
     "DirectorySize":{
       "type":"string",
@@ -2370,6 +2473,51 @@
       "max":20,
       "min":1
     },
+    "RegionDescription":{
+      "type":"structure",
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "RegionName":{"shape":"RegionName"},
+        "RegionType":{"shape":"RegionType"},
+        "Status":{"shape":"DirectoryStage"},
+        "VpcSettings":{"shape":"DirectoryVpcSettings"},
+        "DesiredNumberOfDomainControllers":{"shape":"DesiredNumberOfDomainControllers"},
+        "LaunchTime":{"shape":"LaunchTime"},
+        "StatusLastUpdatedDateTime":{"shape":"StateLastUpdatedDateTime"},
+        "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"}
+      }
+    },
+    "RegionLimitExceededException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ExceptionMessage"},
+        "RequestId":{"shape":"RequestId"}
+      },
+      "exception":true
+    },
+    "RegionName":{
+      "type":"string",
+      "max":32,
+      "min":8
+    },
+    "RegionType":{
+      "type":"string",
+      "enum":[
+        "Primary",
+        "Additional"
+      ]
+    },
+    "RegionsDescription":{
+      "type":"list",
+      "member":{"shape":"RegionDescription"}
+    },
+    "RegionsInfo":{
+      "type":"structure",
+      "members":{
+        "PrimaryRegion":{"shape":"RegionName"},
+        "AdditionalRegions":{"shape":"AdditionalRegions"}
+      }
+    },
     "RegisterCertificateRequest":{
       "type":"structure",
       "required":[
@@ -2436,6 +2584,18 @@
       }
     },
     "RemoveIpRoutesResult":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RemoveRegionRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"}
+      }
+    },
+    "RemoveRegionResult":{
       "type":"structure",
       "members":{
       }

@@ -901,8 +901,11 @@ func (c *CostExplorer) GetCostAndUsageRequest(input *GetCostAndUsageInput) (req 
 // you want the request to return. You can also filter and group your data by
 // various dimensions, such as SERVICE or AZ, in a specific time range. For
 // a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
-// operation. Master account in an organization in AWS Organizations have access
-// to all member accounts.
+// operation. Management account in an organization in AWS Organizations have
+// access to all member accounts.
+//
+// For information about filter limitations, see Quotas and restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-limits.html)
+// in the Billing and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -999,9 +1002,9 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsag
 // that you want the request to return. You can also filter and group your data
 // by various dimensions, such as SERVICE or AZ, in a specific time range. For
 // a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
-// operation. Master account in an organization in AWS Organizations have access
-// to all member accounts. This API is currently available for the Amazon Elastic
-// Compute Cloud – Compute service only.
+// operation. Management account in an organization in AWS Organizations have
+// access to all member accounts. This API is currently available for the Amazon
+// Elastic Compute Cloud – Compute service only.
 //
 // This is an opt-in only feature. You can enable this feature from the Cost
 // Explorer Settings page. For information on how to access the Settings page,
@@ -1277,8 +1280,8 @@ func (c *CostExplorer) GetReservationCoverageRequest(input *GetReservationCovera
 // Retrieves the reservation coverage for your account. This enables you to
 // see how much of your Amazon Elastic Compute Cloud, Amazon ElastiCache, Amazon
 // Relational Database Service, or Amazon Redshift usage is covered by a reservation.
-// An organization's master account can see the coverage of the associated member
-// accounts. This supports dimensions, Cost Categories, and nested expressions.
+// An organization's management account can see the coverage of the associated
+// member accounts. This supports dimensions, Cost Categories, and nested expressions.
 // For any time period, you can filter data about reservation usage by the following
 // dimensions:
 //
@@ -1493,10 +1496,10 @@ func (c *CostExplorer) GetReservationUtilizationRequest(input *GetReservationUti
 
 // GetReservationUtilization API operation for AWS Cost Explorer Service.
 //
-// Retrieves the reservation utilization for your account. Master account in
-// an organization have access to member accounts. You can filter data by dimensions
-// in a time period. You can use GetDimensionValues to determine the possible
-// dimension values. Currently, you can group only by SUBSCRIPTION_ID.
+// Retrieves the reservation utilization for your account. Management account
+// in an organization have access to member accounts. You can filter data by
+// dimensions in a time period. You can use GetDimensionValues to determine
+// the possible dimension values. Currently, you can group only by SUBSCRIPTION_ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1677,9 +1680,10 @@ func (c *CostExplorer) GetSavingsPlansCoverageRequest(input *GetSavingsPlansCove
 //
 // Retrieves the Savings Plans covered for your account. This enables you to
 // see how much of your cost is covered by a Savings Plan. An organization’s
-// master account can see the coverage of the associated member accounts. This
-// supports dimensions, Cost Categories, and nested expressions. For any time
-// period, you can filter data for Savings Plans usage with the following dimensions:
+// management account can see the coverage of the associated member accounts.
+// This supports dimensions, Cost Categories, and nested expressions. For any
+// time period, you can filter data for Savings Plans usage with the following
+// dimensions:
 //
 //    * LINKED_ACCOUNT
 //
@@ -1910,8 +1914,8 @@ func (c *CostExplorer) GetSavingsPlansUtilizationRequest(input *GetSavingsPlansU
 // GetSavingsPlansUtilization API operation for AWS Cost Explorer Service.
 //
 // Retrieves the Savings Plans utilization for your account across date ranges
-// with daily or monthly granularity. Master account in an organization have
-// access to member accounts. You can use GetDimensionValues in SAVINGS_PLANS
+// with daily or monthly granularity. Management account in an organization
+// have access to member accounts. You can use GetDimensionValues in SAVINGS_PLANS
 // to determine the possible dimension values.
 //
 // You cannot group by any dimension values for GetSavingsPlansUtilization.
@@ -6645,7 +6649,7 @@ type GetReservationPurchaseRecommendationInput struct {
 	AccountId *string `type:"string"`
 
 	// The account scope that you want your recommendations for. Amazon Web Services
-	// calculates recommendations including the master account and member accounts
+	// calculates recommendations including the management account and member accounts
 	// if the value is set to PAYER. If the value is LINKED, recommendations are
 	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
@@ -7315,7 +7319,7 @@ type GetSavingsPlansPurchaseRecommendationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The account scope that you want your recommendations for. Amazon Web Services
-	// calculates recommendations including the master account and member accounts
+	// calculates recommendations including the management account and member accounts
 	// if the value is set to PAYER. If the value is LINKED, recommendations are
 	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
@@ -9975,7 +9979,7 @@ type SavingsPlansPurchaseRecommendation struct {
 	_ struct{} `type:"structure"`
 
 	// The account scope that you want your recommendations for. Amazon Web Services
-	// calculates recommendations including the master account and member accounts
+	// calculates recommendations including the management account and member accounts
 	// if the value is set to PAYER. If the value is LINKED, recommendations are
 	// calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
@@ -10228,6 +10232,9 @@ func (s *SavingsPlansPurchaseRecommendationDetail) SetUpfrontCost(v string) *Sav
 type SavingsPlansPurchaseRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
+	// Additional metadata that may be applicable to the recommendation.
+	AdditionalMetadata *string `type:"string"`
+
 	// The timestamp showing when the recommendations were generated.
 	GenerationTimestamp *string `type:"string"`
 
@@ -10243,6 +10250,12 @@ func (s SavingsPlansPurchaseRecommendationMetadata) String() string {
 // GoString returns the string representation
 func (s SavingsPlansPurchaseRecommendationMetadata) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalMetadata sets the AdditionalMetadata field's value.
+func (s *SavingsPlansPurchaseRecommendationMetadata) SetAdditionalMetadata(v string) *SavingsPlansPurchaseRecommendationMetadata {
+	s.AdditionalMetadata = &v
+	return s
 }
 
 // SetGenerationTimestamp sets the GenerationTimestamp field's value.
@@ -10582,8 +10595,9 @@ func (s *SavingsPlansUtilizationByTime) SetUtilization(v *SavingsPlansUtilizatio
 }
 
 // A single daily or monthly Savings Plans utilization rate, and details for
-// your account. A master account in an organization have access to member accounts.
-// You can use GetDimensionValues to determine the possible dimension values.
+// your account. A management account in an organization have access to member
+// accounts. You can use GetDimensionValues to determine the possible dimension
+// values.
 type SavingsPlansUtilizationDetail struct {
 	_ struct{} `type:"structure"`
 

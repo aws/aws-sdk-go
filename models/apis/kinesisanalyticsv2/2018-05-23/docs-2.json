@@ -9,6 +9,7 @@
     "AddApplicationReferenceDataSource": "<p>Adds a reference data source to an existing SQL-based Kinesis Data Analytics application.</p> <p>Kinesis Data Analytics reads reference data (that is, an Amazon S3 object) and creates an in-application table within your application. In the request, you provide the source (S3 bucket name and object key name), name of the in-application table to create, and the necessary mapping information that describes how data in an Amazon S3 object maps to columns in the resulting in-application table.</p>",
     "AddApplicationVpcConfiguration": "<p>Adds a Virtual Private Cloud (VPC) configuration to the application. Applications can use VPCs to store and access resources securely.</p> <p>Note the following about VPC configurations for Kinesis Data Analytics applications:</p> <ul> <li> <p>VPC configurations are not supported for SQL applications.</p> </li> <li> <p>When a VPC is added to a Kinesis Data Analytics application, the application can no longer be accessed from the Internet directly. To enable Internet access to the application, add an Internet gateway to your VPC.</p> </li> </ul>",
     "CreateApplication": "<p>Creates a Kinesis Data Analytics application. For information about creating a Kinesis Data Analytics application, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/getting-started.html\">Creating an Application</a>.</p>",
+    "CreateApplicationPresignedUrl": "<p>Creates and returns a URL that you can use to connect to an application's extension. Currently, the only available extension is the Apache Flink dashboard.</p> <p>The IAM role or user used to call this API defines the permissions to access the extension. Once the presigned URL is created, no additional permission is required to access this URL. IAM authorization policies for this API are also enforced for every HTTP request that attempts to connect to the extension. </p> <note> <p>The URL that you get from a call to CreateApplicationPresignedUrl must be used within 3 minutes to be valid. If you first try to use the URL after the 3-minute limit expires, the service returns an HTTP 403 Forbidden error.</p> </note>",
     "CreateApplicationSnapshot": "<p>Creates a snapshot of the application's state data.</p>",
     "DeleteApplication": "<p>Deletes the specified application. Kinesis Data Analytics halts application execution and deletes the application.</p>",
     "DeleteApplicationCloudWatchLoggingOption": "<p>Deletes an Amazon CloudWatch log stream from an Kinesis Data Analytics application. </p>",
@@ -24,7 +25,7 @@
     "ListApplications": "<p>Returns a list of Kinesis Data Analytics applications in your account. For each application, the response includes the application name, Amazon Resource Name (ARN), and status. </p> <p>If you want detailed information about a specific application, use <a>DescribeApplication</a>.</p>",
     "ListTagsForResource": "<p>Retrieves the list of key-value tags assigned to the application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "StartApplication": "<p>Starts the specified Kinesis Data Analytics application. After creating an application, you must exclusively call this operation to start your application.</p>",
-    "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running state. You can use the <a>DescribeApplication</a> operation to find the application state. </p>",
+    "StopApplication": "<p>Stops the application from processing data. You can stop an application only if it is in the running status, unless you set the <code>Force</code> parameter to <code>true</code>.</p> <p>You can use the <a>DescribeApplication</a> operation to find the application status. </p> <p>Kinesis Data Analytics takes a snapshot when the application is stopped, unless <code>Force</code> is set to <code>true</code>.</p>",
     "TagResource": "<p>Adds one or more key-value tags to a Kinesis Data Analytics application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "UntagResource": "<p>Removes one or more tags from a Kinesis Data Analytics application. For more information, see <a href=\"https://docs.aws.amazon.com/kinesisanalytics/latest/java/how-tagging.html\">Using Tagging</a>.</p>",
     "UpdateApplication": "<p>Updates an existing Kinesis Data Analytics application. Using this operation, you can update application code, input configuration, and output configuration. </p> <p>Kinesis Data Analytics updates the <code>ApplicationVersionId</code> each time you update your application. </p> <note> <p>You cannot update the <code>RuntimeEnvironment</code> of an existing application. If you need to update an application's <code>RuntimeEnvironment</code>, you must delete the application and create it again.</p> </note>"
@@ -152,6 +153,7 @@
         "AddApplicationVpcConfigurationRequest$ApplicationName": "<p>The name of an existing application.</p>",
         "ApplicationDetail$ApplicationName": "<p>The name of the application.</p>",
         "ApplicationSummary$ApplicationName": "<p>The name of the application.</p>",
+        "CreateApplicationPresignedUrlRequest$ApplicationName": "<p>The name of the application.</p>",
         "CreateApplicationRequest$ApplicationName": "<p>The name of your application (for example, <code>sample-app</code>).</p>",
         "CreateApplicationSnapshotRequest$ApplicationName": "<p>The name of an existing application</p>",
         "DeleteApplicationCloudWatchLoggingOptionRequest$ApplicationName": "<p>The application name.</p>",
@@ -253,6 +255,12 @@
         "UpdateApplicationRequest$CurrentApplicationVersionId": "<p>The current application version ID. You can retrieve the application version ID using <a>DescribeApplication</a>.</p>"
       }
     },
+    "AuthorizedUrl": {
+      "base": null,
+      "refs": {
+        "CreateApplicationPresignedUrlResponse$AuthorizedUrl": "<p>The URL of the extension.</p>"
+      }
+    },
     "BooleanObject": {
       "base": null,
       "refs": {
@@ -267,7 +275,7 @@
         "ParallelismConfiguration$AutoScalingEnabled": "<p>Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
         "ParallelismConfigurationDescription$AutoScalingEnabled": "<p>Describes whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
         "ParallelismConfigurationUpdate$AutoScalingEnabledUpdate": "<p>Describes updates to whether the Kinesis Data Analytics service can increase the parallelism of the application in response to increased throughput.</p>",
-        "StopApplicationRequest$Force": "<p>Set to <code>true</code> to force the application to stop. If you set <code>Force</code> to <code>true</code>, Kinesis Data Analytics stops the application without taking a snapshot.</p> <p>You can only force stop a Flink-based Kinesis Data Analytics application. You can't force stop a SQL-based Kinesis Data Analytics application.</p> <p>The application must be in the <code>STARTING</code>, <code>UPDATING</code>, <code>STOPPING</code>, <code>AUTOSCALING</code>, or <code>RUNNING</code> state. </p>"
+        "StopApplicationRequest$Force": "<p>Set to <code>true</code> to force the application to stop. If you set <code>Force</code> to <code>true</code>, Kinesis Data Analytics stops the application without taking a snapshot. </p> <note> <p>Force-stopping your application may lead to data loss or duplication. To prevent data loss or duplicate processing of data during application restarts, we recommend you to take frequent snapshots of your application.</p> </note> <p>You can only force stop a Flink-based Kinesis Data Analytics application. You can't force stop a SQL-based Kinesis Data Analytics application.</p> <p>The application must be in the <code>STARTING</code>, <code>UPDATING</code>, <code>STOPPING</code>, <code>AUTOSCALING</code>, or <code>RUNNING</code> status. </p>"
       }
     },
     "BucketARN": {
@@ -413,6 +421,16 @@
         "ParallelismConfiguration$ConfigurationType": "<p>Describes whether the application uses the default parallelism for the Kinesis Data Analytics service. You must set this property to <code>CUSTOM</code> in order to change your application's <code>AutoScalingEnabled</code>, <code>Parallelism</code>, or <code>ParallelismPerKPU</code> properties.</p>",
         "ParallelismConfigurationDescription$ConfigurationType": "<p>Describes whether the application uses the default parallelism for the Kinesis Data Analytics service. </p>",
         "ParallelismConfigurationUpdate$ConfigurationTypeUpdate": "<p>Describes updates to whether the application uses the default parallelism for the Kinesis Data Analytics service, or if a custom parallelism is used. You must set this property to <code>CUSTOM</code> in order to change your application's <code>AutoScalingEnabled</code>, <code>Parallelism</code>, or <code>ParallelismPerKPU</code> properties.</p>"
+      }
+    },
+    "CreateApplicationPresignedUrlRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateApplicationPresignedUrlResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateApplicationRequest": {
@@ -1440,6 +1458,12 @@
       "refs": {
       }
     },
+    "SessionExpirationDurationInSeconds": {
+      "base": null,
+      "refs": {
+        "CreateApplicationPresignedUrlRequest$SessionExpirationDurationInSeconds": "<p>The duration in seconds for which the returned URL will be valid.</p>"
+      }
+    },
     "SnapshotDetails": {
       "base": "<p>Provides details about a snapshot of application state.</p>",
       "refs": {
@@ -1638,6 +1662,12 @@
     "UpdateApplicationResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "UrlType": {
+      "base": null,
+      "refs": {
+        "CreateApplicationPresignedUrlRequest$UrlType": "<p>The type of the extension for which to create and return a URL. Currently, the only valid extension URL type is <code>FLINK_DASHBOARD_URL</code>. </p>"
       }
     },
     "VpcConfiguration": {

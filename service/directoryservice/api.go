@@ -213,6 +213,115 @@ func (c *DirectoryService) AddIpRoutesWithContext(ctx aws.Context, input *AddIpR
 	return out, req.Send()
 }
 
+const opAddRegion = "AddRegion"
+
+// AddRegionRequest generates a "aws/request.Request" representing the
+// client's request for the AddRegion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AddRegion for more information on using the AddRegion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AddRegionRequest method.
+//    req, resp := client.AddRegionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddRegion
+func (c *DirectoryService) AddRegionRequest(input *AddRegionInput) (req *request.Request, output *AddRegionOutput) {
+	op := &request.Operation{
+		Name:       opAddRegion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AddRegionInput{}
+	}
+
+	output = &AddRegionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AddRegion API operation for AWS Directory Service.
+//
+// Adds two domain controllers in the specified Region for the specified directory.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation AddRegion for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryUnavailableException
+//   The specified directory is unavailable or could not be found.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid.
+//
+//   * EntityDoesNotExistException
+//   The specified entity could not be found.
+//
+//   * DirectoryAlreadyInRegionException
+//   The Region you specified is the same Region where the AWS Managed Microsoft
+//   AD directory was created. Specify a different Region and try again.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * RegionLimitExceededException
+//   You have reached the limit for maximum number of simultaneous region replications
+//   per directory.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in AWS Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddRegion
+func (c *DirectoryService) AddRegion(input *AddRegionInput) (*AddRegionOutput, error) {
+	req, out := c.AddRegionRequest(input)
+	return out, req.Send()
+}
+
+// AddRegionWithContext is the same as AddRegion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AddRegion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) AddRegionWithContext(ctx aws.Context, input *AddRegionInput, opts ...request.Option) (*AddRegionOutput, error) {
+	req, out := c.AddRegionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAddTagsToResource = "AddTagsToResource"
 
 // AddTagsToResourceRequest generates a "aws/request.Request" representing the
@@ -631,8 +740,7 @@ func (c *DirectoryService) CreateComputerRequest(input *CreateComputerInput) (re
 
 // CreateComputer API operation for AWS Directory Service.
 //
-// Creates a computer account in the specified directory, and joins the computer
-// to the directory.
+// Creates an Active Directory computer object in the specified directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2556,6 +2664,104 @@ func (c *DirectoryService) DescribeLDAPSSettingsWithContext(ctx aws.Context, inp
 	return out, req.Send()
 }
 
+const opDescribeRegions = "DescribeRegions"
+
+// DescribeRegionsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRegions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRegions for more information on using the DescribeRegions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRegionsRequest method.
+//    req, resp := client.DescribeRegionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeRegions
+func (c *DirectoryService) DescribeRegionsRequest(input *DescribeRegionsInput) (req *request.Request, output *DescribeRegionsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRegions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeRegionsInput{}
+	}
+
+	output = &DescribeRegionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRegions API operation for AWS Directory Service.
+//
+// Provides information about the Regions that are configured for multi-Region
+// replication.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation DescribeRegions for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more parameters are not valid.
+//
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * InvalidNextTokenException
+//   The NextToken value is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in AWS Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeRegions
+func (c *DirectoryService) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutput, error) {
+	req, out := c.DescribeRegionsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRegionsWithContext is the same as DescribeRegions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRegions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) DescribeRegionsWithContext(ctx aws.Context, input *DescribeRegionsInput, opts ...request.Option) (*DescribeRegionsOutput, error) {
+	req, out := c.DescribeRegionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeSharedDirectories = "DescribeSharedDirectories"
 
 // DescribeSharedDirectoriesRequest generates a "aws/request.Request" representing the
@@ -4421,6 +4627,103 @@ func (c *DirectoryService) RemoveIpRoutesWithContext(ctx aws.Context, input *Rem
 	return out, req.Send()
 }
 
+const opRemoveRegion = "RemoveRegion"
+
+// RemoveRegionRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveRegion operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveRegion for more information on using the RemoveRegion
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveRegionRequest method.
+//    req, resp := client.RemoveRegionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveRegion
+func (c *DirectoryService) RemoveRegionRequest(input *RemoveRegionInput) (req *request.Request, output *RemoveRegionOutput) {
+	op := &request.Operation{
+		Name:       opRemoveRegion,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveRegionInput{}
+	}
+
+	output = &RemoveRegionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RemoveRegion API operation for AWS Directory Service.
+//
+// Stops all replication and removes the domain controllers from the specified
+// Region. You cannot remove the primary Region with this operation. Instead,
+// use the DeleteDirectory API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation RemoveRegion for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryUnavailableException
+//   The specified directory is unavailable or could not be found.
+//
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in AWS Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveRegion
+func (c *DirectoryService) RemoveRegion(input *RemoveRegionInput) (*RemoveRegionOutput, error) {
+	req, out := c.RemoveRegionRequest(input)
+	return out, req.Send()
+}
+
+// RemoveRegionWithContext is the same as RemoveRegion with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveRegion for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) RemoveRegionWithContext(ctx aws.Context, input *RemoveRegionInput, opts ...request.Option) (*RemoveRegionOutput, error) {
+	req, out := c.RemoveRegionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRemoveTagsFromResource = "RemoveTagsFromResource"
 
 // RemoveTagsFromResourceRequest generates a "aws/request.Request" representing the
@@ -5748,6 +6051,95 @@ func (s AddIpRoutesOutput) GoString() string {
 	return s.String()
 }
 
+type AddRegionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory to which you want to add Region replication.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The name of the Region where you want to add domain controllers for replication.
+	// For example, us-east-1.
+	//
+	// RegionName is a required field
+	RegionName *string `min:"8" type:"string" required:"true"`
+
+	// Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
+	//
+	// VPCSettings is a required field
+	VPCSettings *DirectoryVpcSettings `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AddRegionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddRegionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AddRegionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AddRegionInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.RegionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegionName"))
+	}
+	if s.RegionName != nil && len(*s.RegionName) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionName", 8))
+	}
+	if s.VPCSettings == nil {
+		invalidParams.Add(request.NewErrParamRequired("VPCSettings"))
+	}
+	if s.VPCSettings != nil {
+		if err := s.VPCSettings.Validate(); err != nil {
+			invalidParams.AddNested("VPCSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *AddRegionInput) SetDirectoryId(v string) *AddRegionInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *AddRegionInput) SetRegionName(v string) *AddRegionInput {
+	s.RegionName = &v
+	return s
+}
+
+// SetVPCSettings sets the VPCSettings field's value.
+func (s *AddRegionInput) SetVPCSettings(v *DirectoryVpcSettings) *AddRegionInput {
+	s.VPCSettings = v
+	return s
+}
+
+type AddRegionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AddRegionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AddRegionOutput) GoString() string {
+	return s.String()
+}
+
 type AddTagsToResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6988,6 +7380,24 @@ type CreateDirectoryInput struct {
 	//
 	// If you need to change the password for the administrator account, you can
 	// use the ResetUserPassword API call.
+	//
+	// The regex pattern for this string is made up of the following conditions:
+	//
+	//    * Length (?=^.{8,64}$) – Must be between 8 and 64 characters
+	//
+	// AND any 3 of the following password complexity rules required by Active Directory:
+	//
+	//    * Numbers and upper case and lowercase (?=.*\d)(?=.*[A-Z])(?=.*[a-z])
+	//
+	//    * Numbers and special characters and lower case (?=.*\d)(?=.*[^A-Za-z0-9\s])(?=.*[a-z])
+	//
+	//    * Special characters and upper case and lower case (?=.*[^A-Za-z0-9\s])(?=.*[A-Z])(?=.*[a-z])
+	//
+	//    * Numbers and upper case and special characters (?=.*\d)(?=.*[A-Z])(?=.*[^A-Za-z0-9\s])
+	//
+	// For additional information about how Active Directory passwords are enforced,
+	// see Password must meet complexity requirements (https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/password-must-meet-complexity-requirements)
+	// on the Microsoft website.
 	//
 	// Password is a required field
 	Password *string `type:"string" required:"true" sensitive:"true"`
@@ -8519,6 +8929,100 @@ func (s *DescribeLDAPSSettingsOutput) SetNextToken(v string) *DescribeLDAPSSetti
 	return s
 }
 
+type DescribeRegionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The DescribeRegionsResult.NextToken value from a previous call to DescribeRegions.
+	// Pass null if this is the first call.
+	NextToken *string `type:"string"`
+
+	// The name of the Region. For example, us-east-1.
+	RegionName *string `min:"8" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeRegionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRegionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRegionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRegionsInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.RegionName != nil && len(*s.RegionName) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("RegionName", 8))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *DescribeRegionsInput) SetDirectoryId(v string) *DescribeRegionsInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRegionsInput) SetNextToken(v string) *DescribeRegionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *DescribeRegionsInput) SetRegionName(v string) *DescribeRegionsInput {
+	s.RegionName = &v
+	return s
+}
+
+type DescribeRegionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// If not null, more results are available. Pass this value for the NextToken
+	// parameter in a subsequent call to DescribeRegions to retrieve the next set
+	// of items.
+	NextToken *string `type:"string"`
+
+	// List of regional information related to the directory per replicated Region.
+	RegionsDescription []*RegionDescription `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeRegionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeRegionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeRegionsOutput) SetNextToken(v string) *DescribeRegionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRegionsDescription sets the RegionsDescription field's value.
+func (s *DescribeRegionsOutput) SetRegionsDescription(v []*RegionDescription) *DescribeRegionsOutput {
+	s.RegionsDescription = v
+	return s
+}
+
 type DescribeSharedDirectoriesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8811,6 +9315,67 @@ func (s *DescribeTrustsOutput) SetTrusts(v []*Trust) *DescribeTrustsOutput {
 	return s
 }
 
+// The Region you specified is the same Region where the AWS Managed Microsoft
+// AD directory was created. Specify a different Region and try again.
+type DirectoryAlreadyInRegionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The descriptive message for the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The AWS request identifier.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DirectoryAlreadyInRegionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DirectoryAlreadyInRegionException) GoString() string {
+	return s.String()
+}
+
+func newErrorDirectoryAlreadyInRegionException(v protocol.ResponseMetadata) error {
+	return &DirectoryAlreadyInRegionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *DirectoryAlreadyInRegionException) Code() string {
+	return "DirectoryAlreadyInRegionException"
+}
+
+// Message returns the exception's message.
+func (s *DirectoryAlreadyInRegionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *DirectoryAlreadyInRegionException) OrigErr() error {
+	return nil
+}
+
+func (s *DirectoryAlreadyInRegionException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *DirectoryAlreadyInRegionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *DirectoryAlreadyInRegionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The specified directory has already been shared with this AWS account.
 type DirectoryAlreadySharedException struct {
 	_            struct{}                  `type:"structure"`
@@ -9087,6 +9652,9 @@ type DirectoryDescription struct {
 	// The status of the RADIUS MFA server connection.
 	RadiusStatus *string `type:"string" enum:"RadiusStatus"`
 
+	// Lists the Regions where the directory has replicated.
+	RegionsInfo *RegionsInfo `type:"structure"`
+
 	// The method used when sharing a directory to determine whether the directory
 	// should be shared within your AWS organization (ORGANIZATIONS) or with any
 	// AWS account by sending a shared directory request (HANDSHAKE).
@@ -9213,6 +9781,12 @@ func (s *DirectoryDescription) SetRadiusSettings(v *RadiusSettings) *DirectoryDe
 // SetRadiusStatus sets the RadiusStatus field's value.
 func (s *DirectoryDescription) SetRadiusStatus(v string) *DirectoryDescription {
 	s.RadiusStatus = &v
+	return s
+}
+
+// SetRegionsInfo sets the RegionsInfo field's value.
+func (s *DirectoryDescription) SetRegionsInfo(v *RegionsInfo) *DirectoryDescription {
+	s.RegionsInfo = v
 	return s
 }
 
@@ -11943,8 +12517,9 @@ type RadiusSettings struct {
 	// attempted.
 	RadiusRetries *int64 `type:"integer"`
 
-	// An array of strings that contains the IP addresses of the RADIUS server endpoints,
-	// or the IP addresses of your RADIUS server load balancer.
+	// An array of strings that contains the fully qualified domain name (FQDN)
+	// or IP addresses of the RADIUS server endpoints, or the FQDN or IP addresses
+	// of your RADIUS server load balancer.
 	RadiusServers []*string `type:"list"`
 
 	// The amount of time, in seconds, to wait for the RADIUS server to respond.
@@ -12034,6 +12609,200 @@ func (s *RadiusSettings) SetSharedSecret(v string) *RadiusSettings {
 // SetUseSameUsername sets the UseSameUsername field's value.
 func (s *RadiusSettings) SetUseSameUsername(v bool) *RadiusSettings {
 	s.UseSameUsername = &v
+	return s
+}
+
+// The replicated regional information for a directory.
+type RegionDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The desired number of domain controllers in the specified Region for the
+	// specified directory.
+	DesiredNumberOfDomainControllers *int64 `min:"2" type:"integer"`
+
+	// The identifier of the directory.
+	DirectoryId *string `type:"string"`
+
+	// The date and time that the Region description was last updated.
+	LastUpdatedDateTime *time.Time `type:"timestamp"`
+
+	// Specifies when the Region replication began.
+	LaunchTime *time.Time `type:"timestamp"`
+
+	// The name of the Region. For example, us-east-1.
+	RegionName *string `min:"8" type:"string"`
+
+	// Specifies if the Region is the primary Region or an additional Region.
+	RegionType *string `type:"string" enum:"RegionType"`
+
+	// The status of the replication process for the specified Region.
+	Status *string `type:"string" enum:"DirectoryStage"`
+
+	// The date and time that the Region status was last updated.
+	StatusLastUpdatedDateTime *time.Time `type:"timestamp"`
+
+	// Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
+	VpcSettings *DirectoryVpcSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s RegionDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegionDescription) GoString() string {
+	return s.String()
+}
+
+// SetDesiredNumberOfDomainControllers sets the DesiredNumberOfDomainControllers field's value.
+func (s *RegionDescription) SetDesiredNumberOfDomainControllers(v int64) *RegionDescription {
+	s.DesiredNumberOfDomainControllers = &v
+	return s
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *RegionDescription) SetDirectoryId(v string) *RegionDescription {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *RegionDescription) SetLastUpdatedDateTime(v time.Time) *RegionDescription {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetLaunchTime sets the LaunchTime field's value.
+func (s *RegionDescription) SetLaunchTime(v time.Time) *RegionDescription {
+	s.LaunchTime = &v
+	return s
+}
+
+// SetRegionName sets the RegionName field's value.
+func (s *RegionDescription) SetRegionName(v string) *RegionDescription {
+	s.RegionName = &v
+	return s
+}
+
+// SetRegionType sets the RegionType field's value.
+func (s *RegionDescription) SetRegionType(v string) *RegionDescription {
+	s.RegionType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RegionDescription) SetStatus(v string) *RegionDescription {
+	s.Status = &v
+	return s
+}
+
+// SetStatusLastUpdatedDateTime sets the StatusLastUpdatedDateTime field's value.
+func (s *RegionDescription) SetStatusLastUpdatedDateTime(v time.Time) *RegionDescription {
+	s.StatusLastUpdatedDateTime = &v
+	return s
+}
+
+// SetVpcSettings sets the VpcSettings field's value.
+func (s *RegionDescription) SetVpcSettings(v *DirectoryVpcSettings) *RegionDescription {
+	s.VpcSettings = v
+	return s
+}
+
+// You have reached the limit for maximum number of simultaneous region replications
+// per directory.
+type RegionLimitExceededException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// The descriptive message for the exception.
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// The AWS request identifier.
+	RequestId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s RegionLimitExceededException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegionLimitExceededException) GoString() string {
+	return s.String()
+}
+
+func newErrorRegionLimitExceededException(v protocol.ResponseMetadata) error {
+	return &RegionLimitExceededException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RegionLimitExceededException) Code() string {
+	return "RegionLimitExceededException"
+}
+
+// Message returns the exception's message.
+func (s *RegionLimitExceededException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RegionLimitExceededException) OrigErr() error {
+	return nil
+}
+
+func (s *RegionLimitExceededException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RegionLimitExceededException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RegionLimitExceededException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Provides information about the Regions that are configured for multi-Region
+// replication.
+type RegionsInfo struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the Regions where the directory has been replicated, excluding the
+	// primary Region.
+	AdditionalRegions []*string `type:"list"`
+
+	// The Region from where the AWS Managed Microsoft AD directory was originally
+	// created.
+	PrimaryRegion *string `min:"8" type:"string"`
+}
+
+// String returns the string representation
+func (s RegionsInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegionsInfo) GoString() string {
+	return s.String()
+}
+
+// SetAdditionalRegions sets the AdditionalRegions field's value.
+func (s *RegionsInfo) SetAdditionalRegions(v []*string) *RegionsInfo {
+	s.AdditionalRegions = v
+	return s
+}
+
+// SetPrimaryRegion sets the PrimaryRegion field's value.
+func (s *RegionsInfo) SetPrimaryRegion(v string) *RegionsInfo {
+	s.PrimaryRegion = &v
 	return s
 }
 
@@ -12312,6 +13081,58 @@ func (s RemoveIpRoutesOutput) String() string {
 
 // GoString returns the string representation
 func (s RemoveIpRoutesOutput) GoString() string {
+	return s.String()
+}
+
+type RemoveRegionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory for which you want to remove Region replication.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveRegionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveRegionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveRegionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveRegionInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *RemoveRegionInput) SetDirectoryId(v string) *RemoveRegionInput {
+	s.DirectoryId = &v
+	return s
+}
+
+type RemoveRegionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveRegionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveRegionOutput) GoString() string {
 	return s.String()
 }
 
@@ -14427,6 +15248,22 @@ func RadiusStatus_Values() []string {
 		RadiusStatusCreating,
 		RadiusStatusCompleted,
 		RadiusStatusFailed,
+	}
+}
+
+const (
+	// RegionTypePrimary is a RegionType enum value
+	RegionTypePrimary = "Primary"
+
+	// RegionTypeAdditional is a RegionType enum value
+	RegionTypeAdditional = "Additional"
+)
+
+// RegionType_Values returns all elements of the RegionType enum
+func RegionType_Values() []string {
+	return []string{
+		RegionTypePrimary,
+		RegionTypeAdditional,
 	}
 }
 

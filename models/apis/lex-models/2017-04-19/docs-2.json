@@ -93,7 +93,7 @@
         "GetBotResponse$enableModelImprovements": "<p>Indicates whether the bot uses accuracy improvements. <code>true</code> indicates that the bot is using the improvements, otherwise, <code>false</code>.</p>",
         "GetBotResponse$childDirected": "<p>For each Amazon Lex bot created with the Amazon Lex Model Building Service, you must specify whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to the Children's Online Privacy Protection Act (COPPA) by specifying <code>true</code> or <code>false</code> in the <code>childDirected</code> field. By specifying <code>true</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. By specifying <code>false</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is not</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. You may not specify a default value for the <code>childDirected</code> field that does not accurately reflect whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA.</p> <p>If your use of Amazon Lex relates to a website, program, or other application that is directed in whole or in part, to children under age 13, you must obtain any required verifiable parental consent under COPPA. For information regarding the use of Amazon Lex in connection with websites, programs, or other applications that are directed or targeted, in whole or in part, to children under age 13, see the <a href=\"https://aws.amazon.com/lex/faqs#data-security\">Amazon Lex FAQ.</a> </p>",
         "GetBotResponse$detectSentiment": "<p>Indicates whether user utterances should be sent to Amazon Comprehend for sentiment analysis.</p>",
-        "PutBotRequest$enableModelImprovements": "<p>Set to <code>true</code> to enable access to natural language understanding improvements. </p> <p>When you set the <code>enableModelImprovements</code> parameter to <code>true</code> you can use the <code>nluIntentConfidenceThreshold</code> parameter to configure confidence scores. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html\">Confidence Scores</a>.</p> <p>You can only set the <code>enableModelImprovements</code> parameter in certain Regions. If you set the parameter to <code>true</code>, your bot has access to accuracy improvements.</p> <p>The Regions where you can set the <code>enableModelImprovements</code> parameter to <code>true</code> are:</p> <ul> <li> <p>US East (N. Virginia) (us-east-1)</p> </li> <li> <p>US West (Oregon) (us-west-2)</p> </li> <li> <p>Asia Pacific (Sydney) (ap-southeast-2)</p> </li> <li> <p>EU (Ireland) (eu-west-1)</p> </li> </ul> <p>In other Regions, the <code>enableModelImprovements</code> parameter is set to <code>true</code> by default. In these Regions setting the parameter to <code>false</code> throws a <code>ValidationException</code> exception.</p> <ul> <li> <p>Asia Pacific (Singapore) (ap-southeast-1)</p> </li> <li> <p>Asia Pacific (Tokyo) (ap-northeast-1)</p> </li> <li> <p>EU (Frankfurt) (eu-central-1)</p> </li> <li> <p>EU (London) (eu-west-2)</p> </li> </ul>",
+        "PutBotRequest$enableModelImprovements": "<p>Set to <code>true</code> to enable access to natural language understanding improvements. </p> <p>When you set the <code>enableModelImprovements</code> parameter to <code>true</code> you can use the <code>nluIntentConfidenceThreshold</code> parameter to configure confidence scores. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html\">Confidence Scores</a>.</p> <p>You can only set the <code>enableModelImprovements</code> parameter in certain Regions. If you set the parameter to <code>true</code>, your bot has access to accuracy improvements.</p> <p>The Regions where you can set the <code>enableModelImprovements</code> parameter to <code>true</code> are:</p> <ul> <li> <p>US East (N. Virginia) (us-east-1)</p> </li> <li> <p>US West (Oregon) (us-west-2)</p> </li> <li> <p>Asia Pacific (Sydney) (ap-southeast-2)</p> </li> <li> <p>EU (Ireland) (eu-west-1)</p> </li> </ul> <p>In other Regions, the <code>enableModelImprovements</code> parameter is set to <code>true</code> by default. In these Regions setting the parameter to <code>false</code> throws a <code>ValidationException</code> exception.</p>",
         "PutBotRequest$childDirected": "<p>For each Amazon Lex bot created with the Amazon Lex Model Building Service, you must specify whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to the Children's Online Privacy Protection Act (COPPA) by specifying <code>true</code> or <code>false</code> in the <code>childDirected</code> field. By specifying <code>true</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. By specifying <code>false</code> in the <code>childDirected</code> field, you confirm that your use of Amazon Lex <b>is not</b> related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA. You may not specify a default value for the <code>childDirected</code> field that does not accurately reflect whether your use of Amazon Lex is related to a website, program, or other application that is directed or targeted, in whole or in part, to children under age 13 and subject to COPPA.</p> <p>If your use of Amazon Lex relates to a website, program, or other application that is directed in whole or in part, to children under age 13, you must obtain any required verifiable parental consent under COPPA. For information regarding the use of Amazon Lex in connection with websites, programs, or other applications that are directed or targeted, in whole or in part, to children under age 13, see the <a href=\"https://aws.amazon.com/lex/faqs#data-security\">Amazon Lex FAQ.</a> </p>",
         "PutBotRequest$detectSentiment": "<p>When set to <code>true</code> user utterances are sent to Amazon Comprehend for sentiment analysis. If you don't specify <code>detectSentiment</code>, the default is <code>false</code>.</p>",
         "PutBotRequest$createVersion": "<p>When set to <code>true</code> a new numbered version of the bot is created. This is the same as calling the <code>CreateBotVersion</code> operation. If you don't specify <code>createVersion</code>, the default is <code>false</code>.</p>",
@@ -280,7 +280,7 @@
       "base": null,
       "refs": {
         "GetBotResponse$nluIntentConfidenceThreshold": "<p>The score that determines where Amazon Lex inserts the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents in a <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostContent.html\">PostContent</a> or <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostText.html\">PostText</a> response. <code>AMAZON.FallbackIntent</code> is inserted if the confidence score for all intents is below this value. <code>AMAZON.KendraSearchIntent</code> is only inserted if it is configured for the bot.</p>",
-        "PutBotRequest$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents in a <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostContent.html\">PostContent</a> or <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostText.html\">PostText</a> response. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot.</p> <p>You must set the <code>enableModelImprovements</code> parameter to <code>true</code> to use confidence scores.</p> <ul> <li> <p>US East (N. Virginia) (us-east-1)</p> </li> <li> <p>US West (Oregon) (us-west-2)</p> </li> <li> <p>Asia Pacific (Sydney) (ap-southeast-2)</p> </li> <li> <p>EU (Ireland) (eu-west-1)</p> </li> </ul> <p>In other Regions, the <code>enableModelImprovements</code> parameter is set to <code>true</code> by default.</p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the <code>PostText</code> operation would be:</p> <ul> <li> <p>AMAZON.FallbackIntent</p> </li> <li> <p>IntentA</p> </li> <li> <p>IntentB</p> </li> <li> <p>IntentC</p> </li> </ul>",
+        "PutBotRequest$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents in a <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostContent.html\">PostContent</a> or <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostText.html\">PostText</a> response. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot.</p> <p>You must set the <code>enableModelImprovements</code> parameter to <code>true</code> to use confidence scores in the following regions.</p> <ul> <li> <p>US East (N. Virginia) (us-east-1)</p> </li> <li> <p>US West (Oregon) (us-west-2)</p> </li> <li> <p>Asia Pacific (Sydney) (ap-southeast-2)</p> </li> <li> <p>EU (Ireland) (eu-west-1)</p> </li> </ul> <p>In other Regions, the <code>enableModelImprovements</code> parameter is set to <code>true</code> by default.</p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the <code>PostText</code> operation would be:</p> <ul> <li> <p>AMAZON.FallbackIntent</p> </li> <li> <p>IntentA</p> </li> <li> <p>IntentB</p> </li> <li> <p>IntentC</p> </li> </ul>",
         "PutBotResponse$nluIntentConfidenceThreshold": "<p>The score that determines where Amazon Lex inserts the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents in a <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostContent.html\">PostContent</a> or <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_runtime_PostText.html\">PostText</a> response. <code>AMAZON.FallbackIntent</code> is inserted if the confidence score for all intents is below this value. <code>AMAZON.KendraSearchIntent</code> is only inserted if it is configured for the bot.</p>"
       }
     },
@@ -299,6 +299,18 @@
       "base": null,
       "refs": {
         "Message$contentType": "<p>The content type of the message string.</p>"
+      }
+    },
+    "ContextTimeToLiveInSeconds": {
+      "base": null,
+      "refs": {
+        "OutputContext$timeToLiveInSeconds": "<p>The number of seconds that the context should be active after it is first sent in a <code>PostContent</code> or <code>PostText</code> response. You can set the value between 5 and 86,400 seconds (24 hours).</p>"
+      }
+    },
+    "ContextTurnsToLive": {
+      "base": null,
+      "refs": {
+        "OutputContext$turnsToLive": "<p>The number of conversation turns that the context should be active. A conversation turn is one <code>PostContent</code> or <code>PostText</code> request and the corresponding response from Amazon Lex.</p>"
       }
     },
     "ConversationLogsRequest": {
@@ -703,6 +715,27 @@
         "StartImportResponse$importStatus": "<p>The status of the import job. If the status is <code>FAILED</code>, you can get the reason for the failure using the <code>GetImport</code> operation.</p>"
       }
     },
+    "InputContext": {
+      "base": "<p>The name of a context that must be active for an intent to be selected by Amazon Lex.</p>",
+      "refs": {
+        "InputContextList$member": null
+      }
+    },
+    "InputContextList": {
+      "base": null,
+      "refs": {
+        "CreateIntentVersionResponse$inputContexts": "<p>An array of <code>InputContext</code> objects that lists the contexts that must be active for Amazon Lex to choose the intent in a conversation with the user.</p>",
+        "GetIntentResponse$inputContexts": "<p>An array of <code>InputContext</code> objects that lists the contexts that must be active for Amazon Lex to choose the intent in a conversation with the user.</p>",
+        "PutIntentRequest$inputContexts": "<p>An array of <code>InputContext</code> objects that lists the contexts that must be active for Amazon Lex to choose the intent in a conversation with the user.</p>",
+        "PutIntentResponse$inputContexts": "<p>An array of <code>InputContext</code> objects that lists the contexts that must be active for Amazon Lex to choose the intent in a conversation with the user.</p>"
+      }
+    },
+    "InputContextName": {
+      "base": null,
+      "refs": {
+        "InputContext$name": "<p>The name of the context.</p>"
+      }
+    },
     "Intent": {
       "base": "<p>Identifies the specific version of an intent.</p>",
       "refs": {
@@ -966,6 +999,27 @@
         "Slot$obfuscationSetting": "<p>Determines whether a slot is obfuscated in conversation logs and stored utterances. When you obfuscate a slot, the value is replaced by the slot name in curly braces ({}). For example, if the slot name is \"full_name\", obfuscated values are replaced with \"{full_name}\". For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/how-obfuscate.html\"> Slot Obfuscation </a>. </p>"
       }
     },
+    "OutputContext": {
+      "base": "<p>The specification of an output context that is set when an intent is fulfilled.</p>",
+      "refs": {
+        "OutputContextList$member": null
+      }
+    },
+    "OutputContextList": {
+      "base": null,
+      "refs": {
+        "CreateIntentVersionResponse$outputContexts": "<p>An array of <code>OutputContext</code> objects that lists the contexts that the intent activates when the intent is fulfilled.</p>",
+        "GetIntentResponse$outputContexts": "<p>An array of <code>OutputContext</code> objects that lists the contexts that the intent activates when the intent is fulfilled.</p>",
+        "PutIntentRequest$outputContexts": "<p>An array of <code>OutputContext</code> objects that lists the contexts that the intent activates when the intent is fulfilled.</p>",
+        "PutIntentResponse$outputContexts": "<p>An array of <code>OutputContext</code> objects that lists the contexts that the intent activates when the intent is fulfilled.</p>"
+      }
+    },
+    "OutputContextName": {
+      "base": null,
+      "refs": {
+        "OutputContext$name": "<p>The name of the context.</p>"
+      }
+    },
     "PreconditionFailedException": {
       "base": "<p> The checksum of the resource that you are trying to change does not match the checksum in the request. Check the resource's checksum and try again.</p>",
       "refs": {
@@ -1123,6 +1177,30 @@
       "base": null,
       "refs": {
         "Slot$slotConstraint": "<p>Specifies whether the slot is required or optional. </p>"
+      }
+    },
+    "SlotDefaultValue": {
+      "base": "<p>A default value for a slot.</p>",
+      "refs": {
+        "SlotDefaultValueList$member": null
+      }
+    },
+    "SlotDefaultValueList": {
+      "base": null,
+      "refs": {
+        "SlotDefaultValueSpec$defaultValueList": "<p>The default values for a slot. You can specify more than one default. For example, you can specify a default value to use from a matching context variable, a session attribute, or a fixed value.</p> <p>The default value chosen is selected based on the order that you specify them in the list. For example, if you specify a context variable and a fixed value in that order, Amazon Lex uses the context variable if it is available, else it uses the fixed value.</p>"
+      }
+    },
+    "SlotDefaultValueSpec": {
+      "base": "<p>Contains the default values for a slot. Default values are used when Amazon Lex hasn't determined a value for a slot.</p>",
+      "refs": {
+        "Slot$defaultValueSpec": "<p>A list of default values for the slot. Default values are used when Amazon Lex hasn't determined a value for a slot. You can specify default values from context variables, session attributes, and defined values.</p>"
+      }
+    },
+    "SlotDefaultValueString": {
+      "base": null,
+      "refs": {
+        "SlotDefaultValue$defaultValue": "<p>The default value for the slot. You can specify one of the following:</p> <ul> <li> <p> <code>#context-name.slot-name</code> - The slot value \"slot-name\" in the context \"context-name.\"</p> </li> <li> <p> <code>{attribute}</code> - The slot value of the session attribute \"attribute.\"</p> </li> <li> <p> <code>'value'</code> - The discrete value \"value.\"</p> </li> </ul>"
       }
     },
     "SlotList": {

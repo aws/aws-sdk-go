@@ -219,6 +219,20 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "CheckSchemaVersionValidity":{
+      "name":"CheckSchemaVersionValidity",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CheckSchemaVersionValidityInput"},
+      "output":{"shape":"CheckSchemaVersionValidityResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "CreateClassifier":{
       "name":"CreateClassifier",
       "http":{
@@ -352,6 +366,39 @@
         {"shape":"EntityNotFoundException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"}
+      ]
+    },
+    "CreateRegistry":{
+      "name":"CreateRegistry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateRegistryInput"},
+      "output":{"shape":"CreateRegistryResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "CreateSchema":{
+      "name":"CreateSchema",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateSchemaInput"},
+      "output":{"shape":"CreateSchemaResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "CreateScript":{
@@ -603,6 +650,21 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "DeleteRegistry":{
+      "name":"DeleteRegistry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteRegistryInput"},
+      "output":{"shape":"DeleteRegistryResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
     "DeleteResourcePolicy":{
       "name":"DeleteResourcePolicy",
       "http":{
@@ -617,6 +679,36 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"InvalidInputException"},
         {"shape":"ConditionCheckFailureException"}
+      ]
+    },
+    "DeleteSchema":{
+      "name":"DeleteSchema",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteSchemaInput"},
+      "output":{"shape":"DeleteSchemaResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "DeleteSchemaVersions":{
+      "name":"DeleteSchemaVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteSchemaVersionsInput"},
+      "output":{"shape":"DeleteSchemaVersionsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConcurrentModificationException"}
       ]
     },
     "DeleteSecurityConfiguration":{
@@ -1148,6 +1240,21 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "GetRegistry":{
+      "name":"GetRegistry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetRegistryInput"},
+      "output":{"shape":"GetRegistryResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "GetResourcePolicies":{
       "name":"GetResourcePolicies",
       "http":{
@@ -1176,6 +1283,66 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"InvalidInputException"}
+      ]
+    },
+    "GetSchema":{
+      "name":"GetSchema",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSchemaInput"},
+      "output":{"shape":"GetSchemaResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetSchemaByDefinition":{
+      "name":"GetSchemaByDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSchemaByDefinitionInput"},
+      "output":{"shape":"GetSchemaByDefinitionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetSchemaVersion":{
+      "name":"GetSchemaVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSchemaVersionInput"},
+      "output":{"shape":"GetSchemaVersionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetSchemaVersionsDiff":{
+      "name":"GetSchemaVersionsDiff",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetSchemaVersionsDiffInput"},
+      "output":{"shape":"GetSchemaVersionsDiffResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "GetSecurityConfiguration":{
@@ -1479,6 +1646,50 @@
         {"shape":"InternalServiceException"}
       ]
     },
+    "ListRegistries":{
+      "name":"ListRegistries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListRegistriesInput"},
+      "output":{"shape":"ListRegistriesResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListSchemaVersions":{
+      "name":"ListSchemaVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSchemaVersionsInput"},
+      "output":{"shape":"ListSchemaVersionsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "ListSchemas":{
+      "name":"ListSchemas",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListSchemasInput"},
+      "output":{"shape":"ListSchemasResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListTriggers":{
       "name":"ListTriggers",
       "http":{
@@ -1538,6 +1749,22 @@
         {"shape":"ConditionCheckFailureException"}
       ]
     },
+    "PutSchemaVersionMetadata":{
+      "name":"PutSchemaVersionMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutSchemaVersionMetadataInput"},
+      "output":{"shape":"PutSchemaVersionMetadataResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"AlreadyExistsException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ResourceNumberLimitExceededException"}
+      ]
+    },
     "PutWorkflowRunProperties":{
       "name":"PutWorkflowRunProperties",
       "http":{
@@ -1554,6 +1781,51 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ResourceNumberLimitExceededException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "QuerySchemaVersionMetadata":{
+      "name":"QuerySchemaVersionMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"QuerySchemaVersionMetadataInput"},
+      "output":{"shape":"QuerySchemaVersionMetadataResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"}
+      ]
+    },
+    "RegisterSchemaVersion":{
+      "name":"RegisterSchemaVersion",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RegisterSchemaVersionInput"},
+      "output":{"shape":"RegisterSchemaVersionResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "RemoveSchemaVersionMetadata":{
+      "name":"RemoveSchemaVersionMetadata",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveSchemaVersionMetadataInput"},
+      "output":{"shape":"RemoveSchemaVersionMetadataResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"}
       ]
     },
     "ResetJobBookmark":{
@@ -2012,6 +2284,38 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"GlueEncryptionException"}
+      ]
+    },
+    "UpdateRegistry":{
+      "name":"UpdateRegistry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateRegistryInput"},
+      "output":{"shape":"UpdateRegistryResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "UpdateSchema":{
+      "name":"UpdateSchema",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateSchemaInput"},
+      "output":{"shape":"UpdateSchemaResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "UpdateTable":{
@@ -2532,6 +2836,24 @@
       "type":"list",
       "member":{"shape":"CatalogTarget"}
     },
+    "CheckSchemaVersionValidityInput":{
+      "type":"structure",
+      "required":[
+        "DataFormat",
+        "SchemaDefinition"
+      ],
+      "members":{
+        "DataFormat":{"shape":"DataFormat"},
+        "SchemaDefinition":{"shape":"SchemaDefinitionString"}
+      }
+    },
+    "CheckSchemaVersionValidityResponse":{
+      "type":"structure",
+      "members":{
+        "Valid":{"shape":"IsVersionValid"},
+        "Error":{"shape":"SchemaValidationError"}
+      }
+    },
     "Classification":{"type":"string"},
     "Classifier":{
       "type":"structure",
@@ -2729,6 +3051,19 @@
         "LESS_THAN",
         "GREATER_THAN_EQUALS",
         "LESS_THAN_EQUALS"
+      ]
+    },
+    "Compatibility":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "DISABLED",
+        "BACKWARD",
+        "BACKWARD_ALL",
+        "FORWARD",
+        "FORWARD_ALL",
+        "FULL",
+        "FULL_ALL"
       ]
     },
     "ConcurrentModificationException":{
@@ -3242,6 +3577,59 @@
       "members":{
       }
     },
+    "CreateRegistryInput":{
+      "type":"structure",
+      "required":["RegistryName"],
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateRegistryResponse":{
+      "type":"structure",
+      "members":{
+        "RegistryArn":{"shape":"GlueResourceArn"},
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "Description":{"shape":"DescriptionString"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateSchemaInput":{
+      "type":"structure",
+      "required":[
+        "SchemaName",
+        "DataFormat"
+      ],
+      "members":{
+        "RegistryId":{"shape":"RegistryId"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "DataFormat":{"shape":"DataFormat"},
+        "Compatibility":{"shape":"Compatibility"},
+        "Description":{"shape":"DescriptionString"},
+        "Tags":{"shape":"TagsMap"},
+        "SchemaDefinition":{"shape":"SchemaDefinitionString"}
+      }
+    },
+    "CreateSchemaResponse":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "Description":{"shape":"DescriptionString"},
+        "DataFormat":{"shape":"DataFormat"},
+        "Compatibility":{"shape":"Compatibility"},
+        "SchemaCheckpoint":{"shape":"SchemaCheckpointNumber"},
+        "LatestSchemaVersion":{"shape":"VersionLongNumber"},
+        "NextSchemaVersion":{"shape":"VersionLongNumber"},
+        "SchemaStatus":{"shape":"SchemaStatus"},
+        "Tags":{"shape":"TagsMap"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "SchemaVersionStatus":{"shape":"SchemaVersionStatus"}
+      }
+    },
     "CreateScriptRequest":{
       "type":"structure",
       "members":{
@@ -3364,6 +3752,7 @@
         "RowTag":{"shape":"RowTag"}
       }
     },
+    "CreatedTimestamp":{"type":"string"},
     "CronExpression":{"type":"string"},
     "CsvClassifier":{
       "type":"structure",
@@ -3425,6 +3814,10 @@
         "EncryptionAtRest":{"shape":"EncryptionAtRest"},
         "ConnectionPasswordEncryption":{"shape":"ConnectionPasswordEncryption"}
       }
+    },
+    "DataFormat":{
+      "type":"string",
+      "enum":["AVRO"]
     },
     "DataLakePrincipal":{
       "type":"structure",
@@ -3673,6 +4066,21 @@
       "members":{
       }
     },
+    "DeleteRegistryInput":{
+      "type":"structure",
+      "required":["RegistryId"],
+      "members":{
+        "RegistryId":{"shape":"RegistryId"}
+      }
+    },
+    "DeleteRegistryResponse":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"},
+        "Status":{"shape":"RegistryStatus"}
+      }
+    },
     "DeleteResourcePolicyRequest":{
       "type":"structure",
       "members":{
@@ -3683,6 +4091,38 @@
     "DeleteResourcePolicyResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeleteSchemaInput":{
+      "type":"structure",
+      "required":["SchemaId"],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"}
+      }
+    },
+    "DeleteSchemaResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "Status":{"shape":"SchemaStatus"}
+      }
+    },
+    "DeleteSchemaVersionsInput":{
+      "type":"structure",
+      "required":[
+        "SchemaId",
+        "Versions"
+      ],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "Versions":{"shape":"VersionsString"}
+      }
+    },
+    "DeleteSchemaVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaVersionErrors":{"shape":"SchemaVersionErrorList"}
       }
     },
     "DeleteSecurityConfigurationRequest":{
@@ -3911,6 +4351,7 @@
       "key":{"shape":"NameString"},
       "value":{"shape":"ErrorDetail"}
     },
+    "ErrorCodeString":{"type":"string"},
     "ErrorDetail":{
       "type":"structure",
       "members":{
@@ -3918,6 +4359,14 @@
         "ErrorMessage":{"shape":"DescriptionString"}
       }
     },
+    "ErrorDetails":{
+      "type":"structure",
+      "members":{
+        "ErrorCode":{"shape":"ErrorCodeString"},
+        "ErrorMessage":{"shape":"ErrorMessageString"}
+      }
+    },
+    "ErrorMessageString":{"type":"string"},
     "ErrorString":{"type":"string"},
     "EvaluationMetrics":{
       "type":"structure",
@@ -4520,6 +4969,24 @@
         "ScalaCode":{"shape":"ScalaCode"}
       }
     },
+    "GetRegistryInput":{
+      "type":"structure",
+      "required":["RegistryId"],
+      "members":{
+        "RegistryId":{"shape":"RegistryId"}
+      }
+    },
+    "GetRegistryResponse":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"},
+        "Description":{"shape":"DescriptionString"},
+        "Status":{"shape":"RegistryStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"},
+        "UpdatedTime":{"shape":"UpdatedTimestamp"}
+      }
+    },
     "GetResourcePoliciesRequest":{
       "type":"structure",
       "members":{
@@ -4551,6 +5018,93 @@
         "PolicyHash":{"shape":"HashString"},
         "CreateTime":{"shape":"Timestamp"},
         "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "GetSchemaByDefinitionInput":{
+      "type":"structure",
+      "required":[
+        "SchemaId",
+        "SchemaDefinition"
+      ],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaDefinition":{"shape":"SchemaDefinitionString"}
+      }
+    },
+    "GetSchemaByDefinitionResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "DataFormat":{"shape":"DataFormat"},
+        "Status":{"shape":"SchemaVersionStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"}
+      }
+    },
+    "GetSchemaInput":{
+      "type":"structure",
+      "required":["SchemaId"],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"}
+      }
+    },
+    "GetSchemaResponse":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "Description":{"shape":"DescriptionString"},
+        "DataFormat":{"shape":"DataFormat"},
+        "Compatibility":{"shape":"Compatibility"},
+        "SchemaCheckpoint":{"shape":"SchemaCheckpointNumber"},
+        "LatestSchemaVersion":{"shape":"VersionLongNumber"},
+        "NextSchemaVersion":{"shape":"VersionLongNumber"},
+        "SchemaStatus":{"shape":"SchemaStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"},
+        "UpdatedTime":{"shape":"UpdatedTimestamp"}
+      }
+    },
+    "GetSchemaVersionInput":{
+      "type":"structure",
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "SchemaVersionNumber":{"shape":"SchemaVersionNumber"}
+      }
+    },
+    "GetSchemaVersionResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "SchemaDefinition":{"shape":"SchemaDefinitionString"},
+        "DataFormat":{"shape":"DataFormat"},
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "VersionNumber":{"shape":"VersionLongNumber"},
+        "Status":{"shape":"SchemaVersionStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"}
+      }
+    },
+    "GetSchemaVersionsDiffInput":{
+      "type":"structure",
+      "required":[
+        "SchemaId",
+        "FirstSchemaVersionNumber",
+        "SecondSchemaVersionNumber",
+        "SchemaDiffType"
+      ],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "FirstSchemaVersionNumber":{"shape":"SchemaVersionNumber"},
+        "SecondSchemaVersionNumber":{"shape":"SchemaVersionNumber"},
+        "SchemaDiffType":{"shape":"SchemaDiffType"}
+      }
+    },
+    "GetSchemaVersionsDiffResponse":{
+      "type":"structure",
+      "members":{
+        "Diff":{"shape":"SchemaDefinitionDiff"}
       }
     },
     "GetSecurityConfigurationRequest":{
@@ -4939,6 +5493,7 @@
       },
       "exception":true
     },
+    "IsVersionValid":{"type":"boolean"},
     "JdbcTarget":{
       "type":"structure",
       "members":{
@@ -5182,6 +5737,7 @@
         "FAILED"
       ]
     },
+    "LatestSchemaVersionBoolean":{"type":"boolean"},
     "ListCrawlersRequest":{
       "type":"structure",
       "members":{
@@ -5243,6 +5799,51 @@
       "members":{
         "TransformIds":{"shape":"TransformIdList"},
         "NextToken":{"shape":"PaginationToken"}
+      }
+    },
+    "ListRegistriesInput":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResultsNumber"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "ListRegistriesResponse":{
+      "type":"structure",
+      "members":{
+        "Registries":{"shape":"RegistryListDefinition"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "ListSchemaVersionsInput":{
+      "type":"structure",
+      "required":["SchemaId"],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "MaxResults":{"shape":"MaxResultsNumber"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "ListSchemaVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "Schemas":{"shape":"SchemaVersionList"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "ListSchemasInput":{
+      "type":"structure",
+      "members":{
+        "RegistryId":{"shape":"RegistryId"},
+        "MaxResults":{"shape":"MaxResultsNumber"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "ListSchemasResponse":{
+      "type":"structure",
+      "members":{
+        "Schemas":{"shape":"SchemaListDefinition"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
       }
     },
     "ListTriggersRequest":{
@@ -5405,6 +6006,12 @@
       "min":0
     },
     "MaxConcurrentRuns":{"type":"integer"},
+    "MaxResultsNumber":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
     "MaxRetries":{"type":"integer"},
     "MessagePrefix":{
       "type":"string",
@@ -5413,6 +6020,41 @@
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
     "MessageString":{"type":"string"},
+    "MetadataInfo":{
+      "type":"structure",
+      "members":{
+        "MetadataValue":{"shape":"MetadataValueString"},
+        "CreatedTime":{"shape":"CreatedTimestamp"}
+      }
+    },
+    "MetadataInfoMap":{
+      "type":"map",
+      "key":{"shape":"MetadataKeyString"},
+      "value":{"shape":"MetadataInfo"}
+    },
+    "MetadataKeyString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9+-=._./@]+"
+    },
+    "MetadataKeyValuePair":{
+      "type":"structure",
+      "members":{
+        "MetadataKey":{"shape":"MetadataKeyString"},
+        "MetadataValue":{"shape":"MetadataValueString"}
+      }
+    },
+    "MetadataList":{
+      "type":"list",
+      "member":{"shape":"MetadataKeyValuePair"}
+    },
+    "MetadataValueString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9+-=._./@]+"
+    },
     "MillisecondsCount":{"type":"long"},
     "MongoDBTarget":{
       "type":"structure",
@@ -5758,6 +6400,29 @@
         "PolicyHash":{"shape":"HashString"}
       }
     },
+    "PutSchemaVersionMetadataInput":{
+      "type":"structure",
+      "required":["MetadataKeyValue"],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaVersionNumber":{"shape":"SchemaVersionNumber"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "MetadataKeyValue":{"shape":"MetadataKeyValuePair"}
+      }
+    },
+    "PutSchemaVersionMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "LatestVersion":{"shape":"LatestSchemaVersionBoolean"},
+        "VersionNumber":{"shape":"VersionLongNumber"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "MetadataKey":{"shape":"MetadataKeyString"},
+        "MetadataValue":{"shape":"MetadataValueString"}
+      }
+    },
     "PutWorkflowRunPropertiesRequest":{
       "type":"structure",
       "required":[
@@ -5781,6 +6446,30 @@
       "type":"string",
       "pattern":"^[2-3]$"
     },
+    "QuerySchemaVersionMetadataInput":{
+      "type":"structure",
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaVersionNumber":{"shape":"SchemaVersionNumber"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "MetadataList":{"shape":"MetadataList"},
+        "MaxResults":{"shape":"QuerySchemaVersionMetadataMaxResults"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
+    "QuerySchemaVersionMetadataMaxResults":{
+      "type":"integer",
+      "max":50,
+      "min":1
+    },
+    "QuerySchemaVersionMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "MetadataInfoMap":{"shape":"MetadataInfoMap"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "NextToken":{"shape":"SchemaRegistryTokenString"}
+      }
+    },
     "RecordsCount":{
       "type":"long",
       "box":true
@@ -5796,6 +6485,77 @@
       "type":"structure",
       "members":{
         "RecrawlBehavior":{"shape":"RecrawlBehavior"}
+      }
+    },
+    "RegisterSchemaVersionInput":{
+      "type":"structure",
+      "required":[
+        "SchemaId",
+        "SchemaDefinition"
+      ],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaDefinition":{"shape":"SchemaDefinitionString"}
+      }
+    },
+    "RegisterSchemaVersionResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "VersionNumber":{"shape":"VersionLongNumber"},
+        "Status":{"shape":"SchemaVersionStatus"}
+      }
+    },
+    "RegistryId":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"}
+      }
+    },
+    "RegistryListDefinition":{
+      "type":"list",
+      "member":{"shape":"RegistryListItem"}
+    },
+    "RegistryListItem":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"},
+        "Description":{"shape":"DescriptionString"},
+        "Status":{"shape":"RegistryStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"},
+        "UpdatedTime":{"shape":"UpdatedTimestamp"}
+      }
+    },
+    "RegistryStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "DELETING"
+      ]
+    },
+    "RemoveSchemaVersionMetadataInput":{
+      "type":"structure",
+      "required":["MetadataKeyValue"],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaVersionNumber":{"shape":"SchemaVersionNumber"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "MetadataKeyValue":{"shape":"MetadataKeyValuePair"}
+      }
+    },
+    "RemoveSchemaVersionMetadataResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "LatestVersion":{"shape":"LatestSchemaVersionBoolean"},
+        "VersionNumber":{"shape":"VersionLongNumber"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "MetadataKey":{"shape":"MetadataKeyString"},
+        "MetadataValue":{"shape":"MetadataValueString"}
       }
     },
     "ReplaceBoolean":{"type":"boolean"},
@@ -5951,6 +6711,11 @@
         "DeleteBehavior":{"shape":"DeleteBehavior"}
       }
     },
+    "SchemaCheckpointNumber":{
+      "type":"long",
+      "max":100000,
+      "min":1
+    },
     "SchemaColumn":{
       "type":"structure",
       "members":{
@@ -5958,7 +6723,125 @@
         "DataType":{"shape":"ColumnTypeString"}
       }
     },
+    "SchemaDefinitionDiff":{
+      "type":"string",
+      "max":340000,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "SchemaDefinitionString":{
+      "type":"string",
+      "max":170000,
+      "min":1,
+      "pattern":".*\\S.*"
+    },
+    "SchemaDiffType":{
+      "type":"string",
+      "enum":["SYNTAX_DIFF"]
+    },
+    "SchemaId":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "RegistryName":{"shape":"SchemaRegistryNameString"}
+      }
+    },
+    "SchemaListDefinition":{
+      "type":"list",
+      "member":{"shape":"SchemaListItem"}
+    },
+    "SchemaListItem":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "Description":{"shape":"DescriptionString"},
+        "SchemaStatus":{"shape":"SchemaStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"},
+        "UpdatedTime":{"shape":"UpdatedTimestamp"}
+      }
+    },
     "SchemaPathString":{"type":"string"},
+    "SchemaReference":{
+      "type":"structure",
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "SchemaVersionNumber":{
+          "shape":"VersionLongNumber",
+          "box":true
+        }
+      }
+    },
+    "SchemaRegistryNameString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-_$#]+"
+    },
+    "SchemaRegistryTokenString":{"type":"string"},
+    "SchemaStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "PENDING",
+        "DELETING"
+      ]
+    },
+    "SchemaValidationError":{
+      "type":"string",
+      "max":5000,
+      "min":1
+    },
+    "SchemaVersionErrorItem":{
+      "type":"structure",
+      "members":{
+        "VersionNumber":{"shape":"VersionLongNumber"},
+        "ErrorDetails":{"shape":"ErrorDetails"}
+      }
+    },
+    "SchemaVersionErrorList":{
+      "type":"list",
+      "member":{"shape":"SchemaVersionErrorItem"}
+    },
+    "SchemaVersionIdString":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
+    },
+    "SchemaVersionList":{
+      "type":"list",
+      "member":{"shape":"SchemaVersionListItem"}
+    },
+    "SchemaVersionListItem":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "SchemaVersionId":{"shape":"SchemaVersionIdString"},
+        "VersionNumber":{"shape":"VersionLongNumber"},
+        "Status":{"shape":"SchemaVersionStatus"},
+        "CreatedTime":{"shape":"CreatedTimestamp"}
+      }
+    },
+    "SchemaVersionNumber":{
+      "type":"structure",
+      "members":{
+        "LatestVersion":{"shape":"LatestSchemaVersionBoolean"},
+        "VersionNumber":{"shape":"VersionLongNumber"}
+      }
+    },
+    "SchemaVersionStatus":{
+      "type":"string",
+      "enum":[
+        "AVAILABLE",
+        "PENDING",
+        "FAILURE",
+        "DELETING"
+      ]
+    },
     "ScriptLocationString":{"type":"string"},
     "SearchPropertyPredicates":{
       "type":"list",
@@ -6263,7 +7146,8 @@
         "SortColumns":{"shape":"OrderList"},
         "Parameters":{"shape":"ParametersMap"},
         "SkewedInfo":{"shape":"SkewedInfo"},
-        "StoredAsSubDirectories":{"shape":"Boolean"}
+        "StoredAsSubDirectories":{"shape":"Boolean"},
+        "SchemaReference":{"shape":"SchemaReference"}
       }
     },
     "StringColumnStatisticsData":{
@@ -6924,6 +7808,42 @@
       "members":{
       }
     },
+    "UpdateRegistryInput":{
+      "type":"structure",
+      "required":[
+        "RegistryId",
+        "Description"
+      ],
+      "members":{
+        "RegistryId":{"shape":"RegistryId"},
+        "Description":{"shape":"DescriptionString"}
+      }
+    },
+    "UpdateRegistryResponse":{
+      "type":"structure",
+      "members":{
+        "RegistryName":{"shape":"SchemaRegistryNameString"},
+        "RegistryArn":{"shape":"GlueResourceArn"}
+      }
+    },
+    "UpdateSchemaInput":{
+      "type":"structure",
+      "required":["SchemaId"],
+      "members":{
+        "SchemaId":{"shape":"SchemaId"},
+        "SchemaVersionNumber":{"shape":"SchemaVersionNumber"},
+        "Compatibility":{"shape":"Compatibility"},
+        "Description":{"shape":"DescriptionString"}
+      }
+    },
+    "UpdateSchemaResponse":{
+      "type":"structure",
+      "members":{
+        "SchemaArn":{"shape":"GlueResourceArn"},
+        "SchemaName":{"shape":"SchemaRegistryNameString"},
+        "RegistryName":{"shape":"SchemaRegistryNameString"}
+      }
+    },
     "UpdateTableRequest":{
       "type":"structure",
       "required":[
@@ -7003,6 +7923,7 @@
         "RowTag":{"shape":"RowTag"}
       }
     },
+    "UpdatedTimestamp":{"type":"string"},
     "UriString":{"type":"string"},
     "UserDefinedFunction":{
       "type":"structure",
@@ -7047,6 +7968,11 @@
       "member":{"shape":"ValueString"}
     },
     "VersionId":{"type":"long"},
+    "VersionLongNumber":{
+      "type":"long",
+      "max":100000,
+      "min":1
+    },
     "VersionMismatchException":{
       "type":"structure",
       "members":{
@@ -7059,6 +7985,12 @@
       "max":255,
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
+    },
+    "VersionsString":{
+      "type":"string",
+      "max":100000,
+      "min":1,
+      "pattern":"[1-9][0-9]*|[1-9][0-9]*-[1-9][0-9]*"
     },
     "ViewTextString":{
       "type":"string",
