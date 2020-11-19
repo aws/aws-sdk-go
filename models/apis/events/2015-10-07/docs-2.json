@@ -4,7 +4,7 @@
   "operations": {
     "ActivateEventSource": "<p>Activates a partner event source that has been deactivated. Once activated, your matching event bus will start receiving events from the event source.</p>",
     "CancelReplay": "<p>Cancels the specified replay.</p>",
-    "CreateArchive": "<p>Creates an archive of events with the specified settings. When you create an archive, incoming events might not immediately start being sent to the archive. Allow a short period of time for changes to take effect.</p>",
+    "CreateArchive": "<p>Creates an archive of events with the specified settings. When you create an archive, incoming events might not immediately start being sent to the archive. Allow a short period of time for changes to take effect. If you do not specify a pattern to filter events sent to the archive, all events are sent to the archive except replayed events. Replayed events are not sent to an archive.</p>",
     "CreateEventBus": "<p>Creates a new event bus within your account. This can be a custom event bus which you can use to receive events from your custom applications and services, or it can be a partner event bus which can be matched to a partner event source.</p>",
     "CreatePartnerEventSource": "<p>Called by an SaaS partner to create a partner event source. This operation is not used by AWS customers.</p> <p>Each partner event source can be used by one AWS account to create a matching partner event bus in that AWS account. A SaaS partner must create one partner event source for each AWS account that wants to receive those event types. </p> <p>A partner event source creates events based on resources within the SaaS partner's service or application.</p> <p>An AWS account that creates a partner event bus that matches the partner event source can use that event bus to receive events from the partner, and then process them using AWS Events rules and targets.</p> <p>Partner event source names follow this format:</p> <p> <code> <i>partner_name</i>/<i>event_namespace</i>/<i>event_name</i> </code> </p> <p> <i>partner_name</i> is determined during partner registration and identifies the partner to AWS customers. <i>event_namespace</i> is determined by the partner and is a way for the partner to categorize their events. <i>event_name</i> is determined by the partner, and should uniquely identify an event-generating resource within the partner system. The combination of <i>event_namespace</i> and <i>event_name</i> should help AWS customers decide whether to create an event bus to receive these events.</p>",
     "DeactivateEventSource": "<p>You can use this operation to temporarily stop receiving events from the specified partner event source. The matching event bus is not deleted. </p> <p>When you deactivate a partner event source, the source goes into PENDING state. If it remains in PENDING state for more than two weeks, it is deleted.</p> <p>To activate a deactivated partner event source, use <a>ActivateEventSource</a>.</p>",
@@ -176,6 +176,7 @@
       "refs": {
         "DeleteRuleRequest$Force": "<p>If this is a managed rule, created by an AWS service on your behalf, you must specify <code>Force</code> as <code>True</code> to delete the rule. This parameter is ignored for rules that are not managed rules. You can check whether a rule is a managed rule by using <code>DescribeRule</code> or <code>ListRules</code> and checking the <code>ManagedBy</code> field of the response.</p>",
         "RedshiftDataParameters$WithEvent": "<p>Indicates whether to send an event back to EventBridge after the SQL statement runs.</p>",
+        "RemovePermissionRequest$RemoveAllPermissions": "<p>Specifies whether to remove all permissions.</p>",
         "RemoveTargetsRequest$Force": "<p>If this is a managed rule, created by an AWS service on your behalf, you must specify <code>Force</code> as <code>True</code> to remove targets. This parameter is ignored for rules that are not managed rules. You can check whether a rule is a managed rule by using <code>DescribeRule</code> or <code>ListRules</code> and checking the <code>ManagedBy</code> field of the response.</p>",
         "TestEventPatternResponse$Result": "<p>Indicates whether the event matches the event pattern.</p>"
       }
@@ -229,6 +230,12 @@
     "CreatePartnerEventSourceResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "CreatedBy": {
+      "base": null,
+      "refs": {
+        "DescribeRuleResponse$CreatedBy": "<p>The account ID of the user that created the rule. If you use <code>PutRule</code> to put a rule on an event bus in another account, the other account is the owner of the rule, and the rule ARN includes the account ID for that account. However, the value for <code>CreatedBy</code> is the account ID as the account that created the rule in the other account.</p>"
       }
     },
     "Database": {
@@ -390,20 +397,25 @@
       "refs": {
         "CreateEventBusRequest$Name": "<p>The name of the new event bus. </p> <p>Event bus names cannot contain the / character. You can't use the name <code>default</code> for a custom event bus, as this name is already used for your account's default event bus.</p> <p>If this is a partner event bus, the name must exactly match the name of the partner event source that this event bus is matched to.</p>",
         "DeleteEventBusRequest$Name": "<p>The name of the event bus to delete.</p>",
-        "DeleteRuleRequest$EventBusName": "<p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>",
-        "DescribeEventBusRequest$Name": "<p>The name of the event bus to show details for. If you omit this, the default event bus is displayed.</p>",
-        "DescribeRuleRequest$EventBusName": "<p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>",
-        "DescribeRuleResponse$EventBusName": "<p>The event bus associated with the rule.</p>",
-        "DisableRuleRequest$EventBusName": "<p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>",
-        "EnableRuleRequest$EventBusName": "<p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "DescribeRuleResponse$EventBusName": "<p>The name of the event bus associated with the rule.</p>",
         "ListEventBusesRequest$NamePrefix": "<p>Specifying this limits the results to only those event buses with names that start with the specified prefix.</p>",
-        "ListRuleNamesByTargetRequest$EventBusName": "<p>Limits the results to show only the rules associated with the specified event bus.</p>",
-        "ListRulesRequest$EventBusName": "<p>Limits the results to show only the rules associated with the specified event bus.</p>",
-        "ListTargetsByRuleRequest$EventBusName": "<p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>",
-        "PutRuleRequest$EventBusName": "<p>The event bus to associate with this rule. If you omit this, the default event bus is used.</p>",
-        "PutTargetsRequest$EventBusName": "<p>The name of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
-        "RemoveTargetsRequest$EventBusName": "<p>The name of the event bus associated with the rule.</p>",
-        "Rule$EventBusName": "<p>The event bus associated with the rule.</p>"
+        "Rule$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>"
+      }
+    },
+    "EventBusNameOrArn": {
+      "base": null,
+      "refs": {
+        "DeleteRuleRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "DescribeEventBusRequest$Name": "<p>The name or ARN of the event bus to show details for. If you omit this, the default event bus is displayed.</p>",
+        "DescribeRuleRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "DisableRuleRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "EnableRuleRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "ListRuleNamesByTargetRequest$EventBusName": "<p>The name or ARN of the event bus to list rules for. If you omit this, the default event bus is used.</p>",
+        "ListRulesRequest$EventBusName": "<p>The name or ARN of the event bus to list the rules for. If you omit this, the default event bus is used.</p>",
+        "ListTargetsByRuleRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "PutRuleRequest$EventBusName": "<p>The name or ARN of the event bus to associate with this rule. If you omit this, the default event bus is used.</p>",
+        "PutTargetsRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "RemoveTargetsRequest$EventBusName": "<p>The name or ARN of the event bus associated with the rule. If you omit this, the default event bus is used.</p>"
       }
     },
     "EventId": {
@@ -760,9 +772,14 @@
     "NonPartnerEventBusName": {
       "base": null,
       "refs": {
-        "PutEventsRequestEntry$EventBusName": "<p>The event bus that will receive the event. Only the rules that are associated with this event bus will be able to match the event.</p>",
-        "PutPermissionRequest$EventBusName": "<p>The event bus associated with the rule. If you omit this, the default event bus is used.</p>",
+        "PutPermissionRequest$EventBusName": "<p>The name of the event bus associated with the rule. If you omit this, the default event bus is used.</p>",
         "RemovePermissionRequest$EventBusName": "<p>The name of the event bus to revoke permissions for. If you omit this, the default event bus is used.</p>"
+      }
+    },
+    "NonPartnerEventBusNameOrArn": {
+      "base": null,
+      "refs": {
+        "PutEventsRequestEntry$EventBusName": "<p>The name or ARN of the event bus to receive the event. Only the rules that are associated with this event bus are used to match the event. If you omit this, the default event bus is used.</p>"
       }
     },
     "OperationDisabledException": {
@@ -1031,7 +1048,7 @@
         "CancelReplayRequest$ReplayName": "<p>The name of the replay to cancel.</p>",
         "DescribeReplayRequest$ReplayName": "<p>The name of the replay to retrieve.</p>",
         "DescribeReplayResponse$ReplayName": "<p>The name of the replay.</p>",
-        "ListReplaysRequest$NamePrefix": "<p>A name prefix to filter the archives returned. Only archives with name that match the prefix are returned.</p>",
+        "ListReplaysRequest$NamePrefix": "<p>A name prefix to filter the replays returned. Only replays with name that match the prefix are returned.</p>",
         "Replay$ReplayName": "<p>The name of the replay.</p>",
         "StartReplayRequest$ReplayName": "<p>The name of the replay to start.</p>"
       }
@@ -1266,6 +1283,7 @@
         "PutEventsRequestEntry$Detail": "<p>A valid JSON string. There is no other schema imposed. The JSON string may contain fields and nested subobjects.</p>",
         "PutPartnerEventsRequestEntry$DetailType": "<p>A free-form string used to decide what fields to expect in the event detail.</p>",
         "PutPartnerEventsRequestEntry$Detail": "<p>A valid JSON string. There is no other schema imposed. The JSON string may contain fields and nested subobjects.</p>",
+        "PutPermissionRequest$Policy": "<p>A JSON string that describes the permission policy statement. You can include a <code>Policy</code> parameter in the request instead of using the <code>StatementId</code>, <code>Action</code>, <code>Principal</code>, or <code>Condition</code> parameters.</p>",
         "StringList$member": null,
         "TestEventPatternRequest$Event": "<p>The event, in JSON format, to test against the event pattern.</p>"
       }

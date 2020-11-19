@@ -724,6 +724,101 @@ func (c *KinesisAnalyticsV2) CreateApplicationWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opCreateApplicationPresignedUrl = "CreateApplicationPresignedUrl"
+
+// CreateApplicationPresignedUrlRequest generates a "aws/request.Request" representing the
+// client's request for the CreateApplicationPresignedUrl operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateApplicationPresignedUrl for more information on using the CreateApplicationPresignedUrl
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateApplicationPresignedUrlRequest method.
+//    req, resp := client.CreateApplicationPresignedUrlRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/CreateApplicationPresignedUrl
+func (c *KinesisAnalyticsV2) CreateApplicationPresignedUrlRequest(input *CreateApplicationPresignedUrlInput) (req *request.Request, output *CreateApplicationPresignedUrlOutput) {
+	op := &request.Operation{
+		Name:       opCreateApplicationPresignedUrl,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateApplicationPresignedUrlInput{}
+	}
+
+	output = &CreateApplicationPresignedUrlOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateApplicationPresignedUrl API operation for Amazon Kinesis Analytics.
+//
+// Creates and returns a URL that you can use to connect to an application's
+// extension. Currently, the only available extension is the Apache Flink dashboard.
+//
+// The IAM role or user used to call this API defines the permissions to access
+// the extension. Once the presigned URL is created, no additional permission
+// is required to access this URL. IAM authorization policies for this API are
+// also enforced for every HTTP request that attempts to connect to the extension.
+//
+// The URL that you get from a call to CreateApplicationPresignedUrl must be
+// used within 3 minutes to be valid. If you first try to use the URL after
+// the 3-minute limit expires, the service returns an HTTP 403 Forbidden error.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Kinesis Analytics's
+// API operation CreateApplicationPresignedUrl for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   Specified application can't be found.
+//
+//   * ResourceInUseException
+//   The application is not available for this operation.
+//
+//   * InvalidArgumentException
+//   The specified input parameter value is not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kinesisanalyticsv2-2018-05-23/CreateApplicationPresignedUrl
+func (c *KinesisAnalyticsV2) CreateApplicationPresignedUrl(input *CreateApplicationPresignedUrlInput) (*CreateApplicationPresignedUrlOutput, error) {
+	req, out := c.CreateApplicationPresignedUrlRequest(input)
+	return out, req.Send()
+}
+
+// CreateApplicationPresignedUrlWithContext is the same as CreateApplicationPresignedUrl with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateApplicationPresignedUrl for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *KinesisAnalyticsV2) CreateApplicationPresignedUrlWithContext(ctx aws.Context, input *CreateApplicationPresignedUrlInput, opts ...request.Option) (*CreateApplicationPresignedUrlOutput, error) {
+	req, out := c.CreateApplicationPresignedUrlRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateApplicationSnapshot = "CreateApplicationSnapshot"
 
 // CreateApplicationSnapshotRequest generates a "aws/request.Request" representing the
@@ -2161,8 +2256,12 @@ func (c *KinesisAnalyticsV2) StopApplicationRequest(input *StopApplicationInput)
 // StopApplication API operation for Amazon Kinesis Analytics.
 //
 // Stops the application from processing data. You can stop an application only
-// if it is in the running state. You can use the DescribeApplication operation
-// to find the application state.
+// if it is in the running status, unless you set the Force parameter to true.
+//
+// You can use the DescribeApplication operation to find the application status.
+//
+// Kinesis Data Analytics takes a snapshot when the application is stopped,
+// unless Force is set to true.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5042,6 +5141,97 @@ func (s CreateApplicationOutput) GoString() string {
 // SetApplicationDetail sets the ApplicationDetail field's value.
 func (s *CreateApplicationOutput) SetApplicationDetail(v *ApplicationDetail) *CreateApplicationOutput {
 	s.ApplicationDetail = v
+	return s
+}
+
+type CreateApplicationPresignedUrlInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the application.
+	//
+	// ApplicationName is a required field
+	ApplicationName *string `min:"1" type:"string" required:"true"`
+
+	// The duration in seconds for which the returned URL will be valid.
+	SessionExpirationDurationInSeconds *int64 `min:"1800" type:"long"`
+
+	// The type of the extension for which to create and return a URL. Currently,
+	// the only valid extension URL type is FLINK_DASHBOARD_URL.
+	//
+	// UrlType is a required field
+	UrlType *string `type:"string" required:"true" enum:"UrlType"`
+}
+
+// String returns the string representation
+func (s CreateApplicationPresignedUrlInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateApplicationPresignedUrlInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateApplicationPresignedUrlInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateApplicationPresignedUrlInput"}
+	if s.ApplicationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationName"))
+	}
+	if s.ApplicationName != nil && len(*s.ApplicationName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationName", 1))
+	}
+	if s.SessionExpirationDurationInSeconds != nil && *s.SessionExpirationDurationInSeconds < 1800 {
+		invalidParams.Add(request.NewErrParamMinValue("SessionExpirationDurationInSeconds", 1800))
+	}
+	if s.UrlType == nil {
+		invalidParams.Add(request.NewErrParamRequired("UrlType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationName sets the ApplicationName field's value.
+func (s *CreateApplicationPresignedUrlInput) SetApplicationName(v string) *CreateApplicationPresignedUrlInput {
+	s.ApplicationName = &v
+	return s
+}
+
+// SetSessionExpirationDurationInSeconds sets the SessionExpirationDurationInSeconds field's value.
+func (s *CreateApplicationPresignedUrlInput) SetSessionExpirationDurationInSeconds(v int64) *CreateApplicationPresignedUrlInput {
+	s.SessionExpirationDurationInSeconds = &v
+	return s
+}
+
+// SetUrlType sets the UrlType field's value.
+func (s *CreateApplicationPresignedUrlInput) SetUrlType(v string) *CreateApplicationPresignedUrlInput {
+	s.UrlType = &v
+	return s
+}
+
+type CreateApplicationPresignedUrlOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The URL of the extension.
+	AuthorizedUrl *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateApplicationPresignedUrlOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateApplicationPresignedUrlOutput) GoString() string {
+	return s.String()
+}
+
+// SetAuthorizedUrl sets the AuthorizedUrl field's value.
+func (s *CreateApplicationPresignedUrlOutput) SetAuthorizedUrl(v string) *CreateApplicationPresignedUrlOutput {
+	s.AuthorizedUrl = &v
 	return s
 }
 
@@ -11000,11 +11190,15 @@ type StopApplicationInput struct {
 	// Set to true to force the application to stop. If you set Force to true, Kinesis
 	// Data Analytics stops the application without taking a snapshot.
 	//
+	// Force-stopping your application may lead to data loss or duplication. To
+	// prevent data loss or duplicate processing of data during application restarts,
+	// we recommend you to take frequent snapshots of your application.
+	//
 	// You can only force stop a Flink-based Kinesis Data Analytics application.
 	// You can't force stop a SQL-based Kinesis Data Analytics application.
 	//
 	// The application must be in the STARTING, UPDATING, STOPPING, AUTOSCALING,
-	// or RUNNING state.
+	// or RUNNING status.
 	Force *bool `type:"boolean"`
 }
 
@@ -11969,6 +12163,9 @@ const (
 
 	// RuntimeEnvironmentFlink18 is a RuntimeEnvironment enum value
 	RuntimeEnvironmentFlink18 = "FLINK-1_8"
+
+	// RuntimeEnvironmentFlink111 is a RuntimeEnvironment enum value
+	RuntimeEnvironmentFlink111 = "FLINK-1_11"
 )
 
 // RuntimeEnvironment_Values returns all elements of the RuntimeEnvironment enum
@@ -11977,6 +12174,7 @@ func RuntimeEnvironment_Values() []string {
 		RuntimeEnvironmentSql10,
 		RuntimeEnvironmentFlink16,
 		RuntimeEnvironmentFlink18,
+		RuntimeEnvironmentFlink111,
 	}
 }
 
@@ -12001,5 +12199,17 @@ func SnapshotStatus_Values() []string {
 		SnapshotStatusReady,
 		SnapshotStatusDeleting,
 		SnapshotStatusFailed,
+	}
+}
+
+const (
+	// UrlTypeFlinkDashboardUrl is a UrlType enum value
+	UrlTypeFlinkDashboardUrl = "FLINK_DASHBOARD_URL"
+)
+
+// UrlType_Values returns all elements of the UrlType enum
+func UrlType_Values() []string {
+	return []string{
+		UrlTypeFlinkDashboardUrl,
 	}
 }

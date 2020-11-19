@@ -241,7 +241,10 @@ func (c *EventBridge) CreateArchiveRequest(input *CreateArchiveInput) (req *requ
 //
 // Creates an archive of events with the specified settings. When you create
 // an archive, incoming events might not immediately start being sent to the
-// archive. Allow a short period of time for changes to take effect.
+// archive. Allow a short period of time for changes to take effect. If you
+// do not specify a pattern to filter events sent to the archive, all events
+// are sent to the archive except replayed events. Replayed events are not sent
+// to an archive.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2774,6 +2777,9 @@ func (c *EventBridge) PutPermissionRequest(input *PutPermissionInput) (req *requ
 //   * ConcurrentModificationException
 //   There is concurrent modification on a rule, target, archive, or replay.
 //
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/PutPermission
 func (c *EventBridge) PutPermission(input *PutPermissionInput) (*PutPermissionOutput, error) {
 	req, out := c.PutPermissionRequest(input)
@@ -3223,6 +3229,9 @@ func (c *EventBridge) RemovePermissionRequest(input *RemovePermissionInput) (req
 //
 //   * ConcurrentModificationException
 //   There is concurrent modification on a rule, target, archive, or replay.
+//
+//   * OperationDisabledException
+//   The operation you are attempting is not available in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/eventbridge-2015-10-07/RemovePermission
 func (c *EventBridge) RemovePermission(input *RemovePermissionInput) (*RemovePermissionOutput, error) {
@@ -4989,8 +4998,8 @@ func (s DeletePartnerEventSourceOutput) GoString() string {
 type DeleteRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event bus associated with the rule. If you omit this, the default event
-	// bus is used.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// If this is a managed rule, created by an AWS service on your behalf, you
@@ -5224,8 +5233,8 @@ func (s *DescribeArchiveOutput) SetStateReason(v string) *DescribeArchiveOutput 
 type DescribeEventBusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the event bus to show details for. If you omit this, the default
-	// event bus is displayed.
+	// The name or ARN of the event bus to show details for. If you omit this, the
+	// default event bus is displayed.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -5653,8 +5662,8 @@ func (s *DescribeReplayOutput) SetStateReason(v string) *DescribeReplayOutput {
 type DescribeRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event bus associated with the rule. If you omit this, the default event
-	// bus is used.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The name of the rule.
@@ -5710,10 +5719,17 @@ type DescribeRuleOutput struct {
 	// The Amazon Resource Name (ARN) of the rule.
 	Arn *string `min:"1" type:"string"`
 
+	// The account ID of the user that created the rule. If you use PutRule to put
+	// a rule on an event bus in another account, the other account is the owner
+	// of the rule, and the rule ARN includes the account ID for that account. However,
+	// the value for CreatedBy is the account ID as the account that created the
+	// rule in the other account.
+	CreatedBy *string `min:"1" type:"string"`
+
 	// The description of the rule.
 	Description *string `type:"string"`
 
-	// The event bus associated with the rule.
+	// The name of the event bus associated with the rule.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The event pattern. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
@@ -5750,6 +5766,12 @@ func (s DescribeRuleOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeRuleOutput) SetArn(v string) *DescribeRuleOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *DescribeRuleOutput) SetCreatedBy(v string) *DescribeRuleOutput {
+	s.CreatedBy = &v
 	return s
 }
 
@@ -5804,8 +5826,8 @@ func (s *DescribeRuleOutput) SetState(v string) *DescribeRuleOutput {
 type DisableRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event bus associated with the rule. If you omit this, the default event
-	// bus is used.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The name of the rule.
@@ -5984,8 +6006,8 @@ func (s *EcsParameters) SetTaskDefinitionArn(v string) *EcsParameters {
 type EnableRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event bus associated with the rule. If you omit this, the default event
-	// bus is used.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The name of the rule.
@@ -7158,7 +7180,7 @@ type ListReplaysInput struct {
 	// The maximum number of replays to retrieve.
 	Limit *int64 `min:"1" type:"integer"`
 
-	// A name prefix to filter the archives returned. Only archives with name that
+	// A name prefix to filter the replays returned. Only replays with name that
 	// match the prefix are returned.
 	NamePrefix *string `min:"1" type:"string"`
 
@@ -7266,8 +7288,8 @@ func (s *ListReplaysOutput) SetReplays(v []*Replay) *ListReplaysOutput {
 type ListRuleNamesByTargetInput struct {
 	_ struct{} `type:"structure"`
 
-	// Limits the results to show only the rules associated with the specified event
-	// bus.
+	// The name or ARN of the event bus to list rules for. If you omit this, the
+	// default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
@@ -7377,8 +7399,8 @@ func (s *ListRuleNamesByTargetOutput) SetRuleNames(v []*string) *ListRuleNamesBy
 type ListRulesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Limits the results to show only the rules associated with the specified event
-	// bus.
+	// The name or ARN of the event bus to list the rules for. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
@@ -7547,8 +7569,8 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type ListTargetsByRuleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The event bus associated with the rule. If you omit this, the default event
-	// bus is used.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The maximum number of results to return.
@@ -8058,8 +8080,9 @@ type PutEventsRequestEntry struct {
 	// Free-form string used to decide what fields to expect in the event detail.
 	DetailType *string `type:"string"`
 
-	// The event bus that will receive the event. Only the rules that are associated
-	// with this event bus will be able to match the event.
+	// The name or ARN of the event bus to receive the event. Only the rules that
+	// are associated with this event bus are used to match the event. If you omit
+	// this, the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// AWS resources, identified by Amazon Resource Name (ARN), which the event
@@ -8382,9 +8405,7 @@ type PutPermissionInput struct {
 
 	// The action that you are enabling the other account to perform. Currently,
 	// this must be events:PutEvents.
-	//
-	// Action is a required field
-	Action *string `min:"1" type:"string" required:"true"`
+	Action *string `min:"1" type:"string"`
 
 	// This parameter enables you to limit the permission to accounts that fulfill
 	// a certain condition, such as being a member of a certain AWS organization.
@@ -8399,9 +8420,14 @@ type PutPermissionInput struct {
 	// The Condition is a JSON string which must contain Type, Key, and Value fields.
 	Condition *Condition `type:"structure"`
 
-	// The event bus associated with the rule. If you omit this, the default event
-	// bus is used.
+	// The name of the event bus associated with the rule. If you omit this, the
+	// default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
+
+	// A JSON string that describes the permission policy statement. You can include
+	// a Policy parameter in the request instead of using the StatementId, Action,
+	// Principal, or Condition parameters.
+	Policy *string `type:"string"`
 
 	// The 12-digit AWS account ID that you are permitting to put events to your
 	// default event bus. Specify "*" to permit any account to put events to your
@@ -8412,16 +8438,12 @@ type PutPermissionInput struct {
 	// the event pattern for each rule contains an account field with a specific
 	// account ID from which to receive events. Rules with an account field do not
 	// match any events sent from other accounts.
-	//
-	// Principal is a required field
-	Principal *string `min:"1" type:"string" required:"true"`
+	Principal *string `min:"1" type:"string"`
 
 	// An identifier string for the external account that you are granting permissions
 	// to. If you later want to revoke the permission for this external account,
 	// specify this StatementId when you run RemovePermission.
-	//
-	// StatementId is a required field
-	StatementId *string `min:"1" type:"string" required:"true"`
+	StatementId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -8437,23 +8459,14 @@ func (s PutPermissionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *PutPermissionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "PutPermissionInput"}
-	if s.Action == nil {
-		invalidParams.Add(request.NewErrParamRequired("Action"))
-	}
 	if s.Action != nil && len(*s.Action) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Action", 1))
 	}
 	if s.EventBusName != nil && len(*s.EventBusName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EventBusName", 1))
 	}
-	if s.Principal == nil {
-		invalidParams.Add(request.NewErrParamRequired("Principal"))
-	}
 	if s.Principal != nil && len(*s.Principal) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Principal", 1))
-	}
-	if s.StatementId == nil {
-		invalidParams.Add(request.NewErrParamRequired("StatementId"))
 	}
 	if s.StatementId != nil && len(*s.StatementId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
@@ -8485,6 +8498,12 @@ func (s *PutPermissionInput) SetCondition(v *Condition) *PutPermissionInput {
 // SetEventBusName sets the EventBusName field's value.
 func (s *PutPermissionInput) SetEventBusName(v string) *PutPermissionInput {
 	s.EventBusName = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutPermissionInput) SetPolicy(v string) *PutPermissionInput {
+	s.Policy = &v
 	return s
 }
 
@@ -8520,8 +8539,8 @@ type PutRuleInput struct {
 	// A description of the rule.
 	Description *string `type:"string"`
 
-	// The event bus to associate with this rule. If you omit this, the default
-	// event bus is used.
+	// The name or ARN of the event bus to associate with this rule. If you omit
+	// this, the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The event pattern. For more information, see Events and Event Patterns (https://docs.aws.amazon.com/eventbridge/latest/userguide/eventbridge-and-event-patterns.html)
@@ -8662,8 +8681,8 @@ func (s *PutRuleOutput) SetRuleArn(v string) *PutRuleOutput {
 type PutTargetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the event bus associated with the rule. If you omit this, the
-	// default event bus is used.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The name of the rule.
@@ -8931,11 +8950,12 @@ type RemovePermissionInput struct {
 	// default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
+	// Specifies whether to remove all permissions.
+	RemoveAllPermissions *bool `type:"boolean"`
+
 	// The statement ID corresponding to the account that is no longer allowed to
 	// put events to the default event bus.
-	//
-	// StatementId is a required field
-	StatementId *string `min:"1" type:"string" required:"true"`
+	StatementId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -8954,9 +8974,6 @@ func (s *RemovePermissionInput) Validate() error {
 	if s.EventBusName != nil && len(*s.EventBusName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("EventBusName", 1))
 	}
-	if s.StatementId == nil {
-		invalidParams.Add(request.NewErrParamRequired("StatementId"))
-	}
 	if s.StatementId != nil && len(*s.StatementId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("StatementId", 1))
 	}
@@ -8970,6 +8987,12 @@ func (s *RemovePermissionInput) Validate() error {
 // SetEventBusName sets the EventBusName field's value.
 func (s *RemovePermissionInput) SetEventBusName(v string) *RemovePermissionInput {
 	s.EventBusName = &v
+	return s
+}
+
+// SetRemoveAllPermissions sets the RemoveAllPermissions field's value.
+func (s *RemovePermissionInput) SetRemoveAllPermissions(v bool) *RemovePermissionInput {
+	s.RemoveAllPermissions = &v
 	return s
 }
 
@@ -8996,7 +9019,8 @@ func (s RemovePermissionOutput) GoString() string {
 type RemoveTargetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the event bus associated with the rule.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// If this is a managed rule, created by an AWS service on your behalf, you
@@ -9472,7 +9496,8 @@ type Rule struct {
 	// The description of the rule.
 	Description *string `type:"string"`
 
-	// The event bus associated with the rule.
+	// The name or ARN of the event bus associated with the rule. If you omit this,
+	// the default event bus is used.
 	EventBusName *string `min:"1" type:"string"`
 
 	// The event pattern of the rule. For more information, see Events and Event

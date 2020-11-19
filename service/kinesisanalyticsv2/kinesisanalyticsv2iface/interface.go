@@ -88,6 +88,10 @@ type KinesisAnalyticsV2API interface {
 	CreateApplicationWithContext(aws.Context, *kinesisanalyticsv2.CreateApplicationInput, ...request.Option) (*kinesisanalyticsv2.CreateApplicationOutput, error)
 	CreateApplicationRequest(*kinesisanalyticsv2.CreateApplicationInput) (*request.Request, *kinesisanalyticsv2.CreateApplicationOutput)
 
+	CreateApplicationPresignedUrl(*kinesisanalyticsv2.CreateApplicationPresignedUrlInput) (*kinesisanalyticsv2.CreateApplicationPresignedUrlOutput, error)
+	CreateApplicationPresignedUrlWithContext(aws.Context, *kinesisanalyticsv2.CreateApplicationPresignedUrlInput, ...request.Option) (*kinesisanalyticsv2.CreateApplicationPresignedUrlOutput, error)
+	CreateApplicationPresignedUrlRequest(*kinesisanalyticsv2.CreateApplicationPresignedUrlInput) (*request.Request, *kinesisanalyticsv2.CreateApplicationPresignedUrlOutput)
+
 	CreateApplicationSnapshot(*kinesisanalyticsv2.CreateApplicationSnapshotInput) (*kinesisanalyticsv2.CreateApplicationSnapshotOutput, error)
 	CreateApplicationSnapshotWithContext(aws.Context, *kinesisanalyticsv2.CreateApplicationSnapshotInput, ...request.Option) (*kinesisanalyticsv2.CreateApplicationSnapshotOutput, error)
 	CreateApplicationSnapshotRequest(*kinesisanalyticsv2.CreateApplicationSnapshotInput) (*request.Request, *kinesisanalyticsv2.CreateApplicationSnapshotOutput)

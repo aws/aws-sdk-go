@@ -1865,13 +1865,14 @@
       "type":"string",
       "max":128,
       "min":3,
-      "pattern":"[a-zA-Z0-9\\(\\)\\.-/_]+"
+      "pattern":"[a-zA-Z0-9\\(\\)\\.\\-/_]+"
     },
     "LaunchTemplateOverrides":{
       "type":"structure",
       "members":{
         "InstanceType":{"shape":"XmlStringMaxLen255"},
-        "WeightedCapacity":{"shape":"XmlStringMaxLen32"}
+        "WeightedCapacity":{"shape":"XmlStringMaxLen32"},
+        "LaunchTemplateSpecification":{"shape":"LaunchTemplateSpecification"}
       }
     },
     "LaunchTemplateSpecification":{

@@ -638,6 +638,13 @@
         "InputDeviceSummary$DeviceSettingsSyncState": "The status of the action to synchronize the device configuration. If you change the configuration of the input device (for example, the maximum bitrate), MediaLive sends the new data to the device. The device might not update itself immediately. SYNCED means the device has updated its configuration. SYNCING means that it has not updated its configuration."
       }
     },
+    "DeviceUpdateStatus": {
+      "base": "The status of software on the input device.",
+      "refs": {
+        "InputDevice$DeviceUpdateStatus": "The status of software on the input device.",
+        "InputDeviceSummary$DeviceUpdateStatus": "The status of software on the input device."
+      }
+    },
     "DvbNitSettings": {
       "base": "DVB Network Information Table (NIT)",
       "refs": {

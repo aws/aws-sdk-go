@@ -2360,6 +2360,7 @@
         "Cluster$ElasticResizeNumberOfNodeOptions": "<p>The number of nodes that you can resize the cluster to with the elastic resize method. </p>",
         "Cluster$SnapshotScheduleIdentifier": "<p>A unique identifier for the cluster snapshot schedule.</p>",
         "Cluster$ExpectedNextSnapshotScheduleTimeStatus": "<p> The status of next expected snapshot for clusters having a valid snapshot schedule and backups enabled. Possible values are the following:</p> <ul> <li> <p>OnTrack - The next snapshot is expected to be taken on time. </p> </li> <li> <p>Pending - The next snapshot is pending to be taken. </p> </li> </ul>",
+        "Cluster$ClusterNamespaceArn": "<p>The namespace Amazon Resource Name (ARN) of the cluster.</p>",
         "ClusterAssociatedToSchedule$ClusterIdentifier": "<p/>",
         "ClusterCredentials$DbUser": "<p>A database user name that is authorized to log on to the database <code>DbName</code> using the password <code>DbPassword</code>. If the specified DbUser exists in the database, the new user name has the same database privileges as the the user named in DbUser. By default, the user is added to PUBLIC. If the <code>DbGroups</code> parameter is specifed, <code>DbUser</code> is added to the listed groups for any sessions created using these credentials.</p>",
         "ClusterDbRevision$ClusterIdentifier": "<p>The unique identifier of the cluster.</p>",

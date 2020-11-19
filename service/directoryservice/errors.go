@@ -52,6 +52,13 @@ const (
 	// A client exception has occurred.
 	ErrCodeClientException = "ClientException"
 
+	// ErrCodeDirectoryAlreadyInRegionException for service response error code
+	// "DirectoryAlreadyInRegionException".
+	//
+	// The Region you specified is the same Region where the AWS Managed Microsoft
+	// AD directory was created. Specify a different Region and try again.
+	ErrCodeDirectoryAlreadyInRegionException = "DirectoryAlreadyInRegionException"
+
 	// ErrCodeDirectoryAlreadySharedException for service response error code
 	// "DirectoryAlreadySharedException".
 	//
@@ -167,6 +174,13 @@ const (
 	// Exception encountered while trying to access your AWS organization.
 	ErrCodeOrganizationsException = "OrganizationsException"
 
+	// ErrCodeRegionLimitExceededException for service response error code
+	// "RegionLimitExceededException".
+	//
+	// You have reached the limit for maximum number of simultaneous region replications
+	// per directory.
+	ErrCodeRegionLimitExceededException = "RegionLimitExceededException"
+
 	// ErrCodeServiceException for service response error code
 	// "ServiceException".
 	//
@@ -215,6 +229,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"CertificateInUseException":              newErrorCertificateInUseException,
 	"CertificateLimitExceededException":      newErrorCertificateLimitExceededException,
 	"ClientException":                        newErrorClientException,
+	"DirectoryAlreadyInRegionException":      newErrorDirectoryAlreadyInRegionException,
 	"DirectoryAlreadySharedException":        newErrorDirectoryAlreadySharedException,
 	"DirectoryDoesNotExistException":         newErrorDirectoryDoesNotExistException,
 	"DirectoryLimitExceededException":        newErrorDirectoryLimitExceededException,
@@ -233,6 +248,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"IpRouteLimitExceededException":          newErrorIpRouteLimitExceededException,
 	"NoAvailableCertificateException":        newErrorNoAvailableCertificateException,
 	"OrganizationsException":                 newErrorOrganizationsException,
+	"RegionLimitExceededException":           newErrorRegionLimitExceededException,
 	"ServiceException":                       newErrorServiceException,
 	"ShareLimitExceededException":            newErrorShareLimitExceededException,
 	"SnapshotLimitExceededException":         newErrorSnapshotLimitExceededException,

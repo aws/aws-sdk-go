@@ -387,6 +387,8 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //
 //    * Using AWS Lambda with Amazon SQS (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
 //
+//    * Using AWS Lambda with Amazon MQ (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html)
+//
 //    * Using AWS Lambda with Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
 //
 // The following error handling options are only available for stream sources
@@ -7638,6 +7640,14 @@ type EventSourceMappingConfiguration struct {
 	// the Lambda execution role requires kms:Decrypt permissions.
 	SourceAccessConfigurations []*SourceAccessConfiguration `min:"1" type:"list"`
 
+	// The position in a stream from which to start reading. Required for Amazon
+	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
+	// only supported for Amazon Kinesis streams.
+	StartingPosition *string `type:"string" enum:"EventSourcePosition"`
+
+	// With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.
+	StartingPositionTimestamp *time.Time `type:"timestamp"`
+
 	// The state of the event source mapping. It can be one of the following: Creating,
 	// Enabling, Enabled, Disabling, Disabled, Updating, or Deleting.
 	State *string `type:"string"`
@@ -7738,6 +7748,18 @@ func (s *EventSourceMappingConfiguration) SetQueues(v []*string) *EventSourceMap
 // SetSourceAccessConfigurations sets the SourceAccessConfigurations field's value.
 func (s *EventSourceMappingConfiguration) SetSourceAccessConfigurations(v []*SourceAccessConfiguration) *EventSourceMappingConfiguration {
 	s.SourceAccessConfigurations = v
+	return s
+}
+
+// SetStartingPosition sets the StartingPosition field's value.
+func (s *EventSourceMappingConfiguration) SetStartingPosition(v string) *EventSourceMappingConfiguration {
+	s.StartingPosition = &v
+	return s
+}
+
+// SetStartingPositionTimestamp sets the StartingPositionTimestamp field's value.
+func (s *EventSourceMappingConfiguration) SetStartingPositionTimestamp(v time.Time) *EventSourceMappingConfiguration {
+	s.StartingPositionTimestamp = &v
 	return s
 }
 

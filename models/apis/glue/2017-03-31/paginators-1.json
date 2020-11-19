@@ -60,6 +60,12 @@
       "limit_key": "MaxResults",
       "output_token": "NextToken"
     },
+    "GetResourcePolicies": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "GetResourcePoliciesResponseList"
+    },
     "GetSecurityConfigurations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -110,6 +116,24 @@
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"
+    },
+    "ListRegistries": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Registries"
+    },
+    "ListSchemaVersions": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Schemas"
+    },
+    "ListSchemas": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "Schemas"
     },
     "ListTriggers": {
       "input_token": "NextToken",

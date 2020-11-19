@@ -10707,6 +10707,9 @@ type DescribeInputDeviceOutput struct {
 	// means that it has not updated its configuration.
 	DeviceSettingsSyncState *string `locationName:"deviceSettingsSyncState" type:"string" enum:"DeviceSettingsSyncState"`
 
+	// The status of software on the input device.
+	DeviceUpdateStatus *string `locationName:"deviceUpdateStatus" type:"string" enum:"DeviceUpdateStatus"`
+
 	// Settings that describe the active source from the input device, and the video
 	// characteristics of that source.
 	HdDeviceSettings *InputDeviceHdSettings `locationName:"hdDeviceSettings" type:"structure"`
@@ -10752,6 +10755,12 @@ func (s *DescribeInputDeviceOutput) SetConnectionState(v string) *DescribeInputD
 // SetDeviceSettingsSyncState sets the DeviceSettingsSyncState field's value.
 func (s *DescribeInputDeviceOutput) SetDeviceSettingsSyncState(v string) *DescribeInputDeviceOutput {
 	s.DeviceSettingsSyncState = &v
+	return s
+}
+
+// SetDeviceUpdateStatus sets the DeviceUpdateStatus field's value.
+func (s *DescribeInputDeviceOutput) SetDeviceUpdateStatus(v string) *DescribeInputDeviceOutput {
+	s.DeviceUpdateStatus = &v
 	return s
 }
 
@@ -16430,6 +16439,9 @@ type InputDeviceSummary struct {
 	// means that it has not updated its configuration.
 	DeviceSettingsSyncState *string `locationName:"deviceSettingsSyncState" type:"string" enum:"DeviceSettingsSyncState"`
 
+	// The status of software on the input device.
+	DeviceUpdateStatus *string `locationName:"deviceUpdateStatus" type:"string" enum:"DeviceUpdateStatus"`
+
 	// Settings that describe an input device that is type HD.
 	HdDeviceSettings *InputDeviceHdSettings `locationName:"hdDeviceSettings" type:"structure"`
 
@@ -16477,6 +16489,12 @@ func (s *InputDeviceSummary) SetConnectionState(v string) *InputDeviceSummary {
 // SetDeviceSettingsSyncState sets the DeviceSettingsSyncState field's value.
 func (s *InputDeviceSummary) SetDeviceSettingsSyncState(v string) *InputDeviceSummary {
 	s.DeviceSettingsSyncState = &v
+	return s
+}
+
+// SetDeviceUpdateStatus sets the DeviceUpdateStatus field's value.
+func (s *InputDeviceSummary) SetDeviceUpdateStatus(v string) *InputDeviceSummary {
+	s.DeviceUpdateStatus = &v
 	return s
 }
 
@@ -25243,6 +25261,9 @@ type UpdateInputDeviceOutput struct {
 	// means that it has not updated its configuration.
 	DeviceSettingsSyncState *string `locationName:"deviceSettingsSyncState" type:"string" enum:"DeviceSettingsSyncState"`
 
+	// The status of software on the input device.
+	DeviceUpdateStatus *string `locationName:"deviceUpdateStatus" type:"string" enum:"DeviceUpdateStatus"`
+
 	// Settings that describe the active source from the input device, and the video
 	// characteristics of that source.
 	HdDeviceSettings *InputDeviceHdSettings `locationName:"hdDeviceSettings" type:"structure"`
@@ -25288,6 +25309,12 @@ func (s *UpdateInputDeviceOutput) SetConnectionState(v string) *UpdateInputDevic
 // SetDeviceSettingsSyncState sets the DeviceSettingsSyncState field's value.
 func (s *UpdateInputDeviceOutput) SetDeviceSettingsSyncState(v string) *UpdateInputDeviceOutput {
 	s.DeviceSettingsSyncState = &v
+	return s
+}
+
+// SetDeviceUpdateStatus sets the DeviceUpdateStatus field's value.
+func (s *UpdateInputDeviceOutput) SetDeviceUpdateStatus(v string) *UpdateInputDeviceOutput {
+	s.DeviceUpdateStatus = &v
 	return s
 }
 
@@ -26981,6 +27008,23 @@ func DeviceSettingsSyncState_Values() []string {
 	return []string{
 		DeviceSettingsSyncStateSynced,
 		DeviceSettingsSyncStateSyncing,
+	}
+}
+
+// The status of software on the input device.
+const (
+	// DeviceUpdateStatusUpToDate is a DeviceUpdateStatus enum value
+	DeviceUpdateStatusUpToDate = "UP_TO_DATE"
+
+	// DeviceUpdateStatusNotUpToDate is a DeviceUpdateStatus enum value
+	DeviceUpdateStatusNotUpToDate = "NOT_UP_TO_DATE"
+)
+
+// DeviceUpdateStatus_Values returns all elements of the DeviceUpdateStatus enum
+func DeviceUpdateStatus_Values() []string {
+	return []string{
+		DeviceUpdateStatusUpToDate,
+		DeviceUpdateStatusNotUpToDate,
 	}
 }
 

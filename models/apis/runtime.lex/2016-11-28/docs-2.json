@@ -16,6 +16,59 @@
         "PutSessionRequest$accept": "<p>The message that Amazon Lex returns in the response can be either text or speech based depending on the value of this field.</p> <ul> <li> <p>If the value is <code>text/plain; charset=utf-8</code>, Amazon Lex returns text in the response.</p> </li> <li> <p>If the value begins with <code>audio/</code>, Amazon Lex returns speech in the response. Amazon Lex uses Amazon Polly to generate the speech in the configuration that you specify. For example, if you specify <code>audio/mpeg</code> as the value, Amazon Lex returns speech in the MPEG format.</p> </li> <li> <p>If the value is <code>audio/pcm</code>, the speech is returned as <code>audio/pcm</code> in 16-bit, little endian format.</p> </li> <li> <p>The following are the accepted values:</p> <ul> <li> <p> <code>audio/mpeg</code> </p> </li> <li> <p> <code>audio/ogg</code> </p> </li> <li> <p> <code>audio/pcm</code> </p> </li> <li> <p> <code>audio/*</code> (defaults to mpeg)</p> </li> <li> <p> <code>text/plain; charset=utf-8</code> </p> </li> </ul> </li> </ul>"
       }
     },
+    "ActiveContext": {
+      "base": "<p>A context is a variable that contains information about the current state of the conversation between a user and Amazon Lex. Context can be set automatically by Amazon Lex when an intent is fulfilled, or it can be set at runtime using the <code>PutContent</code>, <code>PutText</code>, or <code>PutSession</code> operation.</p>",
+      "refs": {
+        "ActiveContextsList$member": null
+      }
+    },
+    "ActiveContextName": {
+      "base": null,
+      "refs": {
+        "ActiveContext$name": "<p>The name of the context.</p>"
+      }
+    },
+    "ActiveContextParametersMap": {
+      "base": null,
+      "refs": {
+        "ActiveContext$parameters": "<p>State variables for the current context. You can use these values as default values for slots in subsequent events.</p>"
+      }
+    },
+    "ActiveContextTimeToLive": {
+      "base": "<p>The length of time or number of turns that a context remains active.</p>",
+      "refs": {
+        "ActiveContext$timeToLive": "<p>The length of time or number of turns that a context remains active.</p>"
+      }
+    },
+    "ActiveContextTimeToLiveInSeconds": {
+      "base": null,
+      "refs": {
+        "ActiveContextTimeToLive$timeToLiveInSeconds": "<p>The number of seconds that the context should be active after it is first sent in a <code>PostContent</code> or <code>PostText</code> response. You can set the value between 5 and 86,400 seconds (24 hours).</p>"
+      }
+    },
+    "ActiveContextTurnsToLive": {
+      "base": null,
+      "refs": {
+        "ActiveContextTimeToLive$turnsToLive": "<p>The number of conversation turns that the context should be active. A conversation turn is one <code>PostContent</code> or <code>PostText</code> request and the corresponding response from Amazon Lex.</p>"
+      }
+    },
+    "ActiveContextsList": {
+      "base": null,
+      "refs": {
+        "GetSessionResponse$activeContexts": "<p>A list of active contexts for the session. A context can be set when an intent is fulfilled or by calling the <code>PostContent</code>, <code>PostText</code>, or <code>PutSession</code> operation.</p> <p>You can use a context to control the intents that can follow up an intent, or to modify the operation of your application.</p>",
+        "PostTextRequest$activeContexts": "<p>A list of contexts active for the request. A context can be activated when a previous intent is fulfilled, or by including the context in the request,</p> <p>If you don't specify a list of contexts, Amazon Lex will use the current list of contexts for the session. If you specify an empty list, all contexts for the session are cleared.</p>",
+        "PostTextResponse$activeContexts": "<p>A list of active contexts for the session. A context can be set when an intent is fulfilled or by calling the <code>PostContent</code>, <code>PostText</code>, or <code>PutSession</code> operation.</p> <p>You can use a context to control the intents that can follow up an intent, or to modify the operation of your application.</p>",
+        "PutSessionRequest$activeContexts": "<p>A list of contexts active for the request. A context can be activated when a previous intent is fulfilled, or by including the context in the request,</p> <p>If you don't specify a list of contexts, Amazon Lex will use the current list of contexts for the session. If you specify an empty list, all contexts for the session are cleared.</p>"
+      }
+    },
+    "ActiveContextsString": {
+      "base": null,
+      "refs": {
+        "PostContentRequest$activeContexts": "<p>A list of contexts active for the request. A context can be activated when a previous intent is fulfilled, or by including the context in the request,</p> <p>If you don't specify a list of contexts, Amazon Lex will use the current list of contexts for the session. If you specify an empty list, all contexts for the session are cleared.</p>",
+        "PostContentResponse$activeContexts": "<p>A list of active contexts for the session. A context can be set when an intent is fulfilled or by calling the <code>PostContent</code>, <code>PostText</code>, or <code>PutSession</code> operation.</p> <p>You can use a context to control the intents that can follow up an intent, or to modify the operation of your application.</p>",
+        "PutSessionResponse$activeContexts": "<p>A list of active contexts for the session.</p>"
+      }
+    },
     "AttributesString": {
       "base": null,
       "refs": {
@@ -66,8 +119,8 @@
     "BotVersion": {
       "base": null,
       "refs": {
-        "PostContentResponse$botVersion": "<p>The version of the bot that responded to the conversation. You can use this information to help determine if one version of a bot is performing better than another version.</p> <p>If you have enabled the new natural language understanding (NLU) model, you can use this to determine if the improvement is due to changes to the bot or changes to the NLU.</p> <p>For more information about enabling the new NLU, see the <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements\">enableModelImprovements</a> parameter of the <code>PutBot</code> operation.</p>",
-        "PostTextResponse$botVersion": "<p>The version of the bot that responded to the conversation. You can use this information to help determine if one version of a bot is performing better than another version.</p> <p>If you have enabled the new natural language understanding (NLU) model, you can use this to determine if the improvement is due to changes to the bot or changes to the NLU.</p> <p>For more information about enabling the new NLU, see the <a href=\"https://docs.aws.amazon.com/lex/latest/dg/API_PutBot.html#lex-PutBot-request-enableModelImprovements\">enableModelImprovements</a> parameter of the <code>PutBot</code> operation.</p>"
+        "PostContentResponse$botVersion": "<p>The version of the bot that responded to the conversation. You can use this information to help determine if one version of a bot is performing better than another version.</p>",
+        "PostTextResponse$botVersion": "<p>The version of the bot that responded to the conversation. You can use this information to help determine if one version of a bot is performing better than another version.</p>"
       }
     },
     "Button": {
@@ -190,7 +243,7 @@
     "IntentConfidence": {
       "base": "<p>Provides a score that indicates the confidence that Amazon Lex has that an intent is the one that satisfies the user's intent.</p>",
       "refs": {
-        "PostTextResponse$nluIntentConfidence": "<p>Provides a score that indicates how confident Amazon Lex is that the returned intent is the one that matches the user's intent. The score is between 0.0 and 1.0. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html\">Confidence Scores</a>.</p> <p>The score is a relative score, not an absolute score. The score may change based on improvements to the Amazon Lex natural language understanding (NLU) model.</p>",
+        "PostTextResponse$nluIntentConfidence": "<p>Provides a score that indicates how confident Amazon Lex is that the returned intent is the one that matches the user's intent. The score is between 0.0 and 1.0. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/confidence-scores.html\">Confidence Scores</a>.</p> <p>The score is a relative score, not an absolute score. The score may change based on improvements to Amazon Lex.</p>",
         "PredictedIntent$nluIntentConfidence": "<p>Indicates how confident Amazon Lex is that an intent satisfies the user's intent.</p>"
       }
     },
@@ -263,6 +316,12 @@
     "NotFoundException": {
       "base": "<p>The resource (such as the Amazon Lex bot or an alias) that is referred to is not found.</p>",
       "refs": {
+      }
+    },
+    "ParameterName": {
+      "base": null,
+      "refs": {
+        "ActiveContextParametersMap$key": null
       }
     },
     "PostContentRequest": {
@@ -344,7 +403,7 @@
         "LimitExceededException$message": null,
         "NotAcceptableException$message": null,
         "NotFoundException$message": null,
-        "PostContentResponse$nluIntentConfidence": "<p>Provides a score that indicates how confident Amazon Lex is that the returned intent is the one that matches the user's intent. The score is between 0.0 and 1.0.</p> <p>The score is a relative score, not an absolute score. The score may change based on improvements to the Amazon Lex NLU.</p>",
+        "PostContentResponse$nluIntentConfidence": "<p>Provides a score that indicates how confident Amazon Lex is that the returned intent is the one that matches the user's intent. The score is between 0.0 and 1.0.</p> <p>The score is a relative score, not an absolute score. The score may change based on improvements to Amazon Lex. </p>",
         "PostContentResponse$alternativeIntents": "<p>One to four alternative intents that may be applicable to the user's intent.</p> <p>Each alternative includes a score that indicates how confident Amazon Lex is that the intent matches the user's intent. The intents are sorted by the confidence score.</p>",
         "PostContentResponse$slots": "<p>Map of zero or more intent slots (name/value pairs) Amazon Lex detected from the user input during the conversation. The field is base-64 encoded.</p> <p>Amazon Lex creates a resolution list containing likely values for a slot. The value that it returns is determined by the <code>valueSelectionStrategy</code> selected when the slot type was created or updated. If <code>valueSelectionStrategy</code> is set to <code>ORIGINAL_VALUE</code>, the value provided by the user is returned, if the user value is similar to the slot values. If <code>valueSelectionStrategy</code> is set to <code>TOP_RESOLUTION</code> Amazon Lex returns the first value in the resolution list or, if there is no resolution list, null. If you don't specify a <code>valueSelectionStrategy</code>, the default is <code>ORIGINAL_VALUE</code>.</p>",
         "PostContentResponse$sessionAttributes": "<p> Map of key/value pairs representing the session-specific context information. </p>",
@@ -396,6 +455,7 @@
     "Text": {
       "base": null,
       "refs": {
+        "ActiveContextParametersMap$value": null,
         "DialogAction$message": "<p>The message that should be shown to the user. If you don't specify a message, Amazon Lex will use the message configured for the intent.</p>",
         "PostContentResponse$message": "<p>The message to convey to the user. The message can come from the bot's configuration or from a Lambda function.</p> <p>If the intent is not configured with a Lambda function, or if the Lambda function returned <code>Delegate</code> as the <code>dialogAction.type</code> in its response, Amazon Lex decides on the next course of action and selects an appropriate message from the bot's configuration based on the current interaction context. For example, if Amazon Lex isn't able to understand user input, it uses a clarification prompt message.</p> <p>When you create an intent you can assign messages to groups. When messages are assigned to groups Amazon Lex returns one message from each group in the response. The message field is an escaped JSON string containing the messages. For more information about the structure of the JSON string returned, see <a>msg-prompts-formats</a>.</p> <p>If the Lambda function returns a message, Amazon Lex passes it to the client in its response.</p>",
         "PostTextRequest$inputText": "<p>The text that the user entered (Amazon Lex interprets this text).</p>",

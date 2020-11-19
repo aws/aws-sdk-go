@@ -16,6 +16,7 @@
     "BatchStopJobRun": "<p>Stops one or more job runs for a specified job definition.</p>",
     "BatchUpdatePartition": "<p>Updates one or more partitions in a batch operation.</p>",
     "CancelMLTaskRun": "<p>Cancels (stops) a task run. Machine learning task runs are asynchronous tasks that AWS Glue runs on your behalf as part of various machine learning workflows. You can cancel a machine learning task run at any time by calling <code>CancelMLTaskRun</code> with a task run's parent transform's <code>TransformID</code> and the task run's <code>TaskRunId</code>. </p>",
+    "CheckSchemaVersionValidity": "<p>Validates the supplied schema. This call has no side effects, it simply validates using the supplied schema using <code>DataFormat</code> as the format. Since it does not take a schema set name, no compatibility checks are performed.</p>",
     "CreateClassifier": "<p>Creates a classifier in the user's account. This can be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
     "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <code>s3Targets</code> field, the <code>jdbcTargets</code> field, or the <code>DynamoDBTargets</code> field.</p>",
@@ -24,6 +25,8 @@
     "CreateJob": "<p>Creates a new job definition.</p>",
     "CreateMLTransform": "<p>Creates an AWS Glue machine learning transform. This operation creates the transform and all the necessary parameters to train it.</p> <p>Call this operation as the first step in the process of using a machine learning transform (such as the <code>FindMatches</code> transform) for deduplicating data. You can provide an optional <code>Description</code>, in addition to the parameters that you want to use for your algorithm.</p> <p>You must also specify certain parameters for the tasks that AWS Glue runs on your behalf as part of learning from your data and creating a high-quality machine learning transform. These parameters include <code>Role</code>, and optionally, <code>AllocatedCapacity</code>, <code>Timeout</code>, and <code>MaxRetries</code>. For more information, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-jobs-job.html\">Jobs</a>.</p>",
     "CreatePartition": "<p>Creates a new partition.</p>",
+    "CreateRegistry": "<p>Creates a new registry which may be used to hold a collection of schemas.</p>",
+    "CreateSchema": "<p>Creates a new schema set and registers the schema definition. Returns an error if the schema set already exists without actually registering the version.</p> <p>When the schema set is created, a version checkpoint will be set to the first version. Compatibility mode \"DISABLED\" restricts any additional schema versions from being added after the first schema version. For all other compatibility modes, validation of compatibility settings will be applied only from the second version onwards when the <code>RegisterSchemaVersion</code> API is used.</p> <p>When this API is called without a <code>RegistryId</code>, this will create an entry for a \"default-registry\" in the registry database tables, if it is not already present.</p>",
     "CreateScript": "<p>Transforms a directed acyclic graph (DAG) into code.</p>",
     "CreateSecurityConfiguration": "<p>Creates a new security configuration. A security configuration is a set of security properties that can be used by AWS Glue. You can use a security configuration to encrypt data at rest. For information about using security configurations in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/encryption-security-configuration.html\">Encrypting Data Written by Crawlers, Jobs, and Development Endpoints</a>.</p>",
     "CreateTable": "<p>Creates a new table definition in the Data Catalog.</p>",
@@ -40,7 +43,10 @@
     "DeleteJob": "<p>Deletes a specified job definition. If the job definition is not found, no exception is thrown.</p>",
     "DeleteMLTransform": "<p>Deletes an AWS Glue machine learning transform. Machine learning transforms are a special type of transform that use machine learning to learn the details of the transformation to be performed by learning from examples provided by humans. These transformations are then saved by AWS Glue. If you no longer need a transform, you can delete it by calling <code>DeleteMLTransforms</code>. However, any AWS Glue jobs that still reference the deleted transform will no longer succeed.</p>",
     "DeletePartition": "<p>Deletes a specified partition.</p>",
+    "DeleteRegistry": "<p>Delete the entire registry including schema and all of its versions. To get the status of the delete operation, you can call the <code>GetRegistry</code> API after the asynchronous call. Deleting a registry will disable all online operations for the registry such as the <code>UpdateRegistry</code>, <code>CreateSchema</code>, <code>UpdateSchema</code>, and <code>RegisterSchemaVersion</code> APIs. </p>",
     "DeleteResourcePolicy": "<p>Deletes a specified policy.</p>",
+    "DeleteSchema": "<p>Deletes the entire schema set, including the schema set and all of its versions. To get the status of the delete operation, you can call <code>GetSchema</code> API after the asynchronous call. Deleting a registry will disable all online operations for the schema, such as the <code>GetSchemaByDefinition</code>, and <code>RegisterSchemaVersion</code> APIs.</p>",
+    "DeleteSchemaVersions": "<p>Remove versions from the specified schema. A version number or range may be supplied. If the compatibility mode forbids deleting of a version that is necessary, such as BACKWARDS_FULL, an error is returned. Calling the <code>GetSchemaVersions</code> API after this call will list the status of the deleted versions.</p> <p>When the range of version numbers contain check pointed version, the API will return a 409 conflict and will not proceed with the deletion. You have to remove the checkpoint first using the <code>DeleteSchemaCheckpoint</code> API before using this API.</p> <p>You cannot use the <code>DeleteSchemaVersions</code> API to delete the first schema version in the schema set. The first schema version can only be deleted by the <code>DeleteSchema</code> API. This operation will also delete the attached <code>SchemaVersionMetadata</code> under the schema versions. Hard deletes will be enforced on the database.</p> <p>If the compatibility mode forbids deleting of a version that is necessary, such as BACKWARDS_FULL, an error is returned.</p>",
     "DeleteSecurityConfiguration": "<p>Deletes a specified security configuration.</p>",
     "DeleteTable": "<p>Removes a table definition from the Data Catalog.</p> <note> <p>After completing this operation, you no longer have access to the table versions and partitions that belong to the deleted table. AWS Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>DeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
     "DeleteTableVersion": "<p>Deletes a specified version of a table.</p>",
@@ -77,8 +83,13 @@
     "GetPartitionIndexes": "<p>Retrieves the partition indexes associated with a table.</p>",
     "GetPartitions": "<p>Retrieves information about the partitions in a table.</p>",
     "GetPlan": "<p>Gets code to perform a specified mapping.</p>",
+    "GetRegistry": "<p>Describes the specified registry in detail.</p>",
     "GetResourcePolicies": "<p>Retrieves the security configurations for the resource policies set on individual resources, and also the account-level policy.</p> <p>This operation also returns the Data Catalog resource policy. However, if you enabled metadata encryption in Data Catalog settings, and you do not have permission on the AWS KMS key, the operation can't return the Data Catalog resource policy.</p>",
     "GetResourcePolicy": "<p>Retrieves a specified resource policy.</p>",
+    "GetSchema": "<p>Describes the specified schema in detail.</p>",
+    "GetSchemaByDefinition": "<p>Retrieves a schema by the <code>SchemaDefinition</code>. The schema definition is sent to the Schema Registry, canonicalized, and hashed. If the hash is matched within the scope of the <code>SchemaName</code> or ARN (or the default registry, if none is supplied), that schema’s metadata is returned. Otherwise, a 404 or NotFound error is returned. Schema versions in <code>Deleted</code> statuses will not be included in the results.</p>",
+    "GetSchemaVersion": "<p>Get the specified schema by its unique ID assigned when a version of the schema is created or registered. Schema versions in Deleted status will not be included in the results.</p>",
+    "GetSchemaVersionsDiff": "<p>Fetches the schema version difference in the specified difference type between two stored schema versions in the Schema Registry.</p> <p>This API allows you to compare two schema versions between two schema definitions under the same schema.</p>",
     "GetSecurityConfiguration": "<p>Retrieves a specified security configuration.</p>",
     "GetSecurityConfigurations": "<p>Retrieves a list of all security configurations.</p>",
     "GetTable": "<p>Retrieves the <code>Table</code> definition in a Data Catalog for a specified table.</p>",
@@ -99,11 +110,18 @@
     "ListDevEndpoints": "<p>Retrieves the names of all <code>DevEndpoint</code> resources in this AWS account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListJobs": "<p>Retrieves the names of all job resources in this AWS account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListMLTransforms": "<p> Retrieves a sortable, filterable list of existing AWS Glue machine learning transforms in this AWS account, or the resources with the specified tag. This operation takes the optional <code>Tags</code> field, which you can use as a filter of the responses so that tagged resources can be retrieved as a group. If you choose to use tag filtering, only resources with the tags are retrieved. </p>",
+    "ListRegistries": "<p>Returns a list of registries that you have created, with minimal registry information. Registries in the <code>Deleting</code> status will not be included in the results. Empty results will be returned if there are no registries available.</p>",
+    "ListSchemaVersions": "<p>Returns a list of schema versions that you have created, with minimal information. Schema versions in Deleted status will not be included in the results. Empty results will be returned if there are no schema versions available.</p>",
+    "ListSchemas": "<p>Returns a list of schemas with minimal details. Schemas in Deleting status will not be included in the results. Empty results will be returned if there are no schemas available.</p> <p>When the <code>RegistryId</code> is not provided, all the schemas across registries will be part of the API response.</p>",
     "ListTriggers": "<p>Retrieves the names of all trigger resources in this AWS account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListWorkflows": "<p>Lists names of workflows created in the account.</p>",
     "PutDataCatalogEncryptionSettings": "<p>Sets the security configuration for a specified catalog. After the configuration has been set, the specified encryption is applied to every catalog write thereafter.</p>",
     "PutResourcePolicy": "<p>Sets the Data Catalog resource policy for access control.</p>",
+    "PutSchemaVersionMetadata": "<p>Puts the metadata key value pair for a specified schema version ID. A maximum of 10 key value pairs will be allowed per schema version. They can be added over one or more calls.</p>",
     "PutWorkflowRunProperties": "<p>Puts the specified workflow run properties for the given workflow run. If a property already exists for the specified run, then it overrides the value otherwise adds the property to existing properties.</p>",
+    "QuerySchemaVersionMetadata": "<p>Queries for the schema version metadata information. </p>",
+    "RegisterSchemaVersion": "<p>Adds a new version to the existing schema. Returns an error if new version of schema does not meet the compatibility requirements of the schema set. This API will not create a new schema set and will return a 404 error if the schema set is not already present in the Schema Registry.</p> <p>If this is the first schema definition to be registered in the Schema Registry, this API will store the schema version and return immediately. Otherwise, this call has the potential to run longer than other operations due to compatibility modes. You can call the <code>GetSchemaVersion</code> API with the <code>SchemaVersionId</code> to check compatibility modes.</p> <p>If the same schema definition is already stored in Schema Registry as a version, the schema ID of the existing schema is returned to the caller.</p>",
+    "RemoveSchemaVersionMetadata": "<p>Removes a key value pair from the schema version metadata for the specified schema version ID.</p>",
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
     "ResumeWorkflowRun": "<p>Restarts selected nodes of a previous partially completed workflow run and resumes the workflow run. The selected nodes and all nodes that are downstream from the selected nodes are run.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
@@ -133,6 +151,8 @@
     "UpdateJob": "<p>Updates an existing job definition.</p>",
     "UpdateMLTransform": "<p>Updates an existing machine learning transform. Call this operation to tune the algorithm parameters to achieve better results.</p> <p>After calling this operation, you can call the <code>StartMLEvaluationTaskRun</code> operation to assess how well your new parameters achieved your goals (such as improving the quality of your machine learning transform, or making it more cost-effective).</p>",
     "UpdatePartition": "<p>Updates a partition.</p>",
+    "UpdateRegistry": "<p>Updates an existing registry which is used to hold a collection of schemas. The updated properties relate to the registry, and do not modify any of the schemas within the registry. </p>",
+    "UpdateSchema": "<p>Updates the description, compatibility setting, or version checkpoint for a schema set.</p> <p>For updating the compatibility setting, the call will not validate compatibility for the entire set of schema versions with the new compatibility setting. If the value for <code>Compatibility</code> is provided, the <code>VersionNumber</code> (a checkpoint) is also required. The API will validate the checkpoint version number for consistency.</p> <p>If the value for the <code>VersionNumber</code> (checkpoint) is provided, <code>Compatibility</code> is optional and this can be used to set/reset a checkpoint for the schema.</p> <p>This update will happen only if the schema is in the AVAILABLE state.</p>",
     "UpdateTable": "<p>Updates a metadata table in the Data Catalog.</p>",
     "UpdateTrigger": "<p>Updates a trigger definition.</p>",
     "UpdateUserDefinedFunction": "<p>Updates an existing function definition in the Data Catalog.</p>",
@@ -551,6 +571,16 @@
         "CrawlerTargets$CatalogTargets": "<p>Specifies AWS Glue Data Catalog targets.</p>"
       }
     },
+    "CheckSchemaVersionValidityInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CheckSchemaVersionValidityResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Classification": {
       "base": null,
       "refs": {
@@ -755,6 +785,15 @@
       "base": null,
       "refs": {
         "PropertyPredicate$Comparator": "<p>The comparator used to compare this property to others.</p>"
+      }
+    },
+    "Compatibility": {
+      "base": null,
+      "refs": {
+        "CreateSchemaInput$Compatibility": "<p>The compatibility mode of the schema. The possible values are:</p> <ul> <li> <p> <i>NONE</i>: No compatibility mode applies. You can use this choice in development scenarios or if you do not know the compatibility mode that you want to apply to schemas. Any new version added will be accepted without undergoing a compatibility check.</p> </li> <li> <p> <i>DISABLED</i>: This compatibility choice prevents versioning for a particular schema. You can use this choice to prevent future versioning of a schema.</p> </li> <li> <p> <i>BACKWARD</i>: This compatibility choice is recommended as it allows data receivers to read both the current and one previous schema version. This means that for instance, a new schema version cannot drop data fields or change the type of these fields, so they can't be read by readers using the previous version.</p> </li> <li> <p> <i>BACKWARD_ALL</i>: This compatibility choice allows data receivers to read both the current and all previous schema versions. You can use this choice when you need to delete fields or add optional fields, and check compatibility against all previous schema versions. </p> </li> <li> <p> <i>FORWARD</i>: This compatibility choice allows data receivers to read both the current and one next schema version, but not necessarily later versions. You can use this choice when you need to add fields or delete optional fields, but only check compatibility against the last schema version.</p> </li> <li> <p> <i>FORWARD_ALL</i>: This compatibility choice allows data receivers to read written by producers of any new registered schema. You can use this choice when you need to add fields or delete optional fields, and check compatibility against all previous schema versions.</p> </li> <li> <p> <i>FULL</i>: This compatibility choice allows data receivers to read data written by producers using the previous or next version of the schema, but not necessarily earlier or later versions. You can use this choice when you need to add or remove optional fields, but only check compatibility against the last schema version.</p> </li> <li> <p> <i>FULL_ALL</i>: This compatibility choice allows data receivers to read data written by producers using all previous schema versions. You can use this choice when you need to add or remove optional fields, and check compatibility against all previous schema versions.</p> </li> </ul>",
+        "CreateSchemaResponse$Compatibility": "<p>The schema compatibility mode.</p>",
+        "GetSchemaResponse$Compatibility": "<p>The compatibility mode of the schema.</p>",
+        "UpdateSchemaInput$Compatibility": "<p>The new compatibility setting for the schema.</p>"
       }
     },
     "ConcurrentModificationException": {
@@ -1061,6 +1100,26 @@
       "refs": {
       }
     },
+    "CreateRegistryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateRegistryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSchemaInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateSchemaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateScriptRequest": {
       "base": null,
       "refs": {
@@ -1125,6 +1184,19 @@
       "base": "<p>Specifies an XML classifier for <code>CreateClassifier</code> to create.</p>",
       "refs": {
         "CreateClassifierRequest$XMLClassifier": "<p>An <code>XMLClassifier</code> object specifying the classifier to create.</p>"
+      }
+    },
+    "CreatedTimestamp": {
+      "base": null,
+      "refs": {
+        "GetRegistryResponse$CreatedTime": "<p>The date and time the registry was created.</p>",
+        "GetSchemaByDefinitionResponse$CreatedTime": "<p>The date and time the schema was created.</p>",
+        "GetSchemaResponse$CreatedTime": "<p>The date and time the schema was created.</p>",
+        "GetSchemaVersionResponse$CreatedTime": "<p>The date and time the schema version was created.</p>",
+        "MetadataInfo$CreatedTime": "<p>The time at which the entry was created.</p>",
+        "RegistryListItem$CreatedTime": "<p>The data the registry was created.</p>",
+        "SchemaListItem$CreatedTime": "<p>The date and time that a schema was created.</p>",
+        "SchemaVersionListItem$CreatedTime": "<p>The date and time the schema version was created.</p>"
       }
     },
     "CronExpression": {
@@ -1201,6 +1273,17 @@
       "refs": {
         "GetDataCatalogEncryptionSettingsResponse$DataCatalogEncryptionSettings": "<p>The requested security configuration.</p>",
         "PutDataCatalogEncryptionSettingsRequest$DataCatalogEncryptionSettings": "<p>The security configuration to set.</p>"
+      }
+    },
+    "DataFormat": {
+      "base": null,
+      "refs": {
+        "CheckSchemaVersionValidityInput$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> is supported.</p>",
+        "CreateSchemaInput$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> is supported.</p>",
+        "CreateSchemaResponse$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> is supported.</p>",
+        "GetSchemaByDefinitionResponse$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> is supported.</p>",
+        "GetSchemaResponse$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> is supported.</p>",
+        "GetSchemaVersionResponse$DataFormat": "<p>The data format of the schema definition. Currently only <code>AVRO</code> is supported.</p>"
       }
     },
     "DataLakePrincipal": {
@@ -1381,12 +1464,42 @@
       "refs": {
       }
     },
+    "DeleteRegistryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteRegistryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DeleteResourcePolicyRequest": {
       "base": null,
       "refs": {
       }
     },
     "DeleteResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSchemaInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSchemaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSchemaVersionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteSchemaVersionsResponse": {
       "base": null,
       "refs": {
       }
@@ -1461,20 +1574,30 @@
         "CreateCrawlerRequest$Description": "<p>A description of the new crawler.</p>",
         "CreateJobRequest$Description": "<p>Description of the job being defined.</p>",
         "CreateMLTransformRequest$Description": "<p>A description of the machine learning transform that is being defined. The default is an empty string.</p>",
+        "CreateRegistryInput$Description": "<p>A description of the registry. If description is not provided, there will not be any default value for this.</p>",
+        "CreateRegistryResponse$Description": "<p>A description of the registry.</p>",
+        "CreateSchemaInput$Description": "<p>An optional description of the schema. If description is not provided, there will not be any automatic default value for this.</p>",
+        "CreateSchemaResponse$Description": "<p>A description of the schema if specified when created.</p>",
         "CreateTriggerRequest$Description": "<p>A description of the new trigger.</p>",
         "Database$Description": "<p>A description of the database.</p>",
         "DatabaseInput$Description": "<p>A description of the database.</p>",
         "ErrorDetail$ErrorMessage": "<p>A message describing the error.</p>",
         "GetMLTransformResponse$Description": "<p>A description of the transform.</p>",
+        "GetRegistryResponse$Description": "<p>A description of the registry.</p>",
+        "GetSchemaResponse$Description": "<p>A description of schema if specified when created</p>",
         "Job$Description": "<p>A description of the job.</p>",
         "JobUpdate$Description": "<p>Description of the job being defined.</p>",
         "LastCrawlInfo$ErrorMessage": "<p>If an error occurred, the error information about the last crawl.</p>",
         "MLTransform$Description": "<p>A user-defined, long-form description text for the machine learning transform. Descriptions are not guaranteed to be unique and can be changed at any time.</p>",
+        "RegistryListItem$Description": "<p>A description of the registry.</p>",
+        "SchemaListItem$Description": "<p>A description for the schema.</p>",
         "Table$Description": "<p>A description of the table.</p>",
         "TableInput$Description": "<p>A description of the table.</p>",
         "Trigger$Description": "<p>A description of this trigger.</p>",
         "TriggerUpdate$Description": "<p>A description of this trigger.</p>",
-        "UpdateMLTransformRequest$Description": "<p>A description of the transform. The default is an empty string.</p>"
+        "UpdateMLTransformRequest$Description": "<p>A description of the transform. The default is an empty string.</p>",
+        "UpdateRegistryInput$Description": "<p>A description of the registry. If description is not provided, this field will not be updated.</p>",
+        "UpdateSchemaInput$Description": "<p>The new description for the schema.</p>"
       }
     },
     "DescriptionStringRemovable": {
@@ -1583,6 +1706,12 @@
         "BatchDeleteConnectionResponse$Errors": "<p>A map of the names of connections that were not successfully deleted to error details.</p>"
       }
     },
+    "ErrorCodeString": {
+      "base": null,
+      "refs": {
+        "ErrorDetails$ErrorCode": "<p>The error code for an error.</p>"
+      }
+    },
     "ErrorDetail": {
       "base": "<p>Contains details about an error.</p>",
       "refs": {
@@ -1594,6 +1723,18 @@
         "PartitionError$ErrorDetail": "<p>The details about the partition error.</p>",
         "TableError$ErrorDetail": "<p>The details about the error.</p>",
         "TableVersionError$ErrorDetail": "<p>The details about the error.</p>"
+      }
+    },
+    "ErrorDetails": {
+      "base": "<p>An object containing error details.</p>",
+      "refs": {
+        "SchemaVersionErrorItem$ErrorDetails": "<p>The details of the error for the schema version.</p>"
+      }
+    },
+    "ErrorMessageString": {
+      "base": null,
+      "refs": {
+        "ErrorDetails$ErrorMessage": "<p>The error message for an error.</p>"
       }
     },
     "ErrorString": {
@@ -2095,6 +2236,16 @@
       "refs": {
       }
     },
+    "GetRegistryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetRegistryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetResourcePoliciesRequest": {
       "base": null,
       "refs": {
@@ -2117,6 +2268,46 @@
       }
     },
     "GetResourcePolicyResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaByDefinitionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaByDefinitionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaVersionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaVersionsDiffInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetSchemaVersionsDiffResponse": {
       "base": null,
       "refs": {
       }
@@ -2291,12 +2482,31 @@
     "GlueResourceArn": {
       "base": null,
       "refs": {
+        "CreateRegistryResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the newly created registry.</p>",
+        "CreateSchemaResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
+        "CreateSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
+        "DeleteRegistryResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry being deleted.</p>",
         "DeleteResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be deleted.</p>",
+        "DeleteSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema being deleted.</p>",
+        "GetRegistryResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
         "GetResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be retrieved. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a> </p>",
+        "GetSchemaByDefinitionResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
+        "GetSchemaResponse$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
+        "GetSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
+        "GetSchemaVersionResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "GetTagsRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource for which to retrieve tags.</p>",
         "PutResourcePolicyRequest$ResourceArn": "<p>The ARN of the AWS Glue resource for the resource policy to be set. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a> </p>",
+        "PutSchemaVersionMetadataResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) for the schema.</p>",
+        "RegistryId$RegistryArn": "<p>Arn of the registry to be updated. One of <code>RegistryArn</code> or <code>RegistryName</code> has to be provided.</p>",
+        "RegistryListItem$RegistryArn": "<p>The Amazon Resource Name (ARN) of the registry.</p>",
+        "RemoveSchemaVersionMetadataResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
+        "SchemaId$SchemaArn": null,
+        "SchemaListItem$SchemaArn": "<p>The Amazon Resource Name (ARN) for the schema.</p>",
+        "SchemaVersionListItem$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>",
         "TagResourceRequest$ResourceArn": "<p>The ARN of the AWS Glue resource to which to add the tags. For more information about AWS Glue resource ARNs, see the <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-common.html#aws-glue-api-regex-aws-glue-arn-id\">AWS Glue ARN string pattern</a>.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove the tags.</p>"
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove the tags.</p>",
+        "UpdateRegistryResponse$RegistryArn": "<p>The Amazon Resource name (ARN) of the updated registry.</p>",
+        "UpdateSchemaResponse$SchemaArn": "<p>The Amazon Resource Name (ARN) of the schema.</p>"
       }
     },
     "GlueTable": {
@@ -2481,6 +2691,12 @@
     "InvalidInputException": {
       "base": "<p>The input provided was not valid.</p>",
       "refs": {
+      }
+    },
+    "IsVersionValid": {
+      "base": null,
+      "refs": {
+        "CheckSchemaVersionValidityResponse$Valid": "<p>Return true, if the schema is valid and false otherwise.</p>"
       }
     },
     "JdbcTarget": {
@@ -2669,6 +2885,14 @@
         "LastCrawlInfo$Status": "<p>Status of the last crawl.</p>"
       }
     },
+    "LatestSchemaVersionBoolean": {
+      "base": null,
+      "refs": {
+        "PutSchemaVersionMetadataResponse$LatestVersion": "<p>The latest version of the schema.</p>",
+        "RemoveSchemaVersionMetadataResponse$LatestVersion": "<p>The latest version of the schema.</p>",
+        "SchemaVersionNumber$LatestVersion": null
+      }
+    },
     "ListCrawlersRequest": {
       "base": null,
       "refs": {
@@ -2705,6 +2929,36 @@
       }
     },
     "ListMLTransformsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRegistriesInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListRegistriesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchemaVersionsInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchemaVersionsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchemasInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListSchemasResponse": {
       "base": null,
       "refs": {
       }
@@ -2846,6 +3100,14 @@
         "ExecutionProperty$MaxConcurrentRuns": "<p>The maximum number of concurrent runs allowed for the job. The default is 1. An error is returned when this threshold is reached. The maximum value you can specify is controlled by a service limit.</p>"
       }
     },
+    "MaxResultsNumber": {
+      "base": null,
+      "refs": {
+        "ListRegistriesInput$MaxResults": "<p>Maximum number of results required per page. If the value is not supplied, this will be defaulted to 25 per page.</p>",
+        "ListSchemaVersionsInput$MaxResults": "<p>Maximum number of results required per page. If the value is not supplied, this will be defaulted to 25 per page.</p>",
+        "ListSchemasInput$MaxResults": "<p>Maximum number of results required per page. If the value is not supplied, this will be defaulted to 25 per page.</p>"
+      }
+    },
     "MaxRetries": {
       "base": null,
       "refs": {
@@ -2887,6 +3149,50 @@
         "SchedulerTransitioningException$Message": "<p>A message describing the problem.</p>",
         "ValidationException$Message": "<p>A message describing the problem.</p>",
         "VersionMismatchException$Message": "<p>A message describing the problem.</p>"
+      }
+    },
+    "MetadataInfo": {
+      "base": "<p>A structure containing metadata information for a schema version.</p>",
+      "refs": {
+        "MetadataInfoMap$value": null
+      }
+    },
+    "MetadataInfoMap": {
+      "base": null,
+      "refs": {
+        "QuerySchemaVersionMetadataResponse$MetadataInfoMap": "<p>A map of a metadata key and associated values.</p>"
+      }
+    },
+    "MetadataKeyString": {
+      "base": null,
+      "refs": {
+        "MetadataInfoMap$key": null,
+        "MetadataKeyValuePair$MetadataKey": "<p>A metadata key.</p>",
+        "PutSchemaVersionMetadataResponse$MetadataKey": "<p>The metadata key.</p>",
+        "RemoveSchemaVersionMetadataResponse$MetadataKey": "<p>The metadata key.</p>"
+      }
+    },
+    "MetadataKeyValuePair": {
+      "base": "<p>A structure containing a key value pair for metadata.</p>",
+      "refs": {
+        "MetadataList$member": null,
+        "PutSchemaVersionMetadataInput$MetadataKeyValue": "<p>The metadata key's corresponding value.</p>",
+        "RemoveSchemaVersionMetadataInput$MetadataKeyValue": "<p>The value of the metadata key.</p>"
+      }
+    },
+    "MetadataList": {
+      "base": null,
+      "refs": {
+        "QuerySchemaVersionMetadataInput$MetadataList": "<p>Search key-value pairs for metadata, if they are not provided all the metadata information will be fetched.</p>"
+      }
+    },
+    "MetadataValueString": {
+      "base": null,
+      "refs": {
+        "MetadataInfo$MetadataValue": "<p>The metadata key’s corresponding value.</p>",
+        "MetadataKeyValuePair$MetadataValue": "<p>A metadata key’s corresponding value.</p>",
+        "PutSchemaVersionMetadataResponse$MetadataValue": "<p>The value of the metadata key.</p>",
+        "RemoveSchemaVersionMetadataResponse$MetadataValue": "<p>The value of the metadata key.</p>"
       }
     },
     "MillisecondsCount": {
@@ -3587,6 +3893,16 @@
       "refs": {
       }
     },
+    "PutSchemaVersionMetadataInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutSchemaVersionMetadataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutWorkflowRunPropertiesRequest": {
       "base": null,
       "refs": {
@@ -3611,6 +3927,22 @@
         "JobCommand$PythonVersion": "<p>The Python version being used to execute a Python shell job. Allowed values are 2 or 3.</p>"
       }
     },
+    "QuerySchemaVersionMetadataInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "QuerySchemaVersionMetadataMaxResults": {
+      "base": null,
+      "refs": {
+        "QuerySchemaVersionMetadataInput$MaxResults": "<p>Maximum number of results required per page. If the value is not supplied, this will be defaulted to 25 per page.</p>"
+      }
+    },
+    "QuerySchemaVersionMetadataResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RecordsCount": {
       "base": null,
       "refs": {
@@ -3632,6 +3964,56 @@
         "Crawler$RecrawlPolicy": "<p>A policy that specifies whether to crawl the entire dataset again, or to crawl only folders that were added since the last crawler run.</p>",
         "CreateCrawlerRequest$RecrawlPolicy": "<p>A policy that specifies whether to crawl the entire dataset again, or to crawl only folders that were added since the last crawler run.</p>",
         "UpdateCrawlerRequest$RecrawlPolicy": "<p>A policy that specifies whether to crawl the entire dataset again, or to crawl only folders that were added since the last crawler run.</p>"
+      }
+    },
+    "RegisterSchemaVersionInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterSchemaVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegistryId": {
+      "base": "<p>A wrapper structure that may contain the registry name and Amazon Resource Name (ARN).</p>",
+      "refs": {
+        "CreateSchemaInput$RegistryId": "<p> This is a wrapper shape to contain the registry identity fields. If this is not provided, the default registry will be used. The ARN format for the same will be: <code>arn:aws:glue:us-east-2:&lt;customer id&gt;:registry/default-registry:random-5-letter-id</code>.</p>",
+        "DeleteRegistryInput$RegistryId": "<p>This is a wrapper structure that may contain the registry name and Amazon Resource Name (ARN).</p>",
+        "GetRegistryInput$RegistryId": "<p>This is a wrapper structure that may contain the registry name and Amazon Resource Name (ARN).</p>",
+        "ListSchemasInput$RegistryId": "<p>A wrapper structure that may contain the registry name and Amazon Resource Name (ARN).</p>",
+        "UpdateRegistryInput$RegistryId": "<p>This is a wrapper structure that may contain the registry name and Amazon Resource Name (ARN).</p>"
+      }
+    },
+    "RegistryListDefinition": {
+      "base": null,
+      "refs": {
+        "ListRegistriesResponse$Registries": "<p>An array of <code>RegistryDetailedListItem</code> objects containing minimal details of each registry.</p>"
+      }
+    },
+    "RegistryListItem": {
+      "base": "<p>A structure containing the details for a registry.</p>",
+      "refs": {
+        "RegistryListDefinition$member": null
+      }
+    },
+    "RegistryStatus": {
+      "base": null,
+      "refs": {
+        "DeleteRegistryResponse$Status": "<p>The status of the registry. A successful operation will return the <code>Deleting</code> status.</p>",
+        "GetRegistryResponse$Status": "<p>The status of the registry.</p>",
+        "RegistryListItem$Status": "<p>The status of the registry.</p>"
+      }
+    },
+    "RemoveSchemaVersionMetadataInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveSchemaVersionMetadataResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ReplaceBoolean": {
@@ -3809,10 +4191,69 @@
         "UpdateCrawlerRequest$SchemaChangePolicy": "<p>The policy for the crawler's update and deletion behavior.</p>"
       }
     },
+    "SchemaCheckpointNumber": {
+      "base": null,
+      "refs": {
+        "CreateSchemaResponse$SchemaCheckpoint": "<p>The version number of the checkpoint (the last time the compatibility mode was changed).</p>",
+        "GetSchemaResponse$SchemaCheckpoint": "<p>The version number of the checkpoint (the last time the compatibility mode was changed).</p>"
+      }
+    },
     "SchemaColumn": {
       "base": "<p>A key-value pair representing a column and data type that this transform can run against. The <code>Schema</code> parameter of the <code>MLTransform</code> may contain up to 100 of these structures.</p>",
       "refs": {
         "TransformSchema$member": null
+      }
+    },
+    "SchemaDefinitionDiff": {
+      "base": null,
+      "refs": {
+        "GetSchemaVersionsDiffResponse$Diff": "<p>The difference between schemas as a string in JsonPatch format.</p>"
+      }
+    },
+    "SchemaDefinitionString": {
+      "base": null,
+      "refs": {
+        "CheckSchemaVersionValidityInput$SchemaDefinition": "<p>The definition of the schema that has to be validated.</p>",
+        "CreateSchemaInput$SchemaDefinition": "<p>The schema definition using the <code>DataFormat</code> setting for <code>SchemaName</code>.</p>",
+        "GetSchemaByDefinitionInput$SchemaDefinition": "<p>The definition of the schema for which schema details are required.</p>",
+        "GetSchemaVersionResponse$SchemaDefinition": "<p>The schema definition for the schema ID.</p>",
+        "RegisterSchemaVersionInput$SchemaDefinition": "<p>The schema definition using the <code>DataFormat</code> setting for the <code>SchemaName</code>.</p>"
+      }
+    },
+    "SchemaDiffType": {
+      "base": null,
+      "refs": {
+        "GetSchemaVersionsDiffInput$SchemaDiffType": "<p>Refers to <code>SYNTAX_DIFF</code>, which is the currently supported diff type.</p>"
+      }
+    },
+    "SchemaId": {
+      "base": null,
+      "refs": {
+        "DeleteSchemaInput$SchemaId": "<p>This is a wrapper structure that may contain the schema name and Amazon Resource Name (ARN).</p>",
+        "DeleteSchemaVersionsInput$SchemaId": "<p>This is a wrapper structure that may contain the schema name and Amazon Resource Name (ARN).</p>",
+        "GetSchemaByDefinitionInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has to be provided.</p> </li> </ul>",
+        "GetSchemaInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> </ul>",
+        "GetSchemaVersionInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> </ul>",
+        "GetSchemaVersionsDiffInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has to be provided.</p> </li> </ul>",
+        "ListSchemaVersionsInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> </ul>",
+        "PutSchemaVersionMetadataInput$SchemaId": "<p>The unique ID for the schema.</p>",
+        "QuerySchemaVersionMetadataInput$SchemaId": "<p>A wrapper structure that may contain the schema name and Amazon Resource Name (ARN).</p>",
+        "RegisterSchemaVersionInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. Either <code>SchemaArn</code> or <code>SchemaName</code> and <code>RegistryName</code> has to be provided.</p> </li> </ul>",
+        "RemoveSchemaVersionMetadataInput$SchemaId": "<p>A wrapper structure that may contain the schema name and Amazon Resource Name (ARN).</p>",
+        "SchemaReference$SchemaId": "<p>A structure that contains schema identity fields. Either this or the <code>SchemaVersionId</code> has to be provided.</p>",
+        "UpdateSchemaInput$SchemaId": "<p>This is a wrapper structure to contain schema identity fields. The structure contains:</p> <ul> <li> <p>SchemaId$SchemaArn: The Amazon Resource Name (ARN) of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has to be provided.</p> </li> <li> <p>SchemaId$SchemaName: The name of the schema. One of <code>SchemaArn</code> or <code>SchemaName</code> has to be provided.</p> </li> </ul>"
+      }
+    },
+    "SchemaListDefinition": {
+      "base": null,
+      "refs": {
+        "ListSchemasResponse$Schemas": "<p>An array of <code>SchemaListItem</code> objects containing details of each schema.</p>"
+      }
+    },
+    "SchemaListItem": {
+      "base": "<p>An object that contains minimal details for a schema.</p>",
+      "refs": {
+        "SchemaListDefinition$member": null
       }
     },
     "SchemaPathString": {
@@ -3820,6 +4261,132 @@
       "refs": {
         "MappingEntry$SourcePath": "<p>The source path.</p>",
         "MappingEntry$TargetPath": "<p>The target path.</p>"
+      }
+    },
+    "SchemaReference": {
+      "base": "<p>An object that references a schema stored in the AWS Glue Schema Registry.</p>",
+      "refs": {
+        "StorageDescriptor$SchemaReference": "<p>An object that references a schema stored in the AWS Glue Schema Registry.</p> <p>When creating a table, you can pass an empty list of columns for the schema, and instead use a schema reference.</p>"
+      }
+    },
+    "SchemaRegistryNameString": {
+      "base": null,
+      "refs": {
+        "CreateRegistryInput$RegistryName": "<p>Name of the registry to be created of max length of 255, and may only contain letters, numbers, hyphen, underscore, dollar sign, or hash mark. No whitespace.</p>",
+        "CreateRegistryResponse$RegistryName": "<p>The name of the registry.</p>",
+        "CreateSchemaInput$SchemaName": "<p>Name of the schema to be created of max length of 255, and may only contain letters, numbers, hyphen, underscore, dollar sign, or hash mark. No whitespace.</p>",
+        "CreateSchemaResponse$RegistryName": "<p>The name of the registry.</p>",
+        "CreateSchemaResponse$SchemaName": "<p>The name of the schema.</p>",
+        "DeleteRegistryResponse$RegistryName": "<p>The name of the registry being deleted.</p>",
+        "DeleteSchemaResponse$SchemaName": "<p>The name of the schema being deleted.</p>",
+        "GetRegistryResponse$RegistryName": "<p>The name of the registry.</p>",
+        "GetSchemaResponse$RegistryName": "<p>The name of the registry.</p>",
+        "GetSchemaResponse$SchemaName": "<p>The name of the schema.</p>",
+        "PutSchemaVersionMetadataResponse$SchemaName": "<p>The name for the schema.</p>",
+        "PutSchemaVersionMetadataResponse$RegistryName": "<p>The name for the registry.</p>",
+        "RegistryId$RegistryName": "<p>Name of the registry. Used only for lookup. One of <code>RegistryArn</code> or <code>RegistryName</code> has to be provided. </p>",
+        "RegistryListItem$RegistryName": "<p>The name of the registry.</p>",
+        "RemoveSchemaVersionMetadataResponse$SchemaName": "<p>The name of the schema.</p>",
+        "RemoveSchemaVersionMetadataResponse$RegistryName": "<p>The name of the registry.</p>",
+        "SchemaId$SchemaName": null,
+        "SchemaId$RegistryName": null,
+        "SchemaListItem$RegistryName": "<p>the name of the registry where the schema resides.</p>",
+        "SchemaListItem$SchemaName": "<p>The name of the schema.</p>",
+        "UpdateRegistryResponse$RegistryName": "<p>The name of the updated registry.</p>",
+        "UpdateSchemaResponse$SchemaName": "<p>The name of the schema.</p>",
+        "UpdateSchemaResponse$RegistryName": "<p>The name of the registry that contains the schema.</p>"
+      }
+    },
+    "SchemaRegistryTokenString": {
+      "base": null,
+      "refs": {
+        "ListRegistriesInput$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "ListRegistriesResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
+        "ListSchemaVersionsInput$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "ListSchemaVersionsResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
+        "ListSchemasInput$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "ListSchemasResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>",
+        "QuerySchemaVersionMetadataInput$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
+        "QuerySchemaVersionMetadataResponse$NextToken": "<p>A continuation token for paginating the returned list of tokens, returned if the current segment of the list is not the last.</p>"
+      }
+    },
+    "SchemaStatus": {
+      "base": null,
+      "refs": {
+        "CreateSchemaResponse$SchemaStatus": "<p>The status of the schema. </p>",
+        "DeleteSchemaResponse$Status": "<p>The status of the schema.</p>",
+        "GetSchemaResponse$SchemaStatus": "<p>The status of the schema.</p>",
+        "SchemaListItem$SchemaStatus": "<p>The status of the schema.</p>"
+      }
+    },
+    "SchemaValidationError": {
+      "base": null,
+      "refs": {
+        "CheckSchemaVersionValidityResponse$Error": "<p>A validation failure error message.</p>"
+      }
+    },
+    "SchemaVersionErrorItem": {
+      "base": "<p>An object that contains the error details for an operation on a schema version.</p>",
+      "refs": {
+        "SchemaVersionErrorList$member": null
+      }
+    },
+    "SchemaVersionErrorList": {
+      "base": null,
+      "refs": {
+        "DeleteSchemaVersionsResponse$SchemaVersionErrors": "<p>A list of <code>SchemaVersionErrorItem</code> objects, each containing an error and schema version.</p>"
+      }
+    },
+    "SchemaVersionIdString": {
+      "base": null,
+      "refs": {
+        "CreateSchemaResponse$SchemaVersionId": "<p>The unique identifier of the first schema version.</p>",
+        "GetSchemaByDefinitionResponse$SchemaVersionId": "<p>The schema ID of the schema version.</p>",
+        "GetSchemaVersionInput$SchemaVersionId": "<p>The <code>SchemaVersionId</code> of the schema version. This field is required for fetching by schema ID. Either this or the <code>SchemaId</code> wrapper has to be provided.</p>",
+        "GetSchemaVersionResponse$SchemaVersionId": "<p>The <code>SchemaVersionId</code> of the schema version.</p>",
+        "PutSchemaVersionMetadataInput$SchemaVersionId": "<p>The unique version ID of the schema version.</p>",
+        "PutSchemaVersionMetadataResponse$SchemaVersionId": "<p>The unique version ID of the schema version.</p>",
+        "QuerySchemaVersionMetadataInput$SchemaVersionId": "<p>The unique version ID of the schema version.</p>",
+        "QuerySchemaVersionMetadataResponse$SchemaVersionId": "<p>The unique version ID of the schema version.</p>",
+        "RegisterSchemaVersionResponse$SchemaVersionId": "<p>The unique ID that represents the version of this schema.</p>",
+        "RemoveSchemaVersionMetadataInput$SchemaVersionId": "<p>The unique version ID of the schema version.</p>",
+        "RemoveSchemaVersionMetadataResponse$SchemaVersionId": "<p>The version ID for the schema version.</p>",
+        "SchemaReference$SchemaVersionId": "<p>The unique ID assigned to a version of the schema. Either this or the <code>SchemaId</code> has to be provided.</p>",
+        "SchemaVersionListItem$SchemaVersionId": "<p>The unique identifier of the schema version.</p>"
+      }
+    },
+    "SchemaVersionList": {
+      "base": null,
+      "refs": {
+        "ListSchemaVersionsResponse$Schemas": "<p>An array of <code>SchemaVersionList</code> objects containing details of each schema version.</p>"
+      }
+    },
+    "SchemaVersionListItem": {
+      "base": "<p>An object containing the details about a schema version.</p>",
+      "refs": {
+        "SchemaVersionList$member": null
+      }
+    },
+    "SchemaVersionNumber": {
+      "base": null,
+      "refs": {
+        "GetSchemaVersionInput$SchemaVersionNumber": "<p>The version number of the schema.</p>",
+        "GetSchemaVersionsDiffInput$FirstSchemaVersionNumber": "<p>The first of the two schema versions to be compared.</p>",
+        "GetSchemaVersionsDiffInput$SecondSchemaVersionNumber": "<p>The second of the two schema versions to be compared.</p>",
+        "PutSchemaVersionMetadataInput$SchemaVersionNumber": "<p>The version number of the schema.</p>",
+        "QuerySchemaVersionMetadataInput$SchemaVersionNumber": "<p>The version number of the schema.</p>",
+        "RemoveSchemaVersionMetadataInput$SchemaVersionNumber": "<p>The version number of the schema.</p>",
+        "UpdateSchemaInput$SchemaVersionNumber": "<p>Version number required for check pointing. One of <code>VersionNumber</code> or <code>Compatibility</code> has to be provided.</p>"
+      }
+    },
+    "SchemaVersionStatus": {
+      "base": null,
+      "refs": {
+        "CreateSchemaResponse$SchemaVersionStatus": "<p>The status of the first schema version created.</p>",
+        "GetSchemaByDefinitionResponse$Status": "<p>The status of the schema version.</p>",
+        "GetSchemaVersionResponse$Status": "<p>The status of the schema version. </p>",
+        "RegisterSchemaVersionResponse$Status": "<p>The status of the schema version.</p>",
+        "SchemaVersionListItem$Status": "<p>The status of the schema version.</p>"
       }
     },
     "ScriptLocationString": {
@@ -4178,6 +4745,10 @@
         "CreateDevEndpointRequest$Tags": "<p>The tags to use with this DevEndpoint. You may use tags to limit access to the DevEndpoint. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateJobRequest$Tags": "<p>The tags to use with this job. You may use tags to limit access to the job. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
         "CreateMLTransformRequest$Tags": "<p>The tags to use with this machine learning transform. You may use tags to limit access to the machine learning transform. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide.</p>",
+        "CreateRegistryInput$Tags": "<p>AWS tags that contain a key value pair and may be searched by console, command line, or API.</p>",
+        "CreateRegistryResponse$Tags": "<p>The tags for the registry.</p>",
+        "CreateSchemaInput$Tags": "<p>AWS tags that contain a key value pair and may be searched by console, command line, or API. If specified, follows the AWS tags-on-create pattern.</p>",
+        "CreateSchemaResponse$Tags": "<p>The tags for the schema.</p>",
         "CreateTriggerRequest$Tags": "<p>The tags to use with this trigger. You may use tags to limit access to the trigger. For more information about tags in AWS Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">AWS Tags in AWS Glue</a> in the developer guide. </p>",
         "CreateWorkflowRequest$Tags": "<p>The tags to be used with this workflow.</p>",
         "GetTagsResponse$Tags": "<p>The requested tags.</p>",
@@ -4657,6 +5228,26 @@
       "refs": {
       }
     },
+    "UpdateRegistryInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRegistryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSchemaInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateSchemaResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateTableRequest": {
       "base": null,
       "refs": {
@@ -4701,6 +5292,15 @@
       "base": "<p>Specifies an XML classifier to be updated.</p>",
       "refs": {
         "UpdateClassifierRequest$XMLClassifier": "<p>An <code>XMLClassifier</code> object with updated fields.</p>"
+      }
+    },
+    "UpdatedTimestamp": {
+      "base": null,
+      "refs": {
+        "GetRegistryResponse$UpdatedTime": "<p>The date and time the registry was updated.</p>",
+        "GetSchemaResponse$UpdatedTime": "<p>The date and time the schema was updated.</p>",
+        "RegistryListItem$UpdatedTime": "<p>The date the registry was updated.</p>",
+        "SchemaListItem$UpdatedTime": "<p>The date and time that a schema was updated.</p>"
       }
     },
     "UriString": {
@@ -4778,6 +5378,23 @@
         "XMLClassifier$Version": "<p>The version of this classifier.</p>"
       }
     },
+    "VersionLongNumber": {
+      "base": null,
+      "refs": {
+        "CreateSchemaResponse$LatestSchemaVersion": "<p>The latest version of the schema associated with the returned schema definition.</p>",
+        "CreateSchemaResponse$NextSchemaVersion": "<p>The next version of the schema associated with the returned schema definition.</p>",
+        "GetSchemaResponse$LatestSchemaVersion": "<p>The latest version of the schema associated with the returned schema definition.</p>",
+        "GetSchemaResponse$NextSchemaVersion": "<p>The next version of the schema associated with the returned schema definition.</p>",
+        "GetSchemaVersionResponse$VersionNumber": "<p>The version number of the schema.</p>",
+        "PutSchemaVersionMetadataResponse$VersionNumber": "<p>The version number of the schema.</p>",
+        "RegisterSchemaVersionResponse$VersionNumber": "<p>The version of this schema (for sync flow only, in case this is the first version).</p>",
+        "RemoveSchemaVersionMetadataResponse$VersionNumber": "<p>The version number of the schema.</p>",
+        "SchemaReference$SchemaVersionNumber": "<p>The version number of the schema.</p>",
+        "SchemaVersionErrorItem$VersionNumber": "<p>The version number of the schema.</p>",
+        "SchemaVersionListItem$VersionNumber": "<p>The version number of the schema.</p>",
+        "SchemaVersionNumber$VersionNumber": null
+      }
+    },
     "VersionMismatchException": {
       "base": "<p>There was a version conflict.</p>",
       "refs": {
@@ -4791,6 +5408,12 @@
         "GetTableVersionRequest$VersionId": "<p>The ID value of the table version to be retrieved. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1. </p>",
         "TableVersion$VersionId": "<p>The ID value that identifies this table version. A <code>VersionId</code> is a string representation of an integer. Each version is incremented by 1.</p>",
         "TableVersionError$VersionId": "<p>The ID value of the version in question. A <code>VersionID</code> is a string representation of an integer. Each version is incremented by 1.</p>"
+      }
+    },
+    "VersionsString": {
+      "base": null,
+      "refs": {
+        "DeleteSchemaVersionsInput$Versions": "<p>A version range may be supplied which may be of the format:</p> <ul> <li> <p>a single version number, 5</p> </li> <li> <p>a range, 5-8 : deletes versions 5, 6, 7, 8</p> </li> </ul>"
       }
     },
     "ViewTextString": {

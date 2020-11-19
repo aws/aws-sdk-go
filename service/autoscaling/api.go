@@ -6616,8 +6616,9 @@ type CreateAutoScalingGroupInput struct {
 	// and how the Auto Scaling group allocates instance types to fulfill On-Demand
 	// and Spot capacities, but also the parameters that specify the instance configuration
 	// information—the launch template and instance types. The policy can also
-	// include a weight for each instance type. For more information, see Auto Scaling
-	// groups with multiple instance types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
+	// include a weight for each instance type and different launch templates for
+	// individual instance types. For more information, see Auto Scaling groups
+	// with multiple instance types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	//
 	// Conditional: You must specify either a launch template (LaunchTemplate or
@@ -11429,9 +11430,7 @@ func (s *LaunchConfiguration) SetUserData(v string) *LaunchConfiguration {
 
 // Describes a launch template and overrides.
 //
-// The overrides are used to override the instance type specified by the launch
-// template with multiple instance types that can be used to launch On-Demand
-// Instances and Spot Instances.
+// You specify these parameters as part of a mixed instances policy.
 //
 // When you update the launch template or overrides, existing Amazon EC2 instances
 // continue to run. When scale out occurs, Amazon EC2 Auto Scaling launches
@@ -11444,10 +11443,8 @@ type LaunchTemplate struct {
 	LaunchTemplateSpecification *LaunchTemplateSpecification `type:"structure"`
 
 	// Any parameters that you specify override the same parameters in the launch
-	// template. Currently, the only supported override is instance type. You can
-	// specify between 1 and 20 instance types. If not provided, Amazon EC2 Auto
-	// Scaling will use the instance type specified in the launch template when
-	// it launches an instance.
+	// template. If not provided, Amazon EC2 Auto Scaling uses the instance type
+	// specified in the launch template when it launches an instance.
 	Overrides []*LaunchTemplateOverrides `type:"list"`
 }
 
@@ -11498,19 +11495,26 @@ func (s *LaunchTemplate) SetOverrides(v []*LaunchTemplateOverrides) *LaunchTempl
 	return s
 }
 
-// Describes an override for a launch template. Currently, the only supported
-// override is instance type.
-//
-// The maximum number of instance type overrides that can be associated with
-// an Auto Scaling group is 20.
+// Describes an override for a launch template. The maximum number of instance
+// types that can be associated with an Auto Scaling group is 20. For more information,
+// see Configuring overrides (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-override-options.html)
+// in the Amazon EC2 Auto Scaling User Guide.
 type LaunchTemplateOverrides struct {
 	_ struct{} `type:"structure"`
 
 	// The instance type, such as m3.xlarge. You must use an instance type that
-	// is supported in your requested Region and Availability Zones. For information
-	// about available instance types, see Available instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#AvailableInstanceTypes)
+	// is supported in your requested Region and Availability Zones. For more information,
+	// see Instance types (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html)
 	// in the Amazon Elastic Compute Cloud User Guide.
 	InstanceType *string `min:"1" type:"string"`
+
+	// Provides the launch template to be used when launching the instance type.
+	// For example, some instance types might require a launch template with a different
+	// AMI. If not provided, Amazon EC2 Auto Scaling uses the launch template that's
+	// defined for your mixed instances policy. For more information, see Specifying
+	// a different launch template for an instance type (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-launch-template-overrides.html)
+	// in the Amazon EC2 Auto Scaling User Guide.
+	LaunchTemplateSpecification *LaunchTemplateSpecification `type:"structure"`
 
 	// The number of capacity units provided by the specified instance type in terms
 	// of virtual CPUs, memory, storage, throughput, or other relative performance
@@ -11547,6 +11551,11 @@ func (s *LaunchTemplateOverrides) Validate() error {
 	if s.WeightedCapacity != nil && len(*s.WeightedCapacity) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WeightedCapacity", 1))
 	}
+	if s.LaunchTemplateSpecification != nil {
+		if err := s.LaunchTemplateSpecification.Validate(); err != nil {
+			invalidParams.AddNested("LaunchTemplateSpecification", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -11557,6 +11566,12 @@ func (s *LaunchTemplateOverrides) Validate() error {
 // SetInstanceType sets the InstanceType field's value.
 func (s *LaunchTemplateOverrides) SetInstanceType(v string) *LaunchTemplateOverrides {
 	s.InstanceType = &v
+	return s
+}
+
+// SetLaunchTemplateSpecification sets the LaunchTemplateSpecification field's value.
+func (s *LaunchTemplateOverrides) SetLaunchTemplateSpecification(v *LaunchTemplateSpecification) *LaunchTemplateOverrides {
+	s.LaunchTemplateSpecification = v
 	return s
 }
 
@@ -12155,7 +12170,7 @@ func (s *MetricGranularityType) SetGranularity(v string) *MetricGranularityType 
 // Describes a mixed instances policy for an Auto Scaling group. With mixed
 // instances, your Auto Scaling group can provision a combination of On-Demand
 // Instances and Spot Instances across multiple instance types. For more information,
-// see Auto Scaling Groups with Multiple Instance Types and Purchase Options
+// see Auto Scaling groups with multiple instance types and purchase options
 // (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 // in the Amazon EC2 Auto Scaling User Guide.
 //
@@ -14584,8 +14599,8 @@ type UpdateAutoScalingGroupInput struct {
 
 	// An embedded object that specifies a mixed instances policy. When you make
 	// changes to an existing policy, all optional parameters are left unchanged
-	// if not specified. For more information, see Auto Scaling Groups with Multiple
-	// Instance Types and Purchase Options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
+	// if not specified. For more information, see Auto Scaling groups with multiple
+	// instance types and purchase options (https://docs.aws.amazon.com/autoscaling/ec2/userguide/asg-purchase-options.html)
 	// in the Amazon EC2 Auto Scaling User Guide.
 	MixedInstancesPolicy *MixedInstancesPolicy `type:"structure"`
 

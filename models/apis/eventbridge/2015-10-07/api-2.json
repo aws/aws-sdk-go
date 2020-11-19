@@ -435,7 +435,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"PolicyLengthExceededException"},
         {"shape":"InternalException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "PutRule":{
@@ -481,7 +482,8 @@
       "errors":[
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalException"},
-        {"shape":"ConcurrentModificationException"}
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"OperationDisabledException"}
       ]
     },
     "RemoveTargets":{
@@ -781,6 +783,11 @@
         "EventSourceArn":{"shape":"String"}
       }
     },
+    "CreatedBy":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "Database":{
       "type":"string",
       "max":64,
@@ -841,7 +848,7 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"},
+        "EventBusName":{"shape":"EventBusNameOrArn"},
         "Force":{"shape":"Boolean"}
       }
     },
@@ -871,7 +878,7 @@
     "DescribeEventBusRequest":{
       "type":"structure",
       "members":{
-        "Name":{"shape":"EventBusName"}
+        "Name":{"shape":"EventBusNameOrArn"}
       }
     },
     "DescribeEventBusResponse":{
@@ -943,7 +950,7 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"}
+        "EventBusName":{"shape":"EventBusNameOrArn"}
       }
     },
     "DescribeRuleResponse":{
@@ -957,7 +964,8 @@
         "Description":{"shape":"RuleDescription"},
         "RoleArn":{"shape":"RoleArn"},
         "ManagedBy":{"shape":"ManagedBy"},
-        "EventBusName":{"shape":"EventBusName"}
+        "EventBusName":{"shape":"EventBusName"},
+        "CreatedBy":{"shape":"CreatedBy"}
       }
     },
     "DisableRuleRequest":{
@@ -965,7 +973,7 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"}
+        "EventBusName":{"shape":"EventBusNameOrArn"}
       }
     },
     "EcsParameters":{
@@ -985,7 +993,7 @@
       "required":["Name"],
       "members":{
         "Name":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"}
+        "EventBusName":{"shape":"EventBusNameOrArn"}
       }
     },
     "ErrorCode":{"type":"string"},
@@ -1007,6 +1015,12 @@
       "max":256,
       "min":1,
       "pattern":"[/\\.\\-_A-Za-z0-9]+"
+    },
+    "EventBusNameOrArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"(arn:aws[\\w-]*:events:[a-z]{2}-[a-z]+-[\\w-]+:[0-9]{12}:event-bus\\/)?[/\\.\\-_A-Za-z0-9]+"
     },
     "EventId":{"type":"string"},
     "EventPattern":{"type":"string"},
@@ -1244,7 +1258,7 @@
       "required":["TargetArn"],
       "members":{
         "TargetArn":{"shape":"TargetArn"},
-        "EventBusName":{"shape":"EventBusName"},
+        "EventBusName":{"shape":"EventBusNameOrArn"},
         "NextToken":{"shape":"NextToken"},
         "Limit":{"shape":"LimitMax100"}
       }
@@ -1260,7 +1274,7 @@
       "type":"structure",
       "members":{
         "NamePrefix":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"},
+        "EventBusName":{"shape":"EventBusNameOrArn"},
         "NextToken":{"shape":"NextToken"},
         "Limit":{"shape":"LimitMax100"}
       }
@@ -1290,7 +1304,7 @@
       "required":["Rule"],
       "members":{
         "Rule":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"},
+        "EventBusName":{"shape":"EventBusNameOrArn"},
         "NextToken":{"shape":"NextToken"},
         "Limit":{"shape":"LimitMax100"}
       }
@@ -1341,6 +1355,12 @@
       "max":256,
       "min":1,
       "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "NonPartnerEventBusNameOrArn":{
+      "type":"string",
+      "max":1600,
+      "min":1,
+      "pattern":"(arn:aws[\\w-]*:events:[a-z]{2}-[a-z]+-[\\w-]+:[0-9]{12}:event-bus\\/)?[\\.\\-_A-Za-z0-9]+"
     },
     "OperationDisabledException":{
       "type":"structure",
@@ -1413,7 +1433,7 @@
         "Resources":{"shape":"EventResourceList"},
         "DetailType":{"shape":"String"},
         "Detail":{"shape":"String"},
-        "EventBusName":{"shape":"NonPartnerEventBusName"}
+        "EventBusName":{"shape":"NonPartnerEventBusNameOrArn"}
       }
     },
     "PutEventsRequestEntryList":{
@@ -1485,17 +1505,13 @@
     },
     "PutPermissionRequest":{
       "type":"structure",
-      "required":[
-        "Action",
-        "Principal",
-        "StatementId"
-      ],
       "members":{
         "EventBusName":{"shape":"NonPartnerEventBusName"},
         "Action":{"shape":"Action"},
         "Principal":{"shape":"Principal"},
         "StatementId":{"shape":"StatementId"},
-        "Condition":{"shape":"Condition"}
+        "Condition":{"shape":"Condition"},
+        "Policy":{"shape":"String"}
       }
     },
     "PutRuleRequest":{
@@ -1509,7 +1525,7 @@
         "Description":{"shape":"RuleDescription"},
         "RoleArn":{"shape":"RoleArn"},
         "Tags":{"shape":"TagList"},
-        "EventBusName":{"shape":"EventBusName"}
+        "EventBusName":{"shape":"EventBusNameOrArn"}
       }
     },
     "PutRuleResponse":{
@@ -1526,7 +1542,7 @@
       ],
       "members":{
         "Rule":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"},
+        "EventBusName":{"shape":"EventBusNameOrArn"},
         "Targets":{"shape":"TargetList"}
       }
     },
@@ -1587,9 +1603,9 @@
     },
     "RemovePermissionRequest":{
       "type":"structure",
-      "required":["StatementId"],
       "members":{
         "StatementId":{"shape":"StatementId"},
+        "RemoveAllPermissions":{"shape":"Boolean"},
         "EventBusName":{"shape":"NonPartnerEventBusName"}
       }
     },
@@ -1601,7 +1617,7 @@
       ],
       "members":{
         "Rule":{"shape":"RuleName"},
-        "EventBusName":{"shape":"EventBusName"},
+        "EventBusName":{"shape":"EventBusNameOrArn"},
         "Ids":{"shape":"TargetIdList"},
         "Force":{"shape":"Boolean"}
       }

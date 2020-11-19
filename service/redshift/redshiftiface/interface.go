@@ -200,6 +200,9 @@ type RedshiftAPI interface {
 	DescribeClusterDbRevisionsWithContext(aws.Context, *redshift.DescribeClusterDbRevisionsInput, ...request.Option) (*redshift.DescribeClusterDbRevisionsOutput, error)
 	DescribeClusterDbRevisionsRequest(*redshift.DescribeClusterDbRevisionsInput) (*request.Request, *redshift.DescribeClusterDbRevisionsOutput)
 
+	DescribeClusterDbRevisionsPages(*redshift.DescribeClusterDbRevisionsInput, func(*redshift.DescribeClusterDbRevisionsOutput, bool) bool) error
+	DescribeClusterDbRevisionsPagesWithContext(aws.Context, *redshift.DescribeClusterDbRevisionsInput, func(*redshift.DescribeClusterDbRevisionsOutput, bool) bool, ...request.Option) error
+
 	DescribeClusterParameterGroups(*redshift.DescribeClusterParameterGroupsInput) (*redshift.DescribeClusterParameterGroupsOutput, error)
 	DescribeClusterParameterGroupsWithContext(aws.Context, *redshift.DescribeClusterParameterGroupsInput, ...request.Option) (*redshift.DescribeClusterParameterGroupsOutput, error)
 	DescribeClusterParameterGroupsRequest(*redshift.DescribeClusterParameterGroupsInput) (*request.Request, *redshift.DescribeClusterParameterGroupsOutput)
@@ -238,6 +241,9 @@ type RedshiftAPI interface {
 	DescribeClusterTracks(*redshift.DescribeClusterTracksInput) (*redshift.DescribeClusterTracksOutput, error)
 	DescribeClusterTracksWithContext(aws.Context, *redshift.DescribeClusterTracksInput, ...request.Option) (*redshift.DescribeClusterTracksOutput, error)
 	DescribeClusterTracksRequest(*redshift.DescribeClusterTracksInput) (*request.Request, *redshift.DescribeClusterTracksOutput)
+
+	DescribeClusterTracksPages(*redshift.DescribeClusterTracksInput, func(*redshift.DescribeClusterTracksOutput, bool) bool) error
+	DescribeClusterTracksPagesWithContext(aws.Context, *redshift.DescribeClusterTracksInput, func(*redshift.DescribeClusterTracksOutput, bool) bool, ...request.Option) error
 
 	DescribeClusterVersions(*redshift.DescribeClusterVersionsInput) (*redshift.DescribeClusterVersionsOutput, error)
 	DescribeClusterVersionsWithContext(aws.Context, *redshift.DescribeClusterVersionsInput, ...request.Option) (*redshift.DescribeClusterVersionsOutput, error)
@@ -339,9 +345,15 @@ type RedshiftAPI interface {
 	DescribeSnapshotCopyGrantsWithContext(aws.Context, *redshift.DescribeSnapshotCopyGrantsInput, ...request.Option) (*redshift.DescribeSnapshotCopyGrantsOutput, error)
 	DescribeSnapshotCopyGrantsRequest(*redshift.DescribeSnapshotCopyGrantsInput) (*request.Request, *redshift.DescribeSnapshotCopyGrantsOutput)
 
+	DescribeSnapshotCopyGrantsPages(*redshift.DescribeSnapshotCopyGrantsInput, func(*redshift.DescribeSnapshotCopyGrantsOutput, bool) bool) error
+	DescribeSnapshotCopyGrantsPagesWithContext(aws.Context, *redshift.DescribeSnapshotCopyGrantsInput, func(*redshift.DescribeSnapshotCopyGrantsOutput, bool) bool, ...request.Option) error
+
 	DescribeSnapshotSchedules(*redshift.DescribeSnapshotSchedulesInput) (*redshift.DescribeSnapshotSchedulesOutput, error)
 	DescribeSnapshotSchedulesWithContext(aws.Context, *redshift.DescribeSnapshotSchedulesInput, ...request.Option) (*redshift.DescribeSnapshotSchedulesOutput, error)
 	DescribeSnapshotSchedulesRequest(*redshift.DescribeSnapshotSchedulesInput) (*request.Request, *redshift.DescribeSnapshotSchedulesOutput)
+
+	DescribeSnapshotSchedulesPages(*redshift.DescribeSnapshotSchedulesInput, func(*redshift.DescribeSnapshotSchedulesOutput, bool) bool) error
+	DescribeSnapshotSchedulesPagesWithContext(aws.Context, *redshift.DescribeSnapshotSchedulesInput, func(*redshift.DescribeSnapshotSchedulesOutput, bool) bool, ...request.Option) error
 
 	DescribeStorage(*redshift.DescribeStorageInput) (*redshift.DescribeStorageOutput, error)
 	DescribeStorageWithContext(aws.Context, *redshift.DescribeStorageInput, ...request.Option) (*redshift.DescribeStorageOutput, error)
@@ -351,9 +363,15 @@ type RedshiftAPI interface {
 	DescribeTableRestoreStatusWithContext(aws.Context, *redshift.DescribeTableRestoreStatusInput, ...request.Option) (*redshift.DescribeTableRestoreStatusOutput, error)
 	DescribeTableRestoreStatusRequest(*redshift.DescribeTableRestoreStatusInput) (*request.Request, *redshift.DescribeTableRestoreStatusOutput)
 
+	DescribeTableRestoreStatusPages(*redshift.DescribeTableRestoreStatusInput, func(*redshift.DescribeTableRestoreStatusOutput, bool) bool) error
+	DescribeTableRestoreStatusPagesWithContext(aws.Context, *redshift.DescribeTableRestoreStatusInput, func(*redshift.DescribeTableRestoreStatusOutput, bool) bool, ...request.Option) error
+
 	DescribeTags(*redshift.DescribeTagsInput) (*redshift.DescribeTagsOutput, error)
 	DescribeTagsWithContext(aws.Context, *redshift.DescribeTagsInput, ...request.Option) (*redshift.DescribeTagsOutput, error)
 	DescribeTagsRequest(*redshift.DescribeTagsInput) (*request.Request, *redshift.DescribeTagsOutput)
+
+	DescribeTagsPages(*redshift.DescribeTagsInput, func(*redshift.DescribeTagsOutput, bool) bool) error
+	DescribeTagsPagesWithContext(aws.Context, *redshift.DescribeTagsInput, func(*redshift.DescribeTagsOutput, bool) bool, ...request.Option) error
 
 	DescribeUsageLimits(*redshift.DescribeUsageLimitsInput) (*redshift.DescribeUsageLimitsOutput, error)
 	DescribeUsageLimitsWithContext(aws.Context, *redshift.DescribeUsageLimitsInput, ...request.Option) (*redshift.DescribeUsageLimitsOutput, error)
@@ -385,6 +403,9 @@ type RedshiftAPI interface {
 	GetReservedNodeExchangeOfferings(*redshift.GetReservedNodeExchangeOfferingsInput) (*redshift.GetReservedNodeExchangeOfferingsOutput, error)
 	GetReservedNodeExchangeOfferingsWithContext(aws.Context, *redshift.GetReservedNodeExchangeOfferingsInput, ...request.Option) (*redshift.GetReservedNodeExchangeOfferingsOutput, error)
 	GetReservedNodeExchangeOfferingsRequest(*redshift.GetReservedNodeExchangeOfferingsInput) (*request.Request, *redshift.GetReservedNodeExchangeOfferingsOutput)
+
+	GetReservedNodeExchangeOfferingsPages(*redshift.GetReservedNodeExchangeOfferingsInput, func(*redshift.GetReservedNodeExchangeOfferingsOutput, bool) bool) error
+	GetReservedNodeExchangeOfferingsPagesWithContext(aws.Context, *redshift.GetReservedNodeExchangeOfferingsInput, func(*redshift.GetReservedNodeExchangeOfferingsOutput, bool) bool, ...request.Option) error
 
 	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 	ModifyClusterWithContext(aws.Context, *redshift.ModifyClusterInput, ...request.Option) (*redshift.ModifyClusterOutput, error)

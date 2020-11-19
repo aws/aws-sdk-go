@@ -68,6 +68,10 @@ type DirectoryServiceAPI interface {
 	AddIpRoutesWithContext(aws.Context, *directoryservice.AddIpRoutesInput, ...request.Option) (*directoryservice.AddIpRoutesOutput, error)
 	AddIpRoutesRequest(*directoryservice.AddIpRoutesInput) (*request.Request, *directoryservice.AddIpRoutesOutput)
 
+	AddRegion(*directoryservice.AddRegionInput) (*directoryservice.AddRegionOutput, error)
+	AddRegionWithContext(aws.Context, *directoryservice.AddRegionInput, ...request.Option) (*directoryservice.AddRegionOutput, error)
+	AddRegionRequest(*directoryservice.AddRegionInput) (*request.Request, *directoryservice.AddRegionOutput)
+
 	AddTagsToResource(*directoryservice.AddTagsToResourceInput) (*directoryservice.AddTagsToResourceOutput, error)
 	AddTagsToResourceWithContext(aws.Context, *directoryservice.AddTagsToResourceInput, ...request.Option) (*directoryservice.AddTagsToResourceOutput, error)
 	AddTagsToResourceRequest(*directoryservice.AddTagsToResourceInput) (*request.Request, *directoryservice.AddTagsToResourceOutput)
@@ -167,6 +171,10 @@ type DirectoryServiceAPI interface {
 	DescribeLDAPSSettingsWithContext(aws.Context, *directoryservice.DescribeLDAPSSettingsInput, ...request.Option) (*directoryservice.DescribeLDAPSSettingsOutput, error)
 	DescribeLDAPSSettingsRequest(*directoryservice.DescribeLDAPSSettingsInput) (*request.Request, *directoryservice.DescribeLDAPSSettingsOutput)
 
+	DescribeRegions(*directoryservice.DescribeRegionsInput) (*directoryservice.DescribeRegionsOutput, error)
+	DescribeRegionsWithContext(aws.Context, *directoryservice.DescribeRegionsInput, ...request.Option) (*directoryservice.DescribeRegionsOutput, error)
+	DescribeRegionsRequest(*directoryservice.DescribeRegionsInput) (*request.Request, *directoryservice.DescribeRegionsOutput)
+
 	DescribeSharedDirectories(*directoryservice.DescribeSharedDirectoriesInput) (*directoryservice.DescribeSharedDirectoriesOutput, error)
 	DescribeSharedDirectoriesWithContext(aws.Context, *directoryservice.DescribeSharedDirectoriesInput, ...request.Option) (*directoryservice.DescribeSharedDirectoriesOutput, error)
 	DescribeSharedDirectoriesRequest(*directoryservice.DescribeSharedDirectoriesInput) (*request.Request, *directoryservice.DescribeSharedDirectoriesOutput)
@@ -246,6 +254,10 @@ type DirectoryServiceAPI interface {
 	RemoveIpRoutes(*directoryservice.RemoveIpRoutesInput) (*directoryservice.RemoveIpRoutesOutput, error)
 	RemoveIpRoutesWithContext(aws.Context, *directoryservice.RemoveIpRoutesInput, ...request.Option) (*directoryservice.RemoveIpRoutesOutput, error)
 	RemoveIpRoutesRequest(*directoryservice.RemoveIpRoutesInput) (*request.Request, *directoryservice.RemoveIpRoutesOutput)
+
+	RemoveRegion(*directoryservice.RemoveRegionInput) (*directoryservice.RemoveRegionOutput, error)
+	RemoveRegionWithContext(aws.Context, *directoryservice.RemoveRegionInput, ...request.Option) (*directoryservice.RemoveRegionOutput, error)
+	RemoveRegionRequest(*directoryservice.RemoveRegionInput) (*request.Request, *directoryservice.RemoveRegionOutput)
 
 	RemoveTagsFromResource(*directoryservice.RemoveTagsFromResourceInput) (*directoryservice.RemoveTagsFromResourceOutput, error)
 	RemoveTagsFromResourceWithContext(aws.Context, *directoryservice.RemoveTagsFromResourceInput, ...request.Option) (*directoryservice.RemoveTagsFromResourceOutput, error)

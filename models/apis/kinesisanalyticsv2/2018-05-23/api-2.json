@@ -130,6 +130,20 @@
         {"shape":"ConcurrentModificationException"}
       ]
     },
+    "CreateApplicationPresignedUrl":{
+      "name":"CreateApplicationPresignedUrl",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateApplicationPresignedUrlRequest"},
+      "output":{"shape":"CreateApplicationPresignedUrlResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceInUseException"},
+        {"shape":"InvalidArgumentException"}
+      ]
+    },
     "CreateApplicationSnapshot":{
       "name":"CreateApplicationSnapshot",
       "http":{
@@ -727,6 +741,11 @@
       "max":999999999,
       "min":1
     },
+    "AuthorizedUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1
+    },
     "BooleanObject":{"type":"boolean"},
     "BucketARN":{
       "type":"string",
@@ -875,6 +894,24 @@
         "DEFAULT",
         "CUSTOM"
       ]
+    },
+    "CreateApplicationPresignedUrlRequest":{
+      "type":"structure",
+      "required":[
+        "ApplicationName",
+        "UrlType"
+      ],
+      "members":{
+        "ApplicationName":{"shape":"ApplicationName"},
+        "UrlType":{"shape":"UrlType"},
+        "SessionExpirationDurationInSeconds":{"shape":"SessionExpirationDurationInSeconds"}
+      }
+    },
+    "CreateApplicationPresignedUrlResponse":{
+      "type":"structure",
+      "members":{
+        "AuthorizedUrl":{"shape":"AuthorizedUrl"}
+      }
     },
     "CreateApplicationRequest":{
       "type":"structure",
@@ -1918,7 +1955,8 @@
       "enum":[
         "SQL-1_0",
         "FLINK-1_6",
-        "FLINK-1_8"
+        "FLINK-1_8",
+        "FLINK-1_11"
       ]
     },
     "S3ApplicationCodeLocationDescription":{
@@ -2004,6 +2042,11 @@
       },
       "exception":true,
       "fault":true
+    },
+    "SessionExpirationDurationInSeconds":{
+      "type":"long",
+      "max":43200,
+      "min":1800
     },
     "SnapshotDetails":{
       "type":"structure",
@@ -2237,6 +2280,10 @@
       "members":{
         "ApplicationDetail":{"shape":"ApplicationDetail"}
       }
+    },
+    "UrlType":{
+      "type":"string",
+      "enum":["FLINK_DASHBOARD_URL"]
     },
     "VpcConfiguration":{
       "type":"structure",
