@@ -320,11 +320,6 @@ func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region st
 // base64 encode the policy document using base64.StdEncoding before creating
 // it's signature.
 func (v4 Signer) SignString(awsContext aws.Context, stringToSign string, service, region string, exp time.Duration, signTime time.Time) (string, error) {
-	currentTimeFn := v4.currentTimeFn
-	if currentTimeFn == nil {
-		currentTimeFn = time.Now
-	}
-
 	ctx := &signingCtx{
 		Time:                   signTime,
 		ExpireTime:             exp,
