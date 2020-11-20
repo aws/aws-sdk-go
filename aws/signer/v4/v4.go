@@ -318,7 +318,7 @@ func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region st
 // It may be used to create signatures of "Browser-Based Upload using HTTP POST"
 // policy documents to be used in the browser. In which case, make sure to
 // base64 encode the policy document using base64.StdEncoding before creating
-// it's signature.
+// it's signature. See https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html
 func (v4 Signer) SignString(awsContext aws.Context, stringToSign string, service, region string, exp time.Duration, signTime time.Time) (string, error) {
 	ctx := &signingCtx{
 		Time:                   signTime,
